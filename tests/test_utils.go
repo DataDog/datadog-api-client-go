@@ -17,7 +17,6 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
-	"reflect"
 	"runtime"
 	"strings"
 	"testing"
@@ -113,6 +112,32 @@ func SecurePath(path string) string {
 		path = strings.ReplaceAll(path, c, "_")
 	}
 	return filepath.Clean(path)
+}
+
+// SnakeToCamelCase converts snake_case to SnakeCase.
+func SnakeToCamelCase(snake string) (camel string) {
+	isToUpper := false
+
+	for k, v := range snake {
+		if k == 0 {
+			camel = strings.ToUpper(string(v))
+		} else {
+			if isToUpper {
+				camel += strings.ToUpper(string(v))
+				isToUpper = false
+			} else {
+				if v == '_' {
+					isToUpper = true
+				} else if v == '.' { // support for lookup paths
+					isToUpper = true
+					camel += string(v)
+				} else {
+					camel += string(v)
+				}
+			}
+		}
+	}
+	return
 }
 
 // Retry calls the call function for count times every interval while it returns false
@@ -339,17 +364,20 @@ func removeURLSecrets(u *url.URL) string {
 func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	// Default matching on method and URL without secrets
 	if !(r.Method == i.Method && removeURLSecrets(r.URL) == i.URL) {
+		log.Printf("HTTP method: %s != %s; URL: %s != %s", r.Method, i.Method, removeURLSecrets(r.URL), i.URL)
 		return false
 	}
 
 	// Request does not contain body (e.g. `GET`)
 	if r.Body == nil {
+		log.Printf("request body is empty and cassette body is: %s", i.Body)
 		return i.Body == ""
 	}
 
 	// Load request body
 	var b bytes.Buffer
 	if _, err := b.ReadFrom(r.Body); err != nil {
+		log.Printf("could not read request body: %v\n", err)
 		return false
 	}
 	r.Body = ioutil.NopCloser(&b)
@@ -360,15 +388,19 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	if !matched && strings.HasPrefix(r.Header["Content-Type"][0], "multipart/form-data") {
 		rl := strings.Split(strings.TrimSpace(b.String()), "\n")
 		cl := strings.Split(strings.TrimSpace(i.Body), "\n")
-		if len(rl) > 1 && len(cl) > 1 && reflect.DeepEqual(rl[1:len(rl)-1], cl[1:len(cl)-1]) {
-			matched = true
-		} else {
-			log.Printf("Not matching body:\n%v\n\n%v\n", rl, cl)
+		if len(rl) > 1 && len(cl) > 1 {
+			rs := strings.Join(rl[1:len(rl)-1], "\n")
+			cs := strings.Join(cl[1:len(cl)-1], "\n")
+			if rs == cs {
+				matched = true
+			}
 		}
 	}
 
 	if !matched {
 		log.Printf("%s != %s", b.String(), i.Body)
+		log.Printf("full cassette info: %v", i)
+		log.Printf("full request info: %v", *r)
 	}
 	return matched
 }

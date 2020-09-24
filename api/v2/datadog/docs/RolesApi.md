@@ -139,7 +139,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"}} // RelationshipToUser |  (optional)
+    body := datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}} // RelationshipToUser |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -223,7 +223,7 @@ func main() {
         },
     )
 
-    body := datadog.RoleCreateRequest{Data: datadog.RoleCreateData{Attributes: datadog.RoleCreateAttributes{CreatedAt: "TODO", ModifiedAt: "TODO", Name: "Name_example"}, Relationships: datadog.RoleRelationships{Permissions: datadog.RelationshipToPermissions{Data: []RelationshipToPermissionData{datadog.RelationshipToPermissionData{Id: "Id_example", Type: datadog.PermissionsType{}})}, Users: datadog.RelationshipToUsers{Data: []RelationshipToUserData{datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"})}}, Type: datadog.RolesType{}}} // RoleCreateRequest |  (optional)
+    body := datadog.RoleCreateRequest{Data: datadog.RoleCreateData{Attributes: datadog.RoleCreateAttributes{CreatedAt: "TODO", ModifiedAt: "TODO", Name: "Name_example"}, Relationships: datadog.RoleRelationships{Permissions: datadog.RelationshipToPermissions{Data: []RelationshipToPermissionData{datadog.RelationshipToPermissionData{Id: "Id_example", Type: datadog.PermissionsType{}})}, Users: datadog.RelationshipToUsers{Data: []RelationshipToUserData{datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}})}}, Type: datadog.RolesType{}}} // RoleCreateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

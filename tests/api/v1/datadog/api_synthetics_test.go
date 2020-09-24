@@ -66,7 +66,7 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 			AllowInsecure:      datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
 			MinFailureDuration: datadog.PtrInt64(10),
-			MinLocationFailed:  datadog.PtrInt64(10),
+			MinLocationFailed:  datadog.PtrInt64(1),
 			Retry: &datadog.SyntheticsTestOptionsRetry{
 				Count:    datadog.PtrInt64(3),
 				Interval: datadog.PtrFloat64(10),
@@ -148,7 +148,7 @@ func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.Synthet
 			DeviceIds:          &[]datadog.SyntheticsDeviceID{datadog.SYNTHETICSDEVICEID_TABLET},
 			FollowRedirects:    datadog.PtrBool(true),
 			MinFailureDuration: datadog.PtrInt64(10),
-			MinLocationFailed:  datadog.PtrInt64(10),
+			MinLocationFailed:  datadog.PtrInt64(1),
 			Retry: &datadog.SyntheticsTestOptionsRetry{
 				Count:    datadog.PtrInt64(3),
 				Interval: datadog.PtrFloat64(10),

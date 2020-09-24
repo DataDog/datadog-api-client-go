@@ -9,23 +9,29 @@ package tests
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"reflect"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"testing"
 
 	"github.com/go-bdd/gobdd"
 	"github.com/mcuadros/go-lookup"
+	is "gotest.tools/assert/cmp"
 )
 
 type ctxKey struct{}
+type clientKey struct{}
 type apiKey struct{}
 type requestKey struct{}
+type requestNameKey struct{}
 type requestArgsKey struct{}
 type requestParamsKey struct{}
+type ctxRequestsUndoKey struct{}
 type responseKey struct{}
 type dataKey struct{}
 type bodyKey struct{}
@@ -52,6 +58,28 @@ func GetCtx(ctx gobdd.Context) context.Context {
 		panic(err)
 	}
 	return c.(context.Context)
+}
+
+func GetResponse(ctx gobdd.Context) []reflect.Value {
+	r, err := ctx.Get(responseKey{})
+	if err != nil {
+		panic(err)
+	}
+	return r.([]reflect.Value)
+}
+
+// SetRequestsUndo sets map with undo function for each request.
+func SetRequestsUndo(ctx gobdd.Context, value map[string]func(ctx gobdd.Context)) {
+	ctx.Set(ctxRequestsUndoKey{}, value)
+}
+
+// GetRequestsUndo gets map with undo function for each request.
+func GetRequestsUndo(ctx gobdd.Context) map[string]func(ctx gobdd.Context) {
+	requestsUndo, err := ctx.Get(ctxRequestsUndoKey{})
+	if err != nil {
+		panic(err)
+	}
+	return requestsUndo.(map[string]func(ctx gobdd.Context))
 }
 
 // SetCtx sets Go context in BDD context.
@@ -138,17 +166,14 @@ func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	}
 
 	ctx.Set(requestKey{}, f)
+	ctx.Set(requestNameKey{}, name)
 	ctx.Set(requestParamsKey{}, make(map[string]interface{}))
 	ctx.Set(requestArgsKey{}, make([]interface{}, 0))
 }
 
 func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
-	r, err := ctx.Get(responseKey{})
-	if err != nil {
-		panic(err)
-	}
 	// Execute() returns tripples -> 2nd value is *http.Response -> get StatusCode
-	resp := r.([]reflect.Value)
+	resp := GetResponse(ctx)
 	code := resp[len(resp)-2].Interface().(*http.Response).StatusCode
 	if expected != code {
 		t.Fatalf("Excepted %d got %d", expected, code)
@@ -184,34 +209,114 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 
 	request := f.Call(in)[0]
 
-	if body, ok := requestParameters["body"]; ok {
-		a := request.MethodByName("Body").Type().In(0)
-		at := reflect.New(a)
-		json.Unmarshal([]byte(body.(string)), at.Interface())
-		request = request.MethodByName("Body").Call([]reflect.Value{
-			at.Elem(),
-		})[0]
+	for param, value := range requestParameters {
+		name := SnakeToCamelCase(param)
+		method := request.MethodByName(name)
+		if method.IsValid() {
+			if param == "body" {
+				at := reflect.New(method.Type().In(0))
+				json.Unmarshal([]byte(value.(string)), at.Interface())
+				request = method.Call([]reflect.Value{at.Elem()})[0]
+			} else {
+				request = method.Call([]reflect.Value{value.(reflect.Value)})[0]
+			}
+		}
 	}
 
 	result := request.MethodByName("Execute").Call(nil)
 	ctx.Set(responseKey{}, result)
+
+	name, err := ctx.GetString(requestNameKey{})
+	if err != nil {
+		t.Errorf("could not get a request name: %v", err)
+	}
+	if undo, ok := GetRequestsUndo(ctx)[name]; ok {
+		GetCleanup(ctx)["01-undo"] = func() {
+			undo(ctx)
+		}
+	} else {
+		t.Errorf("missing undo for %s", name)
+	}
 }
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
 	data := GetData(ctx)
 	name := strings.Join(strings.Split(t.(*testing.T).Name(), "/")[1:3], "/")
-	data["unique"] = WithUniqueSurrounding(GetCtx(ctx), name)
+	unique := WithUniqueSurrounding(GetCtx(ctx), name)
+	data["unique"] = unique
+	data["unique_lower"] = strings.ToLower(unique)
 	GetRequestParameters(ctx)["body"] = Templated(data, body)
+}
+
+func stringToType(s string, t interface{}) (interface{}, error) {
+	switch t.(type) {
+	case int:
+		return strconv.Atoi(s)
+	case int64:
+		return strconv.ParseInt(s, 10, 64)
+	case string:
+		return strconv.Unquote(s)
+	case bool:
+		return strconv.ParseBool(s)
+	default:
+		return nil, errors.New("Unknown type to convert")
+	}
+}
+
+func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value string) {
+	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	if err != nil {
+		t.Errorf("could not lookup response value %s in %v: %v", responsePath, GetResponse(ctx)[0].Interface(), err)
+	}
+
+	templatedValue := Templated(GetData(ctx), value)
+	testValue, err := stringToType(templatedValue, responseValue.Interface())
+	if err != nil {
+		t.Errorf("%v", err)
+	}
+
+	cmp := is.DeepEqual(testValue, responseValue.Interface())()
+	if !cmp.Success() {
+		t.Errorf("%v", cmp)
+	}
+}
+
+func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, fixturePath string) {
+	fixtureValue, err := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(fixturePath))
+	if err != nil {
+		t.Fatalf("could not lookup fixture value %s: %v", fixturePath, err)
+	}
+	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	if err != nil {
+		t.Fatalf("could not lookup response value %s: %v", responsePath, err)
+	}
+	cmp := is.DeepEqual(responseValue.Interface(), fixtureValue.Interface())()
+	if !cmp.Success() {
+		t.Errorf("%v", cmp)
+	}
+}
+
+func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
+	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	if err != nil {
+		t.Errorf("could not lookup value: %v", err)
+	}
+	if responseValue.Bool() {
+		t.Errorf("%v should be false", responseValue)
+	}
 }
 
 // ConfigureSteps on given suite.
 func ConfigureSteps(s *gobdd.Suite) {
 	steps := map[string]interface{}{
-		`new "([^"]+)" request`:                               newRequest,
-		`request contains "([^"]+)" parameter from "([^"]+)"`: addParameterFrom,
-		`the request is sent`:                                 requestIsSent,
-		`the response status is (\d+) (.*)`:                   statusIs,
-		`body (.*)`:                                           body,
+		`new "([^"]+)" request`:                                  newRequest,
+		`request contains "([^"]+)" parameter from "([^"]+)"`:    addParameterFrom,
+		`the request is sent`:                                    requestIsSent,
+		`the response status is (\d+) (.*)`:                      statusIs,
+		`body (.*)`:                                              body,
+		`the response "([^"]+)" is equal to (.*)`:                expectEqual,
+		`the response "([^"]+)" has the same value as "([^"]+)"`: expectEqualValue,
+		`the response "([^"]+)" is false`:                        expectFalse,
 	}
 	for expr, step := range steps {
 		s.AddStep(expr, step)

@@ -631,7 +631,7 @@ func main() {
         },
     )
 
-    body := datadog.UserInvitationsRequest{Data: []UserInvitationData{datadog.UserInvitationData{Relationships: datadog.UserInvitationRelationships{User: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: "Type_example"}}}, Type: datadog.UserInvitationsType{}})} // UserInvitationsRequest |  (optional)
+    body := datadog.UserInvitationsRequest{Data: []UserInvitationData{datadog.UserInvitationData{Relationships: datadog.UserInvitationRelationships{User: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}}, Type: datadog.UserInvitationsType{}})} // UserInvitationsRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -678,7 +678,7 @@ Name | Type | Description  | Notes
 
 ## UpdateUser
 
-> UpdateUser(ctx, userId).Body(body).Execute()
+> UserResponse UpdateUser(ctx, userId).Body(body).Execute()
 
 Update a user
 
@@ -711,7 +711,7 @@ func main() {
     )
 
     userId := "userId_example" // string | The ID of the user.
-    body := datadog.UserUpdateRequest{Data: datadog.UserUpdateData{Attributes: datadog.UserUpdateAttributes{Disabled: false, Email: "Email_example", Name: "Name_example"}, Id: "Id_example", Type: datadog.UsersType{}}} // UserUpdateRequest |  (optional)
+    body := datadog.UserUpdateRequest{Data: datadog.UserUpdateData{Attributes: datadog.UserUpdateAttributes{Disabled: false, Email: "Email_example", Name: "Name_example"}, Id: "Id_example", Type: }} // UserUpdateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -720,6 +720,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `UpdateUser`: UserResponse
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.UpdateUser`: %v\n", resp)
 }
 ```
 
@@ -743,7 +745,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**UserResponse**](UserResponse.md)
 
 ### Authorization
 

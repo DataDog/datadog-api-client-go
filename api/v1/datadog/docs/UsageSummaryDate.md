@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **AwsHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current date for all organizations. | [optional] 
 **AwsLambdaFuncCount** | Pointer to **int64** | Shows the average of the number of functions that executed 1 or more times each hour in the current date for all organizations. | [optional] 
 **AwsLambdaInvocationsSum** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current date for all organizations. | [optional] 
+**AzureAppServiceTop99p** | Pointer to **int64** | Shows the 99th percentile of all Azure app services over all hours in the current date for all organizations. | [optional] 
 **BillableIngestedBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for all organizations. | [optional] 
 **ContainerAvg** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current date for all organizations. | [optional] 
 **ContainerHwm** | Pointer to **int64** | Shows the high watermark of all distinct containers over all hours in the current date for all organizations. | [optional] 
@@ -20,14 +21,16 @@ Name | Type | Description | Notes
 **IndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current date for all organizations. | [optional] 
 **InfraHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current date for all organizations. | [optional] 
 **IngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for all organizations. | [optional] 
+**MobileRumSessionCountSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current date for all organizations | [optional] 
 **NetflowIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current date for all organizations. | [optional] 
 **NpmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all organizations. | [optional] 
 **Orgs** | Pointer to [**[]UsageSummaryDateOrg**](UsageSummaryDateOrg.md) | Organizations associated with a user. | [optional] 
 **ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations. | [optional] 
-**RumSessionCountSum** | Pointer to **int64** | Shows the sum of all RUM Sessions over all hours in the current date for all organizations | [optional] 
+**RumSessionCountSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current date for all organizations | [optional] 
 **SyntheticsBrowserCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current date for all organizations. | [optional] 
 **SyntheticsCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current date for all organizations. | [optional] 
 **TraceSearchIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all analyzed spans indexed over all hours in the current date for all organizations. | [optional] 
+**TwolIngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all tracing without limits bytes ingested over all hours in the current date for all organizations. | [optional] 
 
 ## Methods
 
@@ -172,6 +175,31 @@ SetAwsLambdaInvocationsSum sets AwsLambdaInvocationsSum field to given value.
 `func (o *UsageSummaryDate) HasAwsLambdaInvocationsSum() bool`
 
 HasAwsLambdaInvocationsSum returns a boolean if a field has been set.
+
+### GetAzureAppServiceTop99p
+
+`func (o *UsageSummaryDate) GetAzureAppServiceTop99p() int64`
+
+GetAzureAppServiceTop99p returns the AzureAppServiceTop99p field if non-nil, zero value otherwise.
+
+### GetAzureAppServiceTop99pOk
+
+`func (o *UsageSummaryDate) GetAzureAppServiceTop99pOk() (*int64, bool)`
+
+GetAzureAppServiceTop99pOk returns a tuple with the AzureAppServiceTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAzureAppServiceTop99p
+
+`func (o *UsageSummaryDate) SetAzureAppServiceTop99p(v int64)`
+
+SetAzureAppServiceTop99p sets AzureAppServiceTop99p field to given value.
+
+### HasAzureAppServiceTop99p
+
+`func (o *UsageSummaryDate) HasAzureAppServiceTop99p() bool`
+
+HasAzureAppServiceTop99p returns a boolean if a field has been set.
 
 ### GetBillableIngestedBytesSum
 
@@ -448,6 +476,31 @@ SetIngestedEventsBytesSum sets IngestedEventsBytesSum field to given value.
 
 HasIngestedEventsBytesSum returns a boolean if a field has been set.
 
+### GetMobileRumSessionCountSum
+
+`func (o *UsageSummaryDate) GetMobileRumSessionCountSum() int64`
+
+GetMobileRumSessionCountSum returns the MobileRumSessionCountSum field if non-nil, zero value otherwise.
+
+### GetMobileRumSessionCountSumOk
+
+`func (o *UsageSummaryDate) GetMobileRumSessionCountSumOk() (*int64, bool)`
+
+GetMobileRumSessionCountSumOk returns a tuple with the MobileRumSessionCountSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileRumSessionCountSum
+
+`func (o *UsageSummaryDate) SetMobileRumSessionCountSum(v int64)`
+
+SetMobileRumSessionCountSum sets MobileRumSessionCountSum field to given value.
+
+### HasMobileRumSessionCountSum
+
+`func (o *UsageSummaryDate) HasMobileRumSessionCountSum() bool`
+
+HasMobileRumSessionCountSum returns a boolean if a field has been set.
+
 ### GetNetflowIndexedEventsCountSum
 
 `func (o *UsageSummaryDate) GetNetflowIndexedEventsCountSum() int64`
@@ -647,6 +700,31 @@ SetTraceSearchIndexedEventsCountSum sets TraceSearchIndexedEventsCountSum field 
 `func (o *UsageSummaryDate) HasTraceSearchIndexedEventsCountSum() bool`
 
 HasTraceSearchIndexedEventsCountSum returns a boolean if a field has been set.
+
+### GetTwolIngestedEventsBytesSum
+
+`func (o *UsageSummaryDate) GetTwolIngestedEventsBytesSum() int64`
+
+GetTwolIngestedEventsBytesSum returns the TwolIngestedEventsBytesSum field if non-nil, zero value otherwise.
+
+### GetTwolIngestedEventsBytesSumOk
+
+`func (o *UsageSummaryDate) GetTwolIngestedEventsBytesSumOk() (*int64, bool)`
+
+GetTwolIngestedEventsBytesSumOk returns a tuple with the TwolIngestedEventsBytesSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTwolIngestedEventsBytesSum
+
+`func (o *UsageSummaryDate) SetTwolIngestedEventsBytesSum(v int64)`
+
+SetTwolIngestedEventsBytesSum sets TwolIngestedEventsBytesSum field to given value.
+
+### HasTwolIngestedEventsBytesSum
+
+`func (o *UsageSummaryDate) HasTwolIngestedEventsBytesSum() bool`
+
+HasTwolIngestedEventsBytesSum returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

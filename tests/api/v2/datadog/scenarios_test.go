@@ -3,6 +3,7 @@ package test
 import (
 	"context"
 	"fmt"
+	"log"
 	"os"
 	"reflect"
 	"strings"
@@ -15,6 +16,65 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
+
+func undoIgnore(ctx gobdd.Context) {}
+
+func undoCreateUser(ctx gobdd.Context) {
+	user := tests.GetResponse(ctx)[0].Interface().(datadog.UserResponse)
+	cctx := tests.GetCtx(ctx)
+	Client(cctx).UsersApi.DisableUser(cctx, user.Data.GetId()).Execute()
+}
+
+func undoCreateRole(ctx gobdd.Context) {
+	role := tests.GetResponse(ctx)[0].Interface().(datadog.RoleCreateResponse)
+	cctx := tests.GetCtx(ctx)
+	Client(cctx).RolesApi.DeleteRole(cctx, role.Data.GetId()).Execute()
+}
+
+func undoCreateService(ctx gobdd.Context) {
+	service := tests.GetResponse(ctx)[0].Interface().(datadog.ServiceResponse)
+	cctx := tests.GetCtx(ctx)
+	Client(cctx).ServicesApi.DeleteService(cctx, service.Data.GetId()).Execute()
+}
+
+func undoCreateTeam(ctx gobdd.Context) {
+	team := tests.GetResponse(ctx)[0].Interface().(datadog.TeamResponse)
+	cctx := tests.GetCtx(ctx)
+	Client(cctx).TeamsApi.DeleteTeam(cctx, team.Data.GetId()).Execute()
+}
+
+var requestsUndo = map[string]func(ctx gobdd.Context){
+	"AddPermissionToRole":      undoIgnore,
+	"AddUserToRole":            undoIgnore,
+	"CreateRole":               undoCreateRole,
+	"CreateService":            undoCreateService,
+	"CreateTeam":               undoCreateTeam,
+	"CreateUser":               undoCreateUser,
+	"DisableUser":              undoIgnore,
+	"DeleteRole":               undoIgnore,
+	"DeleteService":            undoIgnore,
+	"DeleteTeam":               undoIgnore,
+	"GetInvitation":            undoIgnore,
+	"GetRole":                  undoIgnore,
+	"GetService":               undoIgnore,
+	"GetServices":              undoIgnore,
+	"GetTeam":                  undoIgnore,
+	"GetTeams":                 undoIgnore,
+	"GetUser":                  undoIgnore,
+	"ListPermissions":          undoIgnore,
+	"ListRolePermissions":      undoIgnore,
+	"ListRoles":                undoIgnore,
+	"ListRoleUsers":            undoIgnore,
+	"ListUsers":                undoIgnore,
+	"ListUserPermissions":      undoIgnore,
+	"RemovePermissionFromRole": undoIgnore,
+	"RemoveUserFromRole":       undoIgnore,
+	"SendInvitations":          undoIgnore,
+	"UpdateRole":               undoIgnore,
+	"UpdateService":            undoIgnore,
+	"UpdateUser":               undoIgnore,
+	"UpdateTeam":               undoIgnore,
+}
 
 func TestScenarios(t *testing.T) {
 	s := gobdd.NewSuite(
@@ -31,6 +91,7 @@ func TestScenarios(t *testing.T) {
 				ct.(*testing.T),
 			)
 			tests.SetCtx(ctx, cctx)
+			tests.SetRequestsUndo(ctx, requestsUndo)
 			tests.SetData(ctx, make(map[string]interface{}))
 			tests.SetCleanup(ctx, map[string]func(){"99-finish": finish})
 		}), gobdd.WithAfterScenario(func(ctx gobdd.Context) {
@@ -74,9 +135,13 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`a valid "apiKeyAuth" key in the system`, aValidAPIKeyAuth)
 	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
+	s.AddStep(`operation "([^"]+)" enabled`, enableOperations)
 	s.AddStep(`there is a valid "user" in the system`, user)
 	s.AddStep(`there is a valid "role" in the system`, role)
+	s.AddStep(`there is a valid "service" in the system`, service)
+	s.AddStep(`there is a valid "team" in the system`, team)
 	s.AddStep(`the "user" has the "role"`, userHasRole)
+	s.AddStep(`the "user" has a "user_invitation"`, userHasInvitation)
 	s.AddStep(`there is a valid "permission" in the system`, permission)
 	s.AddStep(`the "permission" is granted to the "role"`, permissionIsGrantedRole)
 	s.Run()
@@ -121,17 +186,23 @@ func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	tests.SetAPI(ctx, f)
 }
 
+// enableOperations sets unstable operations specific in this clause to enabled
+func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
+	client := Client(tests.GetCtx(ctx))
+	client.GetConfig().SetUnstableOperationEnabled(name, true)
+}
+
 func user(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
 
-	uca := datadog.NewUserCreateAttributes()
+	uca := datadog.NewUserCreateAttributesWithDefaults()
 	name := strings.ToLower(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
 	uca.SetEmail(fmt.Sprintf("%s@datadoghq.com", name))
 	uca.SetName(name[:44])
 	uca.SetTitle("Big boss")
-	ucd := datadog.NewUserCreateData()
+	ucd := datadog.NewUserCreateDataWithDefaults()
 	ucd.SetAttributes(*uca)
-	ucp := datadog.NewUserCreateRequest()
+	ucp := datadog.NewUserCreateRequestWithDefaults()
 	ucp.SetData(*ucd)
 	ur, _, err := client.UsersApi.CreateUser(tests.GetCtx(ctx)).Body(*ucp).Execute()
 	if err != nil {
@@ -151,11 +222,10 @@ func user(t gobdd.StepTest, ctx gobdd.Context) {
 func role(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
 
-	rca := datadog.NewRoleCreateAttributes()
-	rca.SetName(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
-	rcd := datadog.NewRoleCreateData()
+	rca := datadog.NewRoleCreateAttributes(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, _, err := client.RolesApi.CreateRole(tests.GetCtx(ctx)).Body(*rcp).Execute()
 	if err != nil {
@@ -170,6 +240,68 @@ func role(t gobdd.StepTest, ctx gobdd.Context) {
 	}
 
 	tests.GetData(ctx)["role"] = rr
+}
+
+func deleteService(ctx context.Context, serviceID string) {
+	_, err := Client(ctx).ServicesApi.DeleteService(ctx, serviceID).Execute()
+	if err == nil {
+		return
+	}
+	log.Printf("Error deleting service: %v, Another test may have already deleted this service: %s", serviceID, err.Error())
+}
+
+func service(t gobdd.StepTest, ctx gobdd.Context) {
+	client := Client(tests.GetCtx(ctx))
+	client.GetConfig().SetUnstableOperationEnabled("CreateService", true)
+
+	svcAttributes := datadog.NewServiceCreateAttributes(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
+	svc := datadog.NewServiceCreateData(datadog.ServiceType("services"))
+	svc.SetAttributes(*svcAttributes)
+	svcRequest := datadog.NewServiceCreateRequest(*svc)
+	response, _, err := client.ServicesApi.CreateService(tests.GetCtx(ctx)).Body(*svcRequest).Execute()
+	if err != nil {
+		t.Fatalf("error creating service: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+
+	responseData := response.GetData()
+	svcID := responseData.GetId()
+	outContext := tests.GetCtx(ctx)
+	tests.GetCleanup(ctx)["30-service"] = func() {
+		deleteService(outContext, svcID)
+	}
+
+	tests.GetData(ctx)["service"] = response
+}
+
+func deleteTeam(ctx context.Context, teamID string) {
+	_, err := Client(ctx).TeamsApi.DeleteTeam(ctx, teamID).Execute()
+	if err == nil {
+		return
+	}
+	log.Printf("Error deleting team: %v, Another test may have already deleted this team: %s", teamID, err.Error())
+}
+
+func team(t gobdd.StepTest, ctx gobdd.Context) {
+	client := Client(tests.GetCtx(ctx))
+	client.GetConfig().SetUnstableOperationEnabled("CreateTeam", true)
+
+	teamAttributes := datadog.NewTeamCreateAttributes(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
+	team := datadog.NewTeamCreateData(datadog.TeamType("teams"))
+	team.SetAttributes(*teamAttributes)
+	teamRequest := datadog.NewTeamCreateRequest(*team)
+	response, _, err := client.TeamsApi.CreateTeam(tests.GetCtx(ctx)).Body(*teamRequest).Execute()
+	if err != nil {
+		t.Fatalf("error creating team: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+
+	responseData := response.GetData()
+	teamID := responseData.GetId()
+	outContext := tests.GetCtx(ctx)
+	tests.GetCleanup(ctx)["40-team"] = func() {
+		deleteTeam(outContext, teamID)
+	}
+
+	tests.GetData(ctx)["team"] = response
 }
 
 func userHasRole(t gobdd.StepTest, ctx gobdd.Context) {
@@ -189,6 +321,32 @@ func userHasRole(t gobdd.StepTest, ctx gobdd.Context) {
 	if err != nil {
 		t.Fatalf("%v", err)
 	}
+}
+
+func userHasInvitation(t gobdd.StepTest, ctx gobdd.Context) {
+	client := Client(tests.GetCtx(ctx))
+	data := tests.GetData(ctx)
+	ur := data["user"].(datadog.UserResponse)
+	urData := ur.GetData()
+	id := urData.GetId()
+
+	rtud := datadog.NewRelationshipToUserDataWithDefaults()
+	rtud.SetId(id)
+	rtu := datadog.NewRelationshipToUserWithDefaults()
+	rtu.SetData(*rtud)
+	uir := datadog.NewUserInvitationRelationshipsWithDefaults()
+	uir.SetUser(*rtu)
+	uid := datadog.NewUserInvitationDataWithDefaults()
+	uid.SetRelationships(*uir)
+	uireq := datadog.NewUserInvitationsRequestWithDefaults()
+	uireq.Data = append(uireq.Data, *uid)
+
+	ui, _, err := client.UsersApi.SendInvitations(tests.GetCtx(ctx)).Body(*uireq).Execute()
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
+
+	tests.GetData(ctx)["user_invitation"] = ui.GetData()[0]
 }
 
 func permission(t gobdd.StepTest, ctx gobdd.Context) {

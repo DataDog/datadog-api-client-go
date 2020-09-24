@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**[]RelationshipToOrganizationData**](RelationshipToOrganizationData.md) | Relationships to organization objects. | [optional] 
+**Data** | [**[]RelationshipToOrganizationData**](RelationshipToOrganizationData.md) | Relationships to organization objects. | 
 
 ## Methods
 
 ### NewRelationshipToOrganizations
 
-`func NewRelationshipToOrganizations() *RelationshipToOrganizations`
+`func NewRelationshipToOrganizations(data []RelationshipToOrganizationData, ) *RelationshipToOrganizations`
 
 NewRelationshipToOrganizations instantiates a new RelationshipToOrganizations object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetData sets Data field to given value.
 
-### HasData
-
-`func (o *RelationshipToOrganizations) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

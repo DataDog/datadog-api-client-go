@@ -25,6 +25,8 @@ type UsageSummaryDate struct {
 	AwsLambdaFuncCount *int64 `json:"aws_lambda_func_count,omitempty"`
 	// Shows the sum of all AWS Lambda invocations over all hours in the current date for all organizations.
 	AwsLambdaInvocationsSum *int64 `json:"aws_lambda_invocations_sum,omitempty"`
+	// Shows the 99th percentile of all Azure app services over all hours in the current date for all organizations.
+	AzureAppServiceTop99p *int64 `json:"azure_app_service_top99p,omitempty"`
 	// Shows the sum of all log bytes ingested over all hours in the current date for all organizations.
 	BillableIngestedBytesSum *int64 `json:"billable_ingested_bytes_sum,omitempty"`
 	// Shows the average of all distinct containers over all hours in the current date for all organizations.
@@ -47,6 +49,8 @@ type UsageSummaryDate struct {
 	InfraHostTop99p *int64 `json:"infra_host_top99p,omitempty"`
 	// Shows the sum of all log bytes ingested over all hours in the current date for all organizations.
 	IngestedEventsBytesSum *int64 `json:"ingested_events_bytes_sum,omitempty"`
+	// Shows the sum of all mobile RUM Sessions over all hours in the current date for all organizations
+	MobileRumSessionCountSum *int64 `json:"mobile_rum_session_count_sum,omitempty"`
 	// Shows the sum of all Network flows indexed over all hours in the current date for all organizations.
 	NetflowIndexedEventsCountSum *int64 `json:"netflow_indexed_events_count_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all organizations.
@@ -55,7 +59,7 @@ type UsageSummaryDate struct {
 	Orgs *[]UsageSummaryDateOrg `json:"orgs,omitempty"`
 	// Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations.
 	ProfilingHostTop99p *int64 `json:"profiling_host_top99p,omitempty"`
-	// Shows the sum of all RUM Sessions over all hours in the current date for all organizations
+	// Shows the sum of all browser RUM Sessions over all hours in the current date for all organizations
 	RumSessionCountSum *int64 `json:"rum_session_count_sum,omitempty"`
 	// Shows the sum of all Synthetic browser tests over all hours in the current date for all organizations.
 	SyntheticsBrowserCheckCallsCountSum *int64 `json:"synthetics_browser_check_calls_count_sum,omitempty"`
@@ -63,6 +67,8 @@ type UsageSummaryDate struct {
 	SyntheticsCheckCallsCountSum *int64 `json:"synthetics_check_calls_count_sum,omitempty"`
 	// Shows the sum of all analyzed spans indexed over all hours in the current date for all organizations.
 	TraceSearchIndexedEventsCountSum *int64 `json:"trace_search_indexed_events_count_sum,omitempty"`
+	// Shows the sum of all tracing without limits bytes ingested over all hours in the current date for all organizations.
+	TwolIngestedEventsBytesSum *int64 `json:"twol_ingested_events_bytes_sum,omitempty"`
 }
 
 // NewUsageSummaryDate instantiates a new UsageSummaryDate object
@@ -240,6 +246,38 @@ func (o *UsageSummaryDate) HasAwsLambdaInvocationsSum() bool {
 // SetAwsLambdaInvocationsSum gets a reference to the given int64 and assigns it to the AwsLambdaInvocationsSum field.
 func (o *UsageSummaryDate) SetAwsLambdaInvocationsSum(v int64) {
 	o.AwsLambdaInvocationsSum = &v
+}
+
+// GetAzureAppServiceTop99p returns the AzureAppServiceTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetAzureAppServiceTop99p() int64 {
+	if o == nil || o.AzureAppServiceTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AzureAppServiceTop99p
+}
+
+// GetAzureAppServiceTop99pOk returns a tuple with the AzureAppServiceTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetAzureAppServiceTop99pOk() (*int64, bool) {
+	if o == nil || o.AzureAppServiceTop99p == nil {
+		return nil, false
+	}
+	return o.AzureAppServiceTop99p, true
+}
+
+// HasAzureAppServiceTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasAzureAppServiceTop99p() bool {
+	if o != nil && o.AzureAppServiceTop99p != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAzureAppServiceTop99p gets a reference to the given int64 and assigns it to the AzureAppServiceTop99p field.
+func (o *UsageSummaryDate) SetAzureAppServiceTop99p(v int64) {
+	o.AzureAppServiceTop99p = &v
 }
 
 // GetBillableIngestedBytesSum returns the BillableIngestedBytesSum field value if set, zero value otherwise.
@@ -594,6 +632,38 @@ func (o *UsageSummaryDate) SetIngestedEventsBytesSum(v int64) {
 	o.IngestedEventsBytesSum = &v
 }
 
+// GetMobileRumSessionCountSum returns the MobileRumSessionCountSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetMobileRumSessionCountSum() int64 {
+	if o == nil || o.MobileRumSessionCountSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MobileRumSessionCountSum
+}
+
+// GetMobileRumSessionCountSumOk returns a tuple with the MobileRumSessionCountSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetMobileRumSessionCountSumOk() (*int64, bool) {
+	if o == nil || o.MobileRumSessionCountSum == nil {
+		return nil, false
+	}
+	return o.MobileRumSessionCountSum, true
+}
+
+// HasMobileRumSessionCountSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasMobileRumSessionCountSum() bool {
+	if o != nil && o.MobileRumSessionCountSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMobileRumSessionCountSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountSum field.
+func (o *UsageSummaryDate) SetMobileRumSessionCountSum(v int64) {
+	o.MobileRumSessionCountSum = &v
+}
+
 // GetNetflowIndexedEventsCountSum returns the NetflowIndexedEventsCountSum field value if set, zero value otherwise.
 func (o *UsageSummaryDate) GetNetflowIndexedEventsCountSum() int64 {
 	if o == nil || o.NetflowIndexedEventsCountSum == nil {
@@ -850,6 +920,38 @@ func (o *UsageSummaryDate) SetTraceSearchIndexedEventsCountSum(v int64) {
 	o.TraceSearchIndexedEventsCountSum = &v
 }
 
+// GetTwolIngestedEventsBytesSum returns the TwolIngestedEventsBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetTwolIngestedEventsBytesSum() int64 {
+	if o == nil || o.TwolIngestedEventsBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.TwolIngestedEventsBytesSum
+}
+
+// GetTwolIngestedEventsBytesSumOk returns a tuple with the TwolIngestedEventsBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetTwolIngestedEventsBytesSumOk() (*int64, bool) {
+	if o == nil || o.TwolIngestedEventsBytesSum == nil {
+		return nil, false
+	}
+	return o.TwolIngestedEventsBytesSum, true
+}
+
+// HasTwolIngestedEventsBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasTwolIngestedEventsBytesSum() bool {
+	if o != nil && o.TwolIngestedEventsBytesSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTwolIngestedEventsBytesSum gets a reference to the given int64 and assigns it to the TwolIngestedEventsBytesSum field.
+func (o *UsageSummaryDate) SetTwolIngestedEventsBytesSum(v int64) {
+	o.TwolIngestedEventsBytesSum = &v
+}
+
 func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AgentHostTop99p != nil {
@@ -866,6 +968,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	}
 	if o.AwsLambdaInvocationsSum != nil {
 		toSerialize["aws_lambda_invocations_sum"] = o.AwsLambdaInvocationsSum
+	}
+	if o.AzureAppServiceTop99p != nil {
+		toSerialize["azure_app_service_top99p"] = o.AzureAppServiceTop99p
 	}
 	if o.BillableIngestedBytesSum != nil {
 		toSerialize["billable_ingested_bytes_sum"] = o.BillableIngestedBytesSum
@@ -900,6 +1005,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.IngestedEventsBytesSum != nil {
 		toSerialize["ingested_events_bytes_sum"] = o.IngestedEventsBytesSum
 	}
+	if o.MobileRumSessionCountSum != nil {
+		toSerialize["mobile_rum_session_count_sum"] = o.MobileRumSessionCountSum
+	}
 	if o.NetflowIndexedEventsCountSum != nil {
 		toSerialize["netflow_indexed_events_count_sum"] = o.NetflowIndexedEventsCountSum
 	}
@@ -923,6 +1031,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	}
 	if o.TraceSearchIndexedEventsCountSum != nil {
 		toSerialize["trace_search_indexed_events_count_sum"] = o.TraceSearchIndexedEventsCountSum
+	}
+	if o.TwolIngestedEventsBytesSum != nil {
+		toSerialize["twol_ingested_events_bytes_sum"] = o.TwolIngestedEventsBytesSum
 	}
 	return json.Marshal(toSerialize)
 }

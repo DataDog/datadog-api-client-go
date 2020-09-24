@@ -5,7 +5,7 @@ info:
     name: Datadog Support
     url: https://www.datadoghq.com/support/
   description: Collection of all Datadog Public endpoints.
-  title: Datadog API Collection
+  title: Datadog API V2 Collection
   version: "1.0"
 servers:
 - url: https://{subdomain}.{site}
@@ -62,6 +62,10 @@ tags:
   name: Roles
 - description: Detection rules for generating signals and listing of generated signals
   name: Security Monitoring
+- description: Create, update, delete and retrieve your organizations services.
+  name: Services
+- description: Create, update, delete and retrieve your organizations Teams.
+  name: Teams
 - description: Create, edit, and disable users.
   externalDocs:
     url: https://docs.datadoghq.com/account_management/users
@@ -930,7 +934,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RoleResponse'
-          description: OK for get role
+          description: OK
         "403":
           content:
             application/json:
@@ -1610,6 +1614,584 @@ paths:
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+  /api/v2/services:
+    get:
+      description: Get all services for the requesting user's organization. If the
+        `include[users]` query parameter is provided, the included attribute will
+        contain the users related to these services.
+      operationId: GetServices
+      parameters:
+      - description: Specifies which types of related objects should be included in
+          the response.
+        explode: true
+        in: query
+        name: include
+        required: false
+        schema:
+          enum:
+          - users
+          type: string
+        style: form
+      - description: Size for a given page.
+        explode: true
+        in: query
+        name: page[size]
+        required: false
+        schema:
+          default: 10
+          format: int64
+          type: integer
+        style: form
+      - description: Specific offset to use as the beginning of the returned page.
+        explode: true
+        in: query
+        name: page[offset]
+        required: false
+        schema:
+          default: 0
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Get a list of all services
+      tags:
+      - Services
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+    post:
+      description: Creates a new service.
+      operationId: CreateService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCreateRequest'
+        description: Service Payload.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+          description: CREATED
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Create a new service
+      tags:
+      - Services
+      x-codegen-request-body-name: body
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+  /api/v2/services/{service_id}:
+    delete:
+      description: Deletes an existing service.
+      operationId: DeleteService
+      parameters:
+      - description: The ID of the service.
+        explode: false
+        in: path
+        name: service_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Delete an existing service
+      tags:
+      - Services
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+    get:
+      description: Get details of a service. If the `include[users]` query parameter
+        is provided, the included attribute will contain the users related to these
+        services
+      operationId: GetService
+      parameters:
+      - description: The ID of the service.
+        explode: false
+        in: path
+        name: service_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Specifies which types of related objects should be included in
+          the response.
+        explode: true
+        in: query
+        name: include
+        required: false
+        schema:
+          enum:
+          - users
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Get details of a service
+      tags:
+      - Services
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+    patch:
+      description: Updates an existing service. Only provide the attributes which
+        should be updated as this request is a partial update.
+      operationId: UpdateService
+      parameters:
+      - description: The ID of the service.
+        explode: false
+        in: path
+        name: service_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceUpdateRequest'
+        description: Service Payload.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Update an existing service
+      tags:
+      - Services
+      x-codegen-request-body-name: body
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+  /api/v2/teams:
+    get:
+      description: Get all teams for the requesting user's organization. If the `include[users]`
+        query parameter is provided, the included attribute will contain the users
+        related to these teams.
+      operationId: GetTeams
+      parameters:
+      - description: Specifies which types of related objects should be included in
+          the response.
+        explode: true
+        in: query
+        name: include
+        required: false
+        schema:
+          enum:
+          - users
+          type: string
+        style: form
+      - description: Size for a given page.
+        explode: true
+        in: query
+        name: page[size]
+        required: false
+        schema:
+          default: 10
+          format: int64
+          type: integer
+        style: form
+      - description: Specific offset to use as the beginning of the returned page.
+        explode: true
+        in: query
+        name: page[offset]
+        required: false
+        schema:
+          default: 0
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Get a list of all teams
+      tags:
+      - Teams
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+    post:
+      description: Creates a new team.
+      operationId: CreateTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamCreateRequest'
+        description: Teams Payload.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+          description: CREATED
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Create a new team
+      tags:
+      - Teams
+      x-codegen-request-body-name: body
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+  /api/v2/teams/{team_id}:
+    delete:
+      description: Deletes an existing team.
+      operationId: DeleteTeam
+      parameters:
+      - description: The ID of the team.
+        explode: false
+        in: path
+        name: team_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Delete an existing team
+      tags:
+      - Teams
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+    get:
+      description: Get details of a team. If the `include[users]` query parameter
+        is provided, the included attribute will contain the users related to these
+        teams.
+      operationId: GetTeam
+      parameters:
+      - description: The ID of the team.
+        explode: false
+        in: path
+        name: team_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Specifies which types of related objects should be included in
+          the response.
+        explode: true
+        in: query
+        name: include
+        required: false
+        schema:
+          enum:
+          - users
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Get details of a team
+      tags:
+      - Teams
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+    patch:
+      description: Updates an existing team. Only provide the attributes which should
+        be updated as this request is a partial update.
+      operationId: UpdateTeam
+      parameters:
+      - description: The ID of the team.
+        explode: false
+        in: path
+        name: team_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamUpdateRequest'
+        description: Teams Payload.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Update an existing team
+      tags:
+      - Teams
+      x-codegen-request-body-name: body
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/user_invitations:
     post:
       description: Sends emails to one or more users inviting them to join the organization.
@@ -1883,7 +2465,11 @@ paths:
             schema:
               $ref: '#/components/schemas/UserUpdateRequest'
       responses:
-        "204":
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
           description: OK
         "400":
           content:
@@ -2013,6 +2599,17 @@ components:
         format: int64
         type: integer
       style: form
+    PageOffset:
+      description: Specific offset to use as the beginning of the returned page.
+      explode: true
+      in: query
+      name: page[offset]
+      required: false
+      schema:
+        default: 0
+        format: int64
+        type: integer
+      style: form
     PageSize:
       description: Size for a given page.
       explode: true
@@ -2042,6 +2639,48 @@ components:
       schema:
         type: string
       style: simple
+    ServiceIDPathParameter:
+      description: The ID of the service.
+      explode: false
+      in: path
+      name: service_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    ServiceIncludeQueryParameter:
+      description: Specifies which types of related objects should be included in
+        the response.
+      explode: true
+      in: query
+      name: include
+      required: false
+      schema:
+        enum:
+        - users
+        type: string
+      style: form
+    TeamIDPathParameter:
+      description: The ID of the team.
+      explode: false
+      in: path
+      name: team_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    TeamIncludeQueryParameter:
+      description: Specifies which types of related objects should be included in
+        the response.
+      explode: true
+      in: query
+      name: include
+      required: false
+      schema:
+        enum:
+        - users
+        type: string
+      style: form
     UserID:
       description: The ID of the user.
       explode: false
@@ -2065,6 +2704,12 @@ components:
           schema:
             $ref: '#/components/schemas/APIErrorResponse'
       description: Concurrent Modification
+    ForbiddenResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIErrorResponse'
+      description: Forbidden
     NotAuthorizedResponse:
       content:
         application/json:
@@ -2077,6 +2722,12 @@ components:
           schema:
             $ref: '#/components/schemas/APIErrorResponse'
       description: Not Found
+    UnauthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIErrorResponse'
+      description: Unauthorized
   schemas:
     APIErrorResponse:
       description: API error response.
@@ -3370,6 +4021,8 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/RelationshipToOrganizationData'
+      required:
+      - data
       type: object
     RelationshipToOrganizationData:
       description: Relationship to organization object.
@@ -3382,6 +4035,9 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/OrganizationsType'
+      required:
+      - id
+      - type
       type: object
     RelationshipToOrganizations:
       description: Relationship to organizations.
@@ -3397,6 +4053,8 @@ components:
           items:
             $ref: '#/components/schemas/RelationshipToOrganizationData'
           type: array
+      required:
+      - data
       type: object
     RelationshipToPermission:
       description: Relationship to a permissions object.
@@ -3477,34 +4135,37 @@ components:
       description: Relationship to user.
       example:
         data:
-          id: id
+          id: 00000000-0000-0000-0000-000000000000
           type: users
       properties:
         data:
           $ref: '#/components/schemas/RelationshipToUserData'
+      required:
+      - data
       type: object
     RelationshipToUserData:
       description: Relationship to user object.
       example:
-        id: id
+        id: 00000000-0000-0000-0000-000000000000
         type: users
       properties:
         id:
-          description: ID of the user.
+          description: A unique identifier that represents the user.
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         type:
-          default: users
-          description: Users type.
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/UsersType'
+      required:
+      - id
+      - type
       type: object
     RelationshipToUsers:
       description: Relationship to users.
       example:
         data:
-        - id: id
+        - id: 00000000-0000-0000-0000-000000000000
           type: users
-        - id: id
+        - id: 00000000-0000-0000-0000-000000000000
           type: users
       properties:
         data:
@@ -3512,6 +4173,8 @@ components:
           items:
             $ref: '#/components/schemas/RelationshipToUserData'
           type: array
+      required:
+      - data
       type: object
     ResponseMetaAttributes:
       description: Object describing meta attributes of response.
@@ -3600,6 +4263,8 @@ components:
         name:
           description: Name of the role.
           type: string
+      required:
+      - name
       type: object
     RoleCreateData:
       description: Data related to the creation of a role.
@@ -3613,9 +4278,9 @@ components:
               type: permissions
           users:
             data:
-            - id: id
+            - id: 00000000-0000-0000-0000-000000000000
               type: users
-            - id: id
+            - id: 00000000-0000-0000-0000-000000000000
               type: users
         attributes:
           name: name
@@ -3629,6 +4294,8 @@ components:
           $ref: '#/components/schemas/RoleRelationships'
         type:
           $ref: '#/components/schemas/RolesType'
+      required:
+      - attributes
       type: object
     RoleCreateRequest:
       description: Create a role.
@@ -3643,9 +4310,9 @@ components:
                 type: permissions
             users:
               data:
-              - id: id
+              - id: 00000000-0000-0000-0000-000000000000
                 type: users
-              - id: id
+              - id: 00000000-0000-0000-0000-000000000000
                 type: users
           attributes:
             name: name
@@ -3655,6 +4322,8 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/RoleCreateData'
+      required:
+      - data
       type: object
     RoleCreateResponse:
       description: Response containing information about a created role.
@@ -3688,9 +4357,9 @@ components:
             type: permissions
         users:
           data:
-          - id: id
+          - id: 00000000-0000-0000-0000-000000000000
             type: users
-          - id: id
+          - id: 00000000-0000-0000-0000-000000000000
             type: users
       properties:
         permissions:
@@ -3771,6 +4440,10 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/RolesType'
+      required:
+      - attributes
+      - id
+      - type
       type: object
     RoleUpdateRequest:
       description: Update a role.
@@ -3785,6 +4458,8 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/RoleUpdateData'
+      required:
+      - data
       type: object
     RoleUpdateResponse:
       description: Response containing information about an updated role.
@@ -3899,6 +4574,7 @@ components:
           - distinctFields:
             - distinctFields
             - distinctFields
+            metric: metric
             groupByFields:
             - groupByFields
             - groupByFields
@@ -3907,6 +4583,7 @@ components:
           - distinctFields:
             - distinctFields
             - distinctFields
+            metric: metric
             groupByFields:
             - groupByFields
             - groupByFields
@@ -3940,6 +4617,7 @@ components:
           - distinctFields:
             - distinctFields
             - distinctFields
+            metric: metric
             groupByFields:
             - groupByFields
             - groupByFields
@@ -3948,6 +4626,7 @@ components:
           - distinctFields:
             - distinctFields
             - distinctFields
+            metric: metric
             groupByFields:
             - groupByFields
             - groupByFields
@@ -4117,6 +4796,8 @@ components:
       - 1800
       - 3600
       - 7200
+      - 10800
+      - 21600
       format: int32
       type: integer
       x-enum-varnames:
@@ -4128,6 +4809,8 @@ components:
       - THIRTY_MINUTES
       - ONE_HOUR
       - TWO_HOURS
+      - THREE_HOURS
+      - SIX_HOURS
     SecurityMonitoringRuleMaxSignalDuration:
       description: |-
         A signal will “close” regardless of the query being matched once the time exceeds the maximum duration.
@@ -4177,12 +4860,15 @@ components:
         distinctFields:
         - distinctFields
         - distinctFields
+        metric: metric
         groupByFields:
         - groupByFields
         - groupByFields
         query: query
         name: name
       properties:
+        aggregation:
+          $ref: '#/components/schemas/SecurityMonitoringRuleQueryAggregation'
         distinctFields:
           description: Field for which the cardinality is measured. Sent as an array.
           items:
@@ -4195,6 +4881,10 @@ components:
             description: Field.
             type: string
           type: array
+        metric:
+          description: The target field to aggregate over when using the sum or max
+            aggregations.
+          type: string
         name:
           description: Name of the query.
           type: string
@@ -4202,9 +4892,24 @@ components:
           description: Query to run on logs.
           type: string
       type: object
+    SecurityMonitoringRuleQueryAggregation:
+      description: The aggregation type.
+      enum:
+      - count
+      - cardinality
+      - sum
+      - max
+      type: string
+      x-enum-varnames:
+      - COUNT
+      - CARDINALITY
+      - SUM
+      - MAX
     SecurityMonitoringRuleQueryCreate:
       description: Query for matching rule.
       properties:
+        aggregation:
+          $ref: '#/components/schemas/SecurityMonitoringRuleQueryAggregation'
         distinctFields:
           description: Field for which the cardinality is measured. Sent as an array.
           items:
@@ -4217,6 +4922,10 @@ components:
             description: Field.
             type: string
           type: array
+        metric:
+          description: The target field to aggregate over when using the sum or max
+            aggregations.
+          type: string
         name:
           description: Name of the query.
           type: string
@@ -4245,6 +4954,7 @@ components:
         - distinctFields:
           - distinctFields
           - distinctFields
+          metric: metric
           groupByFields:
           - groupByFields
           - groupByFields
@@ -4253,6 +4963,7 @@ components:
         - distinctFields:
           - distinctFields
           - distinctFields
+          metric: metric
           groupByFields:
           - groupByFields
           - groupByFields
@@ -4356,6 +5067,7 @@ components:
         - distinctFields:
           - distinctFields
           - distinctFields
+          metric: metric
           groupByFields:
           - groupByFields
           - groupByFields
@@ -4364,6 +5076,7 @@ components:
         - distinctFields:
           - distinctFields
           - distinctFields
+          metric: metric
           groupByFields:
           - groupByFields
           - groupByFields
@@ -4519,15 +5232,623 @@ components:
       x-enum-varnames:
       - TIMESTAMP_ASCENDING
       - TIMESTAMP_DESCENDING
+    ServiceCreateAttributes:
+      description: The service's attributes for a create request.
+      example:
+        name: an example service name
+      properties:
+        name:
+          description: Name of the service.
+          example: an example service name
+          type: string
+      required:
+      - name
+      type: object
+    ServiceCreateData:
+      description: Service payload for create requests.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          name: an example service name
+        type: services
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ServiceCreateAttributes'
+        relationships:
+          $ref: '#/components/schemas/ServiceRelationships'
+        type:
+          $ref: '#/components/schemas/ServiceType'
+      required:
+      - type
+      type: object
+    ServiceCreateRequest:
+      description: Create request with a service payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            name: an example service name
+          type: services
+      properties:
+        data:
+          $ref: '#/components/schemas/ServiceCreateData'
+      required:
+      - data
+      type: object
+    ServiceIncludedItems:
+      description: An object related to a service which is present in the included
+        payload.
+      oneOf:
+      - $ref: '#/components/schemas/User'
+      type: object
+    ServiceRelationships:
+      description: The service's relationships.
+      example:
+        last_modified_by:
+          data:
+            id: 00000000-0000-0000-0000-000000000000
+            type: users
+        created_by:
+          data:
+            id: 00000000-0000-0000-0000-000000000000
+            type: users
+      properties:
+        created_by:
+          $ref: '#/components/schemas/RelationshipToUser'
+        last_modified_by:
+          $ref: '#/components/schemas/RelationshipToUser'
+      readOnly: true
+      type: object
+    ServiceResponse:
+      description: Response with a service payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            created: 2000-01-23T04:56:07.000+00:00
+            name: service name
+            modified: 2000-01-23T04:56:07.000+00:00
+          id: 00000000-0000-0000-0000-000000000000
+          type: services
+        included:
+        - null
+        - null
+      properties:
+        data:
+          $ref: '#/components/schemas/ServiceResponseData'
+        included:
+          description: Included objects from relationships.
+          items:
+            $ref: '#/components/schemas/ServiceIncludedItems'
+          readOnly: true
+          type: array
+      required:
+      - data
+      type: object
+    ServiceResponseAttributes:
+      description: The service's attributes from a response.
+      example:
+        created: 2000-01-23T04:56:07.000+00:00
+        name: service name
+        modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        created:
+          description: Timestamp of when the service was created.
+          format: date-time
+          readOnly: true
+          type: string
+        modified:
+          description: Timestamp of when the service was modified.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: Name of the service.
+          example: service name
+          type: string
+      type: object
+    ServiceResponseData:
+      description: Service data from responses.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          created: 2000-01-23T04:56:07.000+00:00
+          name: service name
+          modified: 2000-01-23T04:56:07.000+00:00
+        id: 00000000-0000-0000-0000-000000000000
+        type: services
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ServiceResponseAttributes'
+        id:
+          description: The service's ID.
+          example: 00000000-0000-0000-0000-000000000000
+          type: string
+        relationships:
+          $ref: '#/components/schemas/ServiceRelationships'
+        type:
+          $ref: '#/components/schemas/ServiceType'
+      required:
+      - id
+      - type
+      type: object
+    ServiceType:
+      default: services
+      description: Service resource type.
+      enum:
+      - services
+      example: services
+      type: string
+      x-enum-varnames:
+      - SERVICES
+    ServiceUpdateAttributes:
+      description: The service's attributes for an update request.
+      example:
+        name: an example service name
+      properties:
+        name:
+          description: Name of the service.
+          example: an example service name
+          type: string
+      required:
+      - name
+      type: object
+    ServiceUpdateData:
+      description: Service payload for update requests.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          name: an example service name
+        id: 00000000-0000-0000-0000-000000000000
+        type: services
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ServiceUpdateAttributes'
+        id:
+          description: The service's ID.
+          example: 00000000-0000-0000-0000-000000000000
+          type: string
+        relationships:
+          $ref: '#/components/schemas/ServiceRelationships'
+        type:
+          $ref: '#/components/schemas/ServiceType'
+      required:
+      - id
+      - type
+      type: object
+    ServiceUpdateRequest:
+      description: Update request with a service payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            name: an example service name
+          id: 00000000-0000-0000-0000-000000000000
+          type: services
+      properties:
+        data:
+          $ref: '#/components/schemas/ServiceUpdateData'
+      required:
+      - data
+      type: object
+    ServicesResponse:
+      description: Response with a list of service payloads.
+      example:
+        data:
+        - relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            created: 2000-01-23T04:56:07.000+00:00
+            name: service name
+            modified: 2000-01-23T04:56:07.000+00:00
+          id: 00000000-0000-0000-0000-000000000000
+          type: services
+        - relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            created: 2000-01-23T04:56:07.000+00:00
+            name: service name
+            modified: 2000-01-23T04:56:07.000+00:00
+          id: 00000000-0000-0000-0000-000000000000
+          type: services
+        meta:
+          pagination:
+            offset: 10
+            size: 1000
+            next_offset: 1000
+        included:
+        - null
+        - null
+      properties:
+        data:
+          description: An array of services.
+          items:
+            $ref: '#/components/schemas/ServiceResponseData'
+          type: array
+        included:
+          description: Included related resources which the user requested.
+          items:
+            $ref: '#/components/schemas/ServiceIncludedItems'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ServicesResponse_meta'
+      required:
+      - data
+      type: object
+    TeamCreateAttributes:
+      description: The team's attributes for a create request.
+      example:
+        name: team name
+      properties:
+        name:
+          description: Name of the team.
+          example: team name
+          type: string
+      required:
+      - name
+      type: object
+    TeamCreateData:
+      description: Team data for a create request.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          name: team name
+        type: teams
+      properties:
+        attributes:
+          $ref: '#/components/schemas/TeamCreateAttributes'
+        relationships:
+          $ref: '#/components/schemas/TeamRelationships'
+        type:
+          $ref: '#/components/schemas/TeamType'
+      required:
+      - type
+      type: object
+    TeamCreateRequest:
+      description: Create request with a team payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            name: team name
+          type: teams
+      properties:
+        data:
+          $ref: '#/components/schemas/TeamCreateData'
+      required:
+      - data
+      type: object
+    TeamIncludedItems:
+      description: An object related to a team which is present in the included payload.
+      oneOf:
+      - $ref: '#/components/schemas/User'
+      type: object
+    TeamRelationships:
+      description: The team's relationships.
+      example:
+        last_modified_by:
+          data:
+            id: 00000000-0000-0000-0000-000000000000
+            type: users
+        created_by:
+          data:
+            id: 00000000-0000-0000-0000-000000000000
+            type: users
+      properties:
+        created_by:
+          $ref: '#/components/schemas/RelationshipToUser'
+        last_modified_by:
+          $ref: '#/components/schemas/RelationshipToUser'
+      readOnly: true
+      type: object
+    TeamResponse:
+      description: Response with a team payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            created: 2000-01-23T04:56:07.000+00:00
+            name: team name
+            modified: 2000-01-23T04:56:07.000+00:00
+          id: 00000000-0000-0000-0000-000000000000
+          type: teams
+        included:
+        - null
+        - null
+      properties:
+        data:
+          $ref: '#/components/schemas/TeamResponseData'
+        included:
+          description: Included objects from relationships.
+          items:
+            $ref: '#/components/schemas/TeamIncludedItems'
+          readOnly: true
+          type: array
+      required:
+      - data
+      type: object
+    TeamResponseAttributes:
+      description: The team's attributes from a response.
+      example:
+        created: 2000-01-23T04:56:07.000+00:00
+        name: team name
+        modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        created:
+          description: Timestamp of when the team was created.
+          format: date-time
+          readOnly: true
+          type: string
+        modified:
+          description: Timestamp of when the team was modified.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: Name of the team.
+          example: team name
+          type: string
+      type: object
+    TeamResponseData:
+      description: Team data from a response.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          created: 2000-01-23T04:56:07.000+00:00
+          name: team name
+          modified: 2000-01-23T04:56:07.000+00:00
+        id: 00000000-0000-0000-0000-000000000000
+        type: teams
+      properties:
+        attributes:
+          $ref: '#/components/schemas/TeamResponseAttributes'
+        id:
+          description: The team's ID.
+          example: 00000000-0000-0000-0000-000000000000
+          type: string
+        relationships:
+          $ref: '#/components/schemas/TeamRelationships'
+        type:
+          $ref: '#/components/schemas/TeamType'
+      type: object
+    TeamType:
+      default: teams
+      description: Team resource type.
+      enum:
+      - teams
+      example: teams
+      type: string
+      x-enum-varnames:
+      - TEAMS
+    TeamUpdateAttributes:
+      description: The team's attributes for an update request.
+      example:
+        name: team name
+      properties:
+        name:
+          description: Name of the team.
+          example: team name
+          type: string
+      required:
+      - name
+      type: object
+    TeamUpdateData:
+      description: Team data for an update request.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          name: team name
+        id: 00000000-0000-0000-0000-000000000000
+        type: teams
+      properties:
+        attributes:
+          $ref: '#/components/schemas/TeamUpdateAttributes'
+        id:
+          description: The team's ID.
+          example: 00000000-0000-0000-0000-000000000000
+          type: string
+        relationships:
+          $ref: '#/components/schemas/TeamRelationships'
+        type:
+          $ref: '#/components/schemas/TeamType'
+      required:
+      - id
+      - type
+      type: object
+    TeamUpdateRequest:
+      description: Update request with a team payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            name: team name
+          id: 00000000-0000-0000-0000-000000000000
+          type: teams
+      properties:
+        data:
+          $ref: '#/components/schemas/TeamUpdateData'
+      required:
+      - data
+      type: object
+    TeamsResponse:
+      description: Response with a list of team payloads.
+      example:
+        data:
+        - relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            created: 2000-01-23T04:56:07.000+00:00
+            name: team name
+            modified: 2000-01-23T04:56:07.000+00:00
+          id: 00000000-0000-0000-0000-000000000000
+          type: teams
+        - relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            created: 2000-01-23T04:56:07.000+00:00
+            name: team name
+            modified: 2000-01-23T04:56:07.000+00:00
+          id: 00000000-0000-0000-0000-000000000000
+          type: teams
+        meta:
+          pagination:
+            offset: 10
+            size: 1000
+            next_offset: 1000
+        included:
+        - null
+        - null
+      properties:
+        data:
+          description: An array of teams.
+          items:
+            $ref: '#/components/schemas/TeamResponseData'
+          type: array
+        included:
+          description: Included related resources which the user requested.
+          items:
+            $ref: '#/components/schemas/TeamIncludedItems'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ServicesResponse_meta'
+      required:
+      - data
+      type: object
     User:
       description: User object returned by the API.
       example:
         relationships:
           other_users:
             data:
-            - id: id
+            - id: 00000000-0000-0000-0000-000000000000
               type: users
-            - id: id
+            - id: 00000000-0000-0000-0000-000000000000
               type: users
           org:
             data:
@@ -4556,6 +5877,7 @@ components:
           email: email
           status: status
         id: id
+        type: users
       properties:
         attributes:
           $ref: '#/components/schemas/UserAttributes'
@@ -4625,6 +5947,8 @@ components:
         title:
           description: The title of the user.
           type: string
+      required:
+      - email
       type: object
     UserCreateData:
       description: Object to create a user.
@@ -4640,6 +5964,7 @@ components:
           name: name
           title: title
           email: email
+        type: users
       properties:
         attributes:
           $ref: '#/components/schemas/UserCreateAttributes'
@@ -4647,6 +5972,9 @@ components:
           $ref: '#/components/schemas/UserRelationships'
         type:
           $ref: '#/components/schemas/UsersType'
+      required:
+      - attributes
+      - type
       type: object
     UserCreateRequest:
       description: Create a user.
@@ -4663,9 +5991,12 @@ components:
             name: name
             title: title
             email: email
+          type: users
       properties:
         data:
           $ref: '#/components/schemas/UserCreateData'
+      required:
+      - data
       type: object
     UserInvitationData:
       description: Object to create a user invitation.
@@ -4673,13 +6004,17 @@ components:
         relationships:
           user:
             data:
-              id: id
+              id: 00000000-0000-0000-0000-000000000000
               type: users
+        type: user_invitations
       properties:
         relationships:
           $ref: '#/components/schemas/UserInvitationRelationships'
         type:
           $ref: '#/components/schemas/UserInvitationsType'
+      required:
+      - relationships
+      - type
       type: object
     UserInvitationDataAttributes:
       description: Attributes of a user invitation.
@@ -4709,11 +6044,13 @@ components:
       example:
         user:
           data:
-            id: id
+            id: 00000000-0000-0000-0000-000000000000
             type: users
       properties:
         user:
           $ref: '#/components/schemas/RelationshipToUser'
+      required:
+      - user
       type: object
     UserInvitationResponse:
       description: User invitation as returned by the API.
@@ -4725,6 +6062,7 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             uuid: uuid
           id: id
+          type: user_invitations
       properties:
         data:
           $ref: '#/components/schemas/UserInvitationResponseData'
@@ -4738,6 +6076,7 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           uuid: uuid
         id: id
+        type: user_invitations
       properties:
         attributes:
           $ref: '#/components/schemas/UserInvitationDataAttributes'
@@ -4754,19 +6093,23 @@ components:
         - relationships:
             user:
               data:
-                id: id
+                id: 00000000-0000-0000-0000-000000000000
                 type: users
+          type: user_invitations
         - relationships:
             user:
               data:
-                id: id
+                id: 00000000-0000-0000-0000-000000000000
                 type: users
+          type: user_invitations
       properties:
         data:
           description: List of user invitations.
           items:
             $ref: '#/components/schemas/UserInvitationData'
           type: array
+      required:
+      - data
       type: object
     UserInvitationsResponse:
       description: User invitations as returned by the API.
@@ -4778,12 +6121,14 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             uuid: uuid
           id: id
+          type: user_invitations
         - attributes:
             invite_type: invite_type
             expires_at: 2000-01-23T04:56:07.000+00:00
             created_at: 2000-01-23T04:56:07.000+00:00
             uuid: uuid
           id: id
+          type: user_invitations
       properties:
         data:
           description: Array of user invitations.
@@ -4796,6 +6141,7 @@ components:
       description: User invitations type.
       enum:
       - user_invitations
+      example: user_invitations
       type: string
       x-enum-varnames:
       - USER_INVITATIONS
@@ -4819,9 +6165,9 @@ components:
           relationships:
             other_users:
               data:
-              - id: id
+              - id: 00000000-0000-0000-0000-000000000000
                 type: users
-              - id: id
+              - id: 00000000-0000-0000-0000-000000000000
                 type: users
             org:
               data:
@@ -4850,6 +6196,7 @@ components:
             email: email
             status: status
           id: id
+          type: users
         included:
         - null
         - null
@@ -4874,9 +6221,9 @@ components:
       example:
         other_users:
           data:
-          - id: id
+          - id: 00000000-0000-0000-0000-000000000000
             type: users
-          - id: id
+          - id: 00000000-0000-0000-0000-000000000000
             type: users
         org:
           data:
@@ -4929,6 +6276,7 @@ components:
           disabled: true
           email: email
         id: id
+        type: users
       properties:
         attributes:
           $ref: '#/components/schemas/UserUpdateAttributes'
@@ -4937,6 +6285,10 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/UsersType'
+      required:
+      - attributes
+      - id
+      - type
       type: object
     UserUpdateRequest:
       description: Update a user.
@@ -4947,9 +6299,12 @@ components:
             disabled: true
             email: email
           id: id
+          type: users
       properties:
         data:
           $ref: '#/components/schemas/UserUpdateData'
+      required:
+      - data
       type: object
     UsersResponse:
       description: Response containing information about multiple users.
@@ -4958,9 +6313,9 @@ components:
         - relationships:
             other_users:
               data:
-              - id: id
+              - id: 00000000-0000-0000-0000-000000000000
                 type: users
-              - id: id
+              - id: 00000000-0000-0000-0000-000000000000
                 type: users
             org:
               data:
@@ -4989,12 +6344,13 @@ components:
             email: email
             status: status
           id: id
+          type: users
         - relationships:
             other_users:
               data:
-              - id: id
+              - id: 00000000-0000-0000-0000-000000000000
                 type: users
-              - id: id
+              - id: 00000000-0000-0000-0000-000000000000
                 type: users
             org:
               data:
@@ -5023,6 +6379,7 @@ components:
             email: email
             status: status
           id: id
+          type: users
         meta:
           page:
             total_count: 6
@@ -5043,12 +6400,14 @@ components:
           type: array
         meta:
           $ref: '#/components/schemas/ResponseMetaAttributes'
+      readOnly: true
       type: object
     UsersType:
       default: users
       description: Users resource type.
       enum:
       - users
+      example: users
       type: string
       x-enum-varnames:
       - USERS
@@ -5100,16 +6459,16 @@ components:
           description: Array of tags associated with your log.
           example:
           - team:A
-          format: array
           items:
             description: Tag associated with your log.
-            format: string
+            type: string
           type: array
         timestamp:
           description: Timestamp of your log.
           example: 2019-01-02T09:42:36.32Z
           format: date-time
           type: string
+      type: object
     LogsAggregateRequest_paging:
       description: Paging settings
       example:
@@ -5119,6 +6478,7 @@ components:
           description: The returned paging point to use to get the next results
           example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
+      type: object
     LogsAggregateResponse_data:
       description: The query results
       example:
@@ -5137,6 +6497,7 @@ components:
           items:
             $ref: '#/components/schemas/LogsAggregateBucket'
           type: array
+      type: object
     LogsGroupBy_histogram:
       description: |-
         Used to perform a histogram computation (only for measure facets).
@@ -5169,6 +6530,7 @@ components:
       - interval
       - max
       - min
+      type: object
     LogsListRequest_page:
       description: Paging attributes for listing logs.
       example:
@@ -5187,6 +6549,7 @@ components:
           format: int32
           maximum: 1000
           type: integer
+      type: object
     LogsListResponse_links:
       description: Links attributes.
       example:
@@ -5198,6 +6561,7 @@ components:
             POST endpoint.
           example: https://app.datadoghq.com/api/v2/logs/event?filter[query]=foo&page[cursor]=eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
+      type: object
     LogsResponseMetadata_page:
       description: Paging attributes.
       example:
@@ -5209,6 +6573,7 @@ components:
             parameters with the addition of the `page[cursor]`.
           example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
+      type: object
     RoleCreateResponse_data:
       description: Role object returned by the API.
       example:
@@ -5237,6 +6602,7 @@ components:
           $ref: '#/components/schemas/RolesType'
       required:
       - type
+      type: object
     RoleUpdateResponse_data:
       description: Role object returned by the API.
       example:
@@ -5265,6 +6631,7 @@ components:
           $ref: '#/components/schemas/RolesType'
       required:
       - type
+      type: object
     SecurityMonitoringSignal_attributes:
       description: The JSON object containing all signal attributes and their associated
         values.
@@ -5315,6 +6682,7 @@ components:
           example: 2019-01-02T09:42:36.32Z
           format: date-time
           type: string
+      type: object
     SecurityMonitoringSignalListRequest_filter:
       description: Search filters for listing security signals.
       example:
@@ -5336,6 +6704,7 @@ components:
           example: 2019-01-03T09:42:36.32Z
           format: date-time
           type: string
+      type: object
     SecurityMonitoringSignalListRequest_page:
       description: The paging attributes for listing security signals.
       example:
@@ -5354,6 +6723,7 @@ components:
           format: int32
           maximum: 1000
           type: integer
+      type: object
     SecurityMonitoringSignalsListResponse_links:
       description: Links attributes.
       example:
@@ -5365,6 +6735,7 @@ components:
             POST endpoint.
           example: https://app.datadoghq.com/api/v2/security_monitoring/signals?filter[query]=foo&page[cursor]=eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
+      type: object
     SecurityMonitoringSignalsListResponse_meta_page:
       description: Paging attributes.
       example:
@@ -5376,6 +6747,7 @@ components:
             parameters with the addition of the `page[cursor]`.
           example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
+      type: object
     SecurityMonitoringSignalsListResponse_meta:
       description: Meta attributes.
       example:
@@ -5384,6 +6756,43 @@ components:
       properties:
         page:
           $ref: '#/components/schemas/SecurityMonitoringSignalsListResponse_meta_page'
+      type: object
+    ServicesResponse_meta_pagination:
+      description: Pagination properties.
+      example:
+        offset: 10
+        size: 1000
+        next_offset: 1000
+      properties:
+        next_offset:
+          description: The index of the first element in the next page of results.
+            Equal to page size added to the current offset.
+          example: 1000
+          format: int64
+          type: integer
+        offset:
+          description: The index of the first element in the results.
+          example: 10
+          format: int64
+          type: integer
+        size:
+          description: Maximum size of pages to return.
+          example: 1000
+          format: int64
+          type: integer
+      type: object
+    ServicesResponse_meta:
+      description: The metadata object containing pagination metadata.
+      example:
+        pagination:
+          offset: 10
+          size: 1000
+          next_offset: 1000
+      properties:
+        pagination:
+          $ref: '#/components/schemas/ServicesResponse_meta_pagination'
+      readOnly: true
+      type: object
   securitySchemes:
     apiKeyAuth:
       description: Your Datadog API Key.

@@ -38,7 +38,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Datadog API Collection API v1.0
+// APIClient manages communication with the Datadog API V2 Collection API v1.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -55,6 +55,10 @@ type APIClient struct {
 	RolesApi *RolesApiService
 
 	SecurityMonitoringApi *SecurityMonitoringApiService
+
+	ServicesApi *ServicesApiService
+
+	TeamsApi *TeamsApiService
 
 	UsersApi *UsersApiService
 }
@@ -80,6 +84,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LogsArchivesApi = (*LogsArchivesApiService)(&c.common)
 	c.RolesApi = (*RolesApiService)(&c.common)
 	c.SecurityMonitoringApi = (*SecurityMonitoringApiService)(&c.common)
+	c.ServicesApi = (*ServicesApiService)(&c.common)
+	c.TeamsApi = (*TeamsApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 
 	return c

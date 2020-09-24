@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **AwsHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current month(s) for all organizations. | [optional] 
 **AwsLambdaFuncCount** | Pointer to **int64** | Shows the average of the number of functions that executed 1 or more times each hour in the current month(s) for all organizations. | [optional] 
 **AwsLambdaInvocationsSum** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current month(s) for all organizations. | [optional] 
+**AzureAppServiceTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure app services over all hours in the current month(s) for all organizations. | [optional] 
 **AzureHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure hosts over all hours in the current month(s) for all organizations. | [optional] 
 **BillableIngestedBytesAggSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current month(s) for all organizations. | [optional] 
 **ContainerAvgSum** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current month(s) for all organizations. | [optional] 
@@ -22,14 +23,17 @@ Name | Type | Description | Notes
 **InfraHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current month(s) for all organizations. | [optional] 
 **IngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current month(s) for all organizations. | [optional] 
 **LastUpdated** | Pointer to [**time.Time**](time.Time.md) | Shows the the most recent hour in the current month(s) for all organizations for which all usages were calculated. | [optional] 
+**MobileRumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current month(s) for all organizations. | [optional] 
 **NetflowIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current month(s) for all organizations. | [optional] 
 **NpmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current month(s) for all organizations. | [optional] 
+**ProfilingContainerAgentCountAvg** | Pointer to **int64** | Shows the average number of profiled containers over all hours in the current month(s) for all organizations. | [optional] 
 **ProfilingHostCountTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current month(s) for all organizations. | [optional] 
-**RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all RUM Sessions over all hours in the current month(s) for all organizations. | [optional] 
+**RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current month(s) for all organizations. | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Shows the first date of usage in the current month(s) for all organizations. | [optional] 
 **SyntheticsBrowserCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current month(s) for all organizations. | [optional] 
 **SyntheticsCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current month(s) for all organizations. | [optional] 
 **TraceSearchIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all analyzed spans indexed over all hours in the current month(s) for all organizations. | [optional] 
+**TwolIngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all tracing without limits bytes ingested over all hours in the current month(s) for all organizations. | [optional] 
 **Usage** | Pointer to [**[]UsageSummaryDate**](UsageSummaryDate.md) | An array of objects regarding hourly usage. | [optional] 
 
 ## Methods
@@ -175,6 +179,31 @@ SetAwsLambdaInvocationsSum sets AwsLambdaInvocationsSum field to given value.
 `func (o *UsageSummaryResponse) HasAwsLambdaInvocationsSum() bool`
 
 HasAwsLambdaInvocationsSum returns a boolean if a field has been set.
+
+### GetAzureAppServiceTop99pSum
+
+`func (o *UsageSummaryResponse) GetAzureAppServiceTop99pSum() int64`
+
+GetAzureAppServiceTop99pSum returns the AzureAppServiceTop99pSum field if non-nil, zero value otherwise.
+
+### GetAzureAppServiceTop99pSumOk
+
+`func (o *UsageSummaryResponse) GetAzureAppServiceTop99pSumOk() (*int64, bool)`
+
+GetAzureAppServiceTop99pSumOk returns a tuple with the AzureAppServiceTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAzureAppServiceTop99pSum
+
+`func (o *UsageSummaryResponse) SetAzureAppServiceTop99pSum(v int64)`
+
+SetAzureAppServiceTop99pSum sets AzureAppServiceTop99pSum field to given value.
+
+### HasAzureAppServiceTop99pSum
+
+`func (o *UsageSummaryResponse) HasAzureAppServiceTop99pSum() bool`
+
+HasAzureAppServiceTop99pSum returns a boolean if a field has been set.
 
 ### GetAzureHostTop99pSum
 
@@ -501,6 +530,31 @@ SetLastUpdated sets LastUpdated field to given value.
 
 HasLastUpdated returns a boolean if a field has been set.
 
+### GetMobileRumSessionCountAggSum
+
+`func (o *UsageSummaryResponse) GetMobileRumSessionCountAggSum() int64`
+
+GetMobileRumSessionCountAggSum returns the MobileRumSessionCountAggSum field if non-nil, zero value otherwise.
+
+### GetMobileRumSessionCountAggSumOk
+
+`func (o *UsageSummaryResponse) GetMobileRumSessionCountAggSumOk() (*int64, bool)`
+
+GetMobileRumSessionCountAggSumOk returns a tuple with the MobileRumSessionCountAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileRumSessionCountAggSum
+
+`func (o *UsageSummaryResponse) SetMobileRumSessionCountAggSum(v int64)`
+
+SetMobileRumSessionCountAggSum sets MobileRumSessionCountAggSum field to given value.
+
+### HasMobileRumSessionCountAggSum
+
+`func (o *UsageSummaryResponse) HasMobileRumSessionCountAggSum() bool`
+
+HasMobileRumSessionCountAggSum returns a boolean if a field has been set.
+
 ### GetNetflowIndexedEventsCountAggSum
 
 `func (o *UsageSummaryResponse) GetNetflowIndexedEventsCountAggSum() int64`
@@ -550,6 +604,31 @@ SetNpmHostTop99pSum sets NpmHostTop99pSum field to given value.
 `func (o *UsageSummaryResponse) HasNpmHostTop99pSum() bool`
 
 HasNpmHostTop99pSum returns a boolean if a field has been set.
+
+### GetProfilingContainerAgentCountAvg
+
+`func (o *UsageSummaryResponse) GetProfilingContainerAgentCountAvg() int64`
+
+GetProfilingContainerAgentCountAvg returns the ProfilingContainerAgentCountAvg field if non-nil, zero value otherwise.
+
+### GetProfilingContainerAgentCountAvgOk
+
+`func (o *UsageSummaryResponse) GetProfilingContainerAgentCountAvgOk() (*int64, bool)`
+
+GetProfilingContainerAgentCountAvgOk returns a tuple with the ProfilingContainerAgentCountAvg field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfilingContainerAgentCountAvg
+
+`func (o *UsageSummaryResponse) SetProfilingContainerAgentCountAvg(v int64)`
+
+SetProfilingContainerAgentCountAvg sets ProfilingContainerAgentCountAvg field to given value.
+
+### HasProfilingContainerAgentCountAvg
+
+`func (o *UsageSummaryResponse) HasProfilingContainerAgentCountAvg() bool`
+
+HasProfilingContainerAgentCountAvg returns a boolean if a field has been set.
 
 ### GetProfilingHostCountTop99pSum
 
@@ -700,6 +779,31 @@ SetTraceSearchIndexedEventsCountAggSum sets TraceSearchIndexedEventsCountAggSum 
 `func (o *UsageSummaryResponse) HasTraceSearchIndexedEventsCountAggSum() bool`
 
 HasTraceSearchIndexedEventsCountAggSum returns a boolean if a field has been set.
+
+### GetTwolIngestedEventsBytesAggSum
+
+`func (o *UsageSummaryResponse) GetTwolIngestedEventsBytesAggSum() int64`
+
+GetTwolIngestedEventsBytesAggSum returns the TwolIngestedEventsBytesAggSum field if non-nil, zero value otherwise.
+
+### GetTwolIngestedEventsBytesAggSumOk
+
+`func (o *UsageSummaryResponse) GetTwolIngestedEventsBytesAggSumOk() (*int64, bool)`
+
+GetTwolIngestedEventsBytesAggSumOk returns a tuple with the TwolIngestedEventsBytesAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTwolIngestedEventsBytesAggSum
+
+`func (o *UsageSummaryResponse) SetTwolIngestedEventsBytesAggSum(v int64)`
+
+SetTwolIngestedEventsBytesAggSum sets TwolIngestedEventsBytesAggSum field to given value.
+
+### HasTwolIngestedEventsBytesAggSum
+
+`func (o *UsageSummaryResponse) HasTwolIngestedEventsBytesAggSum() bool`
+
+HasTwolIngestedEventsBytesAggSum returns a boolean if a field has been set.
 
 ### GetUsage
 

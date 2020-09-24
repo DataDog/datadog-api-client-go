@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**RelationshipToUserData**](RelationshipToUserData.md) |  | [optional] 
+**Data** | [**RelationshipToUserData**](RelationshipToUserData.md) |  | 
 
 ## Methods
 
 ### NewRelationshipToUser
 
-`func NewRelationshipToUser() *RelationshipToUser`
+`func NewRelationshipToUser(data RelationshipToUserData, ) *RelationshipToUser`
 
 NewRelationshipToUser instantiates a new RelationshipToUser object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetData sets Data field to given value.
 
-### HasData
-
-`func (o *RelationshipToUser) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

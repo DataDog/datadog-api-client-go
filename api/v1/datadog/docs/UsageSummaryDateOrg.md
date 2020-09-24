@@ -20,15 +20,17 @@ Name | Type | Description | Notes
 **IndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current date for the given org. | [optional] 
 **InfraHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current date for the given org. | [optional] 
 **IngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for the given org. | [optional] 
+**MobileRumSessionCountSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current date for the given org. | [optional] 
 **Name** | Pointer to **string** | The organization name. | [optional] 
 **NetflowIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current date for the given org. | [optional] 
 **NpmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for the given org. | [optional] 
-**ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations. | [optional] 
+**ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for the given org. | [optional] 
 **PublicId** | Pointer to **string** | The organization public id. | [optional] 
-**RumSessionCountSum** | Pointer to **int64** | Shows the sum of all RUM Sessions over all hours in the current date for the given org. | [optional] 
+**RumSessionCountSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current date for the given org. | [optional] 
 **SyntheticsBrowserCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current date for the given org. | [optional] 
 **SyntheticsCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current date for the given org. | [optional] 
 **TraceSearchIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all analyzed spans indexed over all hours in the current date for the given org. | [optional] 
+**TwolIngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all tracing without limits bytes ingested over all hours in the current date for the given org. | [optional] 
 
 ## Methods
 
@@ -449,6 +451,31 @@ SetIngestedEventsBytesSum sets IngestedEventsBytesSum field to given value.
 
 HasIngestedEventsBytesSum returns a boolean if a field has been set.
 
+### GetMobileRumSessionCountSum
+
+`func (o *UsageSummaryDateOrg) GetMobileRumSessionCountSum() int64`
+
+GetMobileRumSessionCountSum returns the MobileRumSessionCountSum field if non-nil, zero value otherwise.
+
+### GetMobileRumSessionCountSumOk
+
+`func (o *UsageSummaryDateOrg) GetMobileRumSessionCountSumOk() (*int64, bool)`
+
+GetMobileRumSessionCountSumOk returns a tuple with the MobileRumSessionCountSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileRumSessionCountSum
+
+`func (o *UsageSummaryDateOrg) SetMobileRumSessionCountSum(v int64)`
+
+SetMobileRumSessionCountSum sets MobileRumSessionCountSum field to given value.
+
+### HasMobileRumSessionCountSum
+
+`func (o *UsageSummaryDateOrg) HasMobileRumSessionCountSum() bool`
+
+HasMobileRumSessionCountSum returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *UsageSummaryDateOrg) GetName() string`
@@ -673,6 +700,31 @@ SetTraceSearchIndexedEventsCountSum sets TraceSearchIndexedEventsCountSum field 
 `func (o *UsageSummaryDateOrg) HasTraceSearchIndexedEventsCountSum() bool`
 
 HasTraceSearchIndexedEventsCountSum returns a boolean if a field has been set.
+
+### GetTwolIngestedEventsBytesSum
+
+`func (o *UsageSummaryDateOrg) GetTwolIngestedEventsBytesSum() int64`
+
+GetTwolIngestedEventsBytesSum returns the TwolIngestedEventsBytesSum field if non-nil, zero value otherwise.
+
+### GetTwolIngestedEventsBytesSumOk
+
+`func (o *UsageSummaryDateOrg) GetTwolIngestedEventsBytesSumOk() (*int64, bool)`
+
+GetTwolIngestedEventsBytesSumOk returns a tuple with the TwolIngestedEventsBytesSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTwolIngestedEventsBytesSum
+
+`func (o *UsageSummaryDateOrg) SetTwolIngestedEventsBytesSum(v int64)`
+
+SetTwolIngestedEventsBytesSum sets TwolIngestedEventsBytesSum field to given value.
+
+### HasTwolIngestedEventsBytesSum
+
+`func (o *UsageSummaryDateOrg) HasTwolIngestedEventsBytesSum() bool`
+
+HasTwolIngestedEventsBytesSum returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

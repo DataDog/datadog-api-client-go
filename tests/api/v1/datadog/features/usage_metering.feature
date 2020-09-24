@@ -116,26 +116,30 @@ Feature: Usage Metering
 
   @generated @skip
   Scenario: Get the list of available daily custom reports returns "OK" response
-    Given new "GetDailyCustomReports" request
+    Given operation "GetDailyCustomReports" enabled
+    And new "GetDailyCustomReports" request
     When the request is sent
     Then the response status is 200 OK
 
   @generated @skip
   Scenario: Get specified daily custom reports returns "OK" response
-    Given new "GetSpecifiedDailyCustomReports" request
+    Given operation "GetSpecifiedDailyCustomReports" enabled
+    And new "GetSpecifiedDailyCustomReports" request
     And request contains "report_id" parameter from "<PATH>"
     When the request is sent
     Then the response status is 200 OK
 
   @generated @skip
   Scenario: Get the list of available monthly custom reports returns "OK" response
-    Given new "GetMonthlyCustomReports" request
+    Given operation "GetMonthlyCustomReports" enabled
+    And new "GetMonthlyCustomReports" request
     When the request is sent
     Then the response status is 200 OK
 
   @generated @skip
   Scenario: Get specified monthly custom reports returns "OK" response
-    Given new "GetSpecifiedMonthlyCustomReports" request
+    Given operation "GetSpecifiedMonthlyCustomReports" enabled
+    And new "GetSpecifiedMonthlyCustomReports" request
     And request contains "report_id" parameter from "<PATH>"
     When the request is sent
     Then the response status is 200 OK
@@ -143,5 +147,17 @@ Feature: Usage Metering
   @generated @skip
   Scenario: Get billable usage across your multi-org account returns "OK" response
     Given new "GetUsageBillableSummary" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Get hourly usage for profiled hosts returns "OK" response
+    Given new "GetUsageProfiling" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Get hourly usage for tracing without limits returns "OK" response
+    Given new "GetTracingWithoutLimits" request
     When the request is sent
     Then the response status is 200 OK
