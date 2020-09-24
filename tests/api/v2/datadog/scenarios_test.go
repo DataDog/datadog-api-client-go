@@ -31,6 +31,12 @@ func undoCreateRole(ctx gobdd.Context) {
 	Client(cctx).RolesApi.DeleteRole(cctx, role.Data.GetId()).Execute()
 }
 
+func undoCreateIncident(ctx gobdd.Context) {
+	incident := tests.GetResponse(ctx)[0].Interface().(datadog.IncidentResponse)
+	cctx := tests.GetCtx(ctx)
+	Client(cctx).IncidentsApi.DeleteIncident(cctx, incident.Data.GetId()).Execute()
+}
+
 func undoCreateService(ctx gobdd.Context) {
 	service := tests.GetResponse(ctx)[0].Interface().(datadog.ServiceResponse)
 	cctx := tests.GetCtx(ctx)
@@ -46,30 +52,35 @@ func undoCreateTeam(ctx gobdd.Context) {
 var requestsUndo = map[string]func(ctx gobdd.Context){
 	"AddPermissionToRole":      undoIgnore,
 	"AddUserToRole":            undoIgnore,
+	"CreateIncident":           undoCreateIncident,
 	"CreateRole":               undoCreateRole,
 	"CreateService":            undoCreateService,
 	"CreateTeam":               undoCreateTeam,
 	"CreateUser":               undoCreateUser,
 	"DisableUser":              undoIgnore,
+	"DeleteIncident":           undoIgnore,
 	"DeleteRole":               undoIgnore,
 	"DeleteService":            undoIgnore,
 	"DeleteTeam":               undoIgnore,
+	"GetIncident":              undoIgnore,
 	"GetInvitation":            undoIgnore,
 	"GetRole":                  undoIgnore,
 	"GetService":               undoIgnore,
-	"GetServices":              undoIgnore,
 	"GetTeam":                  undoIgnore,
-	"GetTeams":                 undoIgnore,
 	"GetUser":                  undoIgnore,
+	"ListIncidents":            undoIgnore,
 	"ListPermissions":          undoIgnore,
 	"ListRolePermissions":      undoIgnore,
 	"ListRoles":                undoIgnore,
 	"ListRoleUsers":            undoIgnore,
+	"ListServices":             undoIgnore,
+	"ListTeams":                undoIgnore,
 	"ListUsers":                undoIgnore,
 	"ListUserPermissions":      undoIgnore,
 	"RemovePermissionFromRole": undoIgnore,
 	"RemoveUserFromRole":       undoIgnore,
 	"SendInvitations":          undoIgnore,
+	"UpdateIncident":           undoIgnore,
 	"UpdateRole":               undoIgnore,
 	"UpdateService":            undoIgnore,
 	"UpdateUser":               undoIgnore,
@@ -136,6 +147,7 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
 	s.AddStep(`operation "([^"]+)" enabled`, enableOperations)
+	s.AddStep(`there is a valid "incident" in the system`, incident)
 	s.AddStep(`there is a valid "user" in the system`, user)
 	s.AddStep(`there is a valid "role" in the system`, role)
 	s.AddStep(`there is a valid "service" in the system`, service)
@@ -302,6 +314,36 @@ func team(t gobdd.StepTest, ctx gobdd.Context) {
 	}
 
 	tests.GetData(ctx)["team"] = response
+}
+func deleteIncident(ctx context.Context, incidentID string) {
+	_, err := Client(ctx).IncidentsApi.DeleteIncident(ctx, incidentID).Execute()
+	if err == nil {
+		return
+	}
+	log.Printf("Error deleting incident: %v, Another test may have already deleted this incident: %s", incidentID, err.Error())
+}
+
+func incident(t gobdd.StepTest, ctx gobdd.Context) {
+	client := Client(tests.GetCtx(ctx))
+	client.GetConfig().SetUnstableOperationEnabled("CreateIncident", true)
+
+	incidentAttributes := datadog.NewIncidentCreateAttributes(false, *tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
+	incident := datadog.NewIncidentCreateData(datadog.IncidentType("incidents"))
+	incident.SetAttributes(*incidentAttributes)
+	incidentRequest := datadog.NewIncidentCreateRequest(*incident)
+	response, _, err := client.IncidentsApi.CreateIncident(tests.GetCtx(ctx)).Body(*incidentRequest).Execute()
+	if err != nil {
+		t.Fatalf("error creating incident: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+
+	responseData := response.GetData()
+	incidentID := responseData.GetId()
+	outContext := tests.GetCtx(ctx)
+	tests.GetCleanup(ctx)["50-incident"] = func() {
+		deleteIncident(outContext, incidentID)
+	}
+
+	tests.GetData(ctx)["incident"] = response
 }
 
 func userHasRole(t gobdd.StepTest, ctx gobdd.Context) {
