@@ -165,6 +165,12 @@ func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 		panic(fmt.Sprintf("invalid method name %s on API", name))
 	}
 
+	testName := strings.Join(strings.Split(t.(*testing.T).Name(), "/")[1:3], "/")
+	unique := WithUniqueSurrounding(GetCtx(ctx), testName)
+	data := GetData(ctx)
+	data["unique"] = unique
+	data["unique_lower"] = strings.ToLower(unique)
+
 	ctx.Set(requestKey{}, f)
 	ctx.Set(requestNameKey{}, name)
 	ctx.Set(requestParamsKey{}, make(map[string]interface{}))
@@ -214,16 +220,11 @@ func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, va
 	if err != nil {
 		t.Error(err)
 	}
-	name := SnakeToCamelCase(param, false)
+	name := ToVarName(param)
 	// Get the method for setting the current parameter
 	method := request.MethodByName(name)
 
-	data := GetData(ctx)
-	testName := strings.Join(strings.Split(t.(*testing.T).Name(), "/")[1:3], "/")
-	unique := WithUniqueSurrounding(GetCtx(ctx), testName)
-	data["unique"] = unique
-	data["unique_lower"] = strings.ToLower(unique)
-	templatedValue := Templated(data, value)
+	templatedValue := Templated(GetData(ctx), value)
 
 	if method.IsValid() {
 		at := reflect.New(method.Type().In(0))
@@ -243,7 +244,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	requestParameters := GetRequestParameters(ctx)
 
 	for param, value := range requestParameters {
-		name := SnakeToCamelCase(param, false)
+		name := ToVarName(param)
 		method := request.MethodByName(name)
 		if method.IsValid() {
 			if param == "body" {
@@ -273,12 +274,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 }
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
-	data := GetData(ctx)
-	name := strings.Join(strings.Split(t.(*testing.T).Name(), "/")[1:3], "/")
-	unique := WithUniqueSurrounding(GetCtx(ctx), name)
-	data["unique"] = unique
-	data["unique_lower"] = strings.ToLower(unique)
-	GetRequestParameters(ctx)["body"] = Templated(data, body)
+	GetRequestParameters(ctx)["body"] = Templated(GetData(ctx), body)
 }
 
 func stringToType(s string, t interface{}) (interface{}, error) {
@@ -297,7 +293,7 @@ func stringToType(s string, t interface{}) (interface{}, error) {
 }
 
 func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value string) {
-	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath, true))
+	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
 		t.Errorf("could not lookup response value %s in %v: %v", responsePath, GetResponse(ctx)[0].Interface(), err)
 	}
@@ -315,11 +311,11 @@ func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value
 }
 
 func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, fixturePath string) {
-	fixtureValue, err := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(fixturePath, true))
+	fixtureValue, err := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(fixturePath))
 	if err != nil {
 		t.Fatalf("could not lookup fixture value %s: %v", fixturePath, err)
 	}
-	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath, true))
+	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
 		t.Fatalf("could not lookup response value %s: %v", responsePath, err)
 	}
@@ -330,7 +326,7 @@ func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, 
 }
 
 func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
-	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath, true))
+	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
 		t.Errorf("could not lookup value: %v", err)
 	}

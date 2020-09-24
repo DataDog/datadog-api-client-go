@@ -17,6 +17,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"regexp"
 	"runtime"
 	"strings"
 	"testing"
@@ -115,7 +116,7 @@ func SecurePath(path string) string {
 }
 
 // SnakeToCamelCase converts snake_case to SnakeCase.
-func SnakeToCamelCase(snake string, lookup bool) (camel string) {
+func SnakeToCamelCase(snake string) (camel string) {
 	isToUpper := false
 
 	for k, v := range snake {
@@ -126,16 +127,34 @@ func SnakeToCamelCase(snake string, lookup bool) (camel string) {
 				camel += strings.ToUpper(string(v))
 				isToUpper = false
 			} else {
-				if v == '_' || (v == '[' && !lookup) { // support for params like page[offset] => pageOffset
+				if v == '_' {
 					isToUpper = true
-				} else if v == '.' && lookup { // support for lookup paths
+				} else if v == '.' { // support for lookup paths
 					isToUpper = true
 					camel += string(v)
-				} else if v == ']' && !lookup {
-					isToUpper = true
 				} else {
 					camel += string(v)
 				}
+			}
+		}
+	}
+	return
+}
+
+func ToVarName(param string) (varName string) {
+	isToUpper := true
+
+	for _, v := range param {
+		if isToUpper {
+			varName += strings.ToUpper(string(v))
+			isToUpper = false
+		} else {
+			if v == '_' {
+				isToUpper = true
+			} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
+				isToUpper = true
+			} else {
+				varName += string(v)
 			}
 		}
 	}
