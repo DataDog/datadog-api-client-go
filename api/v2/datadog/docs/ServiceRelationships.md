@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedBy** | Pointer to [**UserRelationship**](UserRelationship.md) |  | [optional] 
-**LastModifiedBy** | Pointer to [**UserRelationship**](UserRelationship.md) |  | [optional] 
+**CreatedBy** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
+**LastModifiedBy** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCreatedBy
 
-`func (o *ServiceRelationships) GetCreatedBy() UserRelationship`
+`func (o *ServiceRelationships) GetCreatedBy() RelationshipToUser`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *ServiceRelationships) GetCreatedByOk() (*UserRelationship, bool)`
+`func (o *ServiceRelationships) GetCreatedByOk() (*RelationshipToUser, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedBy
 
-`func (o *ServiceRelationships) SetCreatedBy(v UserRelationship)`
+`func (o *ServiceRelationships) SetCreatedBy(v RelationshipToUser)`
 
 SetCreatedBy sets CreatedBy field to given value.
 
@@ -53,20 +53,20 @@ HasCreatedBy returns a boolean if a field has been set.
 
 ### GetLastModifiedBy
 
-`func (o *ServiceRelationships) GetLastModifiedBy() UserRelationship`
+`func (o *ServiceRelationships) GetLastModifiedBy() RelationshipToUser`
 
 GetLastModifiedBy returns the LastModifiedBy field if non-nil, zero value otherwise.
 
 ### GetLastModifiedByOk
 
-`func (o *ServiceRelationships) GetLastModifiedByOk() (*UserRelationship, bool)`
+`func (o *ServiceRelationships) GetLastModifiedByOk() (*RelationshipToUser, bool)`
 
 GetLastModifiedByOk returns a tuple with the LastModifiedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastModifiedBy
 
-`func (o *ServiceRelationships) SetLastModifiedBy(v UserRelationship)`
+`func (o *ServiceRelationships) SetLastModifiedBy(v RelationshipToUser)`
 
 SetLastModifiedBy sets LastModifiedBy field to given value.
 

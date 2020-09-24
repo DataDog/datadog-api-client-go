@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**RoleCreateAttributes**](RoleCreateAttributes.md) |  | [optional] 
+**Attributes** | [**RoleCreateAttributes**](RoleCreateAttributes.md) |  | 
 **Relationships** | Pointer to [**RoleRelationships**](RoleRelationships.md) |  | [optional] 
 **Type** | Pointer to [**RolesType**](RolesType.md) |  | [optional] [default to "roles"]
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewRoleCreateData
 
-`func NewRoleCreateData() *RoleCreateData`
+`func NewRoleCreateData(attributes RoleCreateAttributes, ) *RoleCreateData`
 
 NewRoleCreateData instantiates a new RoleCreateData object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
-### HasAttributes
-
-`func (o *RoleCreateData) HasAttributes() bool`
-
-HasAttributes returns a boolean if a field has been set.
 
 ### GetRelationships
 

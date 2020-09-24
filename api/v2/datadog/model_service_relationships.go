@@ -14,8 +14,8 @@ import (
 
 // ServiceRelationships The service's relationships.
 type ServiceRelationships struct {
-	CreatedBy      *UserRelationship `json:"created_by,omitempty"`
-	LastModifiedBy *UserRelationship `json:"last_modified_by,omitempty"`
+	CreatedBy      *RelationshipToUser `json:"created_by,omitempty"`
+	LastModifiedBy *RelationshipToUser `json:"last_modified_by,omitempty"`
 }
 
 // NewServiceRelationships instantiates a new ServiceRelationships object
@@ -36,9 +36,9 @@ func NewServiceRelationshipsWithDefaults() *ServiceRelationships {
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *ServiceRelationships) GetCreatedBy() UserRelationship {
+func (o *ServiceRelationships) GetCreatedBy() RelationshipToUser {
 	if o == nil || o.CreatedBy == nil {
-		var ret UserRelationship
+		var ret RelationshipToUser
 		return ret
 	}
 	return *o.CreatedBy
@@ -46,7 +46,7 @@ func (o *ServiceRelationships) GetCreatedBy() UserRelationship {
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceRelationships) GetCreatedByOk() (*UserRelationship, bool) {
+func (o *ServiceRelationships) GetCreatedByOk() (*RelationshipToUser, bool) {
 	if o == nil || o.CreatedBy == nil {
 		return nil, false
 	}
@@ -62,15 +62,15 @@ func (o *ServiceRelationships) HasCreatedBy() bool {
 	return false
 }
 
-// SetCreatedBy gets a reference to the given UserRelationship and assigns it to the CreatedBy field.
-func (o *ServiceRelationships) SetCreatedBy(v UserRelationship) {
+// SetCreatedBy gets a reference to the given RelationshipToUser and assigns it to the CreatedBy field.
+func (o *ServiceRelationships) SetCreatedBy(v RelationshipToUser) {
 	o.CreatedBy = &v
 }
 
 // GetLastModifiedBy returns the LastModifiedBy field value if set, zero value otherwise.
-func (o *ServiceRelationships) GetLastModifiedBy() UserRelationship {
+func (o *ServiceRelationships) GetLastModifiedBy() RelationshipToUser {
 	if o == nil || o.LastModifiedBy == nil {
-		var ret UserRelationship
+		var ret RelationshipToUser
 		return ret
 	}
 	return *o.LastModifiedBy
@@ -78,7 +78,7 @@ func (o *ServiceRelationships) GetLastModifiedBy() UserRelationship {
 
 // GetLastModifiedByOk returns a tuple with the LastModifiedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceRelationships) GetLastModifiedByOk() (*UserRelationship, bool) {
+func (o *ServiceRelationships) GetLastModifiedByOk() (*RelationshipToUser, bool) {
 	if o == nil || o.LastModifiedBy == nil {
 		return nil, false
 	}
@@ -94,8 +94,8 @@ func (o *ServiceRelationships) HasLastModifiedBy() bool {
 	return false
 }
 
-// SetLastModifiedBy gets a reference to the given UserRelationship and assigns it to the LastModifiedBy field.
-func (o *ServiceRelationships) SetLastModifiedBy(v UserRelationship) {
+// SetLastModifiedBy gets a reference to the given RelationshipToUser and assigns it to the LastModifiedBy field.
+func (o *ServiceRelationships) SetLastModifiedBy(v RelationshipToUser) {
 	o.LastModifiedBy = &v
 }
 

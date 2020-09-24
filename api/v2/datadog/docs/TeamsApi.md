@@ -46,11 +46,11 @@ func main() {
         },
     )
 
-    body := datadog.TeamCreateRequest{Data: datadog.TeamCreateData{Attributes: datadog.TeamCreateAttributes{Name: "Name_example"}, Relationships: datadog.TeamRelationships{CreatedBy: datadog.UserRelationship{Data: datadog.UserRelationship_data{Id: "Id_example", Type: datadog.UsersType{}}}, LastModifiedBy: datadog.UserRelationship{Data: datadog.UserRelationship_data{Id: "Id_example", Type: datadog.UsersType{}}}}, Type: datadog.TeamType{}}} // TeamCreateRequest | Teams Payload.
+    body := datadog.TeamCreateRequest{Data: datadog.TeamCreateData{Attributes: datadog.TeamCreateAttributes{Name: "Name_example"}, Relationships: datadog.TeamRelationships{CreatedBy: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}, LastModifiedBy: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}}, Type: datadog.TeamType{}}} // TeamCreateRequest | Teams Payload.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TeamsApi.CreateTeam(ctx, body).Execute()
+    resp, r, err := api_client.TeamsApi.CreateTeam(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.CreateTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -379,7 +379,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TeamsApi.UpdateTeam(ctx, teamId, body).Execute()
+    resp, r, err := api_client.TeamsApi.UpdateTeam(ctx, teamId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.UpdateTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

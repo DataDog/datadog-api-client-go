@@ -52,7 +52,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.CreateHostTags(ctx, hostName, body).Source(source).Execute()
+    resp, r, err := api_client.TagsApi.CreateHostTags(ctx, hostName).Body(body).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.CreateHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -386,7 +386,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.UpdateHostTags(ctx, hostName, body).Source(source).Execute()
+    resp, r, err := api_client.TagsApi.UpdateHostTags(ctx, hostName).Body(body).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.UpdateHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
