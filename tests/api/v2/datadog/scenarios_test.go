@@ -46,6 +46,7 @@ func undoCreateTeam(ctx gobdd.Context) {
 var requestsUndo = map[string]func(ctx gobdd.Context){
 	"AddPermissionToRole":      undoIgnore,
 	"AddUserToRole":            undoIgnore,
+	"AggregateLogs":            undoIgnore,
 	"CreateRole":               undoCreateRole,
 	"CreateService":            undoCreateService,
 	"CreateTeam":               undoCreateTeam,
@@ -61,6 +62,8 @@ var requestsUndo = map[string]func(ctx gobdd.Context){
 	"GetTeam":                  undoIgnore,
 	"GetTeams":                 undoIgnore,
 	"GetUser":                  undoIgnore,
+	"ListLogs":                 undoIgnore,
+	"ListLogsGet":              undoIgnore,
 	"ListPermissions":          undoIgnore,
 	"ListRolePermissions":      undoIgnore,
 	"ListRoles":                undoIgnore,

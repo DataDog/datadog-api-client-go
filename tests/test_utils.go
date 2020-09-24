@@ -115,7 +115,7 @@ func SecurePath(path string) string {
 }
 
 // SnakeToCamelCase converts snake_case to SnakeCase.
-func SnakeToCamelCase(snake string) (camel string) {
+func SnakeToCamelCase(snake string, lookup bool) (camel string) {
 	isToUpper := false
 
 	for k, v := range snake {
@@ -126,11 +126,13 @@ func SnakeToCamelCase(snake string) (camel string) {
 				camel += strings.ToUpper(string(v))
 				isToUpper = false
 			} else {
-				if v == '_' {
+				if v == '_' || (v == '[' && !lookup) { // support for params like page[offset] => pageOffset
 					isToUpper = true
-				} else if v == '.' { // support for lookup paths
+				} else if v == '.' && lookup { // support for lookup paths
 					isToUpper = true
 					camel += string(v)
+				} else if v == ']' && !lookup {
+					isToUpper = true
 				} else {
 					camel += string(v)
 				}
