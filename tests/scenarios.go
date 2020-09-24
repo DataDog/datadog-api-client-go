@@ -17,7 +17,6 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"testing"
 
 	"github.com/go-bdd/gobdd"
 	"github.com/mcuadros/go-lookup"
@@ -164,12 +163,6 @@ func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	if !f.IsValid() {
 		panic(fmt.Sprintf("invalid method name %s on API", name))
 	}
-
-	testName := strings.Join(strings.Split(t.(*testing.T).Name(), "/")[1:3], "/")
-	unique := WithUniqueSurrounding(GetCtx(ctx), testName)
-	data := GetData(ctx)
-	data["unique"] = unique
-	data["unique_lower"] = strings.ToLower(unique)
 
 	ctx.Set(requestKey{}, f)
 	ctx.Set(requestNameKey{}, name)
