@@ -328,8 +328,7 @@ func incident(t gobdd.StepTest, ctx gobdd.Context) {
 	client.GetConfig().SetUnstableOperationEnabled("CreateIncident", true)
 
 	incidentAttributes := datadog.NewIncidentCreateAttributes(false, *tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
-	incident := datadog.NewIncidentCreateData(datadog.IncidentType("incidents"))
-	incident.SetAttributes(*incidentAttributes)
+	incident := datadog.NewIncidentCreateData(*incidentAttributes, datadog.IncidentType("incidents"))
 	incidentRequest := datadog.NewIncidentCreateRequest(*incident)
 	response, _, err := client.IncidentsApi.CreateIncident(tests.GetCtx(ctx)).Body(*incidentRequest).Execute()
 	if err != nil {
