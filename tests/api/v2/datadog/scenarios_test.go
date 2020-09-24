@@ -198,14 +198,14 @@ func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
 func user(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
 
-	uca := datadog.NewUserCreateAttributes()
+	uca := datadog.NewUserCreateAttributesWithDefaults()
 	name := strings.ToLower(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
 	uca.SetEmail(fmt.Sprintf("%s@datadoghq.com", name))
 	uca.SetName(name[:44])
 	uca.SetTitle("Big boss")
-	ucd := datadog.NewUserCreateData()
+	ucd := datadog.NewUserCreateDataWithDefaults()
 	ucd.SetAttributes(*uca)
-	ucp := datadog.NewUserCreateRequest()
+	ucp := datadog.NewUserCreateRequestWithDefaults()
 	ucp.SetData(*ucd)
 	ur, _, err := client.UsersApi.CreateUser(tests.GetCtx(ctx)).Body(*ucp).Execute()
 	if err != nil {
@@ -225,11 +225,10 @@ func user(t gobdd.StepTest, ctx gobdd.Context) {
 func role(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
 
-	rca := datadog.NewRoleCreateAttributes()
-	rca.SetName(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
-	rcd := datadog.NewRoleCreateData()
+	rca := datadog.NewRoleCreateAttributes(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
+	rcd := datadog.NewRoleCreateDataWithDefaults()
 	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequest()
+	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
 	rr, _, err := client.RolesApi.CreateRole(tests.GetCtx(ctx)).Body(*rcp).Execute()
 	if err != nil {
@@ -336,14 +335,14 @@ func userHasInvitation(t gobdd.StepTest, ctx gobdd.Context) {
 
 	rtud := datadog.NewRelationshipToUserDataWithDefaults()
 	rtud.SetId(id)
-	rtu := datadog.NewRelationshipToUser()
+	rtu := datadog.NewRelationshipToUserWithDefaults()
 	rtu.SetData(*rtud)
-	uir := datadog.NewUserInvitationRelationships()
+	uir := datadog.NewUserInvitationRelationshipsWithDefaults()
 	uir.SetUser(*rtu)
-	uid := datadog.NewUserInvitationData()
+	uid := datadog.NewUserInvitationDataWithDefaults()
 	uid.SetRelationships(*uir)
-	uireq := datadog.NewUserInvitationsRequest()
-	uireq.SetData([]datadog.UserInvitationData{*uid})
+	uireq := datadog.NewUserInvitationsRequestWithDefaults()
+	uireq.Data = append(uireq.Data, *uid)
 
 	ui, _, err := client.UsersApi.SendInvitations(tests.GetCtx(ctx)).Body(*uireq).Execute()
 	if err != nil {

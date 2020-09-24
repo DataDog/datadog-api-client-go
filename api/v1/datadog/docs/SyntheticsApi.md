@@ -61,7 +61,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.CreateGlobalVariable(ctx, body).Execute()
+    resp, r, err := api_client.SyntheticsApi.CreateGlobalVariable(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateGlobalVariable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,7 +140,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.CreateTest(ctx, body).Execute()
+    resp, r, err := api_client.SyntheticsApi.CreateTest(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -300,7 +300,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.DeleteTests(ctx, body).Execute()
+    resp, r, err := api_client.SyntheticsApi.DeleteTests(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteTests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -380,7 +380,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.EditGlobalVariable(ctx, variableId, body).Execute()
+    resp, r, err := api_client.SyntheticsApi.EditGlobalVariable(ctx, variableId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.EditGlobalVariable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1128,7 +1128,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.TriggerCITests(ctx, body).Execute()
+    resp, r, err := api_client.SyntheticsApi.TriggerCITests(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.TriggerCITests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1208,7 +1208,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.UpdateTest(ctx, publicId, body).Execute()
+    resp, r, err := api_client.SyntheticsApi.UpdateTest(ctx, publicId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1293,7 +1293,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.UpdateTestPauseStatus(ctx, publicId, body).Execute()
+    resp, r, err := api_client.SyntheticsApi.UpdateTestPauseStatus(ctx, publicId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTestPauseStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

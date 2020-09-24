@@ -14,7 +14,7 @@ import (
 
 // RelationshipToUserData Relationship to user object.
 type RelationshipToUserData struct {
-	// ID of the user.
+	// A unique identifier that represents the user.
 	Id   string    `json:"id"`
 	Type UsersType `json:"type"`
 }

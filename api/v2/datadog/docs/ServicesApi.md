@@ -46,11 +46,11 @@ func main() {
         },
     )
 
-    body := datadog.ServiceCreateRequest{Data: datadog.ServiceCreateData{Attributes: datadog.ServiceCreateAttributes{Name: "Name_example"}, Relationships: datadog.ServiceRelationships{CreatedBy: datadog.UserRelationship{Data: datadog.UserRelationship_data{Id: "Id_example", Type: datadog.UsersType{}}}, LastModifiedBy: datadog.UserRelationship{Data: datadog.UserRelationship_data{Id: "Id_example", Type: datadog.UsersType{}}}}, Type: datadog.ServiceType{}}} // ServiceCreateRequest | Service Payload.
+    body := datadog.ServiceCreateRequest{Data: datadog.ServiceCreateData{Attributes: datadog.ServiceCreateAttributes{Name: "Name_example"}, Relationships: datadog.ServiceRelationships{CreatedBy: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}, LastModifiedBy: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}}, Type: datadog.ServiceType{}}} // ServiceCreateRequest | Service Payload.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.CreateService(ctx, body).Execute()
+    resp, r, err := api_client.ServicesApi.CreateService(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.CreateService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -379,7 +379,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.UpdateService(ctx, serviceId, body).Execute()
+    resp, r, err := api_client.ServicesApi.UpdateService(ctx, serviceId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.UpdateService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

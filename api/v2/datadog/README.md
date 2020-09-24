@@ -300,8 +300,6 @@ Class | Method | HTTP request | Description
  - [UserInvitationsRequest](docs/UserInvitationsRequest.md)
  - [UserInvitationsResponse](docs/UserInvitationsResponse.md)
  - [UserInvitationsType](docs/UserInvitationsType.md)
- - [UserRelationship](docs/UserRelationship.md)
- - [UserRelationshipData](docs/UserRelationshipData.md)
  - [UserRelationships](docs/UserRelationships.md)
  - [UserResponse](docs/UserResponse.md)
  - [UserResponseIncludedItem](docs/UserResponseIncludedItem.md)

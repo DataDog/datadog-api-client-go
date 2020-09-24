@@ -53,7 +53,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.CheckCanDeleteSLO(ctx, ids).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.CheckCanDeleteSLO(ctx).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.CheckCanDeleteSLO``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,7 +132,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.CreateSLO(ctx, body).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.CreateSLO(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.CreateSLO``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -296,7 +296,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk(ctx, body).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -460,7 +460,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.GetSLOHistory(ctx, sloId, fromTs, toTs).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.GetSLOHistory(ctx, sloId).FromTs(fromTs).ToTs(toTs).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLOHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -545,7 +545,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.ListSLOs(ctx, ids).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.ListSLOs(ctx).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.ListSLOs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -625,7 +625,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.UpdateSLO(ctx, sloId, body).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.UpdateSLO(ctx, sloId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.UpdateSLO``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

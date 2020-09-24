@@ -190,8 +190,6 @@ docs/UserInvitationResponseData.md
 docs/UserInvitationsRequest.md
 docs/UserInvitationsResponse.md
 docs/UserInvitationsType.md
-docs/UserRelationship.md
-docs/UserRelationshipData.md
 docs/UserRelationships.md
 docs/UserResponse.md
 docs/UserResponseIncludedItem.md
@@ -375,8 +373,6 @@ model_user_invitation_response_data.go
 model_user_invitations_request.go
 model_user_invitations_response.go
 model_user_invitations_type.go
-model_user_relationship.go
-model_user_relationship_data.go
 model_user_relationships.go
 model_user_response.go
 model_user_response_included_item.go

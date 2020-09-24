@@ -406,7 +406,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetTracingWithoutLimits(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetTracingWithoutLimits(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetTracingWithoutLimits``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -487,7 +487,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageAnalyzedLogs(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageAnalyzedLogs(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageAnalyzedLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -647,7 +647,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageFargate(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageFargate(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageFargate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -728,7 +728,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageHosts(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageHosts(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageHosts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -809,7 +809,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageLambda(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageLambda(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLambda``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -890,7 +890,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageLogs(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageLogs(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -972,7 +972,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageLogsByIndex(ctx, startHr).EndHr(endHr).IndexName(indexName).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageLogsByIndex(ctx).StartHr(startHr).EndHr(endHr).IndexName(indexName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLogsByIndex``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1054,7 +1054,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageNetworkFlows(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageNetworkFlows(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageNetworkFlows``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1135,7 +1135,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageNetworkHosts(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageNetworkHosts(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageNetworkHosts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1216,7 +1216,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageProfiling(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageProfiling(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageProfiling``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1298,7 +1298,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageRumSessions(ctx, startHr).EndHr(endHr).Type_(type_).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageRumSessions(ctx).StartHr(startHr).EndHr(endHr).Type_(type_).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageRumSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1380,7 +1380,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageSNMP(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageSNMP(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSNMP``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1462,7 +1462,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageSummary(ctx, startMonth).EndMonth(endMonth).IncludeOrgDetails(includeOrgDetails).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageSummary(ctx).StartMonth(startMonth).EndMonth(endMonth).IncludeOrgDetails(includeOrgDetails).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSummary``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1544,7 +1544,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageSynthetics(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageSynthetics(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSynthetics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1625,7 +1625,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageSyntheticsAPI(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageSyntheticsAPI(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSyntheticsAPI``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1706,7 +1706,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageSyntheticsBrowser(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageSyntheticsBrowser(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSyntheticsBrowser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1787,7 +1787,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageTimeseries(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageTimeseries(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTimeseries``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1868,7 +1868,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageTopAvgMetrics(ctx, month).Names(names).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageTopAvgMetrics(ctx).Month(month).Names(names).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTopAvgMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1949,7 +1949,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageTrace(ctx, startHr).EndHr(endHr).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageTrace(ctx).StartHr(startHr).EndHr(endHr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTrace``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

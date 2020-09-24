@@ -49,7 +49,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.GCPIntegrationApi.CreateGCPIntegration(ctx, body).Execute()
+    resp, r, err := api_client.GCPIntegrationApi.CreateGCPIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.CreateGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,7 +128,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.GCPIntegrationApi.DeleteGCPIntegration(ctx, body).Execute()
+    resp, r, err := api_client.GCPIntegrationApi.DeleteGCPIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.DeleteGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,7 +281,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.GCPIntegrationApi.UpdateGCPIntegration(ctx, body).Execute()
+    resp, r, err := api_client.GCPIntegrationApi.UpdateGCPIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.UpdateGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
