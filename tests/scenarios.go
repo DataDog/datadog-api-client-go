@@ -296,6 +296,21 @@ func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, 
 	}
 }
 
+func expectLengthEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, fixtureLength string) {
+	lengthInt, err := strconv.Atoi(fixtureLength)
+	if err != nil {
+		t.Fatalf("assertion length value is not a number %s: %v", fixtureLength, err)
+	}
+	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	if err != nil {
+		t.Fatalf("could not lookup response value %s: %v", responsePath, err)
+	}
+	cmp := is.Len(responseValue.Interface(), lengthInt)()
+	if !cmp.Success() {
+		t.Errorf("%v", cmp)
+	}
+}
+
 func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
 	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
@@ -316,6 +331,7 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`body (.*)`:                                              body,
 		`the response "([^"]+)" is equal to (.*)`:                expectEqual,
 		`the response "([^"]+)" has the same value as "([^"]+)"`: expectEqualValue,
+		`the response "([^"]+)" has length ([0-9]+)`:             expectLengthEqual,
 		`the response "([^"]+)" is false`:                        expectFalse,
 	}
 	for expr, step := range steps {
