@@ -1,0 +1,491 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"config":{"assertions":[{"operator":"lessThan","target":2000,"type":"responseTime"}],"request":{"host":"https://www.datadoghq.com"}},"locations":["aws:us-east-2"],"message":"Go client testing Synthetics API test Subtype DNS - this is message","name":"go-TestSyntheticsSubtypeDnsAPITestLifecycle-local-1597741665","options":{"tick_every":60},"subtype":"dns","tags":["testing:api-dns"],"type":"api"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateTest
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.4; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3845018246612114315"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4027410568728277544"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests
+    method: POST
+  response:
+    body: '{"status":"live","public_id":"zmt-7mj-f2s","tags":["testing:api-dns"],"org_id":321813,"locations":["aws:us-east-2"],"message":"Go
+      client testing Synthetics API test Subtype DNS - this is message","deleted_at":null,"name":"go-TestSyntheticsSubtypeDnsAPITestLifecycle-local-1597741665","monitor_id":21226148,"type":"api","created_at":"2020-08-18T09:07:46.361593+00:00","modified_at":"2020-08-18T09:07:46.361593+00:00","subtype":"dns","config":{"request":{"host":"https://www.datadoghq.com"},"assertions":[{"operator":"lessThan","type":"responseTime","target":2000}]},"options":{"tick_every":60}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 09:07:47 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 25-Aug-2020 09:07:46 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 4800hhM5D8qj6yrPc+dlMvhUa+SbSJAXG/yPCxJaOKK9a5IkPxDsNnyOdNMLl2nJ
+      X-Dd-Version:
+      - "35.2893774"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "120"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "119"
+      X-Ratelimit-Reset:
+      - "14"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"config":{"assertions":[{"operator":"lessThan","target":2000,"type":"responseTime"}],"request":{"host":"https://www.datadoghq.com"}},"locations":["aws:us-east-2"],"message":"Go client testing Synthetics API test Subtype DNS - this is message","name":"go-TestSyntheticsSubtypeDnsAPITestLifecycle-local-1597741665-updated","options":{"tick_every":60},"status":"live","subtype":"dns","tags":["testing:api-dns"],"type":"api"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - UpdateTest
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.4; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5857768937013141039"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4027410568728277544"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/zmt-7mj-f2s
+    method: PUT
+  response:
+    body: '{"status":"live","public_id":"zmt-7mj-f2s","tags":["testing:api-dns"],"org_id":321813,"locations":["aws:us-east-2"],"message":"Go
+      client testing Synthetics API test Subtype DNS - this is message","deleted_at":null,"name":"go-TestSyntheticsSubtypeDnsAPITestLifecycle-local-1597741665-updated","monitor_id":21226148,"type":"api","created_at":"2020-08-18T09:07:46.361593+00:00","modified_at":"2020-08-18T09:07:48.038322+00:00","subtype":"dns","config":{"request":{"host":"https://www.datadoghq.com"},"assertions":[{"operator":"lessThan","type":"responseTime","target":2000}]},"options":{"tick_every":60}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 09:07:48 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 25-Aug-2020 09:07:47 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - cdvpcwnkjuISrw6rfWS7apTmBr9FZehyT0DDN5M25OjQvVqdwR/v3ItBF4P2Rbv7
+      X-Dd-Version:
+      - "35.2893774"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "500"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "499"
+      X-Ratelimit-Reset:
+      - "13"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetTest
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.4; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6769938948177068344"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4027410568728277544"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/zmt-7mj-f2s
+    method: GET
+  response:
+    body: '{"status":"live","public_id":"zmt-7mj-f2s","tags":["testing:api-dns"],"locations":["aws:us-east-2"],"message":"Go
+      client testing Synthetics API test Subtype DNS - this is message","name":"go-TestSyntheticsSubtypeDnsAPITestLifecycle-local-1597741665-updated","monitor_id":21226148,"type":"api","subtype":"dns","config":{"request":{"host":"https://www.datadoghq.com"},"assertions":[{"operator":"lessThan","type":"responseTime","target":2000}]},"options":{"tick_every":60}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 09:07:48 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 25-Aug-2020 09:07:48 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - HvCCHsTxMdYM0gaKHtI2IcmEJsAxsAXyEwSakV4VwU0gJM0DBm5BMD3H6ZYBdo1H
+      X-Dd-Version:
+      - "35.2893774"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "1000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "999"
+      X-Ratelimit-Reset:
+      - "12"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"new_status":"paused"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - UpdateTestPauseStatus
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.4; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1117492410754540084"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4027410568728277544"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/zmt-7mj-f2s/status
+    method: PUT
+  response:
+    body: "true"
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "4"
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 09:07:48 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 25-Aug-2020 09:07:48 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - sbJ6i3VupQQcT7EDgPAdOxGmcKsvZJqf4l3SlQaWZNaaFfahh7BdNF3x5CttmH4Q
+      X-Dd-Version:
+      - "35.2893774"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "120"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "118"
+      X-Ratelimit-Reset:
+      - "12"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"new_status":"live"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - UpdateTestPauseStatus
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.4; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7220266245330148537"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4027410568728277544"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/zmt-7mj-f2s/status
+    method: PUT
+  response:
+    body: "true"
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "4"
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 09:07:49 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 25-Aug-2020 09:07:48 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - qQXsO+f4B3HCvLT+wx7LVBDCKoA9+mEzcYYTapfT4+npOWtAMz9R4B+8HSWkVhsm
+      X-Dd-Version:
+      - "35.2893774"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "120"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "117"
+      X-Ratelimit-Reset:
+      - "12"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetAPITestLatestResults
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.4; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "187975964670019185"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4027410568728277544"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/zmt-7mj-f2s/results?from_ts=0&probe_dc=aws%3Aus-east-2&to_ts=1597741665000
+    method: GET
+  response:
+    body: '{"last_timestamp_fetched":1592557669000,"results":[]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 09:07:49 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 25-Aug-2020 09:07:49 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - AqBVHmyy+L9zrCUEAQ2Jd2pwskksgC+7nOsWqbNjcjcM+9M/ChipUo2OR6Q8oPwE
+      X-Dd-Version:
+      - "35.2893774"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "1000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "999"
+      X-Ratelimit-Reset:
+      - "11"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"public_ids":["zmt-7mj-f2s"]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteTests
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.4; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3100449387795565912"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4027410568728277544"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/delete
+    method: POST
+  response:
+    body: '{"deleted_tests":[{"deleted_at":"2020-08-18T09:07:49.542073+00:00","public_id":"zmt-7mj-f2s"}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 09:07:51 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 25-Aug-2020 09:07:49 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - L5YZybc1cyjBP6Pj7fxCLn7WXppFUz91jOJ8laQX9oZfrQHZBjzm1VU3LVztvJTa
+      X-Dd-Version:
+      - "35.2893774"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "120"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "119"
+      X-Ratelimit-Reset:
+      - "11"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"public_ids":["zmt-7mj-f2s"]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteTests
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.4; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7267781299307749772"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4027410568728277544"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/delete
+    method: POST
+  response:
+    body: '{"errors": ["Synthetics test not found"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 09:07:51 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.2893774"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "120"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "118"
+      X-Ratelimit-Reset:
+      - "9"
+    status: 404 Not Found
+    code: 404
+    duration: ""

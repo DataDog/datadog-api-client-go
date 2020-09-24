@@ -1,0 +1,58 @@
+{
+  "status": 0,
+  "run_type": null,
+  "check_time": 1597741443749,
+  "check_version": 2,
+  "result": {
+    "recordsWithType": [
+      {
+        "values": [
+          "34.204.236.94",
+          "54.84.176.82",
+          "52.200.124.77",
+          "52.0.54.2",
+          "52.4.190.87",
+          "54.174.112.186",
+          "34.192.83.183",
+          "52.206.139.169"
+        ],
+        "type": "A"
+      },
+      {
+        "values": [
+          "2600:1f18:63f7:b902:2fcc:219f:c3ac:185a",
+          "2600:1f18:63f7:b902:f5ef:d603:6d94:b1ab",
+          "2600:1f18:63f7:b901:3ad4:9204:54d7:e1e0",
+          "2600:1f18:63f7:b900:7ea7:54b0:84f6:d751",
+          "2600:1f18:63f7:b902:9a8b:23f7:5627:2927",
+          "2600:1f18:63f7:b902:b739:1575:403b:f6db",
+          "2600:1f18:63f7:b902:ba4b:a604:544c:e7fb",
+          "2600:1f18:63f7:b900:b1b4:a06e:f1e7:c4b3"
+        ],
+        "type": "AAAA"
+      }
+    ],
+    "eventType": "finished",
+    "mainDC": "us1.prod",
+    "timings": {
+      "total": 1.564966082572937
+    }
+  },
+  "probe_dc": "aws:eu-west-3",
+  "result_id": "1006122437899386104",
+  "check": {
+    "config": {
+      "request": {
+        "host": "https://www.datadoghq.com",
+        "dnsServer": ""
+      },
+      "assertions": [
+        {
+          "operator": "lessThan",
+          "type": "responseTime",
+          "target": 2000
+        }
+      ]
+    }
+  }
+}

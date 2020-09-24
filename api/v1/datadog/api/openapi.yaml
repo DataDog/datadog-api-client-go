@@ -7983,28 +7983,20 @@ components:
     Event:
       description: Object representing an event.
       example:
-        aggregation_key: aggregation_key
-        related_event_id: 1
-        priority: normal
-        source_type_name: source_type_name
-        title: Did you hear the news today?
-        alert_type: info
-        url: url
-        tags:
-        - environment:test
         device_name: device_name
         payload: '{}'
         host: host
         id: 6
         text: Oh boy!
+        priority: normal
+        source_type_name: source_type_name
+        title: Did you hear the news today?
+        alert_type: info
+        url: url
         date_happened: 0
+        tags:
+        - environment:test
       properties:
-        aggregation_key:
-          description: |-
-            An arbitrary string to use for aggregation. Limited to 100 characters.
-            If you specify a key, all events using that key are grouped together in the Event Stream.
-          maxLength: 100
-          type: string
         alert_type:
           $ref: '#/components/schemas/EventAlertType'
         date_happened:
@@ -8033,11 +8025,6 @@ components:
           type: string
         priority:
           $ref: '#/components/schemas/EventPriority'
-        related_event_id:
-          description: ID of the parent event. Must be sent as an integer (i.e. no
-            quotes).
-          format: int64
-          type: integer
         source_type_name:
           description: |-
             The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc.
@@ -8068,9 +8055,6 @@ components:
           description: URL of the event.
           readOnly: true
           type: string
-      required:
-      - text
-      - title
       type: object
     EventAlertType:
       description: |-
@@ -8092,36 +8076,32 @@ components:
       description: An event list response.
       example:
         events:
-        - aggregation_key: aggregation_key
-          related_event_id: 1
+        - device_name: device_name
+          payload: '{}'
+          host: host
+          id: 6
+          text: Oh boy!
           priority: normal
           source_type_name: source_type_name
           title: Did you hear the news today?
           alert_type: info
           url: url
+          date_happened: 0
           tags:
           - environment:test
-          device_name: device_name
+        - device_name: device_name
           payload: '{}'
           host: host
           id: 6
           text: Oh boy!
-          date_happened: 0
-        - aggregation_key: aggregation_key
-          related_event_id: 1
           priority: normal
           source_type_name: source_type_name
           title: Did you hear the news today?
           alert_type: info
           url: url
+          date_happened: 0
           tags:
           - environment:test
-          device_name: device_name
-          payload: '{}'
-          host: host
-          id: 6
-          text: Oh boy!
-          date_happened: 0
         status: status
       properties:
         events:
@@ -8161,21 +8141,19 @@ components:
       description: Object containing an event response.
       example:
         event:
-          aggregation_key: aggregation_key
-          related_event_id: 1
-          priority: normal
-          source_type_name: source_type_name
-          title: Did you hear the news today?
-          alert_type: info
-          url: url
-          tags:
-          - environment:test
           device_name: device_name
           payload: '{}'
           host: host
           id: 6
           text: Oh boy!
+          priority: normal
+          source_type_name: source_type_name
+          title: Did you hear the news today?
+          alert_type: info
+          url: url
           date_happened: 0
+          tags:
+          - environment:test
         status: status
       properties:
         event:
@@ -14470,16 +14448,19 @@ components:
           $ref: '#/components/schemas/SyntheticsTestDetailsType'
       type: object
     SyntheticsTestDetailsSubType:
-      description: The sub-type of the Synthetic API test, `http`, `ssl`, or `tcp`.
+      description: The sub-type of the Synthetic API test, `http`, `ssl`, `tcp` or
+        `dns`.
       enum:
       - http
       - ssl
       - tcp
+      - dns
       type: string
       x-enum-varnames:
       - HTTP
       - SSL
       - TCP
+      - DNS
     SyntheticsTestDetailsType:
       description: Type of the Synthetic test, either `api` or `browser`.
       enum:

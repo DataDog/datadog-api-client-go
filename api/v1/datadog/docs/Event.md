@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AggregationKey** | Pointer to **string** | An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream. | [optional] 
 **AlertType** | Pointer to [**EventAlertType**](EventAlertType.md) |  | [optional] 
 **DateHappened** | Pointer to **int64** | POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 7 days. | [optional] 
 **DeviceName** | Pointer to **string** | A device name. | [optional] 
@@ -12,18 +11,17 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int64** | Integer ID of the event. | [optional] [readonly] 
 **Payload** | Pointer to **string** | Payload of the event. | [optional] [readonly] 
 **Priority** | Pointer to [**EventPriority**](EventPriority.md) |  | [optional] 
-**RelatedEventId** | Pointer to **int64** | ID of the parent event. Must be sent as an integer (i.e. no quotes). | [optional] 
 **SourceTypeName** | Pointer to **string** | The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags to apply to the event. | [optional] 
-**Text** | **string** | The body of the event. Limited to 4000 characters. The text supports markdown. Use &#x60;msg_text&#x60; with the Datadog Ruby library. | 
-**Title** | **string** | The event title. Limited to 100 characters. Use &#x60;msg_title&#x60; with the Datadog Ruby library. | 
+**Text** | Pointer to **string** | The body of the event. Limited to 4000 characters. The text supports markdown. Use &#x60;msg_text&#x60; with the Datadog Ruby library. | [optional] 
+**Title** | Pointer to **string** | The event title. Limited to 100 characters. Use &#x60;msg_title&#x60; with the Datadog Ruby library. | [optional] 
 **Url** | Pointer to **string** | URL of the event. | [optional] [readonly] 
 
 ## Methods
 
 ### NewEvent
 
-`func NewEvent(text string, title string, ) *Event`
+`func NewEvent() *Event`
 
 NewEvent instantiates a new Event object
 This constructor will assign default values to properties that have it defined,
@@ -37,31 +35,6 @@ will change when the set of required properties is changed
 NewEventWithDefaults instantiates a new Event object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAggregationKey
-
-`func (o *Event) GetAggregationKey() string`
-
-GetAggregationKey returns the AggregationKey field if non-nil, zero value otherwise.
-
-### GetAggregationKeyOk
-
-`func (o *Event) GetAggregationKeyOk() (*string, bool)`
-
-GetAggregationKeyOk returns a tuple with the AggregationKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAggregationKey
-
-`func (o *Event) SetAggregationKey(v string)`
-
-SetAggregationKey sets AggregationKey field to given value.
-
-### HasAggregationKey
-
-`func (o *Event) HasAggregationKey() bool`
-
-HasAggregationKey returns a boolean if a field has been set.
 
 ### GetAlertType
 
@@ -238,31 +211,6 @@ SetPriority sets Priority field to given value.
 
 HasPriority returns a boolean if a field has been set.
 
-### GetRelatedEventId
-
-`func (o *Event) GetRelatedEventId() int64`
-
-GetRelatedEventId returns the RelatedEventId field if non-nil, zero value otherwise.
-
-### GetRelatedEventIdOk
-
-`func (o *Event) GetRelatedEventIdOk() (*int64, bool)`
-
-GetRelatedEventIdOk returns a tuple with the RelatedEventId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRelatedEventId
-
-`func (o *Event) SetRelatedEventId(v int64)`
-
-SetRelatedEventId sets RelatedEventId field to given value.
-
-### HasRelatedEventId
-
-`func (o *Event) HasRelatedEventId() bool`
-
-HasRelatedEventId returns a boolean if a field has been set.
-
 ### GetSourceTypeName
 
 `func (o *Event) GetSourceTypeName() string`
@@ -332,6 +280,11 @@ and a boolean to check if the value has been set.
 
 SetText sets Text field to given value.
 
+### HasText
+
+`func (o *Event) HasText() bool`
+
+HasText returns a boolean if a field has been set.
 
 ### GetTitle
 
@@ -352,6 +305,11 @@ and a boolean to check if the value has been set.
 
 SetTitle sets Title field to given value.
 
+### HasTitle
+
+`func (o *Event) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
 
 ### GetUrl
 
