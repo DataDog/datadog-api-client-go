@@ -331,7 +331,7 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`body (.*)`:                                              body,
 		`the response "([^"]+)" is equal to (.*)`:                expectEqual,
 		`the response "([^"]+)" has the same value as "([^"]+)"`: expectEqualValue,
-		`the response "([^"]+)" has length "([0-9]+)"`:           expectLengthEqual,
+		`the response "([^"]+)" has length ([0-9]+)`:             expectLengthEqual,
 		`the response "([^"]+)" is false`:                        expectFalse,
 	}
 	for expr, step := range steps {
