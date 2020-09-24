@@ -46,7 +46,7 @@ func main() {
         },
     )
 
-    body := datadog.ServiceCreateRequest{Data: datadog.ServiceCreateData{Attributes: datadog.ServiceCreateAttributes{Name: "Name_example"}, Relationships: datadog.ServiceRelationships{CreatedBy: datadog.UserRelationship{Data: datadog.UserRelationship_data{Id: "Id_example", Type: datadog.UsersType{}}}, LastModifiedBy: datadog.UserRelationship{Data: datadog.UserRelationship_data{Id: "Id_example", Type: datadog.UsersType{}}}}, Type: datadog.ServiceType{}}} // ServiceCreateRequest | Service Payload.
+    body := datadog.ServiceCreateRequest{Data: datadog.ServiceCreateData{Attributes: datadog.ServiceCreateAttributes{Name: "Name_example"}, Relationships: datadog.ServiceRelationships{CreatedBy: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}, LastModifiedBy: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}}, Type: datadog.ServiceType{}}} // ServiceCreateRequest | Service Payload.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

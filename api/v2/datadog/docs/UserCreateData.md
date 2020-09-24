@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**UserCreateAttributes**](UserCreateAttributes.md) |  | [optional] 
+**Attributes** | [**UserCreateAttributes**](UserCreateAttributes.md) |  | 
 **Relationships** | Pointer to [**UserRelationships**](UserRelationships.md) |  | [optional] 
-**Type** | Pointer to [**UsersType**](UsersType.md) |  | [optional] [default to "users"]
+**Type** | [**UsersType**](UsersType.md) |  | [default to "users"]
 
 ## Methods
 
 ### NewUserCreateData
 
-`func NewUserCreateData() *UserCreateData`
+`func NewUserCreateData(attributes UserCreateAttributes, type_ UsersType, ) *UserCreateData`
 
 NewUserCreateData instantiates a new UserCreateData object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
-### HasAttributes
-
-`func (o *UserCreateData) HasAttributes() bool`
-
-HasAttributes returns a boolean if a field has been set.
 
 ### GetRelationships
 
@@ -96,11 +91,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *UserCreateData) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

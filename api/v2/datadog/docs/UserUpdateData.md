@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**UserUpdateAttributes**](UserUpdateAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | ID of the user. | [optional] 
-**Type** | Pointer to [**UsersType**](UsersType.md) |  | [optional] [default to "users"]
+**Attributes** | [**UserUpdateAttributes**](UserUpdateAttributes.md) |  | 
+**Id** | **string** | ID of the user. | 
+**Type** | [**UsersType**](UsersType.md) |  | [default to "users"]
 
 ## Methods
 
 ### NewUserUpdateData
 
-`func NewUserUpdateData() *UserUpdateData`
+`func NewUserUpdateData(attributes UserUpdateAttributes, id string, type_ UsersType, ) *UserUpdateData`
 
 NewUserUpdateData instantiates a new UserUpdateData object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
-### HasAttributes
-
-`func (o *UserUpdateData) HasAttributes() bool`
-
-HasAttributes returns a boolean if a field has been set.
 
 ### GetId
 
@@ -71,11 +66,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *UserUpdateData) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetType
 
@@ -96,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *UserUpdateData) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
