@@ -147,6 +147,7 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
 	s.AddStep(`operation "([^"]+)" enabled`, enableOperations)
+	s.AddStep(`operations for "([^"]+)" enabled`, enableResourceOperations)
 	s.AddStep(`there is a valid "incident" in the system`, incident)
 	s.AddStep(`there is a valid "user" in the system`, user)
 	s.AddStep(`there is a valid "role" in the system`, role)
@@ -202,6 +203,21 @@ func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	client := Client(tests.GetCtx(ctx))
 	client.GetConfig().SetUnstableOperationEnabled(name, true)
+}
+
+// enableResourceOperations sets unstable operations for the resource in this clause to enabled
+func enableResourceOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
+	client := Client(tests.GetCtx(ctx))
+	operations := []string{}
+	fmt.Printf("\n\n%#v\n\n", client.GetConfig().GetUnstableOperations())
+	for _, unstableOp := range client.GetConfig().GetUnstableOperations() {
+		if strings.Contains(unstableOp, name) {
+			operations = append(operations, unstableOp)
+		}
+	}
+	for _, op := range operations {
+		client.GetConfig().SetUnstableOperationEnabled(op, true)
+	}
 }
 
 func user(t gobdd.StepTest, ctx gobdd.Context) {
