@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **PreserveSource** | Pointer to **bool** | Remove or preserve the remapped source element. | [optional] [default to false]
 **SourceType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **Target** | **string** | Name of the attribute that contains the corresponding value in the mapping list or the &#x60;default_lookup&#x60; if not found in the mapping list. | 
-**TargetType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
+**TargetType** | Pointer to **string** | Defines if the final attribute or tag name is from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **NormalizeEndingSlashes** | Pointer to **NullableBool** | Normalize the ending slashes or not. | [optional] [default to false]
 **IsEncoded** | Pointer to **bool** | Define if the source attribute is URL encoded or not. | [optional] [default to false]
 **Categories** | [**[]LogsCategoryProcessorCategories**](LogsCategoryProcessor_categories.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
