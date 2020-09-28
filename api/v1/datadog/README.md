@@ -220,7 +220,7 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v1/user | Create a user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v1/user/{user_handle} | Disable a user
 *UsersApi* | [**GetUser**](docs/UsersApi.md#getuser) | **Get** /api/v1/user/{user_handle} | Get user details
-*UsersApi* | [**ListUsers**](docs/UsersApi.md#listusers) | **Get** /api/v1/user | Get all users
+*UsersApi* | [**ListUsers**](docs/UsersApi.md#listusers) | **Get** /api/v1/user | List all users
 *UsersApi* | [**UpdateUser**](docs/UsersApi.md#updateuser) | **Put** /api/v1/user/{user_handle} | Update a user
 
 
