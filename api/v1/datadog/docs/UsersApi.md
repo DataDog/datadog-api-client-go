@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v1/user | Create a user
 [**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v1/user/{user_handle} | Disable a user
 [**GetUser**](UsersApi.md#GetUser) | **Get** /api/v1/user/{user_handle} | Get user details
-[**ListUsers**](UsersApi.md#ListUsers) | **Get** /api/v1/user | Get all users
+[**ListUsers**](UsersApi.md#ListUsers) | **Get** /api/v1/user | List all users
 [**UpdateUser**](UsersApi.md#UpdateUser) | **Put** /api/v1/user/{user_handle} | Update a user
 
 
@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 
 > UserListResponse ListUsers(ctx).Execute()
 
-Get all users
+List all users
 
 
 

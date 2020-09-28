@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v2/users | Create a user
 [**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v2/users/{user_id} | Disable a user
 [**GetInvitation**](UsersApi.md#GetInvitation) | **Get** /api/v2/user_invitations/{user_invitation_uuid} | Get a user invitation
-[**GetUser**](UsersApi.md#GetUser) | **Get** /api/v2/users/{user_id} | Get a user
+[**GetUser**](UsersApi.md#GetUser) | **Get** /api/v2/users/{user_id} | Get user details
 [**ListUserOrganizations**](UsersApi.md#ListUserOrganizations) | **Get** /api/v2/users/{user_id}/orgs | Get a user organization
 [**ListUserPermissions**](UsersApi.md#ListUserPermissions) | **Get** /api/v2/users/{user_id}/permissions | Get a user permissions
 [**ListUsers**](UsersApi.md#ListUsers) | **Get** /api/v2/users | List all users
@@ -263,7 +263,7 @@ Name | Type | Description  | Notes
 
 > UserResponse GetUser(ctx, userId).Execute()
 
-Get a user
+Get user details
 
 
 
