@@ -106,13 +106,15 @@ func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.S
 }
 
 func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
-	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
-	assertion2000.SetTarget(target2000)
+	recordAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_RECORD_SOME)
+	var target interface{} = "0.0.0.0"
+	recordAssertion.SetProperty("A")
+	recordAssertion.SetTarget(target)
 
 	return datadog.SyntheticsTestDetails{
 		Config: &datadog.SyntheticsTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{
-				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
+				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(recordAssertion),
 			},
 			Request: datadog.SyntheticsTestRequest{
 				Host: datadog.PtrString("https://www.datadoghq.com"),
@@ -425,9 +427,9 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 	assert.Equal(1, len(config.GetAssertions()))
 
 	for _, assertion := range config.GetAssertions() {
-		if assertion.SyntheticsAssertionTarget.Type == datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME {
-			assert.Equal(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, assertion.SyntheticsAssertionTarget.Operator)
-			assert.Equal(float64(2000), assertion.SyntheticsAssertionTarget.GetTarget().(float64))
+		if assertion.SyntheticsAssertionTarget.Type == datadog.SYNTHETICSASSERTIONTYPE_RECORD_SOME {
+			assert.Equal(datadog.SYNTHETICSASSERTIONOPERATOR_IS, assertion.SyntheticsAssertionTarget.Operator)
+			assert.Equal("0.0.0.0", assertion.SyntheticsAssertionTarget.GetTarget().(string))
 		} else {
 			assert.Fail("Unexpected type")
 		}
