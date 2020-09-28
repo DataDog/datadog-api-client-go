@@ -182,6 +182,7 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**GetBrowserTest**](docs/SyntheticsApi.md#getbrowsertest) | **Get** /api/v1/synthetics/tests/browser/{public_id} | Get a test configuration (browser)
 *SyntheticsApi* | [**GetBrowserTestLatestResults**](docs/SyntheticsApi.md#getbrowsertestlatestresults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get the test&#39;s latest results summaries (browser)
 *SyntheticsApi* | [**GetBrowserTestResult**](docs/SyntheticsApi.md#getbrowsertestresult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a test result (browser)
+*SyntheticsApi* | [**GetGlobalVariable**](docs/SyntheticsApi.md#getglobalvariable) | **Get** /api/v1/synthetics/variables/{variable_id} | Get a global variable
 *SyntheticsApi* | [**GetTest**](docs/SyntheticsApi.md#gettest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration (API)
 *SyntheticsApi* | [**ListLocations**](docs/SyntheticsApi.md#listlocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 *SyntheticsApi* | [**ListTests**](docs/SyntheticsApi.md#listtests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
