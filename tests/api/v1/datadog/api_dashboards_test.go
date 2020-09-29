@@ -460,8 +460,15 @@ func TestDashboardLifecycle(t *testing.T) {
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
 		DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		OnRightYaxis: datadog.PtrBool(true),
 	}})
 	timeseriesWidgetDefinition.SetYaxis(datadog.WidgetAxis{
+		IncludeZero: datadog.PtrBool(true),
+		Min:         datadog.PtrString("0"),
+		Max:         datadog.PtrString("100"),
+		Scale:       datadog.PtrString("linear"),
+		Label:       datadog.PtrString("Widget Scale")})
+	timeseriesWidgetDefinition.SetRightYaxis(datadog.WidgetAxis{
 		IncludeZero: datadog.PtrBool(true),
 		Min:         datadog.PtrString("0"),
 		Max:         datadog.PtrString("100"),
@@ -508,8 +515,14 @@ func TestDashboardLifecycle(t *testing.T) {
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
 		DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		OnRightYaxis: datadog.PtrBool(true),
 	}})
 	timeseriesWidgetDefinitionProcessQuery.SetYaxis(datadog.WidgetAxis{
+		IncludeZero: datadog.PtrBool(true),
+		Min:         datadog.PtrString("0"),
+		Max:         datadog.PtrString("100"),
+		Scale:       datadog.PtrString("linear")})
+	timeseriesWidgetDefinitionProcessQuery.SetRightYaxis(datadog.WidgetAxis{
 		IncludeZero: datadog.PtrBool(true),
 		Min:         datadog.PtrString("0"),
 		Max:         datadog.PtrString("100"),
@@ -566,8 +579,10 @@ func TestDashboardLifecycle(t *testing.T) {
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
 		DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		OnRightYaxis: datadog.PtrBool(true),
 	}})
 	timeseriesWidgetDefinitionLogQuery.SetYaxis(*widgetAxis)
+	timeseriesWidgetDefinitionLogQuery.SetRightYaxis(*widgetAxis)
 	timeseriesWidgetDefinitionLogQuery.SetEvents([]datadog.WidgetEvent{{
 		Q: "Build succeeded",
 	}})
@@ -606,8 +621,10 @@ func TestDashboardLifecycle(t *testing.T) {
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
 		DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		OnRightYaxis: datadog.PtrBool(true),
 	}})
 	timeseriesWidgetDefinitionEventQuery.SetYaxis(*widgetAxis)
+	timeseriesWidgetDefinitionEventQuery.SetRightYaxis(*widgetAxis)
 	timeseriesWidgetDefinitionEventQuery.SetEvents([]datadog.WidgetEvent{{
 		Q: "Build succeeded",
 	}})
