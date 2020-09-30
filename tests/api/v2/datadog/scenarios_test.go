@@ -46,6 +46,7 @@ func undoCreateTeam(ctx gobdd.Context) {
 var requestsUndo = map[string]func(ctx gobdd.Context){
 	"AddPermissionToRole":      undoIgnore,
 	"AddUserToRole":            undoIgnore,
+	"AggregateLogs":            undoIgnore,
 	"CreateRole":               undoCreateRole,
 	"CreateService":            undoCreateService,
 	"CreateTeam":               undoCreateTeam,
@@ -61,6 +62,8 @@ var requestsUndo = map[string]func(ctx gobdd.Context){
 	"GetTeam":                  undoIgnore,
 	"GetTeams":                 undoIgnore,
 	"GetUser":                  undoIgnore,
+	"ListLogs":                 undoIgnore,
+	"ListLogsGet":              undoIgnore,
 	"ListPermissions":          undoIgnore,
 	"ListRolePermissions":      undoIgnore,
 	"ListRoles":                undoIgnore,
@@ -112,6 +115,13 @@ func TestScenarios(t *testing.T) {
 				tracer.SpanType("step"),
 				tracer.ResourceName(parts[len(parts)-1]),
 			)
+
+			testName := strings.Join(strings.Split(ct.(*testing.T).Name(), "/")[1:3], "/")
+			unique := tests.WithUniqueSurrounding(cctx, testName)
+			data := tests.GetData(ctx)
+			data["unique"] = unique
+			data["unique_lower"] = strings.ToLower(unique)
+
 			tests.SetCtx(ctx, cctx)
 		}),
 		gobdd.WithAfterStep(func(ctx gobdd.Context) {
