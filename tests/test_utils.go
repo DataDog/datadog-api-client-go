@@ -17,6 +17,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"regexp"
 	"runtime"
 	"strings"
 	"testing"
@@ -134,6 +135,26 @@ func SnakeToCamelCase(snake string) (camel string) {
 				} else {
 					camel += string(v)
 				}
+			}
+		}
+	}
+	return
+}
+
+func ToVarName(param string) (varName string) {
+	isToUpper := true
+
+	for _, v := range param {
+		if isToUpper {
+			varName += strings.ToUpper(string(v))
+			isToUpper = false
+		} else {
+			if v == '_' {
+				isToUpper = true
+			} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
+				isToUpper = true
+			} else {
+				varName += string(v)
 			}
 		}
 	}

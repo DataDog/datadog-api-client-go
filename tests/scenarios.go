@@ -17,7 +17,6 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"testing"
 
 	"github.com/go-bdd/gobdd"
 	"github.com/mcuadros/go-lookup"
@@ -171,6 +170,25 @@ func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ctx.Set(requestArgsKey{}, make([]interface{}, 0))
 }
 
+// getRequestBuilder returns the reflect value of the current request in ctx
+func getRequestBuilder(ctx gobdd.Context) (reflect.Value, error) {
+	c, err := ctx.Get(requestKey{})
+	if err != nil {
+		return reflect.Value{}, fmt.Errorf("Missing requestKey{}")
+	}
+	f := c.(reflect.Value)
+
+	in := make([]reflect.Value, f.Type().NumIn())
+
+	// first argument is always context.Context
+	in[0] = reflect.ValueOf(GetCtx(ctx))
+	for i := 1; i < f.Type().NumIn(); i++ {
+		object := GetRequestArguments(ctx)[i-1]
+		in[i] = object.(reflect.Value)
+	}
+	return f.Call(in)[0], nil
+}
+
 func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 	// Execute() returns tripples -> 2nd value is *http.Response -> get StatusCode
 	resp := GetResponse(ctx)
@@ -189,28 +207,37 @@ func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path str
 	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
 }
 
-func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
-	c, err := ctx.Get(requestKey{})
+func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, value string) {
+	// Get request builder for the current scenario
+	request, err := getRequestBuilder(ctx)
 	if err != nil {
-		t.Error("Missing requestKey{}")
+		t.Error(err)
 	}
-	f := c.(reflect.Value)
+	name := ToVarName(param)
+	// Get the method for setting the current parameter
+	method := request.MethodByName(name)
+
+	templatedValue := Templated(GetData(ctx), value)
+
+	if method.IsValid() {
+		at := reflect.New(method.Type().In(0))
+		// Unmarshall the value specified in the step to the proper type and add it to the parameters
+		json.Unmarshal([]byte(templatedValue), at.Interface())
+		GetRequestParameters(ctx)[param] = at.Elem()
+	}
+}
+
+func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
+
+	request, err := getRequestBuilder(ctx)
+	if err != nil {
+		t.Error(err)
+	}
 
 	requestParameters := GetRequestParameters(ctx)
-	in := make([]reflect.Value, f.Type().NumIn())
-
-	// first argument is always context.Context
-	in[0] = reflect.ValueOf(GetCtx(ctx))
-
-	for i := 1; i < f.Type().NumIn(); i++ {
-		object := GetRequestArguments(ctx)[i-1]
-		in[i] = object.(reflect.Value)
-	}
-
-	request := f.Call(in)[0]
 
 	for param, value := range requestParameters {
-		name := SnakeToCamelCase(param)
+		name := ToVarName(param)
 		method := request.MethodByName(name)
 		if method.IsValid() {
 			if param == "body" {
@@ -240,12 +267,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 }
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
-	data := GetData(ctx)
-	name := strings.Join(strings.Split(t.(*testing.T).Name(), "/")[1:3], "/")
-	unique := WithUniqueSurrounding(GetCtx(ctx), name)
-	data["unique"] = unique
-	data["unique_lower"] = strings.ToLower(unique)
-	GetRequestParameters(ctx)["body"] = Templated(data, body)
+	GetRequestParameters(ctx)["body"] = Templated(GetData(ctx), body)
 }
 
 func stringToType(s string, t interface{}) (interface{}, error) {
@@ -326,6 +348,7 @@ func ConfigureSteps(s *gobdd.Suite) {
 	steps := map[string]interface{}{
 		`new "([^"]+)" request`:                                  newRequest,
 		`request contains "([^"]+)" parameter from "([^"]+)"`:    addParameterFrom,
+		`request contains "([^"]+)" parameter with value (.+)`:   addParameterWithValue,
 		`the request is sent`:                                    requestIsSent,
 		`the response status is (\d+) (.*)`:                      statusIs,
 		`body (.*)`:                                              body,
