@@ -50,7 +50,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TeamsApi.CreateTeam(ctx).Body(body).Execute()
+    resp, r, err := api_client.TeamsApi.CreateTeam(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.CreateTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -129,7 +129,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TeamsApi.DeleteTeam(ctx, teamId).Execute()
+    resp, r, err := api_client.TeamsApi.DeleteTeam(context.Background(), teamId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.DeleteTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,7 +211,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TeamsApi.GetTeam(ctx, teamId).Include(include).Execute()
+    resp, r, err := api_client.TeamsApi.GetTeam(context.Background(), teamId).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.GetTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -297,7 +297,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TeamsApi.GetTeams(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
+    resp, r, err := api_client.TeamsApi.GetTeams(context.Background()).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.GetTeams``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -379,7 +379,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TeamsApi.UpdateTeam(ctx, teamId).Body(body).Execute()
+    resp, r, err := api_client.TeamsApi.UpdateTeam(context.Background(), teamId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.UpdateTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

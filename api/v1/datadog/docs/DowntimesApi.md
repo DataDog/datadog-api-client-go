@@ -51,7 +51,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.CancelDowntime(ctx, downtimeId).Execute()
+    resp, r, err := api_client.DowntimesApi.CancelDowntime(context.Background(), downtimeId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,7 +132,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.CancelDowntimesByScope(ctx).Body(body).Execute()
+    resp, r, err := api_client.DowntimesApi.CancelDowntimesByScope(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntimesByScope``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,7 +211,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.CreateDowntime(ctx).Body(body).Execute()
+    resp, r, err := api_client.DowntimesApi.CreateDowntime(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CreateDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -290,7 +290,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.GetDowntime(ctx, downtimeId).Execute()
+    resp, r, err := api_client.DowntimesApi.GetDowntime(context.Background(), downtimeId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.GetDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -373,7 +373,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.ListDowntimes(ctx).CurrentOnly(currentOnly).Execute()
+    resp, r, err := api_client.DowntimesApi.ListDowntimes(context.Background()).CurrentOnly(currentOnly).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListDowntimes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -453,7 +453,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.UpdateDowntime(ctx, downtimeId).Body(body).Execute()
+    resp, r, err := api_client.DowntimesApi.UpdateDowntime(context.Background(), downtimeId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.UpdateDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
