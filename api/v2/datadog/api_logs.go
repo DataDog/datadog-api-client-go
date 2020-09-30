@@ -43,7 +43,7 @@ func (r ApiAggregateLogsRequest) Execute() (LogsAggregateResponse, *_nethttp.Res
 
 /*
  * AggregateLogs Aggregate events
- * The public API endpoint to aggregate events into buckets and compute metrics and timeseries.
+ * The API endpoint to aggregate events into buckets and compute metrics and timeseries.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiAggregateLogsRequest
  */
@@ -67,13 +67,6 @@ func (a *LogsApiService) AggregateLogsExecute(r ApiAggregateLogsRequest) (LogsAg
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsAggregateResponse
 	)
-
-	operationId := "AggregateLogs"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.AggregateLogs")
 	if err != nil {
