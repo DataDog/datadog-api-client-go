@@ -49,7 +49,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(ctx).Body(body).Execute()
+    resp, r, err := api_client.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.CreatePagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,7 +128,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(ctx, serviceName).Execute()
+    resp, r, err := api_client.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(context.Background(), serviceName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.DeletePagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,7 +209,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(ctx, serviceName).Execute()
+    resp, r, err := api_client.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(context.Background(), serviceName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.GetPagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -293,7 +293,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, serviceName).Body(body).Execute()
+    resp, r, err := api_client.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(context.Background(), serviceName).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

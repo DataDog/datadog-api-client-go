@@ -52,7 +52,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.CreateLogsPipeline(ctx).Body(body).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.CreateLogsPipeline(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.CreateLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,7 +131,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.DeleteLogsPipeline(ctx, pipelineId).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.DeleteLogsPipeline(context.Background(), pipelineId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.DeleteLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -212,7 +212,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipeline(ctx, pipelineId).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipeline(context.Background(), pipelineId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.GetLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -294,7 +294,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipelineOrder(ctx).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipelineOrder(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.GetLogsPipelineOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -368,7 +368,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.ListLogsPipelines(ctx).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.ListLogsPipelines(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.ListLogsPipelines``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -444,7 +444,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipeline(ctx, pipelineId).Body(body).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipeline(context.Background(), pipelineId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -528,7 +528,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipelineOrder(ctx).Body(body).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipelineOrder(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipelineOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -49,7 +49,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.GetHostTotals(ctx).From(from).Execute()
+    resp, r, err := api_client.HostsApi.GetHostTotals(context.Background()).From(from).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.GetHostTotals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -135,7 +135,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.ListHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).IncludeMutedHostsData(includeMutedHostsData).IncludeHostsMetadata(includeHostsMetadata).Execute()
+    resp, r, err := api_client.HostsApi.ListHosts(context.Background()).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).IncludeMutedHostsData(includeMutedHostsData).IncludeHostsMetadata(includeHostsMetadata).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.ListHosts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -222,7 +222,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.MuteHost(ctx, hostName).Body(body).Execute()
+    resp, r, err := api_client.HostsApi.MuteHost(context.Background(), hostName).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.MuteHost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -306,7 +306,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.UnmuteHost(ctx, hostName).Execute()
+    resp, r, err := api_client.HostsApi.UnmuteHost(context.Background(), hostName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.UnmuteHost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
