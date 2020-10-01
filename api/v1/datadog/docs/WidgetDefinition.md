@@ -82,6 +82,7 @@ Name | Type | Description | Notes
 **SizeFormat** | Pointer to [**WidgetSizeFormat**](WidgetSizeFormat.md) |  | [optional] 
 **SpanName** | **string** | APM span name. | 
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
+**RightYaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
 ## Methods
 
@@ -1966,6 +1967,31 @@ SetMarkers sets Markers field to given value.
 `func (o *WidgetDefinition) HasMarkers() bool`
 
 HasMarkers returns a boolean if a field has been set.
+
+### GetRightYaxis
+
+`func (o *WidgetDefinition) GetRightYaxis() WidgetAxis`
+
+GetRightYaxis returns the RightYaxis field if non-nil, zero value otherwise.
+
+### GetRightYaxisOk
+
+`func (o *WidgetDefinition) GetRightYaxisOk() (*WidgetAxis, bool)`
+
+GetRightYaxisOk returns a tuple with the RightYaxis field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRightYaxis
+
+`func (o *WidgetDefinition) SetRightYaxis(v WidgetAxis)`
+
+SetRightYaxis sets RightYaxis field to given value.
+
+### HasRightYaxis
+
+`func (o *WidgetDefinition) HasRightYaxis() bool`
+
+HasRightYaxis returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
