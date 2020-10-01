@@ -246,7 +246,7 @@ func TestUpdateLogsArchiveOrder(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	input := createUpdatedLogsArchiveOrder(t)
 
-	fileName := "updated"
+	fileName := "default"
 	outputArchiveOrderStr := readFixture(t, fmt.Sprintf("fixtures/logs/archive_order/out/%s.json", fileName))
 	outputArchiveOrder := datadog.NullableLogsArchiveOrder{}
 	_ = outputArchiveOrder.UnmarshalJSON([]byte(outputArchiveOrderStr))
