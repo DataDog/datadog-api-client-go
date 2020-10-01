@@ -1210,11 +1210,12 @@ func (r ApiGetBrowserTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Re
 
 /*
  * GetBrowserTest Get a test configuration (browser)
- * Get the detailed configuration (including steps) associated with a Synthetics browser test.
+ * Get the detailed configuration (including steps) associated with
+a Synthetic browser test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public ID of the test to get details from.
  * @return ApiGetBrowserTestRequest
- */
+*/
 func (a *SyntheticsApiService) GetBrowserTest(ctx _context.Context, publicId string) ApiGetBrowserTestRequest {
 	return ApiGetBrowserTestRequest{
 		ApiService: a,
@@ -2021,10 +2022,11 @@ func (r ApiListLocationsRequest) Execute() (SyntheticsLocations, *_nethttp.Respo
 
 /*
  * ListLocations Get all locations (public and private)
- * Get the list of public and private locations available for Synthetics tests. No arguments required.
+ * Get the list of public and private locations available for Synthetic
+tests. No arguments required.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiListLocationsRequest
- */
+*/
 func (a *SyntheticsApiService) ListLocations(ctx _context.Context) ApiListLocationsRequest {
 	return ApiListLocationsRequest{
 		ApiService: a,
