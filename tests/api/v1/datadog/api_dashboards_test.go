@@ -443,6 +443,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		Label: "Test Custom Link label",
 		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
+	tableWidgetDefinition.SetHasSearchBar("auto")
 
 	tableWidget := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetDefinition))
 
