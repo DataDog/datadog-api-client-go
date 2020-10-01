@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Metadata** | Pointer to [**[]TimeseriesWidgetRequestMetadata**](TimeseriesWidgetRequest_metadata.md) | Used to define expression aliases. | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+**OnRightYaxis** | Pointer to **bool** | Whether or not to display a second y-axis on the right. | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
 **Q** | Pointer to **string** | Widget query. | [optional] 
 **RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
@@ -184,6 +185,31 @@ SetNetworkQuery sets NetworkQuery field to given value.
 `func (o *TimeseriesWidgetRequest) HasNetworkQuery() bool`
 
 HasNetworkQuery returns a boolean if a field has been set.
+
+### GetOnRightYaxis
+
+`func (o *TimeseriesWidgetRequest) GetOnRightYaxis() bool`
+
+GetOnRightYaxis returns the OnRightYaxis field if non-nil, zero value otherwise.
+
+### GetOnRightYaxisOk
+
+`func (o *TimeseriesWidgetRequest) GetOnRightYaxisOk() (*bool, bool)`
+
+GetOnRightYaxisOk returns a tuple with the OnRightYaxis field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnRightYaxis
+
+`func (o *TimeseriesWidgetRequest) SetOnRightYaxis(v bool)`
+
+SetOnRightYaxis sets OnRightYaxis field to given value.
+
+### HasOnRightYaxis
+
+`func (o *TimeseriesWidgetRequest) HasOnRightYaxis() bool`
+
+HasOnRightYaxis returns a boolean if a field has been set.
 
 ### GetProcessQuery
 

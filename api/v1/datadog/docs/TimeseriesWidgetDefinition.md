@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
 **Requests** | [**[]TimeseriesWidgetRequest**](TimeseriesWidgetRequest.md) | List of timeseries widget requests. | 
+**RightYaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 **ShowLegend** | Pointer to **bool** | (screenboard only) Show the legend for this widget. | [optional] 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
@@ -155,6 +156,31 @@ and a boolean to check if the value has been set.
 
 SetRequests sets Requests field to given value.
 
+
+### GetRightYaxis
+
+`func (o *TimeseriesWidgetDefinition) GetRightYaxis() WidgetAxis`
+
+GetRightYaxis returns the RightYaxis field if non-nil, zero value otherwise.
+
+### GetRightYaxisOk
+
+`func (o *TimeseriesWidgetDefinition) GetRightYaxisOk() (*WidgetAxis, bool)`
+
+GetRightYaxisOk returns a tuple with the RightYaxis field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRightYaxis
+
+`func (o *TimeseriesWidgetDefinition) SetRightYaxis(v WidgetAxis)`
+
+SetRightYaxis sets RightYaxis field to given value.
+
+### HasRightYaxis
+
+`func (o *TimeseriesWidgetDefinition) HasRightYaxis() bool`
+
+HasRightYaxis returns a boolean if a field has been set.
 
 ### GetShowLegend
 
