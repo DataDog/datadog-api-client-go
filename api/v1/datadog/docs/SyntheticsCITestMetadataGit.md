@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Branch** | Pointer to **string** |  | [optional] 
-**CommitSha** | Pointer to **string** |  | [optional] 
+**Branch** | Pointer to **string** | Branch name. | [optional] 
+**CommitSha** | Pointer to **string** | Commit SHA. | [optional] 
 
 ## Methods
 
