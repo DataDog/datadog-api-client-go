@@ -195,11 +195,12 @@ func (r ApiDisableUserRequest) Execute() (*_nethttp.Response, error) {
 
 /*
  * DisableUser Disable a user
- * Disable a user. Can only be used with an application key belonging to an administrator user.
+ * Disable a user. Can only be used with an application key belonging
+to an administrator user.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId The ID of the user.
  * @return ApiDisableUserRequest
- */
+*/
 func (a *UsersApiService) DisableUser(ctx _context.Context, userId string) ApiDisableUserRequest {
 	return ApiDisableUserRequest{
 		ApiService: a,
@@ -649,11 +650,12 @@ func (r ApiListUserOrganizationsRequest) Execute() (UserResponse, *_nethttp.Resp
 
 /*
  * ListUserOrganizations Get a user organization
- * Get a user organization. Returns the user information and all organizations joined by this user.
+ * Get a user organization. Returns the user information and all organizations
+joined by this user.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId The ID of the user.
  * @return ApiListUserOrganizationsRequest
- */
+*/
 func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId string) ApiListUserOrganizationsRequest {
 	return ApiListUserOrganizationsRequest{
 		ApiService: a,
@@ -804,11 +806,12 @@ func (r ApiListUserPermissionsRequest) Execute() (PermissionsResponse, *_nethttp
 
 /*
  * ListUserPermissions Get a user permissions
- * Get a user permission set. Returns a list of the user’s permissions granted by the associated user's roles.
+ * Get a user permission set. Returns a list of the user’s permissions
+granted by the associated user's roles.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId The ID of the user.
  * @return ApiListUserPermissionsRequest
- */
+*/
 func (a *UsersApiService) ListUserPermissions(ctx _context.Context, userId string) ApiListUserPermissionsRequest {
 	return ApiListUserPermissionsRequest{
 		ApiService: a,
@@ -989,10 +992,11 @@ func (r ApiListUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error
 
 /*
  * ListUsers List all users
- * Get the list of all users in the organization. This list includes all users even if they are disabled or unverified.
+ * Get the list of all users in the organization. This list includes
+all users even if they are deactivated or unverified.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiListUsersRequest
- */
+*/
 func (a *UsersApiService) ListUsers(ctx _context.Context) ApiListUsersRequest {
 	return ApiListUsersRequest{
 		ApiService: a,
@@ -1324,11 +1328,12 @@ func (r ApiUpdateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 
 /*
  * UpdateUser Update a user
- * Edit a user. Can only be used with an application key belonging to an administrator user.
+ * Edit a user. Can only be used with an application key belonging
+to an administrator user.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId The ID of the user.
  * @return ApiUpdateUserRequest
- */
+*/
 func (a *UsersApiService) UpdateUser(ctx _context.Context, userId string) ApiUpdateUserRequest {
 	return ApiUpdateUserRequest{
 		ApiService: a,
