@@ -251,6 +251,7 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		t.Log(err.Error())
 		tag = "features"
 	}
+	suite, name := filepath.Split(t.Name())
 	span, ctx := tracer.StartSpanFromContext(
 		ctx,
 		"test",
@@ -258,6 +259,11 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		tracer.ResourceName(t.Name()),
 		tracer.Tag(ext.AnalyticsEvent, true),
 		tracer.Measured(),
+		tracer.Tag("span.kind", "test"),
+		tracer.Tag("test.framework", "go.testing"),
+		tracer.Tag("test.name", name),
+		tracer.Tag("test.suite", suite),
+		tracer.Tag("test.type", "test"),
 	)
 	// We need to make the tag be something that is then searchable in monitors
 	// https://docs.datadoghq.com/tracing/guide/metrics_namespace/#errors
@@ -267,6 +273,13 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 	span.SetTag("version", tag)
 	return ctx, func() {
 		span.SetTag(ext.Error, t.Failed())
+		if t.Failed() {
+			span.SetTag("test.status", "fail")
+		} else if t.Skipped() {
+			span.SetTag("test.status", "skip")
+		} else {
+			span.SetTag("test.status", "pass")
+		}
 		span.Finish()
 	}
 }
