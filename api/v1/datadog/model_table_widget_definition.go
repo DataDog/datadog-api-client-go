@@ -16,6 +16,8 @@ import (
 type TableWidgetDefinition struct {
 	// List of custom links.
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	// Controls the display of the search bar.
+	HasSearchBar *string `json:"has_search_bar,omitempty"`
 	// Widget definition.
 	Requests []TableWidgetRequest `json:"requests"`
 	Time     *WidgetTime          `json:"time,omitempty"`
@@ -33,6 +35,8 @@ type TableWidgetDefinition struct {
 // will change when the set of required properties is changed
 func NewTableWidgetDefinition(requests []TableWidgetRequest, type_ TableWidgetDefinitionType) *TableWidgetDefinition {
 	this := TableWidgetDefinition{}
+	var hasSearchBar string = "auto"
+	this.HasSearchBar = &hasSearchBar
 	this.Requests = requests
 	this.Type = type_
 	return &this
@@ -43,6 +47,8 @@ func NewTableWidgetDefinition(requests []TableWidgetRequest, type_ TableWidgetDe
 // but it doesn't guarantee that properties required by API are set
 func NewTableWidgetDefinitionWithDefaults() *TableWidgetDefinition {
 	this := TableWidgetDefinition{}
+	var hasSearchBar string = "auto"
+	this.HasSearchBar = &hasSearchBar
 	var type_ TableWidgetDefinitionType = "query_table"
 	this.Type = type_
 	return &this
@@ -78,6 +84,38 @@ func (o *TableWidgetDefinition) HasCustomLinks() bool {
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
 func (o *TableWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = &v
+}
+
+// GetHasSearchBar returns the HasSearchBar field value if set, zero value otherwise.
+func (o *TableWidgetDefinition) GetHasSearchBar() string {
+	if o == nil || o.HasSearchBar == nil {
+		var ret string
+		return ret
+	}
+	return *o.HasSearchBar
+}
+
+// GetHasSearchBarOk returns a tuple with the HasSearchBar field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TableWidgetDefinition) GetHasSearchBarOk() (*string, bool) {
+	if o == nil || o.HasSearchBar == nil {
+		return nil, false
+	}
+	return o.HasSearchBar, true
+}
+
+// HasHasSearchBar returns a boolean if a field has been set.
+func (o *TableWidgetDefinition) HasHasSearchBar() bool {
+	if o != nil && o.HasSearchBar != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasSearchBar gets a reference to the given string and assigns it to the HasSearchBar field.
+func (o *TableWidgetDefinition) SetHasSearchBar(v string) {
+	o.HasSearchBar = &v
 }
 
 // GetRequests returns the Requests field value
@@ -260,6 +298,9 @@ func (o TableWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CustomLinks != nil {
 		toSerialize["custom_links"] = o.CustomLinks
+	}
+	if o.HasSearchBar != nil {
+		toSerialize["has_search_bar"] = o.HasSearchBar
 	}
 	if true {
 		toSerialize["requests"] = o.Requests

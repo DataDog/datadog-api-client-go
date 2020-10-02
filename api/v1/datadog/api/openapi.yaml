@@ -9457,6 +9457,8 @@ components:
           description: Final attribute or tag name to remap the sources to.
           example: operation_id
           type: string
+        target_format:
+          $ref: '#/components/schemas/TargetFormatType'
         target_type:
           default: attribute
           description: Defines if the final attribute or tag name is from log `attribute`
@@ -14846,6 +14848,15 @@ components:
           items:
             $ref: '#/components/schemas/WidgetCustomLink'
           type: array
+        has_search_bar:
+          default: auto
+          description: Controls the display of the search bar.
+          enum:
+          - always
+          - never
+          - auto
+          example: auto
+          type: string
         requests:
           description: Widget definition.
           example:
@@ -14890,6 +14901,17 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         apm_stats_query:
           $ref: '#/components/schemas/ApmStatsQueryDefinition'
+        cell_display_mode:
+          description: A list of display modes for each table cell.
+          items:
+            default: number
+            description: Define a display mode for the table cell.
+            enum:
+            - number
+            - bar
+            example: number
+            type: string
+          type: array
         conditional_formats:
           description: List of conditional formats.
           items:
@@ -14938,6 +14960,22 @@ components:
           description: A list of tags to apply to the host.
           type: object
       type: object
+    TargetFormatType:
+      default: auto
+      description: |-
+        If the target of the remapper is an attribute, try to cast the value to a new specific type.
+        If the cast is not possible, the original type is kept. `string`, `integer`, or `double` are the possible types.
+      enum:
+      - auto
+      - string
+      - integer
+      - double
+      type: string
+      x-enum-varnames:
+      - AUTO
+      - STRING
+      - INTEGER
+      - DOUBLE
     TimeseriesWidgetDefinition:
       description: The timeseries visualization allows you to display the evolution
         of one or more metrics, log events, or Analyzed Spans over time.
@@ -14969,6 +15007,8 @@ components:
             $ref: '#/components/schemas/TimeseriesWidgetRequest'
           minItems: 1
           type: array
+        right_yaxis:
+          $ref: '#/components/schemas/WidgetAxis'
         show_legend:
           description: (screenboard only) Show the legend for this widget.
           type: boolean
@@ -15017,6 +15057,9 @@ components:
           type: array
         network_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        on_right_yaxis:
+          description: Whether or not to display a second y-axis on the right.
+          type: boolean
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
         q:

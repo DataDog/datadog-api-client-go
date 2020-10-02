@@ -356,6 +356,7 @@ docs/TableWidgetDefinitionType.md
 docs/TableWidgetRequest.md
 docs/TagToHosts.md
 docs/TagsApi.md
+docs/TargetFormatType.md
 docs/TimeseriesWidgetDefinition.md
 docs/TimeseriesWidgetDefinitionType.md
 docs/TimeseriesWidgetRequest.md
@@ -773,6 +774,7 @@ model_table_widget_definition.go
 model_table_widget_definition_type.go
 model_table_widget_request.go
 model_tag_to_hosts.go
+model_target_format_type.go
 model_timeseries_widget_definition.go
 model_timeseries_widget_definition_type.go
 model_timeseries_widget_request.go
