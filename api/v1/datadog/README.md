@@ -530,6 +530,7 @@ Class | Method | HTTP request | Description
  - [TableWidgetDefinitionType](docs/TableWidgetDefinitionType.md)
  - [TableWidgetRequest](docs/TableWidgetRequest.md)
  - [TagToHosts](docs/TagToHosts.md)
+ - [TargetFormatType](docs/TargetFormatType.md)
  - [TimeseriesWidgetDefinition](docs/TimeseriesWidgetDefinition.md)
  - [TimeseriesWidgetDefinitionType](docs/TimeseriesWidgetDefinitionType.md)
  - [TimeseriesWidgetRequest](docs/TimeseriesWidgetRequest.md)
