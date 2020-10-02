@@ -50,10 +50,11 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	remapper.SetSources([]string{"source"})
 	remapper.SetSourceType("tag")
 	remapper.SetTarget("target")
-	remapper.SetTargetType("tag")
+	remapper.SetTargetType("attribute")
 	remapper.SetPreserveSource(true)
 	remapper.SetOverrideOnConflict(true)
 	remapper.SetName("log message remapper")
+	remapper.SetTargetFormat(datadog.TARGETFORMATTYPE_STRING)
 
 	urlParser := datadog.NewLogsURLParserWithDefaults()
 	urlParser.SetSources([]string{"source"})
