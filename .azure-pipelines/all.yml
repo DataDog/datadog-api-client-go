@@ -51,7 +51,7 @@ jobs:
         DD_AGENT_HOST: datadog-agent
         DD_ENV: prod
         DD_SERVICE: datadog-api-client-go
-        DD_TAGS: "team:integration-tools-and-libraries,ci.provider:azure,ci.pipeline.id:$(System.JobId),ci.pipeline.number:$(System.DefinitionId),git.repository_url:$(Build.Repository.Uri),git.commit_sha:$(Build.SourceVersion),git.branch:$(System.PullRequest.SourceBranch),build.requested_by:$(Build.RequestedForId),build.attempt:$(System.StageAttempt),pull_request.number:$(System.PullRequest.PullRequestNumber)"
+        DD_TAGS: "team:integration-tools-and-libraries,ci.provider:azure,ci.pipeline.id:$(System.JobId),ci.pipeline.number:$(System.DefinitionId),git.repository_url:$(Build.Repository.Uri),git.commit_sha:$(Build.SourceVersion),git.branch:master,build.requested_by:$(Build.RequestedForId),build.attempt:$(System.StageAttempt),pull_request.number:$(System.PullRequest.PullRequestNumber)"
         DD_TEST_CLIENT_API_KEY: $(datadogAPIKey)
         DD_TEST_CLIENT_APP_KEY: $(datadogAPPKey)
         JQ: ./jq
