@@ -450,16 +450,16 @@ func TestDashboardLifecycle(t *testing.T) {
 	// Table Widget with APM Stats data
 	tableWidgetApmStatsDefinition := datadog.NewTableWidgetDefinitionWithDefaults()
 	tableWidgetApmStatsDefinition.SetRequests([]datadog.TableWidgetRequest{{
-		ApmStatsQuery: &datadog.ApmStatsQueryDefinition{{
-			Env: datadog.PtrString("prod"),
-			Name: datadog.PtrString("web"),
-			PrimaryTag: datadog.PtrString("foo:*"),
+		ApmStatsQuery: &datadog.ApmStatsQueryDefinition{
+			Env: "prod",
+			Name: "web",
+			PrimaryTag: "foo:*",
 			Resource: datadog.PtrString("endpoint"),
 			RowType: datadog.APMSTATSQUERYROWTYPE_SPAN,
 			Columns: &[]datadog.ApmStatsQueryColumnType{{
-				Name: datadog.PtrString("baz"),
+				Name: "baz",
 			}},
-		}},
+		},
 	}})
 	tableWidgetApmStatsDefinition.SetTitle("Test Table Widget with APM Stats Data")
 	tableWidgetApmStatsDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
