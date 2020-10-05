@@ -92,7 +92,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	changeWidgetDefinition.SetTime(*widgetTime)
 	changeWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 	changeWidgetDefinition.SetRequests([]datadog.ChangeWidgetRequest{
 		*changeWidgetRequest,
@@ -217,7 +217,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	heatMapWidgetDefinition.SetLegendSize("4")
 	heatMapWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	heatMapWidget := datadog.NewWidget(datadog.HeatMapWidgetDefinitionAsWidgetDefinition(heatMapWidgetDefinition))
@@ -244,7 +244,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	hostMapWidgetDefinition.SetTitleSize("16")
 	hostMapWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	hostMapWidget := datadog.NewWidget(datadog.HostMapWidgetDefinitionAsWidgetDefinition(hostMapWidgetDefinition))
@@ -298,7 +298,6 @@ func TestDashboardLifecycle(t *testing.T) {
 	monitorSummaryWidgetDefiniton.SetStart(0)
 	monitorSummaryWidgetDefiniton.SetCount(5)
 
-
 	monitorSummaryWidget := datadog.NewWidget(datadog.MonitorSummaryWidgetDefinitionAsWidgetDefinition(monitorSummaryWidgetDefiniton))
 	monitorSummaryWidget.SetLayout(*widgetLayout)
 
@@ -338,7 +337,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	queryValueWidgetDefinition.SetTime(*widgetTime)
 	queryValueWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	queryValueWidget := datadog.NewWidget(datadog.QueryValueWidgetDefinitionAsWidgetDefinition(queryValueWidgetDefinition))
@@ -363,7 +362,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	scatterPlotWidgetDefinition.SetTime(*widgetTime)
 	scatterPlotWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	scatterPlotWidget := datadog.NewWidget(datadog.ScatterPlotWidgetDefinitionAsWidgetDefinition(scatterPlotWidgetDefinition))
@@ -392,7 +391,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	serviceMapWidgetDefinition.SetTitleSize("16")
 	serviceMapWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	serviceMapWidget := datadog.NewWidget(datadog.ServiceMapWidgetDefinitionAsWidgetDefinition(serviceMapWidgetDefinition))
@@ -434,6 +433,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			CustomFgColor: datadog.PtrString("black"),
 			ImageUrl:      datadog.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
 		}},
+		CellDisplayMode: &[]datadog.TableWidgetCellDisplayMode{datadog.TABLEWIDGETCELLDISPLAYMODE_NUMBER},
 	}})
 	tableWidgetDefinition.SetTitle("Test Table Widget")
 	tableWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
@@ -441,8 +441,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetDefinition.SetTime(*widgetTime)
 	tableWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
+	tableWidgetDefinition.SetHasSearchBar(datadog.TABLEWIDGETHASSEARCHBAR_AUTO)
 
 	tableWidget := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetDefinition))
 
@@ -484,9 +485,16 @@ func TestDashboardLifecycle(t *testing.T) {
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
-		DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		DisplayType:  datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		OnRightYaxis: datadog.PtrBool(true),
 	}})
 	timeseriesWidgetDefinition.SetYaxis(datadog.WidgetAxis{
+		IncludeZero: datadog.PtrBool(true),
+		Min:         datadog.PtrString("0"),
+		Max:         datadog.PtrString("100"),
+		Scale:       datadog.PtrString("linear"),
+		Label:       datadog.PtrString("Widget Scale")})
+	timeseriesWidgetDefinition.SetRightYaxis(datadog.WidgetAxis{
 		IncludeZero: datadog.PtrBool(true),
 		Min:         datadog.PtrString("0"),
 		Max:         datadog.PtrString("100"),
@@ -509,7 +517,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinition.SetLegendSize("16")
 	timeseriesWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	timeseriesWidget := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinition))
@@ -532,9 +540,15 @@ func TestDashboardLifecycle(t *testing.T) {
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
-		DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		DisplayType:  datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		OnRightYaxis: datadog.PtrBool(true),
 	}})
 	timeseriesWidgetDefinitionProcessQuery.SetYaxis(datadog.WidgetAxis{
+		IncludeZero: datadog.PtrBool(true),
+		Min:         datadog.PtrString("0"),
+		Max:         datadog.PtrString("100"),
+		Scale:       datadog.PtrString("linear")})
+	timeseriesWidgetDefinitionProcessQuery.SetRightYaxis(datadog.WidgetAxis{
 		IncludeZero: datadog.PtrBool(true),
 		Min:         datadog.PtrString("0"),
 		Max:         datadog.PtrString("100"),
@@ -556,7 +570,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionProcessQuery.SetLegendSize("16")
 	timeseriesWidgetDefinitionProcessQuery.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	timeseriesWidgetProcessQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionProcessQuery))
@@ -590,9 +604,11 @@ func TestDashboardLifecycle(t *testing.T) {
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
-		DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		DisplayType:  datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		OnRightYaxis: datadog.PtrBool(true),
 	}})
 	timeseriesWidgetDefinitionLogQuery.SetYaxis(*widgetAxis)
+	timeseriesWidgetDefinitionLogQuery.SetRightYaxis(*widgetAxis)
 	timeseriesWidgetDefinitionLogQuery.SetEvents([]datadog.WidgetEvent{{
 		Q: "Build succeeded",
 	}})
@@ -610,7 +626,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionLogQuery.SetLegendSize("16")
 	timeseriesWidgetDefinitionLogQuery.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	timeseriesWidgetLogQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionLogQuery))
@@ -630,9 +646,11 @@ func TestDashboardLifecycle(t *testing.T) {
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
-		DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		DisplayType:  datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+		OnRightYaxis: datadog.PtrBool(true),
 	}})
 	timeseriesWidgetDefinitionEventQuery.SetYaxis(*widgetAxis)
+	timeseriesWidgetDefinitionEventQuery.SetRightYaxis(*widgetAxis)
 	timeseriesWidgetDefinitionEventQuery.SetEvents([]datadog.WidgetEvent{{
 		Q: "Build succeeded",
 	}})
@@ -650,7 +668,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionEventQuery.SetLegendSize("16")
 	timeseriesWidgetDefinitionEventQuery.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	timeseriesWidgetEventQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionEventQuery))
@@ -674,7 +692,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	toplistWidgetDefinition.SetTime(*widgetTime)
 	toplistWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	toplistWidget := datadog.NewWidget(datadog.ToplistWidgetDefinitionAsWidgetDefinition(toplistWidgetDefinition))
@@ -724,7 +742,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	dashboard.SetIsReadOnly(false)
 	dashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})
 	dashboard.SetTemplateVariablePresets([]datadog.DashboardTemplateVariablePreset{*dashboardTemplateVariablePreset})
-	dashboard.SetNotifyList([]string{"test@datadoghq.com"})
+	// FIXME dashboard.SetNotifyList([]string{"test@datadoghq.com"})
 
 	createdDashboard, httpresp, err := Client(ctx).DashboardsApi.CreateDashboard(ctx).Body(*dashboard).Execute()
 	if err != nil {
@@ -752,7 +770,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		assert.Greater(response.GetModifiedAt().Unix(), int64(0))
 		assert.Greater(len(response.GetAuthorHandle()), 0)
 		assert.Equal(dashboard.GetLayoutType(), response.GetLayoutType())
-		assert.Equal(len(dashboard.GetNotifyList()), len(response.GetNotifyList()))
+		// FIXME assert.Equal(len(dashboard.GetNotifyList()), len(response.GetNotifyList()))
 
 		// Template Variables
 		assert.Equal(dashboard.GetTemplateVariables()[0], response.GetTemplateVariables()[0])

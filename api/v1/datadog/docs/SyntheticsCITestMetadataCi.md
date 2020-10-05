@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pipeline** | Pointer to **string** |  | [optional] 
-**Provider** | Pointer to **string** |  | [optional] 
+**Pipeline** | Pointer to **string** | Name of the pipeline. | [optional] 
+**Provider** | Pointer to **string** | Name of the CI provider. | [optional] 
 
 ## Methods
 
