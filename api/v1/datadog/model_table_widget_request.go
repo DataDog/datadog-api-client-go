@@ -20,7 +20,7 @@ type TableWidgetRequest struct {
 	ApmQuery      *LogQueryDefinition      `json:"apm_query,omitempty"`
 	ApmStatsQuery *ApmStatsQueryDefinition `json:"apm_stats_query,omitempty"`
 	// A list of display modes for each table cell.
-	CellDisplayMode *[]string `json:"cell_display_mode,omitempty"`
+	CellDisplayMode *[]TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
 	// List of conditional formats.
 	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	EventQuery         *EventQueryDefinition      `json:"event_query,omitempty"`
@@ -182,9 +182,9 @@ func (o *TableWidgetRequest) SetApmStatsQuery(v ApmStatsQueryDefinition) {
 }
 
 // GetCellDisplayMode returns the CellDisplayMode field value if set, zero value otherwise.
-func (o *TableWidgetRequest) GetCellDisplayMode() []string {
+func (o *TableWidgetRequest) GetCellDisplayMode() []TableWidgetCellDisplayMode {
 	if o == nil || o.CellDisplayMode == nil {
-		var ret []string
+		var ret []TableWidgetCellDisplayMode
 		return ret
 	}
 	return *o.CellDisplayMode
@@ -192,7 +192,7 @@ func (o *TableWidgetRequest) GetCellDisplayMode() []string {
 
 // GetCellDisplayModeOk returns a tuple with the CellDisplayMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableWidgetRequest) GetCellDisplayModeOk() (*[]string, bool) {
+func (o *TableWidgetRequest) GetCellDisplayModeOk() (*[]TableWidgetCellDisplayMode, bool) {
 	if o == nil || o.CellDisplayMode == nil {
 		return nil, false
 	}
@@ -208,8 +208,8 @@ func (o *TableWidgetRequest) HasCellDisplayMode() bool {
 	return false
 }
 
-// SetCellDisplayMode gets a reference to the given []string and assigns it to the CellDisplayMode field.
-func (o *TableWidgetRequest) SetCellDisplayMode(v []string) {
+// SetCellDisplayMode gets a reference to the given []TableWidgetCellDisplayMode and assigns it to the CellDisplayMode field.
+func (o *TableWidgetRequest) SetCellDisplayMode(v []TableWidgetCellDisplayMode) {
 	o.CellDisplayMode = &v
 }
 
