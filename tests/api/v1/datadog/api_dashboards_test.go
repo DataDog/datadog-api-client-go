@@ -447,6 +447,31 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	tableWidget := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetDefinition))
 
+	// Table Widget with APM Stats data
+	tableWidgetApmStatsDefinition := datadog.NewTableWidgetDefinitionWithDefaults()
+	tableWidgetApmStatsDefinition.SetRequests([]datadog.TableWidgetRequest{{
+		ApmStatsQuery: &datadog.ApmStatsQueryDefinition{
+			Env: "prod",
+			Name: "web",
+			PrimaryTag: "foo:*",
+			Resource: datadog.PtrString("endpoint"),
+			RowType: datadog.APMSTATSQUERYROWTYPE_SPAN,
+			Columns: &[]datadog.ApmStatsQueryColumnType{{
+				Name: "baz",
+			}},
+		},
+	}})
+	tableWidgetApmStatsDefinition.SetTitle("Test Table Widget with APM Stats Data")
+	tableWidgetApmStatsDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	tableWidgetApmStatsDefinition.SetTitleSize("16")
+	tableWidgetApmStatsDefinition.SetTime(*widgetTime)
+	tableWidgetApmStatsDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
+		Label: "Test Custom Link label",
+		Link: "https://app.datadoghq.com/dashboard/lists",
+	}})
+
+	tableWidgetApmStats := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetApmStatsDefinition))
+
 	// Timeseries Widget
 	timeseriesWidgetDefinition := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinition.SetRequests([]datadog.TimeseriesWidgetRequest{{
@@ -701,6 +726,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		*sloWidget,
 		*serviceMapWidget,
 		*tableWidget,
+		*tableWidgetApmStats,
 		*timeseriesWidget,
 		*timeseriesWidgetProcessQuery,
 		*timeseriesWidgetLogQuery,

@@ -51,6 +51,7 @@ docs/AlertValueWidgetDefinitionType.md
 docs/ApiKey.md
 docs/ApiKeyListResponse.md
 docs/ApiKeyResponse.md
+docs/ApmStatsQueryColumnType.md
 docs/ApmStatsQueryDefinition.md
 docs/ApmStatsQueryRowType.md
 docs/ApplicationKey.md
@@ -482,6 +483,7 @@ model_api_error_response.go
 model_api_key.go
 model_api_key_list_response.go
 model_api_key_response.go
+model_apm_stats_query_column_type.go
 model_apm_stats_query_definition.go
 model_apm_stats_query_row_type.go
 model_application_key.go

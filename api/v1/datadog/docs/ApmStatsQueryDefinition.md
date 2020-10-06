@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Columns** | Pointer to **[]string** | Column names used by front end for display. | [optional] 
+**Columns** | Pointer to [**[]ApmStatsQueryColumnType**](ApmStatsQueryColumnType.md) | Column properties used by the front end for display. | [optional] 
 **Env** | **string** | Environment name. | 
 **Name** | **string** | Operation name associated with service. | 
 **PrimaryTag** | **string** | The organization&#39;s host group name and value. | 
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetColumns
 
-`func (o *ApmStatsQueryDefinition) GetColumns() []string`
+`func (o *ApmStatsQueryDefinition) GetColumns() []ApmStatsQueryColumnType`
 
 GetColumns returns the Columns field if non-nil, zero value otherwise.
 
 ### GetColumnsOk
 
-`func (o *ApmStatsQueryDefinition) GetColumnsOk() (*[]string, bool)`
+`func (o *ApmStatsQueryDefinition) GetColumnsOk() (*[]ApmStatsQueryColumnType, bool)`
 
 GetColumnsOk returns a tuple with the Columns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetColumns
 
-`func (o *ApmStatsQueryDefinition) SetColumns(v []string)`
+`func (o *ApmStatsQueryDefinition) SetColumns(v []ApmStatsQueryColumnType)`
 
 SetColumns sets Columns field to given value.
 
