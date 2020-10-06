@@ -53,7 +53,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	remapper1.SetTargetType("attribute")
 	remapper1.SetPreserveSource(true)
 	remapper1.SetOverrideOnConflict(true)
-	remapper1.SetName("log attribute remapper for attribute")
+	remapper1.SetName("log attribute remapper to attribute target type")
 	remapper1.SetTargetFormat(datadog.TARGETFORMATTYPE_STRING)
 
 	remapper2 := datadog.NewLogsAttributeRemapperWithDefaults()
@@ -63,7 +63,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	remapper2.SetTargetType("tag")
 	remapper2.SetPreserveSource(true)
 	remapper2.SetOverrideOnConflict(true)
-	remapper2.SetName("log attribute remapper for tag")
+	remapper2.SetName("log attribute remapper to tag target type")
 
 	urlParser := datadog.NewLogsURLParserWithDefaults()
 	urlParser.SetSources([]string{"source"})
