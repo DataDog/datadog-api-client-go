@@ -46,24 +46,24 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	logMessageRemapper.SetSources([]string{"source"})
 	logMessageRemapper.SetName("log message remapper")
 
-	remapper1 := datadog.NewLogsAttributeRemapperWithDefaults()
-	remapper1.SetSources([]string{"source"})
-	remapper1.SetSourceType("tag")
-	remapper1.SetTarget("target")
-	remapper1.SetTargetType("attribute")
-	remapper1.SetPreserveSource(true)
-	remapper1.SetOverrideOnConflict(true)
-	remapper1.SetName("log attribute remapper to attribute target type")
-	remapper1.SetTargetFormat(datadog.TARGETFORMATTYPE_STRING)
+	remapperToAttribute := datadog.NewLogsAttributeRemapperWithDefaults()
+	remapperToAttribute.SetSources([]string{"source"})
+	remapperToAttribute.SetSourceType("tag")
+	remapperToAttribute.SetTarget("target")
+	remapperToAttribute.SetTargetType("attribute")
+	remapperToAttribute.SetPreserveSource(true)
+	remapperToAttribute.SetOverrideOnConflict(true)
+	remapperToAttribute.SetName("log attribute remapper to attribute target type")
+	remapperToAttribute.SetTargetFormat(datadog.TARGETFORMATTYPE_STRING)
 
-	remapper2 := datadog.NewLogsAttributeRemapperWithDefaults()
-	remapper2.SetSources([]string{"source"})
-	remapper2.SetSourceType("tag")
-	remapper2.SetTarget("target")
-	remapper2.SetTargetType("tag")
-	remapper2.SetPreserveSource(true)
-	remapper2.SetOverrideOnConflict(true)
-	remapper2.SetName("log attribute remapper to tag target type")
+	remapperToTag := datadog.NewLogsAttributeRemapperWithDefaults()
+	remapperToTag.SetSources([]string{"source"})
+	remapperToTag.SetSourceType("tag")
+	remapperToTag.SetTarget("target")
+	remapperToTag.SetTargetType("tag")
+	remapperToTag.SetPreserveSource(true)
+	remapperToTag.SetOverrideOnConflict(true)
+	remapperToTag.SetName("log attribute remapper to tag target type")
 
 	urlParser := datadog.NewLogsURLParserWithDefaults()
 	urlParser.SetSources([]string{"source"})
@@ -135,8 +135,8 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 		datadog.LogsStatusRemapperAsLogsProcessor(logStatusRemapper),
 		datadog.LogsServiceRemapperAsLogsProcessor(serviceRemapper),
 		datadog.LogsMessageRemapperAsLogsProcessor(logMessageRemapper),
-		datadog.LogsAttributeRemapperAsLogsProcessor(remapper1),
-		datadog.LogsAttributeRemapperAsLogsProcessor(remapper2),
+		datadog.LogsAttributeRemapperAsLogsProcessor(remapperToAttribute),
+		datadog.LogsAttributeRemapperAsLogsProcessor(remapperToTag),
 		datadog.LogsURLParserAsLogsProcessor(urlParser),
 		datadog.LogsUserAgentParserAsLogsProcessor(userAgentParser),
 		datadog.LogsCategoryProcessorAsLogsProcessor(categoryProcessor),
