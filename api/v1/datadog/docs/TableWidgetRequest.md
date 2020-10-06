@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 **Aggregator** | Pointer to [**WidgetAggregator**](WidgetAggregator.md) |  | [optional] 
 **Alias** | Pointer to **string** | The column name (defaults to the metric name). | [optional] 
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**ApmResourcesQuery** | Pointer to [**ApmResourcesQueryDefinition**](ApmResourcesQueryDefinition.md) |  | [optional] 
+**ApmStatsQuery** | Pointer to [**ApmStatsQueryDefinition**](ApmStatsQueryDefinition.md) |  | [optional] 
+**CellDisplayMode** | Pointer to [**[]TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) | A list of display modes for each table cell. | [optional] 
 **ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
 **EventQuery** | Pointer to [**EventQueryDefinition**](EventQueryDefinition.md) |  | [optional] 
 **Limit** | Pointer to **int64** | For metric queries, the number of lines to show in the table. Only one request should have this property. | [optional] 
@@ -113,30 +114,55 @@ SetApmQuery sets ApmQuery field to given value.
 
 HasApmQuery returns a boolean if a field has been set.
 
-### GetApmResourcesQuery
+### GetApmStatsQuery
 
-`func (o *TableWidgetRequest) GetApmResourcesQuery() ApmResourcesQueryDefinition`
+`func (o *TableWidgetRequest) GetApmStatsQuery() ApmStatsQueryDefinition`
 
-GetApmResourcesQuery returns the ApmResourcesQuery field if non-nil, zero value otherwise.
+GetApmStatsQuery returns the ApmStatsQuery field if non-nil, zero value otherwise.
 
-### GetApmResourcesQueryOk
+### GetApmStatsQueryOk
 
-`func (o *TableWidgetRequest) GetApmResourcesQueryOk() (*ApmResourcesQueryDefinition, bool)`
+`func (o *TableWidgetRequest) GetApmStatsQueryOk() (*ApmStatsQueryDefinition, bool)`
 
-GetApmResourcesQueryOk returns a tuple with the ApmResourcesQuery field if it's non-nil, zero value otherwise
+GetApmStatsQueryOk returns a tuple with the ApmStatsQuery field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetApmResourcesQuery
+### SetApmStatsQuery
 
-`func (o *TableWidgetRequest) SetApmResourcesQuery(v ApmResourcesQueryDefinition)`
+`func (o *TableWidgetRequest) SetApmStatsQuery(v ApmStatsQueryDefinition)`
 
-SetApmResourcesQuery sets ApmResourcesQuery field to given value.
+SetApmStatsQuery sets ApmStatsQuery field to given value.
 
-### HasApmResourcesQuery
+### HasApmStatsQuery
 
-`func (o *TableWidgetRequest) HasApmResourcesQuery() bool`
+`func (o *TableWidgetRequest) HasApmStatsQuery() bool`
 
-HasApmResourcesQuery returns a boolean if a field has been set.
+HasApmStatsQuery returns a boolean if a field has been set.
+
+### GetCellDisplayMode
+
+`func (o *TableWidgetRequest) GetCellDisplayMode() []TableWidgetCellDisplayMode`
+
+GetCellDisplayMode returns the CellDisplayMode field if non-nil, zero value otherwise.
+
+### GetCellDisplayModeOk
+
+`func (o *TableWidgetRequest) GetCellDisplayModeOk() (*[]TableWidgetCellDisplayMode, bool)`
+
+GetCellDisplayModeOk returns a tuple with the CellDisplayMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCellDisplayMode
+
+`func (o *TableWidgetRequest) SetCellDisplayMode(v []TableWidgetCellDisplayMode)`
+
+SetCellDisplayMode sets CellDisplayMode field to given value.
+
+### HasCellDisplayMode
+
+`func (o *TableWidgetRequest) HasCellDisplayMode() bool`
+
+HasCellDisplayMode returns a boolean if a field has been set.
 
 ### GetConditionalFormats
 

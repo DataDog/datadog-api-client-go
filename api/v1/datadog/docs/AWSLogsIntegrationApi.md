@@ -52,7 +52,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(ctx).Body(body).Execute()
+    resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,7 +131,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(ctx).Body(body).Execute()
+    resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CheckAWSLogsServicesAsync``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,7 +210,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.CreateAWSLambdaARN(ctx).Body(body).Execute()
+    resp, r, err := api_client.AWSLogsIntegrationApi.CreateAWSLambdaARN(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CreateAWSLambdaARN``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -289,7 +289,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.DeleteAWSLambdaARN(ctx).Body(body).Execute()
+    resp, r, err := api_client.AWSLogsIntegrationApi.DeleteAWSLambdaARN(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.DeleteAWSLambdaARN``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -368,7 +368,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.EnableAWSLogServices(ctx).Body(body).Execute()
+    resp, r, err := api_client.AWSLogsIntegrationApi.EnableAWSLogServices(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.EnableAWSLogServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -446,7 +446,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsIntegrations(ctx).Execute()
+    resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsIntegrations(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.ListAWSLogsIntegrations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -520,7 +520,7 @@ func main() {
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsServices(ctx).Execute()
+    resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsServices(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.ListAWSLogsServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

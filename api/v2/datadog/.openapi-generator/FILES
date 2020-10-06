@@ -60,6 +60,10 @@ docs/LogsArchiveDestinationS3Type.md
 docs/LogsArchiveIntegrationAzure.md
 docs/LogsArchiveIntegrationGCS.md
 docs/LogsArchiveIntegrationS3.md
+docs/LogsArchiveOrder.md
+docs/LogsArchiveOrderAttributes.md
+docs/LogsArchiveOrderDefinition.md
+docs/LogsArchiveOrderDefinitionType.md
 docs/LogsArchiveState.md
 docs/LogsArchives.md
 docs/LogsArchivesApi.md
@@ -248,6 +252,10 @@ model_logs_archive_destination_s3_type.go
 model_logs_archive_integration_azure.go
 model_logs_archive_integration_gcs.go
 model_logs_archive_integration_s3.go
+model_logs_archive_order.go
+model_logs_archive_order_attributes.go
+model_logs_archive_order_definition.go
+model_logs_archive_order_definition_type.go
 model_logs_archive_state.go
 model_logs_archives.go
 model_logs_compute.go
