@@ -14839,6 +14839,17 @@ components:
       type: string
       x-enum-varnames:
       - USER_LOCATOR
+    TableWidgetCellDisplayMode:
+      default: number
+      description: Define a display mode for the table cell.
+      enum:
+      - number
+      - bar
+      example: number
+      type: string
+      x-enum-varnames:
+      - NUMBER
+      - BAR
     TableWidgetDefinition:
       description: The table visualization is available on timeboards and screenboards.
         It displays columns of metrics grouped by tag key.
@@ -14848,6 +14859,8 @@ components:
           items:
             $ref: '#/components/schemas/WidgetCustomLink'
           type: array
+        has_search_bar:
+          $ref: '#/components/schemas/TableWidgetHasSearchBar'
         requests:
           description: Widget definition.
           example:
@@ -14880,6 +14893,19 @@ components:
       type: string
       x-enum-varnames:
       - QUERY_TABLE
+    TableWidgetHasSearchBar:
+      default: auto
+      description: Controls the display of the search bar.
+      enum:
+      - always
+      - never
+      - auto
+      example: auto
+      type: string
+      x-enum-varnames:
+      - ALWAYS
+      - NEVER
+      - AUTO
     TableWidgetRequest:
       description: Updated table widget.
       properties:
@@ -14892,6 +14918,11 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         apm_stats_query:
           $ref: '#/components/schemas/ApmStatsQueryDefinition'
+        cell_display_mode:
+          description: A list of display modes for each table cell.
+          items:
+            $ref: '#/components/schemas/TableWidgetCellDisplayMode'
+          type: array
         conditional_formats:
           description: List of conditional formats.
           items:

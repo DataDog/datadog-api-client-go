@@ -433,6 +433,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			CustomFgColor: datadog.PtrString("black"),
 			ImageUrl:      datadog.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
 		}},
+		CellDisplayMode: &[]datadog.TableWidgetCellDisplayMode{datadog.TABLEWIDGETCELLDISPLAYMODE_NUMBER},
 	}})
 	tableWidgetDefinition.SetTitle("Test Table Widget")
 	tableWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
@@ -442,6 +443,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		Label: "Test Custom Link label",
 		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
+	tableWidgetDefinition.SetHasSearchBar(datadog.TABLEWIDGETHASSEARCHBAR_AUTO)
 
 	tableWidget := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetDefinition))
 

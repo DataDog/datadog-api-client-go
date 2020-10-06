@@ -81,6 +81,7 @@ Name | Type | Description | Notes
 **ShowResourceList** | Pointer to **bool** | Whether to show the resource list or not. | [optional] 
 **SizeFormat** | Pointer to [**WidgetSizeFormat**](WidgetSizeFormat.md) |  | [optional] 
 **SpanName** | **string** | APM span name. | 
+**HasSearchBar** | Pointer to [**TableWidgetHasSearchBar**](TableWidgetHasSearchBar.md) |  | [optional] [default to "auto"]
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
 **RightYaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
@@ -1942,6 +1943,31 @@ and a boolean to check if the value has been set.
 
 SetSpanName sets SpanName field to given value.
 
+
+### GetHasSearchBar
+
+`func (o *WidgetDefinition) GetHasSearchBar() TableWidgetHasSearchBar`
+
+GetHasSearchBar returns the HasSearchBar field if non-nil, zero value otherwise.
+
+### GetHasSearchBarOk
+
+`func (o *WidgetDefinition) GetHasSearchBarOk() (*TableWidgetHasSearchBar, bool)`
+
+GetHasSearchBarOk returns a tuple with the HasSearchBar field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasSearchBar
+
+`func (o *WidgetDefinition) SetHasSearchBar(v TableWidgetHasSearchBar)`
+
+SetHasSearchBar sets HasSearchBar field to given value.
+
+### HasHasSearchBar
+
+`func (o *WidgetDefinition) HasHasSearchBar() bool`
+
+HasHasSearchBar returns a boolean if a field has been set.
 
 ### GetMarkers
 
