@@ -81,7 +81,7 @@ Name | Type | Description | Notes
 **ShowResourceList** | Pointer to **bool** | Whether to show the resource list or not. | [optional] 
 **SizeFormat** | Pointer to [**WidgetSizeFormat**](WidgetSizeFormat.md) |  | [optional] 
 **SpanName** | **string** | APM span name. | 
-**HasSearchBar** | Pointer to [**TableWidgetHasSearchBar**](TableWidgetHasSearchBar.md) |  | [optional] [default to "auto"]
+**HasSearchBar** | Pointer to [**TableWidgetHasSearchBar**](TableWidgetHasSearchBar.md) |  | [optional] 
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
 **RightYaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
