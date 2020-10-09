@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Destination** | [**NullableLogsArchiveDestination**](LogsArchiveDestination.md) |  | 
 **Name** | **string** | The archive name. | 
 **Query** | **string** | The archive query/filter. Logs matching this query are included in the archive. | 
+**RehydrationTags** | Pointer to **[]string** | An array of tags to add to rehydrated logs from an archive. | [optional] 
 **State** | Pointer to [**LogsArchiveState**](LogsArchiveState.md) |  | [optional] 
 
 ## Methods
@@ -97,6 +98,31 @@ and a boolean to check if the value has been set.
 
 SetQuery sets Query field to given value.
 
+
+### GetRehydrationTags
+
+`func (o *LogsArchiveAttributes) GetRehydrationTags() []string`
+
+GetRehydrationTags returns the RehydrationTags field if non-nil, zero value otherwise.
+
+### GetRehydrationTagsOk
+
+`func (o *LogsArchiveAttributes) GetRehydrationTagsOk() (*[]string, bool)`
+
+GetRehydrationTagsOk returns a tuple with the RehydrationTags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRehydrationTags
+
+`func (o *LogsArchiveAttributes) SetRehydrationTags(v []string)`
+
+SetRehydrationTags sets RehydrationTags field to given value.
+
+### HasRehydrationTags
+
+`func (o *LogsArchiveAttributes) HasRehydrationTags() bool`
+
+HasRehydrationTags returns a boolean if a field has been set.
 
 ### GetState
 
