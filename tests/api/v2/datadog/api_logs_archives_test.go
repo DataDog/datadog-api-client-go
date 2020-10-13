@@ -19,6 +19,7 @@ import (
 // This test uses mocking because: 1) it relies on private data. 2) It relies on external services
 
 func TestLogsArchivesCreate(t *testing.T) {
+	includeTags := true
 	testCases := []struct {
 		archiveType string
 		archive     datadog.LogsArchiveCreateRequest
@@ -42,6 +43,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 						Name:            "datadog-api-client-go Tests Archive",
 						Query:           "service:toto",
 						RehydrationTags: &[]string{"team:intake", "team:app"},
+						IncludeTags:     &includeTags,
 					},
 					Type: "archives",
 				},
@@ -68,6 +70,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 						Name:            "datadog-api-client-go Tests Archive",
 						Query:           "service:toto",
 						RehydrationTags: &[]string{"team:intake", "team:app"},
+						IncludeTags:     &includeTags,
 					},
 					Type: "archives",
 				},
@@ -92,6 +95,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 						Name:            "datadog-api-client-go Tests Archive",
 						Query:           "service:toto",
 						RehydrationTags: &[]string{"team:intake", "team:app"},
+						IncludeTags:     &includeTags,
 					},
 					Type: "archives",
 				},
