@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Alias** | Pointer to **string** | A user-assigned alias for the column. | [optional] 
-**CellDisplayMode** | Pointer to [**TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) |  | [optional] [default to "number"]
+**CellDisplayMode** | Pointer to [**TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) |  | [optional] 
 **Name** | **string** | Column name. | 
 **Order** | Pointer to [**WidgetSort**](WidgetSort.md) |  | [optional] 
 
