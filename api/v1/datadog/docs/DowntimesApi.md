@@ -128,7 +128,7 @@ func main() {
         },
     )
 
-    body := datadog.CancelDowntimesByScopeRequest{Scope: "Scope_example"} // CancelDowntimesByScopeRequest | Scope to cancel downtimes for.
+    body := *datadog.NewCancelDowntimesByScopeRequest("Scope_example") // CancelDowntimesByScopeRequest | Scope to cancel downtimes for.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -207,7 +207,7 @@ func main() {
         },
     )
 
-    body := datadog.Downtime{Active: true, Canceled: int64(123), CreatorId: 123, Disabled: false, DowntimeType: 123, End: int64(123), Id: int64(123), Message: "Message_example", MonitorId: int64(123), MonitorTags: []string{"MonitorTags_example"), ParentId: int64(123), Recurrence: datadog.DowntimeRecurrence{Period: 123, Rrule: "Rrule_example", Type: "Type_example", UntilDate: int64(123), UntilOccurrences: 123, WeekDays: []string{"WeekDays_example")}, Scope: []string{"Scope_example"), Start: int64(123), Timezone: "Timezone_example", UpdaterId: 123} // Downtime | Schedule a downtime request body.
+    body := *datadog.NewDowntime() // Downtime | Schedule a downtime request body.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -449,7 +449,7 @@ func main() {
     )
 
     downtimeId := 987 // int64 | ID of the downtime to update.
-    body := datadog.Downtime{Active: true, Canceled: int64(123), CreatorId: 123, Disabled: false, DowntimeType: 123, End: int64(123), Id: int64(123), Message: "Message_example", MonitorId: int64(123), MonitorTags: []string{"MonitorTags_example"), ParentId: int64(123), Recurrence: datadog.DowntimeRecurrence{Period: 123, Rrule: "Rrule_example", Type: "Type_example", UntilDate: int64(123), UntilOccurrences: 123, WeekDays: []string{"WeekDays_example")}, Scope: []string{"Scope_example"), Start: int64(123), Timezone: "Timezone_example", UpdaterId: 123} // Downtime | Update a downtime request body.
+    body := *datadog.NewDowntime() // Downtime | Update a downtime request body.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

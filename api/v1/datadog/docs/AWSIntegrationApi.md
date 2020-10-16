@@ -47,7 +47,7 @@ func main() {
         },
     )
 
-    body := datadog.AWSAccount{AccessKeyId: "AccessKeyId_example", AccountId: "AccountId_example", AccountSpecificNamespaceRules: map[string]string{ "Key" = "Value" }, ExcludedRegions: []string{"ExcludedRegions_example"), FilterTags: []string{"FilterTags_example"), HostTags: []string{"HostTags_example"), RoleName: "RoleName_example", SecretAccessKey: "SecretAccessKey_example"} // AWSAccount | AWS Request Object
+    body := *datadog.NewAWSAccount() // AWSAccount | AWS Request Object
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -126,7 +126,7 @@ func main() {
         },
     )
 
-    body := datadog.AWSAccount{AccessKeyId: "AccessKeyId_example", AccountId: "AccountId_example", AccountSpecificNamespaceRules: map[string]string{ "Key" = "Value" }, ExcludedRegions: []string{"ExcludedRegions_example"), FilterTags: []string{"FilterTags_example"), HostTags: []string{"HostTags_example"), RoleName: "RoleName_example", SecretAccessKey: "SecretAccessKey_example"} // AWSAccount | Your Datadog role delegation name. For more information about your AWS account Role name, see the [Datadog AWS integration configuration info](https://github.com/DataDog/documentation/blob/master/integrations/amazon_web_services/#installation).
+    body := *datadog.NewAWSAccount() // AWSAccount | Your Datadog role delegation name. For more information about your AWS account Role name, see the [Datadog AWS integration configuration info](https://github.com/DataDog/documentation/blob/master/integrations/amazon_web_services/#installation).
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

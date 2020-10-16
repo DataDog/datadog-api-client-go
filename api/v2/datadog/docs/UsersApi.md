@@ -50,7 +50,7 @@ func main() {
         },
     )
 
-    body := datadog.UserCreateRequest{Data: datadog.UserCreateData{Attributes: datadog.UserCreateAttributes{Email: "Email_example", Name: "Name_example", Title: "Title_example"}, Relationships: datadog.UserRelationships{Roles: datadog.RelationshipToRoles{Data: []RelationshipToRoleData{datadog.RelationshipToRoleData{Id: "Id_example", Type: datadog.RolesType{}})}}, Type: datadog.UsersType{}}} // UserCreateRequest |  (optional)
+    body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("Email_example"), *datadog.NewUsersType())) // UserCreateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -545,7 +545,7 @@ func main() {
     pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
     sort := "sort_example" // string | User attribute to order results by. Sort order is ascending by default. Sort order is descending if the field is prefixed by a negative sign, for example `sort=-name`. Options: `name`, `modified_at`, `user_count`. (optional) (default to "name")
-    sortDir := datadog.QuerySortOrder{} // QuerySortOrder | Direction of sort. Options: `asc`, `desc`. (optional) (default to "desc")
+    sortDir := *datadog.NewQuerySortOrder() // QuerySortOrder | Direction of sort. Options: `asc`, `desc`. (optional) (default to "desc")
     filter := "filter_example" // string | Filter all users by the given string. Defaults to no filtering. (optional)
     filterStatus := "filterStatus_example" // string | Filter on status attribute. Comma separated list, with possible values `Active`, `Pending`, and `Disabled`. Defaults to no filtering. (optional)
 
@@ -631,7 +631,7 @@ func main() {
         },
     )
 
-    body := datadog.UserInvitationsRequest{Data: []UserInvitationData{datadog.UserInvitationData{Relationships: datadog.UserInvitationRelationships{User: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}}, Type: datadog.UserInvitationsType{}})} // UserInvitationsRequest |  (optional)
+    body := *datadog.NewUserInvitationsRequest([]UserInvitationData{*datadog.NewUserInvitationData(*datadog.NewUserInvitationRelationships(*datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("Id_example", *datadog.NewUsersType()))), *datadog.NewUserInvitationsType())}) // UserInvitationsRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -711,7 +711,7 @@ func main() {
     )
 
     userId := "userId_example" // string | The ID of the user.
-    body := datadog.UserUpdateRequest{Data: datadog.UserUpdateData{Attributes: datadog.UserUpdateAttributes{Disabled: false, Email: "Email_example", Name: "Name_example"}, Id: "Id_example", Type: }} // UserUpdateRequest |  (optional)
+    body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "Id_example", )) // UserUpdateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

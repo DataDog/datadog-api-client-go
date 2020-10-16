@@ -54,7 +54,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := datadog.RelationshipToPermission{Data: datadog.RelationshipToPermissionData{Id: "Id_example", Type: datadog.PermissionsType{}}} // RelationshipToPermission |  (optional)
+    body := *datadog.NewRelationshipToPermission() // RelationshipToPermission |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -139,7 +139,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}} // RelationshipToUser |  (optional)
+    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("Id_example", *datadog.NewUsersType())) // RelationshipToUser |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -223,7 +223,7 @@ func main() {
         },
     )
 
-    body := datadog.RoleCreateRequest{Data: datadog.RoleCreateData{Attributes: datadog.RoleCreateAttributes{CreatedAt: "TODO", ModifiedAt: "TODO", Name: "Name_example"}, Relationships: datadog.RoleRelationships{Permissions: datadog.RelationshipToPermissions{Data: []RelationshipToPermissionData{datadog.RelationshipToPermissionData{Id: "Id_example", Type: datadog.PermissionsType{}})}, Users: datadog.RelationshipToUsers{Data: []RelationshipToUserData{datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}})}}, Type: datadog.RolesType{}}} // RoleCreateRequest |  (optional)
+    body := *datadog.NewRoleCreateRequest(*datadog.NewRoleCreateData(*datadog.NewRoleCreateAttributes("Name_example"))) // RoleCreateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -716,7 +716,7 @@ func main() {
 
     pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
-    sort := datadog.RolesSort{} // RolesSort | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: `sort=-name`. (optional) (default to "name")
+    sort := *datadog.NewRolesSort() // RolesSort | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: `sort=-name`. (optional) (default to "name")
     filter := "filter_example" // string | Filter all roles by the given string. (optional)
 
     configuration := datadog.NewConfiguration()
@@ -800,7 +800,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := datadog.RelationshipToPermission{Data: } // RelationshipToPermission |  (optional)
+    body := *datadog.NewRelationshipToPermission() // RelationshipToPermission |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -885,7 +885,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := datadog.RelationshipToUser{Data: } // RelationshipToUser |  (optional)
+    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("Id_example", *datadog.NewUsersType())) // RelationshipToUser |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -970,7 +970,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := datadog.RoleUpdateRequest{Data: datadog.RoleUpdateData{Attributes: datadog.RoleUpdateAttributes{CreatedAt: "TODO", ModifiedAt: "TODO", Name: "Name_example"}, Id: "Id_example", Type: datadog.RolesType{}}} // RoleUpdateRequest |  (optional)
+    body := *datadog.NewRoleUpdateRequest(*datadog.NewRoleUpdateData(*datadog.NewRoleUpdateAttributes(), "Id_example", *datadog.NewRolesType())) // RoleUpdateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

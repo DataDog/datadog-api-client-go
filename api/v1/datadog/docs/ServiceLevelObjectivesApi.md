@@ -128,7 +128,7 @@ func main() {
         },
     )
 
-    body := datadog.ServiceLevelObjectiveRequest{CreatedAt: int64(123), Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Description: "Description_example", Groups: []string{"Groups_example"), Id: "Id_example", ModifiedAt: int64(123), MonitorIds: []int64{int64(123)), Name: "Name_example", Query: datadog.ServiceLevelObjectiveQuery{Denominator: "Denominator_example", Numerator: "Numerator_example"}, Tags: []string{"Tags_example"), Thresholds: []SLOThreshold{datadog.SLOThreshold{Target: 123, TargetDisplay: "TargetDisplay_example", Timeframe: datadog.SLOTimeframe{}, Warning: 123, WarningDisplay: "WarningDisplay_example"}), Type: datadog.SLOType{}} // ServiceLevelObjectiveRequest | Service level objective request object.
+    body := *datadog.NewServiceLevelObjectiveRequest("Name_example", []SLOThreshold{*datadog.NewSLOThreshold(123, *datadog.NewSLOTimeframe())}, *datadog.NewSLOType()) // ServiceLevelObjectiveRequest | Service level objective request object.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -292,7 +292,7 @@ func main() {
         },
     )
 
-    body := map[string]string{ "Key" = "Value" } // map[string][]SLOTimeframe | Delete multiple service level objective objects request body.
+    body := map[string][]SLOTimeframe{ "key": []SLOTimeframe{*datadog.NewSLOTimeframe()}} // map[string][]SLOTimeframe | Delete multiple service level objective objects request body.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -621,7 +621,7 @@ func main() {
     )
 
     sloId := "sloId_example" // string | The ID of the service level objective object.
-    body := datadog.ServiceLevelObjective{CreatedAt: int64(123), Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Description: "Description_example", Groups: []string{"Groups_example"), Id: "Id_example", ModifiedAt: int64(123), MonitorIds: []int64{int64(123)), MonitorTags: []string{"MonitorTags_example"), Name: "Name_example", Query: datadog.ServiceLevelObjectiveQuery{Denominator: "Denominator_example", Numerator: "Numerator_example"}, Tags: []string{"Tags_example"), Thresholds: []SLOThreshold{datadog.SLOThreshold{Target: 123, TargetDisplay: "TargetDisplay_example", Timeframe: datadog.SLOTimeframe{}, Warning: 123, WarningDisplay: "WarningDisplay_example"}), Type: datadog.SLOType{}} // ServiceLevelObjective | The edited service level objective request object.
+    body := *datadog.NewServiceLevelObjective("Name_example", []SLOThreshold{*datadog.NewSLOThreshold(123, )}, *datadog.NewSLOType()) // ServiceLevelObjective | The edited service level objective request object.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

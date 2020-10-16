@@ -46,7 +46,7 @@ func main() {
         },
     )
 
-    body := datadog.User{AccessRole: datadog.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | User object that needs to be created.
+    body := *datadog.NewUser() // User | User object that needs to be created.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -366,7 +366,7 @@ func main() {
     )
 
     userHandle := TODO // string | The ID of the user.
-    body := datadog.User{AccessRole: datadog.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | Description of the update.
+    body := *datadog.NewUser() // User | Description of the update.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
