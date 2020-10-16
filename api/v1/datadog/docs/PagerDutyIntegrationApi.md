@@ -45,7 +45,7 @@ func main() {
         },
     )
 
-    body := datadog.PagerDutyService{ServiceKey: "ServiceKey_example", ServiceName: "ServiceName_example"} // PagerDutyService | Create a new service object request body.
+    body := *datadog.NewPagerDutyService("ServiceKey_example", "ServiceName_example") // PagerDutyService | Create a new service object request body.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -289,7 +289,7 @@ func main() {
     )
 
     serviceName := "serviceName_example" // string | The service name
-    body := datadog.PagerDutyServiceKey{ServiceKey: "ServiceKey_example"} // PagerDutyServiceKey | Update an existing service object request body.
+    body := *datadog.NewPagerDutyServiceKey("ServiceKey_example") // PagerDutyServiceKey | Update an existing service object request body.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

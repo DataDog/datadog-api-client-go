@@ -52,7 +52,7 @@ func main() {
     )
 
     archiveId := "archiveId_example" // string | The ID of the archive.
-    body := datadog.RelationshipToRole{Data: datadog.RelationshipToRoleData{Id: "Id_example", Type: datadog.RolesType{}}} // RelationshipToRole |  (optional)
+    body := *datadog.NewRelationshipToRole() // RelationshipToRole |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -134,7 +134,7 @@ func main() {
         },
     )
 
-    body := datadog.LogsArchiveCreateRequest{Data: datadog.LogsArchiveCreateRequestDefinition{Attributes: datadog.LogsArchiveCreateRequestAttributes{Destination: datadog.LogsArchiveCreateRequestDestination{Container: "Container_example", Integration: datadog.LogsArchiveIntegrationS3{AccountId: "AccountId_example", RoleName: "RoleName_example"}, Path: "Path_example", Region: "Region_example", StorageAccount: "StorageAccount_example", Type: datadog.LogsArchiveDestinationS3Type{}, Bucket: "Bucket_example"}, Name: "Name_example", Query: "Query_example", RehydrationTags: []string{"RehydrationTags_example")}, Type: "Type_example"}} // LogsArchiveCreateRequest | The definition of the new archive.
+    body := *datadog.NewLogsArchiveCreateRequest() // LogsArchiveCreateRequest | The definition of the new archive.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -609,7 +609,7 @@ func main() {
     )
 
     archiveId := "archiveId_example" // string | The ID of the archive.
-    body := datadog.RelationshipToRole{Data: datadog.RelationshipToRoleData{Id: "Id_example", Type: datadog.RolesType{}}} // RelationshipToRole |  (optional)
+    body := *datadog.NewRelationshipToRole() // RelationshipToRole |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -692,7 +692,7 @@ func main() {
     )
 
     archiveId := "archiveId_example" // string | The ID of the archive.
-    body := datadog.LogsArchiveCreateRequest{Data: datadog.LogsArchiveCreateRequestDefinition{Attributes: datadog.LogsArchiveCreateRequestAttributes{Destination: datadog.LogsArchiveCreateRequestDestination{Container: "Container_example", Integration: datadog.LogsArchiveIntegrationS3{AccountId: "AccountId_example", RoleName: "RoleName_example"}, Path: "Path_example", Region: "Region_example", StorageAccount: "StorageAccount_example", Type: datadog.LogsArchiveDestinationS3Type{}, Bucket: "Bucket_example"}, Name: "Name_example", Query: "Query_example", RehydrationTags: []string{"RehydrationTags_example")}, Type: "Type_example"}} // LogsArchiveCreateRequest | New definition of the archive.
+    body := *datadog.NewLogsArchiveCreateRequest() // LogsArchiveCreateRequest | New definition of the archive.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -776,7 +776,7 @@ func main() {
         },
     )
 
-    body := datadog.LogsArchiveOrder{Data: datadog.LogsArchiveOrderDefinition{Attributes: datadog.LogsArchiveOrderAttributes{ArchiveIds: []string{"ArchiveIds_example")}, Type: datadog.LogsArchiveOrderDefinitionType{}}} // LogsArchiveOrder | An object containing the new ordered list of archive IDs.
+    body := *datadog.NewLogsArchiveOrder() // LogsArchiveOrder | An object containing the new ordered list of archive IDs.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

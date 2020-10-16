@@ -42,7 +42,7 @@ func main() {
         },
     )
 
-    body := datadog.LogsListRequest{Index: "Index_example", Limit: 123, Query: "Query_example", Sort: datadog.LogsSort{}, StartAt: "StartAt_example", Time: datadog.LogsListRequest_time{From: "TODO", Timezone: "Timezone_example", To: "TODO"}} // LogsListRequest | Logs filter
+    body := *datadog.NewLogsListRequest("Query_example", *datadog.NewLogsListRequest_time("TODO", "TODO")) // LogsListRequest | Logs filter
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

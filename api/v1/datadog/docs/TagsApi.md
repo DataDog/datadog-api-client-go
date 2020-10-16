@@ -47,7 +47,7 @@ func main() {
     )
 
     hostName := "hostName_example" // string | This endpoint allows you to add new tags to a host, optionally specifying where the tags came from.
-    body := datadog.HostTags{Host: "Host_example", Tags: []string{"Tags_example")} // HostTags | Update host tags request body.
+    body := *datadog.NewHostTags() // HostTags | Update host tags request body.
     source := "source_example" // string | The source of the tags. [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). (optional)
 
     configuration := datadog.NewConfiguration()
@@ -381,7 +381,7 @@ func main() {
     )
 
     hostName := "hostName_example" // string | This endpoint allows you to update/replace all in an integration source with those supplied in the request.
-    body := datadog.HostTags{Host: "Host_example", Tags: []string{"Tags_example")} // HostTags | Add tags to host
+    body := *datadog.NewHostTags() // HostTags | Add tags to host
     source := "source_example" // string | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) (optional)
 
     configuration := datadog.NewConfiguration()

@@ -278,7 +278,7 @@ func main() {
     )
 
     name := "name_example" // string | Name of the log index.
-    body := datadog.LogsIndex{DailyLimit: int64(123), ExclusionFilters: []LogsExclusion{datadog.LogsExclusion{Filter: datadog.LogsExclusionFilter{Query: "Query_example", SampleRate: 123}, IsEnabled: false, Name: "Name_example"}), Filter: datadog.LogsFilter{Query: "Query_example"}, IsRateLimited: false, Name: "Name_example", NumRetentionDays: int64(123)} // LogsIndex | Object containing the new `LogsIndex`. (optional)
+    body := *datadog.NewLogsIndex(*datadog.NewLogsFilter()) // LogsIndex | Object containing the new `LogsIndex`. (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -362,7 +362,7 @@ func main() {
         },
     )
 
-    body := datadog.LogsIndexesOrder{IndexNames: []string{"IndexNames_example")} // LogsIndexesOrder | Object containing the new ordered list of index names (optional)
+    body := *datadog.NewLogsIndexesOrder([]string{"IndexNames_example"}) // LogsIndexesOrder | Object containing the new ordered list of index names (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

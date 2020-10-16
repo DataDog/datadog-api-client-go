@@ -51,7 +51,7 @@ func main() {
         },
     )
 
-    body := datadog.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
+    body := *datadog.NewApiKey() // ApiKey | 
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -130,7 +130,7 @@ func main() {
         },
     )
 
-    body := datadog.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
+    body := *datadog.NewApplicationKey() // ApplicationKey | 
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -690,7 +690,7 @@ func main() {
     )
 
     key := "key_example" // string | The specific API key you are working with.
-    body := datadog.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
+    body := *datadog.NewApiKey() // ApiKey | 
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -775,7 +775,7 @@ func main() {
     )
 
     key := "key_example" // string | The specific APP key you are working with.
-    body := datadog.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
+    body := *datadog.NewApplicationKey() // ApplicationKey | 
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
