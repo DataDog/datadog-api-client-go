@@ -128,7 +128,7 @@ func main() {
 
     start := 987 // int64 | POSIX timestamp.
     end := 987 // int64 | POSIX timestamp.
-    priority := datadog.EventPriority{} // EventPriority | Priority of your events, either `low` or `normal`. (optional)
+    priority := *datadog.NewEventPriority() // EventPriority | Priority of your events, either `low` or `normal`. (optional)
     sources := "sources_example" // string | A comma separated string of sources. (optional)
     tags := "tags_example" // string | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. (optional)
     unaggregated := true // bool | Set unaggregated to `true` to return all events within the specified [`start`,`end`] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won't be available in the output. (optional)

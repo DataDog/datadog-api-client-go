@@ -48,7 +48,7 @@ func main() {
         },
     )
 
-    body := datadog.SecurityMonitoringRuleCreatePayload{Cases: []SecurityMonitoringRuleCaseCreate{datadog.SecurityMonitoringRuleCaseCreate{Condition: "Condition_example", Name: "Name_example", Notifications: []string{"Notifications_example"), Status: datadog.SecurityMonitoringRuleSeverity{}}), IsEnabled: true, Message: "Message_example", Name: "Name_example", Options: datadog.SecurityMonitoringRuleOptions{EvaluationWindow: datadog.SecurityMonitoringRuleEvaluationWindow{}, KeepAlive: datadog.SecurityMonitoringRuleKeepAlive{}, MaxSignalDuration: datadog.SecurityMonitoringRuleMaxSignalDuration{}}, Queries: []SecurityMonitoringRuleQueryCreate{datadog.SecurityMonitoringRuleQueryCreate{Aggregation: datadog.SecurityMonitoringRuleQueryAggregation{}, DistinctFields: []string{"DistinctFields_example"), GroupByFields: []string{"GroupByFields_example"), Metric: "Metric_example", Name: "Name_example", Query: "Query_example"}), Tags: []string{"Tags_example")} // SecurityMonitoringRuleCreatePayload |  (optional)
+    body := *datadog.NewSecurityMonitoringRuleCreatePayload([]SecurityMonitoringRuleCaseCreate{*datadog.NewSecurityMonitoringRuleCaseCreate(*datadog.NewSecurityMonitoringRuleSeverity())}, true, "Message_example", "Name_example", *datadog.NewSecurityMonitoringRuleOptions(), []SecurityMonitoringRuleQueryCreate{*datadog.NewSecurityMonitoringRuleQueryCreate("Query_example")}) // SecurityMonitoringRuleCreatePayload |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -373,9 +373,9 @@ func main() {
     )
 
     filterQuery := "filterQuery_example" // string | The search query for security signals. (optional)
-    filterFrom := Get-Date // time.Time | The minimum timestamp for requested security signals. (optional)
-    filterTo := Get-Date // time.Time | The maximum timestamp for requested security signals. (optional)
-    sort := datadog.SecurityMonitoringSignalsSort{} // SecurityMonitoringSignalsSort | The order of the security signals in results. (optional)
+    filterFrom := time.Now() // time.Time | The minimum timestamp for requested security signals. (optional)
+    filterTo := time.Now() // time.Time | The maximum timestamp for requested security signals. (optional)
+    sort := *datadog.NewSecurityMonitoringSignalsSort() // SecurityMonitoringSignalsSort | The order of the security signals in results. (optional)
     pageCursor := "pageCursor_example" // string | A list of results using the cursor provided in the previous query. (optional)
     pageLimit := 987 // int32 | The maximum number of security signals in the response. (optional) (default to 10)
 
@@ -461,7 +461,7 @@ func main() {
         },
     )
 
-    body := datadog.SecurityMonitoringSignalListRequest{Filter: datadog.SecurityMonitoringSignalListRequest_filter{From: "TODO", Query: "Query_example", To: "TODO"}, Page: datadog.SecurityMonitoringSignalListRequest_page{Cursor: "Cursor_example", Limit: 123}, Sort: datadog.SecurityMonitoringSignalsSort{}} // SecurityMonitoringSignalListRequest |  (optional)
+    body := *datadog.NewSecurityMonitoringSignalListRequest() // SecurityMonitoringSignalListRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -541,7 +541,7 @@ func main() {
     )
 
     ruleId := "ruleId_example" // string | The ID of the rule.
-    body := datadog.SecurityMonitoringRuleUpdatePayload{Cases: []SecurityMonitoringRuleCase{datadog.SecurityMonitoringRuleCase{Condition: "Condition_example", Name: "Name_example", Notifications: []string{"Notifications_example"), Status: datadog.SecurityMonitoringRuleSeverity{}}), IsEnabled: false, Message: "Message_example", Name: "Name_example", Options: datadog.SecurityMonitoringRuleOptions{EvaluationWindow: datadog.SecurityMonitoringRuleEvaluationWindow{}, KeepAlive: datadog.SecurityMonitoringRuleKeepAlive{}, MaxSignalDuration: datadog.SecurityMonitoringRuleMaxSignalDuration{}}, Queries: []SecurityMonitoringRuleQuery{datadog.SecurityMonitoringRuleQuery{Aggregation: datadog.SecurityMonitoringRuleQueryAggregation{}, DistinctFields: []string{"DistinctFields_example"), GroupByFields: []string{"GroupByFields_example"), Metric: "Metric_example", Name: "Name_example", Query: "Query_example"}), Tags: []string{"Tags_example")} // SecurityMonitoringRuleUpdatePayload |  (optional)
+    body := *datadog.NewSecurityMonitoringRuleUpdatePayload() // SecurityMonitoringRuleUpdatePayload |  (optional)
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

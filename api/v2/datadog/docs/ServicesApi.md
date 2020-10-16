@@ -46,7 +46,7 @@ func main() {
         },
     )
 
-    body := datadog.ServiceCreateRequest{Data: datadog.ServiceCreateData{Attributes: datadog.ServiceCreateAttributes{Name: "Name_example"}, Relationships: datadog.ServiceRelationships{CreatedBy: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}, LastModifiedBy: datadog.RelationshipToUser{Data: datadog.RelationshipToUserData{Id: "Id_example", Type: datadog.UsersType{}}}}, Type: datadog.ServiceType{}}} // ServiceCreateRequest | Service Payload.
+    body := *datadog.NewServiceCreateRequest(*datadog.NewServiceCreateData(*datadog.NewServiceType())) // ServiceCreateRequest | Service Payload.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -375,7 +375,7 @@ func main() {
     )
 
     serviceId := "serviceId_example" // string | The ID of the service.
-    body := datadog.ServiceUpdateRequest{Data: datadog.ServiceUpdateData{Attributes: datadog.ServiceUpdateAttributes{Name: "Name_example"}, Id: "Id_example", Relationships: datadog.ServiceRelationships{CreatedBy: , LastModifiedBy: }, Type: datadog.ServiceType{}}} // ServiceUpdateRequest | Service Payload.
+    body := *datadog.NewServiceUpdateRequest(*datadog.NewServiceUpdateData("Id_example", *datadog.NewServiceType())) // ServiceUpdateRequest | Service Payload.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

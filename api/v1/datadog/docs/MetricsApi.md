@@ -373,7 +373,7 @@ func main() {
     )
 
     metricName := "metricName_example" // string | Name of the metric for which to edit metadata.
-    body := datadog.MetricMetadata{Description: "Description_example", Integration: "Integration_example", PerUnit: "PerUnit_example", ShortName: "ShortName_example", StatsdInterval: int64(123), Type: "Type_example", Unit: "Unit_example"} // MetricMetadata | New metadata.
+    body := *datadog.NewMetricMetadata() // MetricMetadata | New metadata.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)

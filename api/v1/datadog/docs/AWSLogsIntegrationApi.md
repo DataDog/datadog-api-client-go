@@ -48,7 +48,7 @@ func main() {
         },
     )
 
-    body := datadog.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | Check AWS Log Lambda Async request body.
+    body := *datadog.NewAWSAccountAndLambdaRequest("AccountId_example", "LambdaArn_example") // AWSAccountAndLambdaRequest | Check AWS Log Lambda Async request body.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -127,7 +127,7 @@ func main() {
         },
     )
 
-    body := datadog.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Check AWS Logs Async Services request body.
+    body := *datadog.NewAWSLogsServicesRequest("AccountId_example", []string{"Services_example"}) // AWSLogsServicesRequest | Check AWS Logs Async Services request body.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -206,7 +206,7 @@ func main() {
         },
     )
 
-    body := datadog.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | AWS Log Lambda Async request body.
+    body := *datadog.NewAWSAccountAndLambdaRequest("AccountId_example", "LambdaArn_example") // AWSAccountAndLambdaRequest | AWS Log Lambda Async request body.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
@@ -364,7 +364,7 @@ func main() {
         },
     )
 
-    body := datadog.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Enable AWS Log Services request body.
+    body := *datadog.NewAWSLogsServicesRequest("AccountId_example", []string{"Services_example"}) // AWSLogsServicesRequest | Enable AWS Log Services request body.
 
     configuration := datadog.NewConfiguration()
     api_client := datadog.NewAPIClient(configuration)
