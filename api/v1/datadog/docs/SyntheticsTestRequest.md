@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BasicAuth** | Pointer to [**SyntheticsBasicAuth**](SyntheticsBasicAuth.md) |  | [optional] 
 **Body** | Pointer to **string** | Body to include in the test. | [optional] 
+**Certificate** | Pointer to [**SyntheticsTestRequestCertificate**](SyntheticsTestRequestCertificate.md) |  | [optional] 
+**DnsServer** | Pointer to **string** | DNS server to use for DNS tests. | [optional] 
 **Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
 **Host** | Pointer to **string** | Host name to perform the test with. | [optional] 
 **Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | [optional] 
@@ -82,6 +84,56 @@ SetBody sets Body field to given value.
 `func (o *SyntheticsTestRequest) HasBody() bool`
 
 HasBody returns a boolean if a field has been set.
+
+### GetCertificate
+
+`func (o *SyntheticsTestRequest) GetCertificate() SyntheticsTestRequestCertificate`
+
+GetCertificate returns the Certificate field if non-nil, zero value otherwise.
+
+### GetCertificateOk
+
+`func (o *SyntheticsTestRequest) GetCertificateOk() (*SyntheticsTestRequestCertificate, bool)`
+
+GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificate
+
+`func (o *SyntheticsTestRequest) SetCertificate(v SyntheticsTestRequestCertificate)`
+
+SetCertificate sets Certificate field to given value.
+
+### HasCertificate
+
+`func (o *SyntheticsTestRequest) HasCertificate() bool`
+
+HasCertificate returns a boolean if a field has been set.
+
+### GetDnsServer
+
+`func (o *SyntheticsTestRequest) GetDnsServer() string`
+
+GetDnsServer returns the DnsServer field if non-nil, zero value otherwise.
+
+### GetDnsServerOk
+
+`func (o *SyntheticsTestRequest) GetDnsServerOk() (*string, bool)`
+
+GetDnsServerOk returns a tuple with the DnsServer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsServer
+
+`func (o *SyntheticsTestRequest) SetDnsServer(v string)`
+
+SetDnsServer sets DnsServer field to given value.
+
+### HasDnsServer
+
+`func (o *SyntheticsTestRequest) HasDnsServer() bool`
+
+HasDnsServer returns a boolean if a field has been set.
 
 ### GetHeaders
 
