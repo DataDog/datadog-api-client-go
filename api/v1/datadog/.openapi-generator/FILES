@@ -345,6 +345,8 @@ docs/SyntheticsTestOptionsRetry.md
 docs/SyntheticsTestPauseStatus.md
 docs/SyntheticsTestProcessStatus.md
 docs/SyntheticsTestRequest.md
+docs/SyntheticsTestRequestCertificate.md
+docs/SyntheticsTestRequestCertificateItem.md
 docs/SyntheticsTickInterval.md
 docs/SyntheticsTiming.md
 docs/SyntheticsTriggerCITestsResponse.md
@@ -767,6 +769,8 @@ model_synthetics_test_options_retry.go
 model_synthetics_test_pause_status.go
 model_synthetics_test_process_status.go
 model_synthetics_test_request.go
+model_synthetics_test_request_certificate.go
+model_synthetics_test_request_certificate_item.go
 model_synthetics_tick_interval.go
 model_synthetics_timing.go
 model_synthetics_trigger_ci_tests_response.go
