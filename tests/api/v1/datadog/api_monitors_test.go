@@ -206,7 +206,7 @@ func TestMonitorSyntheticsGet(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	// Create a synthetic API test to retrieve its corresponding monitor via GetMonitor (we're borrowing these from api_synthetics_test.go)
+	// Create a synthetics API test to retrieve its corresponding monitor via GetMonitor (we're borrowing these from api_synthetics_test.go)
 	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
 	syntheticsTest, _, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
 	if err != nil {
@@ -214,7 +214,7 @@ func TestMonitorSyntheticsGet(t *testing.T) {
 	}
 	defer deleteSyntheticsTestIfExists(ctx, syntheticsTest.GetPublicId())
 
-	// Retrieve the corresponding Synthetics Test monitor
+	// Retrieve the corresponding synthetics Test monitor
 	syntheticsMonitor, httpresp, err := Client(ctx).MonitorsApi.GetMonitor(ctx, syntheticsTest.GetMonitorId()).Execute()
 	if err != nil {
 		t.Errorf("Error fetching Monitor %v: Response %v: %v", syntheticsTest.GetMonitorId(), err.(datadog.GenericOpenAPIError).Body(), err)
