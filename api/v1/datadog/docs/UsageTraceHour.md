@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Hour** | Pointer to [**time.Time**](time.Time.md) | The hour for the usage. | [optional] 
-**IndexedEventsCount** | Pointer to **int64** | Contains the number of Analyzed Spans indexed. | [optional] 
+**IndexedEventsCount** | Pointer to **int64** | Contains the number of Indexed Spans indexed. | [optional] 
 
 ## Methods
 

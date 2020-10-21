@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **RumSessionCountSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current date for all organizations | [optional] 
 **SyntheticsBrowserCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current date for all organizations. | [optional] 
 **SyntheticsCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current date for all organizations. | [optional] 
-**TraceSearchIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all analyzed spans indexed over all hours in the current date for all organizations. | [optional] 
+**TraceSearchIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Indexed Spans indexed over all hours in the current date for all organizations. | [optional] 
 **TwolIngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all tracing without limits bytes ingested over all hours in the current date for all organizations. | [optional] 
 
 ## Methods
