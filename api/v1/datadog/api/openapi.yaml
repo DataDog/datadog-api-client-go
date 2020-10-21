@@ -12917,8 +12917,18 @@ components:
                 password: password
                 username: username
               query: '{}'
+              certificate:
+                cert:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
+                key:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
               host: host
               body: body
+              dnsServer: dnsServer
               timeout: 6.027456183070403
               url: url
             variables:
@@ -13375,8 +13385,18 @@ components:
                 password: password
                 username: username
               query: '{}'
+              certificate:
+                cert:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
+                key:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
               host: host
               body: body
+              dnsServer: dnsServer
               timeout: 6.027456183070403
               url: url
             variables:
@@ -13959,8 +13979,18 @@ components:
                 password: password
                 username: username
               query: '{}'
+              certificate:
+                cert:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
+                key:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
               host: host
               body: body
+              dnsServer: dnsServer
               timeout: 6.027456183070403
               url: url
             variables:
@@ -14015,8 +14045,18 @@ components:
                 password: password
                 username: username
               query: '{}'
+              certificate:
+                cert:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
+                key:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
               host: host
               body: body
+              dnsServer: dnsServer
               timeout: 6.027456183070403
               url: url
             variables:
@@ -14407,8 +14447,18 @@ components:
             password: password
             username: username
           query: '{}'
+          certificate:
+            cert:
+              filename: filename
+              content: content
+              updatedAt: updatedAt
+            key:
+              filename: filename
+              content: content
+              updatedAt: updatedAt
           host: host
           body: body
+          dnsServer: dnsServer
           timeout: 6.027456183070403
           url: url
         variables:
@@ -14472,8 +14522,18 @@ components:
               password: password
               username: username
             query: '{}'
+            certificate:
+              cert:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
+              key:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
             host: host
             body: body
+            dnsServer: dnsServer
             timeout: 6.027456183070403
             url: url
           variables:
@@ -14693,8 +14753,18 @@ components:
           password: password
           username: username
         query: '{}'
+        certificate:
+          cert:
+            filename: filename
+            content: content
+            updatedAt: updatedAt
+          key:
+            filename: filename
+            content: content
+            updatedAt: updatedAt
         host: host
         body: body
+        dnsServer: dnsServer
         timeout: 6.027456183070403
         url: url
       properties:
@@ -14702,6 +14772,11 @@ components:
           $ref: '#/components/schemas/SyntheticsBasicAuth'
         body:
           description: Body to include in the test.
+          type: string
+        certificate:
+          $ref: '#/components/schemas/SyntheticsTestRequestCertificate'
+        dnsServer:
+          description: DNS server to use for DNS tests.
           type: string
         headers:
           additionalProperties:
@@ -14727,6 +14802,40 @@ components:
           type: number
         url:
           description: URL to perform the test with.
+          type: string
+      type: object
+    SyntheticsTestRequestCertificate:
+      description: Client certificate to use when performing the test request.
+      example:
+        cert:
+          filename: filename
+          content: content
+          updatedAt: updatedAt
+        key:
+          filename: filename
+          content: content
+          updatedAt: updatedAt
+      properties:
+        cert:
+          $ref: '#/components/schemas/SyntheticsTestRequestCertificateItem'
+        key:
+          $ref: '#/components/schemas/SyntheticsTestRequestCertificateItem'
+      type: object
+    SyntheticsTestRequestCertificateItem:
+      description: Define a request certificate.
+      example:
+        filename: filename
+        content: content
+        updatedAt: updatedAt
+      properties:
+        content:
+          description: Content of the certificate or key.
+          type: string
+        filename:
+          description: File name for the certificate or key.
+          type: string
+        updatedAt:
+          description: Date of update of the certificate or key, ISO format.
           type: string
       type: object
     SyntheticsTickInterval:
@@ -14856,7 +14965,6 @@ components:
       x-enum-varnames:
       - USER_LOCATOR
     TableWidgetCellDisplayMode:
-      default: number
       description: Define a display mode for the table cell.
       enum:
       - number
@@ -19084,8 +19192,18 @@ components:
               password: password
               username: username
             query: '{}'
+            certificate:
+              cert:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
+              key:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
             host: host
             body: body
+            dnsServer: dnsServer
             timeout: 6.027456183070403
             url: url
           variables:
@@ -19146,8 +19264,18 @@ components:
               password: password
               username: username
             query: '{}'
+            certificate:
+              cert:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
+              key:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
             host: host
             body: body
+            dnsServer: dnsServer
             timeout: 6.027456183070403
             url: url
           variables:
