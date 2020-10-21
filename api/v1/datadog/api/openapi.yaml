@@ -131,8 +131,18 @@ tags:
     - For more information about Pipelines, see the
       [pipeline documentation](https://docs.datadoghq.com/logs/processing).
 
-    **Note:** These endpoints are only available for admin users.
+    **Notes:**
+
+    These endpoints are only available for admin users.
     Make sure to use an application key created by an admin.
+
+    **Grok parsing rules may effect JSON output and require
+    returned data to be configured before using in a request.**
+    For example, if you are using the data returned from a
+    request for another request body, and have a parsing rule
+    that uses a regex pattern like `\s` for spaces, you will
+    need to configure all escaped spaces as `%{space}` to use
+    in the body data.
   externalDocs:
     description: Find out more at
     url: https://docs.datadoghq.com/logs/processing/
@@ -10703,7 +10713,7 @@ components:
           no_data_timeframe: 2
           silenced:
             key: 9
-          synthetics_check_id: 3
+          synthetics_check_id: synthetics_check_id
           notify_no_data: false
           enable_logs_sample: true
           aggregation:
@@ -10716,12 +10726,12 @@ components:
           new_host_delay: 5
           renotify_interval: 7
           thresholds:
-            critical: 2.027123023002322
-            warning: 1.0246457001441578
-            warning_recovery: 1.4894159098541704
-            ok: 7.386281948385884
-            critical_recovery: 4.145608029883936
-            unknown: 1.2315135367772556
+            critical: 3.616076749251911
+            warning: 1.2315135367772556
+            warning_recovery: 1.0246457001441578
+            ok: 4.145608029883936
+            critical_recovery: 2.027123023002322
+            unknown: 7.386281948385884
           min_failure_duration: 1055
           threshold_windows:
             trigger_window: trigger_window
@@ -10732,18 +10742,18 @@ components:
           - null
           - null
           escalation_message: none
-          timeout_h: 6
+          timeout_h: 1
           locked: true
         modified: 2000-01-23T04:56:07.000+00:00
         id: 0
         state:
           groups:
             key:
-              last_triggered_ts: 5
-              last_notified_ts: 1
+              last_triggered_ts: 4
+              last_notified_ts: 7
               name: name
-              last_resolved_ts: 4
-              last_nodata_ts: 7
+              last_resolved_ts: 1
+              last_nodata_ts: 6
       properties:
         created:
           description: Timestamp of the monitor creation.
@@ -10826,7 +10836,7 @@ components:
         no_data_timeframe: 2
         silenced:
           key: 9
-        synthetics_check_id: 3
+        synthetics_check_id: synthetics_check_id
         notify_no_data: false
         enable_logs_sample: true
         aggregation:
@@ -10839,12 +10849,12 @@ components:
         new_host_delay: 5
         renotify_interval: 7
         thresholds:
-          critical: 2.027123023002322
-          warning: 1.0246457001441578
-          warning_recovery: 1.4894159098541704
-          ok: 7.386281948385884
-          critical_recovery: 4.145608029883936
-          unknown: 1.2315135367772556
+          critical: 3.616076749251911
+          warning: 1.2315135367772556
+          warning_recovery: 1.0246457001441578
+          ok: 4.145608029883936
+          critical_recovery: 2.027123023002322
+          unknown: 7.386281948385884
         min_failure_duration: 1055
         threshold_windows:
           trigger_window: trigger_window
@@ -10855,7 +10865,7 @@ components:
         - null
         - null
         escalation_message: none
-        timeout_h: 6
+        timeout_h: 1
         locked: true
       properties:
         aggregation:
@@ -10969,9 +10979,8 @@ components:
         synthetics_check_id:
           deprecated: true
           description: ID of the corresponding Synthetic check.
-          format: int64
           nullable: true
-          type: integer
+          type: string
         threshold_windows:
           $ref: '#/components/schemas/MonitorThresholdWindowOptions'
         thresholds:
@@ -11008,11 +11017,11 @@ components:
       example:
         groups:
           key:
-            last_triggered_ts: 5
-            last_notified_ts: 1
+            last_triggered_ts: 4
+            last_notified_ts: 7
             name: name
-            last_resolved_ts: 4
-            last_nodata_ts: 7
+            last_resolved_ts: 1
+            last_nodata_ts: 6
       properties:
         groups:
           additionalProperties:
@@ -11026,11 +11035,11 @@ components:
     MonitorStateGroup:
       description: Monitor state for a single group.
       example:
-        last_triggered_ts: 5
-        last_notified_ts: 1
+        last_triggered_ts: 4
+        last_notified_ts: 7
         name: name
-        last_resolved_ts: 4
-        last_nodata_ts: 7
+        last_resolved_ts: 1
+        last_nodata_ts: 6
       properties:
         last_nodata_ts:
           description: Latest timestamp the monitor was in NO_DATA state.
@@ -11131,12 +11140,12 @@ components:
     MonitorThresholds:
       description: List of the different monitor threshold available.
       example:
-        critical: 2.027123023002322
-        warning: 1.0246457001441578
-        warning_recovery: 1.4894159098541704
-        ok: 7.386281948385884
-        critical_recovery: 4.145608029883936
-        unknown: 1.2315135367772556
+        critical: 3.616076749251911
+        warning: 1.2315135367772556
+        warning_recovery: 1.0246457001441578
+        ok: 4.145608029883936
+        critical_recovery: 2.027123023002322
+        unknown: 7.386281948385884
       properties:
         critical:
           description: The monitor `CRITICAL` threshold.
@@ -11217,7 +11226,7 @@ components:
           no_data_timeframe: 2
           silenced:
             key: 9
-          synthetics_check_id: 3
+          synthetics_check_id: synthetics_check_id
           notify_no_data: false
           enable_logs_sample: true
           aggregation:
@@ -11230,12 +11239,12 @@ components:
           new_host_delay: 5
           renotify_interval: 7
           thresholds:
-            critical: 2.027123023002322
-            warning: 1.0246457001441578
-            warning_recovery: 1.4894159098541704
-            ok: 7.386281948385884
-            critical_recovery: 4.145608029883936
-            unknown: 1.2315135367772556
+            critical: 3.616076749251911
+            warning: 1.2315135367772556
+            warning_recovery: 1.0246457001441578
+            ok: 4.145608029883936
+            critical_recovery: 2.027123023002322
+            unknown: 7.386281948385884
           min_failure_duration: 1055
           threshold_windows:
             trigger_window: trigger_window
@@ -11246,18 +11255,18 @@ components:
           - null
           - null
           escalation_message: none
-          timeout_h: 6
+          timeout_h: 1
           locked: true
         modified: 2000-01-23T04:56:07.000+00:00
         id: 0
         state:
           groups:
             key:
-              last_triggered_ts: 5
-              last_notified_ts: 1
+              last_triggered_ts: 4
+              last_notified_ts: 7
               name: name
-              last_resolved_ts: 4
-              last_nodata_ts: 7
+              last_resolved_ts: 1
+              last_nodata_ts: 6
       properties:
         created:
           description: Timestamp of the monitor creation.
