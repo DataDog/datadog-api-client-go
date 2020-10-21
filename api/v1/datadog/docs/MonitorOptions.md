@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **RenotifyInterval** | Pointer to **NullableInt64** | The number of minutes after the last notification before a monitor re-notifies on the current status. It only re-notifies if it’s not resolved. | [optional] 
 **RequireFullWindow** | Pointer to **bool** | A Boolean indicating whether this monitor needs a full window of data before it’s evaluated. We highly recommend you set this to &#x60;false&#x60; for sparse metrics, otherwise some evaluations are skipped. For “on average” “at all times” and “in total” aggregation, default is true. &#x60;False&#x60; otherwise. | [optional] [default to true]
 **Silenced** | Pointer to **map[string]int64** | Information about the downtime applied to the monitor. | [optional] 
-**SyntheticsCheckId** | Pointer to **NullableInt64** | ID of the corresponding Synthetic check. | [optional] 
+**SyntheticsCheckId** | Pointer to **NullableString** | ID of the corresponding Synthetic check. | [optional] 
 **ThresholdWindows** | Pointer to [**MonitorThresholdWindowOptions**](MonitorThresholdWindowOptions.md) |  | [optional] 
 **Thresholds** | Pointer to [**MonitorThresholds**](MonitorThresholds.md) |  | [optional] 
 **TimeoutH** | Pointer to **NullableInt64** | The number of hours of the monitor not reporting data before it automatically resolves from a triggered state. | [optional] 
@@ -506,20 +506,20 @@ HasSilenced returns a boolean if a field has been set.
 
 ### GetSyntheticsCheckId
 
-`func (o *MonitorOptions) GetSyntheticsCheckId() int64`
+`func (o *MonitorOptions) GetSyntheticsCheckId() string`
 
 GetSyntheticsCheckId returns the SyntheticsCheckId field if non-nil, zero value otherwise.
 
 ### GetSyntheticsCheckIdOk
 
-`func (o *MonitorOptions) GetSyntheticsCheckIdOk() (*int64, bool)`
+`func (o *MonitorOptions) GetSyntheticsCheckIdOk() (*string, bool)`
 
 GetSyntheticsCheckIdOk returns a tuple with the SyntheticsCheckId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSyntheticsCheckId
 
-`func (o *MonitorOptions) SetSyntheticsCheckId(v int64)`
+`func (o *MonitorOptions) SetSyntheticsCheckId(v string)`
 
 SetSyntheticsCheckId sets SyntheticsCheckId field to given value.
 
