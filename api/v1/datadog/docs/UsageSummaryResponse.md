@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Shows the first date of usage in the current month(s) for all organizations. | [optional] 
 **SyntheticsBrowserCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current month(s) for all organizations. | [optional] 
 **SyntheticsCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current month(s) for all organizations. | [optional] 
-**TraceSearchIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all analyzed spans indexed over all hours in the current month(s) for all organizations. | [optional] 
+**TraceSearchIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Indexed Spans indexed over all hours in the current month(s) for all organizations. | [optional] 
 **TwolIngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all tracing without limits bytes ingested over all hours in the current month(s) for all organizations. | [optional] 
 **Usage** | Pointer to [**[]UsageSummaryDate**](UsageSummaryDate.md) | An array of objects regarding hourly usage. | [optional] 
 
