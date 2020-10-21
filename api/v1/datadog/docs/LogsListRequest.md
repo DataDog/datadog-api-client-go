@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | Pointer to **string** | For multi-index organizations, the log index in which the request is performed. Default to &#39;*&#39; (all indexes). | [optional] 
+**Index** | Pointer to **string** | The log index on which the request is performed. For multi-index organizations, the default is all live indexes. Historical indexes of rehydrated logs must be specified. | [optional] 
 **Limit** | Pointer to **int32** | Number of logs return in the response. | [optional] 
 **Query** | **string** | The search query - following the log search syntax. | 
 **Sort** | Pointer to [**LogsSort**](LogsSort.md) |  | [optional] 
