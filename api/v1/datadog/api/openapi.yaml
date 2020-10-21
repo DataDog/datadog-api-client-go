@@ -9911,8 +9911,9 @@ components:
         startAt: startAt
       properties:
         index:
-          description: For multi-index organizations, the log index in which the request
-            is performed. Default to '*' (all indexes).
+          description: The log index on which the request is performed. For multi-index
+            organizations, the default is all live indexes. Historical indexes of
+            rehydrated logs must be specified.
           example: retention-3,retention-15
           type: string
         limit:
@@ -15121,7 +15122,7 @@ components:
       - DOUBLE
     TimeseriesWidgetDefinition:
       description: The timeseries visualization allows you to display the evolution
-        of one or more metrics, log events, or Analyzed Spans over time.
+        of one or more metrics, log events, or Indexed Spans over time.
       properties:
         custom_links:
           description: List of custom links.
@@ -16934,8 +16935,8 @@ components:
           format: int64
           type: integer
         trace_search_indexed_events_count_sum:
-          description: Shows the sum of all analyzed spans indexed over all hours
-            in the current date for all organizations.
+          description: Shows the sum of all Indexed Spans indexed over all hours in
+            the current date for all organizations.
           format: int64
           type: integer
         twol_ingested_events_bytes_sum:
@@ -17095,8 +17096,8 @@ components:
           format: int64
           type: integer
         trace_search_indexed_events_count_sum:
-          description: Shows the sum of all analyzed spans indexed over all hours
-            in the current date for the given org.
+          description: Shows the sum of all Indexed Spans indexed over all hours in
+            the current date for the given org.
           format: int64
           type: integer
         twol_ingested_events_bytes_sum:
@@ -17443,8 +17444,8 @@ components:
           format: int64
           type: integer
         trace_search_indexed_events_count_agg_sum:
-          description: Shows the sum of all analyzed spans indexed over all hours
-            in the current month(s) for all organizations.
+          description: Shows the sum of all Indexed Spans indexed over all hours in
+            the current month(s) for all organizations.
           format: int64
           type: integer
         twol_ingested_events_bytes_agg_sum:
@@ -17649,7 +17650,7 @@ components:
           format: date-time
           type: string
         indexed_events_count:
-          description: Contains the number of Analyzed Spans indexed.
+          description: Contains the number of Indexed Spans indexed.
           format: int64
           type: integer
       type: object
