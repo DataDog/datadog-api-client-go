@@ -38,6 +38,7 @@ type Monitor struct {
 	// Tags associated to your monitor.
 	Tags *[]string    `json:"tags,omitempty"`
 	Type *MonitorType `json:"type,omitempty"`
+	Priority NullableInt64 `json:"priority,omitempty"`
 }
 
 // NewMonitor instantiates a new Monitor object
