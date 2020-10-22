@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Destination** | [**NullableLogsArchiveDestination**](LogsArchiveDestination.md) |  | 
+**IncludeTags** | Pointer to **bool** | To store the tags in the archive, set the value \&quot;true\&quot;. If it is set to \&quot;false\&quot;, the tags will be deleted when the logs are sent to the archive. | [optional] [default to false]
 **Name** | **string** | The archive name. | 
 **Query** | **string** | The archive query/filter. Logs matching this query are included in the archive. | 
 **RehydrationTags** | Pointer to **[]string** | An array of tags to add to rehydrated logs from an archive. | [optional] 
@@ -59,6 +60,31 @@ SetDestination sets Destination field to given value.
 `func (o *LogsArchiveAttributes) UnsetDestination()`
 
 UnsetDestination ensures that no value is present for Destination, not even an explicit nil
+### GetIncludeTags
+
+`func (o *LogsArchiveAttributes) GetIncludeTags() bool`
+
+GetIncludeTags returns the IncludeTags field if non-nil, zero value otherwise.
+
+### GetIncludeTagsOk
+
+`func (o *LogsArchiveAttributes) GetIncludeTagsOk() (*bool, bool)`
+
+GetIncludeTagsOk returns a tuple with the IncludeTags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIncludeTags
+
+`func (o *LogsArchiveAttributes) SetIncludeTags(v bool)`
+
+SetIncludeTags sets IncludeTags field to given value.
+
+### HasIncludeTags
+
+`func (o *LogsArchiveAttributes) HasIncludeTags() bool`
+
+HasIncludeTags returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *LogsArchiveAttributes) GetName() string`
