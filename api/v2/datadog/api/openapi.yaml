@@ -37,6 +37,12 @@ tags:
     organization. Note that you can add API v1 Dashboards to Dashboard Lists
     that you create with API v2.
   name: Dashboard Lists
+- description: Create, update, delete, and retrieve services which can be associated
+    with incidents.
+  name: Incident Services
+- description: Create, update, delete and retrieve teams which can be associated with
+    incidents.
+  name: Incident Teams
 - description: |-
     Search your logs in the Datadog platform over HTTP.
 
@@ -65,10 +71,6 @@ tags:
     Detection rules for generating signals and listing of generated
     signals.
   name: Security Monitoring
-- description: Create, update, delete and retrieve your organizations services.
-  name: Services
-- description: Create, update, delete and retrieve your organizations Teams.
-  name: Teams
 - description: Create, edit, and disable users.
   externalDocs:
     url: https://docs.datadoghq.com/account_management/users
@@ -1682,10 +1684,10 @@ paths:
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/services:
     get:
-      description: Get all services for the requesting user's organization. If the
-        `include[users]` query parameter is provided, the included attribute will
-        contain the users related to these services.
-      operationId: GetServices
+      description: Get all incident services uploaded for the requesting user's organization.
+        If the `include[users]` query parameter is provided, the included attribute
+        will contain the users related to these incident services.
+      operationId: GetIncidentServices
       parameters:
       - description: Specifies which types of related objects should be included in
           the response.
@@ -1723,7 +1725,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServicesResponse'
+                $ref: '#/components/schemas/IncidentServicesResponse'
           description: OK
         "400":
           content:
@@ -1749,28 +1751,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Get a list of all services
+      summary: Get a list of all incident services
       tags:
-      - Services
+      - Incident Services
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     post:
-      description: Creates a new service.
-      operationId: CreateService
+      description: Creates a new incident service.
+      operationId: CreateIncidentService
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ServiceCreateRequest'
-        description: Service Payload.
+              $ref: '#/components/schemas/IncidentServiceCreateRequest'
+        description: Incident Service Payload.
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServiceResponse'
+                $ref: '#/components/schemas/IncidentServiceResponse'
           description: CREATED
         "400":
           content:
@@ -1796,19 +1798,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Create a new service
+      summary: Create a new incident service
       tags:
-      - Services
+      - Incident Services
       x-codegen-request-body-name: body
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/services/{service_id}:
     delete:
-      description: Deletes an existing service.
-      operationId: DeleteService
+      description: Deletes an existing incident service.
+      operationId: DeleteIncidentService
       parameters:
-      - description: The ID of the service.
+      - description: The ID of the incident service.
         explode: false
         in: path
         name: service_id
@@ -1843,19 +1845,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Delete an existing service
+      summary: Delete an existing incident service
       tags:
-      - Services
+      - Incident Services
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     get:
-      description: Get details of a service. If the `include[users]` query parameter
-        is provided, the included attribute will contain the users related to these
-        services
-      operationId: GetService
+      description: Get details of an incident service. If the `include[users]` query
+        parameter is provided, the included attribute will contain the users related
+        to these incident services.
+      operationId: GetIncidentService
       parameters:
-      - description: The ID of the service.
+      - description: The ID of the incident service.
         explode: false
         in: path
         name: service_id
@@ -1879,7 +1881,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServiceResponse'
+                $ref: '#/components/schemas/IncidentServiceResponse'
           description: OK
         "400":
           content:
@@ -1905,18 +1907,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Get details of a service
+      summary: Get details of an incident service
       tags:
-      - Services
+      - Incident Services
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     patch:
-      description: Updates an existing service. Only provide the attributes which
-        should be updated as this request is a partial update.
-      operationId: UpdateService
+      description: Updates an existing incident service. Only provide the attributes
+        which should be updated as this request is a partial update.
+      operationId: UpdateIncidentService
       parameters:
-      - description: The ID of the service.
+      - description: The ID of the incident service.
         explode: false
         in: path
         name: service_id
@@ -1928,15 +1930,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ServiceUpdateRequest'
-        description: Service Payload.
+              $ref: '#/components/schemas/IncidentServiceUpdateRequest'
+        description: Incident Service Payload.
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServiceResponse'
+                $ref: '#/components/schemas/IncidentServiceResponse'
           description: OK
         "400":
           content:
@@ -1962,19 +1964,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Update an existing service
+      summary: Update an existing incident service
       tags:
-      - Services
+      - Incident Services
       x-codegen-request-body-name: body
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/teams:
     get:
-      description: Get all teams for the requesting user's organization. If the `include[users]`
-        query parameter is provided, the included attribute will contain the users
-        related to these teams.
-      operationId: GetTeams
+      description: Get all incident teams for the requesting user's organization.
+        If the `include[users]` query parameter is provided, the included attribute
+        will contain the users related to these incident teams.
+      operationId: GetIncidentTeams
       parameters:
       - description: Specifies which types of related objects should be included in
           the response.
@@ -2012,7 +2014,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TeamsResponse'
+                $ref: '#/components/schemas/IncidentTeamsResponse'
           description: OK
         "400":
           content:
@@ -2038,28 +2040,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Get a list of all teams
+      summary: Get a list of all incident teams
       tags:
-      - Teams
+      - Incident Teams
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     post:
-      description: Creates a new team.
-      operationId: CreateTeam
+      description: Creates a new incident team.
+      operationId: CreateIncidentTeam
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TeamCreateRequest'
-        description: Teams Payload.
+              $ref: '#/components/schemas/IncidentTeamCreateRequest'
+        description: Incident Team Payload.
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TeamResponse'
+                $ref: '#/components/schemas/IncidentTeamResponse'
           description: CREATED
         "400":
           content:
@@ -2085,19 +2087,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Create a new team
+      summary: Create a new incident team
       tags:
-      - Teams
+      - Incident Teams
       x-codegen-request-body-name: body
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/teams/{team_id}:
     delete:
-      description: Deletes an existing team.
-      operationId: DeleteTeam
+      description: Deletes an existing incident team.
+      operationId: DeleteIncidentTeam
       parameters:
-      - description: The ID of the team.
+      - description: The ID of the incident team.
         explode: false
         in: path
         name: team_id
@@ -2132,19 +2134,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Delete an existing team
+      summary: Delete an existing incident team
       tags:
-      - Teams
+      - Incident Teams
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     get:
-      description: Get details of a team. If the `include[users]` query parameter
-        is provided, the included attribute will contain the users related to these
-        teams.
-      operationId: GetTeam
+      description: Get details of an incident team. If the `include[users]` query
+        parameter is provided, the included attribute will contain the users related
+        to these incident teams.
+      operationId: GetIncidentTeam
       parameters:
-      - description: The ID of the team.
+      - description: The ID of the incident team.
         explode: false
         in: path
         name: team_id
@@ -2168,7 +2170,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TeamResponse'
+                $ref: '#/components/schemas/IncidentTeamResponse'
           description: OK
         "400":
           content:
@@ -2194,18 +2196,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Get details of a team
+      summary: Get details of an incident team
       tags:
-      - Teams
+      - Incident Teams
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     patch:
-      description: Updates an existing team. Only provide the attributes which should
-        be updated as this request is a partial update.
-      operationId: UpdateTeam
+      description: Updates an existing incident team. Only provide the attributes
+        which should be updated as this request is a partial update.
+      operationId: UpdateIncidentTeam
       parameters:
-      - description: The ID of the team.
+      - description: The ID of the incident team.
         explode: false
         in: path
         name: team_id
@@ -2217,15 +2219,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TeamUpdateRequest'
-        description: Teams Payload.
+              $ref: '#/components/schemas/IncidentTeamUpdateRequest'
+        description: Incident Team Payload.
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TeamResponse'
+                $ref: '#/components/schemas/IncidentTeamResponse'
           description: OK
         "400":
           content:
@@ -2251,9 +2253,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Update an existing team
+      summary: Update an existing incident team
       tags:
-      - Teams
+      - Incident Teams
       x-codegen-request-body-name: body
       x-unstable: |-
         **Note**: This endpoint is in public beta.
@@ -2661,6 +2663,48 @@ components:
       schema:
         type: string
       style: simple
+    IncidentServiceIDPathParameter:
+      description: The ID of the incident service.
+      explode: false
+      in: path
+      name: service_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    IncidentServiceIncludeQueryParameter:
+      description: Specifies which types of related objects should be included in
+        the response.
+      explode: true
+      in: query
+      name: include
+      required: false
+      schema:
+        enum:
+        - users
+        type: string
+      style: form
+    IncidentTeamIDPathParameter:
+      description: The ID of the incident team.
+      explode: false
+      in: path
+      name: team_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    IncidentTeamIncludeQueryParameter:
+      description: Specifies which types of related objects should be included in
+        the response.
+      explode: true
+      in: query
+      name: include
+      required: false
+      schema:
+        enum:
+        - users
+        type: string
+      style: form
     PageNumber:
       description: Specific page number to return.
       explode: true
@@ -2712,48 +2756,6 @@ components:
       schema:
         type: string
       style: simple
-    ServiceIDPathParameter:
-      description: The ID of the service.
-      explode: false
-      in: path
-      name: service_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    ServiceIncludeQueryParameter:
-      description: Specifies which types of related objects should be included in
-        the response.
-      explode: true
-      in: query
-      name: include
-      required: false
-      schema:
-        enum:
-        - users
-        type: string
-      style: form
-    TeamIDPathParameter:
-      description: The ID of the team.
-      explode: false
-      in: path
-      name: team_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    TeamIncludeQueryParameter:
-      description: Specifies which types of related objects should be included in
-        the response.
-      explode: true
-      in: query
-      name: include
-      required: false
-      schema:
-        enum:
-        - users
-        type: string
-      style: form
     UserID:
       description: The ID of the user.
       explode: false
@@ -3027,6 +3029,569 @@ components:
       - INTEGRATION_SCREENBOARD
       - INTEGRATION_TIMEBOARD
       - HOST_TIMEBOARD
+    IncidentServiceCreateAttributes:
+      description: The incident service's attributes for a create request.
+      example:
+        name: an example service name
+      properties:
+        name:
+          description: Name of the incident service.
+          example: an example service name
+          type: string
+      required:
+      - name
+      type: object
+    IncidentServiceCreateData:
+      description: Incident Service payload for create requests.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          name: an example service name
+        type: services
+      properties:
+        attributes:
+          $ref: '#/components/schemas/IncidentServiceCreateAttributes'
+        relationships:
+          $ref: '#/components/schemas/IncidentServiceRelationships'
+        type:
+          $ref: '#/components/schemas/IncidentServiceType'
+      required:
+      - type
+      type: object
+    IncidentServiceCreateRequest:
+      description: Create request with an incident service payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            name: an example service name
+          type: services
+      properties:
+        data:
+          $ref: '#/components/schemas/IncidentServiceCreateData'
+      required:
+      - data
+      type: object
+    IncidentServiceIncludedItems:
+      description: An object related to an incident service which is present in the
+        included payload.
+      oneOf:
+      - $ref: '#/components/schemas/User'
+      type: object
+    IncidentServiceRelationships:
+      description: The incident service's relationships.
+      example:
+        last_modified_by:
+          data:
+            id: 00000000-0000-0000-0000-000000000000
+            type: users
+        created_by:
+          data:
+            id: 00000000-0000-0000-0000-000000000000
+            type: users
+      properties:
+        created_by:
+          $ref: '#/components/schemas/RelationshipToUser'
+        last_modified_by:
+          $ref: '#/components/schemas/RelationshipToUser'
+      readOnly: true
+      type: object
+    IncidentServiceResponse:
+      description: Response with an incident service payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            created: 2000-01-23T04:56:07.000+00:00
+            name: service name
+            modified: 2000-01-23T04:56:07.000+00:00
+          id: 00000000-0000-0000-0000-000000000000
+          type: services
+        included:
+        - null
+        - null
+      properties:
+        data:
+          $ref: '#/components/schemas/IncidentServiceResponseData'
+        included:
+          description: Included objects from relationships.
+          items:
+            $ref: '#/components/schemas/IncidentServiceIncludedItems'
+          readOnly: true
+          type: array
+      required:
+      - data
+      type: object
+    IncidentServiceResponseAttributes:
+      description: The incident service's attributes from a response.
+      example:
+        created: 2000-01-23T04:56:07.000+00:00
+        name: service name
+        modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        created:
+          description: Timestamp of when the incident service was created.
+          format: date-time
+          readOnly: true
+          type: string
+        modified:
+          description: Timestamp of when the incident service was modified.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: Name of the incident service.
+          example: service name
+          type: string
+      type: object
+    IncidentServiceResponseData:
+      description: Incident Service data from responses.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          created: 2000-01-23T04:56:07.000+00:00
+          name: service name
+          modified: 2000-01-23T04:56:07.000+00:00
+        id: 00000000-0000-0000-0000-000000000000
+        type: services
+      properties:
+        attributes:
+          $ref: '#/components/schemas/IncidentServiceResponseAttributes'
+        id:
+          description: The incident service's ID.
+          example: 00000000-0000-0000-0000-000000000000
+          type: string
+        relationships:
+          $ref: '#/components/schemas/IncidentServiceRelationships'
+        type:
+          $ref: '#/components/schemas/IncidentServiceType'
+      required:
+      - id
+      - type
+      type: object
+    IncidentServiceType:
+      default: services
+      description: Incident Service resource type.
+      enum:
+      - services
+      example: services
+      type: string
+      x-enum-varnames:
+      - SERVICES
+    IncidentServiceUpdateAttributes:
+      description: The incident service's attributes for an update request.
+      example:
+        name: an example service name
+      properties:
+        name:
+          description: Name of the incident service.
+          example: an example service name
+          type: string
+      required:
+      - name
+      type: object
+    IncidentServiceUpdateData:
+      description: Incident Service payload for update requests.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          name: an example service name
+        id: 00000000-0000-0000-0000-000000000000
+        type: services
+      properties:
+        attributes:
+          $ref: '#/components/schemas/IncidentServiceUpdateAttributes'
+        id:
+          description: The incident service's ID.
+          example: 00000000-0000-0000-0000-000000000000
+          type: string
+        relationships:
+          $ref: '#/components/schemas/IncidentServiceRelationships'
+        type:
+          $ref: '#/components/schemas/IncidentServiceType'
+      required:
+      - id
+      - type
+      type: object
+    IncidentServiceUpdateRequest:
+      description: Update request with an incident service payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            name: an example service name
+          id: 00000000-0000-0000-0000-000000000000
+          type: services
+      properties:
+        data:
+          $ref: '#/components/schemas/IncidentServiceUpdateData'
+      required:
+      - data
+      type: object
+    IncidentServicesResponse:
+      description: Response with a list of incident service payloads.
+      example:
+        data:
+        - id: 00000000-0000-0000-0000-000000000000
+          type: services
+        meta:
+          pagination:
+            offset: 10
+            size: 1000
+            next_offset: 1000
+        included:
+        - null
+        - null
+      properties:
+        data:
+          description: An array of incident services.
+          example:
+          - id: 00000000-0000-0000-0000-000000000000
+            type: services
+          items:
+            $ref: '#/components/schemas/IncidentServiceResponseData'
+          type: array
+        included:
+          description: Included related resources which the user requested.
+          items:
+            $ref: '#/components/schemas/IncidentServiceIncludedItems'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/IncidentServicesResponse_meta'
+      required:
+      - data
+      type: object
+    IncidentTeamCreateAttributes:
+      description: The incident team's attributes for a create request.
+      example:
+        name: team name
+      properties:
+        name:
+          description: Name of the incident team.
+          example: team name
+          type: string
+      required:
+      - name
+      type: object
+    IncidentTeamCreateData:
+      description: Incident Team data for a create request.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          name: team name
+        type: teams
+      properties:
+        attributes:
+          $ref: '#/components/schemas/IncidentTeamCreateAttributes'
+        relationships:
+          $ref: '#/components/schemas/IncidentTeamRelationships'
+        type:
+          $ref: '#/components/schemas/IncidentTeamType'
+      required:
+      - type
+      type: object
+    IncidentTeamCreateRequest:
+      description: Create request with an incident team payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            name: team name
+          type: teams
+      properties:
+        data:
+          $ref: '#/components/schemas/IncidentTeamCreateData'
+      required:
+      - data
+      type: object
+    IncidentTeamIncludedItems:
+      description: An object related to an incident team which is present in the included
+        payload.
+      oneOf:
+      - $ref: '#/components/schemas/User'
+      type: object
+    IncidentTeamRelationships:
+      description: The incident team's relationships.
+      example:
+        last_modified_by:
+          data:
+            id: 00000000-0000-0000-0000-000000000000
+            type: users
+        created_by:
+          data:
+            id: 00000000-0000-0000-0000-000000000000
+            type: users
+      properties:
+        created_by:
+          $ref: '#/components/schemas/RelationshipToUser'
+        last_modified_by:
+          $ref: '#/components/schemas/RelationshipToUser'
+      readOnly: true
+      type: object
+    IncidentTeamResponse:
+      description: Response with an incident team payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            created: 2000-01-23T04:56:07.000+00:00
+            name: team name
+            modified: 2000-01-23T04:56:07.000+00:00
+          id: 00000000-0000-0000-0000-000000000000
+          type: teams
+        included:
+        - null
+        - null
+      properties:
+        data:
+          $ref: '#/components/schemas/IncidentTeamResponseData'
+        included:
+          description: Included objects from relationships.
+          items:
+            $ref: '#/components/schemas/IncidentTeamIncludedItems'
+          readOnly: true
+          type: array
+      required:
+      - data
+      type: object
+    IncidentTeamResponseAttributes:
+      description: The incident team's attributes from a response.
+      example:
+        created: 2000-01-23T04:56:07.000+00:00
+        name: team name
+        modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        created:
+          description: Timestamp of when the incident team was created.
+          format: date-time
+          readOnly: true
+          type: string
+        modified:
+          description: Timestamp of when the incident team was modified.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: Name of the incident team.
+          example: team name
+          type: string
+      type: object
+    IncidentTeamResponseData:
+      description: Incident Team data from a response.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          created: 2000-01-23T04:56:07.000+00:00
+          name: team name
+          modified: 2000-01-23T04:56:07.000+00:00
+        id: 00000000-0000-0000-0000-000000000000
+        type: teams
+      properties:
+        attributes:
+          $ref: '#/components/schemas/IncidentTeamResponseAttributes'
+        id:
+          description: The incident team's ID.
+          example: 00000000-0000-0000-0000-000000000000
+          type: string
+        relationships:
+          $ref: '#/components/schemas/IncidentTeamRelationships'
+        type:
+          $ref: '#/components/schemas/IncidentTeamType'
+      type: object
+    IncidentTeamType:
+      default: teams
+      description: Incident Team resource type.
+      enum:
+      - teams
+      example: teams
+      type: string
+      x-enum-varnames:
+      - TEAMS
+    IncidentTeamUpdateAttributes:
+      description: The incident team's attributes for an update request.
+      example:
+        name: team name
+      properties:
+        name:
+          description: Name of the incident team.
+          example: team name
+          type: string
+      required:
+      - name
+      type: object
+    IncidentTeamUpdateData:
+      description: Incident Team data for an update request.
+      example:
+        relationships:
+          last_modified_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+          created_by:
+            data:
+              id: 00000000-0000-0000-0000-000000000000
+              type: users
+        attributes:
+          name: team name
+        id: 00000000-0000-0000-0000-000000000000
+        type: teams
+      properties:
+        attributes:
+          $ref: '#/components/schemas/IncidentTeamUpdateAttributes'
+        id:
+          description: The incident team's ID.
+          example: 00000000-0000-0000-0000-000000000000
+          type: string
+        relationships:
+          $ref: '#/components/schemas/IncidentTeamRelationships'
+        type:
+          $ref: '#/components/schemas/IncidentTeamType'
+      required:
+      - id
+      - type
+      type: object
+    IncidentTeamUpdateRequest:
+      description: Update request with an incident team payload.
+      example:
+        data:
+          relationships:
+            last_modified_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+            created_by:
+              data:
+                id: 00000000-0000-0000-0000-000000000000
+                type: users
+          attributes:
+            name: team name
+          id: 00000000-0000-0000-0000-000000000000
+          type: teams
+      properties:
+        data:
+          $ref: '#/components/schemas/IncidentTeamUpdateData'
+      required:
+      - data
+      type: object
+    IncidentTeamsResponse:
+      description: Response with a list of incident team payloads.
+      example:
+        data:
+        - attributes:
+            name: team name
+          id: 00000000-0000-0000-0000-000000000000
+          type: teams
+        meta:
+          pagination:
+            offset: 10
+            size: 1000
+            next_offset: 1000
+        included:
+        - null
+        - null
+      properties:
+        data:
+          description: An array of incident teams.
+          example:
+          - attributes:
+              name: team name
+            id: 00000000-0000-0000-0000-000000000000
+            type: teams
+          items:
+            $ref: '#/components/schemas/IncidentTeamResponseData'
+          type: array
+        included:
+          description: Included related resources which the user requested.
+          items:
+            $ref: '#/components/schemas/IncidentTeamIncludedItems'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/IncidentServicesResponse_meta'
+      required:
+      - data
+      type: object
     Log:
       description: Object description of a log after being processed and stored by
         Datadog.
@@ -5421,568 +5986,6 @@ components:
       x-enum-varnames:
       - TIMESTAMP_ASCENDING
       - TIMESTAMP_DESCENDING
-    ServiceCreateAttributes:
-      description: The service's attributes for a create request.
-      example:
-        name: an example service name
-      properties:
-        name:
-          description: Name of the service.
-          example: an example service name
-          type: string
-      required:
-      - name
-      type: object
-    ServiceCreateData:
-      description: Service payload for create requests.
-      example:
-        relationships:
-          last_modified_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-          created_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-        attributes:
-          name: an example service name
-        type: services
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ServiceCreateAttributes'
-        relationships:
-          $ref: '#/components/schemas/ServiceRelationships'
-        type:
-          $ref: '#/components/schemas/ServiceType'
-      required:
-      - type
-      type: object
-    ServiceCreateRequest:
-      description: Create request with a service payload.
-      example:
-        data:
-          relationships:
-            last_modified_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-            created_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-          attributes:
-            name: an example service name
-          type: services
-      properties:
-        data:
-          $ref: '#/components/schemas/ServiceCreateData'
-      required:
-      - data
-      type: object
-    ServiceIncludedItems:
-      description: An object related to a service which is present in the included
-        payload.
-      oneOf:
-      - $ref: '#/components/schemas/User'
-      type: object
-    ServiceRelationships:
-      description: The service's relationships.
-      example:
-        last_modified_by:
-          data:
-            id: 00000000-0000-0000-0000-000000000000
-            type: users
-        created_by:
-          data:
-            id: 00000000-0000-0000-0000-000000000000
-            type: users
-      properties:
-        created_by:
-          $ref: '#/components/schemas/RelationshipToUser'
-        last_modified_by:
-          $ref: '#/components/schemas/RelationshipToUser'
-      readOnly: true
-      type: object
-    ServiceResponse:
-      description: Response with a service payload.
-      example:
-        data:
-          relationships:
-            last_modified_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-            created_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-          attributes:
-            created: 2000-01-23T04:56:07.000+00:00
-            name: service name
-            modified: 2000-01-23T04:56:07.000+00:00
-          id: 00000000-0000-0000-0000-000000000000
-          type: services
-        included:
-        - null
-        - null
-      properties:
-        data:
-          $ref: '#/components/schemas/ServiceResponseData'
-        included:
-          description: Included objects from relationships.
-          items:
-            $ref: '#/components/schemas/ServiceIncludedItems'
-          readOnly: true
-          type: array
-      required:
-      - data
-      type: object
-    ServiceResponseAttributes:
-      description: The service's attributes from a response.
-      example:
-        created: 2000-01-23T04:56:07.000+00:00
-        name: service name
-        modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        created:
-          description: Timestamp of when the service was created.
-          format: date-time
-          readOnly: true
-          type: string
-        modified:
-          description: Timestamp of when the service was modified.
-          format: date-time
-          readOnly: true
-          type: string
-        name:
-          description: Name of the service.
-          example: service name
-          type: string
-      type: object
-    ServiceResponseData:
-      description: Service data from responses.
-      example:
-        relationships:
-          last_modified_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-          created_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-        attributes:
-          created: 2000-01-23T04:56:07.000+00:00
-          name: service name
-          modified: 2000-01-23T04:56:07.000+00:00
-        id: 00000000-0000-0000-0000-000000000000
-        type: services
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ServiceResponseAttributes'
-        id:
-          description: The service's ID.
-          example: 00000000-0000-0000-0000-000000000000
-          type: string
-        relationships:
-          $ref: '#/components/schemas/ServiceRelationships'
-        type:
-          $ref: '#/components/schemas/ServiceType'
-      required:
-      - id
-      - type
-      type: object
-    ServiceType:
-      default: services
-      description: Service resource type.
-      enum:
-      - services
-      example: services
-      type: string
-      x-enum-varnames:
-      - SERVICES
-    ServiceUpdateAttributes:
-      description: The service's attributes for an update request.
-      example:
-        name: an example service name
-      properties:
-        name:
-          description: Name of the service.
-          example: an example service name
-          type: string
-      required:
-      - name
-      type: object
-    ServiceUpdateData:
-      description: Service payload for update requests.
-      example:
-        relationships:
-          last_modified_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-          created_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-        attributes:
-          name: an example service name
-        id: 00000000-0000-0000-0000-000000000000
-        type: services
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ServiceUpdateAttributes'
-        id:
-          description: The service's ID.
-          example: 00000000-0000-0000-0000-000000000000
-          type: string
-        relationships:
-          $ref: '#/components/schemas/ServiceRelationships'
-        type:
-          $ref: '#/components/schemas/ServiceType'
-      required:
-      - id
-      - type
-      type: object
-    ServiceUpdateRequest:
-      description: Update request with a service payload.
-      example:
-        data:
-          relationships:
-            last_modified_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-            created_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-          attributes:
-            name: an example service name
-          id: 00000000-0000-0000-0000-000000000000
-          type: services
-      properties:
-        data:
-          $ref: '#/components/schemas/ServiceUpdateData'
-      required:
-      - data
-      type: object
-    ServicesResponse:
-      description: Response with a list of service payloads.
-      example:
-        data:
-        - id: 00000000-0000-0000-0000-000000000000
-          type: services
-        meta:
-          pagination:
-            offset: 10
-            size: 1000
-            next_offset: 1000
-        included:
-        - null
-        - null
-      properties:
-        data:
-          description: An array of services.
-          example:
-          - id: 00000000-0000-0000-0000-000000000000
-            type: services
-          items:
-            $ref: '#/components/schemas/ServiceResponseData'
-          type: array
-        included:
-          description: Included related resources which the user requested.
-          items:
-            $ref: '#/components/schemas/ServiceIncludedItems'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ServicesResponse_meta'
-      required:
-      - data
-      type: object
-    TeamCreateAttributes:
-      description: The team's attributes for a create request.
-      example:
-        name: team name
-      properties:
-        name:
-          description: Name of the team.
-          example: team name
-          type: string
-      required:
-      - name
-      type: object
-    TeamCreateData:
-      description: Team data for a create request.
-      example:
-        relationships:
-          last_modified_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-          created_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-        attributes:
-          name: team name
-        type: teams
-      properties:
-        attributes:
-          $ref: '#/components/schemas/TeamCreateAttributes'
-        relationships:
-          $ref: '#/components/schemas/TeamRelationships'
-        type:
-          $ref: '#/components/schemas/TeamType'
-      required:
-      - type
-      type: object
-    TeamCreateRequest:
-      description: Create request with a team payload.
-      example:
-        data:
-          relationships:
-            last_modified_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-            created_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-          attributes:
-            name: team name
-          type: teams
-      properties:
-        data:
-          $ref: '#/components/schemas/TeamCreateData'
-      required:
-      - data
-      type: object
-    TeamIncludedItems:
-      description: An object related to a team which is present in the included payload.
-      oneOf:
-      - $ref: '#/components/schemas/User'
-      type: object
-    TeamRelationships:
-      description: The team's relationships.
-      example:
-        last_modified_by:
-          data:
-            id: 00000000-0000-0000-0000-000000000000
-            type: users
-        created_by:
-          data:
-            id: 00000000-0000-0000-0000-000000000000
-            type: users
-      properties:
-        created_by:
-          $ref: '#/components/schemas/RelationshipToUser'
-        last_modified_by:
-          $ref: '#/components/schemas/RelationshipToUser'
-      readOnly: true
-      type: object
-    TeamResponse:
-      description: Response with a team payload.
-      example:
-        data:
-          relationships:
-            last_modified_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-            created_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-          attributes:
-            created: 2000-01-23T04:56:07.000+00:00
-            name: team name
-            modified: 2000-01-23T04:56:07.000+00:00
-          id: 00000000-0000-0000-0000-000000000000
-          type: teams
-        included:
-        - null
-        - null
-      properties:
-        data:
-          $ref: '#/components/schemas/TeamResponseData'
-        included:
-          description: Included objects from relationships.
-          items:
-            $ref: '#/components/schemas/TeamIncludedItems'
-          readOnly: true
-          type: array
-      required:
-      - data
-      type: object
-    TeamResponseAttributes:
-      description: The team's attributes from a response.
-      example:
-        created: 2000-01-23T04:56:07.000+00:00
-        name: team name
-        modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        created:
-          description: Timestamp of when the team was created.
-          format: date-time
-          readOnly: true
-          type: string
-        modified:
-          description: Timestamp of when the team was modified.
-          format: date-time
-          readOnly: true
-          type: string
-        name:
-          description: Name of the team.
-          example: team name
-          type: string
-      type: object
-    TeamResponseData:
-      description: Team data from a response.
-      example:
-        relationships:
-          last_modified_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-          created_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-        attributes:
-          created: 2000-01-23T04:56:07.000+00:00
-          name: team name
-          modified: 2000-01-23T04:56:07.000+00:00
-        id: 00000000-0000-0000-0000-000000000000
-        type: teams
-      properties:
-        attributes:
-          $ref: '#/components/schemas/TeamResponseAttributes'
-        id:
-          description: The team's ID.
-          example: 00000000-0000-0000-0000-000000000000
-          type: string
-        relationships:
-          $ref: '#/components/schemas/TeamRelationships'
-        type:
-          $ref: '#/components/schemas/TeamType'
-      type: object
-    TeamType:
-      default: teams
-      description: Team resource type.
-      enum:
-      - teams
-      example: teams
-      type: string
-      x-enum-varnames:
-      - TEAMS
-    TeamUpdateAttributes:
-      description: The team's attributes for an update request.
-      example:
-        name: team name
-      properties:
-        name:
-          description: Name of the team.
-          example: team name
-          type: string
-      required:
-      - name
-      type: object
-    TeamUpdateData:
-      description: Team data for an update request.
-      example:
-        relationships:
-          last_modified_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-          created_by:
-            data:
-              id: 00000000-0000-0000-0000-000000000000
-              type: users
-        attributes:
-          name: team name
-        id: 00000000-0000-0000-0000-000000000000
-        type: teams
-      properties:
-        attributes:
-          $ref: '#/components/schemas/TeamUpdateAttributes'
-        id:
-          description: The team's ID.
-          example: 00000000-0000-0000-0000-000000000000
-          type: string
-        relationships:
-          $ref: '#/components/schemas/TeamRelationships'
-        type:
-          $ref: '#/components/schemas/TeamType'
-      required:
-      - id
-      - type
-      type: object
-    TeamUpdateRequest:
-      description: Update request with a team payload.
-      example:
-        data:
-          relationships:
-            last_modified_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-            created_by:
-              data:
-                id: 00000000-0000-0000-0000-000000000000
-                type: users
-          attributes:
-            name: team name
-          id: 00000000-0000-0000-0000-000000000000
-          type: teams
-      properties:
-        data:
-          $ref: '#/components/schemas/TeamUpdateData'
-      required:
-      - data
-      type: object
-    TeamsResponse:
-      description: Response with a list of team payloads.
-      example:
-        data:
-        - attributes:
-            name: team name
-          id: 00000000-0000-0000-0000-000000000000
-          type: teams
-        meta:
-          pagination:
-            offset: 10
-            size: 1000
-            next_offset: 1000
-        included:
-        - null
-        - null
-      properties:
-        data:
-          description: An array of teams.
-          example:
-          - attributes:
-              name: team name
-            id: 00000000-0000-0000-0000-000000000000
-            type: teams
-          items:
-            $ref: '#/components/schemas/TeamResponseData'
-          type: array
-        included:
-          description: Included related resources which the user requested.
-          items:
-            $ref: '#/components/schemas/TeamIncludedItems'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ServicesResponse_meta'
-      required:
-      - data
-      type: object
     User:
       description: User object returned by the API.
       example:
@@ -6493,6 +6496,42 @@ components:
       type: string
       x-enum-varnames:
       - USERS
+    IncidentServicesResponse_meta_pagination:
+      description: Pagination properties.
+      example:
+        offset: 10
+        size: 1000
+        next_offset: 1000
+      properties:
+        next_offset:
+          description: The index of the first element in the next page of results.
+            Equal to page size added to the current offset.
+          example: 1000
+          format: int64
+          type: integer
+        offset:
+          description: The index of the first element in the results.
+          example: 10
+          format: int64
+          type: integer
+        size:
+          description: Maximum size of pages to return.
+          example: 1000
+          format: int64
+          type: integer
+      type: object
+    IncidentServicesResponse_meta:
+      description: The metadata object containing pagination metadata.
+      example:
+        pagination:
+          offset: 10
+          size: 1000
+          next_offset: 1000
+      properties:
+        pagination:
+          $ref: '#/components/schemas/IncidentServicesResponse_meta_pagination'
+      readOnly: true
+      type: object
     Log_attributes:
       description: JSON object containing all log attributes and their associated
         values.
@@ -6839,42 +6878,6 @@ components:
       properties:
         page:
           $ref: '#/components/schemas/SecurityMonitoringSignalsListResponse_meta_page'
-      type: object
-    ServicesResponse_meta_pagination:
-      description: Pagination properties.
-      example:
-        offset: 10
-        size: 1000
-        next_offset: 1000
-      properties:
-        next_offset:
-          description: The index of the first element in the next page of results.
-            Equal to page size added to the current offset.
-          example: 1000
-          format: int64
-          type: integer
-        offset:
-          description: The index of the first element in the results.
-          example: 10
-          format: int64
-          type: integer
-        size:
-          description: Maximum size of pages to return.
-          example: 1000
-          format: int64
-          type: integer
-      type: object
-    ServicesResponse_meta:
-      description: The metadata object containing pagination metadata.
-      example:
-        pagination:
-          offset: 10
-          size: 1000
-          next_offset: 1000
-      properties:
-        pagination:
-          $ref: '#/components/schemas/ServicesResponse_meta_pagination'
-      readOnly: true
       type: object
   securitySchemes:
     apiKeyAuth:
