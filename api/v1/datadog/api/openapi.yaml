@@ -10962,12 +10962,10 @@ components:
           nullable: true
           type: integer
         require_full_window:
-          default: true
           description: |-
             A Boolean indicating whether this monitor needs a full window of data before it’s evaluated.
             We highly recommend you set this to `false` for sparse metrics,
-            otherwise some evaluations are skipped. For “on average”
-            “at all times” and “in total” aggregation, default is true. `False` otherwise.
+            otherwise some evaluations are skipped. Default is false.
           type: boolean
         silenced:
           additionalProperties:
