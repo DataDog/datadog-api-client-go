@@ -10705,6 +10705,7 @@ components:
         created: 2000-01-23T04:56:07.000+00:00
         query: query
         message: message
+        priority: 3
         multi: true
         tags:
         - tags
@@ -10751,11 +10752,11 @@ components:
         state:
           groups:
             key:
-              last_triggered_ts: 4
-              last_notified_ts: 7
+              last_triggered_ts: 5
+              last_notified_ts: 1
               name: name
-              last_resolved_ts: 1
-              last_nodata_ts: 6
+              last_resolved_ts: 4
+              last_nodata_ts: 7
       properties:
         created:
           description: Timestamp of the monitor creation.
@@ -10794,6 +10795,12 @@ components:
           $ref: '#/components/schemas/MonitorOptions'
         overall_state:
           $ref: '#/components/schemas/MonitorOverallStates'
+        priority:
+          description: Integer from 1 (high) to 5 (low) indicating alert severity.
+          format: int64
+          maximum: 5
+          minimum: 1
+          type: integer
         query:
           description: The monitor query.
           type: string
@@ -11017,11 +11024,11 @@ components:
       example:
         groups:
           key:
-            last_triggered_ts: 4
-            last_notified_ts: 7
+            last_triggered_ts: 5
+            last_notified_ts: 1
             name: name
-            last_resolved_ts: 1
-            last_nodata_ts: 6
+            last_resolved_ts: 4
+            last_nodata_ts: 7
       properties:
         groups:
           additionalProperties:
@@ -11035,11 +11042,11 @@ components:
     MonitorStateGroup:
       description: Monitor state for a single group.
       example:
-        last_triggered_ts: 4
-        last_notified_ts: 7
+        last_triggered_ts: 5
+        last_notified_ts: 1
         name: name
-        last_resolved_ts: 1
-        last_nodata_ts: 6
+        last_resolved_ts: 4
+        last_nodata_ts: 7
       properties:
         last_nodata_ts:
           description: Latest timestamp the monitor was in NO_DATA state.
@@ -11216,6 +11223,7 @@ components:
         created: 2000-01-23T04:56:07.000+00:00
         query: query
         message: message
+        priority: 3
         multi: true
         tags:
         - tags
@@ -11262,11 +11270,11 @@ components:
         state:
           groups:
             key:
-              last_triggered_ts: 4
-              last_notified_ts: 7
+              last_triggered_ts: 5
+              last_notified_ts: 1
               name: name
-              last_resolved_ts: 1
-              last_nodata_ts: 6
+              last_resolved_ts: 4
+              last_nodata_ts: 7
       properties:
         created:
           description: Timestamp of the monitor creation.
@@ -11305,6 +11313,12 @@ components:
           $ref: '#/components/schemas/MonitorOptions'
         overall_state:
           $ref: '#/components/schemas/MonitorOverallStates'
+        priority:
+          description: Integer from 1 (high) to 5 (low) indicating alert severity.
+          format: int64
+          maximum: 5
+          minimum: 1
+          type: integer
         query:
           description: The monitor query.
           type: string

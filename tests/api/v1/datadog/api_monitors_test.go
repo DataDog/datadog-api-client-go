@@ -28,6 +28,7 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 			"test",
 			"client:go",
 		},
+		Priority: datadog.PtrInt64(3),
 		Options: &datadog.MonitorOptions{
 			NotifyAudit:       datadog.PtrBool(false),
 			Locked:            datadog.PtrBool(false),

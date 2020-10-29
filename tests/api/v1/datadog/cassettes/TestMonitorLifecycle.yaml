@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"some message Notify: @hipchat-channel","name":"go-TestMonitorLifecycle-local-1589290365","options":{"enable_logs_sample":true,"escalation_message":"the situation has escalated","evaluation_delay":700,"include_tags":true,"locked":false,"new_host_delay":600,"no_data_timeframe":null,"notify_audit":false,"notify_no_data":false,"renotify_interval":60,"require_full_window":true,"thresholds":{"critical":2,"warning":1},"timeout_h":60},"query":"logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") \u003e 2","tags":["test","client:go"],"type":"log alert"}
+      {"message":"some message Notify: @hipchat-channel","name":"go-TestMonitorLifecycle-local-1589290365","options":{"enable_logs_sample":true,"escalation_message":"the situation has escalated","evaluation_delay":700,"include_tags":true,"locked":false,"new_host_delay":600,"no_data_timeframe":null,"notify_audit":false,"notify_no_data":false,"renotify_interval":60,"require_full_window":true,"thresholds":{"critical":2,"warning":1},"timeout_h":60},"priority":3,"query":"logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") \u003e 2","tags":["test","client:go"],"type":"log alert"}
     form: {}
     headers:
       Accept:
@@ -23,7 +23,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/monitor
     method: POST
   response:
-    body: '{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
+    body: '{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"priority":3,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
       message Notify: @hipchat-channel","id":18411369,"multi":false,"name":"go-TestMonitorLifecycle-local-1589290365","created":"2020-05-12T13:32:45.206017+00:00","created_at":1589290365000,"creator":{"id":1379826,"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
       Kabrda","email":"slavek.kabrda@datadoghq.com"},"org_id":321813,"modified":"2020-05-12T13:32:45.206017+00:00","overall_state_modified":null,"overall_state":"No
@@ -92,7 +92,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/monitor/18411369
     method: PUT
   response:
-    body: '{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
+    body: '{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"priority":3,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
       message Notify: @hipchat-channel","id":18411369,"multi":false,"name":"go-TestMonitorLifecycle-local-1589290365-updated","created":"2020-05-12T13:32:45.206017+00:00","created_at":1589290365000,"org_id":321813,"modified":"2020-05-12T13:32:45.527651+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"log alert","options":{"notify_audit":false,"locked":false,"timeout_h":null,"silenced":{},"include_tags":true,"thresholds":{"critical":2.0},"new_host_delay":null,"notify_no_data":false,"renotify_interval":null,"evaluation_delay":null}}'
@@ -156,7 +156,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/monitor/18411369
     method: GET
   response:
-    body: '{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
+    body: '{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"priority":3,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
       message Notify: @hipchat-channel","id":18411369,"multi":false,"name":"go-TestMonitorLifecycle-local-1589290365-updated","created":"2020-05-12T13:32:45.206017+00:00","created_at":1589290365000,"creator":{"id":1379826,"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
       Kabrda","email":"slavek.kabrda@datadoghq.com"},"org_id":321813,"modified":"2020-05-12T13:32:45.527651+00:00","overall_state_modified":null,"overall_state":"No
@@ -236,7 +236,7 @@ interactions:
       by {host} > 100","message":"","matching_downtimes":[],"id":15577127,"multi":true,"name":"**system.net.bytes_rcvd**
       over ***** was **> 100.0** on average during the **last 1h**.","created":"2020-01-30T12:52:29.930488+00:00","created_at":1580388749000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-01-30T12:52:29.930488+00:00","overall_state_modified":"2020-01-30T12:54:48+00:00","overall_state":"Alert","type":"metric
-      alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":["94172442-be03-11e9-a77a-3b7612558ac1"],"tags":[],"deleted":null,"query":"logs(\"source:test\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\")
+      alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":["94172442-be03-11e9-a77a-3b7612558ac1"],"tags":[],"deleted":null,"priority":3,"query":"logs(\"source:test\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\")
       > 1","message":"@slack-datadog-testing","matching_downtimes":[],"id":15605236,"multi":true,"name":"SSH
       Activity on PROD","created":"2020-01-31T14:29:00.621013+00:00","created_at":1580480940000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-01-31T14:37:08.569640+00:00","overall_state_modified":"2020-01-31T14:38:16+00:00","overall_state":"OK","type":"log
       alert","options":{"notify_audit":false,"locked":true,"timeout_h":0,"silenced":{},"include_tags":true,"thresholds":{"critical":1.0},"new_host_delay":300,"queryConfig":{"logset":{"id":"33715","name":"main"},"timeRange":{"to":1580481366378,"live":true,"from":1580466966378},"queryString":"source:test","queryIsFailed":false,"indexes":[]},"notify_no_data":false,"renotify_interval":0,"enable_logs_sample":true,"aggregation":{"metric":"count","type":"count","groupBy":"tag_source"}}},{"restricted_roles":["94172442-be03-11e9-a77a-3b7612558ac1"],"tags":[],"deleted":null,"query":"invalid
@@ -331,7 +331,7 @@ interactions:
       Data","type":"metric alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_1h):sum:system.net.bytes_rcvd{host:host0}
       > 100","message":"","matching_downtimes":[],"id":15766126,"multi":false,"name":"**system.net.bytes_rcvd**
       over **host:host0** was **> 100.0** on average during the **last 1h**.","created":"2020-02-10T18:08:42.315894+00:00","created_at":1581358122000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-02-10T18:08:42.315894+00:00","overall_state_modified":null,"overall_state":"No
-      Data","type":"metric alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
+      Data","type":"metric alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"priority":3,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
       message Notify: @hipchat-channel","matching_downtimes":[],"id":15842908,"multi":false,"name":"name
       for Go client monitor foo","created":"2020-02-14T17:17:13.175060+00:00","created_at":1581700633000,"creator":{"id":1379826,"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
@@ -405,7 +405,7 @@ interactions:
       Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_15m):avg:system.disk.in_use{*}
       by {host,device} > 0.8","message":"Test message","matching_downtimes":[],"id":17485198,"multi":true,"name":"Test
       monitor","created":"2020-04-06T13:26:30.888347+00:00","created_at":1586179590000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-04-06T13:26:30.888347+00:00","overall_state_modified":"2020-05-08T13:22:02+00:00","overall_state":"OK","type":"metric
-      alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":false,"no_data_timeframe":60,"new_host_delay":600,"require_full_window":true,"notify_no_data":true}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
+      alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":false,"no_data_timeframe":60,"new_host_delay":600,"require_full_window":true,"notify_no_data":true}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"priority":3,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
       message Notify: @hipchat-channel","matching_downtimes":[],"id":17547084,"multi":false,"name":"name
       for Go client monitor foo","created":"2020-04-08T13:44:38.421992+00:00","created_at":1586353478000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-04-08T13:44:38.581549+00:00","overall_state_modified":"2020-04-08T13:45:40+00:00","overall_state":"OK","type":"log
@@ -414,13 +414,13 @@ interactions:
       > 100","message":"","matching_downtimes":[],"id":17548359,"multi":false,"name":"`avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
       > 100`","created":"2020-04-08T14:11:56.199423+00:00","created_at":1586355116000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-04-08T14:11:56.199423+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":[],"deleted":null,"query":"17548359","message":"","matching_downtimes":[],"id":17548360,"multi":false,"name":"17548359","created":"2020-04-08T14:11:56.410590+00:00","created_at":1586355116000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2020-04-08T14:11:56.410590+00:00","overall_state_modified":null,"overall_state":"No
-      Data","type":"composite","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
+      Data","type":"composite","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"priority":3,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
       message Notify: @hipchat-channel","matching_downtimes":[],"id":17759123,"multi":false,"name":"name
       for Go client monitor foo","created":"2020-04-17T15:04:36.595885+00:00","created_at":1587135876000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
       Muesch","email":"nicholas.muesch@datadoghq.com"},"org_id":321813,"modified":"2020-04-17T15:04:36.595885+00:00","overall_state_modified":"2020-04-17T15:05:38+00:00","overall_state":"OK","type":"log
       alert","options":{"include_tags":true,"notify_audit":false,"locked":false,"timeout_h":60,"silenced":{},"enable_logs_sample":true,"no_data_timeframe":null,"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"renotify_interval":60,"evaluation_delay":700,"escalation_message":"the
-      situation has escalated","thresholds":{"critical":2.0,"warning":1.0}}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
+      situation has escalated","thresholds":{"critical":2.0,"warning":1.0}}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"priority":3,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
       message Notify: @hipchat-channel","matching_downtimes":[],"id":17808113,"multi":false,"name":"name
       for Go client monitor foo","created":"2020-04-20T14:43:18.511889+00:00","created_at":1587393798000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
@@ -435,7 +435,7 @@ interactions:
       \n{{#is_recovery}}\nAll tests have been fixed.\n{{/is_recovery}}  @jiri.kuncar@datadoghq.com","matching_downtimes":[],"id":18097425,"multi":true,"name":"Failing
       tests for {{service}}","created":"2020-04-29T10:51:10.162713+00:00","created_at":1588157470000,"creator":{"id":1489985,"handle":"jiri.kuncar@datadoghq.com","name":"Ji\u0159\u00ed
       Kun\u010dar","email":"jiri.kuncar@datadoghq.com"},"org_id":321813,"modified":"2020-04-29T10:53:31.764009+00:00","overall_state_modified":"2020-05-08T10:07:45+00:00","overall_state":"OK","type":"trace-analytics
-      alert","options":{"notify_audit":false,"locked":false,"timeout_h":0,"silenced":{},"include_tags":true,"thresholds":{"critical":1.0},"new_host_delay":300,"queryConfig":{"logset":{"id":"61562","name":"trace-search"},"track":"trace","timeRange":{"to":1588157574968,"live":true,"from":1587437574968},"queryString":"status:error","indexes":[{"id":"61562","name":"trace-search"}],"queryIsFailed":false},"notify_no_data":false,"renotify_interval":0,"evaluation_delay":null,"enable_logs_sample":true,"aggregation":{"metric":"count","type":"count","groupBy":"core_service"}}},{"restricted_roles":null,"tags":["baz","foo:bar"],"deleted":null,"query":"logs(\"service:foo
+      alert","options":{"notify_audit":false,"locked":false,"timeout_h":0,"silenced":{},"include_tags":true,"thresholds":{"critical":1.0},"new_host_delay":300,"queryConfig":{"logset":{"id":"61562","name":"trace-search"},"track":"trace","timeRange":{"to":1588157574968,"live":true,"from":1587437574968},"queryString":"status:error","indexes":[{"id":"61562","name":"trace-search"}],"queryIsFailed":false},"notify_no_data":false,"renotify_interval":0,"evaluation_delay":null,"enable_logs_sample":true,"aggregation":{"metric":"count","type":"count","groupBy":"core_service"}}},{"restricted_roles":null,"tags":["baz","foo:bar"],"deleted":null,"priority":3,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
       message Notify: @hipchat-channel","matching_downtimes":[],"id":18163930,"multi":false,"name":"name
       for monitor foo","created":"2020-05-01T06:05:13.804055+00:00","created_at":1588313113000,"creator":{"id":1379811,"handle":"nicholas.muesch@datadoghq.com","name":"Nicholas
@@ -455,7 +455,7 @@ interactions:
       @datadog.user","matching_downtimes":[],"id":18345904,"multi":false,"name":"[Synthetics]
       name for synthetics test ssl","created":"2020-05-09T04:06:20.958370+00:00","created_at":1588997180000,"creator":{"id":1379827,"handle":"gregory.zussa@datadoghq.com","name":"Gregory
       Zussa","email":"gregory.zussa@datadoghq.com"},"org_id":321813,"modified":"2020-05-09T04:06:20.958370+00:00","overall_state_modified":null,"overall_state":"No
-      Data","type":"synthetics alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
+      Data","type":"synthetics alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}},{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"priority":3,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
       message Notify: @hipchat-channel","matching_downtimes":[],"id":18411369,"multi":false,"name":"go-TestMonitorLifecycle-local-1589290365-updated","created":"2020-05-12T13:32:45.206017+00:00","created_at":1589290365000,"creator":{"id":1379826,"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
       Kabrda","email":"slavek.kabrda@datadoghq.com"},"org_id":321813,"modified":"2020-05-12T13:32:45.527651+00:00","overall_state_modified":null,"overall_state":"No
