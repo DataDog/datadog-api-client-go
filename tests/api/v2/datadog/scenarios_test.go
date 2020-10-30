@@ -39,8 +39,9 @@ func undoCreateService(ctx gobdd.Context) {
 
 func undoCreateTeam(ctx gobdd.Context) {
 	team := tests.GetResponse(ctx)[0].Interface().(datadog.IncidentTeamResponse)
-	cctx := tests.GetCtx(ctx)
-	Client(cctx).IncidentTeamsApi.DeleteIncidentTeam(cctx, team.Data.GetId()).Execute()
+	client := Client(tests.GetCtx(ctx))
+	client.GetConfig().SetUnstableOperationEnabled("DeleteIncidentTeam", true)
+	client.IncidentTeamsApi.DeleteIncidentTeam(tests.GetCtx(ctx), team.Data.GetId()).Execute()
 }
 
 var requestsUndo = map[string]func(ctx gobdd.Context){
@@ -284,7 +285,9 @@ func service(t gobdd.StepTest, ctx gobdd.Context) {
 }
 
 func deleteTeam(ctx context.Context, teamID string) {
-	_, err := Client(ctx).IncidentTeamsApi.DeleteIncidentTeam(ctx, teamID).Execute()
+	client := Client(ctx)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteIncidentTeam", true)
+	_, err := client.IncidentTeamsApi.DeleteIncidentTeam(ctx, teamID).Execute()
 	if err == nil {
 		return
 	}
