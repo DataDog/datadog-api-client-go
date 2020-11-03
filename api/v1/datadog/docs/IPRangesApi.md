@@ -33,8 +33,9 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IPRangesApi.GetIPRanges(context.Background()).Execute()
+    resp, r, err := api_client.IPRangesApi.GetIPRanges(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPRangesApi.GetIPRanges``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

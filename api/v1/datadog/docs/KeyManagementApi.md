@@ -54,8 +54,9 @@ func main() {
     body := *datadog.NewApiKey() // ApiKey | 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.CreateAPIKey(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.KeyManagementApi.CreateAPIKey(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -133,8 +134,9 @@ func main() {
     body := *datadog.NewApplicationKey() // ApplicationKey | 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.CreateApplicationKey(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.KeyManagementApi.CreateApplicationKey(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateApplicationKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -212,8 +214,9 @@ func main() {
     key := "key_example" // string | The specific API key you are working with.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.DeleteAPIKey(context.Background(), key).Execute()
+    resp, r, err := api_client.KeyManagementApi.DeleteAPIKey(ctx, key).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -295,8 +298,9 @@ func main() {
     key := "key_example" // string | The specific APP key you are working with.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.DeleteApplicationKey(context.Background(), key).Execute()
+    resp, r, err := api_client.KeyManagementApi.DeleteApplicationKey(ctx, key).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteApplicationKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -378,8 +382,9 @@ func main() {
     key := "key_example" // string | The specific API key you are working with.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.GetAPIKey(context.Background(), key).Execute()
+    resp, r, err := api_client.KeyManagementApi.GetAPIKey(ctx, key).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -461,8 +466,9 @@ func main() {
     key := "key_example" // string | The specific APP key you are working with.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.GetApplicationKey(context.Background(), key).Execute()
+    resp, r, err := api_client.KeyManagementApi.GetApplicationKey(ctx, key).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetApplicationKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -543,8 +549,9 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.ListAPIKeys(context.Background()).Execute()
+    resp, r, err := api_client.KeyManagementApi.ListAPIKeys(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListAPIKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -617,8 +624,9 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.ListApplicationKeys(context.Background()).Execute()
+    resp, r, err := api_client.KeyManagementApi.ListApplicationKeys(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListApplicationKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -693,8 +701,9 @@ func main() {
     body := *datadog.NewApiKey() // ApiKey | 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.UpdateAPIKey(context.Background(), key).Body(body).Execute()
+    resp, r, err := api_client.KeyManagementApi.UpdateAPIKey(ctx, key).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -778,8 +787,9 @@ func main() {
     body := *datadog.NewApplicationKey() // ApplicationKey | 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.UpdateApplicationKey(context.Background(), key).Body(body).Execute()
+    resp, r, err := api_client.KeyManagementApi.UpdateApplicationKey(ctx, key).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateApplicationKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

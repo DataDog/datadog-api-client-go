@@ -49,8 +49,9 @@ func main() {
     body := *datadog.NewDashboard(*datadog.NewDashboardLayoutType(), "Title_example", []Widget{*datadog.NewWidget(*datadog.NewWidgetDefinition("AlertId_example", *datadog.NewToplistWidgetDefinitionType(), *datadog.NewWidgetVizType(), []ToplistWidgetRequest{*datadog.NewToplistWidgetRequest()}, "Check_example", *datadog.NewWidgetGrouping(), "Query_example", "Text_example", *datadog.NewWidgetLayoutType(), []Widget{*datadog.NewWidget(*datadog.NewWidgetDefinition("AlertId_example", *datadog.NewToplistWidgetDefinitionType(), *datadog.NewWidgetVizType(), []ToplistWidgetRequest{*datadog.NewToplistWidgetRequest()}, "Check_example", *datadog.NewWidgetGrouping(), "Query_example", "Text_example", *datadog.NewWidgetLayoutType(), []Widget{}, "Url_example", "Content_example", "ViewType_example", []string{"Filters_example"}, "Service_example", "Env_example", "SpanName_example"))}, "Url_example", "Content_example", "ViewType_example", []string{"Filters_example"}, "Service_example", "Env_example", "SpanName_example"))}) // Dashboard | Create a dashboard request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardsApi.CreateDashboard(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.DashboardsApi.CreateDashboard(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,8 +129,9 @@ func main() {
     dashboardId := "dashboardId_example" // string | The ID of the dashboard.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardsApi.DeleteDashboard(context.Background(), dashboardId).Execute()
+    resp, r, err := api_client.DashboardsApi.DeleteDashboard(ctx, dashboardId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.DeleteDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,8 +213,9 @@ func main() {
     dashboardId := "dashboardId_example" // string | The ID of the dashboard.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardsApi.GetDashboard(context.Background(), dashboardId).Execute()
+    resp, r, err := api_client.DashboardsApi.GetDashboard(ctx, dashboardId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.GetDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -293,8 +296,9 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardsApi.ListDashboards(context.Background()).Execute()
+    resp, r, err := api_client.DashboardsApi.ListDashboards(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.ListDashboards``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -369,8 +373,9 @@ func main() {
     body := *datadog.NewDashboard(*datadog.NewDashboardLayoutType(), "Title_example", []Widget{}) // Dashboard | Update Dashboard request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardsApi.UpdateDashboard(context.Background(), dashboardId).Body(body).Execute()
+    resp, r, err := api_client.DashboardsApi.UpdateDashboard(ctx, dashboardId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.UpdateDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

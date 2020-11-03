@@ -45,8 +45,9 @@ func main() {
     body := *datadog.NewLogsListRequest("Query_example", *datadog.NewLogsListRequest_time("TODO", "TODO")) // LogsListRequest | Logs filter
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsApi.ListLogs(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.LogsApi.ListLogs(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
