@@ -49,8 +49,10 @@ func main() {
     body := *datadog.NewIncidentServiceCreateRequest(*datadog.NewIncidentServiceCreateData(*datadog.NewIncidentServiceType())) // IncidentServiceCreateRequest | Incident Service Payload.
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("CreateIncidentService", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentServicesApi.CreateIncidentService(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.IncidentServicesApi.CreateIncidentService(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.CreateIncidentService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,8 +130,10 @@ func main() {
     serviceId := "serviceId_example" // string | The ID of the incident service.
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("DeleteIncidentService", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentServicesApi.DeleteIncidentService(context.Background(), serviceId).Execute()
+    resp, r, err := api_client.IncidentServicesApi.DeleteIncidentService(ctx, serviceId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.DeleteIncidentService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,8 +214,10 @@ func main() {
     include := "include_example" // string | Specifies which types of related objects should be included in the response. (optional)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetIncidentService", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentServicesApi.GetIncidentService(context.Background(), serviceId).Include(include).Execute()
+    resp, r, err := api_client.IncidentServicesApi.GetIncidentService(ctx, serviceId).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.GetIncidentService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -296,8 +302,10 @@ func main() {
     pageOffset := 987 // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetIncidentServices", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentServicesApi.GetIncidentServices(context.Background()).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
+    resp, r, err := api_client.IncidentServicesApi.GetIncidentServices(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.GetIncidentServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -378,8 +386,10 @@ func main() {
     body := *datadog.NewIncidentServiceUpdateRequest(*datadog.NewIncidentServiceUpdateData("Id_example", *datadog.NewIncidentServiceType())) // IncidentServiceUpdateRequest | Incident Service Payload.
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("UpdateIncidentService", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentServicesApi.UpdateIncidentService(context.Background(), serviceId).Body(body).Execute()
+    resp, r, err := api_client.IncidentServicesApi.UpdateIncidentService(ctx, serviceId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.UpdateIncidentService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

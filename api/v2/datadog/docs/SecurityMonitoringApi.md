@@ -51,8 +51,9 @@ func main() {
     body := *datadog.NewSecurityMonitoringRuleCreatePayload([]SecurityMonitoringRuleCaseCreate{*datadog.NewSecurityMonitoringRuleCaseCreate(*datadog.NewSecurityMonitoringRuleSeverity())}, true, "Message_example", "Name_example", *datadog.NewSecurityMonitoringRuleOptions(), []SecurityMonitoringRuleQueryCreate{*datadog.NewSecurityMonitoringRuleQueryCreate("Query_example")}) // SecurityMonitoringRuleCreatePayload |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityMonitoringApi.CreateSecurityMonitoringRule(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.SecurityMonitoringApi.CreateSecurityMonitoringRule(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityMonitoringRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,8 +131,9 @@ func main() {
     ruleId := "ruleId_example" // string | The ID of the rule.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityMonitoringApi.DeleteSecurityMonitoringRule(context.Background(), ruleId).Execute()
+    resp, r, err := api_client.SecurityMonitoringApi.DeleteSecurityMonitoringRule(ctx, ruleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityMonitoringRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,8 +213,9 @@ func main() {
     ruleId := "ruleId_example" // string | The ID of the rule.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityMonitoringApi.GetSecurityMonitoringRule(context.Background(), ruleId).Execute()
+    resp, r, err := api_client.SecurityMonitoringApi.GetSecurityMonitoringRule(ctx, ruleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetSecurityMonitoringRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -295,8 +298,9 @@ func main() {
     pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityMonitoringApi.ListSecurityMonitoringRules(context.Background()).PageSize(pageSize).PageNumber(pageNumber).Execute()
+    resp, r, err := api_client.SecurityMonitoringApi.ListSecurityMonitoringRules(ctx).PageSize(pageSize).PageNumber(pageNumber).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -380,8 +384,10 @@ func main() {
     pageLimit := 987 // int32 | The maximum number of security signals in the response. (optional) (default to 10)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("ListSecurityMonitoringSignals", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityMonitoringApi.ListSecurityMonitoringSignals(context.Background()).FilterQuery(filterQuery).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
+    resp, r, err := api_client.SecurityMonitoringApi.ListSecurityMonitoringSignals(ctx).FilterQuery(filterQuery).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringSignals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -464,8 +470,10 @@ func main() {
     body := *datadog.NewSecurityMonitoringSignalListRequest() // SecurityMonitoringSignalListRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("SearchSecurityMonitoringSignals", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityMonitoringApi.SearchSecurityMonitoringSignals(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.SecurityMonitoringApi.SearchSecurityMonitoringSignals(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.SearchSecurityMonitoringSignals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -544,8 +552,9 @@ func main() {
     body := *datadog.NewSecurityMonitoringRuleUpdatePayload() // SecurityMonitoringRuleUpdatePayload |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityMonitoringApi.UpdateSecurityMonitoringRule(context.Background(), ruleId).Body(body).Execute()
+    resp, r, err := api_client.SecurityMonitoringApi.UpdateSecurityMonitoringRule(ctx, ruleId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityMonitoringRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -61,8 +61,9 @@ func main() {
     body := *datadog.NewSyntheticsGlobalVariable("Description_example", "Name_example", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("Value_example")) // SyntheticsGlobalVariable | Details of the global variable to create.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.CreateGlobalVariable(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.SyntheticsApi.CreateGlobalVariable(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateGlobalVariable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,8 +141,9 @@ func main() {
     body := *datadog.NewSyntheticsTestDetails() // SyntheticsTestDetails | Details of the test to create.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.CreateTest(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.SyntheticsApi.CreateTest(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -219,8 +221,9 @@ func main() {
     variableId := "variableId_example" // string | The ID of the global variable.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.DeleteGlobalVariable(context.Background(), variableId).Execute()
+    resp, r, err := api_client.SyntheticsApi.DeleteGlobalVariable(ctx, variableId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteGlobalVariable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -300,8 +303,9 @@ func main() {
     body := *datadog.NewSyntheticsDeleteTestsPayload() // SyntheticsDeleteTestsPayload | Public ID list of the Synthetic tests to be deleted.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.DeleteTests(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.SyntheticsApi.DeleteTests(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteTests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -380,8 +384,9 @@ func main() {
     body := *datadog.NewSyntheticsGlobalVariable("Description_example", "Name_example", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("Value_example")) // SyntheticsGlobalVariable | Details of the global variable to update.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.EditGlobalVariable(context.Background(), variableId).Body(body).Execute()
+    resp, r, err := api_client.SyntheticsApi.EditGlobalVariable(ctx, variableId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.EditGlobalVariable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -467,8 +472,9 @@ func main() {
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.GetAPITestLatestResults(context.Background(), publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
+    resp, r, err := api_client.SyntheticsApi.GetAPITestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestLatestResults``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -554,8 +560,9 @@ func main() {
     resultId := "resultId_example" // string | The ID of the result to get.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.GetAPITestResult(context.Background(), publicId, resultId).Execute()
+    resp, r, err := api_client.SyntheticsApi.GetAPITestResult(ctx, publicId, resultId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestResult``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -639,8 +646,9 @@ func main() {
     publicId := "publicId_example" // string | The public ID of the test to get details from.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.GetBrowserTest(context.Background(), publicId).Execute()
+    resp, r, err := api_client.SyntheticsApi.GetBrowserTest(ctx, publicId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -725,8 +733,9 @@ func main() {
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.GetBrowserTestLatestResults(context.Background(), publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
+    resp, r, err := api_client.SyntheticsApi.GetBrowserTestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestLatestResults``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -812,8 +821,9 @@ func main() {
     resultId := "resultId_example" // string | The ID of the result to get.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.GetBrowserTestResult(context.Background(), publicId, resultId).Execute()
+    resp, r, err := api_client.SyntheticsApi.GetBrowserTestResult(ctx, publicId, resultId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestResult``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -897,8 +907,9 @@ func main() {
     variableId := "variableId_example" // string | The ID of the global variable.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.GetGlobalVariable(context.Background(), variableId).Execute()
+    resp, r, err := api_client.SyntheticsApi.GetGlobalVariable(ctx, variableId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetGlobalVariable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -980,8 +991,9 @@ func main() {
     publicId := "publicId_example" // string | The public ID of the test to get details from.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.GetTest(context.Background(), publicId).Execute()
+    resp, r, err := api_client.SyntheticsApi.GetTest(ctx, publicId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1062,8 +1074,9 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.ListLocations(context.Background()).Execute()
+    resp, r, err := api_client.SyntheticsApi.ListLocations(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListLocations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1136,8 +1149,9 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.ListTests(context.Background()).Execute()
+    resp, r, err := api_client.SyntheticsApi.ListTests(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListTests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1211,8 +1225,9 @@ func main() {
     body := *datadog.NewSyntheticsCITestBody() // SyntheticsCITestBody | Details of the test to trigger.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.TriggerCITests(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.SyntheticsApi.TriggerCITests(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.TriggerCITests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1291,8 +1306,9 @@ func main() {
     body := *datadog.NewSyntheticsTestDetails() // SyntheticsTestDetails | New test details to be saved.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.UpdateTest(context.Background(), publicId).Body(body).Execute()
+    resp, r, err := api_client.SyntheticsApi.UpdateTest(ctx, publicId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1376,8 +1392,9 @@ func main() {
     body := *datadog.NewSyntheticsUpdateTestPauseStatusPayload() // SyntheticsUpdateTestPauseStatusPayload | Status to set the given Synthetic test to.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.UpdateTestPauseStatus(context.Background(), publicId).Body(body).Execute()
+    resp, r, err := api_client.SyntheticsApi.UpdateTestPauseStatus(ctx, publicId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTestPauseStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

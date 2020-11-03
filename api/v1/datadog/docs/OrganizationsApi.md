@@ -49,8 +49,9 @@ func main() {
     body := *datadog.NewOrganizationCreateBody(*datadog.NewOrganizationBilling(), "Name_example", *datadog.NewOrganizationSubscription()) // OrganizationCreateBody | Organization object that needs to be created
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationsApi.CreateChildOrg(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.OrganizationsApi.CreateChildOrg(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateChildOrg``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,8 +129,9 @@ func main() {
     publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationsApi.GetOrg(context.Background(), publicId).Execute()
+    resp, r, err := api_client.OrganizationsApi.GetOrg(ctx, publicId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.GetOrg``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,8 +212,9 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationsApi.ListOrgs(context.Background()).Execute()
+    resp, r, err := api_client.OrganizationsApi.ListOrgs(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.ListOrgs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -286,8 +289,9 @@ func main() {
     body := *datadog.NewOrganization() // Organization | 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationsApi.UpdateOrg(context.Background(), publicId).Body(body).Execute()
+    resp, r, err := api_client.OrganizationsApi.UpdateOrg(ctx, publicId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrg``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -371,8 +375,9 @@ func main() {
     idpFile := 987 // *os.File | The path to the XML metadata file you wish to upload.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationsApi.UploadIdPForOrg(context.Background(), publicId).IdpFile(idpFile).Execute()
+    resp, r, err := api_client.OrganizationsApi.UploadIdPForOrg(ctx, publicId).IdpFile(idpFile).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UploadIdPForOrg``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

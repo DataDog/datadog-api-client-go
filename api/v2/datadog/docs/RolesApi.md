@@ -57,8 +57,9 @@ func main() {
     body := *datadog.NewRelationshipToPermission() // RelationshipToPermission |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.AddPermissionToRole(context.Background(), roleId).Body(body).Execute()
+    resp, r, err := api_client.RolesApi.AddPermissionToRole(ctx, roleId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddPermissionToRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,8 +143,9 @@ func main() {
     body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("Id_example", *datadog.NewUsersType())) // RelationshipToUser |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.AddUserToRole(context.Background(), roleId).Body(body).Execute()
+    resp, r, err := api_client.RolesApi.AddUserToRole(ctx, roleId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddUserToRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -226,8 +228,9 @@ func main() {
     body := *datadog.NewRoleCreateRequest(*datadog.NewRoleCreateData(*datadog.NewRoleCreateAttributes("Name_example"))) // RoleCreateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.CreateRole(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.RolesApi.CreateRole(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.CreateRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -305,8 +308,9 @@ func main() {
     roleId := "roleId_example" // string | The ID of the role.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.DeleteRole(context.Background(), roleId).Execute()
+    resp, r, err := api_client.RolesApi.DeleteRole(ctx, roleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.DeleteRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -386,8 +390,9 @@ func main() {
     roleId := "roleId_example" // string | The ID of the role.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.GetRole(context.Background(), roleId).Execute()
+    resp, r, err := api_client.RolesApi.GetRole(ctx, roleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.GetRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -468,8 +473,9 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.ListPermissions(context.Background()).Execute()
+    resp, r, err := api_client.RolesApi.ListPermissions(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -543,8 +549,9 @@ func main() {
     roleId := "roleId_example" // string | The ID of the role.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.ListRolePermissions(context.Background(), roleId).Execute()
+    resp, r, err := api_client.RolesApi.ListRolePermissions(ctx, roleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRolePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -630,8 +637,9 @@ func main() {
     filter := "filter_example" // string | Filter all users by the given string. Defaults to no filtering. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.ListRoleUsers(context.Background(), roleId).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).Execute()
+    resp, r, err := api_client.RolesApi.ListRoleUsers(ctx, roleId).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoleUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -720,8 +728,9 @@ func main() {
     filter := "filter_example" // string | Filter all roles by the given string. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.ListRoles(context.Background()).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).Execute()
+    resp, r, err := api_client.RolesApi.ListRoles(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -803,8 +812,9 @@ func main() {
     body := *datadog.NewRelationshipToPermission() // RelationshipToPermission |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.RemovePermissionFromRole(context.Background(), roleId).Body(body).Execute()
+    resp, r, err := api_client.RolesApi.RemovePermissionFromRole(ctx, roleId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.RemovePermissionFromRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -888,8 +898,9 @@ func main() {
     body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("Id_example", *datadog.NewUsersType())) // RelationshipToUser |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.RemoveUserFromRole(context.Background(), roleId).Body(body).Execute()
+    resp, r, err := api_client.RolesApi.RemoveUserFromRole(ctx, roleId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.RemoveUserFromRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -973,8 +984,9 @@ func main() {
     body := *datadog.NewRoleUpdateRequest(*datadog.NewRoleUpdateData(*datadog.NewRoleUpdateAttributes(), "Id_example", *datadog.NewRolesType())) // RoleUpdateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.UpdateRole(context.Background(), roleId).Body(body).Execute()
+    resp, r, err := api_client.RolesApi.UpdateRole(ctx, roleId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.UpdateRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

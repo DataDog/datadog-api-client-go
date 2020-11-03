@@ -53,8 +53,9 @@ func main() {
     body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("Email_example"), *datadog.NewUsersType())) // UserCreateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.CreateUser(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.UsersApi.CreateUser(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,8 +133,9 @@ func main() {
     userId := "userId_example" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.DisableUser(context.Background(), userId).Execute()
+    resp, r, err := api_client.UsersApi.DisableUser(ctx, userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.DisableUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -213,8 +215,9 @@ func main() {
     userInvitationUuid := "userInvitationUuid_example" // string | The UUID of the user invitation.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.GetInvitation(context.Background(), userInvitationUuid).Execute()
+    resp, r, err := api_client.UsersApi.GetInvitation(ctx, userInvitationUuid).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -296,8 +299,9 @@ func main() {
     userId := "userId_example" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.GetUser(context.Background(), userId).Execute()
+    resp, r, err := api_client.UsersApi.GetUser(ctx, userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -379,8 +383,9 @@ func main() {
     userId := "userId_example" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.ListUserOrganizations(context.Background(), userId).Execute()
+    resp, r, err := api_client.UsersApi.ListUserOrganizations(ctx, userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUserOrganizations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -462,8 +467,9 @@ func main() {
     userId := "userId_example" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.ListUserPermissions(context.Background(), userId).Execute()
+    resp, r, err := api_client.UsersApi.ListUserPermissions(ctx, userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUserPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -550,8 +556,9 @@ func main() {
     filterStatus := "filterStatus_example" // string | Filter on status attribute. Comma separated list, with possible values `Active`, `Pending`, and `Disabled`. Defaults to no filtering. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.ListUsers(context.Background()).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).SortDir(sortDir).Filter(filter).FilterStatus(filterStatus).Execute()
+    resp, r, err := api_client.UsersApi.ListUsers(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).SortDir(sortDir).Filter(filter).FilterStatus(filterStatus).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -634,8 +641,9 @@ func main() {
     body := *datadog.NewUserInvitationsRequest([]UserInvitationData{*datadog.NewUserInvitationData(*datadog.NewUserInvitationRelationships(*datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("Id_example", *datadog.NewUsersType()))), *datadog.NewUserInvitationsType())}) // UserInvitationsRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.SendInvitations(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.UsersApi.SendInvitations(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.SendInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -714,8 +722,9 @@ func main() {
     body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "Id_example", )) // UserUpdateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.UpdateUser(context.Background(), userId).Body(body).Execute()
+    resp, r, err := api_client.UsersApi.UpdateUser(ctx, userId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
