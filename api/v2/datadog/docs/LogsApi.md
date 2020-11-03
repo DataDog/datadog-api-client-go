@@ -47,8 +47,9 @@ func main() {
     body := *datadog.NewLogsAggregateRequest() // LogsAggregateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsApi.AggregateLogs(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.LogsApi.AggregateLogs(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.AggregateLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -126,8 +127,10 @@ func main() {
     body := *datadog.NewLogsListRequest() // LogsListRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("ListLogs", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsApi.ListLogs(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.LogsApi.ListLogs(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,8 +214,10 @@ func main() {
     pageLimit := 987 // int32 | Maximum number of logs in the response. (optional) (default to 10)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("ListLogsGet", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsApi.ListLogsGet(context.Background()).FilterQuery(filterQuery).FilterIndex(filterIndex).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
+    resp, r, err := api_client.LogsApi.ListLogsGet(ctx).FilterQuery(filterQuery).FilterIndex(filterIndex).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

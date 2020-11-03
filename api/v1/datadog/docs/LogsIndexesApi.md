@@ -49,8 +49,10 @@ func main() {
     name := "name_example" // string | Name of the log index.
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetLogsIndex", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsIndexesApi.GetLogsIndex(context.Background(), name).Execute()
+    resp, r, err := api_client.LogsIndexesApi.GetLogsIndex(ctx, name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndex``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,8 +133,10 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetLogsIndexOrder", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsIndexesApi.GetLogsIndexOrder(context.Background()).Execute()
+    resp, r, err := api_client.LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndexOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -205,8 +209,10 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("ListLogIndexes", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsIndexesApi.ListLogIndexes(context.Background()).Execute()
+    resp, r, err := api_client.LogsIndexesApi.ListLogIndexes(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.ListLogIndexes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,8 +287,10 @@ func main() {
     body := *datadog.NewLogsIndex(*datadog.NewLogsFilter()) // LogsIndex | Object containing the new `LogsIndex`. (optional)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("UpdateLogsIndex", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndex(context.Background(), name).Body(body).Execute()
+    resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndex(ctx, name).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndex``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -365,8 +373,10 @@ func main() {
     body := *datadog.NewLogsIndexesOrder([]string{"IndexNames_example"}) // LogsIndexesOrder | Object containing the new ordered list of index names (optional)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("UpdateLogsIndexOrder", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndexOrder(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndexOrder(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndexOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -49,8 +49,10 @@ func main() {
     body := *datadog.NewIncidentTeamCreateRequest(*datadog.NewIncidentTeamCreateData(*datadog.NewIncidentTeamType())) // IncidentTeamCreateRequest | Incident Team Payload.
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("CreateIncidentTeam", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentTeamsApi.CreateIncidentTeam(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.IncidentTeamsApi.CreateIncidentTeam(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.CreateIncidentTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,8 +130,10 @@ func main() {
     teamId := "teamId_example" // string | The ID of the incident team.
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("DeleteIncidentTeam", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentTeamsApi.DeleteIncidentTeam(context.Background(), teamId).Execute()
+    resp, r, err := api_client.IncidentTeamsApi.DeleteIncidentTeam(ctx, teamId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.DeleteIncidentTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,8 +214,10 @@ func main() {
     include := "include_example" // string | Specifies which types of related objects should be included in the response. (optional)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetIncidentTeam", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentTeamsApi.GetIncidentTeam(context.Background(), teamId).Include(include).Execute()
+    resp, r, err := api_client.IncidentTeamsApi.GetIncidentTeam(ctx, teamId).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.GetIncidentTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -296,8 +302,10 @@ func main() {
     pageOffset := 987 // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetIncidentTeams", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentTeamsApi.GetIncidentTeams(context.Background()).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
+    resp, r, err := api_client.IncidentTeamsApi.GetIncidentTeams(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.GetIncidentTeams``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -378,8 +386,10 @@ func main() {
     body := *datadog.NewIncidentTeamUpdateRequest(*datadog.NewIncidentTeamUpdateData("Id_example", *datadog.NewIncidentTeamType())) // IncidentTeamUpdateRequest | Incident Team Payload.
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("UpdateIncidentTeam", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentTeamsApi.UpdateIncidentTeam(context.Background(), teamId).Body(body).Execute()
+    resp, r, err := api_client.IncidentTeamsApi.UpdateIncidentTeam(ctx, teamId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.UpdateIncidentTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
