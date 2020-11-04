@@ -1232,7 +1232,7 @@ func TestGetUsageProfilingErrors(t *testing.T) {
 	}
 }
 
-func TestGetTracingWithoutLimitsErrors(t *testing.T) {
+func TestGetIngestedSpansErrors(t *testing.T) {
 	ctx, close := tests.WithTestSpan(context.Background(), t)
 	defer close()
 
@@ -1250,7 +1250,7 @@ func TestGetTracingWithoutLimitsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).UsageMeteringApi.GetTracingWithoutLimits(ctx).StartHr(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetIngestedSpans(ctx).StartHr(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
