@@ -65,6 +65,7 @@ var testFiles2EndpointTags = map[string]map[string]string{
 		"api_monitors_test":                 "monitors",
 		"api_organizations_test":            "organizations",
 		"api_pager_duty_integration_test":   "integration-pagerduty",
+		"api_processes_test":                "processes",
 		"api_service_level_objectives_test": "service-level-objectives",
 		"api_snapshots_test":                "snapshots",
 		"api_synthetics_test":               "synthetics",
