@@ -575,7 +575,7 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	timeseriesWidgetProcessQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionProcessQuery))
 
-	// Timeseries Widget with Log query (APM/Log/Network/Rum share schemas, so only test one)
+	// Timeseries Widget with Log query (APM/Log/Network/Rum/Event share schemas, so only test one)
 	timeseriesWidgetDefinitionLogQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinitionLogQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		LogQuery: &datadog.LogQueryDefinition{
@@ -631,10 +631,10 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	timeseriesWidgetLogQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionLogQuery))
 
-	// Timeseries Widget with Event query
+	// Timeseries Widget with Legacy Event query
 	timeseriesWidgetDefinitionEventQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinitionEventQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
-		EventQuery: &datadog.EventQueryDefinition{
+		LegacyEventQuery: &datadog.EventQueryDefinition{
 			Search:        "Build failure",
 			TagsExecution: "build",
 		},
