@@ -15,13 +15,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
-func TestGetAllProcesses(t *testing.T) {
+func TestListProcesses(t *testing.T) {
 	// Set up the client we'll use to interact with the Test account
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	response, httpResponse, err := Client(ctx).ProcessesApi.GetAllProcesses(ctx).Execute()
+	response, httpResponse, err := Client(ctx).ProcessesApi.ListProcesses(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error getting all processes. Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
