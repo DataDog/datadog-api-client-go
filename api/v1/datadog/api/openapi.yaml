@@ -5701,6 +5701,101 @@ paths:
       summary: Get hourly usage for hosts and containers
       tags:
       - Usage Metering
+  /api/v1/usage/indexed-spans:
+    get:
+      description: Get hourly usage for indexed spans.
+      operationId: GetUsageIndexedSpans
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage beginning at this hour.'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage ending **before** this hour.'
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageIndexedSpansResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden - User is not authorized
+      summary: Get hourly usage for indexed spans
+      tags:
+      - Usage Metering
+  /api/v1/usage/ingested-spans:
+    get:
+      description: Get hourly usage for ingested spans.
+      operationId: GetIngestedSpans
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage beginning at this hour.'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending
+          **before** this hour.
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageIngestedSpansResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden - User is not authorized
+      summary: Get hourly usage for ingested spans
+      tags:
+      - Usage Metering
   /api/v1/usage/logs:
     get:
       description: Get hourly usage for logs.
@@ -6347,7 +6442,11 @@ paths:
       - Usage Metering
   /api/v1/usage/traces:
     get:
-      description: Get hourly usage for trace search.
+      deprecated: true
+      description: |-
+        Get hourly usage for trace search.
+
+        **Note** This endpoint has been renamed to `/api/v1/usage/indexed-spans`.
       operationId: GetUsageTrace
       parameters:
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
@@ -6394,7 +6493,11 @@ paths:
       - Usage Metering
   /api/v1/usage/tracing-without-limits:
     get:
-      description: Get hourly usage for tracing without limits.
+      deprecated: true
+      description: |-
+        Get hourly usage for tracing without limits.
+
+        **Note** This endpoint has been renamed to `/api/v1/usage/ingested-spans`.
       operationId: GetTracingWithoutLimits
       parameters:
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
@@ -16309,6 +16412,69 @@ components:
           description: An array of objects related to host usage.
           items:
             $ref: '#/components/schemas/UsageHostHour'
+          type: array
+      type: object
+    UsageIndexedSpansHour:
+      description: The hours of indexed spans usage.
+      example:
+        indexed_events_count: 0
+        hour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+        indexed_events_count:
+          description: Contains the number of spans indexed.
+          format: int64
+          type: integer
+      type: object
+    UsageIndexedSpansResponse:
+      description: A response containing indexed spans usage.
+      example:
+        usage:
+        - indexed_events_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+        - indexed_events_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        usage:
+          description: Array with the number of hourly traces indexed for a given
+            organization.
+          items:
+            $ref: '#/components/schemas/UsageIndexedSpansHour'
+          type: array
+      type: object
+    UsageIngestedSpansHour:
+      description: Ingested spans usage for a given organization for a given hour.
+      example:
+        hour: 2000-01-23T04:56:07.000+00:00
+        ingested_events_bytes: 0
+      properties:
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+        ingested_events_bytes:
+          description: Contains the total number of bytes ingested during a given
+            hour.
+          format: int64
+          type: integer
+      type: object
+    UsageIngestedSpansResponse:
+      description: Response containing the ingested spans usage for each hour for
+        a given organization.
+      example:
+        usage:
+        - hour: 2000-01-23T04:56:07.000+00:00
+          ingested_events_bytes: 0
+        - hour: 2000-01-23T04:56:07.000+00:00
+          ingested_events_bytes: 0
+      properties:
+        usage:
+          description: Get hourly usage for ingested spans.
+          items:
+            $ref: '#/components/schemas/UsageIngestedSpansHour'
           type: array
       type: object
     UsageLambdaHour:
