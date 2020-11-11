@@ -164,14 +164,12 @@ Feature: Usage Metering
 
   @generated @skip
   Scenario: Get hourly usage for Trace Search returns "OK" response
-    Given operation "GetUsageTrace" enabled
-    And new "GetUsageTrace" request
+    Given new "GetUsageTrace" request
     When the request is sent
     Then the response status is 200 OK
 
   @generated @skip
   Scenario: Get hourly usage for tracing without limits returns "OK" response
-    Given operation "GetTracingWithoutLimits" enabled
-    And new "GetTracingWithoutLimits" request
+    Given new "GetTracingWithoutLimits" request
     When the request is sent
     Then the response status is 200 OK
