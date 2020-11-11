@@ -10832,6 +10832,9 @@ components:
             metric: metrics.name
             group_by: host
             type: count
+          restricted_roles:
+          - restricted_roles
+          - restricted_roles
           evaluation_delay: 6
           notify_audit: false
           min_location_failed: 5
@@ -10961,6 +10964,9 @@ components:
           metric: metrics.name
           group_by: host
           type: count
+        restricted_roles:
+        - restricted_roles
+        - restricted_roles
         evaluation_delay: 6
         notify_audit: false
         min_location_failed: 5
@@ -11083,6 +11089,13 @@ components:
             We highly recommend you set this to `false` for sparse metrics,
             otherwise some evaluations are skipped. Default is false.
           type: boolean
+        restricted_roles:
+          description: A list of role identifiers that can be pulled from the Roles
+            API. Cannot be used with `locked`.
+          items:
+            description: A role UUID.
+            type: string
+          type: array
         silenced:
           additionalProperties:
             description: ID of the downtime applied to the monitor.
@@ -11350,6 +11363,9 @@ components:
             metric: metrics.name
             group_by: host
             type: count
+          restricted_roles:
+          - restricted_roles
+          - restricted_roles
           evaluation_delay: 6
           notify_audit: false
           min_location_failed: 5
