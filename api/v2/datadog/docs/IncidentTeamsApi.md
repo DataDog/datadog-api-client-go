@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateIncidentTeam**](IncidentTeamsApi.md#CreateIncidentTeam) | **Post** /api/v2/teams | Create a new incident team
 [**DeleteIncidentTeam**](IncidentTeamsApi.md#DeleteIncidentTeam) | **Delete** /api/v2/teams/{team_id} | Delete an existing incident team
 [**GetIncidentTeam**](IncidentTeamsApi.md#GetIncidentTeam) | **Get** /api/v2/teams/{team_id} | Get details of an incident team
-[**GetIncidentTeams**](IncidentTeamsApi.md#GetIncidentTeams) | **Get** /api/v2/teams | Get a list of all incident teams
+[**ListIncidentTeams**](IncidentTeamsApi.md#ListIncidentTeams) | **Get** /api/v2/teams | Get a list of all incident teams
 [**UpdateIncidentTeam**](IncidentTeamsApi.md#UpdateIncidentTeam) | **Patch** /api/v2/teams/{team_id} | Update an existing incident team
 
 
@@ -263,9 +263,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetIncidentTeams
+## ListIncidentTeams
 
-> IncidentTeamsResponse GetIncidentTeams(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
+> IncidentTeamsResponse ListIncidentTeams(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Filter(filter).Execute()
 
 Get a list of all incident teams
 
@@ -300,18 +300,19 @@ func main() {
     include := "include_example" // string | Specifies which types of related objects should be included in the response. (optional)
     pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
     pageOffset := 987 // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
+    filter := "filter_example" // string | A search query that filters teams by name. (optional)
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("GetIncidentTeams", true)
+    configuration.SetUnstableOperationEnabled("ListIncidentTeams", true)
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentTeamsApi.GetIncidentTeams(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
+    resp, r, err := api_client.IncidentTeamsApi.ListIncidentTeams(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Filter(filter).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.GetIncidentTeams``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.ListIncidentTeams``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetIncidentTeams`: IncidentTeamsResponse
-    fmt.Fprintf(os.Stdout, "Response from `IncidentTeamsApi.GetIncidentTeams`: %v\n", resp)
+    // response from `ListIncidentTeams`: IncidentTeamsResponse
+    fmt.Fprintf(os.Stdout, "Response from `IncidentTeamsApi.ListIncidentTeams`: %v\n", resp)
 }
 ```
 
@@ -321,7 +322,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetIncidentTeamsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListIncidentTeamsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -329,6 +330,7 @@ Name | Type | Description  | Notes
  **include** | **string** | Specifies which types of related objects should be included in the response. | 
  **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
+ **filter** | **string** | A search query that filters teams by name. | 
 
 ### Return type
 
