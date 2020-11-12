@@ -631,48 +631,6 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	timeseriesWidgetLogQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionLogQuery))
 
-	// Timeseries Widget with Legacy Event query
-	timeseriesWidgetDefinitionEventQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
-	timeseriesWidgetDefinitionEventQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
-		LegacyEventQuery: &datadog.EventQueryDefinition{
-			Search:        "Build failure",
-			TagsExecution: "build",
-		},
-		Style: &datadog.WidgetRequestStyle{
-			Palette:   datadog.PtrString("dog_classic"),
-			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
-			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr()},
-		Metadata: &[]datadog.TimeseriesWidgetRequestMetadata{{
-			Expression: "avg:system.load.1{*}",
-			AliasName:  datadog.PtrString("Aliased metric"),
-		}},
-		DisplayType:  datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
-		OnRightYaxis: datadog.PtrBool(true),
-	}})
-	timeseriesWidgetDefinitionEventQuery.SetYaxis(*widgetAxis)
-	timeseriesWidgetDefinitionEventQuery.SetRightYaxis(*widgetAxis)
-	timeseriesWidgetDefinitionEventQuery.SetEvents([]datadog.WidgetEvent{{
-		Q: "Build succeeded",
-	}})
-	timeseriesWidgetDefinitionEventQuery.SetMarkers([]datadog.WidgetMarker{{
-		Value:       "y=15",
-		DisplayType: datadog.PtrString("error dashed"),
-		Label:       datadog.PtrString("error threshold"),
-		Time:        datadog.PtrString("4h"),
-	}})
-	timeseriesWidgetDefinitionEventQuery.SetTitle("Test Timeseries Widget with Event Query")
-	timeseriesWidgetDefinitionEventQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
-	timeseriesWidgetDefinitionEventQuery.SetTitleSize("16")
-	timeseriesWidgetDefinitionEventQuery.SetTime(*widgetTime)
-	timeseriesWidgetDefinitionEventQuery.SetShowLegend(true)
-	timeseriesWidgetDefinitionEventQuery.SetLegendSize("16")
-	timeseriesWidgetDefinitionEventQuery.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
-
-	timeseriesWidgetEventQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionEventQuery))
-
 	// Toplist Widget
 	toplistWidgetDefinition := datadog.NewToplistWidgetDefinitionWithDefaults()
 	toplistWidgetDefinition.SetRequests([]datadog.ToplistWidgetRequest{{
@@ -730,7 +688,6 @@ func TestDashboardLifecycle(t *testing.T) {
 		*timeseriesWidget,
 		*timeseriesWidgetProcessQuery,
 		*timeseriesWidgetLogQuery,
-		*timeseriesWidgetEventQuery,
 		*toplistWidget,
 	}
 
