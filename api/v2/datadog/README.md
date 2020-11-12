@@ -80,12 +80,12 @@ Class | Method | HTTP request | Description
 *IncidentServicesApi* | [**CreateIncidentService**](docs/IncidentServicesApi.md#createincidentservice) | **Post** /api/v2/services | Create a new incident service
 *IncidentServicesApi* | [**DeleteIncidentService**](docs/IncidentServicesApi.md#deleteincidentservice) | **Delete** /api/v2/services/{service_id} | Delete an existing incident service
 *IncidentServicesApi* | [**GetIncidentService**](docs/IncidentServicesApi.md#getincidentservice) | **Get** /api/v2/services/{service_id} | Get details of an incident service
-*IncidentServicesApi* | [**GetIncidentServices**](docs/IncidentServicesApi.md#getincidentservices) | **Get** /api/v2/services | Get a list of all incident services
+*IncidentServicesApi* | [**ListIncidentServices**](docs/IncidentServicesApi.md#listincidentservices) | **Get** /api/v2/services | Get a list of all incident services
 *IncidentServicesApi* | [**UpdateIncidentService**](docs/IncidentServicesApi.md#updateincidentservice) | **Patch** /api/v2/services/{service_id} | Update an existing incident service
 *IncidentTeamsApi* | [**CreateIncidentTeam**](docs/IncidentTeamsApi.md#createincidentteam) | **Post** /api/v2/teams | Create a new incident team
 *IncidentTeamsApi* | [**DeleteIncidentTeam**](docs/IncidentTeamsApi.md#deleteincidentteam) | **Delete** /api/v2/teams/{team_id} | Delete an existing incident team
 *IncidentTeamsApi* | [**GetIncidentTeam**](docs/IncidentTeamsApi.md#getincidentteam) | **Get** /api/v2/teams/{team_id} | Get details of an incident team
-*IncidentTeamsApi* | [**GetIncidentTeams**](docs/IncidentTeamsApi.md#getincidentteams) | **Get** /api/v2/teams | Get a list of all incident teams
+*IncidentTeamsApi* | [**ListIncidentTeams**](docs/IncidentTeamsApi.md#listincidentteams) | **Get** /api/v2/teams | Get a list of all incident teams
 *IncidentTeamsApi* | [**UpdateIncidentTeam**](docs/IncidentTeamsApi.md#updateincidentteam) | **Patch** /api/v2/teams/{team_id} | Update an existing incident team
 *LogsApi* | [**AggregateLogs**](docs/LogsApi.md#aggregatelogs) | **Post** /api/v2/logs/analytics/aggregate | Aggregate events
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v2/logs/events/search | Get a list of logs
