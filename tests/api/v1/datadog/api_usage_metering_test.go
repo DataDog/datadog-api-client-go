@@ -522,20 +522,20 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(12), usageOrgItem.GetMobileRumSessionCountSum())
 }
 
-func TestSummaryByTag(t *testing.T) {
+func TestUsageAttribution(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	startMonth := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1) // We will only have monthly reports on 2020-08-15 for this org
 
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSummaryByTag", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetUsageAttribution", true)
 	api := Client(ctx).UsageMeteringApi
-	usage, httpresp, err := api.GetSummaryByTag(ctx).StartMonth(startMonth).Fields("*").Execute()
+	usage, httpresp, err := api.GetUsageAttribution(ctx).StartMonth(startMonth).Fields("*").Execute()
 	if err != nil {
 		if tests.GetRecording() != tests.ModeReplaying || httpresp.StatusCode == 404 || httpresp.StatusCode == 403 {
 			t.Skip("No records are available yet or this org is forbidden")
 		} else {
-			t.Errorf("Failed to get Summary By Tag %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+			t.Errorf("Failed to get Usage Attribution %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		}
 	}
 	assert.Equal(200, httpresp.StatusCode)
