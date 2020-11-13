@@ -46,9 +46,10 @@ func main() {
     )
 
     dashboardListId := 987 // int64 | ID of the dashboard list to add items to.
-    body := datadog.DashboardListAddItemsRequest{Dashboards: []DashboardListItemRequest{datadog.DashboardListItemRequest{Id: "Id_example", Type: datadog.DashboardType{}})} // DashboardListAddItemsRequest | Dashboards to add to the dashboard list.
+    body := *datadog.NewDashboardListAddItemsRequest() // DashboardListAddItemsRequest | Dashboards to add to the dashboard list.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.DashboardListsApi.CreateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
     if err != nil {
@@ -131,9 +132,10 @@ func main() {
     )
 
     dashboardListId := 987 // int64 | ID of the dashboard list to delete items from.
-    body := datadog.DashboardListDeleteItemsRequest{Dashboards: []DashboardListItemRequest{datadog.DashboardListItemRequest{Id: "Id_example", Type: datadog.DashboardType{}})} // DashboardListDeleteItemsRequest | Dashboards to delete from the dashboard list.
+    body := *datadog.NewDashboardListDeleteItemsRequest() // DashboardListDeleteItemsRequest | Dashboards to delete from the dashboard list.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.DashboardListsApi.DeleteDashboardListItems(ctx, dashboardListId).Body(body).Execute()
     if err != nil {
@@ -218,6 +220,7 @@ func main() {
     dashboardListId := 987 // int64 | ID of the dashboard list to get items from.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.DashboardListsApi.GetDashboardListItems(ctx, dashboardListId).Execute()
     if err != nil {
@@ -299,9 +302,10 @@ func main() {
     )
 
     dashboardListId := 987 // int64 | ID of the dashboard list to update items from.
-    body := datadog.DashboardListUpdateItemsRequest{Dashboards: []DashboardListItemRequest{)} // DashboardListUpdateItemsRequest | New dashboards of the dashboard list.
+    body := *datadog.NewDashboardListUpdateItemsRequest() // DashboardListUpdateItemsRequest | New dashboards of the dashboard list.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.DashboardListsApi.UpdateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
     if err != nil {

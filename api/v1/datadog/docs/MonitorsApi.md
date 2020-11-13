@@ -51,6 +51,7 @@ func main() {
     monitorIds := []int64{int64(123)} // []int64 | The IDs of the monitor to check.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MonitorsApi.CheckCanDeleteMonitor(ctx).MonitorIds(monitorIds).Execute()
     if err != nil {
@@ -127,9 +128,10 @@ func main() {
         },
     )
 
-    body := datadog.Monitor{Created: "TODO", Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Deleted: "TODO", Id: int64(123), Message: "Message_example", Modified: "TODO", Multi: false, Name: "Name_example", Options: datadog.MonitorOptions{Aggregation: datadog.MonitorOptions_aggregation{GroupBy: "GroupBy_example", Metric: "Metric_example", Type: "Type_example"}, DeviceIds: []MonitorDeviceID{datadog.MonitorDeviceID{}), EnableLogsSample: false, EscalationMessage: "EscalationMessage_example", EvaluationDelay: int64(123), IncludeTags: false, Locked: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), NewHostDelay: int64(123), NoDataTimeframe: int64(123), NotifyAudit: false, NotifyNoData: false, RenotifyInterval: int64(123), RequireFullWindow: false, Silenced: map[string]string{ "Key" = "Value" }, SyntheticsCheckId: int64(123), ThresholdWindows: datadog.MonitorThresholdWindowOptions{RecoveryWindow: "RecoveryWindow_example", TriggerWindow: "TriggerWindow_example"}, Thresholds: datadog.MonitorThresholds{Critical: 123, CriticalRecovery: 123, Ok: 123, Unknown: 123, Warning: 123, WarningRecovery: 123}, TimeoutH: int64(123)}, OverallState: datadog.MonitorOverallStates{}, Query: "Query_example", State: datadog.MonitorState{Groups: map[string]string{ "Key" = "Value" }}, Tags: []string{"Tags_example"), Type: datadog.MonitorType{}} // Monitor | Create a monitor request body.
+    body := *datadog.NewMonitor() // Monitor | Create a monitor request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MonitorsApi.CreateMonitor(ctx).Body(body).Execute()
     if err != nil {
@@ -210,6 +212,7 @@ func main() {
     force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MonitorsApi.DeleteMonitor(ctx, monitorId).Force(force).Execute()
     if err != nil {
@@ -295,6 +298,7 @@ func main() {
     groupStates := "groupStates_example" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MonitorsApi.GetMonitor(ctx, monitorId).GroupStates(groupStates).Execute()
     if err != nil {
@@ -386,6 +390,7 @@ func main() {
     pageSize := 987 // int32 | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a `page_size` limit. However, if page is specified and `page_size` is not, the argument defaults to 100. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MonitorsApi.ListMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).IdOffset(idOffset).Page(page).PageSize(pageSize).Execute()
     if err != nil {
@@ -470,9 +475,10 @@ func main() {
     )
 
     monitorId := 987 // int64 | The ID of the monitor.
-    body := datadog.MonitorUpdateRequest{Created: "TODO", Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Deleted: "TODO", Id: int64(123), Message: "Message_example", Modified: "TODO", Multi: false, Name: "Name_example", Options: datadog.MonitorOptions{Aggregation: datadog.MonitorOptions_aggregation{GroupBy: "GroupBy_example", Metric: "Metric_example", Type: "Type_example"}, DeviceIds: []MonitorDeviceID{datadog.MonitorDeviceID{}), EnableLogsSample: false, EscalationMessage: "EscalationMessage_example", EvaluationDelay: int64(123), IncludeTags: false, Locked: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), NewHostDelay: int64(123), NoDataTimeframe: int64(123), NotifyAudit: false, NotifyNoData: false, RenotifyInterval: int64(123), RequireFullWindow: false, Silenced: map[string]string{ "Key" = "Value" }, SyntheticsCheckId: int64(123), ThresholdWindows: datadog.MonitorThresholdWindowOptions{RecoveryWindow: "RecoveryWindow_example", TriggerWindow: "TriggerWindow_example"}, Thresholds: datadog.MonitorThresholds{Critical: 123, CriticalRecovery: 123, Ok: 123, Unknown: 123, Warning: 123, WarningRecovery: 123}, TimeoutH: int64(123)}, OverallState: datadog.MonitorOverallStates{}, Query: "Query_example", State: datadog.MonitorState{Groups: map[string]string{ "Key" = "Value" }}, Tags: []string{"Tags_example"), Type: datadog.MonitorType{}} // MonitorUpdateRequest | Edit a monitor request body.
+    body := *datadog.NewMonitorUpdateRequest() // MonitorUpdateRequest | Edit a monitor request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MonitorsApi.UpdateMonitor(ctx, monitorId).Body(body).Execute()
     if err != nil {
@@ -554,9 +560,10 @@ func main() {
         },
     )
 
-    body := datadog.Monitor{Created: "TODO", Creator: , Deleted: "TODO", Id: int64(123), Message: "Message_example", Modified: "TODO", Multi: false, Name: "Name_example", Options: , OverallState: , Query: "Query_example", State: , Tags: []string{"Tags_example"), Type: } // Monitor | Monitor request object
+    body := *datadog.NewMonitor() // Monitor | Monitor request object
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MonitorsApi.ValidateMonitor(ctx).Body(body).Execute()
     if err != nil {

@@ -45,9 +45,10 @@ func main() {
         },
     )
 
-    body := datadog.GCPAccount{AuthProviderX509CertUrl: "AuthProviderX509CertUrl_example", AuthUri: "AuthUri_example", Automute: false, ClientEmail: "ClientEmail_example", ClientId: "ClientId_example", ClientX509CertUrl: "ClientX509CertUrl_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", PrivateKey: "PrivateKey_example", PrivateKeyId: "PrivateKeyId_example", ProjectId: "ProjectId_example", TokenUri: "TokenUri_example", Type: "Type_example"} // GCPAccount | Create a Datadog-GCP integration.
+    body := *datadog.NewGCPAccount() // GCPAccount | Create a Datadog-GCP integration.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.GCPIntegrationApi.CreateGCPIntegration(ctx).Body(body).Execute()
     if err != nil {
@@ -124,9 +125,10 @@ func main() {
         },
     )
 
-    body := datadog.GCPAccount{AuthProviderX509CertUrl: "AuthProviderX509CertUrl_example", AuthUri: "AuthUri_example", Automute: false, ClientEmail: "ClientEmail_example", ClientId: "ClientId_example", ClientX509CertUrl: "ClientX509CertUrl_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", PrivateKey: "PrivateKey_example", PrivateKeyId: "PrivateKeyId_example", ProjectId: "ProjectId_example", TokenUri: "TokenUri_example", Type: "Type_example"} // GCPAccount | Delete a given Datadog-GCP integration.
+    body := *datadog.NewGCPAccount() // GCPAccount | Delete a given Datadog-GCP integration.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.GCPIntegrationApi.DeleteGCPIntegration(ctx).Body(body).Execute()
     if err != nil {
@@ -205,6 +207,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.GCPIntegrationApi.ListGCPIntegration(ctx).Execute()
     if err != nil {
@@ -280,6 +283,7 @@ func main() {
     body :=  // GCPAccount | Update a Datadog-GCP integration.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.GCPIntegrationApi.UpdateGCPIntegration(ctx).Body(body).Execute()
     if err != nil {

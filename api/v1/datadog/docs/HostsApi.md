@@ -48,6 +48,7 @@ func main() {
     from := 987 // int64 | Number of seconds from which you want to get total number of active hosts. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.HostsApi.GetHostTotals(ctx).From(from).Execute()
     if err != nil {
@@ -134,6 +135,7 @@ func main() {
     includeHostsMetadata := true // bool | Include additional metadata about the hosts (agent_version, machine, platform, processor, etc.). (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.HostsApi.ListHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).IncludeMutedHostsData(includeMutedHostsData).IncludeHostsMetadata(includeHostsMetadata).Execute()
     if err != nil {
@@ -218,9 +220,10 @@ func main() {
     )
 
     hostName := "hostName_example" // string | Name of the host to mute.
-    body := datadog.HostMuteSettings{End: int64(123), Message: "Message_example", Override: false} // HostMuteSettings | Mute a host request body. (optional)
+    body := *datadog.NewHostMuteSettings() // HostMuteSettings | Mute a host request body. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.HostsApi.MuteHost(ctx, hostName).Body(body).Execute()
     if err != nil {
@@ -305,6 +308,7 @@ func main() {
     hostName := "hostName_example" // string | Name of the host to unmute.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.HostsApi.UnmuteHost(ctx, hostName).Execute()
     if err != nil {

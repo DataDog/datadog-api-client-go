@@ -33,6 +33,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.IPRangesApi.GetIPRanges(ctx).Execute()
     if err != nil {

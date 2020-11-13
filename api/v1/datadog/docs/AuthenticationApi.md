@@ -41,6 +41,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AuthenticationApi.Validate(ctx).Execute()
     if err != nil {

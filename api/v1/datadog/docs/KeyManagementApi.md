@@ -51,9 +51,10 @@ func main() {
         },
     )
 
-    body := datadog.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
+    body := *datadog.NewApiKey() // ApiKey | 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.CreateAPIKey(ctx).Body(body).Execute()
     if err != nil {
@@ -130,9 +131,10 @@ func main() {
         },
     )
 
-    body := datadog.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
+    body := *datadog.NewApplicationKey() // ApplicationKey | 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.CreateApplicationKey(ctx).Body(body).Execute()
     if err != nil {
@@ -212,6 +214,7 @@ func main() {
     key := "key_example" // string | The specific API key you are working with.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.DeleteAPIKey(ctx, key).Execute()
     if err != nil {
@@ -295,6 +298,7 @@ func main() {
     key := "key_example" // string | The specific APP key you are working with.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.DeleteApplicationKey(ctx, key).Execute()
     if err != nil {
@@ -378,6 +382,7 @@ func main() {
     key := "key_example" // string | The specific API key you are working with.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.GetAPIKey(ctx, key).Execute()
     if err != nil {
@@ -461,6 +466,7 @@ func main() {
     key := "key_example" // string | The specific APP key you are working with.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.GetApplicationKey(ctx, key).Execute()
     if err != nil {
@@ -543,6 +549,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.ListAPIKeys(ctx).Execute()
     if err != nil {
@@ -617,6 +624,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.ListApplicationKeys(ctx).Execute()
     if err != nil {
@@ -690,9 +698,10 @@ func main() {
     )
 
     key := "key_example" // string | The specific API key you are working with.
-    body := datadog.ApiKey{Created: "Created_example", CreatedBy: "CreatedBy_example", Key: "Key_example", Name: "Name_example"} // ApiKey | 
+    body := *datadog.NewApiKey() // ApiKey | 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.UpdateAPIKey(ctx, key).Body(body).Execute()
     if err != nil {
@@ -775,9 +784,10 @@ func main() {
     )
 
     key := "key_example" // string | The specific APP key you are working with.
-    body := datadog.ApplicationKey{Hash: "Hash_example", Name: "Name_example", Owner: "Owner_example"} // ApplicationKey | 
+    body := *datadog.NewApplicationKey() // ApplicationKey | 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.KeyManagementApi.UpdateApplicationKey(ctx, key).Body(body).Execute()
     if err != nil {

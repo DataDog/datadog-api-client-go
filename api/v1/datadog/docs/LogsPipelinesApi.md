@@ -48,9 +48,10 @@ func main() {
         },
     )
 
-    body := datadog.LogsPipeline{Filter: datadog.LogsFilter{Query: "Query_example"}, Id: "Id_example", IsEnabled: false, IsReadOnly: false, Name: "Name_example", Processors: []LogsProcessor{datadog.LogsProcessor{Grok: datadog.LogsGrokParserRules{MatchRules: "MatchRules_example", SupportRules: "SupportRules_example"}, IsEnabled: false, Name: "Name_example", Samples: []string{"Samples_example"), Source: "Source_example", Type: datadog.LogsTraceRemapperType{}, Sources: []string{"Sources_example"), OverrideOnConflict: false, PreserveSource: false, SourceType: "SourceType_example", Target: "Target_example", TargetType: "TargetType_example", NormalizeEndingSlashes: false, IsEncoded: false, Categories: []LogsCategoryProcessorCategories{datadog.LogsCategoryProcessor_categories{Filter: datadog.LogsFilter{Query: "Query_example"}, Name: "Name_example"}), Expression: "Expression_example", IsReplaceMissing: false, Template: "Template_example", Filter: , Processors: []LogsProcessor{datadog.LogsProcessor{Grok: datadog.LogsGrokParserRules{MatchRules: "MatchRules_example", SupportRules: "SupportRules_example"}, IsEnabled: false, Name: "Name_example", Samples: []string{"Samples_example"), Source: "Source_example", Type: datadog.LogsTraceRemapperType{}, Sources: []string{"Sources_example"), OverrideOnConflict: false, PreserveSource: false, SourceType: "SourceType_example", Target: "Target_example", TargetType: "TargetType_example", NormalizeEndingSlashes: false, IsEncoded: false, Categories: []LogsCategoryProcessorCategories{datadog.LogsCategoryProcessor_categories{Filter: , Name: "Name_example"}), Expression: "Expression_example", IsReplaceMissing: false, Template: "Template_example", Filter: , Processors: []LogsProcessor{), DefaultLookup: "DefaultLookup_example", LookupTable: []string{"LookupTable_example")}), DefaultLookup: "DefaultLookup_example", LookupTable: []string{"LookupTable_example")}), Type: "Type_example"} // LogsPipeline | Definition of the new pipeline.
+    body := *datadog.NewLogsPipeline("Name_example") // LogsPipeline | Definition of the new pipeline.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsPipelinesApi.CreateLogsPipeline(ctx).Body(body).Execute()
     if err != nil {
@@ -130,6 +131,7 @@ func main() {
     pipelineId := "pipelineId_example" // string | ID of the pipeline to delete.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsPipelinesApi.DeleteLogsPipeline(ctx, pipelineId).Execute()
     if err != nil {
@@ -211,6 +213,7 @@ func main() {
     pipelineId := "pipelineId_example" // string | ID of the pipeline to get.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsPipelinesApi.GetLogsPipeline(ctx, pipelineId).Execute()
     if err != nil {
@@ -293,6 +296,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsPipelinesApi.GetLogsPipelineOrder(ctx).Execute()
     if err != nil {
@@ -367,6 +371,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsPipelinesApi.ListLogsPipelines(ctx).Execute()
     if err != nil {
@@ -440,9 +445,10 @@ func main() {
     )
 
     pipelineId := "pipelineId_example" // string | ID of the pipeline to delete.
-    body := datadog.LogsPipeline{Filter: , Id: "Id_example", IsEnabled: false, IsReadOnly: false, Name: "Name_example", Processors: []LogsProcessor{), Type: "Type_example"} // LogsPipeline | New definition of the pipeline.
+    body := *datadog.NewLogsPipeline("Name_example") // LogsPipeline | New definition of the pipeline.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipeline(ctx, pipelineId).Body(body).Execute()
     if err != nil {
@@ -524,9 +530,10 @@ func main() {
         },
     )
 
-    body := datadog.LogsPipelinesOrder{PipelineIds: []string{"PipelineIds_example")} // LogsPipelinesOrder | Object containing the new ordered list of pipeline IDs.
+    body := *datadog.NewLogsPipelinesOrder([]string{"PipelineIds_example"}) // LogsPipelinesOrder | Object containing the new ordered list of pipeline IDs.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipelineOrder(ctx).Body(body).Execute()
     if err != nil {

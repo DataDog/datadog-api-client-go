@@ -15,10 +15,14 @@ import (
 // LogsArchiveCreateRequestAttributes The attributes associated with the archive.
 type LogsArchiveCreateRequestAttributes struct {
 	Destination LogsArchiveCreateRequestDestination `json:"destination"`
+	// To store the tags in the archive, set the value \"true\". If it is set to \"false\", the tags will be deleted when the logs are sent to the archive.
+	IncludeTags *bool `json:"include_tags,omitempty"`
 	// The archive name.
 	Name string `json:"name"`
 	// The archive query/filter. Logs matching this query are included in the archive.
 	Query string `json:"query"`
+	// An array of tags to add to rehydrated logs from an archive.
+	RehydrationTags *[]string `json:"rehydration_tags,omitempty"`
 }
 
 // NewLogsArchiveCreateRequestAttributes instantiates a new LogsArchiveCreateRequestAttributes object
@@ -28,6 +32,8 @@ type LogsArchiveCreateRequestAttributes struct {
 func NewLogsArchiveCreateRequestAttributes(destination LogsArchiveCreateRequestDestination, name string, query string) *LogsArchiveCreateRequestAttributes {
 	this := LogsArchiveCreateRequestAttributes{}
 	this.Destination = destination
+	var includeTags bool = false
+	this.IncludeTags = &includeTags
 	this.Name = name
 	this.Query = query
 	return &this
@@ -38,6 +44,8 @@ func NewLogsArchiveCreateRequestAttributes(destination LogsArchiveCreateRequestD
 // but it doesn't guarantee that properties required by API are set
 func NewLogsArchiveCreateRequestAttributesWithDefaults() *LogsArchiveCreateRequestAttributes {
 	this := LogsArchiveCreateRequestAttributes{}
+	var includeTags bool = false
+	this.IncludeTags = &includeTags
 	return &this
 }
 
@@ -63,6 +71,38 @@ func (o *LogsArchiveCreateRequestAttributes) GetDestinationOk() (*LogsArchiveCre
 // SetDestination sets field value
 func (o *LogsArchiveCreateRequestAttributes) SetDestination(v LogsArchiveCreateRequestDestination) {
 	o.Destination = v
+}
+
+// GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.
+func (o *LogsArchiveCreateRequestAttributes) GetIncludeTags() bool {
+	if o == nil || o.IncludeTags == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IncludeTags
+}
+
+// GetIncludeTagsOk returns a tuple with the IncludeTags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsArchiveCreateRequestAttributes) GetIncludeTagsOk() (*bool, bool) {
+	if o == nil || o.IncludeTags == nil {
+		return nil, false
+	}
+	return o.IncludeTags, true
+}
+
+// HasIncludeTags returns a boolean if a field has been set.
+func (o *LogsArchiveCreateRequestAttributes) HasIncludeTags() bool {
+	if o != nil && o.IncludeTags != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIncludeTags gets a reference to the given bool and assigns it to the IncludeTags field.
+func (o *LogsArchiveCreateRequestAttributes) SetIncludeTags(v bool) {
+	o.IncludeTags = &v
 }
 
 // GetName returns the Name field value
@@ -113,16 +153,54 @@ func (o *LogsArchiveCreateRequestAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
+// GetRehydrationTags returns the RehydrationTags field value if set, zero value otherwise.
+func (o *LogsArchiveCreateRequestAttributes) GetRehydrationTags() []string {
+	if o == nil || o.RehydrationTags == nil {
+		var ret []string
+		return ret
+	}
+	return *o.RehydrationTags
+}
+
+// GetRehydrationTagsOk returns a tuple with the RehydrationTags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsArchiveCreateRequestAttributes) GetRehydrationTagsOk() (*[]string, bool) {
+	if o == nil || o.RehydrationTags == nil {
+		return nil, false
+	}
+	return o.RehydrationTags, true
+}
+
+// HasRehydrationTags returns a boolean if a field has been set.
+func (o *LogsArchiveCreateRequestAttributes) HasRehydrationTags() bool {
+	if o != nil && o.RehydrationTags != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRehydrationTags gets a reference to the given []string and assigns it to the RehydrationTags field.
+func (o *LogsArchiveCreateRequestAttributes) SetRehydrationTags(v []string) {
+	o.RehydrationTags = &v
+}
+
 func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["destination"] = o.Destination
+	}
+	if o.IncludeTags != nil {
+		toSerialize["include_tags"] = o.IncludeTags
 	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
 	if true {
 		toSerialize["query"] = o.Query
+	}
+	if o.RehydrationTags != nil {
+		toSerialize["rehydration_tags"] = o.RehydrationTags
 	}
 	return json.Marshal(toSerialize)
 }

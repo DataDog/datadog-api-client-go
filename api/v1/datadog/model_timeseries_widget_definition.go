@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// TimeseriesWidgetDefinition The timeseries visualization allows you to display the evolution of one or more metrics, log events, or Analyzed Spans over time.
+// TimeseriesWidgetDefinition The timeseries visualization allows you to display the evolution of one or more metrics, log events, or Indexed Spans over time.
 type TimeseriesWidgetDefinition struct {
 	// List of custom links.
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
@@ -23,7 +23,8 @@ type TimeseriesWidgetDefinition struct {
 	// List of markers.
 	Markers *[]WidgetMarker `json:"markers,omitempty"`
 	// List of timeseries widget requests.
-	Requests []TimeseriesWidgetRequest `json:"requests"`
+	Requests   []TimeseriesWidgetRequest `json:"requests"`
+	RightYaxis *WidgetAxis               `json:"right_yaxis,omitempty"`
 	// (screenboard only) Show the legend for this widget.
 	ShowLegend *bool       `json:"show_legend,omitempty"`
 	Time       *WidgetTime `json:"time,omitempty"`
@@ -207,6 +208,38 @@ func (o *TimeseriesWidgetDefinition) GetRequestsOk() (*[]TimeseriesWidgetRequest
 // SetRequests sets field value
 func (o *TimeseriesWidgetDefinition) SetRequests(v []TimeseriesWidgetRequest) {
 	o.Requests = v
+}
+
+// GetRightYaxis returns the RightYaxis field value if set, zero value otherwise.
+func (o *TimeseriesWidgetDefinition) GetRightYaxis() WidgetAxis {
+	if o == nil || o.RightYaxis == nil {
+		var ret WidgetAxis
+		return ret
+	}
+	return *o.RightYaxis
+}
+
+// GetRightYaxisOk returns a tuple with the RightYaxis field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetDefinition) GetRightYaxisOk() (*WidgetAxis, bool) {
+	if o == nil || o.RightYaxis == nil {
+		return nil, false
+	}
+	return o.RightYaxis, true
+}
+
+// HasRightYaxis returns a boolean if a field has been set.
+func (o *TimeseriesWidgetDefinition) HasRightYaxis() bool {
+	if o != nil && o.RightYaxis != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRightYaxis gets a reference to the given WidgetAxis and assigns it to the RightYaxis field.
+func (o *TimeseriesWidgetDefinition) SetRightYaxis(v WidgetAxis) {
+	o.RightYaxis = &v
 }
 
 // GetShowLegend returns the ShowLegend field value if set, zero value otherwise.
@@ -441,6 +474,9 @@ func (o TimeseriesWidgetDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["requests"] = o.Requests
+	}
+	if o.RightYaxis != nil {
+		toSerialize["right_yaxis"] = o.RightYaxis
 	}
 	if o.ShowLegend != nil {
 		toSerialize["show_legend"] = o.ShowLegend

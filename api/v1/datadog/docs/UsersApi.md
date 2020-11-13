@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v1/user | Create a user
 [**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v1/user/{user_handle} | Disable a user
 [**GetUser**](UsersApi.md#GetUser) | **Get** /api/v1/user/{user_handle} | Get user details
-[**ListUsers**](UsersApi.md#ListUsers) | **Get** /api/v1/user | Get all users
+[**ListUsers**](UsersApi.md#ListUsers) | **Get** /api/v1/user | List all users
 [**UpdateUser**](UsersApi.md#UpdateUser) | **Put** /api/v1/user/{user_handle} | Update a user
 
 
@@ -46,9 +46,10 @@ func main() {
         },
     )
 
-    body := datadog.User{AccessRole: datadog.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | User object that needs to be created.
+    body := *datadog.NewUser() // User | User object that needs to be created.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.UsersApi.CreateUser(ctx).Body(body).Execute()
     if err != nil {
@@ -128,6 +129,7 @@ func main() {
     userHandle := TODO // string | The handle of the user.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.UsersApi.DisableUser(ctx, userHandle).Execute()
     if err != nil {
@@ -211,6 +213,7 @@ func main() {
     userHandle := TODO // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.UsersApi.GetUser(ctx, userHandle).Execute()
     if err != nil {
@@ -261,7 +264,7 @@ Name | Type | Description  | Notes
 
 > UserListResponse ListUsers(ctx).Execute()
 
-Get all users
+List all users
 
 
 
@@ -293,6 +296,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.UsersApi.ListUsers(ctx).Execute()
     if err != nil {
@@ -366,9 +370,10 @@ func main() {
     )
 
     userHandle := TODO // string | The ID of the user.
-    body := datadog.User{AccessRole: datadog.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | Description of the update.
+    body := *datadog.NewUser() // User | Description of the update.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.UsersApi.UpdateUser(ctx, userHandle).Body(body).Execute()
     if err != nil {

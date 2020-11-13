@@ -1,0 +1,183 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"go-TestScenarios-Feature_Incident_Teams-Scenario_Get_a_list_of_all_incident_teams_returns__OK__response-Given_there_is_a_valid__team__in_the_system-local-1605175832"},"type":"teams"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateIncidentTeam
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.11 (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1050065597087221703"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "231549295512997944"
+    url: https://api.datadoghq.com/api/v2/teams
+    method: POST
+  response:
+    body: '{"included":[{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0","attributes":{"name":null,"handle":"frog@datadoghq.com","created_at":"2019-10-02T08:15:39.795051+00:00","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"service_account":null,"disabled":false,"allowed_login_methods":[],"status":"Active"},"relationships":{"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}],"data":{"type":"teams","id":"3218efcc-120a-5a28-bb0f-610d7d5164bc","attributes":{"name":"go-TestScenarios-Feature_Incident_Teams-Scenario_Get_a_list_of_all_incident_teams_returns__OK__response-Given_there_is_a_valid__team__in_the_system-local-1605175832","created":"2020-11-12T10:10:32.724165+00:00","modified":"2020-11-12T10:10:32.724165+00:00"},"relationships":{"last_modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "1044"
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 12 Nov 2020 10:10:32 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 19-Nov-2020 10:10:32 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - rbGMi63XY6ETkPw9boG8yUDqogZ/1IN0Hh4Igu952urF41BH1CFuhykimklaERoh
+      X-Dd-Version:
+      - "35.3353211"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11999"
+      X-Ratelimit-Reset:
+      - "28"
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListIncidentTeams
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.11 (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6247284521392796663"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "231549295512997944"
+    url: https://api.datadoghq.com/api/v2/teams?filter=go-TestScenarios-Feature_Incident_Teams-Scenario_Get_a_list_of_all_incident_teams_returns__OK__response-Given_there_is_a_valid__team__in_the_system-local-1605175832
+    method: GET
+  response:
+    body: '{"meta":{"sort":"ASC","pagination":{"size":1,"next_offset":1,"offset":0}},"data":[{"type":"teams","id":"3218efcc-120a-5a28-bb0f-610d7d5164bc","attributes":{"name":"go-TestScenarios-Feature_Incident_Teams-Scenario_Get_a_list_of_all_incident_teams_returns__OK__response-Given_there_is_a_valid__team__in_the_system-local-1605175832","created":"2020-11-12T10:10:32.724165+00:00","modified":"2020-11-12T10:10:32.724165+00:00"},"relationships":{"last_modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}}}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 12 Nov 2020 10:10:32 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 19-Nov-2020 10:10:32 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - ViVCPXX6Ly37Yq2uFkha4NuJPBq3hQNknFQSAg7/RbVncSIYTDoKelvl87NEURiA
+      X-Dd-Version:
+      - "35.3353211"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11999"
+      X-Ratelimit-Reset:
+      - "28"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteIncidentTeam
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.11 (go go1.14.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4350043108590623213"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "231549295512997944"
+    url: https://api.datadoghq.com/api/v2/teams/3218efcc-120a-5a28-bb0f-610d7d5164bc
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 12 Nov 2020 10:10:33 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 19-Nov-2020 10:10:33 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - bOYRvpIMaDWtEAFc77xh4cYKoSxr/zmllvfW+/1TUFo7Zbru0n5QEX4LCoKiS3Mv
+      X-Dd-Version:
+      - "35.3353211"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11999"
+      X-Ratelimit-Reset:
+      - "27"
+    status: 204 No Content
+    code: 204
+    duration: ""

@@ -17,6 +17,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"regexp"
 	"runtime"
 	"strings"
 	"testing"
@@ -134,6 +135,26 @@ func SnakeToCamelCase(snake string) (camel string) {
 				} else {
 					camel += string(v)
 				}
+			}
+		}
+	}
+	return
+}
+
+func ToVarName(param string) (varName string) {
+	isToUpper := true
+
+	for _, v := range param {
+		if isToUpper {
+			varName += strings.ToUpper(string(v))
+			isToUpper = false
+		} else {
+			if v == '_' {
+				isToUpper = true
+			} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
+				isToUpper = true
+			} else {
+				varName += string(v)
 			}
 		}
 	}
@@ -325,6 +346,9 @@ func WithUniqueSurrounding(ctx context.Context, name string) string {
 	if !present || !IsCIRun() || GetRecording() == ModeReplaying {
 		buildID = "local"
 	}
+
+	// Replace all - with _ in the test name (scenario test names can include -)
+	name = strings.ReplaceAll(name, "-", "_")
 
 	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
 	// so we need to keep this short

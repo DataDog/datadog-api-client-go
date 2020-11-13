@@ -49,6 +49,8 @@ func main() {
     name := "name_example" // string | Name of the log index.
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetLogsIndex", true)
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsIndexesApi.GetLogsIndex(ctx, name).Execute()
     if err != nil {
@@ -131,6 +133,8 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetLogsIndexOrder", true)
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
     if err != nil {
@@ -205,6 +209,8 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("ListLogIndexes", true)
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsIndexesApi.ListLogIndexes(ctx).Execute()
     if err != nil {
@@ -278,9 +284,11 @@ func main() {
     )
 
     name := "name_example" // string | Name of the log index.
-    body := datadog.LogsIndex{DailyLimit: int64(123), ExclusionFilters: []LogsExclusion{datadog.LogsExclusion{Filter: datadog.LogsExclusionFilter{Query: "Query_example", SampleRate: 123}, IsEnabled: false, Name: "Name_example"}), Filter: datadog.LogsFilter{Query: "Query_example"}, IsRateLimited: false, Name: "Name_example", NumRetentionDays: int64(123)} // LogsIndex | Object containing the new `LogsIndex`. (optional)
+    body := *datadog.NewLogsIndex(*datadog.NewLogsFilter()) // LogsIndex | Object containing the new `LogsIndex`. (optional)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("UpdateLogsIndex", true)
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndex(ctx, name).Body(body).Execute()
     if err != nil {
@@ -362,9 +370,11 @@ func main() {
         },
     )
 
-    body := datadog.LogsIndexesOrder{IndexNames: []string{"IndexNames_example")} // LogsIndexesOrder | Object containing the new ordered list of index names (optional)
+    body := *datadog.NewLogsIndexesOrder([]string{"IndexNames_example"}) // LogsIndexesOrder | Object containing the new ordered list of index names (optional)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("UpdateLogsIndexOrder", true)
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndexOrder(ctx).Body(body).Execute()
     if err != nil {

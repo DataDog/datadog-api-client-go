@@ -46,6 +46,7 @@ func main() {
     eventId := 987 // int64 | The ID of the event.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.EventsApi.GetEvent(ctx, eventId).Execute()
     if err != nil {
@@ -128,12 +129,13 @@ func main() {
 
     start := 987 // int64 | POSIX timestamp.
     end := 987 // int64 | POSIX timestamp.
-    priority := datadog.EventPriority{} // EventPriority | Priority of your events, either `low` or `normal`. (optional)
+    priority := *datadog.NewEventPriority() // EventPriority | Priority of your events, either `low` or `normal`. (optional)
     sources := "sources_example" // string | A comma separated string of sources. (optional)
     tags := "tags_example" // string | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. (optional)
     unaggregated := true // bool | Set unaggregated to `true` to return all events within the specified [`start`,`end`] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won't be available in the output. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.EventsApi.ListEvents(ctx).Start(start).End(end).Priority(priority).Sources(sources).Tags(tags).Unaggregated(unaggregated).Execute()
     if err != nil {

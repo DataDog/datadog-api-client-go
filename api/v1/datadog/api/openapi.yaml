@@ -131,8 +131,18 @@ tags:
     - For more information about Pipelines, see the
       [pipeline documentation](https://docs.datadoghq.com/logs/processing).
 
-    **Note:** These endpoints are only available for admin users.
+    **Notes:**
+
+    These endpoints are only available for admin users.
     Make sure to use an application key created by an admin.
+
+    **Grok parsing rules may effect JSON output and require
+    returned data to be configured before using in a request.**
+    For example, if you are using the data returned from a
+    request for another request body, and have a parsing rule
+    that uses a regex pattern like `\s` for spaces, you will
+    need to configure all escaped spaces as `%{space}` to use
+    in the body data.
   externalDocs:
     description: Find out more at
     url: https://docs.datadoghq.com/logs/processing/
@@ -1282,7 +1292,13 @@ paths:
       description: |-
         The event stream can be queried and filtered by time, priority, sources and tags.
 
-        **Note**: If the event you’re querying contains markdown formatting of any kind, you may see characters such as %,\,n in your output.
+        **Notes**:
+        - If the event you’re querying contains markdown formatting of any kind,
+        you may see characters such as `%`,`\`,`n` in your output.
+
+        - This endpoint returns a maximum of `1000` most recent results. To return additional results,
+        identify the last timestamp of the last result and set that as the `end` query time to
+        paginate the results.
       operationId: ListEvents
       parameters:
       - description: POSIX timestamp.
@@ -4516,7 +4532,8 @@ paths:
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v1/synthetics/locations:
     get:
-      description: Get the list of public and private locations available for Synthetics
+      description: |-
+        Get the list of public and private locations available for Synthetic
         tests. No arguments required.
       operationId: ListLocations
       responses:
@@ -4598,8 +4615,9 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/synthetics/tests/browser/{public_id}:
     get:
-      description: Get the detailed configuration (including steps) associated with
-        a Synthetics browser test.
+      description: |-
+        Get the detailed configuration (including steps) associated with
+        a Synthetic browser test.
       operationId: GetBrowserTest
       parameters:
       - description: The public ID of the test to get details from.
@@ -4640,7 +4658,8 @@ paths:
         test.
       operationId: GetBrowserTestLatestResults
       parameters:
-      - description: The public ID of the browser test for which to search results
+      - description: |-
+          The public ID of the browser test for which to search results
           for.
         explode: false
         in: path
@@ -4707,7 +4726,8 @@ paths:
       description: Get a specific full result from a given (browser) Synthetic test.
       operationId: GetBrowserTestResult
       parameters:
-      - description: The public ID of the browser test to which the target result
+      - description: |-
+          The public ID of the browser test to which the target result
           belongs.
         explode: false
         in: path
@@ -5143,6 +5163,40 @@ paths:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not found
       summary: Delete a global variable
+      tags:
+      - Synthetics
+    get:
+      description: Get the detailed configuration of a global variable.
+      operationId: GetGlobalVariable
+      parameters:
+      - description: The ID of the global variable.
+        explode: false
+        in: path
+        name: variable_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyntheticsGlobalVariable'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Get a global variable
       tags:
       - Synthetics
     put:
@@ -5645,6 +5699,101 @@ paths:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
       summary: Get hourly usage for hosts and containers
+      tags:
+      - Usage Metering
+  /api/v1/usage/indexed-spans:
+    get:
+      description: Get hourly usage for indexed spans.
+      operationId: GetUsageIndexedSpans
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage beginning at this hour.'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage ending **before** this hour.'
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageIndexedSpansResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden - User is not authorized
+      summary: Get hourly usage for indexed spans
+      tags:
+      - Usage Metering
+  /api/v1/usage/ingested-spans:
+    get:
+      description: Get hourly usage for ingested spans.
+      operationId: GetIngestedSpans
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage beginning at this hour.'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending
+          **before** this hour.
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageIngestedSpansResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden - User is not authorized
+      summary: Get hourly usage for ingested spans
       tags:
       - Usage Metering
   /api/v1/usage/logs:
@@ -6293,7 +6442,11 @@ paths:
       - Usage Metering
   /api/v1/usage/traces:
     get:
-      description: Get hourly usage for trace search.
+      deprecated: true
+      description: |-
+        Get hourly usage for trace search.
+
+        **Note** This endpoint has been renamed to `/api/v1/usage/indexed-spans`.
       operationId: GetUsageTrace
       parameters:
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
@@ -6340,7 +6493,11 @@ paths:
       - Usage Metering
   /api/v1/usage/tracing-without-limits:
     get:
-      description: Get hourly usage for tracing without limits.
+      deprecated: true
+      description: |-
+        Get hourly usage for tracing without limits.
+
+        **Note** This endpoint has been renamed to `/api/v1/usage/ingested-spans`.
       operationId: GetTracingWithoutLimits
       parameters:
       - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
@@ -6388,7 +6545,7 @@ paths:
       - Usage Metering
   /api/v1/user:
     get:
-      description: Get all users for your organization.
+      description: List all users for your organization.
       operationId: ListUsers
       responses:
         "200":
@@ -6403,7 +6560,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
-      summary: Get all users
+      summary: List all users
       tags:
       - Users
     post:
@@ -7022,15 +7179,31 @@ components:
         api_key:
           $ref: '#/components/schemas/ApiKey'
       type: object
-    ApmResourcesQueryDefinition:
-      description: The APM resources (stats) query for Table Widget.
+    ApmStatsQueryColumnType:
+      description: Column properties.
+      properties:
+        alias:
+          description: A user-assigned alias for the column.
+          example: Requests
+          type: string
+        cell_display_mode:
+          $ref: '#/components/schemas/TableWidgetCellDisplayMode'
+        name:
+          description: Column name.
+          example: Reqs
+          type: string
+        order:
+          $ref: '#/components/schemas/WidgetSort'
+      required:
+      - name
+      type: object
+    ApmStatsQueryDefinition:
+      description: The APM stats query for table and distributions widgets.
       properties:
         columns:
-          description: Column names used by front end for display.
+          description: Column properties used by the front end for display.
           items:
-            description: Column header.
-            example: MeanLatency
-            type: string
+            $ref: '#/components/schemas/ApmStatsQueryColumnType'
           type: array
         env:
           description: Environment name.
@@ -7040,10 +7213,16 @@ components:
           description: Operation name associated with service.
           example: rack.request
           type: string
+        primary_tag:
+          description: The organization's host group name and value.
+          example: datacenter:*
+          type: string
         resource:
           description: Resource name.
           example: CartsController
           type: string
+        row_type:
+          $ref: '#/components/schemas/ApmStatsQueryRowType'
         service:
           description: Service name.
           example: web-store
@@ -7051,8 +7230,22 @@ components:
       required:
       - env
       - name
+      - primary_tag
+      - row_type
       - service
       type: object
+    ApmStatsQueryRowType:
+      description: The level of detail for the request.
+      enum:
+      - service
+      - resource
+      - span
+      example: service
+      type: string
+      x-enum-varnames:
+      - SERVICE
+      - RESOURCE
+      - SPAN
     ApplicationKey:
       description: An application key with its associated metadata.
       example:
@@ -8041,6 +8234,7 @@ components:
         text:
           description: |-
             The body of the event. Limited to 4000 characters. The text supports markdown.
+            To use markdown in the event text, start the text block with `%%% \n` and end the text block with `\n %%%`.
             Use `msg_text` with the Datadog Ruby library.
           example: Oh boy!
           maxLength: 4000
@@ -9001,9 +9195,17 @@ components:
     IPPrefixesSynthetics:
       description: Available prefix information for the Synthetics endpoints.
       example:
+        prefixes_ipv6_by_location:
+          key:
+          - prefixes_ipv6_by_location
+          - prefixes_ipv6_by_location
         prefixes_ipv4:
         - prefixes_ipv4
         - prefixes_ipv4
+        prefixes_ipv4_by_location:
+          key:
+          - prefixes_ipv4_by_location
+          - prefixes_ipv4_by_location
         prefixes_ipv6:
         - prefixes_ipv6
         - prefixes_ipv6
@@ -9014,12 +9216,30 @@ components:
             description: IPv4 prefix
             type: string
           type: array
+        prefixes_ipv4_by_location:
+          additionalProperties:
+            description: List of IPv4 prefixes.
+            items:
+              description: IPv4 prefix.
+              type: string
+            type: array
+          description: List of IPv4 prefixes by location.
+          type: object
         prefixes_ipv6:
           description: List of IPv6 prefixes.
           items:
             description: IPv6 prefix
             type: string
           type: array
+        prefixes_ipv6_by_location:
+          additionalProperties:
+            description: List of IPv6 prefixes.
+            items:
+              description: IPv6 prefix.
+              type: string
+            type: array
+          description: List of IPv6 prefixes by location.
+          type: object
       type: object
     IPPrefixesWebhooks:
       description: Available prefix information for the Webhook endpoints.
@@ -9062,9 +9282,17 @@ components:
           - prefixes_ipv6
           - prefixes_ipv6
         synthetics:
+          prefixes_ipv6_by_location:
+            key:
+            - prefixes_ipv6_by_location
+            - prefixes_ipv6_by_location
           prefixes_ipv4:
           - prefixes_ipv4
           - prefixes_ipv4
+          prefixes_ipv4_by_location:
+            key:
+            - prefixes_ipv4_by_location
+            - prefixes_ipv4_by_location
           prefixes_ipv6:
           - prefixes_ipv6
           - prefixes_ipv6
@@ -9399,6 +9627,8 @@ components:
           description: Final attribute or tag name to remap the sources to.
           example: operation_id
           type: string
+        target_format:
+          $ref: '#/components/schemas/TargetFormatType'
         target_type:
           default: attribute
           description: Defines if the final attribute or tag name is from log `attribute`
@@ -9825,8 +10055,9 @@ components:
         startAt: startAt
       properties:
         index:
-          description: For multi-index organizations, the log index in which the request
-            is performed. Default to '*' (all indexes).
+          description: The log index on which the request is performed. For multi-index
+            organizations, the default is all live indexes. Historical indexes of
+            rehydrated logs must be specified.
           example: retention-3,retention-15
           type: string
         limit:
@@ -10617,6 +10848,7 @@ components:
         created: 2000-01-23T04:56:07.000+00:00
         query: query
         message: message
+        priority: 3
         multi: true
         tags:
         - tags
@@ -10627,25 +10859,28 @@ components:
           no_data_timeframe: 2
           silenced:
             key: 9
-          synthetics_check_id: 3
+          synthetics_check_id: synthetics_check_id
           notify_no_data: false
           enable_logs_sample: true
           aggregation:
             metric: metrics.name
             group_by: host
             type: count
+          restricted_roles:
+          - restricted_roles
+          - restricted_roles
           evaluation_delay: 6
           notify_audit: false
           min_location_failed: 5
           new_host_delay: 5
           renotify_interval: 7
           thresholds:
-            critical: 2.027123023002322
-            warning: 1.0246457001441578
-            warning_recovery: 1.4894159098541704
-            ok: 7.386281948385884
-            critical_recovery: 4.145608029883936
-            unknown: 1.2315135367772556
+            critical: 3.616076749251911
+            warning: 1.2315135367772556
+            warning_recovery: 1.0246457001441578
+            ok: 4.145608029883936
+            critical_recovery: 2.027123023002322
+            unknown: 7.386281948385884
           min_failure_duration: 1055
           threshold_windows:
             trigger_window: trigger_window
@@ -10656,7 +10891,7 @@ components:
           - null
           - null
           escalation_message: none
-          timeout_h: 6
+          timeout_h: 1
           locked: true
         modified: 2000-01-23T04:56:07.000+00:00
         id: 0
@@ -10706,6 +10941,12 @@ components:
           $ref: '#/components/schemas/MonitorOptions'
         overall_state:
           $ref: '#/components/schemas/MonitorOverallStates'
+        priority:
+          description: Integer from 1 (high) to 5 (low) indicating alert severity.
+          format: int64
+          maximum: 5
+          minimum: 1
+          type: integer
         query:
           description: The monitor query.
           type: string
@@ -10750,25 +10991,28 @@ components:
         no_data_timeframe: 2
         silenced:
           key: 9
-        synthetics_check_id: 3
+        synthetics_check_id: synthetics_check_id
         notify_no_data: false
         enable_logs_sample: true
         aggregation:
           metric: metrics.name
           group_by: host
           type: count
+        restricted_roles:
+        - restricted_roles
+        - restricted_roles
         evaluation_delay: 6
         notify_audit: false
         min_location_failed: 5
         new_host_delay: 5
         renotify_interval: 7
         thresholds:
-          critical: 2.027123023002322
-          warning: 1.0246457001441578
-          warning_recovery: 1.4894159098541704
-          ok: 7.386281948385884
-          critical_recovery: 4.145608029883936
-          unknown: 1.2315135367772556
+          critical: 3.616076749251911
+          warning: 1.2315135367772556
+          warning_recovery: 1.0246457001441578
+          ok: 4.145608029883936
+          critical_recovery: 2.027123023002322
+          unknown: 7.386281948385884
         min_failure_duration: 1055
         threshold_windows:
           trigger_window: trigger_window
@@ -10779,7 +11023,7 @@ components:
         - null
         - null
         escalation_message: none
-        timeout_h: 6
+        timeout_h: 1
         locked: true
       properties:
         aggregation:
@@ -10874,13 +11118,18 @@ components:
           nullable: true
           type: integer
         require_full_window:
-          default: true
           description: |-
             A Boolean indicating whether this monitor needs a full window of data before it’s evaluated.
             We highly recommend you set this to `false` for sparse metrics,
-            otherwise some evaluations are skipped. For “on average”
-            “at all times” and “in total” aggregation, default is true. `False` otherwise.
+            otherwise some evaluations are skipped. Default is false.
           type: boolean
+        restricted_roles:
+          description: A list of role identifiers that can be pulled from the Roles
+            API. Cannot be used with `locked`.
+          items:
+            description: A role UUID.
+            type: string
+          type: array
         silenced:
           additionalProperties:
             description: ID of the downtime applied to the monitor.
@@ -10893,9 +11142,8 @@ components:
         synthetics_check_id:
           deprecated: true
           description: ID of the corresponding Synthetic check.
-          format: int64
           nullable: true
-          type: integer
+          type: string
         threshold_windows:
           $ref: '#/components/schemas/MonitorThresholdWindowOptions'
         thresholds:
@@ -11055,12 +11303,12 @@ components:
     MonitorThresholds:
       description: List of the different monitor threshold available.
       example:
-        critical: 2.027123023002322
-        warning: 1.0246457001441578
-        warning_recovery: 1.4894159098541704
-        ok: 7.386281948385884
-        critical_recovery: 4.145608029883936
-        unknown: 1.2315135367772556
+        critical: 3.616076749251911
+        warning: 1.2315135367772556
+        warning_recovery: 1.0246457001441578
+        ok: 4.145608029883936
+        critical_recovery: 2.027123023002322
+        unknown: 7.386281948385884
       properties:
         critical:
           description: The monitor `CRITICAL` threshold.
@@ -11131,6 +11379,7 @@ components:
         created: 2000-01-23T04:56:07.000+00:00
         query: query
         message: message
+        priority: 3
         multi: true
         tags:
         - tags
@@ -11141,25 +11390,28 @@ components:
           no_data_timeframe: 2
           silenced:
             key: 9
-          synthetics_check_id: 3
+          synthetics_check_id: synthetics_check_id
           notify_no_data: false
           enable_logs_sample: true
           aggregation:
             metric: metrics.name
             group_by: host
             type: count
+          restricted_roles:
+          - restricted_roles
+          - restricted_roles
           evaluation_delay: 6
           notify_audit: false
           min_location_failed: 5
           new_host_delay: 5
           renotify_interval: 7
           thresholds:
-            critical: 2.027123023002322
-            warning: 1.0246457001441578
-            warning_recovery: 1.4894159098541704
-            ok: 7.386281948385884
-            critical_recovery: 4.145608029883936
-            unknown: 1.2315135367772556
+            critical: 3.616076749251911
+            warning: 1.2315135367772556
+            warning_recovery: 1.0246457001441578
+            ok: 4.145608029883936
+            critical_recovery: 2.027123023002322
+            unknown: 7.386281948385884
           min_failure_duration: 1055
           threshold_windows:
             trigger_window: trigger_window
@@ -11170,7 +11422,7 @@ components:
           - null
           - null
           escalation_message: none
-          timeout_h: 6
+          timeout_h: 1
           locked: true
         modified: 2000-01-23T04:56:07.000+00:00
         id: 0
@@ -11220,6 +11472,12 @@ components:
           $ref: '#/components/schemas/MonitorOptions'
         overall_state:
           $ref: '#/components/schemas/MonitorOverallStates'
+        priority:
+          description: Integer from 1 (high) to 5 (low) indicating alert severity.
+          format: int64
+          maximum: 5
+          minimum: 1
+          type: integer
         query:
           description: The monitor query.
           type: string
@@ -12841,8 +13099,18 @@ components:
                 password: password
                 username: username
               query: '{}'
+              certificate:
+                cert:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
+                key:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
               host: host
               body: body
+              dnsServer: dnsServer
               timeout: 6.027456183070403
               url: url
             variables:
@@ -12995,6 +13263,8 @@ components:
       - certificate
       - responseTime
       - property
+      - recordEvery
+      - recordSome
       type: string
       x-enum-varnames:
       - BODY
@@ -13003,6 +13273,8 @@ components:
       - CERTIFICATE
       - RESPONSE_TIME
       - PROPERTY
+      - RECORD_EVERY
+      - RECORD_SOME
     SyntheticsBasicAuth:
       description: Object to handle basic authentication when performing the test.
       example:
@@ -13181,7 +13453,8 @@ components:
           description: Whether or not a thumbnail is associated with the browser test.
           type: boolean
         timeToInteractive:
-          description: Time in second to wait before the browser test starts after
+          description: |-
+            Time in second to wait before the browser test starts after
             reaching the start URL.
           format: double
           type: number
@@ -13294,8 +13567,18 @@ components:
                 password: password
                 username: username
               query: '{}'
+              certificate:
+                cert:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
+                key:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
               host: host
               body: body
+              dnsServer: dnsServer
               timeout: 6.027456183070403
               url: url
             variables:
@@ -13430,7 +13713,7 @@ components:
           username: username
         body: body
         cookies: cookies
-        public_id: public_id
+        public_id: aaa-aaa-aaa
         startUrl: startUrl
         followRedirects: true
         allowInsecureCertificates: true
@@ -13480,6 +13763,7 @@ components:
           $ref: '#/components/schemas/SyntheticsCITest_metadata'
         public_id:
           description: The public ID of the Synthetics test to trigger.
+          example: aaa-aaa-aaa
           type: string
         retry:
           $ref: '#/components/schemas/SyntheticsTestOptionsRetry'
@@ -13518,7 +13802,7 @@ components:
             username: username
           body: body
           cookies: cookies
-          public_id: public_id
+          public_id: aaa-aaa-aaa
           startUrl: startUrl
           followRedirects: true
           allowInsecureCertificates: true
@@ -13548,7 +13832,7 @@ components:
             username: username
           body: body
           cookies: cookies
-          public_id: public_id
+          public_id: aaa-aaa-aaa
           startUrl: startUrl
           followRedirects: true
           allowInsecureCertificates: true
@@ -13593,7 +13877,8 @@ components:
       - LOWER_EQUALS
       - MATCH_REGEX
     SyntheticsDeleteTestsPayload:
-      description: A JSON list of the ID or IDs of the Synthetic tests that you want
+      description: |-
+        A JSON list of the ID or IDs of the Synthetic tests that you want
         to delete.
       example:
         public_ids: []
@@ -13617,7 +13902,8 @@ components:
           public_id: public_id
       properties:
         deleted_tests:
-          description: Array of objects containing a deleted Synthetic test ID with
+          description: |-
+            Array of objects containing a deleted Synthetic test ID with
             the associated deletion timestamp.
           items:
             $ref: '#/components/schemas/SyntheticsDeleteTestsResponse_deleted_tests'
@@ -13786,18 +14072,19 @@ components:
     SyntheticsGlobalVariable:
       description: Synthetics global variable.
       example:
-        name: name
-        description: description
+        name: MY_VARIABLE
+        description: Example description
         id: id
         value:
           secure: true
           value: value
         tags:
-        - tags
-        - tags
+        - team:front
+        - test:workflow-1
       properties:
         description:
           description: Description of the global variable.
+          example: Example description
           type: string
         id:
           description: Unique identifier of the global variable.
@@ -13805,9 +14092,13 @@ components:
           type: string
         name:
           description: Name of the global variable.
+          example: MY_VARIABLE
           type: string
         tags:
           description: Tags of the global variable.
+          example:
+          - team:front
+          - test:workflow-1
           items:
             description: Tag name.
             type: string
@@ -13830,7 +14121,10 @@ components:
           description: Determines if the variable is secure.
           type: boolean
         value:
-          description: Value of the global variable.
+          description: |-
+            Value of the global variable. When reading a global variable,
+            the value will not be present if the variable is secure.
+          example: example-value
           type: string
       required:
       - value
@@ -13867,8 +14161,18 @@ components:
                 password: password
                 username: username
               query: '{}'
+              certificate:
+                cert:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
+                key:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
               host: host
               body: body
+              dnsServer: dnsServer
               timeout: 6.027456183070403
               url: url
             variables:
@@ -13923,8 +14227,18 @@ components:
                 password: password
                 username: username
               query: '{}'
+              certificate:
+                cert:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
+                key:
+                  filename: filename
+                  content: content
+                  updatedAt: updatedAt
               host: host
               body: body
+              dnsServer: dnsServer
               timeout: 6.027456183070403
               url: url
             variables:
@@ -13958,7 +14272,8 @@ components:
           type: array
       type: object
     SyntheticsLocation:
-      description: Synthetics location that can be used when creating or editing a
+      description: |-
+        Synthetic location that can be used when creating or editing a
         test.
       example:
         name: name
@@ -14264,12 +14579,16 @@ components:
       description: Step type used in your Synthetic test.
       enum:
       - assertCurrentUrl
+      - assertElementAttribute
       - assertElementContent
       - assertElementPresent
       - assertEmail
+      - assertFileDownload
+      - assertFromJavascript
       - assertPageContains
       - assertPageLacks
       - click
+      - extractFromJavascript
       - extractVariable
       - goToEmailLink
       - goToUrl
@@ -14278,6 +14597,8 @@ components:
       - playSubTest
       - pressKey
       - refresh
+      - runApiTest
+      - scroll
       - selectOption
       - typeText
       - uploadFiles
@@ -14285,12 +14606,16 @@ components:
       type: string
       x-enum-varnames:
       - ASSERT_CURRENT_URL
+      - ASSERT_ELEMENT_ATTRIBUTE
       - ASSERT_ELEMENT_CONTENT
       - ASSERT_ELEMENT_PRESENT
       - ASSERT_EMAIL
+      - ASSERT_FILE_DOWNLOAD
+      - ASSERT_FROM_JAVASCRIPT
       - ASSERT_PAGE_CONTAINS
       - ASSERT_PAGE_LACKS
       - CLICK
+      - EXTRACT_FROM_JAVASCRIPT
       - EXTRACT_VARIABLE
       - GO_TO_EMAIL_LINK
       - GO_TO_URL
@@ -14299,6 +14624,8 @@ components:
       - PLAY_SUB_TEST
       - PRESS_KEY
       - REFRESH
+      - RUN_API_TEST
+      - SCROLL
       - SELECT_OPTION
       - TYPE_TEXT
       - UPLOAD_FILES
@@ -14314,8 +14641,18 @@ components:
             password: password
             username: username
           query: '{}'
+          certificate:
+            cert:
+              filename: filename
+              content: content
+              updatedAt: updatedAt
+            key:
+              filename: filename
+              content: content
+              updatedAt: updatedAt
           host: host
           body: body
+          dnsServer: dnsServer
           timeout: 6.027456183070403
           url: url
         variables:
@@ -14379,8 +14716,18 @@ components:
               password: password
               username: username
             query: '{}'
+            certificate:
+              cert:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
+              key:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
             host: host
             body: body
+            dnsServer: dnsServer
             timeout: 6.027456183070403
             url: url
           variables:
@@ -14449,7 +14796,8 @@ components:
           $ref: '#/components/schemas/SyntheticsTestDetailsType'
       type: object
     SyntheticsTestDetailsSubType:
-      description: The sub-type of the Synthetic API test, `http`, `ssl`, `tcp` or
+      description: |-
+        The sub-type of the Synthetic API test, `http`, `ssl`, `tcp` or
         `dns`.
       enum:
       - http
@@ -14511,7 +14859,8 @@ components:
           interval: 9.301444243932576
       properties:
         accept_self_signed:
-          description: For SSL test, whether or not the test should allow self signed
+          description: |-
+            For SSL test, whether or not the test should allow self signed
             certificates.
           type: boolean
         allow_insecure:
@@ -14531,7 +14880,8 @@ components:
           format: int64
           type: integer
         min_location_failed:
-          description: Minimum number of locations in failure required to trigger
+          description: |-
+            Minimum number of locations in failure required to trigger
             an alert.
           format: int64
           type: integer
@@ -14549,18 +14899,21 @@ components:
         interval: 9.301444243932576
       properties:
         count:
-          description: Number of times a test needs to be retried before marking a
+          description: |-
+            Number of times a test needs to be retried before marking a
             location as failed. Defaults to 0.
           format: int64
           type: integer
         interval:
-          description: Time interval between retries (in milliseconds). Defaults to
+          description: |-
+            Time interval between retries (in milliseconds). Defaults to
             300ms.
           format: double
           type: number
       type: object
     SyntheticsTestPauseStatus:
-      description: Define whether you want to start (`live`) or pause (`paused`) a
+      description: |-
+        Define whether you want to start (`live`) or pause (`paused`) a
         Synthetic test.
       enum:
       - live
@@ -14594,8 +14947,18 @@ components:
           password: password
           username: username
         query: '{}'
+        certificate:
+          cert:
+            filename: filename
+            content: content
+            updatedAt: updatedAt
+          key:
+            filename: filename
+            content: content
+            updatedAt: updatedAt
         host: host
         body: body
+        dnsServer: dnsServer
         timeout: 6.027456183070403
         url: url
       properties:
@@ -14603,6 +14966,11 @@ components:
           $ref: '#/components/schemas/SyntheticsBasicAuth'
         body:
           description: Body to include in the test.
+          type: string
+        certificate:
+          $ref: '#/components/schemas/SyntheticsTestRequestCertificate'
+        dnsServer:
+          description: DNS server to use for DNS tests.
           type: string
         headers:
           additionalProperties:
@@ -14628,6 +14996,40 @@ components:
           type: number
         url:
           description: URL to perform the test with.
+          type: string
+      type: object
+    SyntheticsTestRequestCertificate:
+      description: Client certificate to use when performing the test request.
+      example:
+        cert:
+          filename: filename
+          content: content
+          updatedAt: updatedAt
+        key:
+          filename: filename
+          content: content
+          updatedAt: updatedAt
+      properties:
+        cert:
+          $ref: '#/components/schemas/SyntheticsTestRequestCertificateItem'
+        key:
+          $ref: '#/components/schemas/SyntheticsTestRequestCertificateItem'
+      type: object
+    SyntheticsTestRequestCertificateItem:
+      description: Define a request certificate.
+      example:
+        filename: filename
+        content: content
+        updatedAt: updatedAt
+      properties:
+        content:
+          description: Content of the certificate or key.
+          type: string
+        filename:
+          description: File name for the certificate or key.
+          type: string
+        updatedAt:
+          description: Date of update of the certificate or key, ISO format.
           type: string
       type: object
     SyntheticsTickInterval:
@@ -14756,6 +15158,16 @@ components:
       type: string
       x-enum-varnames:
       - USER_LOCATOR
+    TableWidgetCellDisplayMode:
+      description: Define a display mode for the table cell.
+      enum:
+      - number
+      - bar
+      example: number
+      type: string
+      x-enum-varnames:
+      - NUMBER
+      - BAR
     TableWidgetDefinition:
       description: The table visualization is available on timeboards and screenboards.
         It displays columns of metrics grouped by tag key.
@@ -14765,6 +15177,8 @@ components:
           items:
             $ref: '#/components/schemas/WidgetCustomLink'
           type: array
+        has_search_bar:
+          $ref: '#/components/schemas/TableWidgetHasSearchBar'
         requests:
           description: Widget definition.
           example:
@@ -14797,6 +15211,18 @@ components:
       type: string
       x-enum-varnames:
       - QUERY_TABLE
+    TableWidgetHasSearchBar:
+      description: Controls the display of the search bar.
+      enum:
+      - always
+      - never
+      - auto
+      example: auto
+      type: string
+      x-enum-varnames:
+      - ALWAYS
+      - NEVER
+      - AUTO
     TableWidgetRequest:
       description: Updated table widget.
       properties:
@@ -14807,8 +15233,13 @@ components:
           type: string
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
-        apm_resources_query:
-          $ref: '#/components/schemas/ApmResourcesQueryDefinition'
+        apm_stats_query:
+          $ref: '#/components/schemas/ApmStatsQueryDefinition'
+        cell_display_mode:
+          description: A list of display modes for each table cell.
+          items:
+            $ref: '#/components/schemas/TableWidgetCellDisplayMode'
+          type: array
         conditional_formats:
           description: List of conditional formats.
           items:
@@ -14857,9 +15288,25 @@ components:
           description: A list of tags to apply to the host.
           type: object
       type: object
+    TargetFormatType:
+      description: |-
+        If the `target_type` of the remapper is `attribute`, try to cast the value to a new specific type.
+        If the cast is not possible, the original type is kept. `string`, `integer`, or `double` are the possible types.
+        If the `target_type` is `tag`, this parameter may not be specified.
+      enum:
+      - auto
+      - string
+      - integer
+      - double
+      type: string
+      x-enum-varnames:
+      - AUTO
+      - STRING
+      - INTEGER
+      - DOUBLE
     TimeseriesWidgetDefinition:
       description: The timeseries visualization allows you to display the evolution
-        of one or more metrics, log events, or Analyzed Spans over time.
+        of one or more metrics, log events, or Indexed Spans over time.
       properties:
         custom_links:
           description: List of custom links.
@@ -14888,6 +15335,8 @@ components:
             $ref: '#/components/schemas/TimeseriesWidgetRequest'
           minItems: 1
           type: array
+        right_yaxis:
+          $ref: '#/components/schemas/WidgetAxis'
         show_legend:
           description: (screenboard only) Show the legend for this widget.
           type: boolean
@@ -14936,6 +15385,9 @@ components:
           type: array
         network_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        on_right_yaxis:
+          description: Whether or not to display a second y-axis on the right.
+          type: boolean
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
         q:
@@ -16012,6 +16464,69 @@ components:
             $ref: '#/components/schemas/UsageHostHour'
           type: array
       type: object
+    UsageIndexedSpansHour:
+      description: The hours of indexed spans usage.
+      example:
+        indexed_events_count: 0
+        hour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+        indexed_events_count:
+          description: Contains the number of spans indexed.
+          format: int64
+          type: integer
+      type: object
+    UsageIndexedSpansResponse:
+      description: A response containing indexed spans usage.
+      example:
+        usage:
+        - indexed_events_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+        - indexed_events_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        usage:
+          description: Array with the number of hourly traces indexed for a given
+            organization.
+          items:
+            $ref: '#/components/schemas/UsageIndexedSpansHour'
+          type: array
+      type: object
+    UsageIngestedSpansHour:
+      description: Ingested spans usage for a given organization for a given hour.
+      example:
+        hour: 2000-01-23T04:56:07.000+00:00
+        ingested_events_bytes: 0
+      properties:
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+        ingested_events_bytes:
+          description: Contains the total number of bytes ingested during a given
+            hour.
+          format: int64
+          type: integer
+      type: object
+    UsageIngestedSpansResponse:
+      description: Response containing the ingested spans usage for each hour for
+        a given organization.
+      example:
+        usage:
+        - hour: 2000-01-23T04:56:07.000+00:00
+          ingested_events_bytes: 0
+        - hour: 2000-01-23T04:56:07.000+00:00
+          ingested_events_bytes: 0
+      properties:
+        usage:
+          description: Get hourly usage for ingested spans.
+          items:
+            $ref: '#/components/schemas/UsageIngestedSpansHour'
+          type: array
+      type: object
     UsageLambdaHour:
       description: |-
         Number of lambda functions and sum of the invocations of all lambda functions
@@ -16667,8 +17182,8 @@ components:
           format: int64
           type: integer
         trace_search_indexed_events_count_sum:
-          description: Shows the sum of all analyzed spans indexed over all hours
-            in the current date for all organizations.
+          description: Shows the sum of all Indexed Spans indexed over all hours in
+            the current date for all organizations.
           format: int64
           type: integer
         twol_ingested_events_bytes_sum:
@@ -16828,8 +17343,8 @@ components:
           format: int64
           type: integer
         trace_search_indexed_events_count_sum:
-          description: Shows the sum of all analyzed spans indexed over all hours
-            in the current date for the given org.
+          description: Shows the sum of all Indexed Spans indexed over all hours in
+            the current date for the given org.
           format: int64
           type: integer
         twol_ingested_events_bytes_sum:
@@ -17176,8 +17691,8 @@ components:
           format: int64
           type: integer
         trace_search_indexed_events_count_agg_sum:
-          description: Shows the sum of all analyzed spans indexed over all hours
-            in the current month(s) for all organizations.
+          description: Shows the sum of all Indexed Spans indexed over all hours in
+            the current month(s) for all organizations.
           format: int64
           type: integer
         twol_ingested_events_bytes_agg_sum:
@@ -17382,7 +17897,7 @@ components:
           format: date-time
           type: string
         indexed_events_count:
-          description: Contains the number of Analyzed Spans indexed.
+          description: Contains the number of Indexed Spans indexed.
           format: int64
           type: integer
       type: object
@@ -18016,6 +18531,9 @@ components:
       - white_on_red
       - white_on_yellow
       - yellow_on_white
+      - black_on_light_yellow
+      - black_on_light_green
+      - black_on_light_red
       type: string
       x-enum-varnames:
       - BLUE
@@ -18934,8 +19452,18 @@ components:
               password: password
               username: username
             query: '{}'
+            certificate:
+              cert:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
+              key:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
             host: host
             body: body
+            dnsServer: dnsServer
             timeout: 6.027456183070403
             url: url
           variables:
@@ -18996,8 +19524,18 @@ components:
               password: password
               username: username
             query: '{}'
+            certificate:
+              cert:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
+              key:
+                filename: filename
+                content: content
+                updatedAt: updatedAt
             host: host
             body: body
+            dnsServer: dnsServer
             timeout: 6.027456183070403
             url: url
           variables:
@@ -19049,23 +19587,29 @@ components:
           type: integer
       type: object
     SyntheticsCITest_metadata_ci:
+      description: Describe CI provider.
       example:
         pipeline: pipeline
         provider: provider
       properties:
         pipeline:
+          description: Name of the pipeline.
           type: string
         provider:
+          description: Name of the CI provider.
           type: string
       type: object
     SyntheticsCITest_metadata_git:
+      description: Git information.
       example:
         commit_sha: commit_sha
         branch: branch
       properties:
         branch:
+          description: Branch name.
           type: string
         commit_sha:
+          description: Commit SHA.
           type: string
       type: object
     SyntheticsCITest_metadata:
@@ -19084,7 +19628,8 @@ components:
           $ref: '#/components/schemas/SyntheticsCITest_metadata_git'
       type: object
     SyntheticsDeleteTestsResponse_deleted_tests:
-      description: Object containing a deleted Synthetic test ID with the associated
+      description: |-
+        Object containing a deleted Synthetic test ID with the associated
         deletion timestamp.
       example:
         deleted_at: 2000-01-23T04:56:07.000+00:00
@@ -19175,13 +19720,15 @@ components:
       - type
       type: object
     SyntheticsTestOptions_monitor_options:
-      description: Object containing the options for a Synthetic test as a monitor
-        (e.g. renotification).
+      description: |-
+        Object containing the options for a Synthetic test as a monitor
+        (for example, renotification).
       example:
         renotify_interval: 331
       properties:
         renotify_interval:
-          description: Time interval before renotifying if the test is still failing
+          description: |-
+            Time interval before renotifying if the test is still failing
             (in minutes).
           format: int64
           maximum: 1440
@@ -19202,6 +19749,7 @@ components:
           type: string
       type: object
     SyntheticsTriggerCITestsResponse_results:
+      description: Information about a single test run.
       example:
         result_id: result_id
         location: 6.027456183070403

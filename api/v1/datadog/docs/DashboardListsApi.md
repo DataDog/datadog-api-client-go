@@ -46,9 +46,10 @@ func main() {
         },
     )
 
-    body := datadog.DashboardList{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", DashboardCount: int64(123), Id: int64(123), IsFavorite: false, Modified: "TODO", Name: "Name_example", Type: "Type_example"} // DashboardList | Create a dashboard list request body.
+    body := *datadog.NewDashboardList("Name_example") // DashboardList | Create a dashboard list request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.DashboardListsApi.CreateDashboardList(ctx).Body(body).Execute()
     if err != nil {
@@ -128,6 +129,7 @@ func main() {
     listId := 987 // int64 | ID of the dashboard list to delete.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.DashboardListsApi.DeleteDashboardList(ctx, listId).Execute()
     if err != nil {
@@ -211,6 +213,7 @@ func main() {
     listId := 987 // int64 | ID of the dashboard list to fetch.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.DashboardListsApi.GetDashboardList(ctx, listId).Execute()
     if err != nil {
@@ -293,6 +296,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.DashboardListsApi.ListDashboardLists(ctx).Execute()
     if err != nil {
@@ -366,9 +370,10 @@ func main() {
     )
 
     listId := 987 // int64 | ID of the dashboard list to update.
-    body := datadog.DashboardList{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", DashboardCount: int64(123), Id: int64(123), IsFavorite: false, Modified: "TODO", Name: "Name_example", Type: "Type_example"} // DashboardList | Update a dashboard list request body.
+    body := *datadog.NewDashboardList("Name_example") // DashboardList | Update a dashboard list request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.DashboardListsApi.UpdateDashboardList(ctx, listId).Body(body).Execute()
     if err != nil {

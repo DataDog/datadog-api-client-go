@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**GetBrowserTest**](SyntheticsApi.md#GetBrowserTest) | **Get** /api/v1/synthetics/tests/browser/{public_id} | Get a test configuration (browser)
 [**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get the test&#39;s latest results summaries (browser)
 [**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a test result (browser)
+[**GetGlobalVariable**](SyntheticsApi.md#GetGlobalVariable) | **Get** /api/v1/synthetics/variables/{variable_id} | Get a global variable
 [**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration (API)
 [**ListLocations**](SyntheticsApi.md#ListLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 [**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
@@ -57,9 +58,10 @@ func main() {
         },
     )
 
-    body := datadog.SyntheticsGlobalVariable{Description: "Description_example", Id: "Id_example", Name: "Name_example", Tags: []string{"Tags_example"), Value: datadog.SyntheticsGlobalVariableValue{Secure: false, Value: "Value_example"}} // SyntheticsGlobalVariable | Details of the global variable to create.
+    body := *datadog.NewSyntheticsGlobalVariable("Description_example", "Name_example", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("Value_example")) // SyntheticsGlobalVariable | Details of the global variable to create.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.CreateGlobalVariable(ctx).Body(body).Execute()
     if err != nil {
@@ -136,9 +138,10 @@ func main() {
         },
     )
 
-    body := datadog.SyntheticsTestDetails{Config: datadog.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{datadog.SyntheticsAssertion{Operator: datadog.SyntheticsAssertionJSONPathOperator{}, Property: "Property_example", Target: datadog.SyntheticsAssertionJSONPathTarget_target{JsonPath: "JsonPath_example", Operator: "Operator_example", TargetValue: 123}, Type: datadog.SyntheticsAssertionType{}}), Request: datadog.SyntheticsTestRequest{BasicAuth: datadog.SyntheticsBasicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: datadog.HTTPMethod{}, Port: int64(123), Query: 123, Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{datadog.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: datadog.SyntheticsBrowserVariableType{}})}, Locations: []string{"Locations_example"), Message: "Message_example", MonitorId: int64(123), Name: "Name_example", Options: datadog.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{datadog.SyntheticsDeviceID{}), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), MonitorOptions: datadog.SyntheticsTestOptions_monitor_options{RenotifyInterval: int64(123)}, Retry: datadog.SyntheticsTestOptionsRetry{Count: int64(123), Interval: 123}, TickEvery: datadog.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: datadog.SyntheticsTestPauseStatus{}, Steps: []SyntheticsStep{datadog.SyntheticsStep{AllowFailure: false, Name: "Name_example", Params: 123, Timeout: 123, Type: datadog.SyntheticsStepType{}}), Subtype: datadog.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: datadog.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | Details of the test to create.
+    body := *datadog.NewSyntheticsTestDetails() // SyntheticsTestDetails | Details of the test to create.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.CreateTest(ctx).Body(body).Execute()
     if err != nil {
@@ -218,6 +221,7 @@ func main() {
     variableId := "variableId_example" // string | The ID of the global variable.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.DeleteGlobalVariable(ctx, variableId).Execute()
     if err != nil {
@@ -296,9 +300,10 @@ func main() {
         },
     )
 
-    body := datadog.SyntheticsDeleteTestsPayload{PublicIds: []string{"PublicIds_example")} // SyntheticsDeleteTestsPayload | Public ID list of the Synthetic tests to be deleted.
+    body := *datadog.NewSyntheticsDeleteTestsPayload() // SyntheticsDeleteTestsPayload | Public ID list of the Synthetic tests to be deleted.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.DeleteTests(ctx).Body(body).Execute()
     if err != nil {
@@ -376,9 +381,10 @@ func main() {
     )
 
     variableId := "variableId_example" // string | The ID of the global variable.
-    body := datadog.SyntheticsGlobalVariable{Description: "Description_example", Id: "Id_example", Name: "Name_example", Tags: []string{"Tags_example"), Value: datadog.SyntheticsGlobalVariableValue{Secure: false, Value: "Value_example"}} // SyntheticsGlobalVariable | Details of the global variable to update.
+    body := *datadog.NewSyntheticsGlobalVariable("Description_example", "Name_example", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("Value_example")) // SyntheticsGlobalVariable | Details of the global variable to update.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.EditGlobalVariable(ctx, variableId).Body(body).Execute()
     if err != nil {
@@ -466,6 +472,7 @@ func main() {
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.GetAPITestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
     if err != nil {
@@ -553,6 +560,7 @@ func main() {
     resultId := "resultId_example" // string | The ID of the result to get.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.GetAPITestResult(ctx, publicId, resultId).Execute()
     if err != nil {
@@ -638,6 +646,7 @@ func main() {
     publicId := "publicId_example" // string | The public ID of the test to get details from.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.GetBrowserTest(ctx, publicId).Execute()
     if err != nil {
@@ -724,6 +733,7 @@ func main() {
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.GetBrowserTestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
     if err != nil {
@@ -811,6 +821,7 @@ func main() {
     resultId := "resultId_example" // string | The ID of the result to get.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.GetBrowserTestResult(ctx, publicId, resultId).Execute()
     if err != nil {
@@ -844,6 +855,90 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SyntheticsBrowserTestResultFull**](SyntheticsBrowserTestResultFull.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetGlobalVariable
+
+> SyntheticsGlobalVariable GetGlobalVariable(ctx, variableId).Execute()
+
+Get a global variable
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+    variableId := "variableId_example" // string | The ID of the global variable.
+
+    configuration := datadog.NewConfiguration()
+
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetGlobalVariable(ctx, variableId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetGlobalVariable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetGlobalVariable`: SyntheticsGlobalVariable
+    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetGlobalVariable`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**variableId** | **string** | The ID of the global variable. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGlobalVariableRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md)
 
 ### Authorization
 
@@ -896,6 +991,7 @@ func main() {
     publicId := "publicId_example" // string | The public ID of the test to get details from.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.GetTest(ctx, publicId).Execute()
     if err != nil {
@@ -978,6 +1074,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.ListLocations(ctx).Execute()
     if err != nil {
@@ -1052,6 +1149,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.ListTests(ctx).Execute()
     if err != nil {
@@ -1124,9 +1222,10 @@ func main() {
         },
     )
 
-    body := datadog.SyntheticsCITestBody{Tests: []SyntheticsCITest{datadog.SyntheticsCITest{AllowInsecureCertificates: false, BasicAuth: datadog.SyntheticsBasicAuth{Password: "Password_example", Username: "Username_example"}, Body: "Body_example", BodyType: "BodyType_example", Cookies: "Cookies_example", DeviceIds: []SyntheticsDeviceID{datadog.SyntheticsDeviceID{}), FollowRedirects: false, Headers: map[string]string{ "Key" = "Value" }, Locations: []string{"Locations_example"), Metadata: datadog.SyntheticsCITest_metadata{Ci: datadog.SyntheticsCITest_metadata_ci{Pipeline: "Pipeline_example", Provider: "Provider_example"}, Git: datadog.SyntheticsCITest_metadata_git{Branch: "Branch_example", CommitSha: "CommitSha_example"}}, PublicId: "PublicId_example", Retry: datadog.SyntheticsTestOptionsRetry{Count: int64(123), Interval: 123}, StartUrl: "StartUrl_example", Variables: map[string]string{ "Key" = "Value" }})} // SyntheticsCITestBody | Details of the test to trigger.
+    body := *datadog.NewSyntheticsCITestBody() // SyntheticsCITestBody | Details of the test to trigger.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.TriggerCITests(ctx).Body(body).Execute()
     if err != nil {
@@ -1204,9 +1303,10 @@ func main() {
     )
 
     publicId := "publicId_example" // string | The public ID of the test to get details from.
-    body := datadog.SyntheticsTestDetails{Config: datadog.SyntheticsTestConfig{Assertions: []SyntheticsAssertion{datadog.SyntheticsAssertion{Operator: datadog.SyntheticsAssertionJSONPathOperator{}, Property: "Property_example", Target: datadog.SyntheticsAssertionJSONPathTarget_target{JsonPath: "JsonPath_example", Operator: "Operator_example", TargetValue: 123}, Type: datadog.SyntheticsAssertionType{}}), Request: datadog.SyntheticsTestRequest{BasicAuth: , Body: "Body_example", Headers: map[string]string{ "Key" = "Value" }, Host: "Host_example", Method: datadog.HTTPMethod{}, Port: int64(123), Query: 123, Timeout: 123, Url: "Url_example"}, Variables: []SyntheticsBrowserVariable{datadog.SyntheticsBrowserVariable{Example: "Example_example", Id: "Id_example", Name: "Name_example", Pattern: "Pattern_example", Type: datadog.SyntheticsBrowserVariableType{}})}, Locations: []string{"Locations_example"), Message: "Message_example", MonitorId: int64(123), Name: "Name_example", Options: datadog.SyntheticsTestOptions{AcceptSelfSigned: false, AllowInsecure: false, DeviceIds: []SyntheticsDeviceID{), FollowRedirects: false, MinFailureDuration: int64(123), MinLocationFailed: int64(123), MonitorOptions: datadog.SyntheticsTestOptions_monitor_options{RenotifyInterval: int64(123)}, Retry: , TickEvery: datadog.SyntheticsTickInterval{}}, PublicId: "PublicId_example", Status: datadog.SyntheticsTestPauseStatus{}, Steps: []SyntheticsStep{datadog.SyntheticsStep{AllowFailure: false, Name: "Name_example", Params: 123, Timeout: 123, Type: datadog.SyntheticsStepType{}}), Subtype: datadog.SyntheticsTestDetailsSubType{}, Tags: []string{"Tags_example"), Type: datadog.SyntheticsTestDetailsType{}} // SyntheticsTestDetails | New test details to be saved.
+    body := *datadog.NewSyntheticsTestDetails() // SyntheticsTestDetails | New test details to be saved.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.UpdateTest(ctx, publicId).Body(body).Execute()
     if err != nil {
@@ -1289,9 +1389,10 @@ func main() {
     )
 
     publicId := "publicId_example" // string | The public ID of the Synthetic test to update.
-    body := datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: } // SyntheticsUpdateTestPauseStatusPayload | Status to set the given Synthetic test to.
+    body := *datadog.NewSyntheticsUpdateTestPauseStatusPayload() // SyntheticsUpdateTestPauseStatusPayload | Status to set the given Synthetic test to.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SyntheticsApi.UpdateTestPauseStatus(ctx, publicId).Body(body).Execute()
     if err != nil {

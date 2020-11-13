@@ -48,9 +48,10 @@ func main() {
         },
     )
 
-    body := datadog.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | Check AWS Log Lambda Async request body.
+    body := *datadog.NewAWSAccountAndLambdaRequest("AccountId_example", "LambdaArn_example") // AWSAccountAndLambdaRequest | Check AWS Log Lambda Async request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(ctx).Body(body).Execute()
     if err != nil {
@@ -127,9 +128,10 @@ func main() {
         },
     )
 
-    body := datadog.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Check AWS Logs Async Services request body.
+    body := *datadog.NewAWSLogsServicesRequest("AccountId_example", []string{"Services_example"}) // AWSLogsServicesRequest | Check AWS Logs Async Services request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(ctx).Body(body).Execute()
     if err != nil {
@@ -206,9 +208,10 @@ func main() {
         },
     )
 
-    body := datadog.AWSAccountAndLambdaRequest{AccountId: "AccountId_example", LambdaArn: "LambdaArn_example"} // AWSAccountAndLambdaRequest | AWS Log Lambda Async request body.
+    body := *datadog.NewAWSAccountAndLambdaRequest("AccountId_example", "LambdaArn_example") // AWSAccountAndLambdaRequest | AWS Log Lambda Async request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.CreateAWSLambdaARN(ctx).Body(body).Execute()
     if err != nil {
@@ -288,6 +291,7 @@ func main() {
     body :=  // AWSAccountAndLambdaRequest | Delete AWS Lambda ARN request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.DeleteAWSLambdaARN(ctx).Body(body).Execute()
     if err != nil {
@@ -364,9 +368,10 @@ func main() {
         },
     )
 
-    body := datadog.AWSLogsServicesRequest{AccountId: "AccountId_example", Services: []string{"Services_example")} // AWSLogsServicesRequest | Enable AWS Log Services request body.
+    body := *datadog.NewAWSLogsServicesRequest("AccountId_example", []string{"Services_example"}) // AWSLogsServicesRequest | Enable AWS Log Services request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.EnableAWSLogServices(ctx).Body(body).Execute()
     if err != nil {
@@ -445,6 +450,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsIntegrations(ctx).Execute()
     if err != nil {
@@ -519,6 +525,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.AWSLogsIntegrationApi.ListAWSLogsServices(ctx).Execute()
     if err != nil {

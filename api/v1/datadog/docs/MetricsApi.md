@@ -49,6 +49,7 @@ func main() {
     metricName := "metricName_example" // string | Name of the metric for which to get metadata.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.GetMetricMetadata(ctx, metricName).Execute()
     if err != nil {
@@ -133,6 +134,7 @@ func main() {
     host := "host_example" // string | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.ListActiveMetrics(ctx).From(from).Host(host).Execute()
     if err != nil {
@@ -213,6 +215,7 @@ func main() {
     q := "q_example" // string | Query string to search metrics upon. Must be prefixed with `metrics:`.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.ListMetrics(ctx).Q(q).Execute()
     if err != nil {
@@ -294,6 +297,7 @@ func main() {
     query := "query_example" // string | Query string.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.QueryMetrics(ctx).From(from).To(to).Query(query).Execute()
     if err != nil {
@@ -373,9 +377,10 @@ func main() {
     )
 
     metricName := "metricName_example" // string | Name of the metric for which to edit metadata.
-    body := datadog.MetricMetadata{Description: "Description_example", Integration: "Integration_example", PerUnit: "PerUnit_example", ShortName: "ShortName_example", StatsdInterval: int64(123), Type: "Type_example", Unit: "Unit_example"} // MetricMetadata | New metadata.
+    body := *datadog.NewMetricMetadata() // MetricMetadata | New metadata.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.UpdateMetricMetadata(ctx, metricName).Body(body).Execute()
     if err != nil {

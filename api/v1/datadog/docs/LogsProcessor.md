@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **PreserveSource** | Pointer to **bool** | Remove or preserve the remapped source element. | [optional] [default to false]
 **SourceType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **Target** | **string** | Name of the attribute that contains the corresponding value in the mapping list or the &#x60;default_lookup&#x60; if not found in the mapping list. | 
+**TargetFormat** | Pointer to [**TargetFormatType**](TargetFormatType.md) |  | [optional] 
 **TargetType** | Pointer to **string** | Defines if the final attribute or tag name is from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **NormalizeEndingSlashes** | Pointer to **NullableBool** | Normalize the ending slashes or not. | [optional] [default to false]
 **IsEncoded** | Pointer to **bool** | Define if the source attribute is URL encoded or not. | [optional] [default to false]
@@ -295,6 +296,31 @@ and a boolean to check if the value has been set.
 
 SetTarget sets Target field to given value.
 
+
+### GetTargetFormat
+
+`func (o *LogsProcessor) GetTargetFormat() TargetFormatType`
+
+GetTargetFormat returns the TargetFormat field if non-nil, zero value otherwise.
+
+### GetTargetFormatOk
+
+`func (o *LogsProcessor) GetTargetFormatOk() (*TargetFormatType, bool)`
+
+GetTargetFormatOk returns a tuple with the TargetFormat field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetFormat
+
+`func (o *LogsProcessor) SetTargetFormat(v TargetFormatType)`
+
+SetTargetFormat sets TargetFormat field to given value.
+
+### HasTargetFormat
+
+`func (o *LogsProcessor) HasTargetFormat() bool`
+
+HasTargetFormat returns a boolean if a field has been set.
 
 ### GetTargetType
 

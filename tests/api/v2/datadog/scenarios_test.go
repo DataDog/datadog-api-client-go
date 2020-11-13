@@ -38,53 +38,57 @@ func undoCreateIncident(ctx gobdd.Context) {
 }
 
 func undoCreateService(ctx gobdd.Context) {
-	service := tests.GetResponse(ctx)[0].Interface().(datadog.ServiceResponse)
+	service := tests.GetResponse(ctx)[0].Interface().(datadog.IncidentServiceResponse)
 	cctx := tests.GetCtx(ctx)
-	Client(cctx).ServicesApi.DeleteService(cctx, service.Data.GetId()).Execute()
+	Client(cctx).IncidentServicesApi.DeleteIncidentService(cctx, service.Data.GetId()).Execute()
 }
 
 func undoCreateTeam(ctx gobdd.Context) {
-	team := tests.GetResponse(ctx)[0].Interface().(datadog.TeamResponse)
-	cctx := tests.GetCtx(ctx)
-	Client(cctx).TeamsApi.DeleteTeam(cctx, team.Data.GetId()).Execute()
+	team := tests.GetResponse(ctx)[0].Interface().(datadog.IncidentTeamResponse)
+	client := Client(tests.GetCtx(ctx))
+	client.GetConfig().SetUnstableOperationEnabled("DeleteIncidentTeam", true)
+	client.IncidentTeamsApi.DeleteIncidentTeam(tests.GetCtx(ctx), team.Data.GetId()).Execute()
 }
 
 var requestsUndo = map[string]func(ctx gobdd.Context){
 	"AddPermissionToRole":      undoIgnore,
 	"AddUserToRole":            undoIgnore,
+	"AggregateLogs":            undoIgnore,
 	"CreateIncident":           undoCreateIncident,
+	"CreateIncidentService":    undoCreateService,
+	"CreateIncidentTeam":       undoCreateTeam,
 	"CreateRole":               undoCreateRole,
-	"CreateService":            undoCreateService,
-	"CreateTeam":               undoCreateTeam,
 	"CreateUser":               undoCreateUser,
-	"DisableUser":              undoIgnore,
 	"DeleteIncident":           undoIgnore,
+	"DeleteIncidentService":    undoIgnore,
+	"DeleteIncidentTeam":       undoIgnore,
 	"DeleteRole":               undoIgnore,
-	"DeleteService":            undoIgnore,
-	"DeleteTeam":               undoIgnore,
+	"DisableUser":              undoIgnore,
 	"GetIncident":              undoIgnore,
+	"GetIncidentService":       undoIgnore,
+	"GetIncidentTeam":          undoIgnore,
 	"GetInvitation":            undoIgnore,
 	"GetRole":                  undoIgnore,
-	"GetService":               undoIgnore,
-	"GetTeam":                  undoIgnore,
 	"GetUser":                  undoIgnore,
 	"ListIncidents":            undoIgnore,
+	"ListIncidentServices":     undoIgnore,
+	"ListIncidentTeams":        undoIgnore,
+	"ListLogs":                 undoIgnore,
+	"ListLogsGet":              undoIgnore,
 	"ListPermissions":          undoIgnore,
 	"ListRolePermissions":      undoIgnore,
 	"ListRoles":                undoIgnore,
 	"ListRoleUsers":            undoIgnore,
-	"ListServices":             undoIgnore,
-	"ListTeams":                undoIgnore,
-	"ListUsers":                undoIgnore,
 	"ListUserPermissions":      undoIgnore,
+	"ListUsers":                undoIgnore,
 	"RemovePermissionFromRole": undoIgnore,
 	"RemoveUserFromRole":       undoIgnore,
 	"SendInvitations":          undoIgnore,
 	"UpdateIncident":           undoIgnore,
+	"UpdateIncidentService":    undoIgnore,
+	"UpdateIncidentTeam":       undoIgnore,
 	"UpdateRole":               undoIgnore,
-	"UpdateService":            undoIgnore,
 	"UpdateUser":               undoIgnore,
-	"UpdateTeam":               undoIgnore,
 }
 
 func TestScenarios(t *testing.T) {
@@ -123,6 +127,13 @@ func TestScenarios(t *testing.T) {
 				tracer.SpanType("step"),
 				tracer.ResourceName(parts[len(parts)-1]),
 			)
+
+			testName := strings.Join(strings.Split(ct.(*testing.T).Name(), "/")[1:3], "/")
+			unique := tests.WithUniqueSurrounding(cctx, testName)
+			data := tests.GetData(ctx)
+			data["unique"] = unique
+			data["unique_lower"] = strings.ToLower(unique)
+
 			tests.SetCtx(ctx, cctx)
 		}),
 		gobdd.WithAfterStep(func(ctx gobdd.Context) {
@@ -255,7 +266,7 @@ func role(t gobdd.StepTest, ctx gobdd.Context) {
 }
 
 func deleteService(ctx context.Context, serviceID string) {
-	_, err := Client(ctx).ServicesApi.DeleteService(ctx, serviceID).Execute()
+	_, err := Client(ctx).IncidentServicesApi.DeleteIncidentService(ctx, serviceID).Execute()
 	if err == nil {
 		return
 	}
@@ -264,13 +275,13 @@ func deleteService(ctx context.Context, serviceID string) {
 
 func service(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
-	client.GetConfig().SetUnstableOperationEnabled("CreateService", true)
+	client.GetConfig().SetUnstableOperationEnabled("CreateIncidentService", true)
 
-	svcAttributes := datadog.NewServiceCreateAttributes(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
-	svc := datadog.NewServiceCreateData(datadog.ServiceType("services"))
+	svcAttributes := datadog.NewIncidentServiceCreateAttributes(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
+	svc := datadog.NewIncidentServiceCreateData(datadog.IncidentServiceType("services"))
 	svc.SetAttributes(*svcAttributes)
-	svcRequest := datadog.NewServiceCreateRequest(*svc)
-	response, _, err := client.ServicesApi.CreateService(tests.GetCtx(ctx)).Body(*svcRequest).Execute()
+	svcRequest := datadog.NewIncidentServiceCreateRequest(*svc)
+	response, _, err := client.IncidentServicesApi.CreateIncidentService(tests.GetCtx(ctx)).Body(*svcRequest).Execute()
 	if err != nil {
 		t.Fatalf("error creating service: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -286,7 +297,9 @@ func service(t gobdd.StepTest, ctx gobdd.Context) {
 }
 
 func deleteTeam(ctx context.Context, teamID string) {
-	_, err := Client(ctx).TeamsApi.DeleteTeam(ctx, teamID).Execute()
+	client := Client(ctx)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteIncidentTeam", true)
+	_, err := client.IncidentTeamsApi.DeleteIncidentTeam(ctx, teamID).Execute()
 	if err == nil {
 		return
 	}
@@ -295,13 +308,13 @@ func deleteTeam(ctx context.Context, teamID string) {
 
 func team(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
-	client.GetConfig().SetUnstableOperationEnabled("CreateTeam", true)
+	client.GetConfig().SetUnstableOperationEnabled("CreateIncidentTeam", true)
 
-	teamAttributes := datadog.NewTeamCreateAttributes(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
-	team := datadog.NewTeamCreateData(datadog.TeamType("teams"))
+	teamAttributes := datadog.NewIncidentTeamCreateAttributes(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
+	team := datadog.NewIncidentTeamCreateData(datadog.IncidentTeamType("teams"))
 	team.SetAttributes(*teamAttributes)
-	teamRequest := datadog.NewTeamCreateRequest(*team)
-	response, _, err := client.TeamsApi.CreateTeam(tests.GetCtx(ctx)).Body(*teamRequest).Execute()
+	teamRequest := datadog.NewIncidentTeamCreateRequest(*team)
+	response, _, err := client.IncidentTeamsApi.CreateIncidentTeam(tests.GetCtx(ctx)).Body(*teamRequest).Execute()
 	if err != nil {
 		t.Fatalf("error creating team: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

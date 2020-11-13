@@ -46,9 +46,10 @@ func main() {
         },
     )
 
-    body := datadog.OrganizationCreateBody{Billing: datadog.OrganizationBilling{Type: "Type_example"}, Name: "Name_example", Subscription: datadog.OrganizationSubscription{Type: "Type_example"}} // OrganizationCreateBody | Organization object that needs to be created
+    body := *datadog.NewOrganizationCreateBody(*datadog.NewOrganizationBilling(), "Name_example", *datadog.NewOrganizationSubscription()) // OrganizationCreateBody | Organization object that needs to be created
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.OrganizationsApi.CreateChildOrg(ctx).Body(body).Execute()
     if err != nil {
@@ -128,6 +129,7 @@ func main() {
     publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.OrganizationsApi.GetOrg(ctx, publicId).Execute()
     if err != nil {
@@ -210,6 +212,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.OrganizationsApi.ListOrgs(ctx).Execute()
     if err != nil {
@@ -283,9 +286,10 @@ func main() {
     )
 
     publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
-    body := datadog.Organization{Billing: datadog.OrganizationBilling{Type: "Type_example"}, Created: "Created_example", Description: "Description_example", Name: "Name_example", PublicId: "PublicId_example", Settings: datadog.Organization_settings{PrivateWidgetShare: false, Saml: datadog.Organization_settings_saml{Enabled: false}, SamlAutocreateAccessRole: datadog.AccessRole{}, SamlAutocreateUsersDomains: datadog.Organization_settings_saml_autocreate_users_domains{Domains: []string{"Domains_example"), Enabled: false}, SamlCanBeEnabled: false, SamlIdpEndpoint: "SamlIdpEndpoint_example", SamlIdpInitiatedLogin: datadog.Organization_settings_saml_idp_initiated_login{Enabled: false}, SamlIdpMetadataUploaded: false, SamlLoginUrl: "SamlLoginUrl_example", SamlStrictMode: datadog.Organization_settings_saml_strict_mode{Enabled: false}}, Subscription: datadog.OrganizationSubscription{Type: "Type_example"}} // Organization | 
+    body := *datadog.NewOrganization() // Organization | 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.OrganizationsApi.UpdateOrg(ctx, publicId).Body(body).Execute()
     if err != nil {
@@ -371,6 +375,7 @@ func main() {
     idpFile := 987 // *os.File | The path to the XML metadata file you wish to upload.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.OrganizationsApi.UploadIdPForOrg(ctx, publicId).IdpFile(idpFile).Execute()
     if err != nil {

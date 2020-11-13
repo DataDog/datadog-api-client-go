@@ -44,9 +44,10 @@ func main() {
         },
     )
 
-    body := datadog.LogsAggregateRequest{Compute: []LogsCompute{datadog.LogsCompute{Aggregation: datadog.LogsAggregationFunction{}, Interval: "Interval_example", Metric: "Metric_example", Type: datadog.LogsComputeType{}}), Filter: datadog.LogsQueryFilter{From: "From_example", Indexes: []string{"Indexes_example"), Query: "Query_example", To: "To_example"}, GroupBy: []LogsGroupBy{datadog.LogsGroupBy{Facet: "Facet_example", Histogram: datadog.LogsGroupBy_histogram{Interval: 123, Max: 123, Min: 123}, Limit: 123, Missing: datadog.LogsGroupByMissing{}, Sort: datadog.LogsAggregateSort{Aggregation: datadog.LogsAggregationFunction{}, Metric: "Metric_example", Order: datadog.LogsSortOrder{}, Type: datadog.LogsAggregateSortType{}}, Total: datadog.LogsGroupByTotal{}}), Options: datadog.LogsQueryOptions{TimeOffset: 123, Timezone: "Timezone_example"}, Paging: datadog.LogsAggregateRequest_paging{After: "After_example"}} // LogsAggregateRequest |  (optional)
+    body := *datadog.NewLogsAggregateRequest() // LogsAggregateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsApi.AggregateLogs(ctx).Body(body).Execute()
     if err != nil {
@@ -123,9 +124,11 @@ func main() {
         },
     )
 
-    body := datadog.LogsListRequest{Filter: datadog.LogsQueryFilter{From: "From_example", Indexes: []string{"Indexes_example"), Query: "Query_example", To: "To_example"}, Options: datadog.LogsQueryOptions{TimeOffset: 123, Timezone: "Timezone_example"}, Page: datadog.LogsListRequest_page{Cursor: "Cursor_example", Limit: 123}, Sort: datadog.LogsSort{}} // LogsListRequest |  (optional)
+    body := *datadog.NewLogsListRequest() // LogsListRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("ListLogs", true)
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsApi.ListLogs(ctx).Body(body).Execute()
     if err != nil {
@@ -204,13 +207,15 @@ func main() {
 
     filterQuery := "filterQuery_example" // string | Search query following logs syntax. (optional)
     filterIndex := "filterIndex_example" // string | For customers with multiple indexes, the indexes to search Defaults to '*' which means all indexes (optional)
-    filterFrom := Get-Date // time.Time | Minimum timestamp for requested logs. (optional)
-    filterTo := Get-Date // time.Time | Maximum timestamp for requested logs. (optional)
-    sort := datadog.LogsSort{} // LogsSort | Order of logs in results. (optional)
+    filterFrom := time.Now() // time.Time | Minimum timestamp for requested logs. (optional)
+    filterTo := time.Now() // time.Time | Maximum timestamp for requested logs. (optional)
+    sort := *datadog.NewLogsSort() // LogsSort | Order of logs in results. (optional)
     pageCursor := "pageCursor_example" // string | List following results with a cursor provided in the previous query. (optional)
     pageLimit := 987 // int32 | Maximum number of logs in the response. (optional) (default to 10)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("ListLogsGet", true)
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsApi.ListLogsGet(ctx).FilterQuery(filterQuery).FilterIndex(filterIndex).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
     if err != nil {

@@ -50,6 +50,7 @@ func main() {
     title := "title_example" // string | A title for the graph. If no title is specified, the graph does not have a title. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.SnapshotsApi.GetGraphSnapshot(ctx).Start(start).End(end).MetricQuery(metricQuery).EventQuery(eventQuery).GraphDef(graphDef).Title(title).Execute()
     if err != nil {
