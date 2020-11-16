@@ -284,7 +284,7 @@ func main() {
     )
 
     name := "name_example" // string | Name of the log index.
-    body := *datadog.NewLogsIndex(*datadog.NewLogsFilter()) // LogsIndex | Object containing the new `LogsIndex`. (optional)
+    body := *datadog.NewLogsIndexUpdateRequest(*datadog.NewLogsFilter()) // LogsIndexUpdateRequest | Object containing the new `LogsIndexUpdateRequest`. (optional)
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("UpdateLogsIndex", true)
@@ -316,7 +316,7 @@ Other parameters are passed through a pointer to a apiUpdateLogsIndexRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**LogsIndex**](LogsIndex.md) | Object containing the new &#x60;LogsIndex&#x60;. | 
+ **body** | [**LogsIndexUpdateRequest**](LogsIndexUpdateRequest.md) | Object containing the new &#x60;LogsIndexUpdateRequest&#x60;. | 
 
 ### Return type
 
