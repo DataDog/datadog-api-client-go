@@ -48,7 +48,7 @@ func main() {
 
     hostName := "hostName_example" // string | This endpoint allows you to add new tags to a host, optionally specifying where the tags came from.
     body := *datadog.NewHostTags() // HostTags | Update host tags request body.
-    source := "source_example" // string | The source of the tags. [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). (optional)
+    source := "chef" // string | The source of the tags. [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). (optional)
 
     configuration := datadog.NewConfiguration()
 
@@ -140,7 +140,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.DeleteHostTags(ctx, hostName).Source(source).Execute()
+    r, err := api_client.TagsApi.DeleteHostTags(ctx, hostName).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.DeleteHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

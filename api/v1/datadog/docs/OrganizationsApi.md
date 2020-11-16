@@ -46,7 +46,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewOrganizationCreateBody(*datadog.NewOrganizationBilling(), "Name_example", *datadog.NewOrganizationSubscription()) // OrganizationCreateBody | Organization object that needs to be created
+    body := *datadog.NewOrganizationCreateBody(*datadog.NewOrganizationBilling(), "New child org", *datadog.NewOrganizationSubscription()) // OrganizationCreateBody | Organization object that needs to be created
 
     configuration := datadog.NewConfiguration()
 
@@ -126,7 +126,7 @@ func main() {
         },
     )
 
-    publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
+    publicId := "abc123" // string | The `public_id` of the organization you are operating within.
 
     configuration := datadog.NewConfiguration()
 
@@ -285,7 +285,7 @@ func main() {
         },
     )
 
-    publicId := "publicId_example" // string | The `public_id` of the organization you are operating within.
+    publicId := "abc123" // string | The `public_id` of the organization you are operating within.
     body := *datadog.NewOrganization() // Organization | 
 
     configuration := datadog.NewConfiguration()
@@ -371,8 +371,8 @@ func main() {
         },
     )
 
-    publicId := "publicId_example" // string | The `public_id` of the organization you are operating with
-    idpFile := 987 // *os.File | The path to the XML metadata file you wish to upload.
+    publicId := "abc123" // string | The `public_id` of the organization you are operating with
+    idpFile := os.NewFile(1234, "some_file") // *os.File | The path to the XML metadata file you wish to upload.
 
     configuration := datadog.NewConfiguration()
 

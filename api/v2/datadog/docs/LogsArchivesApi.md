@@ -58,7 +58,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("AddReadRoleToArchive", true)
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.AddReadRoleToArchive(ctx, archiveId).Body(body).Execute()
+    r, err := api_client.LogsArchivesApi.AddReadRoleToArchive(ctx, archiveId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.AddReadRoleToArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -221,7 +221,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.DeleteLogsArchive(ctx, archiveId).Execute()
+    r, err := api_client.LogsArchivesApi.DeleteLogsArchive(ctx, archiveId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.DeleteLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -624,7 +624,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("RemoveRoleFromArchive", true)
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.RemoveRoleFromArchive(ctx, archiveId).Body(body).Execute()
+    r, err := api_client.LogsArchivesApi.RemoveRoleFromArchive(ctx, archiveId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.RemoveRoleFromArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

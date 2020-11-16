@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateIncidentService**](IncidentServicesApi.md#CreateIncidentService) | **Post** /api/v2/services | Create a new incident service
 [**DeleteIncidentService**](IncidentServicesApi.md#DeleteIncidentService) | **Delete** /api/v2/services/{service_id} | Delete an existing incident service
 [**GetIncidentService**](IncidentServicesApi.md#GetIncidentService) | **Get** /api/v2/services/{service_id} | Get details of an incident service
-[**GetIncidentServices**](IncidentServicesApi.md#GetIncidentServices) | **Get** /api/v2/services | Get a list of all incident services
+[**ListIncidentServices**](IncidentServicesApi.md#ListIncidentServices) | **Get** /api/v2/services | Get a list of all incident services
 [**UpdateIncidentService**](IncidentServicesApi.md#UpdateIncidentService) | **Patch** /api/v2/services/{service_id} | Update an existing incident service
 
 
@@ -46,7 +46,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewIncidentServiceCreateRequest(*datadog.NewIncidentServiceCreateData(*datadog.NewIncidentServiceType())) // IncidentServiceCreateRequest | Incident Service Payload.
+    body := *datadog.NewIncidentServiceCreateRequest(*datadog.NewIncidentServiceCreateData(datadog.IncidentServiceType("services"))) // IncidentServiceCreateRequest | Incident Service Payload.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("CreateIncidentService", true)
@@ -133,7 +133,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("DeleteIncidentService", true)
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentServicesApi.DeleteIncidentService(ctx, serviceId).Execute()
+    r, err := api_client.IncidentServicesApi.DeleteIncidentService(ctx, serviceId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.DeleteIncidentService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -263,9 +263,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetIncidentServices
+## ListIncidentServices
 
-> IncidentServicesResponse GetIncidentServices(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
+> IncidentServicesResponse ListIncidentServices(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Filter(filter).Execute()
 
 Get a list of all incident services
 
@@ -298,20 +298,21 @@ func main() {
     )
 
     include := "include_example" // string | Specifies which types of related objects should be included in the response. (optional)
-    pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
-    pageOffset := 987 // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
+    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
+    pageOffset := int64(789) // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
+    filter := "ExampleServiceName" // string | A search query that filters services by name. (optional)
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("GetIncidentServices", true)
+    configuration.SetUnstableOperationEnabled("ListIncidentServices", true)
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentServicesApi.GetIncidentServices(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
+    resp, r, err := api_client.IncidentServicesApi.ListIncidentServices(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Filter(filter).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.GetIncidentServices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.ListIncidentServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetIncidentServices`: IncidentServicesResponse
-    fmt.Fprintf(os.Stdout, "Response from `IncidentServicesApi.GetIncidentServices`: %v\n", resp)
+    // response from `ListIncidentServices`: IncidentServicesResponse
+    fmt.Fprintf(os.Stdout, "Response from `IncidentServicesApi.ListIncidentServices`: %v\n", resp)
 }
 ```
 
@@ -321,7 +322,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetIncidentServicesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListIncidentServicesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -329,6 +330,7 @@ Name | Type | Description  | Notes
  **include** | **string** | Specifies which types of related objects should be included in the response. | 
  **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
+ **filter** | **string** | A search query that filters services by name. | 
 
 ### Return type
 
@@ -383,7 +385,7 @@ func main() {
     )
 
     serviceId := "serviceId_example" // string | The ID of the incident service.
-    body := *datadog.NewIncidentServiceUpdateRequest(*datadog.NewIncidentServiceUpdateData("Id_example", *datadog.NewIncidentServiceType())) // IncidentServiceUpdateRequest | Incident Service Payload.
+    body := *datadog.NewIncidentServiceUpdateRequest(*datadog.NewIncidentServiceUpdateData("00000000-0000-0000-0000-000000000000", datadog.IncidentServiceType("services"))) // IncidentServiceUpdateRequest | Incident Service Payload.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("UpdateIncidentService", true)

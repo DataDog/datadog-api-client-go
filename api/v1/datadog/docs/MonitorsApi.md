@@ -74,7 +74,7 @@ Other parameters are passed through a pointer to a apiCheckCanDeleteMonitorReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **monitorIds** | [**[]int64**](int64.md) | The IDs of the monitor to check. | 
+ **monitorIds** | **[]int64** | The IDs of the monitor to check. | 
 
 ### Return type
 
@@ -208,7 +208,7 @@ func main() {
         },
     )
 
-    monitorId := 987 // int64 | The ID of the monitor.
+    monitorId := int64(789) // int64 | The ID of the monitor.
     force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
 
     configuration := datadog.NewConfiguration()
@@ -294,7 +294,7 @@ func main() {
         },
     )
 
-    monitorId := 987 // int64 | The ID of the monitor
+    monitorId := int64(789) // int64 | The ID of the monitor
     groupStates := "groupStates_example" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
 
     configuration := datadog.NewConfiguration()
@@ -385,9 +385,9 @@ func main() {
     tags := "tags_example" // string | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. For example, `host:host0`. (optional)
     monitorTags := "monitorTags_example" // string | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, `service:my-app`. (optional)
     withDowntimes := true // bool | If this argument is set to true, then the returned data includes all current downtimes for each monitor. (optional)
-    idOffset := 987 // int64 | Monitor ID offset. (optional)
-    page := 987 // int64 | The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. (optional)
-    pageSize := 987 // int32 | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a `page_size` limit. However, if page is specified and `page_size` is not, the argument defaults to 100. (optional)
+    idOffset := int64(789) // int64 | Monitor ID offset. (optional)
+    page := int64(789) // int64 | The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. (optional)
+    pageSize := int32(56) // int32 | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a `page_size` limit. However, if page is specified and `page_size` is not, the argument defaults to 100. (optional)
 
     configuration := datadog.NewConfiguration()
 
@@ -474,7 +474,7 @@ func main() {
         },
     )
 
-    monitorId := 987 // int64 | The ID of the monitor.
+    monitorId := int64(789) // int64 | The ID of the monitor.
     body := *datadog.NewMonitorUpdateRequest() // MonitorUpdateRequest | Edit a monitor request body.
 
     configuration := datadog.NewConfiguration()

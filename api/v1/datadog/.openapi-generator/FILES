@@ -175,6 +175,7 @@ docs/LogsGrokParserRules.md
 docs/LogsGrokParserType.md
 docs/LogsIndex.md
 docs/LogsIndexListResponse.md
+docs/LogsIndexUpdateRequest.md
 docs/LogsIndexesApi.md
 docs/LogsIndexesOrder.md
 docs/LogsListRequest.md
@@ -384,6 +385,10 @@ docs/UsageFargateHour.md
 docs/UsageFargateResponse.md
 docs/UsageHostHour.md
 docs/UsageHostsResponse.md
+docs/UsageIndexedSpansHour.md
+docs/UsageIndexedSpansResponse.md
+docs/UsageIngestedSpansHour.md
+docs/UsageIngestedSpansResponse.md
 docs/UsageLambdaHour.md
 docs/UsageLambdaResponse.md
 docs/UsageLogsByIndexHour.md
@@ -608,6 +613,7 @@ model_logs_grok_parser_rules.go
 model_logs_grok_parser_type.go
 model_logs_index.go
 model_logs_index_list_response.go
+model_logs_index_update_request.go
 model_logs_indexes_order.go
 model_logs_list_request.go
 model_logs_list_request_time.go
@@ -807,6 +813,10 @@ model_usage_fargate_hour.go
 model_usage_fargate_response.go
 model_usage_host_hour.go
 model_usage_hosts_response.go
+model_usage_indexed_spans_hour.go
+model_usage_indexed_spans_response.go
+model_usage_ingested_spans_hour.go
+model_usage_ingested_spans_response.go
 model_usage_lambda_hour.go
 model_usage_lambda_response.go
 model_usage_logs_by_index_hour.go

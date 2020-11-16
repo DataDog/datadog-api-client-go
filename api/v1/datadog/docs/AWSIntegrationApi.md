@@ -207,7 +207,7 @@ func main() {
         },
     )
 
-    body :=  // AWSAccount | AWS request object
+    body := *datadog.NewAWSAccount() // AWSAccount | AWS request object
 
     configuration := datadog.NewConfiguration()
 
@@ -446,7 +446,7 @@ func main() {
         },
     )
 
-    body :=  // AWSAccount | AWS request object
+    body := *datadog.NewAWSAccount() // AWSAccount | AWS request object
     accountId := "accountId_example" // string | Only return AWS accounts that matches this `account_id`. (optional)
     roleName := "roleName_example" // string | Only return AWS accounts that match this `role_name`. Required if `account_id` is specified. (optional)
     accessKeyId := "accessKeyId_example" // string | Only return AWS accounts that matches this `access_key_id`. Required if none of the other two options are specified. (optional)

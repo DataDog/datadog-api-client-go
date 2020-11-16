@@ -45,7 +45,7 @@ func main() {
         },
     )
 
-    from := 987 // int64 | Number of seconds from which you want to get total number of active hosts. (optional)
+    from := int64(789) // int64 | Number of seconds from which you want to get total number of active hosts. (optional)
 
     configuration := datadog.NewConfiguration()
 
@@ -128,9 +128,9 @@ func main() {
     filter := "filter_example" // string | String to filter search results. (optional)
     sortField := "sortField_example" // string | Sort hosts by this field. (optional)
     sortDir := "sortDir_example" // string | Direction of sort. Options include `asc` and `desc`. (optional)
-    start := 987 // int64 | Host result to start search from. (optional)
-    count := 987 // int64 | Number of hosts to return. Max 1000. (optional)
-    from := 987 // int64 | Number of seconds since UNIX epoch from which you want to search your hosts. (optional)
+    start := int64(789) // int64 | Host result to start search from. (optional)
+    count := int64(789) // int64 | Number of hosts to return. Max 1000. (optional)
+    from := int64(789) // int64 | Number of seconds since UNIX epoch from which you want to search your hosts. (optional)
     includeMutedHostsData := true // bool | Include information on the muted status of hosts and when the mute expires. (optional)
     includeHostsMetadata := true // bool | Include additional metadata about the hosts (agent_version, machine, platform, processor, etc.). (optional)
 
