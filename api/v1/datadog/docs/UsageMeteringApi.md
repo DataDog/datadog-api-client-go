@@ -67,10 +67,10 @@ func main() {
         },
     )
 
-    pageSize := 987 // int64 | The number of files to return in the response. `[default=60]`. (optional)
-    pageNumber := 987 // int64 | The identifier of the first page to return. This parameter is used for the pagination feature `[default=0]`. (optional)
-    sortDir := *datadog.NewUsageSortDirection() // UsageSortDirection | The direction to sort by: `[desc, asc]`. (optional) (default to "desc")
-    sort := *datadog.NewUsageSort() // UsageSort | The field to sort by: `[computed_on, size, start_date, end_date]`. (optional) (default to "start_date")
+    pageSize := int64(789) // int64 | The number of files to return in the response. `[default=60]`. (optional)
+    pageNumber := int64(789) // int64 | The identifier of the first page to return. This parameter is used for the pagination feature `[default=0]`. (optional)
+    sortDir := datadog.UsageSortDirection("desc") // UsageSortDirection | The direction to sort by: `[desc, asc]`. (optional) (default to "desc")
+    sort := datadog.UsageSort("computed_on") // UsageSort | The field to sort by: `[computed_on, size, start_date, end_date]`. (optional) (default to "start_date")
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetDailyCustomReports", true)
@@ -99,8 +99,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int64** | The number of files to return in the response. &#x60;[default&#x3D;60]&#x60;. | 
  **pageNumber** | **int64** | The identifier of the first page to return. This parameter is used for the pagination feature &#x60;[default&#x3D;0]&#x60;. | 
- **sortDir** | [**UsageSortDirection**](.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
- **sort** | [**UsageSort**](.md) | The field to sort by: &#x60;[computed_on, size, start_date, end_date]&#x60;. | [default to &quot;start_date&quot;]
+ **sortDir** | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
+ **sort** | [**UsageSort**](UsageSort.md) | The field to sort by: &#x60;[computed_on, size, start_date, end_date]&#x60;. | [default to &quot;start_date&quot;]
 
 ### Return type
 
@@ -137,6 +137,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -236,10 +237,10 @@ func main() {
         },
     )
 
-    pageSize := 987 // int64 | The number of files to return in the response `[default=60].` (optional)
-    pageNumber := 987 // int64 | The identifier of the first page to return. This parameter is used for the pagination feature `[default=0]`. (optional)
-    sortDir := *datadog.NewUsageSortDirection() // UsageSortDirection | The direction to sort by: `[desc, asc]`. (optional) (default to "desc")
-    sort := *datadog.NewUsageSort() // UsageSort | The field to sort by: `[computed_on, size, start_date, end_date]`. (optional) (default to "start_date")
+    pageSize := int64(789) // int64 | The number of files to return in the response `[default=60].` (optional)
+    pageNumber := int64(789) // int64 | The identifier of the first page to return. This parameter is used for the pagination feature `[default=0]`. (optional)
+    sortDir := datadog.UsageSortDirection("desc") // UsageSortDirection | The direction to sort by: `[desc, asc]`. (optional) (default to "desc")
+    sort := datadog.UsageSort("computed_on") // UsageSort | The field to sort by: `[computed_on, size, start_date, end_date]`. (optional) (default to "start_date")
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
@@ -268,8 +269,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int64** | The number of files to return in the response &#x60;[default&#x3D;60].&#x60; | 
  **pageNumber** | **int64** | The identifier of the first page to return. This parameter is used for the pagination feature &#x60;[default&#x3D;0]&#x60;. | 
- **sortDir** | [**UsageSortDirection**](.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
- **sort** | [**UsageSort**](.md) | The field to sort by: &#x60;[computed_on, size, start_date, end_date]&#x60;. | [default to &quot;start_date&quot;]
+ **sortDir** | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
+ **sort** | [**UsageSort**](UsageSort.md) | The field to sort by: &#x60;[computed_on, size, start_date, end_date]&#x60;. | [default to &quot;start_date&quot;]
 
 ### Return type
 
@@ -476,6 +477,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -558,6 +560,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -640,6 +643,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -720,6 +724,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -802,6 +807,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -884,6 +890,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -966,6 +973,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1048,6 +1056,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1130,6 +1139,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1177,7 +1187,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
  **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
- **indexName** | [**[]string**](string.md) | Comma-separated list of log index names. | 
+ **indexName** | **[]string** | Comma-separated list of log index names. | 
 
 ### Return type
 
@@ -1214,6 +1224,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1296,6 +1307,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1378,6 +1390,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1460,6 +1473,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1544,6 +1558,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1626,6 +1641,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1710,6 +1726,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1792,6 +1809,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1874,6 +1892,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -1956,6 +1975,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -2038,6 +2058,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -2083,7 +2104,7 @@ Other parameters are passed through a pointer to a apiGetUsageTopAvgMetricsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **month** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour. | 
- **names** | [**[]string**](string.md) | Comma-separated list of metric names. | 
+ **names** | **[]string** | Comma-separated list of metric names. | 
 
 ### Return type
 
@@ -2120,6 +2141,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 

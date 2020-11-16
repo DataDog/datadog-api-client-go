@@ -188,6 +188,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -205,13 +206,13 @@ func main() {
         },
     )
 
-    filterQuery := "filterQuery_example" // string | Search query following logs syntax. (optional)
-    filterIndex := "filterIndex_example" // string | For customers with multiple indexes, the indexes to search Defaults to '*' which means all indexes (optional)
+    filterQuery := "@datacenter:us @role:db" // string | Search query following logs syntax. (optional)
+    filterIndex := "main" // string | For customers with multiple indexes, the indexes to search Defaults to '*' which means all indexes (optional)
     filterFrom := time.Now() // time.Time | Minimum timestamp for requested logs. (optional)
     filterTo := time.Now() // time.Time | Maximum timestamp for requested logs. (optional)
-    sort := *datadog.NewLogsSort() // LogsSort | Order of logs in results. (optional)
-    pageCursor := "pageCursor_example" // string | List following results with a cursor provided in the previous query. (optional)
-    pageLimit := 987 // int32 | Maximum number of logs in the response. (optional) (default to 10)
+    sort := datadog.LogsSort("timestamp") // LogsSort | Order of logs in results. (optional)
+    pageCursor := "eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==" // string | List following results with a cursor provided in the previous query. (optional)
+    pageLimit := int32(25) // int32 | Maximum number of logs in the response. (optional) (default to 10)
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("ListLogsGet", true)
@@ -242,7 +243,7 @@ Name | Type | Description  | Notes
  **filterIndex** | **string** | For customers with multiple indexes, the indexes to search Defaults to &#39;*&#39; which means all indexes | 
  **filterFrom** | **time.Time** | Minimum timestamp for requested logs. | 
  **filterTo** | **time.Time** | Maximum timestamp for requested logs. | 
- **sort** | [**LogsSort**](.md) | Order of logs in results. | 
+ **sort** | [**LogsSort**](LogsSort.md) | Order of logs in results. | 
  **pageCursor** | **string** | List following results with a cursor provided in the previous query. | 
  **pageLimit** | **int32** | Maximum number of logs in the response. | [default to 10]
 

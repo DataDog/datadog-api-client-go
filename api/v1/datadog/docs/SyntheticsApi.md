@@ -58,7 +58,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewSyntheticsGlobalVariable("Description_example", "Name_example", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("Value_example")) // SyntheticsGlobalVariable | Details of the global variable to create.
+    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("example-value")) // SyntheticsGlobalVariable | Details of the global variable to create.
 
     configuration := datadog.NewConfiguration()
 
@@ -223,7 +223,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SyntheticsApi.DeleteGlobalVariable(ctx, variableId).Execute()
+    r, err := api_client.SyntheticsApi.DeleteGlobalVariable(ctx, variableId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteGlobalVariable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -381,7 +381,7 @@ func main() {
     )
 
     variableId := "variableId_example" // string | The ID of the global variable.
-    body := *datadog.NewSyntheticsGlobalVariable("Description_example", "Name_example", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("Value_example")) // SyntheticsGlobalVariable | Details of the global variable to update.
+    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("example-value")) // SyntheticsGlobalVariable | Details of the global variable to update.
 
     configuration := datadog.NewConfiguration()
 
@@ -467,8 +467,8 @@ func main() {
     )
 
     publicId := "publicId_example" // string | The public ID of the test for which to search results for.
-    fromTs := 987 // int64 | Timestamp from which to start querying results. (optional)
-    toTs := 987 // int64 | Timestamp up to which to query results. (optional)
+    fromTs := int64(789) // int64 | Timestamp from which to start querying results. (optional)
+    toTs := int64(789) // int64 | Timestamp up to which to query results. (optional)
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
 
     configuration := datadog.NewConfiguration()
@@ -502,7 +502,7 @@ Name | Type | Description  | Notes
 
  **fromTs** | **int64** | Timestamp from which to start querying results. | 
  **toTs** | **int64** | Timestamp up to which to query results. | 
- **probeDc** | [**[]string**](string.md) | Locations for which to query results. | 
+ **probeDc** | **[]string** | Locations for which to query results. | 
 
 ### Return type
 
@@ -728,8 +728,8 @@ func main() {
     )
 
     publicId := "publicId_example" // string | The public ID of the browser test for which to search results for.
-    fromTs := 987 // int64 | Timestamp from which to start querying results. (optional)
-    toTs := 987 // int64 | Timestamp up to which to query results. (optional)
+    fromTs := int64(789) // int64 | Timestamp from which to start querying results. (optional)
+    toTs := int64(789) // int64 | Timestamp up to which to query results. (optional)
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
 
     configuration := datadog.NewConfiguration()
@@ -763,7 +763,7 @@ Name | Type | Description  | Notes
 
  **fromTs** | **int64** | Timestamp from which to start querying results. | 
  **toTs** | **int64** | Timestamp up to which to query results. | 
- **probeDc** | [**[]string**](string.md) | Locations for which to query results. | 
+ **probeDc** | **[]string** | Locations for which to query results. | 
 
 ### Return type
 

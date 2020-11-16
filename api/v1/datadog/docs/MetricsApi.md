@@ -130,7 +130,7 @@ func main() {
         },
     )
 
-    from := 987 // int64 | Seconds since the Unix epoch.
+    from := int64(789) // int64 | Seconds since the Unix epoch.
     host := "host_example" // string | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. (optional)
 
     configuration := datadog.NewConfiguration()
@@ -292,8 +292,8 @@ func main() {
         },
     )
 
-    from := 987 // int64 | Start of the queried time period, seconds since the Unix epoch.
-    to := 987 // int64 | End of the queried time period, seconds since the Unix epoch.
+    from := int64(789) // int64 | Start of the queried time period, seconds since the Unix epoch.
+    to := int64(789) // int64 | End of the queried time period, seconds since the Unix epoch.
     query := "query_example" // string | Query string.
 
     configuration := datadog.NewConfiguration()

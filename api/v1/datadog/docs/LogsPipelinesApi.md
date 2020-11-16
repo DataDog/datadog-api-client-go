@@ -133,7 +133,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.DeleteLogsPipeline(ctx, pipelineId).Execute()
+    r, err := api_client.LogsPipelinesApi.DeleteLogsPipeline(ctx, pipelineId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.DeleteLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
