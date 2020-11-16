@@ -153,7 +153,7 @@ func TestUpdateLogsIndex(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(name, logsIndex.GetName())
 
-	updateLogsIndex := datadog.LogsIndex{
+	updateLogsIndex := datadog.LogsIndexUpdateRequest{
 		Filter: logsIndex.GetFilter(),
 		ExclusionFilters: &[]datadog.LogsExclusion{{
 			Name:      "datadog-api-client-go",
@@ -305,11 +305,11 @@ func TestLogsIndexesUpdateErrors(t *testing.T) {
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
-		Body               datadog.LogsIndex
+		Body               datadog.LogsIndexUpdateRequest
 		ExpectedStatusCode int
 	}{
-		"400 Bad Request": {WithTestAuth, datadog.LogsIndex{}, 400},
-		"403 Forbidden":   {WithFakeAuth, datadog.LogsIndex{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.LogsIndexUpdateRequest{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.LogsIndexUpdateRequest{}, 403},
 	}
 
 	for name, tc := range testCases {
@@ -354,7 +354,7 @@ func TestLogsIndexesUpdate429Error(t *testing.T) {
 		JSON(data)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).LogsIndexesApi.UpdateLogsIndex(ctx, "name").Body(datadog.LogsIndex{}).Execute()
+	_, httpresp, err := Client(ctx).LogsIndexesApi.UpdateLogsIndex(ctx, "name").Body(datadog.LogsIndexUpdateRequest{}).Execute()
 	assert.Equal(429, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.LogsAPIErrorResponse)
 	assert.True(ok)

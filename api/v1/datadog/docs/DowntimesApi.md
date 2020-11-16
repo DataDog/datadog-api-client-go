@@ -47,12 +47,12 @@ func main() {
         },
     )
 
-    downtimeId := 987 // int64 | ID of the downtime to cancel.
+    downtimeId := int64(123456) // int64 | ID of the downtime to cancel.
 
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.CancelDowntime(ctx, downtimeId).Execute()
+    r, err := api_client.DowntimesApi.CancelDowntime(ctx, downtimeId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -129,7 +129,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewCancelDowntimesByScopeRequest("Scope_example") // CancelDowntimesByScopeRequest | Scope to cancel downtimes for.
+    body := *datadog.NewCancelDowntimesByScopeRequest("host:myserver") // CancelDowntimesByScopeRequest | Scope to cancel downtimes for.
 
     configuration := datadog.NewConfiguration()
 
@@ -289,7 +289,7 @@ func main() {
         },
     )
 
-    downtimeId := 987 // int64 | ID of the downtime to fetch.
+    downtimeId := int64(123456) // int64 | ID of the downtime to fetch.
 
     configuration := datadog.NewConfiguration()
 
@@ -453,7 +453,7 @@ func main() {
         },
     )
 
-    downtimeId := 987 // int64 | ID of the downtime to update.
+    downtimeId := int64(123456) // int64 | ID of the downtime to update.
     body := *datadog.NewDowntime() // Downtime | Update a downtime request body.
 
     configuration := datadog.NewConfiguration()

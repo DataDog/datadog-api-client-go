@@ -1,9 +1,11 @@
 # WidgetEventSize
 
-## Properties
+## Enum
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+
+* `SMALL` (value: `"s"`)
+
+* `LARGE` (value: `"l"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

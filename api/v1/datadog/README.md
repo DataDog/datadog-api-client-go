@@ -26,6 +26,12 @@ Put the package under your project folder and add the following in import:
 import sw "./datadog"
 ```
 
+To use a proxy, set the environment variable `HTTP_PROXY`:
+
+```golang
+os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
+```
+
 ## Configuration of Server URL
 
 Default configuration comes with `Servers` field that contains server objects as defined in the OpenAPI specification.
@@ -361,6 +367,7 @@ Class | Method | HTTP request | Description
  - [LogsGrokParserType](docs/LogsGrokParserType.md)
  - [LogsIndex](docs/LogsIndex.md)
  - [LogsIndexListResponse](docs/LogsIndexListResponse.md)
+ - [LogsIndexUpdateRequest](docs/LogsIndexUpdateRequest.md)
  - [LogsIndexesOrder](docs/LogsIndexesOrder.md)
  - [LogsListRequest](docs/LogsListRequest.md)
  - [LogsListRequestTime](docs/LogsListRequestTime.md)

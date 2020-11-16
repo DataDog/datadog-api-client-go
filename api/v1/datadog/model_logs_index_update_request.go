@@ -12,41 +12,39 @@ import (
 	"encoding/json"
 )
 
-// LogsIndex Object describing a Datadog Log index.
-type LogsIndex struct {
+// LogsIndexUpdateRequest Object for updating a Datadog Log index.
+type LogsIndexUpdateRequest struct {
 	// The number of log events you can send in this index per day before you are rate-limited.
 	DailyLimit *int64 `json:"daily_limit,omitempty"`
+	// If true, sets the `daily_limit` value to null and the index is not limited on a daily basis (any specified `daily_limit` value in the request is ignored). If false or omitted, the index's current `daily_limit` is maintained.
+	DisableDailyLimit *bool `json:"disable_daily_limit,omitempty"`
 	// An array of exclusion objects. The logs are tested against the query of each filter, following the order of the array. Only the first matching active exclusion matters, others (if any) are ignored.
 	ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
 	Filter           LogsFilter       `json:"filter"`
-	// A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent. Rate limit is reset every-day at 2pm UTC.
-	IsRateLimited *bool `json:"is_rate_limited,omitempty"`
-	// The name of the index.
-	Name *string `json:"name,omitempty"`
-	// The number of days before logs are deleted from this index. Available values depend on retention plans specified in your organization's contract/subscriptions.
+	// The number of days before logs are deleted from this index. Available values depend on retention plans specified in your organization's contract/subscriptions.  **Note:** Changing the retention for an index adjusts the length of retention for all logs already in this index. It may also affect billing.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 }
 
-// NewLogsIndex instantiates a new LogsIndex object
+// NewLogsIndexUpdateRequest instantiates a new LogsIndexUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogsIndex(filter LogsFilter) *LogsIndex {
-	this := LogsIndex{}
+func NewLogsIndexUpdateRequest(filter LogsFilter) *LogsIndexUpdateRequest {
+	this := LogsIndexUpdateRequest{}
 	this.Filter = filter
 	return &this
 }
 
-// NewLogsIndexWithDefaults instantiates a new LogsIndex object
+// NewLogsIndexUpdateRequestWithDefaults instantiates a new LogsIndexUpdateRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewLogsIndexWithDefaults() *LogsIndex {
-	this := LogsIndex{}
+func NewLogsIndexUpdateRequestWithDefaults() *LogsIndexUpdateRequest {
+	this := LogsIndexUpdateRequest{}
 	return &this
 }
 
 // GetDailyLimit returns the DailyLimit field value if set, zero value otherwise.
-func (o *LogsIndex) GetDailyLimit() int64 {
+func (o *LogsIndexUpdateRequest) GetDailyLimit() int64 {
 	if o == nil || o.DailyLimit == nil {
 		var ret int64
 		return ret
@@ -56,7 +54,7 @@ func (o *LogsIndex) GetDailyLimit() int64 {
 
 // GetDailyLimitOk returns a tuple with the DailyLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsIndex) GetDailyLimitOk() (*int64, bool) {
+func (o *LogsIndexUpdateRequest) GetDailyLimitOk() (*int64, bool) {
 	if o == nil || o.DailyLimit == nil {
 		return nil, false
 	}
@@ -64,7 +62,7 @@ func (o *LogsIndex) GetDailyLimitOk() (*int64, bool) {
 }
 
 // HasDailyLimit returns a boolean if a field has been set.
-func (o *LogsIndex) HasDailyLimit() bool {
+func (o *LogsIndexUpdateRequest) HasDailyLimit() bool {
 	if o != nil && o.DailyLimit != nil {
 		return true
 	}
@@ -73,12 +71,44 @@ func (o *LogsIndex) HasDailyLimit() bool {
 }
 
 // SetDailyLimit gets a reference to the given int64 and assigns it to the DailyLimit field.
-func (o *LogsIndex) SetDailyLimit(v int64) {
+func (o *LogsIndexUpdateRequest) SetDailyLimit(v int64) {
 	o.DailyLimit = &v
 }
 
+// GetDisableDailyLimit returns the DisableDailyLimit field value if set, zero value otherwise.
+func (o *LogsIndexUpdateRequest) GetDisableDailyLimit() bool {
+	if o == nil || o.DisableDailyLimit == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DisableDailyLimit
+}
+
+// GetDisableDailyLimitOk returns a tuple with the DisableDailyLimit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsIndexUpdateRequest) GetDisableDailyLimitOk() (*bool, bool) {
+	if o == nil || o.DisableDailyLimit == nil {
+		return nil, false
+	}
+	return o.DisableDailyLimit, true
+}
+
+// HasDisableDailyLimit returns a boolean if a field has been set.
+func (o *LogsIndexUpdateRequest) HasDisableDailyLimit() bool {
+	if o != nil && o.DisableDailyLimit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDisableDailyLimit gets a reference to the given bool and assigns it to the DisableDailyLimit field.
+func (o *LogsIndexUpdateRequest) SetDisableDailyLimit(v bool) {
+	o.DisableDailyLimit = &v
+}
+
 // GetExclusionFilters returns the ExclusionFilters field value if set, zero value otherwise.
-func (o *LogsIndex) GetExclusionFilters() []LogsExclusion {
+func (o *LogsIndexUpdateRequest) GetExclusionFilters() []LogsExclusion {
 	if o == nil || o.ExclusionFilters == nil {
 		var ret []LogsExclusion
 		return ret
@@ -88,7 +118,7 @@ func (o *LogsIndex) GetExclusionFilters() []LogsExclusion {
 
 // GetExclusionFiltersOk returns a tuple with the ExclusionFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsIndex) GetExclusionFiltersOk() (*[]LogsExclusion, bool) {
+func (o *LogsIndexUpdateRequest) GetExclusionFiltersOk() (*[]LogsExclusion, bool) {
 	if o == nil || o.ExclusionFilters == nil {
 		return nil, false
 	}
@@ -96,7 +126,7 @@ func (o *LogsIndex) GetExclusionFiltersOk() (*[]LogsExclusion, bool) {
 }
 
 // HasExclusionFilters returns a boolean if a field has been set.
-func (o *LogsIndex) HasExclusionFilters() bool {
+func (o *LogsIndexUpdateRequest) HasExclusionFilters() bool {
 	if o != nil && o.ExclusionFilters != nil {
 		return true
 	}
@@ -105,12 +135,12 @@ func (o *LogsIndex) HasExclusionFilters() bool {
 }
 
 // SetExclusionFilters gets a reference to the given []LogsExclusion and assigns it to the ExclusionFilters field.
-func (o *LogsIndex) SetExclusionFilters(v []LogsExclusion) {
+func (o *LogsIndexUpdateRequest) SetExclusionFilters(v []LogsExclusion) {
 	o.ExclusionFilters = &v
 }
 
 // GetFilter returns the Filter field value
-func (o *LogsIndex) GetFilter() LogsFilter {
+func (o *LogsIndexUpdateRequest) GetFilter() LogsFilter {
 	if o == nil {
 		var ret LogsFilter
 		return ret
@@ -121,7 +151,7 @@ func (o *LogsIndex) GetFilter() LogsFilter {
 
 // GetFilterOk returns a tuple with the Filter field value
 // and a boolean to check if the value has been set.
-func (o *LogsIndex) GetFilterOk() (*LogsFilter, bool) {
+func (o *LogsIndexUpdateRequest) GetFilterOk() (*LogsFilter, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -129,76 +159,12 @@ func (o *LogsIndex) GetFilterOk() (*LogsFilter, bool) {
 }
 
 // SetFilter sets field value
-func (o *LogsIndex) SetFilter(v LogsFilter) {
+func (o *LogsIndexUpdateRequest) SetFilter(v LogsFilter) {
 	o.Filter = v
 }
 
-// GetIsRateLimited returns the IsRateLimited field value if set, zero value otherwise.
-func (o *LogsIndex) GetIsRateLimited() bool {
-	if o == nil || o.IsRateLimited == nil {
-		var ret bool
-		return ret
-	}
-	return *o.IsRateLimited
-}
-
-// GetIsRateLimitedOk returns a tuple with the IsRateLimited field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *LogsIndex) GetIsRateLimitedOk() (*bool, bool) {
-	if o == nil || o.IsRateLimited == nil {
-		return nil, false
-	}
-	return o.IsRateLimited, true
-}
-
-// HasIsRateLimited returns a boolean if a field has been set.
-func (o *LogsIndex) HasIsRateLimited() bool {
-	if o != nil && o.IsRateLimited != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIsRateLimited gets a reference to the given bool and assigns it to the IsRateLimited field.
-func (o *LogsIndex) SetIsRateLimited(v bool) {
-	o.IsRateLimited = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *LogsIndex) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *LogsIndex) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *LogsIndex) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *LogsIndex) SetName(v string) {
-	o.Name = &v
-}
-
 // GetNumRetentionDays returns the NumRetentionDays field value if set, zero value otherwise.
-func (o *LogsIndex) GetNumRetentionDays() int64 {
+func (o *LogsIndexUpdateRequest) GetNumRetentionDays() int64 {
 	if o == nil || o.NumRetentionDays == nil {
 		var ret int64
 		return ret
@@ -208,7 +174,7 @@ func (o *LogsIndex) GetNumRetentionDays() int64 {
 
 // GetNumRetentionDaysOk returns a tuple with the NumRetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsIndex) GetNumRetentionDaysOk() (*int64, bool) {
+func (o *LogsIndexUpdateRequest) GetNumRetentionDaysOk() (*int64, bool) {
 	if o == nil || o.NumRetentionDays == nil {
 		return nil, false
 	}
@@ -216,7 +182,7 @@ func (o *LogsIndex) GetNumRetentionDaysOk() (*int64, bool) {
 }
 
 // HasNumRetentionDays returns a boolean if a field has been set.
-func (o *LogsIndex) HasNumRetentionDays() bool {
+func (o *LogsIndexUpdateRequest) HasNumRetentionDays() bool {
 	if o != nil && o.NumRetentionDays != nil {
 		return true
 	}
@@ -225,14 +191,17 @@ func (o *LogsIndex) HasNumRetentionDays() bool {
 }
 
 // SetNumRetentionDays gets a reference to the given int64 and assigns it to the NumRetentionDays field.
-func (o *LogsIndex) SetNumRetentionDays(v int64) {
+func (o *LogsIndexUpdateRequest) SetNumRetentionDays(v int64) {
 	o.NumRetentionDays = &v
 }
 
-func (o LogsIndex) MarshalJSON() ([]byte, error) {
+func (o LogsIndexUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DailyLimit != nil {
 		toSerialize["daily_limit"] = o.DailyLimit
+	}
+	if o.DisableDailyLimit != nil {
+		toSerialize["disable_daily_limit"] = o.DisableDailyLimit
 	}
 	if o.ExclusionFilters != nil {
 		toSerialize["exclusion_filters"] = o.ExclusionFilters
@@ -240,50 +209,44 @@ func (o LogsIndex) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["filter"] = o.Filter
 	}
-	if o.IsRateLimited != nil {
-		toSerialize["is_rate_limited"] = o.IsRateLimited
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
 	if o.NumRetentionDays != nil {
 		toSerialize["num_retention_days"] = o.NumRetentionDays
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableLogsIndex struct {
-	value *LogsIndex
+type NullableLogsIndexUpdateRequest struct {
+	value *LogsIndexUpdateRequest
 	isSet bool
 }
 
-func (v NullableLogsIndex) Get() *LogsIndex {
+func (v NullableLogsIndexUpdateRequest) Get() *LogsIndexUpdateRequest {
 	return v.value
 }
 
-func (v *NullableLogsIndex) Set(val *LogsIndex) {
+func (v *NullableLogsIndexUpdateRequest) Set(val *LogsIndexUpdateRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLogsIndex) IsSet() bool {
+func (v NullableLogsIndexUpdateRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableLogsIndex) Unset() {
+func (v *NullableLogsIndexUpdateRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLogsIndex(val *LogsIndex) *NullableLogsIndex {
-	return &NullableLogsIndex{value: val, isSet: true}
+func NewNullableLogsIndexUpdateRequest(val *LogsIndexUpdateRequest) *NullableLogsIndexUpdateRequest {
+	return &NullableLogsIndexUpdateRequest{value: val, isSet: true}
 }
 
-func (v NullableLogsIndex) MarshalJSON() ([]byte, error) {
+func (v NullableLogsIndexUpdateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableLogsIndex) UnmarshalJSON(src []byte) error {
+func (v *NullableLogsIndexUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
