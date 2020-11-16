@@ -140,7 +140,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("Id_example", *datadog.NewUsersType())) // RelationshipToUser |  (optional)
+    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // RelationshipToUser |  (optional)
 
     configuration := datadog.NewConfiguration()
 
@@ -225,7 +225,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewRoleCreateRequest(*datadog.NewRoleCreateData(*datadog.NewRoleCreateAttributes("Name_example"))) // RoleCreateRequest |  (optional)
+    body := *datadog.NewRoleCreateRequest(*datadog.NewRoleCreateData(*datadog.NewRoleCreateAttributes("developers"))) // RoleCreateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
 
@@ -310,7 +310,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.RolesApi.DeleteRole(ctx, roleId).Execute()
+    r, err := api_client.RolesApi.DeleteRole(ctx, roleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.DeleteRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -631,8 +631,8 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
-    pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
+    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
     sort := "sort_example" // string | User attribute to order results by. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example `sort=-name`. Options: `name`, `email`, `status`. (optional) (default to "name")
     filter := "filter_example" // string | Filter all users by the given string. Defaults to no filtering. (optional)
 
@@ -722,9 +722,9 @@ func main() {
         },
     )
 
-    pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
-    pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
-    sort := *datadog.NewRolesSort() // RolesSort | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: `sort=-name`. (optional) (default to "name")
+    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
+    sort := datadog.RolesSort("name") // RolesSort | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: `sort=-name`. (optional) (default to "name")
     filter := "filter_example" // string | Filter all roles by the given string. (optional)
 
     configuration := datadog.NewConfiguration()
@@ -753,7 +753,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageNumber** | **int64** | Specific page number to return. | [default to 0]
- **sort** | [**RolesSort**](.md) | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: &#x60;sort&#x3D;-name&#x60;. | [default to &quot;name&quot;]
+ **sort** | [**RolesSort**](RolesSort.md) | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: &#x60;sort&#x3D;-name&#x60;. | [default to &quot;name&quot;]
  **filter** | **string** | Filter all roles by the given string. | 
 
 ### Return type
@@ -895,7 +895,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("Id_example", *datadog.NewUsersType())) // RelationshipToUser |  (optional)
+    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // RelationshipToUser |  (optional)
 
     configuration := datadog.NewConfiguration()
 
@@ -981,7 +981,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := *datadog.NewRoleUpdateRequest(*datadog.NewRoleUpdateData(*datadog.NewRoleUpdateAttributes(), "Id_example", *datadog.NewRolesType())) // RoleUpdateRequest |  (optional)
+    body := *datadog.NewRoleUpdateRequest(*datadog.NewRoleUpdateData(*datadog.NewRoleUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.RolesType("roles"))) // RoleUpdateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
 

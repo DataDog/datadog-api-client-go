@@ -50,7 +50,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("Email_example"), *datadog.NewUsersType())) // UserCreateRequest |  (optional)
+    body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("joe.doe@example.com"), datadog.UsersType("users"))) // UserCreateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
 
@@ -135,7 +135,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.DisableUser(ctx, userId).Execute()
+    r, err := api_client.UsersApi.DisableUser(ctx, userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.DisableUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -548,10 +548,10 @@ func main() {
         },
     )
 
-    pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
-    pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
+    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
     sort := "sort_example" // string | User attribute to order results by. Sort order is ascending by default. Sort order is descending if the field is prefixed by a negative sign, for example `sort=-name`. Options: `name`, `modified_at`, `user_count`. (optional) (default to "name")
-    sortDir := *datadog.NewQuerySortOrder() // QuerySortOrder | Direction of sort. Options: `asc`, `desc`. (optional) (default to "desc")
+    sortDir := datadog.QuerySortOrder("asc") // QuerySortOrder | Direction of sort. Options: `asc`, `desc`. (optional) (default to "desc")
     filter := "filter_example" // string | Filter all users by the given string. Defaults to no filtering. (optional)
     filterStatus := "filterStatus_example" // string | Filter on status attribute. Comma separated list, with possible values `Active`, `Pending`, and `Disabled`. Defaults to no filtering. (optional)
 
@@ -582,7 +582,7 @@ Name | Type | Description  | Notes
  **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageNumber** | **int64** | Specific page number to return. | [default to 0]
  **sort** | **string** | User attribute to order results by. Sort order is ascending by default. Sort order is descending if the field is prefixed by a negative sign, for example &#x60;sort&#x3D;-name&#x60;. Options: &#x60;name&#x60;, &#x60;modified_at&#x60;, &#x60;user_count&#x60;. | [default to &quot;name&quot;]
- **sortDir** | [**QuerySortOrder**](.md) | Direction of sort. Options: &#x60;asc&#x60;, &#x60;desc&#x60;. | [default to &quot;desc&quot;]
+ **sortDir** | [**QuerySortOrder**](QuerySortOrder.md) | Direction of sort. Options: &#x60;asc&#x60;, &#x60;desc&#x60;. | [default to &quot;desc&quot;]
  **filter** | **string** | Filter all users by the given string. Defaults to no filtering. | 
  **filterStatus** | **string** | Filter on status attribute. Comma separated list, with possible values &#x60;Active&#x60;, &#x60;Pending&#x60;, and &#x60;Disabled&#x60;. Defaults to no filtering. | 
 
@@ -638,7 +638,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewUserInvitationsRequest([]UserInvitationData{*datadog.NewUserInvitationData(*datadog.NewUserInvitationRelationships(*datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("Id_example", *datadog.NewUsersType()))), *datadog.NewUserInvitationsType())}) // UserInvitationsRequest |  (optional)
+    body := *datadog.NewUserInvitationsRequest([]datadog.UserInvitationData{*datadog.NewUserInvitationData(*datadog.NewUserInvitationRelationships(*datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users")))), datadog.UserInvitationsType("user_invitations"))}) // UserInvitationsRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
 
@@ -719,7 +719,7 @@ func main() {
     )
 
     userId := "userId_example" // string | The ID of the user.
-    body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "Id_example", )) // UserUpdateRequest |  (optional)
+    body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // UserUpdateRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
 

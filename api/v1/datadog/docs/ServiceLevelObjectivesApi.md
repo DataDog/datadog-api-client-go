@@ -49,7 +49,7 @@ func main() {
         },
     )
 
-    ids := "ids_example" // string | A comma separated list of the IDs of the service level objectives objects.
+    ids := "id1, id2, id3" // string | A comma separated list of the IDs of the service level objectives objects.
 
     configuration := datadog.NewConfiguration()
 
@@ -129,7 +129,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewServiceLevelObjectiveRequest("Name_example", []SLOThreshold{*datadog.NewSLOThreshold(123, *datadog.NewSLOTimeframe())}, *datadog.NewSLOType()) // ServiceLevelObjectiveRequest | Service level objective request object.
+    body := *datadog.NewServiceLevelObjectiveRequest("Name_example", []datadog.SLOThreshold{*datadog.NewSLOThreshold(float64(0.0), datadog.SLOTimeframe("7d"))}, datadog.SLOType("metric")) // ServiceLevelObjectiveRequest | Service level objective request object.
 
     configuration := datadog.NewConfiguration()
 
@@ -295,7 +295,7 @@ func main() {
         },
     )
 
-    body := map[string][]SLOTimeframe{ "key": []SLOTimeframe{*datadog.NewSLOTimeframe()}} // map[string][]SLOTimeframe | Delete multiple service level objective objects request body.
+    body := map[string][]datadog.SLOTimeframe{"key": []datadog.SLOTimeframe{datadog.SLOTimeframe("7d")}} // map[string][]SLOTimeframe | Delete multiple service level objective objects request body.
 
     configuration := datadog.NewConfiguration()
 
@@ -460,8 +460,8 @@ func main() {
     )
 
     sloId := "sloId_example" // string | The ID of the service level objective object.
-    fromTs := 987 // int64 | The `from` timestamp for the query window in epoch seconds.
-    toTs := 987 // int64 | The `to` timestamp for the query window in epoch seconds.
+    fromTs := int64(789) // int64 | The `from` timestamp for the query window in epoch seconds.
+    toTs := int64(789) // int64 | The `to` timestamp for the query window in epoch seconds.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetSLOHistory", true)
@@ -548,7 +548,7 @@ func main() {
         },
     )
 
-    ids := "ids_example" // string | A comma separated list of the IDs of the service level objectives objects.
+    ids := "id1, id2, id3" // string | A comma separated list of the IDs of the service level objectives objects.
 
     configuration := datadog.NewConfiguration()
 
@@ -629,7 +629,7 @@ func main() {
     )
 
     sloId := "sloId_example" // string | The ID of the service level objective object.
-    body := *datadog.NewServiceLevelObjective("Name_example", []SLOThreshold{*datadog.NewSLOThreshold(123, )}, *datadog.NewSLOType()) // ServiceLevelObjective | The edited service level objective request object.
+    body := *datadog.NewServiceLevelObjective("Name_example", []datadog.SLOThreshold{*datadog.NewSLOThreshold(float64(0.0), datadog.SLOTimeframe("7d"))}, datadog.SLOType("metric")) // ServiceLevelObjective | The edited service level objective request object.
 
     configuration := datadog.NewConfiguration()
 

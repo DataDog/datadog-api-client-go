@@ -281,7 +281,7 @@ func main() {
         },
     )
 
-    body :=  // AzureAccount | Update a Datadog-Azure integration's host filters request body.
+    body := *datadog.NewAzureAccount() // AzureAccount | Update a Datadog-Azure integration's host filters request body.
 
     configuration := datadog.NewConfiguration()
 
@@ -361,7 +361,7 @@ func main() {
         },
     )
 
-    body :=  // AzureAccount | Update a Datadog-Azure integration request body.
+    body := *datadog.NewAzureAccount() // AzureAccount | Update a Datadog-Azure integration request body.
 
     configuration := datadog.NewConfiguration()
 

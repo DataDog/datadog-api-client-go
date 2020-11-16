@@ -48,7 +48,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewSecurityMonitoringRuleCreatePayload([]SecurityMonitoringRuleCaseCreate{*datadog.NewSecurityMonitoringRuleCaseCreate(*datadog.NewSecurityMonitoringRuleSeverity())}, true, "Message_example", "Name_example", *datadog.NewSecurityMonitoringRuleOptions(), []SecurityMonitoringRuleQueryCreate{*datadog.NewSecurityMonitoringRuleQueryCreate("Query_example")}) // SecurityMonitoringRuleCreatePayload |  (optional)
+    body := *datadog.NewSecurityMonitoringRuleCreatePayload([]datadog.SecurityMonitoringRuleCaseCreate{*datadog.NewSecurityMonitoringRuleCaseCreate(datadog.SecurityMonitoringRuleSeverity("info"))}, true, "Message_example", "Name_example", *datadog.NewSecurityMonitoringRuleOptions(), []datadog.SecurityMonitoringRuleQueryCreate{*datadog.NewSecurityMonitoringRuleQueryCreate("a < 3")}) // SecurityMonitoringRuleCreatePayload |  (optional)
 
     configuration := datadog.NewConfiguration()
 
@@ -133,7 +133,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityMonitoringApi.DeleteSecurityMonitoringRule(ctx, ruleId).Execute()
+    r, err := api_client.SecurityMonitoringApi.DeleteSecurityMonitoringRule(ctx, ruleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityMonitoringRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -294,8 +294,8 @@ func main() {
         },
     )
 
-    pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
-    pageNumber := 987 // int64 | Specific page number to return. (optional) (default to 0)
+    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
 
     configuration := datadog.NewConfiguration()
 
@@ -359,6 +359,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -376,12 +377,12 @@ func main() {
         },
     )
 
-    filterQuery := "filterQuery_example" // string | The search query for security signals. (optional)
+    filterQuery := "security:attack status:high" // string | The search query for security signals. (optional)
     filterFrom := time.Now() // time.Time | The minimum timestamp for requested security signals. (optional)
     filterTo := time.Now() // time.Time | The maximum timestamp for requested security signals. (optional)
-    sort := *datadog.NewSecurityMonitoringSignalsSort() // SecurityMonitoringSignalsSort | The order of the security signals in results. (optional)
-    pageCursor := "pageCursor_example" // string | A list of results using the cursor provided in the previous query. (optional)
-    pageLimit := 987 // int32 | The maximum number of security signals in the response. (optional) (default to 10)
+    sort := datadog.SecurityMonitoringSignalsSort("timestamp") // SecurityMonitoringSignalsSort | The order of the security signals in results. (optional)
+    pageCursor := "eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==" // string | A list of results using the cursor provided in the previous query. (optional)
+    pageLimit := int32(25) // int32 | The maximum number of security signals in the response. (optional) (default to 10)
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("ListSecurityMonitoringSignals", true)
@@ -411,7 +412,7 @@ Name | Type | Description  | Notes
  **filterQuery** | **string** | The search query for security signals. | 
  **filterFrom** | **time.Time** | The minimum timestamp for requested security signals. | 
  **filterTo** | **time.Time** | The maximum timestamp for requested security signals. | 
- **sort** | [**SecurityMonitoringSignalsSort**](.md) | The order of the security signals in results. | 
+ **sort** | [**SecurityMonitoringSignalsSort**](SecurityMonitoringSignalsSort.md) | The order of the security signals in results. | 
  **pageCursor** | **string** | A list of results using the cursor provided in the previous query. | 
  **pageLimit** | **int32** | The maximum number of security signals in the response. | [default to 10]
 

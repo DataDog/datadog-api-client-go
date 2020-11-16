@@ -46,7 +46,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewIncidentTeamCreateRequest(*datadog.NewIncidentTeamCreateData(*datadog.NewIncidentTeamType())) // IncidentTeamCreateRequest | Incident Team Payload.
+    body := *datadog.NewIncidentTeamCreateRequest(*datadog.NewIncidentTeamCreateData(datadog.IncidentTeamType("teams"))) // IncidentTeamCreateRequest | Incident Team Payload.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("CreateIncidentTeam", true)
@@ -133,7 +133,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("DeleteIncidentTeam", true)
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentTeamsApi.DeleteIncidentTeam(ctx, teamId).Execute()
+    r, err := api_client.IncidentTeamsApi.DeleteIncidentTeam(ctx, teamId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.DeleteIncidentTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -298,9 +298,9 @@ func main() {
     )
 
     include := "include_example" // string | Specifies which types of related objects should be included in the response. (optional)
-    pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
-    pageOffset := 987 // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
-    filter := "filter_example" // string | A search query that filters teams by name. (optional)
+    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
+    pageOffset := int64(789) // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
+    filter := "ExampleTeamName" // string | A search query that filters teams by name. (optional)
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("ListIncidentTeams", true)
@@ -385,7 +385,7 @@ func main() {
     )
 
     teamId := "teamId_example" // string | The ID of the incident team.
-    body := *datadog.NewIncidentTeamUpdateRequest(*datadog.NewIncidentTeamUpdateData("Id_example", *datadog.NewIncidentTeamType())) // IncidentTeamUpdateRequest | Incident Team Payload.
+    body := *datadog.NewIncidentTeamUpdateRequest(*datadog.NewIncidentTeamUpdateData("00000000-0000-0000-0000-000000000000", datadog.IncidentTeamType("teams"))) // IncidentTeamUpdateRequest | Incident Team Payload.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("UpdateIncidentTeam", true)
