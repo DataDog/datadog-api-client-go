@@ -361,6 +361,7 @@ Class | Method | HTTP request | Description
  - [LogsGrokParserType](docs/LogsGrokParserType.md)
  - [LogsIndex](docs/LogsIndex.md)
  - [LogsIndexListResponse](docs/LogsIndexListResponse.md)
+ - [LogsIndexUpdateRequest](docs/LogsIndexUpdateRequest.md)
  - [LogsIndexesOrder](docs/LogsIndexesOrder.md)
  - [LogsListRequest](docs/LogsListRequest.md)
  - [LogsListRequestTime](docs/LogsListRequestTime.md)
