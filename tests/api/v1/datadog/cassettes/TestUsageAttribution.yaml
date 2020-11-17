@@ -1,0 +1,62 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetUsageAttribution
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.11 (go go1.15; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1967621327791993150"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4676118462604124474"
+    url: https://api.datadoghq.com/api/v1/usage/attribution?fields=%2A&start_month=2020-11-16T15%3A52%3A05-03%3A00
+    method: GET
+  response:
+    body: '{"usage":[{"public_id":"fasjyydbcgwwc2uc","month":"2020-11-01T00:00:00+00:00","values":{"api_percentage":100.0,"snmp_usage":0,"lambda_percentage":0.0,"apm_host_usage":1,"api_usage":70768,"container_usage":1.01,"custom_timeseries_percentage":100.0,"container_percentage":100.0,"lambda_usage":0.0,"apm_host_percentage":100.0,"npm_host_percentage":100.0,"custom_timeseries_usage":10.82,"browser_percentage":0.0,"infra_host_percentage":100.0,"snmp_percentage":0.0,"npm_host_usage":2,"infra_host_usage":3,"browser_usage":0},"updated_at":"2020-11-16T17","tags":null},{"public_id":"fasjyydbcgwwc2uc","month":"2020-11-01T00:00:00+00:00","values":{"api_percentage":100.0,"snmp_usage":0,"lambda_percentage":0.0,"apm_host_usage":1,"api_usage":70768,"container_usage":1.01,"custom_timeseries_percentage":100.0,"container_percentage":100.0,"lambda_usage":0.0,"apm_host_percentage":100.0,"npm_host_percentage":100.0,"custom_timeseries_usage":10.82,"browser_percentage":0.0,"infra_host_percentage":100.0,"snmp_percentage":0.0,"npm_host_usage":2,"infra_host_usage":3,"browser_usage":0},"updated_at":"2020-11-16T17","tags":null},{"public_id":"fasjyydbcgwwc2uc","month":"2020-11-01T00:00:00+00:00","values":{"api_percentage":0.0,"snmp_usage":0,"lambda_percentage":0.0,"apm_host_usage":0,"api_usage":0,"container_usage":0.0,"custom_timeseries_percentage":73.94,"container_percentage":0.0,"lambda_usage":0.0,"apm_host_percentage":0.0,"npm_host_percentage":100.0,"custom_timeseries_usage":8.0,"browser_percentage":0.0,"infra_host_percentage":66.67,"snmp_percentage":0.0,"npm_host_usage":2,"infra_host_usage":2,"browser_usage":0},"updated_at":"2020-11-16T17","tags":{"project":["datadog-integrations-lab"]}},{"public_id":"fasjyydbcgwwc2uc","month":"2020-11-01T00:00:00+00:00","values":{"api_percentage":100.0,"snmp_usage":0,"lambda_percentage":0.0,"apm_host_usage":1,"api_usage":70768,"container_usage":1.01,"custom_timeseries_percentage":26.06,"container_percentage":100.0,"lambda_usage":0.0,"apm_host_percentage":100.0,"npm_host_percentage":0.0,"custom_timeseries_usage":2.82,"browser_percentage":0.0,"infra_host_percentage":33.33,"snmp_percentage":0.0,"npm_host_usage":0,"infra_host_usage":1,"browser_usage":0},"updated_at":"2020-11-16T17","tags":{"project":[]}}],"metadata":{"pagination":{"sort_direction":"DESC","sort_name":"custom_timeseries_usage","limit":5000,"total_number_of_records":4,"offset":0},"aggregates":[{"field":"custom_timeseries_usage","value":32.46,"agg_type":"sum"},{"field":"container_usage","value":3.03,"agg_type":"sum"},{"field":"snmp_percentage","value":0.0,"agg_type":"sum"},{"field":"apm_host_usage","value":3.0,"agg_type":"sum"},{"field":"browser_usage","value":0.0,"agg_type":"sum"},{"field":"npm_host_percentage","value":300.0,"agg_type":"sum"},{"field":"infra_host_usage","value":9.0,"agg_type":"sum"},{"field":"custom_timeseries_percentage","value":300.0,"agg_type":"sum"},{"field":"container_percentage","value":300.0,"agg_type":"sum"},{"field":"lambda_usage","value":0.0,"agg_type":"sum"},{"field":"api_usage","value":212304.0,"agg_type":"sum"},{"field":"apm_host_percentage","value":300.0,"agg_type":"sum"},{"field":"infra_host_percentage","value":300.0,"agg_type":"sum"},{"field":"snmp_usage","value":0.0,"agg_type":"sum"},{"field":"browser_percentage","value":0.0,"agg_type":"sum"},{"field":"api_percentage","value":300.0,"agg_type":"sum"},{"field":"lambda_percentage","value":0.0,"agg_type":"sum"},{"field":"npm_host_usage","value":6.0,"agg_type":"sum"}]}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 17 Nov 2020 18:52:06 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 24-Nov-2020 18:52:06 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - gr+QII7IFZVxhXS35BsEOrW9Uz3gs+l7g2tB1FOjy4hKCe3rtnWg3KfE74dirBtE
+      X-Dd-Version:
+      - "35.3384168"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "400"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "355"
+      X-Ratelimit-Reset:
+      - "474"
+    status: 200 OK
+    code: 200
+    duration: ""

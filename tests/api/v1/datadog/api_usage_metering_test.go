@@ -532,12 +532,9 @@ func TestUsageAttribution(t *testing.T) {
 	api := Client(ctx).UsageMeteringApi
 	usage, httpresp, err := api.GetUsageAttribution(ctx).StartMonth(startMonth).Fields("*").Execute()
 	if err != nil {
-		if tests.GetRecording() != tests.ModeReplaying || httpresp.StatusCode == 404 || httpresp.StatusCode == 403 {
-			t.Skip("No records are available yet or this org is forbidden")
-		} else {
-			t.Errorf("Failed to get Usage Attribution %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-		}
+		t.Errorf("Error getting Usage Attribution: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
+
 	assert.Equal(200, httpresp.StatusCode)
 	assert.True(usage.HasMetadata())
 }
