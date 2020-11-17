@@ -47,12 +47,13 @@ func main() {
     )
 
     hostName := "hostName_example" // string | This endpoint allows you to add new tags to a host, optionally specifying where the tags came from.
-    body := datadog.HostTags{Host: "Host_example", Tags: []string{"Tags_example")} // HostTags | Update host tags request body.
-    source := "source_example" // string | The source of the tags. [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). (optional)
+    body := *datadog.NewHostTags() // HostTags | Update host tags request body.
+    source := "chef" // string | The source of the tags. [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.CreateHostTags(context.Background(), hostName).Body(body).Source(source).Execute()
+    resp, r, err := api_client.TagsApi.CreateHostTags(ctx, hostName).Body(body).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.CreateHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -137,8 +138,9 @@ func main() {
     source := "source_example" // string | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.DeleteHostTags(context.Background(), hostName).Source(source).Execute()
+    r, err := api_client.TagsApi.DeleteHostTags(ctx, hostName).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.DeleteHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -220,8 +222,9 @@ func main() {
     source := "source_example" // string | Source to filter. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.GetHostTags(context.Background(), hostName).Source(source).Execute()
+    resp, r, err := api_client.TagsApi.GetHostTags(ctx, hostName).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.GetHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -304,8 +307,9 @@ func main() {
     source := "source_example" // string | When specified, filters host list to those tags with the specified source. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.ListHostTags(context.Background()).Source(source).Execute()
+    resp, r, err := api_client.TagsApi.ListHostTags(ctx).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.ListHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -381,12 +385,13 @@ func main() {
     )
 
     hostName := "hostName_example" // string | This endpoint allows you to update/replace all in an integration source with those supplied in the request.
-    body := datadog.HostTags{Host: "Host_example", Tags: []string{"Tags_example")} // HostTags | Add tags to host
+    body := *datadog.NewHostTags() // HostTags | Add tags to host
     source := "source_example" // string | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.UpdateHostTags(context.Background(), hostName).Body(body).Source(source).Execute()
+    resp, r, err := api_client.TagsApi.UpdateHostTags(ctx, hostName).Body(body).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.UpdateHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

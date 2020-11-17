@@ -42,11 +42,12 @@ func main() {
         },
     )
 
-    body := datadog.LogsListRequest{Index: "Index_example", Limit: 123, Query: "Query_example", Sort: datadog.LogsSort{}, StartAt: "StartAt_example", Time: datadog.LogsListRequest_time{From: "TODO", Timezone: "Timezone_example", To: "TODO"}} // LogsListRequest | Logs filter
+    body := *datadog.NewLogsListRequest("service:web* AND @http.status_code:[200 TO 299]", *datadog.NewLogsListRequest_time("TODO", "TODO")) // LogsListRequest | Logs filter
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsApi.ListLogs(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.LogsApi.ListLogs(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -42,16 +42,17 @@ func main() {
         },
     )
 
-    start := 987 // int64 | The POSIX timestamp of the start of the query.
-    end := 987 // int64 | The POSIX timestamp of the end of the query.
+    start := int64(789) // int64 | The POSIX timestamp of the start of the query.
+    end := int64(789) // int64 | The POSIX timestamp of the end of the query.
     metricQuery := "metricQuery_example" // string | The metric query. (optional)
     eventQuery := "eventQuery_example" // string | A query that adds event bands to the graph. (optional)
     graphDef := "graphDef_example" // string | A JSON document defining the graph. `graph_def` can be used instead of `metric_query`. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URL encoded. (optional)
     title := "title_example" // string | A title for the graph. If no title is specified, the graph does not have a title. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SnapshotsApi.GetGraphSnapshot(context.Background()).Start(start).End(end).MetricQuery(metricQuery).EventQuery(eventQuery).GraphDef(graphDef).Title(title).Execute()
+    resp, r, err := api_client.SnapshotsApi.GetGraphSnapshot(ctx).Start(start).End(end).MetricQuery(metricQuery).EventQuery(eventQuery).GraphDef(graphDef).Title(title).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SnapshotsApi.GetGraphSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

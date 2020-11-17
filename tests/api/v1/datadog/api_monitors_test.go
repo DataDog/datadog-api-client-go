@@ -28,6 +28,7 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 			"test",
 			"client:go",
 		},
+		Priority: datadog.PtrInt64(3),
 		Options: &datadog.MonitorOptions{
 			NotifyAudit:       datadog.PtrBool(false),
 			Locked:            datadog.PtrBool(false),
@@ -198,6 +199,31 @@ func TestMonitorPagination(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(1, len(monitors))
 	assert.Equal(monitor.GetId(), monitors[0].GetId())
+}
+
+func TestMonitorSyntheticsGet(t *testing.T) {
+	// Setup the Client we'll use to interact with the Test account
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	// Create a synthetics API test to retrieve its corresponding monitor via GetMonitor (we're borrowing these from api_synthetics_test.go)
+	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	syntheticsTest, _, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", syntheticsTest, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	defer deleteSyntheticsTestIfExists(ctx, syntheticsTest.GetPublicId())
+
+	// Retrieve the corresponding synthetics Test monitor
+	syntheticsMonitor, httpresp, err := Client(ctx).MonitorsApi.GetMonitor(ctx, syntheticsTest.GetMonitorId()).Execute()
+	if err != nil {
+		t.Errorf("Error fetching Monitor %v: Response %v: %v", syntheticsTest.GetMonitorId(), err.(datadog.GenericOpenAPIError).Body(), err)
+		fmt.Println(httpresp)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	syntheticsMonitorOptions := syntheticsMonitor.GetOptions()
+	assert.Equal(syntheticsTest.GetPublicId(), syntheticsMonitorOptions.GetSyntheticsCheckId())
 }
 
 func TestMonitorsCreateErrors(t *testing.T) {

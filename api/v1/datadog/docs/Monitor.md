@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The monitor name. | [optional] 
 **Options** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
+**Priority** | Pointer to **int64** | Integer from 1 (high) to 5 (low) indicating alert severity. | [optional] 
 **Query** | Pointer to **string** | The monitor query. | [optional] 
 **State** | Pointer to [**MonitorState**](MonitorState.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | Tags associated to your monitor. | [optional] 
@@ -297,6 +298,31 @@ SetOverallState sets OverallState field to given value.
 `func (o *Monitor) HasOverallState() bool`
 
 HasOverallState returns a boolean if a field has been set.
+
+### GetPriority
+
+`func (o *Monitor) GetPriority() int64`
+
+GetPriority returns the Priority field if non-nil, zero value otherwise.
+
+### GetPriorityOk
+
+`func (o *Monitor) GetPriorityOk() (*int64, bool)`
+
+GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriority
+
+`func (o *Monitor) SetPriority(v int64)`
+
+SetPriority sets Priority field to given value.
+
+### HasPriority
+
+`func (o *Monitor) HasPriority() bool`
+
+HasPriority returns a boolean if a field has been set.
 
 ### GetQuery
 

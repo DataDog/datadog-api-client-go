@@ -45,12 +45,13 @@ func main() {
         },
     )
 
-    dashboardListId := 987 // int64 | ID of the dashboard list to add items to.
-    body := datadog.DashboardListAddItemsRequest{Dashboards: []DashboardListItemRequest{datadog.DashboardListItemRequest{Id: "Id_example", Type: datadog.DashboardType{}})} // DashboardListAddItemsRequest | Dashboards to add to the dashboard list.
+    dashboardListId := int64(789) // int64 | ID of the dashboard list to add items to.
+    body := *datadog.NewDashboardListAddItemsRequest() // DashboardListAddItemsRequest | Dashboards to add to the dashboard list.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.CreateDashboardListItems(context.Background(), dashboardListId).Body(body).Execute()
+    resp, r, err := api_client.DashboardListsApi.CreateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,12 +131,13 @@ func main() {
         },
     )
 
-    dashboardListId := 987 // int64 | ID of the dashboard list to delete items from.
-    body := datadog.DashboardListDeleteItemsRequest{Dashboards: []DashboardListItemRequest{datadog.DashboardListItemRequest{Id: "Id_example", Type: datadog.DashboardType{}})} // DashboardListDeleteItemsRequest | Dashboards to delete from the dashboard list.
+    dashboardListId := int64(789) // int64 | ID of the dashboard list to delete items from.
+    body := *datadog.NewDashboardListDeleteItemsRequest() // DashboardListDeleteItemsRequest | Dashboards to delete from the dashboard list.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.DeleteDashboardListItems(context.Background(), dashboardListId).Body(body).Execute()
+    resp, r, err := api_client.DashboardListsApi.DeleteDashboardListItems(ctx, dashboardListId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.DeleteDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -215,11 +217,12 @@ func main() {
         },
     )
 
-    dashboardListId := 987 // int64 | ID of the dashboard list to get items from.
+    dashboardListId := int64(789) // int64 | ID of the dashboard list to get items from.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.GetDashboardListItems(context.Background(), dashboardListId).Execute()
+    resp, r, err := api_client.DashboardListsApi.GetDashboardListItems(ctx, dashboardListId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.GetDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -298,12 +301,13 @@ func main() {
         },
     )
 
-    dashboardListId := 987 // int64 | ID of the dashboard list to update items from.
-    body := datadog.DashboardListUpdateItemsRequest{Dashboards: []DashboardListItemRequest{)} // DashboardListUpdateItemsRequest | New dashboards of the dashboard list.
+    dashboardListId := int64(789) // int64 | ID of the dashboard list to update items from.
+    body := *datadog.NewDashboardListUpdateItemsRequest() // DashboardListUpdateItemsRequest | New dashboards of the dashboard list.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.UpdateDashboardListItems(context.Background(), dashboardListId).Body(body).Execute()
+    resp, r, err := api_client.DashboardListsApi.UpdateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

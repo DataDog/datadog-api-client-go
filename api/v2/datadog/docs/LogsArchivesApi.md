@@ -8,10 +8,12 @@ Method | HTTP request | Description
 [**CreateLogsArchive**](LogsArchivesApi.md#CreateLogsArchive) | **Post** /api/v2/logs/config/archives | Create an archive
 [**DeleteLogsArchive**](LogsArchivesApi.md#DeleteLogsArchive) | **Delete** /api/v2/logs/config/archives/{archive_id} | Delete an archive
 [**GetLogsArchive**](LogsArchivesApi.md#GetLogsArchive) | **Get** /api/v2/logs/config/archives/{archive_id} | Get an archive
+[**GetLogsArchiveOrder**](LogsArchivesApi.md#GetLogsArchiveOrder) | **Get** /api/v2/logs/config/archive-order | Get archive order
 [**ListArchiveReadRoles**](LogsArchivesApi.md#ListArchiveReadRoles) | **Get** /api/v2/logs/config/archives/{archive_id}/readers | List read roles for an archive
 [**ListLogsArchives**](LogsArchivesApi.md#ListLogsArchives) | **Get** /api/v2/logs/config/archives | Get all archives
 [**RemoveRoleFromArchive**](LogsArchivesApi.md#RemoveRoleFromArchive) | **Delete** /api/v2/logs/config/archives/{archive_id}/readers | Revoke role from an archive
 [**UpdateLogsArchive**](LogsArchivesApi.md#UpdateLogsArchive) | **Put** /api/v2/logs/config/archives/{archive_id} | Update an archive
+[**UpdateLogsArchiveOrder**](LogsArchivesApi.md#UpdateLogsArchiveOrder) | **Put** /api/v2/logs/config/archive-order | Update archive order
 
 
 
@@ -50,11 +52,13 @@ func main() {
     )
 
     archiveId := "archiveId_example" // string | The ID of the archive.
-    body := datadog.RelationshipToRole{Data: datadog.RelationshipToRoleData{Id: "Id_example", Type: datadog.RolesType{}}} // RelationshipToRole |  (optional)
+    body := *datadog.NewRelationshipToRole() // RelationshipToRole |  (optional)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("AddReadRoleToArchive", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.AddReadRoleToArchive(context.Background(), archiveId).Body(body).Execute()
+    r, err := api_client.LogsArchivesApi.AddReadRoleToArchive(ctx, archiveId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.AddReadRoleToArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,11 +136,12 @@ func main() {
         },
     )
 
-    body := datadog.LogsArchiveCreateRequest{Data: datadog.LogsArchiveCreateRequestDefinition{Attributes: datadog.LogsArchiveCreateRequestAttributes{Destination: datadog.LogsArchiveCreateRequestDestination{Container: "Container_example", Integration: datadog.LogsArchiveIntegrationS3{AccountId: "AccountId_example", RoleName: "RoleName_example"}, Path: "Path_example", Region: "Region_example", StorageAccount: "StorageAccount_example", Type: datadog.LogsArchiveDestinationS3Type{}, Bucket: "Bucket_example"}, Name: "Name_example", Query: "Query_example"}, Type: "Type_example"}} // LogsArchiveCreateRequest | The definition of the new archive.
+    body := *datadog.NewLogsArchiveCreateRequest() // LogsArchiveCreateRequest | The definition of the new archive.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.CreateLogsArchive(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.LogsArchivesApi.CreateLogsArchive(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.CreateLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,8 +219,9 @@ func main() {
     archiveId := "archiveId_example" // string | The ID of the archive.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.DeleteLogsArchive(context.Background(), archiveId).Execute()
+    r, err := api_client.LogsArchivesApi.DeleteLogsArchive(ctx, archiveId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.DeleteLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -295,8 +301,9 @@ func main() {
     archiveId := "archiveId_example" // string | The ID of the archive.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.GetLogsArchive(context.Background(), archiveId).Execute()
+    resp, r, err := api_client.LogsArchivesApi.GetLogsArchive(ctx, archiveId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.GetLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -326,6 +333,81 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**LogsArchive**](LogsArchive.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLogsArchiveOrder
+
+> LogsArchiveOrder GetLogsArchiveOrder(ctx).Execute()
+
+Get archive order
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+
+    configuration := datadog.NewConfiguration()
+
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsArchivesApi.GetLogsArchiveOrder(ctx).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.GetLogsArchiveOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetLogsArchiveOrder`: LogsArchiveOrder
+    fmt.Fprintf(os.Stdout, "Response from `LogsArchivesApi.GetLogsArchiveOrder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLogsArchiveOrderRequest struct via the builder pattern
+
+
+### Return type
+
+[**LogsArchiveOrder**](LogsArchiveOrder.md)
 
 ### Authorization
 
@@ -378,8 +460,10 @@ func main() {
     archiveId := "archiveId_example" // string | The ID of the archive.
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("ListArchiveReadRoles", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.ListArchiveReadRoles(context.Background(), archiveId).Execute()
+    resp, r, err := api_client.LogsArchivesApi.ListArchiveReadRoles(ctx, archiveId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.ListArchiveReadRoles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -460,8 +544,9 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.ListLogsArchives(context.Background()).Execute()
+    resp, r, err := api_client.LogsArchivesApi.ListLogsArchives(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.ListLogsArchives``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -533,11 +618,13 @@ func main() {
     )
 
     archiveId := "archiveId_example" // string | The ID of the archive.
-    body := datadog.RelationshipToRole{Data: datadog.RelationshipToRoleData{Id: "Id_example", Type: datadog.RolesType{}}} // RelationshipToRole |  (optional)
+    body := *datadog.NewRelationshipToRole() // RelationshipToRole |  (optional)
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("RemoveRoleFromArchive", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.RemoveRoleFromArchive(context.Background(), archiveId).Body(body).Execute()
+    r, err := api_client.LogsArchivesApi.RemoveRoleFromArchive(ctx, archiveId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.RemoveRoleFromArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -616,11 +703,12 @@ func main() {
     )
 
     archiveId := "archiveId_example" // string | The ID of the archive.
-    body := datadog.LogsArchiveCreateRequest{Data: datadog.LogsArchiveCreateRequestDefinition{Attributes: datadog.LogsArchiveCreateRequestAttributes{Destination: datadog.LogsArchiveCreateRequestDestination{Container: "Container_example", Integration: datadog.LogsArchiveIntegrationS3{AccountId: "AccountId_example", RoleName: "RoleName_example"}, Path: "Path_example", Region: "Region_example", StorageAccount: "StorageAccount_example", Type: datadog.LogsArchiveDestinationS3Type{}, Bucket: "Bucket_example"}, Name: "Name_example", Query: "Query_example"}, Type: "Type_example"}} // LogsArchiveCreateRequest | New definition of the archive.
+    body := *datadog.NewLogsArchiveCreateRequest() // LogsArchiveCreateRequest | New definition of the archive.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.UpdateLogsArchive(context.Background(), archiveId).Body(body).Execute()
+    resp, r, err := api_client.LogsArchivesApi.UpdateLogsArchive(ctx, archiveId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -651,6 +739,86 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**LogsArchive**](LogsArchive.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateLogsArchiveOrder
+
+> LogsArchiveOrder UpdateLogsArchiveOrder(ctx).Body(body).Execute()
+
+Update archive order
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+    body := *datadog.NewLogsArchiveOrder() // LogsArchiveOrder | An object containing the new ordered list of archive IDs.
+
+    configuration := datadog.NewConfiguration()
+
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsArchivesApi.UpdateLogsArchiveOrder(ctx).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchiveOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateLogsArchiveOrder`: LogsArchiveOrder
+    fmt.Fprintf(os.Stdout, "Response from `LogsArchivesApi.UpdateLogsArchiveOrder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateLogsArchiveOrderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**LogsArchiveOrder**](LogsArchiveOrder.md) | An object containing the new ordered list of archive IDs. | 
+
+### Return type
+
+[**LogsArchiveOrder**](LogsArchiveOrder.md)
 
 ### Authorization
 

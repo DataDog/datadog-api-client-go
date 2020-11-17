@@ -51,6 +51,7 @@ docs/AlertValueWidgetDefinitionType.md
 docs/ApiKey.md
 docs/ApiKeyListResponse.md
 docs/ApiKeyResponse.md
+docs/ApmStatsQueryColumnType.md
 docs/ApmStatsQueryDefinition.md
 docs/ApmStatsQueryRowType.md
 docs/ApplicationKey.md
@@ -174,6 +175,7 @@ docs/LogsGrokParserRules.md
 docs/LogsGrokParserType.md
 docs/LogsIndex.md
 docs/LogsIndexListResponse.md
+docs/LogsIndexUpdateRequest.md
 docs/LogsIndexesApi.md
 docs/LogsIndexesOrder.md
 docs/LogsListRequest.md
@@ -344,6 +346,8 @@ docs/SyntheticsTestOptionsRetry.md
 docs/SyntheticsTestPauseStatus.md
 docs/SyntheticsTestProcessStatus.md
 docs/SyntheticsTestRequest.md
+docs/SyntheticsTestRequestCertificate.md
+docs/SyntheticsTestRequestCertificateItem.md
 docs/SyntheticsTickInterval.md
 docs/SyntheticsTiming.md
 docs/SyntheticsTriggerCITestsResponse.md
@@ -351,8 +355,10 @@ docs/SyntheticsTriggerCITestsResponseLocations.md
 docs/SyntheticsTriggerCITestsResponseResults.md
 docs/SyntheticsUpdateTestPauseStatusPayload.md
 docs/SyntheticsWarningType.md
+docs/TableWidgetCellDisplayMode.md
 docs/TableWidgetDefinition.md
 docs/TableWidgetDefinitionType.md
+docs/TableWidgetHasSearchBar.md
 docs/TableWidgetRequest.md
 docs/TagToHosts.md
 docs/TagsApi.md
@@ -379,6 +385,10 @@ docs/UsageFargateHour.md
 docs/UsageFargateResponse.md
 docs/UsageHostHour.md
 docs/UsageHostsResponse.md
+docs/UsageIndexedSpansHour.md
+docs/UsageIndexedSpansResponse.md
+docs/UsageIngestedSpansHour.md
+docs/UsageIngestedSpansResponse.md
 docs/UsageLambdaHour.md
 docs/UsageLambdaResponse.md
 docs/UsageLogsByIndexHour.md
@@ -480,6 +490,7 @@ model_api_error_response.go
 model_api_key.go
 model_api_key_list_response.go
 model_api_key_response.go
+model_apm_stats_query_column_type.go
 model_apm_stats_query_definition.go
 model_apm_stats_query_row_type.go
 model_application_key.go
@@ -602,6 +613,7 @@ model_logs_grok_parser_rules.go
 model_logs_grok_parser_type.go
 model_logs_index.go
 model_logs_index_list_response.go
+model_logs_index_update_request.go
 model_logs_indexes_order.go
 model_logs_list_request.go
 model_logs_list_request_time.go
@@ -763,6 +775,8 @@ model_synthetics_test_options_retry.go
 model_synthetics_test_pause_status.go
 model_synthetics_test_process_status.go
 model_synthetics_test_request.go
+model_synthetics_test_request_certificate.go
+model_synthetics_test_request_certificate_item.go
 model_synthetics_tick_interval.go
 model_synthetics_timing.go
 model_synthetics_trigger_ci_tests_response.go
@@ -770,8 +784,10 @@ model_synthetics_trigger_ci_tests_response_locations.go
 model_synthetics_trigger_ci_tests_response_results.go
 model_synthetics_update_test_pause_status_payload.go
 model_synthetics_warning_type.go
+model_table_widget_cell_display_mode.go
 model_table_widget_definition.go
 model_table_widget_definition_type.go
+model_table_widget_has_search_bar.go
 model_table_widget_request.go
 model_tag_to_hosts.go
 model_target_format_type.go
@@ -797,6 +813,10 @@ model_usage_fargate_hour.go
 model_usage_fargate_response.go
 model_usage_host_hour.go
 model_usage_hosts_response.go
+model_usage_indexed_spans_hour.go
+model_usage_indexed_spans_response.go
+model_usage_ingested_spans_hour.go
+model_usage_ingested_spans_response.go
 model_usage_lambda_hour.go
 model_usage_lambda_response.go
 model_usage_logs_by_index_hour.go

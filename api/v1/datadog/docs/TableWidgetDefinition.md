@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
-**HasSearchBar** | Pointer to **string** | Controls the display of the search bar. | [optional] [default to "auto"]
+**HasSearchBar** | Pointer to [**TableWidgetHasSearchBar**](TableWidgetHasSearchBar.md) |  | [optional] 
 **Requests** | [**[]TableWidgetRequest**](TableWidgetRequest.md) | Widget definition. | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
@@ -59,20 +59,20 @@ HasCustomLinks returns a boolean if a field has been set.
 
 ### GetHasSearchBar
 
-`func (o *TableWidgetDefinition) GetHasSearchBar() string`
+`func (o *TableWidgetDefinition) GetHasSearchBar() TableWidgetHasSearchBar`
 
 GetHasSearchBar returns the HasSearchBar field if non-nil, zero value otherwise.
 
 ### GetHasSearchBarOk
 
-`func (o *TableWidgetDefinition) GetHasSearchBarOk() (*string, bool)`
+`func (o *TableWidgetDefinition) GetHasSearchBarOk() (*TableWidgetHasSearchBar, bool)`
 
 GetHasSearchBarOk returns a tuple with the HasSearchBar field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHasSearchBar
 
-`func (o *TableWidgetDefinition) SetHasSearchBar(v string)`
+`func (o *TableWidgetDefinition) SetHasSearchBar(v TableWidgetHasSearchBar)`
 
 SetHasSearchBar sets HasSearchBar field to given value.
 

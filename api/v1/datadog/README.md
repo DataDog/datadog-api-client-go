@@ -26,6 +26,12 @@ Put the package under your project folder and add the following in import:
 import sw "./datadog"
 ```
 
+To use a proxy, set the environment variable `HTTP_PROXY`:
+
+```golang
+os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
+```
+
 ## Configuration of Server URL
 
 Default configuration comes with `Servers` field that contains server objects as defined in the OpenAPI specification.
@@ -195,6 +201,7 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**ListHostTags**](docs/TagsApi.md#listhosttags) | **Get** /api/v1/tags/hosts | Get Tags
 *TagsApi* | [**UpdateHostTags**](docs/TagsApi.md#updatehosttags) | **Put** /api/v1/tags/hosts/{host_name} | Update host tags
 *UsageMeteringApi* | [**GetDailyCustomReports**](docs/UsageMeteringApi.md#getdailycustomreports) | **Get** /api/v1/daily_custom_reports | Get the list of available daily custom reports
+*UsageMeteringApi* | [**GetIngestedSpans**](docs/UsageMeteringApi.md#getingestedspans) | **Get** /api/v1/usage/ingested-spans | Get hourly usage for ingested spans
 *UsageMeteringApi* | [**GetMonthlyCustomReports**](docs/UsageMeteringApi.md#getmonthlycustomreports) | **Get** /api/v1/monthly_custom_reports | Get the list of available monthly custom reports
 *UsageMeteringApi* | [**GetSpecifiedDailyCustomReports**](docs/UsageMeteringApi.md#getspecifieddailycustomreports) | **Get** /api/v1/daily_custom_reports/{report_id} | Get specified daily custom reports
 *UsageMeteringApi* | [**GetSpecifiedMonthlyCustomReports**](docs/UsageMeteringApi.md#getspecifiedmonthlycustomreports) | **Get** /api/v1/monthly_custom_reports/{report_id} | Get specified monthly custom reports
@@ -203,6 +210,7 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetUsageBillableSummary**](docs/UsageMeteringApi.md#getusagebillablesummary) | **Get** /api/v1/usage/billable-summary | Get billable usage across your multi-org account
 *UsageMeteringApi* | [**GetUsageFargate**](docs/UsageMeteringApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
 *UsageMeteringApi* | [**GetUsageHosts**](docs/UsageMeteringApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
+*UsageMeteringApi* | [**GetUsageIndexedSpans**](docs/UsageMeteringApi.md#getusageindexedspans) | **Get** /api/v1/usage/indexed-spans | Get hourly usage for indexed spans
 *UsageMeteringApi* | [**GetUsageLambda**](docs/UsageMeteringApi.md#getusagelambda) | **Get** /api/v1/usage/aws_lambda | Get hourly usage for Lambda
 *UsageMeteringApi* | [**GetUsageLogs**](docs/UsageMeteringApi.md#getusagelogs) | **Get** /api/v1/usage/logs | Get hourly usage for Logs
 *UsageMeteringApi* | [**GetUsageLogsByIndex**](docs/UsageMeteringApi.md#getusagelogsbyindex) | **Get** /api/v1/usage/logs_by_index | Get hourly usage for Logs by Index
@@ -246,6 +254,7 @@ Class | Method | HTTP request | Description
  - [ApiKey](docs/ApiKey.md)
  - [ApiKeyListResponse](docs/ApiKeyListResponse.md)
  - [ApiKeyResponse](docs/ApiKeyResponse.md)
+ - [ApmStatsQueryColumnType](docs/ApmStatsQueryColumnType.md)
  - [ApmStatsQueryDefinition](docs/ApmStatsQueryDefinition.md)
  - [ApmStatsQueryRowType](docs/ApmStatsQueryRowType.md)
  - [ApplicationKey](docs/ApplicationKey.md)
@@ -358,6 +367,7 @@ Class | Method | HTTP request | Description
  - [LogsGrokParserType](docs/LogsGrokParserType.md)
  - [LogsIndex](docs/LogsIndex.md)
  - [LogsIndexListResponse](docs/LogsIndexListResponse.md)
+ - [LogsIndexUpdateRequest](docs/LogsIndexUpdateRequest.md)
  - [LogsIndexesOrder](docs/LogsIndexesOrder.md)
  - [LogsListRequest](docs/LogsListRequest.md)
  - [LogsListRequestTime](docs/LogsListRequestTime.md)
@@ -519,6 +529,8 @@ Class | Method | HTTP request | Description
  - [SyntheticsTestPauseStatus](docs/SyntheticsTestPauseStatus.md)
  - [SyntheticsTestProcessStatus](docs/SyntheticsTestProcessStatus.md)
  - [SyntheticsTestRequest](docs/SyntheticsTestRequest.md)
+ - [SyntheticsTestRequestCertificate](docs/SyntheticsTestRequestCertificate.md)
+ - [SyntheticsTestRequestCertificateItem](docs/SyntheticsTestRequestCertificateItem.md)
  - [SyntheticsTickInterval](docs/SyntheticsTickInterval.md)
  - [SyntheticsTiming](docs/SyntheticsTiming.md)
  - [SyntheticsTriggerCITestsResponse](docs/SyntheticsTriggerCITestsResponse.md)
@@ -526,8 +538,10 @@ Class | Method | HTTP request | Description
  - [SyntheticsTriggerCITestsResponseResults](docs/SyntheticsTriggerCITestsResponseResults.md)
  - [SyntheticsUpdateTestPauseStatusPayload](docs/SyntheticsUpdateTestPauseStatusPayload.md)
  - [SyntheticsWarningType](docs/SyntheticsWarningType.md)
+ - [TableWidgetCellDisplayMode](docs/TableWidgetCellDisplayMode.md)
  - [TableWidgetDefinition](docs/TableWidgetDefinition.md)
  - [TableWidgetDefinitionType](docs/TableWidgetDefinitionType.md)
+ - [TableWidgetHasSearchBar](docs/TableWidgetHasSearchBar.md)
  - [TableWidgetRequest](docs/TableWidgetRequest.md)
  - [TagToHosts](docs/TagToHosts.md)
  - [TargetFormatType](docs/TargetFormatType.md)
@@ -553,6 +567,10 @@ Class | Method | HTTP request | Description
  - [UsageFargateResponse](docs/UsageFargateResponse.md)
  - [UsageHostHour](docs/UsageHostHour.md)
  - [UsageHostsResponse](docs/UsageHostsResponse.md)
+ - [UsageIndexedSpansHour](docs/UsageIndexedSpansHour.md)
+ - [UsageIndexedSpansResponse](docs/UsageIndexedSpansResponse.md)
+ - [UsageIngestedSpansHour](docs/UsageIngestedSpansHour.md)
+ - [UsageIngestedSpansResponse](docs/UsageIngestedSpansResponse.md)
  - [UsageLambdaHour](docs/UsageLambdaHour.md)
  - [UsageLambdaResponse](docs/UsageLambdaResponse.md)
  - [UsageLogsByIndexHour](docs/UsageLogsByIndexHour.md)

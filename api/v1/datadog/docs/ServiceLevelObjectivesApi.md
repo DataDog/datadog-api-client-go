@@ -49,11 +49,12 @@ func main() {
         },
     )
 
-    ids := "ids_example" // string | A comma separated list of the IDs of the service level objectives objects.
+    ids := "id1, id2, id3" // string | A comma separated list of the IDs of the service level objectives objects.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.CheckCanDeleteSLO(context.Background()).Ids(ids).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.CheckCanDeleteSLO(ctx).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.CheckCanDeleteSLO``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,11 +129,12 @@ func main() {
         },
     )
 
-    body := datadog.ServiceLevelObjectiveRequest{CreatedAt: int64(123), Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Description: "Description_example", Groups: []string{"Groups_example"), Id: "Id_example", ModifiedAt: int64(123), MonitorIds: []int64{int64(123)), Name: "Name_example", Query: datadog.ServiceLevelObjectiveQuery{Denominator: "Denominator_example", Numerator: "Numerator_example"}, Tags: []string{"Tags_example"), Thresholds: []SLOThreshold{datadog.SLOThreshold{Target: 123, TargetDisplay: "TargetDisplay_example", Timeframe: datadog.SLOTimeframe{}, Warning: 123, WarningDisplay: "WarningDisplay_example"}), Type: datadog.SLOType{}} // ServiceLevelObjectiveRequest | Service level objective request object.
+    body := *datadog.NewServiceLevelObjectiveRequest("Name_example", []datadog.SLOThreshold{*datadog.NewSLOThreshold(float64(0.0), datadog.SLOTimeframe("7d"))}, datadog.SLOType("metric")) // ServiceLevelObjectiveRequest | Service level objective request object.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.CreateSLO(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.CreateSLO(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.CreateSLO``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,8 +213,9 @@ func main() {
     force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.DeleteSLO(context.Background(), sloId).Force(force).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.DeleteSLO(ctx, sloId).Force(force).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.DeleteSLO``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -292,11 +295,12 @@ func main() {
         },
     )
 
-    body := map[string]string{ "Key" = "Value" } // map[string][]SLOTimeframe | Delete multiple service level objective objects request body.
+    body := map[string][]datadog.SLOTimeframe{"key": []datadog.SLOTimeframe{datadog.SLOTimeframe("7d")}} // map[string][]SLOTimeframe | Delete multiple service level objective objects request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -374,8 +378,9 @@ func main() {
     sloId := "sloId_example" // string | The ID of the service level objective object.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.GetSLO(context.Background(), sloId).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.GetSLO(ctx, sloId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLO``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -455,12 +460,14 @@ func main() {
     )
 
     sloId := "sloId_example" // string | The ID of the service level objective object.
-    fromTs := 987 // int64 | The `from` timestamp for the query window in epoch seconds.
-    toTs := 987 // int64 | The `to` timestamp for the query window in epoch seconds.
+    fromTs := int64(789) // int64 | The `from` timestamp for the query window in epoch seconds.
+    toTs := int64(789) // int64 | The `to` timestamp for the query window in epoch seconds.
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetSLOHistory", true)
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.GetSLOHistory(context.Background(), sloId).FromTs(fromTs).ToTs(toTs).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.GetSLOHistory(ctx, sloId).FromTs(fromTs).ToTs(toTs).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLOHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -541,11 +548,12 @@ func main() {
         },
     )
 
-    ids := "ids_example" // string | A comma separated list of the IDs of the service level objectives objects.
+    ids := "id1, id2, id3" // string | A comma separated list of the IDs of the service level objectives objects.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.ListSLOs(context.Background()).Ids(ids).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.ListSLOs(ctx).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.ListSLOs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -621,11 +629,12 @@ func main() {
     )
 
     sloId := "sloId_example" // string | The ID of the service level objective object.
-    body := datadog.ServiceLevelObjective{CreatedAt: int64(123), Creator: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Description: "Description_example", Groups: []string{"Groups_example"), Id: "Id_example", ModifiedAt: int64(123), MonitorIds: []int64{int64(123)), MonitorTags: []string{"MonitorTags_example"), Name: "Name_example", Query: datadog.ServiceLevelObjectiveQuery{Denominator: "Denominator_example", Numerator: "Numerator_example"}, Tags: []string{"Tags_example"), Thresholds: []SLOThreshold{datadog.SLOThreshold{Target: 123, TargetDisplay: "TargetDisplay_example", Timeframe: datadog.SLOTimeframe{}, Warning: 123, WarningDisplay: "WarningDisplay_example"}), Type: datadog.SLOType{}} // ServiceLevelObjective | The edited service level objective request object.
+    body := *datadog.NewServiceLevelObjective("Name_example", []datadog.SLOThreshold{*datadog.NewSLOThreshold(float64(0.0), datadog.SLOTimeframe("7d"))}, datadog.SLOType("metric")) // ServiceLevelObjective | The edited service level objective request object.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.UpdateSLO(context.Background(), sloId).Body(body).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.UpdateSLO(ctx, sloId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.UpdateSLO``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -360,6 +360,9 @@ func WithUniqueSurrounding(ctx context.Context, name string) string {
 		buildID = "local"
 	}
 
+	// Replace all - with _ in the test name (scenario test names can include -)
+	name = strings.ReplaceAll(name, "-", "_")
+
 	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
 	// so we need to keep this short
 	result := fmt.Sprintf("go-%s-%s-%d", SecurePath(name), buildID, ClockFromContext(ctx).Now().Unix())

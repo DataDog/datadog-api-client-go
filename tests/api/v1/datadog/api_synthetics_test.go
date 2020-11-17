@@ -56,6 +56,18 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 				Method:  datadog.HTTPMETHOD_GET.Ptr(),
 				Timeout: datadog.PtrFloat64(10),
 				Url:     datadog.PtrString("https://datadoghq.com"),
+				Certificate: &datadog.SyntheticsTestRequestCertificate{
+					Cert: &datadog.SyntheticsTestRequestCertificateItem{
+						Content: datadog.PtrString("cert-content"),
+						Filename: datadog.PtrString("cert-filename"),
+						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
+					},
+					Key: &datadog.SyntheticsTestRequestCertificateItem{
+						Content: datadog.PtrString("key-content"),
+						Filename: datadog.PtrString("key-filename"),
+						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
+					},
+				},
 			},
 		},
 		Locations: &[]string{"aws:us-east-2"},
@@ -118,6 +130,7 @@ func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.S
 			},
 			Request: datadog.SyntheticsTestRequest{
 				Host: datadog.PtrString("https://www.datadoghq.com"),
+				DnsServer: datadog.PtrString("8.8.8.8"),
 			},
 		},
 		Locations: &[]string{"aws:us-east-2"},

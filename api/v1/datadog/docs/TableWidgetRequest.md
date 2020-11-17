@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Alias** | Pointer to **string** | The column name (defaults to the metric name). | [optional] 
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ApmStatsQuery** | Pointer to [**ApmStatsQueryDefinition**](ApmStatsQueryDefinition.md) |  | [optional] 
-**CellDisplayMode** | Pointer to **[]string** | A list of display modes for each table cell. | [optional] 
+**CellDisplayMode** | Pointer to [**[]TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) | A list of display modes for each table cell. | [optional] 
 **ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
 **EventQuery** | Pointer to [**EventQueryDefinition**](EventQueryDefinition.md) |  | [optional] 
 **Limit** | Pointer to **int64** | For metric queries, the number of lines to show in the table. Only one request should have this property. | [optional] 
@@ -141,20 +141,20 @@ HasApmStatsQuery returns a boolean if a field has been set.
 
 ### GetCellDisplayMode
 
-`func (o *TableWidgetRequest) GetCellDisplayMode() []string`
+`func (o *TableWidgetRequest) GetCellDisplayMode() []TableWidgetCellDisplayMode`
 
 GetCellDisplayMode returns the CellDisplayMode field if non-nil, zero value otherwise.
 
 ### GetCellDisplayModeOk
 
-`func (o *TableWidgetRequest) GetCellDisplayModeOk() (*[]string, bool)`
+`func (o *TableWidgetRequest) GetCellDisplayModeOk() (*[]TableWidgetCellDisplayMode, bool)`
 
 GetCellDisplayModeOk returns a tuple with the CellDisplayMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCellDisplayMode
 
-`func (o *TableWidgetRequest) SetCellDisplayMode(v []string)`
+`func (o *TableWidgetRequest) SetCellDisplayMode(v []TableWidgetCellDisplayMode)`
 
 SetCellDisplayMode sets CellDisplayMode field to given value.
 

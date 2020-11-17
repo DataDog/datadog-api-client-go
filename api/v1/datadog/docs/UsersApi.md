@@ -46,11 +46,12 @@ func main() {
         },
     )
 
-    body := datadog.User{AccessRole: datadog.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | User object that needs to be created.
+    body := *datadog.NewUser() // User | User object that needs to be created.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.CreateUser(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.UsersApi.CreateUser(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,8 +129,9 @@ func main() {
     userHandle := TODO // string | The handle of the user.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.DisableUser(context.Background(), userHandle).Execute()
+    resp, r, err := api_client.UsersApi.DisableUser(ctx, userHandle).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.DisableUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,8 +213,9 @@ func main() {
     userHandle := TODO // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.GetUser(context.Background(), userHandle).Execute()
+    resp, r, err := api_client.UsersApi.GetUser(ctx, userHandle).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -293,8 +296,9 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.ListUsers(context.Background()).Execute()
+    resp, r, err := api_client.UsersApi.ListUsers(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -366,11 +370,12 @@ func main() {
     )
 
     userHandle := TODO // string | The ID of the user.
-    body := datadog.User{AccessRole: datadog.AccessRole{}, Disabled: false, Email: "Email_example", Handle: "Handle_example", Icon: "Icon_example", Name: "Name_example", Verified: true} // User | Description of the update.
+    body := *datadog.NewUser() // User | Description of the update.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.UpdateUser(context.Background(), userHandle).Body(body).Execute()
+    resp, r, err := api_client.UsersApi.UpdateUser(ctx, userHandle).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

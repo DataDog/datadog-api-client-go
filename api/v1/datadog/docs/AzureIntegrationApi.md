@@ -46,11 +46,12 @@ func main() {
         },
     )
 
-    body := datadog.AzureAccount{ClientId: "ClientId_example", ClientSecret: "ClientSecret_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", NewClientId: "NewClientId_example", NewTenantName: "NewTenantName_example", TenantName: "TenantName_example"} // AzureAccount | Create a Datadog-Azure integration for your Datadog account request body.
+    body := *datadog.NewAzureAccount() // AzureAccount | Create a Datadog-Azure integration for your Datadog account request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.CreateAzureIntegration(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.AzureIntegrationApi.CreateAzureIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.CreateAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,11 +126,12 @@ func main() {
         },
     )
 
-    body := datadog.AzureAccount{ClientId: "ClientId_example", ClientSecret: "ClientSecret_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", NewClientId: "NewClientId_example", NewTenantName: "NewTenantName_example", TenantName: "TenantName_example"} // AzureAccount | Delete a given Datadog-Azure integration request body.
+    body := *datadog.NewAzureAccount() // AzureAccount | Delete a given Datadog-Azure integration request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.DeleteAzureIntegration(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.AzureIntegrationApi.DeleteAzureIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.DeleteAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -206,8 +208,9 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.ListAzureIntegration(context.Background()).Execute()
+    resp, r, err := api_client.AzureIntegrationApi.ListAzureIntegration(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.ListAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -278,11 +281,12 @@ func main() {
         },
     )
 
-    body :=  // AzureAccount | Update a Datadog-Azure integration's host filters request body.
+    body := *datadog.NewAzureAccount() // AzureAccount | Update a Datadog-Azure integration's host filters request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.UpdateAzureHostFilters(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.AzureIntegrationApi.UpdateAzureHostFilters(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureHostFilters``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -357,11 +361,12 @@ func main() {
         },
     )
 
-    body :=  // AzureAccount | Update a Datadog-Azure integration request body.
+    body := *datadog.NewAzureAccount() // AzureAccount | Update a Datadog-Azure integration request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.UpdateAzureIntegration(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.AzureIntegrationApi.UpdateAzureIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

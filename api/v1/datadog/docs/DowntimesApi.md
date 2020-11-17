@@ -47,11 +47,12 @@ func main() {
         },
     )
 
-    downtimeId := 987 // int64 | ID of the downtime to cancel.
+    downtimeId := int64(123456) // int64 | ID of the downtime to cancel.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.CancelDowntime(context.Background(), downtimeId).Execute()
+    r, err := api_client.DowntimesApi.CancelDowntime(ctx, downtimeId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,11 +129,12 @@ func main() {
         },
     )
 
-    body := datadog.CancelDowntimesByScopeRequest{Scope: "Scope_example"} // CancelDowntimesByScopeRequest | Scope to cancel downtimes for.
+    body := *datadog.NewCancelDowntimesByScopeRequest("host:myserver") // CancelDowntimesByScopeRequest | Scope to cancel downtimes for.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.CancelDowntimesByScope(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.DowntimesApi.CancelDowntimesByScope(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntimesByScope``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -207,11 +209,12 @@ func main() {
         },
     )
 
-    body := datadog.Downtime{Active: true, Canceled: int64(123), CreatorId: 123, Disabled: false, DowntimeType: 123, End: int64(123), Id: int64(123), Message: "Message_example", MonitorId: int64(123), MonitorTags: []string{"MonitorTags_example"), ParentId: int64(123), Recurrence: datadog.DowntimeRecurrence{Period: 123, Rrule: "Rrule_example", Type: "Type_example", UntilDate: int64(123), UntilOccurrences: 123, WeekDays: []string{"WeekDays_example")}, Scope: []string{"Scope_example"), Start: int64(123), Timezone: "Timezone_example", UpdaterId: 123} // Downtime | Schedule a downtime request body.
+    body := *datadog.NewDowntime() // Downtime | Schedule a downtime request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.CreateDowntime(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.DowntimesApi.CreateDowntime(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CreateDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -286,11 +289,12 @@ func main() {
         },
     )
 
-    downtimeId := 987 // int64 | ID of the downtime to fetch.
+    downtimeId := int64(123456) // int64 | ID of the downtime to fetch.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.GetDowntime(context.Background(), downtimeId).Execute()
+    resp, r, err := api_client.DowntimesApi.GetDowntime(ctx, downtimeId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.GetDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -372,8 +376,9 @@ func main() {
     currentOnly := true // bool | Only return downtimes that are active when the request is made. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.ListDowntimes(context.Background()).CurrentOnly(currentOnly).Execute()
+    resp, r, err := api_client.DowntimesApi.ListDowntimes(ctx).CurrentOnly(currentOnly).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListDowntimes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -448,12 +453,13 @@ func main() {
         },
     )
 
-    downtimeId := 987 // int64 | ID of the downtime to update.
-    body := datadog.Downtime{Active: true, Canceled: int64(123), CreatorId: 123, Disabled: false, DowntimeType: 123, End: int64(123), Id: int64(123), Message: "Message_example", MonitorId: int64(123), MonitorTags: []string{"MonitorTags_example"), ParentId: int64(123), Recurrence: datadog.DowntimeRecurrence{Period: 123, Rrule: "Rrule_example", Type: "Type_example", UntilDate: int64(123), UntilOccurrences: 123, WeekDays: []string{"WeekDays_example")}, Scope: []string{"Scope_example"), Start: int64(123), Timezone: "Timezone_example", UpdaterId: 123} // Downtime | Update a downtime request body.
+    downtimeId := int64(123456) // int64 | ID of the downtime to update.
+    body := *datadog.NewDowntime() // Downtime | Update a downtime request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DowntimesApi.UpdateDowntime(context.Background(), downtimeId).Body(body).Execute()
+    resp, r, err := api_client.DowntimesApi.UpdateDowntime(ctx, downtimeId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.UpdateDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
