@@ -526,7 +526,7 @@ func TestUsageAttribution(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	startMonth := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1) // We will only have monthly reports on 2020-08-15 for this org
+	startMonth := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1)
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetUsageAttribution", true)
 	api := Client(ctx).UsageMeteringApi
