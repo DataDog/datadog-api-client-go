@@ -31,6 +31,12 @@ func undoCreateRole(ctx gobdd.Context) {
 	Client(cctx).RolesApi.DeleteRole(cctx, role.Data.GetId()).Execute()
 }
 
+func undoCreateIncident(ctx gobdd.Context) {
+	incident := tests.GetResponse(ctx)[0].Interface().(datadog.IncidentResponse)
+	cctx := tests.GetCtx(ctx)
+	Client(cctx).IncidentsApi.DeleteIncident(cctx, incident.Data.GetId()).Execute()
+}
+
 func undoCreateService(ctx gobdd.Context) {
 	service := tests.GetResponse(ctx)[0].Interface().(datadog.IncidentServiceResponse)
 	cctx := tests.GetCtx(ctx)
@@ -48,19 +54,23 @@ var requestsUndo = map[string]func(ctx gobdd.Context){
 	"AddPermissionToRole":      undoIgnore,
 	"AddUserToRole":            undoIgnore,
 	"AggregateLogs":            undoIgnore,
+	"CreateIncident":           undoCreateIncident,
 	"CreateIncidentService":    undoCreateService,
 	"CreateIncidentTeam":       undoCreateTeam,
 	"CreateRole":               undoCreateRole,
 	"CreateUser":               undoCreateUser,
+	"DeleteIncident":           undoIgnore,
 	"DeleteIncidentService":    undoIgnore,
 	"DeleteIncidentTeam":       undoIgnore,
 	"DeleteRole":               undoIgnore,
 	"DisableUser":              undoIgnore,
+	"GetIncident":              undoIgnore,
 	"GetIncidentService":       undoIgnore,
 	"GetIncidentTeam":          undoIgnore,
 	"GetInvitation":            undoIgnore,
 	"GetRole":                  undoIgnore,
 	"GetUser":                  undoIgnore,
+	"ListIncidents":            undoIgnore,
 	"ListIncidentServices":     undoIgnore,
 	"ListIncidentTeams":        undoIgnore,
 	"ListLogs":                 undoIgnore,
@@ -74,6 +84,7 @@ var requestsUndo = map[string]func(ctx gobdd.Context){
 	"RemovePermissionFromRole": undoIgnore,
 	"RemoveUserFromRole":       undoIgnore,
 	"SendInvitations":          undoIgnore,
+	"UpdateIncident":           undoIgnore,
 	"UpdateIncidentService":    undoIgnore,
 	"UpdateIncidentTeam":       undoIgnore,
 	"UpdateRole":               undoIgnore,
@@ -147,6 +158,7 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
 	s.AddStep(`operation "([^"]+)" enabled`, enableOperations)
+	s.AddStep(`there is a valid "incident" in the system`, incident)
 	s.AddStep(`there is a valid "user" in the system`, user)
 	s.AddStep(`there is a valid "role" in the system`, role)
 	s.AddStep(`there is a valid "service" in the system`, service)
@@ -315,6 +327,38 @@ func team(t gobdd.StepTest, ctx gobdd.Context) {
 	}
 
 	tests.GetData(ctx)["team"] = response
+}
+func deleteIncident(ctx context.Context, incidentID string) {
+	client := Client(ctx)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteIncident", true)
+
+	_, err := client.IncidentsApi.DeleteIncident(ctx, incidentID).Execute()
+	if err == nil {
+		return
+	}
+	log.Printf("Error deleting incident: %v, Another test may have already deleted this incident: %s", incidentID, err.Error())
+}
+
+func incident(t gobdd.StepTest, ctx gobdd.Context) {
+	client := Client(tests.GetCtx(ctx))
+	client.GetConfig().SetUnstableOperationEnabled("CreateIncident", true)
+
+	incidentAttributes := datadog.NewIncidentCreateAttributes(false, *tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
+	incident := datadog.NewIncidentCreateData(*incidentAttributes, datadog.IncidentType("incidents"))
+	incidentRequest := datadog.NewIncidentCreateRequest(*incident)
+	response, _, err := client.IncidentsApi.CreateIncident(tests.GetCtx(ctx)).Body(*incidentRequest).Execute()
+	if err != nil {
+		t.Fatalf("error creating incident: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+
+	responseData := response.GetData()
+	incidentID := responseData.GetId()
+	outContext := tests.GetCtx(ctx)
+	tests.GetCleanup(ctx)["50-incident"] = func() {
+		deleteIncident(outContext, incidentID)
+	}
+
+	tests.GetData(ctx)["incident"] = response
 }
 
 func userHasRole(t gobdd.StepTest, ctx gobdd.Context) {
