@@ -1305,7 +1305,7 @@ func TestSyntheticsPrivateLocationLifecycle(t *testing.T) {
         Tags: []string{"testing:private-location"},
     }
 
-    privateLocation, httpresp, err := Client(ctx).SyntheticsApi.EditPrivateLocation(ctx, privateLocationID).Body(privateLocationUpdateRequest).Execute()
+    privateLocation, httpresp, err := Client(ctx).SyntheticsApi.UpdatePrivateLocation(ctx, privateLocationID).Body(privateLocationUpdateRequest).Execute()
     if err != nil {
         t.Fatalf("Error editing Synthetics private location %v: Response %s: %v", privateLocationRequest, err.(datadog.GenericOpenAPIError).Body(), err)
     }
