@@ -536,6 +536,7 @@ func TestUsageAttribution(t *testing.T) {
 	}
 
 	assert.Equal(200, httpresp.StatusCode)
+	assert.True(usage.HasUsage())
 	assert.True(usage.HasMetadata())
 }
 
