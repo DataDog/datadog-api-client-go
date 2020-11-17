@@ -329,7 +329,10 @@ func team(t gobdd.StepTest, ctx gobdd.Context) {
 	tests.GetData(ctx)["team"] = response
 }
 func deleteIncident(ctx context.Context, incidentID string) {
-	_, err := Client(ctx).IncidentsApi.DeleteIncident(ctx, incidentID).Execute()
+	client := Client(ctx)
+	client.GetConfig().SetUnstableOperationEnabled("DeleteIncident", true)
+
+	_, err := client.IncidentsApi.DeleteIncident(ctx, incidentID).Execute()
 	if err == nil {
 		return
 	}
