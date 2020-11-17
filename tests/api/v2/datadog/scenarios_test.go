@@ -338,6 +338,7 @@ func deleteIncident(ctx context.Context, incidentID string) {
 
 func incident(t gobdd.StepTest, ctx gobdd.Context) {
 	client := Client(tests.GetCtx(ctx))
+	client.GetConfig().SetUnstableOperationEnabled("CreateIncident", true)
 
 	incidentAttributes := datadog.NewIncidentCreateAttributes(false, *tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
 	incident := datadog.NewIncidentCreateData(*incidentAttributes, datadog.IncidentType("incidents"))
