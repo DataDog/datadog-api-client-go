@@ -46,7 +46,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewDashboard(*datadog.NewDashboardLayoutType(), "Title_example", []Widget{*datadog.NewWidget(*datadog.NewWidgetDefinition("AlertId_example", *datadog.NewToplistWidgetDefinitionType(), *datadog.NewWidgetVizType(), []ToplistWidgetRequest{*datadog.NewToplistWidgetRequest()}, "Check_example", *datadog.NewWidgetGrouping(), "Query_example", "Text_example", *datadog.NewWidgetLayoutType(), []Widget{*datadog.NewWidget(*datadog.NewWidgetDefinition("AlertId_example", *datadog.NewToplistWidgetDefinitionType(), *datadog.NewWidgetVizType(), []ToplistWidgetRequest{*datadog.NewToplistWidgetRequest()}, "Check_example", *datadog.NewWidgetGrouping(), "Query_example", "Text_example", *datadog.NewWidgetLayoutType(), []Widget{}, "Url_example", "Content_example", "ViewType_example", []string{"Filters_example"}, "Service_example", "Env_example", "SpanName_example"))}, "Url_example", "Content_example", "ViewType_example", []string{"Filters_example"}, "Service_example", "Env_example", "SpanName_example"))}) // Dashboard | Create a dashboard request body.
+    body := *datadog.NewDashboard(datadog.DashboardLayoutType("ordered"), "Title_example", []datadog.Widget{*datadog.NewWidget(datadog.WidgetDefinition{AlertGraphWidgetDefinition: datadog.NewAlertGraphWidgetDefinition("AlertId_example", datadog.AlertGraphWidgetDefinitionType("alert_graph"), datadog.WidgetVizType("timeseries"))})}) // Dashboard | Create a dashboard request body.
 
     configuration := datadog.NewConfiguration()
 
@@ -370,7 +370,7 @@ func main() {
     )
 
     dashboardId := "dashboardId_example" // string | The ID of the dashboard.
-    body := *datadog.NewDashboard(*datadog.NewDashboardLayoutType(), "Title_example", []Widget{}) // Dashboard | Update Dashboard request body.
+    body := *datadog.NewDashboard(datadog.DashboardLayoutType("ordered"), "Title_example", []datadog.Widget{*datadog.NewWidget(datadog.WidgetDefinition{AlertGraphWidgetDefinition: datadog.NewAlertGraphWidgetDefinition("AlertId_example", datadog.AlertGraphWidgetDefinitionType("alert_graph"), datadog.WidgetVizType("timeseries"))})}) // Dashboard | Update Dashboard request body.
 
     configuration := datadog.NewConfiguration()
 

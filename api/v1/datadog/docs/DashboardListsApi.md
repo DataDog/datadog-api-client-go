@@ -46,7 +46,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewDashboardList("Name_example") // DashboardList | Create a dashboard list request body.
+    body := *datadog.NewDashboardList("My Dashboard") // DashboardList | Create a dashboard list request body.
 
     configuration := datadog.NewConfiguration()
 
@@ -126,7 +126,7 @@ func main() {
         },
     )
 
-    listId := 987 // int64 | ID of the dashboard list to delete.
+    listId := int64(789) // int64 | ID of the dashboard list to delete.
 
     configuration := datadog.NewConfiguration()
 
@@ -210,7 +210,7 @@ func main() {
         },
     )
 
-    listId := 987 // int64 | ID of the dashboard list to fetch.
+    listId := int64(789) // int64 | ID of the dashboard list to fetch.
 
     configuration := datadog.NewConfiguration()
 
@@ -369,8 +369,8 @@ func main() {
         },
     )
 
-    listId := 987 // int64 | ID of the dashboard list to update.
-    body := *datadog.NewDashboardList("Name_example") // DashboardList | Update a dashboard list request body.
+    listId := int64(789) // int64 | ID of the dashboard list to update.
+    body := *datadog.NewDashboardList("My Dashboard") // DashboardList | Update a dashboard list request body.
 
     configuration := datadog.NewConfiguration()
 

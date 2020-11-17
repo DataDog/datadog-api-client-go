@@ -42,8 +42,8 @@ func main() {
         },
     )
 
-    start := 987 // int64 | The POSIX timestamp of the start of the query.
-    end := 987 // int64 | The POSIX timestamp of the end of the query.
+    start := int64(789) // int64 | The POSIX timestamp of the start of the query.
+    end := int64(789) // int64 | The POSIX timestamp of the end of the query.
     metricQuery := "metricQuery_example" // string | The metric query. (optional)
     eventQuery := "eventQuery_example" // string | A query that adds event bands to the graph. (optional)
     graphDef := "graphDef_example" // string | A JSON document defining the graph. `graph_def` can be used instead of `metric_query`. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URL encoded. (optional)

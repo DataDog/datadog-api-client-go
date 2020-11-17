@@ -48,7 +48,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewAWSAccountAndLambdaRequest("AccountId_example", "LambdaArn_example") // AWSAccountAndLambdaRequest | Check AWS Log Lambda Async request body.
+    body := *datadog.NewAWSAccountAndLambdaRequest("1234567", "arn:aws:lambda:us-east-1:1234567:function:LogsCollectionAPITest") // AWSAccountAndLambdaRequest | Check AWS Log Lambda Async request body.
 
     configuration := datadog.NewConfiguration()
 
@@ -128,7 +128,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewAWSLogsServicesRequest("AccountId_example", []string{"Services_example"}) // AWSLogsServicesRequest | Check AWS Logs Async Services request body.
+    body := *datadog.NewAWSLogsServicesRequest("1234567", []string{"Services_example"}) // AWSLogsServicesRequest | Check AWS Logs Async Services request body.
 
     configuration := datadog.NewConfiguration()
 
@@ -208,7 +208,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewAWSAccountAndLambdaRequest("AccountId_example", "LambdaArn_example") // AWSAccountAndLambdaRequest | AWS Log Lambda Async request body.
+    body := *datadog.NewAWSAccountAndLambdaRequest("1234567", "arn:aws:lambda:us-east-1:1234567:function:LogsCollectionAPITest") // AWSAccountAndLambdaRequest | AWS Log Lambda Async request body.
 
     configuration := datadog.NewConfiguration()
 
@@ -288,7 +288,7 @@ func main() {
         },
     )
 
-    body :=  // AWSAccountAndLambdaRequest | Delete AWS Lambda ARN request body.
+    body := *datadog.NewAWSAccountAndLambdaRequest("1234567", "arn:aws:lambda:us-east-1:1234567:function:LogsCollectionAPITest") // AWSAccountAndLambdaRequest | Delete AWS Lambda ARN request body.
 
     configuration := datadog.NewConfiguration()
 
@@ -368,7 +368,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewAWSLogsServicesRequest("AccountId_example", []string{"Services_example"}) // AWSLogsServicesRequest | Enable AWS Log Services request body.
+    body := *datadog.NewAWSLogsServicesRequest("1234567", []string{"Services_example"}) // AWSLogsServicesRequest | Enable AWS Log Services request body.
 
     configuration := datadog.NewConfiguration()
 

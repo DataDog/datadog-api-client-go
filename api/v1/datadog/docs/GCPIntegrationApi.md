@@ -280,7 +280,7 @@ func main() {
         },
     )
 
-    body :=  // GCPAccount | Update a Datadog-GCP integration.
+    body := *datadog.NewGCPAccount() // GCPAccount | Update a Datadog-GCP integration.
 
     configuration := datadog.NewConfiguration()
 

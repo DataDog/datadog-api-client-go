@@ -46,7 +46,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewIncidentServiceCreateRequest(*datadog.NewIncidentServiceCreateData(*datadog.NewIncidentServiceType())) // IncidentServiceCreateRequest | Incident Service Payload.
+    body := *datadog.NewIncidentServiceCreateRequest(*datadog.NewIncidentServiceCreateData(datadog.IncidentServiceType("services"))) // IncidentServiceCreateRequest | Incident Service Payload.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("CreateIncidentService", true)
@@ -133,7 +133,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("DeleteIncidentService", true)
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentServicesApi.DeleteIncidentService(ctx, serviceId).Execute()
+    r, err := api_client.IncidentServicesApi.DeleteIncidentService(ctx, serviceId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.DeleteIncidentService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -298,9 +298,9 @@ func main() {
     )
 
     include := "include_example" // string | Specifies which types of related objects should be included in the response. (optional)
-    pageSize := 987 // int64 | Size for a given page. (optional) (default to 10)
-    pageOffset := 987 // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
-    filter := "filter_example" // string | A search query that filters services by name. (optional)
+    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
+    pageOffset := int64(789) // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
+    filter := "ExampleServiceName" // string | A search query that filters services by name. (optional)
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("ListIncidentServices", true)
@@ -385,7 +385,7 @@ func main() {
     )
 
     serviceId := "serviceId_example" // string | The ID of the incident service.
-    body := *datadog.NewIncidentServiceUpdateRequest(*datadog.NewIncidentServiceUpdateData("Id_example", *datadog.NewIncidentServiceType())) // IncidentServiceUpdateRequest | Incident Service Payload.
+    body := *datadog.NewIncidentServiceUpdateRequest(*datadog.NewIncidentServiceUpdateData("00000000-0000-0000-0000-000000000000", datadog.IncidentServiceType("services"))) // IncidentServiceUpdateRequest | Incident Service Payload.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("UpdateIncidentService", true)
