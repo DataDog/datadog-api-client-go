@@ -1,0 +1,57 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetUsageAttribution
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.11 (go go1.15; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3316862599631254835"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2899138605268980460"
+    url: https://api.datadoghq.com/api/v1/usage/attribution?fields=%2A&org_id=987654321&start_month=2020-12-17T16%3A17%3A56-03%3A00
+    method: GET
+  response:
+    body: '{"errors": ["start_month cannot be in the future"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "51"
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 17 Nov 2020 19:17:57 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.3384321"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "400"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "398"
+      X-Ratelimit-Reset:
+      - "2524"
+    status: 400 Bad Request
+    code: 400
+    duration: ""
