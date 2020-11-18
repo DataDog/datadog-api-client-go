@@ -12,12 +12,13 @@ Name | Type | Description | Notes
 **AzureAppServiceTop99p** | Pointer to **int64** | Shows the 99th percentile of all Azure app services over all hours in the current date for all organizations. | [optional] 
 **BillableIngestedBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for all organizations. | [optional] 
 **ContainerAvg** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current date for all organizations. | [optional] 
-**ContainerHwm** | Pointer to **int64** | Shows the high watermark of all distinct containers over all hours in the current date for all organizations. | [optional] 
+**ContainerHwm** | Pointer to **int64** | Shows the high-water mark of all distinct containers over all hours in the current date for all organizations. | [optional] 
 **CustomTsAvg** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current date for all organizations. | [optional] 
 **Date** | Pointer to [**time.Time**](time.Time.md) | The date for the usage. | [optional] 
-**FargateTasksCountAvg** | Pointer to **int64** | Shows the high watermark of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
+**FargateTasksCountAvg** | Pointer to **int64** | Shows the high-watermark of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
 **FargateTasksCountHwm** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
 **GcpHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current date for all organizations. | [optional] 
+**IncidentManagementMonthlyActiveUsersHwm** | Pointer to **int64** | Shows the high-water mark of incident management monthly active users over all hours in the current date for all organizations. | [optional] 
 **IndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current date for all organizations. | [optional] 
 **InfraHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current date for all organizations. | [optional] 
 **IngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for all organizations. | [optional] 
@@ -400,6 +401,31 @@ SetGcpHostTop99p sets GcpHostTop99p field to given value.
 `func (o *UsageSummaryDate) HasGcpHostTop99p() bool`
 
 HasGcpHostTop99p returns a boolean if a field has been set.
+
+### GetIncidentManagementMonthlyActiveUsersHwm
+
+`func (o *UsageSummaryDate) GetIncidentManagementMonthlyActiveUsersHwm() int64`
+
+GetIncidentManagementMonthlyActiveUsersHwm returns the IncidentManagementMonthlyActiveUsersHwm field if non-nil, zero value otherwise.
+
+### GetIncidentManagementMonthlyActiveUsersHwmOk
+
+`func (o *UsageSummaryDate) GetIncidentManagementMonthlyActiveUsersHwmOk() (*int64, bool)`
+
+GetIncidentManagementMonthlyActiveUsersHwmOk returns a tuple with the IncidentManagementMonthlyActiveUsersHwm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIncidentManagementMonthlyActiveUsersHwm
+
+`func (o *UsageSummaryDate) SetIncidentManagementMonthlyActiveUsersHwm(v int64)`
+
+SetIncidentManagementMonthlyActiveUsersHwm sets IncidentManagementMonthlyActiveUsersHwm field to given value.
+
+### HasIncidentManagementMonthlyActiveUsersHwm
+
+`func (o *UsageSummaryDate) HasIncidentManagementMonthlyActiveUsersHwm() bool`
+
+HasIncidentManagementMonthlyActiveUsersHwm returns a boolean if a field has been set.
 
 ### GetIndexedEventsCountSum
 
