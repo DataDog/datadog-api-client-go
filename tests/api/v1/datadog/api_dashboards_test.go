@@ -575,7 +575,7 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	timeseriesWidgetProcessQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionProcessQuery))
 
-	// Timeseries Widget with Log query (APM/Log/Network/Rum share schemas, so only test one)
+	// Timeseries Widget with Log query (APM/Log/Network/Rum/Event share schemas, so only test one)
 	timeseriesWidgetDefinitionLogQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinitionLogQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		LogQuery: &datadog.LogQueryDefinition{
@@ -634,9 +634,22 @@ func TestDashboardLifecycle(t *testing.T) {
 	// Timeseries Widget with Event query
 	timeseriesWidgetDefinitionEventQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinitionEventQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
-		EventQuery: &datadog.EventQueryDefinition{
-			Search:        "Build failure",
-			TagsExecution: "build",
+		EventQuery: &datadog.LogQueryDefinition{
+			Index: datadog.PtrString("*"),
+			Compute: &datadog.LogsQueryCompute{
+				Aggregation: "count",
+				Facet:       datadog.PtrString("host"),
+				Interval:    datadog.PtrInt64(10),
+			},
+			Search: &datadog.LogQueryDefinitionSearch{Query: "source:kubernetes"},
+			GroupBy: &[]datadog.LogQueryDefinitionGroupBy{{
+				Facet: "host",
+				Limit: datadog.PtrInt64(5),
+				Sort: &datadog.LogQueryDefinitionSort{
+					Aggregation: "count",
+					Order:       datadog.WIDGETSORT_ASCENDING,
+				},
+			}},
 		},
 		Style: &datadog.WidgetRequestStyle{
 			Palette:   datadog.PtrString("dog_classic"),
