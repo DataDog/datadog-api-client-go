@@ -562,11 +562,8 @@ func TestUsageAttribution(t *testing.T) {
 	assert.Equal("fasjyydbcgwwc2uc", usageItem.GetPublicId())
 	assert.Equal("2020-11-16T17", usageItem.GetUpdatedAt())
 	tags := usageItem.GetTags()
-	for key, val := range tags {
-		assert.Equal("project", key)
-		assert.Equal("datadog-integrations-lab", val[0])
-		break
-	}
+	assert.Contains(tags, "project")
+	assert.Equal("datadog-integrations-lab", tags["project"][0])
 	values := usageItem.GetValues()
 	assert.Equal(float64(0), values.GetApiPercentage())
 	assert.Equal(float64(0), values.GetSnmpUsage())
