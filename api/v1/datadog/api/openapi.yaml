@@ -10135,7 +10135,6 @@ components:
         time:
           $ref: '#/components/schemas/LogsListRequest_time'
       required:
-      - query
       - time
       type: object
     LogsListResponse:
