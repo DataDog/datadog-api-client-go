@@ -538,6 +538,30 @@ func TestUsageAttribution(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	assert.True(usage.HasUsage())
 	assert.True(usage.HasMetadata())
+	usageItem := usage.GetUsage()[2]
+	assert.Equal(time.Date(2020, 11, 01, 0, 0, 0, 0, time.UTC), usageItem.GetMonth().UTC())
+	assert.Equal("fasjyydbcgwwc2uc", usageItem.GetPublicId())
+	assert.Equal("2020-11-16T17", usageItem.GetUpdatedAt())
+	tags := usageItem.GetTags()
+	for key, val := range tags {
+		assert.Equal("project", key)
+		assert.Equal("datadog-integrations-lab", val[0])
+		break
+	}
+	values := usageItem.GetValues()
+	assert.Equal(float64(0), values.GetApiPercentage())
+	assert.Equal(float64(0), values.GetSnmpUsage())
+	assert.Equal(float64(0), values.GetLambdaPercentage())
+	metadata := usage.GetMetadata()
+	pagination := metadata.GetPagination()
+	assert.Equal(int64(4), pagination.GetTotalNumberOfRecords())
+	assert.Equal(int64(5000), pagination.GetLimit())
+	assert.Equal("custom_timeseries_usage", pagination.GetSortName())
+	assert.Equal("DESC", pagination.GetSortDirection())
+	aggregates := metadata.GetAggregates()[2]
+	assert.Equal("sum", aggregates.GetAggType())
+	assert.Equal("snmp_percentage", aggregates.GetField())
+	assert.Equal(float64(0), aggregates.GetValue())
 }
 
 func TestUsageGetAnalyzedLogsErrors(t *testing.T) {
