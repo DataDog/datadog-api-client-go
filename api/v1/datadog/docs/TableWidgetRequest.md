@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **ApmStatsQuery** | Pointer to [**ApmStatsQueryDefinition**](ApmStatsQueryDefinition.md) |  | [optional] 
 **CellDisplayMode** | Pointer to [**[]TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) | A list of display modes for each table cell. | [optional] 
 **ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
-**EventQuery** | Pointer to [**EventQueryDefinition**](EventQueryDefinition.md) |  | [optional] 
+**EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Limit** | Pointer to **int64** | For metric queries, the number of lines to show in the table. Only one request should have this property. | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
@@ -191,20 +191,20 @@ HasConditionalFormats returns a boolean if a field has been set.
 
 ### GetEventQuery
 
-`func (o *TableWidgetRequest) GetEventQuery() EventQueryDefinition`
+`func (o *TableWidgetRequest) GetEventQuery() LogQueryDefinition`
 
 GetEventQuery returns the EventQuery field if non-nil, zero value otherwise.
 
 ### GetEventQueryOk
 
-`func (o *TableWidgetRequest) GetEventQueryOk() (*EventQueryDefinition, bool)`
+`func (o *TableWidgetRequest) GetEventQueryOk() (*LogQueryDefinition, bool)`
 
 GetEventQueryOk returns a tuple with the EventQuery field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEventQuery
 
-`func (o *TableWidgetRequest) SetEventQuery(v EventQueryDefinition)`
+`func (o *TableWidgetRequest) SetEventQuery(v LogQueryDefinition)`
 
 SetEventQuery sets EventQuery field to given value.
 

@@ -32,7 +32,7 @@ jobs:
     if: github.event.pull_request.draft == false && !contains(github.event.pull_request.labels.*.name, 'ci/skip') && !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')
     steps:
     - name: Install Go
-      uses: actions/setup-go@v2-beta
+      uses: actions/setup-go@v2
       with:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
