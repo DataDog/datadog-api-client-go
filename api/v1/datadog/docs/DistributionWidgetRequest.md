@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**EventQuery** | Pointer to [**EventQueryDefinition**](EventQueryDefinition.md) |  | [optional] 
+**EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
@@ -60,20 +60,20 @@ HasApmQuery returns a boolean if a field has been set.
 
 ### GetEventQuery
 
-`func (o *DistributionWidgetRequest) GetEventQuery() EventQueryDefinition`
+`func (o *DistributionWidgetRequest) GetEventQuery() LogQueryDefinition`
 
 GetEventQuery returns the EventQuery field if non-nil, zero value otherwise.
 
 ### GetEventQueryOk
 
-`func (o *DistributionWidgetRequest) GetEventQueryOk() (*EventQueryDefinition, bool)`
+`func (o *DistributionWidgetRequest) GetEventQueryOk() (*LogQueryDefinition, bool)`
 
 GetEventQueryOk returns a tuple with the EventQuery field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEventQuery
 
-`func (o *DistributionWidgetRequest) SetEventQuery(v EventQueryDefinition)`
+`func (o *DistributionWidgetRequest) SetEventQuery(v LogQueryDefinition)`
 
 SetEventQuery sets EventQuery field to given value.
 
