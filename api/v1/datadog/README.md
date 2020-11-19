@@ -208,6 +208,7 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetSpecifiedMonthlyCustomReports**](docs/UsageMeteringApi.md#getspecifiedmonthlycustomreports) | **Get** /api/v1/monthly_custom_reports/{report_id} | Get specified monthly custom reports
 *UsageMeteringApi* | [**GetTracingWithoutLimits**](docs/UsageMeteringApi.md#gettracingwithoutlimits) | **Get** /api/v1/usage/tracing-without-limits | Get hourly usage for tracing without limits
 *UsageMeteringApi* | [**GetUsageAnalyzedLogs**](docs/UsageMeteringApi.md#getusageanalyzedlogs) | **Get** /api/v1/usage/analyzed_logs | Get hourly usage for analyzed logs
+*UsageMeteringApi* | [**GetUsageAttribution**](docs/UsageMeteringApi.md#getusageattribution) | **Get** /api/v1/usage/attribution | Get Usage Attribution
 *UsageMeteringApi* | [**GetUsageBillableSummary**](docs/UsageMeteringApi.md#getusagebillablesummary) | **Get** /api/v1/usage/billable-summary | Get billable usage across your multi-org account
 *UsageMeteringApi* | [**GetUsageFargate**](docs/UsageMeteringApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
 *UsageMeteringApi* | [**GetUsageHosts**](docs/UsageMeteringApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
@@ -555,6 +556,13 @@ Class | Method | HTTP request | Description
  - [ToplistWidgetRequest](docs/ToplistWidgetRequest.md)
  - [UsageAnalyzedLogsHour](docs/UsageAnalyzedLogsHour.md)
  - [UsageAnalyzedLogsResponse](docs/UsageAnalyzedLogsResponse.md)
+ - [UsageAttributionAggregatesBody](docs/UsageAttributionAggregatesBody.md)
+ - [UsageAttributionBody](docs/UsageAttributionBody.md)
+ - [UsageAttributionMetadata](docs/UsageAttributionMetadata.md)
+ - [UsageAttributionPagination](docs/UsageAttributionPagination.md)
+ - [UsageAttributionResponse](docs/UsageAttributionResponse.md)
+ - [UsageAttributionSort](docs/UsageAttributionSort.md)
+ - [UsageAttributionValues](docs/UsageAttributionValues.md)
  - [UsageBillableSummaryBody](docs/UsageBillableSummaryBody.md)
  - [UsageBillableSummaryHour](docs/UsageBillableSummaryHour.md)
  - [UsageBillableSummaryKeys](docs/UsageBillableSummaryKeys.md)
