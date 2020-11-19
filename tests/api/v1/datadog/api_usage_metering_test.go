@@ -546,7 +546,6 @@ func TestUsageAttribution(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	startMonth := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1)
 
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetUsageAttribution", true)
 	api := Client(ctx).UsageMeteringApi
 	usage, httpresp, err := api.GetUsageAttribution(ctx).StartMonth(startMonth).Fields("*").Execute()
 	if err != nil {
