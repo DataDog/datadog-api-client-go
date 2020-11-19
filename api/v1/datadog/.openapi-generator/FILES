@@ -372,6 +372,13 @@ docs/ToplistWidgetDefinitionType.md
 docs/ToplistWidgetRequest.md
 docs/UsageAnalyzedLogsHour.md
 docs/UsageAnalyzedLogsResponse.md
+docs/UsageAttributionAggregatesBody.md
+docs/UsageAttributionBody.md
+docs/UsageAttributionMetadata.md
+docs/UsageAttributionPagination.md
+docs/UsageAttributionResponse.md
+docs/UsageAttributionSort.md
+docs/UsageAttributionValues.md
 docs/UsageBillableSummaryBody.md
 docs/UsageBillableSummaryHour.md
 docs/UsageBillableSummaryKeys.md
@@ -385,6 +392,8 @@ docs/UsageFargateHour.md
 docs/UsageFargateResponse.md
 docs/UsageHostHour.md
 docs/UsageHostsResponse.md
+docs/UsageIncidentManagementHour.md
+docs/UsageIncidentManagementResponse.md
 docs/UsageIndexedSpansHour.md
 docs/UsageIndexedSpansResponse.md
 docs/UsageIngestedSpansHour.md
@@ -800,6 +809,13 @@ model_toplist_widget_definition_type.go
 model_toplist_widget_request.go
 model_usage_analyzed_logs_hour.go
 model_usage_analyzed_logs_response.go
+model_usage_attribution_aggregates_body.go
+model_usage_attribution_body.go
+model_usage_attribution_metadata.go
+model_usage_attribution_pagination.go
+model_usage_attribution_response.go
+model_usage_attribution_sort.go
+model_usage_attribution_values.go
 model_usage_billable_summary_body.go
 model_usage_billable_summary_hour.go
 model_usage_billable_summary_keys.go
@@ -813,6 +829,8 @@ model_usage_fargate_hour.go
 model_usage_fargate_response.go
 model_usage_host_hour.go
 model_usage_hosts_response.go
+model_usage_incident_management_hour.go
+model_usage_incident_management_response.go
 model_usage_indexed_spans_hour.go
 model_usage_indexed_spans_response.go
 model_usage_ingested_spans_hour.go

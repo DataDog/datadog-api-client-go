@@ -201,12 +201,14 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**ListHostTags**](docs/TagsApi.md#listhosttags) | **Get** /api/v1/tags/hosts | Get Tags
 *TagsApi* | [**UpdateHostTags**](docs/TagsApi.md#updatehosttags) | **Put** /api/v1/tags/hosts/{host_name} | Update host tags
 *UsageMeteringApi* | [**GetDailyCustomReports**](docs/UsageMeteringApi.md#getdailycustomreports) | **Get** /api/v1/daily_custom_reports | Get the list of available daily custom reports
+*UsageMeteringApi* | [**GetIncidentManagement**](docs/UsageMeteringApi.md#getincidentmanagement) | **Get** /api/v1/usage/incident-management | Get hourly usage for incident management
 *UsageMeteringApi* | [**GetIngestedSpans**](docs/UsageMeteringApi.md#getingestedspans) | **Get** /api/v1/usage/ingested-spans | Get hourly usage for ingested spans
 *UsageMeteringApi* | [**GetMonthlyCustomReports**](docs/UsageMeteringApi.md#getmonthlycustomreports) | **Get** /api/v1/monthly_custom_reports | Get the list of available monthly custom reports
 *UsageMeteringApi* | [**GetSpecifiedDailyCustomReports**](docs/UsageMeteringApi.md#getspecifieddailycustomreports) | **Get** /api/v1/daily_custom_reports/{report_id} | Get specified daily custom reports
 *UsageMeteringApi* | [**GetSpecifiedMonthlyCustomReports**](docs/UsageMeteringApi.md#getspecifiedmonthlycustomreports) | **Get** /api/v1/monthly_custom_reports/{report_id} | Get specified monthly custom reports
 *UsageMeteringApi* | [**GetTracingWithoutLimits**](docs/UsageMeteringApi.md#gettracingwithoutlimits) | **Get** /api/v1/usage/tracing-without-limits | Get hourly usage for tracing without limits
 *UsageMeteringApi* | [**GetUsageAnalyzedLogs**](docs/UsageMeteringApi.md#getusageanalyzedlogs) | **Get** /api/v1/usage/analyzed_logs | Get hourly usage for analyzed logs
+*UsageMeteringApi* | [**GetUsageAttribution**](docs/UsageMeteringApi.md#getusageattribution) | **Get** /api/v1/usage/attribution | Get Usage Attribution
 *UsageMeteringApi* | [**GetUsageBillableSummary**](docs/UsageMeteringApi.md#getusagebillablesummary) | **Get** /api/v1/usage/billable-summary | Get billable usage across your multi-org account
 *UsageMeteringApi* | [**GetUsageFargate**](docs/UsageMeteringApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
 *UsageMeteringApi* | [**GetUsageHosts**](docs/UsageMeteringApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
@@ -554,6 +556,13 @@ Class | Method | HTTP request | Description
  - [ToplistWidgetRequest](docs/ToplistWidgetRequest.md)
  - [UsageAnalyzedLogsHour](docs/UsageAnalyzedLogsHour.md)
  - [UsageAnalyzedLogsResponse](docs/UsageAnalyzedLogsResponse.md)
+ - [UsageAttributionAggregatesBody](docs/UsageAttributionAggregatesBody.md)
+ - [UsageAttributionBody](docs/UsageAttributionBody.md)
+ - [UsageAttributionMetadata](docs/UsageAttributionMetadata.md)
+ - [UsageAttributionPagination](docs/UsageAttributionPagination.md)
+ - [UsageAttributionResponse](docs/UsageAttributionResponse.md)
+ - [UsageAttributionSort](docs/UsageAttributionSort.md)
+ - [UsageAttributionValues](docs/UsageAttributionValues.md)
  - [UsageBillableSummaryBody](docs/UsageBillableSummaryBody.md)
  - [UsageBillableSummaryHour](docs/UsageBillableSummaryHour.md)
  - [UsageBillableSummaryKeys](docs/UsageBillableSummaryKeys.md)
@@ -567,6 +576,8 @@ Class | Method | HTTP request | Description
  - [UsageFargateResponse](docs/UsageFargateResponse.md)
  - [UsageHostHour](docs/UsageHostHour.md)
  - [UsageHostsResponse](docs/UsageHostsResponse.md)
+ - [UsageIncidentManagementHour](docs/UsageIncidentManagementHour.md)
+ - [UsageIncidentManagementResponse](docs/UsageIncidentManagementResponse.md)
  - [UsageIndexedSpansHour](docs/UsageIndexedSpansHour.md)
  - [UsageIndexedSpansResponse](docs/UsageIndexedSpansResponse.md)
  - [UsageIngestedSpansHour](docs/UsageIngestedSpansHour.md)

@@ -11,12 +11,13 @@ Name | Type | Description | Notes
 **AwsLambdaInvocationsSum** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current date for the given org. | [optional] 
 **BillableIngestedBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for the given org. | [optional] 
 **ContainerAvg** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current date for the given org. | [optional] 
-**ContainerHwm** | Pointer to **int64** | Shows the high watermark of all distinct containers over all hours in the current date for the given org. | [optional] 
+**ContainerHwm** | Pointer to **int64** | Shows the high-water mark of all distinct containers over all hours in the current date for the given org. | [optional] 
 **CustomTsAvg** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current date for the given org. | [optional] 
 **FargateTasksCountAvg** | Pointer to **int64** | The average task count for Fargate. | [optional] 
-**FargateTasksCountHwm** | Pointer to **int64** | Shows the high watermark of all Fargate tasks over all hours in the current date for the given org. | [optional] 
+**FargateTasksCountHwm** | Pointer to **int64** | Shows the high-water mark of all Fargate tasks over all hours in the current date for the given org. | [optional] 
 **GcpHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current date for the given org. | [optional] 
 **Id** | Pointer to **string** | The organization id. | [optional] 
+**IncidentManagementMonthlyActiveUsersHwm** | Pointer to **int64** | Shows the high-water mark of incident management monthly active users over all hours in the current date for the given org. | [optional] 
 **IndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current date for the given org. | [optional] 
 **InfraHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current date for the given org. | [optional] 
 **IngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for the given org. | [optional] 
@@ -375,6 +376,31 @@ SetId sets Id field to given value.
 `func (o *UsageSummaryDateOrg) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetIncidentManagementMonthlyActiveUsersHwm
+
+`func (o *UsageSummaryDateOrg) GetIncidentManagementMonthlyActiveUsersHwm() int64`
+
+GetIncidentManagementMonthlyActiveUsersHwm returns the IncidentManagementMonthlyActiveUsersHwm field if non-nil, zero value otherwise.
+
+### GetIncidentManagementMonthlyActiveUsersHwmOk
+
+`func (o *UsageSummaryDateOrg) GetIncidentManagementMonthlyActiveUsersHwmOk() (*int64, bool)`
+
+GetIncidentManagementMonthlyActiveUsersHwmOk returns a tuple with the IncidentManagementMonthlyActiveUsersHwm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIncidentManagementMonthlyActiveUsersHwm
+
+`func (o *UsageSummaryDateOrg) SetIncidentManagementMonthlyActiveUsersHwm(v int64)`
+
+SetIncidentManagementMonthlyActiveUsersHwm sets IncidentManagementMonthlyActiveUsersHwm field to given value.
+
+### HasIncidentManagementMonthlyActiveUsersHwm
+
+`func (o *UsageSummaryDateOrg) HasIncidentManagementMonthlyActiveUsersHwm() bool`
+
+HasIncidentManagementMonthlyActiveUsersHwm returns a boolean if a field has been set.
 
 ### GetIndexedEventsCountSum
 
