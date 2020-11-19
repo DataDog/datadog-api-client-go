@@ -555,28 +555,6 @@ func TestUsageAttribution(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	assert.True(usage.HasUsage())
 	assert.True(usage.HasMetadata())
-
-	usageItem := usage.GetUsage()[2]
-	assert.Equal("fasjyydbcgwwc2uc", usageItem.GetPublicId())
-	assert.Equal("2020-11-18T20", usageItem.GetUpdatedAt())
-	tags := usageItem.GetTags()
-	assert.Contains(tags, "project")
-	assert.Equal("datadog-integrations-lab", tags["project"][0])
-	values := usageItem.GetValues()
-	assert.Equal(float64(0), values.GetApiPercentage())
-	assert.Equal(float64(0), values.GetSnmpUsage())
-	assert.Equal(float64(0), values.GetLambdaPercentage())
-
-	metadata := usage.GetMetadata()
-	pagination := metadata.GetPagination()
-	assert.Equal(int64(4), pagination.GetTotalNumberOfRecords())
-	assert.Equal(int64(5000), pagination.GetLimit())
-	assert.Equal("custom_timeseries_usage", pagination.GetSortName())
-	assert.Equal("DESC", pagination.GetSortDirection())
-	aggregates := metadata.GetAggregates()[2]
-	assert.Equal("sum", aggregates.GetAggType())
-	assert.Equal("snmp_percentage", aggregates.GetField())
-	assert.Equal(float64(0), aggregates.GetValue())
 }
 
 func TestUsageGetAnalyzedLogsErrors(t *testing.T) {
