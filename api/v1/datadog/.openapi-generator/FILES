@@ -385,6 +385,8 @@ docs/UsageFargateHour.md
 docs/UsageFargateResponse.md
 docs/UsageHostHour.md
 docs/UsageHostsResponse.md
+docs/UsageIncidentManagementHour.md
+docs/UsageIncidentManagementResponse.md
 docs/UsageIndexedSpansHour.md
 docs/UsageIndexedSpansResponse.md
 docs/UsageIngestedSpansHour.md
@@ -813,6 +815,8 @@ model_usage_fargate_hour.go
 model_usage_fargate_response.go
 model_usage_host_hour.go
 model_usage_hosts_response.go
+model_usage_incident_management_hour.go
+model_usage_incident_management_response.go
 model_usage_indexed_spans_hour.go
 model_usage_indexed_spans_response.go
 model_usage_ingested_spans_hour.go

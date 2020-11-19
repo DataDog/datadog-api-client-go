@@ -2,26 +2,23 @@
 version: 1
 interactions:
 - request:
-    body: |
-      {"startAt":"notanid","time":{"from":"0001-01-01T00:00:00Z","to":"0001-01-01T00:00:00Z"}}
+    body: ""
     form: {}
     headers:
       Accept:
-      - application/json
-      Content-Type:
-      - application/json
+      - application/json;datetime-format=rfc3339
       Dd-Operation-Id:
-      - ListLogs
+      - GetIncidentManagement
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.11 (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.11 (go go1.15.2; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1159631875233346233"
+      - "7495160641892304281"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5605457710365358305"
-    url: https://api.datadoghq.com/api/v1/logs-queries/list
-    method: POST
+      - "8898242879179932673"
+    url: https://api.datadoghq.com/api/v1/usage/incident-management?start_hr=2020-12-17T17%3A39%3A08-05%3A00
+    method: GET
   response:
     body: |
       {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
@@ -33,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 18 Nov 2020 15:16:56 GMT
+      - Tue, 17 Nov 2020 22:39:08 GMT
       Via:
       - 1.1 haproxy
     status: 403 Forbidden

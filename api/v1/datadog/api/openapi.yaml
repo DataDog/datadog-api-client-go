@@ -5701,6 +5701,54 @@ paths:
       summary: Get hourly usage for hosts and containers
       tags:
       - Usage Metering
+  /api/v1/usage/incident-management:
+    get:
+      description: Get hourly usage for incident management.
+      operationId: GetIncidentManagement
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage beginning at this hour.'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending
+          **before** this hour.
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageIncidentManagementResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden - User is not authorized
+      summary: Get hourly usage for incident management
+      tags:
+      - Usage Metering
   /api/v1/usage/indexed-spans:
     get:
       description: Get hourly usage for indexed spans.
@@ -10135,7 +10183,6 @@ components:
         time:
           $ref: '#/components/schemas/LogsListRequest_time'
       required:
-      - query
       - time
       type: object
     LogsListResponse:
@@ -16517,6 +16564,39 @@ components:
             $ref: '#/components/schemas/UsageHostHour'
           type: array
       type: object
+    UsageIncidentManagementHour:
+      description: Incident management usage for a given organization for a given
+        hour.
+      example:
+        monthly_active_users: 0
+        hour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+        monthly_active_users:
+          description: Contains the total number monthly active users from the start
+            of the given hour's month until the given hour.
+          format: int64
+          type: integer
+      type: object
+    UsageIncidentManagementResponse:
+      description: Response containing the incident management usage for each hour
+        for a given organization.
+      example:
+        usage:
+        - monthly_active_users: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+        - monthly_active_users: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        usage:
+          description: Get hourly usage for incident management.
+          items:
+            $ref: '#/components/schemas/UsageIncidentManagementHour'
+          type: array
+      type: object
     UsageIndexedSpansHour:
       description: The hours of indexed spans usage.
       example:
@@ -17029,86 +17109,89 @@ components:
       description: Response with hourly report of all data billed by Datadog all organizations.
       example:
         date: 2000-01-23T04:56:07.000+00:00
-        npm_host_top99p: 3
-        container_hwm: 3
-        billable_ingested_bytes_sum: 6
-        fargate_tasks_count_avg: 0
-        rum_session_count_sum: 6
-        ingested_events_bytes_sum: 8
-        mobile_rum_session_count_sum: 7
+        npm_host_top99p: 5
+        container_hwm: 7
+        billable_ingested_bytes_sum: 3
+        fargate_tasks_count_avg: 7
+        rum_session_count_sum: 9
+        ingested_events_bytes_sum: 3
+        mobile_rum_session_count_sum: 3
         container_avg: 3
-        netflow_indexed_events_count_sum: 3
+        netflow_indexed_events_count_sum: 7
         aws_lambda_func_count: 6
-        fargate_tasks_count_hwm: 7
+        fargate_tasks_count_hwm: 6
         profiling_host_top99p: 8
-        gcp_host_top99p: 6
-        azure_app_service_top99p: 5
-        apm_host_top99p: 1
-        synthetics_check_calls_count_sum: 8
-        aws_host_top99p: 2
-        custom_ts_avg: 7
+        gcp_host_top99p: 0
+        azure_app_service_top99p: 6
+        apm_host_top99p: 2
+        synthetics_check_calls_count_sum: 3
+        aws_host_top99p: 6
+        incident_management_monthly_active_users_hwm: 4
+        custom_ts_avg: 0
         trace_search_indexed_events_count_sum: 9
-        twol_ingested_events_bytes_sum: 1
-        agent_host_top99p: 6
-        indexed_events_count_sum: 0
-        infra_host_top99p: 4
+        twol_ingested_events_bytes_sum: 8
+        agent_host_top99p: 1
+        indexed_events_count_sum: 8
+        infra_host_top99p: 7
         orgs:
-        - npm_host_top99p: 6
-          container_hwm: 1
-          billable_ingested_bytes_sum: 6
-          fargate_tasks_count_avg: 7
-          rum_session_count_sum: 4
-          ingested_events_bytes_sum: 7
+        - npm_host_top99p: 3
+          container_hwm: 7
+          billable_ingested_bytes_sum: 1
+          fargate_tasks_count_avg: 0
+          rum_session_count_sum: 2
+          ingested_events_bytes_sum: 6
           public_id: public_id
-          mobile_rum_session_count_sum: 5
+          mobile_rum_session_count_sum: 8
           container_avg: 4
           netflow_indexed_events_count_sum: 4
-          aws_lambda_func_count: 4
+          aws_lambda_func_count: 6
           id: id
           fargate_tasks_count_hwm: 9
-          profiling_host_top99p: 8
+          profiling_host_top99p: 0
           gcp_host_top99p: 0
-          apm_host_top99p: 5
-          synthetics_check_calls_count_sum: 0
-          aws_host_top99p: 3
-          custom_ts_avg: 4
-          trace_search_indexed_events_count_sum: 2
-          twol_ingested_events_bytes_sum: 1
-          agent_host_top99p: 7
-          indexed_events_count_sum: 9
-          infra_host_top99p: 0
+          apm_host_top99p: 4
+          synthetics_check_calls_count_sum: 8
+          aws_host_top99p: 0
+          incident_management_monthly_active_users_hwm: 7
+          custom_ts_avg: 9
+          trace_search_indexed_events_count_sum: 6
+          twol_ingested_events_bytes_sum: 4
+          agent_host_top99p: 3
+          indexed_events_count_sum: 5
+          infra_host_top99p: 4
           name: name
-          aws_lambda_invocations_sum: 0
-          synthetics_browser_check_calls_count_sum: 3
-        - npm_host_top99p: 6
-          container_hwm: 1
-          billable_ingested_bytes_sum: 6
-          fargate_tasks_count_avg: 7
-          rum_session_count_sum: 4
-          ingested_events_bytes_sum: 7
+          aws_lambda_invocations_sum: 4
+          synthetics_browser_check_calls_count_sum: 1
+        - npm_host_top99p: 3
+          container_hwm: 7
+          billable_ingested_bytes_sum: 1
+          fargate_tasks_count_avg: 0
+          rum_session_count_sum: 2
+          ingested_events_bytes_sum: 6
           public_id: public_id
-          mobile_rum_session_count_sum: 5
+          mobile_rum_session_count_sum: 8
           container_avg: 4
           netflow_indexed_events_count_sum: 4
-          aws_lambda_func_count: 4
+          aws_lambda_func_count: 6
           id: id
           fargate_tasks_count_hwm: 9
-          profiling_host_top99p: 8
+          profiling_host_top99p: 0
           gcp_host_top99p: 0
-          apm_host_top99p: 5
-          synthetics_check_calls_count_sum: 0
-          aws_host_top99p: 3
-          custom_ts_avg: 4
-          trace_search_indexed_events_count_sum: 2
-          twol_ingested_events_bytes_sum: 1
-          agent_host_top99p: 7
-          indexed_events_count_sum: 9
-          infra_host_top99p: 0
+          apm_host_top99p: 4
+          synthetics_check_calls_count_sum: 8
+          aws_host_top99p: 0
+          incident_management_monthly_active_users_hwm: 7
+          custom_ts_avg: 9
+          trace_search_indexed_events_count_sum: 6
+          twol_ingested_events_bytes_sum: 4
+          agent_host_top99p: 3
+          indexed_events_count_sum: 5
+          infra_host_top99p: 4
           name: name
-          aws_lambda_invocations_sum: 0
-          synthetics_browser_check_calls_count_sum: 3
-        aws_lambda_invocations_sum: 6
-        synthetics_browser_check_calls_count_sum: 4
+          aws_lambda_invocations_sum: 4
+          synthetics_browser_check_calls_count_sum: 1
+        aws_lambda_invocations_sum: 5
+        synthetics_browser_check_calls_count_sum: 1
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -17151,7 +17234,7 @@ components:
           format: int64
           type: integer
         container_hwm:
-          description: Shows the high watermark of all distinct containers over all
+          description: Shows the high-water mark of all distinct containers over all
             hours in the current date for all organizations.
           format: int64
           type: integer
@@ -17165,7 +17248,7 @@ components:
           format: date-time
           type: string
         fargate_tasks_count_avg:
-          description: Shows the high watermark of all Fargate tasks over all hours
+          description: Shows the high-watermark of all Fargate tasks over all hours
             in the current date for all organizations.
           format: int64
           type: integer
@@ -17177,6 +17260,11 @@ components:
         gcp_host_top99p:
           description: Shows the 99th percentile of all GCP hosts over all hours in
             the current date for all organizations.
+          format: int64
+          type: integer
+        incident_management_monthly_active_users_hwm:
+          description: Shows the high-water mark of incident management monthly active
+            users over all hours in the current date for all organizations.
           format: int64
           type: integer
         indexed_events_count_sum:
@@ -17249,33 +17337,34 @@ components:
       description: Global hourly report of all data billed by Datadog for a given
         organization.
       example:
-        npm_host_top99p: 6
-        container_hwm: 1
-        billable_ingested_bytes_sum: 6
-        fargate_tasks_count_avg: 7
-        rum_session_count_sum: 4
-        ingested_events_bytes_sum: 7
+        npm_host_top99p: 3
+        container_hwm: 7
+        billable_ingested_bytes_sum: 1
+        fargate_tasks_count_avg: 0
+        rum_session_count_sum: 2
+        ingested_events_bytes_sum: 6
         public_id: public_id
-        mobile_rum_session_count_sum: 5
+        mobile_rum_session_count_sum: 8
         container_avg: 4
         netflow_indexed_events_count_sum: 4
-        aws_lambda_func_count: 4
+        aws_lambda_func_count: 6
         id: id
         fargate_tasks_count_hwm: 9
-        profiling_host_top99p: 8
+        profiling_host_top99p: 0
         gcp_host_top99p: 0
-        apm_host_top99p: 5
-        synthetics_check_calls_count_sum: 0
-        aws_host_top99p: 3
-        custom_ts_avg: 4
-        trace_search_indexed_events_count_sum: 2
-        twol_ingested_events_bytes_sum: 1
-        agent_host_top99p: 7
-        indexed_events_count_sum: 9
-        infra_host_top99p: 0
+        apm_host_top99p: 4
+        synthetics_check_calls_count_sum: 8
+        aws_host_top99p: 0
+        incident_management_monthly_active_users_hwm: 7
+        custom_ts_avg: 9
+        trace_search_indexed_events_count_sum: 6
+        twol_ingested_events_bytes_sum: 4
+        agent_host_top99p: 3
+        indexed_events_count_sum: 5
+        infra_host_top99p: 4
         name: name
-        aws_lambda_invocations_sum: 0
-        synthetics_browser_check_calls_count_sum: 3
+        aws_lambda_invocations_sum: 4
+        synthetics_browser_check_calls_count_sum: 1
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -17313,7 +17402,7 @@ components:
           format: int64
           type: integer
         container_hwm:
-          description: Shows the high watermark of all distinct containers over all
+          description: Shows the high-water mark of all distinct containers over all
             hours in the current date for the given org.
           format: int64
           type: integer
@@ -17327,7 +17416,7 @@ components:
           format: int64
           type: integer
         fargate_tasks_count_hwm:
-          description: Shows the high watermark of all Fargate tasks over all hours
+          description: Shows the high-water mark of all Fargate tasks over all hours
             in the current date for the given org.
           format: int64
           type: integer
@@ -17339,6 +17428,11 @@ components:
         id:
           description: The organization id.
           type: string
+        incident_management_monthly_active_users_hwm:
+          description: Shows the high-water mark of incident management monthly active
+            users over all hours in the current date for the given org.
+          format: int64
+          type: integer
         indexed_events_count_sum:
           description: Shows the sum of all log events indexed over all hours in the
             current date for the given org.
@@ -17413,344 +17507,356 @@ components:
         azure_host_top99p_sum: 7
         usage:
         - date: 2000-01-23T04:56:07.000+00:00
-          npm_host_top99p: 3
-          container_hwm: 3
-          billable_ingested_bytes_sum: 6
-          fargate_tasks_count_avg: 0
-          rum_session_count_sum: 6
-          ingested_events_bytes_sum: 8
-          mobile_rum_session_count_sum: 7
+          npm_host_top99p: 5
+          container_hwm: 7
+          billable_ingested_bytes_sum: 3
+          fargate_tasks_count_avg: 7
+          rum_session_count_sum: 9
+          ingested_events_bytes_sum: 3
+          mobile_rum_session_count_sum: 3
           container_avg: 3
-          netflow_indexed_events_count_sum: 3
+          netflow_indexed_events_count_sum: 7
           aws_lambda_func_count: 6
-          fargate_tasks_count_hwm: 7
+          fargate_tasks_count_hwm: 6
           profiling_host_top99p: 8
-          gcp_host_top99p: 6
-          azure_app_service_top99p: 5
-          apm_host_top99p: 1
-          synthetics_check_calls_count_sum: 8
-          aws_host_top99p: 2
-          custom_ts_avg: 7
+          gcp_host_top99p: 0
+          azure_app_service_top99p: 6
+          apm_host_top99p: 2
+          synthetics_check_calls_count_sum: 3
+          aws_host_top99p: 6
+          incident_management_monthly_active_users_hwm: 4
+          custom_ts_avg: 0
           trace_search_indexed_events_count_sum: 9
-          twol_ingested_events_bytes_sum: 1
-          agent_host_top99p: 6
-          indexed_events_count_sum: 0
-          infra_host_top99p: 4
+          twol_ingested_events_bytes_sum: 8
+          agent_host_top99p: 1
+          indexed_events_count_sum: 8
+          infra_host_top99p: 7
           orgs:
-          - npm_host_top99p: 6
-            container_hwm: 1
-            billable_ingested_bytes_sum: 6
-            fargate_tasks_count_avg: 7
-            rum_session_count_sum: 4
-            ingested_events_bytes_sum: 7
+          - npm_host_top99p: 3
+            container_hwm: 7
+            billable_ingested_bytes_sum: 1
+            fargate_tasks_count_avg: 0
+            rum_session_count_sum: 2
+            ingested_events_bytes_sum: 6
             public_id: public_id
-            mobile_rum_session_count_sum: 5
+            mobile_rum_session_count_sum: 8
             container_avg: 4
             netflow_indexed_events_count_sum: 4
-            aws_lambda_func_count: 4
+            aws_lambda_func_count: 6
             id: id
             fargate_tasks_count_hwm: 9
-            profiling_host_top99p: 8
+            profiling_host_top99p: 0
             gcp_host_top99p: 0
-            apm_host_top99p: 5
-            synthetics_check_calls_count_sum: 0
-            aws_host_top99p: 3
-            custom_ts_avg: 4
-            trace_search_indexed_events_count_sum: 2
-            twol_ingested_events_bytes_sum: 1
-            agent_host_top99p: 7
-            indexed_events_count_sum: 9
-            infra_host_top99p: 0
+            apm_host_top99p: 4
+            synthetics_check_calls_count_sum: 8
+            aws_host_top99p: 0
+            incident_management_monthly_active_users_hwm: 7
+            custom_ts_avg: 9
+            trace_search_indexed_events_count_sum: 6
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 3
+            indexed_events_count_sum: 5
+            infra_host_top99p: 4
             name: name
-            aws_lambda_invocations_sum: 0
-            synthetics_browser_check_calls_count_sum: 3
-          - npm_host_top99p: 6
-            container_hwm: 1
-            billable_ingested_bytes_sum: 6
-            fargate_tasks_count_avg: 7
-            rum_session_count_sum: 4
-            ingested_events_bytes_sum: 7
+            aws_lambda_invocations_sum: 4
+            synthetics_browser_check_calls_count_sum: 1
+          - npm_host_top99p: 3
+            container_hwm: 7
+            billable_ingested_bytes_sum: 1
+            fargate_tasks_count_avg: 0
+            rum_session_count_sum: 2
+            ingested_events_bytes_sum: 6
             public_id: public_id
-            mobile_rum_session_count_sum: 5
+            mobile_rum_session_count_sum: 8
             container_avg: 4
             netflow_indexed_events_count_sum: 4
-            aws_lambda_func_count: 4
+            aws_lambda_func_count: 6
             id: id
             fargate_tasks_count_hwm: 9
-            profiling_host_top99p: 8
+            profiling_host_top99p: 0
             gcp_host_top99p: 0
-            apm_host_top99p: 5
-            synthetics_check_calls_count_sum: 0
-            aws_host_top99p: 3
-            custom_ts_avg: 4
-            trace_search_indexed_events_count_sum: 2
-            twol_ingested_events_bytes_sum: 1
-            agent_host_top99p: 7
-            indexed_events_count_sum: 9
-            infra_host_top99p: 0
+            apm_host_top99p: 4
+            synthetics_check_calls_count_sum: 8
+            aws_host_top99p: 0
+            incident_management_monthly_active_users_hwm: 7
+            custom_ts_avg: 9
+            trace_search_indexed_events_count_sum: 6
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 3
+            indexed_events_count_sum: 5
+            infra_host_top99p: 4
             name: name
-            aws_lambda_invocations_sum: 0
-            synthetics_browser_check_calls_count_sum: 3
-          aws_lambda_invocations_sum: 6
-          synthetics_browser_check_calls_count_sum: 4
+            aws_lambda_invocations_sum: 4
+            synthetics_browser_check_calls_count_sum: 1
+          aws_lambda_invocations_sum: 5
+          synthetics_browser_check_calls_count_sum: 1
         - date: 2000-01-23T04:56:07.000+00:00
-          npm_host_top99p: 3
-          container_hwm: 3
-          billable_ingested_bytes_sum: 6
-          fargate_tasks_count_avg: 0
-          rum_session_count_sum: 6
-          ingested_events_bytes_sum: 8
-          mobile_rum_session_count_sum: 7
+          npm_host_top99p: 5
+          container_hwm: 7
+          billable_ingested_bytes_sum: 3
+          fargate_tasks_count_avg: 7
+          rum_session_count_sum: 9
+          ingested_events_bytes_sum: 3
+          mobile_rum_session_count_sum: 3
           container_avg: 3
-          netflow_indexed_events_count_sum: 3
+          netflow_indexed_events_count_sum: 7
           aws_lambda_func_count: 6
-          fargate_tasks_count_hwm: 7
+          fargate_tasks_count_hwm: 6
           profiling_host_top99p: 8
-          gcp_host_top99p: 6
-          azure_app_service_top99p: 5
-          apm_host_top99p: 1
-          synthetics_check_calls_count_sum: 8
-          aws_host_top99p: 2
-          custom_ts_avg: 7
+          gcp_host_top99p: 0
+          azure_app_service_top99p: 6
+          apm_host_top99p: 2
+          synthetics_check_calls_count_sum: 3
+          aws_host_top99p: 6
+          incident_management_monthly_active_users_hwm: 4
+          custom_ts_avg: 0
           trace_search_indexed_events_count_sum: 9
-          twol_ingested_events_bytes_sum: 1
-          agent_host_top99p: 6
-          indexed_events_count_sum: 0
-          infra_host_top99p: 4
+          twol_ingested_events_bytes_sum: 8
+          agent_host_top99p: 1
+          indexed_events_count_sum: 8
+          infra_host_top99p: 7
           orgs:
-          - npm_host_top99p: 6
-            container_hwm: 1
-            billable_ingested_bytes_sum: 6
-            fargate_tasks_count_avg: 7
-            rum_session_count_sum: 4
-            ingested_events_bytes_sum: 7
+          - npm_host_top99p: 3
+            container_hwm: 7
+            billable_ingested_bytes_sum: 1
+            fargate_tasks_count_avg: 0
+            rum_session_count_sum: 2
+            ingested_events_bytes_sum: 6
             public_id: public_id
-            mobile_rum_session_count_sum: 5
+            mobile_rum_session_count_sum: 8
             container_avg: 4
             netflow_indexed_events_count_sum: 4
-            aws_lambda_func_count: 4
+            aws_lambda_func_count: 6
             id: id
             fargate_tasks_count_hwm: 9
-            profiling_host_top99p: 8
+            profiling_host_top99p: 0
             gcp_host_top99p: 0
-            apm_host_top99p: 5
-            synthetics_check_calls_count_sum: 0
-            aws_host_top99p: 3
-            custom_ts_avg: 4
-            trace_search_indexed_events_count_sum: 2
-            twol_ingested_events_bytes_sum: 1
-            agent_host_top99p: 7
-            indexed_events_count_sum: 9
-            infra_host_top99p: 0
+            apm_host_top99p: 4
+            synthetics_check_calls_count_sum: 8
+            aws_host_top99p: 0
+            incident_management_monthly_active_users_hwm: 7
+            custom_ts_avg: 9
+            trace_search_indexed_events_count_sum: 6
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 3
+            indexed_events_count_sum: 5
+            infra_host_top99p: 4
             name: name
-            aws_lambda_invocations_sum: 0
-            synthetics_browser_check_calls_count_sum: 3
-          - npm_host_top99p: 6
-            container_hwm: 1
-            billable_ingested_bytes_sum: 6
-            fargate_tasks_count_avg: 7
-            rum_session_count_sum: 4
-            ingested_events_bytes_sum: 7
+            aws_lambda_invocations_sum: 4
+            synthetics_browser_check_calls_count_sum: 1
+          - npm_host_top99p: 3
+            container_hwm: 7
+            billable_ingested_bytes_sum: 1
+            fargate_tasks_count_avg: 0
+            rum_session_count_sum: 2
+            ingested_events_bytes_sum: 6
             public_id: public_id
-            mobile_rum_session_count_sum: 5
+            mobile_rum_session_count_sum: 8
             container_avg: 4
             netflow_indexed_events_count_sum: 4
-            aws_lambda_func_count: 4
+            aws_lambda_func_count: 6
             id: id
             fargate_tasks_count_hwm: 9
-            profiling_host_top99p: 8
+            profiling_host_top99p: 0
             gcp_host_top99p: 0
-            apm_host_top99p: 5
-            synthetics_check_calls_count_sum: 0
-            aws_host_top99p: 3
-            custom_ts_avg: 4
-            trace_search_indexed_events_count_sum: 2
-            twol_ingested_events_bytes_sum: 1
-            agent_host_top99p: 7
-            indexed_events_count_sum: 9
-            infra_host_top99p: 0
+            apm_host_top99p: 4
+            synthetics_check_calls_count_sum: 8
+            aws_host_top99p: 0
+            incident_management_monthly_active_users_hwm: 7
+            custom_ts_avg: 9
+            trace_search_indexed_events_count_sum: 6
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 3
+            indexed_events_count_sum: 5
+            infra_host_top99p: 4
             name: name
-            aws_lambda_invocations_sum: 0
-            synthetics_browser_check_calls_count_sum: 3
-          aws_lambda_invocations_sum: 6
-          synthetics_browser_check_calls_count_sum: 4
+            aws_lambda_invocations_sum: 4
+            synthetics_browser_check_calls_count_sum: 1
+          aws_lambda_invocations_sum: 5
+          synthetics_browser_check_calls_count_sum: 1
         container_hwm_sum: 2
-        synthetics_browser_check_calls_count_agg_sum: 8
+        synthetics_browser_check_calls_count_agg_sum: 9
         apm_host_top99p_sum: 6
-        npm_host_top99p_sum: 5
+        npm_host_top99p_sum: 9
         container_avg_sum: 3
-        mobile_rum_session_count_agg_sum: 1
+        mobile_rum_session_count_agg_sum: 4
         agent_host_top99p_sum: 0
-        infra_host_top99p_sum: 6
+        infra_host_top99p_sum: 7
         custom_ts_sum: 4
-        synthetics_check_calls_count_agg_sum: 9
+        synthetics_check_calls_count_agg_sum: 6
         aws_lambda_func_count: 5
-        netflow_indexed_events_count_agg_sum: 4
+        netflow_indexed_events_count_agg_sum: 5
         fargate_tasks_count_avg_sum: 7
         fargate_tasks_count_hwm_sum: 1
         azure_app_service_top99p_sum: 2
         start_date: 2000-01-23T04:56:07.000+00:00
         billable_ingested_bytes_agg_sum: 9
-        ingested_events_bytes_agg_sum: 7
-        twol_ingested_events_bytes_agg_sum: 3
+        ingested_events_bytes_agg_sum: 1
+        twol_ingested_events_bytes_agg_sum: 6
         last_updated: 2000-01-23T04:56:07.000+00:00
-        indexed_events_count_agg_sum: 1
+        indexed_events_count_agg_sum: 6
+        incident_management_monthly_active_users_hwm_sum: 1
         gcp_host_top99p_sum: 1
-        rum_session_count_agg_sum: 6
+        rum_session_count_agg_sum: 8
         aws_host_top99p_sum: 1
         profiling_container_agent_count_avg: 9
-        profiling_host_count_top99p_sum: 9
+        profiling_host_count_top99p_sum: 6
         aws_lambda_invocations_sum: 5
-        trace_search_indexed_events_count_agg_sum: 6
+        trace_search_indexed_events_count_agg_sum: 3
       properties:
         agent_host_top99p_sum:
           description: Shows the 99th percentile of all agent hosts over all hours
-            in the current month(s) for all organizations.
+            in the current months for all organizations.
           format: int64
           type: integer
         apm_host_top99p_sum:
           description: Shows the 99th percentile of all distinct APM hosts over all
-            hours in the current month(s) for all organizations.
+            hours in the current months for all organizations.
           format: int64
           type: integer
         aws_host_top99p_sum:
           description: Shows the 99th percentile of all AWS hosts over all hours in
-            the current month(s) for all organizations.
+            the current months for all organizations.
           format: int64
           type: integer
         aws_lambda_func_count:
           description: Shows the average of the number of functions that executed
-            1 or more times each hour in the current month(s) for all organizations.
+            1 or more times each hour in the current months for all organizations.
           format: int64
           type: integer
         aws_lambda_invocations_sum:
           description: Shows the sum of all AWS Lambda invocations over all hours
-            in the current month(s) for all organizations.
+            in the current months for all organizations.
           format: int64
           type: integer
         azure_app_service_top99p_sum:
           description: Shows the 99th percentile of all Azure app services over all
-            hours in the current month(s) for all organizations.
+            hours in the current months for all organizations.
           format: int64
           type: integer
         azure_host_top99p_sum:
           description: Shows the 99th percentile of all Azure hosts over all hours
-            in the current month(s) for all organizations.
+            in the current months for all organizations.
           format: int64
           type: integer
         billable_ingested_bytes_agg_sum:
           description: Shows the sum of all log bytes ingested over all hours in the
-            current month(s) for all organizations.
+            current months for all organizations.
           format: int64
           type: integer
         container_avg_sum:
           description: Shows the average of all distinct containers over all hours
-            in the current month(s) for all organizations.
+            in the current months for all organizations.
           format: int64
           type: integer
         container_hwm_sum:
-          description: Shows the high watermark of all distinct containers over all
-            hours in the current month(s) for all organizations.
+          description: Shows the sum of the high-water marks of all distinct containers
+            over all hours in the current months for all organizations.
           format: int64
           type: integer
         custom_ts_sum:
           description: Shows the average number of distinct custom metrics over all
-            hours in the current month(s) for all organizations.
+            hours in the current months for all organizations.
           format: int64
           type: integer
         end_date:
-          description: Shows the last date of usage in the current month(s) for all
+          description: Shows the last date of usage in the current months for all
             organizations.
           format: date-time
           type: string
         fargate_tasks_count_avg_sum:
           description: Shows the average of all Fargate tasks over all hours in the
-            current month(s) for all organizations.
+            current months for all organizations.
           format: int64
           type: integer
         fargate_tasks_count_hwm_sum:
-          description: Shows the high watermark of all Fargate tasks over all hours
-            in the current month(s) for all organizations.
+          description: Shows the sum of the high-water marks of all Fargate tasks
+            over all hours in the current months for all organizations.
           format: int64
           type: integer
         gcp_host_top99p_sum:
           description: Shows the 99th percentile of all GCP hosts over all hours in
-            the current month(s) for all organizations.
+            the current months for all organizations.
+          format: int64
+          type: integer
+        incident_management_monthly_active_users_hwm_sum:
+          description: Shows sum of the the high-water marks of incident management
+            monthly active users in the current months for all organizations.
           format: int64
           type: integer
         indexed_events_count_agg_sum:
           description: Shows the sum of all log events indexed over all hours in the
-            current month(s) for all organizations.
+            current months for all organizations.
           format: int64
           type: integer
         infra_host_top99p_sum:
           description: Shows the 99th percentile of all distinct infrastructure hosts
-            over all hours in the current month(s) for all organizations.
+            over all hours in the current months for all organizations.
           format: int64
           type: integer
         ingested_events_bytes_agg_sum:
           description: Shows the sum of all log bytes ingested over all hours in the
-            current month(s) for all organizations.
+            current months for all organizations.
           format: int64
           type: integer
         last_updated:
-          description: Shows the the most recent hour in the current month(s) for
-            all organizations for which all usages were calculated.
+          description: Shows the the most recent hour in the current months for all
+            organizations for which all usages were calculated.
           format: date-time
           type: string
         mobile_rum_session_count_agg_sum:
           description: Shows the sum of all mobile RUM Sessions over all hours in
-            the current month(s) for all organizations.
+            the current months for all organizations.
           format: int64
           type: integer
         netflow_indexed_events_count_agg_sum:
           description: Shows the sum of all Network flows indexed over all hours in
-            the current month(s) for all organizations.
+            the current months for all organizations.
           format: int64
           type: integer
         npm_host_top99p_sum:
           description: Shows the 99th percentile of all distinct Networks hosts over
-            all hours in the current month(s) for all organizations.
+            all hours in the current months for all organizations.
           format: int64
           type: integer
         profiling_container_agent_count_avg:
           description: Shows the average number of profiled containers over all hours
-            in the current month(s) for all organizations.
+            in the current months for all organizations.
           format: int64
           type: integer
         profiling_host_count_top99p_sum:
           description: Shows the 99th percentile of all profiled hosts over all hours
-            in the current month(s) for all organizations.
+            in the current months for all organizations.
           format: int64
           type: integer
         rum_session_count_agg_sum:
           description: Shows the sum of all browser RUM Sessions over all hours in
-            the current month(s) for all organizations.
+            the current months for all organizations.
           format: int64
           type: integer
         start_date:
-          description: Shows the first date of usage in the current month(s) for all
+          description: Shows the first date of usage in the current months for all
             organizations.
           format: date-time
           type: string
         synthetics_browser_check_calls_count_agg_sum:
           description: Shows the sum of all Synthetic browser tests over all hours
-            in the current month(s) for all organizations.
+            in the current months for all organizations.
           format: int64
           type: integer
         synthetics_check_calls_count_agg_sum:
           description: Shows the sum of all Synthetic API tests over all hours in
-            the current month(s) for all organizations.
+            the current months for all organizations.
           format: int64
           type: integer
         trace_search_indexed_events_count_agg_sum:
           description: Shows the sum of all Indexed Spans indexed over all hours in
-            the current month(s) for all organizations.
+            the current months for all organizations.
           format: int64
           type: integer
         twol_ingested_events_bytes_agg_sum:
           description: Shows the sum of all tracing without limits bytes ingested
-            over all hours in the current month(s) for all organizations.
+            over all hours in the current months for all organizations.
           format: int64
           type: integer
         usage:
