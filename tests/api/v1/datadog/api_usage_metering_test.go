@@ -557,9 +557,8 @@ func TestUsageAttribution(t *testing.T) {
 	assert.True(usage.HasMetadata())
 
 	usageItem := usage.GetUsage()[2]
-	assert.Equal(time.Date(2020, 11, 01, 0, 0, 0, 0, time.UTC), usageItem.GetMonth().UTC())
 	assert.Equal("fasjyydbcgwwc2uc", usageItem.GetPublicId())
-	assert.Equal("2020-11-16T17", usageItem.GetUpdatedAt())
+	assert.Equal("2020-11-18T20", usageItem.GetUpdatedAt())
 	tags := usageItem.GetTags()
 	assert.Contains(tags, "project")
 	assert.Equal("datadog-integrations-lab", tags["project"][0])
