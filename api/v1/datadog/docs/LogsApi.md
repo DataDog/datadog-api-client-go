@@ -42,7 +42,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewLogsListRequest("service:web* AND @http.status_code:[200 TO 299]", *datadog.NewLogsListRequest_time("TODO", "TODO")) // LogsListRequest | Logs filter
+    body := *datadog.NewLogsListRequest(*datadog.NewLogsListRequest_time("TODO", "TODO")) // LogsListRequest | Logs filter
 
     configuration := datadog.NewConfiguration()
 

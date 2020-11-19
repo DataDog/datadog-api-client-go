@@ -4,36 +4,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AgentHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all agent hosts over all hours in the current month(s) for all organizations. | [optional] 
-**ApmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct APM hosts over all hours in the current month(s) for all organizations. | [optional] 
-**AwsHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current month(s) for all organizations. | [optional] 
-**AwsLambdaFuncCount** | Pointer to **int64** | Shows the average of the number of functions that executed 1 or more times each hour in the current month(s) for all organizations. | [optional] 
-**AwsLambdaInvocationsSum** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current month(s) for all organizations. | [optional] 
-**AzureAppServiceTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure app services over all hours in the current month(s) for all organizations. | [optional] 
-**AzureHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure hosts over all hours in the current month(s) for all organizations. | [optional] 
-**BillableIngestedBytesAggSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current month(s) for all organizations. | [optional] 
-**ContainerAvgSum** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current month(s) for all organizations. | [optional] 
-**ContainerHwmSum** | Pointer to **int64** | Shows the high watermark of all distinct containers over all hours in the current month(s) for all organizations. | [optional] 
-**CustomTsSum** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current month(s) for all organizations. | [optional] 
-**EndDate** | Pointer to [**time.Time**](time.Time.md) | Shows the last date of usage in the current month(s) for all organizations. | [optional] 
-**FargateTasksCountAvgSum** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current month(s) for all organizations. | [optional] 
-**FargateTasksCountHwmSum** | Pointer to **int64** | Shows the high watermark of all Fargate tasks over all hours in the current month(s) for all organizations. | [optional] 
-**GcpHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current month(s) for all organizations. | [optional] 
-**IndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current month(s) for all organizations. | [optional] 
-**InfraHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current month(s) for all organizations. | [optional] 
-**IngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current month(s) for all organizations. | [optional] 
-**LastUpdated** | Pointer to [**time.Time**](time.Time.md) | Shows the the most recent hour in the current month(s) for all organizations for which all usages were calculated. | [optional] 
-**MobileRumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current month(s) for all organizations. | [optional] 
-**NetflowIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current month(s) for all organizations. | [optional] 
-**NpmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current month(s) for all organizations. | [optional] 
-**ProfilingContainerAgentCountAvg** | Pointer to **int64** | Shows the average number of profiled containers over all hours in the current month(s) for all organizations. | [optional] 
-**ProfilingHostCountTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current month(s) for all organizations. | [optional] 
-**RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current month(s) for all organizations. | [optional] 
-**StartDate** | Pointer to [**time.Time**](time.Time.md) | Shows the first date of usage in the current month(s) for all organizations. | [optional] 
-**SyntheticsBrowserCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current month(s) for all organizations. | [optional] 
-**SyntheticsCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current month(s) for all organizations. | [optional] 
-**TraceSearchIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Indexed Spans indexed over all hours in the current month(s) for all organizations. | [optional] 
-**TwolIngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all tracing without limits bytes ingested over all hours in the current month(s) for all organizations. | [optional] 
+**AgentHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all agent hosts over all hours in the current months for all organizations. | [optional] 
+**ApmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct APM hosts over all hours in the current months for all organizations. | [optional] 
+**AwsHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current months for all organizations. | [optional] 
+**AwsLambdaFuncCount** | Pointer to **int64** | Shows the average of the number of functions that executed 1 or more times each hour in the current months for all organizations. | [optional] 
+**AwsLambdaInvocationsSum** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current months for all organizations. | [optional] 
+**AzureAppServiceTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure app services over all hours in the current months for all organizations. | [optional] 
+**AzureHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure hosts over all hours in the current months for all organizations. | [optional] 
+**BillableIngestedBytesAggSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current months for all organizations. | [optional] 
+**ContainerAvgSum** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current months for all organizations. | [optional] 
+**ContainerHwmSum** | Pointer to **int64** | Shows the sum of the high-water marks of all distinct containers over all hours in the current months for all organizations. | [optional] 
+**CustomTsSum** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current months for all organizations. | [optional] 
+**EndDate** | Pointer to [**time.Time**](time.Time.md) | Shows the last date of usage in the current months for all organizations. | [optional] 
+**FargateTasksCountAvgSum** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current months for all organizations. | [optional] 
+**FargateTasksCountHwmSum** | Pointer to **int64** | Shows the sum of the high-water marks of all Fargate tasks over all hours in the current months for all organizations. | [optional] 
+**GcpHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current months for all organizations. | [optional] 
+**IncidentManagementMonthlyActiveUsersHwmSum** | Pointer to **int64** | Shows sum of the the high-water marks of incident management monthly active users in the current months for all organizations. | [optional] 
+**IndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current months for all organizations. | [optional] 
+**InfraHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current months for all organizations. | [optional] 
+**IngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current months for all organizations. | [optional] 
+**LastUpdated** | Pointer to [**time.Time**](time.Time.md) | Shows the the most recent hour in the current months for all organizations for which all usages were calculated. | [optional] 
+**MobileRumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current months for all organizations. | [optional] 
+**NetflowIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current months for all organizations. | [optional] 
+**NpmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current months for all organizations. | [optional] 
+**ProfilingContainerAgentCountAvg** | Pointer to **int64** | Shows the average number of profiled containers over all hours in the current months for all organizations. | [optional] 
+**ProfilingHostCountTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current months for all organizations. | [optional] 
+**RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current months for all organizations. | [optional] 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) | Shows the first date of usage in the current months for all organizations. | [optional] 
+**SyntheticsBrowserCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current months for all organizations. | [optional] 
+**SyntheticsCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current months for all organizations. | [optional] 
+**TraceSearchIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Indexed Spans indexed over all hours in the current months for all organizations. | [optional] 
+**TwolIngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all tracing without limits bytes ingested over all hours in the current months for all organizations. | [optional] 
 **Usage** | Pointer to [**[]UsageSummaryDate**](UsageSummaryDate.md) | An array of objects regarding hourly usage. | [optional] 
 
 ## Methods
@@ -429,6 +430,31 @@ SetGcpHostTop99pSum sets GcpHostTop99pSum field to given value.
 `func (o *UsageSummaryResponse) HasGcpHostTop99pSum() bool`
 
 HasGcpHostTop99pSum returns a boolean if a field has been set.
+
+### GetIncidentManagementMonthlyActiveUsersHwmSum
+
+`func (o *UsageSummaryResponse) GetIncidentManagementMonthlyActiveUsersHwmSum() int64`
+
+GetIncidentManagementMonthlyActiveUsersHwmSum returns the IncidentManagementMonthlyActiveUsersHwmSum field if non-nil, zero value otherwise.
+
+### GetIncidentManagementMonthlyActiveUsersHwmSumOk
+
+`func (o *UsageSummaryResponse) GetIncidentManagementMonthlyActiveUsersHwmSumOk() (*int64, bool)`
+
+GetIncidentManagementMonthlyActiveUsersHwmSumOk returns a tuple with the IncidentManagementMonthlyActiveUsersHwmSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIncidentManagementMonthlyActiveUsersHwmSum
+
+`func (o *UsageSummaryResponse) SetIncidentManagementMonthlyActiveUsersHwmSum(v int64)`
+
+SetIncidentManagementMonthlyActiveUsersHwmSum sets IncidentManagementMonthlyActiveUsersHwmSum field to given value.
+
+### HasIncidentManagementMonthlyActiveUsersHwmSum
+
+`func (o *UsageSummaryResponse) HasIncidentManagementMonthlyActiveUsersHwmSum() bool`
+
+HasIncidentManagementMonthlyActiveUsersHwmSum returns a boolean if a field has been set.
 
 ### GetIndexedEventsCountAggSum
 
