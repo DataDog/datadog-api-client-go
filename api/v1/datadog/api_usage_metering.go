@@ -1402,6 +1402,198 @@ func (a *UsageMeteringApiService) GetUsageAnalyzedLogsExecute(r ApiGetUsageAnaly
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetUsageAttributionRequest struct {
+	ctx           _context.Context
+	ApiService    *UsageMeteringApiService
+	startMonth    *time.Time
+	fields        *string
+	endMonth      *time.Time
+	orgId         *int64
+	sortDirection *UsageSortDirection
+	sortName      *UsageAttributionSort
+}
+
+func (r ApiGetUsageAttributionRequest) StartMonth(startMonth time.Time) ApiGetUsageAttributionRequest {
+	r.startMonth = &startMonth
+	return r
+}
+func (r ApiGetUsageAttributionRequest) Fields(fields string) ApiGetUsageAttributionRequest {
+	r.fields = &fields
+	return r
+}
+func (r ApiGetUsageAttributionRequest) EndMonth(endMonth time.Time) ApiGetUsageAttributionRequest {
+	r.endMonth = &endMonth
+	return r
+}
+func (r ApiGetUsageAttributionRequest) OrgId(orgId int64) ApiGetUsageAttributionRequest {
+	r.orgId = &orgId
+	return r
+}
+func (r ApiGetUsageAttributionRequest) SortDirection(sortDirection UsageSortDirection) ApiGetUsageAttributionRequest {
+	r.sortDirection = &sortDirection
+	return r
+}
+func (r ApiGetUsageAttributionRequest) SortName(sortName UsageAttributionSort) ApiGetUsageAttributionRequest {
+	r.sortName = &sortName
+	return r
+}
+
+func (r ApiGetUsageAttributionRequest) Execute() (UsageAttributionResponse, *_nethttp.Response, error) {
+	return r.ApiService.GetUsageAttributionExecute(r)
+}
+
+/*
+ * GetUsageAttribution Get Usage Attribution
+ * Get Usage Attribution.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiGetUsageAttributionRequest
+ */
+func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context) ApiGetUsageAttributionRequest {
+	return ApiGetUsageAttributionRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return UsageAttributionResponse
+ */
+func (a *UsageMeteringApiService) GetUsageAttributionExecute(r ApiGetUsageAttributionRequest) (UsageAttributionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  UsageAttributionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageAttribution")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/usage/attribution"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.startMonth == nil {
+		return localVarReturnValue, nil, reportError("startMonth is required and must be specified")
+	}
+	if r.fields == nil {
+		return localVarReturnValue, nil, reportError("fields is required and must be specified")
+	}
+
+	localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	localVarQueryParams.Add("fields", parameterToString(*r.fields, ""))
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	if r.orgId != nil {
+		localVarQueryParams.Add("org_id", parameterToString(*r.orgId, ""))
+	}
+	if r.sortDirection != nil {
+		localVarQueryParams.Add("sort_direction", parameterToString(*r.sortDirection, ""))
+	}
+	if r.sortName != nil {
+		localVarQueryParams.Add("sort_name", parameterToString(*r.sortName, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageAttribution"
+
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetUsageBillableSummaryRequest struct {
 	ctx        _context.Context
 	ApiService *UsageMeteringApiService
