@@ -76,6 +76,7 @@ var requestsUndo = map[string]func(ctx gobdd.Context){
 	"ListLogs":                 undoIgnore,
 	"ListLogsGet":              undoIgnore,
 	"ListPermissions":          undoIgnore,
+	"ListProcesses":            undoIgnore,
 	"ListRolePermissions":      undoIgnore,
 	"ListRoles":                undoIgnore,
 	"ListRoleUsers":            undoIgnore,
