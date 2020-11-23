@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**EventQuery** | Pointer to [**EventQueryDefinition**](EventQueryDefinition.md) |  | [optional] 
+**EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
@@ -59,20 +59,20 @@ HasApmQuery returns a boolean if a field has been set.
 
 ### GetEventQuery
 
-`func (o *HostMapRequest) GetEventQuery() EventQueryDefinition`
+`func (o *HostMapRequest) GetEventQuery() LogQueryDefinition`
 
 GetEventQuery returns the EventQuery field if non-nil, zero value otherwise.
 
 ### GetEventQueryOk
 
-`func (o *HostMapRequest) GetEventQueryOk() (*EventQueryDefinition, bool)`
+`func (o *HostMapRequest) GetEventQueryOk() (*LogQueryDefinition, bool)`
 
 GetEventQueryOk returns a tuple with the EventQuery field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEventQuery
 
-`func (o *HostMapRequest) SetEventQuery(v EventQueryDefinition)`
+`func (o *HostMapRequest) SetEventQuery(v LogQueryDefinition)`
 
 SetEventQuery sets EventQuery field to given value.
 
