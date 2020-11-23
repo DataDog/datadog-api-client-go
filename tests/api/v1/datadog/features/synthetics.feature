@@ -149,7 +149,7 @@ Feature: Synthetics
     Given new "DeletePrivateLocation" request
     And request contains "location_id" parameter from "<PATH>"
     When the request is sent
-    Then the response status is 200 OK
+    Then the response status is 204 OK
 
   @generated @skip
   Scenario: Get a private location returns "OK" response
