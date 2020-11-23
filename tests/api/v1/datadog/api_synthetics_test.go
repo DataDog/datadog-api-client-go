@@ -1325,5 +1325,5 @@ func TestSyntheticsPrivateLocationLifecycle(t *testing.T) {
     if err != nil {
         t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", privateLocationID, err.(datadog.GenericOpenAPIError).Body(), err)
     }
-    assert.Equal(200, httpresp.StatusCode)
+    assert.Equal(204, httpresp.StatusCode)
 }
