@@ -1275,3 +1275,55 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 }
+
+func TestSyntheticsPrivateLocationLifecycle(t *testing.T) {
+    ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+    defer finish()
+    assert := tests.Assert(ctx, t)
+
+    // create a private location
+    privateLocationRequest := datadog.SyntheticsPrivateLocation{
+        Description: "Private Location description",
+        Name: *tests.UniqueEntityName(ctx, t),
+        Tags: []string{"testing:private-location"},
+    }
+
+    privateLocationFull, httpresp, err := Client(ctx).SyntheticsApi.CreatePrivateLocation(ctx).Body(privateLocationRequest).Execute()
+    if err != nil {
+        t.Fatalf("Error creating Synthetics private location %v: Response %s: %v", privateLocationRequest, err.(datadog.GenericOpenAPIError).Body(), err)
+    }
+    pl := privateLocationFull.GetPrivateLocation()
+
+    assert.Equal(pl.GetName(), privateLocationRequest.GetName())
+
+    privateLocationID := pl.GetId()
+
+    // edit private location
+    privateLocationUpdateRequest := datadog.SyntheticsPrivateLocation{
+        Description: "Private Location description",
+        Name: fmt.Sprintf("%s-updated", pl.GetName()),
+        Tags: []string{"testing:private-location"},
+    }
+
+    privateLocation, httpresp, err := Client(ctx).SyntheticsApi.UpdatePrivateLocation(ctx, privateLocationID).Body(privateLocationUpdateRequest).Execute()
+    if err != nil {
+        t.Fatalf("Error editing Synthetics private location %v: Response %s: %v", privateLocationRequest, err.(datadog.GenericOpenAPIError).Body(), err)
+    }
+
+    assert.Equal(privateLocation.GetName(), privateLocationUpdateRequest.GetName())
+
+    // get private location
+    privateLocationResponse, httpresp, err := Client(ctx).SyntheticsApi.GetPrivateLocation(ctx, privateLocationID).Execute()
+    if err != nil {
+        t.Fatalf("Error getting Synthetics private location %s: Response %s: %v", privateLocationID, err.(datadog.GenericOpenAPIError).Body(), err)
+    }
+    assert.Equal(200, httpresp.StatusCode)
+    assert.Equal(privateLocationResponse.GetName(), privateLocation.GetName())
+
+    // delete private location
+    httpresp, err = Client(ctx).SyntheticsApi.DeletePrivateLocation(ctx, privateLocationID).Execute()
+    if err != nil {
+        t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", privateLocationID, err.(datadog.GenericOpenAPIError).Body(), err)
+    }
+    assert.Equal(204, httpresp.StatusCode)
+}
