@@ -6670,6 +6670,18 @@ paths:
             type: string
           type: array
         style: form
+      - description: Maximum number of results to return.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 500
+          format: int32
+          maximum: 5000
+          minimum: 1
+          type: integer
+        style: form
       responses:
         "200":
           content:

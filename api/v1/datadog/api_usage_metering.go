@@ -4495,6 +4495,7 @@ type ApiGetUsageTopAvgMetricsRequest struct {
 	ApiService *UsageMeteringApiService
 	month      *time.Time
 	names      *[]string
+	limit      *int32
 }
 
 func (r ApiGetUsageTopAvgMetricsRequest) Month(month time.Time) ApiGetUsageTopAvgMetricsRequest {
@@ -4503,6 +4504,10 @@ func (r ApiGetUsageTopAvgMetricsRequest) Month(month time.Time) ApiGetUsageTopAv
 }
 func (r ApiGetUsageTopAvgMetricsRequest) Names(names []string) ApiGetUsageTopAvgMetricsRequest {
 	r.names = &names
+	return r
+}
+func (r ApiGetUsageTopAvgMetricsRequest) Limit(limit int32) ApiGetUsageTopAvgMetricsRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -4562,6 +4567,9 @@ func (a *UsageMeteringApiService) GetUsageTopAvgMetricsExecute(r ApiGetUsageTopA
 		} else {
 			localVarQueryParams.Add("names", parameterToString(t, "multi"))
 		}
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

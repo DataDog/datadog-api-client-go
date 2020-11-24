@@ -2219,7 +2219,7 @@ Name | Type | Description  | Notes
 
 ## GetUsageTopAvgMetrics
 
-> UsageTopAvgMetricsResponse GetUsageTopAvgMetrics(ctx).Month(month).Names(names).Execute()
+> UsageTopAvgMetricsResponse GetUsageTopAvgMetrics(ctx).Month(month).Names(names).Limit(limit).Execute()
 
 Get top 500 custom metrics by hourly average
 
@@ -2254,11 +2254,12 @@ func main() {
 
     month := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour.
     names := []string{"Inner_example"} // []string | Comma-separated list of metric names. (optional)
+    limit := int32(56) // int32 | Maximum number of results to return. (optional) (default to 500)
 
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageTopAvgMetrics(ctx).Month(month).Names(names).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageTopAvgMetrics(ctx).Month(month).Names(names).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTopAvgMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2281,6 +2282,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **month** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour. | 
  **names** | **[]string** | Comma-separated list of metric names. | 
+ **limit** | **int32** | Maximum number of results to return. | [default to 500]
 
 ### Return type
 
