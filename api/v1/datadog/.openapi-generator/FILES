@@ -43,6 +43,11 @@ docs/AWSLogsListResponse.md
 docs/AWSLogsListResponseLambdas.md
 docs/AWSLogsListServicesResponse.md
 docs/AWSLogsServicesRequest.md
+docs/AWSNamespace.md
+docs/AWSTagFilterCreateRequest.md
+docs/AWSTagFilterDeleteRequest.md
+docs/AWSTagFilterListResponse.md
+docs/AWSTagFilterListResponseFilters.md
 docs/AccessRole.md
 docs/AlertGraphWidgetDefinition.md
 docs/AlertGraphWidgetDefinitionType.md
@@ -522,6 +527,11 @@ model_aws_logs_list_response.go
 model_aws_logs_list_response_lambdas.go
 model_aws_logs_list_services_response.go
 model_aws_logs_services_request.go
+model_aws_namespace.go
+model_aws_tag_filter_create_request.go
+model_aws_tag_filter_delete_request.go
+model_aws_tag_filter_list_response.go
+model_aws_tag_filter_list_response_filters.go
 model_azure_account.go
 model_cancel_downtimes_by_scope_request.go
 model_canceled_downtimes_ids.go
