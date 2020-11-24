@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Billing** | [**OrganizationBilling**](OrganizationBilling.md) |  | 
+**Billing** | Pointer to [**OrganizationBilling**](OrganizationBilling.md) |  | [optional] 
 **Name** | **string** | The name of the new child-organization, limited to 32 characters. | 
-**Subscription** | [**OrganizationSubscription**](OrganizationSubscription.md) |  | 
+**Subscription** | Pointer to [**OrganizationSubscription**](OrganizationSubscription.md) |  | [optional] 
 
 ## Methods
 
 ### NewOrganizationCreateBody
 
-`func NewOrganizationCreateBody(billing OrganizationBilling, name string, subscription OrganizationSubscription, ) *OrganizationCreateBody`
+`func NewOrganizationCreateBody(name string, ) *OrganizationCreateBody`
 
 NewOrganizationCreateBody instantiates a new OrganizationCreateBody object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetBilling sets Billing field to given value.
 
+### HasBilling
+
+`func (o *OrganizationCreateBody) HasBilling() bool`
+
+HasBilling returns a boolean if a field has been set.
 
 ### GetName
 
@@ -86,6 +91,11 @@ and a boolean to check if the value has been set.
 
 SetSubscription sets Subscription field to given value.
 
+### HasSubscription
+
+`func (o *OrganizationCreateBody) HasSubscription() bool`
+
+HasSubscription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
