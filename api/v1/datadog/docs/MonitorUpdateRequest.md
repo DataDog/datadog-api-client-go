@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the monitor creation. | [optional] [readonly] 
+**Created** | Pointer to **time.Time** | Timestamp of the monitor creation. | [optional] [readonly] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Deleted** | Pointer to [**NullableTime**](time.Time.md) | Whether or not the monitor is deleted. (Always &#x60;null&#x60;) | [optional] [readonly] 
+**Deleted** | Pointer to **NullableTime** | Whether or not the monitor is deleted. (Always &#x60;null&#x60;) | [optional] [readonly] 
 **Id** | Pointer to **int64** | ID of this monitor. | [optional] [readonly] 
 **Message** | Pointer to **string** | A message to include with notifications for this monitor. | [optional] 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | Last timestamp when the monitor was edited. | [optional] [readonly] 
+**Modified** | Pointer to **time.Time** | Last timestamp when the monitor was edited. | [optional] [readonly] 
 **Multi** | Pointer to **bool** | Whether or not the monitor is broken down on different groups. | [optional] [readonly] 
 **Name** | Pointer to **string** | The monitor name. | [optional] 
 **Options** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 

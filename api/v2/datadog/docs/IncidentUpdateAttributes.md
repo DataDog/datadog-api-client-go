@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CustomerImpactEnd** | Pointer to [**NullableTime**](time.Time.md) | Timestamp when customers were no longer impacted by the incident. | [optional] 
+**CustomerImpactEnd** | Pointer to **NullableTime** | Timestamp when customers were no longer impacted by the incident. | [optional] 
 **CustomerImpactScope** | Pointer to **string** | A summary of the impact customers experienced during the incident. | [optional] 
-**CustomerImpactStart** | Pointer to [**NullableTime**](time.Time.md) | Timestamp when customers began being impacted by the incident. | [optional] 
+**CustomerImpactStart** | Pointer to **NullableTime** | Timestamp when customers began being impacted by the incident. | [optional] 
 **CustomerImpacted** | Pointer to **bool** | A flag indicating whether the incident caused customer impact. | [optional] 
-**Detected** | Pointer to [**NullableTime**](time.Time.md) | Timestamp when the incident was detected. | [optional] 
+**Detected** | Pointer to **NullableTime** | Timestamp when the incident was detected. | [optional] 
 **Fields** | Pointer to [**map[string]IncidentFieldAttributes**](IncidentFieldAttributes.md) | A condensed view of the user-defined fields for which to update selections. | [optional] 
 **NotificationHandles** | Pointer to **[]string** | Notification handles that will be notified of the incident during update. | [optional] 
-**Resolved** | Pointer to [**NullableTime**](time.Time.md) | Timestamp when the incident&#39;s state was set to resolved. | [optional] 
+**Resolved** | Pointer to **NullableTime** | Timestamp when the incident&#39;s state was set to resolved. | [optional] 
 **Title** | Pointer to **string** | The title of the incident, which summarizes what happened. | [optional] 
 
 ## Methods

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errors** | Pointer to [**[]AWSLogsAsyncResponseErrors**](AWSLogsAsyncResponse_errors.md) | List of errors. | [optional] 
+**Errors** | Pointer to [**[]AWSLogsAsyncResponseErrors**](AWSLogsAsyncResponseErrors.md) | List of errors. | [optional] 
 **Status** | Pointer to **string** | Status of the properties. | [optional] 
 
 ## Methods

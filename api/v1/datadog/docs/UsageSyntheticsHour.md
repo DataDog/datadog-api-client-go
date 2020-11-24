@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CheckCallsCount** | Pointer to **int64** | Contains the number of Synthetics API tests run. | [optional] 
-**Hour** | Pointer to [**time.Time**](time.Time.md) | The hour for the usage. | [optional] 
+**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 
 ## Methods
 

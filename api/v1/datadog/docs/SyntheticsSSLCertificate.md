@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 **Protocol** | Pointer to **string** | TLS protocol used for the test. | [optional] 
 **SerialNumber** | Pointer to **string** | Serial Number assigned by Symantec to the SSL certificate. | [optional] 
 **Subject** | Pointer to [**SyntheticsSSLCertificateSubject**](SyntheticsSSLCertificate_subject.md) |  | [optional] 
-**ValidFrom** | Pointer to [**time.Time**](time.Time.md) | Date from which the SSL certificate is valid. | [optional] 
-**ValidTo** | Pointer to [**time.Time**](time.Time.md) | Date until which the SSL certificate is valid. | [optional] 
+**ValidFrom** | Pointer to **time.Time** | Date from which the SSL certificate is valid. | [optional] 
+**ValidTo** | Pointer to **time.Time** | Date until which the SSL certificate is valid. | [optional] 
 
 ## Methods
 

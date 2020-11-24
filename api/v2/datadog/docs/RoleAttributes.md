@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Creation time of the role. | [optional] [readonly] 
-**ModifiedAt** | Pointer to [**time.Time**](time.Time.md) | Time of last role modification. | [optional] [readonly] 
+**CreatedAt** | Pointer to **time.Time** | Creation time of the role. | [optional] [readonly] 
+**ModifiedAt** | Pointer to **time.Time** | Time of last role modification. | [optional] [readonly] 
 **Name** | Pointer to **string** | Name of the role. | [optional] 
 **UserCount** | Pointer to **int64** | Number of users with that role. | [optional] [readonly] 
 

@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Author** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Created** | Pointer to [**time.Time**](time.Time.md) | Date of creation of the dashboard list. | [optional] [readonly] 
+**Created** | Pointer to **time.Time** | Date of creation of the dashboard list. | [optional] [readonly] 
 **DashboardCount** | Pointer to **int64** | The number of dashboards in the list. | [optional] [readonly] 
 **Id** | Pointer to **int64** | The ID of the dashboard list. | [optional] [readonly] 
 **IsFavorite** | Pointer to **bool** | Whether or not the list is in the favorites. | [optional] [readonly] 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | Date of last edition of the dashboard list. | [optional] [readonly] 
+**Modified** | Pointer to **time.Time** | Date of last edition of the dashboard list. | [optional] [readonly] 
 **Name** | **string** | The name of the dashboard list. | 
 **Type** | Pointer to **string** | The type of dashboard list. | [optional] [readonly] 
 

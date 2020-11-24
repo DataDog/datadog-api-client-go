@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Dashboards** | Pointer to [**[]DashboardSummaryDashboards**](DashboardSummary_dashboards.md) | List of dashboard definitions. | [optional] 
+**Dashboards** | Pointer to [**[]DashboardSummaryDashboards**](DashboardSummaryDashboards.md) | List of dashboard definitions. | [optional] 
 
 ## Methods
 

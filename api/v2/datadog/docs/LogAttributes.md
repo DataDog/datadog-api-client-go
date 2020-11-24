@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Service** | Pointer to **string** | The name of the application or service generating the log events. It is used to switch from Logs to APM, so make sure you define the same value when you use both products. | [optional] 
 **Status** | Pointer to **string** | Status of the message associated with your log. | [optional] 
 **Tags** | Pointer to **[]string** | Array of tags associated with your log. | [optional] 
-**Timestamp** | Pointer to [**time.Time**](time.Time.md) | Timestamp of your log. | [optional] 
+**Timestamp** | Pointer to **time.Time** | Timestamp of your log. | [optional] 
 
 ## Methods
 

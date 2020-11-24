@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountBillableUsage** | Pointer to **int64** | The total account usage. | [optional] 
 **ElapsedUsageHours** | Pointer to **int64** | Elapsed usage hours for some billable product. | [optional] 
-**FirstBillableUsageHour** | Pointer to [**time.Time**](time.Time.md) | The first billable hour for the org. | [optional] 
-**LastBillableUsageHour** | Pointer to [**time.Time**](time.Time.md) | The last billable hour for the org. | [optional] 
+**FirstBillableUsageHour** | Pointer to **time.Time** | The first billable hour for the org. | [optional] 
+**LastBillableUsageHour** | Pointer to **time.Time** | The last billable hour for the org. | [optional] 
 **OrgBillableUsage** | Pointer to **int64** | The number of units used within the billable timeframe. | [optional] 
 **PercentageInAccount** | Pointer to **float64** | The percentage of account usage the org represents. | [optional] 
 **UsageUnit** | Pointer to **string** | Units pertaining to the usage. | [optional] 

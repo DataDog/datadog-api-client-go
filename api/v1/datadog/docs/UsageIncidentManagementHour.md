@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hour** | Pointer to [**time.Time**](time.Time.md) | The hour for the usage. | [optional] 
+**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **MonthlyActiveUsers** | Pointer to **int64** | Contains the total number monthly active users from the start of the given hour&#39;s month until the given hour. | [optional] 
 
 ## Methods
