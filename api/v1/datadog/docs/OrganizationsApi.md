@@ -46,7 +46,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewOrganizationCreateBody(*datadog.NewOrganizationBilling(), "New child org", *datadog.NewOrganizationSubscription()) // OrganizationCreateBody | Organization object that needs to be created
+    body := *datadog.NewOrganizationCreateBody("New child org") // OrganizationCreateBody | Organization object that needs to be created
 
     configuration := datadog.NewConfiguration()
 
