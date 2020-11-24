@@ -1,0 +1,65 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListProcesses
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.11 (go go1.14.2; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6878962885012807080"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3105335369700866393"
+    url: https://api.datadoghq.com/api/v2/processes?page%5Blimit%5D=2&search=process-agent&tags=testing%3Atrue
+    method: GET
+  response:
+    body: '{"meta":{"page":{"after":"48ad51e27501000015e90400c5f73d639eae5b250aeeb430a3acb093","size":2}},"data":[{"type":"process","id":"15e90400c53674fe2bf07fb2988d3c1cbe735b5f","attributes":{"cmdline":"/opt/datadog-agent/embedded/bin/process-agent
+      --config=/etc/datadog-agent/datadog.yaml --sysprobe-config=/etc/datadog-agent/system-probe.yaml
+      --pid=/opt/datadog-agent/run/process-agent.pid","timestamp":"2020-11-19T21:38:09","start":"2020-11-19T19:05:21","user":"uid:118","pid":1168,"ppid":1,"host":"gardie-frog","tags":["testing:true","host:gardie-frog","user:uid:118","command:process-agent","state_zombie:false"]}},{"type":"process","id":"15e90400c5f73d639eae5b250aeeb430a3acb093","attributes":{"cmdline":"process-agent
+      --config=/etc/datadog-agent/datadog.yaml","timestamp":"2020-11-19T21:32:09","start":"2020-11-19T21:03:25","user":"root","pid":16407,"ppid":16402,"host":"gardie-frog","tags":["testing:true","host:gardie-frog","user:uid:118","command:process-agent","state_zombie:false"]}}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 19 Nov 2020 21:38:52 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 26-Nov-2020 21:38:52 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - DRZWTHDeKolQqk6GEAFoSVDF1cV93C/z8xwO7umb9e0luQPYr8BUl8IXxXdpfaM5
+      X-Dd-Version:
+      - "35.3401942"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "100"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "99"
+      X-Ratelimit-Reset:
+      - "8"
+    status: 200 OK
+    code: 200
+    duration: ""
