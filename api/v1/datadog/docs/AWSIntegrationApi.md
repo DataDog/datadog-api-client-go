@@ -5,9 +5,12 @@ All URIs are relative to *https://api.datadoghq.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount) | **Post** /api/v1/integration/aws | Create an AWS integration
+[**CreateAWSTagFilter**](AWSIntegrationApi.md#CreateAWSTagFilter) | **Post** /api/v1/integration/aws/filtering | Set an AWS tag filter
 [**CreateNewAWSExternalID**](AWSIntegrationApi.md#CreateNewAWSExternalID) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate a new external ID
 [**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount) | **Delete** /api/v1/integration/aws | Delete an AWS integration
+[**DeleteAWSTagFilter**](AWSIntegrationApi.md#DeleteAWSTagFilter) | **Delete** /api/v1/integration/aws/filtering | Delete a tag filtering entry
 [**ListAWSAccounts**](AWSIntegrationApi.md#ListAWSAccounts) | **Get** /api/v1/integration/aws | List all AWS integrations
+[**ListAWSTagFilters**](AWSIntegrationApi.md#ListAWSTagFilters) | **Get** /api/v1/integration/aws/filtering | Get all AWS tag filters
 [**ListAvailableAWSNamespaces**](AWSIntegrationApi.md#ListAvailableAWSNamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List namespace rules
 [**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount) | **Put** /api/v1/integration/aws | Update an AWS integration
 
@@ -78,6 +81,86 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AWSAccountCreateResponse**](AWSAccountCreateResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateAWSTagFilter
+
+> interface{} CreateAWSTagFilter(ctx).Body(body).Execute()
+
+Set an AWS tag filter
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+    body := *datadog.NewAWSTagFilterCreateRequest() // AWSTagFilterCreateRequest | Set an AWS tag filter using an `aws_account_identifier`, `namespace`, and filtering string. Namespace options are `application_elb`, `elb`, `lambda`, `network_elb`, `rds`, `sqs`, and `custom`.
+
+    configuration := datadog.NewConfiguration()
+
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.CreateAWSTagFilter(ctx).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateAWSTagFilter``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateAWSTagFilter`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.CreateAWSTagFilter`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateAWSTagFilterRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**AWSTagFilterCreateRequest**](AWSTagFilterCreateRequest.md) | Set an AWS tag filter using an &#x60;aws_account_identifier&#x60;, &#x60;namespace&#x60;, and filtering string. Namespace options are &#x60;application_elb&#x60;, &#x60;elb&#x60;, &#x60;lambda&#x60;, &#x60;network_elb&#x60;, &#x60;rds&#x60;, &#x60;sqs&#x60;, and &#x60;custom&#x60;. | 
+
+### Return type
+
+**interface{}**
 
 ### Authorization
 
@@ -253,6 +336,86 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteAWSTagFilter
+
+> interface{} DeleteAWSTagFilter(ctx).Body(body).Execute()
+
+Delete a tag filtering entry
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+    body := *datadog.NewAWSTagFilterDeleteRequest() // AWSTagFilterDeleteRequest | Delete a tag filtering entry for a given AWS account and `dd-aws` namespace.
+
+    configuration := datadog.NewConfiguration()
+
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.DeleteAWSTagFilter(ctx).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.DeleteAWSTagFilter``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteAWSTagFilter`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.DeleteAWSTagFilter`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAWSTagFilterRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**AWSTagFilterDeleteRequest**](AWSTagFilterDeleteRequest.md) | Delete a tag filtering entry for a given AWS account and &#x60;dd-aws&#x60; namespace. | 
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListAWSAccounts
 
 > AWSAccountListResponse ListAWSAccounts(ctx).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
@@ -322,6 +485,86 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AWSAccountListResponse**](AWSAccountListResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListAWSTagFilters
+
+> AWSTagFilterListResponse ListAWSTagFilters(ctx).AccountId(accountId).Execute()
+
+Get all AWS tag filters
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+    accountId := "accountId_example" // string | Only return AWS filters that matches this `account_id`.
+
+    configuration := datadog.NewConfiguration()
+
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.AWSIntegrationApi.ListAWSTagFilters(ctx).AccountId(accountId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.ListAWSTagFilters``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAWSTagFilters`: AWSTagFilterListResponse
+    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.ListAWSTagFilters`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListAWSTagFiltersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountId** | **string** | Only return AWS filters that matches this &#x60;account_id&#x60;. | 
+
+### Return type
+
+[**AWSTagFilterListResponse**](AWSTagFilterListResponse.md)
 
 ### Authorization
 
