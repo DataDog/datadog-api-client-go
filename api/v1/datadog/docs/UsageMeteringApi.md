@@ -754,6 +754,7 @@ func main() {
     sortName := datadog.UsageAttributionSort("api_percentage") // UsageAttributionSort | The field to sort by. (optional) (default to "custom_timeseries_usage")
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetUsageAttribution", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.UsageMeteringApi.GetUsageAttribution(ctx).StartMonth(startMonth).Fields(fields).EndMonth(endMonth).OrgId(orgId).SortDirection(sortDirection).SortName(sortName).Execute()

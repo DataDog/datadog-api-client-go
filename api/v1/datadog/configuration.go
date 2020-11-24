@@ -286,6 +286,7 @@ func NewConfiguration() *Configuration {
 			"GetMonthlyCustomReports":          false,
 			"GetSpecifiedDailyCustomReports":   false,
 			"GetSpecifiedMonthlyCustomReports": false,
+			"GetUsageAttribution":              false,
 		},
 	}
 	return cfg

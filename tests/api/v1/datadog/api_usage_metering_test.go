@@ -546,6 +546,7 @@ func TestUsageAttribution(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	startMonth := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1)
 
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetUsageAttribution", true)
 	api := Client(ctx).UsageMeteringApi
 	usage, httpresp, err := api.GetUsageAttribution(ctx).StartMonth(startMonth).Fields("*").Execute()
 	if err != nil {
@@ -1339,6 +1340,7 @@ func TestGetUsageAttributionErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetUsageAttribution", true)
 			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageAttribution(ctx).StartMonth(tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0)).Fields("*").Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
