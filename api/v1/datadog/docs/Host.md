@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **MuteTimeout** | Pointer to **int64** | Timeout of the mute applied to your host. | [optional] 
 **Name** | Pointer to **string** | The host name. | [optional] 
 **Sources** | Pointer to **[]string** | Source or cloud provider associated with your host. | [optional] 
-**TagsBySource** | Pointer to [**map[string][]string**](array.md) | List of tags for each source (AWS, Datadog Agent, Chef..). | [optional] 
+**TagsBySource** | Pointer to **map[string][]string** | List of tags for each source (AWS, Datadog Agent, Chef..). | [optional] 
 **Up** | Pointer to **bool** | Displays UP when the expected metrics are received and displays &#x60;???&#x60; if no metrics are received. | [optional] 
 
 ## Methods

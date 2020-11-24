@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | [**CheckCanDeleteMonitorResponseData**](CheckCanDeleteMonitorResponse_data.md) |  | 
-**Errors** | Pointer to [**map[string][]string**](array.md) | A mapping of Monitor ID to strings denoting where it&#39;s used. | [optional] 
+**Errors** | Pointer to **map[string][]string** | A mapping of Monitor ID to strings denoting where it&#39;s used. | [optional] 
 
 ## Methods
 

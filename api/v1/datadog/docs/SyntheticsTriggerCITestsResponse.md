@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Locations** | Pointer to [**[]SyntheticsTriggerCITestsResponseLocations**](SyntheticsTriggerCITestsResponse_locations.md) | List of Synthetics locations. | [optional] 
-**Results** | Pointer to [**[]SyntheticsTriggerCITestsResponseResults**](SyntheticsTriggerCITestsResponse_results.md) | Information about the tests runs. | [optional] 
+**Locations** | Pointer to [**[]SyntheticsTriggerCITestsResponseLocations**](SyntheticsTriggerCITestsResponseLocations.md) | List of Synthetics locations. | [optional] 
+**Results** | Pointer to [**[]SyntheticsTriggerCITestsResponseResults**](SyntheticsTriggerCITestsResponseResults.md) | Information about the tests runs. | [optional] 
 **TriggeredCheckIds** | Pointer to **[]string** | The public IDs of the Synthetics test triggered. | [optional] 
 
 ## Methods

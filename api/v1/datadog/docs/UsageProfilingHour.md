@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AvgContainerAgentCount** | Pointer to **int64** | Get average number of container agents for that hour. | [optional] 
 **HostCount** | Pointer to **int64** | Contains the total number of profiled hosts reporting during a given hour. | [optional] 
-**Hour** | Pointer to [**time.Time**](time.Time.md) | The hour for the usage. | [optional] 
+**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 
 ## Methods
 

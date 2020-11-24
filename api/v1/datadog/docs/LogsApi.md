@@ -25,6 +25,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -42,7 +43,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewLogsListRequest(*datadog.NewLogsListRequest_time("TODO", "TODO")) // LogsListRequest | Logs filter
+    body := *datadog.NewLogsListRequest(*datadog.NewLogsListRequestTime(time.Now(), time.Now())) // LogsListRequest | Logs filter
 
     configuration := datadog.NewConfiguration()
 

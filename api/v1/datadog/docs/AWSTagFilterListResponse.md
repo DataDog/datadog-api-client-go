@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filters** | Pointer to [**[]AWSTagFilterListResponseFilters**](AWSTagFilterListResponse_filters.md) | An array of tag filters. | [optional] 
+**Filters** | Pointer to [**[]AWSTagFilterListResponseFilters**](AWSTagFilterListResponseFilters.md) | An array of tag filters. | [optional] 
 
 ## Methods
 

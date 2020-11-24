@@ -11,10 +11,10 @@ Name | Type | Description | Notes
 **Interval** | Pointer to **int64** | Number of seconds between data samples. | [optional] [readonly] 
 **Length** | Pointer to **int64** | Number of data samples. | [optional] [readonly] 
 **Metric** | Pointer to **string** | Metric name. | [optional] [readonly] 
-**Pointlist** | Pointer to [**[][]float64**](array.md) | List of points of the time series. | [optional] [readonly] 
+**Pointlist** | Pointer to **[][]float64** | List of points of the time series. | [optional] [readonly] 
 **Scope** | Pointer to **string** | Metric scope, comma separated list of tags. | [optional] [readonly] 
 **Start** | Pointer to **int64** | Start of the time window, milliseconds since Unix epoch. | [optional] [readonly] 
-**Unit** | Pointer to [**[]MetricsQueryResponseUnit**](MetricsQueryResponse_unit.md) | Detailed information about the metric unit. First element describes the \&quot;primary unit\&quot; (for example, &#x60;bytes&#x60; in &#x60;bytes per second&#x60;), second describes the \&quot;per unit\&quot; (for example, &#x60;second&#x60; in &#x60;bytes per second&#x60;). | [optional] [readonly] 
+**Unit** | Pointer to [**[]MetricsQueryResponseUnit**](MetricsQueryResponseUnit.md) | Detailed information about the metric unit. First element describes the \&quot;primary unit\&quot; (for example, &#x60;bytes&#x60; in &#x60;bytes per second&#x60;), second describes the \&quot;per unit\&quot; (for example, &#x60;second&#x60; in &#x60;bytes per second&#x60;). | [optional] [readonly] 
 
 ## Methods
 

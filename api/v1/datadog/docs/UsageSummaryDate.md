@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **ContainerAvg** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current date for all organizations. | [optional] 
 **ContainerHwm** | Pointer to **int64** | Shows the high-water mark of all distinct containers over all hours in the current date for all organizations. | [optional] 
 **CustomTsAvg** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current date for all organizations. | [optional] 
-**Date** | Pointer to [**time.Time**](time.Time.md) | The date for the usage. | [optional] 
+**Date** | Pointer to **time.Time** | The date for the usage. | [optional] 
 **FargateTasksCountAvg** | Pointer to **int64** | Shows the high-watermark of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
 **FargateTasksCountHwm** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
 **GcpHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current date for all organizations. | [optional] 

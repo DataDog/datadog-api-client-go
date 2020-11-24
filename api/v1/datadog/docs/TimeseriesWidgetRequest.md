@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **DisplayType** | Pointer to [**WidgetDisplayType**](WidgetDisplayType.md) |  | [optional] 
 **EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Metadata** | Pointer to [**[]TimeseriesWidgetRequestMetadata**](TimeseriesWidgetRequest_metadata.md) | Used to define expression aliases. | [optional] 
+**Metadata** | Pointer to [**[]TimeseriesWidgetRequestMetadata**](TimeseriesWidgetRequestMetadata.md) | Used to define expression aliases. | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **OnRightYaxis** | Pointer to **bool** | Whether or not to display a second y-axis on the right. | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 

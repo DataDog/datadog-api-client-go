@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**From** | Pointer to [**time.Time**](time.Time.md) | The minimum timestamp for requested security signals. | [optional] 
+**From** | Pointer to **time.Time** | The minimum timestamp for requested security signals. | [optional] 
 **Query** | Pointer to **string** | Search query for listing security signals. | [optional] 
-**To** | Pointer to [**time.Time**](time.Time.md) | The maximum timestamp for requested security signals. | [optional] 
+**To** | Pointer to **time.Time** | The maximum timestamp for requested security signals. | [optional] 
 
 ## Methods
 

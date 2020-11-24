@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IdpFile** | [***os.File**](*os.File.md) | The path to the XML metadata file you wish to upload. | 
+**IdpFile** | ***os.File** | The path to the XML metadata file you wish to upload. | 
 
 ## Methods
 

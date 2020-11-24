@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HostCount** | Pointer to **int64** | Contains the number of active NPM hosts. | [optional] 
-**Hour** | Pointer to [**time.Time**](time.Time.md) | The hour for the usage. | [optional] 
+**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 
 ## Methods
 
