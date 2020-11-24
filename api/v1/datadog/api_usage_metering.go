@@ -1469,6 +1469,13 @@ func (a *UsageMeteringApiService) GetUsageAttributionExecute(r ApiGetUsageAttrib
 		localVarReturnValue  UsageAttributionResponse
 	)
 
+	operationId := "GetUsageAttribution"
+	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageAttribution")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
