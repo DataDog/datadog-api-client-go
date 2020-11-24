@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | Pointer to [**SLOBulkDeleteResponseData**](SLOBulkDeleteResponse_data.md) |  | [optional] 
-**Errors** | Pointer to [**[]SLOBulkDeleteResponseErrors**](SLOBulkDeleteResponse_errors.md) | Array of errors object returned. | [optional] 
+**Errors** | Pointer to [**[]SLOBulkDeleteResponseErrors**](SLOBulkDeleteResponseErrors.md) | Array of errors object returned. | [optional] 
 
 ## Methods
 

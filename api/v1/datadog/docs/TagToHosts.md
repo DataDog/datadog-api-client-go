@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to [**map[string][]string**](array.md) | A list of tags to apply to the host. | [optional] 
+**Tags** | Pointer to **map[string][]string** | A list of tags to apply to the host. | [optional] 
 
 ## Methods
 

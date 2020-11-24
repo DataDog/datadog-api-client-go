@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | Pointer to **string** | Your AWS Account ID without dashes. | [optional] 
-**Lambdas** | Pointer to [**[]AWSLogsListResponseLambdas**](AWSLogsListResponse_lambdas.md) | List of ARNs configured in your Datadog account. | [optional] 
+**Lambdas** | Pointer to [**[]AWSLogsListResponseLambdas**](AWSLogsListResponseLambdas.md) | List of ARNs configured in your Datadog account. | [optional] 
 **Services** | Pointer to **[]string** | Array of services IDs. | [optional] 
 
 ## Methods

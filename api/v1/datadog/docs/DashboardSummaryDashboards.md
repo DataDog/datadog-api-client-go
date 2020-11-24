@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AuthorHandle** | Pointer to **string** | Identifier of the dashboard author. | [optional] 
-**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Creation date of the dashboard. | [optional] 
+**CreatedAt** | Pointer to **time.Time** | Creation date of the dashboard. | [optional] 
 **Description** | Pointer to **string** | Description of the dashboard. | [optional] 
 **Id** | Pointer to **string** | Dashboard identifier. | [optional] 
 **IsReadOnly** | Pointer to **bool** | Whether this dashboard is read-only. If True, only the author and admins can make changes to it. | [optional] 
 **LayoutType** | Pointer to [**DashboardLayoutType**](DashboardLayoutType.md) |  | [optional] 
-**ModifiedAt** | Pointer to [**time.Time**](time.Time.md) | Modification date of the dashboard. | [optional] 
+**ModifiedAt** | Pointer to **time.Time** | Modification date of the dashboard. | [optional] 
 **Title** | Pointer to **string** | Title of the dashboard. | [optional] 
 **Url** | Pointer to **string** | URL of the dashboard. | [optional] 
 

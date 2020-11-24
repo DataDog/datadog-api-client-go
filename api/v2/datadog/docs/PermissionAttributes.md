@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to [**time.Time**](time.Time.md) | Creation time of the permission. | [optional] 
+**Created** | Pointer to **time.Time** | Creation time of the permission. | [optional] 
 **Description** | Pointer to **string** | Description of the permission. | [optional] 
 **DisplayName** | Pointer to **string** | Displayed name for the permission. | [optional] 
 **DisplayType** | Pointer to **string** | Display type. | [optional] 

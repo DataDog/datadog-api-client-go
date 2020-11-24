@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to [**time.Time**](time.Time.md) | Timestamp of when the incident service was created. | [optional] [readonly] 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | Timestamp of when the incident service was modified. | [optional] [readonly] 
+**Created** | Pointer to **time.Time** | Timestamp of when the incident service was created. | [optional] [readonly] 
+**Modified** | Pointer to **time.Time** | Timestamp of when the incident service was modified. | [optional] [readonly] 
 **Name** | Pointer to **string** | Name of the incident service. | [optional] 
 
 ## Methods

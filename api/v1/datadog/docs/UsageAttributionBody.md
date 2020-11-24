@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Month** | Pointer to [**time.Time**](time.Time.md) | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM]. | [optional] 
+**Month** | Pointer to **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM]. | [optional] 
 **PublicId** | Pointer to **string** | The organization public ID. | [optional] 
-**Tags** | Pointer to [**map[string][]string**](array.md) | Usage Summary by tag name. | [optional] 
+**Tags** | Pointer to **map[string][]string** | Usage Summary by tag name. | [optional] 
 **UpdatedAt** | Pointer to **string** | Shows the the most recent hour in the current months for all organizations for which all usages were calculated. | [optional] 
 **Values** | Pointer to [**UsageAttributionValues**](UsageAttributionValues.md) |  | [optional] 
 

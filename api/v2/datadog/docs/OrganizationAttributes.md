@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Creation time of the organization. | [optional] 
+**CreatedAt** | Pointer to **time.Time** | Creation time of the organization. | [optional] 
 **Description** | Pointer to **string** | Description of the organization. | [optional] 
 **Disabled** | Pointer to **bool** | Whether or not the organization is disabled. | [optional] 
-**ModifiedAt** | Pointer to [**time.Time**](time.Time.md) | Time of last organization modification. | [optional] 
+**ModifiedAt** | Pointer to **time.Time** | Time of last organization modification. | [optional] 
 **Name** | Pointer to **string** | Name of the organization. | [optional] 
 **PublicId** | Pointer to **string** | Public ID of the organization. | [optional] 
 **Sharing** | Pointer to **string** | Sharing type of the organization. | [optional] 

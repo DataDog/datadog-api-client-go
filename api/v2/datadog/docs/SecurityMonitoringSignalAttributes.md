@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Attributes** | Pointer to **map[string]interface{}** | A JSON object of attributes in the security signal. | [optional] 
 **Message** | Pointer to **string** | The message in the security signal defined by the rule that generated the signal. | [optional] 
 **Tags** | Pointer to **[]interface{}** | An array of tags associated with the security signal. | [optional] 
-**Timestamp** | Pointer to [**time.Time**](time.Time.md) | The timestamp of the security signal. | [optional] 
+**Timestamp** | Pointer to **time.Time** | The timestamp of the security signal. | [optional] 
 
 ## Methods
 

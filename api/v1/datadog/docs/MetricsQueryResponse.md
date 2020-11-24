@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Message** | Pointer to **string** | Message indicating &#x60;success&#x60; if status is &#x60;ok&#x60;. | [optional] [readonly] 
 **Query** | Pointer to **string** | Query string | [optional] [readonly] 
 **ResType** | Pointer to **string** | Type of response. | [optional] [readonly] 
-**Series** | Pointer to [**[]MetricsQueryResponseSeries**](MetricsQueryResponse_series.md) | List of timeseries queried. | [optional] [readonly] 
+**Series** | Pointer to [**[]MetricsQueryResponseSeries**](MetricsQueryResponseSeries.md) | List of timeseries queried. | [optional] [readonly] 
 **Status** | Pointer to **string** | Status of the query. | [optional] [readonly] 
 **ToDate** | Pointer to **int64** | End of requested time window, milliseconds since Unix epoch. | [optional] [readonly] 
 
