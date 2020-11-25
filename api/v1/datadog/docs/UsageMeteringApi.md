@@ -713,7 +713,7 @@ Name | Type | Description  | Notes
 
 ## GetUsageAttribution
 
-> UsageAttributionResponse GetUsageAttribution(ctx).StartMonth(startMonth).Fields(fields).EndMonth(endMonth).OrgId(orgId).SortDirection(sortDirection).SortName(sortName).Execute()
+> UsageAttributionResponse GetUsageAttribution(ctx).StartMonth(startMonth).Fields(fields).EndMonth(endMonth).SortDirection(sortDirection).SortName(sortName).Execute()
 
 Get Usage Attribution
 
@@ -749,7 +749,6 @@ func main() {
     startMonth := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage beginning in this month. Maximum of 15 months ago.
     fields := "fields_example" // string | The specified field to search results for.
     endMonth := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage ending this month. (optional)
-    orgId := int64(789) // int64 | Include usage summaries for each sub-org. (optional)
     sortDirection := datadog.UsageSortDirection("desc") // UsageSortDirection | The direction to sort by: `[desc, asc]`. (optional) (default to "desc")
     sortName := datadog.UsageAttributionSort("api_percentage") // UsageAttributionSort | The field to sort by. (optional) (default to "custom_timeseries_usage")
 
@@ -757,7 +756,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("GetUsageAttribution", true)
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageAttribution(ctx).StartMonth(startMonth).Fields(fields).EndMonth(endMonth).OrgId(orgId).SortDirection(sortDirection).SortName(sortName).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageAttribution(ctx).StartMonth(startMonth).Fields(fields).EndMonth(endMonth).SortDirection(sortDirection).SortName(sortName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageAttribution``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -781,7 +780,6 @@ Name | Type | Description  | Notes
  **startMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. | 
  **fields** | **string** | The specified field to search results for. | 
  **endMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month. | 
- **orgId** | **int64** | Include usage summaries for each sub-org. | 
  **sortDirection** | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
  **sortName** | [**UsageAttributionSort**](UsageAttributionSort.md) | The field to sort by. | [default to &quot;custom_timeseries_usage&quot;]
 

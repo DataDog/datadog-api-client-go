@@ -5849,15 +5849,6 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Include usage summaries for each sub-org.
-        explode: true
-        in: query
-        name: org_id
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
       - description: 'The direction to sort by: `[desc, asc]`.'
         explode: true
         in: query
