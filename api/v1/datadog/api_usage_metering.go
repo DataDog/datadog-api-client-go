@@ -4523,7 +4523,7 @@ func (r ApiGetUsageTopAvgMetricsRequest) Execute() (UsageTopAvgMetricsResponse, 
 }
 
 /*
- * GetUsageTopAvgMetrics Get top 500 custom metrics by hourly average
+ * GetUsageTopAvgMetrics Get top custom metrics by hourly average
  * Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiGetUsageTopAvgMetricsRequest
