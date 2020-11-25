@@ -1408,7 +1408,6 @@ type ApiGetUsageAttributionRequest struct {
 	startMonth    *time.Time
 	fields        *string
 	endMonth      *time.Time
-	orgId         *int64
 	sortDirection *UsageSortDirection
 	sortName      *UsageAttributionSort
 }
@@ -1423,10 +1422,6 @@ func (r ApiGetUsageAttributionRequest) Fields(fields string) ApiGetUsageAttribut
 }
 func (r ApiGetUsageAttributionRequest) EndMonth(endMonth time.Time) ApiGetUsageAttributionRequest {
 	r.endMonth = &endMonth
-	return r
-}
-func (r ApiGetUsageAttributionRequest) OrgId(orgId int64) ApiGetUsageAttributionRequest {
-	r.orgId = &orgId
 	return r
 }
 func (r ApiGetUsageAttributionRequest) SortDirection(sortDirection UsageSortDirection) ApiGetUsageAttributionRequest {
@@ -1497,9 +1492,6 @@ func (a *UsageMeteringApiService) GetUsageAttributionExecute(r ApiGetUsageAttrib
 	localVarQueryParams.Add("fields", parameterToString(*r.fields, ""))
 	if r.endMonth != nil {
 		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
-	}
-	if r.orgId != nil {
-		localVarQueryParams.Add("org_id", parameterToString(*r.orgId, ""))
 	}
 	if r.sortDirection != nil {
 		localVarQueryParams.Add("sort_direction", parameterToString(*r.sortDirection, ""))
