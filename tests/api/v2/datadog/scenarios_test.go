@@ -17,81 +17,6 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
-func undoIgnore(ctx gobdd.Context) {}
-
-func undoCreateUser(ctx gobdd.Context) {
-	user := tests.GetResponse(ctx)[0].Interface().(datadog.UserResponse)
-	cctx := tests.GetCtx(ctx)
-	Client(cctx).UsersApi.DisableUser(cctx, user.Data.GetId()).Execute()
-}
-
-func undoCreateRole(ctx gobdd.Context) {
-	role := tests.GetResponse(ctx)[0].Interface().(datadog.RoleCreateResponse)
-	cctx := tests.GetCtx(ctx)
-	Client(cctx).RolesApi.DeleteRole(cctx, role.Data.GetId()).Execute()
-}
-
-func undoCreateIncident(ctx gobdd.Context) {
-	incident := tests.GetResponse(ctx)[0].Interface().(datadog.IncidentResponse)
-	cctx := tests.GetCtx(ctx)
-	Client(cctx).IncidentsApi.DeleteIncident(cctx, incident.Data.GetId()).Execute()
-}
-
-func undoCreateService(ctx gobdd.Context) {
-	service := tests.GetResponse(ctx)[0].Interface().(datadog.IncidentServiceResponse)
-	cctx := tests.GetCtx(ctx)
-	Client(cctx).IncidentServicesApi.DeleteIncidentService(cctx, service.Data.GetId()).Execute()
-}
-
-func undoCreateTeam(ctx gobdd.Context) {
-	team := tests.GetResponse(ctx)[0].Interface().(datadog.IncidentTeamResponse)
-	client := Client(tests.GetCtx(ctx))
-	client.GetConfig().SetUnstableOperationEnabled("DeleteIncidentTeam", true)
-	client.IncidentTeamsApi.DeleteIncidentTeam(tests.GetCtx(ctx), team.Data.GetId()).Execute()
-}
-
-var requestsUndo = map[string]func(ctx gobdd.Context){
-	"AddPermissionToRole":      undoIgnore,
-	"AddUserToRole":            undoIgnore,
-	"AggregateLogs":            undoIgnore,
-	"CreateIncident":           undoCreateIncident,
-	"CreateIncidentService":    undoCreateService,
-	"CreateIncidentTeam":       undoCreateTeam,
-	"CreateRole":               undoCreateRole,
-	"CreateUser":               undoCreateUser,
-	"DeleteIncident":           undoIgnore,
-	"DeleteIncidentService":    undoIgnore,
-	"DeleteIncidentTeam":       undoIgnore,
-	"DeleteRole":               undoIgnore,
-	"DisableUser":              undoIgnore,
-	"GetIncident":              undoIgnore,
-	"GetIncidentService":       undoIgnore,
-	"GetIncidentTeam":          undoIgnore,
-	"GetInvitation":            undoIgnore,
-	"GetRole":                  undoIgnore,
-	"GetUser":                  undoIgnore,
-	"ListIncidents":            undoIgnore,
-	"ListIncidentServices":     undoIgnore,
-	"ListIncidentTeams":        undoIgnore,
-	"ListLogs":                 undoIgnore,
-	"ListLogsGet":              undoIgnore,
-	"ListPermissions":          undoIgnore,
-	"ListProcesses":            undoIgnore,
-	"ListRolePermissions":      undoIgnore,
-	"ListRoles":                undoIgnore,
-	"ListRoleUsers":            undoIgnore,
-	"ListUserPermissions":      undoIgnore,
-	"ListUsers":                undoIgnore,
-	"RemovePermissionFromRole": undoIgnore,
-	"RemoveUserFromRole":       undoIgnore,
-	"SendInvitations":          undoIgnore,
-	"UpdateIncident":           undoIgnore,
-	"UpdateIncidentService":    undoIgnore,
-	"UpdateIncidentTeam":       undoIgnore,
-	"UpdateRole":               undoIgnore,
-	"UpdateUser":               undoIgnore,
-}
-
 func TestScenarios(t *testing.T) {
 	s := gobdd.NewSuite(
 		t,
@@ -107,7 +32,7 @@ func TestScenarios(t *testing.T) {
 				ct.(*testing.T),
 			)
 			tests.SetCtx(ctx, cctx)
-			tests.SetRequestsUndo(ctx, requestsUndo)
+			tests.SetRequestsUndo(ctx, "./features/undo.json")
 			tests.SetData(ctx, make(map[string]interface{}))
 			tests.SetCleanup(ctx, map[string]func(){"99-finish": finish})
 		}), gobdd.WithAfterScenario(func(ctx gobdd.Context) {
@@ -203,6 +128,8 @@ func aValidAppKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
 func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	client := Client(tests.GetCtx(ctx))
 	ct := reflect.ValueOf(client)
+	tests.SetClient(ctx, ct)
+
 	f := reflect.Indirect(ct).FieldByName(name + "Api")
 	if !f.IsValid() {
 		panic(fmt.Sprintf("invalid API name %s", name))
