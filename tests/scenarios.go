@@ -89,8 +89,8 @@ func GetResponse(ctx gobdd.Context) []reflect.Value {
 	return r.([]reflect.Value)
 }
 
-// SetRequestsUndo sets map with undo function for each request.
-func SetRequestsUndo(ctx gobdd.Context, file string) {
+// LoadRequestsUndo load undo configuration.
+func LoadRequestsUndo(file string) map[string]UndoAction {
 	f, err := os.Open(file)
 	if err != nil {
 		panic(err)
@@ -101,7 +101,11 @@ func SetRequestsUndo(ctx gobdd.Context, file string) {
 
 	var value map[string]UndoAction
 	json.Unmarshal(byteValue, &value)
+	return value
+}
 
+// SetRequestsUndo sets map with undo function for each request.
+func SetRequestsUndo(ctx gobdd.Context, value map[string]UndoAction) {
 	ctx.Set(ctxRequestsUndoKey{}, value)
 }
 

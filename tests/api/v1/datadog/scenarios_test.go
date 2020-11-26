@@ -17,6 +17,7 @@ import (
 )
 
 func TestScenarios(t *testing.T) {
+	requestsUndo := tests.LoadRequestsUndo("./features/undo.json")
 	s := gobdd.NewSuite(
 		t,
 		gobdd.WithIgnoredTags([]string{"@skip"}),
@@ -31,7 +32,7 @@ func TestScenarios(t *testing.T) {
 				ct.(*testing.T),
 			)
 			tests.SetCtx(ctx, cctx)
-			tests.SetRequestsUndo(ctx, "./features/undo.json")
+			tests.SetRequestsUndo(ctx, requestsUndo)
 			tests.SetData(ctx, make(map[string]interface{}))
 			tests.SetCleanup(ctx, map[string]func(){"99-finish": finish})
 		}), gobdd.WithAfterScenario(func(ctx gobdd.Context) {
