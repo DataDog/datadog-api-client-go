@@ -1235,7 +1235,7 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 }
 
-func TestSyntheticsTriggerCITests(t *testing.T) {
+func TestSyntheticsTriggerCIAndTriggerTests(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -1248,7 +1248,7 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 	}
 	publicID := synt.GetPublicId()
 
-	// trigger the test
+	// CI trigger
 	test := datadog.SyntheticsCITest{
 		Locations: &[]string{"aws:us-east-2"},
 		PublicId:  publicID,
@@ -1267,6 +1267,25 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 	triggeredCheckIds := fullResult.GetTriggeredCheckIds()
 	assert.Equal(publicID, results[0].GetPublicId())
 	assert.Equal(publicID, triggeredCheckIds[0])
+
+	// Non-CI trigger
+	testIds := datadog.SyntheticsTriggerPublicIds{
+		PublicIds: &[]string{publicID},
+	}
+
+	fullResult, httpresp, err = Client(ctx).SyntheticsApi.TriggerTests(ctx).Body(datadog.SyntheticsTriggerTestBody{
+		SyntheticsTriggerPublicIds: &testIds,
+	}).Execute()
+	if err != nil {
+		t.Fatalf("Error triggering tests: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+
+	results = fullResult.GetResults()
+	triggeredCheckIds = fullResult.GetTriggeredCheckIds()
+	assert.Equal(publicID, results[0].GetPublicId())
+	assert.Equal(publicID, triggeredCheckIds[0])
+
 
 	// delete the test
 	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx).
