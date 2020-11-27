@@ -1269,12 +1269,12 @@ func TestSyntheticsTriggerCIAndTriggerTests(t *testing.T) {
 	assert.Equal(publicID, triggeredCheckIds[0])
 
 	// Non-CI trigger
-	testIds := datadog.SyntheticsTriggerPublicIds{
+	testIds := datadog.SyntheticsTriggerPublicIdentifiers{
 		PublicIds: &[]string{publicID},
 	}
 
 	fullResult, httpresp, err = Client(ctx).SyntheticsApi.TriggerTests(ctx).Body(datadog.SyntheticsTriggerTestBody{
-		SyntheticsTriggerPublicIds: &testIds,
+		SyntheticsTriggerPublicIdentifiers: &testIds,
 	}).Execute()
 	if err != nil {
 		t.Fatalf("Error triggering tests: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
