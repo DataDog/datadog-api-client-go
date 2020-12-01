@@ -220,7 +220,7 @@ func main() {
     )
 
     hostName := "hostName_example" // string | Name of the host to mute.
-    body := *datadog.NewHostMuteSettings() // HostMuteSettings | Mute a host request body. (optional)
+    body := *datadog.NewHostMuteSettings() // HostMuteSettings | Mute a host request body.
 
     configuration := datadog.NewConfiguration()
 

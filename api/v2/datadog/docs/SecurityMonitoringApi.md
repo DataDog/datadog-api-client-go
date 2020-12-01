@@ -48,7 +48,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewSecurityMonitoringRuleCreatePayload([]datadog.SecurityMonitoringRuleCaseCreate{*datadog.NewSecurityMonitoringRuleCaseCreate(datadog.SecurityMonitoringRuleSeverity("info"))}, true, "Message_example", "Name_example", *datadog.NewSecurityMonitoringRuleOptions(), []datadog.SecurityMonitoringRuleQueryCreate{*datadog.NewSecurityMonitoringRuleQueryCreate("a < 3")}) // SecurityMonitoringRuleCreatePayload |  (optional)
+    body := *datadog.NewSecurityMonitoringRuleCreatePayload([]datadog.SecurityMonitoringRuleCaseCreate{*datadog.NewSecurityMonitoringRuleCaseCreate(datadog.SecurityMonitoringRuleSeverity("info"))}, true, "Message_example", "Name_example", *datadog.NewSecurityMonitoringRuleOptions(), []datadog.SecurityMonitoringRuleQueryCreate{*datadog.NewSecurityMonitoringRuleQueryCreate("a < 3")}) // SecurityMonitoringRuleCreatePayload | 
 
     configuration := datadog.NewConfiguration()
 
@@ -550,7 +550,7 @@ func main() {
     )
 
     ruleId := "ruleId_example" // string | The ID of the rule.
-    body := *datadog.NewSecurityMonitoringRuleUpdatePayload() // SecurityMonitoringRuleUpdatePayload |  (optional)
+    body := *datadog.NewSecurityMonitoringRuleUpdatePayload() // SecurityMonitoringRuleUpdatePayload | 
 
     configuration := datadog.NewConfiguration()
 

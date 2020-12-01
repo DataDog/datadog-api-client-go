@@ -284,7 +284,7 @@ func main() {
     )
 
     name := "name_example" // string | Name of the log index.
-    body := *datadog.NewLogsIndexUpdateRequest(*datadog.NewLogsFilter()) // LogsIndexUpdateRequest | Object containing the new `LogsIndexUpdateRequest`. (optional)
+    body := *datadog.NewLogsIndexUpdateRequest(*datadog.NewLogsFilter()) // LogsIndexUpdateRequest | Object containing the new `LogsIndexUpdateRequest`.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("UpdateLogsIndex", true)
@@ -370,7 +370,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewLogsIndexesOrder([]string{"IndexNames_example"}) // LogsIndexesOrder | Object containing the new ordered list of index names (optional)
+    body := *datadog.NewLogsIndexesOrder([]string{"IndexNames_example"}) // LogsIndexesOrder | Object containing the new ordered list of index names
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("UpdateLogsIndexOrder", true)

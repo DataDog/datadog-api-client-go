@@ -52,7 +52,7 @@ func main() {
     )
 
     archiveId := "archiveId_example" // string | The ID of the archive.
-    body := *datadog.NewRelationshipToRole() // RelationshipToRole |  (optional)
+    body := *datadog.NewRelationshipToRole() // RelationshipToRole | 
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("AddReadRoleToArchive", true)
@@ -618,7 +618,7 @@ func main() {
     )
 
     archiveId := "archiveId_example" // string | The ID of the archive.
-    body := *datadog.NewRelationshipToRole() // RelationshipToRole |  (optional)
+    body := *datadog.NewRelationshipToRole() // RelationshipToRole | 
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("RemoveRoleFromArchive", true)
