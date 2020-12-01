@@ -50,7 +50,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("joe.doe@example.com"), datadog.UsersType("users"))) // UserCreateRequest |  (optional)
+    body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("joe.doe@example.com"), datadog.UsersType("users"))) // UserCreateRequest | 
 
     configuration := datadog.NewConfiguration()
 
@@ -638,7 +638,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewUserInvitationsRequest([]datadog.UserInvitationData{*datadog.NewUserInvitationData(*datadog.NewUserInvitationRelationships(*datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users")))), datadog.UserInvitationsType("user_invitations"))}) // UserInvitationsRequest |  (optional)
+    body := *datadog.NewUserInvitationsRequest([]datadog.UserInvitationData{*datadog.NewUserInvitationData(*datadog.NewUserInvitationRelationships(*datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users")))), datadog.UserInvitationsType("user_invitations"))}) // UserInvitationsRequest | 
 
     configuration := datadog.NewConfiguration()
 
@@ -719,7 +719,7 @@ func main() {
     )
 
     userId := "userId_example" // string | The ID of the user.
-    body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // UserUpdateRequest |  (optional)
+    body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // UserUpdateRequest | 
 
     configuration := datadog.NewConfiguration()
 

@@ -44,7 +44,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewLogsAggregateRequest() // LogsAggregateRequest |  (optional)
+    body := *datadog.NewLogsAggregateRequest() // LogsAggregateRequest | 
 
     configuration := datadog.NewConfiguration()
 
