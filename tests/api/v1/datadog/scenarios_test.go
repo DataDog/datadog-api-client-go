@@ -16,11 +16,8 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
-var requestsUndo = map[string]func(ctx gobdd.Context){
-	"GetIPRanges": func(ctx gobdd.Context) {},
-}
-
 func TestScenarios(t *testing.T) {
+	requestsUndo := tests.LoadRequestsUndo("./features/undo.json")
 	s := gobdd.NewSuite(
 		t,
 		gobdd.WithIgnoredTags([]string{"@skip"}),
@@ -114,6 +111,8 @@ func aValidAppKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
 func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	client := Client(tests.GetCtx(ctx))
 	ct := reflect.ValueOf(client)
+	tests.SetClient(ctx, ct)
+
 	f := reflect.Indirect(ct).FieldByName(name + "Api")
 	if !f.IsValid() {
 		panic(fmt.Sprintf("invalid API name %s", name))

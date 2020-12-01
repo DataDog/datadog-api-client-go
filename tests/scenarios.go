@@ -11,7 +11,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"net/http"
+	"os"
 	"reflect"
 	"regexp"
 	"sort"
@@ -22,6 +24,25 @@ import (
 	"github.com/mcuadros/go-lookup"
 	is "gotest.tools/assert/cmp"
 )
+
+// UndoParameter defines how to populate operation parameters.
+type UndoParameter struct {
+	Name string `json:"name"`
+	Source string `json:"source"`
+}
+
+// Undo holds information about undo operation.
+type Undo struct {
+	Type string `json:"type"`
+	OperationID string `json:"operationId"`
+	Parameters []UndoParameter `json:"parameters"`
+}
+
+// UndoAction describes undo action.
+type UndoAction struct {
+	Tag string `json:"tag"`
+	Undo *Undo `json:"undo"`
+}
 
 type ctxKey struct{}
 type clientKey struct{}
@@ -59,6 +80,7 @@ func GetCtx(ctx gobdd.Context) context.Context {
 	return c.(context.Context)
 }
 
+// GetResponse returns request response.
 func GetResponse(ctx gobdd.Context) []reflect.Value {
 	r, err := ctx.Get(responseKey{})
 	if err != nil {
@@ -67,23 +89,89 @@ func GetResponse(ctx gobdd.Context) []reflect.Value {
 	return r.([]reflect.Value)
 }
 
+// LoadRequestsUndo load undo configuration.
+func LoadRequestsUndo(file string) map[string]UndoAction {
+	f, err := os.Open(file)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	byteValue, _ := ioutil.ReadAll(f)
+
+	var value map[string]UndoAction
+	json.Unmarshal(byteValue, &value)
+	return value
+}
+
 // SetRequestsUndo sets map with undo function for each request.
-func SetRequestsUndo(ctx gobdd.Context, value map[string]func(ctx gobdd.Context)) {
+func SetRequestsUndo(ctx gobdd.Context, value map[string]UndoAction) {
 	ctx.Set(ctxRequestsUndoKey{}, value)
 }
 
 // GetRequestsUndo gets map with undo function for each request.
-func GetRequestsUndo(ctx gobdd.Context) map[string]func(ctx gobdd.Context) {
+func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(), error) {
 	requestsUndo, err := ctx.Get(ctxRequestsUndoKey{})
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	return requestsUndo.(map[string]func(ctx gobdd.Context))
+
+	// find undo definition
+	undo, ok := requestsUndo.(map[string]UndoAction)[operationID]
+	if !ok {
+		return nil, fmt.Errorf("undefined undo for operation: %s", operationID)
+	}
+
+	if undo.Undo.Type != "unsafe" {
+		return nil, nil
+	}
+
+	// get an instance of Client
+	undoClientInterface, err := ctx.Get(clientKey{})
+	if err != nil {
+		return nil, err
+	}
+
+	// find API service based on undo tag value: `client.{{ undo.Tag }}Api`
+	tag := strings.Replace(undo.Tag, " ", "", -1) + "Api"
+	undoAPI := reflect.Indirect(undoClientInterface.(reflect.Value)).FieldByName(tag)
+	if !undoAPI.IsValid() {
+		return nil, fmt.Errorf("invalid API name %sApi", tag)
+	}
+
+	// get undo method from the service API: `client.{{ undo.Tag }}Api.{{ undo.Undo.OperationID }}`
+	undoOperation := undoAPI.MethodByName(undo.Undo.OperationID)
+	if !undoOperation.IsValid() {
+		return nil, fmt.Errorf("invalid method name %s", undo.Undo.OperationID)
+	}
+
+	return func() {
+		// Assemble undo method as follows: Client(cctx).UsersApi.DisableUser(cctx, response.Data.GetId()).Execute()
+		response := GetResponse(ctx)[0].Interface()
+
+		in := make([]reflect.Value, undoOperation.Type().NumIn())
+		// first argument is always context.Context
+		in[0] = reflect.ValueOf(GetCtx(ctx))
+		for i := 1; i < undoOperation.Type().NumIn(); i++ {
+			object, err := lookup.LookupStringI(response, undo.Undo.Parameters[i-1].Source)
+			if err != nil {
+				panic(err)
+			}
+			in[i] = object
+		}
+		request := undoOperation.Call(in)[0]
+		request.MethodByName("Execute").Call(nil)
+	}, nil
 }
 
 // SetCtx sets Go context in BDD context.
 func SetCtx(ctx gobdd.Context, value context.Context) {
 	ctx.Set(ctxKey{}, value)
+}
+
+// SetClient sets client reflection.
+func SetClient(ctx gobdd.Context, value interface{}) {
+	ctx.Set(clientKey{}, value)
 }
 
 // SetAPI sets client API.
@@ -250,20 +338,20 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 		}
 	}
 
-	result := request.MethodByName("Execute").Call(nil)
-	ctx.Set(responseKey{}, result)
-
-	name, err := ctx.GetString(requestNameKey{})
+	operationID, err := ctx.GetString(requestNameKey{})
 	if err != nil {
 		t.Errorf("could not get a request name: %v", err)
 	}
-	if undo, ok := GetRequestsUndo(ctx)[name]; ok {
-		GetCleanup(ctx)["01-undo"] = func() {
-			undo(ctx)
+	if undo, err := GetRequestsUndo(ctx, operationID); err == nil {
+		if undo != nil {
+			GetCleanup(ctx)["01-undo"] = undo
 		}
 	} else {
-		t.Errorf("missing undo for %s", name)
+		t.Errorf("missing undo for %s: %v", operationID, err)
 	}
+
+	result := request.MethodByName("Execute").Call(nil)
+	ctx.Set(responseKey{}, result)
 }
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
