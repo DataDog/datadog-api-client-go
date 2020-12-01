@@ -54,7 +54,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := *datadog.NewRelationshipToPermission() // RelationshipToPermission |  (optional)
+    body := *datadog.NewRelationshipToPermission() // RelationshipToPermission | 
 
     configuration := datadog.NewConfiguration()
 
@@ -140,7 +140,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // RelationshipToUser |  (optional)
+    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // RelationshipToUser | 
 
     configuration := datadog.NewConfiguration()
 
@@ -225,7 +225,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewRoleCreateRequest(*datadog.NewRoleCreateData(*datadog.NewRoleCreateAttributes("developers"))) // RoleCreateRequest |  (optional)
+    body := *datadog.NewRoleCreateRequest(*datadog.NewRoleCreateData(*datadog.NewRoleCreateAttributes("developers"))) // RoleCreateRequest | 
 
     configuration := datadog.NewConfiguration()
 
@@ -809,7 +809,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := *datadog.NewRelationshipToPermission() // RelationshipToPermission |  (optional)
+    body := *datadog.NewRelationshipToPermission() // RelationshipToPermission | 
 
     configuration := datadog.NewConfiguration()
 
@@ -895,7 +895,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // RelationshipToUser |  (optional)
+    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // RelationshipToUser | 
 
     configuration := datadog.NewConfiguration()
 
@@ -981,7 +981,7 @@ func main() {
     )
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := *datadog.NewRoleUpdateRequest(*datadog.NewRoleUpdateData(*datadog.NewRoleUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.RolesType("roles"))) // RoleUpdateRequest |  (optional)
+    body := *datadog.NewRoleUpdateRequest(*datadog.NewRoleUpdateData(*datadog.NewRoleUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.RolesType("roles"))) // RoleUpdateRequest | 
 
     configuration := datadog.NewConfiguration()
 

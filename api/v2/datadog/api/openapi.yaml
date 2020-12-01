@@ -562,6 +562,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LogsAggregateRequest'
+        required: true
       responses:
         "200":
           content:
@@ -851,6 +852,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RelationshipToRole'
+        required: true
       responses:
         "204":
           description: OK
@@ -940,6 +942,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RelationshipToRole'
+        required: true
       responses:
         "204":
           description: OK
@@ -1101,6 +1104,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LogsListRequest'
+        required: false
       responses:
         "200":
           content:
@@ -1312,6 +1316,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RoleCreateRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1420,6 +1425,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RoleUpdateRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1473,6 +1479,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RelationshipToPermission'
+        required: true
       responses:
         "200":
           content:
@@ -1554,6 +1561,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RelationshipToPermission'
+        required: true
       responses:
         "200":
           content:
@@ -1601,6 +1609,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RelationshipToUser'
+        required: true
       responses:
         "200":
           content:
@@ -1721,6 +1730,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RelationshipToUser'
+        required: true
       responses:
         "200":
           content:
@@ -1799,6 +1809,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SecurityMonitoringRuleCreatePayload'
+        required: true
       responses:
         "200":
           content:
@@ -1901,6 +1912,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SecurityMonitoringRuleUpdatePayload'
+        required: true
       responses:
         "200":
           content:
@@ -2039,6 +2051,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SecurityMonitoringSignalListRequest'
+        required: false
       responses:
         "200":
           content:
@@ -2670,6 +2683,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserInvitationsRequest'
+        required: true
       responses:
         "201":
           content:
@@ -2827,6 +2841,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserCreateRequest'
+        required: true
       responses:
         "201":
           content:
@@ -2938,6 +2953,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserUpdateRequest'
+        required: true
       responses:
         "200":
           content:
