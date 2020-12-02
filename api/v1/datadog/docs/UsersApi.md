@@ -126,7 +126,7 @@ func main() {
         },
     )
 
-    userHandle := TODO // string | The handle of the user.
+    userHandle := "test@datadoghq.com" // string | The handle of the user.
 
     configuration := datadog.NewConfiguration()
 
@@ -210,7 +210,7 @@ func main() {
         },
     )
 
-    userHandle := TODO // string | The ID of the user.
+    userHandle := "test@datadoghq.com" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
 
@@ -369,7 +369,7 @@ func main() {
         },
     )
 
-    userHandle := TODO // string | The ID of the user.
+    userHandle := "test@datadoghq.com" // string | The ID of the user.
     body := *datadog.NewUser() // User | Description of the update.
 
     configuration := datadog.NewConfiguration()
