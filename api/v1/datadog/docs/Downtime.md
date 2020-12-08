@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **Recurrence** | Pointer to [**NullableDowntimeRecurrence**](DowntimeRecurrence.md) |  | [optional] 
 **Scope** | Pointer to **[]string** | The scope(s) to which the downtime applies. For example, &#x60;host:app2&#x60;. Provide multiple scopes as a comma-separated list like &#x60;env:dev,env:prod&#x60;. The resulting downtime applies to sources that matches ALL provided scopes (&#x60;env:dev&#x60; **AND** &#x60;env:prod&#x60;). | [optional] 
 **Start** | Pointer to **int64** | POSIX timestamp to start the downtime. If not provided, the downtime starts the moment it is created. | [optional] 
-**Timezone** | Pointer to **string** | The timezone for the downtime. | [optional] 
+**Timezone** | Pointer to **string** | The timezone in which to display the downtime&#39;s start and end times in Datadog applications. | [optional] 
 **UpdaterId** | Pointer to **NullableInt32** | ID of the last user that updated the downtime. | [optional] [readonly] 
 
 ## Methods
