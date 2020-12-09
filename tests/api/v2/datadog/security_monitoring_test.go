@@ -39,6 +39,11 @@ func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, 
 	ruleCase.SetCondition("rule > 0")
 	ruleCases := []datadog.SecurityMonitoringRuleCaseCreate{*ruleCase}
 
+	filter := datadog.NewSecurityMonitoringFilter()
+	filter.SetAction(datadog.SECURITYMONITORINGFILTERACTION_REQUIRE)
+	filter.SetQuery("env:prod")
+	filters := []datadog.SecurityMonitoringFilter{*filter}
+
 	createPayload := datadog.NewSecurityMonitoringRuleCreatePayload(
 		ruleCases,
 		true,
@@ -47,6 +52,7 @@ func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, 
 		*options,
 		queries,
 	)
+	createPayload.SetFilters(filters)
 
 	return api.CreateSecurityMonitoringRule(ctx).Body(*createPayload).Execute()
 }
