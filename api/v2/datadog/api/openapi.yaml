@@ -7246,9 +7246,9 @@ components:
       example:
         cases: []
         isEnabled: true
-        name: name
+        name: ""
         options: {}
-        message: message
+        message: ""
         queries: []
         tags:
         - env:prod
@@ -7266,9 +7266,11 @@ components:
           type: boolean
         message:
           description: Message for generated signals.
+          example: ""
           type: string
         name:
           description: The name of the rule.
+          example: ""
           type: string
         options:
           $ref: '#/components/schemas/SecurityMonitoringRuleOptions'
