@@ -14190,7 +14190,9 @@ components:
       - is
       - isNot
       - lessThan
+      - lessThanOrEqual
       - moreThan
+      - moreThanOrEqual
       - matches
       - doesNotMatch
       - validates
@@ -14203,7 +14205,9 @@ components:
       - IS
       - IS_NOT
       - LESS_THAN
+      - LESS_THAN_OR_EQUAL
       - MORE_THAN
+      - MORE_THAN_OR_EQUAL
       - MATCHES
       - DOES_NOT_MATCH
       - VALIDATES
