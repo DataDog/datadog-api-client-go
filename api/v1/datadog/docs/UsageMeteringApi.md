@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**GetTracingWithoutLimits**](UsageMeteringApi.md#GetTracingWithoutLimits) | **Get** /api/v1/usage/tracing-without-limits | Get hourly usage for tracing without limits
 [**GetUsageAnalyzedLogs**](UsageMeteringApi.md#GetUsageAnalyzedLogs) | **Get** /api/v1/usage/analyzed_logs | Get hourly usage for analyzed logs
 [**GetUsageAttribution**](UsageMeteringApi.md#GetUsageAttribution) | **Get** /api/v1/usage/attribution | Get Usage Attribution
-[**GetUsageBillableSummary**](UsageMeteringApi.md#GetUsageBillableSummary) | **Get** /api/v1/usage/billable-summary | Get billable usage across your multi-org account
+[**GetUsageBillableSummary**](UsageMeteringApi.md#GetUsageBillableSummary) | **Get** /api/v1/usage/billable-summary | Get billable usage across your account
 [**GetUsageFargate**](UsageMeteringApi.md#GetUsageFargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
 [**GetUsageHosts**](UsageMeteringApi.md#GetUsageHosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
 [**GetUsageIndexedSpans**](UsageMeteringApi.md#GetUsageIndexedSpans) | **Get** /api/v1/usage/indexed-spans | Get hourly usage for indexed spans
@@ -823,7 +823,7 @@ Name | Type | Description  | Notes
 
 > UsageBillableSummaryResponse GetUsageBillableSummary(ctx).Month(month).Execute()
 
-Get billable usage across your multi-org account
+Get billable usage across your account
 
 
 
