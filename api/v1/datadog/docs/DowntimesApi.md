@@ -110,6 +110,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -140,7 +141,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CancelDowntimesByScope`: CanceledDowntimesIds
-    fmt.Fprintf(os.Stdout, "Response from `DowntimesApi.CancelDowntimesByScope`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.CancelDowntimesByScope:\n%v\n", response_content)
 }
 ```
 
@@ -190,6 +192,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -220,7 +223,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateDowntime`: Downtime
-    fmt.Fprintf(os.Stdout, "Response from `DowntimesApi.CreateDowntime`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.CreateDowntime:\n%v\n", response_content)
 }
 ```
 
@@ -270,6 +274,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -300,7 +305,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDowntime`: Downtime
-    fmt.Fprintf(os.Stdout, "Response from `DowntimesApi.GetDowntime`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.GetDowntime:\n%v\n", response_content)
 }
 ```
 
@@ -354,6 +360,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -384,7 +391,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListDowntimes`: []Downtime
-    fmt.Fprintf(os.Stdout, "Response from `DowntimesApi.ListDowntimes`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.ListDowntimes:\n%v\n", response_content)
 }
 ```
 
@@ -434,6 +442,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -465,7 +474,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateDowntime`: Downtime
-    fmt.Fprintf(os.Stdout, "Response from `DowntimesApi.UpdateDowntime`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.UpdateDowntime:\n%v\n", response_content)
 }
 ```
 

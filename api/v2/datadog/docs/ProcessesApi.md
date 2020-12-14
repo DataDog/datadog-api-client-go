@@ -23,6 +23,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -58,7 +59,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListProcesses`: ProcessSummariesResponse
-    fmt.Fprintf(os.Stdout, "Response from `ProcessesApi.ListProcesses`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ProcessesApi.ListProcesses:\n%v\n", response_content)
 }
 ```
 

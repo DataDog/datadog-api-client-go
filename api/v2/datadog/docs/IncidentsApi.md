@@ -27,6 +27,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -58,7 +59,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateIncident`: IncidentResponse
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.CreateIncident`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.CreateIncident:\n%v\n", response_content)
 }
 ```
 
@@ -191,6 +193,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -223,7 +226,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIncident`: IncidentResponse
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.GetIncident`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.GetIncident:\n%v\n", response_content)
 }
 ```
 
@@ -278,6 +282,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -311,7 +316,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListIncidents`: IncidentsResponse
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.ListIncidents`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.ListIncidents:\n%v\n", response_content)
 }
 ```
 
@@ -363,6 +369,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -395,7 +402,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateIncident`: IncidentResponse
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.UpdateIncident`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.UpdateIncident:\n%v\n", response_content)
 }
 ```
 

@@ -30,6 +30,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -60,7 +61,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CheckCanDeleteSLO`: CheckCanDeleteSLOResponse
-    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.CheckCanDeleteSLO`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.CheckCanDeleteSLO:\n%v\n", response_content)
 }
 ```
 
@@ -110,6 +112,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -140,7 +143,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateSLO`: SLOListResponse
-    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.CreateSLO`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.CreateSLO:\n%v\n", response_content)
 }
 ```
 
@@ -190,6 +194,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -221,7 +226,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteSLO`: SLODeleteResponse
-    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.DeleteSLO`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.DeleteSLO:\n%v\n", response_content)
 }
 ```
 
@@ -276,6 +282,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -306,7 +313,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteSLOTimeframeInBulk`: SLOBulkDeleteResponse
-    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk:\n%v\n", response_content)
 }
 ```
 
@@ -356,6 +364,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -386,7 +395,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSLO`: SLOResponse
-    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.GetSLO`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.GetSLO:\n%v\n", response_content)
 }
 ```
 
@@ -440,6 +450,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -473,7 +484,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSLOHistory`: SLOHistoryResponse
-    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.GetSLOHistory`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.GetSLOHistory:\n%v\n", response_content)
 }
 ```
 
@@ -529,6 +541,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -559,7 +572,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListSLOs`: SLOListResponse
-    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.ListSLOs`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.ListSLOs:\n%v\n", response_content)
 }
 ```
 
@@ -609,6 +623,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -640,7 +655,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateSLO`: SLOListResponse
-    fmt.Fprintf(os.Stdout, "Response from `ServiceLevelObjectivesApi.UpdateSLO`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.UpdateSLO:\n%v\n", response_content)
 }
 ```
 

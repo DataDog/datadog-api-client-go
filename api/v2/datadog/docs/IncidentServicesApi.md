@@ -27,6 +27,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -58,7 +59,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateIncidentService`: IncidentServiceResponse
-    fmt.Fprintf(os.Stdout, "Response from `IncidentServicesApi.CreateIncidentService`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.CreateIncidentService:\n%v\n", response_content)
 }
 ```
 
@@ -191,6 +193,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -223,7 +226,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIncidentService`: IncidentServiceResponse
-    fmt.Fprintf(os.Stdout, "Response from `IncidentServicesApi.GetIncidentService`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.GetIncidentService:\n%v\n", response_content)
 }
 ```
 
@@ -278,6 +282,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -312,7 +317,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListIncidentServices`: IncidentServicesResponse
-    fmt.Fprintf(os.Stdout, "Response from `IncidentServicesApi.ListIncidentServices`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.ListIncidentServices:\n%v\n", response_content)
 }
 ```
 
@@ -365,6 +371,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -397,7 +404,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateIncidentService`: IncidentServiceResponse
-    fmt.Fprintf(os.Stdout, "Response from `IncidentServicesApi.UpdateIncidentService`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.UpdateIncidentService:\n%v\n", response_content)
 }
 ```
 
