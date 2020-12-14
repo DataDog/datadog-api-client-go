@@ -27,6 +27,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -57,7 +58,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateChildOrg`: OrganizationCreateResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.CreateChildOrg`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.CreateChildOrg:\n%v\n", response_content)
 }
 ```
 
@@ -107,6 +109,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -137,7 +140,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetOrg`: OrganizationResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.GetOrg`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.GetOrg:\n%v\n", response_content)
 }
 ```
 
@@ -191,6 +195,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -220,7 +225,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListOrgs`: OrganizationListResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.ListOrgs`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.ListOrgs:\n%v\n", response_content)
 }
 ```
 
@@ -266,6 +272,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -297,7 +304,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateOrg`: OrganizationResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.UpdateOrg`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.UpdateOrg:\n%v\n", response_content)
 }
 ```
 
@@ -352,6 +360,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -383,7 +392,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UploadIdPForOrg`: IdpResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.UploadIdPForOrg`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.UploadIdPForOrg:\n%v\n", response_content)
 }
 ```
 
