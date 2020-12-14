@@ -26,6 +26,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -56,7 +57,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetHostTotals`: HostTotals
-    fmt.Fprintf(os.Stdout, "Response from `HostsApi.GetHostTotals`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.GetHostTotals:\n%v\n", response_content)
 }
 ```
 
@@ -106,6 +108,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -143,7 +146,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListHosts`: HostListResponse
-    fmt.Fprintf(os.Stdout, "Response from `HostsApi.ListHosts`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.ListHosts:\n%v\n", response_content)
 }
 ```
 
@@ -200,6 +204,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -231,7 +236,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `MuteHost`: HostMuteResponse
-    fmt.Fprintf(os.Stdout, "Response from `HostsApi.MuteHost`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.MuteHost:\n%v\n", response_content)
 }
 ```
 
@@ -286,6 +292,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -316,7 +323,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UnmuteHost`: HostMuteResponse
-    fmt.Fprintf(os.Stdout, "Response from `HostsApi.UnmuteHost`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.UnmuteHost:\n%v\n", response_content)
 }
 ```
 

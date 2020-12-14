@@ -50,6 +50,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -84,7 +85,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDailyCustomReports`: UsageCustomReportsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetDailyCustomReports`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetDailyCustomReports:\n%v\n", response_content)
 }
 ```
 
@@ -137,6 +139,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -169,7 +172,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIncidentManagement`: UsageIncidentManagementResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetIncidentManagement`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetIncidentManagement:\n%v\n", response_content)
 }
 ```
 
@@ -220,6 +224,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -252,7 +257,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIngestedSpans`: UsageIngestedSpansResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetIngestedSpans`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetIngestedSpans:\n%v\n", response_content)
 }
 ```
 
@@ -303,6 +309,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -337,7 +344,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetMonthlyCustomReports`: UsageCustomReportsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetMonthlyCustomReports`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetMonthlyCustomReports:\n%v\n", response_content)
 }
 ```
 
@@ -390,6 +398,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -421,7 +430,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSpecifiedDailyCustomReports`: UsageSpecifiedCustomReportsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetSpecifiedDailyCustomReports`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetSpecifiedDailyCustomReports:\n%v\n", response_content)
 }
 ```
 
@@ -475,6 +485,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -506,7 +517,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSpecifiedMonthlyCustomReports`: UsageSpecifiedCustomReportsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetSpecifiedMonthlyCustomReports`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetSpecifiedMonthlyCustomReports:\n%v\n", response_content)
 }
 ```
 
@@ -560,6 +572,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -592,7 +605,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetTracingWithoutLimits`: UsageTracingWithoutLimitsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetTracingWithoutLimits`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetTracingWithoutLimits:\n%v\n", response_content)
 }
 ```
 
@@ -643,6 +657,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -675,7 +690,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageAnalyzedLogs`: UsageAnalyzedLogsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageAnalyzedLogs`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageAnalyzedLogs:\n%v\n", response_content)
 }
 ```
 
@@ -726,6 +742,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -762,7 +779,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageAttribution`: UsageAttributionResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageAttribution`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageAttribution:\n%v\n", response_content)
 }
 ```
 
@@ -816,6 +834,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -847,7 +866,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageBillableSummary`: UsageBillableSummaryResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageBillableSummary`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageBillableSummary:\n%v\n", response_content)
 }
 ```
 
@@ -897,6 +917,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -929,7 +950,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageFargate`: UsageFargateResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageFargate`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageFargate:\n%v\n", response_content)
 }
 ```
 
@@ -980,6 +1002,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1012,7 +1035,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageHosts`: UsageHostsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageHosts`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageHosts:\n%v\n", response_content)
 }
 ```
 
@@ -1063,6 +1087,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1095,7 +1120,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageIndexedSpans`: UsageIndexedSpansResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageIndexedSpans`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageIndexedSpans:\n%v\n", response_content)
 }
 ```
 
@@ -1146,6 +1172,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1178,7 +1205,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageLambda`: UsageLambdaResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageLambda`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageLambda:\n%v\n", response_content)
 }
 ```
 
@@ -1229,6 +1257,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1261,7 +1290,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageLogs`: UsageLogsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageLogs`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageLogs:\n%v\n", response_content)
 }
 ```
 
@@ -1312,6 +1342,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1345,7 +1376,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageLogsByIndex`: UsageLogsByIndexResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageLogsByIndex`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageLogsByIndex:\n%v\n", response_content)
 }
 ```
 
@@ -1397,6 +1429,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1429,7 +1462,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageNetworkFlows`: UsageNetworkFlowsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageNetworkFlows`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageNetworkFlows:\n%v\n", response_content)
 }
 ```
 
@@ -1480,6 +1514,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1512,7 +1547,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageNetworkHosts`: UsageNetworkHostsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageNetworkHosts`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageNetworkHosts:\n%v\n", response_content)
 }
 ```
 
@@ -1563,6 +1599,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1595,7 +1632,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageProfiling`: UsageProfilingResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageProfiling`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageProfiling:\n%v\n", response_content)
 }
 ```
 
@@ -1646,6 +1684,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1679,7 +1718,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageRumSessions`: UsageRumSessionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageRumSessions`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageRumSessions:\n%v\n", response_content)
 }
 ```
 
@@ -1731,6 +1771,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1763,7 +1804,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageSNMP`: UsageSNMPResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageSNMP`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSNMP:\n%v\n", response_content)
 }
 ```
 
@@ -1814,6 +1856,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1847,7 +1890,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageSummary`: UsageSummaryResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageSummary`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSummary:\n%v\n", response_content)
 }
 ```
 
@@ -1899,6 +1943,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -1931,7 +1976,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageSynthetics`: UsageSyntheticsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageSynthetics`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSynthetics:\n%v\n", response_content)
 }
 ```
 
@@ -1982,6 +2028,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -2014,7 +2061,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageSyntheticsAPI`: UsageSyntheticsAPIResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageSyntheticsAPI`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSyntheticsAPI:\n%v\n", response_content)
 }
 ```
 
@@ -2065,6 +2113,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -2097,7 +2146,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageSyntheticsBrowser`: UsageSyntheticsBrowserResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageSyntheticsBrowser`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSyntheticsBrowser:\n%v\n", response_content)
 }
 ```
 
@@ -2148,6 +2198,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -2180,7 +2231,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageTimeseries`: UsageTimeseriesResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageTimeseries`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageTimeseries:\n%v\n", response_content)
 }
 ```
 
@@ -2231,6 +2283,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -2264,7 +2317,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageTopAvgMetrics`: UsageTopAvgMetricsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageTopAvgMetrics`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageTopAvgMetrics:\n%v\n", response_content)
 }
 ```
 
@@ -2316,6 +2370,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -2348,7 +2403,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageTrace`: UsageTraceResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageTrace`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageTrace:\n%v\n", response_content)
 }
 ```
 

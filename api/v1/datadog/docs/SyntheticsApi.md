@@ -43,6 +43,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -73,7 +74,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateGlobalVariable`: SyntheticsGlobalVariable
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.CreateGlobalVariable`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.CreateGlobalVariable:\n%v\n", response_content)
 }
 ```
 
@@ -123,6 +125,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -153,7 +156,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreatePrivateLocation`: SyntheticsPrivateLocationCreationResponse
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.CreatePrivateLocation`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.CreatePrivateLocation:\n%v\n", response_content)
 }
 ```
 
@@ -203,6 +207,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -233,7 +238,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateTest`: SyntheticsTestDetails
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.CreateTest`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.CreateTest:\n%v\n", response_content)
 }
 ```
 
@@ -447,6 +453,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -477,7 +484,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteTests`: SyntheticsDeleteTestsResponse
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.DeleteTests`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.DeleteTests:\n%v\n", response_content)
 }
 ```
 
@@ -527,6 +535,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -558,7 +567,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `EditGlobalVariable`: SyntheticsGlobalVariable
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.EditGlobalVariable`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.EditGlobalVariable:\n%v\n", response_content)
 }
 ```
 
@@ -613,6 +623,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -646,7 +657,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAPITestLatestResults`: SyntheticsGetAPITestLatestResultsResponse
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetAPITestLatestResults`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetAPITestLatestResults:\n%v\n", response_content)
 }
 ```
 
@@ -703,6 +715,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -734,7 +747,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAPITestResult`: SyntheticsAPITestResultFull
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetAPITestResult`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetAPITestResult:\n%v\n", response_content)
 }
 ```
 
@@ -790,6 +804,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -820,7 +835,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetBrowserTest`: SyntheticsTestDetails
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetBrowserTest`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetBrowserTest:\n%v\n", response_content)
 }
 ```
 
@@ -874,6 +890,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -907,7 +924,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetBrowserTestLatestResults`: SyntheticsGetBrowserTestLatestResultsResponse
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetBrowserTestLatestResults`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetBrowserTestLatestResults:\n%v\n", response_content)
 }
 ```
 
@@ -964,6 +982,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -995,7 +1014,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetBrowserTestResult`: SyntheticsBrowserTestResultFull
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetBrowserTestResult`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetBrowserTestResult:\n%v\n", response_content)
 }
 ```
 
@@ -1051,6 +1071,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -1081,7 +1102,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetGlobalVariable`: SyntheticsGlobalVariable
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetGlobalVariable`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetGlobalVariable:\n%v\n", response_content)
 }
 ```
 
@@ -1135,6 +1157,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -1165,7 +1188,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetPrivateLocation`: SyntheticsPrivateLocation
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetPrivateLocation`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetPrivateLocation:\n%v\n", response_content)
 }
 ```
 
@@ -1219,6 +1243,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -1249,7 +1274,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetTest`: SyntheticsTestDetails
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetTest`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetTest:\n%v\n", response_content)
 }
 ```
 
@@ -1303,6 +1329,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -1332,7 +1359,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLocations`: SyntheticsLocations
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.ListLocations`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.ListLocations:\n%v\n", response_content)
 }
 ```
 
@@ -1378,6 +1406,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -1407,7 +1436,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListTests`: SyntheticsListTestsResponse
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.ListTests`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.ListTests:\n%v\n", response_content)
 }
 ```
 
@@ -1453,6 +1483,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -1483,7 +1514,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `TriggerCITests`: SyntheticsTriggerCITestsResponse
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.TriggerCITests`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.TriggerCITests:\n%v\n", response_content)
 }
 ```
 
@@ -1533,6 +1565,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -1564,7 +1597,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdatePrivateLocation`: SyntheticsPrivateLocation
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.UpdatePrivateLocation`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.UpdatePrivateLocation:\n%v\n", response_content)
 }
 ```
 
@@ -1619,6 +1653,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -1650,7 +1685,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateTest`: SyntheticsTestDetails
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.UpdateTest`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.UpdateTest:\n%v\n", response_content)
 }
 ```
 
@@ -1705,6 +1741,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -1736,7 +1773,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateTestPauseStatus`: bool
-    fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.UpdateTestPauseStatus`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.UpdateTestPauseStatus:\n%v\n", response_content)
 }
 ```
 

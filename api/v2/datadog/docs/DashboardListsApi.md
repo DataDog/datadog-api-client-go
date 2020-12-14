@@ -26,6 +26,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -57,7 +58,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateDashboardListItems`: DashboardListAddItemsResponse
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.CreateDashboardListItems`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.CreateDashboardListItems:\n%v\n", response_content)
 }
 ```
 
@@ -112,6 +114,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -143,7 +146,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteDashboardListItems`: DashboardListDeleteItemsResponse
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.DeleteDashboardListItems`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.DeleteDashboardListItems:\n%v\n", response_content)
 }
 ```
 
@@ -198,6 +202,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -228,7 +233,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDashboardListItems`: DashboardListItems
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.GetDashboardListItems`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.GetDashboardListItems:\n%v\n", response_content)
 }
 ```
 
@@ -282,6 +288,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -313,7 +320,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateDashboardListItems`: DashboardListUpdateItemsResponse
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.UpdateDashboardListItems`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.UpdateDashboardListItems:\n%v\n", response_content)
 }
 ```
 

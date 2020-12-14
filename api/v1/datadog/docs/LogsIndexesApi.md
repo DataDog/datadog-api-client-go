@@ -27,6 +27,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -58,7 +59,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsIndex`: LogsIndex
-    fmt.Fprintf(os.Stdout, "Response from `LogsIndexesApi.GetLogsIndex`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.GetLogsIndex:\n%v\n", response_content)
 }
 ```
 
@@ -112,6 +114,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -142,7 +145,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsIndexOrder`: LogsIndexesOrder
-    fmt.Fprintf(os.Stdout, "Response from `LogsIndexesApi.GetLogsIndexOrder`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.GetLogsIndexOrder:\n%v\n", response_content)
 }
 ```
 
@@ -188,6 +192,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -218,7 +223,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLogIndexes`: LogsIndexListResponse
-    fmt.Fprintf(os.Stdout, "Response from `LogsIndexesApi.ListLogIndexes`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.ListLogIndexes:\n%v\n", response_content)
 }
 ```
 
@@ -264,6 +270,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -296,7 +303,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsIndex`: LogsIndex
-    fmt.Fprintf(os.Stdout, "Response from `LogsIndexesApi.UpdateLogsIndex`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.UpdateLogsIndex:\n%v\n", response_content)
 }
 ```
 
@@ -351,6 +359,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -382,7 +391,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsIndexOrder`: LogsIndexesOrder
-    fmt.Fprintf(os.Stdout, "Response from `LogsIndexesApi.UpdateLogsIndexOrder`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.UpdateLogsIndexOrder:\n%v\n", response_content)
 }
 ```
 

@@ -31,6 +31,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -61,7 +62,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateAWSAccount`: AWSAccountCreateResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.CreateAWSAccount`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.CreateAWSAccount:\n%v\n", response_content)
 }
 ```
 
@@ -111,6 +113,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -141,7 +144,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateAWSTagFilter`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.CreateAWSTagFilter`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.CreateAWSTagFilter:\n%v\n", response_content)
 }
 ```
 
@@ -191,6 +195,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -221,7 +226,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateNewAWSExternalID`: AWSAccountCreateResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.CreateNewAWSExternalID`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.CreateNewAWSExternalID:\n%v\n", response_content)
 }
 ```
 
@@ -271,6 +277,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -301,7 +308,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteAWSAccount`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.DeleteAWSAccount`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.DeleteAWSAccount:\n%v\n", response_content)
 }
 ```
 
@@ -351,6 +359,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -381,7 +390,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteAWSTagFilter`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.DeleteAWSTagFilter`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.DeleteAWSTagFilter:\n%v\n", response_content)
 }
 ```
 
@@ -431,6 +441,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -463,7 +474,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListAWSAccounts`: AWSAccountListResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.ListAWSAccounts`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.ListAWSAccounts:\n%v\n", response_content)
 }
 ```
 
@@ -515,6 +527,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -545,7 +558,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListAWSTagFilters`: AWSTagFilterListResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.ListAWSTagFilters`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.ListAWSTagFilters:\n%v\n", response_content)
 }
 ```
 
@@ -595,6 +609,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -624,7 +639,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListAvailableAWSNamespaces`: []string
-    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.ListAvailableAWSNamespaces`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.ListAvailableAWSNamespaces:\n%v\n", response_content)
 }
 ```
 
@@ -670,6 +686,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -703,7 +720,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateAWSAccount`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.UpdateAWSAccount`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.UpdateAWSAccount:\n%v\n", response_content)
 }
 ```
 

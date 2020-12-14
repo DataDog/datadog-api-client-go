@@ -29,6 +29,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -59,7 +60,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CheckCanDeleteMonitor`: CheckCanDeleteMonitorResponse
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.CheckCanDeleteMonitor`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.CheckCanDeleteMonitor:\n%v\n", response_content)
 }
 ```
 
@@ -109,6 +111,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -139,7 +142,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateMonitor`: Monitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.CreateMonitor`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.CreateMonitor:\n%v\n", response_content)
 }
 ```
 
@@ -189,6 +193,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -220,7 +225,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteMonitor`: DeletedMonitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.DeleteMonitor`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.DeleteMonitor:\n%v\n", response_content)
 }
 ```
 
@@ -275,6 +281,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -306,7 +313,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetMonitor`: Monitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.GetMonitor`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.GetMonitor:\n%v\n", response_content)
 }
 ```
 
@@ -361,6 +369,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -398,7 +407,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListMonitors`: []Monitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.ListMonitors`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ListMonitors:\n%v\n", response_content)
 }
 ```
 
@@ -455,6 +465,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -486,7 +497,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateMonitor`: Monitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.UpdateMonitor`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.UpdateMonitor:\n%v\n", response_content)
 }
 ```
 
@@ -541,6 +553,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -571,7 +584,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ValidateMonitor`: Monitor
-    fmt.Fprintf(os.Stdout, "Response from `MonitorsApi.ValidateMonitor`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ValidateMonitor:\n%v\n", response_content)
 }
 ```
 
