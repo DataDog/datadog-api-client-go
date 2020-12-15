@@ -13,7 +13,11 @@
 
 * `LESS_THAN` (value: `"lessThan"`)
 
+* `LESS_THAN_OR_EQUAL` (value: `"lessThanOrEqual"`)
+
 * `MORE_THAN` (value: `"moreThan"`)
+
+* `MORE_THAN_OR_EQUAL` (value: `"moreThanOrEqual"`)
 
 * `MATCHES` (value: `"matches"`)
 

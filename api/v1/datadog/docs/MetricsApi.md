@@ -27,6 +27,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -57,7 +58,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetMetricMetadata`: MetricMetadata
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.GetMetricMetadata`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.GetMetricMetadata:\n%v\n", response_content)
 }
 ```
 
@@ -111,6 +113,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -142,7 +145,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListActiveMetrics`: MetricsListResponse
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.ListActiveMetrics`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListActiveMetrics:\n%v\n", response_content)
 }
 ```
 
@@ -193,6 +197,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -223,7 +228,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListMetrics`: MetricSearchResponse
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.ListMetrics`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListMetrics:\n%v\n", response_content)
 }
 ```
 
@@ -273,6 +279,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -305,7 +312,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `QueryMetrics`: MetricsQueryResponse
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.QueryMetrics`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.QueryMetrics:\n%v\n", response_content)
 }
 ```
 
@@ -357,6 +365,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -388,7 +397,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateMetricMetadata`: MetricMetadata
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.UpdateMetricMetadata`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.UpdateMetricMetadata:\n%v\n", response_content)
 }
 ```
 

@@ -23,7 +23,9 @@ const (
 	SYNTHETICSASSERTIONOPERATOR_IS                   SyntheticsAssertionOperator = "is"
 	SYNTHETICSASSERTIONOPERATOR_IS_NOT               SyntheticsAssertionOperator = "isNot"
 	SYNTHETICSASSERTIONOPERATOR_LESS_THAN            SyntheticsAssertionOperator = "lessThan"
+	SYNTHETICSASSERTIONOPERATOR_LESS_THAN_OR_EQUAL   SyntheticsAssertionOperator = "lessThanOrEqual"
 	SYNTHETICSASSERTIONOPERATOR_MORE_THAN            SyntheticsAssertionOperator = "moreThan"
+	SYNTHETICSASSERTIONOPERATOR_MORE_THAN_OR_EQUAL   SyntheticsAssertionOperator = "moreThanOrEqual"
 	SYNTHETICSASSERTIONOPERATOR_MATCHES              SyntheticsAssertionOperator = "matches"
 	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_MATCH       SyntheticsAssertionOperator = "doesNotMatch"
 	SYNTHETICSASSERTIONOPERATOR_VALIDATES            SyntheticsAssertionOperator = "validates"
@@ -38,7 +40,7 @@ func (v *SyntheticsAssertionOperator) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsAssertionOperator(value)
-	for _, existing := range []SyntheticsAssertionOperator{"contains", "doesNotContain", "is", "isNot", "lessThan", "moreThan", "matches", "doesNotMatch", "validates", "isInMoreThan", "isInLessThan"} {
+	for _, existing := range []SyntheticsAssertionOperator{"contains", "doesNotContain", "is", "isNot", "lessThan", "lessThanOrEqual", "moreThan", "moreThanOrEqual", "matches", "doesNotMatch", "validates", "isInMoreThan", "isInLessThan"} {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil

@@ -32,6 +32,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -62,7 +63,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateAPIKey`: ApiKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.CreateAPIKey`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateAPIKey:\n%v\n", response_content)
 }
 ```
 
@@ -112,6 +114,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -142,7 +145,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateApplicationKey`: ApplicationKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.CreateApplicationKey`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateApplicationKey:\n%v\n", response_content)
 }
 ```
 
@@ -192,6 +196,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -222,7 +227,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteAPIKey`: ApiKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.DeleteAPIKey`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.DeleteAPIKey:\n%v\n", response_content)
 }
 ```
 
@@ -276,6 +282,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -306,7 +313,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteApplicationKey`: ApplicationKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.DeleteApplicationKey`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.DeleteApplicationKey:\n%v\n", response_content)
 }
 ```
 
@@ -360,6 +368,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -390,7 +399,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAPIKey`: ApiKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.GetAPIKey`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetAPIKey:\n%v\n", response_content)
 }
 ```
 
@@ -444,6 +454,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -474,7 +485,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetApplicationKey`: ApplicationKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.GetApplicationKey`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetApplicationKey:\n%v\n", response_content)
 }
 ```
 
@@ -528,6 +540,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -557,7 +570,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListAPIKeys`: ApiKeyListResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.ListAPIKeys`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListAPIKeys:\n%v\n", response_content)
 }
 ```
 
@@ -603,6 +617,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -632,7 +647,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListApplicationKeys`: ApplicationKeyListResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.ListApplicationKeys`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListApplicationKeys:\n%v\n", response_content)
 }
 ```
 
@@ -678,6 +694,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -709,7 +726,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateAPIKey`: ApiKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.UpdateAPIKey`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateAPIKey:\n%v\n", response_content)
 }
 ```
 
@@ -764,6 +782,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -795,7 +814,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateApplicationKey`: ApplicationKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `KeyManagementApi.UpdateApplicationKey`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateApplicationKey:\n%v\n", response_content)
 }
 ```
 

@@ -27,6 +27,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -59,7 +60,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateHostTags`: HostTags
-    fmt.Fprintf(os.Stdout, "Response from `TagsApi.CreateHostTags`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.CreateHostTags:\n%v\n", response_content)
 }
 ```
 
@@ -199,6 +201,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -230,7 +233,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetHostTags`: HostTags
-    fmt.Fprintf(os.Stdout, "Response from `TagsApi.GetHostTags`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.GetHostTags:\n%v\n", response_content)
 }
 ```
 
@@ -285,6 +289,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -315,7 +320,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListHostTags`: TagToHosts
-    fmt.Fprintf(os.Stdout, "Response from `TagsApi.ListHostTags`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.ListHostTags:\n%v\n", response_content)
 }
 ```
 
@@ -365,6 +371,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -397,7 +404,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateHostTags`: HostTags
-    fmt.Fprintf(os.Stdout, "Response from `TagsApi.UpdateHostTags`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.UpdateHostTags:\n%v\n", response_content)
 }
 ```
 

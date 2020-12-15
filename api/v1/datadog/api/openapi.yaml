@@ -6268,7 +6268,7 @@ paths:
         type: safe
   /api/v1/usage/billable-summary:
     get:
-      description: Get billable usage across your multi-org account.
+      description: Get billable usage across your account.
       operationId: GetUsageBillableSummary
       parameters:
       - description: 'Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]`
@@ -6300,7 +6300,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
-      summary: Get billable usage across your multi-org account
+      summary: Get billable usage across your account
       tags:
       - Usage Metering
       x-undo:
@@ -6919,7 +6919,8 @@ paths:
         type: safe
   /api/v1/usage/summary:
     get:
-      description: Get usage across your multi-org account.
+      description: Get usage across your multi-org account. You must have the multi-org
+        feature enabled.
       operationId: GetUsageSummary
       parameters:
       - description: |-
@@ -7931,6 +7932,7 @@ components:
       properties:
         alert_id:
           description: ID of the alert to use in the widget.
+          example: ""
           type: string
         time:
           $ref: '#/components/schemas/WidgetTime'
@@ -7966,6 +7968,7 @@ components:
       properties:
         alert_id:
           description: ID of the alert to use in the widget.
+          example: ""
           type: string
         precision:
           description: Number of decimal to show. If not defined, will use the raw
@@ -8398,6 +8401,7 @@ components:
       properties:
         check:
           description: Name of the check to use in the widget.
+          example: ""
           type: string
         group:
           description: Group reporting a single check.
@@ -8484,7 +8488,7 @@ components:
         notify_list:
         - notify_list
         - notify_list
-        title: title
+        title: ""
         widgets:
         - definition:
             requests:
@@ -8558,6 +8562,7 @@ components:
           type: array
         title:
           description: Title of the dashboard.
+          example: ""
           type: string
         url:
           description: The URL of the dashboard.
@@ -8972,7 +8977,8 @@ components:
           format: int64
           type: integer
         timezone:
-          description: The timezone for the downtime.
+          description: The timezone in which to display the downtime's start and end
+            times in Datadog applications.
           example: America/New_York
           type: string
         updater_id:
@@ -9205,10 +9211,12 @@ components:
       properties:
         search:
           description: The query being made on the event.
+          example: ""
           type: string
         tags_execution:
           description: The execution method for multi-value filters. Can be either
             and or or.
+          example: ""
           type: string
       required:
       - search
@@ -9248,6 +9256,7 @@ components:
           $ref: '#/components/schemas/WidgetEventSize'
         query:
           description: Query to filter the event stream with.
+          example: ""
           type: string
         tags_execution:
           description: The execution method for multi-value filters. Can be either
@@ -9284,6 +9293,7 @@ components:
       properties:
         query:
           description: Query to filter the event timeline with.
+          example: ""
           type: string
         tags_execution:
           description: The execution method for multi-value filters. Can be either
@@ -9327,6 +9337,7 @@ components:
           type: string
         text:
           description: Text to display.
+          example: ""
           type: string
         text_align:
           $ref: '#/components/schemas/WidgetTextAlign'
@@ -9946,6 +9957,7 @@ components:
           $ref: '#/components/schemas/IFrameWidgetDefinitionType'
         url:
           description: URL of the iframe.
+          example: ""
           type: string
       required:
       - type
@@ -10269,6 +10281,7 @@ components:
           $ref: '#/components/schemas/ImageWidgetDefinitionType'
         url:
           description: URL of the image.
+          example: ""
           type: string
       required:
       - type
@@ -10437,6 +10450,7 @@ components:
       properties:
         expression:
           description: Arithmetic operation between one or more log attributes.
+          example: ""
           type: string
         is_enabled:
           default: false
@@ -10454,6 +10468,7 @@ components:
         target:
           description: Name of the attribute that contains the result of the arithmetic
             operation.
+          example: ""
           type: string
         type:
           $ref: '#/components/schemas/LogsArithmeticProcessorType'
@@ -10567,6 +10582,7 @@ components:
         target:
           description: Name of the target attribute which value is defined by the
             matching category.
+          example: ""
           type: string
         type:
           $ref: '#/components/schemas/LogsCategoryProcessorType'
@@ -11096,11 +11112,13 @@ components:
           type: string
         source:
           description: Source attribute used to perform the lookup.
+          example: ""
           type: string
         target:
           description: |-
             Name of the attribute that contains the corresponding value in the mapping list
             or the `default_lookup` if not found in the mapping list.
+          example: ""
           type: string
         type:
           $ref: '#/components/schemas/LogsLookupProcessorType'
@@ -11171,7 +11189,7 @@ components:
         filter:
           query: source:python
         is_enabled: true
-        name: name
+        name: ""
         is_read_only: true
         id: id
         processors:
@@ -11194,6 +11212,7 @@ components:
           type: boolean
         name:
           description: Name of the pipeline.
+          example: ""
           type: string
         processors:
           description: Ordered list of processors in this pipeline.
@@ -11438,9 +11457,11 @@ components:
           type: string
         target:
           description: The name of the attribute that contains the result of the template.
+          example: ""
           type: string
         template:
           description: A formula with one or more attributes and raw text.
+          example: ""
           type: string
         type:
           $ref: '#/components/schemas/LogsStringBuilderProcessorType'
@@ -12181,6 +12202,7 @@ components:
           type: boolean
         query:
           description: Query to filter the monitors with.
+          example: ""
           type: string
         show_last_triggered:
           description: Whether to show the time that has elapsed since the monitor/group
@@ -12436,6 +12458,7 @@ components:
           type: string
         content:
           description: Content of the note.
+          example: ""
           type: string
         font_size:
           description: Size of the text.
@@ -12719,14 +12742,16 @@ components:
     PagerDutyService:
       description: The PagerDuty service that is available for integration with Datadog.
       example:
-        service_key: service_key
-        service_name: service_name
+        service_key: ""
+        service_name: ""
       properties:
         service_key:
           description: Your service key in PagerDuty.
+          example: ""
           type: string
         service_name:
           description: Your service name associated with a service key in PagerDuty.
+          example: ""
           type: string
       required:
       - service_key
@@ -12735,10 +12760,11 @@ components:
     PagerDutyServiceKey:
       description: PagerDuty service object key.
       example:
-        service_key: service_key
+        service_key: ""
       properties:
         service_key:
           description: Your service key in PagerDuty.
+          example: ""
           type: string
       required:
       - service_key
@@ -12746,10 +12772,11 @@ components:
     PagerDutyServiceName:
       description: PagerDuty service object name.
       example:
-        service_name: service_name
+        service_name: ""
       properties:
         service_name:
           description: Your service name associated service key in PagerDuty.
+          example: ""
           type: string
       required:
       - service_name
@@ -12786,6 +12813,7 @@ components:
           type: integer
         metric:
           description: Your chosen metric.
+          example: ""
           type: string
         search_by:
           description: Your chosen search term.
@@ -12911,10 +12939,10 @@ components:
           - updated
           - updated
         errors:
-        - id: id
-          message: message
-        - id: id
-          message: message
+        - id: ""
+          message: ""
+        - id: ""
+          message: ""
       properties:
         data:
           $ref: '#/components/schemas/SLOBulkDeleteResponse_data'
@@ -12966,10 +12994,10 @@ components:
     SLOHistoryMetrics:
       description: A `metric` based SLO history response.
       example:
-        res_type: res_type
+        res_type: ""
         resp_version: 0
         times: []
-        query: query
+        query: ""
         interval: 0
         message: message
         denominator:
@@ -12998,10 +13026,12 @@ components:
           $ref: '#/components/schemas/SLOHistoryMetricsSeries'
         query:
           description: The combined numerator and denominator query CSV.
+          example: ""
           type: string
         res_type:
           description: The series result type. This mimics `batch_query` response
             type.
+          example: ""
           type: string
         resp_version:
           description: The series response version type. This mimics `batch_query`
@@ -13074,10 +13104,10 @@ components:
               target: 0.0
           to_ts: 7
           series:
-            res_type: res_type
+            res_type: ""
             resp_version: 0
             times: []
-            query: query
+            query: ""
             interval: 0
             message: message
             denominator:
@@ -13215,8 +13245,8 @@ components:
             handle: handle
             email: email
           query:
-            denominator: denominator
-            numerator: numerator
+            denominator: ""
+            numerator: ""
           created_at: 0
           description: description
           groups:
@@ -13229,7 +13259,7 @@ components:
           monitor_ids:
           - 1
           - 1
-          name: name
+          name: ""
           id: id
           modified_at: 6
           monitor_tags:
@@ -13240,8 +13270,8 @@ components:
             handle: handle
             email: email
           query:
-            denominator: denominator
-            numerator: numerator
+            denominator: ""
+            numerator: ""
           created_at: 0
           description: description
           groups:
@@ -13254,7 +13284,7 @@ components:
           monitor_ids:
           - 1
           - 1
-          name: name
+          name: ""
           id: id
           modified_at: 6
           monitor_tags:
@@ -13288,8 +13318,8 @@ components:
             handle: handle
             email: email
           query:
-            denominator: denominator
-            numerator: numerator
+            denominator: ""
+            numerator: ""
           created_at: 0
           description: description
           groups:
@@ -13302,7 +13332,7 @@ components:
           monitor_ids:
           - 1
           - 1
-          name: name
+          name: ""
           id: id
           modified_at: 6
           monitor_tags:
@@ -13524,8 +13554,8 @@ components:
           handle: handle
           email: email
         query:
-          denominator: denominator
-          numerator: numerator
+          denominator: ""
+          numerator: ""
         created_at: 0
         description: description
         groups:
@@ -13538,7 +13568,7 @@ components:
         monitor_ids:
         - 1
         - 1
-        name: name
+        name: ""
         id: id
         modified_at: 6
         monitor_tags:
@@ -13615,6 +13645,7 @@ components:
           type: array
         name:
           description: The name of the service level objective object.
+          example: ""
           type: string
         query:
           $ref: '#/components/schemas/ServiceLevelObjectiveQuery'
@@ -13650,14 +13681,16 @@ components:
         to be used because this will sum up all request counts instead of averaging them, or taking the max or
         min of all of those requests.
       example:
-        denominator: denominator
-        numerator: numerator
+        denominator: ""
+        numerator: ""
       properties:
         denominator:
           description: A Datadog metric query for total (valid) events.
+          example: ""
           type: string
         numerator:
           description: A Datadog metric query for good events.
+          example: ""
           type: string
       required:
       - denominator
@@ -13674,12 +13707,12 @@ components:
           email: email
         thresholds: []
         query:
-          denominator: denominator
-          numerator: numerator
+          denominator: ""
+          numerator: ""
         monitor_ids:
         - 1
         - 1
-        name: name
+        name: ""
         created_at: 0
         description: description
         groups:
@@ -13749,6 +13782,7 @@ components:
           type: array
         name:
           description: The name of the service level objective object.
+          example: ""
           type: string
         query:
           $ref: '#/components/schemas/ServiceLevelObjectiveQuery'
@@ -13799,6 +13833,7 @@ components:
           type: array
         service:
           description: The ID of the service you want to map.
+          example: ""
           type: string
         title:
           description: The title of your widget.
@@ -13832,9 +13867,11 @@ components:
           $ref: '#/components/schemas/WidgetServiceSummaryDisplayFormat'
         env:
           description: APM environment.
+          example: ""
           type: string
         service:
           description: APM service.
+          example: ""
           type: string
         show_breakdown:
           description: Whether to show the latency breakdown or not.
@@ -13858,6 +13895,7 @@ components:
           $ref: '#/components/schemas/WidgetSizeFormat'
         span_name:
           description: APM span name.
+          example: ""
           type: string
         time:
           $ref: '#/components/schemas/WidgetTime'
@@ -14031,8 +14069,8 @@ components:
                 key: headers
               port: 0
               basicAuth:
-                password: password
-                username: username
+                password: ""
+                username: ""
               query: '{}'
               certificate:
                 cert:
@@ -14049,11 +14087,11 @@ components:
               timeout: 6.027456183070403
               url: url
             variables:
-            - name: name
+            - name: ""
               pattern: pattern
               id: id
               example: example
-            - name: name
+            - name: ""
               pattern: pattern
               id: id
               example: example
@@ -14153,7 +14191,9 @@ components:
       - is
       - isNot
       - lessThan
+      - lessThanOrEqual
       - moreThan
+      - moreThanOrEqual
       - matches
       - doesNotMatch
       - validates
@@ -14166,7 +14206,9 @@ components:
       - IS
       - IS_NOT
       - LESS_THAN
+      - LESS_THAN_OR_EQUAL
       - MORE_THAN
+      - MORE_THAN_OR_EQUAL
       - MATCHES
       - DOES_NOT_MATCH
       - VALIDATES
@@ -14213,14 +14255,16 @@ components:
     SyntheticsBasicAuth:
       description: Object to handle basic authentication when performing the test.
       example:
-        password: password
-        username: username
+        password: ""
+        username: ""
       properties:
         password:
           description: Password to use for the basic authentication.
+          example: ""
           type: string
         username:
           description: Username to use for the basic authentication.
+          example: ""
           type: string
       required:
       - password
@@ -14229,15 +14273,17 @@ components:
     SyntheticsBrowserError:
       description: Error response object for a browser test.
       example:
-        name: name
-        description: description
+        name: ""
+        description: ""
         statusCode: 5
       properties:
         description:
           description: Description of the error.
+          example: ""
           type: string
         name:
           description: Name of the error.
+          example: ""
           type: string
         statusCode:
           description: Status Code of the error.
@@ -14271,7 +14317,7 @@ components:
         passed: true
         error: error
         device:
-          name: name
+          name: ""
           width: 0
           isMobile: true
           height: 0
@@ -14279,8 +14325,8 @@ components:
         - screenshotBucketKey: true
           snapshotBucketKey: true
           warnings:
-          - message: message
-          - message: message
+          - message: ""
+          - message: ""
           stepId: 4
           timeToInteractive: 7.386281948385884
           description: description
@@ -14304,11 +14350,11 @@ components:
           skipped: true
           duration: 2.3021358869347655
           browserErrors:
-          - name: name
-            description: description
+          - name: ""
+            description: ""
             statusCode: 5
-          - name: name
-            description: description
+          - name: ""
+            description: ""
             statusCode: 5
           subTestStepDetails:
           - null
@@ -14317,8 +14363,8 @@ components:
         - screenshotBucketKey: true
           snapshotBucketKey: true
           warnings:
-          - message: message
-          - message: message
+          - message: ""
+          - message: ""
           stepId: 4
           timeToInteractive: 7.386281948385884
           description: description
@@ -14342,11 +14388,11 @@ components:
           skipped: true
           duration: 2.3021358869347655
           browserErrors:
-          - name: name
-            description: description
+          - name: ""
+            description: ""
             statusCode: 5
-          - name: name
-            description: description
+          - name: ""
+            description: ""
             statusCode: 5
           subTestStepDetails:
           - null
@@ -14407,7 +14453,7 @@ components:
           passed: true
           error: error
           device:
-            name: name
+            name: ""
             width: 0
             isMobile: true
             height: 0
@@ -14415,8 +14461,8 @@ components:
           - screenshotBucketKey: true
             snapshotBucketKey: true
             warnings:
-            - message: message
-            - message: message
+            - message: ""
+            - message: ""
             stepId: 4
             timeToInteractive: 7.386281948385884
             description: description
@@ -14440,11 +14486,11 @@ components:
             skipped: true
             duration: 2.3021358869347655
             browserErrors:
-            - name: name
-              description: description
+            - name: ""
+              description: ""
               statusCode: 5
-            - name: name
-              description: description
+            - name: ""
+              description: ""
               statusCode: 5
             subTestStepDetails:
             - null
@@ -14453,8 +14499,8 @@ components:
           - screenshotBucketKey: true
             snapshotBucketKey: true
             warnings:
-            - message: message
-            - message: message
+            - message: ""
+            - message: ""
             stepId: 4
             timeToInteractive: 7.386281948385884
             description: description
@@ -14478,11 +14524,11 @@ components:
             skipped: true
             duration: 2.3021358869347655
             browserErrors:
-            - name: name
-              description: description
+            - name: ""
+              description: ""
               statusCode: 5
-            - name: name
-              description: description
+            - name: ""
+              description: ""
               statusCode: 5
             subTestStepDetails:
             - null
@@ -14499,8 +14545,8 @@ components:
                 key: headers
               port: 0
               basicAuth:
-                password: password
-                username: username
+                password: ""
+                username: ""
               query: '{}'
               certificate:
                 cert:
@@ -14517,11 +14563,11 @@ components:
               timeout: 6.027456183070403
               url: url
             variables:
-            - name: name
+            - name: ""
               pattern: pattern
               id: id
               example: example
-            - name: name
+            - name: ""
               pattern: pattern
               id: id
               example: example
@@ -14556,7 +14602,7 @@ components:
           duration: 1.4658129805029452
           stepCountTotal: 2
           device:
-            name: name
+            name: ""
             width: 0
             isMobile: true
             height: 0
@@ -14589,7 +14635,7 @@ components:
         Object defining a variable that can be used in your browser test.
         Learn more in the [Browser test Actions documentation](https://docs.datadoghq.com/synthetics/browser_tests/actions#variable).
       example:
-        name: name
+        name: ""
         pattern: pattern
         id: id
         example: example
@@ -14602,6 +14648,7 @@ components:
           type: string
         name:
           description: Name of the variable.
+          example: ""
           type: string
         pattern:
           description: Pattern of the variable.
@@ -14644,8 +14691,8 @@ components:
         variables:
           key: variables
         basicAuth:
-          password: password
-          username: username
+          password: ""
+          username: ""
         body: body
         cookies: cookies
         public_id: aaa-aaa-aaa
@@ -14733,8 +14780,8 @@ components:
           variables:
             key: variables
           basicAuth:
-            password: password
-            username: username
+            password: ""
+            username: ""
           body: body
           cookies: cookies
           public_id: aaa-aaa-aaa
@@ -14763,8 +14810,8 @@ components:
           variables:
             key: variables
           basicAuth:
-            password: password
-            username: username
+            password: ""
+            username: ""
           body: body
           cookies: cookies
           public_id: aaa-aaa-aaa
@@ -14847,7 +14894,7 @@ components:
     SyntheticsDevice:
       description: Object describing the device used to perform the Synthetic test.
       example:
-        name: name
+        name: ""
         width: 0
         isMobile: true
         height: 0
@@ -14864,6 +14911,7 @@ components:
           type: boolean
         name:
           description: The device name.
+          example: ""
           type: string
         width:
           description: Screen width of the device.
@@ -14971,7 +15019,7 @@ components:
             duration: 1.4658129805029452
             stepCountTotal: 2
             device:
-              name: name
+              name: ""
               width: 0
               isMobile: true
               height: 0
@@ -14984,7 +15032,7 @@ components:
             duration: 1.4658129805029452
             stepCountTotal: 2
             device:
-              name: name
+              name: ""
               width: 0
               isMobile: true
               height: 0
@@ -15093,8 +15141,8 @@ components:
                 key: headers
               port: 0
               basicAuth:
-                password: password
-                username: username
+                password: ""
+                username: ""
               query: '{}'
               certificate:
                 cert:
@@ -15111,11 +15159,11 @@ components:
               timeout: 6.027456183070403
               url: url
             variables:
-            - name: name
+            - name: ""
               pattern: pattern
               id: id
               example: example
-            - name: name
+            - name: ""
               pattern: pattern
               id: id
               example: example
@@ -15159,8 +15207,8 @@ components:
                 key: headers
               port: 0
               basicAuth:
-                password: password
-                username: username
+                password: ""
+                username: ""
               query: '{}'
               certificate:
                 cert:
@@ -15177,11 +15225,11 @@ components:
               timeout: 6.027456183070403
               url: url
             variables:
-            - name: name
+            - name: ""
               pattern: pattern
               id: id
               example: example
-            - name: name
+            - name: ""
               pattern: pattern
               id: id
               example: example
@@ -15485,8 +15533,8 @@ components:
         screenshotBucketKey: true
         snapshotBucketKey: true
         warnings:
-        - message: message
-        - message: message
+        - message: ""
+        - message: ""
         stepId: 4
         timeToInteractive: 7.386281948385884
         description: description
@@ -15510,11 +15558,11 @@ components:
         skipped: true
         duration: 2.3021358869347655
         browserErrors:
-        - name: name
-          description: description
+        - name: ""
+          description: ""
           statusCode: 5
-        - name: name
-          description: description
+        - name: ""
+          description: ""
           statusCode: 5
         subTestStepDetails:
         - null
@@ -15646,8 +15694,8 @@ components:
             key: headers
           port: 0
           basicAuth:
-            password: password
-            username: username
+            password: ""
+            username: ""
           query: '{}'
           certificate:
             cert:
@@ -15664,11 +15712,11 @@ components:
           timeout: 6.027456183070403
           url: url
         variables:
-        - name: name
+        - name: ""
           pattern: pattern
           id: id
           example: example
-        - name: name
+        - name: ""
           pattern: pattern
           id: id
           example: example
@@ -15721,8 +15769,8 @@ components:
               key: headers
             port: 0
             basicAuth:
-              password: password
-              username: username
+              password: ""
+              username: ""
             query: '{}'
             certificate:
               cert:
@@ -15739,11 +15787,11 @@ components:
             timeout: 6.027456183070403
             url: url
           variables:
-          - name: name
+          - name: ""
             pattern: pattern
             id: id
             example: example
-          - name: name
+          - name: ""
             pattern: pattern
             id: id
             example: example
@@ -15952,8 +16000,8 @@ components:
           key: headers
         port: 0
         basicAuth:
-          password: password
-          username: username
+          password: ""
+          username: ""
         query: '{}'
         certificate:
           cert:
@@ -19671,6 +19719,7 @@ components:
       properties:
         q:
           description: Query definition.
+          example: ""
           type: string
         tags_execution:
           description: The execution method for multi-value filters.
@@ -19692,6 +19741,7 @@ components:
       properties:
         column:
           description: Facet path for the column
+          example: ""
           type: string
         order:
           $ref: '#/components/schemas/WidgetSort'
@@ -20391,6 +20441,7 @@ components:
       properties:
         query:
           description: Search value to apply.
+          example: ""
           type: string
       required:
       - query
@@ -20739,16 +20790,18 @@ components:
     SLOBulkDeleteResponse_errors:
       description: Object describing the error.
       example:
-        id: id
-        message: message
+        id: ""
+        message: ""
       properties:
         id:
           description: |-
             The ID of the service level objective object associated with
             this error.
+          example: ""
           type: string
         message:
           description: The error message.
+          example: ""
           type: string
         timeframe:
           $ref: '#/components/schemas/SLOErrorTimeframe'
@@ -20792,10 +20845,10 @@ components:
             target: 0.0
         to_ts: 7
         series:
-          res_type: res_type
+          res_type: ""
           resp_version: 0
           times: []
-          query: query
+          query: ""
           interval: 0
           message: message
           denominator:
@@ -20886,8 +20939,8 @@ components:
               key: headers
             port: 0
             basicAuth:
-              password: password
-              username: username
+              password: ""
+              username: ""
             query: '{}'
             certificate:
               cert:
@@ -20904,11 +20957,11 @@ components:
             timeout: 6.027456183070403
             url: url
           variables:
-          - name: name
+          - name: ""
             pattern: pattern
             id: id
             example: example
-          - name: name
+          - name: ""
             pattern: pattern
             id: id
             example: example
@@ -20958,8 +21011,8 @@ components:
               key: headers
             port: 0
             basicAuth:
-              password: password
-              username: username
+              password: ""
+              username: ""
             query: '{}'
             certificate:
               cert:
@@ -20976,11 +21029,11 @@ components:
             timeout: 6.027456183070403
             url: url
           variables:
-          - name: name
+          - name: ""
             pattern: pattern
             id: id
             example: example
-          - name: name
+          - name: ""
             pattern: pattern
             id: id
             example: example
@@ -20997,7 +21050,7 @@ components:
         duration: 1.4658129805029452
         stepCountTotal: 2
         device:
-          name: name
+          name: ""
           width: 0
           isMobile: true
           height: 0
@@ -21199,10 +21252,11 @@ components:
     SyntheticsStepDetail_warnings:
       description: Object collecting warnings for a given step.
       example:
-        message: message
+        message: ""
       properties:
         message:
           description: Message for the warning.
+          example: ""
           type: string
         type:
           $ref: '#/components/schemas/SyntheticsWarningType'
@@ -21266,6 +21320,7 @@ components:
           type: string
         expression:
           description: Expression name.
+          example: ""
           type: string
       required:
       - expression

@@ -29,6 +29,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -59,7 +60,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateSecurityMonitoringRule`: SecurityMonitoringRuleResponse
-    fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.CreateSecurityMonitoringRule`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.CreateSecurityMonitoringRule:\n%v\n", response_content)
 }
 ```
 
@@ -191,6 +193,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -221,7 +224,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSecurityMonitoringRule`: SecurityMonitoringRuleResponse
-    fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.GetSecurityMonitoringRule`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.GetSecurityMonitoringRule:\n%v\n", response_content)
 }
 ```
 
@@ -275,6 +279,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -306,7 +311,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListSecurityMonitoringRules`: SecurityMonitoringListRulesResponse
-    fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.ListSecurityMonitoringRules`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.ListSecurityMonitoringRules:\n%v\n", response_content)
 }
 ```
 
@@ -357,6 +363,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -394,7 +401,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListSecurityMonitoringSignals`: SecurityMonitoringSignalsListResponse
-    fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.ListSecurityMonitoringSignals`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.ListSecurityMonitoringSignals:\n%v\n", response_content)
 }
 ```
 
@@ -449,6 +457,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -480,7 +489,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SearchSecurityMonitoringSignals`: SecurityMonitoringSignalsListResponse
-    fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.SearchSecurityMonitoringSignals`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.SearchSecurityMonitoringSignals:\n%v\n", response_content)
 }
 ```
 
@@ -530,6 +540,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -561,7 +572,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateSecurityMonitoringRule`: SecurityMonitoringRuleResponse
-    fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.UpdateSecurityMonitoringRule`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.UpdateSecurityMonitoringRule:\n%v\n", response_content)
 }
 ```
 

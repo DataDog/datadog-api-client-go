@@ -23,6 +23,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -49,7 +50,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `Validate`: AuthenticationValidationResponse
-    fmt.Fprintf(os.Stdout, "Response from `AuthenticationApi.Validate`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AuthenticationApi.Validate:\n%v\n", response_content)
 }
 ```
 

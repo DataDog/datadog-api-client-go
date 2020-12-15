@@ -34,6 +34,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -65,7 +66,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `AddPermissionToRole`: PermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesApi.AddPermissionToRole`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.AddPermissionToRole:\n%v\n", response_content)
 }
 ```
 
@@ -120,6 +122,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -151,7 +154,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `AddUserToRole`: UsersResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesApi.AddUserToRole`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.AddUserToRole:\n%v\n", response_content)
 }
 ```
 
@@ -206,6 +210,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -236,7 +241,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateRole`: RoleCreateResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesApi.CreateRole`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.CreateRole:\n%v\n", response_content)
 }
 ```
 
@@ -368,6 +374,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -398,7 +405,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetRole`: RoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesApi.GetRole`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.GetRole:\n%v\n", response_content)
 }
 ```
 
@@ -452,6 +460,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -481,7 +490,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListPermissions`: PermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesApi.ListPermissions`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListPermissions:\n%v\n", response_content)
 }
 ```
 
@@ -527,6 +537,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -557,7 +568,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListRolePermissions`: PermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesApi.ListRolePermissions`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListRolePermissions:\n%v\n", response_content)
 }
 ```
 
@@ -611,6 +623,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -645,7 +658,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListRoleUsers`: UsersResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesApi.ListRoleUsers`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListRoleUsers:\n%v\n", response_content)
 }
 ```
 
@@ -703,6 +717,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -736,7 +751,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListRoles`: RolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesApi.ListRoles`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListRoles:\n%v\n", response_content)
 }
 ```
 
@@ -789,6 +805,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -820,7 +837,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `RemovePermissionFromRole`: PermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesApi.RemovePermissionFromRole`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.RemovePermissionFromRole:\n%v\n", response_content)
 }
 ```
 
@@ -875,6 +893,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -906,7 +925,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `RemoveUserFromRole`: UsersResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesApi.RemoveUserFromRole`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.RemoveUserFromRole:\n%v\n", response_content)
 }
 ```
 
@@ -961,6 +981,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -992,7 +1013,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateRole`: RoleUpdateResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesApi.UpdateRole`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.UpdateRole:\n%v\n", response_content)
 }
 ```
 

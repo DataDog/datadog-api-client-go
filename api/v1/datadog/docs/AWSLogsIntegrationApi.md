@@ -29,6 +29,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -59,7 +60,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CheckAWSLogsLambdaAsync`: AWSLogsAsyncResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync:\n%v\n", response_content)
 }
 ```
 
@@ -109,6 +111,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -139,7 +142,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CheckAWSLogsServicesAsync`: AWSLogsAsyncResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.CheckAWSLogsServicesAsync`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.CheckAWSLogsServicesAsync:\n%v\n", response_content)
 }
 ```
 
@@ -189,6 +193,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -219,7 +224,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateAWSLambdaARN`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.CreateAWSLambdaARN`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.CreateAWSLambdaARN:\n%v\n", response_content)
 }
 ```
 
@@ -269,6 +275,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -299,7 +306,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteAWSLambdaARN`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.DeleteAWSLambdaARN`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.DeleteAWSLambdaARN:\n%v\n", response_content)
 }
 ```
 
@@ -349,6 +357,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -379,7 +388,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `EnableAWSLogServices`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.EnableAWSLogServices`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.EnableAWSLogServices:\n%v\n", response_content)
 }
 ```
 
@@ -429,6 +439,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -458,7 +469,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListAWSLogsIntegrations`: []AWSLogsListResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.ListAWSLogsIntegrations`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.ListAWSLogsIntegrations:\n%v\n", response_content)
 }
 ```
 
@@ -504,6 +516,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -533,7 +546,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListAWSLogsServices`: []AWSLogsListServicesResponse
-    fmt.Fprintf(os.Stdout, "Response from `AWSLogsIntegrationApi.ListAWSLogsServices`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.ListAWSLogsServices:\n%v\n", response_content)
 }
 ```
 
