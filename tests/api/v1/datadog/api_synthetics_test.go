@@ -29,7 +29,7 @@ var targetValue0 interface{} = "0"
 
 func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
 	assertionTextHTML := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
-	assertionTextHTML.Property = datadog.PtrString("content-type")
+	assertionTextHTML.Property = datadog.PtrString("{{ PROPERTY }}")
 	assertionTextHTML.Target = &targetTextHTML
 
 	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
@@ -50,6 +50,14 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertionTextHTML),
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
 				datadog.SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion(targetJSONPath),
+			},
+			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
+				datadog.SyntheticsConfigVariable{
+					Name: "PROPERTY",
+					Example: datadog.PtrString("content-type"),
+					Pattern: datadog.PtrString("content-type"),
+					Type: "text",
+				},
 			},
 			Request: datadog.SyntheticsTestRequest{
 				Headers: &map[string]string{"testingGoClient": "true"},
@@ -227,7 +235,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 		} else if assertion.SyntheticsAssertionTarget != nil {
 			if assertion.SyntheticsAssertionTarget.Type == datadog.SYNTHETICSASSERTIONTYPE_HEADER {
 				assert.Equal(datadog.SYNTHETICSASSERTIONOPERATOR_IS, assertion.SyntheticsAssertionTarget.Operator)
-				assert.Equal("content-type", assertion.SyntheticsAssertionTarget.GetProperty())
+				assert.Equal("{{ PROPERTY }}", assertion.SyntheticsAssertionTarget.GetProperty())
 				assert.Equal("text/html", assertion.SyntheticsAssertionTarget.GetTarget().(string))
 			} else if assertion.SyntheticsAssertionTarget.Type == datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME {
 				assert.Equal(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, assertion.SyntheticsAssertionTarget.Operator)
