@@ -76,6 +76,11 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`a valid "apiKeyAuth" key in the system`, aValidAPIKeyAuth)
 	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
+
+	for _, givenStep := range tests.LoadGivenSteps("./features/given.json") {
+		givenStep.RegisterSuite(s)
+	}
+
 	s.Run()
 }
 
