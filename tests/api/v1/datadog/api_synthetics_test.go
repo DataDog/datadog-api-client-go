@@ -54,9 +54,9 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
 				datadog.SyntheticsConfigVariable{
 					Name: "PROPERTY",
-					Example: datadog.PtrString("content-type"),
+					Example: "content-type",
 					Pattern: datadog.PtrString("content-type"),
-					Type: "text",
+					Type: datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
 			Request: datadog.SyntheticsTestRequest{
