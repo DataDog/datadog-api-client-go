@@ -33,6 +33,22 @@ const (
 	SYNTHETICSASSERTIONOPERATOR_IS_IN_LESS_DAYS_THAN SyntheticsAssertionOperator = "isInLessThan"
 )
 
+var allowedSyntheticsAssertionOperatorEnumValues = []SyntheticsAssertionOperator{
+	"contains",
+	"doesNotContain",
+	"is",
+	"isNot",
+	"lessThan",
+	"lessThanOrEqual",
+	"moreThan",
+	"moreThanOrEqual",
+	"matches",
+	"doesNotMatch",
+	"validates",
+	"isInMoreThan",
+	"isInLessThan",
+}
+
 func (v *SyntheticsAssertionOperator) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -40,7 +56,7 @@ func (v *SyntheticsAssertionOperator) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsAssertionOperator(value)
-	for _, existing := range []SyntheticsAssertionOperator{"contains", "doesNotContain", "is", "isNot", "lessThan", "lessThanOrEqual", "moreThan", "moreThanOrEqual", "matches", "doesNotMatch", "validates", "isInMoreThan", "isInLessThan"} {
+	for _, existing := range allowedSyntheticsAssertionOperatorEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -48,6 +64,27 @@ func (v *SyntheticsAssertionOperator) UnmarshalJSON(src []byte) error {
 	}
 
 	return fmt.Errorf("%+v is not a valid SyntheticsAssertionOperator", value)
+}
+
+// NewSyntheticsAssertionOperatorFromValue returns a pointer to a valid SyntheticsAssertionOperator
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewSyntheticsAssertionOperatorFromValue(v string) (*SyntheticsAssertionOperator, error) {
+	ev := SyntheticsAssertionOperator(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for SyntheticsAssertionOperator: valid values are %v", v, allowedSyntheticsAssertionOperatorEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v SyntheticsAssertionOperator) IsValid() bool {
+	for _, existing := range allowedSyntheticsAssertionOperatorEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
 }
 
 // Ptr returns reference to SyntheticsAssertionOperator value
