@@ -20,7 +20,7 @@ func TestScenarios(t *testing.T) {
 	requestsUndo := tests.LoadRequestsUndo("./features/undo.json")
 	s := gobdd.NewSuite(
 		t,
-		gobdd.WithIgnoredTags([]string{"@skip"}),
+		gobdd.WithIgnoredTags(tests.GetIgnoredTags()),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
 			cctx, finish := WithRecorder(
