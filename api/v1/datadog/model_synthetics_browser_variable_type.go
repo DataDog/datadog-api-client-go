@@ -18,10 +18,11 @@ type SyntheticsBrowserVariableType string
 
 // List of SyntheticsBrowserVariableType
 const (
-	SYNTHETICSBROWSERVARIABLETYPE_ELEMENT SyntheticsBrowserVariableType = "element"
-	SYNTHETICSBROWSERVARIABLETYPE_EMAIL   SyntheticsBrowserVariableType = "email"
-	SYNTHETICSBROWSERVARIABLETYPE_GLOBAL  SyntheticsBrowserVariableType = "global"
-	SYNTHETICSBROWSERVARIABLETYPE_TEXT    SyntheticsBrowserVariableType = "text"
+	SYNTHETICSBROWSERVARIABLETYPE_ELEMENT    SyntheticsBrowserVariableType = "element"
+	SYNTHETICSBROWSERVARIABLETYPE_EMAIL      SyntheticsBrowserVariableType = "email"
+	SYNTHETICSBROWSERVARIABLETYPE_GLOBAL     SyntheticsBrowserVariableType = "global"
+	SYNTHETICSBROWSERVARIABLETYPE_JAVASCRIPT SyntheticsBrowserVariableType = "javascript"
+	SYNTHETICSBROWSERVARIABLETYPE_TEXT       SyntheticsBrowserVariableType = "text"
 )
 
 func (v *SyntheticsBrowserVariableType) UnmarshalJSON(src []byte) error {
@@ -31,7 +32,7 @@ func (v *SyntheticsBrowserVariableType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsBrowserVariableType(value)
-	for _, existing := range []SyntheticsBrowserVariableType{"element", "email", "global", "text"} {
+	for _, existing := range []SyntheticsBrowserVariableType{"element", "email", "global", "javascript", "text"} {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
