@@ -1,4 +1,4 @@
-@endpoint(key-management) @integration-only
+@endpoint(key-management)
 Feature: Key Management
   Manage your Datadog API and application keys. You need an API key and an
   application key for a user with the required permissions to interact with
@@ -10,17 +10,22 @@ Feature: Key Management
     And a valid "appKeyAuth" key in the system
     And an instance of "KeyManagement" API
 
+  @integration-only
   Scenario: Get all API keys returns "OK" response
-    Given new "ListAPIKeys" request
+    Given there is a valid "api_key" in the system
+    And new "ListAPIKeys" request
+    And request contains "filter" parameter from "api_key.data.attributes.name"
     When the request is sent
     Then the response status is 200 OK
 
+  @integration-only
   Scenario: Create an API key returns "Created" response
     Given new "CreateAPIKey" request
     And body {"data": {"type": "api_keys", "attributes": {"name": "{{ unique }}"}}}
     When the request is sent
     Then the response status is 201 Created
 
+  @integration-only
   Scenario: Delete an API key returns "No Content" response
     Given there is a valid "api_key" in the system
     And new "DeleteAPIKey" request
@@ -28,6 +33,7 @@ Feature: Key Management
     When the request is sent
     Then the response status is 204 No Content
 
+  @integration-only
   Scenario: Get API key returns "OK" response
     Given there is a valid "api_key" in the system
     And new "GetAPIKey" request
@@ -35,6 +41,7 @@ Feature: Key Management
     When the request is sent
     Then the response status is 200 OK
 
+  @integration-only
   Scenario: Edit an API key returns "OK" response
     Given there is a valid "api_key" in the system
     And new "UpdateAPIKey" request

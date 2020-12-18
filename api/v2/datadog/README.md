@@ -98,6 +98,11 @@ Class | Method | HTTP request | Description
 *IncidentsApi* | [**GetIncident**](docs/IncidentsApi.md#getincident) | **Get** /api/v2/incidents/{incident_id} | Get the details of an incident
 *IncidentsApi* | [**ListIncidents**](docs/IncidentsApi.md#listincidents) | **Get** /api/v2/incidents | Get a list of incidents
 *IncidentsApi* | [**UpdateIncident**](docs/IncidentsApi.md#updateincident) | **Patch** /api/v2/incidents/{incident_id} | Update an existing incident
+*KeyManagementApi* | [**CreateAPIKey**](docs/KeyManagementApi.md#createapikey) | **Post** /api/v2/api_keys | Create an API key
+*KeyManagementApi* | [**DeleteAPIKey**](docs/KeyManagementApi.md#deleteapikey) | **Delete** /api/v2/api_keys/{api_key_id} | Delete an API key
+*KeyManagementApi* | [**GetAPIKey**](docs/KeyManagementApi.md#getapikey) | **Get** /api/v2/api_keys/{api_key_id} | Get API key
+*KeyManagementApi* | [**ListAPIKeys**](docs/KeyManagementApi.md#listapikeys) | **Get** /api/v2/api_keys | Get all API keys
+*KeyManagementApi* | [**UpdateAPIKey**](docs/KeyManagementApi.md#updateapikey) | **Patch** /api/v2/api_keys/{api_key_id} | Edit an API key
 *LogsApi* | [**AggregateLogs**](docs/LogsApi.md#aggregatelogs) | **Post** /api/v2/logs/analytics/aggregate | Aggregate events
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v2/logs/events/search | Get a list of logs
 *LogsApi* | [**ListLogsGet**](docs/LogsApi.md#listlogsget) | **Get** /api/v2/logs/events | Get a quick list of logs
@@ -145,6 +150,17 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [APIErrorResponse](docs/APIErrorResponse.md)
+ - [APIKeyCreateAttributes](docs/APIKeyCreateAttributes.md)
+ - [APIKeyCreateData](docs/APIKeyCreateData.md)
+ - [APIKeyCreateRequest](docs/APIKeyCreateRequest.md)
+ - [APIKeyRelationships](docs/APIKeyRelationships.md)
+ - [APIKeyResponse](docs/APIKeyResponse.md)
+ - [APIKeyResponseIncludedItem](docs/APIKeyResponseIncludedItem.md)
+ - [APIKeyUpdateAttributes](docs/APIKeyUpdateAttributes.md)
+ - [APIKeyUpdateData](docs/APIKeyUpdateData.md)
+ - [APIKeyUpdateRequest](docs/APIKeyUpdateRequest.md)
+ - [APIKeysResponse](docs/APIKeysResponse.md)
+ - [APIKeysType](docs/APIKeysType.md)
  - [Creator](docs/Creator.md)
  - [DashboardListAddItemsRequest](docs/DashboardListAddItemsRequest.md)
  - [DashboardListAddItemsResponse](docs/DashboardListAddItemsResponse.md)
@@ -157,6 +173,8 @@ Class | Method | HTTP request | Description
  - [DashboardListUpdateItemsRequest](docs/DashboardListUpdateItemsRequest.md)
  - [DashboardListUpdateItemsResponse](docs/DashboardListUpdateItemsResponse.md)
  - [DashboardType](docs/DashboardType.md)
+ - [FullAPIKey](docs/FullAPIKey.md)
+ - [FullAPIKeyAttributes](docs/FullAPIKeyAttributes.md)
  - [IncidentCreateAttributes](docs/IncidentCreateAttributes.md)
  - [IncidentCreateData](docs/IncidentCreateData.md)
  - [IncidentCreateRelationships](docs/IncidentCreateRelationships.md)
@@ -270,6 +288,8 @@ Class | Method | HTTP request | Description
  - [OrganizationAttributes](docs/OrganizationAttributes.md)
  - [OrganizationsType](docs/OrganizationsType.md)
  - [Pagination](docs/Pagination.md)
+ - [PartialAPIKey](docs/PartialAPIKey.md)
+ - [PartialAPIKeyAttributes](docs/PartialAPIKeyAttributes.md)
  - [Permission](docs/Permission.md)
  - [PermissionAttributes](docs/PermissionAttributes.md)
  - [PermissionsResponse](docs/PermissionsResponse.md)
