@@ -393,6 +393,21 @@ paths:
       tags:
       - Incidents
       x-codegen-request-body-name: body
+      x-given:
+        incident:
+          parameters:
+          - name: body
+            value: |-
+              {
+                "data": {
+                  "attributes": {
+                    "title": "{{ unique }}",
+                    "customer_impacted": false
+                   },
+                   "type": "incidents"
+                }
+              }
+          step: there is a valid "incident" in the system
       x-undo:
         operationId: DeleteIncident
         parameters:
@@ -1210,6 +1225,10 @@ paths:
       summary: List permissions
       tags:
       - Roles
+      x-given:
+        permission:
+          source: data[0]
+          step: there is a valid "permission" in the system
       x-undo:
         type: safe
   /api/v2/processes:
@@ -1398,6 +1417,20 @@ paths:
       tags:
       - Roles
       x-codegen-request-body-name: body
+      x-given:
+        role:
+          parameters:
+          - name: body
+            value: |-
+              {
+                "data": {
+                  "attributes": {
+                    "name": "{{ unique }}"
+                   },
+                   "type": "roles"
+                }
+              }
+          step: there is a valid "role" in the system
       x-undo:
         operationId: DeleteRole
         parameters:
@@ -1665,6 +1698,20 @@ paths:
       tags:
       - Roles
       x-codegen-request-body-name: body
+      x-given:
+        permission_role:
+          parameters:
+          - name: role_id
+            source: role.data.id
+          - name: body
+            value: |-
+              {
+                "data": {
+                  "id": "{{ permission.id }}",
+                  "type": "{{ permission.type }}"
+                }
+              }
+          step: the "permission" is granted to the "role"
       x-undo:
         type: safe
   /api/v2/roles/{role_id}/users:
@@ -1840,6 +1887,20 @@ paths:
       tags:
       - Roles
       x-codegen-request-body-name: body
+      x-given:
+        permission_role:
+          parameters:
+          - name: role_id
+            source: role.data.id
+          - name: body
+            value: |-
+              {
+                "data": {
+                  "id": "{{ user.data.id }}",
+                  "type": "{{ user.data.type }}"
+                }
+              }
+          step: the "user" has the "role"
       x-undo:
         type: safe
   /api/v2/security_monitoring/rules:
@@ -2309,6 +2370,20 @@ paths:
       tags:
       - Incident Services
       x-codegen-request-body-name: body
+      x-given:
+        service:
+          parameters:
+          - name: body
+            value: |-
+              {
+                "data": {
+                  "attributes": {
+                    "name": "{{ unique }}"
+                   },
+                   "type": "services"
+                }
+              }
+          step: there is a valid "service" in the system
       x-undo:
         operationId: DeleteIncidentService
         parameters:
@@ -2621,6 +2696,20 @@ paths:
       tags:
       - Incident Teams
       x-codegen-request-body-name: body
+      x-given:
+        team:
+          parameters:
+          - name: body
+            value: |-
+              {
+                "data": {
+                  "attributes": {
+                    "name": "{{ unique }}"
+                   },
+                   "type": "teams"
+                }
+              }
+          step: there is a valid "team" in the system
       x-undo:
         operationId: DeleteIncidentTeam
         parameters:
@@ -2835,6 +2924,24 @@ paths:
       tags:
       - Users
       x-codegen-request-body-name: body
+      x-given:
+        user_invitation:
+          parameters:
+          - name: body
+            value: |-
+              {
+                "data": [
+                  {
+                    "relationships": {"user": {"data": {
+                      "id": "{{ user.data.id }}",
+                      "type": "{{ user.data.type }}"
+                    }}},
+                    "type": "user_invitations"
+                  }
+                ]
+              }
+          source: data[0]
+          step: the "user" has a "user_invitation"
       x-undo:
         type: safe
   /api/v2/user_invitations/{user_invitation_uuid}:
@@ -2999,6 +3106,20 @@ paths:
       tags:
       - Users
       x-codegen-request-body-name: body
+      x-given:
+        user:
+          parameters:
+          - name: body
+            value: |-
+              {
+                "data": {
+                  "attributes": {
+                    "email": "{{ unique }}@datadoghq.com"
+                   },
+                   "type": "users"
+                }
+              }
+          step: there is a valid "user" in the system
       x-undo:
         operationId: DisableUser
         parameters:

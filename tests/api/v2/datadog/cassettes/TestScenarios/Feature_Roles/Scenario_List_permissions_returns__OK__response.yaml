@@ -10,20 +10,20 @@ interactions:
       Dd-Operation-Id:
       - ListPermissions
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.11 (go go1.15.5; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2794433010010332859"
+      - "1919220779448070220"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "770865663716093408"
+      - "4724636639413263757"
     url: https://api.datadoghq.com/api/v2/permissions
     method: GET
   response:
     body: '{"data":[{"type":"permissions","id":"984a2bd4-d3b4-11e8-a1ff-a7f660d43029","attributes":{"name":"admin","display_name":"Privileged
       Access","description":"This permission gives you the ability to view and edit
       everything in your Datadog organization that does not have an explicitly defined
-      permission. This includes billing and usage, user, key, and organization management.
+      permission. This includes billing and usage, key, and organization management.
       This permission is inclusive of all Standard access permissions.","created":"2018-10-19T15:35:23.734317+00:00","group_name":"General","display_type":"other","restricted":false}},{"type":"permissions","id":"984d2f00-d3b4-11e8-a200-bb47109e9987","attributes":{"name":"standard","display_name":"Standard
       Access","description":"This permission gives you the ability to view and edit
       components in your Datadog organization that do not have explicitly defined
@@ -71,7 +71,14 @@ interactions:
       Rules","description":"The ability to create and edit Detection rules.","created":"2020-06-09T13:52:39.099413+00:00","group_name":"Security
       Monitoring","display_type":"write","restricted":false}},{"type":"permissions","id":"80de1ec0-aa58-11ea-95e2-aff381626d5d","attributes":{"name":"security_monitoring_signals_read","display_name":"Security
       Signals","description":"The ability to view Security signals.","created":"2020-06-09T13:52:48.410398+00:00","group_name":"Security
-      Monitoring","display_type":"read","restricted":false}}]}'
+      Monitoring","display_type":"read","restricted":false}},{"type":"permissions","id":"9ac1d8cc-e707-11ea-aa2d-73d37e989a9d","attributes":{"name":"user_access_invite","display_name":"Invite
+      User","description":"Allows users to invite other users to your organization.","created":"2020-08-25T19:17:23.539701+00:00","group_name":"User
+      Access","display_type":"other","restricted":false}},{"type":"permissions","id":"9de604d8-e707-11ea-aa2d-93f1a783b3a3","attributes":{"name":"user_access_manage","display_name":"Access
+      Management","description":"Grants the permission to disable users, manage user
+      roles and SAML-to-role mappings.","created":"2020-08-25T19:17:28.810412+00:00","group_name":"User
+      Access","display_type":"other","restricted":false}},{"type":"permissions","id":"07c3c146-f7f8-11ea-acf6-0bd62b9ae60e","attributes":{"name":"logs_write_historical_view","display_name":"Logs
+      Historical View","description":"The capability to rehydrate logs from Archives.","created":"2020-09-16T08:38:44.242076+00:00","group_name":"Logs","display_type":"write","restricted":false}},{"type":"permissions","id":"6ba32d22-0e1a-11eb-ba44-bf9a5aafaa39","attributes":{"name":"logs_write_facets","display_name":"Logs
+      Facets","description":"The capability to create or edit logs facets.","created":"2020-10-14T12:40:20.271908+00:00","group_name":"Logs","display_type":"write","restricted":false}}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -80,13 +87,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Jul 2020 09:28:42 GMT
+      - Thu, 03 Dec 2020 19:12:29 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 31-Jul-2020 09:28:42 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 10-Dec-2020 19:12:29 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -95,9 +102,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vYQu3ls2HKdZ2pXErBiwg/FlJyuK31hjiI+oJSqoEPPw/7mzimb2FzvWEsshbznY
+      - RKpd63U5fOB9KQENZW/9vNmGmUgGzAVI24Vei0avdDhXQLPqbS5iSkbtN5YHNt1I
       X-Dd-Version:
-      - "35.2781942"
+      - "35.3472485"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
