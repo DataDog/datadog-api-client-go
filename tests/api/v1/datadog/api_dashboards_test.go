@@ -451,11 +451,11 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetApmStatsDefinition := datadog.NewTableWidgetDefinitionWithDefaults()
 	tableWidgetApmStatsDefinition.SetRequests([]datadog.TableWidgetRequest{{
 		ApmStatsQuery: &datadog.ApmStatsQueryDefinition{
-			Env: "prod",
-			Name: "web",
+			Env:        "prod",
+			Name:       "web",
 			PrimaryTag: "foo:*",
-			Resource: datadog.PtrString("endpoint"),
-			RowType: datadog.APMSTATSQUERYROWTYPE_SPAN,
+			Resource:   datadog.PtrString("endpoint"),
+			RowType:    datadog.APMSTATSQUERYROWTYPE_SPAN,
 			Columns: &[]datadog.ApmStatsQueryColumnType{{
 				Name: "baz",
 			}},
@@ -467,7 +467,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetApmStatsDefinition.SetTime(*widgetTime)
 	tableWidgetApmStatsDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	tableWidgetApmStats := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetApmStatsDefinition))
@@ -686,6 +686,50 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	timeseriesWidgetEventQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionEventQuery))
 
+	// Timeseries Widget with Formulas and Functions Query
+	timeseriesWidgetDefinitionFormulaFunctionsQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
+		Formulas: &[]datadog.WidgetFormula{{
+			Formula: "(((mcnulty_chrome_total * 0.5) + (mcnulty_query_errors * 0.2)) / (mcnulty_query * 0.3))",
+			Alias:   datadog.PtrString("sample_performance_calculator"),
+		}},
+		ResponseFormat: &datadog.FormulaAndFunctionResponseFormat{},
+		// Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+		// 	TimeSeriesFormulaAndFunctionMetricQueryDefinition:
+		// }},
+	}})
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetYaxis(datadog.WidgetAxis{
+		IncludeZero: datadog.PtrBool(true),
+		Min:         datadog.PtrString("0"),
+		Max:         datadog.PtrString("100"),
+		Scale:       datadog.PtrString("linear")})
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetRightYaxis(datadog.WidgetAxis{
+		IncludeZero: datadog.PtrBool(true),
+		Min:         datadog.PtrString("0"),
+		Max:         datadog.PtrString("100"),
+		Scale:       datadog.PtrString("linear")})
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetEvents([]datadog.WidgetEvent{{
+		Q: "Build succeeded",
+	}})
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetMarkers([]datadog.WidgetMarker{{
+		Value:       "y=15",
+		DisplayType: datadog.PtrString("error dashed"),
+		Label:       datadog.PtrString("error threshold"),
+		Time:        datadog.PtrString("4h"),
+	}})
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Timeseries Widget with Process Query")
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetShowLegend(true)
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetLegendSize("16")
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetCustomLinks([]datadog.WidgetCustomLink{{
+		Label: "Test Custom Link label",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
+	}})
+
+	timeseriesWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionFormulaFunctionsQuery))
+
 	// Toplist Widget
 	toplistWidgetDefinition := datadog.NewToplistWidgetDefinitionWithDefaults()
 	toplistWidgetDefinition.SetRequests([]datadog.ToplistWidgetRequest{{
@@ -744,6 +788,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		*timeseriesWidgetProcessQuery,
 		*timeseriesWidgetLogQuery,
 		*timeseriesWidgetEventQuery,
+		*timeseriesWidgetFormulaFunctionsQuery,
 		*toplistWidget,
 	}
 
