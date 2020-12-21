@@ -78,6 +78,16 @@ type dataKey struct{}
 type bodyKey struct{}
 type cleanupKey struct{}
 
+// GetIgnoredTags returns list of ignored tags.
+func GetIgnoredTags() []string {
+	tags := make([]string, 1)
+	tags = append(tags, "@skip")
+	if GetRecording() != ModeIgnore {
+		tags = append(tags, "@integration-only")
+	}
+	return tags
+}
+
 // Templated replaces {{ path }} in source with value from data[path].
 func Templated(data interface{}, source string) string {
 	re := regexp.MustCompile(`{{ ?([^}])+ ?}}`)
