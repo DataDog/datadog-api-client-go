@@ -1235,6 +1235,63 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 }
 
+func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	// create test to use
+	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	publicID := synt.GetPublicId()
+	defer deleteSyntheticsTestIfExists(ctx, publicID)
+
+	variable := datadog.SyntheticsGlobalVariable{
+		Name:        strings.Replace(strings.ToUpper(*tests.UniqueEntityName(ctx, t)), "-", "_", -1),
+		Description: "variable from test description",
+		ParseTestPublicId: datadog.PtrString(publicID),
+		ParseTestOptions: &datadog.SyntheticsGlobalVariableParseTestOptions{
+			Parser: &datadog.SyntheticsGlobalVariableParseTestOptionsParser{
+				Type: datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW.Ptr(),
+			},
+			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY.Ptr(),
+		},
+		Tags:        []string{"synthetics"},
+		Value: datadog.SyntheticsGlobalVariableValue{
+			Secure: datadog.PtrBool(false),
+			Value:  "",
+		},
+	}
+
+	// Create variable
+	result, httpresp, err := Client(ctx).SyntheticsApi.CreateGlobalVariable(ctx).Body(variable).Execute()
+
+	if err != nil {
+		t.Fatalf("Error creating Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(result.GetName(), variable.GetName())
+
+	// Get variable
+	result, httpresp, err = Client(ctx).SyntheticsApi.GetGlobalVariable(ctx, result.GetId()).Execute()
+
+	if err != nil {
+		t.Fatalf("Error getting Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(result.GetName(), variable.GetName())
+
+	// Delete variable
+	httpresp, err = Client(ctx).SyntheticsApi.DeleteGlobalVariable(ctx, result.GetId()).Execute()
+	if err != nil {
+		t.Fatalf("Error deleting Synthetics global variable %s: Response %s: %v", result.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+}
+
 func TestSyntheticsTriggerCITests(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
