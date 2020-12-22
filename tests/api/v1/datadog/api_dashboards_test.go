@@ -691,7 +691,7 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		Formulas: &[]datadog.WidgetFormula{{
-			Formula: "(((mcnulty_chrome_total * 0.5) + (mcnulty_query_errors * 0.2)) / (mcnulty_query * 0.3))",
+			Formula: "(((mcnulty_query_errors * 0.2)) / (mcnulty_query * 0.3))",
 			Alias:   datadog.PtrString("sample_performance_calculator"),
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
@@ -709,15 +709,15 @@ func TestDashboardLifecycle(t *testing.T) {
 				Name:       datadog.PtrString("query"),
 			},
 			TimeSeriesFormulasAndFunctionEventQueryDefinition: &datadog.TimeSeriesFormulasAndFunctionEventQueryDefinition{
-				DataSource: "rum",
+				DataSource: "logs",
 				Compute: datadog.TimeSeriesFormulasAndFunctionEventQueryDefinitionCompute{
 					Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 				},
 				Search: &datadog.TimeSeriesFormulasAndFunctionEventQueryDefinitionSearch{
-					Query: "service:web-ui @browser.name:Chrome",
+					Query: "service:mcnulty-query Errors",
 				},
 				Indexes: &[]string{"*"},
-				Name:    datadog.PtrString("mcnulty_chrome_total"),
+				Name:    datadog.PtrString("mcnulty_query_errors"),
 			},
 		}},
 	}})
@@ -731,15 +731,6 @@ func TestDashboardLifecycle(t *testing.T) {
 		Min:         datadog.PtrString("0"),
 		Max:         datadog.PtrString("100"),
 		Scale:       datadog.PtrString("linear")})
-	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetEvents([]datadog.WidgetEvent{{
-		Q: "Build succeeded",
-	}})
-	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetMarkers([]datadog.WidgetMarker{{
-		Value:       "y=15",
-		DisplayType: datadog.PtrString("error dashed"),
-		Label:       datadog.PtrString("error threshold"),
-		Time:        datadog.PtrString("4h"),
-	}})
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Timeseries Widget with Process Query")
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
