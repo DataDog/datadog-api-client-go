@@ -701,46 +701,22 @@ func TestDashboardLifecycle(t *testing.T) {
 				Query:      "avg:dd.metrics.query.sq.by_source{service:mcnulty-query}.as_count()",
 				Name:       datadog.PtrString("mcnulty-query"),
 			},
-			TimeSeriesFormulaAndFunctionProcessQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionProcessQueryDefinition{
-				DataSource: "process",
-				TextFilter: datadog.PtrString(""),
-				Metric:     "process.stat.cpu.total_pct",
-				Limit:      datadog.PtrInt64(10),
-				Name:       datadog.PtrString("query"),
-			},
 			TimeSeriesFormulasAndFunctionEventQueryDefinition: &datadog.TimeSeriesFormulasAndFunctionEventQueryDefinition{
 				DataSource: "logs",
 				Compute: datadog.TimeSeriesFormulasAndFunctionEventQueryDefinitionCompute{
-					Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+					Aggregation: "count",
 				},
 				Search: &datadog.TimeSeriesFormulasAndFunctionEventQueryDefinitionSearch{
 					Query: "service:mcnulty-query Errors",
 				},
-				Indexes: &[]string{"*"},
-				Name:    datadog.PtrString("mcnulty_query_errors"),
+				Name: datadog.PtrString("mcnulty_query_errors"),
 			},
 		}},
 	}})
-	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetYaxis(datadog.WidgetAxis{
-		IncludeZero: datadog.PtrBool(true),
-		Min:         datadog.PtrString("0"),
-		Max:         datadog.PtrString("100"),
-		Scale:       datadog.PtrString("linear")})
-	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetRightYaxis(datadog.WidgetAxis{
-		IncludeZero: datadog.PtrBool(true),
-		Min:         datadog.PtrString("0"),
-		Max:         datadog.PtrString("100"),
-		Scale:       datadog.PtrString("linear")})
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Timeseries Widget with Process Query")
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
-	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetShowLegend(true)
-	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetLegendSize("16")
-	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
 
 	timeseriesWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionFormulaFunctionsQuery))
 
