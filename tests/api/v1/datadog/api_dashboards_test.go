@@ -701,19 +701,21 @@ func TestDashboardLifecycle(t *testing.T) {
 				Query:      "avg:dd.metrics.query.sq.by_source{service:mcnulty-query}.as_count()",
 				Name:       datadog.PtrString("mcnulty-query"),
 			},
-			TimeSeriesFormulaAndFunctionEventQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinition{
-				DataSource: "logs",
-				Compute: datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute{
-					Aggregation: "count",
+		},
+			{
+				TimeSeriesFormulaAndFunctionEventQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinition{
+					DataSource: "logs",
+					Compute: datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute{
+						Aggregation: "count",
+					},
+					Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
+						Query: "service:mcnulty-query Errors",
+					},
+					Indexes: &[]string{"*"},
+					Name:    datadog.PtrString("mcnulty_query_errors"),
 				},
-				Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
-					Query: "service:mcnulty-query Errors",
-				},
-				Indexes: &[]string{"*"},
-				Name:    datadog.PtrString("mcnulty_query_errors"),
 			},
-		}},
-	}})
+		}}})
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
