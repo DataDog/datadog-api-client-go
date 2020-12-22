@@ -701,15 +701,16 @@ func TestDashboardLifecycle(t *testing.T) {
 				Query:      "avg:dd.metrics.query.sq.by_source{service:mcnulty-query}.as_count()",
 				Name:       datadog.PtrString("mcnulty-query"),
 			},
-			TimeSeriesFormulasAndFunctionEventQueryDefinition: &datadog.TimeSeriesFormulasAndFunctionEventQueryDefinition{
+			TimeSeriesFormulaAndFunctionEventQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinition{
 				DataSource: "logs",
-				Compute: datadog.TimeSeriesFormulasAndFunctionEventQueryDefinitionCompute{
+				Compute: datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute{
 					Aggregation: "count",
 				},
-				Search: &datadog.TimeSeriesFormulasAndFunctionEventQueryDefinitionSearch{
+				Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
 					Query: "service:mcnulty-query Errors",
 				},
-				Name: datadog.PtrString("mcnulty_query_errors"),
+				Indexes: &[]string{"*"},
+				Name:    datadog.PtrString("mcnulty_query_errors"),
 			},
 		}},
 	}})
