@@ -714,7 +714,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			},
 		}},
 	}})
-	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Timeseries Widget with Process Query")
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
