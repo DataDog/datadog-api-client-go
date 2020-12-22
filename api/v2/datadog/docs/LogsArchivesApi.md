@@ -117,6 +117,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -147,7 +148,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateLogsArchive`: LogsArchive
-    fmt.Fprintf(os.Stdout, "Response from `LogsArchivesApi.CreateLogsArchive`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.CreateLogsArchive:\n%v\n", response_content)
 }
 ```
 
@@ -279,6 +281,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -309,7 +312,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsArchive`: LogsArchive
-    fmt.Fprintf(os.Stdout, "Response from `LogsArchivesApi.GetLogsArchive`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.GetLogsArchive:\n%v\n", response_content)
 }
 ```
 
@@ -363,6 +367,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -392,7 +397,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsArchiveOrder`: LogsArchiveOrder
-    fmt.Fprintf(os.Stdout, "Response from `LogsArchivesApi.GetLogsArchiveOrder`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.GetLogsArchiveOrder:\n%v\n", response_content)
 }
 ```
 
@@ -438,6 +444,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -469,7 +476,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListArchiveReadRoles`: RolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `LogsArchivesApi.ListArchiveReadRoles`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.ListArchiveReadRoles:\n%v\n", response_content)
 }
 ```
 
@@ -523,6 +531,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -552,7 +561,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLogsArchives`: LogsArchives
-    fmt.Fprintf(os.Stdout, "Response from `LogsArchivesApi.ListLogsArchives`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.ListLogsArchives:\n%v\n", response_content)
 }
 ```
 
@@ -683,6 +693,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -714,7 +725,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsArchive`: LogsArchive
-    fmt.Fprintf(os.Stdout, "Response from `LogsArchivesApi.UpdateLogsArchive`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.UpdateLogsArchive:\n%v\n", response_content)
 }
 ```
 
@@ -769,6 +781,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -799,7 +812,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsArchiveOrder`: LogsArchiveOrder
-    fmt.Fprintf(os.Stdout, "Response from `LogsArchivesApi.UpdateLogsArchiveOrder`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.UpdateLogsArchiveOrder:\n%v\n", response_content)
 }
 ```
 

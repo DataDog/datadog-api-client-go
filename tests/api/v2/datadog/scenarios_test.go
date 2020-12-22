@@ -3,7 +3,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"log"
 	"os"
 	"reflect"
 	"strings"
@@ -21,7 +20,7 @@ func TestScenarios(t *testing.T) {
 	requestsUndo := tests.LoadRequestsUndo("./features/undo.json")
 	s := gobdd.NewSuite(
 		t,
-		gobdd.WithIgnoredTags([]string{"@skip"}),
+		gobdd.WithIgnoredTags(tests.GetIgnoredTags()),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
 			cctx, finish := WithRecorder(
@@ -85,15 +84,11 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
 	s.AddStep(`operation "([^"]+)" enabled`, enableOperations)
-	s.AddStep(`there is a valid "incident" in the system`, incident)
-	s.AddStep(`there is a valid "user" in the system`, user)
-	s.AddStep(`there is a valid "role" in the system`, role)
-	s.AddStep(`there is a valid "service" in the system`, service)
-	s.AddStep(`there is a valid "team" in the system`, team)
-	s.AddStep(`the "user" has the "role"`, userHasRole)
-	s.AddStep(`the "user" has a "user_invitation"`, userHasInvitation)
-	s.AddStep(`there is a valid "permission" in the system`, permission)
-	s.AddStep(`the "permission" is granted to the "role"`, permissionIsGrantedRole)
+
+	for _, givenStep := range tests.LoadGivenSteps("./features/given.json") {
+		givenStep.RegisterSuite(s)
+	}
+
 	s.Run()
 }
 
@@ -142,224 +137,4 @@ func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	client := Client(tests.GetCtx(ctx))
 	client.GetConfig().SetUnstableOperationEnabled(name, true)
-}
-
-func user(t gobdd.StepTest, ctx gobdd.Context) {
-	client := Client(tests.GetCtx(ctx))
-
-	uca := datadog.NewUserCreateAttributesWithDefaults()
-	name := strings.ToLower(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
-	uca.SetEmail(fmt.Sprintf("%s@datadoghq.com", name))
-	uca.SetName(name[:44])
-	uca.SetTitle("Big boss")
-	ucd := datadog.NewUserCreateDataWithDefaults()
-	ucd.SetAttributes(*uca)
-	ucp := datadog.NewUserCreateRequestWithDefaults()
-	ucp.SetData(*ucd)
-	ur, _, err := client.UsersApi.CreateUser(tests.GetCtx(ctx)).Body(*ucp).Execute()
-	if err != nil {
-		t.Fatalf("error creating user: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-
-	urData := ur.GetData()
-	uid := urData.GetId()
-	cctx := tests.GetCtx(ctx)
-	tests.GetCleanup(ctx)["20-user"] = func() {
-		disableUser(cctx, uid)
-	}
-
-	tests.GetData(ctx)["user"] = ur
-}
-
-func role(t gobdd.StepTest, ctx gobdd.Context) {
-	client := Client(tests.GetCtx(ctx))
-
-	rca := datadog.NewRoleCreateAttributes(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
-	rcd := datadog.NewRoleCreateDataWithDefaults()
-	rcd.SetAttributes(*rca)
-	rcp := datadog.NewRoleCreateRequestWithDefaults()
-	rcp.SetData(*rcd)
-	rr, _, err := client.RolesApi.CreateRole(tests.GetCtx(ctx)).Body(*rcp).Execute()
-	if err != nil {
-		t.Fatalf("error creating role: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-
-	rrData := rr.GetData()
-	rid := rrData.GetId()
-	cctx := tests.GetCtx(ctx)
-	tests.GetCleanup(ctx)["10-role"] = func() {
-		deleteRole(cctx, rid)
-	}
-
-	tests.GetData(ctx)["role"] = rr
-}
-
-func deleteService(ctx context.Context, serviceID string) {
-	_, err := Client(ctx).IncidentServicesApi.DeleteIncidentService(ctx, serviceID).Execute()
-	if err == nil {
-		return
-	}
-	log.Printf("Error deleting service: %v, Another test may have already deleted this service: %s", serviceID, err.Error())
-}
-
-func service(t gobdd.StepTest, ctx gobdd.Context) {
-	client := Client(tests.GetCtx(ctx))
-	client.GetConfig().SetUnstableOperationEnabled("CreateIncidentService", true)
-
-	svcAttributes := datadog.NewIncidentServiceCreateAttributes(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
-	svc := datadog.NewIncidentServiceCreateData(datadog.IncidentServiceType("services"))
-	svc.SetAttributes(*svcAttributes)
-	svcRequest := datadog.NewIncidentServiceCreateRequest(*svc)
-	response, _, err := client.IncidentServicesApi.CreateIncidentService(tests.GetCtx(ctx)).Body(*svcRequest).Execute()
-	if err != nil {
-		t.Fatalf("error creating service: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-
-	responseData := response.GetData()
-	svcID := responseData.GetId()
-	outContext := tests.GetCtx(ctx)
-	tests.GetCleanup(ctx)["30-service"] = func() {
-		deleteService(outContext, svcID)
-	}
-
-	tests.GetData(ctx)["service"] = response
-}
-
-func deleteTeam(ctx context.Context, teamID string) {
-	client := Client(ctx)
-	client.GetConfig().SetUnstableOperationEnabled("DeleteIncidentTeam", true)
-	_, err := client.IncidentTeamsApi.DeleteIncidentTeam(ctx, teamID).Execute()
-	if err == nil {
-		return
-	}
-	log.Printf("Error deleting team: %v, Another test may have already deleted this team: %s", teamID, err.Error())
-}
-
-func team(t gobdd.StepTest, ctx gobdd.Context) {
-	client := Client(tests.GetCtx(ctx))
-	client.GetConfig().SetUnstableOperationEnabled("CreateIncidentTeam", true)
-
-	teamAttributes := datadog.NewIncidentTeamCreateAttributes(*tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
-	team := datadog.NewIncidentTeamCreateData(datadog.IncidentTeamType("teams"))
-	team.SetAttributes(*teamAttributes)
-	teamRequest := datadog.NewIncidentTeamCreateRequest(*team)
-	response, _, err := client.IncidentTeamsApi.CreateIncidentTeam(tests.GetCtx(ctx)).Body(*teamRequest).Execute()
-	if err != nil {
-		t.Fatalf("error creating team: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-
-	responseData := response.GetData()
-	teamID := responseData.GetId()
-	outContext := tests.GetCtx(ctx)
-	tests.GetCleanup(ctx)["40-team"] = func() {
-		deleteTeam(outContext, teamID)
-	}
-
-	tests.GetData(ctx)["team"] = response
-}
-func deleteIncident(ctx context.Context, incidentID string) {
-	client := Client(ctx)
-	client.GetConfig().SetUnstableOperationEnabled("DeleteIncident", true)
-
-	_, err := client.IncidentsApi.DeleteIncident(ctx, incidentID).Execute()
-	if err == nil {
-		return
-	}
-	log.Printf("Error deleting incident: %v, Another test may have already deleted this incident: %s", incidentID, err.Error())
-}
-
-func incident(t gobdd.StepTest, ctx gobdd.Context) {
-	client := Client(tests.GetCtx(ctx))
-	client.GetConfig().SetUnstableOperationEnabled("CreateIncident", true)
-
-	incidentAttributes := datadog.NewIncidentCreateAttributes(false, *tests.UniqueEntityName(tests.GetCtx(ctx), t.(*testing.T)))
-	incident := datadog.NewIncidentCreateData(*incidentAttributes, datadog.IncidentType("incidents"))
-	incidentRequest := datadog.NewIncidentCreateRequest(*incident)
-	response, _, err := client.IncidentsApi.CreateIncident(tests.GetCtx(ctx)).Body(*incidentRequest).Execute()
-	if err != nil {
-		t.Fatalf("error creating incident: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-
-	responseData := response.GetData()
-	incidentID := responseData.GetId()
-	outContext := tests.GetCtx(ctx)
-	tests.GetCleanup(ctx)["50-incident"] = func() {
-		deleteIncident(outContext, incidentID)
-	}
-
-	tests.GetData(ctx)["incident"] = response
-}
-
-func userHasRole(t gobdd.StepTest, ctx gobdd.Context) {
-	client := Client(tests.GetCtx(ctx))
-	data := tests.GetData(ctx)
-	ur := data["user"].(datadog.UserResponse)
-	rr := data["role"].(datadog.RoleCreateResponse)
-	u := ur.GetData()
-	r := rr.GetData()
-
-	rtu := datadog.NewRelationshipToUserWithDefaults()
-	rtud := datadog.NewRelationshipToUserDataWithDefaults()
-	rtud.SetId(u.GetId())
-	rtu.SetData(*rtud)
-
-	_, _, err := client.RolesApi.AddUserToRole(tests.GetCtx(ctx), r.GetId()).Body(*rtu).Execute()
-	if err != nil {
-		t.Fatalf("%v", err)
-	}
-}
-
-func userHasInvitation(t gobdd.StepTest, ctx gobdd.Context) {
-	client := Client(tests.GetCtx(ctx))
-	data := tests.GetData(ctx)
-	ur := data["user"].(datadog.UserResponse)
-	urData := ur.GetData()
-	id := urData.GetId()
-
-	rtud := datadog.NewRelationshipToUserDataWithDefaults()
-	rtud.SetId(id)
-	rtu := datadog.NewRelationshipToUserWithDefaults()
-	rtu.SetData(*rtud)
-	uir := datadog.NewUserInvitationRelationshipsWithDefaults()
-	uir.SetUser(*rtu)
-	uid := datadog.NewUserInvitationDataWithDefaults()
-	uid.SetRelationships(*uir)
-	uireq := datadog.NewUserInvitationsRequestWithDefaults()
-	uireq.Data = append(uireq.Data, *uid)
-
-	ui, _, err := client.UsersApi.SendInvitations(tests.GetCtx(ctx)).Body(*uireq).Execute()
-	if err != nil {
-		t.Fatalf("%v", err)
-	}
-
-	tests.GetData(ctx)["user_invitation"] = ui.GetData()[0]
-}
-
-func permission(t gobdd.StepTest, ctx gobdd.Context) {
-	client := Client(tests.GetCtx(ctx))
-
-	psr, _, err := client.RolesApi.ListPermissions(tests.GetCtx(ctx)).Execute()
-	if err != nil {
-		t.Fatalf("error listing permissions: response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-
-	tests.GetData(ctx)["permission"] = psr.GetData()[0]
-}
-
-func permissionIsGrantedRole(t gobdd.StepTest, ctx gobdd.Context) {
-	client := Client(tests.GetCtx(ctx))
-	data := tests.GetData(ctx)
-	p := data["permission"].(datadog.Permission)
-	rr := data["role"].(datadog.RoleCreateResponse)
-	r := rr.GetData()
-
-	rtp := datadog.NewRelationshipToPermissionWithDefaults()
-	rtpd := datadog.NewRelationshipToPermissionDataWithDefaults()
-	rtpd.SetId(p.GetId())
-	rtp.SetData(*rtpd)
-
-	_, _, err := client.RolesApi.AddPermissionToRole(tests.GetCtx(ctx), r.GetId()).Body(*rtp).Execute()
-	if err != nil {
-		t.Fatalf("%v", err)
-	}
 }

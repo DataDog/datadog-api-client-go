@@ -25,23 +25,44 @@ import (
 	is "gotest.tools/assert/cmp"
 )
 
-// UndoParameter defines how to populate operation parameters.
-type UndoParameter struct {
-	Name string `json:"name"`
-	Source string `json:"source"`
-}
-
-// Undo holds information about undo operation.
-type Undo struct {
-	Type string `json:"type"`
-	OperationID string `json:"operationId"`
-	Parameters []UndoParameter `json:"parameters"`
-}
-
 // UndoAction describes undo action.
 type UndoAction struct {
-	Tag string `json:"tag"`
-	Undo *Undo `json:"undo"`
+	Tag  string `json:"tag"`
+	Undo *struct {
+		Type        string `json:"type"`
+		OperationID string `json:"operationId"`
+		Parameters  []struct {
+			Name   string `json:"name"`
+			Source string `json:"source"`
+		} `json:"parameters"`
+	} `json:"undo"`
+}
+
+type operationParameter struct {
+	Name   string  `json:"name"`
+	Source *string `json:"source"`
+	Value  *string `json:"value"`
+}
+
+func (p operationParameter) Resolve(ctx gobdd.Context, t reflect.Type) reflect.Value {
+	if p.Value != nil {
+		tpl := Templated(GetData(ctx), *p.Value)
+		v := reflect.New(t)
+		json.Unmarshal([]byte(tpl), v.Interface())
+		return v.Elem()
+	}
+	v, _ := lookup.LookupStringI(GetData(ctx), *p.Source)
+	return v
+}
+
+// GivenStep defines a step.
+type GivenStep struct {
+	Tag         string               `json:"tag"`
+	Key         string               `json:"key"`
+	Step        string               `json:"step"`
+	OperationID string               `json:"operationId"`
+	Parameters  []operationParameter `json:"parameters"`
+	Source      *string              `json:"source"`
 }
 
 type ctxKey struct{}
@@ -56,6 +77,16 @@ type responseKey struct{}
 type dataKey struct{}
 type bodyKey struct{}
 type cleanupKey struct{}
+
+// GetIgnoredTags returns list of ignored tags.
+func GetIgnoredTags() []string {
+	tags := make([]string, 1)
+	tags = append(tags, "@skip")
+	if GetRecording() != ModeIgnore {
+		tags = append(tags, "@integration-only")
+	}
+	return tags
+}
 
 // Templated replaces {{ path }} in source with value from data[path].
 func Templated(data interface{}, source string) string {
@@ -104,13 +135,106 @@ func LoadRequestsUndo(file string) map[string]UndoAction {
 	return value
 }
 
+// LoadGivenSteps load undo configuration.
+func LoadGivenSteps(file string) []GivenStep {
+	f, err := os.Open(file)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	byteValue, _ := ioutil.ReadAll(f)
+
+	var value []GivenStep
+	json.Unmarshal(byteValue, &value)
+	return value
+}
+
 // SetRequestsUndo sets map with undo function for each request.
 func SetRequestsUndo(ctx gobdd.Context, value map[string]UndoAction) {
 	ctx.Set(ctxRequestsUndoKey{}, value)
 }
 
+// RegisterSuite adds step implementation.
+func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
+	given := func(t gobdd.StepTest, ctx gobdd.Context) {
+		// get an instance of Client
+		clientInterface, err := ctx.Get(clientKey{})
+		if err != nil {
+			t.Fatalf("could not find client: %v", err)
+		}
+
+		// Enable unstable operation
+		configInterface := reflect.Indirect(clientInterface.(reflect.Value)).Addr().MethodByName("GetConfig").Call(nil)[0]
+		configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{
+			reflect.ValueOf(s.OperationID), reflect.ValueOf(true),
+		})
+
+		// find API service based on undo tag value: `client.{{ undo.Tag }}Api`
+		tag := strings.Replace(s.Tag, " ", "", -1) + "Api"
+		api := reflect.Indirect(clientInterface.(reflect.Value)).FieldByName(tag)
+		if !api.IsValid() {
+			t.Fatalf("invalid API name %sApi", tag)
+		}
+
+		// get method from the service API: `client.{{ undo.Tag }}Api.{{ undo.Undo.OperationID }}`
+		operation := api.MethodByName(s.OperationID)
+		if !operation.IsValid() {
+			t.Fatalf("invalid method name %s", s.OperationID)
+		}
+
+		// Assemble method arguments
+		in := make([]reflect.Value, operation.Type().NumIn())
+		// first argument is always context.Context
+		in[0] = reflect.ValueOf(GetCtx(ctx))
+		for i := 1; i < operation.Type().NumIn(); i++ {
+			in[i] = s.Parameters[i-1].Resolve(ctx, operation.Type().In(i))
+		}
+		request := operation.Call(in)[0]
+
+		// Call builder pattern
+		for _, p := range s.Parameters {
+			name := ToVarName(p.Name)
+			method := request.MethodByName(name)
+			if method.IsValid() {
+				v := p.Resolve(ctx, method.Type().In(0))
+				request = method.Call([]reflect.Value{v})[0]
+			}
+		}
+
+		undo, err := GetRequestsUndo(ctx, s.OperationID)
+		if err != nil {
+			t.Errorf("missing undo for %s: %v", s.OperationID, err)
+		}
+
+		result := request.MethodByName("Execute").Call(nil)
+
+		if result[len(result)-1].Interface() != nil {
+			t.Fatal(result[len(result)-1])
+		}
+
+		response := result[0]
+
+		if undo != nil {
+			GetCleanup(ctx)[fmt.Sprintf("00-given-%s", s.Key)] = undo(result[0].Interface())
+		}
+
+		if s.Source != nil {
+			response, err = lookup.LookupStringI(response.Interface(), *s.Source)
+
+			if err != nil {
+				t.Error(err)
+			}
+			GetData(ctx)[s.Key] = response.Interface()
+		}
+
+		GetData(ctx)[s.Key] = response.Interface()
+	}
+	suite.AddStep(s.Step, given)
+}
+
 // GetRequestsUndo gets map with undo function for each request.
-func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(), error) {
+func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) func(), error) {
 	requestsUndo, err := ctx.Get(ctxRequestsUndoKey{})
 	if err != nil {
 		return nil, err
@@ -145,22 +269,32 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(), error) {
 		return nil, fmt.Errorf("invalid method name %s", undo.Undo.OperationID)
 	}
 
-	return func() {
-		// Assemble undo method as follows: Client(cctx).UsersApi.DisableUser(cctx, response.Data.GetId()).Execute()
-		response := GetResponse(ctx)[0].Interface()
+	return func(response interface{}) func() {
+		return func() {
+			// enable unstable operation
+			configInterface := reflect.Indirect(undoClientInterface.(reflect.Value)).Addr().MethodByName("GetConfig").Call(nil)[0]
+			configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{
+				reflect.ValueOf(undo.Undo.OperationID), reflect.ValueOf(true),
+			})
 
-		in := make([]reflect.Value, undoOperation.Type().NumIn())
-		// first argument is always context.Context
-		in[0] = reflect.ValueOf(GetCtx(ctx))
-		for i := 1; i < undoOperation.Type().NumIn(); i++ {
-			object, err := lookup.LookupStringI(response, undo.Undo.Parameters[i-1].Source)
-			if err != nil {
-				panic(err)
+			// Assemble undo method as follows: Client(cctx).UsersApi.DisableUser(cctx, response.Data.GetId()).Execute()
+			in := make([]reflect.Value, undoOperation.Type().NumIn())
+			// first argument is always context.Context
+			in[0] = reflect.ValueOf(GetCtx(ctx))
+			for i := 1; i < undoOperation.Type().NumIn(); i++ {
+				object, err := lookup.LookupStringI(response, undo.Undo.Parameters[i-1].Source)
+				if err != nil {
+					panic(err)
+				}
+				in[i] = object
 			}
-			in[i] = object
+			request := undoOperation.Call(in)[0]
+			result := request.MethodByName("Execute").Call(nil)
+
+			if result[len(result)-1].Interface() != nil {
+				fmt.Printf("error in undo %v", result[len(result)-1])
+			}
 		}
-		request := undoOperation.Call(in)[0]
-		request.MethodByName("Execute").Call(nil)
 	}, nil
 }
 
@@ -244,12 +378,12 @@ func RunCleanup(ctx gobdd.Context) {
 func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	c, err := ctx.Get(apiKey{})
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 	r := c.(reflect.Value)
 	f := r.MethodByName(name)
 	if !f.IsValid() {
-		panic(fmt.Sprintf("invalid method name %s on API", name))
+		t.Errorf("invalid method name %s on API", name)
 	}
 
 	ctx.Set(requestKey{}, f)
@@ -289,7 +423,7 @@ func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path string) {
 	value, err := lookup.LookupStringI(GetData(ctx), path)
 	if err != nil {
-		panic(err)
+		t.Errorf("key %s: %v", path, err)
 	}
 	GetRequestParameters(ctx)[name] = value
 	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
@@ -342,16 +476,17 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	if err != nil {
 		t.Errorf("could not get a request name: %v", err)
 	}
-	if undo, err := GetRequestsUndo(ctx, operationID); err == nil {
-		if undo != nil {
-			GetCleanup(ctx)["01-undo"] = undo
-		}
-	} else {
+	undo, err := GetRequestsUndo(ctx, operationID)
+	if err != nil {
 		t.Errorf("missing undo for %s: %v", operationID, err)
 	}
 
 	result := request.MethodByName("Execute").Call(nil)
 	ctx.Set(responseKey{}, result)
+
+	if undo != nil {
+		GetCleanup(ctx)["01-undo"] = undo(result[0].Interface())
+	}
 }
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
@@ -399,6 +534,10 @@ func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, 
 	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
 		t.Fatalf("could not lookup response value %s: %v", responsePath, err)
+	}
+	if !responseValue.IsValid() && !fixtureValue.IsValid() {
+		// Lookup was successful but both values are nil
+		return
 	}
 	cmp := is.DeepEqual(responseValue.Interface(), fixtureValue.Interface())()
 	if !cmp.Success() {

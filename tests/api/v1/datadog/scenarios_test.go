@@ -20,7 +20,7 @@ func TestScenarios(t *testing.T) {
 	requestsUndo := tests.LoadRequestsUndo("./features/undo.json")
 	s := gobdd.NewSuite(
 		t,
-		gobdd.WithIgnoredTags([]string{"@skip"}),
+		gobdd.WithIgnoredTags(tests.GetIgnoredTags()),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
 			cctx, finish := WithRecorder(
@@ -76,6 +76,11 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`a valid "apiKeyAuth" key in the system`, aValidAPIKeyAuth)
 	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
+
+	for _, givenStep := range tests.LoadGivenSteps("./features/given.json") {
+		givenStep.RegisterSuite(s)
+	}
+
 	s.Run()
 }
 

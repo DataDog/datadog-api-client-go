@@ -23,6 +23,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -54,7 +55,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLogs`: LogsListResponse
-    fmt.Fprintf(os.Stdout, "Response from `LogsApi.ListLogs`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsApi.ListLogs:\n%v\n", response_content)
 }
 ```
 

@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **Duration** | Pointer to **float64** | Total duration in millisecond of the test. | [optional] 
 **Error** | Pointer to **string** | Error returned by the test. | [optional] 
 **PlayingTab** | Pointer to [**SyntheticsPlayingTab**](SyntheticsPlayingTab.md) |  | [optional] 
-**Resources** | Pointer to [**[]SyntheticsResource**](SyntheticsResource.md) | Array of resources collected by the test. | [optional] 
 **ScreenshotBucketKey** | Pointer to **bool** | Whether or not screenshots where collected by the test. | [optional] 
 **Skipped** | Pointer to **bool** | Whether or not to skip this step. | [optional] 
 **SnapshotBucketKey** | Pointer to **bool** | Whether or not snapshots where collected by the test. | [optional] 
@@ -190,31 +189,6 @@ SetPlayingTab sets PlayingTab field to given value.
 `func (o *SyntheticsStepDetail) HasPlayingTab() bool`
 
 HasPlayingTab returns a boolean if a field has been set.
-
-### GetResources
-
-`func (o *SyntheticsStepDetail) GetResources() []SyntheticsResource`
-
-GetResources returns the Resources field if non-nil, zero value otherwise.
-
-### GetResourcesOk
-
-`func (o *SyntheticsStepDetail) GetResourcesOk() (*[]SyntheticsResource, bool)`
-
-GetResourcesOk returns a tuple with the Resources field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetResources
-
-`func (o *SyntheticsStepDetail) SetResources(v []SyntheticsResource)`
-
-SetResources sets Resources field to given value.
-
-### HasResources
-
-`func (o *SyntheticsStepDetail) HasResources() bool`
-
-HasResources returns a boolean if a field has been set.
 
 ### GetScreenshotBucketKey
 

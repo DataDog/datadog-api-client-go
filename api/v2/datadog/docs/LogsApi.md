@@ -25,6 +25,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -55,7 +56,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `AggregateLogs`: LogsAggregateResponse
-    fmt.Fprintf(os.Stdout, "Response from `LogsApi.AggregateLogs`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsApi.AggregateLogs:\n%v\n", response_content)
 }
 ```
 
@@ -105,6 +107,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -136,7 +139,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLogs`: LogsListResponse
-    fmt.Fprintf(os.Stdout, "Response from `LogsApi.ListLogs`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsApi.ListLogs:\n%v\n", response_content)
 }
 ```
 
@@ -186,6 +190,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     "time"
@@ -224,7 +229,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLogsGet`: LogsListResponse
-    fmt.Fprintf(os.Stdout, "Response from `LogsApi.ListLogsGet`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsApi.ListLogsGet:\n%v\n", response_content)
 }
 ```
 

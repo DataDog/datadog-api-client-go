@@ -133,26 +133,8 @@ Feature: Usage Metering
     Then the response status is 200 OK
 
   @generated @skip
-  Scenario: Get billable usage across your multi-org account returns "OK" response
-    Given new "GetUsageBillableSummary" request
-    When the request is sent
-    Then the response status is 200 OK
-
-  @generated @skip
   Scenario: Get hourly usage for profiled hosts returns "OK" response
     Given new "GetUsageProfiling" request
-    When the request is sent
-    Then the response status is 200 OK
-
-  @generated @skip
-  Scenario: Get hourly usage for indexed spans returns "OK" response
-    Given new "GetUsageIndexedSpans" request
-    When the request is sent
-    Then the response status is 200 OK
-
-  @generated @skip
-  Scenario: Get hourly usage for ingested spans returns "OK" response
-    Given new "GetIngestedSpans" request
     When the request is sent
     Then the response status is 200 OK
 
@@ -169,15 +151,33 @@ Feature: Usage Metering
     Then the response status is 200 OK
 
   @generated @skip
+  Scenario: Get Usage Attribution returns "OK" response
+    Given operation "GetUsageAttribution" enabled
+    And new "GetUsageAttribution" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Get billable usage across your account returns "OK" response
+    Given new "GetUsageBillableSummary" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
   Scenario: Get hourly usage for incident management returns "OK" response
     Given new "GetIncidentManagement" request
     When the request is sent
     Then the response status is 200 OK
 
   @generated @skip
-  Scenario: Get Usage Attribution returns "OK" response
-    Given operation "GetUsageAttribution" enabled
-    And new "GetUsageAttribution" request
+  Scenario: Get hourly usage for indexed spans returns "OK" response
+    Given new "GetUsageIndexedSpans" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Get hourly usage for ingested spans returns "OK" response
+    Given new "GetIngestedSpans" request
     When the request is sent
     Then the response status is 200 OK
 
