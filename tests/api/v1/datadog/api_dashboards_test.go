@@ -688,15 +688,38 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	// Timeseries Widget with Formulas and Functions Query
 	timeseriesWidgetDefinitionFormulaFunctionsQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
+
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		Formulas: &[]datadog.WidgetFormula{{
 			Formula: "(((mcnulty_chrome_total * 0.5) + (mcnulty_query_errors * 0.2)) / (mcnulty_query * 0.3))",
 			Alias:   datadog.PtrString("sample_performance_calculator"),
 		}},
-		ResponseFormat: &datadog.FormulaAndFunctionResponseFormat{},
-		// Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
-		// 	TimeSeriesFormulaAndFunctionMetricQueryDefinition:
-		// }},
+		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
+		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+			TimeSeriesFormulaAndFunctionMetricQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionMetricQueryDefinition{
+				DataSource: "metrics",
+				Query:      "avg:dd.metrics.query.sq.by_source{service:mcnulty-query}.as_count()",
+				Name:       datadog.PtrString("mcnulty-query"),
+			},
+			TimeSeriesFormulaAndFunctionProcessQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionProcessQueryDefinition{
+				DataSource: "process",
+				TextFilter: datadog.PtrString(""),
+				Metric:     "process.stat.cpu.total_pct",
+				Limit:      datadog.PtrInt64(10),
+				Name:       datadog.PtrString("query"),
+			},
+			TimeSeriesFormulasAndFunctionEventQueryDefinition: &datadog.TimeSeriesFormulasAndFunctionEventQueryDefinition{
+				DataSource: "rum",
+				Compute: datadog.TimeSeriesFormulasAndFunctionEventQueryDefinitionCompute{
+					Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+				},
+				Search: &datadog.TimeSeriesFormulasAndFunctionEventQueryDefinitionSearch{
+					Query: "service:web-ui @browser.name:Chrome",
+				},
+				Indexes: &[]string{"*"},
+				Name:    datadog.PtrString("mcnulty_chrome_total"),
+			},
+		}},
 	}})
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetYaxis(datadog.WidgetAxis{
 		IncludeZero: datadog.PtrBool(true),
