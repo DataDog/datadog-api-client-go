@@ -697,22 +697,31 @@ func TestDashboardLifecycle(t *testing.T) {
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
 		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
 			TimeSeriesFormulaAndFunctionMetricQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionMetricQueryDefinition{
-				DataSource: "metrics",
+				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 				Query:      "avg:dd.metrics.query.sq.by_source{service:mcnulty-query}.as_count()",
 				Name:       datadog.PtrString("mcnulty-query"),
 			},
 		},
 			{
 				TimeSeriesFormulaAndFunctionEventQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinition{
-					DataSource: "logs",
+					DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
 					Compute: datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute{
-						Aggregation: "count",
+						Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 					},
 					Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
 						Query: "service:mcnulty-query Errors",
 					},
 					Indexes: &[]string{"*"},
 					Name:    datadog.PtrString("mcnulty_query_errors"),
+				},
+			},
+			{
+				TimeSeriesFormulaAndFunctionProcessQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionProcessQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS,
+					TextFilter: datadog.PtrString(""),
+					Metric:     "process.stat.cpu.total_pct",
+					Limit:      datadog.PtrInt64(10),
+					Name:       datadog.PtrString("process_query"),
 				},
 			},
 		}}})
