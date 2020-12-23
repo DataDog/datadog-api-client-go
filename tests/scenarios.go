@@ -51,7 +51,7 @@ func (p operationParameter) Resolve(ctx gobdd.Context, t reflect.Type) reflect.V
 		json.Unmarshal([]byte(tpl), v.Interface())
 		return v.Elem()
 	}
-	v, _ := lookup.LookupStringI(GetData(ctx), *p.Source)
+	v, _ := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(*p.Source))
 	return v
 }
 
@@ -95,7 +95,10 @@ func Templated(data interface{}, source string) string {
 		path := strings.Trim(source, "{ }")
 		v, err := lookup.LookupStringI(data, path)
 		if err != nil {
-			panic(fmt.Sprintf("problem with replacement of %s: %v", source, err))
+			v, err = lookup.LookupStringI(data, SnakeToCamelCase(path))
+			if err != nil {
+				panic(fmt.Sprintf("problem with replacement of %s: %v", source, err))
+			}
 		}
 		return v.String()
 	}
@@ -220,15 +223,14 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 		}
 
 		if s.Source != nil {
-			response, err = lookup.LookupStringI(response.Interface(), *s.Source)
+			response, err = lookup.LookupStringI(response.Interface(), SnakeToCamelCase(*s.Source))
 
 			if err != nil {
 				t.Error(err)
 			}
-			GetData(ctx)[s.Key] = response.Interface()
 		}
 
-		GetData(ctx)[s.Key] = response.Interface()
+		GetData(ctx)[SnakeToCamelCase(s.Key)] = response.Interface()
 	}
 	suite.AddStep(s.Step, given)
 }
@@ -282,7 +284,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 			// first argument is always context.Context
 			in[0] = reflect.ValueOf(GetCtx(ctx))
 			for i := 1; i < undoOperation.Type().NumIn(); i++ {
-				object, err := lookup.LookupStringI(response, undo.Undo.Parameters[i-1].Source)
+				object, err := lookup.LookupStringI(response, SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
 				if err != nil {
 					panic(err)
 				}
@@ -421,7 +423,7 @@ func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 }
 
 func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path string) {
-	value, err := lookup.LookupStringI(GetData(ctx), path)
+	value, err := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(path))
 	if err != nil {
 		t.Errorf("key %s: %v", path, err)
 	}
@@ -533,7 +535,7 @@ func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, 
 	}
 	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
-		t.Fatalf("could not lookup response value %s: %v", responsePath, err)
+		t.Fatalf("could not lookup response value %s: %v", SnakeToCamelCase(responsePath), err)
 	}
 	if !responseValue.IsValid() && !fixtureValue.IsValid() {
 		// Lookup was successful but both values are nil
