@@ -14089,15 +14089,22 @@ components:
               timeout: 6.027456183070403
               url: url
             variables:
-            - name: ""
+            - name: VARIABLE_NAME
               pattern: pattern
               id: id
               example: example
-            - name: ""
+            - name: VARIABLE_NAME
               pattern: pattern
               id: id
               example: example
             assertions: []
+            configVariables:
+            - name: VARIABLE_NAME
+              pattern: pattern
+              example: example
+            - name: VARIABLE_NAME
+              pattern: pattern
+              example: example
         check_time: 0.8008281904610115
       properties:
         check:
@@ -14505,15 +14512,22 @@ components:
               timeout: 6.027456183070403
               url: url
             variables:
-            - name: ""
+            - name: VARIABLE_NAME
               pattern: pattern
               id: id
               example: example
-            - name: ""
+            - name: VARIABLE_NAME
               pattern: pattern
               id: id
               example: example
             assertions: []
+            configVariables:
+            - name: VARIABLE_NAME
+              pattern: pattern
+              example: example
+            - name: VARIABLE_NAME
+              pattern: pattern
+              example: example
         check_time: 0.8008281904610115
       properties:
         check:
@@ -14577,7 +14591,7 @@ components:
         Object defining a variable that can be used in your browser test.
         Learn more in the [Browser test Actions documentation](https://docs.datadoghq.com/synthetics/browser_tests/actions#variable).
       example:
-        name: ""
+        name: VARIABLE_NAME
         pattern: pattern
         id: id
         example: example
@@ -14590,7 +14604,7 @@ components:
           type: string
         name:
           description: Name of the variable.
-          example: ""
+          example: VARIABLE_NAME
           type: string
         pattern:
           description: Pattern of the variable.
@@ -14802,6 +14816,37 @@ components:
       - GREATER_EQUALS
       - LOWER_EQUALS
       - MATCH_REGEX
+    SyntheticsConfigVariable:
+      description: Object defining a variable that can be used in your test configuration.
+      example:
+        name: VARIABLE_NAME
+        pattern: pattern
+        example: example
+      properties:
+        example:
+          description: Example for the variable.
+          type: string
+        name:
+          description: Name of the variable.
+          example: VARIABLE_NAME
+          type: string
+        pattern:
+          description: Pattern of the variable.
+          type: string
+        type:
+          $ref: '#/components/schemas/SyntheticsConfigVariableType'
+      required:
+      - example
+      - name
+      - type
+      type: object
+    SyntheticsConfigVariableType:
+      description: Type of the configuration variable.
+      enum:
+      - text
+      type: string
+      x-enum-varnames:
+      - TEXT
     SyntheticsDeleteTestsPayload:
       description: |-
         A JSON list of the ID or IDs of the Synthetic tests that you want
@@ -15103,15 +15148,22 @@ components:
               timeout: 6.027456183070403
               url: url
             variables:
-            - name: ""
+            - name: VARIABLE_NAME
               pattern: pattern
               id: id
               example: example
-            - name: ""
+            - name: VARIABLE_NAME
               pattern: pattern
               id: id
               example: example
             assertions: []
+            configVariables:
+            - name: VARIABLE_NAME
+              pattern: pattern
+              example: example
+            - name: VARIABLE_NAME
+              pattern: pattern
+              example: example
           steps:
           - allowFailure: true
             name: name
@@ -15169,15 +15221,22 @@ components:
               timeout: 6.027456183070403
               url: url
             variables:
-            - name: ""
+            - name: VARIABLE_NAME
               pattern: pattern
               id: id
               example: example
-            - name: ""
+            - name: VARIABLE_NAME
               pattern: pattern
               id: id
               example: example
             assertions: []
+            configVariables:
+            - name: VARIABLE_NAME
+              pattern: pattern
+              example: example
+            - name: VARIABLE_NAME
+              pattern: pattern
+              example: example
           steps:
           - allowFailure: true
             name: name
@@ -15577,15 +15636,22 @@ components:
           timeout: 6.027456183070403
           url: url
         variables:
-        - name: ""
+        - name: VARIABLE_NAME
           pattern: pattern
           id: id
           example: example
-        - name: ""
+        - name: VARIABLE_NAME
           pattern: pattern
           id: id
           example: example
         assertions: []
+        configVariables:
+        - name: VARIABLE_NAME
+          pattern: pattern
+          example: example
+        - name: VARIABLE_NAME
+          pattern: pattern
+          example: example
       properties:
         assertions:
           default: []
@@ -15594,10 +15660,15 @@ components:
           items:
             $ref: '#/components/schemas/SyntheticsAssertion'
           type: array
+        configVariables:
+          description: API tests only - array of variables used for the test.
+          items:
+            $ref: '#/components/schemas/SyntheticsConfigVariable'
+          type: array
         request:
           $ref: '#/components/schemas/SyntheticsTestRequest'
         variables:
-          description: Array of variables used for the test.
+          description: Browser tests only - array of variables used for the test steps.
           items:
             $ref: '#/components/schemas/SyntheticsBrowserVariable'
           type: array
@@ -15652,15 +15723,22 @@ components:
             timeout: 6.027456183070403
             url: url
           variables:
-          - name: ""
+          - name: VARIABLE_NAME
             pattern: pattern
             id: id
             example: example
-          - name: ""
+          - name: VARIABLE_NAME
             pattern: pattern
             id: id
             example: example
           assertions: []
+          configVariables:
+          - name: VARIABLE_NAME
+            pattern: pattern
+            example: example
+          - name: VARIABLE_NAME
+            pattern: pattern
+            example: example
         steps:
         - allowFailure: true
           name: name
@@ -20822,15 +20900,22 @@ components:
             timeout: 6.027456183070403
             url: url
           variables:
-          - name: ""
+          - name: VARIABLE_NAME
             pattern: pattern
             id: id
             example: example
-          - name: ""
+          - name: VARIABLE_NAME
             pattern: pattern
             id: id
             example: example
           assertions: []
+          configVariables:
+          - name: VARIABLE_NAME
+            pattern: pattern
+            example: example
+          - name: VARIABLE_NAME
+            pattern: pattern
+            example: example
       properties:
         config:
           $ref: '#/components/schemas/SyntheticsTestConfig'
@@ -20894,15 +20979,22 @@ components:
             timeout: 6.027456183070403
             url: url
           variables:
-          - name: ""
+          - name: VARIABLE_NAME
             pattern: pattern
             id: id
             example: example
-          - name: ""
+          - name: VARIABLE_NAME
             pattern: pattern
             id: id
             example: example
           assertions: []
+          configVariables:
+          - name: VARIABLE_NAME
+            pattern: pattern
+            example: example
+          - name: VARIABLE_NAME
+            pattern: pattern
+            example: example
       properties:
         config:
           $ref: '#/components/schemas/SyntheticsTestConfig'
