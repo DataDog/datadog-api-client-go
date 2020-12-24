@@ -317,6 +317,8 @@ docs/SyntheticsCITestMetadata.md
 docs/SyntheticsCITestMetadataCi.md
 docs/SyntheticsCITestMetadataGit.md
 docs/SyntheticsCheckType.md
+docs/SyntheticsConfigVariable.md
+docs/SyntheticsConfigVariableType.md
 docs/SyntheticsDeleteTestsPayload.md
 docs/SyntheticsDeleteTestsResponse.md
 docs/SyntheticsDeleteTestsResponseDeletedTests.md
@@ -764,6 +766,8 @@ model_synthetics_ci_test_body.go
 model_synthetics_ci_test_metadata.go
 model_synthetics_ci_test_metadata_ci.go
 model_synthetics_ci_test_metadata_git.go
+model_synthetics_config_variable.go
+model_synthetics_config_variable_type.go
 model_synthetics_delete_tests_payload.go
 model_synthetics_delete_tests_response.go
 model_synthetics_delete_tests_response_deleted_tests.go
