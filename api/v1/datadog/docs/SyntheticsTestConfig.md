@@ -5,8 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Assertions** | [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [default to []]
+**ConfigVariables** | Pointer to [**[]SyntheticsConfigVariable**](SyntheticsConfigVariable.md) | API tests only - array of variables used for the test. | [optional] 
 **Request** | [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | 
-**Variables** | Pointer to [**[]SyntheticsBrowserVariable**](SyntheticsBrowserVariable.md) | Array of variables used for the test. | [optional] 
+**Variables** | Pointer to [**[]SyntheticsBrowserVariable**](SyntheticsBrowserVariable.md) | Browser tests only - array of variables used for the test steps. | [optional] 
 
 ## Methods
 
@@ -46,6 +47,31 @@ and a boolean to check if the value has been set.
 
 SetAssertions sets Assertions field to given value.
 
+
+### GetConfigVariables
+
+`func (o *SyntheticsTestConfig) GetConfigVariables() []SyntheticsConfigVariable`
+
+GetConfigVariables returns the ConfigVariables field if non-nil, zero value otherwise.
+
+### GetConfigVariablesOk
+
+`func (o *SyntheticsTestConfig) GetConfigVariablesOk() (*[]SyntheticsConfigVariable, bool)`
+
+GetConfigVariablesOk returns a tuple with the ConfigVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfigVariables
+
+`func (o *SyntheticsTestConfig) SetConfigVariables(v []SyntheticsConfigVariable)`
+
+SetConfigVariables sets ConfigVariables field to given value.
+
+### HasConfigVariables
+
+`func (o *SyntheticsTestConfig) HasConfigVariables() bool`
+
+HasConfigVariables returns a boolean if a field has been set.
 
 ### GetRequest
 
