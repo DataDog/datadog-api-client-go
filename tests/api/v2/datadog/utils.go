@@ -125,12 +125,12 @@ func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
 
 	ctx, err := tests.WithClock(ctx, tests.SecurePath(t.Name()))
 	if err != nil {
-		log.Fatal(err)
+		t.Fatalf("could not setup clock: %v", err)
 	}
 
 	r, err := tests.Recorder(ctx, tests.SecurePath(t.Name()))
 	if err != nil {
-		log.Fatal(err)
+		t.Fatalf("could not setup recorder: %v", err)
 	}
 	client.GetConfig().HTTPClient = &http.Client{Transport: tests.WrapRoundTripper(r)}
 
