@@ -22,12 +22,15 @@ Name | Type | Description | Notes
 **IndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current date for all organizations. | [optional] 
 **InfraHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current date for all organizations. | [optional] 
 **IngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for all organizations. | [optional] 
+**MobileRumSessionCountAndroidSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on Android over all hours in the current date for all organizations. | [optional] 
+**MobileRumSessionCountIosSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on iOS over all hours in the current date for all organizations. | [optional] 
 **MobileRumSessionCountSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current date for all organizations | [optional] 
 **NetflowIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current date for all organizations. | [optional] 
 **NpmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all organizations. | [optional] 
 **Orgs** | Pointer to [**[]UsageSummaryDateOrg**](UsageSummaryDateOrg.md) | Organizations associated with a user. | [optional] 
 **ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations. | [optional] 
 **RumSessionCountSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current date for all organizations | [optional] 
+**RumTotalSessionCountSum** | Pointer to **int64** | Shows the sum of RUM Sessions (browser and mobile) over all hours in the current date for all organizations. | [optional] 
 **SyntheticsBrowserCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current date for all organizations. | [optional] 
 **SyntheticsCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current date for all organizations. | [optional] 
 **TraceSearchIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Indexed Spans indexed over all hours in the current date for all organizations. | [optional] 
@@ -502,6 +505,56 @@ SetIngestedEventsBytesSum sets IngestedEventsBytesSum field to given value.
 
 HasIngestedEventsBytesSum returns a boolean if a field has been set.
 
+### GetMobileRumSessionCountAndroidSum
+
+`func (o *UsageSummaryDate) GetMobileRumSessionCountAndroidSum() int64`
+
+GetMobileRumSessionCountAndroidSum returns the MobileRumSessionCountAndroidSum field if non-nil, zero value otherwise.
+
+### GetMobileRumSessionCountAndroidSumOk
+
+`func (o *UsageSummaryDate) GetMobileRumSessionCountAndroidSumOk() (*int64, bool)`
+
+GetMobileRumSessionCountAndroidSumOk returns a tuple with the MobileRumSessionCountAndroidSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileRumSessionCountAndroidSum
+
+`func (o *UsageSummaryDate) SetMobileRumSessionCountAndroidSum(v int64)`
+
+SetMobileRumSessionCountAndroidSum sets MobileRumSessionCountAndroidSum field to given value.
+
+### HasMobileRumSessionCountAndroidSum
+
+`func (o *UsageSummaryDate) HasMobileRumSessionCountAndroidSum() bool`
+
+HasMobileRumSessionCountAndroidSum returns a boolean if a field has been set.
+
+### GetMobileRumSessionCountIosSum
+
+`func (o *UsageSummaryDate) GetMobileRumSessionCountIosSum() int64`
+
+GetMobileRumSessionCountIosSum returns the MobileRumSessionCountIosSum field if non-nil, zero value otherwise.
+
+### GetMobileRumSessionCountIosSumOk
+
+`func (o *UsageSummaryDate) GetMobileRumSessionCountIosSumOk() (*int64, bool)`
+
+GetMobileRumSessionCountIosSumOk returns a tuple with the MobileRumSessionCountIosSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileRumSessionCountIosSum
+
+`func (o *UsageSummaryDate) SetMobileRumSessionCountIosSum(v int64)`
+
+SetMobileRumSessionCountIosSum sets MobileRumSessionCountIosSum field to given value.
+
+### HasMobileRumSessionCountIosSum
+
+`func (o *UsageSummaryDate) HasMobileRumSessionCountIosSum() bool`
+
+HasMobileRumSessionCountIosSum returns a boolean if a field has been set.
+
 ### GetMobileRumSessionCountSum
 
 `func (o *UsageSummaryDate) GetMobileRumSessionCountSum() int64`
@@ -651,6 +704,31 @@ SetRumSessionCountSum sets RumSessionCountSum field to given value.
 `func (o *UsageSummaryDate) HasRumSessionCountSum() bool`
 
 HasRumSessionCountSum returns a boolean if a field has been set.
+
+### GetRumTotalSessionCountSum
+
+`func (o *UsageSummaryDate) GetRumTotalSessionCountSum() int64`
+
+GetRumTotalSessionCountSum returns the RumTotalSessionCountSum field if non-nil, zero value otherwise.
+
+### GetRumTotalSessionCountSumOk
+
+`func (o *UsageSummaryDate) GetRumTotalSessionCountSumOk() (*int64, bool)`
+
+GetRumTotalSessionCountSumOk returns a tuple with the RumTotalSessionCountSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRumTotalSessionCountSum
+
+`func (o *UsageSummaryDate) SetRumTotalSessionCountSum(v int64)`
+
+SetRumTotalSessionCountSum sets RumTotalSessionCountSum field to given value.
+
+### HasRumTotalSessionCountSum
+
+`func (o *UsageSummaryDate) HasRumTotalSessionCountSum() bool`
+
+HasRumTotalSessionCountSum returns a boolean if a field has been set.
 
 ### GetSyntheticsBrowserCheckCallsCountSum
 
