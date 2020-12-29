@@ -8564,6 +8564,26 @@ components:
       type: string
       x-enum-varnames:
       - ROLES
+    SecurityMonitoringFilter:
+      description: The rule's suppression filter.
+      example:
+        query: query
+      properties:
+        action:
+          $ref: '#/components/schemas/SecurityMonitoringFilterAction'
+        query:
+          description: Query for selecting logs to apply the filtering action.
+          type: string
+      type: object
+    SecurityMonitoringFilterAction:
+      description: The type of filtering action.
+      enum:
+      - require
+      - suppress
+      type: string
+      x-enum-varnames:
+      - REQUIRE
+      - SUPPRESS
     SecurityMonitoringListRulesResponse:
       description: List of rules.
       example:
@@ -8579,6 +8599,9 @@ components:
             notifications:
             - notifications
             - notifications
+          filters:
+          - query: query
+          - query: query
           message: message
           queries:
           - distinctFields:
@@ -8622,6 +8645,9 @@ components:
             notifications:
             - notifications
             - notifications
+          filters:
+          - query: query
+          - query: query
           message: message
           queries:
           - distinctFields:
@@ -8722,6 +8748,9 @@ components:
         isEnabled: true
         name: ""
         options: {}
+        filters:
+        - query: query
+        - query: query
         message: ""
         queries: []
         tags:
@@ -8733,6 +8762,12 @@ components:
           example: []
           items:
             $ref: '#/components/schemas/SecurityMonitoringRuleCaseCreate'
+          type: array
+        filters:
+          description: Additional queries to filter matched events before they are
+            processed.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringFilter'
           type: array
         isEnabled:
           description: Whether the rule is enabled.
@@ -8964,6 +8999,9 @@ components:
           notifications:
           - notifications
           - notifications
+        filters:
+        - query: query
+        - query: query
         message: message
         queries:
         - distinctFields:
@@ -9010,6 +9048,12 @@ components:
           description: User ID of the user who created the rule.
           format: int64
           type: integer
+        filters:
+          description: Additional queries to filter matched events before they are
+            processed.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringFilter'
+          type: array
         id:
           description: The ID of the rule.
           type: string
@@ -9077,6 +9121,9 @@ components:
         isEnabled: true
         name: name
         options: {}
+        filters:
+        - query: query
+        - query: query
         message: message
         queries:
         - distinctFields:
@@ -9105,6 +9152,12 @@ components:
           description: Cases for generating signals.
           items:
             $ref: '#/components/schemas/SecurityMonitoringRuleCase'
+          type: array
+        filters:
+          description: Additional queries to filter matched events before they are
+            processed.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringFilter'
           type: array
         isEnabled:
           description: Whether the rule is enabled.

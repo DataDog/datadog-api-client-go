@@ -234,6 +234,8 @@ docs/RolesResponse.md
 docs/RolesSort.md
 docs/RolesType.md
 docs/SecurityMonitoringApi.md
+docs/SecurityMonitoringFilter.md
+docs/SecurityMonitoringFilterAction.md
 docs/SecurityMonitoringListRulesResponse.md
 docs/SecurityMonitoringRuleCase.md
 docs/SecurityMonitoringRuleCaseCreate.md
@@ -491,6 +493,8 @@ model_role_update_response_data.go
 model_roles_response.go
 model_roles_sort.go
 model_roles_type.go
+model_security_monitoring_filter.go
+model_security_monitoring_filter_action.go
 model_security_monitoring_list_rules_response.go
 model_security_monitoring_rule_case.go
 model_security_monitoring_rule_case_create.go
