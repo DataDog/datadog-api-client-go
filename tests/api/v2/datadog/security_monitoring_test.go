@@ -39,6 +39,11 @@ func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, 
 	ruleCase.SetCondition("rule > 0")
 	ruleCases := []datadog.SecurityMonitoringRuleCaseCreate{*ruleCase}
 
+	filter := datadog.NewSecurityMonitoringFilter()
+	filter.SetAction(datadog.SECURITYMONITORINGFILTERACTION_REQUIRE)
+	filter.SetQuery("env:prod")
+	filters := []datadog.SecurityMonitoringFilter{*filter}
+
 	createPayload := datadog.NewSecurityMonitoringRuleCreatePayload(
 		ruleCases,
 		true,
@@ -47,6 +52,7 @@ func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, 
 		*options,
 		queries,
 	)
+	createPayload.SetFilters(filters)
 
 	return api.CreateSecurityMonitoringRule(ctx).Body(*createPayload).Execute()
 }
@@ -300,7 +306,7 @@ func TestListSecurityMonitoringSignals(t *testing.T) {
 		t.Fatalf("Error creating rule: Response: %v", err)
 	}
 
-	err = sendLogs(ctx, t, client, *uniqueName)
+	err = sendLogsSignals(ctx, client, *uniqueName)
 	if err != nil {
 		t.Fatalf("Error sending logs: %v", err)
 	}
@@ -397,7 +403,7 @@ func sendLogsSignals(ctx context.Context, client *datadog.APIClient, suffix stri
 	source := fmt.Sprintf("go-client-test-%s", suffix)
 
 	httpLog := fmt.Sprintf(
-		`{"ddsource": "%s", "ddtags": "go,test,signal", "message": "{\"timestamp\": %d, \"message\": \"%s\"}"}`,
+		`{"ddsource": "%s", "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": %d, \"message\": \"%s\"}"}`,
 		source, (now.Unix()-1000)*1000, suffix,
 	)
 
@@ -416,7 +422,7 @@ func sendLogsSignals(ctx context.Context, client *datadog.APIClient, suffix stri
 	}
 
 	httpLog = fmt.Sprintf(
-		`{"ddsource": "%s", "ddtags": "go,test,signal", "message": "{\"timestamp\": %d, \"message\": \"%s\"}"}`,
+		`{"ddsource": "%s", "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": %d, \"message\": \"%s\"}"}`,
 		source, now.Unix()*1000, suffix,
 	)
 
