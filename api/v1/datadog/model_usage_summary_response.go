@@ -17,6 +17,8 @@ import (
 type UsageSummaryResponse struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current months for all organizations.
 	AgentHostTop99pSum *int64 `json:"agent_host_top99p_sum,omitempty"`
+	// Shows the 99th percentile of all Azure app services using APM over all hours in the current months all organizations.
+	ApmAzureAppServiceHostTop99pSum *int64 `json:"apm_azure_app_service_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all distinct APM hosts over all hours in the current months for all organizations.
 	ApmHostTop99pSum *int64 `json:"apm_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all AWS hosts over all hours in the current months for all organizations.
@@ -134,6 +136,38 @@ func (o *UsageSummaryResponse) HasAgentHostTop99pSum() bool {
 // SetAgentHostTop99pSum gets a reference to the given int64 and assigns it to the AgentHostTop99pSum field.
 func (o *UsageSummaryResponse) SetAgentHostTop99pSum(v int64) {
 	o.AgentHostTop99pSum = &v
+}
+
+// GetApmAzureAppServiceHostTop99pSum returns the ApmAzureAppServiceHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetApmAzureAppServiceHostTop99pSum() int64 {
+	if o == nil || o.ApmAzureAppServiceHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ApmAzureAppServiceHostTop99pSum
+}
+
+// GetApmAzureAppServiceHostTop99pSumOk returns a tuple with the ApmAzureAppServiceHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetApmAzureAppServiceHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.ApmAzureAppServiceHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.ApmAzureAppServiceHostTop99pSum, true
+}
+
+// HasApmAzureAppServiceHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasApmAzureAppServiceHostTop99pSum() bool {
+	if o != nil && o.ApmAzureAppServiceHostTop99pSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApmAzureAppServiceHostTop99pSum gets a reference to the given int64 and assigns it to the ApmAzureAppServiceHostTop99pSum field.
+func (o *UsageSummaryResponse) SetApmAzureAppServiceHostTop99pSum(v int64) {
+	o.ApmAzureAppServiceHostTop99pSum = &v
 }
 
 // GetApmHostTop99pSum returns the ApmHostTop99pSum field value if set, zero value otherwise.
@@ -1228,6 +1262,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AgentHostTop99pSum != nil {
 		toSerialize["agent_host_top99p_sum"] = o.AgentHostTop99pSum
+	}
+	if o.ApmAzureAppServiceHostTop99pSum != nil {
+		toSerialize["apm_azure_app_service_host_top99p_sum"] = o.ApmAzureAppServiceHostTop99pSum
 	}
 	if o.ApmHostTop99pSum != nil {
 		toSerialize["apm_host_top99p_sum"] = o.ApmHostTop99pSum

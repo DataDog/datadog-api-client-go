@@ -5,10 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AgentHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all agent hosts over all hours in the current date for the given org. | [optional] 
+**ApmAzureAppServiceHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Azure app services using APM over all hours in the current date for the given org. | [optional] 
 **ApmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct APM hosts over all hours in the current date for the given org. | [optional] 
 **AwsHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current date for the given org. | [optional] 
 **AwsLambdaFuncCount** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current date for the given org. | [optional] 
 **AwsLambdaInvocationsSum** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current date for the given org. | [optional] 
+**AzureAppServiceTop99p** | Pointer to **int64** | Shows the 99th percentile of all Azure app services over all hours in the current date for the given org. | [optional] 
 **BillableIngestedBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for the given org. | [optional] 
 **ContainerAvg** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current date for the given org. | [optional] 
 **ContainerHwm** | Pointer to **int64** | Shows the high-water mark of all distinct containers over all hours in the current date for the given org. | [optional] 
@@ -79,6 +81,31 @@ SetAgentHostTop99p sets AgentHostTop99p field to given value.
 `func (o *UsageSummaryDateOrg) HasAgentHostTop99p() bool`
 
 HasAgentHostTop99p returns a boolean if a field has been set.
+
+### GetApmAzureAppServiceHostTop99p
+
+`func (o *UsageSummaryDateOrg) GetApmAzureAppServiceHostTop99p() int64`
+
+GetApmAzureAppServiceHostTop99p returns the ApmAzureAppServiceHostTop99p field if non-nil, zero value otherwise.
+
+### GetApmAzureAppServiceHostTop99pOk
+
+`func (o *UsageSummaryDateOrg) GetApmAzureAppServiceHostTop99pOk() (*int64, bool)`
+
+GetApmAzureAppServiceHostTop99pOk returns a tuple with the ApmAzureAppServiceHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApmAzureAppServiceHostTop99p
+
+`func (o *UsageSummaryDateOrg) SetApmAzureAppServiceHostTop99p(v int64)`
+
+SetApmAzureAppServiceHostTop99p sets ApmAzureAppServiceHostTop99p field to given value.
+
+### HasApmAzureAppServiceHostTop99p
+
+`func (o *UsageSummaryDateOrg) HasApmAzureAppServiceHostTop99p() bool`
+
+HasApmAzureAppServiceHostTop99p returns a boolean if a field has been set.
 
 ### GetApmHostTop99p
 
@@ -179,6 +206,31 @@ SetAwsLambdaInvocationsSum sets AwsLambdaInvocationsSum field to given value.
 `func (o *UsageSummaryDateOrg) HasAwsLambdaInvocationsSum() bool`
 
 HasAwsLambdaInvocationsSum returns a boolean if a field has been set.
+
+### GetAzureAppServiceTop99p
+
+`func (o *UsageSummaryDateOrg) GetAzureAppServiceTop99p() int64`
+
+GetAzureAppServiceTop99p returns the AzureAppServiceTop99p field if non-nil, zero value otherwise.
+
+### GetAzureAppServiceTop99pOk
+
+`func (o *UsageSummaryDateOrg) GetAzureAppServiceTop99pOk() (*int64, bool)`
+
+GetAzureAppServiceTop99pOk returns a tuple with the AzureAppServiceTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAzureAppServiceTop99p
+
+`func (o *UsageSummaryDateOrg) SetAzureAppServiceTop99p(v int64)`
+
+SetAzureAppServiceTop99p sets AzureAppServiceTop99p field to given value.
+
+### HasAzureAppServiceTop99p
+
+`func (o *UsageSummaryDateOrg) HasAzureAppServiceTop99p() bool`
+
+HasAzureAppServiceTop99p returns a boolean if a field has been set.
 
 ### GetBillableIngestedBytesSum
 

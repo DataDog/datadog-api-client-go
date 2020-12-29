@@ -17,6 +17,8 @@ import (
 type UsageSummaryDate struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current date for all organizations.
 	AgentHostTop99p *int64 `json:"agent_host_top99p,omitempty"`
+	// Shows the 99th percentile of all Azure app services using APM over all hours in the current date all organizations.
+	ApmAzureAppServiceHostTop99p *int64 `json:"apm_azure_app_service_host_top99p,omitempty"`
 	// Shows the 99th percentile of all distinct APM hosts over all hours in the current date for all organizations.
 	ApmHostTop99p *int64 `json:"apm_host_top99p,omitempty"`
 	// Shows the 99th percentile of all AWS hosts over all hours in the current date for all organizations.
@@ -126,6 +128,38 @@ func (o *UsageSummaryDate) HasAgentHostTop99p() bool {
 // SetAgentHostTop99p gets a reference to the given int64 and assigns it to the AgentHostTop99p field.
 func (o *UsageSummaryDate) SetAgentHostTop99p(v int64) {
 	o.AgentHostTop99p = &v
+}
+
+// GetApmAzureAppServiceHostTop99p returns the ApmAzureAppServiceHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetApmAzureAppServiceHostTop99p() int64 {
+	if o == nil || o.ApmAzureAppServiceHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ApmAzureAppServiceHostTop99p
+}
+
+// GetApmAzureAppServiceHostTop99pOk returns a tuple with the ApmAzureAppServiceHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetApmAzureAppServiceHostTop99pOk() (*int64, bool) {
+	if o == nil || o.ApmAzureAppServiceHostTop99p == nil {
+		return nil, false
+	}
+	return o.ApmAzureAppServiceHostTop99p, true
+}
+
+// HasApmAzureAppServiceHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasApmAzureAppServiceHostTop99p() bool {
+	if o != nil && o.ApmAzureAppServiceHostTop99p != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApmAzureAppServiceHostTop99p gets a reference to the given int64 and assigns it to the ApmAzureAppServiceHostTop99p field.
+func (o *UsageSummaryDate) SetApmAzureAppServiceHostTop99p(v int64) {
+	o.ApmAzureAppServiceHostTop99p = &v
 }
 
 // GetApmHostTop99p returns the ApmHostTop99p field value if set, zero value otherwise.
@@ -1092,6 +1126,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AgentHostTop99p != nil {
 		toSerialize["agent_host_top99p"] = o.AgentHostTop99p
+	}
+	if o.ApmAzureAppServiceHostTop99p != nil {
+		toSerialize["apm_azure_app_service_host_top99p"] = o.ApmAzureAppServiceHostTop99p
 	}
 	if o.ApmHostTop99p != nil {
 		toSerialize["apm_host_top99p"] = o.ApmHostTop99p

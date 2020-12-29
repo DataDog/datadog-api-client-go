@@ -510,6 +510,8 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(11), usage.GetMobileRumSessionCountIosAggSum())
 	assert.Equal(int64(12), usage.GetMobileRumSessionCountAndroidAggSum())
 	assert.Equal(int64(13), usage.GetRumTotalSessionCountAggSum())
+	assert.Equal(int64(14), usage.GetAzureAppServiceTop99pSum())
+	assert.Equal(int64(15), usage.GetApmAzureAppServiceHostTop99pSum())
 
 	var usageItem = usage.GetUsage()[0]
 	assert.Equal(time.Date(2020, 02, 02, 23, 0, 0, 0, time.UTC), usageItem.GetDate().UTC())
@@ -528,6 +530,8 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(14), usageItem.GetMobileRumSessionCountIosSum())
 	assert.Equal(int64(15), usageItem.GetMobileRumSessionCountAndroidSum())
 	assert.Equal(int64(16), usageItem.GetRumTotalSessionCountSum())
+	assert.Equal(int64(17), usageItem.GetAzureAppServiceTop99p())
+	assert.Equal(int64(18), usageItem.GetApmAzureAppServiceHostTop99p())
 
 	var usageOrgItem = usageItem.GetOrgs()[0]
 	assert.Equal("1b", usageOrgItem.GetId())
@@ -547,6 +551,8 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(14), usageItem.GetMobileRumSessionCountIosSum())
 	assert.Equal(int64(15), usageItem.GetMobileRumSessionCountAndroidSum())
 	assert.Equal(int64(16), usageItem.GetRumTotalSessionCountSum())
+	assert.Equal(int64(17), usageOrgItem.GetAzureAppServiceTop99p())
+	assert.Equal(int64(18), usageOrgItem.GetApmAzureAppServiceHostTop99p())
 }
 
 func TestUsageAttribution(t *testing.T) {

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AgentHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all agent hosts over all hours in the current months for all organizations. | [optional] 
+**ApmAzureAppServiceHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure app services using APM over all hours in the current months all organizations. | [optional] 
 **ApmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct APM hosts over all hours in the current months for all organizations. | [optional] 
 **AwsHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current months for all organizations. | [optional] 
 **AwsLambdaFuncCount** | Pointer to **int64** | Shows the average of the number of functions that executed 1 or more times each hour in the current months for all organizations. | [optional] 
@@ -83,6 +84,31 @@ SetAgentHostTop99pSum sets AgentHostTop99pSum field to given value.
 `func (o *UsageSummaryResponse) HasAgentHostTop99pSum() bool`
 
 HasAgentHostTop99pSum returns a boolean if a field has been set.
+
+### GetApmAzureAppServiceHostTop99pSum
+
+`func (o *UsageSummaryResponse) GetApmAzureAppServiceHostTop99pSum() int64`
+
+GetApmAzureAppServiceHostTop99pSum returns the ApmAzureAppServiceHostTop99pSum field if non-nil, zero value otherwise.
+
+### GetApmAzureAppServiceHostTop99pSumOk
+
+`func (o *UsageSummaryResponse) GetApmAzureAppServiceHostTop99pSumOk() (*int64, bool)`
+
+GetApmAzureAppServiceHostTop99pSumOk returns a tuple with the ApmAzureAppServiceHostTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApmAzureAppServiceHostTop99pSum
+
+`func (o *UsageSummaryResponse) SetApmAzureAppServiceHostTop99pSum(v int64)`
+
+SetApmAzureAppServiceHostTop99pSum sets ApmAzureAppServiceHostTop99pSum field to given value.
+
+### HasApmAzureAppServiceHostTop99pSum
+
+`func (o *UsageSummaryResponse) HasApmAzureAppServiceHostTop99pSum() bool`
+
+HasApmAzureAppServiceHostTop99pSum returns a boolean if a field has been set.
 
 ### GetApmHostTop99pSum
 
