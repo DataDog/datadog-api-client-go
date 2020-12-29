@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1607518057-0","options":{"evaluationWindow":0,"keepAlive":0,"maxSignalDuration":0},"queries":[{"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1607518057-0"}]}
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1609251882-0","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1609251882-0"}]}
     form: {}
     headers:
       Accept:
@@ -13,19 +13,19 @@ interactions:
       Dd-Operation-Id:
       - CreateSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3804723522849165672"
+      - "1211451465428901100"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
+      - "7193247397038243411"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1607518058351,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"ldd-z2k-zju","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-0"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609251883158,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"4vb-xom-pow","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -36,13 +36,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:38 GMT
+      - Tue, 29 Dec 2020 14:24:43 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:38 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -51,9 +51,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 2V6J6bfi8Lp+2UjnPdTvcW5IjbRGxJrhStYZW/ACt/za6xfDiK/Y5IuDyUadsRtA
+      - qKfjlUOd47rTL8Zfe+ult0NC1XrJJZn5FzZo3l0g8EiEJqsLoAxULWUGtB1CS4r/
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -61,7 +61,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1607518057-1","options":{"evaluationWindow":0,"keepAlive":0,"maxSignalDuration":0},"queries":[{"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1607518057-1"}]}
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1609251882-1","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1609251882-1"}]}
     form: {}
     headers:
       Accept:
@@ -71,19 +71,19 @@ interactions:
       Dd-Operation-Id:
       - CreateSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3336690046444911697"
+      - "273804474934030606"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
+      - "7193247397038243411"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1607518058647,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-1","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"6tw-vkz-kye","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-1"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609251883290,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-1","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"qp3-dhz-zrv","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-1"}'
     headers:
       Cache-Control:
       - no-cache
@@ -94,13 +94,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:38 GMT
+      - Tue, 29 Dec 2020 14:24:43 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:38 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -109,9 +109,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - gxfSlUtZJz4/cDPBxW1+YhseAnu5514ckuMWbI3rl8N4exeAZPF+KTE0BQhrBgSI
+      - KOOy1lPBGMLqgfaB9uC20OTIJWXg6RQf2/pgyl9zFLuYtKhixa8ypYEhkGX7WYxW
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -119,7 +119,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1607518057-2","options":{"evaluationWindow":0,"keepAlive":0,"maxSignalDuration":0},"queries":[{"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1607518057-2"}]}
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1609251882-2","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1609251882-2"}]}
     form: {}
     headers:
       Accept:
@@ -129,19 +129,19 @@ interactions:
       Dd-Operation-Id:
       - CreateSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5946354226479130232"
+      - "6312053634593245307"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
+      - "7193247397038243411"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1607518058864,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-2","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"9qo-uia-9x8","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-2"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609251883435,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-2","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"1nz-aoy-1od","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-2"}'
     headers:
       Cache-Control:
       - no-cache
@@ -152,13 +152,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:38 GMT
+      - Tue, 29 Dec 2020 14:24:43 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:38 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -167,9 +167,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 91aMs4Xd/NaPhGMoIvSvdd0mjw6sy0ZqzVUdTt9hqt35qwhu0snxCQESFXt90Pzi
+      - gwxwlHJSLmAXGvHTSu/VslfvUPji2blx0q1wqJSN+1mxCKSPKKSSC5xzBG+/OLHq
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -177,7 +177,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1607518057-3","options":{"evaluationWindow":0,"keepAlive":0,"maxSignalDuration":0},"queries":[{"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1607518057-3"}]}
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1609251882-3","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1609251882-3"}]}
     form: {}
     headers:
       Accept:
@@ -187,19 +187,19 @@ interactions:
       Dd-Operation-Id:
       - CreateSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4928306474171107436"
+      - "4050332420603795717"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
+      - "7193247397038243411"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1607518059085,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-3","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"6vq-qps-olq","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-3"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609251883609,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-3","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"wu9-pfd-kbg","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-3"}'
     headers:
       Cache-Control:
       - no-cache
@@ -210,13 +210,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:39 GMT
+      - Tue, 29 Dec 2020 14:24:43 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:39 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -225,9 +225,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - POuDbGLugqXrJfoVh1EySG2rrzsK54DWLRF5/pTAPkxizo7RlYf80RrCYTzc0hnv
+      - 1KMr27QHAQHDfYPOMxdkaV+JBh/1ku8yD6KIlLr2d217iUuzksir9gh+Nfb7tVhq
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -235,7 +235,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1607518057-4","options":{"evaluationWindow":0,"keepAlive":0,"maxSignalDuration":0},"queries":[{"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1607518057-4"}]}
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1609251882-4","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1609251882-4"}]}
     form: {}
     headers:
       Accept:
@@ -245,19 +245,19 @@ interactions:
       Dd-Operation-Id:
       - CreateSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8454407226419068375"
+      - "7554357646281308617"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
+      - "7193247397038243411"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1607518059318,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-4","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"4q4-5ta-av3","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-4"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609251883739,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-4","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"ptm-x1q-x20","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-4"}'
     headers:
       Cache-Control:
       - no-cache
@@ -268,13 +268,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:39 GMT
+      - Tue, 29 Dec 2020 14:24:43 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:39 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -283,9 +283,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - /0aUVUH/0B08LSgkH1j961ejfqRhimJkYAixzpnRf5lscmOFHWjl/leOQ3Mnfn7R
+      - YMUurOrBBSQDW8c48zSvcN5vlrEH+LpXx/tElldVcj/y8fT1cTjwsBugqb97UH4Q
       X-Dd-Version:
-      - "35.3505955"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -300,19 +300,19 @@ interactions:
       Dd-Operation-Id:
       - GetSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8888628195194242119"
+      - "5415458066361175998"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/ldd-z2k-zju
+      - "7193247397038243411"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/4vb-xom-pow
     method: GET
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1607518058351,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"ldd-z2k-zju","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-0"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609251883158,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"4vb-xom-pow","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -323,13 +323,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:39 GMT
+      - Tue, 29 Dec 2020 14:24:43 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:39 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:43 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -338,9 +338,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 6IhQMEQHjYL1ZYwBd1xPnaqhoM5GIKrVP4vKHrLdyvV0W9ZbpSld8lY0ehD40SZe
+      - pv0z9DOVfESVNK6d1tOJ7YfC31qHNEzJNjdRZStq3qVP6piD/gWCa9pwKd90Upzy
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -355,17 +355,17 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringRules
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5644648415699047811"
+      - "7681220777856879818"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
+      - "7193247397038243411"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=1
     method: GET
   response:
-    body: '{"meta":{"page":{"total_filtered_count":1,"total_count":235}},"data":[{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1069-permission-groups-discovery","source:guardduty","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+    body: '{"meta":{"page":{"total_filtered_count":1,"total_count":303}},"data":[{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1069-permission-groups-discovery","source:guardduty","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an attacker is enumerating IAM principals.\n\n### Strategy\nThis
       rule lets you leverage GuardDuty to detect when an attacker is enumerating IAM
       principals. The GuardDuty Findings which trigger this signal:\n\n* [Recon:IAMUser/NetworkPermissions][1]\n*
@@ -391,13 +391,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:39 GMT
+      - Tue, 29 Dec 2020 14:24:44 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:39 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:44 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -406,9 +406,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - uhKf3DOQ/asSODSNh+771Jj2mAFRCrXnSErQegeSH33qVMu18OG0v+JTvu/HjcV7
+      - GVd3H6+s0wOEEQNbWfOlfSTR2GEFs46b/AVWKmAErR/5auOQpwMvzy3i6o9DNymz
       X-Dd-Version:
-      - "35.3505955"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -423,17 +423,17 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringRules
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "428825130775136264"
+      - "2968668107124785438"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=235
+      - "7193247397038243411"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=303
     method: GET
   response:
-    body: '{"meta":{"page":{"total_filtered_count":235,"total_count":235}},"data":[{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1069-permission-groups-discovery","source:guardduty","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+    body: '{"meta":{"page":{"total_filtered_count":303,"total_count":303}},"data":[{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1069-permission-groups-discovery","source:guardduty","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an attacker is enumerating IAM principals.\n\n### Strategy\nThis
       rule lets you leverage GuardDuty to detect when an attacker is enumerating IAM
       principals. The GuardDuty Findings which trigger this signal:\n\n* [Recon:IAMUser/NetworkPermissions][1]\n*
@@ -1429,7 +1429,129 @@ interactions:
       Triage & Response\n1. Review the subscribtion and ensure it is properly configured.","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":3,"createdAt":1587592205917,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":["@usr.id","@data.protoPayload.resourceName"],"query":"source:gcp.pubsub.subscription
       @evt.name:(google.pubsub.v1.Subscriber.UpdateSubscription OR google.pubsub.v1.Subscriber.DeleteSubscription)","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
       > 0"}],"type":"log_detection","id":"tsj-mac-mdc","isDefault":true,"name":"GCP
-      Pub/Sub Subscriber modified"},{"creationAuthorId":0,"tags":["source:auth0","security:attack","tactic:TA0006-credential-access","technique:T1110-brute-force"],"isEnabled":true,"hasExtendedTitle":true,"message":"##
+      Pub/Sub Subscriber modified"},{"creationAuthorId":0,"tags":["source:okta"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when a new Okta API token is created.\n\n### Strategy\nThis rule
+      lets you monitor the following Okta event to detect when a new Okta API token
+      is created:\n\n* `system.api_token.create`\n\n### Triage & Response\n1. Contact
+      the user who created the API token and ensure that the API token is needed.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":3,"createdAt":1589315541698,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":["@usr.email"],"query":"source:okta
+      @evt.name:system.api_token.create","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"lpf-tho-8sx","isDefault":true,"name":"Okta
+      API Token Created or Enabled"},{"creationAuthorId":0,"tags":["source:okta"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when a user attempts to bypass multi-factor authentication (MFA).\n\n###
+      Strategy\nThis rule lets you monitor the following Okta events to detect when
+      a user attempts to bypass MFA:\n\n* `user.mfa.attempt_bypass`\n\n### Triage
+      & Response\n1. Contact the user who attempted to bypass MFA and ensure the request
+      was legitimate.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":3,"createdAt":1589315643307,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":["@usr.email"],"query":"source:okta
+      @evt.name:user.mfa.attempt_bypass","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"wbd-slu-e6s","isDefault":true,"name":"Okta
+      MFA Bypass Attempted"},{"creationAuthorId":0,"tags":["source:kubernetes"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when a user attaches to a pod.\n\n### Strategy\nThis rule monitors
+      when a user attaches (`@objectRef.subresource:attach`) to a pod (`@objectRef.resource:pods`).\n\nA
+      user should not need to attach to a pod. Attaching to a pod allows a user to
+      attach to any process in a running container which may give an attacker access
+      to sensitive data.\n\n### Triage & Response\n1. Determine if the user should
+      be attaching to a running container.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":6,"createdAt":1589375996858,"filters":[],"queries":[{"distinctFields":[],"name":"standardized_attributes","aggregation":"count","groupByFields":["@usr.name"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:pods @objectRef.subresource:attach @http.method:create @http.status_code:[101
+      TO 299]","trackType":"logs"},{"distinctFields":[],"name":"non_standardized_attributes","aggregation":"count","groupByFields":["@user.username"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:pods @objectRef.subresource:attach @verb:create @responseStatus.code:[101
+      TO 299]","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"standardized_attributes
+      > 0 || non_standardized_attributes > 0"}],"type":"log_detection","id":"j6t-mva-rul","isDefault":true,"name":"User
+      Attached to a Pod"},{"creationAuthorId":0,"tags":["source:kubernetes"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when an unauthenticated request user is permitted in Kubernetes.\n\n###
+      Strategy\nThis rule monitors when any action is permitted (`@http.status_code:[100
+      TO 299]`) for an unauthenticated user (`@user.username:\\\"system:anonymous\\\"`).\nThe
+      `/healthz` endpoint is commonly accessed unauthenticated and it is excluded
+      in the query filter.\n\n### Triage & Response\n1. Inspect all of the HTTP paths
+      accessed and determine if any of the path should be permitted by unauthenticated
+      users.\n2. Determine what IP addresses accessed Kubernetes endpoints which may
+      contain sensitive data.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":4,"createdAt":1589376002149,"filters":[],"queries":[{"distinctFields":[],"name":"standardized_attributes","aggregation":"count","groupByFields":[],"query":"@apiVersion:audit.k8s.io*
+      @usr.name:\"system:anonymous\" @http.status_code:[100 TO 299] -@http.url_details.path:\"/healthz\"","trackType":"logs"},{"distinctFields":[],"name":"non_standardized_attributes","aggregation":"count","groupByFields":[],"query":"@apiVersion:audit.k8s.io*
+      @user.username:\"system:anonymous\" @responseStatus.code:[100 TO 299] -@requestURI:\"/healthz\"","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"standardized_attributes
+      > 0 || non_standardized_attributes > 0"}],"type":"log_detection","id":"f1o-py5-a50","isDefault":true,"name":"Anonymous
+      Request Authorized"},{"creationAuthorId":0,"tags":["source:kubernetes"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when a pod is attached to the host network.\n\n### Strategy\nThis
+      rule monitors when a create (`@http.method:create`) action occurs for a pod
+      (`@objectRef.resource:pods`) with the host network `@requestObject.spec.hostNetwork:true`
+      attached.\n\nAttaching the `hostNetwork` permits a pod to access the node''s
+      network adapter allowing a pod to listen to all network traffic for all pods
+      on the node and communicate with other pods on the network namespace.\n\n###
+      Triage & Response\n1. Determine if the pod needs `hostNetwork` access.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":4,"createdAt":1589376007079,"filters":[],"queries":[{"distinctFields":[],"name":"standardized_attributes","aggregation":"count","groupByFields":["@requestObject.metadata.generateName"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:pods @http.method:create @requestObject.spec.hostNetwork:true
+      @http.status_code:[200 TO 299]","trackType":"logs"},{"distinctFields":[],"name":"non_standardized_attributes","aggregation":"count","groupByFields":["@requestObject.metadata.generateName"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:pods @verb:create @requestObject.spec.hostNetwork:true @responseStatus.code:[200
+      TO 299]","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"standardized_attributes
+      > 0 || non_standardized_attributes > 0"}],"type":"log_detection","id":"d3g-xpz-cwc","isDefault":true,"name":"Kubernetes
+      Pod Created with hostNetwork"},{"creationAuthorId":0,"tags":["source:kubernetes"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when a user is creating a pod in one of the Kubernetes default
+      namespaces.\n\n### Strategy\nThis rule monitors when a create (`@http.method:create`)
+      action occurs for a pod (`@objectRef.resource:pods`) within either of the `kube-system`
+      or `kube-public` namespaces.\n\nThe only users creating pods in the `kube-system`
+      namespace should be cluster administrators. Furthermore, it is best practice
+      to not run any cluster critical infrastructure in the `kube-system` namespace.\n\nThe
+      `kube-public` namespace is intended for Kubernetes objects which should be readable
+      by unauthenticated users. Thus, a pod should likely not be created in the `kube-public`
+      namespace.\n\n### Triage & Response\n1. Determine if the user should be creating
+      this new pod in one of the default namespaces.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":4,"createdAt":1589376012191,"filters":[],"queries":[{"distinctFields":[],"name":"standardized_attributes","aggregation":"count","groupByFields":["@usr.name"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:pods @http.method:create @objectRef.namespace:(\"kube-system\"
+      OR \"kube-public\") @http.status_code:[200 TO 299]","trackType":"logs"},{"distinctFields":[],"name":"non_standardized_attributes","aggregation":"count","groupByFields":["@user.username"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:pods @verb:create @objectRef.namespace:(\"kube-system\"
+      OR \"kube-public\") @responseStatus.code:[200 TO 299]","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"standardized_attributes
+      > 0 || non_standardized_attributes > 0"}],"type":"log_detection","id":"tvf-ju6-h3i","isDefault":true,"name":"Kubernetes
+      Pod Created in Kube Namespace"},{"creationAuthorId":0,"tags":["source:kubernetes"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when a user is creating a service account in one of the Kubernetes
+      default namespaces.\n\n### Strategy\nThis rule monitors when a create (`@http.method:create`)
+      action occurs for a service account (`@objectRef.resource:serviceaccounts`)
+      within either of the `kube-system` or `kube-public` namespaces.\n\nThe only
+      users creating service accounts in the `kube-system` namespace should be cluster
+      administrators. Furthermore, it is best practice to not run any cluster critical
+      infrastructure in the `kube-system` namespace.\n\nThe `kube-public` namespace
+      is intended for kubernetes objects which should be readable by unauthenticated
+      users. Thus, a service account should likely not be created in the `kube-public`
+      namespace.\n\n### Triage & Response\n1. Determine if the user should be creating
+      this new service account in one of the default namespaces.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":5,"createdAt":1589376017036,"filters":[],"queries":[{"distinctFields":[],"name":"standardized_attributes","aggregation":"count","groupByFields":["@usr.name"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:serviceaccounts @http.method:create @objectRef.namespace:(\"kube-system\"
+      OR \"kube-public\") @http.status_code:[200 TO 299]","trackType":"logs"},{"distinctFields":[],"name":"non_standardized_attributes","aggregation":"count","groupByFields":["@user.username"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:serviceaccounts @verb:create @objectRef.namespace:(\"kube-system\"
+      OR \"kube-public\") @responseStatus.code:[200 TO 299]","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"standardized_attributes
+      > 0 || non_standardized_attributes > 0"}],"type":"log_detection","id":"loy-9ka-bc2","isDefault":true,"name":"Kubernetes
+      Service Account Created in Kube Namespace"},{"creationAuthorId":0,"tags":["source:kubernetes"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when a user is creating a Kubernetes namespace.\n\n### Strategy\nThis
+      rule monitors when a `create` action occurs for the Kubernetes namespace (`@objectRef.resource:namespaces`)
+      to detect when a user is creating a new Kubernetes namespace.\n\n### Triage
+      & Response\n1. Determine if the user should be creating this new namespace.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":4,"createdAt":1589376020564,"filters":[],"queries":[{"distinctFields":[],"name":"standardized_attributes","aggregation":"count","groupByFields":["@objectRef.name","@usr.name"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:namespaces @http.method:create -@objectRef.name:(\"default\"
+      OR \"kube-system\" OR \"kube-public\") @http.status_code:[200 TO 299]","trackType":"logs"},{"distinctFields":[],"name":"non_standardized_attributes","aggregation":"count","groupByFields":["@objectRef.name","@user.username"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:namespaces @verb:create -@objectRef.name:(\"default\" OR
+      \"kube-system\" OR \"kube-public\") @responseStatus.code:[200 TO 299]","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"standardized_attributes
+      > 0 || non_standardized_attributes > 0"}],"type":"log_detection","id":"zgq-pd9-wgw","isDefault":true,"name":"New
+      Kubernetes Namespace Created"},{"creationAuthorId":0,"tags":["source:kubernetes"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when a service''s port is attached to the node''s IP.\n\n### Strategy\nThis
+      rule monitors when a create (`@http.method:create`) action occurs for a service
+      (`@objectRef.resource:services`) attaching the service''s port to the node''s
+      IP `@requestObject.spec.type:NodePort`.\n\nExposing the service''s port to the
+      the node''s IP allows other hosts on the network namespace to access this service.\n\n###
+      Triage & Response\n1. Determine if the service needs to expose it''s network
+      connection with `NodePort` access.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":5,"createdAt":1589376023160,"filters":[],"queries":[{"distinctFields":[],"name":"standardized_attributes","aggregation":"count","groupByFields":["@objectRef.name"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:services @http.method:create @requestObject.spec.type:NodePort
+      @http.status_code:[200 TO 299]","trackType":"logs"},{"distinctFields":[],"name":"non_standardized_attributes","aggregation":"count","groupByFields":["@objectRef.name"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:services @verb:create @requestObject.spec.type:NodePort
+      @responseStatus.code:[200 TO 299]","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"standardized_attributes
+      > 0 || non_standardized_attributes > 0"}],"type":"log_detection","id":"cvp-3wz-v3s","isDefault":true,"name":"Kubernetes
+      Service Created with NodePort"},{"creationAuthorId":0,"tags":["source:kubernetes"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when a user execs into a pod.\n\n### Strategy\nThis rule monitors
+      when a user execs (`@objectRef.subresource:exec`) into to a pod (`@objectRef.resource:pods`).\n\nA
+      user should not need to exec into a pod. Execing into a pod allows a user to
+      execute any process in container which is not already running.\nIt is most common
+      to execute the bash process to gain an interactive shell.\nIf this is an attacker,
+      they can access any data which the pod has permissions to, including secrets.\n\n###
+      Triage & Response\n1. Determine if the user should be execing into a running
+      container.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":6,"createdAt":1589376094658,"filters":[],"queries":[{"distinctFields":[],"name":"standardized_attributes","aggregation":"count","groupByFields":["@usr.name"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:pods @objectRef.subresource:exec @http.method:create @http.status_code:[101
+      TO 299]","trackType":"logs"},{"distinctFields":[],"name":"non_standardized_attributes","aggregation":"count","groupByFields":["@user.username"],"query":"@apiVersion:audit.k8s.io*
+      @objectRef.resource:pods @objectRef.subresource:exec @verb:create @responseStatus.code:[101
+      TO 299]","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"standardized_attributes
+      > 0 || non_standardized_attributes > 0"}],"type":"log_detection","id":"hyd-cu4-79x","isDefault":true,"name":"User
+      Exec into a Pod"},{"creationAuthorId":0,"tags":["source:auth0","security:attack","tactic:TA0006-credential-access","technique:T1110-brute-force"],"isEnabled":true,"hasExtendedTitle":true,"message":"##
       **Goal:**\nDetect a brute force attack on a user. \n\n## **Strategy:**\n**To
       determine a successful attempt:** Detect when the same user fails to login five
       times and then successfully logs in. This generates a `MEDIUM` severity signal.\n\n**To
@@ -1471,7 +1593,51 @@ interactions:
       @evt.name:(failed_login_incorrect_password OR failed_login_invalid_email_or_username)","trackType":"logs"},{"distinctFields":[],"name":"successful_login","aggregation":"count","groupByFields":["@network.client.ip"],"query":"source:auth0
       @evt.name:success_login","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"Successful","condition":"unique_users_failing_to_login>10
       && successful_login>=1"},{"status":"info","notifications":[],"name":"Attempt","condition":"unique_users_failing_to_login>10"}],"type":"log_detection","id":"ryo-snu-uva","isDefault":true,"name":"Credential
-      stuffing attack on Auth0"},{"creationAuthorId":1445416,"tags":["service:some-service"],"isEnabled":true,"hasExtendedTitle":true,"message":"a","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1599126333230,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":[],"query":"*","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      stuffing attack on Auth0"},{"creationAuthorId":0,"tags":["security:compliance","source:azure"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when any user logs in to Azure AD without multi-factor authentication.\n\n###
+      Strategy\nThis rule monitors Azure Activity logs for Active Directory logs and
+      detects when any `@evt.category` has a value of  `SignInLogs`, and `@properties.authenticationRequirement`
+      has a value of `singleFactorAuthentication`.\n\n### Triage & Response\n1. Reach
+      out to the user to determine if the login was legitimate.\n2. If the login was
+      legitimate, request that the user enables 2FA.\n3. If the login wasn''t legitimate,
+      rotate the credentials.\n4. Review all user accounts to ensure MFA is enabled.\n","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":3,"createdAt":1598468815267,"filters":[],"queries":[{"distinctFields":[],"name":"user_login_without_mfa","aggregation":"count","groupByFields":["@usr.id"],"query":"source:azure.activedirectory
+      @evt.category:SignInLogs @properties.authenticationRequirement:singleFactorAuthentication","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"low","notifications":[],"name":"","condition":"user_login_without_mfa
+      > 0"}],"type":"log_detection","id":"c8i-66d-m7u","isDefault":true,"name":"Azure
+      AD Login Without MFA"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0001-initial-access","technique:T1190-exploit-public-facing-application","source:azure"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when an Azure Frontdoor Web Application Firewall (WAF) logs a request
+      from an IP address.\n\n### Strategy\nThis rule monitors Azure Activity logs
+      for Frontdoor Web Application Firewall logs and detects when the `@evt.name`
+      has a value of  `Microsoft.Network/FrontDoor/WebApplicationFirewallLog/Write`
+      and `@properties.action` has a value of `Log`.\n\n### Triage & Response\n1.
+      Inspect whether this request should have been blocked or not.\n2. Navigate to
+      the IP dashboard and inspect other requests this IP address has made.\n","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":2,"createdAt":1598468815399,"filters":[],"queries":[{"distinctFields":[],"name":"waf_logged_a_request","aggregation":"count","groupByFields":["@properties.clientIP"],"query":"source:azure.network
+      @evt.name:\"Microsoft.Network/FrontDoor/WebApplicationFirewallLog/Write\" @properties.action:Log","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"waf_logged_a_request
+      > 0"}],"type":"log_detection","id":"bkk-48l-vem","isDefault":true,"name":"Azure
+      Frontdoor WAF Logged a Request"},{"creationAuthorId":0,"tags":["security:compliance","source:azure"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when an Azure network security group allows inbound traffic from
+      all IP Addresses.\n\n### Strategy\nThis rule monitors Azure Activity logs for
+      network changes and detects when the `@evt.name` has a value of  `MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/WRITE`,
+      `@properties.securityRules.properties.direction` has a value of `Inbound`, `@properties.securityRules.properties.access`
+      has a value of `Allow`, and `@properties.securityRules.properties.sourceAddressPrefix`
+      has a value of either `0.0.0.0/0` OR `*`.\n\n### Triage & Response\n1. Inspect
+      which Virtual Machines are associated with this security group.\n2. Determine
+      whether this security group and the VMs should permit inbound traffic from all
+      IP addresses.\n","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":2,"createdAt":1598468816111,"filters":[],"queries":[{"distinctFields":[],"name":"security_group_open_to_world","aggregation":"count","groupByFields":["@resourceId"],"query":"source:azure.network
+      @evt.name:\"MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/WRITE\" @properties.securityRules.properties.direction:Inbound
+      @properties.securityRules.properties.access:Allow @properties.securityRules.properties.sourceAddressPrefix:(\"0.0.0.0/0\"
+      OR \"*\")","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"security_group_open_to_world
+      > 0"}],"type":"log_detection","id":"owu-2uz-8cb","isDefault":true,"name":"Azure
+      Network Security Group Open to the World"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0001-initial-access","technique:T1190-exploit-public-facing-application","source:azure"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when an Azure Frontdoor Web Application Firewall (WAF) blocks a
+      request from an IP address.\n\n### Strategy\nThis rule monitors Azure Activity
+      logs for Frontdoor Web Application Firewall logs and detects when the `@evt.name`
+      has a value of  `Microsoft.Network/FrontDoor/WebApplicationFirewallLog/Write`
+      and `@properties.action` has a value of `Block`.\n\n### Triage & Response\n1.
+      Inspect whether this request should have been blocked or not.\n2. Navigate to
+      the IP dashboard and inspect other requests this IP address has made.\n","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":2,"createdAt":1598468816869,"filters":[],"queries":[{"distinctFields":[],"name":"waf_blocked_a_request","aggregation":"count","groupByFields":["@properties.clientIP"],"query":"source:azure.network
+      @evt.name:\"Microsoft.Network/FrontDoor/WebApplicationFirewallLog/Write\" @properties.action:Block","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"waf_blocked_a_request
+      > 0"}],"type":"log_detection","id":"xyt-fqh-myv","isDefault":true,"name":"Azure
+      Frontdoor WAF Blocked a Request"},{"creationAuthorId":1445416,"tags":["service:some-service"],"isEnabled":true,"hasExtendedTitle":true,"message":"a","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1599126333230,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":[],"query":"*","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
       > 0"}],"type":"log_detection","id":"eol-yqs-wbv","isDefault":false,"name":"test-rule-matias"},{"creationAuthorId":1445416,"tags":["datadog-api-client-test-java"],"isEnabled":true,"hasExtendedTitle":false,"message":"Rule
       message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1599134105443,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"java-listSignals-local-1599134103","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
       > 0"}],"type":"log_detection","id":"vs6-pwt-gpj","isDefault":false,"name":"java-listSignals-local-1599134103"},{"creationAuthorId":1445416,"tags":["datadog-api-client-test-java"],"isEnabled":true,"hasExtendedTitle":false,"message":"Rule
@@ -1788,17 +1954,219 @@ interactions:
       case","condition":"first > 3 || second > 10"},{"status":"medium","notifications":[],"name":"warning
       case","condition":"first > 0 || second > 0"}],"type":"log_detection","id":"paw-mja-r2e","isDefault":false,"name":"tf-TestAccDatadogSecurityMonitoringRuleDatasource-local-1606416513"},{"creationAuthorId":1379811,"tags":["datadog-api-client-test-java"],"isEnabled":true,"hasExtendedTitle":false,"message":"Rule
       message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1606825995412,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"java-rulesCrudTest-34562-1606825994-4","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"trc-m6c-dqg","isDefault":false,"name":"java-rulesCrudTest-34562-1606825994-4"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1607518058351,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"ldd-z2k-zju","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-0"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1607518058647,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-1","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"6tw-vkz-kye","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-1"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1607518058864,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-2","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"9qo-uia-9x8","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-2"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1607518059085,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-3","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"6vq-qps-olq","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-3"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1607518059318,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-4","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"4q4-5ta-av3","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-4"}]}'
+      > 0"}],"type":"log_detection","id":"trc-m6c-dqg","isDefault":false,"name":"java-rulesCrudTest-34562-1606825994-4"},{"creationAuthorId":0,"tags":["security:compliance","source:azure"],"isEnabled":true,"hasExtendedTitle":true,"message":"##
+      Goal\n\nDetect when an Azure network security group or an Azure network security
+      rule has been created, modified, or deleted.\n\n## Strategy\n\nMonitor Azure
+      activity logs and detect when the `@evt.name` is equal to any one of the following
+      names:\n- `MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/WRITE`\n- `MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/DELETE`\n-
+      `MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SECURITYRULES/WRITE` \n- `MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SECURITYRULES/DELETE`\n\nand
+      `@evt.outcome` is equal to `Success`.\n\n## Triage & Response\n\n1. Inspect
+      the security group or security rule and determine if it exposes any Azure resources
+      that should not be exposed.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":2,"createdAt":1607106297216,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":["@usr.id"],"query":"source:azure.network
+      @evt.name:(\"MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SECURITYRULES/WRITE\" OR
+      \"MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SECURITYRULES/DELETE\" OR \"MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/DELETE\"
+      OR \"MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/WRITE\") @evt.outcome:Success","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"mju-ynx-i1h","isDefault":true,"name":"Azure
+      Network Security Groups or Rules Created, Modified, or Deleted"},{"creationAuthorId":0,"tags":["source:azure","security:threat-intel"],"isEnabled":true,"hasExtendedTitle":true,"message":"##
+      Goal\n\nDetect when an Azure firewall threat intelligence alert is received.\n\n##
+      Strategy\n\nMonitor Azure Network Diagnostic logs and detect when `@evt.name`
+      is equal to `AzureFirewallThreatIntelLog`.\n\n## Triage & Response\n\n1. Inspect
+      the threat intelligence log.\n2. Investigate the activity from this IP address.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":3,"createdAt":1607106300940,"filters":[],"queries":[{"distinctFields":[],"name":"azure_firewall_threat_intel_alert","aggregation":"count","groupByFields":["@network.client.ip"],"query":"source:azure.network
+      @evt.name:AzureFirewallThreatIntelLog","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"azure_firewall_threat_intel_alert
+      > 0"}],"type":"log_detection","id":"z0v-yfr-qat","isDefault":true,"name":"Azure
+      Firewall Threat Intelligence Alert"},{"creationAuthorId":0,"tags":["source:azure","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"##
+      Goal\n\nDetect when an Azure policy assignment has been created.\n\n## Strategy\n\nMonitor
+      Azure activity logs and detect when the `@evt.name` is equal to `MICROSOFT.AUTHORIZATION/POLICYASSIGNMENTS/WRITE`
+      and `@evt.outcome` is equal to `Success`.\n\n## Triage && Response\n\n1. Inspect
+      the policy assignment and determine if an unsolicited change was made on any
+      Azure resources.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":2,"createdAt":1607106302885,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":["@network.client.ip"],"query":"source:azure
+      @evt.name:\"MICROSOFT.AUTHORIZATION/POLICYASSIGNMENTS/WRITE\" @evt.outcome:Success","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"uvd-ets-ju9","isDefault":true,"name":"Azure
+      Policy Assignment Created"},{"creationAuthorId":0,"tags":["security:attack","technique:T1110-brute-force","tactic:TA0006-credential-access","source:azure"],"isEnabled":true,"hasExtendedTitle":true,"message":"##
+      Goal\n\nDetect and identify the network IP address when multiple user accounts
+      have login attempt activities recorded.\n\n## Strategy\n\nMonitor Azure Active
+      Directory and detect when any `@evt.category` is equal to `SignInLogs` and more
+      than 1 of the `@evt.outcome` are equal to `false` and was initiated by the same
+      network IP address.\n\nSecurity Signal returns **HIGH** if`@evt.outcome` has
+      value of `success` after multiple failed logins were initiated by the same network
+      IP address.\n\n## Triage & Response\n\n1. Inspect the log and determine if this
+      was a valid login attempt.\n2. If the user was compromised, rotate user credentials.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":3,"createdAt":1607106304164,"filters":[],"queries":[{"distinctFields":["@usr.id"],"name":"failed_login_multiple_user_accounts_same_ip_address","aggregation":"cardinality","groupByFields":["@network.client.ip"],"query":"source:azure.activedirectory
+      @evt.category:SignInLogs @evt.outcome:failure","trackType":"logs"},{"distinctFields":[],"name":"successful_login_after_multiple_failed_login_attemtps","aggregation":"count","groupByFields":["@network.client.ip"],"query":"source:azure.activedirectory
+      @evt.category:SignInLogs @evt.outcome:failure","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"Successful
+      login after multiple failed login attempts from the same network IP address","condition":"failed_login_multiple_user_accounts_same_ip_address
+      > 1 && successful_login_after_multiple_failed_login_attemtps > 0"},{"status":"medium","notifications":[],"name":"Multiple
+      failed login attempts from the same network IP address","condition":"failed_login_multiple_user_accounts_same_ip_address
+      > 1 "}],"type":"log_detection","id":"igg-0ve-xxc","isDefault":true,"name":"Credential
+      Stuffing Attack on Azure"},{"creationAuthorId":0,"tags":["security:attack","technique:T1110-brute-force","tactic:TA0006-credential-access","source:azure"],"isEnabled":true,"hasExtendedTitle":true,"message":"##
+      Goal\n\nDetect when a user is a victim of an Account Take Over (ATO) by a brute
+      force attack.\n\n## Strategy\n\nMonitor Azure Active Directory Sign-in logs
+      and detect when any `@evt.category` is equal to  `SignInLogs`, and `@evt.outcome`
+      is equal to `failure`.\n\n## Triage & Response\n\n1. Inspect the log and determine
+      if this was a valid login attempt.\n2. If the user was compromised, rotate user
+      credentials.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":4,"createdAt":1607106309289,"filters":[],"queries":[{"distinctFields":[],"name":"failed_login","aggregation":"count","groupByFields":["@usr.id"],"query":"source:azure.activedirectory
+      @evt.category:SignInLogs @evt.outcome:failure","trackType":"logs"},{"distinctFields":[],"name":"successful_login","aggregation":"count","groupByFields":["@usr.id"],"query":"source:azure.activedirectory
+      @evt.category:SignInLogs @evt.outcome:failure","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"low","notifications":[],"name":"Successful
+      login","condition":"failed_login > 5 && successful_login > 0"},{"status":"info","notifications":[],"name":"Unsuccessful","condition":"failed_login
+      > 5"}],"type":"log_detection","id":"y0f-vsz-xms","isDefault":true,"name":"Azure
+      Portal brute force login"},{"creationAuthorId":0,"tags":["security:attack","technique:T1110-brute-force","tactic:TA0006-credential-access","source:azure"],"isEnabled":true,"hasExtendedTitle":true,"message":"##
+      Goal\n\nDetect and identify the network IP address when multiple user accounts
+      failed to complete the MFA process.\n\n## Strategy\n\nMonitor Azure Active Directory
+      Sign-in logs and detect when any `@evt.category` is equal to `SignInLogs`, `@properties.authenticationRequirement`
+      is equal to `multiFactorAuthentication` and `@evt.outcome` is equal to `failure`.\n\n##
+      Triage & Response \n\n1. Inspect the log and determine if this was a valid login
+      attempt.\n2. If the user was compromised, rotate user credentials.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":4,"createdAt":1607106317340,"filters":[],"queries":[{"distinctFields":["@usr.email"],"name":"failed_login_mfa_denied_w_multiple_user_accounts","aggregation":"cardinality","groupByFields":["@network.client.ip"],"query":"source:azure.activedirectory
+      @evt.category:SignInLogs @properties.authenticationRequirement:multiFactorAuthentication
+      @evt.outcome:failure","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"medium","notifications":[],"name":"Greater
+      than 10 unique users","condition":"failed_login_mfa_denied_w_multiple_user_accounts
+      > 10"},{"status":"low","notifications":[],"name":"Greater than 3 unique user","condition":"failed_login_mfa_denied_w_multiple_user_accounts
+      > 3"}],"type":"log_detection","id":"zgm-z7i-mhu","isDefault":true,"name":"Azure
+      Login Explicitly Denied MFA"},{"creationAuthorId":0,"tags":["security:compliance","source:azure"],"isEnabled":true,"hasExtendedTitle":true,"message":"##
+      Goal\n\nDetect when an Azure network security rule has been created, modified,
+      or deleted.\n\n## Strategy\n\nMonitor Azure activity logs and detect when the
+      `@evt.name` is equal to any of the following names:\n- `MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SECURITYRULES/WRITE`
+      \n- `MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SECURITYRULES/DELETE`\n\nand `@evt.outcome`
+      is equal to `Success`.\n\n## Triage && Response\n\n1. Inspect the security rule
+      and determine if it exposes any Azure resources that should not be made public.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":2,"createdAt":1607106319051,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":["@usr.id"],"query":"source:azure.sql
+      @evt.name:\"MICROSOFT.SQL/SERVERS/FIREWALLRULES/WRITE\" @evt.outcome:Success","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"kbv-sau-dwv","isDefault":true,"name":"Azure
+      SQL Server Firewall Rules Created or Modified"},{"creationAuthorId":0,"tags":["source:azure","security:compliance"],"isEnabled":true,"hasExtendedTitle":true,"message":"##
+      Goal\n\nDetect when an invitation is sent to an external user.\n\n## Strategy\n\nMonitor
+      Azure Active Directory Audit logs and detect when any `@evt.name` is equal to
+      `Invite external user` and the `@evt.outcome` is equal to `success`.\n\n## Triage
+      & Response\n\n1. Review and determine if the invitation and its recipient are
+      valid.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":3,"createdAt":1607106320758,"filters":[],"queries":[{"distinctFields":[],"name":"invite_external_user","aggregation":"count","groupByFields":["@usr.id","@properties.targetResources.userPrincipalName"],"query":"source:azure.activedirectory
+      @evt.name:\"Invite external user\" @evt.outcome:success","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"low","notifications":[],"name":"","condition":"invite_external_user
+      > 0"}],"type":"log_detection","id":"msq-9pm-ift","isDefault":true,"name":"Azure
+      user invited an external user"},{"creationAuthorId":0,"tags":["source:okta"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when a user is denied access to an app.\n\n### Strategy\nThis rule
+      lets you monitor the following Okta events to detect when a user is denied access
+      to an app:\n\n* `app.generic.unauth_app_access_attempt`\n\n### Triage & Response\n1.
+      Determine whether or not the user should have access to this app.\n2. Contact
+      the user to determine whether they attempted to access this app or whether their
+      account is compromised.\n","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":2,"createdAt":1607371843994,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":["@usr.email","@target_app"],"query":"source:okta
+      @evt.name:app.generic.unauth_app_access_attempt","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"rht-pdf-gyx","isDefault":true,"name":"Okta
+      User Attempted to Access Unauthorized App"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1608715209387,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1608715208","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"okx-zhl-ure","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1608715208"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1608715418569,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1608715418","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"znb-pse-1cl","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1608715418"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1608715676935,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1608715676","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"kg3-ah6-why","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1608715676"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1608715832971,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1608715832","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"0nr-vbz-xds","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1608715832"},{"creationAuthorId":0,"tags":["security:attack","tactic:TA0006-credential-access","technique:T1110-brute-force","template:true","category:authentication"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect Account Take Over (ATO) through credential stuffing attack.\n\nA
+      credential stuffing attack is used to gain initial access by compromising user
+      accounts.\n\nThe attacker obtains a list of compromised usernames and passwords
+      from a previous user database breach, phishing attempt, or other means. Then,
+      they use the list of username and passwords to attempt to login to accounts
+      on your application.\n\nIt is common for an attacker to use multiple IP addresses
+      to target your application in order to distribute the attack load for load balancing
+      purposes, to make it more difficult to detect, or make it more difficult to
+      block.\n\n### Strategy\n**To determine a successful attempt:** Detect a high
+      number of failed logins from at least 25 unique users and at least one successful
+      login for a user within a period of time from the same IP address.\n\n**To determine
+      an unsuccessful attempt:** Detect a high number of failed logins from at least
+      ten unique users within a period of time from the same IP address.\n\n### Triage
+      and response\n\nUse [this Datadog runbook](https://app.datadoghq.com/notebook/credentialstuffingrunbook)
+      to assist in your investigation.\n\n1. Determine if it is a legitimate attack
+      or a false positive\n2. Determine compromised users\n3. Remediate compromised
+      user accounts\n","options":{"detectionMethod":"threshold","evaluationWindow":1800,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1608750331867,"filters":[],"queries":[{"distinctFields":["@usr.id"],"name":"unique_users_failing_to_login","aggregation":"cardinality","groupByFields":["@network.client.ip"],"query":"@evt.category:authentication
+      @evt.outcome:failure","trackType":"logs"},{"distinctFields":[],"name":"successful_login","aggregation":"count","groupByFields":["@network.client.ip"],"query":"@evt.category:authentication
+      @evt.outcome:success","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"Successful
+      - Greater than 50","condition":"unique_users_failing_to_login>50 && successful_login>=1"},{"status":"medium","notifications":[],"name":"Successful","condition":"unique_users_failing_to_login>25
+      && successful_login>=1"},{"status":"info","notifications":[],"name":"Attempt","condition":"unique_users_failing_to_login>25"}],"type":"log_detection","id":"ypo-jbm-p2s","isDefault":true,"name":"Credential
+      stuffing attack"},{"creationAuthorId":1379826,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609235497677,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609235497","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"wgx-qpd-3us","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609235497"},{"creationAuthorId":1379826,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609235660277,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609235660","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"dlx-tcn-juz","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609235660"},{"creationAuthorId":1379826,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609235819189,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609235818","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"oqf-bdd-y2x","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609235818"},{"creationAuthorId":1379826,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609235977713,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609235977","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"73r-k7o-mzu","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609235977"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609239463676,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609239462","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"xzk-ift-4xe","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609239462"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609239619064,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609239618","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"2lx-yhk-qcy","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609239618"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609239665439,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609239664","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"jov-7a9-j7t","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609239664"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609239820840,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609239820","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"lvc-ikq-ijc","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609239820"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609240546721,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609240545","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"2wv-5iy-es5","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609240545"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609240703912,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609240703","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"kjn-rlx-qsv","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609240703"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609242317306,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609242316","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"o1h-asb-0yc","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609242316"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609242587447,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609242586","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"yhd-gti-fjz","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609242586"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609242746070,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609242745","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"bdp-cpj-oca","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609242745"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609242803238,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609242802","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"7qp-sq7-xnw","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609242802"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609242935704,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609242935","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"ous-is5-nmx","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609242935"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609242985642,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609242984","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"lro-pe3-vhn","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609242984"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609243093253,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609243093","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"ch2-o0e-eut","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609243093"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609243326713,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609243326","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"miy-6qa-qv4","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609243326"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609243410664,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609243409","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"dcw-ftf-zdj","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609243409"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609243495245,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609243494","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"ncm-5ui-b2a","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609243494"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609243604843,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609243604","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"g9e-v2x-mq9","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609243604"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609243648886,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609243648","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"1ns-5rb-wis","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609243648"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609243675868,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609243675","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"zzy-jyi-gyz","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609243675"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609243691329,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609243690","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"osr-4dt-w6b","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609243690"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609243713963,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609243713","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"ori-b0t-yxw","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609243713"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609243950966,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609243950","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"cmt-dco-5va","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609243950"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609244074734,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609244074","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"cme-cmu-ckk","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609244074"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609244108821,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609244108","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"wr1-oe4-j9l","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609244108"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609244338450,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609244337","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"kfi-ygs-wg0","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609244337"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609244387550,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609244386","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"p60-rs7-rth","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609244386"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609244642277,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609244641","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"6yc-rqg-dmz","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609244641"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609244892170,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609244891","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"dvz-s1a-ir7","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609244891"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609245122087,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609245121","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"54r-n9o-rnt","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609245121"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609245863507,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609245862","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"zzr-0mx-a7k","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609245862"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1609245895709,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609245895","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"cmn-ysz-tjm","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609245895"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609250328103,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609250327","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"url-3od-xgt","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609250327"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609250547002,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609250545","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"rzq-qow-xgj","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609250545"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609250624906,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609250624","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"yyp-jqs-yzj","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609250624"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609250778839,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609250778","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"xso-yeb-dku","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609250778"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609250843940,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1609250843","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"vjg-xhe-w84","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1609250843"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609251883158,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"4vb-xom-pow","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-0"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609251883290,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-1","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"qp3-dhz-zrv","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-1"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609251883435,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-2","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"1nz-aoy-1od","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-2"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609251883609,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-3","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"wu9-pfd-kbg","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-3"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609251883739,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-4","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"ptm-x1q-x20","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-4"}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -1809,13 +2177,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:40 GMT
+      - Tue, 29 Dec 2020 14:24:44 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:39 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:44 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -1824,9 +2192,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - sKAY0l5Dq+9OdN3cdjnBmv3dOgVdaJs4B9XR5o+IUZC5EZY9C+nnqv+YslWCCjmi
+      - xX5B3VEUzj/lf2mLoLzvYApJQ8Milw+OjpcorJhw8mNeFxMv2SeFpmruGZDusq8/
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -1841,17 +2209,17 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringRules
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9097226738554943943"
+      - "7693589121759799268"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
+      - "7193247397038243411"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=2
     method: GET
   response:
-    body: '{"meta":{"page":{"total_filtered_count":2,"total_count":235}},"data":[{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1069-permission-groups-discovery","source:guardduty","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+    body: '{"meta":{"page":{"total_filtered_count":2,"total_count":303}},"data":[{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1069-permission-groups-discovery","source:guardduty","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an attacker is enumerating IAM principals.\n\n### Strategy\nThis
       rule lets you leverage GuardDuty to detect when an attacker is enumerating IAM
       principals. The GuardDuty Findings which trigger this signal:\n\n* [Recon:IAMUser/NetworkPermissions][1]\n*
@@ -1890,13 +2258,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:40 GMT
+      - Tue, 29 Dec 2020 14:24:44 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:40 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:44 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -1905,9 +2273,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - SQ42qDtuEKFP2sgVjIqNlDpiYOKALQoZIabV6hSyHOa0/LSJKKwpuBBfI7vLZopD
+      - 2NNUQsZpZeC5yOEHnEH8LSn5LhjKmDDM31iXmBawo7O6opYjviLgi+mfUoMNw5sj
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3609133"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -1922,17 +2290,17 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringRules
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3062701497770271088"
+      - "6614840175291653269"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
+      - "7193247397038243411"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=2
     method: GET
   response:
-    body: '{"meta":{"page":{"total_filtered_count":2,"total_count":235}},"data":[{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1069-permission-groups-discovery","source:guardduty","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+    body: '{"meta":{"page":{"total_filtered_count":2,"total_count":303}},"data":[{"creationAuthorId":0,"tags":["security:attack","tactic:TA0007-discovery","technique:T1069-permission-groups-discovery","source:guardduty","scope:iam"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
       Goal\nDetect when an attacker is enumerating IAM principals.\n\n### Strategy\nThis
       rule lets you leverage GuardDuty to detect when an attacker is enumerating IAM
       principals. The GuardDuty Findings which trigger this signal:\n\n* [Recon:IAMUser/NetworkPermissions][1]\n*
@@ -1971,13 +2339,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:40 GMT
+      - Tue, 29 Dec 2020 14:24:44 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:40 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:44 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -1986,9 +2354,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - ApDR7dmCPzU09s5sGJ6tunvBxSFKQfwajJriSdeRXXH0ohfkw5+3MDbyzkcCLNJJ
+      - KcNcHUGB08YdugVH3r9bPpps+kNHA5hdt/i0HnHlCpX4wCTIXYMJnhyM7E+8Tni0
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -1996,7 +2364,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","notifications":[],"status":"info"}],"isEnabled":false,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1607518057-0","options":{"evaluationWindow":0,"keepAlive":0,"maxSignalDuration":0},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1607518057-0"}],"tags":[]}
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","notifications":[],"status":"info"}],"isEnabled":false,"message":"rule message","name":"go-TestSecMonRulesCRUD-local-1609251882-0","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"name":"rule","query":"go-TestSecMonRulesCRUD-local-1609251882-0"}],"tags":[]}
     form: {}
     headers:
       Accept:
@@ -2006,19 +2374,19 @@ interactions:
       Dd-Operation-Id:
       - UpdateSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1170520465947750494"
+      - "8854427303297700648"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/ldd-z2k-zju
+      - "7193247397038243411"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/4vb-xom-pow
     method: PUT
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":false,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":2,"createdAt":1607518058351,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"ldd-z2k-zju","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-0"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1609251883158,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"4vb-xom-pow","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -2029,13 +2397,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:40 GMT
+      - Tue, 29 Dec 2020 14:24:44 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:40 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:44 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -2044,9 +2412,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - OqKY7agPmI/v3hVHuBa6xblzuasXfwEx0fPUFdqZoAEPJYT3VaeupIdfNnd+cYH0
+      - hhAfI9DpjHRbHS2z+2prVh0mHwAun3McFDOF8AzNv8c8J6c/l2q8Kye8syKGTxkY
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -2061,19 +2429,19 @@ interactions:
       Dd-Operation-Id:
       - GetSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8835906668184428327"
+      - "4789110672418373815"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/ldd-z2k-zju
+      - "7193247397038243411"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/4vb-xom-pow
     method: GET
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":false,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":2,"createdAt":1607518058351,"filters":[],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1607518057-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"ldd-z2k-zju","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1607518057-0"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1609251883158,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSecMonRulesCRUD-local-1609251882-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"4vb-xom-pow","isDefault":false,"name":"go-TestSecMonRulesCRUD-local-1609251882-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -2084,13 +2452,13 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 09 Dec 2020 12:47:41 GMT
+      - Tue, 29 Dec 2020 14:24:45 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:41 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:45 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
@@ -2099,9 +2467,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - g1JN5WIJ1Um2nWq9AQ7orHFBA37V3eIZYgeyDV/dLV8QtbkkvRVVIW0Fy1xXObzE
+      - lFrksZMz0TAfmkfXqA+joIhqff9XI0eK5d8n7wOVd6ze5TT6MYngm1maZRo2uB6a
       X-Dd-Version:
-      - "35.3505955"
+      - "35.3609133"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -2116,14 +2484,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5100450216157399158"
+      - "458057546052850856"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/ldd-z2k-zju
+      - "7193247397038243411"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/4vb-xom-pow
     method: DELETE
   response:
     body: ""
@@ -2137,22 +2505,22 @@ interactions:
       Content-Length:
       - "2"
       Date:
-      - Wed, 09 Dec 2020 12:47:41 GMT
+      - Tue, 29 Dec 2020 14:24:45 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:41 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:45 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - RquGBod+QwJwo5jKyeuGJHvfWvWfZ0hMpUnxtqqEEEpqySzsuyt8sx6iN5riB0bK
+      - FHfHzbfIddsg0sQ7IeNBOxLqb5wz+d6n32kEDCDFZtJpoagPnr4KgZnA3JebHBTT
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3609133"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -2167,17 +2535,17 @@ interactions:
       Dd-Operation-Id:
       - GetSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4093810936818462591"
+      - "8489341416157228163"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/ldd-z2k-zju
+      - "7193247397038243411"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/4vb-xom-pow
     method: GET
   response:
-    body: '{"errors":["Threat detection rule not found: ldd-z2k-zju"]}'
+    body: '{"errors":["Threat detection rule not found: 4vb-xom-pow"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -2186,7 +2554,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 09 Dec 2020 12:47:41 GMT
+      - Tue, 29 Dec 2020 14:24:45 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -2198,7 +2566,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -2213,14 +2581,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3065701811510393891"
+      - "8798219120143322618"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/4q4-5ta-av3
+      - "7193247397038243411"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/ptm-x1q-x20
     method: DELETE
   response:
     body: ""
@@ -2234,22 +2602,22 @@ interactions:
       Content-Length:
       - "2"
       Date:
-      - Wed, 09 Dec 2020 12:47:41 GMT
+      - Tue, 29 Dec 2020 14:24:45 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:41 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:45 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 84uqub9zpmlgg8irRO/sOXYuWjXevKJ3PeFDkydS20gUrNiRDeiB84n5Q67dF4oL
+      - V26KHlc/RfdWahgILvghYzp00rgLN6YCNAgg+V0KrlqUWK5TouaimNqGpGYzd/eX
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -2264,14 +2632,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5433789040947371444"
+      - "6927533735353183556"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/6vq-qps-olq
+      - "7193247397038243411"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/wu9-pfd-kbg
     method: DELETE
   response:
     body: ""
@@ -2285,22 +2653,22 @@ interactions:
       Content-Length:
       - "2"
       Date:
-      - Wed, 09 Dec 2020 12:47:42 GMT
+      - Tue, 29 Dec 2020 14:24:45 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:42 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:45 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - /3efrffY0fOidOw5YXy+ujUt+jIWndj9KkkaQ3CKNiYFs6CCTkTChAR8M9mejUqc
+      - EQzhJSeNziVWIN4Gtgvm49DBQgA/xSWPBZSORg2i40a13gmPz8gOAFcYwqtQKjIG
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -2315,14 +2683,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4676535671524556466"
+      - "2648545907732292449"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/9qo-uia-9x8
+      - "7193247397038243411"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/1nz-aoy-1od
     method: DELETE
   response:
     body: ""
@@ -2336,22 +2704,22 @@ interactions:
       Content-Length:
       - "2"
       Date:
-      - Wed, 09 Dec 2020 12:47:42 GMT
+      - Tue, 29 Dec 2020 14:24:45 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:42 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:45 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 84uqub9zpmlgg8irRO/sOXYuWjXevKJ3PeFDkydS20gUrNiRDeiB84n5Q67dF4oL
+      - WMqkdiu/k4tYC8oJLm7ZFuFlnIXAYAXwOPQoxLtj7bgJQppYJErVkGl/2/O/+zpm
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -2366,14 +2734,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6684020435435176728"
+      - "2030369270248997001"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/6tw-vkz-kye
+      - "7193247397038243411"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/qp3-dhz-zrv
     method: DELETE
   response:
     body: ""
@@ -2387,22 +2755,22 @@ interactions:
       Content-Length:
       - "2"
       Date:
-      - Wed, 09 Dec 2020 12:47:42 GMT
+      - Tue, 29 Dec 2020 14:24:46 GMT
       Dd-Pool:
       - dogweb
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 16-Dec-2020 12:47:42 GMT;
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:24:46 GMT;
         secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - sQOy8a0Uobuto7YUtlnbqZIuXh5uDLMP34xhBMJaioPr6917JNPh2PehnbSMnQ69
+      - ks6TYG2WFSBr2qT+ZTFJB8BB7VWuwPmODDq52A4JjLzCAAitR8HQc9JBq+LHjJu4
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -2417,17 +2785,17 @@ interactions:
       Dd-Operation-Id:
       - DeleteSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1427194114268320704"
+      - "5714565627267636750"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5317290263728668568"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/ldd-z2k-zju
+      - "7193247397038243411"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/4vb-xom-pow
     method: DELETE
   response:
-    body: '{"errors":["Threat detection rule not found: ldd-z2k-zju"]}'
+    body: '{"errors":["Threat detection rule not found: 4vb-xom-pow"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -2436,7 +2804,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 09 Dec 2020 12:47:42 GMT
+      - Tue, 29 Dec 2020 14:24:46 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -2448,7 +2816,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.3505899"
+      - "35.3613107"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

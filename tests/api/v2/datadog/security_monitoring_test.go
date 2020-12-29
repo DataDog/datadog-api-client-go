@@ -30,9 +30,9 @@ func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, 
 	queries := []datadog.SecurityMonitoringRuleQueryCreate{*query}
 
 	options := datadog.NewSecurityMonitoringRuleOptions()
-	options.SetEvaluationWindow(datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES)
-	options.SetKeepAlive(datadog.SECURITYMONITORINGRULEKEEPALIVE_ZERO_MINUTES)
-	options.SetMaxSignalDuration(datadog.SECURITYMONITORINGRULEMAXSIGNALDURATION_ZERO_MINUTES)
+	options.SetEvaluationWindow(datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIVE_MINUTES)
+	options.SetKeepAlive(datadog.SECURITYMONITORINGRULEKEEPALIVE_FIVE_MINUTES)
+	options.SetMaxSignalDuration(datadog.SECURITYMONITORINGRULEMAXSIGNALDURATION_FIVE_MINUTES)
 
 	ruleCase := datadog.NewSecurityMonitoringRuleCaseCreate(datadog.SECURITYMONITORINGRULESEVERITY_INFO)
 	ruleCase.SetName("rule-case")
@@ -207,11 +207,6 @@ func TestSearchSecurityMonitoringSignals(t *testing.T) {
 		t.Fatalf("Error creating rule: Response: %v", err)
 	}
 
-	err = sendLogsSignals(ctx, client, *uniqueName)
-	if err != nil {
-		t.Fatalf("Error sending logs: %v", err)
-	}
-
 	var response datadog.SecurityMonitoringSignalsListResponse
 	var httpResp *http.Response
 
@@ -225,6 +220,7 @@ func TestSearchSecurityMonitoringSignals(t *testing.T) {
 
 	// Make sure both signals are generated
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		_ = sendLogsSignals(ctx, client, *uniqueName)
 		response, httpResp, err = api.SearchSecurityMonitoringSignals(ctx).Body(*request).Execute()
 		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
 	})
@@ -236,10 +232,12 @@ func TestSearchSecurityMonitoringSignals(t *testing.T) {
 	// Sort works correctly
 	request.SetSort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING)
 
-	response, httpResp, err = api.SearchSecurityMonitoringSignals(ctx).Body(*request).Execute()
-	if err != nil {
-		t.Fatalf("Could not list signals: %v", err)
-	}
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = api.SearchSecurityMonitoringSignals(ctx).
+			Body(*request).
+			Execute()
+		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
+	})
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	firstTimestamp := response.GetData()[0].GetAttributes().Timestamp
@@ -248,10 +246,12 @@ func TestSearchSecurityMonitoringSignals(t *testing.T) {
 
 	request.SetSort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_DESCENDING)
 
-	response, httpResp, err = api.SearchSecurityMonitoringSignals(ctx).Body(*request).Execute()
-	if err != nil {
-		t.Fatalf("Could not list signals: %v", err)
-	}
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = api.SearchSecurityMonitoringSignals(ctx).
+			Body(*request).
+			Execute()
+		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
+	})
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	firstTimestamp = response.GetData()[0].GetAttributes().Timestamp
@@ -306,11 +306,6 @@ func TestListSecurityMonitoringSignals(t *testing.T) {
 		t.Fatalf("Error creating rule: Response: %v", err)
 	}
 
-	err = sendLogsSignals(ctx, client, *uniqueName)
-	if err != nil {
-		t.Fatalf("Error sending logs: %v", err)
-	}
-
 	var response datadog.SecurityMonitoringSignalsListResponse
 	var httpResp *http.Response
 
@@ -319,6 +314,8 @@ func TestListSecurityMonitoringSignals(t *testing.T) {
 
 	// Make sure both signals are generated
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		_ = sendLogsSignals(ctx, client, *uniqueName)
+
 		response, httpResp, err = api.ListSecurityMonitoringSignals(ctx).
 			FilterQuery(*uniqueName).
 			FilterFrom(from).
@@ -332,31 +329,30 @@ func TestListSecurityMonitoringSignals(t *testing.T) {
 	}
 
 	// Sort works correctly
-
-	response, httpResp, err = api.ListSecurityMonitoringSignals(ctx).
-		FilterQuery(*uniqueName).
-		FilterFrom(from).
-		FilterTo(to).
-		Sort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING).
-		Execute()
-	if err != nil {
-		t.Fatalf("Could not list signals: %v", err)
-	}
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = api.ListSecurityMonitoringSignals(ctx).
+			FilterQuery(*uniqueName).
+			FilterFrom(from).
+			FilterTo(to).
+			Sort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING).
+			Execute()
+		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
+	})
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	firstTimestamp := response.GetData()[0].GetAttributes().Timestamp
 	secondTimestamp := response.GetData()[1].GetAttributes().Timestamp
 	assert.True(firstTimestamp.Before(*secondTimestamp))
 
-	response, httpResp, err = api.ListSecurityMonitoringSignals(ctx).
-		FilterQuery(*uniqueName).
-		FilterFrom(from).
-		FilterTo(to).
-		Sort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_DESCENDING).
-		Execute()
-	if err != nil {
-		t.Fatalf("Could not list signals: %v", err)
-	}
+	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+		response, httpResp, err = api.ListSecurityMonitoringSignals(ctx).
+			FilterQuery(*uniqueName).
+			FilterFrom(from).
+			FilterTo(to).
+			Sort(datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_DESCENDING).
+			Execute()
+		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
+	})
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(2, len(response.GetData()))
 	firstTimestamp = response.GetData()[0].GetAttributes().Timestamp
