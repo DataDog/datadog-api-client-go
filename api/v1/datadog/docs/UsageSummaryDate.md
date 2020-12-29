@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AgentHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all agent hosts over all hours in the current date for all organizations. | [optional] 
+**ApmAzureAppServiceHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Azure app services using APM over all hours in the current date all organizations. | [optional] 
 **ApmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct APM hosts over all hours in the current date for all organizations. | [optional] 
 **AwsHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current date for all organizations. | [optional] 
 **AwsLambdaFuncCount** | Pointer to **int64** | Shows the average of the number of functions that executed 1 or more times each hour in the current date for all organizations. | [optional] 
@@ -79,6 +80,31 @@ SetAgentHostTop99p sets AgentHostTop99p field to given value.
 `func (o *UsageSummaryDate) HasAgentHostTop99p() bool`
 
 HasAgentHostTop99p returns a boolean if a field has been set.
+
+### GetApmAzureAppServiceHostTop99p
+
+`func (o *UsageSummaryDate) GetApmAzureAppServiceHostTop99p() int64`
+
+GetApmAzureAppServiceHostTop99p returns the ApmAzureAppServiceHostTop99p field if non-nil, zero value otherwise.
+
+### GetApmAzureAppServiceHostTop99pOk
+
+`func (o *UsageSummaryDate) GetApmAzureAppServiceHostTop99pOk() (*int64, bool)`
+
+GetApmAzureAppServiceHostTop99pOk returns a tuple with the ApmAzureAppServiceHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApmAzureAppServiceHostTop99p
+
+`func (o *UsageSummaryDate) SetApmAzureAppServiceHostTop99p(v int64)`
+
+SetApmAzureAppServiceHostTop99p sets ApmAzureAppServiceHostTop99p field to given value.
+
+### HasApmAzureAppServiceHostTop99p
+
+`func (o *UsageSummaryDate) HasApmAzureAppServiceHostTop99p() bool`
+
+HasApmAzureAppServiceHostTop99p returns a boolean if a field has been set.
 
 ### GetApmHostTop99p
 
