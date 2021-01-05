@@ -58,7 +58,7 @@ func main() {
     }
     // response from `GetHostTotals`: HostTotals
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from HostsApi.GetHostTotals:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.GetHostTotals:\n%s\n", response_content)
 }
 ```
 
@@ -147,7 +147,7 @@ func main() {
     }
     // response from `ListHosts`: HostListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from HostsApi.ListHosts:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.ListHosts:\n%s\n", response_content)
 }
 ```
 
@@ -237,7 +237,7 @@ func main() {
     }
     // response from `MuteHost`: HostMuteResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from HostsApi.MuteHost:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.MuteHost:\n%s\n", response_content)
 }
 ```
 
@@ -324,7 +324,7 @@ func main() {
     }
     // response from `UnmuteHost`: HostMuteResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from HostsApi.UnmuteHost:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.UnmuteHost:\n%s\n", response_content)
 }
 ```
 

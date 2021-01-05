@@ -60,7 +60,7 @@ func main() {
     }
     // response from `CreateIncidentTeam`: IncidentTeamResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.CreateIncidentTeam:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.CreateIncidentTeam:\n%s\n", response_content)
 }
 ```
 
@@ -227,7 +227,7 @@ func main() {
     }
     // response from `GetIncidentTeam`: IncidentTeamResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.GetIncidentTeam:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.GetIncidentTeam:\n%s\n", response_content)
 }
 ```
 
@@ -318,7 +318,7 @@ func main() {
     }
     // response from `ListIncidentTeams`: IncidentTeamsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.ListIncidentTeams:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.ListIncidentTeams:\n%s\n", response_content)
 }
 ```
 
@@ -405,7 +405,7 @@ func main() {
     }
     // response from `UpdateIncidentTeam`: IncidentTeamResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.UpdateIncidentTeam:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.UpdateIncidentTeam:\n%s\n", response_content)
 }
 ```
 

@@ -43,7 +43,7 @@ func main() {
     }
     // response from `GetIPRanges`: IPRanges
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IPRangesApi.GetIPRanges:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IPRangesApi.GetIPRanges:\n%s\n", response_content)
 }
 ```
 

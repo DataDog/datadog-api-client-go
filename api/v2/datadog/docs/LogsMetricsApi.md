@@ -59,7 +59,7 @@ func main() {
     }
     // response from `CreateLogsMetric`: LogsMetricResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsMetricsApi.CreateLogsMetric:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsMetricsApi.CreateLogsMetric:\n%s\n", response_content)
 }
 ```
 
@@ -223,7 +223,7 @@ func main() {
     }
     // response from `GetLogsMetric`: LogsMetricResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsMetricsApi.GetLogsMetric:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsMetricsApi.GetLogsMetric:\n%s\n", response_content)
 }
 ```
 
@@ -308,7 +308,7 @@ func main() {
     }
     // response from `ListLogsMetrics`: LogsMetricsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsMetricsApi.ListLogsMetrics:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsMetricsApi.ListLogsMetrics:\n%s\n", response_content)
 }
 ```
 
@@ -387,7 +387,7 @@ func main() {
     }
     // response from `UpdateLogsMetric`: LogsMetricResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsMetricsApi.UpdateLogsMetric:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsMetricsApi.UpdateLogsMetric:\n%s\n", response_content)
 }
 ```
 

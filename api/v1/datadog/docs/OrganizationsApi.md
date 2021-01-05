@@ -59,7 +59,7 @@ func main() {
     }
     // response from `CreateChildOrg`: OrganizationCreateResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.CreateChildOrg:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.CreateChildOrg:\n%s\n", response_content)
 }
 ```
 
@@ -141,7 +141,7 @@ func main() {
     }
     // response from `GetOrg`: OrganizationResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.GetOrg:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.GetOrg:\n%s\n", response_content)
 }
 ```
 
@@ -226,7 +226,7 @@ func main() {
     }
     // response from `ListOrgs`: OrganizationListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.ListOrgs:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.ListOrgs:\n%s\n", response_content)
 }
 ```
 
@@ -305,7 +305,7 @@ func main() {
     }
     // response from `UpdateOrg`: OrganizationResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.UpdateOrg:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.UpdateOrg:\n%s\n", response_content)
 }
 ```
 
@@ -393,7 +393,7 @@ func main() {
     }
     // response from `UploadIdPForOrg`: IdpResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.UploadIdPForOrg:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from OrganizationsApi.UploadIdPForOrg:\n%s\n", response_content)
 }
 ```
 
