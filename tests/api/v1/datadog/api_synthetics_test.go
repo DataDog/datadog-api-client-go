@@ -1254,10 +1254,10 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 		Description: "variable from test description",
 		ParseTestPublicId: datadog.PtrString(publicID),
 		ParseTestOptions: &datadog.SyntheticsGlobalVariableParseTestOptions{
-			Parser: &datadog.SyntheticsGlobalVariableParseTestOptionsParser{
-				Type: datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW.Ptr(),
+			Parser: datadog.SyntheticsGlobalVariableParseTestOptionsParser{
+				Type: datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW,
 			},
-			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY.Ptr(),
+			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
 		},
 		Tags:        []string{"synthetics"},
 		Value: datadog.SyntheticsGlobalVariableValue{
