@@ -116,6 +116,11 @@ Class | Method | HTTP request | Description
 *LogsArchivesApi* | [**RemoveRoleFromArchive**](docs/LogsArchivesApi.md#removerolefromarchive) | **Delete** /api/v2/logs/config/archives/{archive_id}/readers | Revoke role from an archive
 *LogsArchivesApi* | [**UpdateLogsArchive**](docs/LogsArchivesApi.md#updatelogsarchive) | **Put** /api/v2/logs/config/archives/{archive_id} | Update an archive
 *LogsArchivesApi* | [**UpdateLogsArchiveOrder**](docs/LogsArchivesApi.md#updatelogsarchiveorder) | **Put** /api/v2/logs/config/archive-order | Update archive order
+*LogsMetricsApi* | [**CreateLogsMetric**](docs/LogsMetricsApi.md#createlogsmetric) | **Post** /api/v2/logs/config/metrics | Create a log-based metric
+*LogsMetricsApi* | [**DeleteLogsMetric**](docs/LogsMetricsApi.md#deletelogsmetric) | **Delete** /api/v2/logs/config/metrics/{metric_id} | Delete a log-based metric
+*LogsMetricsApi* | [**GetLogsMetric**](docs/LogsMetricsApi.md#getlogsmetric) | **Get** /api/v2/logs/config/metrics/{metric_id} | Get a log-based metric
+*LogsMetricsApi* | [**ListLogsMetrics**](docs/LogsMetricsApi.md#listlogsmetrics) | **Get** /api/v2/logs/config/metrics | Get all log-based metrics
+*LogsMetricsApi* | [**UpdateLogsMetric**](docs/LogsMetricsApi.md#updatelogsmetric) | **Patch** /api/v2/logs/config/metrics/{metric_id} | Update a log-based metric
 *ProcessesApi* | [**ListProcesses**](docs/ProcessesApi.md#listprocesses) | **Get** /api/v2/processes | Get all processes
 *RolesApi* | [**AddPermissionToRole**](docs/RolesApi.md#addpermissiontorole) | **Post** /api/v2/roles/{role_id}/permissions | Grant permission to a role
 *RolesApi* | [**AddUserToRole**](docs/RolesApi.md#addusertorole) | **Post** /api/v2/roles/{role_id}/users | Add a user to a role
@@ -277,6 +282,25 @@ Class | Method | HTTP request | Description
  - [LogsListRequestPage](docs/LogsListRequestPage.md)
  - [LogsListResponse](docs/LogsListResponse.md)
  - [LogsListResponseLinks](docs/LogsListResponseLinks.md)
+ - [LogsMetricCompute](docs/LogsMetricCompute.md)
+ - [LogsMetricComputeAggregationType](docs/LogsMetricComputeAggregationType.md)
+ - [LogsMetricCreateAttributes](docs/LogsMetricCreateAttributes.md)
+ - [LogsMetricCreateData](docs/LogsMetricCreateData.md)
+ - [LogsMetricCreateRequest](docs/LogsMetricCreateRequest.md)
+ - [LogsMetricFilter](docs/LogsMetricFilter.md)
+ - [LogsMetricGroupBy](docs/LogsMetricGroupBy.md)
+ - [LogsMetricResponse](docs/LogsMetricResponse.md)
+ - [LogsMetricResponseAttributes](docs/LogsMetricResponseAttributes.md)
+ - [LogsMetricResponseCompute](docs/LogsMetricResponseCompute.md)
+ - [LogsMetricResponseComputeAggregationType](docs/LogsMetricResponseComputeAggregationType.md)
+ - [LogsMetricResponseData](docs/LogsMetricResponseData.md)
+ - [LogsMetricResponseFilter](docs/LogsMetricResponseFilter.md)
+ - [LogsMetricResponseGroupBy](docs/LogsMetricResponseGroupBy.md)
+ - [LogsMetricType](docs/LogsMetricType.md)
+ - [LogsMetricUpdateAttributes](docs/LogsMetricUpdateAttributes.md)
+ - [LogsMetricUpdateData](docs/LogsMetricUpdateData.md)
+ - [LogsMetricUpdateRequest](docs/LogsMetricUpdateRequest.md)
+ - [LogsMetricsResponse](docs/LogsMetricsResponse.md)
  - [LogsQueryFilter](docs/LogsQueryFilter.md)
  - [LogsQueryOptions](docs/LogsQueryOptions.md)
  - [LogsResponseMetadata](docs/LogsResponseMetadata.md)
@@ -336,6 +360,8 @@ Class | Method | HTTP request | Description
  - [RolesResponse](docs/RolesResponse.md)
  - [RolesSort](docs/RolesSort.md)
  - [RolesType](docs/RolesType.md)
+ - [SecurityMonitoringFilter](docs/SecurityMonitoringFilter.md)
+ - [SecurityMonitoringFilterAction](docs/SecurityMonitoringFilterAction.md)
  - [SecurityMonitoringListRulesResponse](docs/SecurityMonitoringListRulesResponse.md)
  - [SecurityMonitoringRuleCase](docs/SecurityMonitoringRuleCase.md)
  - [SecurityMonitoringRuleCaseCreate](docs/SecurityMonitoringRuleCaseCreate.md)

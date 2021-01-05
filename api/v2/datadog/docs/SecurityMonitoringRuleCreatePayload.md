@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cases** | [**[]SecurityMonitoringRuleCaseCreate**](SecurityMonitoringRuleCaseCreate.md) | Cases for generating signals. | 
+**Filters** | Pointer to [**[]SecurityMonitoringFilter**](SecurityMonitoringFilter.md) | Additional queries to filter matched events before they are processed. | [optional] 
 **IsEnabled** | **bool** | Whether the rule is enabled. | 
 **Message** | **string** | Message for generated signals. | 
 **Name** | **string** | The name of the rule. | 
@@ -50,6 +51,31 @@ and a boolean to check if the value has been set.
 
 SetCases sets Cases field to given value.
 
+
+### GetFilters
+
+`func (o *SecurityMonitoringRuleCreatePayload) GetFilters() []SecurityMonitoringFilter`
+
+GetFilters returns the Filters field if non-nil, zero value otherwise.
+
+### GetFiltersOk
+
+`func (o *SecurityMonitoringRuleCreatePayload) GetFiltersOk() (*[]SecurityMonitoringFilter, bool)`
+
+GetFiltersOk returns a tuple with the Filters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilters
+
+`func (o *SecurityMonitoringRuleCreatePayload) SetFilters(v []SecurityMonitoringFilter)`
+
+SetFilters sets Filters field to given value.
+
+### HasFilters
+
+`func (o *SecurityMonitoringRuleCreatePayload) HasFilters() bool`
+
+HasFilters returns a boolean if a field has been set.
 
 ### GetIsEnabled
 

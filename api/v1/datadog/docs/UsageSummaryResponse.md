@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AgentHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all agent hosts over all hours in the current months for all organizations. | [optional] 
+**ApmAzureAppServiceHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure app services using APM over all hours in the current months all organizations. | [optional] 
 **ApmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct APM hosts over all hours in the current months for all organizations. | [optional] 
 **AwsHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current months for all organizations. | [optional] 
 **AwsLambdaFuncCount** | Pointer to **int64** | Shows the average of the number of functions that executed 1 or more times each hour in the current months for all organizations. | [optional] 
@@ -25,11 +26,14 @@ Name | Type | Description | Notes
 **IngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current months for all organizations. | [optional] 
 **LastUpdated** | Pointer to **time.Time** | Shows the the most recent hour in the current months for all organizations for which all usages were calculated. | [optional] 
 **MobileRumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current months for all organizations. | [optional] 
+**MobileRumSessionCountAndroidAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on Android over all hours in the current months for all organizations. | [optional] 
+**MobileRumSessionCountIosAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on iOS over all hours in the current months for all organizations. | [optional] 
 **NetflowIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current months for all organizations. | [optional] 
 **NpmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current months for all organizations. | [optional] 
 **ProfilingContainerAgentCountAvg** | Pointer to **int64** | Shows the average number of profiled containers over all hours in the current months for all organizations. | [optional] 
 **ProfilingHostCountTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current months for all organizations. | [optional] 
 **RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current months for all organizations. | [optional] 
+**RumTotalSessionCountAggSum** | Pointer to **int64** | Shows the sum of RUM Sessions (browser and mobile) over all hours in the current months for all organizations. | [optional] 
 **StartDate** | Pointer to **time.Time** | Shows the first date of usage in the current months for all organizations. | [optional] 
 **SyntheticsBrowserCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current months for all organizations. | [optional] 
 **SyntheticsCheckCallsCountAggSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current months for all organizations. | [optional] 
@@ -80,6 +84,31 @@ SetAgentHostTop99pSum sets AgentHostTop99pSum field to given value.
 `func (o *UsageSummaryResponse) HasAgentHostTop99pSum() bool`
 
 HasAgentHostTop99pSum returns a boolean if a field has been set.
+
+### GetApmAzureAppServiceHostTop99pSum
+
+`func (o *UsageSummaryResponse) GetApmAzureAppServiceHostTop99pSum() int64`
+
+GetApmAzureAppServiceHostTop99pSum returns the ApmAzureAppServiceHostTop99pSum field if non-nil, zero value otherwise.
+
+### GetApmAzureAppServiceHostTop99pSumOk
+
+`func (o *UsageSummaryResponse) GetApmAzureAppServiceHostTop99pSumOk() (*int64, bool)`
+
+GetApmAzureAppServiceHostTop99pSumOk returns a tuple with the ApmAzureAppServiceHostTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApmAzureAppServiceHostTop99pSum
+
+`func (o *UsageSummaryResponse) SetApmAzureAppServiceHostTop99pSum(v int64)`
+
+SetApmAzureAppServiceHostTop99pSum sets ApmAzureAppServiceHostTop99pSum field to given value.
+
+### HasApmAzureAppServiceHostTop99pSum
+
+`func (o *UsageSummaryResponse) HasApmAzureAppServiceHostTop99pSum() bool`
+
+HasApmAzureAppServiceHostTop99pSum returns a boolean if a field has been set.
 
 ### GetApmHostTop99pSum
 
@@ -581,6 +610,56 @@ SetMobileRumSessionCountAggSum sets MobileRumSessionCountAggSum field to given v
 
 HasMobileRumSessionCountAggSum returns a boolean if a field has been set.
 
+### GetMobileRumSessionCountAndroidAggSum
+
+`func (o *UsageSummaryResponse) GetMobileRumSessionCountAndroidAggSum() int64`
+
+GetMobileRumSessionCountAndroidAggSum returns the MobileRumSessionCountAndroidAggSum field if non-nil, zero value otherwise.
+
+### GetMobileRumSessionCountAndroidAggSumOk
+
+`func (o *UsageSummaryResponse) GetMobileRumSessionCountAndroidAggSumOk() (*int64, bool)`
+
+GetMobileRumSessionCountAndroidAggSumOk returns a tuple with the MobileRumSessionCountAndroidAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileRumSessionCountAndroidAggSum
+
+`func (o *UsageSummaryResponse) SetMobileRumSessionCountAndroidAggSum(v int64)`
+
+SetMobileRumSessionCountAndroidAggSum sets MobileRumSessionCountAndroidAggSum field to given value.
+
+### HasMobileRumSessionCountAndroidAggSum
+
+`func (o *UsageSummaryResponse) HasMobileRumSessionCountAndroidAggSum() bool`
+
+HasMobileRumSessionCountAndroidAggSum returns a boolean if a field has been set.
+
+### GetMobileRumSessionCountIosAggSum
+
+`func (o *UsageSummaryResponse) GetMobileRumSessionCountIosAggSum() int64`
+
+GetMobileRumSessionCountIosAggSum returns the MobileRumSessionCountIosAggSum field if non-nil, zero value otherwise.
+
+### GetMobileRumSessionCountIosAggSumOk
+
+`func (o *UsageSummaryResponse) GetMobileRumSessionCountIosAggSumOk() (*int64, bool)`
+
+GetMobileRumSessionCountIosAggSumOk returns a tuple with the MobileRumSessionCountIosAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileRumSessionCountIosAggSum
+
+`func (o *UsageSummaryResponse) SetMobileRumSessionCountIosAggSum(v int64)`
+
+SetMobileRumSessionCountIosAggSum sets MobileRumSessionCountIosAggSum field to given value.
+
+### HasMobileRumSessionCountIosAggSum
+
+`func (o *UsageSummaryResponse) HasMobileRumSessionCountIosAggSum() bool`
+
+HasMobileRumSessionCountIosAggSum returns a boolean if a field has been set.
+
 ### GetNetflowIndexedEventsCountAggSum
 
 `func (o *UsageSummaryResponse) GetNetflowIndexedEventsCountAggSum() int64`
@@ -705,6 +784,31 @@ SetRumSessionCountAggSum sets RumSessionCountAggSum field to given value.
 `func (o *UsageSummaryResponse) HasRumSessionCountAggSum() bool`
 
 HasRumSessionCountAggSum returns a boolean if a field has been set.
+
+### GetRumTotalSessionCountAggSum
+
+`func (o *UsageSummaryResponse) GetRumTotalSessionCountAggSum() int64`
+
+GetRumTotalSessionCountAggSum returns the RumTotalSessionCountAggSum field if non-nil, zero value otherwise.
+
+### GetRumTotalSessionCountAggSumOk
+
+`func (o *UsageSummaryResponse) GetRumTotalSessionCountAggSumOk() (*int64, bool)`
+
+GetRumTotalSessionCountAggSumOk returns a tuple with the RumTotalSessionCountAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRumTotalSessionCountAggSum
+
+`func (o *UsageSummaryResponse) SetRumTotalSessionCountAggSum(v int64)`
+
+SetRumTotalSessionCountAggSum sets RumTotalSessionCountAggSum field to given value.
+
+### HasRumTotalSessionCountAggSum
+
+`func (o *UsageSummaryResponse) HasRumTotalSessionCountAggSum() bool`
+
+HasRumTotalSessionCountAggSum returns a boolean if a field has been set.
 
 ### GetStartDate
 
