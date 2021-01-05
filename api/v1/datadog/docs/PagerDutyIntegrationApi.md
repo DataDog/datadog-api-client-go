@@ -58,7 +58,7 @@ func main() {
     }
     // response from `CreatePagerDutyIntegrationService`: PagerDutyServiceName
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from PagerDutyIntegrationApi.CreatePagerDutyIntegrationService:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from PagerDutyIntegrationApi.CreatePagerDutyIntegrationService:\n%s\n", response_content)
 }
 ```
 
@@ -222,7 +222,7 @@ func main() {
     }
     // response from `GetPagerDutyIntegrationService`: PagerDutyServiceName
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from PagerDutyIntegrationApi.GetPagerDutyIntegrationService:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from PagerDutyIntegrationApi.GetPagerDutyIntegrationService:\n%s\n", response_content)
 }
 ```
 

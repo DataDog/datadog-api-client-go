@@ -61,7 +61,7 @@ func main() {
     }
     // response from `CreateHostTags`: HostTags
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from TagsApi.CreateHostTags:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.CreateHostTags:\n%s\n", response_content)
 }
 ```
 
@@ -234,7 +234,7 @@ func main() {
     }
     // response from `GetHostTags`: HostTags
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from TagsApi.GetHostTags:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.GetHostTags:\n%s\n", response_content)
 }
 ```
 
@@ -321,7 +321,7 @@ func main() {
     }
     // response from `ListHostTags`: TagToHosts
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from TagsApi.ListHostTags:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.ListHostTags:\n%s\n", response_content)
 }
 ```
 
@@ -405,7 +405,7 @@ func main() {
     }
     // response from `UpdateHostTags`: HostTags
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from TagsApi.UpdateHostTags:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.UpdateHostTags:\n%s\n", response_content)
 }
 ```
 

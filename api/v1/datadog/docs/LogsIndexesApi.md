@@ -60,7 +60,7 @@ func main() {
     }
     // response from `GetLogsIndex`: LogsIndex
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.GetLogsIndex:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.GetLogsIndex:\n%s\n", response_content)
 }
 ```
 
@@ -146,7 +146,7 @@ func main() {
     }
     // response from `GetLogsIndexOrder`: LogsIndexesOrder
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.GetLogsIndexOrder:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.GetLogsIndexOrder:\n%s\n", response_content)
 }
 ```
 
@@ -224,7 +224,7 @@ func main() {
     }
     // response from `ListLogIndexes`: LogsIndexListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.ListLogIndexes:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.ListLogIndexes:\n%s\n", response_content)
 }
 ```
 
@@ -304,7 +304,7 @@ func main() {
     }
     // response from `UpdateLogsIndex`: LogsIndex
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.UpdateLogsIndex:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.UpdateLogsIndex:\n%s\n", response_content)
 }
 ```
 
@@ -392,7 +392,7 @@ func main() {
     }
     // response from `UpdateLogsIndexOrder`: LogsIndexesOrder
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.UpdateLogsIndexOrder:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsIndexesApi.UpdateLogsIndexOrder:\n%s\n", response_content)
 }
 ```
 

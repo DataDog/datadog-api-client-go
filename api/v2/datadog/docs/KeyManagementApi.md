@@ -67,7 +67,7 @@ func main() {
     }
     // response from `CreateAPIKey`: APIKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateAPIKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateAPIKey:\n%s\n", response_content)
 }
 ```
 
@@ -149,7 +149,7 @@ func main() {
     }
     // response from `CreateCurrentUserApplicationKey`: ApplicationKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateCurrentUserApplicationKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateCurrentUserApplicationKey:\n%s\n", response_content)
 }
 ```
 
@@ -478,7 +478,7 @@ func main() {
     }
     // response from `GetAPIKey`: APIKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetAPIKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetAPIKey:\n%s\n", response_content)
 }
 ```
 
@@ -565,7 +565,7 @@ func main() {
     }
     // response from `GetCurrentUserApplicationKey`: ApplicationKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetCurrentUserApplicationKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetCurrentUserApplicationKey:\n%s\n", response_content)
 }
 ```
 
@@ -659,7 +659,7 @@ func main() {
     }
     // response from `ListAPIKeys`: APIKeysResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListAPIKeys:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListAPIKeys:\n%s\n", response_content)
 }
 ```
 
@@ -754,7 +754,7 @@ func main() {
     }
     // response from `ListApplicationKeys`: ListApplicationKeysResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListApplicationKeys:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListApplicationKeys:\n%s\n", response_content)
 }
 ```
 
@@ -846,7 +846,7 @@ func main() {
     }
     // response from `ListCurrentUserApplicationKeys`: ListApplicationKeysResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListCurrentUserApplicationKeys:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListCurrentUserApplicationKeys:\n%s\n", response_content)
 }
 ```
 
@@ -934,7 +934,7 @@ func main() {
     }
     // response from `UpdateAPIKey`: APIKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateAPIKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateAPIKey:\n%s\n", response_content)
 }
 ```
 
@@ -1022,7 +1022,7 @@ func main() {
     }
     // response from `UpdateApplicationKey`: ApplicationKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateApplicationKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateApplicationKey:\n%s\n", response_content)
 }
 ```
 
@@ -1110,7 +1110,7 @@ func main() {
     }
     // response from `UpdateCurrentUserApplicationKey`: ApplicationKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateCurrentUserApplicationKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateCurrentUserApplicationKey:\n%s\n", response_content)
 }
 ```
 

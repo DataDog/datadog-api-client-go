@@ -63,7 +63,7 @@ func main() {
     }
     // response from `CreateUser`: UserResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsersApi.CreateUser:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsersApi.CreateUser:\n%s\n", response_content)
 }
 ```
 
@@ -227,7 +227,7 @@ func main() {
     }
     // response from `GetInvitation`: UserInvitationResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsersApi.GetInvitation:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsersApi.GetInvitation:\n%s\n", response_content)
 }
 ```
 
@@ -313,7 +313,7 @@ func main() {
     }
     // response from `GetUser`: UserResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsersApi.GetUser:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsersApi.GetUser:\n%s\n", response_content)
 }
 ```
 
@@ -399,7 +399,7 @@ func main() {
     }
     // response from `ListUserOrganizations`: UserResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsersApi.ListUserOrganizations:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsersApi.ListUserOrganizations:\n%s\n", response_content)
 }
 ```
 
@@ -485,7 +485,7 @@ func main() {
     }
     // response from `ListUserPermissions`: PermissionsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsersApi.ListUserPermissions:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsersApi.ListUserPermissions:\n%s\n", response_content)
 }
 ```
 
@@ -576,7 +576,7 @@ func main() {
     }
     // response from `ListUsers`: UsersResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsersApi.ListUsers:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsersApi.ListUsers:\n%s\n", response_content)
 }
 ```
 
@@ -663,7 +663,7 @@ func main() {
     }
     // response from `SendInvitations`: UserInvitationsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsersApi.SendInvitations:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsersApi.SendInvitations:\n%s\n", response_content)
 }
 ```
 
@@ -746,7 +746,7 @@ func main() {
     }
     // response from `UpdateUser`: UserResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsersApi.UpdateUser:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsersApi.UpdateUser:\n%s\n", response_content)
 }
 ```
 

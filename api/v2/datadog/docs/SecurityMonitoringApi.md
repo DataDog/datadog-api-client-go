@@ -61,7 +61,7 @@ func main() {
     }
     // response from `CreateSecurityMonitoringRule`: SecurityMonitoringRuleResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.CreateSecurityMonitoringRule:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.CreateSecurityMonitoringRule:\n%s\n", response_content)
 }
 ```
 
@@ -225,7 +225,7 @@ func main() {
     }
     // response from `GetSecurityMonitoringRule`: SecurityMonitoringRuleResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.GetSecurityMonitoringRule:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.GetSecurityMonitoringRule:\n%s\n", response_content)
 }
 ```
 
@@ -312,7 +312,7 @@ func main() {
     }
     // response from `ListSecurityMonitoringRules`: SecurityMonitoringListRulesResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.ListSecurityMonitoringRules:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.ListSecurityMonitoringRules:\n%s\n", response_content)
 }
 ```
 
@@ -402,7 +402,7 @@ func main() {
     }
     // response from `ListSecurityMonitoringSignals`: SecurityMonitoringSignalsListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.ListSecurityMonitoringSignals:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.ListSecurityMonitoringSignals:\n%s\n", response_content)
 }
 ```
 
@@ -490,7 +490,7 @@ func main() {
     }
     // response from `SearchSecurityMonitoringSignals`: SecurityMonitoringSignalsListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.SearchSecurityMonitoringSignals:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.SearchSecurityMonitoringSignals:\n%s\n", response_content)
 }
 ```
 
@@ -573,7 +573,7 @@ func main() {
     }
     // response from `UpdateSecurityMonitoringRule`: SecurityMonitoringRuleResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.UpdateSecurityMonitoringRule:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.UpdateSecurityMonitoringRule:\n%s\n", response_content)
 }
 ```
 
