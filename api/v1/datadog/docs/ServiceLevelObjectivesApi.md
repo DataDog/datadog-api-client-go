@@ -62,7 +62,7 @@ func main() {
     }
     // response from `CheckCanDeleteSLO`: CheckCanDeleteSLOResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.CheckCanDeleteSLO:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.CheckCanDeleteSLO:\n%s\n", response_content)
 }
 ```
 
@@ -144,7 +144,7 @@ func main() {
     }
     // response from `CreateSLO`: SLOListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.CreateSLO:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.CreateSLO:\n%s\n", response_content)
 }
 ```
 
@@ -227,7 +227,7 @@ func main() {
     }
     // response from `DeleteSLO`: SLODeleteResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.DeleteSLO:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.DeleteSLO:\n%s\n", response_content)
 }
 ```
 
@@ -314,7 +314,7 @@ func main() {
     }
     // response from `DeleteSLOTimeframeInBulk`: SLOBulkDeleteResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk:\n%s\n", response_content)
 }
 ```
 
@@ -396,7 +396,7 @@ func main() {
     }
     // response from `GetSLO`: SLOResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.GetSLO:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.GetSLO:\n%s\n", response_content)
 }
 ```
 
@@ -485,7 +485,7 @@ func main() {
     }
     // response from `GetSLOHistory`: SLOHistoryResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.GetSLOHistory:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.GetSLOHistory:\n%s\n", response_content)
 }
 ```
 
@@ -573,7 +573,7 @@ func main() {
     }
     // response from `ListSLOs`: SLOListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.ListSLOs:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.ListSLOs:\n%s\n", response_content)
 }
 ```
 
@@ -656,7 +656,7 @@ func main() {
     }
     // response from `UpdateSLO`: SLOListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.UpdateSLO:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.UpdateSLO:\n%s\n", response_content)
 }
 ```
 

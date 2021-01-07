@@ -59,7 +59,7 @@ func main() {
     }
     // response from `CreateDashboardListItems`: DashboardListAddItemsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.CreateDashboardListItems:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.CreateDashboardListItems:\n%s\n", response_content)
 }
 ```
 
@@ -147,7 +147,7 @@ func main() {
     }
     // response from `DeleteDashboardListItems`: DashboardListDeleteItemsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.DeleteDashboardListItems:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.DeleteDashboardListItems:\n%s\n", response_content)
 }
 ```
 
@@ -234,7 +234,7 @@ func main() {
     }
     // response from `GetDashboardListItems`: DashboardListItems
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.GetDashboardListItems:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.GetDashboardListItems:\n%s\n", response_content)
 }
 ```
 
@@ -321,7 +321,7 @@ func main() {
     }
     // response from `UpdateDashboardListItems`: DashboardListUpdateItemsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.UpdateDashboardListItems:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.UpdateDashboardListItems:\n%s\n", response_content)
 }
 ```
 

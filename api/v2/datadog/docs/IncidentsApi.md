@@ -60,7 +60,7 @@ func main() {
     }
     // response from `CreateIncident`: IncidentResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.CreateIncident:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.CreateIncident:\n%s\n", response_content)
 }
 ```
 
@@ -227,7 +227,7 @@ func main() {
     }
     // response from `GetIncident`: IncidentResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.GetIncident:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.GetIncident:\n%s\n", response_content)
 }
 ```
 
@@ -317,7 +317,7 @@ func main() {
     }
     // response from `ListIncidents`: IncidentsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.ListIncidents:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.ListIncidents:\n%s\n", response_content)
 }
 ```
 
@@ -403,7 +403,7 @@ func main() {
     }
     // response from `UpdateIncident`: IncidentResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.UpdateIncident:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentsApi.UpdateIncident:\n%s\n", response_content)
 }
 ```
 

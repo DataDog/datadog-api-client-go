@@ -149,7 +149,7 @@ func main() {
     }
     // response from `CreateLogsArchive`: LogsArchive
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.CreateLogsArchive:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.CreateLogsArchive:\n%s\n", response_content)
 }
 ```
 
@@ -313,7 +313,7 @@ func main() {
     }
     // response from `GetLogsArchive`: LogsArchive
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.GetLogsArchive:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.GetLogsArchive:\n%s\n", response_content)
 }
 ```
 
@@ -398,7 +398,7 @@ func main() {
     }
     // response from `GetLogsArchiveOrder`: LogsArchiveOrder
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.GetLogsArchiveOrder:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.GetLogsArchiveOrder:\n%s\n", response_content)
 }
 ```
 
@@ -477,7 +477,7 @@ func main() {
     }
     // response from `ListArchiveReadRoles`: RolesResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.ListArchiveReadRoles:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.ListArchiveReadRoles:\n%s\n", response_content)
 }
 ```
 
@@ -562,7 +562,7 @@ func main() {
     }
     // response from `ListLogsArchives`: LogsArchives
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.ListLogsArchives:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.ListLogsArchives:\n%s\n", response_content)
 }
 ```
 
@@ -726,7 +726,7 @@ func main() {
     }
     // response from `UpdateLogsArchive`: LogsArchive
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.UpdateLogsArchive:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.UpdateLogsArchive:\n%s\n", response_content)
 }
 ```
 
@@ -813,7 +813,7 @@ func main() {
     }
     // response from `UpdateLogsArchiveOrder`: LogsArchiveOrder
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.UpdateLogsArchiveOrder:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.UpdateLogsArchiveOrder:\n%s\n", response_content)
 }
 ```
 

@@ -58,7 +58,7 @@ func main() {
     }
     // response from `CreateGCPIntegration`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.CreateGCPIntegration:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.CreateGCPIntegration:\n%s\n", response_content)
 }
 ```
 
@@ -140,7 +140,7 @@ func main() {
     }
     // response from `DeleteGCPIntegration`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.DeleteGCPIntegration:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.DeleteGCPIntegration:\n%s\n", response_content)
 }
 ```
 
@@ -221,7 +221,7 @@ func main() {
     }
     // response from `ListGCPIntegration`: []GCPAccount
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.ListGCPIntegration:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.ListGCPIntegration:\n%s\n", response_content)
 }
 ```
 
@@ -299,7 +299,7 @@ func main() {
     }
     // response from `UpdateGCPIntegration`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.UpdateGCPIntegration:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.UpdateGCPIntegration:\n%s\n", response_content)
 }
 ```
 

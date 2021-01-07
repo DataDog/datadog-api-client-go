@@ -86,7 +86,7 @@ func main() {
     }
     // response from `GetDailyCustomReports`: UsageCustomReportsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetDailyCustomReports:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetDailyCustomReports:\n%s\n", response_content)
 }
 ```
 
@@ -173,7 +173,7 @@ func main() {
     }
     // response from `GetIncidentManagement`: UsageIncidentManagementResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetIncidentManagement:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetIncidentManagement:\n%s\n", response_content)
 }
 ```
 
@@ -258,7 +258,7 @@ func main() {
     }
     // response from `GetIngestedSpans`: UsageIngestedSpansResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetIngestedSpans:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetIngestedSpans:\n%s\n", response_content)
 }
 ```
 
@@ -345,7 +345,7 @@ func main() {
     }
     // response from `GetMonthlyCustomReports`: UsageCustomReportsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetMonthlyCustomReports:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetMonthlyCustomReports:\n%s\n", response_content)
 }
 ```
 
@@ -431,7 +431,7 @@ func main() {
     }
     // response from `GetSpecifiedDailyCustomReports`: UsageSpecifiedCustomReportsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetSpecifiedDailyCustomReports:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetSpecifiedDailyCustomReports:\n%s\n", response_content)
 }
 ```
 
@@ -518,7 +518,7 @@ func main() {
     }
     // response from `GetSpecifiedMonthlyCustomReports`: UsageSpecifiedCustomReportsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetSpecifiedMonthlyCustomReports:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetSpecifiedMonthlyCustomReports:\n%s\n", response_content)
 }
 ```
 
@@ -606,7 +606,7 @@ func main() {
     }
     // response from `GetTracingWithoutLimits`: UsageTracingWithoutLimitsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetTracingWithoutLimits:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetTracingWithoutLimits:\n%s\n", response_content)
 }
 ```
 
@@ -691,7 +691,7 @@ func main() {
     }
     // response from `GetUsageAnalyzedLogs`: UsageAnalyzedLogsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageAnalyzedLogs:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageAnalyzedLogs:\n%s\n", response_content)
 }
 ```
 
@@ -780,7 +780,7 @@ func main() {
     }
     // response from `GetUsageAttribution`: UsageAttributionResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageAttribution:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageAttribution:\n%s\n", response_content)
 }
 ```
 
@@ -867,7 +867,7 @@ func main() {
     }
     // response from `GetUsageBillableSummary`: UsageBillableSummaryResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageBillableSummary:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageBillableSummary:\n%s\n", response_content)
 }
 ```
 
@@ -951,7 +951,7 @@ func main() {
     }
     // response from `GetUsageFargate`: UsageFargateResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageFargate:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageFargate:\n%s\n", response_content)
 }
 ```
 
@@ -1036,7 +1036,7 @@ func main() {
     }
     // response from `GetUsageHosts`: UsageHostsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageHosts:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageHosts:\n%s\n", response_content)
 }
 ```
 
@@ -1121,7 +1121,7 @@ func main() {
     }
     // response from `GetUsageIndexedSpans`: UsageIndexedSpansResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageIndexedSpans:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageIndexedSpans:\n%s\n", response_content)
 }
 ```
 
@@ -1206,7 +1206,7 @@ func main() {
     }
     // response from `GetUsageLambda`: UsageLambdaResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageLambda:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageLambda:\n%s\n", response_content)
 }
 ```
 
@@ -1291,7 +1291,7 @@ func main() {
     }
     // response from `GetUsageLogs`: UsageLogsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageLogs:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageLogs:\n%s\n", response_content)
 }
 ```
 
@@ -1377,7 +1377,7 @@ func main() {
     }
     // response from `GetUsageLogsByIndex`: UsageLogsByIndexResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageLogsByIndex:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageLogsByIndex:\n%s\n", response_content)
 }
 ```
 
@@ -1463,7 +1463,7 @@ func main() {
     }
     // response from `GetUsageNetworkFlows`: UsageNetworkFlowsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageNetworkFlows:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageNetworkFlows:\n%s\n", response_content)
 }
 ```
 
@@ -1548,7 +1548,7 @@ func main() {
     }
     // response from `GetUsageNetworkHosts`: UsageNetworkHostsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageNetworkHosts:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageNetworkHosts:\n%s\n", response_content)
 }
 ```
 
@@ -1633,7 +1633,7 @@ func main() {
     }
     // response from `GetUsageProfiling`: UsageProfilingResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageProfiling:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageProfiling:\n%s\n", response_content)
 }
 ```
 
@@ -1719,7 +1719,7 @@ func main() {
     }
     // response from `GetUsageRumSessions`: UsageRumSessionsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageRumSessions:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageRumSessions:\n%s\n", response_content)
 }
 ```
 
@@ -1805,7 +1805,7 @@ func main() {
     }
     // response from `GetUsageSNMP`: UsageSNMPResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSNMP:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSNMP:\n%s\n", response_content)
 }
 ```
 
@@ -1891,7 +1891,7 @@ func main() {
     }
     // response from `GetUsageSummary`: UsageSummaryResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSummary:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSummary:\n%s\n", response_content)
 }
 ```
 
@@ -1977,7 +1977,7 @@ func main() {
     }
     // response from `GetUsageSynthetics`: UsageSyntheticsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSynthetics:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSynthetics:\n%s\n", response_content)
 }
 ```
 
@@ -2062,7 +2062,7 @@ func main() {
     }
     // response from `GetUsageSyntheticsAPI`: UsageSyntheticsAPIResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSyntheticsAPI:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSyntheticsAPI:\n%s\n", response_content)
 }
 ```
 
@@ -2147,7 +2147,7 @@ func main() {
     }
     // response from `GetUsageSyntheticsBrowser`: UsageSyntheticsBrowserResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSyntheticsBrowser:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageSyntheticsBrowser:\n%s\n", response_content)
 }
 ```
 
@@ -2232,7 +2232,7 @@ func main() {
     }
     // response from `GetUsageTimeseries`: UsageTimeseriesResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageTimeseries:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageTimeseries:\n%s\n", response_content)
 }
 ```
 
@@ -2318,7 +2318,7 @@ func main() {
     }
     // response from `GetUsageTopAvgMetrics`: UsageTopAvgMetricsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageTopAvgMetrics:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageTopAvgMetrics:\n%s\n", response_content)
 }
 ```
 
@@ -2404,7 +2404,7 @@ func main() {
     }
     // response from `GetUsageTrace`: UsageTraceResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageTrace:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageTrace:\n%s\n", response_content)
 }
 ```
 
