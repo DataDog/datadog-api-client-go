@@ -75,7 +75,7 @@ func main() {
     }
     // response from `CreateGlobalVariable`: SyntheticsGlobalVariable
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.CreateGlobalVariable:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.CreateGlobalVariable:\n%s\n", response_content)
 }
 ```
 
@@ -157,7 +157,7 @@ func main() {
     }
     // response from `CreatePrivateLocation`: SyntheticsPrivateLocationCreationResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.CreatePrivateLocation:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.CreatePrivateLocation:\n%s\n", response_content)
 }
 ```
 
@@ -239,7 +239,7 @@ func main() {
     }
     // response from `CreateTest`: SyntheticsTestDetails
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.CreateTest:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.CreateTest:\n%s\n", response_content)
 }
 ```
 
@@ -485,7 +485,7 @@ func main() {
     }
     // response from `DeleteTests`: SyntheticsDeleteTestsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.DeleteTests:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.DeleteTests:\n%s\n", response_content)
 }
 ```
 
@@ -568,7 +568,7 @@ func main() {
     }
     // response from `EditGlobalVariable`: SyntheticsGlobalVariable
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.EditGlobalVariable:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.EditGlobalVariable:\n%s\n", response_content)
 }
 ```
 
@@ -658,7 +658,7 @@ func main() {
     }
     // response from `GetAPITestLatestResults`: SyntheticsGetAPITestLatestResultsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetAPITestLatestResults:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetAPITestLatestResults:\n%s\n", response_content)
 }
 ```
 
@@ -748,7 +748,7 @@ func main() {
     }
     // response from `GetAPITestResult`: SyntheticsAPITestResultFull
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetAPITestResult:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetAPITestResult:\n%s\n", response_content)
 }
 ```
 
@@ -836,7 +836,7 @@ func main() {
     }
     // response from `GetBrowserTest`: SyntheticsTestDetails
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetBrowserTest:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetBrowserTest:\n%s\n", response_content)
 }
 ```
 
@@ -925,7 +925,7 @@ func main() {
     }
     // response from `GetBrowserTestLatestResults`: SyntheticsGetBrowserTestLatestResultsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetBrowserTestLatestResults:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetBrowserTestLatestResults:\n%s\n", response_content)
 }
 ```
 
@@ -1015,7 +1015,7 @@ func main() {
     }
     // response from `GetBrowserTestResult`: SyntheticsBrowserTestResultFull
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetBrowserTestResult:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetBrowserTestResult:\n%s\n", response_content)
 }
 ```
 
@@ -1103,7 +1103,7 @@ func main() {
     }
     // response from `GetGlobalVariable`: SyntheticsGlobalVariable
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetGlobalVariable:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetGlobalVariable:\n%s\n", response_content)
 }
 ```
 
@@ -1189,7 +1189,7 @@ func main() {
     }
     // response from `GetPrivateLocation`: SyntheticsPrivateLocation
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetPrivateLocation:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetPrivateLocation:\n%s\n", response_content)
 }
 ```
 
@@ -1275,7 +1275,7 @@ func main() {
     }
     // response from `GetTest`: SyntheticsTestDetails
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetTest:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetTest:\n%s\n", response_content)
 }
 ```
 
@@ -1360,7 +1360,7 @@ func main() {
     }
     // response from `ListLocations`: SyntheticsLocations
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.ListLocations:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.ListLocations:\n%s\n", response_content)
 }
 ```
 
@@ -1437,7 +1437,7 @@ func main() {
     }
     // response from `ListTests`: SyntheticsListTestsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.ListTests:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.ListTests:\n%s\n", response_content)
 }
 ```
 
@@ -1515,7 +1515,7 @@ func main() {
     }
     // response from `TriggerCITests`: SyntheticsTriggerCITestsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.TriggerCITests:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.TriggerCITests:\n%s\n", response_content)
 }
 ```
 
@@ -1598,7 +1598,7 @@ func main() {
     }
     // response from `UpdatePrivateLocation`: SyntheticsPrivateLocation
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.UpdatePrivateLocation:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.UpdatePrivateLocation:\n%s\n", response_content)
 }
 ```
 
@@ -1686,7 +1686,7 @@ func main() {
     }
     // response from `UpdateTest`: SyntheticsTestDetails
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.UpdateTest:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.UpdateTest:\n%s\n", response_content)
 }
 ```
 
@@ -1774,7 +1774,7 @@ func main() {
     }
     // response from `UpdateTestPauseStatus`: bool
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.UpdateTestPauseStatus:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.UpdateTestPauseStatus:\n%s\n", response_content)
 }
 ```
 

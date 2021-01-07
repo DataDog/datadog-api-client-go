@@ -61,7 +61,7 @@ func main() {
     }
     // response from `CheckAWSLogsLambdaAsync`: AWSLogsAsyncResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync:\n%s\n", response_content)
 }
 ```
 
@@ -143,7 +143,7 @@ func main() {
     }
     // response from `CheckAWSLogsServicesAsync`: AWSLogsAsyncResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.CheckAWSLogsServicesAsync:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.CheckAWSLogsServicesAsync:\n%s\n", response_content)
 }
 ```
 
@@ -225,7 +225,7 @@ func main() {
     }
     // response from `CreateAWSLambdaARN`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.CreateAWSLambdaARN:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.CreateAWSLambdaARN:\n%s\n", response_content)
 }
 ```
 
@@ -307,7 +307,7 @@ func main() {
     }
     // response from `DeleteAWSLambdaARN`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.DeleteAWSLambdaARN:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.DeleteAWSLambdaARN:\n%s\n", response_content)
 }
 ```
 
@@ -389,7 +389,7 @@ func main() {
     }
     // response from `EnableAWSLogServices`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.EnableAWSLogServices:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.EnableAWSLogServices:\n%s\n", response_content)
 }
 ```
 
@@ -470,7 +470,7 @@ func main() {
     }
     // response from `ListAWSLogsIntegrations`: []AWSLogsListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.ListAWSLogsIntegrations:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.ListAWSLogsIntegrations:\n%s\n", response_content)
 }
 ```
 
@@ -547,7 +547,7 @@ func main() {
     }
     // response from `ListAWSLogsServices`: []AWSLogsListServicesResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.ListAWSLogsServices:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSLogsIntegrationApi.ListAWSLogsServices:\n%s\n", response_content)
 }
 ```
 

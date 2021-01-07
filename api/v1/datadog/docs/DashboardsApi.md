@@ -59,7 +59,7 @@ func main() {
     }
     // response from `CreateDashboard`: Dashboard
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DashboardsApi.CreateDashboard:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DashboardsApi.CreateDashboard:\n%s\n", response_content)
 }
 ```
 
@@ -141,7 +141,7 @@ func main() {
     }
     // response from `DeleteDashboard`: DashboardDeleteResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DashboardsApi.DeleteDashboard:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DashboardsApi.DeleteDashboard:\n%s\n", response_content)
 }
 ```
 
@@ -227,7 +227,7 @@ func main() {
     }
     // response from `GetDashboard`: Dashboard
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DashboardsApi.GetDashboard:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DashboardsApi.GetDashboard:\n%s\n", response_content)
 }
 ```
 
@@ -312,7 +312,7 @@ func main() {
     }
     // response from `ListDashboards`: DashboardSummary
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DashboardsApi.ListDashboards:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DashboardsApi.ListDashboards:\n%s\n", response_content)
 }
 ```
 
@@ -391,7 +391,7 @@ func main() {
     }
     // response from `UpdateDashboard`: Dashboard
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DashboardsApi.UpdateDashboard:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DashboardsApi.UpdateDashboard:\n%s\n", response_content)
 }
 ```
 

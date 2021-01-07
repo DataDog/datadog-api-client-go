@@ -63,7 +63,7 @@ func main() {
     }
     // response from `CreateAWSAccount`: AWSAccountCreateResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.CreateAWSAccount:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.CreateAWSAccount:\n%s\n", response_content)
 }
 ```
 
@@ -145,7 +145,7 @@ func main() {
     }
     // response from `CreateAWSTagFilter`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.CreateAWSTagFilter:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.CreateAWSTagFilter:\n%s\n", response_content)
 }
 ```
 
@@ -227,7 +227,7 @@ func main() {
     }
     // response from `CreateNewAWSExternalID`: AWSAccountCreateResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.CreateNewAWSExternalID:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.CreateNewAWSExternalID:\n%s\n", response_content)
 }
 ```
 
@@ -309,7 +309,7 @@ func main() {
     }
     // response from `DeleteAWSAccount`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.DeleteAWSAccount:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.DeleteAWSAccount:\n%s\n", response_content)
 }
 ```
 
@@ -391,7 +391,7 @@ func main() {
     }
     // response from `DeleteAWSTagFilter`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.DeleteAWSTagFilter:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.DeleteAWSTagFilter:\n%s\n", response_content)
 }
 ```
 
@@ -475,7 +475,7 @@ func main() {
     }
     // response from `ListAWSAccounts`: AWSAccountListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.ListAWSAccounts:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.ListAWSAccounts:\n%s\n", response_content)
 }
 ```
 
@@ -559,7 +559,7 @@ func main() {
     }
     // response from `ListAWSTagFilters`: AWSTagFilterListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.ListAWSTagFilters:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.ListAWSTagFilters:\n%s\n", response_content)
 }
 ```
 
@@ -640,7 +640,7 @@ func main() {
     }
     // response from `ListAvailableAWSNamespaces`: []string
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.ListAvailableAWSNamespaces:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.ListAvailableAWSNamespaces:\n%s\n", response_content)
 }
 ```
 
@@ -721,7 +721,7 @@ func main() {
     }
     // response from `UpdateAWSAccount`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.UpdateAWSAccount:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AWSIntegrationApi.UpdateAWSAccount:\n%s\n", response_content)
 }
 ```
 
