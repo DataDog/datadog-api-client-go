@@ -56,7 +56,7 @@ func main() {
     }
     // response from `ListLogs`: LogsListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsApi.ListLogs:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsApi.ListLogs:\n%s\n", response_content)
 }
 ```
 

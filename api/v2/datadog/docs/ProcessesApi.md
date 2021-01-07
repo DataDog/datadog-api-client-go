@@ -60,7 +60,7 @@ func main() {
     }
     // response from `ListProcesses`: ProcessSummariesResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from ProcessesApi.ListProcesses:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from ProcessesApi.ListProcesses:\n%s\n", response_content)
 }
 ```
 

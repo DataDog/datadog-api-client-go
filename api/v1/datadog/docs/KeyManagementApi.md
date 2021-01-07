@@ -64,7 +64,7 @@ func main() {
     }
     // response from `CreateAPIKey`: ApiKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateAPIKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateAPIKey:\n%s\n", response_content)
 }
 ```
 
@@ -146,7 +146,7 @@ func main() {
     }
     // response from `CreateApplicationKey`: ApplicationKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateApplicationKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateApplicationKey:\n%s\n", response_content)
 }
 ```
 
@@ -228,7 +228,7 @@ func main() {
     }
     // response from `DeleteAPIKey`: ApiKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.DeleteAPIKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.DeleteAPIKey:\n%s\n", response_content)
 }
 ```
 
@@ -314,7 +314,7 @@ func main() {
     }
     // response from `DeleteApplicationKey`: ApplicationKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.DeleteApplicationKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.DeleteApplicationKey:\n%s\n", response_content)
 }
 ```
 
@@ -400,7 +400,7 @@ func main() {
     }
     // response from `GetAPIKey`: ApiKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetAPIKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetAPIKey:\n%s\n", response_content)
 }
 ```
 
@@ -486,7 +486,7 @@ func main() {
     }
     // response from `GetApplicationKey`: ApplicationKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetApplicationKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetApplicationKey:\n%s\n", response_content)
 }
 ```
 
@@ -571,7 +571,7 @@ func main() {
     }
     // response from `ListAPIKeys`: ApiKeyListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListAPIKeys:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListAPIKeys:\n%s\n", response_content)
 }
 ```
 
@@ -648,7 +648,7 @@ func main() {
     }
     // response from `ListApplicationKeys`: ApplicationKeyListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListApplicationKeys:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListApplicationKeys:\n%s\n", response_content)
 }
 ```
 
@@ -727,7 +727,7 @@ func main() {
     }
     // response from `UpdateAPIKey`: ApiKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateAPIKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateAPIKey:\n%s\n", response_content)
 }
 ```
 
@@ -815,7 +815,7 @@ func main() {
     }
     // response from `UpdateApplicationKey`: ApplicationKeyResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateApplicationKey:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateApplicationKey:\n%s\n", response_content)
 }
 ```
 

@@ -57,7 +57,7 @@ func main() {
     }
     // response from `AggregateLogs`: LogsAggregateResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsApi.AggregateLogs:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsApi.AggregateLogs:\n%s\n", response_content)
 }
 ```
 
@@ -140,7 +140,7 @@ func main() {
     }
     // response from `ListLogs`: LogsListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsApi.ListLogs:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsApi.ListLogs:\n%s\n", response_content)
 }
 ```
 
@@ -230,7 +230,7 @@ func main() {
     }
     // response from `ListLogsGet`: LogsListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsApi.ListLogsGet:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsApi.ListLogsGet:\n%s\n", response_content)
 }
 ```
 

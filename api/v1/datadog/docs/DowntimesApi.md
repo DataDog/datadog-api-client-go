@@ -142,7 +142,7 @@ func main() {
     }
     // response from `CancelDowntimesByScope`: CanceledDowntimesIds
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.CancelDowntimesByScope:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.CancelDowntimesByScope:\n%s\n", response_content)
 }
 ```
 
@@ -224,7 +224,7 @@ func main() {
     }
     // response from `CreateDowntime`: Downtime
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.CreateDowntime:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.CreateDowntime:\n%s\n", response_content)
 }
 ```
 
@@ -306,7 +306,7 @@ func main() {
     }
     // response from `GetDowntime`: Downtime
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.GetDowntime:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.GetDowntime:\n%s\n", response_content)
 }
 ```
 
@@ -392,7 +392,7 @@ func main() {
     }
     // response from `ListDowntimes`: []Downtime
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.ListDowntimes:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.ListDowntimes:\n%s\n", response_content)
 }
 ```
 
@@ -475,7 +475,7 @@ func main() {
     }
     // response from `UpdateDowntime`: Downtime
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.UpdateDowntime:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.UpdateDowntime:\n%s\n", response_content)
 }
 ```
 

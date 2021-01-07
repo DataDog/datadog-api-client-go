@@ -59,7 +59,7 @@ func main() {
     }
     // response from `CreateAzureIntegration`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.CreateAzureIntegration:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.CreateAzureIntegration:\n%s\n", response_content)
 }
 ```
 
@@ -141,7 +141,7 @@ func main() {
     }
     // response from `DeleteAzureIntegration`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.DeleteAzureIntegration:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.DeleteAzureIntegration:\n%s\n", response_content)
 }
 ```
 
@@ -222,7 +222,7 @@ func main() {
     }
     // response from `ListAzureIntegration`: []AzureAccount
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.ListAzureIntegration:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.ListAzureIntegration:\n%s\n", response_content)
 }
 ```
 
@@ -300,7 +300,7 @@ func main() {
     }
     // response from `UpdateAzureHostFilters`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.UpdateAzureHostFilters:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.UpdateAzureHostFilters:\n%s\n", response_content)
 }
 ```
 
@@ -382,7 +382,7 @@ func main() {
     }
     // response from `UpdateAzureIntegration`: interface{}
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.UpdateAzureIntegration:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.UpdateAzureIntegration:\n%s\n", response_content)
 }
 ```
 
