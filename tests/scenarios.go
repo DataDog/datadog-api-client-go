@@ -44,10 +44,10 @@ type operationParameter struct {
 	Value  *string `json:"value"`
 }
 
-func (p operationParameter) Resolve(ctx gobdd.Context, t reflect.Type) reflect.Value {
+func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp reflect.Type) reflect.Value {
 	if p.Value != nil {
-		tpl := Templated(GetData(ctx), *p.Value)
-		v := reflect.New(t)
+		tpl := Templated(t, GetData(ctx), *p.Value)
+		v := reflect.New(tp)
 		json.Unmarshal([]byte(tpl), v.Interface())
 		return v.Elem()
 	}
@@ -89,7 +89,7 @@ func GetIgnoredTags() []string {
 }
 
 // Templated replaces {{ path }} in source with value from data[path].
-func Templated(data interface{}, source string) string {
+func Templated(t gobdd.StepTest, data interface{}, source string) string {
 	re := regexp.MustCompile(`{{ ?([^}])+ ?}}`)
 	replace := func(source string) string {
 		path := strings.Trim(source, "{ }")
@@ -97,7 +97,7 @@ func Templated(data interface{}, source string) string {
 		if err != nil {
 			v, err = lookup.LookupStringI(data, SnakeToCamelCase(path))
 			if err != nil {
-				panic(fmt.Sprintf("problem with replacement of %s: %v", source, err))
+				t.Fatalf("problem with replacement of %s: %v", source, err)
 			}
 		}
 		return v.String()
@@ -124,10 +124,10 @@ func GetResponse(ctx gobdd.Context) []reflect.Value {
 }
 
 // LoadRequestsUndo load undo configuration.
-func LoadRequestsUndo(file string) map[string]UndoAction {
+func LoadRequestsUndo(file string) (map[string]UndoAction, error) {
 	f, err := os.Open(file)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	defer f.Close()
 
@@ -135,7 +135,7 @@ func LoadRequestsUndo(file string) map[string]UndoAction {
 
 	var value map[string]UndoAction
 	json.Unmarshal(byteValue, &value)
-	return value
+	return value, nil
 }
 
 // LoadGivenSteps load undo configuration.
@@ -191,7 +191,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 		// first argument is always context.Context
 		in[0] = reflect.ValueOf(GetCtx(ctx))
 		for i := 1; i < operation.Type().NumIn(); i++ {
-			in[i] = s.Parameters[i-1].Resolve(ctx, operation.Type().In(i))
+			in[i] = s.Parameters[i-1].Resolve(t, ctx, operation.Type().In(i))
 		}
 		request := operation.Call(in)[0]
 
@@ -200,7 +200,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 			name := ToVarName(p.Name)
 			method := request.MethodByName(name)
 			if method.IsValid() {
-				v := p.Resolve(ctx, method.Type().In(0))
+				v := p.Resolve(t, ctx, method.Type().In(0))
 				request = method.Call([]reflect.Value{v})[0]
 			}
 		}
@@ -441,7 +441,7 @@ func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, va
 	// Get the method for setting the current parameter
 	method := request.MethodByName(name)
 
-	templatedValue := Templated(GetData(ctx), value)
+	templatedValue := Templated(t, GetData(ctx), value)
 
 	if method.IsValid() {
 		at := reflect.New(method.Type().In(0))
@@ -492,7 +492,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 }
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
-	GetRequestParameters(ctx)["body"] = Templated(GetData(ctx), body)
+	GetRequestParameters(ctx)["body"] = Templated(t, GetData(ctx), body)
 }
 
 func stringToType(s string, t interface{}) (interface{}, error) {
@@ -516,7 +516,7 @@ func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value
 		t.Errorf("could not lookup response value %s in %v: %v", responsePath, GetResponse(ctx)[0].Interface(), err)
 	}
 
-	templatedValue := Templated(GetData(ctx), value)
+	templatedValue := Templated(t, GetData(ctx), value)
 	testValue, err := stringToType(templatedValue, responseValue.Interface())
 	if err != nil {
 		t.Errorf("%v", err)
