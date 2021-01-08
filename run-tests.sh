@@ -25,8 +25,12 @@ GO111MODULE=on go get -u gotest.tools/gotestsum
 cd -
 
 golint ./...
+go mod tidy
 go clean -testcache
 gotestsum --format short-verbose --rerun-fails --rerun-fails-max-failures=20000 --raw-command -- ./run-go-tests.sh
 RESULT+=$?
-go mod tidy
+# Always run integration-only scenarios
+set -e
+BDD_TAGS="@integration-only" RECORD=none gotestsum --format short-verbose --rerun-fails --raw-command -- ./run-go-tests.sh
+set +e
 exit $RESULT

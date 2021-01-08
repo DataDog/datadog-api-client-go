@@ -20,8 +20,13 @@ func TestScenarios(t *testing.T) {
 	if err != nil {
 		t.Fatalf("could not load undo actions: %v", err)
 	}
+	var bddTags []string
+	if tags, ok := os.LookupEnv("BDD_TAGS"); ok {
+		bddTags = strings.Split(tags, ",")
+	}
 	s := gobdd.NewSuite(
 		t,
+		gobdd.WithTags(bddTags),
 		gobdd.WithIgnoredTags(tests.GetIgnoredTags()),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
