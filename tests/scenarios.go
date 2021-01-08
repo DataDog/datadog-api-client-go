@@ -77,6 +77,7 @@ type responseKey struct{}
 type dataKey struct{}
 type bodyKey struct{}
 type cleanupKey struct{}
+type pathParamCountKey struct {}
 
 // GetIgnoredTags returns list of ignored tags.
 func GetIgnoredTags() []string {
@@ -392,6 +393,8 @@ func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ctx.Set(requestNameKey{}, name)
 	ctx.Set(requestParamsKey{}, make(map[string]interface{}))
 	ctx.Set(requestArgsKey{}, make([]interface{}, 0))
+	ctx.Set(pathParamCountKey{}, 0)
+
 }
 
 // getRequestBuilder returns the reflect value of the current request in ctx
@@ -406,11 +409,27 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, error) {
 
 	// first argument is always context.Context
 	in[0] = reflect.ValueOf(GetCtx(ctx))
+	requestArgs := GetRequestArguments(ctx)
 	for i := 1; i < f.Type().NumIn(); i++ {
-		object := GetRequestArguments(ctx)[i-1]
-		in[i] = object.(reflect.Value)
+		if len(requestArgs) > i-1 {
+			object := requestArgs[i-1]
+			in[i] = object.(reflect.Value)
+		} else {
+			return reflect.Value{}, fmt.Errorf("Error getting args, this is likely a path argument.")
+		}
 	}
 	return f.Call(in)[0], nil
+}
+
+// getRequestBuilder returns the reflect value of the current request in ctx
+func getRequestFunction(ctx gobdd.Context) (reflect.Value, error) {
+	c, err := ctx.Get(requestKey{})
+	if err != nil {
+		return reflect.Value{}, fmt.Errorf("Missing requestKey{}")
+	}
+	f := c.(reflect.Value)
+
+	return f, nil
 }
 
 func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
@@ -431,11 +450,43 @@ func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path str
 	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
 }
 
+func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, value string) {
+	// Get request builder for the current scenario
+	request, err := getRequestFunction(ctx)
+	if err != nil {
+		t.Error(err)
+	}
+
+	in := make([]reflect.Value, request.Type().NumIn())
+	in[0] = reflect.ValueOf(GetCtx(ctx))
+	// The order of the path arguments in the scenario definition
+	// must match the order of the arguments in the function signature
+	// Here we keep track of where in the list to add the argument since we can't use param names
+	pathCount, _ := ctx.Get(pathParamCountKey{})
+	varType := reflect.New(request.Type().In(pathCount.(int)))
+	ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
+
+	templatedValue := Templated(t, GetData(ctx), value)
+
+	json.Unmarshal([]byte(templatedValue), varType.Interface())
+	GetRequestParameters(ctx)[param] = varType.Elem()
+
+	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), varType.Elem()))
+}
+
 func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, value string) {
 	// Get request builder for the current scenario
 	request, err := getRequestBuilder(ctx)
+
+	// If the getRequestBuilder method errors, its likely because we're trying to add a
+	// path param instead of a query param.
 	if err != nil {
-		t.Error(err)
+		if strings.Contains(err.Error(), "this is likely a path argument") {
+			addPathArgumentWithValue(t, ctx, param, value)
+			return
+		} else {
+			t.Error(err)
+		}
 	}
 	name := ToVarName(param)
 	// Get the method for setting the current parameter
@@ -575,16 +626,16 @@ func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
 // ConfigureSteps on given suite.
 func ConfigureSteps(s *gobdd.Suite) {
 	steps := map[string]interface{}{
-		`new "([^"]+)" request`:                                  newRequest,
-		`request contains "([^"]+)" parameter from "([^"]+)"`:    addParameterFrom,
-		`request contains "([^"]+)" parameter with value (.+)`:   addParameterWithValue,
-		`the request is sent`:                                    requestIsSent,
-		`the response status is (\d+) (.*)`:                      statusIs,
-		`body (.*)`:                                              body,
-		`the response "([^"]+)" is equal to (.*)`:                expectEqual,
-		`the response "([^"]+)" has the same value as "([^"]+)"`: expectEqualValue,
-		`the response "([^"]+)" has length ([0-9]+)`:             expectLengthEqual,
-		`the response "([^"]+)" is false`:                        expectFalse,
+		`new "([^"]+)" request`:                                      newRequest,
+		`request contains "([^"]+)" parameter from "([^"]+)"`:        addParameterFrom,
+		`request contains "([^"]+)" parameter with value (.+)`:       addParameterWithValue,
+		`the request is sent`:                                        requestIsSent,
+		`the response status is (\d+) (.*)`:                          statusIs,
+		`body (.*)`:                                                  body,
+		`the response "([^"]+)" is equal to (.*)`:                    expectEqual,
+		`the response "([^"]+)" has the same value as "([^"]+)"`:     expectEqualValue,
+		`the response "([^"]+)" has length ([0-9]+)`:                 expectLengthEqual,
+		`the response "([^"]+)" is false`:                            expectFalse,
 	}
 	for expr, step := range steps {
 		s.AddStep(expr, step)
