@@ -77,7 +77,7 @@ type responseKey struct{}
 type dataKey struct{}
 type bodyKey struct{}
 type cleanupKey struct{}
-type pathParamCountKey struct {}
+type pathParamCountKey struct{}
 
 // GetIgnoredTags returns list of ignored tags.
 func GetIgnoredTags() []string {
@@ -626,16 +626,16 @@ func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
 // ConfigureSteps on given suite.
 func ConfigureSteps(s *gobdd.Suite) {
 	steps := map[string]interface{}{
-		`new "([^"]+)" request`:                                      newRequest,
-		`request contains "([^"]+)" parameter from "([^"]+)"`:        addParameterFrom,
-		`request contains "([^"]+)" parameter with value (.+)`:       addParameterWithValue,
-		`the request is sent`:                                        requestIsSent,
-		`the response status is (\d+) (.*)`:                          statusIs,
-		`body (.*)`:                                                  body,
-		`the response "([^"]+)" is equal to (.*)`:                    expectEqual,
-		`the response "([^"]+)" has the same value as "([^"]+)"`:     expectEqualValue,
-		`the response "([^"]+)" has length ([0-9]+)`:                 expectLengthEqual,
-		`the response "([^"]+)" is false`:                            expectFalse,
+		`new "([^"]+)" request`:                                  newRequest,
+		`request contains "([^"]+)" parameter from "([^"]+)"`:    addParameterFrom,
+		`request contains "([^"]+)" parameter with value (.+)`:   addParameterWithValue,
+		`the request is sent`:                                    requestIsSent,
+		`the response status is (\d+) (.*)`:                      statusIs,
+		`body (.*)`:                                              body,
+		`the response "([^"]+)" is equal to (.*)`:                expectEqual,
+		`the response "([^"]+)" has the same value as "([^"]+)"`: expectEqualValue,
+		`the response "([^"]+)" has length ([0-9]+)`:             expectLengthEqual,
+		`the response "([^"]+)" is false`:                        expectFalse,
 	}
 	for expr, step := range steps {
 		s.AddStep(expr, step)
