@@ -393,7 +393,7 @@ func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ctx.Set(requestNameKey{}, name)
 	ctx.Set(requestParamsKey{}, make(map[string]interface{}))
 	ctx.Set(requestArgsKey{}, make([]interface{}, 0))
-	ctx.Set(pathParamCountKey{}, 0)
+	ctx.Set(pathParamCountKey{}, 1)
 
 }
 
@@ -461,7 +461,7 @@ func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string,
 	in[0] = reflect.ValueOf(GetCtx(ctx))
 	// The order of the path arguments in the scenario definition
 	// must match the order of the arguments in the function signature
-	// Here we keep track of where in the list to add the argument since we can't use param names
+	// Here we keep track of which numbered path argument we're setting
 	pathCount, _ := ctx.Get(pathParamCountKey{})
 	varType := reflect.New(request.Type().In(pathCount.(int)))
 	ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
