@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Field** | Pointer to **string** | When type is &#x60;http_header&#x60;, name of the header to use to extract the value. | [optional] 
 **Parser** | [**SyntheticsGlobalVariableParseTestOptionsParser**](SyntheticsGlobalVariable_parse_test_options_parser.md) |  | 
 **Type** | [**SyntheticsGlobalVariableParseTestOptionsType**](SyntheticsGlobalVariableParseTestOptionsType.md) |  | 
 
@@ -25,6 +26,31 @@ will change when the set of required properties is changed
 NewSyntheticsGlobalVariableParseTestOptionsWithDefaults instantiates a new SyntheticsGlobalVariableParseTestOptions object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetField
+
+`func (o *SyntheticsGlobalVariableParseTestOptions) GetField() string`
+
+GetField returns the Field field if non-nil, zero value otherwise.
+
+### GetFieldOk
+
+`func (o *SyntheticsGlobalVariableParseTestOptions) GetFieldOk() (*string, bool)`
+
+GetFieldOk returns a tuple with the Field field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetField
+
+`func (o *SyntheticsGlobalVariableParseTestOptions) SetField(v string)`
+
+SetField sets Field field to given value.
+
+### HasField
+
+`func (o *SyntheticsGlobalVariableParseTestOptions) HasField() bool`
+
+HasField returns a boolean if a field has been set.
 
 ### GetParser
 
