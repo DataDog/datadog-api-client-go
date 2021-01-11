@@ -415,21 +415,10 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, error) {
 			object := requestArgs[i-1]
 			in[i] = object.(reflect.Value)
 		} else {
-			return reflect.Value{}, fmt.Errorf("Error getting args, this is likely a path argument.")
+			return f, nil
 		}
 	}
 	return f.Call(in)[0], nil
-}
-
-// getRequestBuilder returns the reflect value of the current request in ctx
-func getRequestFunction(ctx gobdd.Context) (reflect.Value, error) {
-	c, err := ctx.Get(requestKey{})
-	if err != nil {
-		return reflect.Value{}, fmt.Errorf("Missing requestKey{}")
-	}
-	f := c.(reflect.Value)
-
-	return f, nil
 }
 
 func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
@@ -450,13 +439,9 @@ func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path str
 	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
 }
 
-func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, value string) {
-	// Get request builder for the current scenario
-	request, err := getRequestFunction(ctx)
-	if err != nil {
-		t.Error(err)
-	}
-
+// Given a value, coerce the proper type that the request expects, and add the path param to the context
+// This shouldn't be used as a "step" method, and is a helper utility
+func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, value string, request reflect.Value) {
 	in := make([]reflect.Value, request.Type().NumIn())
 	in[0] = reflect.ValueOf(GetCtx(ctx))
 	// The order of the path arguments in the scenario definition
@@ -478,14 +463,12 @@ func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, va
 	// Get request builder for the current scenario
 	request, err := getRequestBuilder(ctx)
 
-	// If the getRequestBuilder method errors, its likely because we're trying to add a
+	// If the getRequestBuilder method returns a Function, its likely because we're trying to add a
 	// path param instead of a query param.
 	if err != nil {
-		if strings.Contains(err.Error(), "this is likely a path argument") {
-			addPathArgumentWithValue(t, ctx, param, value)
+		if request.Type().Kind() == reflect.Func {
+			addPathArgumentWithValue(t, ctx, param, value, request)
 			return
-		} else {
-			t.Error(err)
 		}
 	}
 	name := ToVarName(param)
