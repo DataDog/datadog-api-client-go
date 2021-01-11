@@ -28,6 +28,7 @@ docs/APIKeyUpdateAttributes.md
 docs/APIKeyUpdateData.md
 docs/APIKeyUpdateRequest.md
 docs/APIKeysResponse.md
+docs/APIKeysSort.md
 docs/APIKeysType.md
 docs/ApplicationKeyCreateAttributes.md
 docs/ApplicationKeyCreateData.md
@@ -38,6 +39,7 @@ docs/ApplicationKeyResponseIncludedItem.md
 docs/ApplicationKeyUpdateAttributes.md
 docs/ApplicationKeyUpdateData.md
 docs/ApplicationKeyUpdateRequest.md
+docs/ApplicationKeysSort.md
 docs/ApplicationKeysType.md
 docs/Creator.md
 docs/DashboardListAddItemsRequest.md
@@ -313,6 +315,7 @@ model_api_key_update_attributes.go
 model_api_key_update_data.go
 model_api_key_update_request.go
 model_api_keys_response.go
+model_api_keys_sort.go
 model_api_keys_type.go
 model_application_key_create_attributes.go
 model_application_key_create_data.go
@@ -323,6 +326,7 @@ model_application_key_response_included_item.go
 model_application_key_update_attributes.go
 model_application_key_update_data.go
 model_application_key_update_request.go
+model_application_keys_sort.go
 model_application_keys_type.go
 model_creator.go
 model_dashboard_list_add_items_request.go
