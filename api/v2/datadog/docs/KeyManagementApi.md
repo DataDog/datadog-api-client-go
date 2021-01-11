@@ -641,7 +641,7 @@ func main() {
 
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
-    sort := "sort_example" // string | API key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. (optional) (default to "name")
+    sort := datadog.APIKeysSort("created_at") // APIKeysSort | API key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. (optional) (default to "name")
     filter := "filter_example" // string | Filter API keys by the specified string. (optional)
     filterCreatedAtStart := "2020-11-24T18:46:21+00:00" // string | Only include API keys created on or after the specified date. (optional)
     filterCreatedAtEnd := "2020-11-24T18:46:21+00:00" // string | Only include API keys created on or before the specified date. (optional)
@@ -676,7 +676,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageNumber** | **int64** | Specific page number to return. | [default to 0]
- **sort** | **string** | API key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;]
+ **sort** | [**APIKeysSort**](APIKeysSort.md) | API key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;]
  **filter** | **string** | Filter API keys by the specified string. | 
  **filterCreatedAtStart** | **string** | Only include API keys created on or after the specified date. | 
  **filterCreatedAtEnd** | **string** | Only include API keys created on or before the specified date. | 
@@ -739,7 +739,7 @@ func main() {
 
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
-    sort := "sort_example" // string | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. (optional) (default to "name")
+    sort := datadog.ApplicationKeysSort("created_at") // ApplicationKeysSort | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. (optional) (default to "name")
     filter := "filter_example" // string | Filter application keys by the specified string. (optional)
     filterCreatedAtStart := "2020-11-24T18:46:21+00:00" // string | Only include application keys created on or after the specified date. (optional)
     filterCreatedAtEnd := "2020-11-24T18:46:21+00:00" // string | Only include application keys created on or before the specified date. (optional)
@@ -771,7 +771,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageNumber** | **int64** | Specific page number to return. | [default to 0]
- **sort** | **string** | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;]
+ **sort** | [**ApplicationKeysSort**](ApplicationKeysSort.md) | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;]
  **filter** | **string** | Filter application keys by the specified string. | 
  **filterCreatedAtStart** | **string** | Only include application keys created on or after the specified date. | 
  **filterCreatedAtEnd** | **string** | Only include application keys created on or before the specified date. | 
@@ -831,7 +831,7 @@ func main() {
 
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
-    sort := "sort_example" // string | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. (optional) (default to "name")
+    sort := datadog.ApplicationKeysSort("created_at") // ApplicationKeysSort | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. (optional) (default to "name")
     filter := "filter_example" // string | Filter application keys by the specified string. (optional)
     filterCreatedAtStart := "2020-11-24T18:46:21+00:00" // string | Only include application keys created on or after the specified date. (optional)
     filterCreatedAtEnd := "2020-11-24T18:46:21+00:00" // string | Only include application keys created on or before the specified date. (optional)
@@ -863,7 +863,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageNumber** | **int64** | Specific page number to return. | [default to 0]
- **sort** | **string** | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;]
+ **sort** | [**ApplicationKeysSort**](ApplicationKeysSort.md) | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;]
  **filter** | **string** | Filter application keys by the specified string. | 
  **filterCreatedAtStart** | **string** | Only include application keys created on or after the specified date. | 
  **filterCreatedAtEnd** | **string** | Only include application keys created on or before the specified date. | 

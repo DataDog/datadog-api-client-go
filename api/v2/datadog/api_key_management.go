@@ -1112,7 +1112,7 @@ type ApiListAPIKeysRequest struct {
 	ApiService            *KeyManagementApiService
 	pageSize              *int64
 	pageNumber            *int64
-	sort                  *string
+	sort                  *APIKeysSort
 	filter                *string
 	filterCreatedAtStart  *string
 	filterCreatedAtEnd    *string
@@ -1129,7 +1129,7 @@ func (r ApiListAPIKeysRequest) PageNumber(pageNumber int64) ApiListAPIKeysReques
 	r.pageNumber = &pageNumber
 	return r
 }
-func (r ApiListAPIKeysRequest) Sort(sort string) ApiListAPIKeysRequest {
+func (r ApiListAPIKeysRequest) Sort(sort APIKeysSort) ApiListAPIKeysRequest {
 	r.sort = &sort
 	return r
 }
@@ -1337,7 +1337,7 @@ type ApiListApplicationKeysRequest struct {
 	ApiService           *KeyManagementApiService
 	pageSize             *int64
 	pageNumber           *int64
-	sort                 *string
+	sort                 *ApplicationKeysSort
 	filter               *string
 	filterCreatedAtStart *string
 	filterCreatedAtEnd   *string
@@ -1351,7 +1351,7 @@ func (r ApiListApplicationKeysRequest) PageNumber(pageNumber int64) ApiListAppli
 	r.pageNumber = &pageNumber
 	return r
 }
-func (r ApiListApplicationKeysRequest) Sort(sort string) ApiListApplicationKeysRequest {
+func (r ApiListApplicationKeysRequest) Sort(sort ApplicationKeysSort) ApiListApplicationKeysRequest {
 	r.sort = &sort
 	return r
 }
@@ -1548,7 +1548,7 @@ type ApiListCurrentUserApplicationKeysRequest struct {
 	ApiService           *KeyManagementApiService
 	pageSize             *int64
 	pageNumber           *int64
-	sort                 *string
+	sort                 *ApplicationKeysSort
 	filter               *string
 	filterCreatedAtStart *string
 	filterCreatedAtEnd   *string
@@ -1562,7 +1562,7 @@ func (r ApiListCurrentUserApplicationKeysRequest) PageNumber(pageNumber int64) A
 	r.pageNumber = &pageNumber
 	return r
 }
-func (r ApiListCurrentUserApplicationKeysRequest) Sort(sort string) ApiListCurrentUserApplicationKeysRequest {
+func (r ApiListCurrentUserApplicationKeysRequest) Sort(sort ApplicationKeysSort) ApiListCurrentUserApplicationKeysRequest {
 	r.sort = &sort
 	return r
 }
