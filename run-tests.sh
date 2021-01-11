@@ -29,8 +29,11 @@ go mod tidy
 go clean -testcache
 gotestsum --format short-verbose --rerun-fails --rerun-fails-max-failures=20000 --raw-command -- ./run-go-tests.sh
 RESULT+=$?
+
 # Always run integration-only scenarios
 set -e
-BDD_TAGS="@integration-only" RECORD=none gotestsum --format short-verbose --rerun-fails --rerun-fails-max-failures=20000 --raw-command -- ./run-go-tests.sh
-set +e
+if [ "$RECORD" != "none" ]; then
+  BDD_TAGS="@integration-only" RECORD=none gotestsum --format short-verbose --rerun-fails --rerun-fails-max-failures=20000 --raw-command -- ./run-go-tests.sh
+fi
+
 exit $RESULT
