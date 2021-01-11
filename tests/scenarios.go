@@ -467,13 +467,11 @@ func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, va
 		t.Error(err)
 	}
 
-	// If the getRequestBuilder method errors, its likely because we're trying to add a
+	// If the getRequestBuilder method returns a function, its because we're trying to add a
 	// path param instead of a query param.
 	if request.Kind() == reflect.Func {
 		addPathArgumentWithValue(t, ctx, param, value, request)
 		return
-	} else {
-		t.Error(err)
 	}
 
 	name := ToVarName(param)
