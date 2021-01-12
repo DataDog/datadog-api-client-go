@@ -1036,9 +1036,7 @@ paths:
         required: false
         schema:
           items:
-            enum:
-            - users
-            type: string
+            $ref: '#/components/schemas/IncidentRelatedObject'
           type: array
         style: form
       - description: Size for a given page.
@@ -1237,9 +1235,7 @@ paths:
         required: false
         schema:
           items:
-            enum:
-            - users
-            type: string
+            $ref: '#/components/schemas/IncidentRelatedObject'
           type: array
         style: form
       responses:
@@ -3245,9 +3241,7 @@ paths:
         name: include
         required: false
         schema:
-          enum:
-          - users
-          type: string
+          $ref: '#/components/schemas/IncidentRelatedObject'
         style: form
       - description: Size for a given page.
         explode: true
@@ -3454,9 +3448,7 @@ paths:
         name: include
         required: false
         schema:
-          enum:
-          - users
-          type: string
+          $ref: '#/components/schemas/IncidentRelatedObject'
         style: form
       responses:
         "200":
@@ -3571,9 +3563,7 @@ paths:
         name: include
         required: false
         schema:
-          enum:
-          - users
-          type: string
+          $ref: '#/components/schemas/IncidentRelatedObject'
         style: form
       - description: Size for a given page.
         explode: true
@@ -3780,9 +3770,7 @@ paths:
         name: include
         required: false
         schema:
-          enum:
-          - users
-          type: string
+          $ref: '#/components/schemas/IncidentRelatedObject'
         style: form
       responses:
         "200":
@@ -4494,9 +4482,7 @@ components:
       required: false
       schema:
         items:
-          enum:
-          - users
-          type: string
+          $ref: '#/components/schemas/IncidentRelatedObject'
         type: array
       style: form
     IncidentServiceIDPathParameter:
@@ -4516,9 +4502,7 @@ components:
       name: include
       required: false
       schema:
-        enum:
-        - users
-        type: string
+        $ref: '#/components/schemas/IncidentRelatedObject'
       style: form
     IncidentServiceSearchQueryParameter:
       description: A search query that filters services by name.
@@ -4547,9 +4531,7 @@ components:
       name: include
       required: false
       schema:
-        enum:
-        - users
-        type: string
+        $ref: '#/components/schemas/IncidentRelatedObject'
       style: form
     IncidentTeamSearchQueryParameter:
       description: A search query that filters teams by name.
@@ -5617,6 +5599,13 @@ components:
       type: string
       x-enum-varnames:
       - INCIDENT_POSTMORTEMS
+    IncidentRelatedObject:
+      description: Object related to an incident.
+      enum:
+      - users
+      type: string
+      x-enum-varnames:
+      - USERS
     IncidentResponse:
       description: Response with an incident.
       example:
@@ -6101,7 +6090,7 @@ components:
       type: object
     IncidentServiceType:
       default: services
-      description: Incident Service resource type.
+      description: Incident service resource type.
       enum:
       - services
       example: services
