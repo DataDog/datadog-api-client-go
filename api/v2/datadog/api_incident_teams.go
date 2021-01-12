@@ -393,10 +393,10 @@ type ApiGetIncidentTeamRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
 	teamId     string
-	include    *string
+	include    *IncidentRelatedObject
 }
 
-func (r ApiGetIncidentTeamRequest) Include(include string) ApiGetIncidentTeamRequest {
+func (r ApiGetIncidentTeamRequest) Include(include IncidentRelatedObject) ApiGetIncidentTeamRequest {
 	r.include = &include
 	return r
 }
@@ -585,13 +585,13 @@ func (a *IncidentTeamsApiService) GetIncidentTeamExecute(r ApiGetIncidentTeamReq
 type ApiListIncidentTeamsRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
-	include    *string
+	include    *IncidentRelatedObject
 	pageSize   *int64
 	pageOffset *int64
 	filter     *string
 }
 
-func (r ApiListIncidentTeamsRequest) Include(include string) ApiListIncidentTeamsRequest {
+func (r ApiListIncidentTeamsRequest) Include(include IncidentRelatedObject) ApiListIncidentTeamsRequest {
 	r.include = &include
 	return r
 }

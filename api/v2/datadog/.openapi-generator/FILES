@@ -69,6 +69,7 @@ docs/IncidentFieldAttributesSingleValueType.md
 docs/IncidentFieldAttributesValueType.md
 docs/IncidentIntegrationMetadataType.md
 docs/IncidentPostmortemType.md
+docs/IncidentRelatedObject.md
 docs/IncidentResponse.md
 docs/IncidentResponseAttributes.md
 docs/IncidentResponseData.md
@@ -355,6 +356,7 @@ model_incident_field_attributes_single_value_type.go
 model_incident_field_attributes_value_type.go
 model_incident_integration_metadata_type.go
 model_incident_postmortem_type.go
+model_incident_related_object.go
 model_incident_response.go
 model_incident_response_attributes.go
 model_incident_response_data.go
