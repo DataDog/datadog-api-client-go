@@ -240,6 +240,64 @@ interactions:
     code: 200
     duration: ""
 - request:
+    body: |
+      {"data":{"attributes":{"category":"Other","end":1610453505,"slo_id":"b31fd6b4695a59c4bd3dc492dd8b9ceb","start":1610449905,"timezone":"UTC"},"type":"correction"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - UpdateSLOCorrection
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.14+dev (go go1.15.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8958982086034574439"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3053573243754102975"
+    url: https://api.datadoghq.com/api/v1/slo/correction/f5939466-54c6-11eb-8ca4-fb307da5438d
+    method: PATCH
+  response:
+    body: '{"data":{"type":"correction","id":"f5939466-54c6-11eb-8ca4-fb307da5438d","attributes":{"slo_id":"b31fd6b4695a59c4bd3dc492dd8b9ceb","start":1610449905,"end":1610453505,"description":"","category":"Other","timezone":"UTC","creator":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0","attributes":{"uuid":"3ad549bf-eba0-11e9-a77a-0705486660d0","handle":"frog@datadoghq.com","email":"frog@datadoghq.com","name":null,"icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro"}}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 12 Jan 2021 11:11:46 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-Jan-2021 11:11:46 GMT;
+        secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - ks6TYG2WFSBr2qT+ZTFJB8BB7VWuwPmODDq52A4JjLzCAAitR8HQc9JBq+LHjJu4
+      X-Dd-Version:
+      - "35.3684804"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11998"
+      X-Ratelimit-Reset:
+      - "14"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
     body: ""
     form: {}
     headers:
@@ -250,7 +308,7 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.14+dev (go go1.15.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8958982086034574439"
+      - "3518776256192407746"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
@@ -307,7 +365,7 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.14+dev (go go1.15.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3518776256192407746"
+      - "95103953129192437546"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
