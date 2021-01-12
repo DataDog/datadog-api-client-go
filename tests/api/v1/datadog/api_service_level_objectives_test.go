@@ -639,11 +639,11 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	testSLOCorrectionData := datadog.NewSLOCorrectionRequestData()
 	now := tests.ClockFromContext(ctx).Now().Unix()
 	testSLOCorrectionAttributes := datadog.SLOCorrectionRequestAttributes{
-		Timezone: datadog.PtrString("UTC"),
-		SloId: datadog.PtrString(slo.GetId()),
-		Category: datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE.Ptr(),
-		Start: datadog.PtrInt32(int32(now)),
-		End: datadog.PtrInt32(int32(now + 3600)),
+		Timezone: "UTC",
+		SloId: slo.GetId(),
+		Category: datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
+		Start: now,
+		End: now + 3600,
 	}
 	testSLOCorrectionData.SetAttributes(testSLOCorrectionAttributes)
 	testSLOCorrection := datadog.SLOCorrectionRequest{
@@ -676,21 +676,22 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	assert.Equal(sloCorrectionGetData.GetId(), sloCorrection.GetId())
 	sloCorrectionAttributes := sloCorrectionGetData.GetAttributes()
 	assert.Equal(sloCorrectionAttributes.GetTimezone(), "UTC")
-	assert.Equal(sloCorrectionAttributes.GetCategory(), "Scheduled Maintenance")
+	assert.Equal(sloCorrectionAttributes.GetCategory(), datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE)
 
 	testSLOCorrectionAttributes.SetCategory(datadog.SLOCORRECTIONCATEGORY_OTHER)
 	testSLOCorrectionData.SetAttributes(testSLOCorrectionAttributes)
 	testSLOCorrection = datadog.SLOCorrectionRequest{
 		Data:        testSLOCorrectionData,
 	}
-//	sloCorrectionUpdateResp, httpresp, err := Client(ctx).ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, sloCorrection.GetId()).Body(testSLOCorrection).Execute()
-//	if err != nil {
-//		t.Fatalf("Error updating SLO correction %v: Response %s: %v", testSLOCorrection, err.(datadog.GenericOpenAPIError).Body(), err)
-//	}
-//	assert.Equal(200, httpresp.StatusCode)
-//	sloCorrectionUpdateData := sloCorrectionUpdateResp.GetData()
-//	sloCorrectionAttributes = sloCorrectionUpdateData.GetAttributes()
-//	assert.Equal(sloCorrectionAttributes.GetCategory(), "Other")
+
+	sloCorrectionUpdateResp, httpresp, err := Client(ctx).ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, sloCorrection.GetId()).Body(testSLOCorrection).Execute()
+	if err != nil {
+		t.Fatalf("Error updating SLO correction %v: Response %s: %v", testSLOCorrection, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	sloCorrectionUpdateData := sloCorrectionUpdateResp.GetData()
+	sloCorrectionAttributes = sloCorrectionUpdateData.GetAttributes()
+	assert.Equal(sloCorrectionAttributes.GetCategory(), datadog.SLOCORRECTIONCATEGORY_OTHER)
 
 	httpresp, err = Client(ctx).ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection(ctx, sloCorrection.GetId()).Execute()
 	if err != nil {
