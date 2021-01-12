@@ -1265,7 +1265,8 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 			Parser: datadog.SyntheticsGlobalVariableParseTestOptionsParser{
 				Type: datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW,
 			},
-			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
+			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER,
+			Field: datadog.PtrString("content-type"),
 		},
 		Tags:        []string{"synthetics"},
 		Value: datadog.SyntheticsGlobalVariableValue{
