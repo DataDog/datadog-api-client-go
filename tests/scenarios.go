@@ -77,6 +77,7 @@ type responseKey struct{}
 type dataKey struct{}
 type bodyKey struct{}
 type cleanupKey struct{}
+type pathParamCountKey struct{}
 
 // GetIgnoredTags returns list of ignored tags.
 func GetIgnoredTags() []string {
@@ -392,6 +393,8 @@ func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ctx.Set(requestNameKey{}, name)
 	ctx.Set(requestParamsKey{}, make(map[string]interface{}))
 	ctx.Set(requestArgsKey{}, make([]interface{}, 0))
+	ctx.Set(pathParamCountKey{}, 1)
+
 }
 
 // getRequestBuilder returns the reflect value of the current request in ctx
@@ -406,15 +409,22 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, error) {
 
 	// first argument is always context.Context
 	in[0] = reflect.ValueOf(GetCtx(ctx))
-	for i := 1; i < f.Type().NumIn(); i++ {
-		object := GetRequestArguments(ctx)[i-1]
-		in[i] = object.(reflect.Value)
+	requestArgs := GetRequestArguments(ctx)
+
+	if len(requestArgs) >= f.Type().NumIn() -1 {
+		for i := 1; i < f.Type().NumIn(); i++ {
+			object := requestArgs[i-1]
+			in[i] = object.(reflect.Value)
+		}
+	} else {
+		return f, nil
 	}
+
 	return f.Call(in)[0], nil
 }
 
 func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
-	// Execute() returns tripples -> 2nd value is *http.Response -> get StatusCode
+	// Execute() returns triples -> 2nd value is *http.Response -> get StatusCode
 	resp := GetResponse(ctx)
 	code := resp[len(resp)-2].Interface().(*http.Response).StatusCode
 	if expected != code {
@@ -431,12 +441,39 @@ func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path str
 	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
 }
 
+// This function adds path arguments to the requestArgs key. This shouldn't be used as a step method, but just a helper util
+func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, value string, request reflect.Value) {
+	in := make([]reflect.Value, request.Type().NumIn())
+	in[0] = reflect.ValueOf(GetCtx(ctx))
+	// The order of the path arguments in the scenario definition
+	// must match the order of the arguments in the function signature
+	// Here we keep track of which numbered path argument we're setting
+	pathCount, _ := ctx.Get(pathParamCountKey{})
+	varType := reflect.New(request.Type().In(pathCount.(int)))
+	ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
+
+	templatedValue := Templated(t, GetData(ctx), value)
+
+	json.Unmarshal([]byte(templatedValue), varType.Interface())
+	GetRequestParameters(ctx)[param] = varType.Elem()
+
+	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), varType.Elem()))
+}
+
 func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, value string) {
 	// Get request builder for the current scenario
 	request, err := getRequestBuilder(ctx)
 	if err != nil {
 		t.Error(err)
 	}
+
+	// If the getRequestBuilder method returns a function, its because we're trying to add a
+	// path param instead of a query param.
+	if request.Kind() == reflect.Func {
+		addPathArgumentWithValue(t, ctx, param, value, request)
+		return
+	}
+
 	name := ToVarName(param)
 	// Get the method for setting the current parameter
 	method := request.MethodByName(name)
