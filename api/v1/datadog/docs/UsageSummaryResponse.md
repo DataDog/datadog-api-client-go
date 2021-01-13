@@ -25,6 +25,8 @@ Name | Type | Description | Notes
 **InfraHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current months for all organizations. | [optional] 
 **IngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current months for all organizations. | [optional] 
 **LastUpdated** | Pointer to **time.Time** | Shows the the most recent hour in the current months for all organizations for which all usages were calculated. | [optional] 
+**LiveIndexedEventsAggSum** | Pointer to **int64** | Shows the sum of all live logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020). | [optional] 
+**LiveIngestedBytesAggSum** | Pointer to **int64** | Shows the sum of all live logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020). | [optional] 
 **MobileRumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current months for all organizations. | [optional] 
 **MobileRumSessionCountAndroidAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on Android over all hours in the current months for all organizations. | [optional] 
 **MobileRumSessionCountIosAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on iOS over all hours in the current months for all organizations. | [optional] 
@@ -32,6 +34,8 @@ Name | Type | Description | Notes
 **NpmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current months for all organizations. | [optional] 
 **ProfilingContainerAgentCountAvg** | Pointer to **int64** | Shows the average number of profiled containers over all hours in the current months for all organizations. | [optional] 
 **ProfilingHostCountTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current months for all organizations. | [optional] 
+**RehydratedIndexedEventsAggSum** | Pointer to **int64** | Shows the sum of all rehydrated logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020). | [optional] 
+**RehydratedIngestedBytesAggSum** | Pointer to **int64** | Shows the sum of all rehydrated logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020). | [optional] 
 **RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current months for all organizations. | [optional] 
 **RumTotalSessionCountAggSum** | Pointer to **int64** | Shows the sum of RUM Sessions (browser and mobile) over all hours in the current months for all organizations. | [optional] 
 **StartDate** | Pointer to **time.Time** | Shows the first date of usage in the current months for all organizations. | [optional] 
@@ -585,6 +589,56 @@ SetLastUpdated sets LastUpdated field to given value.
 
 HasLastUpdated returns a boolean if a field has been set.
 
+### GetLiveIndexedEventsAggSum
+
+`func (o *UsageSummaryResponse) GetLiveIndexedEventsAggSum() int64`
+
+GetLiveIndexedEventsAggSum returns the LiveIndexedEventsAggSum field if non-nil, zero value otherwise.
+
+### GetLiveIndexedEventsAggSumOk
+
+`func (o *UsageSummaryResponse) GetLiveIndexedEventsAggSumOk() (*int64, bool)`
+
+GetLiveIndexedEventsAggSumOk returns a tuple with the LiveIndexedEventsAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLiveIndexedEventsAggSum
+
+`func (o *UsageSummaryResponse) SetLiveIndexedEventsAggSum(v int64)`
+
+SetLiveIndexedEventsAggSum sets LiveIndexedEventsAggSum field to given value.
+
+### HasLiveIndexedEventsAggSum
+
+`func (o *UsageSummaryResponse) HasLiveIndexedEventsAggSum() bool`
+
+HasLiveIndexedEventsAggSum returns a boolean if a field has been set.
+
+### GetLiveIngestedBytesAggSum
+
+`func (o *UsageSummaryResponse) GetLiveIngestedBytesAggSum() int64`
+
+GetLiveIngestedBytesAggSum returns the LiveIngestedBytesAggSum field if non-nil, zero value otherwise.
+
+### GetLiveIngestedBytesAggSumOk
+
+`func (o *UsageSummaryResponse) GetLiveIngestedBytesAggSumOk() (*int64, bool)`
+
+GetLiveIngestedBytesAggSumOk returns a tuple with the LiveIngestedBytesAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLiveIngestedBytesAggSum
+
+`func (o *UsageSummaryResponse) SetLiveIngestedBytesAggSum(v int64)`
+
+SetLiveIngestedBytesAggSum sets LiveIngestedBytesAggSum field to given value.
+
+### HasLiveIngestedBytesAggSum
+
+`func (o *UsageSummaryResponse) HasLiveIngestedBytesAggSum() bool`
+
+HasLiveIngestedBytesAggSum returns a boolean if a field has been set.
+
 ### GetMobileRumSessionCountAggSum
 
 `func (o *UsageSummaryResponse) GetMobileRumSessionCountAggSum() int64`
@@ -759,6 +813,56 @@ SetProfilingHostCountTop99pSum sets ProfilingHostCountTop99pSum field to given v
 `func (o *UsageSummaryResponse) HasProfilingHostCountTop99pSum() bool`
 
 HasProfilingHostCountTop99pSum returns a boolean if a field has been set.
+
+### GetRehydratedIndexedEventsAggSum
+
+`func (o *UsageSummaryResponse) GetRehydratedIndexedEventsAggSum() int64`
+
+GetRehydratedIndexedEventsAggSum returns the RehydratedIndexedEventsAggSum field if non-nil, zero value otherwise.
+
+### GetRehydratedIndexedEventsAggSumOk
+
+`func (o *UsageSummaryResponse) GetRehydratedIndexedEventsAggSumOk() (*int64, bool)`
+
+GetRehydratedIndexedEventsAggSumOk returns a tuple with the RehydratedIndexedEventsAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRehydratedIndexedEventsAggSum
+
+`func (o *UsageSummaryResponse) SetRehydratedIndexedEventsAggSum(v int64)`
+
+SetRehydratedIndexedEventsAggSum sets RehydratedIndexedEventsAggSum field to given value.
+
+### HasRehydratedIndexedEventsAggSum
+
+`func (o *UsageSummaryResponse) HasRehydratedIndexedEventsAggSum() bool`
+
+HasRehydratedIndexedEventsAggSum returns a boolean if a field has been set.
+
+### GetRehydratedIngestedBytesAggSum
+
+`func (o *UsageSummaryResponse) GetRehydratedIngestedBytesAggSum() int64`
+
+GetRehydratedIngestedBytesAggSum returns the RehydratedIngestedBytesAggSum field if non-nil, zero value otherwise.
+
+### GetRehydratedIngestedBytesAggSumOk
+
+`func (o *UsageSummaryResponse) GetRehydratedIngestedBytesAggSumOk() (*int64, bool)`
+
+GetRehydratedIngestedBytesAggSumOk returns a tuple with the RehydratedIngestedBytesAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRehydratedIngestedBytesAggSum
+
+`func (o *UsageSummaryResponse) SetRehydratedIngestedBytesAggSum(v int64)`
+
+SetRehydratedIngestedBytesAggSum sets RehydratedIngestedBytesAggSum field to given value.
+
+### HasRehydratedIngestedBytesAggSum
+
+`func (o *UsageSummaryResponse) HasRehydratedIngestedBytesAggSum() bool`
+
+HasRehydratedIngestedBytesAggSum returns a boolean if a field has been set.
 
 ### GetRumSessionCountAggSum
 
