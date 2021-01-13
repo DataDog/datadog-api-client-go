@@ -629,6 +629,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("CreateSLOCorrection", true)
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSLOCorrection", true)
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateSLOCorrection", true)
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("DeleteSLOCorrection", true)
 
