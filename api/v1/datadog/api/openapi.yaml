@@ -4770,6 +4770,9 @@ paths:
       - Service Level Objective Corrections
       x-undo:
         type: safe
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     post:
       description: Create an SLO Correction
       operationId: CreateSLOCorrection
@@ -4829,6 +4832,9 @@ paths:
         - name: slo_correction_id
           source: data.id
         type: unsafe
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v1/slo/correction/{slo_correction_id}:
     delete:
       description: Permanently delete the specified SLO Correction object
@@ -4862,6 +4868,9 @@ paths:
       - Service Level Objective Corrections
       x-undo:
         type: idempotent
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     get:
       description: Get an SLO Correction
       operationId: GetSLOCorrection
@@ -4898,6 +4907,9 @@ paths:
       - Service Level Objective Corrections
       x-undo:
         type: safe
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     patch:
       description: Update the specified SLO correction object object
       operationId: UpdateSLOCorrection
@@ -4948,6 +4960,9 @@ paths:
       x-codegen-request-body-name: body
       x-undo:
         type: idempotent
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v1/slo/{slo_id}:
     delete:
       description: |-

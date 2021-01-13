@@ -50,6 +50,7 @@ func main() {
     body := *datadog.NewSLOCorrectionCreateRequest() // SLOCorrectionCreateRequest | Create an SLO Correction
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("CreateSLOCorrection", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectiveCorrectionsApi.CreateSLOCorrection(ctx).Body(body).Execute()
@@ -131,6 +132,7 @@ func main() {
     sloCorrectionId := "sloCorrectionId_example" // string | The ID of the SLO correction object
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("DeleteSLOCorrection", true)
 
     api_client := datadog.NewAPIClient(configuration)
     r, err := api_client.ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection(ctx, sloCorrectionId).Execute()
@@ -214,6 +216,7 @@ func main() {
     sloCorrectionId := "sloCorrectionId_example" // string | The ID of the SLO correction object
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetSLOCorrection", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectiveCorrectionsApi.GetSLOCorrection(ctx, sloCorrectionId).Execute()
@@ -299,6 +302,7 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("ListSLOCorrection", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection(ctx).Execute()
@@ -378,6 +382,7 @@ func main() {
     body := *datadog.NewSLOCorrectionUpdateRequest() // SLOCorrectionUpdateRequest | The edited SLO correction object.
 
     configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("UpdateSLOCorrection", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, sloCorrectionId).Body(body).Execute()

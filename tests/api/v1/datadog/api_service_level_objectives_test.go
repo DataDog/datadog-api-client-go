@@ -627,6 +627,12 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("CreateSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("DeleteSLOCorrection", true)
+
 	// Create SLO
 	testEventSLO := getTestEventSLO(ctx, t)
 	sloResp, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx).Body(testEventSLO).Execute()
