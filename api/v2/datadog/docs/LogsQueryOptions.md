@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TimeOffset** | Pointer to **int32** | The time offset (in seconds) to apply to the query. | [optional] 
+**TimeOffset** | Pointer to **int64** | The time offset (in seconds) to apply to the query. | [optional] 
 **Timezone** | Pointer to **string** | The timezone can be specified both as an offset, for example: \&quot;UTC+03:00\&quot;. | [optional] [default to "UTC"]
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTimeOffset
 
-`func (o *LogsQueryOptions) GetTimeOffset() int32`
+`func (o *LogsQueryOptions) GetTimeOffset() int64`
 
 GetTimeOffset returns the TimeOffset field if non-nil, zero value otherwise.
 
 ### GetTimeOffsetOk
 
-`func (o *LogsQueryOptions) GetTimeOffsetOk() (*int32, bool)`
+`func (o *LogsQueryOptions) GetTimeOffsetOk() (*int64, bool)`
 
 GetTimeOffsetOk returns a tuple with the TimeOffset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimeOffset
 
-`func (o *LogsQueryOptions) SetTimeOffset(v int32)`
+`func (o *LogsQueryOptions) SetTimeOffset(v int64)`
 
 SetTimeOffset sets TimeOffset field to given value.
 
