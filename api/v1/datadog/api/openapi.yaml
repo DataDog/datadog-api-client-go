@@ -15638,11 +15638,11 @@ components:
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 3.616076749251911
+            timeout: 3
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 3.616076749251911
+            timeout: 3
           public_id: public_id
           tags:
           - tags
@@ -15711,11 +15711,11 @@ components:
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 3.616076749251911
+            timeout: 3
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 3.616076749251911
+            timeout: 3
           public_id: public_id
           tags:
           - tags
@@ -15924,7 +15924,7 @@ components:
         allowFailure: true
         name: name
         params: '{}'
-        timeout: 3.616076749251911
+        timeout: 3
       properties:
         allowFailure:
           description: A boolean set to allow this step to fail.
@@ -15937,7 +15937,8 @@ components:
           type: object
         timeout:
           description: The time before declaring a step failed.
-          type: number
+          format: int64
+          type: integer
         type:
           $ref: '#/components/schemas/SyntheticsStepType'
       type: object
@@ -16213,11 +16214,11 @@ components:
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 3.616076749251911
+          timeout: 3
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 3.616076749251911
+          timeout: 3
         public_id: public_id
         tags:
         - tags
@@ -16585,15 +16586,15 @@ components:
         - triggered_check_ids
         locations:
         - name: name
-          id: 0.8008281904610115
+          id: 0
         - name: name
-          id: 0.8008281904610115
+          id: 0
         results:
         - result_id: result_id
-          location: 6.027456183070403
+          location: 6
           public_id: public_id
         - result_id: result_id
-          location: 6.027456183070403
+          location: 6
           public_id: public_id
       properties:
         locations:
@@ -22047,11 +22048,12 @@ components:
       description: Synthetics location.
       example:
         name: name
-        id: 0.8008281904610115
+        id: 0
       properties:
         id:
           description: Unique identifier of the location.
-          type: number
+          format: int64
+          type: integer
         name:
           description: Name of the location.
           type: string
@@ -22060,14 +22062,15 @@ components:
       description: Information about a single test run.
       example:
         result_id: result_id
-        location: 6.027456183070403
+        location: 6
         public_id: public_id
       properties:
         device:
           $ref: '#/components/schemas/SyntheticsDeviceID'
         location:
           description: The location ID of the test run.
-          type: number
+          format: int64
+          type: integer
         public_id:
           description: The public ID of the Synthetics test.
           type: string

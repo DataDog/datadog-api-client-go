@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **float32** | Unique identifier of the location. | [optional] 
+**Id** | Pointer to **int64** | Unique identifier of the location. | [optional] 
 **Name** | Pointer to **string** | Name of the location. | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *SyntheticsTriggerCITestsResponseLocations) GetId() float32`
+`func (o *SyntheticsTriggerCITestsResponseLocations) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *SyntheticsTriggerCITestsResponseLocations) GetIdOk() (*float32, bool)`
+`func (o *SyntheticsTriggerCITestsResponseLocations) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *SyntheticsTriggerCITestsResponseLocations) SetId(v float32)`
+`func (o *SyntheticsTriggerCITestsResponseLocations) SetId(v int64)`
 
 SetId sets Id field to given value.
 
