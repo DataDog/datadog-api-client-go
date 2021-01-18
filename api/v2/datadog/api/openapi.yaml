@@ -7858,6 +7858,7 @@ components:
     LogsMetricCompute:
       description: The compute rule to compute the log-based metric.
       example:
+        aggregation_type: distribution
         path: '@duration'
       properties:
         aggregation_type:
@@ -7875,6 +7876,7 @@ components:
       enum:
       - count
       - distribution
+      example: distribution
       type: string
       x-enum-varnames:
       - COUNT
@@ -7883,6 +7885,7 @@ components:
       description: The object describing the Datadog log-based metric to create.
       example:
         compute:
+          aggregation_type: distribution
           path: '@duration'
         filter:
           query: service:web* AND @http.status_code:[200 TO 299]
@@ -7909,6 +7912,7 @@ components:
       example:
         attributes:
           compute:
+            aggregation_type: distribution
             path: '@duration'
           filter:
             query: service:web* AND @http.status_code:[200 TO 299]
@@ -7939,6 +7943,7 @@ components:
         data:
           attributes:
             compute:
+              aggregation_type: distribution
               path: '@duration'
             filter:
               query: service:web* AND @http.status_code:[200 TO 299]
