@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **ExclusionFilters** | Pointer to [**[]LogsExclusion**](LogsExclusion.md) | An array of exclusion objects. The logs are tested against the query of each filter, following the order of the array. Only the first matching active exclusion matters, others (if any) are ignored. | [optional] 
 **Filter** | [**LogsFilter**](LogsFilter.md) |  | 
 **IsRateLimited** | Pointer to **bool** | A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent. Rate limit is reset every-day at 2pm UTC. | [optional] [readonly] 
-**Name** | Pointer to **string** | The name of the index. | [optional] [readonly] 
+**Name** | **string** | The name of the index. | 
 **NumRetentionDays** | Pointer to **int64** | The number of days before logs are deleted from this index. Available values depend on retention plans specified in your organization&#39;s contract/subscriptions. | [optional] 
 
 ## Methods
 
 ### NewLogsIndex
 
-`func NewLogsIndex(filter LogsFilter, ) *LogsIndex`
+`func NewLogsIndex(filter LogsFilter, name string, ) *LogsIndex`
 
 NewLogsIndex instantiates a new LogsIndex object
 This constructor will assign default values to properties that have it defined,
@@ -144,11 +144,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *LogsIndex) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetNumRetentionDays
 
