@@ -647,10 +647,11 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	testTimezone := "UTC"
 	testStart := now
 	testEnd := now + 3600
+	testCategory := datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE
 	testSLOCorrectionCreateAttributes := datadog.SLOCorrectionCreateRequestAttributes{
 		Timezone: &testTimezone,
 		SloId:    slo.GetId(),
-		Category: datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
+		Category: testCategory,
 		Start:    testStart,
 		End:      testEnd,
 	}
@@ -684,13 +685,14 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	sloCorrectionGetData := sloCorrectionGetResp.GetData()
 	assert.Equal(sloCorrectionGetData.GetId(), sloCorrection.GetId())
 	sloCorrectionAttributes := sloCorrectionGetData.GetAttributes()
-	assert.Equal(sloCorrectionAttributes.GetTimezone(), "UTC")
-	assert.Equal(sloCorrectionAttributes.GetCategory(), datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE)
+	assert.Equal(sloCorrectionAttributes.GetTimezone(), testTimezone)
+	assert.Equal(sloCorrectionAttributes.GetCategory(), testCategory)
 
 	testSLOCorrectionUpdateData := datadog.NewSLOCorrectionUpdateRequestData()
+	testCategory = datadog.SLOCORRECTIONCATEGORY_OTHER
 	testSLOCorrectionUpdateAttributes := datadog.SLOCorrectionUpdateRequestAttributes{
 		Timezone: &testTimezone,
-		Category: &datadog.SLOCORRECTIONCATEGORY_OTHER,
+		Category: &testCategory,
 		Start:    &testStart,
 		End:      &testEnd,
 	}
@@ -706,7 +708,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	sloCorrectionUpdateData := sloCorrectionUpdateResp.GetData()
 	sloCorrectionAttributes = sloCorrectionUpdateData.GetAttributes()
-	assert.Equal(sloCorrectionAttributes.GetCategory(), datadog.SLOCORRECTIONCATEGORY_OTHER)
+	assert.Equal(sloCorrectionAttributes.GetCategory(), testCategory)
 
 	httpresp, err = Client(ctx).ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection(ctx, sloCorrection.GetId()).Execute()
 	if err != nil {
