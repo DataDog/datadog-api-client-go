@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v1.0.0-beta.14 / 2021-01-19
+
+* [Added] Add log index creation. See [#662](https://github.com/DataDog/datadog-api-client-go/pull/662).
+* [Added] Add SLO Corrections. See [#654](https://github.com/DataDog/datadog-api-client-go/pull/654).
+* [Added] Add new live and rehydrated logs breakdowns for Usage API. See [#652](https://github.com/DataDog/datadog-api-client-go/pull/652).
+* [Added] Add support for Synthetics variables from test. See [#641](https://github.com/DataDog/datadog-api-client-go/pull/641).
+* [Fixed] Add additionalProperties: false to synthetics target field. See [#657](https://github.com/DataDog/datadog-api-client-go/pull/657).
+* [Fixed] Fix missing field for synthetics variables from test. See [#649](https://github.com/DataDog/datadog-api-client-go/pull/649).
+* [Changed] Extract key sorting enum to a specific schema in key management endpoint. See [#646](https://github.com/DataDog/datadog-api-client-go/pull/646).
+* [Changed] Extract enum to specific schema in incidents endpoint. See [#650](https://github.com/DataDog/datadog-api-client-go/pull/650).
+* [Changed] Fix some integer/number formats in Logs and Synthetics endpoints. See [#658](https://github.com/DataDog/datadog-api-client-go/pull/658).
+
 ## 1.0.0-beta.13 / 2021-01-06
 
 * [Added] Added filters to rule endpoints in security monitoring API. See [#632](https://github.com/DataDog/datadog-api-client-go/pull/632).

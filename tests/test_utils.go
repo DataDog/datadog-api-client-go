@@ -108,7 +108,7 @@ func IsCIRun() bool {
 
 // SecurePath replaces all dangerous characters in the path.
 func SecurePath(path string) string {
-	badChars := []string{"\\", "?", "%", "*", ":", "|", `"`, "<", ">"}
+	badChars := []string{"\\", "?", "%", "*", ":", "|", `"`, "<", ">", "'"}
 	for _, c := range badChars {
 		path = strings.ReplaceAll(path, c, "_")
 	}
