@@ -644,16 +644,19 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 
 	testSLOCorrectionCreateData := datadog.NewSLOCorrectionCreateRequestData()
 	now := tests.ClockFromContext(ctx).Now().Unix()
+	testTimezone := "UTC"
+	testStart := now
+	testEnd := now + 3600
 	testSLOCorrectionCreateAttributes := datadog.SLOCorrectionCreateRequestAttributes{
-		Timezone: "UTC",
-		SloId: slo.GetId(),
+		Timezone: &testTimezone,
+		SloId:    slo.GetId(),
 		Category: datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
-		Start: now,
-		End: now + 3600,
+		Start:    testStart,
+		End:      testEnd,
 	}
 	testSLOCorrectionCreateData.SetAttributes(testSLOCorrectionCreateAttributes)
 	testSLOCorrectionCreate := datadog.SLOCorrectionCreateRequest{
-		Data:        testSLOCorrectionCreateData,
+		Data: testSLOCorrectionCreateData,
 	}
 
 	sloCorrectionResp, httpresp, err := Client(ctx).ServiceLevelObjectiveCorrectionsApi.CreateSLOCorrection(ctx).Body(testSLOCorrectionCreate).Execute()
@@ -686,14 +689,14 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 
 	testSLOCorrectionUpdateData := datadog.NewSLOCorrectionUpdateRequestData()
 	testSLOCorrectionUpdateAttributes := datadog.SLOCorrectionUpdateRequestAttributes{
-		Timezone: "UTC",
-		Category: datadog.SLOCORRECTIONCATEGORY_OTHER,
-		Start: now,
-		End: now + 3600,
+		Timezone: &testTimezone,
+		Category: *datadog.SLOCORRECTIONCATEGORY_OTHER,
+		Start:    &testStart,
+		End:      &testEnd,
 	}
 	testSLOCorrectionUpdateData.SetAttributes(testSLOCorrectionUpdateAttributes)
 	testSLOCorrectionUpdate := datadog.SLOCorrectionUpdateRequest{
-		Data:        testSLOCorrectionUpdateData,
+		Data: testSLOCorrectionUpdateData,
 	}
 
 	sloCorrectionUpdateResp, httpresp, err := Client(ctx).ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, sloCorrection.GetId()).Body(testSLOCorrectionUpdate).Execute()
