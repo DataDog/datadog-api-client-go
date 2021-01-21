@@ -690,7 +690,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	testSLOCorrectionUpdateData := datadog.NewSLOCorrectionUpdateRequestData()
 	testSLOCorrectionUpdateAttributes := datadog.SLOCorrectionUpdateRequestAttributes{
 		Timezone: &testTimezone,
-		Category: *datadog.SLOCORRECTIONCATEGORY_OTHER,
+		Category: &datadog.SLOCORRECTIONCATEGORY_OTHER,
 		Start:    &testStart,
 		End:      &testEnd,
 	}
