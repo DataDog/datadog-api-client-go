@@ -276,6 +276,7 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
+			"CreateLogsIndex":                  false,
 			"GetLogsIndex":                     false,
 			"GetLogsIndexOrder":                false,
 			"ListLogIndexes":                   false,

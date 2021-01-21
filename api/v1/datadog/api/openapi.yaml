@@ -100,16 +100,23 @@ tags:
 - description: |-
     Send your logs to your Datadog platform over HTTP. Limits per HTTP request are:
 
-    - Maximum content size per payload: 5MB
-    - Maximum size for a single log: 256kB
-    - Maximum array size if sending multiple logs in an array: 500 entries
+    - Maximum content size per payload (uncompressed): 5MB
+    - Maximum size for a single log: 1MB
+    - Maximum array size if sending multiple logs in an array: 1000 entries
 
-    Any log exceeding 256KB is accepted and truncated by Datadog:
-    - For a single log request, the API truncates the log at 256KB and returns a 2xx.
-    - For a multi-logs request, the API processes all logs, truncates only logs larger than 256KB, and returns a 2xx.
+    Any log exceeding 1MB is accepted and truncated by Datadog:
+    - For a single log request, the API truncates the log at 1MB and returns a 2xx.
+    - For a multi-logs request, the API processes all logs, truncates only logs larger than 1MB, and returns a 2xx.
 
     We encourage you to send your logs compressed.
     Add the `Content-Encoding: gzip` header to the request when sending compressed logs.
+
+    Status code answered by the HTTP API:
+    - 200: OK
+    - 400: Bad request (likely an issue in the payload formatting)
+    - 403: Permission issue (likely using an invalid API Key)
+    - 413: Payload too large (batch is above 5MB uncompressed)
+    - 5xx: Internal error, request should be retried after some time
   name: Logs
 - description: |-
     Manage configuration of [log indexes](https://docs.datadoghq.com/logs/indexes/).
@@ -3172,6 +3179,47 @@ paths:
       - Logs Indexes
       x-undo:
         type: safe
+      x-unstable: |-
+        **Note**: This endpoint is in public beta.
+        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+    post:
+      description: Creates a new index. Returns the Index object passed in the request
+        body when the request is successful.
+      operationId: CreateLogsIndex
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogsIndex'
+        description: Object containing the new index.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogsIndex'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogsAPIErrorResponse'
+          description: Invalid Parameter Error
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Create an index
+      tags:
+      - Logs Indexes
+      x-codegen-request-body-name: body
+      x-undo:
+        operationId: TODO
+        parameters: []
+        type: unsafe
       x-unstable: |-
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
@@ -11055,14 +11103,15 @@ components:
             query: '*'
           is_enabled: true
           name: payment
-        num_retention_days: 6
-        is_rate_limited: true
-        name: name
-        daily_limit: 0
+        num_retention_days: 15
+        is_rate_limited: false
+        name: main
+        daily_limit: 300000000
       properties:
         daily_limit:
           description: The number of log events you can send in this index per day
             before you are rate-limited.
+          example: 300000000
           format: int64
           type: integer
         exclusion_filters:
@@ -11079,20 +11128,23 @@ components:
           description: |-
             A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent.
             Rate limit is reset every-day at 2pm UTC.
+          example: false
           readOnly: true
           type: boolean
         name:
           description: The name of the index.
-          readOnly: true
+          example: main
           type: string
         num_retention_days:
           description: |-
             The number of days before logs are deleted from this index. Available values depend on
             retention plans specified in your organization's contract/subscriptions.
+          example: 15
           format: int64
           type: integer
       required:
       - filter
+      - name
       type: object
     LogsIndexListResponse:
       description: Object with all Index configurations for a given organization.
@@ -11111,10 +11163,10 @@ components:
               query: '*'
             is_enabled: true
             name: payment
-          num_retention_days: 6
-          is_rate_limited: true
-          name: name
-          daily_limit: 0
+          num_retention_days: 15
+          is_rate_limited: false
+          name: main
+          daily_limit: 300000000
         - filter:
             query: source:python
           exclusion_filters:
@@ -11128,10 +11180,10 @@ components:
               query: '*'
             is_enabled: true
             name: payment
-          num_retention_days: 6
-          is_rate_limited: true
-          name: name
-          daily_limit: 0
+          num_retention_days: 15
+          is_rate_limited: false
+          name: main
+          daily_limit: 300000000
       properties:
         indexes:
           description: Array of Log index configurations.
