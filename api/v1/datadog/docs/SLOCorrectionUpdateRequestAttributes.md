@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Category** | [**SLOCorrectionCategory**](SLOCorrectionCategory.md) |  | 
+**Category** | Pointer to [**SLOCorrectionCategory**](SLOCorrectionCategory.md) |  | [optional] 
 **Description** | Pointer to **string** | Description of the correction being made. | [optional] 
-**End** | **int64** | Ending time of the correction in epoch seconds | 
-**Start** | **int64** | Starting time of the correction in epoch seconds | 
-**Timezone** | **string** | Timezone of the timestamps provided | 
+**End** | Pointer to **int64** | Ending time of the correction in epoch seconds | [optional] 
+**Start** | Pointer to **int64** | Starting time of the correction in epoch seconds | [optional] 
+**Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;) | [optional] 
 
 ## Methods
 
 ### NewSLOCorrectionUpdateRequestAttributes
 
-`func NewSLOCorrectionUpdateRequestAttributes(category SLOCorrectionCategory, end int64, start int64, timezone string, ) *SLOCorrectionUpdateRequestAttributes`
+`func NewSLOCorrectionUpdateRequestAttributes() *SLOCorrectionUpdateRequestAttributes`
 
 NewSLOCorrectionUpdateRequestAttributes instantiates a new SLOCorrectionUpdateRequestAttributes object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetCategory sets Category field to given value.
 
+### HasCategory
+
+`func (o *SLOCorrectionUpdateRequestAttributes) HasCategory() bool`
+
+HasCategory returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -93,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetEnd sets End field to given value.
 
+### HasEnd
+
+`func (o *SLOCorrectionUpdateRequestAttributes) HasEnd() bool`
+
+HasEnd returns a boolean if a field has been set.
 
 ### GetStart
 
@@ -113,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetStart sets Start field to given value.
 
+### HasStart
+
+`func (o *SLOCorrectionUpdateRequestAttributes) HasStart() bool`
+
+HasStart returns a boolean if a field has been set.
 
 ### GetTimezone
 
@@ -133,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetTimezone sets Timezone field to given value.
 
+### HasTimezone
+
+`func (o *SLOCorrectionUpdateRequestAttributes) HasTimezone() bool`
+
+HasTimezone returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

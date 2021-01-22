@@ -23,21 +23,20 @@ type SLOCorrectionCreateRequestAttributes struct {
 	SloId string `json:"slo_id"`
 	// Starting time of the correction in epoch seconds
 	Start int64 `json:"start"`
-	// Timezone of the timestamps provided
-	Timezone string `json:"timezone"`
+	// The timezone to display in the UI for the correction times (defaults to \"UTC\")
+	Timezone *string `json:"timezone,omitempty"`
 }
 
 // NewSLOCorrectionCreateRequestAttributes instantiates a new SLOCorrectionCreateRequestAttributes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSLOCorrectionCreateRequestAttributes(category SLOCorrectionCategory, end int64, sloId string, start int64, timezone string) *SLOCorrectionCreateRequestAttributes {
+func NewSLOCorrectionCreateRequestAttributes(category SLOCorrectionCategory, end int64, sloId string, start int64) *SLOCorrectionCreateRequestAttributes {
 	this := SLOCorrectionCreateRequestAttributes{}
 	this.Category = category
 	this.End = end
 	this.SloId = sloId
 	this.Start = start
-	this.Timezone = timezone
 	return &this
 }
 
@@ -177,28 +176,36 @@ func (o *SLOCorrectionCreateRequestAttributes) SetStart(v int64) {
 	o.Start = v
 }
 
-// GetTimezone returns the Timezone field value
+// GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *SLOCorrectionCreateRequestAttributes) GetTimezone() string {
-	if o == nil {
+	if o == nil || o.Timezone == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Timezone
+	return *o.Timezone
 }
 
-// GetTimezoneOk returns a tuple with the Timezone field value
+// GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SLOCorrectionCreateRequestAttributes) GetTimezoneOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Timezone == nil {
 		return nil, false
 	}
-	return &o.Timezone, true
+	return o.Timezone, true
 }
 
-// SetTimezone sets field value
+// HasTimezone returns a boolean if a field has been set.
+func (o *SLOCorrectionCreateRequestAttributes) HasTimezone() bool {
+	if o != nil && o.Timezone != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
 func (o *SLOCorrectionCreateRequestAttributes) SetTimezone(v string) {
-	o.Timezone = v
+	o.Timezone = &v
 }
 
 func (o SLOCorrectionCreateRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -218,7 +225,7 @@ func (o SLOCorrectionCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["start"] = o.Start
 	}
-	if true {
+	if o.Timezone != nil {
 		toSerialize["timezone"] = o.Timezone
 	}
 	return json.Marshal(toSerialize)
