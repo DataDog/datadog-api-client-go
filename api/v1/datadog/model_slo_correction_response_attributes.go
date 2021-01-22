@@ -24,7 +24,7 @@ type SLOCorrectionResponseAttributes struct {
 	SloId *string `json:"slo_id,omitempty"`
 	// Starting time of the correction in epoch seconds
 	Start *int64 `json:"start,omitempty"`
-	// Timezone of the timestamps provided
+	// The timezone to display in the UI for the correction times (defaults to \"UTC\")
 	Timezone *string `json:"timezone,omitempty"`
 }
 

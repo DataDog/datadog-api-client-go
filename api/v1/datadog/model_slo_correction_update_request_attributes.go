@@ -14,27 +14,23 @@ import (
 
 // SLOCorrectionUpdateRequestAttributes The attribute object associated with the SLO correction to be updated
 type SLOCorrectionUpdateRequestAttributes struct {
-	Category SLOCorrectionCategory `json:"category"`
+	Category *SLOCorrectionCategory `json:"category,omitempty"`
 	// Description of the correction being made.
 	Description *string `json:"description,omitempty"`
 	// Ending time of the correction in epoch seconds
-	End int64 `json:"end"`
+	End *int64 `json:"end,omitempty"`
 	// Starting time of the correction in epoch seconds
-	Start int64 `json:"start"`
-	// Timezone of the timestamps provided
-	Timezone string `json:"timezone"`
+	Start *int64 `json:"start,omitempty"`
+	// The timezone to display in the UI for the correction times (defaults to \"UTC\")
+	Timezone *string `json:"timezone,omitempty"`
 }
 
 // NewSLOCorrectionUpdateRequestAttributes instantiates a new SLOCorrectionUpdateRequestAttributes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSLOCorrectionUpdateRequestAttributes(category SLOCorrectionCategory, end int64, start int64, timezone string) *SLOCorrectionUpdateRequestAttributes {
+func NewSLOCorrectionUpdateRequestAttributes() *SLOCorrectionUpdateRequestAttributes {
 	this := SLOCorrectionUpdateRequestAttributes{}
-	this.Category = category
-	this.End = end
-	this.Start = start
-	this.Timezone = timezone
 	return &this
 }
 
@@ -46,28 +42,36 @@ func NewSLOCorrectionUpdateRequestAttributesWithDefaults() *SLOCorrectionUpdateR
 	return &this
 }
 
-// GetCategory returns the Category field value
+// GetCategory returns the Category field value if set, zero value otherwise.
 func (o *SLOCorrectionUpdateRequestAttributes) GetCategory() SLOCorrectionCategory {
-	if o == nil {
+	if o == nil || o.Category == nil {
 		var ret SLOCorrectionCategory
 		return ret
 	}
-
-	return o.Category
+	return *o.Category
 }
 
-// GetCategoryOk returns a tuple with the Category field value
+// GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SLOCorrectionUpdateRequestAttributes) GetCategoryOk() (*SLOCorrectionCategory, bool) {
-	if o == nil {
+	if o == nil || o.Category == nil {
 		return nil, false
 	}
-	return &o.Category, true
+	return o.Category, true
 }
 
-// SetCategory sets field value
+// HasCategory returns a boolean if a field has been set.
+func (o *SLOCorrectionUpdateRequestAttributes) HasCategory() bool {
+	if o != nil && o.Category != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCategory gets a reference to the given SLOCorrectionCategory and assigns it to the Category field.
 func (o *SLOCorrectionUpdateRequestAttributes) SetCategory(v SLOCorrectionCategory) {
-	o.Category = v
+	o.Category = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -102,93 +106,117 @@ func (o *SLOCorrectionUpdateRequestAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetEnd returns the End field value
+// GetEnd returns the End field value if set, zero value otherwise.
 func (o *SLOCorrectionUpdateRequestAttributes) GetEnd() int64 {
-	if o == nil {
+	if o == nil || o.End == nil {
 		var ret int64
 		return ret
 	}
-
-	return o.End
+	return *o.End
 }
 
-// GetEndOk returns a tuple with the End field value
+// GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SLOCorrectionUpdateRequestAttributes) GetEndOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.End == nil {
 		return nil, false
 	}
-	return &o.End, true
+	return o.End, true
 }
 
-// SetEnd sets field value
+// HasEnd returns a boolean if a field has been set.
+func (o *SLOCorrectionUpdateRequestAttributes) HasEnd() bool {
+	if o != nil && o.End != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnd gets a reference to the given int64 and assigns it to the End field.
 func (o *SLOCorrectionUpdateRequestAttributes) SetEnd(v int64) {
-	o.End = v
+	o.End = &v
 }
 
-// GetStart returns the Start field value
+// GetStart returns the Start field value if set, zero value otherwise.
 func (o *SLOCorrectionUpdateRequestAttributes) GetStart() int64 {
-	if o == nil {
+	if o == nil || o.Start == nil {
 		var ret int64
 		return ret
 	}
-
-	return o.Start
+	return *o.Start
 }
 
-// GetStartOk returns a tuple with the Start field value
+// GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SLOCorrectionUpdateRequestAttributes) GetStartOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.Start == nil {
 		return nil, false
 	}
-	return &o.Start, true
+	return o.Start, true
 }
 
-// SetStart sets field value
+// HasStart returns a boolean if a field has been set.
+func (o *SLOCorrectionUpdateRequestAttributes) HasStart() bool {
+	if o != nil && o.Start != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStart gets a reference to the given int64 and assigns it to the Start field.
 func (o *SLOCorrectionUpdateRequestAttributes) SetStart(v int64) {
-	o.Start = v
+	o.Start = &v
 }
 
-// GetTimezone returns the Timezone field value
+// GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *SLOCorrectionUpdateRequestAttributes) GetTimezone() string {
-	if o == nil {
+	if o == nil || o.Timezone == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Timezone
+	return *o.Timezone
 }
 
-// GetTimezoneOk returns a tuple with the Timezone field value
+// GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SLOCorrectionUpdateRequestAttributes) GetTimezoneOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Timezone == nil {
 		return nil, false
 	}
-	return &o.Timezone, true
+	return o.Timezone, true
 }
 
-// SetTimezone sets field value
+// HasTimezone returns a boolean if a field has been set.
+func (o *SLOCorrectionUpdateRequestAttributes) HasTimezone() bool {
+	if o != nil && o.Timezone != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
 func (o *SLOCorrectionUpdateRequestAttributes) SetTimezone(v string) {
-	o.Timezone = v
+	o.Timezone = &v
 }
 
 func (o SLOCorrectionUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Category != nil {
 		toSerialize["category"] = o.Category
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if true {
+	if o.End != nil {
 		toSerialize["end"] = o.End
 	}
-	if true {
+	if o.Start != nil {
 		toSerialize["start"] = o.Start
 	}
-	if true {
+	if o.Timezone != nil {
 		toSerialize["timezone"] = o.Timezone
 	}
 	return json.Marshal(toSerialize)
