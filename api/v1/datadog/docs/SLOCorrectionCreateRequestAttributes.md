@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **End** | **int64** | Ending time of the correction in epoch seconds | 
 **SloId** | **string** | ID of the SLO that this correction will be applied to | 
 **Start** | **int64** | Starting time of the correction in epoch seconds | 
-**Timezone** | **string** | Timezone of the timestamps provided | 
+**Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;) | [optional] 
 
 ## Methods
 
 ### NewSLOCorrectionCreateRequestAttributes
 
-`func NewSLOCorrectionCreateRequestAttributes(category SLOCorrectionCategory, end int64, sloId string, start int64, timezone string, ) *SLOCorrectionCreateRequestAttributes`
+`func NewSLOCorrectionCreateRequestAttributes(category SLOCorrectionCategory, end int64, sloId string, start int64, ) *SLOCorrectionCreateRequestAttributes`
 
 NewSLOCorrectionCreateRequestAttributes instantiates a new SLOCorrectionCreateRequestAttributes object
 This constructor will assign default values to properties that have it defined,
@@ -154,6 +154,11 @@ and a boolean to check if the value has been set.
 
 SetTimezone sets Timezone field to given value.
 
+### HasTimezone
+
+`func (o *SLOCorrectionCreateRequestAttributes) HasTimezone() bool`
+
+HasTimezone returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

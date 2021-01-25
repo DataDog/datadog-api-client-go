@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **End** | Pointer to **int64** | Ending time of the correction in epoch seconds | [optional] 
 **SloId** | Pointer to **string** | ID of the SLO that this correction will be applied to | [optional] 
 **Start** | Pointer to **int64** | Starting time of the correction in epoch seconds | [optional] 
-**Timezone** | Pointer to **string** | Timezone of the timestamps provided | [optional] 
+**Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;) | [optional] 
 
 ## Methods
 

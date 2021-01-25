@@ -16,6 +16,7 @@ servers:
       enum:
       - datadoghq.com
       - datadoghq.eu
+      - ddog-gov.com
     subdomain:
       default: api
       description: The subdomain where the API is deployed.
@@ -58,8 +59,10 @@ tags:
   externalDocs:
     url: https://docs.datadoghq.com/integrations/azure
   name: Azure Integration
-- description: This endpoint is deprecated. Use the [new dashboard list endpoint](https://docs.datadoghq.com/api/v2/dashboard-lists/)
-    instead.
+- description: |-
+    Interact with your dashboard lists through the API to
+    organize, find, and share all of your dashboards with your team and
+    organization.
   name: Dashboard Lists
   x-deprecated: true
 - description: |-
@@ -88,28 +91,34 @@ tags:
 - description: Get a list of IP prefixes belonging to Datadog.
   name: IP Ranges
 - description: |-
-    Manage your Datadog API and application keys.
-
-    You need an API and applications key with Admin rights
-    to interact with this endpoint. The full list of keys can be seen on your
-    [Datadog API page](https://app.datadoghq.com/account/settings#api).
+    Manage your Datadog API and application keys. You need an API key and
+    an application key for a user with the required permissions to interact
+    with these endpoints. The full list of API and application keys can be
+    seen on your [Datadog API page](https://app.datadoghq.com/account/settings#api).
   externalDocs:
     description: Find out more at
     url: https://docs.datadoghq.com/account_management/api-app-keys/
   name: Key Management
 - description: |-
-    Send your logs to your Datadog platform over HTTP. Limits per HTTP request are:
+    Search your logs and send them to your Datadog platform over HTTP. Limits per HTTP request are:
 
-    - Maximum content size per payload: 5MB
-    - Maximum size for a single log: 256kB
-    - Maximum array size if sending multiple logs in an array: 500 entries
+    - Maximum content size per payload (uncompressed): 5MB
+    - Maximum size for a single log: 1MB
+    - Maximum array size if sending multiple logs in an array: 1000 entries
 
-    Any log exceeding 256KB is accepted and truncated by Datadog:
-    - For a single log request, the API truncates the log at 256KB and returns a 2xx.
-    - For a multi-logs request, the API processes all logs, truncates only logs larger than 256KB, and returns a 2xx.
+    Any log exceeding 1MB is accepted and truncated by Datadog:
+    - For a single log request, the API truncates the log at 1MB and returns a 2xx.
+    - For a multi-logs request, the API processes all logs, truncates only logs larger than 1MB, and returns a 2xx.
 
-    We encourage you to send your logs compressed.
+    Datadog recommends sending your logs compressed.
     Add the `Content-Encoding: gzip` header to the request when sending compressed logs.
+
+    The status codes answered by the HTTP API are:
+    - 200: OK
+    - 400: Bad request (likely an issue in the payload formatting)
+    - 403: Permission issue (likely using an invalid API Key)
+    - 413: Payload too large (batch is above 5MB uncompressed)
+    - 5xx: Internal error, request should be retried after some time
   name: Logs
 - description: |-
     Manage configuration of [log indexes](https://docs.datadoghq.com/logs/indexes/).
@@ -231,10 +240,9 @@ tags:
     description: Find out more at
     url: https://docs.datadoghq.com/account_management/billing/usage_details/
   name: Usage Metering
-- description: |-
-    Create, edit, and disable users. [Read more about team management][1].
-
-    [1]: https://docs.datadoghq.com/account_management/team
+- description: Create, edit, and disable users.
+  externalDocs:
+    url: https://docs.datadoghq.com/account_management/users
   name: Users
 paths:
   /:
@@ -258,6 +266,7 @@ paths:
             enum:
             - datadoghq.com
             - datadoghq.eu
+            - ddog-gov.com
           subdomain:
             default: ip-ranges
             description: The subdomain where the API is deployed.
@@ -13280,7 +13289,8 @@ components:
           format: int64
           type: integer
         timezone:
-          description: Timezone of the timestamps provided
+          description: The timezone to display in the UI for the correction times
+            (defaults to "UTC")
           example: UTC
           type: string
       required:
@@ -13288,7 +13298,6 @@ components:
       - end
       - slo_id
       - start
-      - timezone
       type: object
     SLOCorrectionListResponse:
       description: A list of  SLO correction objects
@@ -13381,7 +13390,8 @@ components:
           format: int64
           type: integer
         timezone:
-          description: Timezone of the timestamps provided
+          description: The timezone to display in the UI for the correction times
+            (defaults to "UTC")
           type: string
       type: object
     SLOCorrectionUpdateRequest:
@@ -13424,14 +13434,10 @@ components:
           format: int64
           type: integer
         timezone:
-          description: Timezone of the timestamps provided
+          description: The timezone to display in the UI for the correction times
+            (defaults to "UTC")
           example: UTC
           type: string
-      required:
-      - category
-      - end
-      - start
-      - timezone
       type: object
     SLODeleteResponse:
       description: A response list of all service level objective deleted.
@@ -20796,6 +20802,7 @@ components:
       - previous_week
       - month_to_date
       - previous_month
+      - global_time
       type: string
       x-enum-varnames:
       - SEVEN_DAYS
@@ -20805,6 +20812,7 @@ components:
       - PREVIOUS_WEEK
       - MONTH_TO_DATE
       - PREVIOUS_MONTH
+      - GLOBAL_TIME
     WidgetViewMode:
       description: Define how you want the SLO to be displayed.
       enum:

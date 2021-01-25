@@ -117,6 +117,7 @@ func NewConfiguration() *Configuration {
 						EnumValues: []string{
 							"datadoghq.com",
 							"datadoghq.eu",
+							"ddog-gov.com",
 						},
 					},
 					"subdomain": ServerVariable{
@@ -251,6 +252,7 @@ func NewConfiguration() *Configuration {
 							EnumValues: []string{
 								"datadoghq.com",
 								"datadoghq.eu",
+								"ddog-gov.com",
 							},
 						},
 						"subdomain": ServerVariable{
