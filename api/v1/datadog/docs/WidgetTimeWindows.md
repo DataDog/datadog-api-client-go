@@ -17,6 +17,8 @@
 
 * `PREVIOUS_MONTH` (value: `"previous_month"`)
 
+* `GLOBAL_TIME` (value: `"global_time"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
