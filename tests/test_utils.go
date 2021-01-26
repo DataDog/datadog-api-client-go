@@ -264,7 +264,6 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		"test",
 		tracer.SpanType("test"),
 		tracer.ResourceName(t.Name()),
-		tracer.Tag(ext.AnalyticsEvent, true),
 		tracer.Measured(),
 		tracer.Tag("span.kind", "test"),
 		tracer.Tag("test.framework", "go.testing"),
