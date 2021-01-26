@@ -60,7 +60,7 @@ func main() {
     }
     // response from `GetGraphSnapshot`: GraphSnapshot
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SnapshotsApi.GetGraphSnapshot:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from SnapshotsApi.GetGraphSnapshot:\n%s\n", response_content)
 }
 ```
 

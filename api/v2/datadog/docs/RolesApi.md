@@ -67,7 +67,7 @@ func main() {
     }
     // response from `AddPermissionToRole`: PermissionsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from RolesApi.AddPermissionToRole:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.AddPermissionToRole:\n%s\n", response_content)
 }
 ```
 
@@ -155,7 +155,7 @@ func main() {
     }
     // response from `AddUserToRole`: UsersResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from RolesApi.AddUserToRole:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.AddUserToRole:\n%s\n", response_content)
 }
 ```
 
@@ -242,7 +242,7 @@ func main() {
     }
     // response from `CreateRole`: RoleCreateResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from RolesApi.CreateRole:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.CreateRole:\n%s\n", response_content)
 }
 ```
 
@@ -406,7 +406,7 @@ func main() {
     }
     // response from `GetRole`: RoleResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from RolesApi.GetRole:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.GetRole:\n%s\n", response_content)
 }
 ```
 
@@ -491,7 +491,7 @@ func main() {
     }
     // response from `ListPermissions`: PermissionsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListPermissions:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListPermissions:\n%s\n", response_content)
 }
 ```
 
@@ -569,7 +569,7 @@ func main() {
     }
     // response from `ListRolePermissions`: PermissionsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListRolePermissions:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListRolePermissions:\n%s\n", response_content)
 }
 ```
 
@@ -659,7 +659,7 @@ func main() {
     }
     // response from `ListRoleUsers`: UsersResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListRoleUsers:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListRoleUsers:\n%s\n", response_content)
 }
 ```
 
@@ -752,7 +752,7 @@ func main() {
     }
     // response from `ListRoles`: RolesResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListRoles:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.ListRoles:\n%s\n", response_content)
 }
 ```
 
@@ -838,7 +838,7 @@ func main() {
     }
     // response from `RemovePermissionFromRole`: PermissionsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from RolesApi.RemovePermissionFromRole:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.RemovePermissionFromRole:\n%s\n", response_content)
 }
 ```
 
@@ -926,7 +926,7 @@ func main() {
     }
     // response from `RemoveUserFromRole`: UsersResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from RolesApi.RemoveUserFromRole:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.RemoveUserFromRole:\n%s\n", response_content)
 }
 ```
 
@@ -1014,7 +1014,7 @@ func main() {
     }
     // response from `UpdateRole`: RoleUpdateResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from RolesApi.UpdateRole:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.UpdateRole:\n%s\n", response_content)
 }
 ```
 

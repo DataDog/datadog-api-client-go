@@ -68,7 +68,7 @@ func TestUserLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error updating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.Equal(httpresp.StatusCode, 204)
+	assert.Equal(httpresp.StatusCode, 200)
 
 	// now, test getting it
 	urp, httpresp, err := Client(ctx).UsersApi.GetUser(ctx, uid).Execute()

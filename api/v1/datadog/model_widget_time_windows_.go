@@ -25,6 +25,7 @@ const (
 	WIDGETTIMEWINDOWS_PREVIOUS_WEEK  WidgetTimeWindows = "previous_week"
 	WIDGETTIMEWINDOWS_MONTH_TO_DATE  WidgetTimeWindows = "month_to_date"
 	WIDGETTIMEWINDOWS_PREVIOUS_MONTH WidgetTimeWindows = "previous_month"
+	WIDGETTIMEWINDOWS_GLOBAL_TIME    WidgetTimeWindows = "global_time"
 )
 
 var allowedWidgetTimeWindowsEnumValues = []WidgetTimeWindows{
@@ -35,6 +36,7 @@ var allowedWidgetTimeWindowsEnumValues = []WidgetTimeWindows{
 	"previous_week",
 	"month_to_date",
 	"previous_month",
+	"global_time",
 }
 
 func (v *WidgetTimeWindows) UnmarshalJSON(src []byte) error {

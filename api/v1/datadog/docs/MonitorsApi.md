@@ -61,7 +61,7 @@ func main() {
     }
     // response from `CheckCanDeleteMonitor`: CheckCanDeleteMonitorResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.CheckCanDeleteMonitor:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.CheckCanDeleteMonitor:\n%s\n", response_content)
 }
 ```
 
@@ -143,7 +143,7 @@ func main() {
     }
     // response from `CreateMonitor`: Monitor
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.CreateMonitor:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.CreateMonitor:\n%s\n", response_content)
 }
 ```
 
@@ -226,7 +226,7 @@ func main() {
     }
     // response from `DeleteMonitor`: DeletedMonitor
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.DeleteMonitor:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.DeleteMonitor:\n%s\n", response_content)
 }
 ```
 
@@ -314,7 +314,7 @@ func main() {
     }
     // response from `GetMonitor`: Monitor
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.GetMonitor:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.GetMonitor:\n%s\n", response_content)
 }
 ```
 
@@ -408,7 +408,7 @@ func main() {
     }
     // response from `ListMonitors`: []Monitor
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ListMonitors:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ListMonitors:\n%s\n", response_content)
 }
 ```
 
@@ -498,7 +498,7 @@ func main() {
     }
     // response from `UpdateMonitor`: Monitor
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.UpdateMonitor:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.UpdateMonitor:\n%s\n", response_content)
 }
 ```
 
@@ -585,7 +585,7 @@ func main() {
     }
     // response from `ValidateMonitor`: Monitor
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ValidateMonitor:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ValidateMonitor:\n%s\n", response_content)
 }
 ```
 

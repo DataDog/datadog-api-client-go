@@ -44,14 +44,14 @@ type operationParameter struct {
 	Value  *string `json:"value"`
 }
 
-func (p operationParameter) Resolve(ctx gobdd.Context, t reflect.Type) reflect.Value {
+func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp reflect.Type) reflect.Value {
 	if p.Value != nil {
-		tpl := Templated(GetData(ctx), *p.Value)
-		v := reflect.New(t)
+		tpl := Templated(t, GetData(ctx), *p.Value)
+		v := reflect.New(tp)
 		json.Unmarshal([]byte(tpl), v.Interface())
 		return v.Elem()
 	}
-	v, _ := lookup.LookupStringI(GetData(ctx), *p.Source)
+	v, _ := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(*p.Source))
 	return v
 }
 
@@ -77,6 +77,7 @@ type responseKey struct{}
 type dataKey struct{}
 type bodyKey struct{}
 type cleanupKey struct{}
+type pathParamCountKey struct{}
 
 // GetIgnoredTags returns list of ignored tags.
 func GetIgnoredTags() []string {
@@ -89,13 +90,16 @@ func GetIgnoredTags() []string {
 }
 
 // Templated replaces {{ path }} in source with value from data[path].
-func Templated(data interface{}, source string) string {
+func Templated(t gobdd.StepTest, data interface{}, source string) string {
 	re := regexp.MustCompile(`{{ ?([^}])+ ?}}`)
 	replace := func(source string) string {
 		path := strings.Trim(source, "{ }")
 		v, err := lookup.LookupStringI(data, path)
 		if err != nil {
-			panic(fmt.Sprintf("problem with replacement of %s: %v", source, err))
+			v, err = lookup.LookupStringI(data, SnakeToCamelCase(path))
+			if err != nil {
+				t.Fatalf("problem with replacement of %s: %v", source, err)
+			}
 		}
 		return v.String()
 	}
@@ -121,10 +125,10 @@ func GetResponse(ctx gobdd.Context) []reflect.Value {
 }
 
 // LoadRequestsUndo load undo configuration.
-func LoadRequestsUndo(file string) map[string]UndoAction {
+func LoadRequestsUndo(file string) (map[string]UndoAction, error) {
 	f, err := os.Open(file)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	defer f.Close()
 
@@ -132,7 +136,7 @@ func LoadRequestsUndo(file string) map[string]UndoAction {
 
 	var value map[string]UndoAction
 	json.Unmarshal(byteValue, &value)
-	return value
+	return value, nil
 }
 
 // LoadGivenSteps load undo configuration.
@@ -188,7 +192,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 		// first argument is always context.Context
 		in[0] = reflect.ValueOf(GetCtx(ctx))
 		for i := 1; i < operation.Type().NumIn(); i++ {
-			in[i] = s.Parameters[i-1].Resolve(ctx, operation.Type().In(i))
+			in[i] = s.Parameters[i-1].Resolve(t, ctx, operation.Type().In(i))
 		}
 		request := operation.Call(in)[0]
 
@@ -197,7 +201,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 			name := ToVarName(p.Name)
 			method := request.MethodByName(name)
 			if method.IsValid() {
-				v := p.Resolve(ctx, method.Type().In(0))
+				v := p.Resolve(t, ctx, method.Type().In(0))
 				request = method.Call([]reflect.Value{v})[0]
 			}
 		}
@@ -220,15 +224,14 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 		}
 
 		if s.Source != nil {
-			response, err = lookup.LookupStringI(response.Interface(), *s.Source)
+			response, err = lookup.LookupStringI(response.Interface(), SnakeToCamelCase(*s.Source))
 
 			if err != nil {
 				t.Error(err)
 			}
-			GetData(ctx)[s.Key] = response.Interface()
 		}
 
-		GetData(ctx)[s.Key] = response.Interface()
+		GetData(ctx)[SnakeToCamelCase(s.Key)] = response.Interface()
 	}
 	suite.AddStep(s.Step, given)
 }
@@ -282,7 +285,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 			// first argument is always context.Context
 			in[0] = reflect.ValueOf(GetCtx(ctx))
 			for i := 1; i < undoOperation.Type().NumIn(); i++ {
-				object, err := lookup.LookupStringI(response, undo.Undo.Parameters[i-1].Source)
+				object, err := lookup.LookupStringI(response, SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
 				if err != nil {
 					panic(err)
 				}
@@ -390,6 +393,8 @@ func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ctx.Set(requestNameKey{}, name)
 	ctx.Set(requestParamsKey{}, make(map[string]interface{}))
 	ctx.Set(requestArgsKey{}, make([]interface{}, 0))
+	ctx.Set(pathParamCountKey{}, 1)
+
 }
 
 // getRequestBuilder returns the reflect value of the current request in ctx
@@ -404,15 +409,22 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, error) {
 
 	// first argument is always context.Context
 	in[0] = reflect.ValueOf(GetCtx(ctx))
-	for i := 1; i < f.Type().NumIn(); i++ {
-		object := GetRequestArguments(ctx)[i-1]
-		in[i] = object.(reflect.Value)
+	requestArgs := GetRequestArguments(ctx)
+
+	if len(requestArgs) >= f.Type().NumIn() -1 {
+		for i := 1; i < f.Type().NumIn(); i++ {
+			object := requestArgs[i-1]
+			in[i] = object.(reflect.Value)
+		}
+	} else {
+		return f, nil
 	}
+
 	return f.Call(in)[0], nil
 }
 
 func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
-	// Execute() returns tripples -> 2nd value is *http.Response -> get StatusCode
+	// Execute() returns triples -> 2nd value is *http.Response -> get StatusCode
 	resp := GetResponse(ctx)
 	code := resp[len(resp)-2].Interface().(*http.Response).StatusCode
 	if expected != code {
@@ -421,12 +433,31 @@ func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 }
 
 func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path string) {
-	value, err := lookup.LookupStringI(GetData(ctx), path)
+	value, err := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(path))
 	if err != nil {
 		t.Errorf("key %s: %v", path, err)
 	}
 	GetRequestParameters(ctx)[name] = value
 	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
+}
+
+// This function adds path arguments to the requestArgs key. This shouldn't be used as a step method, but just a helper util
+func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, value string, request reflect.Value) {
+	in := make([]reflect.Value, request.Type().NumIn())
+	in[0] = reflect.ValueOf(GetCtx(ctx))
+	// The order of the path arguments in the scenario definition
+	// must match the order of the arguments in the function signature
+	// Here we keep track of which numbered path argument we're setting
+	pathCount, _ := ctx.Get(pathParamCountKey{})
+	varType := reflect.New(request.Type().In(pathCount.(int)))
+	ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
+
+	templatedValue := Templated(t, GetData(ctx), value)
+
+	json.Unmarshal([]byte(templatedValue), varType.Interface())
+	GetRequestParameters(ctx)[param] = varType.Elem()
+
+	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), varType.Elem()))
 }
 
 func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, value string) {
@@ -435,11 +466,19 @@ func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, va
 	if err != nil {
 		t.Error(err)
 	}
+
+	// If the getRequestBuilder method returns a function, its because we're trying to add a
+	// path param instead of a query param.
+	if request.Kind() == reflect.Func {
+		addPathArgumentWithValue(t, ctx, param, value, request)
+		return
+	}
+
 	name := ToVarName(param)
 	// Get the method for setting the current parameter
 	method := request.MethodByName(name)
 
-	templatedValue := Templated(GetData(ctx), value)
+	templatedValue := Templated(t, GetData(ctx), value)
 
 	if method.IsValid() {
 		at := reflect.New(method.Type().In(0))
@@ -490,7 +529,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 }
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
-	GetRequestParameters(ctx)["body"] = Templated(GetData(ctx), body)
+	GetRequestParameters(ctx)["body"] = Templated(t, GetData(ctx), body)
 }
 
 func stringToType(s string, t interface{}) (interface{}, error) {
@@ -514,7 +553,7 @@ func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value
 		t.Errorf("could not lookup response value %s in %v: %v", responsePath, GetResponse(ctx)[0].Interface(), err)
 	}
 
-	templatedValue := Templated(GetData(ctx), value)
+	templatedValue := Templated(t, GetData(ctx), value)
 	testValue, err := stringToType(templatedValue, responseValue.Interface())
 	if err != nil {
 		t.Errorf("%v", err)
@@ -533,7 +572,7 @@ func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, 
 	}
 	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
-		t.Fatalf("could not lookup response value %s: %v", responsePath, err)
+		t.Fatalf("could not lookup response value %s: %v", SnakeToCamelCase(responsePath), err)
 	}
 	if !responseValue.IsValid() && !fixtureValue.IsValid() {
 		// Lookup was successful but both values are nil

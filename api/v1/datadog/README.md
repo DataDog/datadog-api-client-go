@@ -139,6 +139,7 @@ Class | Method | HTTP request | Description
 *KeyManagementApi* | [**UpdateAPIKey**](docs/KeyManagementApi.md#updateapikey) | **Put** /api/v1/api_key/{key} | Edit an API key
 *KeyManagementApi* | [**UpdateApplicationKey**](docs/KeyManagementApi.md#updateapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
+*LogsIndexesApi* | [**CreateLogsIndex**](docs/LogsIndexesApi.md#createlogsindex) | **Post** /api/v1/logs/config/indexes | Create an index
 *LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
 *LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get indexes order
 *LogsIndexesApi* | [**ListLogIndexes**](docs/LogsIndexesApi.md#listlogindexes) | **Get** /api/v1/logs/config/indexes | Get all indexes
@@ -172,6 +173,11 @@ Class | Method | HTTP request | Description
 *PagerDutyIntegrationApi* | [**DeletePagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#deletepagerdutyintegrationservice) | **Delete** /api/v1/integration/pagerduty/configuration/services/{service_name} | Delete a single service object
 *PagerDutyIntegrationApi* | [**GetPagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#getpagerdutyintegrationservice) | **Get** /api/v1/integration/pagerduty/configuration/services/{service_name} | Get a single service object
 *PagerDutyIntegrationApi* | [**UpdatePagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#updatepagerdutyintegrationservice) | **Put** /api/v1/integration/pagerduty/configuration/services/{service_name} | Update a single service object
+*ServiceLevelObjectiveCorrectionsApi* | [**CreateSLOCorrection**](docs/ServiceLevelObjectiveCorrectionsApi.md#createslocorrection) | **Post** /api/v1/slo/correction | Create an SLO correction
+*ServiceLevelObjectiveCorrectionsApi* | [**DeleteSLOCorrection**](docs/ServiceLevelObjectiveCorrectionsApi.md#deleteslocorrection) | **Delete** /api/v1/slo/correction/{slo_correction_id} | Delete an SLO Correction
+*ServiceLevelObjectiveCorrectionsApi* | [**GetSLOCorrection**](docs/ServiceLevelObjectiveCorrectionsApi.md#getslocorrection) | **Get** /api/v1/slo/correction/{slo_correction_id} | Get an SLO correction for an SLO
+*ServiceLevelObjectiveCorrectionsApi* | [**ListSLOCorrection**](docs/ServiceLevelObjectiveCorrectionsApi.md#listslocorrection) | **Get** /api/v1/slo/correction | Get all SLO corrections
+*ServiceLevelObjectiveCorrectionsApi* | [**UpdateSLOCorrection**](docs/ServiceLevelObjectiveCorrectionsApi.md#updateslocorrection) | **Patch** /api/v1/slo/correction/{slo_correction_id} | Update an SLO Correction
 *ServiceLevelObjectivesApi* | [**CheckCanDeleteSLO**](docs/ServiceLevelObjectivesApi.md#checkcandeleteslo) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted
 *ServiceLevelObjectivesApi* | [**CreateSLO**](docs/ServiceLevelObjectivesApi.md#createslo) | **Post** /api/v1/slo | Create a SLO object
 *ServiceLevelObjectivesApi* | [**DeleteSLO**](docs/ServiceLevelObjectivesApi.md#deleteslo) | **Delete** /api/v1/slo/{slo_id} | Delete a SLO
@@ -453,6 +459,18 @@ Class | Method | HTTP request | Description
  - [SLOBulkDeleteResponse](docs/SLOBulkDeleteResponse.md)
  - [SLOBulkDeleteResponseData](docs/SLOBulkDeleteResponseData.md)
  - [SLOBulkDeleteResponseErrors](docs/SLOBulkDeleteResponseErrors.md)
+ - [SLOCorrectionCategory](docs/SLOCorrectionCategory.md)
+ - [SLOCorrectionCreateRequest](docs/SLOCorrectionCreateRequest.md)
+ - [SLOCorrectionCreateRequestAttributes](docs/SLOCorrectionCreateRequestAttributes.md)
+ - [SLOCorrectionCreateRequestData](docs/SLOCorrectionCreateRequestData.md)
+ - [SLOCorrectionListResponse](docs/SLOCorrectionListResponse.md)
+ - [SLOCorrectionListResponseData](docs/SLOCorrectionListResponseData.md)
+ - [SLOCorrectionResponse](docs/SLOCorrectionResponse.md)
+ - [SLOCorrectionResponseAttributes](docs/SLOCorrectionResponseAttributes.md)
+ - [SLOCorrectionResponseData](docs/SLOCorrectionResponseData.md)
+ - [SLOCorrectionUpdateRequest](docs/SLOCorrectionUpdateRequest.md)
+ - [SLOCorrectionUpdateRequestAttributes](docs/SLOCorrectionUpdateRequestAttributes.md)
+ - [SLOCorrectionUpdateRequestData](docs/SLOCorrectionUpdateRequestData.md)
  - [SLODeleteResponse](docs/SLODeleteResponse.md)
  - [SLOErrorTimeframe](docs/SLOErrorTimeframe.md)
  - [SLOHistoryMetrics](docs/SLOHistoryMetrics.md)
@@ -509,6 +527,8 @@ Class | Method | HTTP request | Description
  - [SyntheticsCITestMetadataCi](docs/SyntheticsCITestMetadataCi.md)
  - [SyntheticsCITestMetadataGit](docs/SyntheticsCITestMetadataGit.md)
  - [SyntheticsCheckType](docs/SyntheticsCheckType.md)
+ - [SyntheticsConfigVariable](docs/SyntheticsConfigVariable.md)
+ - [SyntheticsConfigVariableType](docs/SyntheticsConfigVariableType.md)
  - [SyntheticsDeleteTestsPayload](docs/SyntheticsDeleteTestsPayload.md)
  - [SyntheticsDeleteTestsResponse](docs/SyntheticsDeleteTestsResponse.md)
  - [SyntheticsDeleteTestsResponseDeletedTests](docs/SyntheticsDeleteTestsResponseDeletedTests.md)
@@ -518,6 +538,10 @@ Class | Method | HTTP request | Description
  - [SyntheticsGetAPITestLatestResultsResponse](docs/SyntheticsGetAPITestLatestResultsResponse.md)
  - [SyntheticsGetBrowserTestLatestResultsResponse](docs/SyntheticsGetBrowserTestLatestResultsResponse.md)
  - [SyntheticsGlobalVariable](docs/SyntheticsGlobalVariable.md)
+ - [SyntheticsGlobalVariableParseTestOptions](docs/SyntheticsGlobalVariableParseTestOptions.md)
+ - [SyntheticsGlobalVariableParseTestOptionsParser](docs/SyntheticsGlobalVariableParseTestOptionsParser.md)
+ - [SyntheticsGlobalVariableParseTestOptionsType](docs/SyntheticsGlobalVariableParseTestOptionsType.md)
+ - [SyntheticsGlobalVariableParserType](docs/SyntheticsGlobalVariableParserType.md)
  - [SyntheticsGlobalVariableValue](docs/SyntheticsGlobalVariableValue.md)
  - [SyntheticsListTestsResponse](docs/SyntheticsListTestsResponse.md)
  - [SyntheticsLocation](docs/SyntheticsLocation.md)
@@ -529,8 +553,6 @@ Class | Method | HTTP request | Description
  - [SyntheticsPrivateLocationSecrets](docs/SyntheticsPrivateLocationSecrets.md)
  - [SyntheticsPrivateLocationSecretsAuthentication](docs/SyntheticsPrivateLocationSecretsAuthentication.md)
  - [SyntheticsPrivateLocationSecretsConfigDecryption](docs/SyntheticsPrivateLocationSecretsConfigDecryption.md)
- - [SyntheticsResource](docs/SyntheticsResource.md)
- - [SyntheticsResourceType](docs/SyntheticsResourceType.md)
  - [SyntheticsSSLCertificate](docs/SyntheticsSSLCertificate.md)
  - [SyntheticsSSLCertificateIssuer](docs/SyntheticsSSLCertificateIssuer.md)
  - [SyntheticsSSLCertificateSubject](docs/SyntheticsSSLCertificateSubject.md)

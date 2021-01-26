@@ -621,3 +621,115 @@ func deleteSLOIfExists(ctx context.Context, sloID string) {
 			sloID, httpresp.StatusCode, err)
 	}
 }
+
+func TestSLOCorrectionsLifecycle(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("CreateSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("DeleteSLOCorrection", true)
+
+	// Create SLO
+	testEventSLO := getTestEventSLO(ctx, t)
+	sloResp, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx).Body(testEventSLO).Execute()
+	if err != nil {
+		t.Fatalf("Error creating SLO %v: Response %s: %v", testEventSLO, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	slo := sloResp.GetData()[0]
+	defer deleteSLOIfExists(ctx, slo.GetId())
+
+	testSLOCorrectionCreateData := datadog.NewSLOCorrectionCreateRequestData()
+	now := tests.ClockFromContext(ctx).Now().Unix()
+	testTimezone := "UTC"
+	testStart := now
+	testEnd := now + 3600
+	testCategory := datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE
+	testSLOCorrectionCreateAttributes := datadog.SLOCorrectionCreateRequestAttributes{
+		Timezone: &testTimezone,
+		SloId:    slo.GetId(),
+		Category: testCategory,
+		Start:    testStart,
+		End:      testEnd,
+	}
+	testSLOCorrectionCreateData.SetAttributes(testSLOCorrectionCreateAttributes)
+	testSLOCorrectionCreate := datadog.SLOCorrectionCreateRequest{
+		Data: testSLOCorrectionCreateData,
+	}
+
+	sloCorrectionResp, httpresp, err := Client(ctx).ServiceLevelObjectiveCorrectionsApi.CreateSLOCorrection(ctx).Body(testSLOCorrectionCreate).Execute()
+	if err != nil {
+		t.Fatalf("Error creating SLO Correction %v: Response %s: %v", testSLOCorrectionCreate, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	sloCorrection := sloCorrectionResp.GetData()
+	defer deleteSLOCorrectionIfExists(ctx, sloCorrection.GetId())
+
+	sloCorrectionListResp, httpresp, err := Client(ctx).ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection(ctx).Execute()
+	if err != nil {
+		t.Fatalf("Error getting SLO corrections: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+
+	sloCorrections := sloCorrectionListResp.GetData()
+	assert.NoError(isSLOCorrecionIDPresent(sloCorrection.GetId(), sloCorrections))
+
+	sloCorrectionGetResp, httpresp, err := Client(ctx).ServiceLevelObjectiveCorrectionsApi.GetSLOCorrection(ctx, sloCorrection.GetId()).Execute()
+	if err != nil {
+		t.Fatalf("Error getting SLO correction %s: Response %s: %v", sloCorrection.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	sloCorrectionGetData := sloCorrectionGetResp.GetData()
+	assert.Equal(sloCorrectionGetData.GetId(), sloCorrection.GetId())
+	sloCorrectionAttributes := sloCorrectionGetData.GetAttributes()
+	assert.Equal(sloCorrectionAttributes.GetTimezone(), testTimezone)
+	assert.Equal(sloCorrectionAttributes.GetCategory(), testCategory)
+
+	testSLOCorrectionUpdateData := datadog.NewSLOCorrectionUpdateRequestData()
+	testCategory = datadog.SLOCORRECTIONCATEGORY_OTHER
+	testSLOCorrectionUpdateAttributes := datadog.SLOCorrectionUpdateRequestAttributes{
+		Timezone: &testTimezone,
+		Category: &testCategory,
+		Start:    &testStart,
+		End:      &testEnd,
+	}
+	testSLOCorrectionUpdateData.SetAttributes(testSLOCorrectionUpdateAttributes)
+	testSLOCorrectionUpdate := datadog.SLOCorrectionUpdateRequest{
+		Data: testSLOCorrectionUpdateData,
+	}
+
+	sloCorrectionUpdateResp, httpresp, err := Client(ctx).ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, sloCorrection.GetId()).Body(testSLOCorrectionUpdate).Execute()
+	if err != nil {
+		t.Fatalf("Error updating SLO correction %v: Response %s: %v", testSLOCorrectionUpdate, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	sloCorrectionUpdateData := sloCorrectionUpdateResp.GetData()
+	sloCorrectionAttributes = sloCorrectionUpdateData.GetAttributes()
+	assert.Equal(sloCorrectionAttributes.GetCategory(), testCategory)
+
+	httpresp, err = Client(ctx).ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection(ctx, sloCorrection.GetId()).Execute()
+	if err != nil {
+		t.Fatalf("Error deleting SLO correction %s: Response %s: %v", sloCorrection.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(204, httpresp.StatusCode)
+}
+
+func deleteSLOCorrectionIfExists(ctx context.Context, sloCorrectionID string) {
+	httpresp, err := Client(ctx).ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection(ctx, sloCorrectionID).Execute()
+	if err != nil && httpresp.StatusCode != 404 {
+		log.Printf("Deleting SLO correction: %v failed with %v, Another test may have already deleted this SLO correction: %v",
+			sloCorrectionID, httpresp.StatusCode, err)
+	}
+}
+
+func isSLOCorrecionIDPresent(sloCorrectionID string, sloCorrections []datadog.SLOCorrectionListResponseData) error {
+	for _, sloCorrection := range sloCorrections {
+		if sloCorrection.GetId() == sloCorrectionID {
+			return nil
+		}
+	}
+	return fmt.Errorf("SLO correction %s expected but not found", sloCorrectionID)
+}

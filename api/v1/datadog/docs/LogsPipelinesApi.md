@@ -61,7 +61,7 @@ func main() {
     }
     // response from `CreateLogsPipeline`: LogsPipeline
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.CreateLogsPipeline:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.CreateLogsPipeline:\n%s\n", response_content)
 }
 ```
 
@@ -225,7 +225,7 @@ func main() {
     }
     // response from `GetLogsPipeline`: LogsPipeline
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.GetLogsPipeline:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.GetLogsPipeline:\n%s\n", response_content)
 }
 ```
 
@@ -310,7 +310,7 @@ func main() {
     }
     // response from `GetLogsPipelineOrder`: LogsPipelinesOrder
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.GetLogsPipelineOrder:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.GetLogsPipelineOrder:\n%s\n", response_content)
 }
 ```
 
@@ -387,7 +387,7 @@ func main() {
     }
     // response from `ListLogsPipelines`: []LogsPipeline
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.ListLogsPipelines:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.ListLogsPipelines:\n%s\n", response_content)
 }
 ```
 
@@ -466,7 +466,7 @@ func main() {
     }
     // response from `UpdateLogsPipeline`: LogsPipeline
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.UpdateLogsPipeline:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.UpdateLogsPipeline:\n%s\n", response_content)
 }
 ```
 
@@ -553,7 +553,7 @@ func main() {
     }
     // response from `UpdateLogsPipelineOrder`: LogsPipelinesOrder
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.UpdateLogsPipelineOrder:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.UpdateLogsPipelineOrder:\n%s\n", response_content)
 }
 ```
 

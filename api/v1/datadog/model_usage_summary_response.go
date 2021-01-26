@@ -17,6 +17,8 @@ import (
 type UsageSummaryResponse struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current months for all organizations.
 	AgentHostTop99pSum *int64 `json:"agent_host_top99p_sum,omitempty"`
+	// Shows the 99th percentile of all Azure app services using APM over all hours in the current months all organizations.
+	ApmAzureAppServiceHostTop99pSum *int64 `json:"apm_azure_app_service_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all distinct APM hosts over all hours in the current months for all organizations.
 	ApmHostTop99pSum *int64 `json:"apm_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all AWS hosts over all hours in the current months for all organizations.
@@ -55,8 +57,16 @@ type UsageSummaryResponse struct {
 	IngestedEventsBytesAggSum *int64 `json:"ingested_events_bytes_agg_sum,omitempty"`
 	// Shows the the most recent hour in the current months for all organizations for which all usages were calculated.
 	LastUpdated *time.Time `json:"last_updated,omitempty"`
+	// Shows the sum of all live logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020).
+	LiveIndexedEventsAggSum *int64 `json:"live_indexed_events_agg_sum,omitempty"`
+	// Shows the sum of all live logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020).
+	LiveIngestedBytesAggSum *int64 `json:"live_ingested_bytes_agg_sum,omitempty"`
 	// Shows the sum of all mobile RUM Sessions over all hours in the current months for all organizations.
 	MobileRumSessionCountAggSum *int64 `json:"mobile_rum_session_count_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM Sessions on Android over all hours in the current months for all organizations.
+	MobileRumSessionCountAndroidAggSum *int64 `json:"mobile_rum_session_count_android_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM Sessions on iOS over all hours in the current months for all organizations.
+	MobileRumSessionCountIosAggSum *int64 `json:"mobile_rum_session_count_ios_agg_sum,omitempty"`
 	// Shows the sum of all Network flows indexed over all hours in the current months for all organizations.
 	NetflowIndexedEventsCountAggSum *int64 `json:"netflow_indexed_events_count_agg_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current months for all organizations.
@@ -65,8 +75,14 @@ type UsageSummaryResponse struct {
 	ProfilingContainerAgentCountAvg *int64 `json:"profiling_container_agent_count_avg,omitempty"`
 	// Shows the 99th percentile of all profiled hosts over all hours in the current months for all organizations.
 	ProfilingHostCountTop99pSum *int64 `json:"profiling_host_count_top99p_sum,omitempty"`
+	// Shows the sum of all rehydrated logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020).
+	RehydratedIndexedEventsAggSum *int64 `json:"rehydrated_indexed_events_agg_sum,omitempty"`
+	// Shows the sum of all rehydrated logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020).
+	RehydratedIngestedBytesAggSum *int64 `json:"rehydrated_ingested_bytes_agg_sum,omitempty"`
 	// Shows the sum of all browser RUM Sessions over all hours in the current months for all organizations.
 	RumSessionCountAggSum *int64 `json:"rum_session_count_agg_sum,omitempty"`
+	// Shows the sum of RUM Sessions (browser and mobile) over all hours in the current months for all organizations.
+	RumTotalSessionCountAggSum *int64 `json:"rum_total_session_count_agg_sum,omitempty"`
 	// Shows the first date of usage in the current months for all organizations.
 	StartDate *time.Time `json:"start_date,omitempty"`
 	// Shows the sum of all Synthetic browser tests over all hours in the current months for all organizations.
@@ -128,6 +144,38 @@ func (o *UsageSummaryResponse) HasAgentHostTop99pSum() bool {
 // SetAgentHostTop99pSum gets a reference to the given int64 and assigns it to the AgentHostTop99pSum field.
 func (o *UsageSummaryResponse) SetAgentHostTop99pSum(v int64) {
 	o.AgentHostTop99pSum = &v
+}
+
+// GetApmAzureAppServiceHostTop99pSum returns the ApmAzureAppServiceHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetApmAzureAppServiceHostTop99pSum() int64 {
+	if o == nil || o.ApmAzureAppServiceHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ApmAzureAppServiceHostTop99pSum
+}
+
+// GetApmAzureAppServiceHostTop99pSumOk returns a tuple with the ApmAzureAppServiceHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetApmAzureAppServiceHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.ApmAzureAppServiceHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.ApmAzureAppServiceHostTop99pSum, true
+}
+
+// HasApmAzureAppServiceHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasApmAzureAppServiceHostTop99pSum() bool {
+	if o != nil && o.ApmAzureAppServiceHostTop99pSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApmAzureAppServiceHostTop99pSum gets a reference to the given int64 and assigns it to the ApmAzureAppServiceHostTop99pSum field.
+func (o *UsageSummaryResponse) SetApmAzureAppServiceHostTop99pSum(v int64) {
+	o.ApmAzureAppServiceHostTop99pSum = &v
 }
 
 // GetApmHostTop99pSum returns the ApmHostTop99pSum field value if set, zero value otherwise.
@@ -738,6 +786,70 @@ func (o *UsageSummaryResponse) SetLastUpdated(v time.Time) {
 	o.LastUpdated = &v
 }
 
+// GetLiveIndexedEventsAggSum returns the LiveIndexedEventsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetLiveIndexedEventsAggSum() int64 {
+	if o == nil || o.LiveIndexedEventsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.LiveIndexedEventsAggSum
+}
+
+// GetLiveIndexedEventsAggSumOk returns a tuple with the LiveIndexedEventsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetLiveIndexedEventsAggSumOk() (*int64, bool) {
+	if o == nil || o.LiveIndexedEventsAggSum == nil {
+		return nil, false
+	}
+	return o.LiveIndexedEventsAggSum, true
+}
+
+// HasLiveIndexedEventsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasLiveIndexedEventsAggSum() bool {
+	if o != nil && o.LiveIndexedEventsAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLiveIndexedEventsAggSum gets a reference to the given int64 and assigns it to the LiveIndexedEventsAggSum field.
+func (o *UsageSummaryResponse) SetLiveIndexedEventsAggSum(v int64) {
+	o.LiveIndexedEventsAggSum = &v
+}
+
+// GetLiveIngestedBytesAggSum returns the LiveIngestedBytesAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetLiveIngestedBytesAggSum() int64 {
+	if o == nil || o.LiveIngestedBytesAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.LiveIngestedBytesAggSum
+}
+
+// GetLiveIngestedBytesAggSumOk returns a tuple with the LiveIngestedBytesAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetLiveIngestedBytesAggSumOk() (*int64, bool) {
+	if o == nil || o.LiveIngestedBytesAggSum == nil {
+		return nil, false
+	}
+	return o.LiveIngestedBytesAggSum, true
+}
+
+// HasLiveIngestedBytesAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasLiveIngestedBytesAggSum() bool {
+	if o != nil && o.LiveIngestedBytesAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLiveIngestedBytesAggSum gets a reference to the given int64 and assigns it to the LiveIngestedBytesAggSum field.
+func (o *UsageSummaryResponse) SetLiveIngestedBytesAggSum(v int64) {
+	o.LiveIngestedBytesAggSum = &v
+}
+
 // GetMobileRumSessionCountAggSum returns the MobileRumSessionCountAggSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetMobileRumSessionCountAggSum() int64 {
 	if o == nil || o.MobileRumSessionCountAggSum == nil {
@@ -768,6 +880,70 @@ func (o *UsageSummaryResponse) HasMobileRumSessionCountAggSum() bool {
 // SetMobileRumSessionCountAggSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountAggSum field.
 func (o *UsageSummaryResponse) SetMobileRumSessionCountAggSum(v int64) {
 	o.MobileRumSessionCountAggSum = &v
+}
+
+// GetMobileRumSessionCountAndroidAggSum returns the MobileRumSessionCountAndroidAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetMobileRumSessionCountAndroidAggSum() int64 {
+	if o == nil || o.MobileRumSessionCountAndroidAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MobileRumSessionCountAndroidAggSum
+}
+
+// GetMobileRumSessionCountAndroidAggSumOk returns a tuple with the MobileRumSessionCountAndroidAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetMobileRumSessionCountAndroidAggSumOk() (*int64, bool) {
+	if o == nil || o.MobileRumSessionCountAndroidAggSum == nil {
+		return nil, false
+	}
+	return o.MobileRumSessionCountAndroidAggSum, true
+}
+
+// HasMobileRumSessionCountAndroidAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasMobileRumSessionCountAndroidAggSum() bool {
+	if o != nil && o.MobileRumSessionCountAndroidAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMobileRumSessionCountAndroidAggSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountAndroidAggSum field.
+func (o *UsageSummaryResponse) SetMobileRumSessionCountAndroidAggSum(v int64) {
+	o.MobileRumSessionCountAndroidAggSum = &v
+}
+
+// GetMobileRumSessionCountIosAggSum returns the MobileRumSessionCountIosAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetMobileRumSessionCountIosAggSum() int64 {
+	if o == nil || o.MobileRumSessionCountIosAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MobileRumSessionCountIosAggSum
+}
+
+// GetMobileRumSessionCountIosAggSumOk returns a tuple with the MobileRumSessionCountIosAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetMobileRumSessionCountIosAggSumOk() (*int64, bool) {
+	if o == nil || o.MobileRumSessionCountIosAggSum == nil {
+		return nil, false
+	}
+	return o.MobileRumSessionCountIosAggSum, true
+}
+
+// HasMobileRumSessionCountIosAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasMobileRumSessionCountIosAggSum() bool {
+	if o != nil && o.MobileRumSessionCountIosAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMobileRumSessionCountIosAggSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountIosAggSum field.
+func (o *UsageSummaryResponse) SetMobileRumSessionCountIosAggSum(v int64) {
+	o.MobileRumSessionCountIosAggSum = &v
 }
 
 // GetNetflowIndexedEventsCountAggSum returns the NetflowIndexedEventsCountAggSum field value if set, zero value otherwise.
@@ -898,6 +1074,70 @@ func (o *UsageSummaryResponse) SetProfilingHostCountTop99pSum(v int64) {
 	o.ProfilingHostCountTop99pSum = &v
 }
 
+// GetRehydratedIndexedEventsAggSum returns the RehydratedIndexedEventsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRehydratedIndexedEventsAggSum() int64 {
+	if o == nil || o.RehydratedIndexedEventsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RehydratedIndexedEventsAggSum
+}
+
+// GetRehydratedIndexedEventsAggSumOk returns a tuple with the RehydratedIndexedEventsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRehydratedIndexedEventsAggSumOk() (*int64, bool) {
+	if o == nil || o.RehydratedIndexedEventsAggSum == nil {
+		return nil, false
+	}
+	return o.RehydratedIndexedEventsAggSum, true
+}
+
+// HasRehydratedIndexedEventsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRehydratedIndexedEventsAggSum() bool {
+	if o != nil && o.RehydratedIndexedEventsAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRehydratedIndexedEventsAggSum gets a reference to the given int64 and assigns it to the RehydratedIndexedEventsAggSum field.
+func (o *UsageSummaryResponse) SetRehydratedIndexedEventsAggSum(v int64) {
+	o.RehydratedIndexedEventsAggSum = &v
+}
+
+// GetRehydratedIngestedBytesAggSum returns the RehydratedIngestedBytesAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRehydratedIngestedBytesAggSum() int64 {
+	if o == nil || o.RehydratedIngestedBytesAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RehydratedIngestedBytesAggSum
+}
+
+// GetRehydratedIngestedBytesAggSumOk returns a tuple with the RehydratedIngestedBytesAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRehydratedIngestedBytesAggSumOk() (*int64, bool) {
+	if o == nil || o.RehydratedIngestedBytesAggSum == nil {
+		return nil, false
+	}
+	return o.RehydratedIngestedBytesAggSum, true
+}
+
+// HasRehydratedIngestedBytesAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRehydratedIngestedBytesAggSum() bool {
+	if o != nil && o.RehydratedIngestedBytesAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRehydratedIngestedBytesAggSum gets a reference to the given int64 and assigns it to the RehydratedIngestedBytesAggSum field.
+func (o *UsageSummaryResponse) SetRehydratedIngestedBytesAggSum(v int64) {
+	o.RehydratedIngestedBytesAggSum = &v
+}
+
 // GetRumSessionCountAggSum returns the RumSessionCountAggSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetRumSessionCountAggSum() int64 {
 	if o == nil || o.RumSessionCountAggSum == nil {
@@ -928,6 +1168,38 @@ func (o *UsageSummaryResponse) HasRumSessionCountAggSum() bool {
 // SetRumSessionCountAggSum gets a reference to the given int64 and assigns it to the RumSessionCountAggSum field.
 func (o *UsageSummaryResponse) SetRumSessionCountAggSum(v int64) {
 	o.RumSessionCountAggSum = &v
+}
+
+// GetRumTotalSessionCountAggSum returns the RumTotalSessionCountAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumTotalSessionCountAggSum() int64 {
+	if o == nil || o.RumTotalSessionCountAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumTotalSessionCountAggSum
+}
+
+// GetRumTotalSessionCountAggSumOk returns a tuple with the RumTotalSessionCountAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumTotalSessionCountAggSumOk() (*int64, bool) {
+	if o == nil || o.RumTotalSessionCountAggSum == nil {
+		return nil, false
+	}
+	return o.RumTotalSessionCountAggSum, true
+}
+
+// HasRumTotalSessionCountAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumTotalSessionCountAggSum() bool {
+	if o != nil && o.RumTotalSessionCountAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRumTotalSessionCountAggSum gets a reference to the given int64 and assigns it to the RumTotalSessionCountAggSum field.
+func (o *UsageSummaryResponse) SetRumTotalSessionCountAggSum(v int64) {
+	o.RumTotalSessionCountAggSum = &v
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
@@ -1127,6 +1399,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.AgentHostTop99pSum != nil {
 		toSerialize["agent_host_top99p_sum"] = o.AgentHostTop99pSum
 	}
+	if o.ApmAzureAppServiceHostTop99pSum != nil {
+		toSerialize["apm_azure_app_service_host_top99p_sum"] = o.ApmAzureAppServiceHostTop99pSum
+	}
 	if o.ApmHostTop99pSum != nil {
 		toSerialize["apm_host_top99p_sum"] = o.ApmHostTop99pSum
 	}
@@ -1184,8 +1459,20 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.LastUpdated != nil {
 		toSerialize["last_updated"] = o.LastUpdated
 	}
+	if o.LiveIndexedEventsAggSum != nil {
+		toSerialize["live_indexed_events_agg_sum"] = o.LiveIndexedEventsAggSum
+	}
+	if o.LiveIngestedBytesAggSum != nil {
+		toSerialize["live_ingested_bytes_agg_sum"] = o.LiveIngestedBytesAggSum
+	}
 	if o.MobileRumSessionCountAggSum != nil {
 		toSerialize["mobile_rum_session_count_agg_sum"] = o.MobileRumSessionCountAggSum
+	}
+	if o.MobileRumSessionCountAndroidAggSum != nil {
+		toSerialize["mobile_rum_session_count_android_agg_sum"] = o.MobileRumSessionCountAndroidAggSum
+	}
+	if o.MobileRumSessionCountIosAggSum != nil {
+		toSerialize["mobile_rum_session_count_ios_agg_sum"] = o.MobileRumSessionCountIosAggSum
 	}
 	if o.NetflowIndexedEventsCountAggSum != nil {
 		toSerialize["netflow_indexed_events_count_agg_sum"] = o.NetflowIndexedEventsCountAggSum
@@ -1199,8 +1486,17 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.ProfilingHostCountTop99pSum != nil {
 		toSerialize["profiling_host_count_top99p_sum"] = o.ProfilingHostCountTop99pSum
 	}
+	if o.RehydratedIndexedEventsAggSum != nil {
+		toSerialize["rehydrated_indexed_events_agg_sum"] = o.RehydratedIndexedEventsAggSum
+	}
+	if o.RehydratedIngestedBytesAggSum != nil {
+		toSerialize["rehydrated_ingested_bytes_agg_sum"] = o.RehydratedIngestedBytesAggSum
+	}
 	if o.RumSessionCountAggSum != nil {
 		toSerialize["rum_session_count_agg_sum"] = o.RumSessionCountAggSum
+	}
+	if o.RumTotalSessionCountAggSum != nil {
+		toSerialize["rum_total_session_count_agg_sum"] = o.RumTotalSessionCountAggSum
 	}
 	if o.StartDate != nil {
 		toSerialize["start_date"] = o.StartDate

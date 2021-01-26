@@ -51,7 +51,7 @@ func main() {
     }
     // response from `Validate`: AuthenticationValidationResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AuthenticationApi.Validate:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from AuthenticationApi.Validate:\n%s\n", response_content)
 }
 ```
 
