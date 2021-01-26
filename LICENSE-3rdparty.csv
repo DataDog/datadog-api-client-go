@@ -45,3 +45,6 @@ go.sum,gopkg.in/DataDog/dd-trace-go.v1,Apache-2.0,2016-Present Datadog, Inc.
 go.sum,gopkg.in/h2non/gock.v1,MIT,2016-2019 Tomas Aparicio
 go.sum,gopkg.in/yaml.v2,Apache-2.0,2011-2016 Canonical Ltd.
 go.sum,gotest.tools,Apache-2.0,2018 gotest.tools authors
+go.sum,github.com/google/uuid,<LICENSE>,<COPYRIGHT>
+go.sum,github.com/mitchellh/go-homedir,<LICENSE>,<COPYRIGHT>
+go.sum,gopkg.in/yaml.v3,<LICENSE>,<COPYRIGHT>
