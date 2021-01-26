@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Facet** | **string** | The name of the facet to use (required) | 
 **Histogram** | Pointer to [**LogsGroupByHistogram**](LogsGroupBy_histogram.md) |  | [optional] 
-**Limit** | Pointer to **int32** | The maximum buckets to return for this group by | [optional] [default to 10]
+**Limit** | Pointer to **int64** | The maximum buckets to return for this group by | [optional] [default to 10]
 **Missing** | Pointer to [**LogsGroupByMissing**](LogsGroupByMissing.md) |  | [optional] 
 **Sort** | Pointer to [**LogsAggregateSort**](LogsAggregateSort.md) |  | [optional] 
 **Total** | Pointer to [**LogsGroupByTotal**](LogsGroupByTotal.md) |  | [optional] 
@@ -77,20 +77,20 @@ HasHistogram returns a boolean if a field has been set.
 
 ### GetLimit
 
-`func (o *LogsGroupBy) GetLimit() int32`
+`func (o *LogsGroupBy) GetLimit() int64`
 
 GetLimit returns the Limit field if non-nil, zero value otherwise.
 
 ### GetLimitOk
 
-`func (o *LogsGroupBy) GetLimitOk() (*int32, bool)`
+`func (o *LogsGroupBy) GetLimitOk() (*int64, bool)`
 
 GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLimit
 
-`func (o *LogsGroupBy) SetLimit(v int32)`
+`func (o *LogsGroupBy) SetLimit(v int64)`
 
 SetLimit sets Limit field to given value.
 

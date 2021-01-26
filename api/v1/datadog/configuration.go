@@ -117,6 +117,7 @@ func NewConfiguration() *Configuration {
 						EnumValues: []string{
 							"datadoghq.com",
 							"datadoghq.eu",
+							"ddog-gov.com",
 						},
 					},
 					"subdomain": ServerVariable{
@@ -251,6 +252,7 @@ func NewConfiguration() *Configuration {
 							EnumValues: []string{
 								"datadoghq.com",
 								"datadoghq.eu",
+								"ddog-gov.com",
 							},
 						},
 						"subdomain": ServerVariable{
@@ -276,11 +278,17 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
+			"CreateLogsIndex":                  false,
 			"GetLogsIndex":                     false,
 			"GetLogsIndexOrder":                false,
 			"ListLogIndexes":                   false,
 			"UpdateLogsIndex":                  false,
 			"UpdateLogsIndexOrder":             false,
+			"CreateSLOCorrection":              false,
+			"DeleteSLOCorrection":              false,
+			"GetSLOCorrection":                 false,
+			"ListSLOCorrection":                false,
+			"UpdateSLOCorrection":              false,
 			"GetSLOHistory":                    false,
 			"GetDailyCustomReports":            false,
 			"GetMonthlyCustomReports":          false,

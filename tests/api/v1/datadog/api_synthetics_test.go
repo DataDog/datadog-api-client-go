@@ -29,7 +29,7 @@ var targetValue0 interface{} = "0"
 
 func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
 	assertionTextHTML := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
-	assertionTextHTML.Property = datadog.PtrString("content-type")
+	assertionTextHTML.Property = datadog.PtrString("{{ PROPERTY }}")
 	assertionTextHTML.Target = &targetTextHTML
 
 	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
@@ -50,6 +50,14 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertionTextHTML),
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
 				datadog.SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion(targetJSONPath),
+			},
+			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
+				datadog.SyntheticsConfigVariable{
+					Name: "PROPERTY",
+					Example: "content-type",
+					Pattern: datadog.PtrString("content-type"),
+					Type: datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+				},
 			},
 			Request: datadog.SyntheticsTestRequest{
 				Headers: &map[string]string{"testingGoClient": "true"},
@@ -227,7 +235,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 		} else if assertion.SyntheticsAssertionTarget != nil {
 			if assertion.SyntheticsAssertionTarget.Type == datadog.SYNTHETICSASSERTIONTYPE_HEADER {
 				assert.Equal(datadog.SYNTHETICSASSERTIONOPERATOR_IS, assertion.SyntheticsAssertionTarget.Operator)
-				assert.Equal("content-type", assertion.SyntheticsAssertionTarget.GetProperty())
+				assert.Equal("{{ PROPERTY }}", assertion.SyntheticsAssertionTarget.GetProperty())
 				assert.Equal("text/html", assertion.SyntheticsAssertionTarget.GetTarget().(string))
 			} else if assertion.SyntheticsAssertionTarget.Type == datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME {
 				assert.Equal(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, assertion.SyntheticsAssertionTarget.Operator)
@@ -1226,6 +1234,64 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(result.GetName(), updatedName)
+
+	// Delete variable
+	httpresp, err = Client(ctx).SyntheticsApi.DeleteGlobalVariable(ctx, result.GetId()).Execute()
+	if err != nil {
+		t.Fatalf("Error deleting Synthetics global variable %s: Response %s: %v", result.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+}
+
+func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	// create test to use
+	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	publicID := synt.GetPublicId()
+	defer deleteSyntheticsTestIfExists(ctx, publicID)
+
+	variable := datadog.SyntheticsGlobalVariable{
+		Name:        strings.Replace(strings.ToUpper(*tests.UniqueEntityName(ctx, t)), "-", "_", -1),
+		Description: "variable from test description",
+		ParseTestPublicId: datadog.PtrString(publicID),
+		ParseTestOptions: &datadog.SyntheticsGlobalVariableParseTestOptions{
+			Parser: datadog.SyntheticsGlobalVariableParseTestOptionsParser{
+				Type: datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW,
+			},
+			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER,
+			Field: datadog.PtrString("content-type"),
+		},
+		Tags:        []string{"synthetics"},
+		Value: datadog.SyntheticsGlobalVariableValue{
+			Secure: datadog.PtrBool(false),
+			Value:  "",
+		},
+	}
+
+	// Create variable
+	result, httpresp, err := Client(ctx).SyntheticsApi.CreateGlobalVariable(ctx).Body(variable).Execute()
+
+	if err != nil {
+		t.Fatalf("Error creating Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(result.GetName(), variable.GetName())
+
+	// Get variable
+	result, httpresp, err = Client(ctx).SyntheticsApi.GetGlobalVariable(ctx, result.GetId()).Execute()
+
+	if err != nil {
+		t.Fatalf("Error getting Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(result.GetName(), variable.GetName())
 
 	// Delete variable
 	httpresp, err = Client(ctx).SyntheticsApi.DeleteGlobalVariable(ctx, result.GetId()).Execute()

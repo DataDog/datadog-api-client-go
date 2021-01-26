@@ -60,7 +60,7 @@ func main() {
     }
     // response from `CreateIncidentTeam`: IncidentTeamResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.CreateIncidentTeam:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.CreateIncidentTeam:\n%s\n", response_content)
 }
 ```
 
@@ -214,7 +214,7 @@ func main() {
     )
 
     teamId := "teamId_example" // string | The ID of the incident team.
-    include := "include_example" // string | Specifies which types of related objects should be included in the response. (optional)
+    include := datadog.IncidentRelatedObject("users") // IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetIncidentTeam", true)
@@ -227,7 +227,7 @@ func main() {
     }
     // response from `GetIncidentTeam`: IncidentTeamResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.GetIncidentTeam:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.GetIncidentTeam:\n%s\n", response_content)
 }
 ```
 
@@ -247,7 +247,7 @@ Other parameters are passed through a pointer to a apiGetIncidentTeamRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **include** | **string** | Specifies which types of related objects should be included in the response. | 
+ **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
 
 ### Return type
 
@@ -302,7 +302,7 @@ func main() {
         },
     )
 
-    include := "include_example" // string | Specifies which types of related objects should be included in the response. (optional)
+    include := datadog.IncidentRelatedObject("users") // IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageOffset := int64(789) // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
     filter := "ExampleTeamName" // string | A search query that filters teams by name. (optional)
@@ -318,7 +318,7 @@ func main() {
     }
     // response from `ListIncidentTeams`: IncidentTeamsResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.ListIncidentTeams:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.ListIncidentTeams:\n%s\n", response_content)
 }
 ```
 
@@ -333,7 +333,7 @@ Other parameters are passed through a pointer to a apiListIncidentTeamsRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include** | **string** | Specifies which types of related objects should be included in the response. | 
+ **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
  **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
  **filter** | **string** | A search query that filters teams by name. | 
@@ -405,7 +405,7 @@ func main() {
     }
     // response from `UpdateIncidentTeam`: IncidentTeamResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.UpdateIncidentTeam:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentTeamsApi.UpdateIncidentTeam:\n%s\n", response_content)
 }
 ```
 

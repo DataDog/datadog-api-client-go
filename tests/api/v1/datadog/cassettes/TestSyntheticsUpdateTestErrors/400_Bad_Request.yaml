@@ -13,14 +13,14 @@ interactions:
       Dd-Operation-Id:
       - UpdateTest
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.9+dev (go go1.14.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "366665484889072764"
+      - "2804804318006398348"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1151515468853391578"
-    url: https://api.datadoghq.com/api/v1/synthetics/tests/ync-eb6-yie
+      - "8740678075222685266"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/gzu-k39-sv6
     method: PUT
   response:
     body: '{"errors": ["Required parameter ''type'' is missing"]}'
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 16 Oct 2020 11:29:28 GMT
+      - Tue, 15 Dec 2020 13:54:05 GMT
       Dd-Pool:
       - dogweb
       Pragma:
@@ -44,7 +44,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.3204982"
+      - "35.3543624"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,7 +54,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "499"
       X-Ratelimit-Reset:
-      - "32"
+      - "55"
     status: 400 Bad Request
     code: 400
     duration: ""

@@ -2,7 +2,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"reflect"
 	"strings"
@@ -17,9 +16,17 @@ import (
 )
 
 func TestScenarios(t *testing.T) {
-	requestsUndo := tests.LoadRequestsUndo("./features/undo.json")
+	requestsUndo, err := tests.LoadRequestsUndo("./features/undo.json")
+	if err != nil {
+		t.Fatalf("could not load undo actions: %v", err)
+	}
+	var bddTags []string
+	if tags, ok := os.LookupEnv("BDD_TAGS"); ok {
+		bddTags = strings.Split(tags, ",")
+	}
 	s := gobdd.NewSuite(
 		t,
+		gobdd.WithTags(bddTags),
 		gobdd.WithIgnoredTags(tests.GetIgnoredTags()),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
@@ -120,7 +127,7 @@ func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 
 	f := reflect.Indirect(ct).FieldByName(name + "Api")
 	if !f.IsValid() {
-		panic(fmt.Sprintf("invalid API name %s", name))
+		t.Fatalf("invalid API name %s", name)
 	}
 	tests.SetAPI(ctx, f)
 }

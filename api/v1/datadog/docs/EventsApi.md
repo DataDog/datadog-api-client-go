@@ -56,7 +56,7 @@ func main() {
     }
     // response from `GetEvent`: EventResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from EventsApi.GetEvent:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from EventsApi.GetEvent:\n%s\n", response_content)
 }
 ```
 
@@ -147,7 +147,7 @@ func main() {
     }
     // response from `ListEvents`: EventListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from EventsApi.ListEvents:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from EventsApi.ListEvents:\n%s\n", response_content)
 }
 ```
 

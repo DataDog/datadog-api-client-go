@@ -60,7 +60,7 @@ func main() {
     }
     // response from `CreateIncidentService`: IncidentServiceResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.CreateIncidentService:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.CreateIncidentService:\n%s\n", response_content)
 }
 ```
 
@@ -214,7 +214,7 @@ func main() {
     )
 
     serviceId := "serviceId_example" // string | The ID of the incident service.
-    include := "include_example" // string | Specifies which types of related objects should be included in the response. (optional)
+    include := datadog.IncidentRelatedObject("users") // IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetIncidentService", true)
@@ -227,7 +227,7 @@ func main() {
     }
     // response from `GetIncidentService`: IncidentServiceResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.GetIncidentService:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.GetIncidentService:\n%s\n", response_content)
 }
 ```
 
@@ -247,7 +247,7 @@ Other parameters are passed through a pointer to a apiGetIncidentServiceRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **include** | **string** | Specifies which types of related objects should be included in the response. | 
+ **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
 
 ### Return type
 
@@ -302,7 +302,7 @@ func main() {
         },
     )
 
-    include := "include_example" // string | Specifies which types of related objects should be included in the response. (optional)
+    include := datadog.IncidentRelatedObject("users") // IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageOffset := int64(789) // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
     filter := "ExampleServiceName" // string | A search query that filters services by name. (optional)
@@ -318,7 +318,7 @@ func main() {
     }
     // response from `ListIncidentServices`: IncidentServicesResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.ListIncidentServices:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.ListIncidentServices:\n%s\n", response_content)
 }
 ```
 
@@ -333,7 +333,7 @@ Other parameters are passed through a pointer to a apiListIncidentServicesReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include** | **string** | Specifies which types of related objects should be included in the response. | 
+ **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
  **pageSize** | **int64** | Size for a given page. | [default to 10]
  **pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
  **filter** | **string** | A search query that filters services by name. | 
@@ -405,7 +405,7 @@ func main() {
     }
     // response from `UpdateIncidentService`: IncidentServiceResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.UpdateIncidentService:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from IncidentServicesApi.UpdateIncidentService:\n%s\n", response_content)
 }
 ```
 

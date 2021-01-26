@@ -59,7 +59,7 @@ func main() {
     }
     // response from `GetMetricMetadata`: MetricMetadata
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MetricsApi.GetMetricMetadata:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.GetMetricMetadata:\n%s\n", response_content)
 }
 ```
 
@@ -146,7 +146,7 @@ func main() {
     }
     // response from `ListActiveMetrics`: MetricsListResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListActiveMetrics:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListActiveMetrics:\n%s\n", response_content)
 }
 ```
 
@@ -229,7 +229,7 @@ func main() {
     }
     // response from `ListMetrics`: MetricSearchResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListMetrics:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListMetrics:\n%s\n", response_content)
 }
 ```
 
@@ -313,7 +313,7 @@ func main() {
     }
     // response from `QueryMetrics`: MetricsQueryResponse
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MetricsApi.QueryMetrics:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.QueryMetrics:\n%s\n", response_content)
 }
 ```
 
@@ -398,7 +398,7 @@ func main() {
     }
     // response from `UpdateMetricMetadata`: MetricMetadata
     response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MetricsApi.UpdateMetricMetadata:\n%v\n", response_content)
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.UpdateMetricMetadata:\n%s\n", response_content)
 }
 ```
 

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Cases** | Pointer to [**[]SecurityMonitoringRuleCase**](SecurityMonitoringRuleCase.md) | Cases for generating signals. | [optional] 
 **CreatedAt** | Pointer to **int64** | When the rule was created, timestamp in milliseconds. | [optional] 
 **CreationAuthorId** | Pointer to **int64** | User ID of the user who created the rule. | [optional] 
+**Filters** | Pointer to [**[]SecurityMonitoringFilter**](SecurityMonitoringFilter.md) | Additional queries to filter matched events before they are processed. | [optional] 
 **Id** | Pointer to **string** | The ID of the rule. | [optional] 
 **IsDefault** | Pointer to **bool** | Whether the rule is included by default. | [optional] 
 **IsDeleted** | Pointer to **bool** | Whether the rule has been deleted. | [optional] 
@@ -111,6 +112,31 @@ SetCreationAuthorId sets CreationAuthorId field to given value.
 `func (o *SecurityMonitoringRuleResponse) HasCreationAuthorId() bool`
 
 HasCreationAuthorId returns a boolean if a field has been set.
+
+### GetFilters
+
+`func (o *SecurityMonitoringRuleResponse) GetFilters() []SecurityMonitoringFilter`
+
+GetFilters returns the Filters field if non-nil, zero value otherwise.
+
+### GetFiltersOk
+
+`func (o *SecurityMonitoringRuleResponse) GetFiltersOk() (*[]SecurityMonitoringFilter, bool)`
+
+GetFiltersOk returns a tuple with the Filters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilters
+
+`func (o *SecurityMonitoringRuleResponse) SetFilters(v []SecurityMonitoringFilter)`
+
+SetFilters sets Filters field to given value.
+
+### HasFilters
+
+`func (o *SecurityMonitoringRuleResponse) HasFilters() bool`
+
+HasFilters returns a boolean if a field has been set.
 
 ### GetId
 
