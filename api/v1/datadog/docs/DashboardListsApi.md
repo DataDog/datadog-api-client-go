@@ -27,6 +27,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -46,17 +47,19 @@ func main() {
         },
     )
 
-    body := datadog.DashboardList{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", DashboardCount: int64(123), Id: int64(123), IsFavorite: false, Modified: "TODO", Name: "Name_example", Type: "Type_example"} // DashboardList | Create a dashboard list request body.
+    body := *datadog.NewDashboardList("My Dashboard") // DashboardList | Create a dashboard list request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.CreateDashboardList(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.DashboardListsApi.CreateDashboardList(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateDashboardList`: DashboardList
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.CreateDashboardList`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.CreateDashboardList:\n%s\n", response_content)
 }
 ```
 
@@ -106,6 +109,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -125,17 +129,19 @@ func main() {
         },
     )
 
-    listId := 987 // int64 | ID of the dashboard list to delete.
+    listId := int64(789) // int64 | ID of the dashboard list to delete.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.DeleteDashboardList(context.Background(), listId).Execute()
+    resp, r, err := api_client.DashboardListsApi.DeleteDashboardList(ctx, listId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.DeleteDashboardList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteDashboardList`: DashboardListDeleteResponse
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.DeleteDashboardList`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.DeleteDashboardList:\n%s\n", response_content)
 }
 ```
 
@@ -189,6 +195,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -208,17 +215,19 @@ func main() {
         },
     )
 
-    listId := 987 // int64 | ID of the dashboard list to fetch.
+    listId := int64(789) // int64 | ID of the dashboard list to fetch.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.GetDashboardList(context.Background(), listId).Execute()
+    resp, r, err := api_client.DashboardListsApi.GetDashboardList(ctx, listId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.GetDashboardList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDashboardList`: DashboardList
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.GetDashboardList`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.GetDashboardList:\n%s\n", response_content)
 }
 ```
 
@@ -272,6 +281,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -293,14 +303,16 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.ListDashboardLists(context.Background()).Execute()
+    resp, r, err := api_client.DashboardListsApi.ListDashboardLists(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.ListDashboardLists``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListDashboardLists`: DashboardListListResponse
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.ListDashboardLists`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.ListDashboardLists:\n%s\n", response_content)
 }
 ```
 
@@ -346,6 +358,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -365,18 +378,20 @@ func main() {
         },
     )
 
-    listId := 987 // int64 | ID of the dashboard list to update.
-    body := datadog.DashboardList{Author: datadog.Creator{Email: "Email_example", Handle: "Handle_example", Name: "Name_example"}, Created: "TODO", DashboardCount: int64(123), Id: int64(123), IsFavorite: false, Modified: "TODO", Name: "Name_example", Type: "Type_example"} // DashboardList | Update a dashboard list request body.
+    listId := int64(789) // int64 | ID of the dashboard list to update.
+    body := *datadog.NewDashboardList("My Dashboard") // DashboardList | Update a dashboard list request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.DashboardListsApi.UpdateDashboardList(context.Background(), listId).Body(body).Execute()
+    resp, r, err := api_client.DashboardListsApi.UpdateDashboardList(ctx, listId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateDashboardList`: DashboardList
-    fmt.Fprintf(os.Stdout, "Response from `DashboardListsApi.UpdateDashboardList`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DashboardListsApi.UpdateDashboardList:\n%s\n", response_content)
 }
 ```
 

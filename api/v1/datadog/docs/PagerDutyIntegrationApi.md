@@ -26,6 +26,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -45,17 +46,19 @@ func main() {
         },
     )
 
-    body := datadog.PagerDutyService{ServiceKey: "ServiceKey_example", ServiceName: "ServiceName_example"} // PagerDutyService | Create a new service object request body.
+    body := *datadog.NewPagerDutyService("ServiceKey_example", "ServiceName_example") // PagerDutyService | Create a new service object request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.CreatePagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreatePagerDutyIntegrationService`: PagerDutyServiceName
-    fmt.Fprintf(os.Stdout, "Response from `PagerDutyIntegrationApi.CreatePagerDutyIntegrationService`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from PagerDutyIntegrationApi.CreatePagerDutyIntegrationService:\n%s\n", response_content)
 }
 ```
 
@@ -127,8 +130,9 @@ func main() {
     serviceName := "serviceName_example" // string | The service name
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(context.Background(), serviceName).Execute()
+    r, err := api_client.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(ctx, serviceName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.DeletePagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -186,6 +190,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -208,14 +213,16 @@ func main() {
     serviceName := "serviceName_example" // string | The service name.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(context.Background(), serviceName).Execute()
+    resp, r, err := api_client.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(ctx, serviceName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.GetPagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetPagerDutyIntegrationService`: PagerDutyServiceName
-    fmt.Fprintf(os.Stdout, "Response from `PagerDutyIntegrationApi.GetPagerDutyIntegrationService`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from PagerDutyIntegrationApi.GetPagerDutyIntegrationService:\n%s\n", response_content)
 }
 ```
 
@@ -289,11 +296,12 @@ func main() {
     )
 
     serviceName := "serviceName_example" // string | The service name
-    body := datadog.PagerDutyServiceKey{ServiceKey: "ServiceKey_example"} // PagerDutyServiceKey | Update an existing service object request body.
+    body := *datadog.NewPagerDutyServiceKey("ServiceKey_example") // PagerDutyServiceKey | Update an existing service object request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(context.Background(), serviceName).Body(body).Execute()
+    r, err := api_client.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, serviceName).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

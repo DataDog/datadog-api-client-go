@@ -26,6 +26,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -45,17 +46,19 @@ func main() {
         },
     )
 
-    body := datadog.GCPAccount{AuthProviderX509CertUrl: "AuthProviderX509CertUrl_example", AuthUri: "AuthUri_example", Automute: false, ClientEmail: "ClientEmail_example", ClientId: "ClientId_example", ClientX509CertUrl: "ClientX509CertUrl_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", PrivateKey: "PrivateKey_example", PrivateKeyId: "PrivateKeyId_example", ProjectId: "ProjectId_example", TokenUri: "TokenUri_example", Type: "Type_example"} // GCPAccount | Create a Datadog-GCP integration.
+    body := *datadog.NewGCPAccount() // GCPAccount | Create a Datadog-GCP integration.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.GCPIntegrationApi.CreateGCPIntegration(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.GCPIntegrationApi.CreateGCPIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.CreateGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateGCPIntegration`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `GCPIntegrationApi.CreateGCPIntegration`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.CreateGCPIntegration:\n%s\n", response_content)
 }
 ```
 
@@ -105,6 +108,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -124,17 +128,19 @@ func main() {
         },
     )
 
-    body := datadog.GCPAccount{AuthProviderX509CertUrl: "AuthProviderX509CertUrl_example", AuthUri: "AuthUri_example", Automute: false, ClientEmail: "ClientEmail_example", ClientId: "ClientId_example", ClientX509CertUrl: "ClientX509CertUrl_example", Errors: []string{"Errors_example"), HostFilters: "HostFilters_example", PrivateKey: "PrivateKey_example", PrivateKeyId: "PrivateKeyId_example", ProjectId: "ProjectId_example", TokenUri: "TokenUri_example", Type: "Type_example"} // GCPAccount | Delete a given Datadog-GCP integration.
+    body := *datadog.NewGCPAccount() // GCPAccount | Delete a given Datadog-GCP integration.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.GCPIntegrationApi.DeleteGCPIntegration(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.GCPIntegrationApi.DeleteGCPIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.DeleteGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteGCPIntegration`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `GCPIntegrationApi.DeleteGCPIntegration`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.DeleteGCPIntegration:\n%s\n", response_content)
 }
 ```
 
@@ -184,6 +190,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -205,14 +212,16 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.GCPIntegrationApi.ListGCPIntegration(context.Background()).Execute()
+    resp, r, err := api_client.GCPIntegrationApi.ListGCPIntegration(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.ListGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListGCPIntegration`: []GCPAccount
-    fmt.Fprintf(os.Stdout, "Response from `GCPIntegrationApi.ListGCPIntegration`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.ListGCPIntegration:\n%s\n", response_content)
 }
 ```
 
@@ -258,6 +267,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -277,17 +287,19 @@ func main() {
         },
     )
 
-    body :=  // GCPAccount | Update a Datadog-GCP integration.
+    body := *datadog.NewGCPAccount() // GCPAccount | Update a Datadog-GCP integration.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.GCPIntegrationApi.UpdateGCPIntegration(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.GCPIntegrationApi.UpdateGCPIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.UpdateGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateGCPIntegration`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `GCPIntegrationApi.UpdateGCPIntegration`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from GCPIntegrationApi.UpdateGCPIntegration:\n%s\n", response_content)
 }
 ```
 

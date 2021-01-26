@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **SourceType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **Sources** | **[]string** | Array of source attributes. | 
 **Target** | **string** | Final attribute or tag name to remap the sources to. | 
+**TargetFormat** | Pointer to [**TargetFormatType**](TargetFormatType.md) |  | [optional] 
 **TargetType** | Pointer to **string** | Defines if the final attribute or tag name is from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **Type** | [**LogsAttributeRemapperType**](LogsAttributeRemapperType.md) |  | [default to "attribute-remapper"]
 
@@ -197,6 +198,31 @@ and a boolean to check if the value has been set.
 
 SetTarget sets Target field to given value.
 
+
+### GetTargetFormat
+
+`func (o *LogsAttributeRemapper) GetTargetFormat() TargetFormatType`
+
+GetTargetFormat returns the TargetFormat field if non-nil, zero value otherwise.
+
+### GetTargetFormatOk
+
+`func (o *LogsAttributeRemapper) GetTargetFormatOk() (*TargetFormatType, bool)`
+
+GetTargetFormatOk returns a tuple with the TargetFormat field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetFormat
+
+`func (o *LogsAttributeRemapper) SetTargetFormat(v TargetFormatType)`
+
+SetTargetFormat sets TargetFormat field to given value.
+
+### HasTargetFormat
+
+`func (o *LogsAttributeRemapper) HasTargetFormat() bool`
+
+HasTargetFormat returns a boolean if a field has been set.
 
 ### GetTargetType
 

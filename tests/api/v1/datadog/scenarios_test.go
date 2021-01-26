@@ -2,7 +2,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"reflect"
 	"strings"
@@ -16,14 +15,19 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
-var requestsUndo = map[string]func(ctx gobdd.Context){
-	"GetIPRanges": func(ctx gobdd.Context) {},
-}
-
 func TestScenarios(t *testing.T) {
+	requestsUndo, err := tests.LoadRequestsUndo("./features/undo.json")
+	if err != nil {
+		t.Fatalf("could not load undo actions: %v", err)
+	}
+	var bddTags []string
+	if tags, ok := os.LookupEnv("BDD_TAGS"); ok {
+		bddTags = strings.Split(tags, ",")
+	}
 	s := gobdd.NewSuite(
 		t,
-		gobdd.WithIgnoredTags([]string{"@skip"}),
+		gobdd.WithTags(bddTags),
+		gobdd.WithIgnoredTags(tests.GetIgnoredTags()),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
 			cctx, finish := WithRecorder(
@@ -79,6 +83,11 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`a valid "apiKeyAuth" key in the system`, aValidAPIKeyAuth)
 	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
+
+	for _, givenStep := range tests.LoadGivenSteps("./features/given.json") {
+		givenStep.RegisterSuite(s)
+	}
+
 	s.Run()
 }
 
@@ -114,9 +123,11 @@ func aValidAppKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
 func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	client := Client(tests.GetCtx(ctx))
 	ct := reflect.ValueOf(client)
+	tests.SetClient(ctx, ct)
+
 	f := reflect.Indirect(ct).FieldByName(name + "Api")
 	if !f.IsValid() {
-		panic(fmt.Sprintf("invalid API name %s", name))
+		t.Fatalf("invalid API name %s", name)
 	}
 	tests.SetAPI(ctx, f)
 }

@@ -1,0 +1,38 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetUsageAttribution
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.11 (go go1.15; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8971958325381126221"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3913034877789989940"
+    url: https://api.datadoghq.com/api/v1/usage/attribution?fields=%2A&start_month=2020-12-17T16%3A26%3A27-03%3A00
+    method: GET
+  response:
+    body: |
+      {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 17 Nov 2020 19:26:27 GMT
+      Via:
+      - 1.1 haproxy
+    status: 403 Forbidden
+    code: 403
+    duration: ""

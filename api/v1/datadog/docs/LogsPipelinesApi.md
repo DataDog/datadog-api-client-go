@@ -29,6 +29,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -48,17 +49,19 @@ func main() {
         },
     )
 
-    body := datadog.LogsPipeline{Filter: datadog.LogsFilter{Query: "Query_example"}, Id: "Id_example", IsEnabled: false, IsReadOnly: false, Name: "Name_example", Processors: []LogsProcessor{datadog.LogsProcessor{Grok: datadog.LogsGrokParserRules{MatchRules: "MatchRules_example", SupportRules: "SupportRules_example"}, IsEnabled: false, Name: "Name_example", Samples: []string{"Samples_example"), Source: "Source_example", Type: datadog.LogsTraceRemapperType{}, Sources: []string{"Sources_example"), OverrideOnConflict: false, PreserveSource: false, SourceType: "SourceType_example", Target: "Target_example", TargetType: "TargetType_example", NormalizeEndingSlashes: false, IsEncoded: false, Categories: []LogsCategoryProcessorCategories{datadog.LogsCategoryProcessor_categories{Filter: datadog.LogsFilter{Query: "Query_example"}, Name: "Name_example"}), Expression: "Expression_example", IsReplaceMissing: false, Template: "Template_example", Filter: , Processors: []LogsProcessor{datadog.LogsProcessor{Grok: datadog.LogsGrokParserRules{MatchRules: "MatchRules_example", SupportRules: "SupportRules_example"}, IsEnabled: false, Name: "Name_example", Samples: []string{"Samples_example"), Source: "Source_example", Type: datadog.LogsTraceRemapperType{}, Sources: []string{"Sources_example"), OverrideOnConflict: false, PreserveSource: false, SourceType: "SourceType_example", Target: "Target_example", TargetType: "TargetType_example", NormalizeEndingSlashes: false, IsEncoded: false, Categories: []LogsCategoryProcessorCategories{datadog.LogsCategoryProcessor_categories{Filter: , Name: "Name_example"}), Expression: "Expression_example", IsReplaceMissing: false, Template: "Template_example", Filter: , Processors: []LogsProcessor{), DefaultLookup: "DefaultLookup_example", LookupTable: []string{"LookupTable_example")}), DefaultLookup: "DefaultLookup_example", LookupTable: []string{"LookupTable_example")}), Type: "Type_example"} // LogsPipeline | Definition of the new pipeline.
+    body := *datadog.NewLogsPipeline("Name_example") // LogsPipeline | Definition of the new pipeline.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.CreateLogsPipeline(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.CreateLogsPipeline(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.CreateLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateLogsPipeline`: LogsPipeline
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.CreateLogsPipeline`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.CreateLogsPipeline:\n%s\n", response_content)
 }
 ```
 
@@ -130,8 +133,9 @@ func main() {
     pipelineId := "pipelineId_example" // string | ID of the pipeline to delete.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.DeleteLogsPipeline(context.Background(), pipelineId).Execute()
+    r, err := api_client.LogsPipelinesApi.DeleteLogsPipeline(ctx, pipelineId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.DeleteLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -189,6 +193,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -211,14 +216,16 @@ func main() {
     pipelineId := "pipelineId_example" // string | ID of the pipeline to get.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipeline(context.Background(), pipelineId).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipeline(ctx, pipelineId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.GetLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsPipeline`: LogsPipeline
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.GetLogsPipeline`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.GetLogsPipeline:\n%s\n", response_content)
 }
 ```
 
@@ -272,6 +279,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -293,14 +301,16 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipelineOrder(context.Background()).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.GetLogsPipelineOrder(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.GetLogsPipelineOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsPipelineOrder`: LogsPipelinesOrder
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.GetLogsPipelineOrder`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.GetLogsPipelineOrder:\n%s\n", response_content)
 }
 ```
 
@@ -346,6 +356,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -367,14 +378,16 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.ListLogsPipelines(context.Background()).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.ListLogsPipelines(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.ListLogsPipelines``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLogsPipelines`: []LogsPipeline
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.ListLogsPipelines`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.ListLogsPipelines:\n%s\n", response_content)
 }
 ```
 
@@ -420,6 +433,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -440,17 +454,19 @@ func main() {
     )
 
     pipelineId := "pipelineId_example" // string | ID of the pipeline to delete.
-    body := datadog.LogsPipeline{Filter: , Id: "Id_example", IsEnabled: false, IsReadOnly: false, Name: "Name_example", Processors: []LogsProcessor{), Type: "Type_example"} // LogsPipeline | New definition of the pipeline.
+    body := *datadog.NewLogsPipeline("Name_example") // LogsPipeline | New definition of the pipeline.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipeline(context.Background(), pipelineId).Body(body).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipeline(ctx, pipelineId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsPipeline`: LogsPipeline
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.UpdateLogsPipeline`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.UpdateLogsPipeline:\n%s\n", response_content)
 }
 ```
 
@@ -505,6 +521,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -524,17 +541,19 @@ func main() {
         },
     )
 
-    body := datadog.LogsPipelinesOrder{PipelineIds: []string{"PipelineIds_example")} // LogsPipelinesOrder | Object containing the new ordered list of pipeline IDs.
+    body := *datadog.NewLogsPipelinesOrder([]string{"PipelineIds_example"}) // LogsPipelinesOrder | Object containing the new ordered list of pipeline IDs.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipelineOrder(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.LogsPipelinesApi.UpdateLogsPipelineOrder(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipelineOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsPipelineOrder`: LogsPipelinesOrder
-    fmt.Fprintf(os.Stdout, "Response from `LogsPipelinesApi.UpdateLogsPipelineOrder`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsPipelinesApi.UpdateLogsPipelineOrder:\n%s\n", response_content)
 }
 ```
 

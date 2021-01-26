@@ -4,16 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the monitor creation. | [optional] [readonly] 
+**Created** | Pointer to **time.Time** | Timestamp of the monitor creation. | [optional] [readonly] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Deleted** | Pointer to [**NullableTime**](time.Time.md) | Whether or not the monitor is deleted. (Always &#x60;null&#x60;) | [optional] [readonly] 
+**Deleted** | Pointer to **NullableTime** | Whether or not the monitor is deleted. (Always &#x60;null&#x60;) | [optional] [readonly] 
 **Id** | Pointer to **int64** | ID of this monitor. | [optional] [readonly] 
 **Message** | Pointer to **string** | A message to include with notifications for this monitor. | [optional] 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | Last timestamp when the monitor was edited. | [optional] [readonly] 
+**Modified** | Pointer to **time.Time** | Last timestamp when the monitor was edited. | [optional] [readonly] 
 **Multi** | Pointer to **bool** | Whether or not the monitor is broken down on different groups. | [optional] [readonly] 
 **Name** | Pointer to **string** | The monitor name. | [optional] 
 **Options** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
+**Priority** | Pointer to **int64** | Integer from 1 (high) to 5 (low) indicating alert severity. | [optional] 
 **Query** | Pointer to **string** | The monitor query. | [optional] 
 **State** | Pointer to [**MonitorState**](MonitorState.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | Tags associated to your monitor. | [optional] 
@@ -297,6 +298,31 @@ SetOverallState sets OverallState field to given value.
 `func (o *MonitorUpdateRequest) HasOverallState() bool`
 
 HasOverallState returns a boolean if a field has been set.
+
+### GetPriority
+
+`func (o *MonitorUpdateRequest) GetPriority() int64`
+
+GetPriority returns the Priority field if non-nil, zero value otherwise.
+
+### GetPriorityOk
+
+`func (o *MonitorUpdateRequest) GetPriorityOk() (*int64, bool)`
+
+GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriority
+
+`func (o *MonitorUpdateRequest) SetPriority(v int64)`
+
+SetPriority sets Priority field to given value.
+
+### HasPriority
+
+`func (o *MonitorUpdateRequest) HasPriority() bool`
+
+HasPriority returns a boolean if a field has been set.
 
 ### GetQuery
 

@@ -6,13 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **DisplayType** | Pointer to [**WidgetDisplayType**](WidgetDisplayType.md) |  | [optional] 
-**EventQuery** | Pointer to [**EventQueryDefinition**](EventQueryDefinition.md) |  | [optional] 
+**EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+**Formulas** | Pointer to [**[]WidgetFormula**](WidgetFormula.md) | List of formulas that operate on queries. This feature is currently in beta. | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Metadata** | Pointer to [**[]TimeseriesWidgetRequestMetadata**](TimeseriesWidgetRequest_metadata.md) | Used to define expression aliases. | [optional] 
+**Metadata** | Pointer to [**[]TimeseriesWidgetRequestMetadata**](TimeseriesWidgetRequestMetadata.md) | Used to define expression aliases. | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **OnRightYaxis** | Pointer to **bool** | Whether or not to display a second y-axis on the right. | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
 **Q** | Pointer to **string** | Widget query. | [optional] 
+**Queries** | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. This feature is currently in beta. | [optional] 
+**ResponseFormat** | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md) |  | [optional] 
 **RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **SecurityQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Style** | Pointer to [**WidgetRequestStyle**](WidgetRequestStyle.md) |  | [optional] 
@@ -88,20 +91,20 @@ HasDisplayType returns a boolean if a field has been set.
 
 ### GetEventQuery
 
-`func (o *TimeseriesWidgetRequest) GetEventQuery() EventQueryDefinition`
+`func (o *TimeseriesWidgetRequest) GetEventQuery() LogQueryDefinition`
 
 GetEventQuery returns the EventQuery field if non-nil, zero value otherwise.
 
 ### GetEventQueryOk
 
-`func (o *TimeseriesWidgetRequest) GetEventQueryOk() (*EventQueryDefinition, bool)`
+`func (o *TimeseriesWidgetRequest) GetEventQueryOk() (*LogQueryDefinition, bool)`
 
 GetEventQueryOk returns a tuple with the EventQuery field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEventQuery
 
-`func (o *TimeseriesWidgetRequest) SetEventQuery(v EventQueryDefinition)`
+`func (o *TimeseriesWidgetRequest) SetEventQuery(v LogQueryDefinition)`
 
 SetEventQuery sets EventQuery field to given value.
 
@@ -110,6 +113,31 @@ SetEventQuery sets EventQuery field to given value.
 `func (o *TimeseriesWidgetRequest) HasEventQuery() bool`
 
 HasEventQuery returns a boolean if a field has been set.
+
+### GetFormulas
+
+`func (o *TimeseriesWidgetRequest) GetFormulas() []WidgetFormula`
+
+GetFormulas returns the Formulas field if non-nil, zero value otherwise.
+
+### GetFormulasOk
+
+`func (o *TimeseriesWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool)`
+
+GetFormulasOk returns a tuple with the Formulas field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFormulas
+
+`func (o *TimeseriesWidgetRequest) SetFormulas(v []WidgetFormula)`
+
+SetFormulas sets Formulas field to given value.
+
+### HasFormulas
+
+`func (o *TimeseriesWidgetRequest) HasFormulas() bool`
+
+HasFormulas returns a boolean if a field has been set.
 
 ### GetLogQuery
 
@@ -260,6 +288,56 @@ SetQ sets Q field to given value.
 `func (o *TimeseriesWidgetRequest) HasQ() bool`
 
 HasQ returns a boolean if a field has been set.
+
+### GetQueries
+
+`func (o *TimeseriesWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition`
+
+GetQueries returns the Queries field if non-nil, zero value otherwise.
+
+### GetQueriesOk
+
+`func (o *TimeseriesWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinition, bool)`
+
+GetQueriesOk returns a tuple with the Queries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQueries
+
+`func (o *TimeseriesWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition)`
+
+SetQueries sets Queries field to given value.
+
+### HasQueries
+
+`func (o *TimeseriesWidgetRequest) HasQueries() bool`
+
+HasQueries returns a boolean if a field has been set.
+
+### GetResponseFormat
+
+`func (o *TimeseriesWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat`
+
+GetResponseFormat returns the ResponseFormat field if non-nil, zero value otherwise.
+
+### GetResponseFormatOk
+
+`func (o *TimeseriesWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionResponseFormat, bool)`
+
+GetResponseFormatOk returns a tuple with the ResponseFormat field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResponseFormat
+
+`func (o *TimeseriesWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat)`
+
+SetResponseFormat sets ResponseFormat field to given value.
+
+### HasResponseFormat
+
+`func (o *TimeseriesWidgetRequest) HasResponseFormat() bool`
+
+HasResponseFormat returns a boolean if a field has been set.
 
 ### GetRumQuery
 

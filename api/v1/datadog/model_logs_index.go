@@ -22,8 +22,8 @@ type LogsIndex struct {
 	// A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent. Rate limit is reset every-day at 2pm UTC.
 	IsRateLimited *bool `json:"is_rate_limited,omitempty"`
 	// The name of the index.
-	Name *string `json:"name,omitempty"`
-	// The number of days before logs are deleted from this index.
+	Name string `json:"name"`
+	// The number of days before logs are deleted from this index. Available values depend on retention plans specified in your organization's contract/subscriptions.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 }
 
@@ -31,9 +31,10 @@ type LogsIndex struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogsIndex(filter LogsFilter) *LogsIndex {
+func NewLogsIndex(filter LogsFilter, name string) *LogsIndex {
 	this := LogsIndex{}
 	this.Filter = filter
+	this.Name = name
 	return &this
 }
 
@@ -165,36 +166,28 @@ func (o *LogsIndex) SetIsRateLimited(v bool) {
 	o.IsRateLimited = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *LogsIndex) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *LogsIndex) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *LogsIndex) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *LogsIndex) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetNumRetentionDays returns the NumRetentionDays field value if set, zero value otherwise.
@@ -243,7 +236,7 @@ func (o LogsIndex) MarshalJSON() ([]byte, error) {
 	if o.IsRateLimited != nil {
 		toSerialize["is_rate_limited"] = o.IsRateLimited
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
 	if o.NumRetentionDays != nil {

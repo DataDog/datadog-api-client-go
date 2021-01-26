@@ -108,7 +108,7 @@ func IsCIRun() bool {
 
 // SecurePath replaces all dangerous characters in the path.
 func SecurePath(path string) string {
-	badChars := []string{"\\", "?", "%", "*", ":", "|", `"`, "<", ">"}
+	badChars := []string{"\\", "?", "%", "*", ":", "|", `"`, "<", ">", "'"}
 	for _, c := range badChars {
 		path = strings.ReplaceAll(path, c, "_")
 	}
@@ -359,6 +359,9 @@ func WithUniqueSurrounding(ctx context.Context, name string) string {
 	if !present || !IsCIRun() || GetRecording() == ModeReplaying {
 		buildID = "local"
 	}
+
+	// Replace all - with _ in the test name (scenario test names can include -)
+	name = strings.ReplaceAll(name, "-", "_")
 
 	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
 	// so we need to keep this short

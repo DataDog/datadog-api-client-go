@@ -26,6 +26,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -45,17 +46,19 @@ func main() {
         },
     )
 
-    from := 987 // int64 | Number of seconds from which you want to get total number of active hosts. (optional)
+    from := int64(789) // int64 | Number of seconds from which you want to get total number of active hosts. (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.GetHostTotals(context.Background()).From(from).Execute()
+    resp, r, err := api_client.HostsApi.GetHostTotals(ctx).From(from).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.GetHostTotals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetHostTotals`: HostTotals
-    fmt.Fprintf(os.Stdout, "Response from `HostsApi.GetHostTotals`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.GetHostTotals:\n%s\n", response_content)
 }
 ```
 
@@ -105,6 +108,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -127,21 +131,23 @@ func main() {
     filter := "filter_example" // string | String to filter search results. (optional)
     sortField := "sortField_example" // string | Sort hosts by this field. (optional)
     sortDir := "sortDir_example" // string | Direction of sort. Options include `asc` and `desc`. (optional)
-    start := 987 // int64 | Host result to start search from. (optional)
-    count := 987 // int64 | Number of hosts to return. Max 1000. (optional)
-    from := 987 // int64 | Number of seconds since UNIX epoch from which you want to search your hosts. (optional)
+    start := int64(789) // int64 | Host result to start search from. (optional)
+    count := int64(789) // int64 | Number of hosts to return. Max 1000. (optional)
+    from := int64(789) // int64 | Number of seconds since UNIX epoch from which you want to search your hosts. (optional)
     includeMutedHostsData := true // bool | Include information on the muted status of hosts and when the mute expires. (optional)
     includeHostsMetadata := true // bool | Include additional metadata about the hosts (agent_version, machine, platform, processor, etc.). (optional)
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.ListHosts(context.Background()).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).IncludeMutedHostsData(includeMutedHostsData).IncludeHostsMetadata(includeHostsMetadata).Execute()
+    resp, r, err := api_client.HostsApi.ListHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).IncludeMutedHostsData(includeMutedHostsData).IncludeHostsMetadata(includeHostsMetadata).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.ListHosts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListHosts`: HostListResponse
-    fmt.Fprintf(os.Stdout, "Response from `HostsApi.ListHosts`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.ListHosts:\n%s\n", response_content)
 }
 ```
 
@@ -198,6 +204,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -218,17 +225,19 @@ func main() {
     )
 
     hostName := "hostName_example" // string | Name of the host to mute.
-    body := datadog.HostMuteSettings{End: int64(123), Message: "Message_example", Override: false} // HostMuteSettings | Mute a host request body. (optional)
+    body := *datadog.NewHostMuteSettings() // HostMuteSettings | Mute a host request body.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.MuteHost(context.Background(), hostName).Body(body).Execute()
+    resp, r, err := api_client.HostsApi.MuteHost(ctx, hostName).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.MuteHost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `MuteHost`: HostMuteResponse
-    fmt.Fprintf(os.Stdout, "Response from `HostsApi.MuteHost`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.MuteHost:\n%s\n", response_content)
 }
 ```
 
@@ -283,6 +292,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -305,14 +315,16 @@ func main() {
     hostName := "hostName_example" // string | Name of the host to unmute.
 
     configuration := datadog.NewConfiguration()
+
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.HostsApi.UnmuteHost(context.Background(), hostName).Execute()
+    resp, r, err := api_client.HostsApi.UnmuteHost(ctx, hostName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.UnmuteHost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UnmuteHost`: HostMuteResponse
-    fmt.Fprintf(os.Stdout, "Response from `HostsApi.UnmuteHost`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from HostsApi.UnmuteHost:\n%s\n", response_content)
 }
 ```
 

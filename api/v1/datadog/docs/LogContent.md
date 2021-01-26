@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Message** | Pointer to **string** | The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes) of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry. That value is then highlighted and displayed in the Logstream, where it is indexed for full text search. | [optional] 
 **Service** | Pointer to **string** | The name of the application or service generating the log events. It is used to switch from Logs to APM, so make sure you define the same value when you use both products. | [optional] 
 **Tags** | Pointer to **[]interface{}** | Array of tags associated with your log. | [optional] 
-**Timestamp** | Pointer to [**time.Time**](time.Time.md) | Timestamp of your log. | [optional] 
+**Timestamp** | Pointer to **time.Time** | Timestamp of your log. | [optional] 
 
 ## Methods
 

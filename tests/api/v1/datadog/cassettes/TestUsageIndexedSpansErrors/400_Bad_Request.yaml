@@ -1,0 +1,57 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetUsageIndexedSpans
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.11+dev (go go1.14.6; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5360648424174152977"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2958655029502451923"
+    url: https://api.datadoghq.com/api/v1/usage/indexed-spans?start_hr=2020-12-03T19%3A06%3A18-05%3A00
+    method: GET
+  response:
+    body: '{"errors": ["start_hr cannot be in the future"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "48"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 04 Nov 2020 00:06:18 GMT
+      Dd-Pool:
+      - dogweb
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.3308756"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "400"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "398"
+      X-Ratelimit-Reset:
+      - "3222"
+    status: 400 Bad Request
+    code: 400
+    duration: ""

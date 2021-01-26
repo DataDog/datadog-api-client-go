@@ -15,10 +15,11 @@ Name | Type | Description | Notes
 **PreserveSource** | Pointer to **bool** | Remove or preserve the remapped source element. | [optional] [default to false]
 **SourceType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **Target** | **string** | Name of the attribute that contains the corresponding value in the mapping list or the &#x60;default_lookup&#x60; if not found in the mapping list. | 
+**TargetFormat** | Pointer to [**TargetFormatType**](TargetFormatType.md) |  | [optional] 
 **TargetType** | Pointer to **string** | Defines if the final attribute or tag name is from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **NormalizeEndingSlashes** | Pointer to **NullableBool** | Normalize the ending slashes or not. | [optional] [default to false]
 **IsEncoded** | Pointer to **bool** | Define if the source attribute is URL encoded or not. | [optional] [default to false]
-**Categories** | [**[]LogsCategoryProcessorCategories**](LogsCategoryProcessor_categories.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
+**Categories** | [**[]LogsCategoryProcessorCategories**](LogsCategoryProcessorCategories.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
 **Expression** | **string** | Arithmetic operation between one or more log attributes. | 
 **IsReplaceMissing** | Pointer to **bool** | If true, it replaces all missing attributes of &#x60;template&#x60; by an empty string. If &#x60;false&#x60; (default), skips the operation for missing attributes. | [optional] [default to false]
 **Template** | **string** | A formula with one or more attributes and raw text. | 
@@ -295,6 +296,31 @@ and a boolean to check if the value has been set.
 
 SetTarget sets Target field to given value.
 
+
+### GetTargetFormat
+
+`func (o *LogsProcessor) GetTargetFormat() TargetFormatType`
+
+GetTargetFormat returns the TargetFormat field if non-nil, zero value otherwise.
+
+### GetTargetFormatOk
+
+`func (o *LogsProcessor) GetTargetFormatOk() (*TargetFormatType, bool)`
+
+GetTargetFormatOk returns a tuple with the TargetFormat field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetFormat
+
+`func (o *LogsProcessor) SetTargetFormat(v TargetFormatType)`
+
+SetTargetFormat sets TargetFormat field to given value.
+
+### HasTargetFormat
+
+`func (o *LogsProcessor) HasTargetFormat() bool`
+
+HasTargetFormat returns a boolean if a field has been set.
 
 ### GetTargetType
 

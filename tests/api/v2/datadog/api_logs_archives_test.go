@@ -19,6 +19,7 @@ import (
 // This test uses mocking because: 1) it relies on private data. 2) It relies on external services
 
 func TestLogsArchivesCreate(t *testing.T) {
+	includeTags := true
 	testCases := []struct {
 		archiveType string
 		archive     datadog.LogsArchiveCreateRequest
@@ -39,8 +40,10 @@ func TestLogsArchivesCreate(t *testing.T) {
 								Type: "s3",
 							},
 						},
-						Name:  "datadog-api-client-go Tests Archive",
-						Query: "service:toto",
+						Name:            "datadog-api-client-go Tests Archive",
+						Query:           "service:toto",
+						RehydrationTags: &[]string{"team:intake", "team:app"},
+						IncludeTags:     &includeTags,
 					},
 					Type: "archives",
 				},
@@ -64,8 +67,10 @@ func TestLogsArchivesCreate(t *testing.T) {
 								Type:           "azure",
 							},
 						},
-						Name:  "datadog-api-client-go Tests Archive",
-						Query: "service:toto",
+						Name:            "datadog-api-client-go Tests Archive",
+						Query:           "service:toto",
+						RehydrationTags: &[]string{"team:intake", "team:app"},
+						IncludeTags:     &includeTags,
 					},
 					Type: "archives",
 				},
@@ -87,8 +92,10 @@ func TestLogsArchivesCreate(t *testing.T) {
 								Type: "gcs",
 							},
 						},
-						Name:  "datadog-api-client-go Tests Archive",
-						Query: "service:toto",
+						Name:            "datadog-api-client-go Tests Archive",
+						Query:           "service:toto",
+						RehydrationTags: &[]string{"team:intake", "team:app"},
+						IncludeTags:     &includeTags,
 					},
 					Type: "archives",
 				},
@@ -142,8 +149,9 @@ func TestLogsArchivesUpdate(t *testing.T) {
 						Type: "s3",
 					},
 				},
-				Name:  "datadog-api-client-go Tests Archive",
-				Query: "service:toto",
+				Name:            "datadog-api-client-go Tests Archive",
+				Query:           "service:toto",
+				RehydrationTags: &[]string{"team:intake", "team:app"},
 			},
 			Type: "archives",
 		},
@@ -215,6 +223,70 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.True(len(*result.Data) > 0)
 	assert.Equal(*outputArchives.Get(), result)
+}
+
+func TestGetLogsArchiveOrder(t *testing.T) {
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	client := Client(ctx)
+	assert := tests.Assert(ctx, t)
+
+	fileName := "default"
+	outputArchiveOrderStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/archive_order/out/%s.json", fileName))
+	outputArchiveOrder := datadog.NullableLogsArchiveOrder{}
+	_ = outputArchiveOrder.UnmarshalJSON([]byte(outputArchiveOrderStr))
+
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.GetLogsArchiveOrder")
+	assert.NoError(err)
+	gock.New(URL).Get("/api/v2/logs/config/archive-order").Reply(200).Type("json").JSON(outputArchiveOrderStr)
+	defer gock.Off()
+	result, httpresp, err := client.LogsArchivesApi.GetLogsArchiveOrder(ctx).Execute()
+	assert.NoError(err)
+	assert.Equal(httpresp.StatusCode, 200)
+	assert.Equal(*outputArchiveOrder.Get(), result)
+
+}
+
+func TestUpdateLogsArchiveOrder(t *testing.T) {
+	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	defer finish()
+	client := Client(ctx)
+	assert := tests.Assert(ctx, t)
+	input := createUpdatedLogsArchiveOrder(t)
+
+	fileName := "default"
+	outputArchiveOrderStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/archive_order/out/%s.json", fileName))
+	outputArchiveOrder := datadog.NullableLogsArchiveOrder{}
+	_ = outputArchiveOrder.UnmarshalJSON([]byte(outputArchiveOrderStr))
+
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.GetLogsArchiveOrder")
+	assert.NoError(err)
+	gock.New(URL).Put("/api/v2/logs/config/archive-order").Reply(200).Type("json").JSON(outputArchiveOrderStr)
+	defer gock.Off()
+	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchiveOrder(ctx).Body(*input).Execute()
+	assert.NoError(err)
+	assert.Equal(httpresp.StatusCode, 200)
+	assert.Equal(*outputArchiveOrder.Get(), result)
+}
+
+func createUpdatedLogsArchiveOrder(t *testing.T) *datadog.LogsArchiveOrder {
+	fileName := "updated"
+	oldArchiveOrderStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/archive_order/out/%s.json", fileName))
+	oldArchiveOrder := datadog.NullableLogsArchiveOrder{}
+	_ = oldArchiveOrder.UnmarshalJSON([]byte(oldArchiveOrderStr))
+	data := oldArchiveOrder.Get().GetData()
+	attributes := data.GetAttributes()
+	archiveIds := attributes.GetArchiveIds()
+	archiveIds = append(archiveIds, archiveIds[0])
+	archiveIds = append(archiveIds[:1], archiveIds[2:]...)
+
+	archiveOrderAttribute := datadog.NewLogsArchiveOrderAttributesWithDefaults()
+	archiveOrderAttribute.SetArchiveIds(archiveIds)
+	archiveOrderDefinition := datadog.NewLogsArchiveOrderDefinitionWithDefaults()
+	archiveOrderDefinition.SetAttributes(*archiveOrderAttribute)
+	newArchiveOrder := datadog.NewLogsArchiveOrderWithDefaults()
+	newArchiveOrder.SetData(*archiveOrderDefinition)
+	return newArchiveOrder
 }
 
 func readFixture(t *testing.T, path string) string {

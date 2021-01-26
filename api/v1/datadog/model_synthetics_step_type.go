@@ -19,12 +19,16 @@ type SyntheticsStepType string
 // List of SyntheticsStepType
 const (
 	SYNTHETICSSTEPTYPE_ASSERT_CURRENT_URL        SyntheticsStepType = "assertCurrentUrl"
+	SYNTHETICSSTEPTYPE_ASSERT_ELEMENT_ATTRIBUTE  SyntheticsStepType = "assertElementAttribute"
 	SYNTHETICSSTEPTYPE_ASSERT_ELEMENT_CONTENT    SyntheticsStepType = "assertElementContent"
 	SYNTHETICSSTEPTYPE_ASSERT_ELEMENT_PRESENT    SyntheticsStepType = "assertElementPresent"
 	SYNTHETICSSTEPTYPE_ASSERT_EMAIL              SyntheticsStepType = "assertEmail"
+	SYNTHETICSSTEPTYPE_ASSERT_FILE_DOWNLOAD      SyntheticsStepType = "assertFileDownload"
+	SYNTHETICSSTEPTYPE_ASSERT_FROM_JAVASCRIPT    SyntheticsStepType = "assertFromJavascript"
 	SYNTHETICSSTEPTYPE_ASSERT_PAGE_CONTAINS      SyntheticsStepType = "assertPageContains"
 	SYNTHETICSSTEPTYPE_ASSERT_PAGE_LACKS         SyntheticsStepType = "assertPageLacks"
 	SYNTHETICSSTEPTYPE_CLICK                     SyntheticsStepType = "click"
+	SYNTHETICSSTEPTYPE_EXTRACT_FROM_JAVASCRIPT   SyntheticsStepType = "extractFromJavascript"
 	SYNTHETICSSTEPTYPE_EXTRACT_VARIABLE          SyntheticsStepType = "extractVariable"
 	SYNTHETICSSTEPTYPE_GO_TO_EMAIL_LINK          SyntheticsStepType = "goToEmailLink"
 	SYNTHETICSSTEPTYPE_GO_TO_URL                 SyntheticsStepType = "goToUrl"
@@ -33,11 +37,41 @@ const (
 	SYNTHETICSSTEPTYPE_PLAY_SUB_TEST             SyntheticsStepType = "playSubTest"
 	SYNTHETICSSTEPTYPE_PRESS_KEY                 SyntheticsStepType = "pressKey"
 	SYNTHETICSSTEPTYPE_REFRESH                   SyntheticsStepType = "refresh"
+	SYNTHETICSSTEPTYPE_RUN_API_TEST              SyntheticsStepType = "runApiTest"
+	SYNTHETICSSTEPTYPE_SCROLL                    SyntheticsStepType = "scroll"
 	SYNTHETICSSTEPTYPE_SELECT_OPTION             SyntheticsStepType = "selectOption"
 	SYNTHETICSSTEPTYPE_TYPE_TEXT                 SyntheticsStepType = "typeText"
 	SYNTHETICSSTEPTYPE_UPLOAD_FILES              SyntheticsStepType = "uploadFiles"
 	SYNTHETICSSTEPTYPE_WAIT                      SyntheticsStepType = "wait"
 )
+
+var allowedSyntheticsStepTypeEnumValues = []SyntheticsStepType{
+	"assertCurrentUrl",
+	"assertElementAttribute",
+	"assertElementContent",
+	"assertElementPresent",
+	"assertEmail",
+	"assertFileDownload",
+	"assertFromJavascript",
+	"assertPageContains",
+	"assertPageLacks",
+	"click",
+	"extractFromJavascript",
+	"extractVariable",
+	"goToEmailLink",
+	"goToUrl",
+	"goToUrlAndMeasureTti",
+	"hover",
+	"playSubTest",
+	"pressKey",
+	"refresh",
+	"runApiTest",
+	"scroll",
+	"selectOption",
+	"typeText",
+	"uploadFiles",
+	"wait",
+}
 
 func (v *SyntheticsStepType) UnmarshalJSON(src []byte) error {
 	var value string
@@ -46,7 +80,7 @@ func (v *SyntheticsStepType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SyntheticsStepType(value)
-	for _, existing := range []SyntheticsStepType{"assertCurrentUrl", "assertElementContent", "assertElementPresent", "assertEmail", "assertPageContains", "assertPageLacks", "click", "extractVariable", "goToEmailLink", "goToUrl", "goToUrlAndMeasureTti", "hover", "playSubTest", "pressKey", "refresh", "selectOption", "typeText", "uploadFiles", "wait"} {
+	for _, existing := range allowedSyntheticsStepTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -54,6 +88,27 @@ func (v *SyntheticsStepType) UnmarshalJSON(src []byte) error {
 	}
 
 	return fmt.Errorf("%+v is not a valid SyntheticsStepType", value)
+}
+
+// NewSyntheticsStepTypeFromValue returns a pointer to a valid SyntheticsStepType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewSyntheticsStepTypeFromValue(v string) (*SyntheticsStepType, error) {
+	ev := SyntheticsStepType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for SyntheticsStepType: valid values are %v", v, allowedSyntheticsStepTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v SyntheticsStepType) IsValid() bool {
+	for _, existing := range allowedSyntheticsStepTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
 }
 
 // Ptr returns reference to SyntheticsStepType value

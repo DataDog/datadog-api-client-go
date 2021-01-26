@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hour** | Pointer to [**time.Time**](time.Time.md) | The hour for the usage. | [optional] 
+**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **SessionCount** | Pointer to **int64** | Contains the number of RUM Sessions. | [optional] 
+**SessionCountAndroid** | Pointer to **int64** | Contains the number of mobile RUM Sessions on Android (data available beginning December 1, 2020). | [optional] 
+**SessionCountIos** | Pointer to **int64** | Contains the number of mobile RUM Sessions on iOS (data available beginning December 1, 2020). | [optional] 
 
 ## Methods
 
@@ -75,6 +77,56 @@ SetSessionCount sets SessionCount field to given value.
 `func (o *UsageRumSessionsHour) HasSessionCount() bool`
 
 HasSessionCount returns a boolean if a field has been set.
+
+### GetSessionCountAndroid
+
+`func (o *UsageRumSessionsHour) GetSessionCountAndroid() int64`
+
+GetSessionCountAndroid returns the SessionCountAndroid field if non-nil, zero value otherwise.
+
+### GetSessionCountAndroidOk
+
+`func (o *UsageRumSessionsHour) GetSessionCountAndroidOk() (*int64, bool)`
+
+GetSessionCountAndroidOk returns a tuple with the SessionCountAndroid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSessionCountAndroid
+
+`func (o *UsageRumSessionsHour) SetSessionCountAndroid(v int64)`
+
+SetSessionCountAndroid sets SessionCountAndroid field to given value.
+
+### HasSessionCountAndroid
+
+`func (o *UsageRumSessionsHour) HasSessionCountAndroid() bool`
+
+HasSessionCountAndroid returns a boolean if a field has been set.
+
+### GetSessionCountIos
+
+`func (o *UsageRumSessionsHour) GetSessionCountIos() int64`
+
+GetSessionCountIos returns the SessionCountIos field if non-nil, zero value otherwise.
+
+### GetSessionCountIosOk
+
+`func (o *UsageRumSessionsHour) GetSessionCountIosOk() (*int64, bool)`
+
+GetSessionCountIosOk returns a tuple with the SessionCountIos field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSessionCountIos
+
+`func (o *UsageRumSessionsHour) SetSessionCountIos(v int64)`
+
+SetSessionCountIos sets SessionCountIos field to given value.
+
+### HasSessionCountIos
+
+`func (o *UsageRumSessionsHour) HasSessionCountIos() bool`
+
+HasSessionCountIos returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

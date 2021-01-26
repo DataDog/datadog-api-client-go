@@ -6,13 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AgentHostCount** | Pointer to **int64** | Contains the total number of infrastructure hosts reporting during a given hour that were running the Datadog Agent. | [optional] 
 **AlibabaHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Alibaba integration (and were NOT running the Datadog Agent). | [optional] 
+**ApmAzureAppServiceHostCount** | Pointer to **int64** | Contains the total number of Azure App Services hosts using APM. | [optional] 
 **ApmHostCount** | Pointer to **int64** | Shows the total number of hosts using APM during the hour, these are counted as billable (except during trial periods). | [optional] 
 **AwsHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via the AWS integration (and were NOT running the Datadog Agent). | [optional] 
 **AzureHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Azure integration (and were NOT running the Datadog Agent). | [optional] 
 **ContainerCount** | Pointer to **int64** | Shows the total number of containers reported by the Docker integration during the hour. | [optional] 
 **GcpHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via the Google Cloud integration (and were NOT running the Datadog Agent). | [optional] 
 **HostCount** | Pointer to **int64** | Contains the total number of billable infrastructure hosts reporting during a given hour. This is the sum of &#x60;agent_host_count&#x60;, &#x60;aws_host_count&#x60;, and &#x60;gcp_host_count&#x60;. | [optional] 
-**Hour** | Pointer to [**time.Time**](time.Time.md) | The hour for the usage. | [optional] 
+**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
+**InfraAzureAppService** | Pointer to **int64** | Contains the total number of hosts that reported via the Azure App Services integration (and were NOT running the Datadog Agent). | [optional] 
 
 ## Methods
 
@@ -82,6 +84,31 @@ SetAlibabaHostCount sets AlibabaHostCount field to given value.
 `func (o *UsageHostHour) HasAlibabaHostCount() bool`
 
 HasAlibabaHostCount returns a boolean if a field has been set.
+
+### GetApmAzureAppServiceHostCount
+
+`func (o *UsageHostHour) GetApmAzureAppServiceHostCount() int64`
+
+GetApmAzureAppServiceHostCount returns the ApmAzureAppServiceHostCount field if non-nil, zero value otherwise.
+
+### GetApmAzureAppServiceHostCountOk
+
+`func (o *UsageHostHour) GetApmAzureAppServiceHostCountOk() (*int64, bool)`
+
+GetApmAzureAppServiceHostCountOk returns a tuple with the ApmAzureAppServiceHostCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApmAzureAppServiceHostCount
+
+`func (o *UsageHostHour) SetApmAzureAppServiceHostCount(v int64)`
+
+SetApmAzureAppServiceHostCount sets ApmAzureAppServiceHostCount field to given value.
+
+### HasApmAzureAppServiceHostCount
+
+`func (o *UsageHostHour) HasApmAzureAppServiceHostCount() bool`
+
+HasApmAzureAppServiceHostCount returns a boolean if a field has been set.
 
 ### GetApmHostCount
 
@@ -257,6 +284,31 @@ SetHour sets Hour field to given value.
 `func (o *UsageHostHour) HasHour() bool`
 
 HasHour returns a boolean if a field has been set.
+
+### GetInfraAzureAppService
+
+`func (o *UsageHostHour) GetInfraAzureAppService() int64`
+
+GetInfraAzureAppService returns the InfraAzureAppService field if non-nil, zero value otherwise.
+
+### GetInfraAzureAppServiceOk
+
+`func (o *UsageHostHour) GetInfraAzureAppServiceOk() (*int64, bool)`
+
+GetInfraAzureAppServiceOk returns a tuple with the InfraAzureAppService field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfraAzureAppService
+
+`func (o *UsageHostHour) SetInfraAzureAppService(v int64)`
+
+SetInfraAzureAppService sets InfraAzureAppService field to given value.
+
+### HasInfraAzureAppService
+
+`func (o *UsageHostHour) HasInfraAzureAppService() bool`
+
+HasInfraAzureAppService returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

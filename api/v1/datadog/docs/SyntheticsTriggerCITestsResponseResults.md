@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Device** | Pointer to [**SyntheticsDeviceID**](SyntheticsDeviceID.md) |  | [optional] 
-**Location** | Pointer to **float32** | The location ID of the test run. | [optional] 
+**Location** | Pointer to **int64** | The location ID of the test run. | [optional] 
 **PublicId** | Pointer to **string** | The public ID of the Synthetics test. | [optional] 
 **ResultId** | Pointer to **string** | ID of the result. | [optional] 
 
@@ -55,20 +55,20 @@ HasDevice returns a boolean if a field has been set.
 
 ### GetLocation
 
-`func (o *SyntheticsTriggerCITestsResponseResults) GetLocation() float32`
+`func (o *SyntheticsTriggerCITestsResponseResults) GetLocation() int64`
 
 GetLocation returns the Location field if non-nil, zero value otherwise.
 
 ### GetLocationOk
 
-`func (o *SyntheticsTriggerCITestsResponseResults) GetLocationOk() (*float32, bool)`
+`func (o *SyntheticsTriggerCITestsResponseResults) GetLocationOk() (*int64, bool)`
 
 GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocation
 
-`func (o *SyntheticsTriggerCITestsResponseResults) SetLocation(v float32)`
+`func (o *SyntheticsTriggerCITestsResponseResults) SetLocation(v int64)`
 
 SetLocation sets Location field to given value.
 

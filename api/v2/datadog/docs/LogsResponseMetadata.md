@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Elapsed** | Pointer to **int32** | The time elapsed in milliseconds | [optional] 
+**Elapsed** | Pointer to **int64** | The time elapsed in milliseconds | [optional] 
 **Page** | Pointer to [**LogsResponseMetadataPage**](LogsResponseMetadata_page.md) |  | [optional] 
 **RequestId** | Pointer to **string** | The identifier of the request | [optional] 
 **Status** | Pointer to [**LogsAggregateResponseStatus**](LogsAggregateResponseStatus.md) |  | [optional] 
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetElapsed
 
-`func (o *LogsResponseMetadata) GetElapsed() int32`
+`func (o *LogsResponseMetadata) GetElapsed() int64`
 
 GetElapsed returns the Elapsed field if non-nil, zero value otherwise.
 
 ### GetElapsedOk
 
-`func (o *LogsResponseMetadata) GetElapsedOk() (*int32, bool)`
+`func (o *LogsResponseMetadata) GetElapsedOk() (*int64, bool)`
 
 GetElapsedOk returns a tuple with the Elapsed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetElapsed
 
-`func (o *LogsResponseMetadata) SetElapsed(v int32)`
+`func (o *LogsResponseMetadata) SetElapsed(v int64)`
 
 SetElapsed sets Elapsed field to given value.
 

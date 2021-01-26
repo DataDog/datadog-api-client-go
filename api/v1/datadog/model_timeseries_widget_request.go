@@ -14,10 +14,12 @@ import (
 
 // TimeseriesWidgetRequest Updated timeseries widget.
 type TimeseriesWidgetRequest struct {
-	ApmQuery    *LogQueryDefinition   `json:"apm_query,omitempty"`
-	DisplayType *WidgetDisplayType    `json:"display_type,omitempty"`
-	EventQuery  *EventQueryDefinition `json:"event_query,omitempty"`
-	LogQuery    *LogQueryDefinition   `json:"log_query,omitempty"`
+	ApmQuery    *LogQueryDefinition `json:"apm_query,omitempty"`
+	DisplayType *WidgetDisplayType  `json:"display_type,omitempty"`
+	EventQuery  *LogQueryDefinition `json:"event_query,omitempty"`
+	// List of formulas that operate on queries. This feature is currently in beta.
+	Formulas *[]WidgetFormula    `json:"formulas,omitempty"`
+	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
 	// Used to define expression aliases.
 	Metadata     *[]TimeseriesWidgetRequestMetadata `json:"metadata,omitempty"`
 	NetworkQuery *LogQueryDefinition                `json:"network_query,omitempty"`
@@ -25,10 +27,13 @@ type TimeseriesWidgetRequest struct {
 	OnRightYaxis *bool                   `json:"on_right_yaxis,omitempty"`
 	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
 	// Widget query.
-	Q             *string             `json:"q,omitempty"`
-	RumQuery      *LogQueryDefinition `json:"rum_query,omitempty"`
-	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
-	Style         *WidgetRequestStyle `json:"style,omitempty"`
+	Q *string `json:"q,omitempty"`
+	// List of queries that can be returned directly or used in formulas. This feature is currently in beta.
+	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
+	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
+	Style          *WidgetRequestStyle                  `json:"style,omitempty"`
 }
 
 // NewTimeseriesWidgetRequest instantiates a new TimeseriesWidgetRequest object
@@ -113,9 +118,9 @@ func (o *TimeseriesWidgetRequest) SetDisplayType(v WidgetDisplayType) {
 }
 
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
-func (o *TimeseriesWidgetRequest) GetEventQuery() EventQueryDefinition {
+func (o *TimeseriesWidgetRequest) GetEventQuery() LogQueryDefinition {
 	if o == nil || o.EventQuery == nil {
-		var ret EventQueryDefinition
+		var ret LogQueryDefinition
 		return ret
 	}
 	return *o.EventQuery
@@ -123,7 +128,7 @@ func (o *TimeseriesWidgetRequest) GetEventQuery() EventQueryDefinition {
 
 // GetEventQueryOk returns a tuple with the EventQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetEventQueryOk() (*EventQueryDefinition, bool) {
+func (o *TimeseriesWidgetRequest) GetEventQueryOk() (*LogQueryDefinition, bool) {
 	if o == nil || o.EventQuery == nil {
 		return nil, false
 	}
@@ -139,9 +144,41 @@ func (o *TimeseriesWidgetRequest) HasEventQuery() bool {
 	return false
 }
 
-// SetEventQuery gets a reference to the given EventQueryDefinition and assigns it to the EventQuery field.
-func (o *TimeseriesWidgetRequest) SetEventQuery(v EventQueryDefinition) {
+// SetEventQuery gets a reference to the given LogQueryDefinition and assigns it to the EventQuery field.
+func (o *TimeseriesWidgetRequest) SetEventQuery(v LogQueryDefinition) {
 	o.EventQuery = &v
+}
+
+// GetFormulas returns the Formulas field value if set, zero value otherwise.
+func (o *TimeseriesWidgetRequest) GetFormulas() []WidgetFormula {
+	if o == nil || o.Formulas == nil {
+		var ret []WidgetFormula
+		return ret
+	}
+	return *o.Formulas
+}
+
+// GetFormulasOk returns a tuple with the Formulas field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
+	if o == nil || o.Formulas == nil {
+		return nil, false
+	}
+	return o.Formulas, true
+}
+
+// HasFormulas returns a boolean if a field has been set.
+func (o *TimeseriesWidgetRequest) HasFormulas() bool {
+	if o != nil && o.Formulas != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
+func (o *TimeseriesWidgetRequest) SetFormulas(v []WidgetFormula) {
+	o.Formulas = &v
 }
 
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
@@ -336,6 +373,70 @@ func (o *TimeseriesWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
 
+// GetQueries returns the Queries field value if set, zero value otherwise.
+func (o *TimeseriesWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
+	if o == nil || o.Queries == nil {
+		var ret []FormulaAndFunctionQueryDefinition
+		return ret
+	}
+	return *o.Queries
+}
+
+// GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinition, bool) {
+	if o == nil || o.Queries == nil {
+		return nil, false
+	}
+	return o.Queries, true
+}
+
+// HasQueries returns a boolean if a field has been set.
+func (o *TimeseriesWidgetRequest) HasQueries() bool {
+	if o != nil && o.Queries != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
+func (o *TimeseriesWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
+	o.Queries = &v
+}
+
+// GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
+func (o *TimeseriesWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
+	if o == nil || o.ResponseFormat == nil {
+		var ret FormulaAndFunctionResponseFormat
+		return ret
+	}
+	return *o.ResponseFormat
+}
+
+// GetResponseFormatOk returns a tuple with the ResponseFormat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionResponseFormat, bool) {
+	if o == nil || o.ResponseFormat == nil {
+		return nil, false
+	}
+	return o.ResponseFormat, true
+}
+
+// HasResponseFormat returns a boolean if a field has been set.
+func (o *TimeseriesWidgetRequest) HasResponseFormat() bool {
+	if o != nil && o.ResponseFormat != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetResponseFormat gets a reference to the given FormulaAndFunctionResponseFormat and assigns it to the ResponseFormat field.
+func (o *TimeseriesWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat) {
+	o.ResponseFormat = &v
+}
+
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetRumQuery() LogQueryDefinition {
 	if o == nil || o.RumQuery == nil {
@@ -443,6 +544,9 @@ func (o TimeseriesWidgetRequest) MarshalJSON() ([]byte, error) {
 	if o.EventQuery != nil {
 		toSerialize["event_query"] = o.EventQuery
 	}
+	if o.Formulas != nil {
+		toSerialize["formulas"] = o.Formulas
+	}
 	if o.LogQuery != nil {
 		toSerialize["log_query"] = o.LogQuery
 	}
@@ -460,6 +564,12 @@ func (o TimeseriesWidgetRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Q != nil {
 		toSerialize["q"] = o.Q
+	}
+	if o.Queries != nil {
+		toSerialize["queries"] = o.Queries
+	}
+	if o.ResponseFormat != nil {
+		toSerialize["response_format"] = o.ResponseFormat
 	}
 	if o.RumQuery != nil {
 		toSerialize["rum_query"] = o.RumQuery

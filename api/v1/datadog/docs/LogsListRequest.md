@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | Pointer to **string** | For multi-index organizations, the log index in which the request is performed. Default to &#39;*&#39; (all indexes). | [optional] 
+**Index** | Pointer to **string** | The log index on which the request is performed. For multi-index organizations, the default is all live indexes. Historical indexes of rehydrated logs must be specified. | [optional] 
 **Limit** | Pointer to **int32** | Number of logs return in the response. | [optional] 
-**Query** | **string** | The search query - following the log search syntax. | 
+**Query** | Pointer to **string** | The search query - following the log search syntax. | [optional] 
 **Sort** | Pointer to [**LogsSort**](LogsSort.md) |  | [optional] 
 **StartAt** | Pointer to **string** | Hash identifier of the first log to return in the list, available in a log &#x60;id&#x60; attribute. This parameter is used for the pagination feature.  **Note**: This parameter is ignored if the corresponding log is out of the scope of the specified time window. | [optional] 
 **Time** | [**LogsListRequestTime**](LogsListRequest_time.md) |  | 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewLogsListRequest
 
-`func NewLogsListRequest(query string, time LogsListRequestTime, ) *LogsListRequest`
+`func NewLogsListRequest(time LogsListRequestTime, ) *LogsListRequest`
 
 NewLogsListRequest instantiates a new LogsListRequest object
 This constructor will assign default values to properties that have it defined,
@@ -99,6 +99,11 @@ and a boolean to check if the value has been set.
 
 SetQuery sets Query field to given value.
 
+### HasQuery
+
+`func (o *LogsListRequest) HasQuery() bool`
+
+HasQuery returns a boolean if a field has been set.
 
 ### GetSort
 

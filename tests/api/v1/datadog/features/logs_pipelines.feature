@@ -9,8 +9,13 @@ Feature: Logs Pipelines
   documentation](https://docs.datadoghq.com/logs/processing/processors/?tab=
   api#lookup-processor).  - For more information about Pipelines, see the
   [pipeline documentation](https://docs.datadoghq.com/logs/processing).
-  **Note:** These endpoints are only available for admin users. Make sure to
-  use an application key created by an admin.
+  **Notes:**  These endpoints are only available for admin users. Make sure
+  to use an application key created by an admin.  **Grok parsing rules may
+  effect JSON output and require returned data to be configured before using
+  in a request.** For example, if you are using the data returned from a
+  request for another request body, and have a parsing rule that uses a
+  regex pattern like `\s` for spaces, you will need to configure all escaped
+  spaces as `%{space}` to use in the body data.
 
   Background:
     Given a valid "apiKeyAuth" key in the system
@@ -18,15 +23,44 @@ Feature: Logs Pipelines
     And an instance of "LogsPipelines" API
 
   @generated @skip
-  Scenario: Get pipeline order returns "OK" response
-    Given new "GetLogsPipelineOrder" request
+  Scenario: Create a pipeline returns "Bad Request" response
+    Given new "CreateLogsPipeline" request
+    And body {}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip
+  Scenario: Create a pipeline returns "OK" response
+    Given new "CreateLogsPipeline" request
+    And body {}
     When the request is sent
     Then the response status is 200 OK
 
   @generated @skip
-  Scenario: Update pipeline order returns "OK" response
-    Given new "UpdateLogsPipelineOrder" request
-    And body {}
+  Scenario: Delete a pipeline returns "Bad Request" response
+    Given new "DeleteLogsPipeline" request
+    And request contains "pipeline_id" parameter from "<PATH>"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip
+  Scenario: Delete a pipeline returns "OK" response
+    Given new "DeleteLogsPipeline" request
+    And request contains "pipeline_id" parameter from "<PATH>"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Get a pipeline returns "Bad Request" response
+    Given new "GetLogsPipeline" request
+    And request contains "pipeline_id" parameter from "<PATH>"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip
+  Scenario: Get a pipeline returns "OK" response
+    Given new "GetLogsPipeline" request
+    And request contains "pipeline_id" parameter from "<PATH>"
     When the request is sent
     Then the response status is 200 OK
 
@@ -37,25 +71,18 @@ Feature: Logs Pipelines
     Then the response status is 200 OK
 
   @generated @skip
-  Scenario: Create a pipeline returns "OK" response
-    Given new "CreateLogsPipeline" request
+  Scenario: Get pipeline order returns "OK" response
+    Given new "GetLogsPipelineOrder" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Update a pipeline returns "Bad Request" response
+    Given new "UpdateLogsPipeline" request
+    And request contains "pipeline_id" parameter from "<PATH>"
     And body {}
     When the request is sent
-    Then the response status is 200 OK
-
-  @generated @skip
-  Scenario: Delete a pipeline returns "OK" response
-    Given new "DeleteLogsPipeline" request
-    And request contains "pipeline_id" parameter from "<PATH>"
-    When the request is sent
-    Then the response status is 200 OK
-
-  @generated @skip
-  Scenario: Get a pipeline returns "OK" response
-    Given new "GetLogsPipeline" request
-    And request contains "pipeline_id" parameter from "<PATH>"
-    When the request is sent
-    Then the response status is 200 OK
+    Then the response status is 400 Bad Request
 
   @generated @skip
   Scenario: Update a pipeline returns "OK" response
@@ -64,3 +91,24 @@ Feature: Logs Pipelines
     And body {}
     When the request is sent
     Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Update pipeline order returns "Bad Request" response
+    Given new "UpdateLogsPipelineOrder" request
+    And body {}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip
+  Scenario: Update pipeline order returns "OK" response
+    Given new "UpdateLogsPipelineOrder" request
+    And body {}
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Update pipeline order returns "Unprocessable Entity" response
+    Given new "UpdateLogsPipelineOrder" request
+    And body {}
+    When the request is sent
+    Then the response status is 422 Unprocessable Entity

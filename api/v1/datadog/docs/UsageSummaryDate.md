@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AgentHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all agent hosts over all hours in the current date for all organizations. | [optional] 
+**ApmAzureAppServiceHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Azure app services using APM over all hours in the current date all organizations. | [optional] 
 **ApmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct APM hosts over all hours in the current date for all organizations. | [optional] 
 **AwsHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current date for all organizations. | [optional] 
 **AwsLambdaFuncCount** | Pointer to **int64** | Shows the average of the number of functions that executed 1 or more times each hour in the current date for all organizations. | [optional] 
@@ -12,24 +13,28 @@ Name | Type | Description | Notes
 **AzureAppServiceTop99p** | Pointer to **int64** | Shows the 99th percentile of all Azure app services over all hours in the current date for all organizations. | [optional] 
 **BillableIngestedBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for all organizations. | [optional] 
 **ContainerAvg** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current date for all organizations. | [optional] 
-**ContainerHwm** | Pointer to **int64** | Shows the high watermark of all distinct containers over all hours in the current date for all organizations. | [optional] 
+**ContainerHwm** | Pointer to **int64** | Shows the high-water mark of all distinct containers over all hours in the current date for all organizations. | [optional] 
 **CustomTsAvg** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current date for all organizations. | [optional] 
-**Date** | Pointer to [**time.Time**](time.Time.md) | The date for the usage. | [optional] 
-**FargateTasksCountAvg** | Pointer to **int64** | Shows the high watermark of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
+**Date** | Pointer to **time.Time** | The date for the usage. | [optional] 
+**FargateTasksCountAvg** | Pointer to **int64** | Shows the high-watermark of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
 **FargateTasksCountHwm** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
 **GcpHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current date for all organizations. | [optional] 
+**IncidentManagementMonthlyActiveUsersHwm** | Pointer to **int64** | Shows the high-water mark of incident management monthly active users over all hours in the current date for all organizations. | [optional] 
 **IndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current date for all organizations. | [optional] 
 **InfraHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current date for all organizations. | [optional] 
 **IngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for all organizations. | [optional] 
+**MobileRumSessionCountAndroidSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on Android over all hours in the current date for all organizations. | [optional] 
+**MobileRumSessionCountIosSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on iOS over all hours in the current date for all organizations. | [optional] 
 **MobileRumSessionCountSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current date for all organizations | [optional] 
 **NetflowIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current date for all organizations. | [optional] 
 **NpmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all organizations. | [optional] 
 **Orgs** | Pointer to [**[]UsageSummaryDateOrg**](UsageSummaryDateOrg.md) | Organizations associated with a user. | [optional] 
 **ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations. | [optional] 
 **RumSessionCountSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current date for all organizations | [optional] 
+**RumTotalSessionCountSum** | Pointer to **int64** | Shows the sum of RUM Sessions (browser and mobile) over all hours in the current date for all organizations. | [optional] 
 **SyntheticsBrowserCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current date for all organizations. | [optional] 
 **SyntheticsCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current date for all organizations. | [optional] 
-**TraceSearchIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all analyzed spans indexed over all hours in the current date for all organizations. | [optional] 
+**TraceSearchIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Indexed Spans indexed over all hours in the current date for all organizations. | [optional] 
 **TwolIngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all tracing without limits bytes ingested over all hours in the current date for all organizations. | [optional] 
 
 ## Methods
@@ -75,6 +80,31 @@ SetAgentHostTop99p sets AgentHostTop99p field to given value.
 `func (o *UsageSummaryDate) HasAgentHostTop99p() bool`
 
 HasAgentHostTop99p returns a boolean if a field has been set.
+
+### GetApmAzureAppServiceHostTop99p
+
+`func (o *UsageSummaryDate) GetApmAzureAppServiceHostTop99p() int64`
+
+GetApmAzureAppServiceHostTop99p returns the ApmAzureAppServiceHostTop99p field if non-nil, zero value otherwise.
+
+### GetApmAzureAppServiceHostTop99pOk
+
+`func (o *UsageSummaryDate) GetApmAzureAppServiceHostTop99pOk() (*int64, bool)`
+
+GetApmAzureAppServiceHostTop99pOk returns a tuple with the ApmAzureAppServiceHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApmAzureAppServiceHostTop99p
+
+`func (o *UsageSummaryDate) SetApmAzureAppServiceHostTop99p(v int64)`
+
+SetApmAzureAppServiceHostTop99p sets ApmAzureAppServiceHostTop99p field to given value.
+
+### HasApmAzureAppServiceHostTop99p
+
+`func (o *UsageSummaryDate) HasApmAzureAppServiceHostTop99p() bool`
+
+HasApmAzureAppServiceHostTop99p returns a boolean if a field has been set.
 
 ### GetApmHostTop99p
 
@@ -401,6 +431,31 @@ SetGcpHostTop99p sets GcpHostTop99p field to given value.
 
 HasGcpHostTop99p returns a boolean if a field has been set.
 
+### GetIncidentManagementMonthlyActiveUsersHwm
+
+`func (o *UsageSummaryDate) GetIncidentManagementMonthlyActiveUsersHwm() int64`
+
+GetIncidentManagementMonthlyActiveUsersHwm returns the IncidentManagementMonthlyActiveUsersHwm field if non-nil, zero value otherwise.
+
+### GetIncidentManagementMonthlyActiveUsersHwmOk
+
+`func (o *UsageSummaryDate) GetIncidentManagementMonthlyActiveUsersHwmOk() (*int64, bool)`
+
+GetIncidentManagementMonthlyActiveUsersHwmOk returns a tuple with the IncidentManagementMonthlyActiveUsersHwm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIncidentManagementMonthlyActiveUsersHwm
+
+`func (o *UsageSummaryDate) SetIncidentManagementMonthlyActiveUsersHwm(v int64)`
+
+SetIncidentManagementMonthlyActiveUsersHwm sets IncidentManagementMonthlyActiveUsersHwm field to given value.
+
+### HasIncidentManagementMonthlyActiveUsersHwm
+
+`func (o *UsageSummaryDate) HasIncidentManagementMonthlyActiveUsersHwm() bool`
+
+HasIncidentManagementMonthlyActiveUsersHwm returns a boolean if a field has been set.
+
 ### GetIndexedEventsCountSum
 
 `func (o *UsageSummaryDate) GetIndexedEventsCountSum() int64`
@@ -475,6 +530,56 @@ SetIngestedEventsBytesSum sets IngestedEventsBytesSum field to given value.
 `func (o *UsageSummaryDate) HasIngestedEventsBytesSum() bool`
 
 HasIngestedEventsBytesSum returns a boolean if a field has been set.
+
+### GetMobileRumSessionCountAndroidSum
+
+`func (o *UsageSummaryDate) GetMobileRumSessionCountAndroidSum() int64`
+
+GetMobileRumSessionCountAndroidSum returns the MobileRumSessionCountAndroidSum field if non-nil, zero value otherwise.
+
+### GetMobileRumSessionCountAndroidSumOk
+
+`func (o *UsageSummaryDate) GetMobileRumSessionCountAndroidSumOk() (*int64, bool)`
+
+GetMobileRumSessionCountAndroidSumOk returns a tuple with the MobileRumSessionCountAndroidSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileRumSessionCountAndroidSum
+
+`func (o *UsageSummaryDate) SetMobileRumSessionCountAndroidSum(v int64)`
+
+SetMobileRumSessionCountAndroidSum sets MobileRumSessionCountAndroidSum field to given value.
+
+### HasMobileRumSessionCountAndroidSum
+
+`func (o *UsageSummaryDate) HasMobileRumSessionCountAndroidSum() bool`
+
+HasMobileRumSessionCountAndroidSum returns a boolean if a field has been set.
+
+### GetMobileRumSessionCountIosSum
+
+`func (o *UsageSummaryDate) GetMobileRumSessionCountIosSum() int64`
+
+GetMobileRumSessionCountIosSum returns the MobileRumSessionCountIosSum field if non-nil, zero value otherwise.
+
+### GetMobileRumSessionCountIosSumOk
+
+`func (o *UsageSummaryDate) GetMobileRumSessionCountIosSumOk() (*int64, bool)`
+
+GetMobileRumSessionCountIosSumOk returns a tuple with the MobileRumSessionCountIosSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileRumSessionCountIosSum
+
+`func (o *UsageSummaryDate) SetMobileRumSessionCountIosSum(v int64)`
+
+SetMobileRumSessionCountIosSum sets MobileRumSessionCountIosSum field to given value.
+
+### HasMobileRumSessionCountIosSum
+
+`func (o *UsageSummaryDate) HasMobileRumSessionCountIosSum() bool`
+
+HasMobileRumSessionCountIosSum returns a boolean if a field has been set.
 
 ### GetMobileRumSessionCountSum
 
@@ -625,6 +730,31 @@ SetRumSessionCountSum sets RumSessionCountSum field to given value.
 `func (o *UsageSummaryDate) HasRumSessionCountSum() bool`
 
 HasRumSessionCountSum returns a boolean if a field has been set.
+
+### GetRumTotalSessionCountSum
+
+`func (o *UsageSummaryDate) GetRumTotalSessionCountSum() int64`
+
+GetRumTotalSessionCountSum returns the RumTotalSessionCountSum field if non-nil, zero value otherwise.
+
+### GetRumTotalSessionCountSumOk
+
+`func (o *UsageSummaryDate) GetRumTotalSessionCountSumOk() (*int64, bool)`
+
+GetRumTotalSessionCountSumOk returns a tuple with the RumTotalSessionCountSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRumTotalSessionCountSum
+
+`func (o *UsageSummaryDate) SetRumTotalSessionCountSum(v int64)`
+
+SetRumTotalSessionCountSum sets RumTotalSessionCountSum field to given value.
+
+### HasRumTotalSessionCountSum
+
+`func (o *UsageSummaryDate) HasRumTotalSessionCountSum() bool`
+
+HasRumTotalSessionCountSum returns a boolean if a field has been set.
 
 ### GetSyntheticsBrowserCheckCallsCountSum
 

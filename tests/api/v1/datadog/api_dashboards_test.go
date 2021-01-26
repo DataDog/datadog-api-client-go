@@ -433,6 +433,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			CustomFgColor: datadog.PtrString("black"),
 			ImageUrl:      datadog.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
 		}},
+		CellDisplayMode: &[]datadog.TableWidgetCellDisplayMode{datadog.TABLEWIDGETCELLDISPLAYMODE_NUMBER},
 	}})
 	tableWidgetDefinition.SetTitle("Test Table Widget")
 	tableWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
@@ -442,8 +443,34 @@ func TestDashboardLifecycle(t *testing.T) {
 		Label: "Test Custom Link label",
 		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
+	tableWidgetDefinition.SetHasSearchBar(datadog.TABLEWIDGETHASSEARCHBAR_AUTO)
 
 	tableWidget := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetDefinition))
+
+	// Table Widget with APM Stats data
+	tableWidgetApmStatsDefinition := datadog.NewTableWidgetDefinitionWithDefaults()
+	tableWidgetApmStatsDefinition.SetRequests([]datadog.TableWidgetRequest{{
+		ApmStatsQuery: &datadog.ApmStatsQueryDefinition{
+			Env:        "prod",
+			Name:       "web",
+			PrimaryTag: "foo:*",
+			Resource:   datadog.PtrString("endpoint"),
+			RowType:    datadog.APMSTATSQUERYROWTYPE_SPAN,
+			Columns: &[]datadog.ApmStatsQueryColumnType{{
+				Name: "baz",
+			}},
+		},
+	}})
+	tableWidgetApmStatsDefinition.SetTitle("Test Table Widget with APM Stats Data")
+	tableWidgetApmStatsDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	tableWidgetApmStatsDefinition.SetTitleSize("16")
+	tableWidgetApmStatsDefinition.SetTime(*widgetTime)
+	tableWidgetApmStatsDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
+		Label: "Test Custom Link label",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
+	}})
+
+	tableWidgetApmStats := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetApmStatsDefinition))
 
 	// Timeseries Widget
 	timeseriesWidgetDefinition := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
@@ -548,7 +575,7 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	timeseriesWidgetProcessQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionProcessQuery))
 
-	// Timeseries Widget with Log query (APM/Log/Network/Rum share schemas, so only test one)
+	// Timeseries Widget with Log query (APM/Log/Network/Rum/Event share schemas, so only test one)
 	timeseriesWidgetDefinitionLogQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinitionLogQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		LogQuery: &datadog.LogQueryDefinition{
@@ -607,9 +634,22 @@ func TestDashboardLifecycle(t *testing.T) {
 	// Timeseries Widget with Event query
 	timeseriesWidgetDefinitionEventQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinitionEventQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
-		EventQuery: &datadog.EventQueryDefinition{
-			Search:        "Build failure",
-			TagsExecution: "build",
+		EventQuery: &datadog.LogQueryDefinition{
+			Index: datadog.PtrString("*"),
+			Compute: &datadog.LogsQueryCompute{
+				Aggregation: "count",
+				Facet:       datadog.PtrString("host"),
+				Interval:    datadog.PtrInt64(10),
+			},
+			Search: &datadog.LogQueryDefinitionSearch{Query: "source:kubernetes"},
+			GroupBy: &[]datadog.LogQueryDefinitionGroupBy{{
+				Facet: "host",
+				Limit: datadog.PtrInt64(5),
+				Sort: &datadog.LogQueryDefinitionSort{
+					Aggregation: "count",
+					Order:       datadog.WIDGETSORT_ASCENDING,
+				},
+			}},
 		},
 		Style: &datadog.WidgetRequestStyle{
 			Palette:   datadog.PtrString("dog_classic"),
@@ -645,6 +685,52 @@ func TestDashboardLifecycle(t *testing.T) {
 	}})
 
 	timeseriesWidgetEventQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionEventQuery))
+
+	// Timeseries Widget with Formulas and Functions Query
+	timeseriesWidgetDefinitionFormulaFunctionsQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
+
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
+		Formulas: &[]datadog.WidgetFormula{{
+			Formula: "(((mcnulty_query_errors * 0.2)) / (mcnulty_query * 0.3))",
+			Alias:   datadog.PtrString("sample_performance_calculator"),
+		}},
+		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
+		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+			TimeSeriesFormulaAndFunctionMetricQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionMetricQueryDefinition{
+				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+				Query:      "avg:dd.metrics.query.sq.by_source{service:mcnulty-query}.as_count()",
+				Name:       datadog.PtrString("mcnulty-query"),
+			},
+		},
+			{
+				TimeSeriesFormulaAndFunctionEventQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
+					Compute: datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute{
+						Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+					},
+					Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
+						Query: "service:mcnulty-query Errors",
+					},
+					Indexes: &[]string{"*"},
+					Name:    datadog.PtrString("mcnulty_query_errors"),
+				},
+			},
+			{
+				TimeSeriesFormulaAndFunctionProcessQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionProcessQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS,
+					TextFilter: datadog.PtrString(""),
+					Metric:     "process.stat.cpu.total_pct",
+					Limit:      datadog.PtrInt64(10),
+					Name:       datadog.PtrString("process_query"),
+				},
+			},
+		}}})
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+
+	timeseriesWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionFormulaFunctionsQuery))
 
 	// Toplist Widget
 	toplistWidgetDefinition := datadog.NewToplistWidgetDefinitionWithDefaults()
@@ -699,10 +785,12 @@ func TestDashboardLifecycle(t *testing.T) {
 		*sloWidget,
 		*serviceMapWidget,
 		*tableWidget,
+		*tableWidgetApmStats,
 		*timeseriesWidget,
 		*timeseriesWidgetProcessQuery,
 		*timeseriesWidgetLogQuery,
 		*timeseriesWidgetEventQuery,
+		*timeseriesWidgetFormulaFunctionsQuery,
 		*toplistWidget,
 	}
 

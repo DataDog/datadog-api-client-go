@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Description** | **string** | Description of the global variable. | 
 **Id** | Pointer to **string** | Unique identifier of the global variable. | [optional] [readonly] 
 **Name** | **string** | Name of the global variable. | 
+**ParseTestOptions** | Pointer to [**SyntheticsGlobalVariableParseTestOptions**](SyntheticsGlobalVariable_parse_test_options.md) |  | [optional] 
+**ParseTestPublicId** | Pointer to **string** | A Synthetic test ID to use as a test to generate the variable value. | [optional] 
 **Tags** | **[]string** | Tags of the global variable. | 
 **Value** | [**SyntheticsGlobalVariableValue**](SyntheticsGlobalVariableValue.md) |  | 
 
@@ -93,6 +95,56 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetParseTestOptions
+
+`func (o *SyntheticsGlobalVariable) GetParseTestOptions() SyntheticsGlobalVariableParseTestOptions`
+
+GetParseTestOptions returns the ParseTestOptions field if non-nil, zero value otherwise.
+
+### GetParseTestOptionsOk
+
+`func (o *SyntheticsGlobalVariable) GetParseTestOptionsOk() (*SyntheticsGlobalVariableParseTestOptions, bool)`
+
+GetParseTestOptionsOk returns a tuple with the ParseTestOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParseTestOptions
+
+`func (o *SyntheticsGlobalVariable) SetParseTestOptions(v SyntheticsGlobalVariableParseTestOptions)`
+
+SetParseTestOptions sets ParseTestOptions field to given value.
+
+### HasParseTestOptions
+
+`func (o *SyntheticsGlobalVariable) HasParseTestOptions() bool`
+
+HasParseTestOptions returns a boolean if a field has been set.
+
+### GetParseTestPublicId
+
+`func (o *SyntheticsGlobalVariable) GetParseTestPublicId() string`
+
+GetParseTestPublicId returns the ParseTestPublicId field if non-nil, zero value otherwise.
+
+### GetParseTestPublicIdOk
+
+`func (o *SyntheticsGlobalVariable) GetParseTestPublicIdOk() (*string, bool)`
+
+GetParseTestPublicIdOk returns a tuple with the ParseTestPublicId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParseTestPublicId
+
+`func (o *SyntheticsGlobalVariable) SetParseTestPublicId(v string)`
+
+SetParseTestPublicId sets ParseTestPublicId field to given value.
+
+### HasParseTestPublicId
+
+`func (o *SyntheticsGlobalVariable) HasParseTestPublicId() bool`
+
+HasParseTestPublicId returns a boolean if a field has been set.
 
 ### GetTags
 

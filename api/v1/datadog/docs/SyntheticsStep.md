@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **AllowFailure** | Pointer to **bool** | A boolean set to allow this step to fail. | [optional] 
 **Name** | Pointer to **string** | The name of the step. | [optional] 
 **Params** | Pointer to **interface{}** | The parameters of the step. | [optional] 
-**Timeout** | Pointer to **float32** | The time before declaring a step failed. | [optional] 
+**Timeout** | Pointer to **int64** | The time before declaring a step failed. | [optional] 
 **Type** | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md) |  | [optional] 
 
 ## Methods
@@ -106,20 +106,20 @@ HasParams returns a boolean if a field has been set.
 
 ### GetTimeout
 
-`func (o *SyntheticsStep) GetTimeout() float32`
+`func (o *SyntheticsStep) GetTimeout() int64`
 
 GetTimeout returns the Timeout field if non-nil, zero value otherwise.
 
 ### GetTimeoutOk
 
-`func (o *SyntheticsStep) GetTimeoutOk() (*float32, bool)`
+`func (o *SyntheticsStep) GetTimeoutOk() (*int64, bool)`
 
 GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimeout
 
-`func (o *SyntheticsStep) SetTimeout(v float32)`
+`func (o *SyntheticsStep) SetTimeout(v int64)`
 
 SetTimeout sets Timeout field to given value.
 

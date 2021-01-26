@@ -48,17 +48,25 @@ type APIClient struct {
 
 	DashboardListsApi *DashboardListsApiService
 
+	IncidentServicesApi *IncidentServicesApiService
+
+	IncidentTeamsApi *IncidentTeamsApiService
+
+	IncidentsApi *IncidentsApiService
+
+	KeyManagementApi *KeyManagementApiService
+
 	LogsApi *LogsApiService
 
 	LogsArchivesApi *LogsArchivesApiService
 
+	LogsMetricsApi *LogsMetricsApiService
+
+	ProcessesApi *ProcessesApiService
+
 	RolesApi *RolesApiService
 
 	SecurityMonitoringApi *SecurityMonitoringApiService
-
-	ServicesApi *ServicesApiService
-
-	TeamsApi *TeamsApiService
 
 	UsersApi *UsersApiService
 }
@@ -80,12 +88,16 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.DashboardListsApi = (*DashboardListsApiService)(&c.common)
+	c.IncidentServicesApi = (*IncidentServicesApiService)(&c.common)
+	c.IncidentTeamsApi = (*IncidentTeamsApiService)(&c.common)
+	c.IncidentsApi = (*IncidentsApiService)(&c.common)
+	c.KeyManagementApi = (*KeyManagementApiService)(&c.common)
 	c.LogsApi = (*LogsApiService)(&c.common)
 	c.LogsArchivesApi = (*LogsArchivesApiService)(&c.common)
+	c.LogsMetricsApi = (*LogsMetricsApiService)(&c.common)
+	c.ProcessesApi = (*ProcessesApiService)(&c.common)
 	c.RolesApi = (*RolesApiService)(&c.common)
 	c.SecurityMonitoringApi = (*SecurityMonitoringApiService)(&c.common)
-	c.ServicesApi = (*ServicesApiService)(&c.common)
-	c.TeamsApi = (*TeamsApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 
 	return c
@@ -182,6 +194,14 @@ func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
 		dump, err := httputil.DumpRequestOut(request, true)
 		if err != nil {
 			return nil, err
+		}
+		// Strip any api keys from the response being logged
+		keys, ok := request.Context().Value(ContextAPIKeys).(map[string]APIKey)
+		if keys != nil && ok {
+			for _, apiKey := range keys {
+				valueRegex := regexp.MustCompile(fmt.Sprintf("(?m)%s", apiKey.Key))
+				dump = valueRegex.ReplaceAll(dump, []byte("REDACTED"))
+			}
 		}
 		log.Printf("\n%s\n", string(dump))
 	}
@@ -391,7 +411,7 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 					return err
 				}
 			} else {
-				errors.New("Unknown type with GetActualInstance but no unmarshalObj.UnmarshalJSON defined")
+				return errors.New("Unknown type with GetActualInstance but no unmarshalObj.UnmarshalJSON defined")
 			}
 		} else if err = json.Unmarshal(b, v); err != nil { // simple model
 			return err

@@ -13,16 +13,29 @@ import (
 	"fmt"
 )
 
-// EventAlertType If an alert event is enabled, set its type. For example, `error`, `warning`, `info`, and `success`.
+// EventAlertType If an alert event is enabled, set its type. For example, `error`, `warning`, `info`, `success`, `user_update`, `recommendation`, and `snapshot`.
 type EventAlertType string
 
 // List of EventAlertType
 const (
-	EVENTALERTTYPE_ERROR   EventAlertType = "error"
-	EVENTALERTTYPE_WARNING EventAlertType = "warning"
-	EVENTALERTTYPE_INFO    EventAlertType = "info"
-	EVENTALERTTYPE_SUCCESS EventAlertType = "success"
+	EVENTALERTTYPE_ERROR          EventAlertType = "error"
+	EVENTALERTTYPE_WARNING        EventAlertType = "warning"
+	EVENTALERTTYPE_INFO           EventAlertType = "info"
+	EVENTALERTTYPE_SUCCESS        EventAlertType = "success"
+	EVENTALERTTYPE_USER_UPDATE    EventAlertType = "user_update"
+	EVENTALERTTYPE_RECOMMENDATION EventAlertType = "recommendation"
+	EVENTALERTTYPE_SNAPSHOT       EventAlertType = "snapshot"
 )
+
+var allowedEventAlertTypeEnumValues = []EventAlertType{
+	"error",
+	"warning",
+	"info",
+	"success",
+	"user_update",
+	"recommendation",
+	"snapshot",
+}
 
 func (v *EventAlertType) UnmarshalJSON(src []byte) error {
 	var value string
@@ -31,7 +44,7 @@ func (v *EventAlertType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := EventAlertType(value)
-	for _, existing := range []EventAlertType{"error", "warning", "info", "success"} {
+	for _, existing := range allowedEventAlertTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -39,6 +52,27 @@ func (v *EventAlertType) UnmarshalJSON(src []byte) error {
 	}
 
 	return fmt.Errorf("%+v is not a valid EventAlertType", value)
+}
+
+// NewEventAlertTypeFromValue returns a pointer to a valid EventAlertType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewEventAlertTypeFromValue(v string) (*EventAlertType, error) {
+	ev := EventAlertType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for EventAlertType: valid values are %v", v, allowedEventAlertTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v EventAlertType) IsValid() bool {
+	for _, existing := range allowedEventAlertTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
 }
 
 // Ptr returns reference to EventAlertType value

@@ -47,7 +47,7 @@ func TestLogsList(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 
 	logsRequest := datadog.LogsListRequest{
-		Query: fmt.Sprintf("source:%s", source),
+		Query: datadog.PtrString(fmt.Sprintf("source:%s", source)),
 		Time: datadog.LogsListRequestTime{
 			From: now.Add(time.Duration(-3600) * time.Second),
 			To:   now.Add(time.Duration(3600) * time.Second),
