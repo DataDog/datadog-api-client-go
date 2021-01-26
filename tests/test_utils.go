@@ -31,8 +31,15 @@ import (
 	ddhttp "gopkg.in/DataDog/dd-trace-go.v1/contrib/net/http"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext/ci"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
+
+var ciTags = map[string]string{}
+
+func init() {
+	ciTags = ci.Tags()
+}
 
 // RecordingMode defines valid usage of cassette recorder
 type RecordingMode string
@@ -271,6 +278,12 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 	// NOTE: version is treated in slightly different way, because it's a special tag;
 	// if we set it in StartSpanFromContext, it would get overwritten
 	span.SetTag("version", tag)
+
+	// Configure CI tags
+	for k, v := range ciTags {
+		span.SetTag(k, v)
+	}
+
 	return ctx, func() {
 		span.SetTag(ext.Error, t.Failed())
 		if t.Failed() {
