@@ -184,7 +184,7 @@ Class | Method | HTTP request | Description
 *ServiceLevelObjectivesApi* | [**DeleteSLOTimeframeInBulk**](docs/ServiceLevelObjectivesApi.md#deleteslotimeframeinbulk) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
 *ServiceLevelObjectivesApi* | [**GetSLO**](docs/ServiceLevelObjectivesApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
 *ServiceLevelObjectivesApi* | [**GetSLOHistory**](docs/ServiceLevelObjectivesApi.md#getslohistory) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
-*ServiceLevelObjectivesApi* | [**ListSLOs**](docs/ServiceLevelObjectivesApi.md#listslos) | **Get** /api/v1/slo | Search SLOs
+*ServiceLevelObjectivesApi* | [**ListSLOs**](docs/ServiceLevelObjectivesApi.md#listslos) | **Get** /api/v1/slo | Get all SLOs
 *ServiceLevelObjectivesApi* | [**UpdateSLO**](docs/ServiceLevelObjectivesApi.md#updateslo) | **Put** /api/v1/slo/{slo_id} | Update a SLO
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 *SyntheticsApi* | [**CreateGlobalVariable**](docs/SyntheticsApi.md#createglobalvariable) | **Post** /api/v1/synthetics/variables | Create a global variable
