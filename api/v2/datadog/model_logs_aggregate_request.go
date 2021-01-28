@@ -18,9 +18,9 @@ type LogsAggregateRequest struct {
 	Compute *[]LogsCompute   `json:"compute,omitempty"`
 	Filter  *LogsQueryFilter `json:"filter,omitempty"`
 	// The rules for the group by
-	GroupBy *[]LogsGroupBy              `json:"group_by,omitempty"`
-	Options *LogsQueryOptions           `json:"options,omitempty"`
-	Paging  *LogsAggregateRequestPaging `json:"paging,omitempty"`
+	GroupBy *[]LogsGroupBy            `json:"group_by,omitempty"`
+	Options *LogsQueryOptions         `json:"options,omitempty"`
+	Page    *LogsAggregateRequestPage `json:"page,omitempty"`
 }
 
 // NewLogsAggregateRequest instantiates a new LogsAggregateRequest object
@@ -168,36 +168,36 @@ func (o *LogsAggregateRequest) SetOptions(v LogsQueryOptions) {
 	o.Options = &v
 }
 
-// GetPaging returns the Paging field value if set, zero value otherwise.
-func (o *LogsAggregateRequest) GetPaging() LogsAggregateRequestPaging {
-	if o == nil || o.Paging == nil {
-		var ret LogsAggregateRequestPaging
+// GetPage returns the Page field value if set, zero value otherwise.
+func (o *LogsAggregateRequest) GetPage() LogsAggregateRequestPage {
+	if o == nil || o.Page == nil {
+		var ret LogsAggregateRequestPage
 		return ret
 	}
-	return *o.Paging
+	return *o.Page
 }
 
-// GetPagingOk returns a tuple with the Paging field value if set, nil otherwise
+// GetPageOk returns a tuple with the Page field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsAggregateRequest) GetPagingOk() (*LogsAggregateRequestPaging, bool) {
-	if o == nil || o.Paging == nil {
+func (o *LogsAggregateRequest) GetPageOk() (*LogsAggregateRequestPage, bool) {
+	if o == nil || o.Page == nil {
 		return nil, false
 	}
-	return o.Paging, true
+	return o.Page, true
 }
 
-// HasPaging returns a boolean if a field has been set.
-func (o *LogsAggregateRequest) HasPaging() bool {
-	if o != nil && o.Paging != nil {
+// HasPage returns a boolean if a field has been set.
+func (o *LogsAggregateRequest) HasPage() bool {
+	if o != nil && o.Page != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPaging gets a reference to the given LogsAggregateRequestPaging and assigns it to the Paging field.
-func (o *LogsAggregateRequest) SetPaging(v LogsAggregateRequestPaging) {
-	o.Paging = &v
+// SetPage gets a reference to the given LogsAggregateRequestPage and assigns it to the Page field.
+func (o *LogsAggregateRequest) SetPage(v LogsAggregateRequestPage) {
+	o.Page = &v
 }
 
 func (o LogsAggregateRequest) MarshalJSON() ([]byte, error) {
@@ -214,8 +214,8 @@ func (o LogsAggregateRequest) MarshalJSON() ([]byte, error) {
 	if o.Options != nil {
 		toSerialize["options"] = o.Options
 	}
-	if o.Paging != nil {
-		toSerialize["paging"] = o.Paging
+	if o.Page != nil {
+		toSerialize["page"] = o.Page
 	}
 	return json.Marshal(toSerialize)
 }

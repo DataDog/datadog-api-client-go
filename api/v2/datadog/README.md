@@ -266,7 +266,7 @@ Class | Method | HTTP request | Description
  - [LogsAggregateBucketValueTimeseries](docs/LogsAggregateBucketValueTimeseries.md)
  - [LogsAggregateBucketValueTimeseriesPoint](docs/LogsAggregateBucketValueTimeseriesPoint.md)
  - [LogsAggregateRequest](docs/LogsAggregateRequest.md)
- - [LogsAggregateRequestPaging](docs/LogsAggregateRequestPaging.md)
+ - [LogsAggregateRequestPage](docs/LogsAggregateRequestPage.md)
  - [LogsAggregateResponse](docs/LogsAggregateResponse.md)
  - [LogsAggregateResponseData](docs/LogsAggregateResponseData.md)
  - [LogsAggregateResponseStatus](docs/LogsAggregateResponseStatus.md)
