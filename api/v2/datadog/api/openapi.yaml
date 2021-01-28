@@ -7129,8 +7129,8 @@ components:
             aggregation: count
             order: asc
           facet: host
-        paging:
-          after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+        page:
+          cursor: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
       properties:
         compute:
           description: The list of metrics or timeseries to compute for the retrieved
@@ -7147,8 +7147,8 @@ components:
           type: array
         options:
           $ref: '#/components/schemas/LogsQueryOptions'
-        paging:
-          $ref: '#/components/schemas/LogsAggregateRequest_paging'
+        page:
+          $ref: '#/components/schemas/LogsAggregateRequest_page'
       type: object
     LogsAggregateResponse:
       description: The response object for the logs aggregate API endpoint
@@ -10737,12 +10737,12 @@ components:
           format: date-time
           type: string
       type: object
-    LogsAggregateRequest_paging:
+    LogsAggregateRequest_page:
       description: Paging settings
       example:
-        after: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
+        cursor: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
       properties:
-        after:
+        cursor:
           description: The returned paging point to use to get the next results
           example: eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==
           type: string
