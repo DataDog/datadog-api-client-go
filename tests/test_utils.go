@@ -23,7 +23,6 @@ import (
 	"testing"
 	"time"
 
-	api "github.com/DataDog/datadog-api-client-go"
 	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/jonboulle/clockwork"
@@ -32,15 +31,8 @@ import (
 	ddtesting "gopkg.in/DataDog/dd-trace-go.v1/contrib/testing"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
-	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext/ci"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
-
-var ciTags = map[string]string{}
-
-func init() {
-	ciTags = ci.Tags()
-}
 
 // RecordingMode defines valid usage of cassette recorder
 type RecordingMode string
@@ -206,7 +198,7 @@ func ConfigureTracer(m *testing.M) {
 	}
 	tracer.Start(
 		tracer.WithService(service),
-		tracer.WithServiceVersion(api.Version),
+		// tracer.WithServiceVersion(api.Version),
 	)
 	code := m.Run()
 	tracer.Stop()
@@ -265,7 +257,7 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		// "version" is really the only one we can use here
 		// NOTE: version is treated in slightly different way, because it's a special tag;
 		// if we set it in StartSpanFromContext, it would get overwritten
-		tracer.WithServiceVersion(tag),
+		tracer.Tag(ext.Version, tag),
 	))
 }
 
