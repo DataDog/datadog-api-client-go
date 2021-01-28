@@ -1,6 +1,8 @@
 cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/DataDog/datadog-go v3.6.0+incompatible h1:ILg7c5Y1KvZFDOaVS0higGmJ5Fal5O1KQrkrT9j6dSM=
 github.com/DataDog/datadog-go v3.6.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
+github.com/DataDog/dd-trace-go v1.29.0-alpha.1.0.20210128094946-7bb492ef9609 h1:4RklP4pMH77CZ+bQQyvpoxdIpVDHxN+2EFqYvuelHFw=
+github.com/DataDog/dd-trace-go v1.29.0-alpha.1.0.20210128094946-7bb492ef9609/go.mod h1:7Lljmn5Qf9Q5e2vRdnz0J6iqsxgDz/qObCF3K+ja+pk=
 github.com/aslakhellesoy/gox v1.0.100/go.mod h1:AJl542QsKKG96COVsv0N74HHzVQgDIQPceVUh1aeU2M=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/cucumber/gherkin-go/v13 v13.0.0 h1:d09AwPZldyOFlCADAIZQMt7T+VHCrGdp5106+BCIfZU=
@@ -80,8 +82,6 @@ golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543 h1:E7g+9GITq07hpfrRu66IV
 golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 google.golang.org/appengine v1.4.0 h1:/wp5JvzpHIxhs/dumFmF7BXTf3Z+dd4uXta4kVyO508=
 google.golang.org/appengine v1.4.0/go.mod h1:xpcJRLb0r/rnEns0DIKYYv+WjYCduHsrkT7/EB5XEv4=
-gopkg.in/DataDog/dd-trace-go.v1 v1.29.0-alpha.1.0.20210126165742-0a384248ea2b h1:1MrRlMak+dc2tNf8catDog08KtWkVCQ+d/A6xjxyW8Y=
-gopkg.in/DataDog/dd-trace-go.v1 v1.29.0-alpha.1.0.20210126165742-0a384248ea2b/go.mod h1:7Lljmn5Qf9Q5e2vRdnz0J6iqsxgDz/qObCF3K+ja+pk=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f h1:BLraFXnmrev5lT+xlilqcH8XK9/i0At2xKjWk4p6zsU=
