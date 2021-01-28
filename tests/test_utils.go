@@ -265,7 +265,7 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		// "version" is really the only one we can use here
 		// NOTE: version is treated in slightly different way, because it's a special tag;
 		// if we set it in StartSpanFromContext, it would get overwritten
-		tracer.Tag("version", tag),
+		tracer.WithServiceVersion(tag),
 	))
 }
 
