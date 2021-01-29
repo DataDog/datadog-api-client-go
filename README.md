@@ -90,15 +90,13 @@ where `<OperationName>` is the name of the method used to interact with that end
 
 ### Changing Server
 
-When talking to a different server, like the `eu` instance, set the context on the first server index, and change the `ContextServerVariables`:
+When talking to a different server, like the `eu` instance, change the `ContextServerVariables`:
 
 ```go
-    ctx = context.WithValue(ctx, datadog.ContextServerIndex, 1)
     ctx = context.WithValue(ctx,
         datadog.ContextServerVariables,
         map[string]string{
-            "name":     "api.datadoghq.eu",
-            "protocol": "https",
+            "site": "datadoghq.eu",
     })
 ```
 
