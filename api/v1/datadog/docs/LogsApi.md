@@ -4,7 +4,7 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListLogs**](LogsApi.md#ListLogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
+[**ListLogs**](LogsApi.md#ListLogs) | **Post** /api/v1/logs-queries/list | Search logs
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > LogsListResponse ListLogs(ctx).Body(body).Execute()
 
-Get a list of logs
+Search logs
 
 
 

@@ -112,8 +112,8 @@ Class | Method | HTTP request | Description
 *KeyManagementApi* | [**UpdateApplicationKey**](docs/KeyManagementApi.md#updateapplicationkey) | **Patch** /api/v2/application_keys/{app_key_id} | Edit an application key
 *KeyManagementApi* | [**UpdateCurrentUserApplicationKey**](docs/KeyManagementApi.md#updatecurrentuserapplicationkey) | **Patch** /api/v2/current_user/application_keys/{app_key_id} | Edit an application key owned by current user
 *LogsApi* | [**AggregateLogs**](docs/LogsApi.md#aggregatelogs) | **Post** /api/v2/logs/analytics/aggregate | Aggregate events
-*LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v2/logs/events/search | Get a list of logs
-*LogsApi* | [**ListLogsGet**](docs/LogsApi.md#listlogsget) | **Get** /api/v2/logs/events | Get a quick list of logs
+*LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v2/logs/events/search | Search logs
+*LogsApi* | [**ListLogsGet**](docs/LogsApi.md#listlogsget) | **Get** /api/v2/logs/events | Get a list of logs
 *LogsArchivesApi* | [**AddReadRoleToArchive**](docs/LogsArchivesApi.md#addreadroletoarchive) | **Post** /api/v2/logs/config/archives/{archive_id}/readers | Grant role to an archive
 *LogsArchivesApi* | [**CreateLogsArchive**](docs/LogsArchivesApi.md#createlogsarchive) | **Post** /api/v2/logs/config/archives | Create an archive
 *LogsArchivesApi* | [**DeleteLogsArchive**](docs/LogsArchivesApi.md#deletelogsarchive) | **Delete** /api/v2/logs/config/archives/{archive_id} | Delete an archive
