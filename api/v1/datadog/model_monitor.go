@@ -35,8 +35,10 @@ type Monitor struct {
 	// Integer from 1 (high) to 5 (low) indicating alert severity.
 	Priority *int64 `json:"priority,omitempty"`
 	// The monitor query.
-	Query *string       `json:"query,omitempty"`
-	State *MonitorState `json:"state,omitempty"`
+	Query *string `json:"query,omitempty"`
+	// A list of role identifiers that can be pulled from the Roles API. Cannot be used with `locked` option.
+	RestrictedRoles *[]string     `json:"restricted_roles,omitempty"`
+	State           *MonitorState `json:"state,omitempty"`
 	// Tags associated to your monitor.
 	Tags *[]string    `json:"tags,omitempty"`
 	Type *MonitorType `json:"type,omitempty"`
@@ -454,6 +456,38 @@ func (o *Monitor) SetQuery(v string) {
 	o.Query = &v
 }
 
+// GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
+func (o *Monitor) GetRestrictedRoles() []string {
+	if o == nil || o.RestrictedRoles == nil {
+		var ret []string
+		return ret
+	}
+	return *o.RestrictedRoles
+}
+
+// GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Monitor) GetRestrictedRolesOk() (*[]string, bool) {
+	if o == nil || o.RestrictedRoles == nil {
+		return nil, false
+	}
+	return o.RestrictedRoles, true
+}
+
+// HasRestrictedRoles returns a boolean if a field has been set.
+func (o *Monitor) HasRestrictedRoles() bool {
+	if o != nil && o.RestrictedRoles != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
+func (o *Monitor) SetRestrictedRoles(v []string) {
+	o.RestrictedRoles = &v
+}
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *Monitor) GetState() MonitorState {
 	if o == nil || o.State == nil {
@@ -587,6 +621,9 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 	}
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
+	}
+	if o.RestrictedRoles != nil {
+		toSerialize["restricted_roles"] = o.RestrictedRoles
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
