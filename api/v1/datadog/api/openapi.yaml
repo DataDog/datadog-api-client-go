@@ -3085,7 +3085,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
-      summary: Get a list of logs
+      summary: Search logs
       tags:
       - Logs
       x-codegen-request-body-name: body
@@ -4628,7 +4628,7 @@ paths:
         type: safe
   /api/v1/slo:
     get:
-      description: Get multiple service level objective objects by their IDs.
+      description: Get a list of service level objective objects for your organization.
       operationId: ListSLOs
       parameters:
       - description: A comma separated list of the IDs of the service level objectives
@@ -4637,7 +4637,35 @@ paths:
         explode: true
         in: query
         name: ids
-        required: true
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The query string to filter results based on SLO names.
+        example: monitor
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The query string to filter results based on SLO tags.
+        example: env:prod
+        explode: true
+        in: query
+        name: tags_query
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The query string to filter results based on SLO numerator and
+          denominator.
+        example: aws.elb.request_count
+        explode: true
+        in: query
+        name: metrics_query
+        required: false
         schema:
           type: string
         style: form
@@ -4666,7 +4694,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Search SLOs
+      summary: Get all SLOs
       tags:
       - Service Level Objectives
       x-undo:

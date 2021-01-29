@@ -138,7 +138,7 @@ Class | Method | HTTP request | Description
 *KeyManagementApi* | [**ListApplicationKeys**](docs/KeyManagementApi.md#listapplicationkeys) | **Get** /api/v1/application_key | Get all application keys
 *KeyManagementApi* | [**UpdateAPIKey**](docs/KeyManagementApi.md#updateapikey) | **Put** /api/v1/api_key/{key} | Edit an API key
 *KeyManagementApi* | [**UpdateApplicationKey**](docs/KeyManagementApi.md#updateapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key
-*LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
+*LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Search logs
 *LogsIndexesApi* | [**CreateLogsIndex**](docs/LogsIndexesApi.md#createlogsindex) | **Post** /api/v1/logs/config/indexes | Create an index
 *LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
 *LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get indexes order
@@ -184,7 +184,7 @@ Class | Method | HTTP request | Description
 *ServiceLevelObjectivesApi* | [**DeleteSLOTimeframeInBulk**](docs/ServiceLevelObjectivesApi.md#deleteslotimeframeinbulk) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
 *ServiceLevelObjectivesApi* | [**GetSLO**](docs/ServiceLevelObjectivesApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
 *ServiceLevelObjectivesApi* | [**GetSLOHistory**](docs/ServiceLevelObjectivesApi.md#getslohistory) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
-*ServiceLevelObjectivesApi* | [**ListSLOs**](docs/ServiceLevelObjectivesApi.md#listslos) | **Get** /api/v1/slo | Search SLOs
+*ServiceLevelObjectivesApi* | [**ListSLOs**](docs/ServiceLevelObjectivesApi.md#listslos) | **Get** /api/v1/slo | Get all SLOs
 *ServiceLevelObjectivesApi* | [**UpdateSLO**](docs/ServiceLevelObjectivesApi.md#updateslo) | **Put** /api/v1/slo/{slo_id} | Update a SLO
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 *SyntheticsApi* | [**CreateGlobalVariable**](docs/SyntheticsApi.md#createglobalvariable) | **Post** /api/v1/synthetics/variables | Create a global variable

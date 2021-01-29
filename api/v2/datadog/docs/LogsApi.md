@@ -5,8 +5,8 @@ All URIs are relative to *https://api.datadoghq.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AggregateLogs**](LogsApi.md#AggregateLogs) | **Post** /api/v2/logs/analytics/aggregate | Aggregate events
-[**ListLogs**](LogsApi.md#ListLogs) | **Post** /api/v2/logs/events/search | Get a list of logs
-[**ListLogsGet**](LogsApi.md#ListLogsGet) | **Get** /api/v2/logs/events | Get a quick list of logs
+[**ListLogs**](LogsApi.md#ListLogs) | **Post** /api/v2/logs/events/search | Search logs
+[**ListLogsGet**](LogsApi.md#ListLogsGet) | **Get** /api/v2/logs/events | Get a list of logs
 
 
 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 > LogsListResponse ListLogs(ctx).Body(body).Execute()
 
-Get a list of logs
+Search logs
 
 
 
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 
 > LogsListResponse ListLogsGet(ctx).FilterQuery(filterQuery).FilterIndex(filterIndex).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
 
-Get a quick list of logs
+Get a list of logs
 
 
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Filter** | Pointer to [**LogsQueryFilter**](LogsQueryFilter.md) |  | [optional] 
 **GroupBy** | Pointer to [**[]LogsGroupBy**](LogsGroupBy.md) | The rules for the group by | [optional] 
 **Options** | Pointer to [**LogsQueryOptions**](LogsQueryOptions.md) |  | [optional] 
-**Paging** | Pointer to [**LogsAggregateRequestPaging**](LogsAggregateRequest_paging.md) |  | [optional] 
+**Page** | Pointer to [**LogsAggregateRequestPage**](LogsAggregateRequest_page.md) |  | [optional] 
 
 ## Methods
 
@@ -129,30 +129,30 @@ SetOptions sets Options field to given value.
 
 HasOptions returns a boolean if a field has been set.
 
-### GetPaging
+### GetPage
 
-`func (o *LogsAggregateRequest) GetPaging() LogsAggregateRequestPaging`
+`func (o *LogsAggregateRequest) GetPage() LogsAggregateRequestPage`
 
-GetPaging returns the Paging field if non-nil, zero value otherwise.
+GetPage returns the Page field if non-nil, zero value otherwise.
 
-### GetPagingOk
+### GetPageOk
 
-`func (o *LogsAggregateRequest) GetPagingOk() (*LogsAggregateRequestPaging, bool)`
+`func (o *LogsAggregateRequest) GetPageOk() (*LogsAggregateRequestPage, bool)`
 
-GetPagingOk returns a tuple with the Paging field if it's non-nil, zero value otherwise
+GetPageOk returns a tuple with the Page field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPaging
+### SetPage
 
-`func (o *LogsAggregateRequest) SetPaging(v LogsAggregateRequestPaging)`
+`func (o *LogsAggregateRequest) SetPage(v LogsAggregateRequestPage)`
 
-SetPaging sets Paging field to given value.
+SetPage sets Page field to given value.
 
-### HasPaging
+### HasPage
 
-`func (o *LogsAggregateRequest) HasPaging() bool`
+`func (o *LogsAggregateRequest) HasPage() bool`
 
-HasPaging returns a boolean if a field has been set.
+HasPage returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
