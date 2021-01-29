@@ -10,6 +10,7 @@ require (
 	github.com/google/uuid v1.2.0 // indirect
 	github.com/jonboulle/clockwork v0.1.0
 	github.com/mcuadros/go-lookup v0.0.0-20200831155250-80f87a4fa5ee
+	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/opentracing/opentracing-go v1.1.0 // indirect
 	github.com/philhofer/fwd v1.0.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
@@ -18,9 +19,9 @@ require (
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
 	golang.org/x/sys v0.0.0-20200420163511-1957bb5e6d1f // indirect
 	golang.org/x/time v0.0.0-20200416051211-89c76fbcd5d1 // indirect
-	gopkg.in/DataDog/dd-trace-go.v1 v1.29.0-alpha.1.0.20210128094946-7bb492ef9609
+	gopkg.in/DataDog/dd-trace-go.v1 v1.29.0-alpha.1.0.20210128154316-c84d7933b726
 	gopkg.in/h2non/gock.v1 v1.0.15
 	gotest.tools v2.2.0+incompatible
 )
 
-replace gopkg.in/DataDog/dd-trace-go.v1 => github.com/DataDog/dd-trace-go v1.29.0-alpha.1.0.20210128094946-7bb492ef9609
+replace gopkg.in/DataDog/dd-trace-go.v1 => github.com/DataDog/dd-trace-go v1.29.0-alpha.1.0.20210128154316-c84d7933b726
