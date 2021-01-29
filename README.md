@@ -11,7 +11,7 @@ and [apigentools](https://github.com/DataDog/apigentools).
 This repository contains per-major-version API client packages. Right
 now, Datadog has two API versions, `v1` and `v2`.
 
-## The Datadog API v1 Client
+### The API v1 Client
 
 The client library for Datadog API v1 is located in the `api/v1/datadog` directory. Import it with
 
@@ -21,7 +21,7 @@ import "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 
 All the documentation for this package is available [here](api/v1/datadog/README.md).
 
-## The Datadog API v2 Client
+### The API v2 Client
 
 The client library for Datadog API v1 is located in the `api/v2/datadog` directory. Import it with
 
@@ -88,7 +88,7 @@ This client includes access to Datadog API endpoints while they are in an unstab
 
 where `<OperationName>` is the name of the method used to interact with that endpoint. For example: `GetLogsIndex`, or `UpdateLogsIndex`
 
-### Change Server
+### Changing Server
 
 When talking to a different server, like the `eu` instance, set the context on the first server index, and change the `ContextServerVariables`:
 
