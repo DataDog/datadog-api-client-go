@@ -443,6 +443,8 @@ docs/UsageIndexedSpansHour.md
 docs/UsageIndexedSpansResponse.md
 docs/UsageIngestedSpansHour.md
 docs/UsageIngestedSpansResponse.md
+docs/UsageIoTHour.md
+docs/UsageIoTResponse.md
 docs/UsageLambdaHour.md
 docs/UsageLambdaResponse.md
 docs/UsageLogsByIndexHour.md
@@ -925,6 +927,8 @@ model_usage_indexed_spans_hour.go
 model_usage_indexed_spans_response.go
 model_usage_ingested_spans_hour.go
 model_usage_ingested_spans_response.go
+model_usage_io_t_hour.go
+model_usage_io_t_response.go
 model_usage_lambda_hour.go
 model_usage_lambda_response.go
 model_usage_logs_by_index_hour.go
