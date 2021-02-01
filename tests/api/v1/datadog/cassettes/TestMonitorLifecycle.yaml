@@ -72,7 +72,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"name":"go-TestMonitorLifecycle-local-1589290365-updated","options":{"evaluation_delay":null,"new_host_delay":null,"renotify_interval":null,"thresholds":{"critical":2,"warning":null},"timeout_h":null}}
+      {"name":"go-TestMonitorLifecycle-local-1589290365-updated","options":{"evaluation_delay":null,"new_host_delay":null,"renotify_interval":null,"thresholds":{"critical":2,"warning":null},"timeout_h":null},"restricted_roles":["a0dfe496-dc09-4464-83be-a8037625bc31"]}
     form: {}
     headers:
       Accept:

@@ -64,6 +64,9 @@ var testUpdateMonitor = datadog.MonitorUpdateRequest{
 			Warning:  *datadog.NewNullableFloat64(nil),
 		},
 	},
+	RestrictedRoles: &[]string{
+		"a0dfe496-dc09-4464-83be-a8037625bc31",
+	},
 }
 
 func TestMonitorValidation(t *testing.T) {
