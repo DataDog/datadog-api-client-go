@@ -6,6 +6,7 @@ import (
 	"reflect"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
@@ -60,6 +61,17 @@ func TestScenarios(t *testing.T) {
 				tracer.SpanType("step"),
 				tracer.ResourceName(parts[len(parts)-1]),
 			)
+			testName := strings.Join(strings.Split(ct.(*testing.T).Name(), "/")[1:3], "/")
+			unique := tests.WithUniqueSurrounding(cctx, testName)
+			data := tests.GetData(ctx)
+			data["unique"] = unique
+			data["unique_lower"] = strings.ToLower(unique)
+			data["now_ts"] = tests.ClockFromContext(cctx).Now().Unix()
+			data["now_iso"] = tests.ClockFromContext(cctx).Now().Format(time.RFC3339)
+			data["hour_later_ts"] = tests.ClockFromContext(cctx).Now().Add(time.Hour).Unix()
+			data["hour_later_iso"] = tests.ClockFromContext(cctx).Now().Add(time.Hour).Format(time.RFC3339)
+			data["hour_ago_ts"] = tests.ClockFromContext(cctx).Now().Add(-time.Hour).Unix()
+			data["hour_ago_iso"] = tests.ClockFromContext(cctx).Now().Add(-time.Hour).Format(time.RFC3339)
 			tests.SetCtx(ctx, cctx)
 		}),
 		gobdd.WithAfterStep(func(ctx gobdd.Context) {
