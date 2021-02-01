@@ -277,6 +277,7 @@ Feature: Synthetics
     When the request is sent
     Then the response status is 200 OK
 
+  @generated @skip
   Scenario: Get the list of all tests returns "OK - Returns the list of all Synthetic tests." response
     Given new "ListTests" request
     When the request is sent
