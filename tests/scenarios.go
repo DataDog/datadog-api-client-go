@@ -523,6 +523,15 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	result := request.MethodByName("Execute").Call(nil)
 	ctx.Set(responseKey{}, result)
 
+	// Report probable serialization errors
+	if len(result) > 2 {
+		code := result[len(result)-2].Interface().(*http.Response).StatusCode
+		err := result[len(result)-1].Interface()
+		if code < 300 && err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	}
+
 	if undo != nil {
 		GetCleanup(ctx)["01-undo"] = undo(result[0].Interface())
 	}
