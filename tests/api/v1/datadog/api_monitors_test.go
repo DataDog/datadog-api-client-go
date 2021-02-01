@@ -13,6 +13,7 @@ import (
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	v2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"gopkg.in/h2non/gock.v1"
@@ -64,9 +65,6 @@ var testUpdateMonitor = datadog.MonitorUpdateRequest{
 			Warning:  *datadog.NewNullableFloat64(nil),
 		},
 	},
-	RestrictedRoles: &[]string{
-		"94172442-be03-11e9-a77a-3b7612558ac1",
-	},
 }
 
 func TestMonitorValidation(t *testing.T) {
@@ -96,9 +94,24 @@ func TestMonitorValidation(t *testing.T) {
 func TestMonitorLifecycle(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	ctxV2, finish := WithRecorder(WithTestAuthV2(context.Background()), t)
+	defer finish()
 	assert := tests.Assert(ctx, t)
 
+	// Pull main amdin role UUID
+	var adminRoleUUID string
+	rr, httpresp, err := ClientV2(ctxV2).RolesApi.ListRoles(ctx).Sort("name").Execute()
+	if err != nil {
+		t.Fatalf("Error retrieving roles: Response %s: %v", err.(v2.GenericOpenAPIError).Body(), err)
+	}
+	for _, role := range *rr.Data {
+		if "Datadog Admin Role" == *role.Attributes.Name{
+			adminRoleUUID = role.GetId()
+		}
+	}
+
 	tm := testMonitor(ctx, t)
+	tm.SetRestrictedRoles([]string{adminRoleUUID})
 
 	// Create monitor
 	monitor, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx).Body(tm).Execute()
@@ -114,6 +127,7 @@ func TestMonitorLifecycle(t *testing.T) {
 
 	// Edit a monitor
 	testUpdateMonitor.SetName(fmt.Sprintf("%s-updated", tm.GetName()))
+	testUpdateMonitor.SetRestrictedRoles([]string{adminRoleUUID})
 	updatedMonitor, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, monitor.GetId()).Body(testUpdateMonitor).Execute()
 	if err != nil {
 		t.Errorf("Error updating Monitor %v: Response %v: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)

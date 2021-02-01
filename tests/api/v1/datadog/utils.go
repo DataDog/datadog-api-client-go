@@ -19,6 +19,7 @@ import (
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	v2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 	"gopkg.in/h2non/gock.v1"
 )
@@ -45,6 +46,22 @@ func WithTestAuth(ctx context.Context) context.Context {
 		ctx,
 		datadog.ContextAPIKeys,
 		map[string]datadog.APIKey{
+			"apiKeyAuth": {
+				Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
+			},
+			"appKeyAuth": {
+				Key: os.Getenv("DD_TEST_CLIENT_APP_KEY"),
+			},
+		},
+	)
+}
+
+// WithTestAuth returns authenticated context.
+func WithTestAuthV2(ctx context.Context) context.Context {
+	return context.WithValue(
+		ctx,
+		v2.ContextAPIKeys,
+		map[string]v2.APIKey{
 			"apiKeyAuth": {
 				Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
 			},
@@ -111,6 +128,27 @@ func ClientFromContext(ctx context.Context) (*datadog.APIClient, bool) {
 // Client returns client from context.
 func Client(ctx context.Context) *datadog.APIClient {
 	c, ok := ClientFromContext(ctx)
+	if !ok {
+		log.Fatal("client is not configured")
+	}
+	return c
+}
+
+// ClientFromContextV2 returns a V2 API client and indication if it was successful.
+func ClientFromContextV2(ctx context.Context) (*v2.APIClient, bool) {
+	if ctx == nil {
+		return nil, false
+	}
+	v := ctx.Value(clientKey)
+	if c, ok := v.(*v2.APIClient); ok {
+		return c, true
+	}
+	return nil, false
+}
+
+// Client returns client from context.
+func ClientV2(ctx context.Context) *v2.APIClient {
+	c, ok := ClientFromContextV2(ctx)
 	if !ok {
 		log.Fatal("client is not configured")
 	}
