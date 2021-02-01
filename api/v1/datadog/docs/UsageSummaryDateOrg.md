@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **IndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current date for the given org. | [optional] 
 **InfraHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current date for the given org. | [optional] 
 **IngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for the given org. | [optional] 
+**IotDeviceAggSum** | Pointer to **int64** | Shows the sum of all IoT devices over all hours in the current date for the given org. | [optional] 
+**IotDeviceTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all IoT devices over all hours in the current date for the given org. | [optional] 
 **MobileRumSessionCountAndroidSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on Android over all hours in the current date for the given org. | [optional] 
 **MobileRumSessionCountIosSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on iOS over all hours in the current date for the given org. | [optional] 
 **MobileRumSessionCountSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current date for the given org. | [optional] 
@@ -531,6 +533,56 @@ SetIngestedEventsBytesSum sets IngestedEventsBytesSum field to given value.
 `func (o *UsageSummaryDateOrg) HasIngestedEventsBytesSum() bool`
 
 HasIngestedEventsBytesSum returns a boolean if a field has been set.
+
+### GetIotDeviceAggSum
+
+`func (o *UsageSummaryDateOrg) GetIotDeviceAggSum() int64`
+
+GetIotDeviceAggSum returns the IotDeviceAggSum field if non-nil, zero value otherwise.
+
+### GetIotDeviceAggSumOk
+
+`func (o *UsageSummaryDateOrg) GetIotDeviceAggSumOk() (*int64, bool)`
+
+GetIotDeviceAggSumOk returns a tuple with the IotDeviceAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIotDeviceAggSum
+
+`func (o *UsageSummaryDateOrg) SetIotDeviceAggSum(v int64)`
+
+SetIotDeviceAggSum sets IotDeviceAggSum field to given value.
+
+### HasIotDeviceAggSum
+
+`func (o *UsageSummaryDateOrg) HasIotDeviceAggSum() bool`
+
+HasIotDeviceAggSum returns a boolean if a field has been set.
+
+### GetIotDeviceTop99pSum
+
+`func (o *UsageSummaryDateOrg) GetIotDeviceTop99pSum() int64`
+
+GetIotDeviceTop99pSum returns the IotDeviceTop99pSum field if non-nil, zero value otherwise.
+
+### GetIotDeviceTop99pSumOk
+
+`func (o *UsageSummaryDateOrg) GetIotDeviceTop99pSumOk() (*int64, bool)`
+
+GetIotDeviceTop99pSumOk returns a tuple with the IotDeviceTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIotDeviceTop99pSum
+
+`func (o *UsageSummaryDateOrg) SetIotDeviceTop99pSum(v int64)`
+
+SetIotDeviceTop99pSum sets IotDeviceTop99pSum field to given value.
+
+### HasIotDeviceTop99pSum
+
+`func (o *UsageSummaryDateOrg) HasIotDeviceTop99pSum() bool`
+
+HasIotDeviceTop99pSum returns a boolean if a field has been set.
 
 ### GetMobileRumSessionCountAndroidSum
 

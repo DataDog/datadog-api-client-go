@@ -126,7 +126,7 @@ docs/LogsAggregateBucketValue.md
 docs/LogsAggregateBucketValueTimeseries.md
 docs/LogsAggregateBucketValueTimeseriesPoint.md
 docs/LogsAggregateRequest.md
-docs/LogsAggregateRequestPaging.md
+docs/LogsAggregateRequestPage.md
 docs/LogsAggregateResponse.md
 docs/LogsAggregateResponseData.md
 docs/LogsAggregateResponseStatus.md
@@ -409,7 +409,7 @@ model_logs_aggregate_bucket_value.go
 model_logs_aggregate_bucket_value_timeseries.go
 model_logs_aggregate_bucket_value_timeseries_point.go
 model_logs_aggregate_request.go
-model_logs_aggregate_request_paging.go
+model_logs_aggregate_request_page.go
 model_logs_aggregate_response.go
 model_logs_aggregate_response_data.go
 model_logs_aggregate_response_status.go

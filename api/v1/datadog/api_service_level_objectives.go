@@ -1057,13 +1057,28 @@ func (a *ServiceLevelObjectivesApiService) GetSLOHistoryExecute(r ApiGetSLOHisto
 }
 
 type ApiListSLOsRequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	ids        *string
+	ctx          _context.Context
+	ApiService   *ServiceLevelObjectivesApiService
+	ids          *string
+	query        *string
+	tagsQuery    *string
+	metricsQuery *string
 }
 
 func (r ApiListSLOsRequest) Ids(ids string) ApiListSLOsRequest {
 	r.ids = &ids
+	return r
+}
+func (r ApiListSLOsRequest) Query(query string) ApiListSLOsRequest {
+	r.query = &query
+	return r
+}
+func (r ApiListSLOsRequest) TagsQuery(tagsQuery string) ApiListSLOsRequest {
+	r.tagsQuery = &tagsQuery
+	return r
+}
+func (r ApiListSLOsRequest) MetricsQuery(metricsQuery string) ApiListSLOsRequest {
+	r.metricsQuery = &metricsQuery
 	return r
 }
 
@@ -1072,8 +1087,8 @@ func (r ApiListSLOsRequest) Execute() (SLOListResponse, *_nethttp.Response, erro
 }
 
 /*
- * ListSLOs Search SLOs
- * Get multiple service level objective objects by their IDs.
+ * ListSLOs Get all SLOs
+ * Get a list of service level objective objects for your organization.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiListSLOsRequest
  */
@@ -1108,11 +1123,19 @@ func (a *ServiceLevelObjectivesApiService) ListSLOsExecute(r ApiListSLOsRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.ids == nil {
-		return localVarReturnValue, nil, reportError("ids is required and must be specified")
-	}
 
-	localVarQueryParams.Add("ids", parameterToString(*r.ids, ""))
+	if r.ids != nil {
+		localVarQueryParams.Add("ids", parameterToString(*r.ids, ""))
+	}
+	if r.query != nil {
+		localVarQueryParams.Add("query", parameterToString(*r.query, ""))
+	}
+	if r.tagsQuery != nil {
+		localVarQueryParams.Add("tags_query", parameterToString(*r.tagsQuery, ""))
+	}
+	if r.metricsQuery != nil {
+		localVarQueryParams.Add("metrics_query", parameterToString(*r.metricsQuery, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

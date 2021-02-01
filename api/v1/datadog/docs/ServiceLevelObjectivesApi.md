@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**DeleteSLOTimeframeInBulk**](ServiceLevelObjectivesApi.md#DeleteSLOTimeframeInBulk) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
 [**GetSLO**](ServiceLevelObjectivesApi.md#GetSLO) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
 [**GetSLOHistory**](ServiceLevelObjectivesApi.md#GetSLOHistory) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
-[**ListSLOs**](ServiceLevelObjectivesApi.md#ListSLOs) | **Get** /api/v1/slo | Search SLOs
+[**ListSLOs**](ServiceLevelObjectivesApi.md#ListSLOs) | **Get** /api/v1/slo | Get all SLOs
 [**UpdateSLO**](ServiceLevelObjectivesApi.md#UpdateSLO) | **Put** /api/v1/slo/{slo_id} | Update a SLO
 
 
@@ -528,9 +528,9 @@ Name | Type | Description  | Notes
 
 ## ListSLOs
 
-> SLOListResponse ListSLOs(ctx).Ids(ids).Execute()
+> SLOListResponse ListSLOs(ctx).Ids(ids).Query(query).TagsQuery(tagsQuery).MetricsQuery(metricsQuery).Execute()
 
-Search SLOs
+Get all SLOs
 
 
 
@@ -561,12 +561,15 @@ func main() {
         },
     )
 
-    ids := "id1, id2, id3" // string | A comma separated list of the IDs of the service level objectives objects.
+    ids := "id1, id2, id3" // string | A comma separated list of the IDs of the service level objectives objects. (optional)
+    query := "monitor" // string | The query string to filter results based on SLO names. (optional)
+    tagsQuery := "env:prod" // string | The query string to filter results based on SLO tags. (optional)
+    metricsQuery := "aws.elb.request_count" // string | The query string to filter results based on SLO numerator and denominator. (optional)
 
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ServiceLevelObjectivesApi.ListSLOs(ctx).Ids(ids).Execute()
+    resp, r, err := api_client.ServiceLevelObjectivesApi.ListSLOs(ctx).Ids(ids).Query(query).TagsQuery(tagsQuery).MetricsQuery(metricsQuery).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.ListSLOs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -589,6 +592,9 @@ Other parameters are passed through a pointer to a apiListSLOsRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **string** | A comma separated list of the IDs of the service level objectives objects. | 
+ **query** | **string** | The query string to filter results based on SLO names. | 
+ **tagsQuery** | **string** | The query string to filter results based on SLO tags. | 
+ **metricsQuery** | **string** | The query string to filter results based on SLO numerator and denominator. | 
 
 ### Return type
 

@@ -55,6 +55,10 @@ type UsageSummaryResponse struct {
 	InfraHostTop99pSum *int64 `json:"infra_host_top99p_sum,omitempty"`
 	// Shows the sum of all log bytes ingested over all hours in the current months for all organizations.
 	IngestedEventsBytesAggSum *int64 `json:"ingested_events_bytes_agg_sum,omitempty"`
+	// Shows the sum of all IoT devices over all hours in the current months for all organizations.
+	IotDeviceAggSum *int64 `json:"iot_device_agg_sum,omitempty"`
+	// Shows the 99th percentile of all IoT devices over all hours in the current months of all organizations.
+	IotDeviceTop99pSum *int64 `json:"iot_device_top99p_sum,omitempty"`
 	// Shows the the most recent hour in the current months for all organizations for which all usages were calculated.
 	LastUpdated *time.Time `json:"last_updated,omitempty"`
 	// Shows the sum of all live logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020).
@@ -752,6 +756,70 @@ func (o *UsageSummaryResponse) HasIngestedEventsBytesAggSum() bool {
 // SetIngestedEventsBytesAggSum gets a reference to the given int64 and assigns it to the IngestedEventsBytesAggSum field.
 func (o *UsageSummaryResponse) SetIngestedEventsBytesAggSum(v int64) {
 	o.IngestedEventsBytesAggSum = &v
+}
+
+// GetIotDeviceAggSum returns the IotDeviceAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetIotDeviceAggSum() int64 {
+	if o == nil || o.IotDeviceAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.IotDeviceAggSum
+}
+
+// GetIotDeviceAggSumOk returns a tuple with the IotDeviceAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetIotDeviceAggSumOk() (*int64, bool) {
+	if o == nil || o.IotDeviceAggSum == nil {
+		return nil, false
+	}
+	return o.IotDeviceAggSum, true
+}
+
+// HasIotDeviceAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasIotDeviceAggSum() bool {
+	if o != nil && o.IotDeviceAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIotDeviceAggSum gets a reference to the given int64 and assigns it to the IotDeviceAggSum field.
+func (o *UsageSummaryResponse) SetIotDeviceAggSum(v int64) {
+	o.IotDeviceAggSum = &v
+}
+
+// GetIotDeviceTop99pSum returns the IotDeviceTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetIotDeviceTop99pSum() int64 {
+	if o == nil || o.IotDeviceTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.IotDeviceTop99pSum
+}
+
+// GetIotDeviceTop99pSumOk returns a tuple with the IotDeviceTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetIotDeviceTop99pSumOk() (*int64, bool) {
+	if o == nil || o.IotDeviceTop99pSum == nil {
+		return nil, false
+	}
+	return o.IotDeviceTop99pSum, true
+}
+
+// HasIotDeviceTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasIotDeviceTop99pSum() bool {
+	if o != nil && o.IotDeviceTop99pSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIotDeviceTop99pSum gets a reference to the given int64 and assigns it to the IotDeviceTop99pSum field.
+func (o *UsageSummaryResponse) SetIotDeviceTop99pSum(v int64) {
+	o.IotDeviceTop99pSum = &v
 }
 
 // GetLastUpdated returns the LastUpdated field value if set, zero value otherwise.
@@ -1455,6 +1523,12 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.IngestedEventsBytesAggSum != nil {
 		toSerialize["ingested_events_bytes_agg_sum"] = o.IngestedEventsBytesAggSum
+	}
+	if o.IotDeviceAggSum != nil {
+		toSerialize["iot_device_agg_sum"] = o.IotDeviceAggSum
+	}
+	if o.IotDeviceTop99pSum != nil {
+		toSerialize["iot_device_top99p_sum"] = o.IotDeviceTop99pSum
 	}
 	if o.LastUpdated != nil {
 		toSerialize["last_updated"] = o.LastUpdated

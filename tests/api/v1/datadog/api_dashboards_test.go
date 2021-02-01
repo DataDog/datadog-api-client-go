@@ -451,11 +451,11 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetApmStatsDefinition := datadog.NewTableWidgetDefinitionWithDefaults()
 	tableWidgetApmStatsDefinition.SetRequests([]datadog.TableWidgetRequest{{
 		ApmStatsQuery: &datadog.ApmStatsQueryDefinition{
-			Env: "prod",
-			Name: "web",
+			Env:        "prod",
+			Name:       "web",
 			PrimaryTag: "foo:*",
-			Resource: datadog.PtrString("endpoint"),
-			RowType: datadog.APMSTATSQUERYROWTYPE_SPAN,
+			Resource:   datadog.PtrString("endpoint"),
+			RowType:    datadog.APMSTATSQUERYROWTYPE_SPAN,
 			Columns: &[]datadog.ApmStatsQueryColumnType{{
 				Name: "baz",
 			}},
@@ -467,7 +467,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetApmStatsDefinition.SetTime(*widgetTime)
 	tableWidgetApmStatsDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
-		Link: "https://app.datadoghq.com/dashboard/lists",
+		Link:  "https://app.datadoghq.com/dashboard/lists",
 	}})
 
 	tableWidgetApmStats := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetApmStatsDefinition))
@@ -686,6 +686,52 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	timeseriesWidgetEventQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionEventQuery))
 
+	// Timeseries Widget with Formulas and Functions Query
+	timeseriesWidgetDefinitionFormulaFunctionsQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
+
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
+		Formulas: &[]datadog.WidgetFormula{{
+			Formula: "(((mcnulty_query_errors * 0.2)) / (mcnulty_query * 0.3))",
+			Alias:   datadog.PtrString("sample_performance_calculator"),
+		}},
+		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
+		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+			TimeSeriesFormulaAndFunctionMetricQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionMetricQueryDefinition{
+				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+				Query:      "avg:dd.metrics.query.sq.by_source{service:mcnulty-query}.as_count()",
+				Name:       datadog.PtrString("mcnulty-query"),
+			},
+		},
+			{
+				TimeSeriesFormulaAndFunctionEventQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
+					Compute: datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute{
+						Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+					},
+					Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
+						Query: "service:mcnulty-query Errors",
+					},
+					Indexes: &[]string{"*"},
+					Name:    datadog.PtrString("mcnulty_query_errors"),
+				},
+			},
+			{
+				TimeSeriesFormulaAndFunctionProcessQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionProcessQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS,
+					TextFilter: datadog.PtrString(""),
+					Metric:     "process.stat.cpu.total_pct",
+					Limit:      datadog.PtrInt64(10),
+					Name:       datadog.PtrString("process_query"),
+				},
+			},
+		}}})
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+
+	timeseriesWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionFormulaFunctionsQuery))
+
 	// Toplist Widget
 	toplistWidgetDefinition := datadog.NewToplistWidgetDefinitionWithDefaults()
 	toplistWidgetDefinition.SetRequests([]datadog.ToplistWidgetRequest{{
@@ -744,6 +790,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		*timeseriesWidgetProcessQuery,
 		*timeseriesWidgetLogQuery,
 		*timeseriesWidgetEventQuery,
+		*timeseriesWidgetFormulaFunctionsQuery,
 		*toplistWidget,
 	}
 

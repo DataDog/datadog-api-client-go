@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
 **Priority** | Pointer to **int64** | Integer from 1 (high) to 5 (low) indicating alert severity. | [optional] 
 **Query** | Pointer to **string** | The monitor query. | [optional] 
+**RestrictedRoles** | Pointer to **[]string** | A list of role identifiers that can be pulled from the Roles API. Cannot be used with &#x60;locked&#x60; option. | [optional] 
 **State** | Pointer to [**MonitorState**](MonitorState.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | Tags associated to your monitor. | [optional] 
 **Type** | Pointer to [**MonitorType**](MonitorType.md) |  | [optional] 
@@ -348,6 +349,31 @@ SetQuery sets Query field to given value.
 `func (o *Monitor) HasQuery() bool`
 
 HasQuery returns a boolean if a field has been set.
+
+### GetRestrictedRoles
+
+`func (o *Monitor) GetRestrictedRoles() []string`
+
+GetRestrictedRoles returns the RestrictedRoles field if non-nil, zero value otherwise.
+
+### GetRestrictedRolesOk
+
+`func (o *Monitor) GetRestrictedRolesOk() (*[]string, bool)`
+
+GetRestrictedRolesOk returns a tuple with the RestrictedRoles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRestrictedRoles
+
+`func (o *Monitor) SetRestrictedRoles(v []string)`
+
+SetRestrictedRoles sets RestrictedRoles field to given value.
+
+### HasRestrictedRoles
+
+`func (o *Monitor) HasRestrictedRoles() bool`
+
+HasRestrictedRoles returns a boolean if a field has been set.
 
 ### GetState
 
