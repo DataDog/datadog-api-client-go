@@ -48,7 +48,7 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 			},
 		},
 		RestrictedRoles: &[]string{
-			"a0dfe496-dc09-4464-83be-a8037625bc31",
+			"94172442-be03-11e9-a77a-3b7612558ac1",
 		},
 	}
 }
@@ -65,7 +65,7 @@ var testUpdateMonitor = datadog.MonitorUpdateRequest{
 		},
 	},
 	RestrictedRoles: &[]string{
-		"a0dfe496-dc09-4464-83be-a8037625bc31",
+		"94172442-be03-11e9-a77a-3b7612558ac1",
 	},
 }
 
