@@ -10210,11 +10210,11 @@ components:
       example:
         name: name
         title: title
-        email: joe.doe@example.com
+        email: jane.doe@example.com
       properties:
         email:
           description: The email of the user.
-          example: joe.doe@example.com
+          example: jane.doe@example.com
           type: string
         name:
           description: The name of the user.
@@ -10238,7 +10238,7 @@ components:
         attributes:
           name: name
           title: title
-          email: joe.doe@example.com
+          email: jane.doe@example.com
         type: users
       properties:
         attributes:
@@ -10265,7 +10265,7 @@ components:
           attributes:
             name: name
             title: title
-            email: joe.doe@example.com
+            email: jane.doe@example.com
           type: users
       properties:
         data:

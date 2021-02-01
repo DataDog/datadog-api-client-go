@@ -51,7 +51,7 @@ func main() {
         },
     )
 
-    body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("joe.doe@example.com"), datadog.UsersType("users"))) // UserCreateRequest | 
+    body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("jane.doe@example.com"), datadog.UsersType("users"))) // UserCreateRequest | 
 
     configuration := datadog.NewConfiguration()
 
