@@ -19,6 +19,8 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"testing"
+	"time"
 
 	"github.com/go-bdd/gobdd"
 	"github.com/mcuadros/go-lookup"
@@ -306,6 +308,23 @@ func SetCtx(ctx gobdd.Context, value context.Context) {
 	ctx.Set(ctxKey{}, value)
 }
 
+// SetFixtureData sets the fixture data in BDD context
+func SetFixtureData(ctx gobdd.Context) {
+	ct, _ := ctx.Get(gobdd.TestingTKey{})
+	cctx := GetCtx(ctx)
+	testName := strings.Join(strings.Split(ct.(*testing.T).Name(), "/")[1:3], "/")
+	unique := WithUniqueSurrounding(cctx, testName)
+	data := GetData(ctx)
+	data["unique"] = unique
+	data["unique_lower"] = strings.ToLower(unique)
+	data["now_ts"] = ClockFromContext(cctx).Now().Unix()
+	data["now_iso"] = ClockFromContext(cctx).Now().Format(time.RFC3339)
+	data["hour_later_ts"] = ClockFromContext(cctx).Now().Add(time.Hour).Unix()
+	data["hour_later_iso"] = ClockFromContext(cctx).Now().Add(time.Hour).Format(time.RFC3339)
+	data["hour_ago_ts"] = ClockFromContext(cctx).Now().Add(-time.Hour).Unix()
+	data["hour_ago_iso"] = ClockFromContext(cctx).Now().Add(-time.Hour).Format(time.RFC3339)
+}
+
 // SetClient sets client reflection.
 func SetClient(ctx gobdd.Context, value interface{}) {
 	ctx.Set(clientKey{}, value)
@@ -411,7 +430,7 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, error) {
 	in[0] = reflect.ValueOf(GetCtx(ctx))
 	requestArgs := GetRequestArguments(ctx)
 
-	if len(requestArgs) >= f.Type().NumIn() -1 {
+	if len(requestArgs) >= f.Type().NumIn()-1 {
 		for i := 1; i < f.Type().NumIn(); i++ {
 			object := requestArgs[i-1]
 			in[i] = object.(reflect.Value)
