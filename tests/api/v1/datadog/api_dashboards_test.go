@@ -711,6 +711,9 @@ func TestDashboardLifecycle(t *testing.T) {
 					Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
 						Query: "service:mcnulty-query Errors",
 					},
+					GroupBy: datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy{
+						Facet: "host",
+					},
 					Indexes: &[]string{"*"},
 					Name:    datadog.PtrString("mcnulty_query_errors"),
 				},
