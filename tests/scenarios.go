@@ -12,7 +12,6 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"reflect"
@@ -216,8 +215,6 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 			method := request.MethodByName(name)
 			if method.IsValid() {
 				v := p.Resolve(t, ctx, method.Type().In(0))
-				log.Println(v)
-				log.Println(p)
 				request = method.Call([]reflect.Value{v})[0]
 			}
 		}
