@@ -12,13 +12,13 @@ import (
 	"encoding/json"
 )
 
-// TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy Group by options.
+// TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy List of objects used to group by.
 type TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy struct {
 	// Event facet.
 	Facet string `json:"facet"`
 	// Number of groups to return.
-	Limit *int64                                                       `json:"limit,omitempty"`
-	Sort  *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort `json:"sort,omitempty"`
+	Limit *int64                                                `json:"limit,omitempty"`
+	Sort  *TimeSeriesFormulaAndFunctionEventQueryDefinitionSort `json:"sort,omitempty"`
 }
 
 // NewTimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy instantiates a new TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy object
@@ -96,9 +96,9 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) SetLimit(v int
 }
 
 // GetSort returns the Sort field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) GetSort() TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort {
+func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) GetSort() TimeSeriesFormulaAndFunctionEventQueryDefinitionSort {
 	if o == nil || o.Sort == nil {
-		var ret TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort
+		var ret TimeSeriesFormulaAndFunctionEventQueryDefinitionSort
 		return ret
 	}
 	return *o.Sort
@@ -106,7 +106,7 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) GetSort() Time
 
 // GetSortOk returns a tuple with the Sort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) GetSortOk() (*TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort, bool) {
+func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) GetSortOk() (*TimeSeriesFormulaAndFunctionEventQueryDefinitionSort, bool) {
 	if o == nil || o.Sort == nil {
 		return nil, false
 	}
@@ -122,8 +122,8 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) HasSort() bool
 	return false
 }
 
-// SetSort gets a reference to the given TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort and assigns it to the Sort field.
-func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) SetSort(v TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort) {
+// SetSort gets a reference to the given TimeSeriesFormulaAndFunctionEventQueryDefinitionSort and assigns it to the Sort field.
+func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) SetSort(v TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) {
 	o.Sort = &v
 }
 
