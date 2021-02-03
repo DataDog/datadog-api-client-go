@@ -17033,7 +17033,10 @@ components:
         data_source:
           $ref: '#/components/schemas/FormulaAndFunctionEventsDataSource'
         group_by:
-          $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryDefinition_group_by'
+          description: Group by options.
+          items:
+            $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryDefinition_group_by'
+          type: array
         indexes:
           description: An array of index names to query in the stream. Omit or use
             `[]` to query all indexes at once.
@@ -22549,7 +22552,7 @@ components:
       required:
       - aggregation
       type: object
-    TimeSeriesFormulaAndFunctionEventQueryDefinition_group_by_sort:
+    TimeSeriesFormulaAndFunctionEventQueryDefinition_sort:
       description: Options for sorting group by results.
       properties:
         aggregation:
@@ -22565,7 +22568,7 @@ components:
       - aggregation
       type: object
     TimeSeriesFormulaAndFunctionEventQueryDefinition_group_by:
-      description: Group by options.
+      description: List of objects used to group by.
       properties:
         facet:
           description: Event facet.
@@ -22577,7 +22580,7 @@ components:
           format: int64
           type: integer
         sort:
-          $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryDefinition_group_by_sort'
+          $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryDefinition_sort'
       required:
       - facet
       type: object

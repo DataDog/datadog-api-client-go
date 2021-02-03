@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Compute** | [**TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute**](TimeSeriesFormulaAndFunctionEventQueryDefinition_compute.md) |  | 
 **DataSource** | [**FormulaAndFunctionEventsDataSource**](FormulaAndFunctionEventsDataSource.md) |  | 
-**GroupBy** | Pointer to [**TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy**](TimeSeriesFormulaAndFunctionEventQueryDefinition_group_by.md) |  | [optional] 
+**GroupBy** | Pointer to [**[]TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy**](TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy.md) | Group by options. | [optional] 
 **Indexes** | Pointer to **[]string** | An array of index names to query in the stream. Omit or use &#x60;[]&#x60; to query all indexes at once. | [optional] 
 **Name** | Pointer to **string** | Name of the query for use in formulas. | [optional] 
 **Search** | Pointer to [**TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch**](TimeSeriesFormulaAndFunctionEventQueryDefinition_search.md) |  | [optional] 
@@ -72,20 +72,20 @@ SetDataSource sets DataSource field to given value.
 
 ### GetGroupBy
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) GetGroupBy() TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy`
+`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) GetGroupBy() []TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy`
 
 GetGroupBy returns the GroupBy field if non-nil, zero value otherwise.
 
 ### GetGroupByOk
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) GetGroupByOk() (*TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy, bool)`
+`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) GetGroupByOk() (*[]TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy, bool)`
 
 GetGroupByOk returns a tuple with the GroupBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupBy
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) SetGroupBy(v TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy)`
+`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) SetGroupBy(v []TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy)`
 
 SetGroupBy sets GroupBy field to given value.
 
