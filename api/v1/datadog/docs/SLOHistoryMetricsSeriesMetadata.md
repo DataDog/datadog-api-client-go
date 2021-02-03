@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Metric** | Pointer to **string** | Query metric used. | [optional] 
 **QueryIndex** | Pointer to **int64** | Query index from original combined query. | [optional] 
 **Scope** | Pointer to **string** | Query scope. | [optional] 
-**Unit** | Pointer to **string** | Query units (if available). | [optional] 
+**Unit** | Pointer to **[]interface{}** | An array of metric units that contains up to two unit objects. For example, bytes represents one unit object and bytes per second represents two unit objects. If a metric query only has one unit object, the second array element is null. | [optional] 
 
 ## Methods
 
@@ -157,20 +157,20 @@ HasScope returns a boolean if a field has been set.
 
 ### GetUnit
 
-`func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() string`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() []interface{}`
 
 GetUnit returns the Unit field if non-nil, zero value otherwise.
 
 ### GetUnitOk
 
-`func (o *SLOHistoryMetricsSeriesMetadata) GetUnitOk() (*string, bool)`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetUnitOk() (*[]interface{}, bool)`
 
 GetUnitOk returns a tuple with the Unit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnit
 
-`func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v string)`
+`func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v []interface{})`
 
 SetUnit sets Unit field to given value.
 
@@ -180,6 +180,16 @@ SetUnit sets Unit field to given value.
 
 HasUnit returns a boolean if a field has been set.
 
+### SetUnitNil
+
+`func (o *SLOHistoryMetricsSeriesMetadata) SetUnitNil(b bool)`
+
+ SetUnitNil sets the value for Unit to be an explicit nil
+
+### UnsetUnit
+`func (o *SLOHistoryMetricsSeriesMetadata) UnsetUnit()`
+
+UnsetUnit ensures that no value is present for Unit, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
