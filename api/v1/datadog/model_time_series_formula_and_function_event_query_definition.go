@@ -14,9 +14,10 @@ import (
 
 // TimeSeriesFormulaAndFunctionEventQueryDefinition A timeseries formula and functions events query.
 type TimeSeriesFormulaAndFunctionEventQueryDefinition struct {
-	Compute    TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute  `json:"compute"`
-	DataSource FormulaAndFunctionEventsDataSource                       `json:"data_source"`
-	GroupBy    *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy `json:"group_by,omitempty"`
+	Compute    TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+	DataSource FormulaAndFunctionEventsDataSource                      `json:"data_source"`
+	// Group by options.
+	GroupBy *[]TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy `json:"group_by,omitempty"`
 	// An array of index names to query in the stream. Omit or use `[]` to query all indexes at once.
 	Indexes *[]string `json:"indexes,omitempty"`
 	// Name of the query for use in formulas.
@@ -92,9 +93,9 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) SetDataSource(v Formu
 }
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) GetGroupBy() TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy {
+func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) GetGroupBy() []TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy {
 	if o == nil || o.GroupBy == nil {
-		var ret TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy
+		var ret []TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy
 		return ret
 	}
 	return *o.GroupBy
@@ -102,7 +103,7 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) GetGroupBy() TimeSeri
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) GetGroupByOk() (*TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy, bool) {
+func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) GetGroupByOk() (*[]TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy, bool) {
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
@@ -118,8 +119,8 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) HasGroupBy() bool {
 	return false
 }
 
-// SetGroupBy gets a reference to the given TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy and assigns it to the GroupBy field.
-func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) SetGroupBy(v TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) {
+// SetGroupBy gets a reference to the given []TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy and assigns it to the GroupBy field.
+func (o *TimeSeriesFormulaAndFunctionEventQueryDefinition) SetGroupBy(v []TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) {
 	o.GroupBy = &v
 }
 

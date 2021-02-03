@@ -691,15 +691,15 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		Formulas: &[]datadog.WidgetFormula{{
-			Formula: "(((mcnulty_query_errors * 0.2)) / (mcnulty_query * 0.3))",
+			Formula: "(((errors * 0.2)) / (query * 0.3))",
 			Alias:   datadog.PtrString("sample_performance_calculator"),
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
 		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
 			TimeSeriesFormulaAndFunctionMetricQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionMetricQueryDefinition{
 				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
-				Query:      "avg:dd.metrics.query.sq.by_source{service:mcnulty-query}.as_count()",
-				Name:       datadog.PtrString("mcnulty-query"),
+				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
+				Name:       datadog.PtrString("query"),
 			},
 		},
 			{
@@ -709,10 +709,13 @@ func TestDashboardLifecycle(t *testing.T) {
 						Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 					},
 					Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
-						Query: "service:mcnulty-query Errors",
+						Query: "service:query Errors",
 					},
+					GroupBy: &[]datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy{{
+						Facet: "host",
+					}},
 					Indexes: &[]string{"*"},
-					Name:    datadog.PtrString("mcnulty_query_errors"),
+					Name:    datadog.PtrString("errors"),
 				},
 			},
 			{
