@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Metric** | Pointer to **string** | Query metric used. | [optional] 
 **QueryIndex** | Pointer to **int64** | Query index from original combined query. | [optional] 
 **Scope** | Pointer to **string** | Query scope. | [optional] 
-**Unit** | Pointer to **[]interface{}** | An array of metric units that contains up to two unit objects. For example, bytes represents one unit object and bytes per second represents two unit objects. If a metric query only has one unit object, the second array element is null. | [optional] 
+**Unit** | Pointer to [**[]SLOHistoryMetricsSeriesMetadataUnit**](SLOHistoryMetricsSeriesMetadataUnit.md) | An array of metric units that contains up to two unit objects. For example, bytes represents one unit object and bytes per second represents two unit objects. If a metric query only has one unit object, the second array element is null. | [optional] 
 
 ## Methods
 
@@ -157,20 +157,20 @@ HasScope returns a boolean if a field has been set.
 
 ### GetUnit
 
-`func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() []interface{}`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() []SLOHistoryMetricsSeriesMetadataUnit`
 
 GetUnit returns the Unit field if non-nil, zero value otherwise.
 
 ### GetUnitOk
 
-`func (o *SLOHistoryMetricsSeriesMetadata) GetUnitOk() (*[]interface{}, bool)`
+`func (o *SLOHistoryMetricsSeriesMetadata) GetUnitOk() (*[]SLOHistoryMetricsSeriesMetadataUnit, bool)`
 
 GetUnitOk returns a tuple with the Unit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnit
 
-`func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v []interface{})`
+`func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v []SLOHistoryMetricsSeriesMetadataUnit)`
 
 SetUnit sets Unit field to given value.
 
