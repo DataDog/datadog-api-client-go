@@ -12,6 +12,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"reflect"
@@ -50,7 +51,10 @@ func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp refl
 	if p.Value != nil {
 		tpl := Templated(t, GetData(ctx), *p.Value)
 		v := reflect.New(tp)
-		json.Unmarshal([]byte(tpl), v.Interface())
+		err := json.Unmarshal([]byte(tpl), v.Interface())
+		if err != nil {
+			t.Fatalf("can't unmarshal parameter value for %s: %v", p.Name, err)
+		}
 		return v.Elem()
 	}
 	v, _ := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(*p.Source))
@@ -102,6 +106,14 @@ func Templated(t gobdd.StepTest, data interface{}, source string) string {
 			if err != nil {
 				t.Fatalf("problem with replacement of %s: %v", source, err)
 			}
+		}
+		switch v.Kind() {
+		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+			return strconv.FormatInt(v.Int(), 10)
+		case reflect.Float64, reflect.Float32:
+			return strconv.FormatFloat(v.Float(), 'f', -1, 10)
+		case reflect.Bool:
+			return strconv.FormatBool(v.Bool())
 		}
 		return v.String()
 	}
@@ -204,6 +216,8 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 			method := request.MethodByName(name)
 			if method.IsValid() {
 				v := p.Resolve(t, ctx, method.Type().In(0))
+				log.Println(v)
+				log.Println(p)
 				request = method.Call([]reflect.Value{v})[0]
 			}
 		}
