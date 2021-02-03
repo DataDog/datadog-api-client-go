@@ -25,7 +25,7 @@ type SLOHistoryMetricsSeriesMetadata struct {
 	// Query scope.
 	Scope *string `json:"scope,omitempty"`
 	// An array of metric units that contains up to two unit objects. For example, bytes represents one unit object and bytes per second represents two unit objects. If a metric query only has one unit object, the second array element is null.
-	Unit []interface{} `json:"unit,omitempty"`
+	Unit []SLOHistoryMetricsSeriesMetadataUnit `json:"unit,omitempty"`
 }
 
 // NewSLOHistoryMetricsSeriesMetadata instantiates a new SLOHistoryMetricsSeriesMetadata object
@@ -206,9 +206,9 @@ func (o *SLOHistoryMetricsSeriesMetadata) SetScope(v string) {
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() []interface{} {
+func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() []SLOHistoryMetricsSeriesMetadataUnit {
 	if o == nil {
-		var ret []interface{}
+		var ret []SLOHistoryMetricsSeriesMetadataUnit
 		return ret
 	}
 	return o.Unit
@@ -217,7 +217,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() []interface{} {
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SLOHistoryMetricsSeriesMetadata) GetUnitOk() (*[]interface{}, bool) {
+func (o *SLOHistoryMetricsSeriesMetadata) GetUnitOk() (*[]SLOHistoryMetricsSeriesMetadataUnit, bool) {
 	if o == nil || o.Unit == nil {
 		return nil, false
 	}
@@ -233,8 +233,8 @@ func (o *SLOHistoryMetricsSeriesMetadata) HasUnit() bool {
 	return false
 }
 
-// SetUnit gets a reference to the given []interface{} and assigns it to the Unit field.
-func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v []interface{}) {
+// SetUnit gets a reference to the given []SLOHistoryMetricsSeriesMetadataUnit and assigns it to the Unit field.
+func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v []SLOHistoryMetricsSeriesMetadataUnit) {
 	o.Unit = v
 }
 
