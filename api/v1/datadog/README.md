@@ -486,6 +486,7 @@ Class | Method | HTTP request | Description
  - [SLOHistoryMetrics](docs/SLOHistoryMetrics.md)
  - [SLOHistoryMetricsSeries](docs/SLOHistoryMetricsSeries.md)
  - [SLOHistoryMetricsSeriesMetadata](docs/SLOHistoryMetricsSeriesMetadata.md)
+ - [SLOHistoryMetricsSeriesMetadataUnit](docs/SLOHistoryMetricsSeriesMetadataUnit.md)
  - [SLOHistoryResponse](docs/SLOHistoryResponse.md)
  - [SLOHistoryResponseData](docs/SLOHistoryResponseData.md)
  - [SLOHistoryResponseError](docs/SLOHistoryResponseError.md)

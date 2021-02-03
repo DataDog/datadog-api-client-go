@@ -285,6 +285,7 @@ docs/SLOErrorTimeframe.md
 docs/SLOHistoryMetrics.md
 docs/SLOHistoryMetricsSeries.md
 docs/SLOHistoryMetricsSeriesMetadata.md
+docs/SLOHistoryMetricsSeriesMetadataUnit.md
 docs/SLOHistoryResponse.md
 docs/SLOHistoryResponseData.md
 docs/SLOHistoryResponseError.md
@@ -785,6 +786,7 @@ model_slo_error_timeframe.go
 model_slo_history_metrics.go
 model_slo_history_metrics_series.go
 model_slo_history_metrics_series_metadata.go
+model_slo_history_metrics_series_metadata_unit.go
 model_slo_history_response.go
 model_slo_history_response_data.go
 model_slo_history_response_error.go
