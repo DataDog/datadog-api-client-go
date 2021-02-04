@@ -711,7 +711,7 @@ func TestDashboardLifecycle(t *testing.T) {
 					Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
 						Query: "service:query Errors",
 					},
-					GroupBy: &[]datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy{{
+					GroupBy: &[]datadog.TimeSeriesFormulaAndFunctionEventQueryGroupBy{{
 						Facet: "host",
 					}},
 					Indexes: &[]string{"*"},
