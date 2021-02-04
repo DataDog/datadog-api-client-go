@@ -4732,11 +4732,30 @@ paths:
       tags:
       - Service Level Objectives
       x-codegen-request-body-name: body
+      x-given:
+        slo:
+          parameters:
+          - name: body
+            value: |-
+              {
+                "type": "metric",
+                "name": "{{ unique }}",
+                "thresholds": [{
+                  "timeframe": "7d",
+                  "target": 95.0,
+                  "warning": 98.0
+                }],
+                "query": {
+                  "numerator": "sum:httpservice.hits{code:2xx}.as_count()",
+                  "denominator": "sum:httpservice.hits{!code:3xx}.as_count()"
+                }
+              }
+          step: there is a valid "slo" in the system
       x-undo:
         operationId: DeleteSLO
         parameters:
         - name: slo_id
-          source: data.id
+          source: data[0].id
         type: unsafe
   /api/v1/slo/bulk_delete:
     post:
@@ -4893,9 +4912,9 @@ paths:
                 "data": {
                   "id": "1",
                   "attributes": {
-                    "slo_id": "{{ unique }}",
-                    "start": 1610034200,
-                    "end": 1610034300,
+                    "slo_id": "{{ slo.data[0].id }}",
+                    "start": {{ now_ts }},
+                    "end": {{ hour_later_ts }},
                     "category": "Other",
                     "timezone": "UTC",
                     "description": "Test Correction"
@@ -4903,7 +4922,7 @@ paths:
                    "type": "correction"
                 }
               }
-          step: there is a valid "correction" in the system
+          step: there is a valid "correction" for "slo"
       x-undo:
         operationId: DeleteSLOCorrection
         parameters:
