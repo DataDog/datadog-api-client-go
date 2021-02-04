@@ -47,6 +47,9 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
 			},
 		},
+		RestrictedRoles: &[]string{
+			"94172442-be03-11e9-a77a-3b7612558ac1",
+		},
 	}
 }
 
@@ -60,6 +63,9 @@ var testUpdateMonitor = datadog.MonitorUpdateRequest{
 			Critical: datadog.PtrFloat64(2),
 			Warning:  *datadog.NewNullableFloat64(nil),
 		},
+	},
+	RestrictedRoles: &[]string{
+		"94172442-be03-11e9-a77a-3b7612558ac1",
 	},
 }
 

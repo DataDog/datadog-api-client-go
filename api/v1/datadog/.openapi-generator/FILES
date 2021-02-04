@@ -110,6 +110,14 @@ docs/EventStreamWidgetDefinitionType.md
 docs/EventTimelineWidgetDefinition.md
 docs/EventTimelineWidgetDefinitionType.md
 docs/EventsApi.md
+docs/FormulaAndFunctionEventAggregation.md
+docs/FormulaAndFunctionEventsDataSource.md
+docs/FormulaAndFunctionEventsSortType.md
+docs/FormulaAndFunctionMetricAggregation.md
+docs/FormulaAndFunctionMetricDataSource.md
+docs/FormulaAndFunctionProcessQueryDataSource.md
+docs/FormulaAndFunctionQueryDefinition.md
+docs/FormulaAndFunctionResponseFormat.md
 docs/FreeTextWidgetDefinition.md
 docs/FreeTextWidgetDefinitionType.md
 docs/GCPAccount.md
@@ -253,6 +261,7 @@ docs/PagerDutyService.md
 docs/PagerDutyServiceKey.md
 docs/PagerDutyServiceName.md
 docs/ProcessQueryDefinition.md
+docs/QuerySortOrder.md
 docs/QueryValueWidgetDefinition.md
 docs/QueryValueWidgetDefinitionType.md
 docs/QueryValueWidgetRequest.md
@@ -276,6 +285,7 @@ docs/SLOErrorTimeframe.md
 docs/SLOHistoryMetrics.md
 docs/SLOHistoryMetricsSeries.md
 docs/SLOHistoryMetricsSeriesMetadata.md
+docs/SLOHistoryMetricsSeriesMetadataUnit.md
 docs/SLOHistoryResponse.md
 docs/SLOHistoryResponseData.md
 docs/SLOHistoryResponseError.md
@@ -392,6 +402,13 @@ docs/TableWidgetRequest.md
 docs/TagToHosts.md
 docs/TagsApi.md
 docs/TargetFormatType.md
+docs/TimeSeriesFormulaAndFunctionEventQueryDefinition.md
+docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute.md
+docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy.md
+docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch.md
+docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionSort.md
+docs/TimeSeriesFormulaAndFunctionMetricQueryDefinition.md
+docs/TimeSeriesFormulaAndFunctionProcessQueryDefinition.md
 docs/TimeseriesWidgetDefinition.md
 docs/TimeseriesWidgetDefinitionType.md
 docs/TimeseriesWidgetRequest.md
@@ -427,6 +444,8 @@ docs/UsageIndexedSpansHour.md
 docs/UsageIndexedSpansResponse.md
 docs/UsageIngestedSpansHour.md
 docs/UsageIngestedSpansResponse.md
+docs/UsageIoTHour.md
+docs/UsageIoTResponse.md
 docs/UsageLambdaHour.md
 docs/UsageLambdaResponse.md
 docs/UsageLogsByIndexHour.md
@@ -489,6 +508,8 @@ docs/WidgetDisplayType.md
 docs/WidgetEvent.md
 docs/WidgetEventSize.md
 docs/WidgetFieldSort.md
+docs/WidgetFormula.md
+docs/WidgetFormulaLimit.md
 docs/WidgetGrouping.md
 docs/WidgetImageSizing.md
 docs/WidgetLayout.md
@@ -590,6 +611,14 @@ model_event_stream_widget_definition.go
 model_event_stream_widget_definition_type.go
 model_event_timeline_widget_definition.go
 model_event_timeline_widget_definition_type.go
+model_formula_and_function_event_aggregation.go
+model_formula_and_function_events_data_source.go
+model_formula_and_function_events_sort_type.go
+model_formula_and_function_metric_aggregation.go
+model_formula_and_function_metric_data_source.go
+model_formula_and_function_process_query_data_source.go
+model_formula_and_function_query_definition.go
+model_formula_and_function_response_format.go
 model_free_text_widget_definition.go
 model_free_text_widget_definition_type.go
 model_gcp_account.go
@@ -722,6 +751,7 @@ model_pager_duty_service.go
 model_pager_duty_service_key.go
 model_pager_duty_service_name.go
 model_process_query_definition.go
+model_query_sort_order.go
 model_query_value_widget_definition.go
 model_query_value_widget_definition_type.go
 model_query_value_widget_request.go
@@ -756,6 +786,7 @@ model_slo_error_timeframe.go
 model_slo_history_metrics.go
 model_slo_history_metrics_series.go
 model_slo_history_metrics_series_metadata.go
+model_slo_history_metrics_series_metadata_unit.go
 model_slo_history_response.go
 model_slo_history_response_data.go
 model_slo_history_response_error.go
@@ -856,6 +887,13 @@ model_table_widget_has_search_bar.go
 model_table_widget_request.go
 model_tag_to_hosts.go
 model_target_format_type.go
+model_time_series_formula_and_function_event_query_definition.go
+model_time_series_formula_and_function_event_query_definition_compute.go
+model_time_series_formula_and_function_event_query_definition_group_by.go
+model_time_series_formula_and_function_event_query_definition_search.go
+model_time_series_formula_and_function_event_query_definition_sort.go
+model_time_series_formula_and_function_metric_query_definition.go
+model_time_series_formula_and_function_process_query_definition.go
 model_timeseries_widget_definition.go
 model_timeseries_widget_definition_type.go
 model_timeseries_widget_request.go
@@ -891,6 +929,8 @@ model_usage_indexed_spans_hour.go
 model_usage_indexed_spans_response.go
 model_usage_ingested_spans_hour.go
 model_usage_ingested_spans_response.go
+model_usage_io_t_hour.go
+model_usage_io_t_response.go
 model_usage_lambda_hour.go
 model_usage_lambda_response.go
 model_usage_logs_by_index_hour.go
@@ -951,6 +991,8 @@ model_widget_display_type.go
 model_widget_event.go
 model_widget_event_size.go
 model_widget_field_sort.go
+model_widget_formula.go
+model_widget_formula_limit.go
 model_widget_grouping.go
 model_widget_image_sizing.go
 model_widget_layout.go

@@ -3085,7 +3085,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
-      summary: Get a list of logs
+      summary: Search logs
       tags:
       - Logs
       x-codegen-request-body-name: body
@@ -4628,7 +4628,7 @@ paths:
         type: safe
   /api/v1/slo:
     get:
-      description: Get multiple service level objective objects by their IDs.
+      description: Get a list of service level objective objects for your organization.
       operationId: ListSLOs
       parameters:
       - description: A comma separated list of the IDs of the service level objectives
@@ -4637,7 +4637,35 @@ paths:
         explode: true
         in: query
         name: ids
-        required: true
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The query string to filter results based on SLO names.
+        example: monitor
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The query string to filter results based on SLO tags.
+        example: env:prod
+        explode: true
+        in: query
+        name: tags_query
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The query string to filter results based on SLO numerator and
+          denominator.
+        example: aws.elb.request_count
+        explode: true
+        in: query
+        name: metrics_query
+        required: false
         schema:
           type: string
         style: form
@@ -4666,7 +4694,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Search SLOs
+      summary: Get all SLOs
       tags:
       - Service Level Objectives
       x-undo:
@@ -4704,11 +4732,30 @@ paths:
       tags:
       - Service Level Objectives
       x-codegen-request-body-name: body
+      x-given:
+        slo:
+          parameters:
+          - name: body
+            value: |-
+              {
+                "type": "metric",
+                "name": "{{ unique }}",
+                "thresholds": [{
+                  "timeframe": "7d",
+                  "target": 95.0,
+                  "warning": 98.0
+                }],
+                "query": {
+                  "numerator": "sum:httpservice.hits{code:2xx}.as_count()",
+                  "denominator": "sum:httpservice.hits{!code:3xx}.as_count()"
+                }
+              }
+          step: there is a valid "slo" in the system
       x-undo:
         operationId: DeleteSLO
         parameters:
         - name: slo_id
-          source: data.id
+          source: data[0].id
         type: unsafe
   /api/v1/slo/bulk_delete:
     post:
@@ -4865,9 +4912,9 @@ paths:
                 "data": {
                   "id": "1",
                   "attributes": {
-                    "slo_id": "{{ unique }}",
-                    "start": 1610034200,
-                    "end": 1610034300,
+                    "slo_id": "{{ slo.data[0].id }}",
+                    "start": {{ now_ts }},
+                    "end": {{ hour_later_ts }},
                     "category": "Other",
                     "timezone": "UTC",
                     "description": "Test Correction"
@@ -4875,7 +4922,7 @@ paths:
                    "type": "correction"
                 }
               }
-          step: there is a valid "correction" in the system
+          step: there is a valid "correction" for "slo"
       x-undo:
         operationId: DeleteSLOCorrection
         parameters:
@@ -6821,6 +6868,56 @@ paths:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
       summary: Get hourly usage for ingested spans
+      tags:
+      - Usage Metering
+      x-undo:
+        type: safe
+  /api/v1/usage/iot:
+    get:
+      description: Get hourly usage for IoT.
+      operationId: GetUsageInternetOfThings
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage beginning at this hour.'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending
+          **before** this hour.
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageIoTResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden - User is not authorized
+      summary: Get hourly usage for IoT
       tags:
       - Usage Metering
       x-undo:
@@ -9597,6 +9694,114 @@ components:
       type: string
       x-enum-varnames:
       - EVENT_TIMELINE
+    FormulaAndFunctionEventAggregation:
+      description: Aggregation methods for event platform queries.
+      enum:
+      - count
+      - cardinality
+      - pc75
+      - pc90
+      - pc95
+      - pc98
+      - pc99
+      - sum
+      - min
+      - max
+      - avg
+      example: avg
+      type: string
+      x-enum-varnames:
+      - COUNT
+      - CARDINALITY
+      - PC75
+      - PC90
+      - PC95
+      - PC98
+      - PC99
+      - SUM
+      - MIN
+      - MAX
+      - AVG
+    FormulaAndFunctionEventsDataSource:
+      description: Data source for event platform-based queries.
+      enum:
+      - logs
+      - analyzed_spans
+      - network
+      - rum
+      - security_signals
+      - profiles
+      example: logs
+      type: string
+      x-enum-varnames:
+      - LOGS
+      - ANALYZED_SPANS
+      - NETWORK
+      - RUM
+      - SECURITY_SIGNALS
+      - PROFILES
+    FormulaAndFunctionEventsSortType:
+      description: Method for sorting event platform results.
+      enum:
+      - alphabetical
+      - measure
+      type: string
+      x-enum-varnames:
+      - ALPHABETICAL
+      - MEASURE
+    FormulaAndFunctionMetricAggregation:
+      description: The aggregation methods available for metrics queries.
+      enum:
+      - avg
+      - min
+      - max
+      - sum
+      - last
+      - area
+      - l2norm
+      example: avg
+      type: string
+      x-enum-varnames:
+      - AVG
+      - MIN
+      - MAX
+      - SUM
+      - LAST
+      - AREA
+      - L2NORM
+    FormulaAndFunctionMetricDataSource:
+      description: Data source for metrics queries.
+      enum:
+      - metrics
+      example: metrics
+      type: string
+      x-enum-varnames:
+      - METRICS
+    FormulaAndFunctionProcessQueryDataSource:
+      description: Data sources that rely on the process backend.
+      enum:
+      - process
+      - container
+      type: string
+      x-enum-varnames:
+      - PROCESS
+      - CONTAINER
+    FormulaAndFunctionQueryDefinition:
+      description: A formula and function query.
+      oneOf:
+      - $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionMetricQueryDefinition'
+      - $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryDefinition'
+      - $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionProcessQueryDefinition'
+      type: object
+    FormulaAndFunctionResponseFormat:
+      description: Timeseries or Scalar response. This feature is currently in beta.
+      enum:
+      - timeseries
+      - scalar
+      type: string
+      x-enum-varnames:
+      - TIMESERIES
+      - SCALAR
     FreeTextWidgetDefinition:
       description: Free text is a widget that allows you to add headings to your screenboard.
         Commonly used to state the overall purpose of the dashboard. Only available
@@ -12082,6 +12287,9 @@ components:
         query: query
         message: message
         priority: 3
+        restricted_roles:
+        - restricted_roles
+        - restricted_roles
         multi: true
         tags:
         - tags
@@ -12099,9 +12307,6 @@ components:
             metric: metrics.name
             group_by: host
             type: count
-          restricted_roles:
-          - restricted_roles
-          - restricted_roles
           evaluation_delay: 6
           notify_audit: false
           min_location_failed: 5
@@ -12183,6 +12388,13 @@ components:
         query:
           description: The monitor query.
           type: string
+        restricted_roles:
+          description: A list of role identifiers that can be pulled from the Roles
+            API. Cannot be used with `locked` option.
+          items:
+            description: A role UUID.
+            type: string
+          type: array
         state:
           $ref: '#/components/schemas/MonitorState'
         tags:
@@ -12231,9 +12443,6 @@ components:
           metric: metrics.name
           group_by: host
           type: count
-        restricted_roles:
-        - restricted_roles
-        - restricted_roles
         evaluation_delay: 6
         notify_audit: false
         min_location_failed: 5
@@ -12356,13 +12565,6 @@ components:
             We highly recommend you set this to `false` for sparse metrics,
             otherwise some evaluations are skipped. Default is false.
           type: boolean
-        restricted_roles:
-          description: A list of role identifiers that can be pulled from the Roles
-            API. Cannot be used with `locked`.
-          items:
-            description: A role UUID.
-            type: string
-          type: array
         silenced:
           additionalProperties:
             description: ID of the downtime applied to the monitor.
@@ -12614,6 +12816,9 @@ components:
         query: query
         message: message
         priority: 3
+        restricted_roles:
+        - restricted_roles
+        - restricted_roles
         multi: true
         tags:
         - tags
@@ -12631,9 +12836,6 @@ components:
             metric: metrics.name
             group_by: host
             type: count
-          restricted_roles:
-          - restricted_roles
-          - restricted_roles
           evaluation_delay: 6
           notify_audit: false
           min_location_failed: 5
@@ -12715,6 +12917,13 @@ components:
         query:
           description: The monitor query.
           type: string
+        restricted_roles:
+          description: A list of role identifiers that can be pulled from the Roles
+            API. Cannot be used with `locked` option.
+          items:
+            description: A role UUID.
+            type: string
+          type: array
         state:
           $ref: '#/components/schemas/MonitorState'
         tags:
@@ -13098,6 +13307,16 @@ components:
       required:
       - metric
       type: object
+    QuerySortOrder:
+      default: desc
+      description: Direction of sort.
+      enum:
+      - asc
+      - desc
+      type: string
+      x-enum-varnames:
+      - ASC
+      - DESC
     QueryValueWidgetDefinition:
       description: Query values display the current value of a given metric, APM,
         or log query.
@@ -13578,6 +13797,34 @@ components:
       - metadata
       - sum
       - values
+      type: object
+    SLOHistoryMetricsSeriesMetadataUnit:
+      description: An Object of metric units.
+      properties:
+        family:
+          description: The family of metric unit, for example `bytes` is the family
+            for `kibibyte`, `byte`, and `bit` units.
+          type: string
+        id:
+          description: The ID of the metric unit.
+          format: int64
+          type: integer
+        name:
+          description: The unit of the metric, for instance `byte`.
+          type: string
+        plural:
+          description: The plural Unit of metric, for instance `bytes`.
+          nullable: true
+          type: string
+        scale_factor:
+          description: The scale factor of metric unit, for instance `1.0`.
+          format: double
+          type: number
+        short_name:
+          description: A shorter and abbreviated version of the metric unit, for instance
+            `B`.
+          nullable: true
+          type: string
       type: object
     SLOHistoryResponse:
       description: A service level objective history response.
@@ -16825,6 +17072,98 @@ components:
       - STRING
       - INTEGER
       - DOUBLE
+    TimeSeriesFormulaAndFunctionEventQueryDefinition:
+      description: A timeseries formula and functions events query.
+      properties:
+        compute:
+          $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryDefinition_compute'
+        data_source:
+          $ref: '#/components/schemas/FormulaAndFunctionEventsDataSource'
+        group_by:
+          description: Group by options.
+          items:
+            $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryDefinition_group_by'
+          type: array
+        indexes:
+          description: An array of index names to query in the stream. Omit or use
+            `[]` to query all indexes at once.
+          example:
+          - days-3
+          - days-7
+          items:
+            description: A log index set up for your organization. For additional
+              indexes, see the [multiple indexes](https://docs.datadoghq.com/logs/indexes/#multiple-indexes)
+              documentation.
+            type: string
+          type: array
+        name:
+          description: Name of the query for use in formulas.
+          example: query_errors
+          type: string
+        search:
+          $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryDefinition_search'
+      required:
+      - compute
+      - data_source
+      type: object
+    TimeSeriesFormulaAndFunctionMetricQueryDefinition:
+      description: A timeseries formula and functions metrics query.
+      example:
+        data_source: metrics
+        query: avg:system.cpu.user{*}
+      properties:
+        aggregator:
+          $ref: '#/components/schemas/FormulaAndFunctionMetricAggregation'
+        data_source:
+          $ref: '#/components/schemas/FormulaAndFunctionMetricDataSource'
+        name:
+          description: Name of the query for use in formulas.
+          example: my_query
+          type: string
+        query:
+          description: Metrics query definition.
+          example: avg:system.cpu.user{*}
+          type: string
+      required:
+      - data_source
+      - query
+      type: object
+    TimeSeriesFormulaAndFunctionProcessQueryDefinition:
+      description: Process query using formulas and functions.
+      properties:
+        aggregator:
+          $ref: '#/components/schemas/FormulaAndFunctionMetricAggregation'
+        data_source:
+          $ref: '#/components/schemas/FormulaAndFunctionProcessQueryDataSource'
+        is_normalized_cpu:
+          description: Whether to normalize the CPU percentages.
+          type: boolean
+        limit:
+          description: Number of hits to return.
+          format: int64
+          type: integer
+        metric:
+          description: Process metric name.
+          example: avg:system.cpu.user{*}
+          type: string
+        name:
+          description: Name of query for use in formulas.
+          type: string
+        sort:
+          $ref: '#/components/schemas/QuerySortOrder'
+        tag_filters:
+          description: An array of tags to filter by.
+          items:
+            description: One of the tags to filter by.
+            type: string
+          type: array
+        text_filter:
+          description: Text to use as filter.
+          type: string
+      required:
+      - data_source
+      - metric
+      type: object
     TimeseriesWidgetDefinition:
       description: The timeseries visualization allows you to display the evolution
         of one or more metrics, log events, or Indexed Spans over time.
@@ -16897,6 +17236,12 @@ components:
           $ref: '#/components/schemas/WidgetDisplayType'
         event_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        formulas:
+          description: List of formulas that operate on queries. This feature is currently
+            in beta.
+          items:
+            $ref: '#/components/schemas/WidgetFormula'
+          type: array
         log_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         metadata:
@@ -16914,6 +17259,14 @@ components:
         q:
           description: Widget query.
           type: string
+        queries:
+          description: List of queries that can be returned directly or used in formulas.
+            This feature is currently in beta.
+          items:
+            $ref: '#/components/schemas/FormulaAndFunctionQueryDefinition'
+          type: array
+        response_format:
+          $ref: '#/components/schemas/FormulaAndFunctionResponseFormat'
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         security_query:
@@ -18456,6 +18809,37 @@ components:
             $ref: '#/components/schemas/UsageIngestedSpansHour'
           type: array
       type: object
+    UsageIoTHour:
+      description: IoT usage for a given organization for a given hour.
+      example:
+        hour: 2000-01-23T04:56:07.000+00:00
+        iot_device_count: 0
+      properties:
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+        iot_device_count:
+          description: The total number of IoT device hours from the start of the
+            given hour's month until the given hour.
+          format: int64
+          type: integer
+      type: object
+    UsageIoTResponse:
+      description: Response containing the IoT usage for each hour for a given organization.
+      example:
+        usage:
+        - hour: 2000-01-23T04:56:07.000+00:00
+          iot_device_count: 0
+        - hour: 2000-01-23T04:56:07.000+00:00
+          iot_device_count: 0
+      properties:
+        usage:
+          description: Get hourly usage for IoT.
+          items:
+            $ref: '#/components/schemas/UsageIoTHour'
+          type: array
+      type: object
     UsageLambdaHour:
       description: |-
         Number of lambda functions and sum of the invocations of all lambda functions
@@ -18953,103 +19337,109 @@ components:
       description: Response with hourly report of all data billed by Datadog all organizations.
       example:
         date: 2000-01-23T04:56:07.000+00:00
-        npm_host_top99p: 9
-        container_hwm: 3
-        billable_ingested_bytes_sum: 7
-        fargate_tasks_count_avg: 5
-        rum_session_count_sum: 3
-        ingested_events_bytes_sum: 1
-        mobile_rum_session_count_sum: 9
-        container_avg: 3
-        netflow_indexed_events_count_sum: 0
-        aws_lambda_func_count: 0
-        rum_total_session_count_sum: 2
-        mobile_rum_session_count_ios_sum: 7
-        fargate_tasks_count_hwm: 3
+        npm_host_top99p: 4
+        container_hwm: 5
+        billable_ingested_bytes_sum: 3
+        iot_device_top99p_sum: 0
+        fargate_tasks_count_avg: 4
+        rum_session_count_sum: 0
+        ingested_events_bytes_sum: 7
+        mobile_rum_session_count_sum: 7
+        container_avg: 7
+        netflow_indexed_events_count_sum: 5
+        aws_lambda_func_count: 8
+        rum_total_session_count_sum: 7
+        mobile_rum_session_count_ios_sum: 0
+        fargate_tasks_count_hwm: 0
+        iot_device_agg_sum: 9
         profiling_host_top99p: 0
-        gcp_host_top99p: 4
-        azure_app_service_top99p: 8
-        apm_azure_app_service_host_top99p: 0
-        mobile_rum_session_count_android_sum: 4
-        apm_host_top99p: 7
-        synthetics_check_calls_count_sum: 8
-        aws_host_top99p: 6
-        incident_management_monthly_active_users_hwm: 0
-        custom_ts_avg: 7
-        trace_search_indexed_events_count_sum: 4
+        gcp_host_top99p: 6
+        azure_app_service_top99p: 3
+        apm_azure_app_service_host_top99p: 6
+        mobile_rum_session_count_android_sum: 9
+        apm_host_top99p: 0
+        synthetics_check_calls_count_sum: 2
+        aws_host_top99p: 4
+        incident_management_monthly_active_users_hwm: 4
+        custom_ts_avg: 3
+        trace_search_indexed_events_count_sum: 9
         twol_ingested_events_bytes_sum: 0
         agent_host_top99p: 7
-        indexed_events_count_sum: 6
+        indexed_events_count_sum: 1
         infra_host_top99p: 4
         orgs:
         - npm_host_top99p: 5
-          container_hwm: 2
-          billable_ingested_bytes_sum: 3
-          fargate_tasks_count_avg: 8
-          rum_session_count_sum: 7
-          ingested_events_bytes_sum: 3
+          container_hwm: 4
+          billable_ingested_bytes_sum: 8
+          iot_device_top99p_sum: 8
+          fargate_tasks_count_avg: 9
+          rum_session_count_sum: 0
+          ingested_events_bytes_sum: 5
           public_id: public_id
-          mobile_rum_session_count_sum: 0
-          container_avg: 0
-          netflow_indexed_events_count_sum: 5
-          aws_lambda_func_count: 6
+          mobile_rum_session_count_sum: 3
+          container_avg: 6
+          netflow_indexed_events_count_sum: 9
+          aws_lambda_func_count: 0
           rum_total_session_count_sum: 3
           id: id
-          mobile_rum_session_count_ios_sum: 8
-          fargate_tasks_count_hwm: 6
-          profiling_host_top99p: 8
-          gcp_host_top99p: 4
-          azure_app_service_top99p: 4
-          apm_azure_app_service_host_top99p: 7
-          mobile_rum_session_count_android_sum: 9
-          apm_host_top99p: 5
-          synthetics_check_calls_count_sum: 9
-          aws_host_top99p: 4
-          incident_management_monthly_active_users_hwm: 8
-          custom_ts_avg: 1
-          trace_search_indexed_events_count_sum: 5
-          twol_ingested_events_bytes_sum: 7
-          agent_host_top99p: 0
-          indexed_events_count_sum: 9
-          infra_host_top99p: 1
+          mobile_rum_session_count_ios_sum: 3
+          fargate_tasks_count_hwm: 1
+          iot_device_agg_sum: 5
+          profiling_host_top99p: 7
+          gcp_host_top99p: 3
+          azure_app_service_top99p: 1
+          apm_azure_app_service_host_top99p: 8
+          mobile_rum_session_count_android_sum: 7
+          apm_host_top99p: 4
+          synthetics_check_calls_count_sum: 3
+          aws_host_top99p: 3
+          incident_management_monthly_active_users_hwm: 9
+          custom_ts_avg: 8
+          trace_search_indexed_events_count_sum: 8
+          twol_ingested_events_bytes_sum: 4
+          agent_host_top99p: 6
+          indexed_events_count_sum: 8
+          infra_host_top99p: 0
           name: name
-          aws_lambda_invocations_sum: 8
-          synthetics_browser_check_calls_count_sum: 3
+          aws_lambda_invocations_sum: 2
+          synthetics_browser_check_calls_count_sum: 2
         - npm_host_top99p: 5
-          container_hwm: 2
-          billable_ingested_bytes_sum: 3
-          fargate_tasks_count_avg: 8
-          rum_session_count_sum: 7
-          ingested_events_bytes_sum: 3
+          container_hwm: 4
+          billable_ingested_bytes_sum: 8
+          iot_device_top99p_sum: 8
+          fargate_tasks_count_avg: 9
+          rum_session_count_sum: 0
+          ingested_events_bytes_sum: 5
           public_id: public_id
-          mobile_rum_session_count_sum: 0
-          container_avg: 0
-          netflow_indexed_events_count_sum: 5
-          aws_lambda_func_count: 6
+          mobile_rum_session_count_sum: 3
+          container_avg: 6
+          netflow_indexed_events_count_sum: 9
+          aws_lambda_func_count: 0
           rum_total_session_count_sum: 3
           id: id
-          mobile_rum_session_count_ios_sum: 8
-          fargate_tasks_count_hwm: 6
-          profiling_host_top99p: 8
-          gcp_host_top99p: 4
-          azure_app_service_top99p: 4
-          apm_azure_app_service_host_top99p: 7
-          mobile_rum_session_count_android_sum: 9
-          apm_host_top99p: 5
-          synthetics_check_calls_count_sum: 9
-          aws_host_top99p: 4
-          incident_management_monthly_active_users_hwm: 8
-          custom_ts_avg: 1
-          trace_search_indexed_events_count_sum: 5
-          twol_ingested_events_bytes_sum: 7
-          agent_host_top99p: 0
-          indexed_events_count_sum: 9
-          infra_host_top99p: 1
+          mobile_rum_session_count_ios_sum: 3
+          fargate_tasks_count_hwm: 1
+          iot_device_agg_sum: 5
+          profiling_host_top99p: 7
+          gcp_host_top99p: 3
+          azure_app_service_top99p: 1
+          apm_azure_app_service_host_top99p: 8
+          mobile_rum_session_count_android_sum: 7
+          apm_host_top99p: 4
+          synthetics_check_calls_count_sum: 3
+          aws_host_top99p: 3
+          incident_management_monthly_active_users_hwm: 9
+          custom_ts_avg: 8
+          trace_search_indexed_events_count_sum: 8
+          twol_ingested_events_bytes_sum: 4
+          agent_host_top99p: 6
+          indexed_events_count_sum: 8
+          infra_host_top99p: 0
           name: name
-          aws_lambda_invocations_sum: 8
-          synthetics_browser_check_calls_count_sum: 3
-        aws_lambda_invocations_sum: 4
-        synthetics_browser_check_calls_count_sum: 3
+          aws_lambda_invocations_sum: 2
+          synthetics_browser_check_calls_count_sum: 2
+        aws_lambda_invocations_sum: 7
+        synthetics_browser_check_calls_count_sum: 4
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -19145,6 +19535,16 @@ components:
             current date for all organizations.
           format: int64
           type: integer
+        iot_device_agg_sum:
+          description: Shows the sum of all IoT devices over all hours in the current
+            date for all organizations.
+          format: int64
+          type: integer
+        iot_device_top99p_sum:
+          description: Shows the 99th percentile of all IoT devices over all hours
+            in the current date all organizations.
+          format: int64
+          type: integer
         mobile_rum_session_count_android_sum:
           description: Shows the sum of all mobile RUM Sessions on Android over all
             hours in the current date for all organizations.
@@ -19216,38 +19616,40 @@ components:
         organization.
       example:
         npm_host_top99p: 5
-        container_hwm: 2
-        billable_ingested_bytes_sum: 3
-        fargate_tasks_count_avg: 8
-        rum_session_count_sum: 7
-        ingested_events_bytes_sum: 3
+        container_hwm: 4
+        billable_ingested_bytes_sum: 8
+        iot_device_top99p_sum: 8
+        fargate_tasks_count_avg: 9
+        rum_session_count_sum: 0
+        ingested_events_bytes_sum: 5
         public_id: public_id
-        mobile_rum_session_count_sum: 0
-        container_avg: 0
-        netflow_indexed_events_count_sum: 5
-        aws_lambda_func_count: 6
+        mobile_rum_session_count_sum: 3
+        container_avg: 6
+        netflow_indexed_events_count_sum: 9
+        aws_lambda_func_count: 0
         rum_total_session_count_sum: 3
         id: id
-        mobile_rum_session_count_ios_sum: 8
-        fargate_tasks_count_hwm: 6
-        profiling_host_top99p: 8
-        gcp_host_top99p: 4
-        azure_app_service_top99p: 4
-        apm_azure_app_service_host_top99p: 7
-        mobile_rum_session_count_android_sum: 9
-        apm_host_top99p: 5
-        synthetics_check_calls_count_sum: 9
-        aws_host_top99p: 4
-        incident_management_monthly_active_users_hwm: 8
-        custom_ts_avg: 1
-        trace_search_indexed_events_count_sum: 5
-        twol_ingested_events_bytes_sum: 7
-        agent_host_top99p: 0
-        indexed_events_count_sum: 9
-        infra_host_top99p: 1
+        mobile_rum_session_count_ios_sum: 3
+        fargate_tasks_count_hwm: 1
+        iot_device_agg_sum: 5
+        profiling_host_top99p: 7
+        gcp_host_top99p: 3
+        azure_app_service_top99p: 1
+        apm_azure_app_service_host_top99p: 8
+        mobile_rum_session_count_android_sum: 7
+        apm_host_top99p: 4
+        synthetics_check_calls_count_sum: 3
+        aws_host_top99p: 3
+        incident_management_monthly_active_users_hwm: 9
+        custom_ts_avg: 8
+        trace_search_indexed_events_count_sum: 8
+        twol_ingested_events_bytes_sum: 4
+        agent_host_top99p: 6
+        indexed_events_count_sum: 8
+        infra_host_top99p: 0
         name: name
-        aws_lambda_invocations_sum: 8
-        synthetics_browser_check_calls_count_sum: 3
+        aws_lambda_invocations_sum: 2
+        synthetics_browser_check_calls_count_sum: 2
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -19341,6 +19743,16 @@ components:
             current date for the given org.
           format: int64
           type: integer
+        iot_device_agg_sum:
+          description: Shows the sum of all IoT devices over all hours in the current
+            date for the given org.
+          format: int64
+          type: integer
+        iot_device_top99p_sum:
+          description: Shows the 99th percentile of all IoT devices over all hours
+            in the current date for the given org.
+          format: int64
+          type: integer
         mobile_rum_session_count_android_sum:
           description: Shows the sum of all mobile RUM Sessions on Android over all
             hours in the current date for the given org.
@@ -19415,216 +19827,229 @@ components:
         azure_host_top99p_sum: 9
         usage:
         - date: 2000-01-23T04:56:07.000+00:00
-          npm_host_top99p: 9
-          container_hwm: 3
-          billable_ingested_bytes_sum: 7
-          fargate_tasks_count_avg: 5
-          rum_session_count_sum: 3
-          ingested_events_bytes_sum: 1
-          mobile_rum_session_count_sum: 9
-          container_avg: 3
-          netflow_indexed_events_count_sum: 0
-          aws_lambda_func_count: 0
-          rum_total_session_count_sum: 2
-          mobile_rum_session_count_ios_sum: 7
-          fargate_tasks_count_hwm: 3
+          npm_host_top99p: 4
+          container_hwm: 5
+          billable_ingested_bytes_sum: 3
+          iot_device_top99p_sum: 0
+          fargate_tasks_count_avg: 4
+          rum_session_count_sum: 0
+          ingested_events_bytes_sum: 7
+          mobile_rum_session_count_sum: 7
+          container_avg: 7
+          netflow_indexed_events_count_sum: 5
+          aws_lambda_func_count: 8
+          rum_total_session_count_sum: 7
+          mobile_rum_session_count_ios_sum: 0
+          fargate_tasks_count_hwm: 0
+          iot_device_agg_sum: 9
           profiling_host_top99p: 0
-          gcp_host_top99p: 4
-          azure_app_service_top99p: 8
-          apm_azure_app_service_host_top99p: 0
-          mobile_rum_session_count_android_sum: 4
-          apm_host_top99p: 7
-          synthetics_check_calls_count_sum: 8
-          aws_host_top99p: 6
-          incident_management_monthly_active_users_hwm: 0
-          custom_ts_avg: 7
-          trace_search_indexed_events_count_sum: 4
+          gcp_host_top99p: 6
+          azure_app_service_top99p: 3
+          apm_azure_app_service_host_top99p: 6
+          mobile_rum_session_count_android_sum: 9
+          apm_host_top99p: 0
+          synthetics_check_calls_count_sum: 2
+          aws_host_top99p: 4
+          incident_management_monthly_active_users_hwm: 4
+          custom_ts_avg: 3
+          trace_search_indexed_events_count_sum: 9
           twol_ingested_events_bytes_sum: 0
           agent_host_top99p: 7
-          indexed_events_count_sum: 6
+          indexed_events_count_sum: 1
           infra_host_top99p: 4
           orgs:
           - npm_host_top99p: 5
-            container_hwm: 2
-            billable_ingested_bytes_sum: 3
-            fargate_tasks_count_avg: 8
-            rum_session_count_sum: 7
-            ingested_events_bytes_sum: 3
+            container_hwm: 4
+            billable_ingested_bytes_sum: 8
+            iot_device_top99p_sum: 8
+            fargate_tasks_count_avg: 9
+            rum_session_count_sum: 0
+            ingested_events_bytes_sum: 5
             public_id: public_id
-            mobile_rum_session_count_sum: 0
-            container_avg: 0
-            netflow_indexed_events_count_sum: 5
-            aws_lambda_func_count: 6
+            mobile_rum_session_count_sum: 3
+            container_avg: 6
+            netflow_indexed_events_count_sum: 9
+            aws_lambda_func_count: 0
             rum_total_session_count_sum: 3
             id: id
-            mobile_rum_session_count_ios_sum: 8
-            fargate_tasks_count_hwm: 6
-            profiling_host_top99p: 8
-            gcp_host_top99p: 4
-            azure_app_service_top99p: 4
-            apm_azure_app_service_host_top99p: 7
-            mobile_rum_session_count_android_sum: 9
-            apm_host_top99p: 5
-            synthetics_check_calls_count_sum: 9
-            aws_host_top99p: 4
-            incident_management_monthly_active_users_hwm: 8
-            custom_ts_avg: 1
-            trace_search_indexed_events_count_sum: 5
-            twol_ingested_events_bytes_sum: 7
-            agent_host_top99p: 0
-            indexed_events_count_sum: 9
-            infra_host_top99p: 1
+            mobile_rum_session_count_ios_sum: 3
+            fargate_tasks_count_hwm: 1
+            iot_device_agg_sum: 5
+            profiling_host_top99p: 7
+            gcp_host_top99p: 3
+            azure_app_service_top99p: 1
+            apm_azure_app_service_host_top99p: 8
+            mobile_rum_session_count_android_sum: 7
+            apm_host_top99p: 4
+            synthetics_check_calls_count_sum: 3
+            aws_host_top99p: 3
+            incident_management_monthly_active_users_hwm: 9
+            custom_ts_avg: 8
+            trace_search_indexed_events_count_sum: 8
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 6
+            indexed_events_count_sum: 8
+            infra_host_top99p: 0
             name: name
-            aws_lambda_invocations_sum: 8
-            synthetics_browser_check_calls_count_sum: 3
+            aws_lambda_invocations_sum: 2
+            synthetics_browser_check_calls_count_sum: 2
           - npm_host_top99p: 5
-            container_hwm: 2
-            billable_ingested_bytes_sum: 3
-            fargate_tasks_count_avg: 8
-            rum_session_count_sum: 7
-            ingested_events_bytes_sum: 3
+            container_hwm: 4
+            billable_ingested_bytes_sum: 8
+            iot_device_top99p_sum: 8
+            fargate_tasks_count_avg: 9
+            rum_session_count_sum: 0
+            ingested_events_bytes_sum: 5
             public_id: public_id
-            mobile_rum_session_count_sum: 0
-            container_avg: 0
-            netflow_indexed_events_count_sum: 5
-            aws_lambda_func_count: 6
+            mobile_rum_session_count_sum: 3
+            container_avg: 6
+            netflow_indexed_events_count_sum: 9
+            aws_lambda_func_count: 0
             rum_total_session_count_sum: 3
             id: id
-            mobile_rum_session_count_ios_sum: 8
-            fargate_tasks_count_hwm: 6
-            profiling_host_top99p: 8
-            gcp_host_top99p: 4
-            azure_app_service_top99p: 4
-            apm_azure_app_service_host_top99p: 7
-            mobile_rum_session_count_android_sum: 9
-            apm_host_top99p: 5
-            synthetics_check_calls_count_sum: 9
-            aws_host_top99p: 4
-            incident_management_monthly_active_users_hwm: 8
-            custom_ts_avg: 1
-            trace_search_indexed_events_count_sum: 5
-            twol_ingested_events_bytes_sum: 7
-            agent_host_top99p: 0
-            indexed_events_count_sum: 9
-            infra_host_top99p: 1
+            mobile_rum_session_count_ios_sum: 3
+            fargate_tasks_count_hwm: 1
+            iot_device_agg_sum: 5
+            profiling_host_top99p: 7
+            gcp_host_top99p: 3
+            azure_app_service_top99p: 1
+            apm_azure_app_service_host_top99p: 8
+            mobile_rum_session_count_android_sum: 7
+            apm_host_top99p: 4
+            synthetics_check_calls_count_sum: 3
+            aws_host_top99p: 3
+            incident_management_monthly_active_users_hwm: 9
+            custom_ts_avg: 8
+            trace_search_indexed_events_count_sum: 8
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 6
+            indexed_events_count_sum: 8
+            infra_host_top99p: 0
             name: name
-            aws_lambda_invocations_sum: 8
-            synthetics_browser_check_calls_count_sum: 3
-          aws_lambda_invocations_sum: 4
-          synthetics_browser_check_calls_count_sum: 3
+            aws_lambda_invocations_sum: 2
+            synthetics_browser_check_calls_count_sum: 2
+          aws_lambda_invocations_sum: 7
+          synthetics_browser_check_calls_count_sum: 4
         - date: 2000-01-23T04:56:07.000+00:00
-          npm_host_top99p: 9
-          container_hwm: 3
-          billable_ingested_bytes_sum: 7
-          fargate_tasks_count_avg: 5
-          rum_session_count_sum: 3
-          ingested_events_bytes_sum: 1
-          mobile_rum_session_count_sum: 9
-          container_avg: 3
-          netflow_indexed_events_count_sum: 0
-          aws_lambda_func_count: 0
-          rum_total_session_count_sum: 2
-          mobile_rum_session_count_ios_sum: 7
-          fargate_tasks_count_hwm: 3
+          npm_host_top99p: 4
+          container_hwm: 5
+          billable_ingested_bytes_sum: 3
+          iot_device_top99p_sum: 0
+          fargate_tasks_count_avg: 4
+          rum_session_count_sum: 0
+          ingested_events_bytes_sum: 7
+          mobile_rum_session_count_sum: 7
+          container_avg: 7
+          netflow_indexed_events_count_sum: 5
+          aws_lambda_func_count: 8
+          rum_total_session_count_sum: 7
+          mobile_rum_session_count_ios_sum: 0
+          fargate_tasks_count_hwm: 0
+          iot_device_agg_sum: 9
           profiling_host_top99p: 0
-          gcp_host_top99p: 4
-          azure_app_service_top99p: 8
-          apm_azure_app_service_host_top99p: 0
-          mobile_rum_session_count_android_sum: 4
-          apm_host_top99p: 7
-          synthetics_check_calls_count_sum: 8
-          aws_host_top99p: 6
-          incident_management_monthly_active_users_hwm: 0
-          custom_ts_avg: 7
-          trace_search_indexed_events_count_sum: 4
+          gcp_host_top99p: 6
+          azure_app_service_top99p: 3
+          apm_azure_app_service_host_top99p: 6
+          mobile_rum_session_count_android_sum: 9
+          apm_host_top99p: 0
+          synthetics_check_calls_count_sum: 2
+          aws_host_top99p: 4
+          incident_management_monthly_active_users_hwm: 4
+          custom_ts_avg: 3
+          trace_search_indexed_events_count_sum: 9
           twol_ingested_events_bytes_sum: 0
           agent_host_top99p: 7
-          indexed_events_count_sum: 6
+          indexed_events_count_sum: 1
           infra_host_top99p: 4
           orgs:
           - npm_host_top99p: 5
-            container_hwm: 2
-            billable_ingested_bytes_sum: 3
-            fargate_tasks_count_avg: 8
-            rum_session_count_sum: 7
-            ingested_events_bytes_sum: 3
+            container_hwm: 4
+            billable_ingested_bytes_sum: 8
+            iot_device_top99p_sum: 8
+            fargate_tasks_count_avg: 9
+            rum_session_count_sum: 0
+            ingested_events_bytes_sum: 5
             public_id: public_id
-            mobile_rum_session_count_sum: 0
-            container_avg: 0
-            netflow_indexed_events_count_sum: 5
-            aws_lambda_func_count: 6
+            mobile_rum_session_count_sum: 3
+            container_avg: 6
+            netflow_indexed_events_count_sum: 9
+            aws_lambda_func_count: 0
             rum_total_session_count_sum: 3
             id: id
-            mobile_rum_session_count_ios_sum: 8
-            fargate_tasks_count_hwm: 6
-            profiling_host_top99p: 8
-            gcp_host_top99p: 4
-            azure_app_service_top99p: 4
-            apm_azure_app_service_host_top99p: 7
-            mobile_rum_session_count_android_sum: 9
-            apm_host_top99p: 5
-            synthetics_check_calls_count_sum: 9
-            aws_host_top99p: 4
-            incident_management_monthly_active_users_hwm: 8
-            custom_ts_avg: 1
-            trace_search_indexed_events_count_sum: 5
-            twol_ingested_events_bytes_sum: 7
-            agent_host_top99p: 0
-            indexed_events_count_sum: 9
-            infra_host_top99p: 1
+            mobile_rum_session_count_ios_sum: 3
+            fargate_tasks_count_hwm: 1
+            iot_device_agg_sum: 5
+            profiling_host_top99p: 7
+            gcp_host_top99p: 3
+            azure_app_service_top99p: 1
+            apm_azure_app_service_host_top99p: 8
+            mobile_rum_session_count_android_sum: 7
+            apm_host_top99p: 4
+            synthetics_check_calls_count_sum: 3
+            aws_host_top99p: 3
+            incident_management_monthly_active_users_hwm: 9
+            custom_ts_avg: 8
+            trace_search_indexed_events_count_sum: 8
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 6
+            indexed_events_count_sum: 8
+            infra_host_top99p: 0
             name: name
-            aws_lambda_invocations_sum: 8
-            synthetics_browser_check_calls_count_sum: 3
+            aws_lambda_invocations_sum: 2
+            synthetics_browser_check_calls_count_sum: 2
           - npm_host_top99p: 5
-            container_hwm: 2
-            billable_ingested_bytes_sum: 3
-            fargate_tasks_count_avg: 8
-            rum_session_count_sum: 7
-            ingested_events_bytes_sum: 3
+            container_hwm: 4
+            billable_ingested_bytes_sum: 8
+            iot_device_top99p_sum: 8
+            fargate_tasks_count_avg: 9
+            rum_session_count_sum: 0
+            ingested_events_bytes_sum: 5
             public_id: public_id
-            mobile_rum_session_count_sum: 0
-            container_avg: 0
-            netflow_indexed_events_count_sum: 5
-            aws_lambda_func_count: 6
+            mobile_rum_session_count_sum: 3
+            container_avg: 6
+            netflow_indexed_events_count_sum: 9
+            aws_lambda_func_count: 0
             rum_total_session_count_sum: 3
             id: id
-            mobile_rum_session_count_ios_sum: 8
-            fargate_tasks_count_hwm: 6
-            profiling_host_top99p: 8
-            gcp_host_top99p: 4
-            azure_app_service_top99p: 4
-            apm_azure_app_service_host_top99p: 7
-            mobile_rum_session_count_android_sum: 9
-            apm_host_top99p: 5
-            synthetics_check_calls_count_sum: 9
-            aws_host_top99p: 4
-            incident_management_monthly_active_users_hwm: 8
-            custom_ts_avg: 1
-            trace_search_indexed_events_count_sum: 5
-            twol_ingested_events_bytes_sum: 7
-            agent_host_top99p: 0
-            indexed_events_count_sum: 9
-            infra_host_top99p: 1
+            mobile_rum_session_count_ios_sum: 3
+            fargate_tasks_count_hwm: 1
+            iot_device_agg_sum: 5
+            profiling_host_top99p: 7
+            gcp_host_top99p: 3
+            azure_app_service_top99p: 1
+            apm_azure_app_service_host_top99p: 8
+            mobile_rum_session_count_android_sum: 7
+            apm_host_top99p: 4
+            synthetics_check_calls_count_sum: 3
+            aws_host_top99p: 3
+            incident_management_monthly_active_users_hwm: 9
+            custom_ts_avg: 8
+            trace_search_indexed_events_count_sum: 8
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 6
+            indexed_events_count_sum: 8
+            infra_host_top99p: 0
             name: name
-            aws_lambda_invocations_sum: 8
-            synthetics_browser_check_calls_count_sum: 3
-          aws_lambda_invocations_sum: 4
-          synthetics_browser_check_calls_count_sum: 3
-        live_ingested_bytes_agg_sum: 9
-        rehydrated_ingested_bytes_agg_sum: 2
+            aws_lambda_invocations_sum: 2
+            synthetics_browser_check_calls_count_sum: 2
+          aws_lambda_invocations_sum: 7
+          synthetics_browser_check_calls_count_sum: 4
+        iot_device_top99p_sum: 9
+        live_ingested_bytes_agg_sum: 6
+        rehydrated_ingested_bytes_agg_sum: 6
         container_hwm_sum: 4
-        synthetics_browser_check_calls_count_agg_sum: 5
+        synthetics_browser_check_calls_count_agg_sum: 3
         apm_host_top99p_sum: 1
-        mobile_rum_session_count_android_agg_sum: 6
+        mobile_rum_session_count_android_agg_sum: 9
         npm_host_top99p_sum: 6
         container_avg_sum: 2
-        mobile_rum_session_count_agg_sum: 9
+        mobile_rum_session_count_agg_sum: 8
         agent_host_top99p_sum: 0
         infra_host_top99p_sum: 1
         custom_ts_sum: 7
-        synthetics_check_calls_count_agg_sum: 6
+        synthetics_check_calls_count_agg_sum: 3
         aws_lambda_func_count: 5
-        netflow_indexed_events_count_agg_sum: 9
+        netflow_indexed_events_count_agg_sum: 3
         apm_azure_app_service_host_top99p_sum: 6
         fargate_tasks_count_avg_sum: 1
         fargate_tasks_count_hwm_sum: 1
@@ -19632,21 +20057,22 @@ components:
         start_date: 2000-01-23T04:56:07.000+00:00
         billable_ingested_bytes_agg_sum: 3
         ingested_events_bytes_agg_sum: 4
-        twol_ingested_events_bytes_agg_sum: 3
+        twol_ingested_events_bytes_agg_sum: 0
+        iot_device_agg_sum: 5
         last_updated: 2000-01-23T04:56:07.000+00:00
         indexed_events_count_agg_sum: 7
-        rehydrated_indexed_events_agg_sum: 1
-        mobile_rum_session_count_ios_agg_sum: 8
+        rehydrated_indexed_events_agg_sum: 6
+        mobile_rum_session_count_ios_agg_sum: 6
         incident_management_monthly_active_users_hwm_sum: 6
         gcp_host_top99p_sum: 1
-        live_indexed_events_agg_sum: 5
-        rum_session_count_agg_sum: 6
+        live_indexed_events_agg_sum: 9
+        rum_session_count_agg_sum: 5
         aws_host_top99p_sum: 5
-        profiling_container_agent_count_avg: 3
-        profiling_host_count_top99p_sum: 6
+        profiling_container_agent_count_avg: 1
+        profiling_host_count_top99p_sum: 2
         aws_lambda_invocations_sum: 2
         rum_total_session_count_agg_sum: 6
-        trace_search_indexed_events_count_agg_sum: 3
+        trace_search_indexed_events_count_agg_sum: 7
       properties:
         agent_host_top99p_sum:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -19746,6 +20172,16 @@ components:
         ingested_events_bytes_agg_sum:
           description: Shows the sum of all log bytes ingested over all hours in the
             current months for all organizations.
+          format: int64
+          type: integer
+        iot_device_agg_sum:
+          description: Shows the sum of all IoT devices over all hours in the current
+            months for all organizations.
+          format: int64
+          type: integer
+        iot_device_top99p_sum:
+          description: Shows the 99th percentile of all IoT devices over all hours
+            in the current months of all organizations.
           format: int64
           type: integer
         last_updated:
@@ -20422,6 +20858,21 @@ components:
       required:
       - column
       - order
+      type: object
+    WidgetFormula:
+      description: Formula to be used in a widget query.
+      properties:
+        alias:
+          description: Expression alias.
+          type: string
+        formula:
+          description: String expression built from queries, formulas, and functions.
+          example: func(a) + b
+          type: string
+        limit:
+          $ref: '#/components/schemas/WidgetFormula_limit'
+      required:
+      - formula
       type: object
     WidgetGrouping:
       description: The kind of grouping to use.
@@ -21597,8 +22048,15 @@ components:
           description: Query scope.
           type: string
         unit:
-          description: Query units (if available).
-          type: string
+          description: |-
+            An array of metric units that contains up to two unit objects.
+            For example, bytes represents one unit object and bytes per second represents two unit objects.
+            If a metric query only has one unit object, the second array element is null.
+          example: '[{"family":"bytes","scale_factor":1.0,"name":"byte","short_name":"B","plural":"bytes","id":2},null]'
+          items:
+            $ref: '#/components/schemas/SLOHistoryMetricsSeriesMetadataUnit'
+          nullable: true
+          type: array
       type: object
     SLOHistoryResponse_data:
       description: An array of service level objective objects.
@@ -22131,6 +22589,65 @@ components:
           description: ID of the result.
           type: string
       type: object
+    TimeSeriesFormulaAndFunctionEventQueryDefinition_compute:
+      description: Compute options.
+      properties:
+        aggregation:
+          $ref: '#/components/schemas/FormulaAndFunctionEventAggregation'
+        interval:
+          description: A time interval in milliseconds.
+          example: 60000
+          format: int64
+          type: integer
+        metric:
+          description: Measurable attribute to compute.
+          example: '@duration'
+          type: string
+      required:
+      - aggregation
+      type: object
+    TimeSeriesFormulaAndFunctionEventQueryDefinition_sort:
+      description: Options for sorting group by results.
+      properties:
+        aggregation:
+          $ref: '#/components/schemas/FormulaAndFunctionEventAggregation'
+        metric:
+          description: Metric used for sorting group by results.
+          type: string
+        order:
+          $ref: '#/components/schemas/QuerySortOrder'
+        type:
+          $ref: '#/components/schemas/FormulaAndFunctionEventsSortType'
+      required:
+      - aggregation
+      type: object
+    TimeSeriesFormulaAndFunctionEventQueryDefinition_group_by:
+      description: List of objects used to group by.
+      properties:
+        facet:
+          description: Event facet.
+          example: status.
+          type: string
+        limit:
+          description: Number of groups to return.
+          example: 10
+          format: int64
+          type: integer
+        sort:
+          $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryDefinition_sort'
+      required:
+      - facet
+      type: object
+    TimeSeriesFormulaAndFunctionEventQueryDefinition_search:
+      description: Search options.
+      properties:
+        query:
+          description: Events search string.
+          example: service:query
+          type: string
+      required:
+      - query
+      type: object
     TimeseriesWidgetRequest_metadata:
       description: Define an expression alias.
       properties:
@@ -22143,6 +22660,16 @@ components:
           type: string
       required:
       - expression
+      type: object
+    WidgetFormula_limit:
+      description: Options for limiting results returned.
+      properties:
+        count:
+          description: Number of results to return.
+          format: int64
+          type: integer
+        order:
+          $ref: '#/components/schemas/QuerySortOrder'
       type: object
   securitySchemes:
     apiKeyAuth:

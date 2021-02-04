@@ -39,7 +39,7 @@ func (r ApiListLogsRequest) Execute() (LogsListResponse, *_nethttp.Response, err
 }
 
 /*
- * ListLogs Get a list of logs
+ * ListLogs Search logs
  * List endpoint returns logs that match a log search query.
 [Results are paginated][1].
 
