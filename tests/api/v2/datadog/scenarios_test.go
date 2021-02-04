@@ -2,6 +2,7 @@ package test
 
 import (
 	"context"
+	"log"
 	"os"
 	"reflect"
 	"strings"
@@ -29,6 +30,8 @@ func TestScenarios(t *testing.T) {
 		gobdd.WithTags(bddTags),
 		gobdd.WithIgnoredTags(tests.GetIgnoredTags()),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
+			// Restore log output, cause https://github.com/go-bdd/gobdd/blob/ac35444ec20b87bc89a82f7f4d6bc86e0f94bf73/gobdd.go#L311
+			log.SetOutput(os.Stderr)
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
 			cctx, finish := WithRecorder(
 				context.WithValue(
@@ -61,12 +64,7 @@ func TestScenarios(t *testing.T) {
 				tracer.ResourceName(parts[len(parts)-1]),
 			)
 
-			testName := strings.Join(strings.Split(ct.(*testing.T).Name(), "/")[1:3], "/")
-			unique := tests.WithUniqueSurrounding(cctx, testName)
-			data := tests.GetData(ctx)
-			data["unique"] = unique
-			data["unique_lower"] = strings.ToLower(unique)
-
+			tests.SetFixtureData(ctx)
 			tests.SetCtx(ctx, cctx)
 		}),
 		gobdd.WithAfterStep(func(ctx gobdd.Context) {

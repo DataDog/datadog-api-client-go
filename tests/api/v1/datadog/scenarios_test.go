@@ -2,6 +2,7 @@ package test
 
 import (
 	"context"
+	"log"
 	"os"
 	"reflect"
 	"strings"
@@ -29,6 +30,8 @@ func TestScenarios(t *testing.T) {
 		gobdd.WithTags(bddTags),
 		gobdd.WithIgnoredTags(tests.GetIgnoredTags()),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
+			// Restore log output, cause https://github.com/go-bdd/gobdd/blob/ac35444ec20b87bc89a82f7f4d6bc86e0f94bf73/gobdd.go#L311
+			log.SetOutput(os.Stderr)
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
 			cctx, finish := WithRecorder(
 				context.WithValue(
@@ -60,6 +63,7 @@ func TestScenarios(t *testing.T) {
 				tracer.SpanType("step"),
 				tracer.ResourceName(parts[len(parts)-1]),
 			)
+			tests.SetFixtureData(ctx)
 			tests.SetCtx(ctx, cctx)
 		}),
 		gobdd.WithAfterStep(func(ctx gobdd.Context) {
@@ -83,6 +87,7 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`a valid "apiKeyAuth" key in the system`, aValidAPIKeyAuth)
 	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
+	s.AddStep(`operation "([^"]+)" enabled`, enableOperations)
 
 	for _, givenStep := range tests.LoadGivenSteps("./features/given.json") {
 		givenStep.RegisterSuite(s)
@@ -130,4 +135,10 @@ func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 		t.Fatalf("invalid API name %s", name)
 	}
 	tests.SetAPI(ctx, f)
+}
+
+// enableOperations sets unstable operations specific in this clause to enabled
+func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
+	client := Client(tests.GetCtx(ctx))
+	client.GetConfig().SetUnstableOperationEnabled(name, true)
 }
