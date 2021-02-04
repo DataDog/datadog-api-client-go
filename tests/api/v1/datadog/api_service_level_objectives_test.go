@@ -642,7 +642,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	slo := sloResp.GetData()[0]
 	defer deleteSLOIfExists(ctx, slo.GetId())
 
-	testSLOCorrectionCreateData := datadog.NewSLOCorrectionCreateRequestData()
+	testSLOCorrectionCreateData := datadog.NewSLOCorrectionCreateData()
 	now := tests.ClockFromContext(ctx).Now().Unix()
 	testTimezone := "UTC"
 	testStart := now
@@ -688,7 +688,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	assert.Equal(sloCorrectionAttributes.GetTimezone(), testTimezone)
 	assert.Equal(sloCorrectionAttributes.GetCategory(), testCategory)
 
-	testSLOCorrectionUpdateData := datadog.NewSLOCorrectionUpdateRequestData()
+	testSLOCorrectionUpdateData := datadog.NewSLOCorrectionUpdateData()
 	testCategory = datadog.SLOCORRECTIONCATEGORY_OTHER
 	testSLOCorrectionUpdateAttributes := datadog.SLOCorrectionUpdateRequestAttributes{
 		Timezone: &testTimezone,
@@ -725,7 +725,7 @@ func deleteSLOCorrectionIfExists(ctx context.Context, sloCorrectionID string) {
 	}
 }
 
-func isSLOCorrecionIDPresent(sloCorrectionID string, sloCorrections []datadog.SLOCorrectionListResponseData) error {
+func isSLOCorrecionIDPresent(sloCorrectionID string, sloCorrections []datadog.SLOCorrection) error {
 	for _, sloCorrection := range sloCorrections {
 		if sloCorrection.GetId() == sloCorrectionID {
 			return nil
