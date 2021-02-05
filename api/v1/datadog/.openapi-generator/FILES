@@ -112,7 +112,6 @@ docs/EventTimelineWidgetDefinitionType.md
 docs/EventsApi.md
 docs/FormulaAndFunctionEventAggregation.md
 docs/FormulaAndFunctionEventsDataSource.md
-docs/FormulaAndFunctionEventsSortType.md
 docs/FormulaAndFunctionMetricAggregation.md
 docs/FormulaAndFunctionMetricDataSource.md
 docs/FormulaAndFunctionProcessQueryDataSource.md
@@ -613,7 +612,6 @@ model_event_timeline_widget_definition.go
 model_event_timeline_widget_definition_type.go
 model_formula_and_function_event_aggregation.go
 model_formula_and_function_events_data_source.go
-model_formula_and_function_events_sort_type.go
 model_formula_and_function_metric_aggregation.go
 model_formula_and_function_metric_data_source.go
 model_formula_and_function_process_query_data_source.go
