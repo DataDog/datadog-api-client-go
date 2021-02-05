@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AwsAccountIdentifier** | Pointer to **string** | The unique identifier of your AWS account. | [optional] 
+**AccountId** | Pointer to **string** | The unique identifier of your AWS account. | [optional] 
 **Namespace** | Pointer to [**AWSNamespace**](AWSNamespace.md) |  | [optional] 
 
 ## Methods
@@ -26,30 +26,30 @@ NewAWSTagFilterDeleteRequestWithDefaults instantiates a new AWSTagFilterDeleteRe
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAwsAccountIdentifier
+### GetAccountId
 
-`func (o *AWSTagFilterDeleteRequest) GetAwsAccountIdentifier() string`
+`func (o *AWSTagFilterDeleteRequest) GetAccountId() string`
 
-GetAwsAccountIdentifier returns the AwsAccountIdentifier field if non-nil, zero value otherwise.
+GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
-### GetAwsAccountIdentifierOk
+### GetAccountIdOk
 
-`func (o *AWSTagFilterDeleteRequest) GetAwsAccountIdentifierOk() (*string, bool)`
+`func (o *AWSTagFilterDeleteRequest) GetAccountIdOk() (*string, bool)`
 
-GetAwsAccountIdentifierOk returns a tuple with the AwsAccountIdentifier field if it's non-nil, zero value otherwise
+GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAwsAccountIdentifier
+### SetAccountId
 
-`func (o *AWSTagFilterDeleteRequest) SetAwsAccountIdentifier(v string)`
+`func (o *AWSTagFilterDeleteRequest) SetAccountId(v string)`
 
-SetAwsAccountIdentifier sets AwsAccountIdentifier field to given value.
+SetAccountId sets AccountId field to given value.
 
-### HasAwsAccountIdentifier
+### HasAccountId
 
-`func (o *AWSTagFilterDeleteRequest) HasAwsAccountIdentifier() bool`
+`func (o *AWSTagFilterDeleteRequest) HasAccountId() bool`
 
-HasAwsAccountIdentifier returns a boolean if a field has been set.
+HasAccountId returns a boolean if a field has been set.
 
 ### GetNamespace
 
