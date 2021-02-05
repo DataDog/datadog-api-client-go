@@ -324,7 +324,6 @@ Class | Method | HTTP request | Description
  - [EventTimelineWidgetDefinitionType](docs/EventTimelineWidgetDefinitionType.md)
  - [FormulaAndFunctionEventAggregation](docs/FormulaAndFunctionEventAggregation.md)
  - [FormulaAndFunctionEventsDataSource](docs/FormulaAndFunctionEventsDataSource.md)
- - [FormulaAndFunctionEventsSortType](docs/FormulaAndFunctionEventsSortType.md)
  - [FormulaAndFunctionMetricAggregation](docs/FormulaAndFunctionMetricAggregation.md)
  - [FormulaAndFunctionMetricDataSource](docs/FormulaAndFunctionMetricDataSource.md)
  - [FormulaAndFunctionProcessQueryDataSource](docs/FormulaAndFunctionProcessQueryDataSource.md)

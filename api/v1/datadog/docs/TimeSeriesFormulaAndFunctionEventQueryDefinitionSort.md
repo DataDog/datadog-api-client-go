@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Aggregation** | [**FormulaAndFunctionEventAggregation**](FormulaAndFunctionEventAggregation.md) |  | 
 **Metric** | Pointer to **string** | Metric used for sorting group by results. | [optional] 
 **Order** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to "desc"]
-**Type** | Pointer to [**FormulaAndFunctionEventsSortType**](FormulaAndFunctionEventsSortType.md) |  | [optional] 
 
 ## Methods
 
@@ -97,31 +96,6 @@ SetOrder sets Order field to given value.
 `func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) HasOrder() bool`
 
 HasOrder returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) GetType() FormulaAndFunctionEventsSortType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) GetTypeOk() (*FormulaAndFunctionEventsSortType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) SetType(v FormulaAndFunctionEventsSortType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
