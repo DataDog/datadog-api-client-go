@@ -4650,7 +4650,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: The query string to filter results based on SLO tags.
+      - description: The query string to filter results based on a single SLO tag.
         example: env:prod
         explode: true
         in: query

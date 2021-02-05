@@ -563,7 +563,7 @@ func main() {
 
     ids := "id1, id2, id3" // string | A comma separated list of the IDs of the service level objectives objects. (optional)
     query := "monitor" // string | The query string to filter results based on SLO names. (optional)
-    tagsQuery := "env:prod" // string | The query string to filter results based on SLO tags. (optional)
+    tagsQuery := "env:prod" // string | The query string to filter results based on a single SLO tag. (optional)
     metricsQuery := "aws.elb.request_count" // string | The query string to filter results based on SLO numerator and denominator. (optional)
 
     configuration := datadog.NewConfiguration()
@@ -593,7 +593,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **string** | A comma separated list of the IDs of the service level objectives objects. | 
  **query** | **string** | The query string to filter results based on SLO names. | 
- **tagsQuery** | **string** | The query string to filter results based on SLO tags. | 
+ **tagsQuery** | **string** | The query string to filter results based on a single SLO tag. | 
  **metricsQuery** | **string** | The query string to filter results based on SLO numerator and denominator. | 
 
 ### Return type
