@@ -26,7 +26,7 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.13.x, 1.14.x]
+        go-version: [1.13.x, 1.15.x]
         platform: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.platform }}
     if: github.event.pull_request.draft == false && !contains(github.event.pull_request.labels.*.name, 'ci/skip') && !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')
