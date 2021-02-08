@@ -7,7 +7,7 @@
 * [Added] Add query parameters for SLO search endpoint. See [#682](https://github.com/DataDog/datadog-api-client-go/pull/682).
 * [Added] Add fields for formula and function query definition and widget formulas. See [#680](https://github.com/DataDog/datadog-api-client-go/pull/680).
 * [Added] Add global_time to time_window SLO widget. See [#675](https://github.com/DataDog/datadog-api-client-go/pull/675).
-* [Added] Update required fields in SLO correction create and update requests . See [#668](https://github.com/DataDog/datadog-api-client-go/pull/668).
+* [Added] Update required fields in SLO correction create and update requests. See [#668](https://github.com/DataDog/datadog-api-client-go/pull/668).
 * [Fixed] Fix AWS tag filter delete request. See [#701](https://github.com/DataDog/datadog-api-client-go/pull/701).
 * [Fixed] Remove unnecessary field from TimeSeriesFormulaAndFunctionEventQuery. See [#700](https://github.com/DataDog/datadog-api-client-go/pull/700).
 * [Fixed] Fix unit format in SLO history response. See [#695](https://github.com/DataDog/datadog-api-client-go/pull/695).
