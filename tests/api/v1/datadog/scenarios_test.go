@@ -78,6 +78,7 @@ func TestScenarios(t *testing.T) {
 				}
 			}
 		}),
+		gobdd.RunInParallel(),
 	)
 	tests.ConfigureSteps(s)
 
