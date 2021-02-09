@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"some message Notify: @hipchat-channel","name":"go-TestMonitorLifecycle-local-1589290365","options":{"enable_logs_sample":true,"escalation_message":"the situation has escalated","evaluation_delay":700,"include_tags":true,"locked":false,"new_host_delay":600,"no_data_timeframe":null,"notify_audit":false,"notify_no_data":false,"renotify_interval":60,"require_full_window":true,"thresholds":{"critical":2,"warning":1},"timeout_h":60},"priority":3,"query":"logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") \u003e 2","restricted_roles":["a0dfe496-dc09-4464-83be-a8037625bc31"],"tags":["test","client:go"],"type":"log alert"}
+      {"message":"some message Notify: @hipchat-channel","name":"go-TestMonitorLifecycle-local-1589290365","options":{"enable_logs_sample":true,"escalation_message":"the situation has escalated","evaluation_delay":700,"include_tags":true,"locked":false,"new_host_delay":600,"no_data_timeframe":null,"notify_audit":false,"notify_no_data":false,"renotify_interval":60,"require_full_window":true,"thresholds":{"critical":2,"warning":1},"timeout_h":60},"priority":3,"query":"logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") \u003e 2","restricted_roles":["94172442-be03-11e9-a77a-3b7612558ac1"],"tags":["test","client:go"],"type":"log alert"}
     form: {}
     headers:
       Accept:
@@ -23,7 +23,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/monitor
     method: POST
   response:
-    body: '{"tags":["test","client:go"],"deleted":null,"priority":3,"restricted_roles":["a0dfe496-dc09-4464-83be-a8037625bc31"],"query":"logs(\"service:foo
+    body: '{"tags":["test","client:go"],"deleted":null,"priority":3,"restricted_roles":["94172442-be03-11e9-a77a-3b7612558ac1"],"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
       message Notify: @hipchat-channel","id":18411369,"multi":false,"name":"go-TestMonitorLifecycle-local-1589290365","created":"2020-05-12T13:32:45.206017+00:00","created_at":1589290365000,"creator":{"id":1379826,"handle":"slavek.kabrda@datadoghq.com","name":"Slavek
       Kabrda","email":"slavek.kabrda@datadoghq.com"},"org_id":321813,"modified":"2020-05-12T13:32:45.206017+00:00","overall_state_modified":null,"overall_state":"No
@@ -72,7 +72,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"name":"go-TestMonitorLifecycle-local-1589290365-updated","options":{"evaluation_delay":null,"new_host_delay":null,"renotify_interval":null,"thresholds":{"critical":2,"warning":null},"timeout_h":null}}
+      {"name":"go-TestMonitorLifecycle-local-1589290365-updated","options":{"evaluation_delay":null,"new_host_delay":null,"renotify_interval":null,"thresholds":{"critical":2,"warning":null},"timeout_h":null},"restricted_roles":["94172442-be03-11e9-a77a-3b7612558ac1"]}
     form: {}
     headers:
       Accept:
@@ -92,7 +92,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/monitor/18411369
     method: PUT
   response:
-    body: '{"tags":["test","client:go"],"deleted":null,"priority":3,"restricted_roles":["a0dfe496-dc09-4464-83be-a8037625bc31"],"query":"logs(\"service:foo
+    body: '{"tags":["test","client:go"],"deleted":null,"priority":3,"restricted_roles":["94172442-be03-11e9-a77a-3b7612558ac1"],"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2","message":"some
       message Notify: @hipchat-channel","id":18411369,"multi":false,"name":"go-TestMonitorLifecycle-local-1589290365-updated","created":"2020-05-12T13:32:45.206017+00:00","created_at":1589290365000,"org_id":321813,"modified":"2020-05-12T13:32:45.527651+00:00","overall_state_modified":null,"overall_state":"No
       Data","type":"log alert","options":{"notify_audit":false,"locked":false,"timeout_h":null,"silenced":{},"include_tags":true,"thresholds":{"critical":2.0},"new_host_delay":null,"notify_no_data":false,"renotify_interval":null,"evaluation_delay":null}}'

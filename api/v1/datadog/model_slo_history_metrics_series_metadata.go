@@ -24,8 +24,8 @@ type SLOHistoryMetricsSeriesMetadata struct {
 	QueryIndex *int64 `json:"query_index,omitempty"`
 	// Query scope.
 	Scope *string `json:"scope,omitempty"`
-	// Query units (if available).
-	Unit *string `json:"unit,omitempty"`
+	// An array of metric units that contains up to two unit objects. For example, bytes represents one unit object and bytes per second represents two unit objects. If a metric query only has one unit object, the second array element is null.
+	Unit []SLOHistoryMetricsSeriesMetadataUnit `json:"unit,omitempty"`
 }
 
 // NewSLOHistoryMetricsSeriesMetadata instantiates a new SLOHistoryMetricsSeriesMetadata object
@@ -205,22 +205,23 @@ func (o *SLOHistoryMetricsSeriesMetadata) SetScope(v string) {
 	o.Scope = &v
 }
 
-// GetUnit returns the Unit field value if set, zero value otherwise.
-func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() string {
-	if o == nil || o.Unit == nil {
-		var ret string
+// GetUnit returns the Unit field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() []SLOHistoryMetricsSeriesMetadataUnit {
+	if o == nil {
+		var ret []SLOHistoryMetricsSeriesMetadataUnit
 		return ret
 	}
-	return *o.Unit
+	return o.Unit
 }
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistoryMetricsSeriesMetadata) GetUnitOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SLOHistoryMetricsSeriesMetadata) GetUnitOk() (*[]SLOHistoryMetricsSeriesMetadataUnit, bool) {
 	if o == nil || o.Unit == nil {
 		return nil, false
 	}
-	return o.Unit, true
+	return &o.Unit, true
 }
 
 // HasUnit returns a boolean if a field has been set.
@@ -232,9 +233,9 @@ func (o *SLOHistoryMetricsSeriesMetadata) HasUnit() bool {
 	return false
 }
 
-// SetUnit gets a reference to the given string and assigns it to the Unit field.
-func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v string) {
-	o.Unit = &v
+// SetUnit gets a reference to the given []SLOHistoryMetricsSeriesMetadataUnit and assigns it to the Unit field.
+func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v []SLOHistoryMetricsSeriesMetadataUnit) {
+	o.Unit = v
 }
 
 func (o SLOHistoryMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {

@@ -19,6 +19,8 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"testing"
+	"time"
 
 	"github.com/go-bdd/gobdd"
 	"github.com/mcuadros/go-lookup"
@@ -48,7 +50,10 @@ func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp refl
 	if p.Value != nil {
 		tpl := Templated(t, GetData(ctx), *p.Value)
 		v := reflect.New(tp)
-		json.Unmarshal([]byte(tpl), v.Interface())
+		err := json.Unmarshal([]byte(tpl), v.Interface())
+		if err != nil {
+			t.Fatalf("can't unmarshal parameter value for %s: %v", p.Name, err)
+		}
 		return v.Elem()
 	}
 	v, _ := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(*p.Source))
@@ -100,6 +105,14 @@ func Templated(t gobdd.StepTest, data interface{}, source string) string {
 			if err != nil {
 				t.Fatalf("problem with replacement of %s: %v", source, err)
 			}
+		}
+		switch v.Kind() {
+		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+			return strconv.FormatInt(v.Int(), 10)
+		case reflect.Float64, reflect.Float32:
+			return strconv.FormatFloat(v.Float(), 'f', -1, 10)
+		case reflect.Bool:
+			return strconv.FormatBool(v.Bool())
 		}
 		return v.String()
 	}
@@ -306,6 +319,23 @@ func SetCtx(ctx gobdd.Context, value context.Context) {
 	ctx.Set(ctxKey{}, value)
 }
 
+// SetFixtureData sets the fixture data in BDD context
+func SetFixtureData(ctx gobdd.Context) {
+	ct, _ := ctx.Get(gobdd.TestingTKey{})
+	cctx := GetCtx(ctx)
+	testName := strings.Join(strings.Split(ct.(*testing.T).Name(), "/")[1:3], "/")
+	unique := WithUniqueSurrounding(cctx, testName)
+	data := GetData(ctx)
+	data["unique"] = unique
+	data["unique_lower"] = strings.ToLower(unique)
+	data["now_ts"] = ClockFromContext(cctx).Now().Unix()
+	data["now_iso"] = ClockFromContext(cctx).Now().Format(time.RFC3339)
+	data["hour_later_ts"] = ClockFromContext(cctx).Now().Add(time.Hour).Unix()
+	data["hour_later_iso"] = ClockFromContext(cctx).Now().Add(time.Hour).Format(time.RFC3339)
+	data["hour_ago_ts"] = ClockFromContext(cctx).Now().Add(-time.Hour).Unix()
+	data["hour_ago_iso"] = ClockFromContext(cctx).Now().Add(-time.Hour).Format(time.RFC3339)
+}
+
 // SetClient sets client reflection.
 func SetClient(ctx gobdd.Context, value interface{}) {
 	ctx.Set(clientKey{}, value)
@@ -411,7 +441,7 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, error) {
 	in[0] = reflect.ValueOf(GetCtx(ctx))
 	requestArgs := GetRequestArguments(ctx)
 
-	if len(requestArgs) >= f.Type().NumIn() -1 {
+	if len(requestArgs) >= f.Type().NumIn()-1 {
 		for i := 1; i < f.Type().NumIn(); i++ {
 			object := requestArgs[i-1]
 			in[i] = object.(reflect.Value)
