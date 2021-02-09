@@ -1701,9 +1701,6 @@ paths:
       x-codegen-request-body-name: body
       x-undo:
         type: idempotent
-      x-unstable: |-
-        **Note**: This endpoint is in public beta.
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     get:
       description: Returns all read roles a given archive is restricted to.
       operationId: ListArchiveReadRoles
@@ -1747,9 +1744,6 @@ paths:
       x-codegen-request-body-name: body
       x-undo:
         type: safe
-      x-unstable: |-
-        **Note**: This endpoint is in public beta.
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     post:
       description: Adds a read role to an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))
       operationId: AddReadRoleToArchive
@@ -1795,9 +1789,6 @@ paths:
       x-codegen-request-body-name: body
       x-undo:
         type: unsafe
-      x-unstable: |-
-        **Note**: This endpoint is in public beta.
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/logs/config/metrics:
     get:
       description: Get the list of configured log-based metrics with their definitions.
@@ -2148,9 +2139,6 @@ paths:
       - Logs
       x-undo:
         type: safe
-      x-unstable: |-
-        **Note**: This endpoint is in public beta.
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/logs/events/search:
     post:
       description: |-
@@ -2197,9 +2185,6 @@ paths:
       x-codegen-request-body-name: body
       x-undo:
         type: safe
-      x-unstable: |-
-        **Note**: This endpoint is in public beta.
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/permissions:
     get:
       description: Returns a list of all permissions, including name, description,
