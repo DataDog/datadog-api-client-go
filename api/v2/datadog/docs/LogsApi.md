@@ -130,7 +130,6 @@ func main() {
     body := *datadog.NewLogsListRequest() // LogsListRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("ListLogs", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsApi.ListLogs(ctx).Body(body).Execute()
@@ -220,7 +219,6 @@ func main() {
     pageLimit := int32(25) // int32 | Maximum number of logs in the response. (optional) (default to 10)
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("ListLogsGet", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsApi.ListLogsGet(ctx).FilterQuery(filterQuery).FilterIndex(filterIndex).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()

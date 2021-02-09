@@ -51,7 +51,6 @@ func main() {
     body := *datadog.NewLogsIndex(*datadog.NewLogsFilter(), "main") // LogsIndex | Object containing the new index.
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("CreateLogsIndex", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsIndexesApi.CreateLogsIndex(ctx).Body(body).Execute()
@@ -134,7 +133,6 @@ func main() {
     name := "name_example" // string | Name of the log index.
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("GetLogsIndex", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsIndexesApi.GetLogsIndex(ctx, name).Execute()
@@ -220,7 +218,6 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("GetLogsIndexOrder", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
@@ -298,7 +295,6 @@ func main() {
 
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("ListLogIndexes", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsIndexesApi.ListLogIndexes(ctx).Execute()
@@ -378,7 +374,6 @@ func main() {
     body := *datadog.NewLogsIndexUpdateRequest(*datadog.NewLogsFilter()) // LogsIndexUpdateRequest | Object containing the new `LogsIndexUpdateRequest`.
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("UpdateLogsIndex", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndex(ctx, name).Body(body).Execute()
@@ -466,7 +461,6 @@ func main() {
     body := *datadog.NewLogsIndexesOrder([]string{"IndexNames_example"}) // LogsIndexesOrder | Object containing the new ordered list of index names
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("UpdateLogsIndexOrder", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsIndexesApi.UpdateLogsIndexOrder(ctx).Body(body).Execute()

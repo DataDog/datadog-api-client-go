@@ -10,9 +10,7 @@ package datadog
 
 import (
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -67,13 +65,6 @@ func (a *LogsIndexesApiService) CreateLogsIndexExecute(r ApiCreateLogsIndexReque
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndex
 	)
-
-	operationId := "CreateLogsIndex"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.CreateLogsIndex")
 	if err != nil {
@@ -234,13 +225,6 @@ func (a *LogsIndexesApiService) GetLogsIndexExecute(r ApiGetLogsIndexRequest) (L
 		localVarReturnValue  LogsIndex
 	)
 
-	operationId := "GetLogsIndex"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndex")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
@@ -393,13 +377,6 @@ func (a *LogsIndexesApiService) GetLogsIndexOrderExecute(r ApiGetLogsIndexOrderR
 		localVarReturnValue  LogsIndexesOrder
 	)
 
-	operationId := "GetLogsIndexOrder"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndexOrder")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
@@ -541,13 +518,6 @@ func (a *LogsIndexesApiService) ListLogIndexesExecute(r ApiListLogIndexesRequest
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndexListResponse
 	)
-
-	operationId := "ListLogIndexes"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.ListLogIndexes")
 	if err != nil {
@@ -702,13 +672,6 @@ func (a *LogsIndexesApiService) UpdateLogsIndexExecute(r ApiUpdateLogsIndexReque
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndex
 	)
-
-	operationId := "UpdateLogsIndex"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndex")
 	if err != nil {
@@ -883,13 +846,6 @@ func (a *LogsIndexesApiService) UpdateLogsIndexOrderExecute(r ApiUpdateLogsIndex
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndexesOrder
 	)
-
-	operationId := "UpdateLogsIndexOrder"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndexOrder")
 	if err != nil {

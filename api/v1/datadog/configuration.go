@@ -278,12 +278,6 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
-			"CreateLogsIndex":                  false,
-			"GetLogsIndex":                     false,
-			"GetLogsIndexOrder":                false,
-			"ListLogIndexes":                   false,
-			"UpdateLogsIndex":                  false,
-			"UpdateLogsIndexOrder":             false,
 			"CreateSLOCorrection":              false,
 			"DeleteSLOCorrection":              false,
 			"GetSLOCorrection":                 false,

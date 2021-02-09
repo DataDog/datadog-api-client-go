@@ -17,28 +17,10 @@ import (
 	"gopkg.in/h2non/gock.v1"
 )
 
-func enableLogsIndexesUnstableOperations(ctx context.Context) func() {
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetLogsIndex", true)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogIndexes", true)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateLogsIndex", true)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetLogsIndexOrder", true)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateLogsIndexOrder", true)
-	return func() { disableLogsIndexesUnstableOperations(ctx) }
-}
-
-func disableLogsIndexesUnstableOperations(ctx context.Context) {
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetLogsIndex", false)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogIndexes", false)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateLogsIndex", false)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetLogsIndexOrder", false)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateLogsIndexOrder", false)
-}
-
 func TestGetAllLogsIndexes(t *testing.T) {
 	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
 	defer gock.Off()
 	defer stop()
-	defer enableLogsIndexesUnstableOperations(ctx)()
 	assert := tests.Assert(ctx, t)
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-indexes.json")
@@ -65,7 +47,6 @@ func TestGetLogsIndex(t *testing.T) {
 	defer gock.Off()
 	defer stop()
 	assert := tests.Assert(ctx, t)
-	defer enableLogsIndexesUnstableOperations(ctx)()
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-index.json")
 	if err != nil {
@@ -115,7 +96,6 @@ func TestLogsIndexOrder(t *testing.T) {
 		Reply(200).
 		JSON(data)
 
-	defer enableLogsIndexesUnstableOperations(ctx)()
 	indexOrder, httpresp, err := Client(ctx).LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error getting index order: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -130,7 +110,6 @@ func TestUpdateLogsIndex(t *testing.T) {
 	defer gock.Off()
 	defer stop()
 	assert := tests.Assert(ctx, t)
-	defer enableLogsIndexesUnstableOperations(ctx)()
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-index.json")
 	if err != nil {
@@ -203,7 +182,6 @@ func TestUpdateLogsIndexOrder(t *testing.T) {
 		Reply(200).
 		JSON(data)
 
-	defer enableLogsIndexesUnstableOperations(ctx)()
 	indexOrder, httpresp, err := Client(ctx).LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
 	if err != nil {
 		t.Fatalf("Error getting index order: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -251,8 +229,6 @@ func TestLogsIndexesListErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			defer enableLogsIndexesUnstableOperations(ctx)()
-
 			_, httpresp, err := Client(ctx).LogsIndexesApi.ListLogIndexes(ctx).Execute()
 			fmt.Println(err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -280,8 +256,6 @@ func TestLogsIndexesGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-
-			defer enableLogsIndexesUnstableOperations(ctx)()
 
 			_, httpresp, err := Client(ctx).LogsIndexesApi.GetLogsIndex(ctx, "shrugs").Execute()
 			fmt.Println(err)
@@ -318,8 +292,6 @@ func TestLogsIndexesUpdateErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			defer enableLogsIndexesUnstableOperations(ctx)()
-
 			_, httpresp, err := Client(ctx).LogsIndexesApi.UpdateLogsIndex(ctx, "shrugs").Body(tc.Body).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
@@ -339,7 +311,6 @@ func TestLogsIndexesUpdate429Error(t *testing.T) {
 	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	defer enableLogsIndexesUnstableOperations(ctx)()
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/error_429.json")
 	if err != nil {
@@ -379,8 +350,6 @@ func TestLogsIndexesOrderGetErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			defer enableLogsIndexesUnstableOperations(ctx)()
-
 			_, httpresp, err := Client(ctx).LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
 			fmt.Println(err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -409,8 +378,6 @@ func TestLogsIndexesOrderUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-
-			defer enableLogsIndexesUnstableOperations(ctx)()
 
 			_, httpresp, err := Client(ctx).LogsIndexesApi.UpdateLogsIndexOrder(ctx).Body(tc.Body).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)

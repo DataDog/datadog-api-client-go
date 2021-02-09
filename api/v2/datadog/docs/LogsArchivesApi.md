@@ -55,7 +55,6 @@ func main() {
     body := *datadog.NewRelationshipToRole() // RelationshipToRole | 
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("AddReadRoleToArchive", true)
 
     api_client := datadog.NewAPIClient(configuration)
     r, err := api_client.LogsArchivesApi.AddReadRoleToArchive(ctx, archiveId).Body(body).Execute()
@@ -467,7 +466,6 @@ func main() {
     archiveId := "archiveId_example" // string | The ID of the archive.
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("ListArchiveReadRoles", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsArchivesApi.ListArchiveReadRoles(ctx, archiveId).Execute()
@@ -631,7 +629,6 @@ func main() {
     body := *datadog.NewRelationshipToRole() // RelationshipToRole | 
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("RemoveRoleFromArchive", true)
 
     api_client := datadog.NewAPIClient(configuration)
     r, err := api_client.LogsArchivesApi.RemoveRoleFromArchive(ctx, archiveId).Body(body).Execute()
