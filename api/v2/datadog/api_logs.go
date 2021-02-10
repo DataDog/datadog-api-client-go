@@ -10,9 +10,7 @@ package datadog
 
 import (
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"time"
@@ -240,13 +238,6 @@ func (a *LogsApiService) ListLogsExecute(r ApiListLogsRequest) (LogsListResponse
 		localVarReturnValue  LogsListResponse
 	)
 
-	operationId := "ListLogs"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogs")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
@@ -445,13 +436,6 @@ func (a *LogsApiService) ListLogsGetExecute(r ApiListLogsGetRequest) (LogsListRe
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsListResponse
 	)
-
-	operationId := "ListLogsGet"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogsGet")
 	if err != nil {

@@ -63,6 +63,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("example-value")) // SyntheticsGlobalVariable | Details of the global variable to create.
 
     configuration := datadog.NewConfiguration()
@@ -144,6 +152,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     body := *datadog.NewSyntheticsPrivateLocation("Description of private location", "New private location", []string{"team:front"}) // SyntheticsPrivateLocation | Details of the private location to create.
 
@@ -227,6 +243,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewSyntheticsTestDetails() // SyntheticsTestDetails | Details of the test to create.
 
     configuration := datadog.NewConfiguration()
@@ -307,6 +331,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     variableId := "variableId_example" // string | The ID of the global variable.
 
@@ -389,6 +421,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     locationId := "locationId_example" // string | The ID of the private location.
 
@@ -473,6 +513,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewSyntheticsDeleteTestsPayload() // SyntheticsDeleteTestsPayload | Public ID list of the Synthetic tests to be deleted.
 
     configuration := datadog.NewConfiguration()
@@ -554,6 +602,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     variableId := "variableId_example" // string | The ID of the global variable.
     body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("example-value")) // SyntheticsGlobalVariable | Details of the global variable to update.
@@ -642,6 +698,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     publicId := "publicId_example" // string | The public ID of the test for which to search results for.
     fromTs := int64(789) // int64 | Timestamp from which to start querying results. (optional)
@@ -735,6 +799,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     publicId := "publicId_example" // string | The public ID of the API test to which the target result belongs.
     resultId := "resultId_example" // string | The ID of the result to get.
 
@@ -824,6 +896,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     publicId := "publicId_example" // string | The public ID of the test to get details from.
 
     configuration := datadog.NewConfiguration()
@@ -909,6 +989,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     publicId := "publicId_example" // string | The public ID of the browser test for which to search results for.
     fromTs := int64(789) // int64 | Timestamp from which to start querying results. (optional)
@@ -1002,6 +1090,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     publicId := "publicId_example" // string | The public ID of the browser test to which the target result belongs.
     resultId := "resultId_example" // string | The ID of the result to get.
 
@@ -1091,6 +1187,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     variableId := "variableId_example" // string | The ID of the global variable.
 
     configuration := datadog.NewConfiguration()
@@ -1176,6 +1280,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     locationId := "locationId_example" // string | The ID of the private location.
 
@@ -1263,6 +1375,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     publicId := "publicId_example" // string | The public ID of the test to get details from.
 
     configuration := datadog.NewConfiguration()
@@ -1349,6 +1469,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
 
     configuration := datadog.NewConfiguration()
 
@@ -1426,6 +1554,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
 
     configuration := datadog.NewConfiguration()
 
@@ -1502,6 +1638,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     body := *datadog.NewSyntheticsCITestBody() // SyntheticsCITestBody | Details of the test to trigger.
 
@@ -1584,6 +1728,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     locationId := "locationId_example" // string | The ID of the private location.
     body := *datadog.NewSyntheticsPrivateLocation("Description of private location", "New private location", []string{"team:front"}) // SyntheticsPrivateLocation | Details of the private location to be updated.
@@ -1673,6 +1825,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     publicId := "publicId_example" // string | The public ID of the test to get details from.
     body := *datadog.NewSyntheticsTestDetails() // SyntheticsTestDetails | New test details to be saved.
 
@@ -1760,6 +1920,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     publicId := "publicId_example" // string | The public ID of the Synthetic test to update.
     body := *datadog.NewSyntheticsUpdateTestPauseStatusPayload() // SyntheticsUpdateTestPauseStatusPayload | Status to set the given Synthetic test to.

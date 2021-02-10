@@ -47,6 +47,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     metricName := "metricName_example" // string | Name of the metric for which to get metadata.
 
     configuration := datadog.NewConfiguration()
@@ -133,6 +141,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     from := int64(789) // int64 | Seconds since the Unix epoch.
     host := "host_example" // string | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. (optional)
 
@@ -217,6 +233,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     q := "q_example" // string | Query string to search metrics upon. Must be prefixed with `metrics:`.
 
     configuration := datadog.NewConfiguration()
@@ -298,6 +322,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     from := int64(789) // int64 | Start of the queried time period, seconds since the Unix epoch.
     to := int64(789) // int64 | End of the queried time period, seconds since the Unix epoch.
@@ -384,6 +416,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     metricName := "metricName_example" // string | Name of the metric for which to edit metadata.
     body := *datadog.NewMetricMetadata() // MetricMetadata | New metadata.

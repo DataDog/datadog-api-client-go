@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## v1.0.0-beta.15 / 2021-02-08
+
+* [Added] Add restricted roles to monitor update. See [#691](https://github.com/DataDog/datadog-api-client-go/pull/691).
+* [Added] Add endpoint for IoT billing usage. See [#684](https://github.com/DataDog/datadog-api-client-go/pull/684).
+* [Added] Add query parameters for SLO search endpoint. See [#682](https://github.com/DataDog/datadog-api-client-go/pull/682).
+* [Added] Add fields for formula and function query definition and widget formulas. See [#680](https://github.com/DataDog/datadog-api-client-go/pull/680).
+* [Added] Add global_time to time_window SLO widget. See [#675](https://github.com/DataDog/datadog-api-client-go/pull/675).
+* [Added] Update required fields in SLO correction create and update requests. See [#668](https://github.com/DataDog/datadog-api-client-go/pull/668).
+* [Fixed] Fix AWS tag filter delete request. See [#701](https://github.com/DataDog/datadog-api-client-go/pull/701).
+* [Fixed] Remove unnecessary field from TimeSeriesFormulaAndFunctionEventQuery. See [#700](https://github.com/DataDog/datadog-api-client-go/pull/700).
+* [Fixed] Fix unit format in SLO history response. See [#695](https://github.com/DataDog/datadog-api-client-go/pull/695).
+* [Fixed] Change group_by from object to list of objects. See [#694](https://github.com/DataDog/datadog-api-client-go/pull/694).
+* [Fixed] Fix location of monitor restricted roles. See [#687](https://github.com/DataDog/datadog-api-client-go/pull/687).
+* [Fixed] Fix paging parameter names for logs aggregate queries. See [#681](https://github.com/DataDog/datadog-api-client-go/pull/681).
+
 ## v1.0.0-beta.14 / 2021-01-19
 
 * [Added] Add log index creation. See [#662](https://github.com/DataDog/datadog-api-client-go/pull/662).

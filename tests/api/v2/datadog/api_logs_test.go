@@ -12,22 +12,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
-func enableLogsUnstableOperations(ctx context.Context) func() {
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogs", true)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogsGet", true)
-	return func() { disableLogsUnstableOperations(ctx) }
-}
-
-func disableLogsUnstableOperations(ctx context.Context) {
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogs", false)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListLogsGet", false)
-}
-
 func TestLogsList(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	defer enableLogsUnstableOperations(ctx)()
 	client := Client(ctx)
 
 	suffix := tests.UniqueEntityName(ctx, t)
@@ -143,7 +131,6 @@ func TestLogsListGet(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	defer enableLogsUnstableOperations(ctx)()
 	client := Client(ctx)
 
 	now := tests.ClockFromContext(ctx).Now()

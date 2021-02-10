@@ -47,6 +47,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewLogsMetricCreateRequest(*datadog.NewLogsMetricCreateData(*datadog.NewLogsMetricCreateAttributes(*datadog.NewLogsMetricCompute(datadog.LogsMetricComputeAggregationType("count"))), "logs.page.load.count", datadog.LogsMetricType("logs_metrics"))) // LogsMetricCreateRequest | The definition of the new log-based metric.
 
     configuration := datadog.NewConfiguration()
@@ -127,6 +135,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     metricId := "metricId_example" // string | The name of the log-based metric.
 
@@ -210,6 +226,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     metricId := "metricId_example" // string | The name of the log-based metric.
 
@@ -297,6 +321,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
 
     configuration := datadog.NewConfiguration()
 
@@ -373,6 +405,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     metricId := "metricId_example" // string | The name of the log-based metric.
     body := *datadog.NewLogsMetricUpdateRequest(*datadog.NewLogsMetricUpdateData(*datadog.NewLogsMetricUpdateAttributes(), datadog.LogsMetricType("logs_metrics"))) // LogsMetricUpdateRequest | New definition of the log-based metric.

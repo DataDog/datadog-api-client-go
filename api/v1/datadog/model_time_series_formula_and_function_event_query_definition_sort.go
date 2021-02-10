@@ -16,9 +16,8 @@ import (
 type TimeSeriesFormulaAndFunctionEventQueryDefinitionSort struct {
 	Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"`
 	// Metric used for sorting group by results.
-	Metric *string                           `json:"metric,omitempty"`
-	Order  *QuerySortOrder                   `json:"order,omitempty"`
-	Type   *FormulaAndFunctionEventsSortType `json:"type,omitempty"`
+	Metric *string         `json:"metric,omitempty"`
+	Order  *QuerySortOrder `json:"order,omitempty"`
 }
 
 // NewTimeSeriesFormulaAndFunctionEventQueryDefinitionSort instantiates a new TimeSeriesFormulaAndFunctionEventQueryDefinitionSort object
@@ -131,38 +130,6 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) SetOrder(v QueryS
 	o.Order = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) GetType() FormulaAndFunctionEventsSortType {
-	if o == nil || o.Type == nil {
-		var ret FormulaAndFunctionEventsSortType
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) GetTypeOk() (*FormulaAndFunctionEventsSortType, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given FormulaAndFunctionEventsSortType and assigns it to the Type field.
-func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) SetType(v FormulaAndFunctionEventsSortType) {
-	o.Type = &v
-}
-
 func (o TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -173,9 +140,6 @@ func (o TimeSeriesFormulaAndFunctionEventQueryDefinitionSort) MarshalJSON() ([]b
 	}
 	if o.Order != nil {
 		toSerialize["order"] = o.Order
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

@@ -51,6 +51,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("jane.doe@example.com"), datadog.UsersType("users"))) // UserCreateRequest | 
 
     configuration := datadog.NewConfiguration()
@@ -131,6 +139,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     userId := "userId_example" // string | The ID of the user.
 
@@ -214,6 +230,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     userInvitationUuid := "userInvitationUuid_example" // string | The UUID of the user invitation.
 
@@ -301,6 +325,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     userId := "userId_example" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
@@ -386,6 +418,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     userId := "userId_example" // string | The ID of the user.
 
@@ -473,6 +513,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     userId := "userId_example" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
@@ -558,6 +606,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
@@ -651,6 +707,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewUserInvitationsRequest([]datadog.UserInvitationData{*datadog.NewUserInvitationData(*datadog.NewUserInvitationRelationships(*datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users")))), datadog.UserInvitationsType("user_invitations"))}) // UserInvitationsRequest | 
 
     configuration := datadog.NewConfiguration()
@@ -732,6 +796,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     userId := "userId_example" // string | The ID of the user.
     body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // UserUpdateRequest | 
