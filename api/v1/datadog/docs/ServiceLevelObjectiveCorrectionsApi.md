@@ -47,6 +47,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewSLOCorrectionCreateRequest() // SLOCorrectionCreateRequest | Create an SLO Correction
 
     configuration := datadog.NewConfiguration()
@@ -128,6 +136,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     sloCorrectionId := "sloCorrectionId_example" // string | The ID of the SLO correction object
 
@@ -212,6 +228,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     sloCorrectionId := "sloCorrectionId_example" // string | The ID of the SLO correction object
 
@@ -300,6 +324,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("ListSLOCorrection", true)
@@ -377,6 +409,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     sloCorrectionId := "sloCorrectionId_example" // string | The ID of the SLO correction object
     body := *datadog.NewSLOCorrectionUpdateRequest() // SLOCorrectionUpdateRequest | The edited SLO correction object.

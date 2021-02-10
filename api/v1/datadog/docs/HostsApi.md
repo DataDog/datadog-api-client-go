@@ -46,6 +46,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     from := int64(789) // int64 | Number of seconds from which you want to get total number of active hosts. (optional)
 
     configuration := datadog.NewConfiguration()
@@ -127,6 +135,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     filter := "filter_example" // string | String to filter search results. (optional)
     sortField := "sortField_example" // string | Sort hosts by this field. (optional)
@@ -224,6 +240,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     hostName := "hostName_example" // string | Name of the host to mute.
     body := *datadog.NewHostMuteSettings() // HostMuteSettings | Mute a host request body.
 
@@ -311,6 +335,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     hostName := "hostName_example" // string | Name of the host to unmute.
 

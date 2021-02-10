@@ -47,6 +47,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewOrganizationCreateBody("New child org") // OrganizationCreateBody | Organization object that needs to be created
 
     configuration := datadog.NewConfiguration()
@@ -128,6 +136,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     publicId := "abc123" // string | The `public_id` of the organization you are operating within.
 
@@ -215,6 +231,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
 
     configuration := datadog.NewConfiguration()
 
@@ -291,6 +315,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     publicId := "abc123" // string | The `public_id` of the organization you are operating within.
     body := *datadog.NewOrganization() // Organization | 
@@ -379,6 +411,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     publicId := "abc123" // string | The `public_id` of the organization you are operating with
     idpFile := os.NewFile(1234, "some_file") // *os.File | The path to the XML metadata file you wish to upload.

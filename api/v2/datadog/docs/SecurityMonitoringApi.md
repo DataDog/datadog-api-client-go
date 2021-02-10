@@ -49,6 +49,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewSecurityMonitoringRuleCreatePayload([]datadog.SecurityMonitoringRuleCaseCreate{*datadog.NewSecurityMonitoringRuleCaseCreate(datadog.SecurityMonitoringRuleSeverity("info"))}, true, "Message_example", "Name_example", *datadog.NewSecurityMonitoringRuleOptions(), []datadog.SecurityMonitoringRuleQueryCreate{*datadog.NewSecurityMonitoringRuleQueryCreate("a < 3")}) // SecurityMonitoringRuleCreatePayload | 
 
     configuration := datadog.NewConfiguration()
@@ -129,6 +137,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     ruleId := "ruleId_example" // string | The ID of the rule.
 
@@ -212,6 +228,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     ruleId := "ruleId_example" // string | The ID of the rule.
 
@@ -299,6 +323,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
 
@@ -383,6 +415,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     filterQuery := "security:attack status:high" // string | The search query for security signals. (optional)
     filterFrom := time.Now() // time.Time | The minimum timestamp for requested security signals. (optional)
@@ -477,6 +517,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewSecurityMonitoringSignalListRequest() // SecurityMonitoringSignalListRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
@@ -559,6 +607,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     ruleId := "ruleId_example" // string | The ID of the rule.
     body := *datadog.NewSecurityMonitoringRuleUpdatePayload() // SecurityMonitoringRuleUpdatePayload | 

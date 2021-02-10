@@ -47,6 +47,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     downtimeId := int64(123456) // int64 | ID of the downtime to cancel.
 
     configuration := datadog.NewConfiguration()
@@ -130,6 +138,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewCancelDowntimesByScopeRequest("host:myserver") // CancelDowntimesByScopeRequest | Scope to cancel downtimes for.
 
     configuration := datadog.NewConfiguration()
@@ -212,6 +228,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewDowntime() // Downtime | Schedule a downtime request body.
 
     configuration := datadog.NewConfiguration()
@@ -293,6 +317,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     downtimeId := int64(123456) // int64 | ID of the downtime to fetch.
 
@@ -380,6 +412,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     currentOnly := true // bool | Only return downtimes that are active when the request is made. (optional)
 
     configuration := datadog.NewConfiguration()
@@ -461,6 +501,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     downtimeId := int64(123456) // int64 | ID of the downtime to update.
     body := *datadog.NewDowntime() // Downtime | Update a downtime request body.
