@@ -387,7 +387,7 @@ func (r ApiGetDashboardListItemsRequest) Execute() (DashboardListItems, *_nethtt
 }
 
 /*
- * GetDashboardListItems Get a Dashboard List
+ * GetDashboardListItems Get items of a Dashboard List
  * Fetch the dashboard list’s dashboard definitions.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param dashboardListId ID of the dashboard list to get items from.

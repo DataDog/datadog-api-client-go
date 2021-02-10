@@ -81,7 +81,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DashboardListsApi* | [**CreateDashboardListItems**](docs/DashboardListsApi.md#createdashboardlistitems) | **Post** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Add Items to a Dashboard List
 *DashboardListsApi* | [**DeleteDashboardListItems**](docs/DashboardListsApi.md#deletedashboardlistitems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete items from a dashboard list
-*DashboardListsApi* | [**GetDashboardListItems**](docs/DashboardListsApi.md#getdashboardlistitems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Get a Dashboard List
+*DashboardListsApi* | [**GetDashboardListItems**](docs/DashboardListsApi.md#getdashboardlistitems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Get items of a Dashboard List
 *DashboardListsApi* | [**UpdateDashboardListItems**](docs/DashboardListsApi.md#updatedashboardlistitems) | **Put** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Update items of a dashboard list
 *IncidentServicesApi* | [**CreateIncidentService**](docs/IncidentServicesApi.md#createincidentservice) | **Post** /api/v2/services | Create a new incident service
 *IncidentServicesApi* | [**DeleteIncidentService**](docs/IncidentServicesApi.md#deleteincidentservice) | **Delete** /api/v2/services/{service_id} | Delete an existing incident service
