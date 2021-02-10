@@ -43,6 +43,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     search := "search_example" // string | String to search processes by. (optional)
     tags := "account:prod,user:admin" // string | Comma-separated list of tags to filter processes by. (optional)
     from := int64(789) // int64 | Unix timestamp (number of seconds since epoch) of the start of the query window. If not provided, the start of the query window will be 15 minutes before the `to` timestamp. If neither `from` nor `to` are provided, the query window will be `[now - 15m, now]`. (optional)
