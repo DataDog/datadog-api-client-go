@@ -62,6 +62,9 @@ func Lookup(i interface{}, path string) (reflect.Value, error) {
 		// parent might be a pointer
 		oneOf = parent.MethodByName("GetActualInstance")
 		if (!oneOf.IsValid()) {
+			if (!parent.CanAddr()) {
+				return parent, err
+			}
 			// or parent might be a value hence get its address
 			oneOf = parent.Addr().MethodByName("GetActualInstance")
 			if (!oneOf.IsValid()) {
