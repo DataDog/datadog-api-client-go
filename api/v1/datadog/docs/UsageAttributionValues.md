@@ -16,8 +16,12 @@ Name | Type | Description | Notes
 **CustomTimeseriesUsage** | Pointer to **float64** | The custom metrics usage by tag(s). | [optional] 
 **InfraHostPercentage** | Pointer to **float64** | The percentage of infrastructure host usage by tag(s). | [optional] 
 **InfraHostUsage** | Pointer to **float64** | The infrastructure host usage by tag(s). | [optional] 
-**LambdaPercentage** | Pointer to **float64** | The percentage of lambda function usage by tag(s). | [optional] 
-**LambdaUsage** | Pointer to **float64** | The lambda function usage by tag(s). | [optional] 
+**LambdaFunctionsPercentage** | Pointer to **float64** | The percentage of Lambda function usage by tag(s). | [optional] 
+**LambdaFunctionsUsage** | Pointer to **float64** | The Lambda function usage by tag(s). | [optional] 
+**LambdaInvocationsPercentage** | Pointer to **float64** | The percentage of Lambda invocation usage by tag(s). | [optional] 
+**LambdaInvocationsUsage** | Pointer to **float64** | The Lambda invocation usage by tag(s). | [optional] 
+**LambdaPercentage** | Pointer to **float64** | The percentage of Lambda function usage by tag(s).  **Note** this field is deprecated. Use lambda_functions_percentage instead. | [optional] 
+**LambdaUsage** | Pointer to **float64** | The Lambda function usage by tag(s).  **Note** this field is deprecated. Use lambda_functions_usage instead. | [optional] 
 **NpmHostPercentage** | Pointer to **float64** | The percentage of network host usage by tag(s). | [optional] 
 **NpmHostUsage** | Pointer to **float64** | The network host usage by tag(s). | [optional] 
 **SnmpPercentage** | Pointer to **float64** | The percentage of network device usage by tag(s). | [optional] 
@@ -341,6 +345,106 @@ SetInfraHostUsage sets InfraHostUsage field to given value.
 `func (o *UsageAttributionValues) HasInfraHostUsage() bool`
 
 HasInfraHostUsage returns a boolean if a field has been set.
+
+### GetLambdaFunctionsPercentage
+
+`func (o *UsageAttributionValues) GetLambdaFunctionsPercentage() float64`
+
+GetLambdaFunctionsPercentage returns the LambdaFunctionsPercentage field if non-nil, zero value otherwise.
+
+### GetLambdaFunctionsPercentageOk
+
+`func (o *UsageAttributionValues) GetLambdaFunctionsPercentageOk() (*float64, bool)`
+
+GetLambdaFunctionsPercentageOk returns a tuple with the LambdaFunctionsPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLambdaFunctionsPercentage
+
+`func (o *UsageAttributionValues) SetLambdaFunctionsPercentage(v float64)`
+
+SetLambdaFunctionsPercentage sets LambdaFunctionsPercentage field to given value.
+
+### HasLambdaFunctionsPercentage
+
+`func (o *UsageAttributionValues) HasLambdaFunctionsPercentage() bool`
+
+HasLambdaFunctionsPercentage returns a boolean if a field has been set.
+
+### GetLambdaFunctionsUsage
+
+`func (o *UsageAttributionValues) GetLambdaFunctionsUsage() float64`
+
+GetLambdaFunctionsUsage returns the LambdaFunctionsUsage field if non-nil, zero value otherwise.
+
+### GetLambdaFunctionsUsageOk
+
+`func (o *UsageAttributionValues) GetLambdaFunctionsUsageOk() (*float64, bool)`
+
+GetLambdaFunctionsUsageOk returns a tuple with the LambdaFunctionsUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLambdaFunctionsUsage
+
+`func (o *UsageAttributionValues) SetLambdaFunctionsUsage(v float64)`
+
+SetLambdaFunctionsUsage sets LambdaFunctionsUsage field to given value.
+
+### HasLambdaFunctionsUsage
+
+`func (o *UsageAttributionValues) HasLambdaFunctionsUsage() bool`
+
+HasLambdaFunctionsUsage returns a boolean if a field has been set.
+
+### GetLambdaInvocationsPercentage
+
+`func (o *UsageAttributionValues) GetLambdaInvocationsPercentage() float64`
+
+GetLambdaInvocationsPercentage returns the LambdaInvocationsPercentage field if non-nil, zero value otherwise.
+
+### GetLambdaInvocationsPercentageOk
+
+`func (o *UsageAttributionValues) GetLambdaInvocationsPercentageOk() (*float64, bool)`
+
+GetLambdaInvocationsPercentageOk returns a tuple with the LambdaInvocationsPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLambdaInvocationsPercentage
+
+`func (o *UsageAttributionValues) SetLambdaInvocationsPercentage(v float64)`
+
+SetLambdaInvocationsPercentage sets LambdaInvocationsPercentage field to given value.
+
+### HasLambdaInvocationsPercentage
+
+`func (o *UsageAttributionValues) HasLambdaInvocationsPercentage() bool`
+
+HasLambdaInvocationsPercentage returns a boolean if a field has been set.
+
+### GetLambdaInvocationsUsage
+
+`func (o *UsageAttributionValues) GetLambdaInvocationsUsage() float64`
+
+GetLambdaInvocationsUsage returns the LambdaInvocationsUsage field if non-nil, zero value otherwise.
+
+### GetLambdaInvocationsUsageOk
+
+`func (o *UsageAttributionValues) GetLambdaInvocationsUsageOk() (*float64, bool)`
+
+GetLambdaInvocationsUsageOk returns a tuple with the LambdaInvocationsUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLambdaInvocationsUsage
+
+`func (o *UsageAttributionValues) SetLambdaInvocationsUsage(v float64)`
+
+SetLambdaInvocationsUsage sets LambdaInvocationsUsage field to given value.
+
+### HasLambdaInvocationsUsage
+
+`func (o *UsageAttributionValues) HasLambdaInvocationsUsage() bool`
+
+HasLambdaInvocationsUsage returns a boolean if a field has been set.
 
 ### GetLambdaPercentage
 

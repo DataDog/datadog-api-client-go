@@ -28,6 +28,7 @@ type UsageBillableSummaryKeys struct {
 	NpmFlowSum                 *UsageBillableSummaryBody `json:"npm_flow_sum,omitempty"`
 	NpmHostTop99p              *UsageBillableSummaryBody `json:"npm_host_top99p,omitempty"`
 	RumSum                     *UsageBillableSummaryBody `json:"rum_sum,omitempty"`
+	ServerlessInvocationSum    *UsageBillableSummaryBody `json:"serverless_invocation_sum,omitempty"`
 	SiemSum                    *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
 	SyntheticsApiTestsSum      *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
 	SyntheticsBrowserChecksSum *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
@@ -499,6 +500,38 @@ func (o *UsageBillableSummaryKeys) SetRumSum(v UsageBillableSummaryBody) {
 	o.RumSum = &v
 }
 
+// GetServerlessInvocationSum returns the ServerlessInvocationSum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetServerlessInvocationSum() UsageBillableSummaryBody {
+	if o == nil || o.ServerlessInvocationSum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.ServerlessInvocationSum
+}
+
+// GetServerlessInvocationSumOk returns a tuple with the ServerlessInvocationSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetServerlessInvocationSumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.ServerlessInvocationSum == nil {
+		return nil, false
+	}
+	return o.ServerlessInvocationSum, true
+}
+
+// HasServerlessInvocationSum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasServerlessInvocationSum() bool {
+	if o != nil && o.ServerlessInvocationSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetServerlessInvocationSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ServerlessInvocationSum field.
+func (o *UsageBillableSummaryKeys) SetServerlessInvocationSum(v UsageBillableSummaryBody) {
+	o.ServerlessInvocationSum = &v
+}
+
 // GetSiemSum returns the SiemSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetSiemSum() UsageBillableSummaryBody {
 	if o == nil || o.SiemSum == nil {
@@ -670,6 +703,9 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 	}
 	if o.RumSum != nil {
 		toSerialize["rum_sum"] = o.RumSum
+	}
+	if o.ServerlessInvocationSum != nil {
+		toSerialize["serverless_invocation_sum"] = o.ServerlessInvocationSum
 	}
 	if o.SiemSum != nil {
 		toSerialize["siem_sum"] = o.SiemSum
