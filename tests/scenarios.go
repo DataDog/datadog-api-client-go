@@ -22,7 +22,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/go-bdd/gobdd"
 	"github.com/mcuadros/go-lookup"
 	is "gotest.tools/assert/cmp"
@@ -646,8 +645,6 @@ func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, 
 	}
 	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
-		b, _ := GetResponse(ctx)[0].Interface().(datadog.MetricsAndMetricTagConfigurationsResponse).MarshalJSON()
-		t.Logf("\n%s\n\n", b)
 		t.Fatalf("could not lookup response value %s: %v", SnakeToCamelCase(responsePath), err)
 	}
 	if !responseValue.IsValid() && !fixtureValue.IsValid() {
