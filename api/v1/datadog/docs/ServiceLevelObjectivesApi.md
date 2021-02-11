@@ -50,6 +50,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     ids := "id1, id2, id3" // string | A comma separated list of the IDs of the service level objectives objects.
 
     configuration := datadog.NewConfiguration()
@@ -132,6 +140,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewServiceLevelObjectiveRequest("Name_example", []datadog.SLOThreshold{*datadog.NewSLOThreshold(float64(0.0), datadog.SLOTimeframe("7d"))}, datadog.SLOType("metric")) // ServiceLevelObjectiveRequest | Service level objective request object.
 
     configuration := datadog.NewConfiguration()
@@ -213,6 +229,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     sloId := "sloId_example" // string | The ID of the service level objective.
     force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
@@ -302,6 +326,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := map[string][]datadog.SLOTimeframe{"key": []datadog.SLOTimeframe{datadog.SLOTimeframe("7d")}} // map[string][]SLOTimeframe | Delete multiple service level objective objects request body.
 
     configuration := datadog.NewConfiguration()
@@ -383,6 +415,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     sloId := "sloId_example" // string | The ID of the service level objective object.
 
@@ -469,6 +509,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     sloId := "sloId_example" // string | The ID of the service level objective object.
     fromTs := int64(789) // int64 | The `from` timestamp for the query window in epoch seconds.
@@ -561,6 +609,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     ids := "id1, id2, id3" // string | A comma separated list of the IDs of the service level objectives objects. (optional)
     query := "monitor" // string | The query string to filter results based on SLO names. (optional)
     tagsQuery := "env:prod" // string | The query string to filter results based on a single SLO tag. (optional)
@@ -648,6 +704,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     sloId := "sloId_example" // string | The ID of the service level objective object.
     body := *datadog.NewServiceLevelObjective("Name_example", []datadog.SLOThreshold{*datadog.NewSLOThreshold(float64(0.0), datadog.SLOTimeframe("7d"))}, datadog.SLOType("metric")) // ServiceLevelObjective | The edited service level objective request object.

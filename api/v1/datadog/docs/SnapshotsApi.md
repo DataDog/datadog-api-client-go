@@ -43,6 +43,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     start := int64(789) // int64 | The POSIX timestamp of the start of the query.
     end := int64(789) // int64 | The POSIX timestamp of the end of the query.
     metricQuery := "metricQuery_example" // string | The metric query. (optional)

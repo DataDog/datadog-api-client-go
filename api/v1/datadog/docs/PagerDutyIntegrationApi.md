@@ -46,6 +46,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewPagerDutyService("ServiceKey_example", "ServiceName_example") // PagerDutyService | Create a new service object request body.
 
     configuration := datadog.NewConfiguration()
@@ -126,6 +134,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     serviceName := "serviceName_example" // string | The service name
 
@@ -209,6 +225,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     serviceName := "serviceName_example" // string | The service name.
 
@@ -294,6 +318,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     serviceName := "serviceName_example" // string | The service name
     body := *datadog.NewPagerDutyServiceKey("ServiceKey_example") // PagerDutyServiceKey | Update an existing service object request body.
