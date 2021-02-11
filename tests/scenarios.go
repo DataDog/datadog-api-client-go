@@ -22,6 +22,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/go-bdd/gobdd"
 	"github.com/mcuadros/go-lookup"
 	is "gotest.tools/assert/cmp"
@@ -46,6 +47,38 @@ type operationParameter struct {
 	Value  *string `json:"value"`
 }
 
+// Lookup performs a lookup into a value, using a string.
+func Lookup(i interface{}, path string) (reflect.Value, error) {
+	value := reflect.ValueOf(i)
+	var parent reflect.Value
+	var err error
+	for _, part := range strings.Split(path, lookup.SplitToken) {
+		parent = value
+		value, err = lookup.LookupI(value.Interface(), part)
+		if err == nil {
+			continue
+		}
+		// try oneOf: func (obj *T) GetActualInstance() interface{}
+		var oneOf reflect.Value
+		// parent might be a pointer
+		oneOf = parent.MethodByName("GetActualInstance")
+		if (!oneOf.IsValid()) {
+			// or parent might be a value hence get its address
+			oneOf = parent.Addr().MethodByName("GetActualInstance")
+			if (!oneOf.IsValid()) {
+				// give up
+				return parent, err
+			}
+		}
+		value = oneOf.Call([]reflect.Value{})[0]
+		value, err = lookup.LookupI(value.Interface(), part)
+		if (err != nil) {
+			break
+		}
+	}
+	return value, err
+}
+
 func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp reflect.Type) reflect.Value {
 	if p.Value != nil {
 		tpl := Templated(t, GetData(ctx), *p.Value)
@@ -56,7 +89,7 @@ func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp refl
 		}
 		return v.Elem()
 	}
-	v, _ := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(*p.Source))
+	v, _ := Lookup(GetData(ctx), SnakeToCamelCase(*p.Source))
 	return v
 }
 
@@ -99,9 +132,9 @@ func Templated(t gobdd.StepTest, data interface{}, source string) string {
 	re := regexp.MustCompile(`{{ ?([^}])+ ?}}`)
 	replace := func(source string) string {
 		path := strings.Trim(source, "{ }")
-		v, err := lookup.LookupStringI(data, path)
+		v, err := Lookup(data, path)
 		if err != nil {
-			v, err = lookup.LookupStringI(data, SnakeToCamelCase(path))
+			v, err = Lookup(data, SnakeToCamelCase(path))
 			if err != nil {
 				t.Fatalf("problem with replacement of %s: %v", source, err)
 			}
@@ -237,7 +270,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 		}
 
 		if s.Source != nil {
-			response, err = lookup.LookupStringI(response.Interface(), SnakeToCamelCase(*s.Source))
+			response, err = Lookup(response.Interface(), SnakeToCamelCase(*s.Source))
 
 			if err != nil {
 				t.Error(err)
@@ -298,7 +331,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 			// first argument is always context.Context
 			in[0] = reflect.ValueOf(GetCtx(ctx))
 			for i := 1; i < undoOperation.Type().NumIn(); i++ {
-				object, err := lookup.LookupStringI(response, SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
+				object, err := Lookup(response, SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
 				if err != nil {
 					panic(err)
 				}
@@ -465,7 +498,7 @@ func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 }
 
 func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path string) {
-	value, err := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(path))
+	value, err := Lookup(GetData(ctx), SnakeToCamelCase(path))
 	if err != nil {
 		t.Errorf("key %s: %v", path, err)
 	}
@@ -589,7 +622,7 @@ func stringToType(s string, t interface{}) (interface{}, error) {
 }
 
 func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value string) {
-	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
 		t.Errorf("could not lookup response value %s in %v: %v", responsePath, GetResponse(ctx)[0].Interface(), err)
 	}
@@ -607,12 +640,14 @@ func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value
 }
 
 func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, fixturePath string) {
-	fixtureValue, err := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(fixturePath))
+	fixtureValue, err := Lookup(GetData(ctx), SnakeToCamelCase(fixturePath))
 	if err != nil {
 		t.Fatalf("could not lookup fixture value %s: %v", fixturePath, err)
 	}
-	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
+		b, _ := GetResponse(ctx)[0].Interface().(datadog.MetricsAndMetricTagConfigurationsResponse).MarshalJSON()
+		t.Logf("\n%s\n\n", b)
 		t.Fatalf("could not lookup response value %s: %v", SnakeToCamelCase(responsePath), err)
 	}
 	if !responseValue.IsValid() && !fixtureValue.IsValid() {
@@ -630,7 +665,7 @@ func expectLengthEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string,
 	if err != nil {
 		t.Fatalf("assertion length value is not a number %s: %v", fixtureLength, err)
 	}
-	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
 		t.Fatalf("could not lookup response value %s: %v", responsePath, err)
 	}
@@ -641,7 +676,7 @@ func expectLengthEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string,
 }
 
 func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
-	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
 		t.Errorf("could not lookup value: %v", err)
 	}
