@@ -9,7 +9,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"log"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -30,7 +29,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating dashboard list %v: Response %s: %v", testDashboardList, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteDashboardList(ctx, dashboardList.GetId())
+	defer deleteDashboardList(ctx, t, dashboardList.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	assert.Equal(testDashboardList.GetName(), dashboardList.GetName())
@@ -206,9 +205,9 @@ func TestDashboardListDeleteErrors(t *testing.T) {
 	}
 }
 
-func deleteDashboardList(ctx context.Context, dashboardListID int64) {
+func deleteDashboardList(ctx context.Context, t *testing.T, dashboardListID int64) {
 	_, httpresp, err := Client(ctx).DashboardListsApi.DeleteDashboardList(ctx, dashboardListID).Execute()
 	if err != nil {
-		log.Printf("Deleting dashboard list: %v failed with %v, Another test may have already deleted this dashboard list: %v", dashboardListID, httpresp.StatusCode, err)
+		t.Logf("Deleting dashboard list: %v failed with %v, Another test may have already deleted this dashboard list: %v", dashboardListID, httpresp.StatusCode, err)
 	}
 }

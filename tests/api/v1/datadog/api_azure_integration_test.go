@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"log"
 	"strconv"
 	"testing"
 
@@ -53,7 +52,7 @@ func TestAzureCreate(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	testAzureAcct, _, _ := generateUniqueAzureAccount(ctx, t)
-	defer uninstallAzureIntegration(ctx, testAzureAcct)
+	defer uninstallAzureIntegration(ctx, t, testAzureAcct)
 
 	_, httpresp, err := Client(ctx).AzureIntegrationApi.CreateAzureIntegration(ctx).Body(testAzureAcct).Execute()
 	if err != nil {
@@ -69,8 +68,8 @@ func TestAzureListandDelete(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	testAzureAcct, _, testUpdateAzureHostFilters := generateUniqueAzureAccount(ctx, t)
-	defer uninstallAzureIntegration(ctx, testAzureAcct)
-	defer uninstallAzureIntegration(ctx, testUpdateAzureHostFilters)
+	defer uninstallAzureIntegration(ctx, t, testAzureAcct)
+	defer uninstallAzureIntegration(ctx, t, testUpdateAzureHostFilters)
 
 	// Setup Azure Account to List
 	_, httpresp, err := Client(ctx).AzureIntegrationApi.CreateAzureIntegration(ctx).Body(testAzureAcct).Execute()
@@ -111,7 +110,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	testAzureAcct, testUpdateAzureAcct, testUpdateAzureHostFilters := generateUniqueAzureAccount(ctx, t)
-	defer uninstallAzureIntegration(ctx, testAzureAcct)
+	defer uninstallAzureIntegration(ctx, t, testAzureAcct)
 
 	// Setup Azure Account to Update
 	_, httpresp, err := Client(ctx).AzureIntegrationApi.CreateAzureIntegration(ctx).Body(testAzureAcct).Execute()
@@ -121,7 +120,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 
 	_, httpresp, err = Client(ctx).AzureIntegrationApi.UpdateAzureIntegration(ctx).Body(testUpdateAzureAcct).Execute()
-	defer uninstallAzureIntegration(ctx, testUpdateAzureAcct)
+	defer uninstallAzureIntegration(ctx, t, testUpdateAzureAcct)
 	if err != nil {
 		t.Fatalf("Error updating Azure Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -314,7 +313,7 @@ func TestAzureUpdateHostFiltersErrors(t *testing.T) {
 	}
 }
 
-func uninstallAzureIntegration(ctx context.Context, account datadog.AzureAccount) {
+func uninstallAzureIntegration(ctx context.Context, t *testing.T, account datadog.AzureAccount) {
 	toDelete := datadog.AzureAccount{ClientId: account.ClientId, TenantName: account.TenantName}
 	if account.NewClientId != nil {
 		// when we call this on an update request, make sure we actually delete the updated entity, not the original one
@@ -323,6 +322,6 @@ func uninstallAzureIntegration(ctx context.Context, account datadog.AzureAccount
 	}
 	_, httpresp, err := Client(ctx).AzureIntegrationApi.DeleteAzureIntegration(ctx).Body(toDelete).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
-		log.Printf("Error uninstalling Azure Account: %v, Another test may have already removed this account.", account)
+		t.Logf("Error uninstalling Azure Account: %v, Another test may have already removed this account.", account)
 	}
 }

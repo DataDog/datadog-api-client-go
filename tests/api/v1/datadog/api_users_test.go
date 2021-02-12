@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"log"
 	"strings"
 	"testing"
 
@@ -46,7 +45,7 @@ func TestCreateUser(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	testUser := generateUniqueUser(ctx, t)
-	defer disableUser(ctx, testUser.GetHandle())
+	defer disableUser(ctx, t, testUser.GetHandle())
 
 	// Assert User Created with proper fields
 	userCreateResponse, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(testUser).Execute()
@@ -82,7 +81,7 @@ func TestUpdateUser(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	testUser := generateUniqueUser(ctx, t)
-	defer disableUser(ctx, testUser.GetHandle())
+	defer disableUser(ctx, t, testUser.GetHandle())
 
 	// Assert User Created with proper fields
 	userCreateResponse, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(testUser).Execute()
@@ -116,7 +115,7 @@ func TestDisableUser(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	testUser := generateUniqueUser(ctx, t)
-	defer disableUser(ctx, testUser.GetHandle())
+	defer disableUser(ctx, t, testUser.GetHandle())
 
 	// Assert User Created with proper fields
 	_, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(testUser).Execute()
@@ -267,7 +266,7 @@ func TestUserUpdateErrors(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer disableUser(ctx, testUser.GetHandle())
+	defer disableUser(ctx, t, testUser.GetHandle())
 
 	badUser := *datadog.NewUserWithDefaults()
 	badUser.SetEmail("notanemail")
@@ -308,7 +307,7 @@ func TestUserDisableErrors(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	disableUser(ctx, testUser.GetHandle())
+	disableUser(ctx, t, testUser.GetHandle())
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -335,9 +334,9 @@ func TestUserDisableErrors(t *testing.T) {
 	}
 }
 
-func disableUser(ctx context.Context, userID string) {
+func disableUser(ctx context.Context, t *testing.T, userID string) {
 	_, httpresp, err := Client(ctx).UsersApi.DisableUser(ctx, userID).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
-		log.Printf("Error disabling User: %v, Another test may have already disabled this user.", userID)
+		t.Logf("Error disabling User: %v, Another test may have already disabled this user.", userID)
 	}
 }
