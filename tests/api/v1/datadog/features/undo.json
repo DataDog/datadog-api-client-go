@@ -666,7 +666,7 @@
       "parameters": [
         {
           "name": "slo_id",
-          "source": "data.id"
+          "source": "data[0].id"
         }
       ],
       "type": "unsafe"
@@ -977,6 +977,12 @@
     }
   },
   "GetIngestedSpans": {
+    "tag": "Usage Metering",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetUsageInternetOfThings": {
     "tag": "Usage Metering",
     "undo": {
       "type": "safe"

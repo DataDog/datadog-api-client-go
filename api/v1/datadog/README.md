@@ -138,7 +138,7 @@ Class | Method | HTTP request | Description
 *KeyManagementApi* | [**ListApplicationKeys**](docs/KeyManagementApi.md#listapplicationkeys) | **Get** /api/v1/application_key | Get all application keys
 *KeyManagementApi* | [**UpdateAPIKey**](docs/KeyManagementApi.md#updateapikey) | **Put** /api/v1/api_key/{key} | Edit an API key
 *KeyManagementApi* | [**UpdateApplicationKey**](docs/KeyManagementApi.md#updateapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key
-*LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Get a list of logs
+*LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Search logs
 *LogsIndexesApi* | [**CreateLogsIndex**](docs/LogsIndexesApi.md#createlogsindex) | **Post** /api/v1/logs/config/indexes | Create an index
 *LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
 *LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get indexes order
@@ -184,7 +184,7 @@ Class | Method | HTTP request | Description
 *ServiceLevelObjectivesApi* | [**DeleteSLOTimeframeInBulk**](docs/ServiceLevelObjectivesApi.md#deleteslotimeframeinbulk) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
 *ServiceLevelObjectivesApi* | [**GetSLO**](docs/ServiceLevelObjectivesApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
 *ServiceLevelObjectivesApi* | [**GetSLOHistory**](docs/ServiceLevelObjectivesApi.md#getslohistory) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
-*ServiceLevelObjectivesApi* | [**ListSLOs**](docs/ServiceLevelObjectivesApi.md#listslos) | **Get** /api/v1/slo | Search SLOs
+*ServiceLevelObjectivesApi* | [**ListSLOs**](docs/ServiceLevelObjectivesApi.md#listslos) | **Get** /api/v1/slo | Get all SLOs
 *ServiceLevelObjectivesApi* | [**UpdateSLO**](docs/ServiceLevelObjectivesApi.md#updateslo) | **Put** /api/v1/slo/{slo_id} | Update a SLO
 *SnapshotsApi* | [**GetGraphSnapshot**](docs/SnapshotsApi.md#getgraphsnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 *SyntheticsApi* | [**CreateGlobalVariable**](docs/SyntheticsApi.md#createglobalvariable) | **Post** /api/v1/synthetics/variables | Create a global variable
@@ -226,6 +226,7 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetUsageFargate**](docs/UsageMeteringApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
 *UsageMeteringApi* | [**GetUsageHosts**](docs/UsageMeteringApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
 *UsageMeteringApi* | [**GetUsageIndexedSpans**](docs/UsageMeteringApi.md#getusageindexedspans) | **Get** /api/v1/usage/indexed-spans | Get hourly usage for indexed spans
+*UsageMeteringApi* | [**GetUsageInternetOfThings**](docs/UsageMeteringApi.md#getusageinternetofthings) | **Get** /api/v1/usage/iot | Get hourly usage for IoT
 *UsageMeteringApi* | [**GetUsageLambda**](docs/UsageMeteringApi.md#getusagelambda) | **Get** /api/v1/usage/aws_lambda | Get hourly usage for Lambda
 *UsageMeteringApi* | [**GetUsageLogs**](docs/UsageMeteringApi.md#getusagelogs) | **Get** /api/v1/usage/logs | Get hourly usage for Logs
 *UsageMeteringApi* | [**GetUsageLogsByIndex**](docs/UsageMeteringApi.md#getusagelogsbyindex) | **Get** /api/v1/usage/logs_by_index | Get hourly usage for Logs by Index
@@ -323,7 +324,6 @@ Class | Method | HTTP request | Description
  - [EventTimelineWidgetDefinitionType](docs/EventTimelineWidgetDefinitionType.md)
  - [FormulaAndFunctionEventAggregation](docs/FormulaAndFunctionEventAggregation.md)
  - [FormulaAndFunctionEventsDataSource](docs/FormulaAndFunctionEventsDataSource.md)
- - [FormulaAndFunctionEventsSortType](docs/FormulaAndFunctionEventsSortType.md)
  - [FormulaAndFunctionMetricAggregation](docs/FormulaAndFunctionMetricAggregation.md)
  - [FormulaAndFunctionMetricDataSource](docs/FormulaAndFunctionMetricDataSource.md)
  - [FormulaAndFunctionProcessQueryDataSource](docs/FormulaAndFunctionProcessQueryDataSource.md)
@@ -332,6 +332,11 @@ Class | Method | HTTP request | Description
  - [FreeTextWidgetDefinition](docs/FreeTextWidgetDefinition.md)
  - [FreeTextWidgetDefinitionType](docs/FreeTextWidgetDefinitionType.md)
  - [GCPAccount](docs/GCPAccount.md)
+ - [GeomapWidgetDefinition](docs/GeomapWidgetDefinition.md)
+ - [GeomapWidgetDefinitionStyle](docs/GeomapWidgetDefinitionStyle.md)
+ - [GeomapWidgetDefinitionType](docs/GeomapWidgetDefinitionType.md)
+ - [GeomapWidgetDefinitionView](docs/GeomapWidgetDefinitionView.md)
+ - [GeomapWidgetRequest](docs/GeomapWidgetRequest.md)
  - [GraphSnapshot](docs/GraphSnapshot.md)
  - [GroupWidgetDefinition](docs/GroupWidgetDefinition.md)
  - [GroupWidgetDefinitionType](docs/GroupWidgetDefinitionType.md)
@@ -485,6 +490,7 @@ Class | Method | HTTP request | Description
  - [SLOHistoryMetrics](docs/SLOHistoryMetrics.md)
  - [SLOHistoryMetricsSeries](docs/SLOHistoryMetricsSeries.md)
  - [SLOHistoryMetricsSeriesMetadata](docs/SLOHistoryMetricsSeriesMetadata.md)
+ - [SLOHistoryMetricsSeriesMetadataUnit](docs/SLOHistoryMetricsSeriesMetadataUnit.md)
  - [SLOHistoryResponse](docs/SLOHistoryResponse.md)
  - [SLOHistoryResponseData](docs/SLOHistoryResponseData.md)
  - [SLOHistoryResponseError](docs/SLOHistoryResponseError.md)
@@ -599,8 +605,8 @@ Class | Method | HTTP request | Description
  - [TimeSeriesFormulaAndFunctionEventQueryDefinition](docs/TimeSeriesFormulaAndFunctionEventQueryDefinition.md)
  - [TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute](docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute.md)
  - [TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy](docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy.md)
- - [TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort](docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort.md)
  - [TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch](docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch.md)
+ - [TimeSeriesFormulaAndFunctionEventQueryDefinitionSort](docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionSort.md)
  - [TimeSeriesFormulaAndFunctionMetricQueryDefinition](docs/TimeSeriesFormulaAndFunctionMetricQueryDefinition.md)
  - [TimeSeriesFormulaAndFunctionProcessQueryDefinition](docs/TimeSeriesFormulaAndFunctionProcessQueryDefinition.md)
  - [TimeseriesWidgetDefinition](docs/TimeseriesWidgetDefinition.md)
@@ -638,6 +644,8 @@ Class | Method | HTTP request | Description
  - [UsageIndexedSpansResponse](docs/UsageIndexedSpansResponse.md)
  - [UsageIngestedSpansHour](docs/UsageIngestedSpansHour.md)
  - [UsageIngestedSpansResponse](docs/UsageIngestedSpansResponse.md)
+ - [UsageIoTHour](docs/UsageIoTHour.md)
+ - [UsageIoTResponse](docs/UsageIoTResponse.md)
  - [UsageLambdaHour](docs/UsageLambdaHour.md)
  - [UsageLambdaResponse](docs/UsageLambdaResponse.md)
  - [UsageLogsByIndexHour](docs/UsageLogsByIndexHour.md)

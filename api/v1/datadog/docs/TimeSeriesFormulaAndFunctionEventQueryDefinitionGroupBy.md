@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Facet** | **string** | Event facet. | 
 **Limit** | Pointer to **int64** | Number of groups to return. | [optional] 
-**Sort** | Pointer to [**TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort**](TimeSeriesFormulaAndFunctionEventQueryDefinition_group_by_sort.md) |  | [optional] 
+**Sort** | Pointer to [**TimeSeriesFormulaAndFunctionEventQueryDefinitionSort**](TimeSeriesFormulaAndFunctionEventQueryDefinition_sort.md) |  | [optional] 
 
 ## Methods
 
@@ -74,20 +74,20 @@ HasLimit returns a boolean if a field has been set.
 
 ### GetSort
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) GetSort() TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort`
+`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) GetSort() TimeSeriesFormulaAndFunctionEventQueryDefinitionSort`
 
 GetSort returns the Sort field if non-nil, zero value otherwise.
 
 ### GetSortOk
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) GetSortOk() (*TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort, bool)`
+`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) GetSortOk() (*TimeSeriesFormulaAndFunctionEventQueryDefinitionSort, bool)`
 
 GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSort
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) SetSort(v TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort)`
+`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy) SetSort(v TimeSeriesFormulaAndFunctionEventQueryDefinitionSort)`
 
 SetSort sets Sort field to given value.
 

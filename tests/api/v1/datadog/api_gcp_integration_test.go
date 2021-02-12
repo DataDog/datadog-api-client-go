@@ -9,7 +9,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"log"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -51,7 +50,7 @@ func TestGCPCreate(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	testGCPAcct, _ := generateUniqueGCPAccount(ctx, t)
-	defer uninstallGCPIntegration(ctx, testGCPAcct)
+	defer uninstallGCPIntegration(ctx, t, testGCPAcct)
 
 	_, httpresp, err := Client(ctx).GCPIntegrationApi.CreateGCPIntegration(ctx).Body(testGCPAcct).Execute()
 	if err != nil {
@@ -67,7 +66,7 @@ func TestGCPListandDelete(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	testGCPAcct, _ := generateUniqueGCPAccount(ctx, t)
-	defer uninstallGCPIntegration(ctx, testGCPAcct)
+	defer uninstallGCPIntegration(ctx, t, testGCPAcct)
 
 	// Setup GCP Account to List
 	Client(ctx).GCPIntegrationApi.CreateGCPIntegration(ctx).Body(testGCPAcct).Execute()
@@ -104,7 +103,7 @@ func TestUpdateGCPAccount(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	testGCPAcct, testGCPUpdateAcct := generateUniqueGCPAccount(ctx, t)
-	defer uninstallGCPIntegration(ctx, testGCPAcct)
+	defer uninstallGCPIntegration(ctx, t, testGCPAcct)
 
 	// Setup GCP Account to Update
 	_, httpresp, err := Client(ctx).GCPIntegrationApi.CreateGCPIntegration(ctx).Body(testGCPAcct).Execute()
@@ -269,9 +268,9 @@ func TestGCPUpdateErrors(t *testing.T) {
 	}
 }
 
-func uninstallGCPIntegration(ctx context.Context, account datadog.GCPAccount) {
+func uninstallGCPIntegration(ctx context.Context, t *testing.T, account datadog.GCPAccount) {
 	_, httpresp, err := Client(ctx).GCPIntegrationApi.DeleteGCPIntegration(ctx).Body(account).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
-		log.Printf("Error uninstalling GCP Account: %v, Another test may have already removed this account.", account)
+		t.Logf("Error uninstalling GCP Account: %v, Another test may have already removed this account.", account)
 	}
 }

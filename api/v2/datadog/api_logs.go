@@ -10,9 +10,7 @@ package datadog
 
 import (
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"time"
@@ -204,12 +202,11 @@ func (r ApiListLogsRequest) Execute() (LogsListResponse, *_nethttp.Response, err
 }
 
 /*
- * ListLogs Get a list of logs
+ * ListLogs Search logs
  * List endpoint returns logs that match a log search query.
 [Results are paginated][1].
 
-Both this endpoint and the GET endpoint can be used interchangeably when listing
-logs.
+Use this endpoint to build complex logs filtering and search.
 
 **If you are considering archiving logs for your organization,
 consider use of the Datadog archive capabilities instead of the log list API.
@@ -240,13 +237,6 @@ func (a *LogsApiService) ListLogsExecute(r ApiListLogsRequest) (LogsListResponse
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsListResponse
 	)
-
-	operationId := "ListLogs"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogs")
 	if err != nil {
@@ -411,12 +401,11 @@ func (r ApiListLogsGetRequest) Execute() (LogsListResponse, *_nethttp.Response, 
 }
 
 /*
- * ListLogsGet Get a quick list of logs
+ * ListLogsGet Get a list of logs
  * List endpoint returns logs that match a log search query.
 [Results are paginated][1].
 
-Both this endpoint and the POST endpoint can be used interchangeably when listing
-logs.
+Use this endpoint to see your latest logs.
 
 **If you are considering archiving logs for your organization,
 consider use of the Datadog archive capabilities instead of the log list API.
@@ -447,13 +436,6 @@ func (a *LogsApiService) ListLogsGetExecute(r ApiListLogsGetRequest) (LogsListRe
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsListResponse
 	)
-
-	operationId := "ListLogsGet"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogsGet")
 	if err != nil {

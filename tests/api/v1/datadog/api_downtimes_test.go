@@ -9,7 +9,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"log"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -41,7 +40,7 @@ func TestDowntimeLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Downtime %v: Response %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer cancelDowntime(ctx, downtime.GetId())
+	defer cancelDowntime(ctx, t, downtime.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	assert.Equal(testDowntime.GetMessage(), downtime.GetMessage())
@@ -107,7 +106,7 @@ func TestMonitorDowntime(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	monitorID := monitor.GetId()
-	defer deleteMonitor(ctx, monitorID)
+	defer deleteMonitor(ctx, t, monitorID)
 
 	start := tests.ClockFromContext(ctx).Now()
 	testDowntime := datadog.Downtime{
@@ -123,7 +122,7 @@ func TestMonitorDowntime(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Downtime %v: Response %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer cancelDowntime(ctx, downtime.GetId())
+	defer cancelDowntime(ctx, t, downtime.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	assert.Equal(monitorID, downtime.GetMonitorId())
@@ -164,7 +163,7 @@ func TestScopedDowntime(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Error creating Downtime %v: Response %s: %v", testDowntime, err.(datadog.GenericOpenAPIError).Body(), err)
 		}
-		defer cancelDowntime(ctx, downtime.GetId())
+		defer cancelDowntime(ctx, t, downtime.GetId())
 		assert.Equal(200, httpresp.StatusCode)
 
 		assert.False(downtime.GetDisabled())
@@ -266,7 +265,7 @@ func TestDowntimeRecurrence(t *testing.T) {
 
 			downtime, httpresp, err := Client(ctx).DowntimesApi.CreateDowntime(ctx).Body(testDowntime).Execute()
 			if tc.ExpectedStatusCode < 300 {
-				defer cancelDowntime(ctx, downtime.GetId())
+				defer cancelDowntime(ctx, t, downtime.GetId())
 			}
 
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode, "error: %v", err)
@@ -448,9 +447,9 @@ func TestDowntimeUpdateErrors(t *testing.T) {
 	}
 }
 
-func cancelDowntime(ctx context.Context, downtimeID int64) {
+func cancelDowntime(ctx context.Context, t *testing.T, downtimeID int64) {
 	httpresp, err := Client(ctx).DowntimesApi.CancelDowntime(ctx, downtimeID).Execute()
 	if err != nil {
-		log.Printf("Canceling Downtime: %v failed with %v, Another test may have already canceled this downtime: %v", downtimeID, httpresp.StatusCode, err)
+		t.Logf("Canceling Downtime: %v failed with %v, Another test may have already canceled this downtime: %v", downtimeID, httpresp.StatusCode, err)
 	}
 }

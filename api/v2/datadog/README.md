@@ -81,7 +81,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DashboardListsApi* | [**CreateDashboardListItems**](docs/DashboardListsApi.md#createdashboardlistitems) | **Post** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Add Items to a Dashboard List
 *DashboardListsApi* | [**DeleteDashboardListItems**](docs/DashboardListsApi.md#deletedashboardlistitems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete items from a dashboard list
-*DashboardListsApi* | [**GetDashboardListItems**](docs/DashboardListsApi.md#getdashboardlistitems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Get a Dashboard List
+*DashboardListsApi* | [**GetDashboardListItems**](docs/DashboardListsApi.md#getdashboardlistitems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Get items of a Dashboard List
 *DashboardListsApi* | [**UpdateDashboardListItems**](docs/DashboardListsApi.md#updatedashboardlistitems) | **Put** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Update items of a dashboard list
 *IncidentServicesApi* | [**CreateIncidentService**](docs/IncidentServicesApi.md#createincidentservice) | **Post** /api/v2/services | Create a new incident service
 *IncidentServicesApi* | [**DeleteIncidentService**](docs/IncidentServicesApi.md#deleteincidentservice) | **Delete** /api/v2/services/{service_id} | Delete an existing incident service
@@ -112,8 +112,8 @@ Class | Method | HTTP request | Description
 *KeyManagementApi* | [**UpdateApplicationKey**](docs/KeyManagementApi.md#updateapplicationkey) | **Patch** /api/v2/application_keys/{app_key_id} | Edit an application key
 *KeyManagementApi* | [**UpdateCurrentUserApplicationKey**](docs/KeyManagementApi.md#updatecurrentuserapplicationkey) | **Patch** /api/v2/current_user/application_keys/{app_key_id} | Edit an application key owned by current user
 *LogsApi* | [**AggregateLogs**](docs/LogsApi.md#aggregatelogs) | **Post** /api/v2/logs/analytics/aggregate | Aggregate events
-*LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v2/logs/events/search | Get a list of logs
-*LogsApi* | [**ListLogsGet**](docs/LogsApi.md#listlogsget) | **Get** /api/v2/logs/events | Get a quick list of logs
+*LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v2/logs/events/search | Search logs
+*LogsApi* | [**ListLogsGet**](docs/LogsApi.md#listlogsget) | **Get** /api/v2/logs/events | Get a list of logs
 *LogsArchivesApi* | [**AddReadRoleToArchive**](docs/LogsArchivesApi.md#addreadroletoarchive) | **Post** /api/v2/logs/config/archives/{archive_id}/readers | Grant role to an archive
 *LogsArchivesApi* | [**CreateLogsArchive**](docs/LogsArchivesApi.md#createlogsarchive) | **Post** /api/v2/logs/config/archives | Create an archive
 *LogsArchivesApi* | [**DeleteLogsArchive**](docs/LogsArchivesApi.md#deletelogsarchive) | **Delete** /api/v2/logs/config/archives/{archive_id} | Delete an archive
@@ -129,6 +129,11 @@ Class | Method | HTTP request | Description
 *LogsMetricsApi* | [**GetLogsMetric**](docs/LogsMetricsApi.md#getlogsmetric) | **Get** /api/v2/logs/config/metrics/{metric_id} | Get a log-based metric
 *LogsMetricsApi* | [**ListLogsMetrics**](docs/LogsMetricsApi.md#listlogsmetrics) | **Get** /api/v2/logs/config/metrics | Get all log-based metrics
 *LogsMetricsApi* | [**UpdateLogsMetric**](docs/LogsMetricsApi.md#updatelogsmetric) | **Patch** /api/v2/logs/config/metrics/{metric_id} | Update a log-based metric
+*MetricsApi* | [**CreateTagConfiguration**](docs/MetricsApi.md#createtagconfiguration) | **Post** /api/v2/metrics/{metric_name}/tags | Create a Tag Configuration
+*MetricsApi* | [**DeleteTagConfiguration**](docs/MetricsApi.md#deletetagconfiguration) | **Delete** /api/v2/metrics/{metric_name}/tags | Delete a Tag Configuration
+*MetricsApi* | [**ListTagConfigurationByName**](docs/MetricsApi.md#listtagconfigurationbyname) | **Get** /api/v2/metrics/{metric_name}/tags | List Tag Configuration by Name
+*MetricsApi* | [**ListTagConfigurations**](docs/MetricsApi.md#listtagconfigurations) | **Get** /api/v2/metrics | List Tag Configurations
+*MetricsApi* | [**UpdateTagConfiguration**](docs/MetricsApi.md#updatetagconfiguration) | **Patch** /api/v2/metrics/{metric_name}/tags | Update a Tag Configuration
 *ProcessesApi* | [**ListProcesses**](docs/ProcessesApi.md#listprocesses) | **Get** /api/v2/processes | Get all processes
 *RolesApi* | [**AddPermissionToRole**](docs/RolesApi.md#addpermissiontorole) | **Post** /api/v2/roles/{role_id}/permissions | Grant permission to a role
 *RolesApi* | [**AddUserToRole**](docs/RolesApi.md#addusertorole) | **Post** /api/v2/roles/{role_id}/users | Add a user to a role
@@ -266,7 +271,7 @@ Class | Method | HTTP request | Description
  - [LogsAggregateBucketValueTimeseries](docs/LogsAggregateBucketValueTimeseries.md)
  - [LogsAggregateBucketValueTimeseriesPoint](docs/LogsAggregateBucketValueTimeseriesPoint.md)
  - [LogsAggregateRequest](docs/LogsAggregateRequest.md)
- - [LogsAggregateRequestPaging](docs/LogsAggregateRequestPaging.md)
+ - [LogsAggregateRequestPage](docs/LogsAggregateRequestPage.md)
  - [LogsAggregateResponse](docs/LogsAggregateResponse.md)
  - [LogsAggregateResponseData](docs/LogsAggregateResponseData.md)
  - [LogsAggregateResponseStatus](docs/LogsAggregateResponseStatus.md)
@@ -332,6 +337,21 @@ Class | Method | HTTP request | Description
  - [LogsSort](docs/LogsSort.md)
  - [LogsSortOrder](docs/LogsSortOrder.md)
  - [LogsWarning](docs/LogsWarning.md)
+ - [Metric](docs/Metric.md)
+ - [MetricTagConfiguration](docs/MetricTagConfiguration.md)
+ - [MetricTagConfigurationAttributes](docs/MetricTagConfigurationAttributes.md)
+ - [MetricTagConfigurationCreateAttributes](docs/MetricTagConfigurationCreateAttributes.md)
+ - [MetricTagConfigurationCreateData](docs/MetricTagConfigurationCreateData.md)
+ - [MetricTagConfigurationCreateRequest](docs/MetricTagConfigurationCreateRequest.md)
+ - [MetricTagConfigurationMetricTypes](docs/MetricTagConfigurationMetricTypes.md)
+ - [MetricTagConfigurationResponse](docs/MetricTagConfigurationResponse.md)
+ - [MetricTagConfigurationType](docs/MetricTagConfigurationType.md)
+ - [MetricTagConfigurationUpdateAttributes](docs/MetricTagConfigurationUpdateAttributes.md)
+ - [MetricTagConfigurationUpdateData](docs/MetricTagConfigurationUpdateData.md)
+ - [MetricTagConfigurationUpdateRequest](docs/MetricTagConfigurationUpdateRequest.md)
+ - [MetricType](docs/MetricType.md)
+ - [MetricsAndMetricTagConfigurations](docs/MetricsAndMetricTagConfigurations.md)
+ - [MetricsAndMetricTagConfigurationsResponse](docs/MetricsAndMetricTagConfigurationsResponse.md)
  - [Organization](docs/Organization.md)
  - [OrganizationAttributes](docs/OrganizationAttributes.md)
  - [OrganizationsType](docs/OrganizationsType.md)

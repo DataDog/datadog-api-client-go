@@ -9,7 +9,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/http"
 	"testing"
 
@@ -40,7 +39,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAPIKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAPIKey(ctx, apiKeyData.ApiKey.GetKey())
+	defer deleteAPIKey(ctx, t, apiKeyData.ApiKey.GetKey())
 	assert.Equal(200, httpresp.StatusCode)
 
 	createAPIKeyReturned := apiKeyData.GetApiKey()
@@ -152,7 +151,7 @@ func TestApplicationKeyFunctions(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error creating api key %v: Response %s: %v", testAppKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(ctx, appKeyData.ApplicationKey.GetHash())
+	defer deleteAppKey(ctx, t, appKeyData.ApplicationKey.GetHash())
 	assert.Equal(200, httpresp.StatusCode)
 
 	createAppKeyReturned := appKeyData.GetApplicationKey()
@@ -470,7 +469,7 @@ func TestAppKeysMgmtCreate409Error(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating api key %v: Response %s: %v", testAPPKeyName, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(ctx, appKeyData.ApplicationKey.GetHash())
+	defer deleteAppKey(ctx, t, appKeyData.ApplicationKey.GetHash())
 	assert.Equal(200, httpresp.StatusCode)
 
 	_, httpresp, err = Client(ctx).KeyManagementApi.CreateApplicationKey(ctx).Body(datadog.ApplicationKey{Name: &testAPPKeyName}).Execute()
@@ -553,7 +552,7 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName1, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(ctx, appKeyData1.ApplicationKey.GetHash())
+	defer deleteAppKey(ctx, t, appKeyData1.ApplicationKey.GetHash())
 	assert.Equal(200, httpresp.StatusCode)
 
 	testAPPKeyName2 := fmt.Sprintf("%s-2", testAPPKeyName1)
@@ -561,7 +560,7 @@ func TestAppKeysMgmtUpdate409Error(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error creating app key %v: Response %s: %v", testAPPKeyName2, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteAppKey(ctx, appKeyData2.ApplicationKey.GetHash())
+	defer deleteAppKey(ctx, t, appKeyData2.ApplicationKey.GetHash())
 	assert.Equal(200, httpresp.StatusCode)
 
 	_, httpresp, err = Client(ctx).KeyManagementApi.UpdateApplicationKey(ctx, appKeyData1.ApplicationKey.GetHash()).Body(datadog.ApplicationKey{Name: &testAPPKeyName2}).Execute()
@@ -598,16 +597,16 @@ func TestAppKeysMgmtDeleteErrors(t *testing.T) {
 	}
 }
 
-func deleteAPIKey(ctx context.Context, apiKeyValue string) {
+func deleteAPIKey(ctx context.Context, t *testing.T, apiKeyValue string) {
 	_, httpresp, err := Client(ctx).KeyManagementApi.DeleteAPIKey(ctx, apiKeyValue).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
-		log.Printf("Deleting api key: %v failed with %v, Another test may have already deleted this api key.", apiKeyValue[len(apiKeyValue)-4:], httpresp.StatusCode)
+		t.Logf("Deleting api key: %v failed with %v, Another test may have already deleted this api key.", apiKeyValue[len(apiKeyValue)-4:], httpresp.StatusCode)
 	}
 }
 
-func deleteAppKey(ctx context.Context, appKeyHash string) {
+func deleteAppKey(ctx context.Context, t *testing.T, appKeyHash string) {
 	_, httpresp, err := Client(ctx).KeyManagementApi.DeleteApplicationKey(ctx, appKeyHash).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
-		log.Printf("Deleting app key: %v failed with %v, Another test may have already deleted this app key.", appKeyHash[len(appKeyHash)-4:], httpresp.StatusCode)
+		t.Logf("Deleting app key: %v failed with %v, Another test may have already deleted this app key.", appKeyHash[len(appKeyHash)-4:], httpresp.StatusCode)
 	}
 }

@@ -44,6 +44,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     eventId := int64(789) // int64 | The ID of the event.
 
     configuration := datadog.NewConfiguration()
@@ -129,6 +137,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     start := int64(789) // int64 | POSIX timestamp.
     end := int64(789) // int64 | POSIX timestamp.

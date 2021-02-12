@@ -5,8 +5,8 @@ All URIs are relative to *https://api.datadoghq.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AggregateLogs**](LogsApi.md#AggregateLogs) | **Post** /api/v2/logs/analytics/aggregate | Aggregate events
-[**ListLogs**](LogsApi.md#ListLogs) | **Post** /api/v2/logs/events/search | Get a list of logs
-[**ListLogsGet**](LogsApi.md#ListLogsGet) | **Get** /api/v2/logs/events | Get a quick list of logs
+[**ListLogs**](LogsApi.md#ListLogs) | **Post** /api/v2/logs/events/search | Search logs
+[**ListLogsGet**](LogsApi.md#ListLogsGet) | **Get** /api/v2/logs/events | Get a list of logs
 
 
 
@@ -44,6 +44,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     body := *datadog.NewLogsAggregateRequest() // LogsAggregateRequest | 
 
@@ -96,7 +104,7 @@ Name | Type | Description  | Notes
 
 > LogsListResponse ListLogs(ctx).Body(body).Execute()
 
-Get a list of logs
+Search logs
 
 
 
@@ -127,10 +135,17 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewLogsListRequest() // LogsListRequest |  (optional)
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("ListLogs", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsApi.ListLogs(ctx).Body(body).Execute()
@@ -179,7 +194,7 @@ Name | Type | Description  | Notes
 
 > LogsListResponse ListLogsGet(ctx).FilterQuery(filterQuery).FilterIndex(filterIndex).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
 
-Get a quick list of logs
+Get a list of logs
 
 
 
@@ -211,6 +226,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     filterQuery := "@datacenter:us @role:db" // string | Search query following logs syntax. (optional)
     filterIndex := "main" // string | For customers with multiple indexes, the indexes to search Defaults to '*' which means all indexes (optional)
     filterFrom := time.Now() // time.Time | Minimum timestamp for requested logs. (optional)
@@ -220,7 +243,6 @@ func main() {
     pageLimit := int32(25) // int32 | Maximum number of logs in the response. (optional) (default to 10)
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("ListLogsGet", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsApi.ListLogsGet(ctx).FilterQuery(filterQuery).FilterIndex(filterIndex).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()

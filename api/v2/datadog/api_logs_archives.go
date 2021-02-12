@@ -10,9 +10,7 @@ package datadog
 
 import (
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -68,13 +66,6 @@ func (a *LogsArchivesApiService) AddReadRoleToArchiveExecute(r ApiAddReadRoleToA
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
-
-	operationId := "AddReadRoleToArchive"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.AddReadRoleToArchive")
 	if err != nil {
@@ -860,13 +851,6 @@ func (a *LogsArchivesApiService) ListArchiveReadRolesExecute(r ApiListArchiveRea
 		localVarReturnValue  RolesResponse
 	)
 
-	operationId := "ListArchiveReadRoles"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.ListArchiveReadRoles")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
@@ -1176,13 +1160,6 @@ func (a *LogsArchivesApiService) RemoveRoleFromArchiveExecute(r ApiRemoveRoleFro
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
-
-	operationId := "RemoveRoleFromArchive"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.RemoveRoleFromArchive")
 	if err != nil {

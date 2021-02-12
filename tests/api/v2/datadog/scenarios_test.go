@@ -61,12 +61,7 @@ func TestScenarios(t *testing.T) {
 				tracer.ResourceName(parts[len(parts)-1]),
 			)
 
-			testName := strings.Join(strings.Split(ct.(*testing.T).Name(), "/")[1:3], "/")
-			unique := tests.WithUniqueSurrounding(cctx, testName)
-			data := tests.GetData(ctx)
-			data["unique"] = unique
-			data["unique_lower"] = strings.ToLower(unique)
-
+			tests.SetFixtureData(ctx)
 			tests.SetCtx(ctx, cctx)
 		}),
 		gobdd.WithAfterStep(func(ctx gobdd.Context) {
@@ -92,7 +87,11 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
 	s.AddStep(`operation "([^"]+)" enabled`, enableOperations)
 
-	for _, givenStep := range tests.LoadGivenSteps("./features/given.json") {
+	steps, err := tests.LoadGivenSteps("./features/given.json")
+	if err != nil {
+		t.Fatalf("could not load given steps: %v", err)
+	}
+	for _, givenStep := range steps {
 		givenStep.RegisterSuite(s)
 	}
 
