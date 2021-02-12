@@ -77,6 +77,7 @@ var testFiles2EndpointTags = map[string]map[string]string{
 		"api_dashboard_lists_test": "dashboard-lists",
 		"api_logs_archives_test":   "logs-archives",
 		"api_logs_test":            "logs",
+		"api_metrics_test":         "metrics",
 		"api_permissions_test":     "permissions",
 		"api_roles_test":           "roles",
 		"api_users_test":           "users",
