@@ -2,7 +2,6 @@ package test
 
 import (
 	"context"
-	"log"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -15,12 +14,12 @@ func testingRoleCreateAttributes(ctx context.Context, t *testing.T) *datadog.Rol
 	return rca
 }
 
-func deleteRole(ctx context.Context, roleID string) {
+func deleteRole(ctx context.Context, t *testing.T, roleID string) {
 	_, err := Client(ctx).RolesApi.DeleteRole(ctx, roleID).Execute()
 	if err == nil {
 		return
 	}
-	log.Printf("Error disabling Role: %v, Another test may have already deleted this role: %s", roleID, err.Error())
+	t.Logf("Error disabling Role: %v, Another test may have already deleted this role: %s", roleID, err.Error())
 }
 
 func TestRoleLifecycle(t *testing.T) {
@@ -41,7 +40,7 @@ func TestRoleLifecycle(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	rrAttributes := rrData.GetAttributes()
 	assert.Equal(rca.GetName(), rrAttributes.GetName())
@@ -122,7 +121,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	// find a permission
 	permissions, httpresp, err := Client(ctx).RolesApi.ListPermissions(ctx).Execute()
@@ -184,7 +183,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	// create a user
 	uca := testingUserCreateAttributes(ctx, t)
@@ -200,7 +199,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	assert.Equal(httpresp.StatusCode, 201)
 	urData := ur.GetData()
 	uid := urData.GetId()
-	defer disableUser(ctx, uid)
+	defer disableUser(ctx, t, uid)
 
 	// add a user to the role
 	rtu := datadog.NewRelationshipToUserWithDefaults()
@@ -315,7 +314,7 @@ func TestCreateRoleErrors(t *testing.T) {
 			if 200 == httpresp.StatusCode {
 				rrData := rr.GetData()
 				rid := rrData.GetId()
-				defer deleteRole(ctx, rid)
+				defer deleteRole(ctx, t, rid)
 			}
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -344,7 +343,7 @@ func TestGetRoleErrors(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
@@ -394,7 +393,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	// working update payload
 	updatedRoleName := rca.GetName() + "-updated"
@@ -462,7 +461,7 @@ func TestDeleteRoleErrors(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
@@ -512,7 +511,7 @@ func TestListRolePermissionsErrors(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
@@ -562,7 +561,7 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
@@ -618,7 +617,7 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
@@ -694,7 +693,7 @@ func TestListRoleUsersErrors(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
@@ -744,7 +743,7 @@ func TestAddUserToRoleErrors(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
@@ -801,7 +800,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	rrData := rr.GetData()
 	rid := rrData.GetId()
-	defer deleteRole(ctx, rid)
+	defer deleteRole(ctx, t, rid)
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
@@ -822,7 +821,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	assert.Equal(httpresp.StatusCode, 201)
 	urData := ur.GetData()
 	uid := urData.GetId()
-	defer disableUser(ctx, uid)
+	defer disableUser(ctx, t, uid)
 
 	rtu := datadog.NewRelationshipToUserWithDefaults()
 	rtud := datadog.NewRelationshipToUserDataWithDefaults()

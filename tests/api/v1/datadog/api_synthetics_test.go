@@ -11,7 +11,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -195,7 +194,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	publicID := synt.GetPublicId()
-	defer deleteSyntheticsTestIfExists(ctx, publicID)
+	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(testSyntheticsAPI.GetName(), synt.GetName())
 
@@ -314,7 +313,7 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	publicID := synt.GetPublicId()
-	defer deleteSyntheticsTestIfExists(ctx, publicID)
+	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(testSyntheticsAPI.GetName(), synt.GetName())
 
@@ -418,7 +417,7 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	publicID := synt.GetPublicId()
-	defer deleteSyntheticsTestIfExists(ctx, publicID)
+	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(testSyntheticsAPI.GetName(), synt.GetName())
 
@@ -522,7 +521,7 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsBrowser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	publicID := synt.GetPublicId()
-	defer deleteSyntheticsTestIfExists(ctx, publicID)
+	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(testSyntheticsBrowser.GetName(), synt.GetName())
 
@@ -756,7 +755,7 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	publicIDAPI := syntAPI.GetPublicId()
-	defer deleteSyntheticsTestIfExists(ctx, publicIDAPI)
+	defer deleteSyntheticsTestIfExists(ctx, t, publicIDAPI)
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(testSyntheticsAPI.GetName(), syntAPI.GetName())
 
@@ -767,7 +766,7 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsBrowser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	publicIDBrowser := syntBrowser.GetPublicId()
-	defer deleteSyntheticsTestIfExists(ctx, publicIDBrowser)
+	defer deleteSyntheticsTestIfExists(ctx, t, publicIDBrowser)
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(testSyntheticsBrowser.GetName(), syntBrowser.GetName())
 
@@ -846,7 +845,7 @@ func TestSyntheticsUpdateStatusTestErrors(t *testing.T) {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	publicIDAPI := syntAPI.GetPublicId()
-	defer deleteSyntheticsTestIfExists(ctx, publicIDAPI)
+	defer deleteSyntheticsTestIfExists(ctx, t, publicIDAPI)
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1031,7 +1030,7 @@ func TestSyntheticsUpdateTestErrors(t *testing.T) {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	publicIDAPI := syntAPI.GetPublicId()
-	defer deleteSyntheticsTestIfExists(ctx, publicIDAPI)
+	defer deleteSyntheticsTestIfExists(ctx, t, publicIDAPI)
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1168,11 +1167,11 @@ func isPublicIDPresent(publicID string, syntTests []datadog.SyntheticsTestDetail
 	return fmt.Errorf("Synthetics tests %s expected but not found", publicID)
 }
 
-func deleteSyntheticsTestIfExists(ctx context.Context, testID string) {
+func deleteSyntheticsTestIfExists(ctx context.Context, t *testing.T, testID string) {
 	_, httpresp, err := Client(ctx).SyntheticsApi.DeleteTests(ctx).
 		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{testID}}).Execute()
 	if err != nil && httpresp.StatusCode != 404 {
-		log.Printf("Deleting synthetics test %s failed with %v, Another test may have already deleted this entity: %v",
+		t.Logf("Deleting synthetics test %s failed with %v, Another test may have already deleted this entity: %v",
 			testID, httpresp.StatusCode, err)
 	}
 }
@@ -1255,7 +1254,7 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	publicID := synt.GetPublicId()
-	defer deleteSyntheticsTestIfExists(ctx, publicID)
+	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
 
 	variable := datadog.SyntheticsGlobalVariable{
 		Name:        strings.Replace(strings.ToUpper(*tests.UniqueEntityName(ctx, t)), "-", "_", -1),
