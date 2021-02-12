@@ -142,6 +142,7 @@ tags:
 
     - Post metrics data so it can be graphed on Datadog’s dashboards
     - Query metrics from any time period
+    - Modify tag configurations for metrics
 
     **Note**: A graph can only contain a set number of points
     and as the timeframe over which a metric is viewed increases,
@@ -149,6 +150,9 @@ tags:
 
     Datadog has a soft limit of 100 timeseries per host
     where a timeseries is defined as a unique combination of metric name and tag.
+
+    The Post, Patch, and Delete `manage_tags` API methods can only be performed by
+    a user who has the `Manage Tags for Metrics` permission.
   name: Metrics
 - description: |-
     [Monitors](https://docs.datadoghq.com/monitors) allow you to watch a metric or check that you care about,
@@ -17365,23 +17369,27 @@ components:
         month: 2000-01-23T04:56:07.000+00:00
         updated_at: updated_at
         values:
-          snmp_usage: 9.369310271410669
+          snmp_usage: 6.438423552598547
           browser_usage: 2.027123023002322
           infra_host_usage: 6.84685269835264
           browser_percentage: 3.616076749251911
+          lambda_functions_usage: 1.1730742509559433
           custom_timeseries_percentage: 1.2315135367772556
-          lambda_usage: 1.1730742509559433
-          npm_host_percentage: 4.965218492984954
-          snmp_percentage: 9.965781217890562
+          lambda_usage: 9.369310271410669
+          npm_host_percentage: 6.683562403749608
+          snmp_percentage: 9.018348186070783
           infra_host_percentage: 1.4894159098541704
+          lambda_functions_percentage: 7.457744773683766
           apm_host_usage: 9.301444243932576
+          lambda_invocations_usage: 5.025004791520295
+          lambda_invocations_percentage: 4.965218492984954
           api_percentage: 5.637376656633329
           apm_host_percentage: 7.061401241503109
           container_usage: 7.386281948385884
           api_usage: 2.3021358869347655
           custom_timeseries_usage: 1.0246457001441578
-          lambda_percentage: 7.457744773683766
-          npm_host_usage: 5.025004791520295
+          lambda_percentage: 9.965781217890562
+          npm_host_usage: 8.762042012749001
           container_percentage: 4.145608029883936
         public_id: public_id
         tags:
@@ -17487,23 +17495,27 @@ components:
         - month: 2000-01-23T04:56:07.000+00:00
           updated_at: updated_at
           values:
-            snmp_usage: 9.369310271410669
+            snmp_usage: 6.438423552598547
             browser_usage: 2.027123023002322
             infra_host_usage: 6.84685269835264
             browser_percentage: 3.616076749251911
+            lambda_functions_usage: 1.1730742509559433
             custom_timeseries_percentage: 1.2315135367772556
-            lambda_usage: 1.1730742509559433
-            npm_host_percentage: 4.965218492984954
-            snmp_percentage: 9.965781217890562
+            lambda_usage: 9.369310271410669
+            npm_host_percentage: 6.683562403749608
+            snmp_percentage: 9.018348186070783
             infra_host_percentage: 1.4894159098541704
+            lambda_functions_percentage: 7.457744773683766
             apm_host_usage: 9.301444243932576
+            lambda_invocations_usage: 5.025004791520295
+            lambda_invocations_percentage: 4.965218492984954
             api_percentage: 5.637376656633329
             apm_host_percentage: 7.061401241503109
             container_usage: 7.386281948385884
             api_usage: 2.3021358869347655
             custom_timeseries_usage: 1.0246457001441578
-            lambda_percentage: 7.457744773683766
-            npm_host_usage: 5.025004791520295
+            lambda_percentage: 9.965781217890562
+            npm_host_usage: 8.762042012749001
             container_percentage: 4.145608029883936
           public_id: public_id
           tags:
@@ -17513,23 +17525,27 @@ components:
         - month: 2000-01-23T04:56:07.000+00:00
           updated_at: updated_at
           values:
-            snmp_usage: 9.369310271410669
+            snmp_usage: 6.438423552598547
             browser_usage: 2.027123023002322
             infra_host_usage: 6.84685269835264
             browser_percentage: 3.616076749251911
+            lambda_functions_usage: 1.1730742509559433
             custom_timeseries_percentage: 1.2315135367772556
-            lambda_usage: 1.1730742509559433
-            npm_host_percentage: 4.965218492984954
-            snmp_percentage: 9.965781217890562
+            lambda_usage: 9.369310271410669
+            npm_host_percentage: 6.683562403749608
+            snmp_percentage: 9.018348186070783
             infra_host_percentage: 1.4894159098541704
+            lambda_functions_percentage: 7.457744773683766
             apm_host_usage: 9.301444243932576
+            lambda_invocations_usage: 5.025004791520295
+            lambda_invocations_percentage: 4.965218492984954
             api_percentage: 5.637376656633329
             apm_host_percentage: 7.061401241503109
             container_usage: 7.386281948385884
             api_usage: 2.3021358869347655
             custom_timeseries_usage: 1.0246457001441578
-            lambda_percentage: 7.457744773683766
-            npm_host_usage: 5.025004791520295
+            lambda_percentage: 9.965781217890562
+            npm_host_usage: 8.762042012749001
             container_percentage: 4.145608029883936
           public_id: public_id
           tags:
@@ -17551,13 +17567,11 @@ components:
       enum:
       - api_percentage
       - snmp_usage
-      - lambda_percentage
       - apm_host_usage
       - api_usage
       - container_usage
       - custom_timeseries_percentage
       - container_percentage
-      - lambda_usage
       - apm_host_percentage
       - npm_host_percentage
       - browser_percentage
@@ -17567,17 +17581,21 @@ components:
       - npm_host_usage
       - infra_host_usage
       - custom_timeseries_usage
+      - lambda_functions_usage
+      - lambda_functions_percentage
+      - lambda_invocations_usage
+      - lambda_invocations_percentage
+      - lambda_usage
+      - lambda_percentage
       type: string
       x-enum-varnames:
       - API_PERCENTAGE
       - SNMP_USAGE
-      - LAMBDA_PERCENTAGE
       - APM_HOST_USAGE
       - API_USAGE
       - CONTAINER_USAGE
       - CUSTOM_TIMESERIES_PERCENTAGE
       - CONTAINER_PERCENTAGE
-      - LAMBDA_USAGE
       - APM_HOST_PERCENTAGE
       - NPM_HOST_PERCENTAGE
       - BROWSER_PERCENTAGE
@@ -17587,6 +17605,12 @@ components:
       - NPM_HOST_USAGE
       - INFRA_HOST_USAGE
       - CUSTOM_TIMESERIES_USAGE
+      - LAMBDA_FUNCTIONS_USAGE
+      - LAMBDA_FUNCTIONS_PERCENTAGE
+      - LAMBDA_INVOCATIONS_USAGE
+      - LAMBDA_INVOCATIONS_PERCENTAGE
+      - LAMBDA_USAGE
+      - LAMBDA_PERCENTAGE
     UsageAttributionTagNames:
       additionalProperties:
         description: A list of tag values.
@@ -17600,23 +17624,27 @@ components:
     UsageAttributionValues:
       description: Fields in Usage Summary by tag(s).
       example:
-        snmp_usage: 9.369310271410669
+        snmp_usage: 6.438423552598547
         browser_usage: 2.027123023002322
         infra_host_usage: 6.84685269835264
         browser_percentage: 3.616076749251911
+        lambda_functions_usage: 1.1730742509559433
         custom_timeseries_percentage: 1.2315135367772556
-        lambda_usage: 1.1730742509559433
-        npm_host_percentage: 4.965218492984954
-        snmp_percentage: 9.965781217890562
+        lambda_usage: 9.369310271410669
+        npm_host_percentage: 6.683562403749608
+        snmp_percentage: 9.018348186070783
         infra_host_percentage: 1.4894159098541704
+        lambda_functions_percentage: 7.457744773683766
         apm_host_usage: 9.301444243932576
+        lambda_invocations_usage: 5.025004791520295
+        lambda_invocations_percentage: 4.965218492984954
         api_percentage: 5.637376656633329
         apm_host_percentage: 7.061401241503109
         container_usage: 7.386281948385884
         api_usage: 2.3021358869347655
         custom_timeseries_usage: 1.0246457001441578
-        lambda_percentage: 7.457744773683766
-        npm_host_usage: 5.025004791520295
+        lambda_percentage: 9.965781217890562
+        npm_host_usage: 8.762042012749001
         container_percentage: 4.145608029883936
       properties:
         api_percentage:
@@ -17667,12 +17695,34 @@ components:
           description: The infrastructure host usage by tag(s).
           format: double
           type: number
+        lambda_functions_percentage:
+          description: The percentage of Lambda function usage by tag(s).
+          format: double
+          type: number
+        lambda_functions_usage:
+          description: The Lambda function usage by tag(s).
+          format: double
+          type: number
+        lambda_invocations_percentage:
+          description: The percentage of Lambda invocation usage by tag(s).
+          format: double
+          type: number
+        lambda_invocations_usage:
+          description: The Lambda invocation usage by tag(s).
+          format: double
+          type: number
         lambda_percentage:
-          description: The percentage of lambda function usage by tag(s).
+          description: |-
+            The percentage of Lambda function usage by tag(s).
+
+            **Note** this field is deprecated. Use lambda_functions_percentage instead.
           format: double
           type: number
         lambda_usage:
-          description: The lambda function usage by tag(s).
+          description: |-
+            The Lambda function usage by tag(s).
+
+            **Note** this field is deprecated. Use lambda_functions_usage instead.
           format: double
           type: number
         npm_host_percentage:
@@ -17851,6 +17901,14 @@ components:
             org_billable_usage: 5
             usage_unit: usage_unit
           infra_container_sum:
+            account_billable_usage: 1
+            last_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
+            percentage_in_account: 2.3021358869347655
+            elapsed_usage_hours: 5
+            first_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
+            org_billable_usage: 5
+            usage_unit: usage_unit
+          serverless_invocation_sum:
             account_billable_usage: 1
             last_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
             percentage_in_account: 2.3021358869347655
@@ -18038,6 +18096,14 @@ components:
           first_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
           org_billable_usage: 5
           usage_unit: usage_unit
+        serverless_invocation_sum:
+          account_billable_usage: 1
+          last_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
+          percentage_in_account: 2.3021358869347655
+          elapsed_usage_hours: 5
+          first_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
+          org_billable_usage: 5
+          usage_unit: usage_unit
         logs_ingested_sum:
           account_billable_usage: 1
           last_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
@@ -18090,6 +18156,8 @@ components:
         npm_host_top99p:
           $ref: '#/components/schemas/UsageBillableSummaryBody'
         rum_sum:
+          $ref: '#/components/schemas/UsageBillableSummaryBody'
+        serverless_invocation_sum:
           $ref: '#/components/schemas/UsageBillableSummaryBody'
         siem_sum:
           $ref: '#/components/schemas/UsageBillableSummaryBody'
@@ -18221,6 +18289,14 @@ components:
               org_billable_usage: 5
               usage_unit: usage_unit
             infra_container_sum:
+              account_billable_usage: 1
+              last_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
+              percentage_in_account: 2.3021358869347655
+              elapsed_usage_hours: 5
+              first_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
+              org_billable_usage: 5
+              usage_unit: usage_unit
+            serverless_invocation_sum:
               account_billable_usage: 1
               last_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
               percentage_in_account: 2.3021358869347655
@@ -18373,6 +18449,14 @@ components:
               org_billable_usage: 5
               usage_unit: usage_unit
             infra_container_sum:
+              account_billable_usage: 1
+              last_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
+              percentage_in_account: 2.3021358869347655
+              elapsed_usage_hours: 5
+              first_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
+              org_billable_usage: 5
+              usage_unit: usage_unit
+            serverless_invocation_sum:
               account_billable_usage: 1
               last_billable_usage_hour: 2000-01-23T04:56:07.000+00:00
               percentage_in_account: 2.3021358869347655
