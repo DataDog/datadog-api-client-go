@@ -112,7 +112,6 @@ docs/EventTimelineWidgetDefinitionType.md
 docs/EventsApi.md
 docs/FormulaAndFunctionEventAggregation.md
 docs/FormulaAndFunctionEventsDataSource.md
-docs/FormulaAndFunctionEventsSortType.md
 docs/FormulaAndFunctionMetricAggregation.md
 docs/FormulaAndFunctionMetricDataSource.md
 docs/FormulaAndFunctionProcessQueryDataSource.md
@@ -122,6 +121,11 @@ docs/FreeTextWidgetDefinition.md
 docs/FreeTextWidgetDefinitionType.md
 docs/GCPAccount.md
 docs/GCPIntegrationApi.md
+docs/GeomapWidgetDefinition.md
+docs/GeomapWidgetDefinitionStyle.md
+docs/GeomapWidgetDefinitionType.md
+docs/GeomapWidgetDefinitionView.md
+docs/GeomapWidgetRequest.md
 docs/GraphSnapshot.md
 docs/GroupWidgetDefinition.md
 docs/GroupWidgetDefinitionType.md
@@ -285,6 +289,7 @@ docs/SLOErrorTimeframe.md
 docs/SLOHistoryMetrics.md
 docs/SLOHistoryMetricsSeries.md
 docs/SLOHistoryMetricsSeriesMetadata.md
+docs/SLOHistoryMetricsSeriesMetadataUnit.md
 docs/SLOHistoryResponse.md
 docs/SLOHistoryResponseData.md
 docs/SLOHistoryResponseError.md
@@ -404,8 +409,8 @@ docs/TargetFormatType.md
 docs/TimeSeriesFormulaAndFunctionEventQueryDefinition.md
 docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute.md
 docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy.md
-docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBySort.md
 docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch.md
+docs/TimeSeriesFormulaAndFunctionEventQueryDefinitionSort.md
 docs/TimeSeriesFormulaAndFunctionMetricQueryDefinition.md
 docs/TimeSeriesFormulaAndFunctionProcessQueryDefinition.md
 docs/TimeseriesWidgetDefinition.md
@@ -443,6 +448,8 @@ docs/UsageIndexedSpansHour.md
 docs/UsageIndexedSpansResponse.md
 docs/UsageIngestedSpansHour.md
 docs/UsageIngestedSpansResponse.md
+docs/UsageIoTHour.md
+docs/UsageIoTResponse.md
 docs/UsageLambdaHour.md
 docs/UsageLambdaResponse.md
 docs/UsageLogsByIndexHour.md
@@ -610,7 +617,6 @@ model_event_timeline_widget_definition.go
 model_event_timeline_widget_definition_type.go
 model_formula_and_function_event_aggregation.go
 model_formula_and_function_events_data_source.go
-model_formula_and_function_events_sort_type.go
 model_formula_and_function_metric_aggregation.go
 model_formula_and_function_metric_data_source.go
 model_formula_and_function_process_query_data_source.go
@@ -619,6 +625,11 @@ model_formula_and_function_response_format.go
 model_free_text_widget_definition.go
 model_free_text_widget_definition_type.go
 model_gcp_account.go
+model_geomap_widget_definition.go
+model_geomap_widget_definition_style.go
+model_geomap_widget_definition_type.go
+model_geomap_widget_definition_view.go
+model_geomap_widget_request.go
 model_graph_snapshot.go
 model_group_widget_definition.go
 model_group_widget_definition_type.go
@@ -783,6 +794,7 @@ model_slo_error_timeframe.go
 model_slo_history_metrics.go
 model_slo_history_metrics_series.go
 model_slo_history_metrics_series_metadata.go
+model_slo_history_metrics_series_metadata_unit.go
 model_slo_history_response.go
 model_slo_history_response_data.go
 model_slo_history_response_error.go
@@ -886,8 +898,8 @@ model_target_format_type.go
 model_time_series_formula_and_function_event_query_definition.go
 model_time_series_formula_and_function_event_query_definition_compute.go
 model_time_series_formula_and_function_event_query_definition_group_by.go
-model_time_series_formula_and_function_event_query_definition_group_by_sort.go
 model_time_series_formula_and_function_event_query_definition_search.go
+model_time_series_formula_and_function_event_query_definition_sort.go
 model_time_series_formula_and_function_metric_query_definition.go
 model_time_series_formula_and_function_process_query_definition.go
 model_timeseries_widget_definition.go
@@ -925,6 +937,8 @@ model_usage_indexed_spans_hour.go
 model_usage_indexed_spans_response.go
 model_usage_ingested_spans_hour.go
 model_usage_ingested_spans_response.go
+model_usage_io_t_hour.go
+model_usage_io_t_response.go
 model_usage_lambda_hour.go
 model_usage_lambda_response.go
 model_usage_logs_by_index_hour.go

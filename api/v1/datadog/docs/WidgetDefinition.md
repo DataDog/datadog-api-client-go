@@ -29,6 +29,8 @@ Name | Type | Description | Notes
 **Color** | Pointer to **string** | Color of the text. | [optional] 
 **FontSize** | Pointer to **string** | Size of the text. | [optional] 
 **Text** | **string** | Text to display. | 
+**Style** | [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinition_style.md) |  | 
+**View** | [**GeomapWidgetDefinitionView**](GeomapWidgetDefinition_view.md) |  | 
 **LayoutType** | [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
 **Widgets** | [**[]Widget**](Widget.md) | List of widget groups. | 
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
@@ -38,7 +40,6 @@ Name | Type | Description | Notes
 **NodeType** | Pointer to [**WidgetNodeType**](WidgetNodeType.md) |  | [optional] 
 **Notes** | Pointer to **string** | Notes on the title. | [optional] 
 **Scope** | Pointer to **[]string** | List of tags used to filter the map. | [optional] 
-**Style** | Pointer to [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinition_style.md) |  | [optional] 
 **Url** | **string** | URL of the image. | 
 **Margin** | Pointer to [**WidgetMargin**](WidgetMargin.md) |  | [optional] 
 **Sizing** | Pointer to [**WidgetImageSizing**](WidgetImageSizing.md) |  | [optional] 
@@ -89,7 +90,7 @@ Name | Type | Description | Notes
 
 ### NewWidgetDefinition
 
-`func NewWidgetDefinition(alertId string, type_ ToplistWidgetDefinitionType, vizType WidgetVizType, requests []ToplistWidgetRequest, check string, grouping WidgetGrouping, query string, text string, layoutType WidgetLayoutType, widgets []Widget, url string, content string, viewType string, filters []string, service string, env string, spanName string, ) *WidgetDefinition`
+`func NewWidgetDefinition(alertId string, type_ ToplistWidgetDefinitionType, vizType WidgetVizType, requests []ToplistWidgetRequest, check string, grouping WidgetGrouping, query string, text string, style HostMapWidgetDefinitionStyle, view GeomapWidgetDefinitionView, layoutType WidgetLayoutType, widgets []Widget, url string, content string, viewType string, filters []string, service string, env string, spanName string, ) *WidgetDefinition`
 
 NewWidgetDefinition instantiates a new WidgetDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -689,6 +690,46 @@ and a boolean to check if the value has been set.
 SetText sets Text field to given value.
 
 
+### GetStyle
+
+`func (o *WidgetDefinition) GetStyle() HostMapWidgetDefinitionStyle`
+
+GetStyle returns the Style field if non-nil, zero value otherwise.
+
+### GetStyleOk
+
+`func (o *WidgetDefinition) GetStyleOk() (*HostMapWidgetDefinitionStyle, bool)`
+
+GetStyleOk returns a tuple with the Style field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStyle
+
+`func (o *WidgetDefinition) SetStyle(v HostMapWidgetDefinitionStyle)`
+
+SetStyle sets Style field to given value.
+
+
+### GetView
+
+`func (o *WidgetDefinition) GetView() GeomapWidgetDefinitionView`
+
+GetView returns the View field if non-nil, zero value otherwise.
+
+### GetViewOk
+
+`func (o *WidgetDefinition) GetViewOk() (*GeomapWidgetDefinitionView, bool)`
+
+GetViewOk returns a tuple with the View field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetView
+
+`func (o *WidgetDefinition) SetView(v GeomapWidgetDefinitionView)`
+
+SetView sets View field to given value.
+
+
 ### GetLayoutType
 
 `func (o *WidgetDefinition) GetLayoutType() WidgetLayoutType`
@@ -903,31 +944,6 @@ SetScope sets Scope field to given value.
 `func (o *WidgetDefinition) HasScope() bool`
 
 HasScope returns a boolean if a field has been set.
-
-### GetStyle
-
-`func (o *WidgetDefinition) GetStyle() HostMapWidgetDefinitionStyle`
-
-GetStyle returns the Style field if non-nil, zero value otherwise.
-
-### GetStyleOk
-
-`func (o *WidgetDefinition) GetStyleOk() (*HostMapWidgetDefinitionStyle, bool)`
-
-GetStyleOk returns a tuple with the Style field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStyle
-
-`func (o *WidgetDefinition) SetStyle(v HostMapWidgetDefinitionStyle)`
-
-SetStyle sets Style field to given value.
-
-### HasStyle
-
-`func (o *WidgetDefinition) HasStyle() bool`
-
-HasStyle returns a boolean if a field has been set.
 
 ### GetUrl
 

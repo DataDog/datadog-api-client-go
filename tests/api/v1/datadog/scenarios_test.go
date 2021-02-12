@@ -60,6 +60,7 @@ func TestScenarios(t *testing.T) {
 				tracer.SpanType("step"),
 				tracer.ResourceName(parts[len(parts)-1]),
 			)
+			tests.SetFixtureData(ctx)
 			tests.SetCtx(ctx, cctx)
 		}),
 		gobdd.WithAfterStep(func(ctx gobdd.Context) {
@@ -83,8 +84,13 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`a valid "apiKeyAuth" key in the system`, aValidAPIKeyAuth)
 	s.AddStep(`a valid "appKeyAuth" key in the system`, aValidAppKeyAuth)
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
+	s.AddStep(`operation "([^"]+)" enabled`, enableOperations)
 
-	for _, givenStep := range tests.LoadGivenSteps("./features/given.json") {
+	steps, err := tests.LoadGivenSteps("./features/given.json")
+	if err != nil {
+		t.Fatalf("could not load given steps: %v", err)
+	}
+	for _, givenStep := range steps {
 		givenStep.RegisterSuite(s)
 	}
 
@@ -130,4 +136,10 @@ func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 		t.Fatalf("invalid API name %s", name)
 	}
 	tests.SetAPI(ctx, f)
+}
+
+// enableOperations sets unstable operations specific in this clause to enabled
+func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
+	client := Client(tests.GetCtx(ctx))
+	client.GetConfig().SetUnstableOperationEnabled(name, true)
 }

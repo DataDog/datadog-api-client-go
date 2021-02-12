@@ -24,6 +24,8 @@ Name | Type | Description | Notes
 **IndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current months for all organizations. | [optional] 
 **InfraHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current months for all organizations. | [optional] 
 **IngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current months for all organizations. | [optional] 
+**IotDeviceAggSum** | Pointer to **int64** | Shows the sum of all IoT devices over all hours in the current months for all organizations. | [optional] 
+**IotDeviceTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all IoT devices over all hours in the current months of all organizations. | [optional] 
 **LastUpdated** | Pointer to **time.Time** | Shows the the most recent hour in the current months for all organizations for which all usages were calculated. | [optional] 
 **LiveIndexedEventsAggSum** | Pointer to **int64** | Shows the sum of all live logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020). | [optional] 
 **LiveIngestedBytesAggSum** | Pointer to **int64** | Shows the sum of all live logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020). | [optional] 
@@ -563,6 +565,56 @@ SetIngestedEventsBytesAggSum sets IngestedEventsBytesAggSum field to given value
 `func (o *UsageSummaryResponse) HasIngestedEventsBytesAggSum() bool`
 
 HasIngestedEventsBytesAggSum returns a boolean if a field has been set.
+
+### GetIotDeviceAggSum
+
+`func (o *UsageSummaryResponse) GetIotDeviceAggSum() int64`
+
+GetIotDeviceAggSum returns the IotDeviceAggSum field if non-nil, zero value otherwise.
+
+### GetIotDeviceAggSumOk
+
+`func (o *UsageSummaryResponse) GetIotDeviceAggSumOk() (*int64, bool)`
+
+GetIotDeviceAggSumOk returns a tuple with the IotDeviceAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIotDeviceAggSum
+
+`func (o *UsageSummaryResponse) SetIotDeviceAggSum(v int64)`
+
+SetIotDeviceAggSum sets IotDeviceAggSum field to given value.
+
+### HasIotDeviceAggSum
+
+`func (o *UsageSummaryResponse) HasIotDeviceAggSum() bool`
+
+HasIotDeviceAggSum returns a boolean if a field has been set.
+
+### GetIotDeviceTop99pSum
+
+`func (o *UsageSummaryResponse) GetIotDeviceTop99pSum() int64`
+
+GetIotDeviceTop99pSum returns the IotDeviceTop99pSum field if non-nil, zero value otherwise.
+
+### GetIotDeviceTop99pSumOk
+
+`func (o *UsageSummaryResponse) GetIotDeviceTop99pSumOk() (*int64, bool)`
+
+GetIotDeviceTop99pSumOk returns a tuple with the IotDeviceTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIotDeviceTop99pSum
+
+`func (o *UsageSummaryResponse) SetIotDeviceTop99pSum(v int64)`
+
+SetIotDeviceTop99pSum sets IotDeviceTop99pSum field to given value.
+
+### HasIotDeviceTop99pSum
+
+`func (o *UsageSummaryResponse) HasIotDeviceTop99pSum() bool`
+
+HasIotDeviceTop99pSum returns a boolean if a field has been set.
 
 ### GetLastUpdated
 

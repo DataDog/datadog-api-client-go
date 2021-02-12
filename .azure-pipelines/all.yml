@@ -34,7 +34,7 @@ resources:
 jobs:
 - job: IntegrationTests
   pool:
-    vmImage: "Ubuntu-16.04"
+    vmImage: "Ubuntu-20.04"
   container:
     image: golang:latest
     options: >-
@@ -42,8 +42,6 @@ jobs:
   services:
     datadog-agent: datadog-agent
   steps:
-    - script: |
-        wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -O jq && chmod a+x jq
     - script: ./run-tests.sh
       displayName: Run integration tests
       env:
@@ -51,10 +49,9 @@ jobs:
         DD_AGENT_HOST: datadog-agent
         DD_ENV: prod
         DD_SERVICE: datadog-api-client-go
-        DD_TAGS: "team:integration-tools-and-libraries,build.requested_by:$(Build.RequestedForId),build.attempt:$(System.StageAttempt),pull_request.number:$(System.PullRequest.PullRequestNumber)"
+        DD_TAGS: "team:integration-tools-and-libraries"
         DD_TEST_CLIENT_API_KEY: $(datadogAPIKey)
         DD_TEST_CLIENT_APP_KEY: $(datadogAPPKey)
-        JQ: ./jq
         RECORD: "none"
     - script: |
         bash <(curl -s https://codecov.io/bash) -F integration -v

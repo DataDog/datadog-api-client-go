@@ -54,6 +54,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     roleId := "roleId_example" // string | The ID of the role.
     body := *datadog.NewRelationshipToPermission() // RelationshipToPermission | 
 
@@ -141,6 +149,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     roleId := "roleId_example" // string | The ID of the role.
     body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // RelationshipToUser | 
@@ -230,6 +246,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewRoleCreateRequest(*datadog.NewRoleCreateData(*datadog.NewRoleCreateAttributes("developers"))) // RoleCreateRequest | 
 
     configuration := datadog.NewConfiguration()
@@ -310,6 +334,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     roleId := "roleId_example" // string | The ID of the role.
 
@@ -393,6 +425,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     roleId := "roleId_example" // string | The ID of the role.
 
@@ -480,6 +520,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
 
     configuration := datadog.NewConfiguration()
 
@@ -556,6 +604,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     roleId := "roleId_example" // string | The ID of the role.
 
@@ -642,6 +698,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     roleId := "roleId_example" // string | The ID of the role.
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
@@ -737,6 +801,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
     sort := datadog.RolesSort("name") // RolesSort | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: `sort=-name`. (optional) (default to "name")
@@ -824,6 +896,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     roleId := "roleId_example" // string | The ID of the role.
     body := *datadog.NewRelationshipToPermission() // RelationshipToPermission | 
@@ -913,6 +993,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     roleId := "roleId_example" // string | The ID of the role.
     body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // RelationshipToUser | 
 
@@ -1000,6 +1088,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     roleId := "roleId_example" // string | The ID of the role.
     body := *datadog.NewRoleUpdateRequest(*datadog.NewRoleUpdateData(*datadog.NewRoleUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.RolesType("roles"))) // RoleUpdateRequest | 

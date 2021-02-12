@@ -38,9 +38,17 @@ type UsageAttributionValues struct {
 	InfraHostPercentage *float64 `json:"infra_host_percentage,omitempty"`
 	// The infrastructure host usage by tag(s).
 	InfraHostUsage *float64 `json:"infra_host_usage,omitempty"`
-	// The percentage of lambda function usage by tag(s).
+	// The percentage of Lambda function usage by tag(s).
+	LambdaFunctionsPercentage *float64 `json:"lambda_functions_percentage,omitempty"`
+	// The Lambda function usage by tag(s).
+	LambdaFunctionsUsage *float64 `json:"lambda_functions_usage,omitempty"`
+	// The percentage of Lambda invocation usage by tag(s).
+	LambdaInvocationsPercentage *float64 `json:"lambda_invocations_percentage,omitempty"`
+	// The Lambda invocation usage by tag(s).
+	LambdaInvocationsUsage *float64 `json:"lambda_invocations_usage,omitempty"`
+	// The percentage of Lambda function usage by tag(s).  **Note** this field is deprecated. Use lambda_functions_percentage instead.
 	LambdaPercentage *float64 `json:"lambda_percentage,omitempty"`
-	// The lambda function usage by tag(s).
+	// The Lambda function usage by tag(s).  **Note** this field is deprecated. Use lambda_functions_usage instead.
 	LambdaUsage *float64 `json:"lambda_usage,omitempty"`
 	// The percentage of network host usage by tag(s).
 	NpmHostPercentage *float64 `json:"npm_host_percentage,omitempty"`
@@ -453,6 +461,134 @@ func (o *UsageAttributionValues) SetInfraHostUsage(v float64) {
 	o.InfraHostUsage = &v
 }
 
+// GetLambdaFunctionsPercentage returns the LambdaFunctionsPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetLambdaFunctionsPercentage() float64 {
+	if o == nil || o.LambdaFunctionsPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.LambdaFunctionsPercentage
+}
+
+// GetLambdaFunctionsPercentageOk returns a tuple with the LambdaFunctionsPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetLambdaFunctionsPercentageOk() (*float64, bool) {
+	if o == nil || o.LambdaFunctionsPercentage == nil {
+		return nil, false
+	}
+	return o.LambdaFunctionsPercentage, true
+}
+
+// HasLambdaFunctionsPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasLambdaFunctionsPercentage() bool {
+	if o != nil && o.LambdaFunctionsPercentage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLambdaFunctionsPercentage gets a reference to the given float64 and assigns it to the LambdaFunctionsPercentage field.
+func (o *UsageAttributionValues) SetLambdaFunctionsPercentage(v float64) {
+	o.LambdaFunctionsPercentage = &v
+}
+
+// GetLambdaFunctionsUsage returns the LambdaFunctionsUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetLambdaFunctionsUsage() float64 {
+	if o == nil || o.LambdaFunctionsUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.LambdaFunctionsUsage
+}
+
+// GetLambdaFunctionsUsageOk returns a tuple with the LambdaFunctionsUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetLambdaFunctionsUsageOk() (*float64, bool) {
+	if o == nil || o.LambdaFunctionsUsage == nil {
+		return nil, false
+	}
+	return o.LambdaFunctionsUsage, true
+}
+
+// HasLambdaFunctionsUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasLambdaFunctionsUsage() bool {
+	if o != nil && o.LambdaFunctionsUsage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLambdaFunctionsUsage gets a reference to the given float64 and assigns it to the LambdaFunctionsUsage field.
+func (o *UsageAttributionValues) SetLambdaFunctionsUsage(v float64) {
+	o.LambdaFunctionsUsage = &v
+}
+
+// GetLambdaInvocationsPercentage returns the LambdaInvocationsPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetLambdaInvocationsPercentage() float64 {
+	if o == nil || o.LambdaInvocationsPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.LambdaInvocationsPercentage
+}
+
+// GetLambdaInvocationsPercentageOk returns a tuple with the LambdaInvocationsPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetLambdaInvocationsPercentageOk() (*float64, bool) {
+	if o == nil || o.LambdaInvocationsPercentage == nil {
+		return nil, false
+	}
+	return o.LambdaInvocationsPercentage, true
+}
+
+// HasLambdaInvocationsPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasLambdaInvocationsPercentage() bool {
+	if o != nil && o.LambdaInvocationsPercentage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLambdaInvocationsPercentage gets a reference to the given float64 and assigns it to the LambdaInvocationsPercentage field.
+func (o *UsageAttributionValues) SetLambdaInvocationsPercentage(v float64) {
+	o.LambdaInvocationsPercentage = &v
+}
+
+// GetLambdaInvocationsUsage returns the LambdaInvocationsUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetLambdaInvocationsUsage() float64 {
+	if o == nil || o.LambdaInvocationsUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.LambdaInvocationsUsage
+}
+
+// GetLambdaInvocationsUsageOk returns a tuple with the LambdaInvocationsUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetLambdaInvocationsUsageOk() (*float64, bool) {
+	if o == nil || o.LambdaInvocationsUsage == nil {
+		return nil, false
+	}
+	return o.LambdaInvocationsUsage, true
+}
+
+// HasLambdaInvocationsUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasLambdaInvocationsUsage() bool {
+	if o != nil && o.LambdaInvocationsUsage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLambdaInvocationsUsage gets a reference to the given float64 and assigns it to the LambdaInvocationsUsage field.
+func (o *UsageAttributionValues) SetLambdaInvocationsUsage(v float64) {
+	o.LambdaInvocationsUsage = &v
+}
+
 // GetLambdaPercentage returns the LambdaPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetLambdaPercentage() float64 {
 	if o == nil || o.LambdaPercentage == nil {
@@ -682,6 +818,18 @@ func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	}
 	if o.InfraHostUsage != nil {
 		toSerialize["infra_host_usage"] = o.InfraHostUsage
+	}
+	if o.LambdaFunctionsPercentage != nil {
+		toSerialize["lambda_functions_percentage"] = o.LambdaFunctionsPercentage
+	}
+	if o.LambdaFunctionsUsage != nil {
+		toSerialize["lambda_functions_usage"] = o.LambdaFunctionsUsage
+	}
+	if o.LambdaInvocationsPercentage != nil {
+		toSerialize["lambda_invocations_percentage"] = o.LambdaInvocationsPercentage
+	}
+	if o.LambdaInvocationsUsage != nil {
+		toSerialize["lambda_invocations_usage"] = o.LambdaInvocationsUsage
 	}
 	if o.LambdaPercentage != nil {
 		toSerialize["lambda_percentage"] = o.LambdaPercentage

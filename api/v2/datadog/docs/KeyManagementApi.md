@@ -55,6 +55,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewAPIKeyCreateRequest(*datadog.NewAPIKeyCreateData(*datadog.NewAPIKeyCreateAttributes("API Key for submitting metrics"), datadog.APIKeysType("api_keys"))) // APIKeyCreateRequest | 
 
     configuration := datadog.NewConfiguration()
@@ -137,6 +145,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewApplicationKeyCreateRequest(*datadog.NewApplicationKeyCreateData(*datadog.NewApplicationKeyCreateAttributes("Application Key for submitting metrics"), datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyCreateRequest | 
 
     configuration := datadog.NewConfiguration()
@@ -217,6 +233,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     apiKeyId := "apiKeyId_example" // string | The ID of the API key.
 
@@ -300,6 +324,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     appKeyId := "appKeyId_example" // string | The ID of the application key.
 
     configuration := datadog.NewConfiguration()
@@ -381,6 +413,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     appKeyId := "appKeyId_example" // string | The ID of the application key.
 
@@ -464,6 +504,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     apiKeyId := "apiKeyId_example" // string | The ID of the API key.
     include := "created_by,modified_by" // string | Comma separated list of resource paths for related resources to include in the response. Supported resource paths are `created_by` and `modified_by`. (optional)
@@ -553,6 +601,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     appKeyId := "appKeyId_example" // string | The ID of the application key.
 
     configuration := datadog.NewConfiguration()
@@ -638,6 +694,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
@@ -737,6 +801,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
     sort := datadog.ApplicationKeysSort("created_at") // ApplicationKeysSort | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. (optional) (default to "name")
@@ -828,6 +900,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
@@ -921,6 +1001,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     apiKeyId := "apiKeyId_example" // string | The ID of the API key.
     body := *datadog.NewAPIKeyUpdateRequest(*datadog.NewAPIKeyUpdateData(*datadog.NewAPIKeyUpdateAttributes("API Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.APIKeysType("api_keys"))) // APIKeyUpdateRequest | 
 
@@ -1009,6 +1097,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     appKeyId := "appKeyId_example" // string | The ID of the application key.
     body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes("Application Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest | 
 
@@ -1096,6 +1192,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     appKeyId := "appKeyId_example" // string | The ID of the application key.
     body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes("Application Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest | 

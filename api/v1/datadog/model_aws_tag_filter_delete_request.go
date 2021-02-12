@@ -15,8 +15,8 @@ import (
 // AWSTagFilterDeleteRequest The objects used to delete an AWS tag filter entry.
 type AWSTagFilterDeleteRequest struct {
 	// The unique identifier of your AWS account.
-	AwsAccountIdentifier *string       `json:"aws_account_identifier,omitempty"`
-	Namespace            *AWSNamespace `json:"namespace,omitempty"`
+	AccountId *string       `json:"account_id,omitempty"`
+	Namespace *AWSNamespace `json:"namespace,omitempty"`
 }
 
 // NewAWSTagFilterDeleteRequest instantiates a new AWSTagFilterDeleteRequest object
@@ -36,36 +36,36 @@ func NewAWSTagFilterDeleteRequestWithDefaults() *AWSTagFilterDeleteRequest {
 	return &this
 }
 
-// GetAwsAccountIdentifier returns the AwsAccountIdentifier field value if set, zero value otherwise.
-func (o *AWSTagFilterDeleteRequest) GetAwsAccountIdentifier() string {
-	if o == nil || o.AwsAccountIdentifier == nil {
+// GetAccountId returns the AccountId field value if set, zero value otherwise.
+func (o *AWSTagFilterDeleteRequest) GetAccountId() string {
+	if o == nil || o.AccountId == nil {
 		var ret string
 		return ret
 	}
-	return *o.AwsAccountIdentifier
+	return *o.AccountId
 }
 
-// GetAwsAccountIdentifierOk returns a tuple with the AwsAccountIdentifier field value if set, nil otherwise
+// GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSTagFilterDeleteRequest) GetAwsAccountIdentifierOk() (*string, bool) {
-	if o == nil || o.AwsAccountIdentifier == nil {
+func (o *AWSTagFilterDeleteRequest) GetAccountIdOk() (*string, bool) {
+	if o == nil || o.AccountId == nil {
 		return nil, false
 	}
-	return o.AwsAccountIdentifier, true
+	return o.AccountId, true
 }
 
-// HasAwsAccountIdentifier returns a boolean if a field has been set.
-func (o *AWSTagFilterDeleteRequest) HasAwsAccountIdentifier() bool {
-	if o != nil && o.AwsAccountIdentifier != nil {
+// HasAccountId returns a boolean if a field has been set.
+func (o *AWSTagFilterDeleteRequest) HasAccountId() bool {
+	if o != nil && o.AccountId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetAwsAccountIdentifier gets a reference to the given string and assigns it to the AwsAccountIdentifier field.
-func (o *AWSTagFilterDeleteRequest) SetAwsAccountIdentifier(v string) {
-	o.AwsAccountIdentifier = &v
+// SetAccountId gets a reference to the given string and assigns it to the AccountId field.
+func (o *AWSTagFilterDeleteRequest) SetAccountId(v string) {
+	o.AccountId = &v
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
@@ -102,8 +102,8 @@ func (o *AWSTagFilterDeleteRequest) SetNamespace(v AWSNamespace) {
 
 func (o AWSTagFilterDeleteRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AwsAccountIdentifier != nil {
-		toSerialize["aws_account_identifier"] = o.AwsAccountIdentifier
+	if o.AccountId != nil {
+		toSerialize["account_id"] = o.AccountId
 	}
 	if o.Namespace != nil {
 		toSerialize["namespace"] = o.Namespace

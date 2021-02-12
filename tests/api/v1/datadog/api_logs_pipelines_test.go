@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"log"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -154,7 +153,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating logs pipeline: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteLogsPipeline(ctx, createdPipeline.GetId())
+	defer deleteLogsPipeline(ctx, t, createdPipeline.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	assert.Equal(pipelineName, createdPipeline.GetName())
@@ -522,9 +521,9 @@ func TestLogsPipelinesUpdateErrors(t *testing.T) {
 	}
 }
 
-func deleteLogsPipeline(ctx context.Context, pipelineID string) {
+func deleteLogsPipeline(ctx context.Context, t *testing.T, pipelineID string) {
 	httpresp, err := Client(ctx).LogsPipelinesApi.DeleteLogsPipeline(ctx, pipelineID).Execute()
 	if err != nil && httpresp.StatusCode != 404 {
-		log.Printf("Error deleting Logs Pipeline: %v, Another test may have already deleted this pipeline.", pipelineID)
+		t.Logf("Error deleting Logs Pipeline: %v, Another test may have already deleted this pipeline.", pipelineID)
 	}
 }

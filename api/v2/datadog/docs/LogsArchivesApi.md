@@ -51,11 +51,18 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     archiveId := "archiveId_example" // string | The ID of the archive.
     body := *datadog.NewRelationshipToRole() // RelationshipToRole | 
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("AddReadRoleToArchive", true)
 
     api_client := datadog.NewAPIClient(configuration)
     r, err := api_client.LogsArchivesApi.AddReadRoleToArchive(ctx, archiveId).Body(body).Execute()
@@ -137,6 +144,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewLogsArchiveCreateRequest() // LogsArchiveCreateRequest | The definition of the new archive.
 
     configuration := datadog.NewConfiguration()
@@ -217,6 +232,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     archiveId := "archiveId_example" // string | The ID of the archive.
 
@@ -300,6 +323,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     archiveId := "archiveId_example" // string | The ID of the archive.
 
@@ -387,6 +418,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
 
     configuration := datadog.NewConfiguration()
 
@@ -464,10 +503,17 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     archiveId := "archiveId_example" // string | The ID of the archive.
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("ListArchiveReadRoles", true)
 
     api_client := datadog.NewAPIClient(configuration)
     resp, r, err := api_client.LogsArchivesApi.ListArchiveReadRoles(ctx, archiveId).Execute()
@@ -551,6 +597,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
 
     configuration := datadog.NewConfiguration()
 
@@ -627,11 +681,18 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     archiveId := "archiveId_example" // string | The ID of the archive.
     body := *datadog.NewRelationshipToRole() // RelationshipToRole | 
 
     configuration := datadog.NewConfiguration()
-    configuration.SetUnstableOperationEnabled("RemoveRoleFromArchive", true)
 
     api_client := datadog.NewAPIClient(configuration)
     r, err := api_client.LogsArchivesApi.RemoveRoleFromArchive(ctx, archiveId).Body(body).Execute()
@@ -712,6 +773,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     archiveId := "archiveId_example" // string | The ID of the archive.
     body := *datadog.NewLogsArchiveCreateRequest() // LogsArchiveCreateRequest | New definition of the archive.
@@ -800,6 +869,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     body := *datadog.NewLogsArchiveOrder() // LogsArchiveOrder | An object containing the new ordered list of archive IDs.
 

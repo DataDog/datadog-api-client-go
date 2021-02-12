@@ -9,7 +9,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"log"
 	"strings"
 	"testing"
 
@@ -29,7 +28,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		t.Fatalf("Error creating SLO %v for testing Dashboard SLO widget: Response %s: %v", testEventSLO, err.Error(), err)
 	}
 	slo := sloResp.GetData()[0]
-	defer deleteSLOIfExists(ctx, slo.GetId())
+	defer deleteSLOIfExists(ctx, t, slo.GetId())
 	assert.Equal(httpresp.StatusCode, 200)
 
 	widgetTime := datadog.NewWidgetTimeWithDefaults()
@@ -691,15 +690,15 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		Formulas: &[]datadog.WidgetFormula{{
-			Formula: "(((mcnulty_query_errors * 0.2)) / (mcnulty_query * 0.3))",
+			Formula: "(((errors * 0.2)) / (query * 0.3))",
 			Alias:   datadog.PtrString("sample_performance_calculator"),
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
 		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
 			TimeSeriesFormulaAndFunctionMetricQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionMetricQueryDefinition{
 				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
-				Query:      "avg:dd.metrics.query.sq.by_source{service:mcnulty-query}.as_count()",
-				Name:       datadog.PtrString("mcnulty-query"),
+				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
+				Name:       datadog.PtrString("query"),
 			},
 		},
 			{
@@ -709,10 +708,13 @@ func TestDashboardLifecycle(t *testing.T) {
 						Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 					},
 					Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
-						Query: "service:mcnulty-query Errors",
+						Query: "service:query Errors",
 					},
+					GroupBy: &[]datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy{{
+						Facet: "host",
+					}},
 					Indexes: &[]string{"*"},
-					Name:    datadog.PtrString("mcnulty_query_errors"),
+					Name:    datadog.PtrString("errors"),
 				},
 			},
 			{
@@ -808,7 +810,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteDashboard(ctx, createdDashboard.GetId())
+	defer deleteDashboard(ctx, t, createdDashboard.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	getDashboard, httpresp, err := Client(ctx).DashboardsApi.GetDashboard(ctx, createdDashboard.GetId()).Execute()
@@ -875,7 +877,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating dashboard: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteDashboard(ctx, createdFreeDashboard.GetId())
+	defer deleteDashboard(ctx, t, createdFreeDashboard.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	getFreeDashboard, httpresp, err := Client(ctx).DashboardsApi.GetDashboard(ctx, createdFreeDashboard.GetId()).Execute()
@@ -1100,9 +1102,9 @@ func TestDashboardGetErrors(t *testing.T) {
 	}
 }
 
-func deleteDashboard(ctx context.Context, dashboardID string) {
+func deleteDashboard(ctx context.Context, t *testing.T, dashboardID string) {
 	_, httpresp, err := Client(ctx).DashboardsApi.DeleteDashboard(ctx, dashboardID).Execute()
 	if err != nil && httpresp.StatusCode != 404 {
-		log.Printf("Error deleting Dashboard: %v, Another test may have already deleted this dashboard.", dashboardID)
+		t.Logf("Error deleting Dashboard: %v, Another test may have already deleted this dashboard.", dashboardID)
 	}
 }

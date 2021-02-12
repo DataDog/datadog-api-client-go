@@ -9,7 +9,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"log"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -47,6 +46,9 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
 			},
 		},
+		RestrictedRoles: &[]string{
+			"94172442-be03-11e9-a77a-3b7612558ac1",
+		},
 	}
 }
 
@@ -60,6 +62,9 @@ var testUpdateMonitor = datadog.MonitorUpdateRequest{
 			Critical: datadog.PtrFloat64(2),
 			Warning:  *datadog.NewNullableFloat64(nil),
 		},
+	},
+	RestrictedRoles: &[]string{
+		"94172442-be03-11e9-a77a-3b7612558ac1",
 	},
 }
 
@@ -99,7 +104,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteMonitor(ctx, monitor.GetId())
+	defer deleteMonitor(ctx, t, monitor.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(tm.GetName(), monitor.GetName())
 	val, set := monitor.GetDeletedOk()
@@ -183,7 +188,7 @@ func TestMonitorPagination(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteMonitor(ctx, monitor.GetId())
+	defer deleteMonitor(ctx, t, monitor.GetId())
 
 	monitors, httpresp, err := Client(ctx).MonitorsApi.ListMonitors(ctx).Page(0).PageSize(1).Execute()
 	if err != nil {
@@ -213,13 +218,12 @@ func TestMonitorSyntheticsGet(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", syntheticsTest, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteSyntheticsTestIfExists(ctx, syntheticsTest.GetPublicId())
+	defer deleteSyntheticsTestIfExists(ctx, t, syntheticsTest.GetPublicId())
 
 	// Retrieve the corresponding synthetics Test monitor
 	syntheticsMonitor, httpresp, err := Client(ctx).MonitorsApi.GetMonitor(ctx, syntheticsTest.GetMonitorId()).Execute()
 	if err != nil {
 		t.Errorf("Error fetching Monitor %v: Response %v: %v", syntheticsTest.GetMonitorId(), err.(datadog.GenericOpenAPIError).Body(), err)
-		fmt.Println(httpresp)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	syntheticsMonitorOptions := syntheticsMonitor.GetOptions()
@@ -293,7 +297,7 @@ func TestMonitorUpdateErrors(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteMonitor(ctx, monitor.GetId())
+	defer deleteMonitor(ctx, t, monitor.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	updateMonitor := *datadog.NewMonitorUpdateRequestWithDefaults()
@@ -362,7 +366,7 @@ func TestMonitorsGetErrors(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteMonitor(ctx, monitor.GetId())
+	defer deleteMonitor(ctx, t, monitor.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	testCases := map[string]struct {
@@ -484,7 +488,7 @@ func TestMonitorCanDeleteErrors(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteMonitor(ctx, monitor.GetId())
+	defer deleteMonitor(ctx, t, monitor.GetId())
 	composite := *datadog.NewMonitorWithDefaults()
 	composite.SetType(datadog.MONITORTYPE_COMPOSITE)
 	composite.SetQuery(fmt.Sprintf("%d", monitor.GetId()))
@@ -492,7 +496,7 @@ func TestMonitorCanDeleteErrors(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteMonitor(ctx, composite.GetId())
+	defer deleteMonitor(ctx, t, composite.GetId())
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -553,9 +557,9 @@ func TestMonitorValidateErrors(t *testing.T) {
 	}
 }
 
-func deleteMonitor(ctx context.Context, monitorID int64) {
+func deleteMonitor(ctx context.Context, t *testing.T, monitorID int64) {
 	_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, monitorID).Execute()
 	if httpresp.StatusCode != 200 || err != nil {
-		log.Printf("Deleting Monitor: %v failed with %v, Another test may have already deleted this monitor.", monitorID, httpresp.StatusCode)
+		t.Logf("Deleting Monitor: %v failed with %v, Another test may have already deleted this monitor.", monitorID, httpresp.StatusCode)
 	}
 }

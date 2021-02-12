@@ -19,6 +19,8 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"testing"
+	"time"
 
 	"github.com/go-bdd/gobdd"
 	"github.com/mcuadros/go-lookup"
@@ -44,14 +46,52 @@ type operationParameter struct {
 	Value  *string `json:"value"`
 }
 
+// Lookup performs a lookup into a value, using a string.
+func Lookup(i interface{}, path string) (reflect.Value, error) {
+	value := reflect.ValueOf(i)
+	var parent reflect.Value
+	var err error
+	for _, part := range strings.Split(path, lookup.SplitToken) {
+		parent = value
+		value, err = lookup.LookupI(value.Interface(), part)
+		if err == nil {
+			continue
+		}
+		// try oneOf: func (obj *T) GetActualInstance() interface{}
+		var oneOf reflect.Value
+		// parent might be a pointer
+		oneOf = parent.MethodByName("GetActualInstance")
+		if !oneOf.IsValid() {
+			if !parent.CanAddr() {
+				return parent, err
+			}
+			// or parent might be a value hence get its address
+			oneOf = parent.Addr().MethodByName("GetActualInstance")
+			if !oneOf.IsValid() {
+				// give up
+				return parent, err
+			}
+		}
+		value = oneOf.Call([]reflect.Value{})[0]
+		value, err = lookup.LookupI(value.Interface(), part)
+		if err != nil {
+			break
+		}
+	}
+	return value, err
+}
+
 func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp reflect.Type) reflect.Value {
 	if p.Value != nil {
 		tpl := Templated(t, GetData(ctx), *p.Value)
 		v := reflect.New(tp)
-		json.Unmarshal([]byte(tpl), v.Interface())
+		err := json.Unmarshal([]byte(tpl), v.Interface())
+		if err != nil {
+			t.Fatalf("can't unmarshal parameter value for %s: %v", p.Name, err)
+		}
 		return v.Elem()
 	}
-	v, _ := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(*p.Source))
+	v, _ := Lookup(GetData(ctx), SnakeToCamelCase(*p.Source))
 	return v
 }
 
@@ -94,23 +134,44 @@ func Templated(t gobdd.StepTest, data interface{}, source string) string {
 	re := regexp.MustCompile(`{{ ?([^}])+ ?}}`)
 	replace := func(source string) string {
 		path := strings.Trim(source, "{ }")
-		v, err := lookup.LookupStringI(data, path)
+		v, err := Lookup(data, path)
 		if err != nil {
-			v, err = lookup.LookupStringI(data, SnakeToCamelCase(path))
+			v, err = Lookup(data, SnakeToCamelCase(path))
 			if err != nil {
 				t.Fatalf("problem with replacement of %s: %v", source, err)
 			}
+		}
+		switch v.Kind() {
+		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+			return strconv.FormatInt(v.Int(), 10)
+		case reflect.Float64, reflect.Float32:
+			return strconv.FormatFloat(v.Float(), 'f', -1, 10)
+		case reflect.Bool:
+			return strconv.FormatBool(v.Bool())
 		}
 		return v.String()
 	}
 	return re.ReplaceAllStringFunc(source, replace)
 }
 
+// GetT returns stored reference to the testing object.
+func GetT(ctx gobdd.Context) *testing.T {
+	t, err := ctx.Get(gobdd.TestingTKey{})
+	if err != nil {
+		return nil
+	}
+	tt, ok := t.(*testing.T)
+	if !ok {
+		return nil
+	}
+	return tt
+}
+
 // GetCtx returns Go context.
 func GetCtx(ctx gobdd.Context) context.Context {
 	c, err := ctx.Get(ctxKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Logf("could not get a context: %v", err)
 	}
 	return c.(context.Context)
 }
@@ -119,7 +180,7 @@ func GetCtx(ctx gobdd.Context) context.Context {
 func GetResponse(ctx gobdd.Context) []reflect.Value {
 	r, err := ctx.Get(responseKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Logf("could not get a response: %v", err)
 	}
 	return r.([]reflect.Value)
 }
@@ -140,18 +201,17 @@ func LoadRequestsUndo(file string) (map[string]UndoAction, error) {
 }
 
 // LoadGivenSteps load undo configuration.
-func LoadGivenSteps(file string) []GivenStep {
+func LoadGivenSteps(file string) ([]GivenStep, error) {
 	f, err := os.Open(file)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	defer f.Close()
 
-	byteValue, _ := ioutil.ReadAll(f)
-
 	var value []GivenStep
-	json.Unmarshal(byteValue, &value)
-	return value
+	byteValue, _ := ioutil.ReadAll(f)
+	err = json.Unmarshal(byteValue, &value)
+	return value, err
 }
 
 // SetRequestsUndo sets map with undo function for each request.
@@ -224,7 +284,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 		}
 
 		if s.Source != nil {
-			response, err = lookup.LookupStringI(response.Interface(), SnakeToCamelCase(*s.Source))
+			response, err = Lookup(response.Interface(), SnakeToCamelCase(*s.Source))
 
 			if err != nil {
 				t.Error(err)
@@ -242,6 +302,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 	if err != nil {
 		return nil, err
 	}
+	t := GetT(ctx)
 
 	// find undo definition
 	undo, ok := requestsUndo.(map[string]UndoAction)[operationID]
@@ -285,9 +346,9 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 			// first argument is always context.Context
 			in[0] = reflect.ValueOf(GetCtx(ctx))
 			for i := 1; i < undoOperation.Type().NumIn(); i++ {
-				object, err := lookup.LookupStringI(response, SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
+				object, err := Lookup(response, SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
 				if err != nil {
-					panic(err)
+					t.Fatalf("%v", err)
 				}
 				in[i] = object
 			}
@@ -295,7 +356,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 			result := request.MethodByName("Execute").Call(nil)
 
 			if result[len(result)-1].Interface() != nil {
-				fmt.Printf("error in undo %v", result[len(result)-1])
+				t.Logf("error in undo %v", result[len(result)-1])
 			}
 		}
 	}, nil
@@ -304,6 +365,25 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 // SetCtx sets Go context in BDD context.
 func SetCtx(ctx gobdd.Context, value context.Context) {
 	ctx.Set(ctxKey{}, value)
+}
+
+// SetFixtureData sets the fixture data in BDD context
+func SetFixtureData(ctx gobdd.Context) {
+	ct, _ := ctx.Get(gobdd.TestingTKey{})
+	cctx := GetCtx(ctx)
+	testName := strings.Join(strings.Split(ct.(*testing.T).Name(), "/")[1:3], "/")
+	unique := WithUniqueSurrounding(cctx, testName)
+	alnum := regexp.MustCompile(`[^A-Za-z0-9]+`)
+	data := GetData(ctx)
+	data["unique"] = unique
+	data["unique_lower"] = strings.ToLower(unique)
+	data["unique_alnum"] = string(alnum.ReplaceAll([]byte(unique), []byte("")))
+	data["now_ts"] = ClockFromContext(cctx).Now().Unix()
+	data["now_iso"] = ClockFromContext(cctx).Now().Format(time.RFC3339)
+	data["hour_later_ts"] = ClockFromContext(cctx).Now().Add(time.Hour).Unix()
+	data["hour_later_iso"] = ClockFromContext(cctx).Now().Add(time.Hour).Format(time.RFC3339)
+	data["hour_ago_ts"] = ClockFromContext(cctx).Now().Add(-time.Hour).Unix()
+	data["hour_ago_iso"] = ClockFromContext(cctx).Now().Add(-time.Hour).Format(time.RFC3339)
 }
 
 // SetClient sets client reflection.
@@ -320,7 +400,7 @@ func SetAPI(ctx gobdd.Context, value interface{}) {
 func GetData(ctx gobdd.Context) map[string]interface{} {
 	c, err := ctx.Get(dataKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Fatalf("could not get data: %v", err)
 	}
 	return c.(map[string]interface{})
 }
@@ -334,7 +414,7 @@ func SetData(ctx gobdd.Context, value map[string]interface{}) {
 func GetRequestParameters(ctx gobdd.Context) map[string]interface{} {
 	c, err := ctx.Get(requestParamsKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Fatalf("could not get request parameters: %v", err)
 	}
 	return c.(map[string]interface{})
 }
@@ -343,7 +423,7 @@ func GetRequestParameters(ctx gobdd.Context) map[string]interface{} {
 func GetRequestArguments(ctx gobdd.Context) []interface{} {
 	c, err := ctx.Get(requestArgsKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Fatalf("could not get request arguments: %v", err)
 	}
 	return c.([]interface{})
 }
@@ -357,7 +437,7 @@ func SetCleanup(ctx gobdd.Context, value map[string]func()) {
 func GetCleanup(ctx gobdd.Context) map[string]func() {
 	c, err := ctx.Get(cleanupKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Fatalf("could not get cleanup: %v", err)
 	}
 	return c.(map[string]func())
 }
@@ -411,7 +491,7 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, error) {
 	in[0] = reflect.ValueOf(GetCtx(ctx))
 	requestArgs := GetRequestArguments(ctx)
 
-	if len(requestArgs) >= f.Type().NumIn() -1 {
+	if len(requestArgs) >= f.Type().NumIn()-1 {
 		for i := 1; i < f.Type().NumIn(); i++ {
 			object := requestArgs[i-1]
 			in[i] = object.(reflect.Value)
@@ -433,7 +513,7 @@ func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 }
 
 func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path string) {
-	value, err := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(path))
+	value, err := Lookup(GetData(ctx), SnakeToCamelCase(path))
 	if err != nil {
 		t.Errorf("key %s: %v", path, err)
 	}
@@ -523,6 +603,15 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	result := request.MethodByName("Execute").Call(nil)
 	ctx.Set(responseKey{}, result)
 
+	// Report probable serialization errors
+	if len(result) > 2 {
+		code := result[len(result)-2].Interface().(*http.Response).StatusCode
+		err := result[len(result)-1].Interface()
+		if code < 300 && err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	}
+
 	if undo != nil {
 		GetCleanup(ctx)["01-undo"] = undo(result[0].Interface())
 	}
@@ -548,7 +637,7 @@ func stringToType(s string, t interface{}) (interface{}, error) {
 }
 
 func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value string) {
-	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
 		t.Errorf("could not lookup response value %s in %v: %v", responsePath, GetResponse(ctx)[0].Interface(), err)
 	}
@@ -566,11 +655,11 @@ func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value
 }
 
 func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, fixturePath string) {
-	fixtureValue, err := lookup.LookupStringI(GetData(ctx), SnakeToCamelCase(fixturePath))
+	fixtureValue, err := Lookup(GetData(ctx), SnakeToCamelCase(fixturePath))
 	if err != nil {
 		t.Fatalf("could not lookup fixture value %s: %v", fixturePath, err)
 	}
-	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
 		t.Fatalf("could not lookup response value %s: %v", SnakeToCamelCase(responsePath), err)
 	}
@@ -589,7 +678,7 @@ func expectLengthEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string,
 	if err != nil {
 		t.Fatalf("assertion length value is not a number %s: %v", fixtureLength, err)
 	}
-	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
 		t.Fatalf("could not lookup response value %s: %v", responsePath, err)
 	}
@@ -600,7 +689,7 @@ func expectLengthEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string,
 }
 
 func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
-	responseValue, err := lookup.LookupStringI(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
 	if err != nil {
 		t.Errorf("could not lookup value: %v", err)
 	}

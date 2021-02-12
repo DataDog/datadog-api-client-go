@@ -54,26 +54,7 @@ tags:
     description: Find out more at
     url: https://docs.datadoghq.com/account_management/api-app-keys/
   name: Key Management
-- description: |-
-    Search your logs and send them to your Datadog platform over HTTP. Limits per HTTP request are:
-
-    - Maximum content size per payload (uncompressed): 5MB
-    - Maximum size for a single log: 1MB
-    - Maximum array size if sending multiple logs in an array: 1000 entries
-
-    Any log exceeding 1MB is accepted and truncated by Datadog:
-    - For a single log request, the API truncates the log at 1MB and returns a 2xx.
-    - For a multi-logs request, the API processes all logs, truncates only logs larger than 1MB, and returns a 2xx.
-
-    Datadog recommends sending your logs compressed.
-    Add the `Content-Encoding: gzip` header to the request when sending compressed logs.
-
-    The status codes answered by the HTTP API are:
-    - 200: OK
-    - 400: Bad request (likely an issue in the payload formatting)
-    - 403: Permission issue (likely using an invalid API Key)
-    - 413: Payload too large (batch is above 5MB uncompressed)
-    - 5xx: Internal error, request should be retried after some time
+- description: Search your logs and send them to your Datadog platform over HTTP.
   name: Logs
 - description: |-
     Archives forward all the logs ingested to a cloud storage system.
@@ -90,6 +71,23 @@ tags:
     description: Find out more at
     url: https://docs.datadoghq.com/logs/logs_to_metrics/
   name: Logs Metrics
+- description: |-
+    The metrics endpoint allows you to:
+
+    - Post metrics data so it can be graphed on Datadog’s dashboards
+    - Query metrics from any time period
+    - Modify tag configurations for metrics
+
+    **Note**: A graph can only contain a set number of points
+    and as the timeframe over which a metric is viewed increases,
+    aggregation between points occurs to stay below that set number.
+
+    Datadog has a soft limit of 100 timeseries per host
+    where a timeseries is defined as a unique combination of metric name and tag.
+
+    The Post, Patch, and Delete `manage_tags` API methods can only be performed by
+    a user who has the `Manage Tags for Metrics` permission.
+  name: Metrics
 - description: The processes API allows you to query processes data for your organization.
   name: Processes
 - description: |-
@@ -932,7 +930,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
-      summary: Get a Dashboard List
+      summary: Get items of a Dashboard List
       tags:
       - Dashboard Lists
       x-undo:
@@ -1701,9 +1699,6 @@ paths:
       x-codegen-request-body-name: body
       x-undo:
         type: idempotent
-      x-unstable: |-
-        **Note**: This endpoint is in public beta.
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     get:
       description: Returns all read roles a given archive is restricted to.
       operationId: ListArchiveReadRoles
@@ -1747,9 +1742,6 @@ paths:
       x-codegen-request-body-name: body
       x-undo:
         type: safe
-      x-unstable: |-
-        **Note**: This endpoint is in public beta.
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     post:
       description: Adds a read role to an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))
       operationId: AddReadRoleToArchive
@@ -1795,9 +1787,6 @@ paths:
       x-codegen-request-body-name: body
       x-undo:
         type: unsafe
-      x-unstable: |-
-        **Note**: This endpoint is in public beta.
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/logs/config/metrics:
     get:
       description: Get the list of configured log-based metrics with their definitions.
@@ -2148,9 +2137,6 @@ paths:
       - Logs
       x-undo:
         type: safe
-      x-unstable: |-
-        **Note**: This endpoint is in public beta.
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v2/logs/events/search:
     post:
       description: |-
@@ -2197,9 +2183,319 @@ paths:
       x-codegen-request-body-name: body
       x-undo:
         type: safe
+  /api/v2/metrics:
+    get:
+      description: |-
+        Returns all configured count/gauge/rate/distribution metric names
+        (with additional filters if specified).
+      operationId: ListTagConfigurations
+      parameters:
+      - description: Filter metrics that have configured tags.
+        example: true
+        explode: true
+        in: query
+        name: filter[configured]
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter tag configurations by configured tags.
+        example: app
+        explode: true
+        in: query
+        name: filter[tags_configured]
+        required: false
+        schema:
+          description: Tag keys to filter by.
+          type: string
+        style: form
+      - description: Filter tag configurations by metric type.
+        explode: true
+        in: query
+        name: filter[metric_type]
+        required: false
+        schema:
+          $ref: '#/components/schemas/MetricTagConfigurationMetricTypes'
+        style: form
+      - description: |-
+          Filter distributions with additional percentile
+          aggregations enabled or disabled.
+        example: true
+        explode: true
+        in: query
+        name: filter[include_percentiles]
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsAndMetricTagConfigurationsResponse'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Too Many Requests
+      summary: List Tag Configurations
+      tags:
+      - Metrics
+      x-undo:
+        type: safe
       x-unstable: |-
-        **Note**: This endpoint is in public beta.
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+        **Note: This endpoint is in public beta and is only accessible for customers who have Metrics Without Limits&trade;.
+        If you’re interested in this feature, please contact your Customer Support Manager.**
+  /api/v2/metrics/{metric_name}/tags:
+    delete:
+      description: |-
+        Deletes a metric's tag configuration. Can only be used with application
+        keys from users with the `Manage Tags for Metrics` permission.
+      operationId: DeleteTagConfiguration
+      parameters:
+      - description: The name of the metric.
+        example: dist.http.endpoint.request
+        explode: false
+        in: path
+        name: metric_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Too Many Requests
+      summary: Delete a Tag Configuration
+      tags:
+      - Metrics
+      x-undo:
+        type: idempotent
+      x-unstable: |-
+        **Note: This endpoint is in public beta and is only accessible for customers who have Metrics Without Limits&trade;.
+        If you’re interested in this feature, please contact your Customer Support Manager.**
+    get:
+      description: Returns the tag configuration for the given metric name.
+      operationId: ListTagConfigurationByName
+      parameters:
+      - description: The name of the metric.
+        example: dist.http.endpoint.request
+        explode: false
+        in: path
+        name: metric_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricTagConfigurationResponse'
+          description: Success
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Too Many Requests
+      summary: List Tag Configuration by Name
+      tags:
+      - Metrics
+      x-undo:
+        type: safe
+      x-unstable: |-
+        **Note: This endpoint is in public beta and is only accessible for customers who have Metrics Without Limits&trade;.
+        If you’re interested in this feature, please contact your Customer Support Manager.**
+    patch:
+      description: |-
+        Update the tag configuration of a metric. Can only be used with
+        application keys from users with the `Manage Tags for Metrics` permission.
+      operationId: UpdateTagConfiguration
+      parameters:
+      - description: The name of the metric.
+        example: dist.http.endpoint.request
+        explode: false
+        in: path
+        name: metric_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricTagConfigurationUpdateRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricTagConfigurationResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Unprocessable Entity
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Too Many Requests
+      summary: Update a Tag Configuration
+      tags:
+      - Metrics
+      x-codegen-request-body-name: body
+      x-undo:
+        type: idempotent
+      x-unstable: |-
+        **Note: This endpoint is in public beta and is only accessible for customers who have Metrics Without Limits&trade;.
+        If you’re interested in this feature, please contact your Customer Support Manager.**
+    post:
+      description: |-
+        Create and define a list of queryable tag keys for a count/gauge/rate/distribution metric.
+        Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
+      operationId: CreateTagConfiguration
+      parameters:
+      - description: The name of the metric.
+        example: dist.http.endpoint.request
+        explode: false
+        in: path
+        name: metric_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricTagConfigurationCreateRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricTagConfigurationResponse'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Too Many Requests
+      summary: Create a Tag Configuration
+      tags:
+      - Metrics
+      x-codegen-request-body-name: body
+      x-given:
+        metric_tag_configuration:
+          parameters:
+          - name: metric_name
+            value: '"{{ unique_alnum }}"'
+          - name: body
+            value: |-
+              {
+                "data": {
+                  "attributes": {
+                    "tags":["app", "datacenter", "{{ unique_alnum }}"],
+                    "metric_type":"distribution"
+                   },
+                   "type": "manage_tags",
+                   "id": "{{ unique_alnum }}"
+                }
+              }
+          step: there is a valid "metric_tag_configuration" in the system
+      x-undo:
+        operationId: DeleteTagConfiguration
+        parameters:
+        - name: metric_name
+          source: data.id
+        type: unsafe
+      x-unstable: |-
+        **Note: This endpoint is in public beta and is only accessible for customers who have Metrics Without Limits&trade;.
+        If you’re interested in this feature, please contact your Customer Support Manager.**
   /api/v2/permissions:
     get:
       description: Returns a list of all permissions, including name, description,
@@ -4562,6 +4858,16 @@ components:
       explode: false
       in: path
       name: metric_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    MetricName:
+      description: The name of the metric.
+      example: dist.http.endpoint.request
+      explode: false
+      in: path
+      name: metric_name
       required: true
       schema:
         type: string
@@ -8377,6 +8683,279 @@ components:
             from the other indexes
           type: string
       type: object
+    Metric:
+      description: Object for a single metric tag configuration.
+      example:
+        id: metric.foo.bar
+        type: metric
+      properties:
+        id:
+          description: The metric name for this resource.
+          example: test.metric.latency
+          type: string
+        type:
+          $ref: '#/components/schemas/MetricType'
+      type: object
+    MetricName:
+      description: The metric name for this resource.
+      example: test.metric.latency
+      type: string
+    MetricTagConfiguration:
+      description: Object for a single metric tag configuration.
+      example:
+        attributes:
+          created_at: 2020-03-31T09:48:37.463835Z
+          metric_type: gauge
+          modified_at: 2020-04-31T09:48:37.463835Z
+          tags:
+          - app
+          - datacenter
+        id: http.request.latency
+        type: manage_tags
+      properties:
+        attributes:
+          $ref: '#/components/schemas/MetricTagConfigurationAttributes'
+        id:
+          description: The metric name for this resource.
+          example: test.metric.latency
+          type: string
+        type:
+          $ref: '#/components/schemas/MetricTagConfigurationType'
+      type: object
+    MetricTagConfigurationAttributes:
+      description: Object containing the definition of a metric tag configuration
+        attributes.
+      properties:
+        created_at:
+          description: Timestamp when the tag configuration was created.
+          example: 2020-03-31T09:48:37.463835Z
+          format: date-time
+          type: string
+        include_percentiles:
+          description: |-
+            Toggle to turn on/off percentile aggregations for distribution metrics.
+            Only present when the `metric_type` is `distribution`.
+          example: true
+          type: boolean
+        metric_type:
+          $ref: '#/components/schemas/MetricTagConfigurationMetricTypes'
+        modified_at:
+          description: Timestamp when the tag configuration was last modified.
+          example: 2020-03-31T09:48:37.463835Z
+          format: date-time
+          type: string
+        tags:
+          description: List of tag keys on which to group.
+          example:
+          - app
+          - datacenter
+          items:
+            description: Tag keys to group by.
+            type: string
+          type: array
+      type: object
+    MetricTagConfigurationCreateAttributes:
+      description: Object containing the definition of a metric tag configuration
+        to be created.
+      properties:
+        include_percentiles:
+          default: false
+          description: |-
+            Toggle to include/exclude percentiles for a distribution metric.
+            Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
+          example: true
+          type: boolean
+        metric_type:
+          $ref: '#/components/schemas/MetricTagConfigurationMetricTypes'
+        tags:
+          default: []
+          description: A list of tag keys that will be queryable for your metric.
+          example:
+          - app
+          - datacenter
+          items:
+            description: Tag keys to group by.
+            type: string
+          type: array
+      required:
+      - metric_type
+      - tags
+      type: object
+    MetricTagConfigurationCreateData:
+      description: Object for a single metric to be configure tags on.
+      example:
+        attributes:
+          include_percentiles: false
+          metric_type: distribution
+          tags:
+          - app
+          - datacenter
+        id: http.endpoint.request
+        type: manage_tags
+      properties:
+        attributes:
+          $ref: '#/components/schemas/MetricTagConfigurationCreateAttributes'
+        id:
+          description: The metric name for this resource.
+          example: test.metric.latency
+          type: string
+        type:
+          $ref: '#/components/schemas/MetricTagConfigurationType'
+      required:
+      - id
+      - type
+      type: object
+    MetricTagConfigurationCreateRequest:
+      description: Request object that includes the metric that you would like to
+        configure tags for.
+      example:
+        data:
+          attributes:
+            include_percentiles: false
+            metric_type: distribution
+            tags:
+            - app
+            - datacenter
+          id: http.endpoint.request
+          type: manage_tags
+      properties:
+        data:
+          $ref: '#/components/schemas/MetricTagConfigurationCreateData'
+      required:
+      - data
+      type: object
+    MetricTagConfigurationMetricTypes:
+      default: gauge
+      description: The metric's type.
+      enum:
+      - gauge
+      - count
+      - distribution
+      example: count
+      type: string
+      x-enum-varnames:
+      - GAUGE
+      - COUNT
+      - DISTRIBUTION
+    MetricTagConfigurationResponse:
+      description: Response object which includes a single metric's tag configuration.
+      example:
+        data:
+          attributes:
+            created_at: 2020-03-31T09:48:37.463835Z
+            metric_type: gauge
+            modified_at: 2020-04-31T09:48:37.463835Z
+            tags:
+            - app
+            - datacenter
+          id: http.request.latency
+          type: manage_tags
+      properties:
+        data:
+          $ref: '#/components/schemas/MetricTagConfiguration'
+      readOnly: true
+      type: object
+    MetricTagConfigurationType:
+      default: manage_tags
+      description: The metric tag configuration resource type.
+      enum:
+      - manage_tags
+      example: manage_tags
+      type: string
+      x-enum-varnames:
+      - MANAGE_TAGS
+    MetricTagConfigurationUpdateAttributes:
+      description: Object containing the definition of a metric tag configuration
+        to be updated.
+      properties:
+        include_percentiles:
+          default: false
+          description: |-
+            Toggle to include/exclude percentiles for a distribution metric.
+            Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
+          example: true
+          type: boolean
+        tags:
+          default: []
+          description: A list of tag keys that will be queryable for your metric.
+          example:
+          - app
+          - datacenter
+          items:
+            description: Tag keys to group by.
+            type: string
+          type: array
+      type: object
+    MetricTagConfigurationUpdateData:
+      description: Object for a single tag configuration to be edited.
+      example:
+        attributes:
+          group_by:
+          - app
+          - datacenter
+          include_percentiles: false
+        id: http.endpoint.request
+        type: manage_tags
+      properties:
+        attributes:
+          $ref: '#/components/schemas/MetricTagConfigurationUpdateAttributes'
+        id:
+          description: The metric name for this resource.
+          example: test.metric.latency
+          type: string
+        type:
+          $ref: '#/components/schemas/MetricTagConfigurationType'
+      required:
+      - id
+      - type
+      type: object
+    MetricTagConfigurationUpdateRequest:
+      description: Request object that includes the metric that you would like to
+        edit the tag configuration on.
+      example:
+        data:
+          attributes:
+            group_by:
+            - app
+            - datacenter
+            include_percentiles: false
+          id: http.endpoint.request
+          type: manage_tags
+      properties:
+        data:
+          $ref: '#/components/schemas/MetricTagConfigurationUpdateData'
+      required:
+      - data
+      type: object
+    MetricType:
+      default: metrics
+      description: The metric resource type.
+      enum:
+      - metrics
+      example: metrics
+      type: string
+      x-enum-varnames:
+      - METRICS
+    MetricsAndMetricTagConfigurations:
+      description: Object for a metrics and metric tag configurations.
+      oneOf:
+      - $ref: '#/components/schemas/Metric'
+      - $ref: '#/components/schemas/MetricTagConfiguration'
+      type: object
+    MetricsAndMetricTagConfigurationsResponse:
+      description: Response object that includes metrics and metric tag configurations.
+      example:
+        data:
+        - null
+        - null
+      properties:
+        data:
+          description: Array of metrics and metric tag configurations.
+          items:
+            $ref: '#/components/schemas/MetricsAndMetricTagConfigurations'
+          type: array
+      readOnly: true
+      type: object
     Organization:
       description: Organization object.
       properties:
@@ -10210,11 +10789,11 @@ components:
       example:
         name: name
         title: title
-        email: joe.doe@example.com
+        email: jane.doe@example.com
       properties:
         email:
           description: The email of the user.
-          example: joe.doe@example.com
+          example: jane.doe@example.com
           type: string
         name:
           description: The name of the user.
@@ -10238,7 +10817,7 @@ components:
         attributes:
           name: name
           title: title
-          email: joe.doe@example.com
+          email: jane.doe@example.com
         type: users
       properties:
         attributes:
@@ -10265,7 +10844,7 @@ components:
           attributes:
             name: name
             title: title
-            email: joe.doe@example.com
+            email: jane.doe@example.com
           type: users
       properties:
         data:

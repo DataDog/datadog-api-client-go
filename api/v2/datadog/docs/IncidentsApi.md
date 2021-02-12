@@ -47,6 +47,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewIncidentCreateRequest(*datadog.NewIncidentCreateData(*datadog.NewIncidentCreateAttributes(false, "A test incident title"), datadog.IncidentType("incidents"))) // IncidentCreateRequest | Incident payload.
 
     configuration := datadog.NewConfiguration()
@@ -128,6 +136,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     incidentId := "incidentId_example" // string | The UUID the incident.
 
@@ -212,6 +228,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     incidentId := "incidentId_example" // string | The UUID the incident.
     include := []datadog.IncidentRelatedObject{datadog.IncidentRelatedObject("users")} // []IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
@@ -302,6 +326,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     include := []datadog.IncidentRelatedObject{datadog.IncidentRelatedObject("users")} // []IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageOffset := int64(789) // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
@@ -388,6 +420,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     incidentId := "incidentId_example" // string | The UUID the incident.
     body := *datadog.NewIncidentUpdateRequest(*datadog.NewIncidentUpdateData("00000000-0000-0000-0000-000000000000", datadog.IncidentType("incidents"))) // IncidentUpdateRequest | Incident Payload.

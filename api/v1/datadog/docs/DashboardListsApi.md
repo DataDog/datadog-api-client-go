@@ -47,6 +47,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     body := *datadog.NewDashboardList("My Dashboard") // DashboardList | Create a dashboard list request body.
 
     configuration := datadog.NewConfiguration()
@@ -128,6 +136,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     listId := int64(789) // int64 | ID of the dashboard list to delete.
 
@@ -215,6 +231,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
     listId := int64(789) // int64 | ID of the dashboard list to fetch.
 
     configuration := datadog.NewConfiguration()
@@ -301,6 +325,14 @@ func main() {
         },
     )
 
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
 
     configuration := datadog.NewConfiguration()
 
@@ -377,6 +409,14 @@ func main() {
             },
         },
     )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
 
     listId := int64(789) // int64 | ID of the dashboard list to update.
     body := *datadog.NewDashboardList("My Dashboard") // DashboardList | Update a dashboard list request body.
