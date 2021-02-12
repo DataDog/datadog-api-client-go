@@ -121,6 +121,11 @@ docs/FreeTextWidgetDefinition.md
 docs/FreeTextWidgetDefinitionType.md
 docs/GCPAccount.md
 docs/GCPIntegrationApi.md
+docs/GeomapWidgetDefinition.md
+docs/GeomapWidgetDefinitionStyle.md
+docs/GeomapWidgetDefinitionType.md
+docs/GeomapWidgetDefinitionView.md
+docs/GeomapWidgetRequest.md
 docs/GraphSnapshot.md
 docs/GroupWidgetDefinition.md
 docs/GroupWidgetDefinitionType.md
@@ -620,6 +625,11 @@ model_formula_and_function_response_format.go
 model_free_text_widget_definition.go
 model_free_text_widget_definition_type.go
 model_gcp_account.go
+model_geomap_widget_definition.go
+model_geomap_widget_definition_style.go
+model_geomap_widget_definition_type.go
+model_geomap_widget_definition_view.go
+model_geomap_widget_request.go
 model_graph_snapshot.go
 model_group_widget_definition.go
 model_group_widget_definition_type.go
