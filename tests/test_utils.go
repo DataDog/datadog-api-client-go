@@ -23,12 +23,12 @@ import (
 	"testing"
 	"time"
 
-	api "github.com/DataDog/datadog-api-client-go"
 	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/jonboulle/clockwork"
 	"github.com/stretchr/testify/require"
 	ddhttp "gopkg.in/DataDog/dd-trace-go.v1/contrib/net/http"
+	ddtesting "gopkg.in/DataDog/dd-trace-go.v1/contrib/testing"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
@@ -199,7 +199,7 @@ func ConfigureTracer(m *testing.M) {
 	}
 	tracer.Start(
 		tracer.WithService(service),
-		tracer.WithServiceVersion(api.Version),
+		// tracer.WithServiceVersion(api.Version),
 	)
 	code := m.Run()
 	tracer.Stop()
@@ -252,24 +252,14 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		t.Log(err.Error())
 		tag = "features"
 	}
-	span, ctx := tracer.StartSpanFromContext(
-		ctx,
-		"test",
-		tracer.SpanType("test"),
-		tracer.ResourceName(t.Name()),
-		tracer.Tag(ext.AnalyticsEvent, true),
-		tracer.Measured(),
-	)
-	// We need to make the tag be something that is then searchable in monitors
-	// https://docs.datadoghq.com/tracing/guide/metrics_namespace/#errors
-	// "version" is really the only one we can use here
-	// NOTE: version is treated in slightly different way, because it's a special tag;
-	// if we set it in StartSpanFromContext, it would get overwritten
-	span.SetTag("version", tag)
-	return ctx, func() {
-		span.SetTag(ext.Error, t.Failed())
-		span.Finish()
-	}
+	return ddtesting.StartSpanWithFinish(ctx, t, ddtesting.WithSkipFrames(2), ddtesting.WithSpanOptions(
+		// We need to make the tag be something that is then searchable in monitors
+		// https://docs.datadoghq.com/tracing/guide/metrics_namespace/#errors
+		// "version" is really the only one we can use here
+		// NOTE: version is treated in slightly different way, because it's a special tag;
+		// if we set it in StartSpanFromContext, it would get overwritten
+		tracer.Tag(ext.Version, tag),
+	))
 }
 
 func createWithDir(path string) (*os.File, error) {
