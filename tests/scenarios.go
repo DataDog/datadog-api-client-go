@@ -61,20 +61,20 @@ func Lookup(i interface{}, path string) (reflect.Value, error) {
 		var oneOf reflect.Value
 		// parent might be a pointer
 		oneOf = parent.MethodByName("GetActualInstance")
-		if (!oneOf.IsValid()) {
-			if (!parent.CanAddr()) {
+		if !oneOf.IsValid() {
+			if !parent.CanAddr() {
 				return parent, err
 			}
 			// or parent might be a value hence get its address
 			oneOf = parent.Addr().MethodByName("GetActualInstance")
-			if (!oneOf.IsValid()) {
+			if !oneOf.IsValid() {
 				// give up
 				return parent, err
 			}
 		}
 		value = oneOf.Call([]reflect.Value{})[0]
 		value, err = lookup.LookupI(value.Interface(), part)
-		if (err != nil) {
+		if err != nil {
 			break
 		}
 	}
@@ -154,11 +154,24 @@ func Templated(t gobdd.StepTest, data interface{}, source string) string {
 	return re.ReplaceAllStringFunc(source, replace)
 }
 
+// GetT returns stored reference to the testing object.
+func GetT(ctx gobdd.Context) *testing.T {
+	t, err := ctx.Get(gobdd.TestingTKey{})
+	if err != nil {
+		return nil
+	}
+	tt, ok := t.(*testing.T)
+	if !ok {
+		return nil
+	}
+	return tt
+}
+
 // GetCtx returns Go context.
 func GetCtx(ctx gobdd.Context) context.Context {
 	c, err := ctx.Get(ctxKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Logf("could not get a context: %v", err)
 	}
 	return c.(context.Context)
 }
@@ -167,7 +180,7 @@ func GetCtx(ctx gobdd.Context) context.Context {
 func GetResponse(ctx gobdd.Context) []reflect.Value {
 	r, err := ctx.Get(responseKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Logf("could not get a response: %v", err)
 	}
 	return r.([]reflect.Value)
 }
@@ -188,18 +201,17 @@ func LoadRequestsUndo(file string) (map[string]UndoAction, error) {
 }
 
 // LoadGivenSteps load undo configuration.
-func LoadGivenSteps(file string) []GivenStep {
+func LoadGivenSteps(file string) ([]GivenStep, error) {
 	f, err := os.Open(file)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	defer f.Close()
 
-	byteValue, _ := ioutil.ReadAll(f)
-
 	var value []GivenStep
-	json.Unmarshal(byteValue, &value)
-	return value
+	byteValue, _ := ioutil.ReadAll(f)
+	err = json.Unmarshal(byteValue, &value)
+	return value, err
 }
 
 // SetRequestsUndo sets map with undo function for each request.
@@ -290,6 +302,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 	if err != nil {
 		return nil, err
 	}
+	t := GetT(ctx)
 
 	// find undo definition
 	undo, ok := requestsUndo.(map[string]UndoAction)[operationID]
@@ -335,7 +348,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 			for i := 1; i < undoOperation.Type().NumIn(); i++ {
 				object, err := Lookup(response, SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
 				if err != nil {
-					panic(err)
+					t.Fatalf("%v", err)
 				}
 				in[i] = object
 			}
@@ -343,7 +356,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 			result := request.MethodByName("Execute").Call(nil)
 
 			if result[len(result)-1].Interface() != nil {
-				fmt.Printf("error in undo %v", result[len(result)-1])
+				t.Logf("error in undo %v", result[len(result)-1])
 			}
 		}
 	}, nil
@@ -387,7 +400,7 @@ func SetAPI(ctx gobdd.Context, value interface{}) {
 func GetData(ctx gobdd.Context) map[string]interface{} {
 	c, err := ctx.Get(dataKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Fatalf("could not get data: %v", err)
 	}
 	return c.(map[string]interface{})
 }
@@ -401,7 +414,7 @@ func SetData(ctx gobdd.Context, value map[string]interface{}) {
 func GetRequestParameters(ctx gobdd.Context) map[string]interface{} {
 	c, err := ctx.Get(requestParamsKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Fatalf("could not get request parameters: %v", err)
 	}
 	return c.(map[string]interface{})
 }
@@ -410,7 +423,7 @@ func GetRequestParameters(ctx gobdd.Context) map[string]interface{} {
 func GetRequestArguments(ctx gobdd.Context) []interface{} {
 	c, err := ctx.Get(requestArgsKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Fatalf("could not get request arguments: %v", err)
 	}
 	return c.([]interface{})
 }
@@ -424,7 +437,7 @@ func SetCleanup(ctx gobdd.Context, value map[string]func()) {
 func GetCleanup(ctx gobdd.Context) map[string]func() {
 	c, err := ctx.Get(cleanupKey{})
 	if err != nil {
-		panic(err)
+		GetT(ctx).Fatalf("could not get cleanup: %v", err)
 	}
 	return c.(map[string]func())
 }

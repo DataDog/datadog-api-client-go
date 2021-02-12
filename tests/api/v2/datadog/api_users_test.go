@@ -3,7 +3,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"log"
 	"strings"
 	"testing"
 
@@ -21,12 +20,12 @@ func testingUserCreateAttributes(ctx context.Context, t *testing.T) *datadog.Use
 	return uca
 }
 
-func disableUser(ctx context.Context, userID string) {
+func disableUser(ctx context.Context, t *testing.T, userID string) {
 	_, err := Client(ctx).UsersApi.DisableUser(ctx, userID).Execute()
 	if err == nil {
 		return
 	}
-	log.Printf("Error disabling User: %v, Another test may have already disabled this user: %s", userID, err.Error())
+	t.Logf("Error disabling User: %v, Another test may have already disabled this user: %s", userID, err.Error())
 }
 
 func TestUserLifecycle(t *testing.T) {
@@ -47,7 +46,7 @@ func TestUserLifecycle(t *testing.T) {
 	assert.Equal(httpresp.StatusCode, 201)
 	urData := ur.GetData()
 	uid := urData.GetId()
-	defer disableUser(ctx, uid)
+	defer disableUser(ctx, t, uid)
 
 	urAttributes := urData.GetAttributes()
 	assert.Equal(urAttributes.GetEmail(), uca.GetEmail())
@@ -181,7 +180,7 @@ func TestUserInvitation(t *testing.T) {
 	assert.Equal(httpresp.StatusCode, 201)
 	urData := ur.GetData()
 	id := urData.GetId()
-	defer disableUser(ctx, id)
+	defer disableUser(ctx, t, id)
 
 	// first, create the user invitation
 	rtud := datadog.NewRelationshipToUserDataWithDefaults()

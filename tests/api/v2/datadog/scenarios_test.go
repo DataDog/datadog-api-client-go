@@ -88,7 +88,11 @@ func TestScenarios(t *testing.T) {
 	s.AddStep(`an instance of "([^"]+)" API`, anInstanceOf)
 	s.AddStep(`operation "([^"]+)" enabled`, enableOperations)
 
-	for _, givenStep := range tests.LoadGivenSteps("./features/given.json") {
+	steps, err := tests.LoadGivenSteps("./features/given.json")
+	if err != nil {
+		t.Fatalf("could not load given steps: %v", err)
+	}
+	for _, givenStep := range steps {
 		givenStep.RegisterSuite(s)
 	}
 

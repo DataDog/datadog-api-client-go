@@ -379,7 +379,6 @@ func removeURLSecrets(u *url.URL) string {
 	u.RawQuery = q.Encode()
 	site, ok := os.LookupEnv("DD_TEST_SITE")
 	if ok {
-		fmt.Println("!!! WARN: Replacing DD_TEST_SITE by 'datadoghq.com' for request matching")
 		u.Host = strings.Replace(u.Host, site, "datadoghq.com", 1)
 	}
 	return u.String()
@@ -389,20 +388,17 @@ func removeURLSecrets(u *url.URL) string {
 func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	// Default matching on method and URL without secrets
 	if !(r.Method == i.Method && removeURLSecrets(r.URL) == i.URL) {
-		log.Printf("HTTP method: %s != %s; URL: %s != %s", r.Method, i.Method, removeURLSecrets(r.URL), i.URL)
 		return false
 	}
 
 	// Request does not contain body (e.g. `GET`)
 	if r.Body == nil {
-		log.Printf("request body is empty and cassette body is: %s", i.Body)
 		return i.Body == ""
 	}
 
 	// Load request body
 	var b bytes.Buffer
 	if _, err := b.ReadFrom(r.Body); err != nil {
-		log.Printf("could not read request body: %v\n", err)
 		return false
 	}
 	r.Body = ioutil.NopCloser(&b)
@@ -420,12 +416,6 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 				matched = true
 			}
 		}
-	}
-
-	if !matched {
-		log.Printf("%s != %s", b.String(), i.Body)
-		log.Printf("full cassette info: %v", i)
-		log.Printf("full request info: %v", *r)
 	}
 	return matched
 }
@@ -487,7 +477,6 @@ func WrapRoundTripper(rt http.RoundTripper, opts ...ddhttp.RoundTripperOption) h
 				var b bytes.Buffer
 				tee := io.TeeReader(r.Body, &b)
 				msg, _ := ioutil.ReadAll(tee)
-				fmt.Println(msg)
 
 				span.SetTag(ext.Error, true)
 				span.SetTag(ext.ErrorMsg, msg)
