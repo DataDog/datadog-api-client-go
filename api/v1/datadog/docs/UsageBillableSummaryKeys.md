@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **NpmFlowSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
 **NpmHostTop99p** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
 **RumSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
+**ServerlessInvocationSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
 **SiemSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
 **SyntheticsApiTestsSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
 **SyntheticsBrowserChecksSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
@@ -391,6 +392,31 @@ SetRumSum sets RumSum field to given value.
 `func (o *UsageBillableSummaryKeys) HasRumSum() bool`
 
 HasRumSum returns a boolean if a field has been set.
+
+### GetServerlessInvocationSum
+
+`func (o *UsageBillableSummaryKeys) GetServerlessInvocationSum() UsageBillableSummaryBody`
+
+GetServerlessInvocationSum returns the ServerlessInvocationSum field if non-nil, zero value otherwise.
+
+### GetServerlessInvocationSumOk
+
+`func (o *UsageBillableSummaryKeys) GetServerlessInvocationSumOk() (*UsageBillableSummaryBody, bool)`
+
+GetServerlessInvocationSumOk returns a tuple with the ServerlessInvocationSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerlessInvocationSum
+
+`func (o *UsageBillableSummaryKeys) SetServerlessInvocationSum(v UsageBillableSummaryBody)`
+
+SetServerlessInvocationSum sets ServerlessInvocationSum field to given value.
+
+### HasServerlessInvocationSum
+
+`func (o *UsageBillableSummaryKeys) HasServerlessInvocationSum() bool`
+
+HasServerlessInvocationSum returns a boolean if a field has been set.
 
 ### GetSiemSum
 
