@@ -19,9 +19,9 @@ require (
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
 	golang.org/x/sys v0.0.0-20200420163511-1957bb5e6d1f // indirect
 	golang.org/x/time v0.0.0-20200416051211-89c76fbcd5d1 // indirect
-	gopkg.in/DataDog/dd-trace-go.v1 v1.29.0-alpha.1.0.20210128154316-c84d7933b726
+	gopkg.in/DataDog/dd-trace-go.v1 v1.29.0-alpha.1.0.20210212162759-6903fc5e42cd
 	gopkg.in/h2non/gock.v1 v1.0.15
 	gotest.tools v2.2.0+incompatible
 )
 
-replace gopkg.in/DataDog/dd-trace-go.v1 => github.com/DataDog/dd-trace-go v1.29.0-alpha.1.0.20210128154316-c84d7933b726
+replace gopkg.in/DataDog/dd-trace-go.v1 => github.com/DataDog/dd-trace-go v1.29.0-alpha.1.0.20210212162759-6903fc5e42cd
