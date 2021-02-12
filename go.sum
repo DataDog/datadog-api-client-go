@@ -1,8 +1,6 @@
 cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/DataDog/datadog-go v3.6.0+incompatible h1:ILg7c5Y1KvZFDOaVS0higGmJ5Fal5O1KQrkrT9j6dSM=
 github.com/DataDog/datadog-go v3.6.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
-github.com/DataDog/dd-trace-go v1.29.0-alpha.1.0.20210128154316-c84d7933b726 h1:E6y5wxU93et78p5JhD1tl/QDdFofxiSadMJ2p0AqO4Y=
-github.com/DataDog/dd-trace-go v1.29.0-alpha.1.0.20210128154316-c84d7933b726/go.mod h1:Sp1lku8WJMvNV0kjDI4Ni/T7J/U3BO5ct5kEaoVU8+I=
 github.com/DataDog/dd-trace-go v1.29.0-alpha.1.0.20210212162759-6903fc5e42cd h1:/mslOADmk8N8sE5E46aVs5AQ4l9h3aDSMJvEi6kQfLM=
 github.com/DataDog/dd-trace-go v1.29.0-alpha.1.0.20210212162759-6903fc5e42cd/go.mod h1:iMiEt7DLRjjW5sMZxFk9CpV8Nwi0P4l6A8lbCRayU4s=
 github.com/aslakhellesoy/gox v1.0.100/go.mod h1:AJl542QsKKG96COVsv0N74HHzVQgDIQPceVUh1aeU2M=
