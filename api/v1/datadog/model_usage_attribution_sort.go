@@ -18,36 +18,38 @@ type UsageAttributionSort string
 
 // List of UsageAttributionSort
 const (
-	USAGEATTRIBUTIONSORT_API_PERCENTAGE               UsageAttributionSort = "api_percentage"
-	USAGEATTRIBUTIONSORT_SNMP_USAGE                   UsageAttributionSort = "snmp_usage"
-	USAGEATTRIBUTIONSORT_LAMBDA_PERCENTAGE            UsageAttributionSort = "lambda_percentage"
-	USAGEATTRIBUTIONSORT_APM_HOST_USAGE               UsageAttributionSort = "apm_host_usage"
-	USAGEATTRIBUTIONSORT_API_USAGE                    UsageAttributionSort = "api_usage"
-	USAGEATTRIBUTIONSORT_CONTAINER_USAGE              UsageAttributionSort = "container_usage"
-	USAGEATTRIBUTIONSORT_CUSTOM_TIMESERIES_PERCENTAGE UsageAttributionSort = "custom_timeseries_percentage"
-	USAGEATTRIBUTIONSORT_CONTAINER_PERCENTAGE         UsageAttributionSort = "container_percentage"
-	USAGEATTRIBUTIONSORT_LAMBDA_USAGE                 UsageAttributionSort = "lambda_usage"
-	USAGEATTRIBUTIONSORT_APM_HOST_PERCENTAGE          UsageAttributionSort = "apm_host_percentage"
-	USAGEATTRIBUTIONSORT_NPM_HOST_PERCENTAGE          UsageAttributionSort = "npm_host_percentage"
-	USAGEATTRIBUTIONSORT_BROWSER_PERCENTAGE           UsageAttributionSort = "browser_percentage"
-	USAGEATTRIBUTIONSORT_BROWSER_USAGE                UsageAttributionSort = "browser_usage"
-	USAGEATTRIBUTIONSORT_INFRA_HOST_PERCENTAGE        UsageAttributionSort = "infra_host_percentage"
-	USAGEATTRIBUTIONSORT_SNMP_PERCENTAGE              UsageAttributionSort = "snmp_percentage"
-	USAGEATTRIBUTIONSORT_NPM_HOST_USAGE               UsageAttributionSort = "npm_host_usage"
-	USAGEATTRIBUTIONSORT_INFRA_HOST_USAGE             UsageAttributionSort = "infra_host_usage"
-	USAGEATTRIBUTIONSORT_CUSTOM_TIMESERIES_USAGE      UsageAttributionSort = "custom_timeseries_usage"
+	USAGEATTRIBUTIONSORT_API_PERCENTAGE                UsageAttributionSort = "api_percentage"
+	USAGEATTRIBUTIONSORT_SNMP_USAGE                    UsageAttributionSort = "snmp_usage"
+	USAGEATTRIBUTIONSORT_APM_HOST_USAGE                UsageAttributionSort = "apm_host_usage"
+	USAGEATTRIBUTIONSORT_API_USAGE                     UsageAttributionSort = "api_usage"
+	USAGEATTRIBUTIONSORT_CONTAINER_USAGE               UsageAttributionSort = "container_usage"
+	USAGEATTRIBUTIONSORT_CUSTOM_TIMESERIES_PERCENTAGE  UsageAttributionSort = "custom_timeseries_percentage"
+	USAGEATTRIBUTIONSORT_CONTAINER_PERCENTAGE          UsageAttributionSort = "container_percentage"
+	USAGEATTRIBUTIONSORT_APM_HOST_PERCENTAGE           UsageAttributionSort = "apm_host_percentage"
+	USAGEATTRIBUTIONSORT_NPM_HOST_PERCENTAGE           UsageAttributionSort = "npm_host_percentage"
+	USAGEATTRIBUTIONSORT_BROWSER_PERCENTAGE            UsageAttributionSort = "browser_percentage"
+	USAGEATTRIBUTIONSORT_BROWSER_USAGE                 UsageAttributionSort = "browser_usage"
+	USAGEATTRIBUTIONSORT_INFRA_HOST_PERCENTAGE         UsageAttributionSort = "infra_host_percentage"
+	USAGEATTRIBUTIONSORT_SNMP_PERCENTAGE               UsageAttributionSort = "snmp_percentage"
+	USAGEATTRIBUTIONSORT_NPM_HOST_USAGE                UsageAttributionSort = "npm_host_usage"
+	USAGEATTRIBUTIONSORT_INFRA_HOST_USAGE              UsageAttributionSort = "infra_host_usage"
+	USAGEATTRIBUTIONSORT_CUSTOM_TIMESERIES_USAGE       UsageAttributionSort = "custom_timeseries_usage"
+	USAGEATTRIBUTIONSORT_LAMBDA_FUNCTIONS_USAGE        UsageAttributionSort = "lambda_functions_usage"
+	USAGEATTRIBUTIONSORT_LAMBDA_FUNCTIONS_PERCENTAGE   UsageAttributionSort = "lambda_functions_percentage"
+	USAGEATTRIBUTIONSORT_LAMBDA_INVOCATIONS_USAGE      UsageAttributionSort = "lambda_invocations_usage"
+	USAGEATTRIBUTIONSORT_LAMBDA_INVOCATIONS_PERCENTAGE UsageAttributionSort = "lambda_invocations_percentage"
+	USAGEATTRIBUTIONSORT_LAMBDA_USAGE                  UsageAttributionSort = "lambda_usage"
+	USAGEATTRIBUTIONSORT_LAMBDA_PERCENTAGE             UsageAttributionSort = "lambda_percentage"
 )
 
 var allowedUsageAttributionSortEnumValues = []UsageAttributionSort{
 	"api_percentage",
 	"snmp_usage",
-	"lambda_percentage",
 	"apm_host_usage",
 	"api_usage",
 	"container_usage",
 	"custom_timeseries_percentage",
 	"container_percentage",
-	"lambda_usage",
 	"apm_host_percentage",
 	"npm_host_percentage",
 	"browser_percentage",
@@ -57,6 +59,12 @@ var allowedUsageAttributionSortEnumValues = []UsageAttributionSort{
 	"npm_host_usage",
 	"infra_host_usage",
 	"custom_timeseries_usage",
+	"lambda_functions_usage",
+	"lambda_functions_percentage",
+	"lambda_invocations_usage",
+	"lambda_invocations_percentage",
+	"lambda_usage",
+	"lambda_percentage",
 }
 
 func (v *UsageAttributionSort) UnmarshalJSON(src []byte) error {

@@ -23,12 +23,12 @@ import (
 	"testing"
 	"time"
 
-	api "github.com/DataDog/datadog-api-client-go"
 	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/jonboulle/clockwork"
 	"github.com/stretchr/testify/require"
 	ddhttp "gopkg.in/DataDog/dd-trace-go.v1/contrib/net/http"
+	ddtesting "gopkg.in/DataDog/dd-trace-go.v1/contrib/testing"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
@@ -77,6 +77,7 @@ var testFiles2EndpointTags = map[string]map[string]string{
 		"api_dashboard_lists_test": "dashboard-lists",
 		"api_logs_archives_test":   "logs-archives",
 		"api_logs_test":            "logs",
+		"api_metrics_test":         "metrics",
 		"api_permissions_test":     "permissions",
 		"api_roles_test":           "roles",
 		"api_users_test":           "users",
@@ -189,16 +190,13 @@ func ReadFixture(path string) (string, error) {
 
 // ConfigureTracer starts the tracer.
 func ConfigureTracer(m *testing.M) {
-	if GetRecording() == ModeReplaying {
-		os.Exit(m.Run())
-	}
 	service, ok := os.LookupEnv("DD_SERVICE")
 	if !ok {
 		service = "datadog-api-client-go"
 	}
 	tracer.Start(
 		tracer.WithService(service),
-		tracer.WithServiceVersion(api.Version),
+		// tracer.WithServiceVersion(api.Version),
 	)
 	code := m.Run()
 	tracer.Stop()
@@ -251,24 +249,14 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		t.Log(err.Error())
 		tag = "features"
 	}
-	span, ctx := tracer.StartSpanFromContext(
-		ctx,
-		"test",
-		tracer.SpanType("test"),
-		tracer.ResourceName(t.Name()),
-		tracer.Tag(ext.AnalyticsEvent, true),
-		tracer.Measured(),
-	)
-	// We need to make the tag be something that is then searchable in monitors
-	// https://docs.datadoghq.com/tracing/guide/metrics_namespace/#errors
-	// "version" is really the only one we can use here
-	// NOTE: version is treated in slightly different way, because it's a special tag;
-	// if we set it in StartSpanFromContext, it would get overwritten
-	span.SetTag("version", tag)
-	return ctx, func() {
-		span.SetTag(ext.Error, t.Failed())
-		span.Finish()
-	}
+	return ddtesting.StartSpanWithFinish(ctx, t, ddtesting.WithSkipFrames(2), ddtesting.WithSpanOptions(
+		// We need to make the tag be something that is then searchable in monitors
+		// https://docs.datadoghq.com/tracing/guide/metrics_namespace/#errors
+		// "version" is really the only one we can use here
+		// NOTE: version is treated in slightly different way, because it's a special tag;
+		// if we set it in StartSpanFromContext, it would get overwritten
+		tracer.Tag(ext.Version, tag),
+	))
 }
 
 func createWithDir(path string) (*os.File, error) {
@@ -378,7 +366,6 @@ func removeURLSecrets(u *url.URL) string {
 	u.RawQuery = q.Encode()
 	site, ok := os.LookupEnv("DD_TEST_SITE")
 	if ok {
-		fmt.Println("!!! WARN: Replacing DD_TEST_SITE by 'datadoghq.com' for request matching")
 		u.Host = strings.Replace(u.Host, site, "datadoghq.com", 1)
 	}
 	return u.String()
@@ -388,20 +375,17 @@ func removeURLSecrets(u *url.URL) string {
 func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	// Default matching on method and URL without secrets
 	if !(r.Method == i.Method && removeURLSecrets(r.URL) == i.URL) {
-		log.Printf("HTTP method: %s != %s; URL: %s != %s", r.Method, i.Method, removeURLSecrets(r.URL), i.URL)
 		return false
 	}
 
 	// Request does not contain body (e.g. `GET`)
 	if r.Body == nil {
-		log.Printf("request body is empty and cassette body is: %s", i.Body)
 		return i.Body == ""
 	}
 
 	// Load request body
 	var b bytes.Buffer
 	if _, err := b.ReadFrom(r.Body); err != nil {
-		log.Printf("could not read request body: %v\n", err)
 		return false
 	}
 	r.Body = ioutil.NopCloser(&b)
@@ -419,12 +403,6 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 				matched = true
 			}
 		}
-	}
-
-	if !matched {
-		log.Printf("%s != %s", b.String(), i.Body)
-		log.Printf("full cassette info: %v", i)
-		log.Printf("full request info: %v", *r)
 	}
 	return matched
 }
@@ -486,7 +464,6 @@ func WrapRoundTripper(rt http.RoundTripper, opts ...ddhttp.RoundTripperOption) h
 				var b bytes.Buffer
 				tee := io.TeeReader(r.Body, &b)
 				msg, _ := ioutil.ReadAll(tee)
-				fmt.Println(msg)
 
 				span.SetTag(ext.Error, true)
 				span.SetTag(ext.ErrorMsg, msg)

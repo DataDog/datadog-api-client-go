@@ -230,7 +230,6 @@ func TestLogsIndexesListErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).LogsIndexesApi.ListLogIndexes(ctx).Execute()
-			fmt.Println(err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -258,7 +257,6 @@ func TestLogsIndexesGetErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).LogsIndexesApi.GetLogsIndex(ctx, "shrugs").Execute()
-			fmt.Println(err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -351,7 +349,6 @@ func TestLogsIndexesOrderGetErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
-			fmt.Println(err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)

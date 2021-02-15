@@ -9,7 +9,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"log"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -83,7 +82,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", testServiceCheckMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteMonitor(ctx, monitor.GetId())
+	defer deleteMonitor(ctx, t, monitor.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	testMonitorSLO := getTestMonitorSLO(ctx, t)
@@ -95,7 +94,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	slo := sloResp.GetData()[0]
-	defer deleteSLOIfExists(ctx, slo.GetId())
+	defer deleteSLOIfExists(ctx, t, slo.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(testMonitorSLO.GetName(), slo.GetName())
 
@@ -163,7 +162,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testEventSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	slo := sloResp.GetData()[0]
-	defer deleteSLOIfExists(ctx, slo.GetId())
+	defer deleteSLOIfExists(ctx, t, slo.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(testEventSLO.GetName(), slo.GetName())
 
@@ -230,7 +229,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", testServiceCheckMonitor, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	defer deleteMonitor(ctx, monitor.GetId())
+	defer deleteMonitor(ctx, t, monitor.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	testMonitorSLO := getTestMonitorSLO(ctx, t)
@@ -242,7 +241,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	monitorSLO := sloResp.GetData()[0]
-	defer deleteSLOIfExists(ctx, monitorSLO.GetId())
+	defer deleteSLOIfExists(ctx, t, monitorSLO.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	// Create event SLO
@@ -252,7 +251,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	eventSLO := sloResp.GetData()[0]
-	defer deleteSLOIfExists(ctx, eventSLO.GetId())
+	defer deleteSLOIfExists(ctx, t, eventSLO.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	// Get multiple SLOs
@@ -459,7 +458,7 @@ func TestSLODelete409Error(t *testing.T) {
 	//	t.Fatalf("Error creating SLO %v: Response %s: %v", testMonitorSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	//}
 	//slo := sloResp.GetData()[0]
-	//defer deleteSLOIfExists(ctx, slo.GetId())
+	//defer deleteSLOIfExists(ctx, t, slo.GetId())
 	//assert.Equal(200, httpresp.StatusCode)
 	//
 	//// SLO Widget
@@ -505,7 +504,7 @@ func TestSLOHistoryGetErrors(t *testing.T) {
 	}
 	assert.GreaterOrEqual(len(sloResp.GetData()), 1)
 	slo := sloResp.GetData()[0]
-	defer deleteSLOIfExists(ctx, slo.GetId())
+	defer deleteSLOIfExists(ctx, t, slo.GetId())
 	assert.Equal(200, httpresp.StatusCode)
 
 	testCases := map[string]struct {
@@ -614,10 +613,10 @@ func TestSLOBulkDeleteErrors(t *testing.T) {
 	}
 }
 
-func deleteSLOIfExists(ctx context.Context, sloID string) {
+func deleteSLOIfExists(ctx context.Context, t *testing.T, sloID string) {
 	_, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.DeleteSLO(ctx, sloID).Execute()
 	if err != nil && httpresp.StatusCode != 404 {
-		log.Printf("Deleting SLO: %v failed with %v, Another test may have already deleted this SLO: %v",
+		t.Logf("Deleting SLO: %v failed with %v, Another test may have already deleted this SLO: %v",
 			sloID, httpresp.StatusCode, err)
 	}
 }
@@ -640,7 +639,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testEventSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	slo := sloResp.GetData()[0]
-	defer deleteSLOIfExists(ctx, slo.GetId())
+	defer deleteSLOIfExists(ctx, t, slo.GetId())
 
 	testSLOCorrectionCreateData := datadog.NewSLOCorrectionCreateData()
 	now := tests.ClockFromContext(ctx).Now().Unix()
@@ -666,7 +665,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	sloCorrection := sloCorrectionResp.GetData()
-	defer deleteSLOCorrectionIfExists(ctx, sloCorrection.GetId())
+	defer deleteSLOCorrectionIfExists(ctx, t, sloCorrection.GetId())
 
 	sloCorrectionListResp, httpresp, err := Client(ctx).ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection(ctx).Execute()
 	if err != nil {
@@ -717,11 +716,11 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	assert.Equal(204, httpresp.StatusCode)
 }
 
-func deleteSLOCorrectionIfExists(ctx context.Context, sloCorrectionID string) {
+func deleteSLOCorrectionIfExists(ctx context.Context, t *testing.T, sloCorrectionID string) {
 	httpresp, err := Client(ctx).ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection(ctx, sloCorrectionID).Execute()
 	if err != nil && httpresp.StatusCode != 404 {
-		log.Printf("Deleting SLO correction: %v failed with %v, Another test may have already deleted this SLO correction: %v",
-			sloCorrectionID, httpresp.StatusCode, err)
+		//t.Logf("Deleting SLO correction: %v failed with %v, Another test may have already deleted this SLO correction: %v",
+		//	sloCorrectionID, httpresp.StatusCode, err)
 	}
 }
 
