@@ -19,12 +19,13 @@ type ChangeWidgetRequest struct {
 	CompareTo  *WidgetCompareTo    `json:"compare_to,omitempty"`
 	EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
 	// Whether to show increase as good.
-	IncreaseGood *bool                   `json:"increase_good,omitempty"`
-	LogQuery     *LogQueryDefinition     `json:"log_query,omitempty"`
-	NetworkQuery *LogQueryDefinition     `json:"network_query,omitempty"`
-	OrderBy      *WidgetOrderBy          `json:"order_by,omitempty"`
-	OrderDir     *WidgetSort             `json:"order_dir,omitempty"`
-	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+	IncreaseGood        *bool                   `json:"increase_good,omitempty"`
+	LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
+	NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
+	OrderBy             *WidgetOrderBy          `json:"order_by,omitempty"`
+	OrderDir            *WidgetSort             `json:"order_dir,omitempty"`
+	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
+	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
 	// Query definition.
 	Q             *string             `json:"q,omitempty"`
 	RumQuery      *LogQueryDefinition `json:"rum_query,omitempty"`
@@ -370,6 +371,38 @@ func (o *ChangeWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
 
+// GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
+func (o *ChangeWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
+	if o == nil || o.ProfileMetricsQuery == nil {
+		var ret LogQueryDefinition
+		return ret
+	}
+	return *o.ProfileMetricsQuery
+}
+
+// GetProfileMetricsQueryOk returns a tuple with the ProfileMetricsQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChangeWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, bool) {
+	if o == nil || o.ProfileMetricsQuery == nil {
+		return nil, false
+	}
+	return o.ProfileMetricsQuery, true
+}
+
+// HasProfileMetricsQuery returns a boolean if a field has been set.
+func (o *ChangeWidgetRequest) HasProfileMetricsQuery() bool {
+	if o != nil && o.ProfileMetricsQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
+func (o *ChangeWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
+	o.ProfileMetricsQuery = &v
+}
+
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetQ() string {
 	if o == nil || o.Q == nil {
@@ -529,6 +562,9 @@ func (o ChangeWidgetRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.ProcessQuery != nil {
 		toSerialize["process_query"] = o.ProcessQuery
+	}
+	if o.ProfileMetricsQuery != nil {
+		toSerialize["profile_metrics_query"] = o.ProfileMetricsQuery
 	}
 	if o.Q != nil {
 		toSerialize["q"] = o.Q

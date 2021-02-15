@@ -14,11 +14,12 @@ import (
 
 // DistributionWidgetRequest Updated distribution widget.
 type DistributionWidgetRequest struct {
-	ApmQuery     *LogQueryDefinition     `json:"apm_query,omitempty"`
-	EventQuery   *LogQueryDefinition     `json:"event_query,omitempty"`
-	LogQuery     *LogQueryDefinition     `json:"log_query,omitempty"`
-	NetworkQuery *LogQueryDefinition     `json:"network_query,omitempty"`
-	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+	ApmQuery            *LogQueryDefinition     `json:"apm_query,omitempty"`
+	EventQuery          *LogQueryDefinition     `json:"event_query,omitempty"`
+	LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
+	NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
+	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
+	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
 	// Widget query.
 	Q             *string             `json:"q,omitempty"`
 	RumQuery      *LogQueryDefinition `json:"rum_query,omitempty"`
@@ -203,6 +204,38 @@ func (o *DistributionWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
 
+// GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
+func (o *DistributionWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
+	if o == nil || o.ProfileMetricsQuery == nil {
+		var ret LogQueryDefinition
+		return ret
+	}
+	return *o.ProfileMetricsQuery
+}
+
+// GetProfileMetricsQueryOk returns a tuple with the ProfileMetricsQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DistributionWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, bool) {
+	if o == nil || o.ProfileMetricsQuery == nil {
+		return nil, false
+	}
+	return o.ProfileMetricsQuery, true
+}
+
+// HasProfileMetricsQuery returns a boolean if a field has been set.
+func (o *DistributionWidgetRequest) HasProfileMetricsQuery() bool {
+	if o != nil && o.ProfileMetricsQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
+func (o *DistributionWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
+	o.ProfileMetricsQuery = &v
+}
+
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetQ() string {
 	if o == nil || o.Q == nil {
@@ -347,6 +380,9 @@ func (o DistributionWidgetRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.ProcessQuery != nil {
 		toSerialize["process_query"] = o.ProcessQuery
+	}
+	if o.ProfileMetricsQuery != nil {
+		toSerialize["profile_metrics_query"] = o.ProfileMetricsQuery
 	}
 	if o.Q != nil {
 		toSerialize["q"] = o.Q

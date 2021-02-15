@@ -140,7 +140,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
-	var listOfARNs2 []datadog.AWSLogsListResponseLambdas
+	var listOfARNs2 []datadog.AWSLogsLambda
 	var accountExistsAfterDelete = false
 	for _, Account := range listOutput2 {
 		if Account.GetAccountId() == *testAWSAcc.AccountId {

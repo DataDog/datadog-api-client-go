@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**SLOCorrectionCreateRequestData**](SLOCorrectionCreateRequest_data.md) |  | [optional] 
+**Data** | Pointer to [**SLOCorrectionCreateData**](SLOCorrectionCreateData.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *SLOCorrectionCreateRequest) GetData() SLOCorrectionCreateRequestData`
+`func (o *SLOCorrectionCreateRequest) GetData() SLOCorrectionCreateData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *SLOCorrectionCreateRequest) GetDataOk() (*SLOCorrectionCreateRequestData, bool)`
+`func (o *SLOCorrectionCreateRequest) GetDataOk() (*SLOCorrectionCreateData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *SLOCorrectionCreateRequest) SetData(v SLOCorrectionCreateRequestData)`
+`func (o *SLOCorrectionCreateRequest) SetData(v SLOCorrectionCreateData)`
 
 SetData sets Data field to given value.
 

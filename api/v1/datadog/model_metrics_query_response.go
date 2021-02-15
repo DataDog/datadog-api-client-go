@@ -27,7 +27,7 @@ type MetricsQueryResponse struct {
 	// Type of response.
 	ResType *string `json:"res_type,omitempty"`
 	// List of timeseries queried.
-	Series *[]MetricsQueryResponseSeries `json:"series,omitempty"`
+	Series *[]MetricsQueryMetadata `json:"series,omitempty"`
 	// Status of the query.
 	Status *string `json:"status,omitempty"`
 	// End of requested time window, milliseconds since Unix epoch.
@@ -244,9 +244,9 @@ func (o *MetricsQueryResponse) SetResType(v string) {
 }
 
 // GetSeries returns the Series field value if set, zero value otherwise.
-func (o *MetricsQueryResponse) GetSeries() []MetricsQueryResponseSeries {
+func (o *MetricsQueryResponse) GetSeries() []MetricsQueryMetadata {
 	if o == nil || o.Series == nil {
-		var ret []MetricsQueryResponseSeries
+		var ret []MetricsQueryMetadata
 		return ret
 	}
 	return *o.Series
@@ -254,7 +254,7 @@ func (o *MetricsQueryResponse) GetSeries() []MetricsQueryResponseSeries {
 
 // GetSeriesOk returns a tuple with the Series field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsQueryResponse) GetSeriesOk() (*[]MetricsQueryResponseSeries, bool) {
+func (o *MetricsQueryResponse) GetSeriesOk() (*[]MetricsQueryMetadata, bool) {
 	if o == nil || o.Series == nil {
 		return nil, false
 	}
@@ -270,8 +270,8 @@ func (o *MetricsQueryResponse) HasSeries() bool {
 	return false
 }
 
-// SetSeries gets a reference to the given []MetricsQueryResponseSeries and assigns it to the Series field.
-func (o *MetricsQueryResponse) SetSeries(v []MetricsQueryResponseSeries) {
+// SetSeries gets a reference to the given []MetricsQueryMetadata and assigns it to the Series field.
+func (o *MetricsQueryResponse) SetSeries(v []MetricsQueryMetadata) {
 	o.Series = &v
 }
 

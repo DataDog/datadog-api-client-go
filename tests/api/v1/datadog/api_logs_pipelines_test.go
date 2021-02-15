@@ -76,7 +76,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	userAgentParser.SetName("user agent parser")
 
 	categoryProcessor := datadog.NewLogsCategoryProcessorWithDefaults()
-	categoryProcessor.SetCategories([]datadog.LogsCategoryProcessorCategories{{
+	categoryProcessor.SetCategories([]datadog.LogsCategoryProcessorCategory{{
 		Name: datadog.PtrString("category"),
 		Filter: &datadog.LogsFilter{
 			Query: datadog.PtrString("query"),

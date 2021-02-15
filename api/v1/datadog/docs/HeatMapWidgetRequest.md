@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
+**ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Q** | Pointer to **string** | Widget query. | [optional] 
 **RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **SecurityQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
@@ -157,6 +158,31 @@ SetProcessQuery sets ProcessQuery field to given value.
 `func (o *HeatMapWidgetRequest) HasProcessQuery() bool`
 
 HasProcessQuery returns a boolean if a field has been set.
+
+### GetProfileMetricsQuery
+
+`func (o *HeatMapWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition`
+
+GetProfileMetricsQuery returns the ProfileMetricsQuery field if non-nil, zero value otherwise.
+
+### GetProfileMetricsQueryOk
+
+`func (o *HeatMapWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, bool)`
+
+GetProfileMetricsQueryOk returns a tuple with the ProfileMetricsQuery field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfileMetricsQuery
+
+`func (o *HeatMapWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition)`
+
+SetProfileMetricsQuery sets ProfileMetricsQuery field to given value.
+
+### HasProfileMetricsQuery
+
+`func (o *HeatMapWidgetRequest) HasProfileMetricsQuery() bool`
+
+HasProfileMetricsQuery returns a boolean if a field has been set.
 
 ### GetQ
 
