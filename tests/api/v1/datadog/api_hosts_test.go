@@ -533,6 +533,10 @@ func TestHostsSearchMockedIncludeHostsMetadataDefault(t *testing.T) {
 }
 
 func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Slow test")
+	}
+
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
