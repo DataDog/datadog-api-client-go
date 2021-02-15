@@ -44,7 +44,7 @@ func (r ApiCreateTagConfigurationRequest) Execute() (MetricTagConfigurationRespo
 
 /*
  * CreateTagConfiguration Create a Tag Configuration
- * Create and define a list of queryable tag keys for a count/gauge/rate/distribution metric.
+ * Create and define a list of queryable tag keys for a count/gauge/rate/distribution metric. Optionally, include percentile aggregations on any distribution metric.
 Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param metricName The name of the metric.
@@ -774,7 +774,7 @@ func (r ApiUpdateTagConfigurationRequest) Execute() (MetricTagConfigurationRespo
 
 /*
  * UpdateTagConfiguration Update a Tag Configuration
- * Update the tag configuration of a metric. Can only be used with
+ * Update the tag configuration of a metric or percentile aggregations of a distribution metric. Can only be used with
 application keys from users with the `Manage Tags for Metrics` permission.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param metricName The name of the metric.
