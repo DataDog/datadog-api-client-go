@@ -15,9 +15,9 @@ import (
 // SyntheticsTriggerCITestsResponse Object containing information about the tests triggered.
 type SyntheticsTriggerCITestsResponse struct {
 	// List of Synthetics locations.
-	Locations *[]SyntheticsTriggerCITestsResponseLocations `json:"locations,omitempty"`
+	Locations *[]SyntheticsTriggerCITestLocation `json:"locations,omitempty"`
 	// Information about the tests runs.
-	Results *[]SyntheticsTriggerCITestsResponseResults `json:"results,omitempty"`
+	Results *[]SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
 	// The public IDs of the Synthetics test triggered.
 	TriggeredCheckIds *[]string `json:"triggered_check_ids,omitempty"`
 }
@@ -40,9 +40,9 @@ func NewSyntheticsTriggerCITestsResponseWithDefaults() *SyntheticsTriggerCITests
 }
 
 // GetLocations returns the Locations field value if set, zero value otherwise.
-func (o *SyntheticsTriggerCITestsResponse) GetLocations() []SyntheticsTriggerCITestsResponseLocations {
+func (o *SyntheticsTriggerCITestsResponse) GetLocations() []SyntheticsTriggerCITestLocation {
 	if o == nil || o.Locations == nil {
-		var ret []SyntheticsTriggerCITestsResponseLocations
+		var ret []SyntheticsTriggerCITestLocation
 		return ret
 	}
 	return *o.Locations
@@ -50,7 +50,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetLocations() []SyntheticsTriggerCIT
 
 // GetLocationsOk returns a tuple with the Locations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTriggerCITestsResponse) GetLocationsOk() (*[]SyntheticsTriggerCITestsResponseLocations, bool) {
+func (o *SyntheticsTriggerCITestsResponse) GetLocationsOk() (*[]SyntheticsTriggerCITestLocation, bool) {
 	if o == nil || o.Locations == nil {
 		return nil, false
 	}
@@ -66,15 +66,15 @@ func (o *SyntheticsTriggerCITestsResponse) HasLocations() bool {
 	return false
 }
 
-// SetLocations gets a reference to the given []SyntheticsTriggerCITestsResponseLocations and assigns it to the Locations field.
-func (o *SyntheticsTriggerCITestsResponse) SetLocations(v []SyntheticsTriggerCITestsResponseLocations) {
+// SetLocations gets a reference to the given []SyntheticsTriggerCITestLocation and assigns it to the Locations field.
+func (o *SyntheticsTriggerCITestsResponse) SetLocations(v []SyntheticsTriggerCITestLocation) {
 	o.Locations = &v
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *SyntheticsTriggerCITestsResponse) GetResults() []SyntheticsTriggerCITestsResponseResults {
+func (o *SyntheticsTriggerCITestsResponse) GetResults() []SyntheticsTriggerCITestRunResult {
 	if o == nil || o.Results == nil {
-		var ret []SyntheticsTriggerCITestsResponseResults
+		var ret []SyntheticsTriggerCITestRunResult
 		return ret
 	}
 	return *o.Results
@@ -82,7 +82,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetResults() []SyntheticsTriggerCITes
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTriggerCITestsResponse) GetResultsOk() (*[]SyntheticsTriggerCITestsResponseResults, bool) {
+func (o *SyntheticsTriggerCITestsResponse) GetResultsOk() (*[]SyntheticsTriggerCITestRunResult, bool) {
 	if o == nil || o.Results == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *SyntheticsTriggerCITestsResponse) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []SyntheticsTriggerCITestsResponseResults and assigns it to the Results field.
-func (o *SyntheticsTriggerCITestsResponse) SetResults(v []SyntheticsTriggerCITestsResponseResults) {
+// SetResults gets a reference to the given []SyntheticsTriggerCITestRunResult and assigns it to the Results field.
+func (o *SyntheticsTriggerCITestsResponse) SetResults(v []SyntheticsTriggerCITestRunResult) {
 	o.Results = &v
 }
 

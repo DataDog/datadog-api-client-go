@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filters** | Pointer to [**[]AWSTagFilterListResponseFilters**](AWSTagFilterListResponseFilters.md) | An array of tag filters. | [optional] 
+**Filters** | Pointer to [**[]AWSTagFilter**](AWSTagFilter.md) | An array of tag filters. | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFilters
 
-`func (o *AWSTagFilterListResponse) GetFilters() []AWSTagFilterListResponseFilters`
+`func (o *AWSTagFilterListResponse) GetFilters() []AWSTagFilter`
 
 GetFilters returns the Filters field if non-nil, zero value otherwise.
 
 ### GetFiltersOk
 
-`func (o *AWSTagFilterListResponse) GetFiltersOk() (*[]AWSTagFilterListResponseFilters, bool)`
+`func (o *AWSTagFilterListResponse) GetFiltersOk() (*[]AWSTagFilter, bool)`
 
 GetFiltersOk returns a tuple with the Filters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFilters
 
-`func (o *AWSTagFilterListResponse) SetFilters(v []AWSTagFilterListResponseFilters)`
+`func (o *AWSTagFilterListResponse) SetFilters(v []AWSTagFilter)`
 
 SetFilters sets Filters field to given value.
 
