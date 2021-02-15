@@ -17,7 +17,9 @@ import (
 )
 
 func TestDashboardLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -949,7 +951,9 @@ func TestDashboardLifecycle(t *testing.T) {
 }
 
 func TestDashboardGetAll(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -962,8 +966,8 @@ func TestDashboardGetAll(t *testing.T) {
 }
 
 func TestDashboardCreateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -990,8 +994,8 @@ func TestDashboardCreateErrors(t *testing.T) {
 }
 
 func TestDashboardListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1016,8 +1020,8 @@ func TestDashboardListErrors(t *testing.T) {
 }
 
 func TestDashboardDeleteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1043,8 +1047,8 @@ func TestDashboardDeleteErrors(t *testing.T) {
 }
 
 func TestDashboardUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	dashboardOK := *datadog.NewDashboardWithDefaults()
 	dashboardOK.SetWidgets([]datadog.Widget{})
@@ -1076,8 +1080,8 @@ func TestDashboardUpdateErrors(t *testing.T) {
 }
 
 func TestDashboardGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context

@@ -19,10 +19,12 @@ import (
 )
 
 func TestTags(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	if tests.GetRecording() == tests.ModeIgnore {
 		t.Skipf("Slow test")
 	}
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -124,8 +126,8 @@ func TestTags(t *testing.T) {
 }
 
 func TestTagsListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -151,8 +153,8 @@ func TestTagsListErrors(t *testing.T) {
 }
 
 func TestTagsGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -178,8 +180,8 @@ func TestTagsGetErrors(t *testing.T) {
 }
 
 func TestTagsCreateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -205,8 +207,8 @@ func TestTagsCreateErrors(t *testing.T) {
 }
 
 func TestTagsUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -232,8 +234,8 @@ func TestTagsUpdateErrors(t *testing.T) {
 }
 
 func TestTagsDeleteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context

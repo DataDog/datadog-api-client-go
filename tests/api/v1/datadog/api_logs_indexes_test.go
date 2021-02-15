@@ -18,9 +18,10 @@ import (
 )
 
 func TestGetAllLogsIndexes(t *testing.T) {
-	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	defer gock.Off()
-	defer stop()
 	assert := tests.Assert(ctx, t)
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-indexes.json")
@@ -43,9 +44,10 @@ func TestGetAllLogsIndexes(t *testing.T) {
 }
 
 func TestGetLogsIndex(t *testing.T) {
-	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	defer gock.Off()
-	defer stop()
 	assert := tests.Assert(ctx, t)
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-index.json")
@@ -77,9 +79,10 @@ func TestGetLogsIndex(t *testing.T) {
 }
 
 func TestLogsIndexOrder(t *testing.T) {
-	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	defer gock.Off()
-	defer stop()
 	assert := tests.Assert(ctx, t)
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/logs-index-order.json")
@@ -106,9 +109,10 @@ func TestLogsIndexOrder(t *testing.T) {
 }
 
 func TestUpdateLogsIndex(t *testing.T) {
-	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	defer gock.Off()
-	defer stop()
 	assert := tests.Assert(ctx, t)
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/log-index.json")
@@ -165,9 +169,10 @@ func TestUpdateLogsIndex(t *testing.T) {
 }
 
 func TestUpdateLogsIndexOrder(t *testing.T) {
-	ctx, stop := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	defer gock.Off()
-	defer stop()
 	assert := tests.Assert(ctx, t)
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/logs-index-order.json")
@@ -213,8 +218,8 @@ func TestUpdateLogsIndexOrder(t *testing.T) {
 }
 
 func TestLogsIndexesListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -239,8 +244,8 @@ func TestLogsIndexesListErrors(t *testing.T) {
 }
 
 func TestLogsIndexesGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -272,8 +277,8 @@ func TestLogsIndexesGetErrors(t *testing.T) {
 }
 
 func TestLogsIndexesUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -306,8 +311,9 @@ func TestLogsIndexesUpdateErrors(t *testing.T) {
 }
 
 func TestLogsIndexesUpdate429Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	data, err := tests.ReadFixture("fixtures/logs-indexes/error_429.json")
@@ -332,8 +338,8 @@ func TestLogsIndexesUpdate429Error(t *testing.T) {
 }
 
 func TestLogsIndexesOrderGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -358,8 +364,8 @@ func TestLogsIndexesOrderGetErrors(t *testing.T) {
 }
 
 func TestLogsIndexesOrderUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context

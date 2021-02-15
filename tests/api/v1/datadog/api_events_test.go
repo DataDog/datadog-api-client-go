@@ -32,7 +32,9 @@ type createEventResponse struct {
 }
 
 func TestEventLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	testEvent.SetTitle(*tests.UniqueEntityName(ctx, t))
@@ -102,8 +104,8 @@ func TestEventLifecycle(t *testing.T) {
 }
 
 func TestEventListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -129,8 +131,8 @@ func TestEventListErrors(t *testing.T) {
 }
 
 func TestEventGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context

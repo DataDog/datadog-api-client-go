@@ -15,7 +15,9 @@ import (
 )
 
 func TestLogsPipelinesLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -278,7 +280,9 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 }
 
 func TestUpdateLogsPipelineOrder(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -301,8 +305,8 @@ func TestUpdateLogsPipelineOrder(t *testing.T) {
 }
 
 func TestLogsPipelinesOrderGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -327,8 +331,8 @@ func TestLogsPipelinesOrderGetErrors(t *testing.T) {
 }
 
 func TestLogsPipelinesOrderUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -362,8 +366,8 @@ func TestLogsPipelinesOrderUpdateErrors(t *testing.T) {
 }
 
 func TestLogsPipelinesListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -388,8 +392,8 @@ func TestLogsPipelinesListErrors(t *testing.T) {
 }
 
 func TestLogsPipelinesCreateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -422,8 +426,8 @@ func TestLogsPipelinesCreateErrors(t *testing.T) {
 }
 
 func TestLogsPipelinesGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -455,8 +459,8 @@ func TestLogsPipelinesGetErrors(t *testing.T) {
 }
 
 func TestLogsPipelinesDeleteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -488,8 +492,8 @@ func TestLogsPipelinesDeleteErrors(t *testing.T) {
 }
 
 func TestLogsPipelinesUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
