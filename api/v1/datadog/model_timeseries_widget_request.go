@@ -24,8 +24,9 @@ type TimeseriesWidgetRequest struct {
 	Metadata     *[]TimeseriesWidgetExpressionAlias `json:"metadata,omitempty"`
 	NetworkQuery *LogQueryDefinition                `json:"network_query,omitempty"`
 	// Whether or not to display a second y-axis on the right.
-	OnRightYaxis *bool                   `json:"on_right_yaxis,omitempty"`
-	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+	OnRightYaxis        *bool                   `json:"on_right_yaxis,omitempty"`
+	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
+	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
 	// Widget query.
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas. This feature is currently in beta.
@@ -341,6 +342,38 @@ func (o *TimeseriesWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
 
+// GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
+func (o *TimeseriesWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
+	if o == nil || o.ProfileMetricsQuery == nil {
+		var ret LogQueryDefinition
+		return ret
+	}
+	return *o.ProfileMetricsQuery
+}
+
+// GetProfileMetricsQueryOk returns a tuple with the ProfileMetricsQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, bool) {
+	if o == nil || o.ProfileMetricsQuery == nil {
+		return nil, false
+	}
+	return o.ProfileMetricsQuery, true
+}
+
+// HasProfileMetricsQuery returns a boolean if a field has been set.
+func (o *TimeseriesWidgetRequest) HasProfileMetricsQuery() bool {
+	if o != nil && o.ProfileMetricsQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
+func (o *TimeseriesWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
+	o.ProfileMetricsQuery = &v
+}
+
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetQ() string {
 	if o == nil || o.Q == nil {
@@ -561,6 +594,9 @@ func (o TimeseriesWidgetRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.ProcessQuery != nil {
 		toSerialize["process_query"] = o.ProcessQuery
+	}
+	if o.ProfileMetricsQuery != nil {
+		toSerialize["profile_metrics_query"] = o.ProfileMetricsQuery
 	}
 	if o.Q != nil {
 		toSerialize["q"] = o.Q
