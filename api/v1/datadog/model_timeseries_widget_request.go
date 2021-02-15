@@ -21,7 +21,7 @@ type TimeseriesWidgetRequest struct {
 	Formulas *[]WidgetFormula    `json:"formulas,omitempty"`
 	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
 	// Used to define expression aliases.
-	Metadata     *[]TimeseriesWidgetRequestMetadata `json:"metadata,omitempty"`
+	Metadata     *[]TimeseriesWidgetExpressionAlias `json:"metadata,omitempty"`
 	NetworkQuery *LogQueryDefinition                `json:"network_query,omitempty"`
 	// Whether or not to display a second y-axis on the right.
 	OnRightYaxis *bool                   `json:"on_right_yaxis,omitempty"`
@@ -214,9 +214,9 @@ func (o *TimeseriesWidgetRequest) SetLogQuery(v LogQueryDefinition) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *TimeseriesWidgetRequest) GetMetadata() []TimeseriesWidgetRequestMetadata {
+func (o *TimeseriesWidgetRequest) GetMetadata() []TimeseriesWidgetExpressionAlias {
 	if o == nil || o.Metadata == nil {
-		var ret []TimeseriesWidgetRequestMetadata
+		var ret []TimeseriesWidgetExpressionAlias
 		return ret
 	}
 	return *o.Metadata
@@ -224,7 +224,7 @@ func (o *TimeseriesWidgetRequest) GetMetadata() []TimeseriesWidgetRequestMetadat
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetMetadataOk() (*[]TimeseriesWidgetRequestMetadata, bool) {
+func (o *TimeseriesWidgetRequest) GetMetadataOk() (*[]TimeseriesWidgetExpressionAlias, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -240,8 +240,8 @@ func (o *TimeseriesWidgetRequest) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given []TimeseriesWidgetRequestMetadata and assigns it to the Metadata field.
-func (o *TimeseriesWidgetRequest) SetMetadata(v []TimeseriesWidgetRequestMetadata) {
+// SetMetadata gets a reference to the given []TimeseriesWidgetExpressionAlias and assigns it to the Metadata field.
+func (o *TimeseriesWidgetRequest) SetMetadata(v []TimeseriesWidgetExpressionAlias) {
 	o.Metadata = &v
 }
 

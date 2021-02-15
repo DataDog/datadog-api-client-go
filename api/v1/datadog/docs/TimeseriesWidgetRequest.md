@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Formulas** | Pointer to [**[]WidgetFormula**](WidgetFormula.md) | List of formulas that operate on queries. This feature is currently in beta. | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Metadata** | Pointer to [**[]TimeseriesWidgetRequestMetadata**](TimeseriesWidgetRequestMetadata.md) | Used to define expression aliases. | [optional] 
+**Metadata** | Pointer to [**[]TimeseriesWidgetExpressionAlias**](TimeseriesWidgetExpressionAlias.md) | Used to define expression aliases. | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **OnRightYaxis** | Pointer to **bool** | Whether or not to display a second y-axis on the right. | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
@@ -166,20 +166,20 @@ HasLogQuery returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *TimeseriesWidgetRequest) GetMetadata() []TimeseriesWidgetRequestMetadata`
+`func (o *TimeseriesWidgetRequest) GetMetadata() []TimeseriesWidgetExpressionAlias`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *TimeseriesWidgetRequest) GetMetadataOk() (*[]TimeseriesWidgetRequestMetadata, bool)`
+`func (o *TimeseriesWidgetRequest) GetMetadataOk() (*[]TimeseriesWidgetExpressionAlias, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *TimeseriesWidgetRequest) SetMetadata(v []TimeseriesWidgetRequestMetadata)`
+`func (o *TimeseriesWidgetRequest) SetMetadata(v []TimeseriesWidgetExpressionAlias)`
 
 SetMetadata sets Metadata field to given value.
 

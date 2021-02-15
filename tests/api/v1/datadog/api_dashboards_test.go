@@ -480,7 +480,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
 		},
-		Metadata: &[]datadog.TimeseriesWidgetRequestMetadata{{
+		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
@@ -535,7 +535,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
 		},
-		Metadata: &[]datadog.TimeseriesWidgetRequestMetadata{{
+		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
@@ -588,7 +588,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			GroupBy: &[]datadog.LogQueryDefinitionGroupBy{{
 				Facet: "host",
 				Limit: datadog.PtrInt64(5),
-				Sort: &datadog.LogQueryDefinitionSort{
+				Sort: &datadog.LogQueryDefinitionGroupBySort{
 					Aggregation: "count",
 					Order:       datadog.WIDGETSORT_ASCENDING,
 				},
@@ -599,7 +599,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
 		},
-		Metadata: &[]datadog.TimeseriesWidgetRequestMetadata{{
+		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
@@ -644,7 +644,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			GroupBy: &[]datadog.LogQueryDefinitionGroupBy{{
 				Facet: "host",
 				Limit: datadog.PtrInt64(5),
-				Sort: &datadog.LogQueryDefinitionSort{
+				Sort: &datadog.LogQueryDefinitionGroupBySort{
 					Aggregation: "count",
 					Order:       datadog.WIDGETSORT_ASCENDING,
 				},
@@ -654,7 +654,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			Palette:   datadog.PtrString("dog_classic"),
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr()},
-		Metadata: &[]datadog.TimeseriesWidgetRequestMetadata{{
+		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
@@ -710,7 +710,7 @@ func TestDashboardLifecycle(t *testing.T) {
 					Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
 						Query: "service:query Errors",
 					},
-					GroupBy: &[]datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionGroupBy{{
+					GroupBy: &[]datadog.TimeSeriesFormulaAndFunctionEventQueryGroupBy{{
 						Facet: "host",
 					}},
 					Indexes: &[]string{"*"},
@@ -759,7 +759,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	toplistWidget := datadog.NewWidget(datadog.ToplistWidgetDefinitionAsWidgetDefinition(toplistWidgetDefinition))
 
 	// Template Variables
-	templateVariable := datadog.NewDashboardTemplateVariablesWithDefaults()
+	templateVariable := datadog.NewDashboardTemplateVariableWithDefaults()
 	templateVariable.SetName("test template var")
 	templateVariable.SetPrefix("test-go")
 	templateVariable.SetDefault("*")
@@ -802,7 +802,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	dashboard.SetTitle(fmt.Sprintf("%s-ordered", *tests.UniqueEntityName(ctx, t)))
 	dashboard.SetDescription("Test dashboard for Go client")
 	dashboard.SetIsReadOnly(false)
-	dashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})
+	dashboard.SetTemplateVariables([]datadog.DashboardTemplateVariable{*templateVariable})
 	dashboard.SetTemplateVariablePresets([]datadog.DashboardTemplateVariablePreset{*dashboardTemplateVariablePreset})
 	// FIXME dashboard.SetNotifyList([]string{"test@datadoghq.com"})
 
@@ -871,7 +871,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	freeDashboard.SetTitle(fmt.Sprintf("%s-free", *tests.UniqueEntityName(ctx, t)))
 	freeDashboard.SetDescription("Test Free layout dashboard for Go client")
 	freeDashboard.SetIsReadOnly(false)
-	freeDashboard.SetTemplateVariables([]datadog.DashboardTemplateVariables{*templateVariable})
+	freeDashboard.SetTemplateVariables([]datadog.DashboardTemplateVariable{*templateVariable})
 
 	createdFreeDashboard, httpresp, err := Client(ctx).DashboardsApi.CreateDashboard(ctx).Body(*freeDashboard).Execute()
 	if err != nil {

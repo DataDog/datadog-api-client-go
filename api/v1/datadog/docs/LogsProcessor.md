@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **TargetType** | Pointer to **string** | Defines if the final attribute or tag name is from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
 **NormalizeEndingSlashes** | Pointer to **NullableBool** | Normalize the ending slashes or not. | [optional] [default to false]
 **IsEncoded** | Pointer to **bool** | Define if the source attribute is URL encoded or not. | [optional] [default to false]
-**Categories** | [**[]LogsCategoryProcessorCategories**](LogsCategoryProcessorCategories.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
+**Categories** | [**[]LogsCategoryProcessorCategory**](LogsCategoryProcessorCategory.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
 **Expression** | **string** | Arithmetic operation between one or more log attributes. | 
 **IsReplaceMissing** | Pointer to **bool** | If true, it replaces all missing attributes of &#x60;template&#x60; by an empty string. If &#x60;false&#x60; (default), skips the operation for missing attributes. | [optional] [default to false]
 **Template** | **string** | A formula with one or more attributes and raw text. | 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewLogsProcessor
 
-`func NewLogsProcessor(grok LogsGrokParserRules, source string, type_ LogsTraceRemapperType, sources []string, target string, categories []LogsCategoryProcessorCategories, expression string, template string, lookupTable []string, ) *LogsProcessor`
+`func NewLogsProcessor(grok LogsGrokParserRules, source string, type_ LogsTraceRemapperType, sources []string, target string, categories []LogsCategoryProcessorCategory, expression string, template string, lookupTable []string, ) *LogsProcessor`
 
 NewLogsProcessor instantiates a new LogsProcessor object
 This constructor will assign default values to properties that have it defined,
@@ -409,20 +409,20 @@ HasIsEncoded returns a boolean if a field has been set.
 
 ### GetCategories
 
-`func (o *LogsProcessor) GetCategories() []LogsCategoryProcessorCategories`
+`func (o *LogsProcessor) GetCategories() []LogsCategoryProcessorCategory`
 
 GetCategories returns the Categories field if non-nil, zero value otherwise.
 
 ### GetCategoriesOk
 
-`func (o *LogsProcessor) GetCategoriesOk() (*[]LogsCategoryProcessorCategories, bool)`
+`func (o *LogsProcessor) GetCategoriesOk() (*[]LogsCategoryProcessorCategory, bool)`
 
 GetCategoriesOk returns a tuple with the Categories field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCategories
 
-`func (o *LogsProcessor) SetCategories(v []LogsCategoryProcessorCategories)`
+`func (o *LogsProcessor) SetCategories(v []LogsCategoryProcessorCategory)`
 
 SetCategories sets Categories field to given value.
 

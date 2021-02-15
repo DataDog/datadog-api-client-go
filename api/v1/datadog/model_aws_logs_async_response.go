@@ -15,7 +15,7 @@ import (
 // AWSLogsAsyncResponse A list of all Datadog-AWS logs integrations available in your Datadog organization.
 type AWSLogsAsyncResponse struct {
 	// List of errors.
-	Errors *[]AWSLogsAsyncResponseErrors `json:"errors,omitempty"`
+	Errors *[]AWSLogsAsyncError `json:"errors,omitempty"`
 	// Status of the properties.
 	Status *string `json:"status,omitempty"`
 }
@@ -38,9 +38,9 @@ func NewAWSLogsAsyncResponseWithDefaults() *AWSLogsAsyncResponse {
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *AWSLogsAsyncResponse) GetErrors() []AWSLogsAsyncResponseErrors {
+func (o *AWSLogsAsyncResponse) GetErrors() []AWSLogsAsyncError {
 	if o == nil || o.Errors == nil {
-		var ret []AWSLogsAsyncResponseErrors
+		var ret []AWSLogsAsyncError
 		return ret
 	}
 	return *o.Errors
@@ -48,7 +48,7 @@ func (o *AWSLogsAsyncResponse) GetErrors() []AWSLogsAsyncResponseErrors {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSLogsAsyncResponse) GetErrorsOk() (*[]AWSLogsAsyncResponseErrors, bool) {
+func (o *AWSLogsAsyncResponse) GetErrorsOk() (*[]AWSLogsAsyncError, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *AWSLogsAsyncResponse) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given []AWSLogsAsyncResponseErrors and assigns it to the Errors field.
-func (o *AWSLogsAsyncResponse) SetErrors(v []AWSLogsAsyncResponseErrors) {
+// SetErrors gets a reference to the given []AWSLogsAsyncError and assigns it to the Errors field.
+func (o *AWSLogsAsyncResponse) SetErrors(v []AWSLogsAsyncError) {
 	o.Errors = &v
 }
 

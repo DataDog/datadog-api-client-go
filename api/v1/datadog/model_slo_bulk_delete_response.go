@@ -16,7 +16,7 @@ import (
 type SLOBulkDeleteResponse struct {
 	Data *SLOBulkDeleteResponseData `json:"data,omitempty"`
 	// Array of errors object returned.
-	Errors *[]SLOBulkDeleteResponseErrors `json:"errors,omitempty"`
+	Errors *[]SLOBulkDeleteError `json:"errors,omitempty"`
 }
 
 // NewSLOBulkDeleteResponse instantiates a new SLOBulkDeleteResponse object
@@ -69,9 +69,9 @@ func (o *SLOBulkDeleteResponse) SetData(v SLOBulkDeleteResponseData) {
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *SLOBulkDeleteResponse) GetErrors() []SLOBulkDeleteResponseErrors {
+func (o *SLOBulkDeleteResponse) GetErrors() []SLOBulkDeleteError {
 	if o == nil || o.Errors == nil {
-		var ret []SLOBulkDeleteResponseErrors
+		var ret []SLOBulkDeleteError
 		return ret
 	}
 	return *o.Errors
@@ -79,7 +79,7 @@ func (o *SLOBulkDeleteResponse) GetErrors() []SLOBulkDeleteResponseErrors {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOBulkDeleteResponse) GetErrorsOk() (*[]SLOBulkDeleteResponseErrors, bool) {
+func (o *SLOBulkDeleteResponse) GetErrorsOk() (*[]SLOBulkDeleteError, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
@@ -95,8 +95,8 @@ func (o *SLOBulkDeleteResponse) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given []SLOBulkDeleteResponseErrors and assigns it to the Errors field.
-func (o *SLOBulkDeleteResponse) SetErrors(v []SLOBulkDeleteResponseErrors) {
+// SetErrors gets a reference to the given []SLOBulkDeleteError and assigns it to the Errors field.
+func (o *SLOBulkDeleteResponse) SetErrors(v []SLOBulkDeleteError) {
 	o.Errors = &v
 }
 

@@ -17,8 +17,8 @@ type LogQueryDefinitionGroupBy struct {
 	// Facet name.
 	Facet string `json:"facet"`
 	// Maximum number of items in the group.
-	Limit *int64                  `json:"limit,omitempty"`
-	Sort  *LogQueryDefinitionSort `json:"sort,omitempty"`
+	Limit *int64                         `json:"limit,omitempty"`
+	Sort  *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
 }
 
 // NewLogQueryDefinitionGroupBy instantiates a new LogQueryDefinitionGroupBy object
@@ -96,9 +96,9 @@ func (o *LogQueryDefinitionGroupBy) SetLimit(v int64) {
 }
 
 // GetSort returns the Sort field value if set, zero value otherwise.
-func (o *LogQueryDefinitionGroupBy) GetSort() LogQueryDefinitionSort {
+func (o *LogQueryDefinitionGroupBy) GetSort() LogQueryDefinitionGroupBySort {
 	if o == nil || o.Sort == nil {
-		var ret LogQueryDefinitionSort
+		var ret LogQueryDefinitionGroupBySort
 		return ret
 	}
 	return *o.Sort
@@ -106,7 +106,7 @@ func (o *LogQueryDefinitionGroupBy) GetSort() LogQueryDefinitionSort {
 
 // GetSortOk returns a tuple with the Sort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogQueryDefinitionGroupBy) GetSortOk() (*LogQueryDefinitionSort, bool) {
+func (o *LogQueryDefinitionGroupBy) GetSortOk() (*LogQueryDefinitionGroupBySort, bool) {
 	if o == nil || o.Sort == nil {
 		return nil, false
 	}
@@ -122,8 +122,8 @@ func (o *LogQueryDefinitionGroupBy) HasSort() bool {
 	return false
 }
 
-// SetSort gets a reference to the given LogQueryDefinitionSort and assigns it to the Sort field.
-func (o *LogQueryDefinitionGroupBy) SetSort(v LogQueryDefinitionSort) {
+// SetSort gets a reference to the given LogQueryDefinitionGroupBySort and assigns it to the Sort field.
+func (o *LogQueryDefinitionGroupBy) SetSort(v LogQueryDefinitionGroupBySort) {
 	o.Sort = &v
 }
 

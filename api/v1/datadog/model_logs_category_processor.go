@@ -15,7 +15,7 @@ import (
 // LogsCategoryProcessor Use the Category Processor to add a new attribute (without spaces or special characters in the new attribute name) to a log matching a provided search query. Use categories to create groups for an analytical view. For example, URL groups, machine groups, environments, and response time buckets.  **Notes**:  - The syntax of the query is the one of Logs Explorer search bar.   The query can be done on any log attribute or tag, whether it is a facet or not.   Wildcards can also be used inside your query. - Once the log has matched one of the Processor queries, it stops.   Make sure they are properly ordered in case a log could match several queries. - The names of the categories must be unique. - Once defined in the Category Processor, you can map categories to log status using the Log Status Remapper.
 type LogsCategoryProcessor struct {
 	// Array of filters to match or not a log and their corresponding `name`to assign a custom value to the log.
-	Categories []LogsCategoryProcessorCategories `json:"categories"`
+	Categories []LogsCategoryProcessorCategory `json:"categories"`
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	// Name of the processor.
@@ -29,7 +29,7 @@ type LogsCategoryProcessor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogsCategoryProcessor(categories []LogsCategoryProcessorCategories, target string, type_ LogsCategoryProcessorType) *LogsCategoryProcessor {
+func NewLogsCategoryProcessor(categories []LogsCategoryProcessorCategory, target string, type_ LogsCategoryProcessorType) *LogsCategoryProcessor {
 	this := LogsCategoryProcessor{}
 	this.Categories = categories
 	var isEnabled bool = false
@@ -52,9 +52,9 @@ func NewLogsCategoryProcessorWithDefaults() *LogsCategoryProcessor {
 }
 
 // GetCategories returns the Categories field value
-func (o *LogsCategoryProcessor) GetCategories() []LogsCategoryProcessorCategories {
+func (o *LogsCategoryProcessor) GetCategories() []LogsCategoryProcessorCategory {
 	if o == nil {
-		var ret []LogsCategoryProcessorCategories
+		var ret []LogsCategoryProcessorCategory
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *LogsCategoryProcessor) GetCategories() []LogsCategoryProcessorCategorie
 
 // GetCategoriesOk returns a tuple with the Categories field value
 // and a boolean to check if the value has been set.
-func (o *LogsCategoryProcessor) GetCategoriesOk() (*[]LogsCategoryProcessorCategories, bool) {
+func (o *LogsCategoryProcessor) GetCategoriesOk() (*[]LogsCategoryProcessorCategory, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *LogsCategoryProcessor) GetCategoriesOk() (*[]LogsCategoryProcessorCateg
 }
 
 // SetCategories sets field value
-func (o *LogsCategoryProcessor) SetCategories(v []LogsCategoryProcessorCategories) {
+func (o *LogsCategoryProcessor) SetCategories(v []LogsCategoryProcessorCategory) {
 	o.Categories = v
 }
 
