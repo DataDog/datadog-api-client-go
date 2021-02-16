@@ -19,12 +19,15 @@ import (
 )
 
 func TestApiKeyFunctions(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+
 	if tests.GetRecording() == tests.ModeReplaying {
 		t.Skip("This test case does not support reply from recording")
 	}
 
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -131,9 +134,8 @@ func TestApiKeyFunctions(t *testing.T) {
 }
 
 func TestAPIKeysMgmtCreateErrors(t *testing.T) {
-
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -160,9 +162,8 @@ func TestAPIKeysMgmtCreateErrors(t *testing.T) {
 }
 
 func TestAPIKeysMgmtGetErrors(t *testing.T) {
-
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -188,9 +189,8 @@ func TestAPIKeysMgmtGetErrors(t *testing.T) {
 }
 
 func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
-
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	name := "nonexistent key"
 	testCases := map[string]struct {
@@ -219,10 +219,10 @@ func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
 }
 
 func TestAPIKeysMgmtDelete400Error(t *testing.T) {
-
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/key-mgmt/invalid_number_of_keys_400.json")
@@ -243,8 +243,8 @@ func TestAPIKeysMgmtDelete400Error(t *testing.T) {
 }
 
 func TestAPIKeysMgmtDeleteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -270,8 +270,8 @@ func TestAPIKeysMgmtDeleteErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -296,8 +296,8 @@ func TestAppKeysMgmtListErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtCreateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -324,8 +324,8 @@ func TestAppKeysMgmtCreateErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -351,8 +351,8 @@ func TestAppKeysMgmtGetErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	name := "nonexistent key"
 	testCases := map[string]struct {
@@ -381,8 +381,8 @@ func TestAppKeysMgmtUpdateErrors(t *testing.T) {
 }
 
 func TestAppKeysMgmtDeleteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context

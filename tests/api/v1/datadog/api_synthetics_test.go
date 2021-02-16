@@ -52,10 +52,10 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 			},
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
 				datadog.SyntheticsConfigVariable{
-					Name: "PROPERTY",
+					Name:    "PROPERTY",
 					Example: "content-type",
 					Pattern: datadog.PtrString("content-type"),
-					Type: datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
 			Request: datadog.SyntheticsTestRequest{
@@ -65,13 +65,13 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 				Url:     datadog.PtrString("https://datadoghq.com"),
 				Certificate: &datadog.SyntheticsTestRequestCertificate{
 					Cert: &datadog.SyntheticsTestRequestCertificateItem{
-						Content: datadog.PtrString("cert-content"),
-						Filename: datadog.PtrString("cert-filename"),
+						Content:   datadog.PtrString("cert-content"),
+						Filename:  datadog.PtrString("cert-filename"),
 						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
 					},
 					Key: &datadog.SyntheticsTestRequestCertificateItem{
-						Content: datadog.PtrString("key-content"),
-						Filename: datadog.PtrString("key-filename"),
+						Content:   datadog.PtrString("key-content"),
+						Filename:  datadog.PtrString("key-filename"),
 						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
 					},
 				},
@@ -136,7 +136,7 @@ func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.S
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(recordAssertion),
 			},
 			Request: datadog.SyntheticsTestRequest{
-				Host: datadog.PtrString("https://www.datadoghq.com"),
+				Host:      datadog.PtrString("https://www.datadoghq.com"),
 				DnsServer: datadog.PtrString("8.8.8.8"),
 			},
 		},
@@ -183,7 +183,9 @@ func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.Synthet
 }
 
 func TestSyntheticsAPITestLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -302,7 +304,9 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 }
 
 func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -406,7 +410,9 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 }
 
 func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -510,7 +516,9 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 }
 
 func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -601,8 +609,9 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 }
 
 func TestSyntheticsGetBrowserTestResult(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Test that the get browser result test data can be properly unmarshalled and takes the expected elements in the path
@@ -635,8 +644,9 @@ func TestSyntheticsGetBrowserTestResult(t *testing.T) {
 }
 
 func TestSyntheticsGetApiTestResult(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Test that the get api result test data can be properly unmarshalled and takes the expected elements in the path
@@ -671,8 +681,9 @@ func TestSyntheticsGetApiTestResult(t *testing.T) {
 }
 
 func TestSyntheticsGetSubtypeTcpApiTestResult(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Test that the get api result test data can be properly unmarshalled and takes the expected elements in the path
@@ -707,8 +718,9 @@ func TestSyntheticsGetSubtypeTcpApiTestResult(t *testing.T) {
 }
 
 func TestSyntheticsGetSubtypeDnsApiTestResult(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Test that the get api result test data can be properly unmarshalled and takes the expected elements in the path
@@ -743,7 +755,9 @@ func TestSyntheticsGetSubtypeDnsApiTestResult(t *testing.T) {
 }
 
 func TestSyntheticsMultipleTestsOperations(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -783,8 +797,8 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 }
 
 func TestSyntheticsDeleteTestErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -811,8 +825,9 @@ func TestSyntheticsDeleteTestErrors(t *testing.T) {
 }
 
 func TestSyntheticsDeleteTest404Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/synthetics/error_404.json")
@@ -833,7 +848,9 @@ func TestSyntheticsDeleteTest404Error(t *testing.T) {
 }
 
 func TestSyntheticsUpdateStatusTestErrors(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -874,8 +891,8 @@ func TestSyntheticsUpdateStatusTestErrors(t *testing.T) {
 }
 
 func TestSyntheticsBrowserResultsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -903,8 +920,8 @@ func TestSyntheticsBrowserResultsErrors(t *testing.T) {
 }
 
 func TestSyntheticsGetAPIResultsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -932,8 +949,8 @@ func TestSyntheticsGetAPIResultsErrors(t *testing.T) {
 }
 
 func TestSyntheticsBrowserSpecificResultErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -961,8 +978,8 @@ func TestSyntheticsBrowserSpecificResultErrors(t *testing.T) {
 }
 
 func TestSyntheticsGetAPISpecificResultErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -990,8 +1007,8 @@ func TestSyntheticsGetAPISpecificResultErrors(t *testing.T) {
 }
 
 func TestSyntheticsGetTestErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1019,8 +1036,10 @@ func TestSyntheticsGetTestErrors(t *testing.T) {
 }
 
 func TestSyntheticsUpdateTestErrors(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	// Create API test
@@ -1059,8 +1078,8 @@ func TestSyntheticsUpdateTestErrors(t *testing.T) {
 }
 
 func TestSyntheticsListTestErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1087,8 +1106,9 @@ func TestSyntheticsListTestErrors(t *testing.T) {
 }
 
 func TestSyntheticsListTest404Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/synthetics/error_404.json")
@@ -1109,8 +1129,8 @@ func TestSyntheticsListTest404Error(t *testing.T) {
 }
 
 func TestSyntheticsCreateTestErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1137,8 +1157,9 @@ func TestSyntheticsCreateTestErrors(t *testing.T) {
 }
 
 func TestSyntheticsCreateTest402Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/synthetics/error_402.json")
@@ -1177,7 +1198,9 @@ func deleteSyntheticsTestIfExists(ctx context.Context, t *testing.T, testID stri
 }
 
 func TestSyntheticsListLocations(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -1190,7 +1213,9 @@ func TestSyntheticsListLocations(t *testing.T) {
 }
 
 func TestSyntheticsVariableLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -1243,7 +1268,9 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 }
 
 func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -1257,17 +1284,17 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
 
 	variable := datadog.SyntheticsGlobalVariable{
-		Name:        strings.Replace(strings.ToUpper(*tests.UniqueEntityName(ctx, t)), "-", "_", -1),
-		Description: "variable from test description",
+		Name:              strings.Replace(strings.ToUpper(*tests.UniqueEntityName(ctx, t)), "-", "_", -1),
+		Description:       "variable from test description",
 		ParseTestPublicId: datadog.PtrString(publicID),
 		ParseTestOptions: &datadog.SyntheticsGlobalVariableParseTestOptions{
 			Parser: datadog.SyntheticsGlobalVariableParseTestOptionsParser{
 				Type: datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW,
 			},
-			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER,
+			Type:  datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER,
 			Field: datadog.PtrString("content-type"),
 		},
-		Tags:        []string{"synthetics"},
+		Tags: []string{"synthetics"},
 		Value: datadog.SyntheticsGlobalVariableValue{
 			Secure: datadog.PtrBool(false),
 			Value:  "",
@@ -1301,7 +1328,9 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 }
 
 func TestSyntheticsTriggerCITests(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -1342,53 +1371,55 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 }
 
 func TestSyntheticsPrivateLocationLifecycle(t *testing.T) {
-    ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
-    defer finish()
-    assert := tests.Assert(ctx, t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
 
-    // create a private location
-    privateLocationRequest := datadog.SyntheticsPrivateLocation{
-        Description: "Private Location description",
-        Name: *tests.UniqueEntityName(ctx, t),
-        Tags: []string{"testing:private-location"},
-    }
+	// create a private location
+	privateLocationRequest := datadog.SyntheticsPrivateLocation{
+		Description: "Private Location description",
+		Name:        *tests.UniqueEntityName(ctx, t),
+		Tags:        []string{"testing:private-location"},
+	}
 
-    privateLocationFull, httpresp, err := Client(ctx).SyntheticsApi.CreatePrivateLocation(ctx).Body(privateLocationRequest).Execute()
-    if err != nil {
-        t.Fatalf("Error creating Synthetics private location %v: Response %s: %v", privateLocationRequest, err.(datadog.GenericOpenAPIError).Body(), err)
-    }
-    pl := privateLocationFull.GetPrivateLocation()
+	privateLocationFull, httpresp, err := Client(ctx).SyntheticsApi.CreatePrivateLocation(ctx).Body(privateLocationRequest).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Synthetics private location %v: Response %s: %v", privateLocationRequest, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	pl := privateLocationFull.GetPrivateLocation()
 
-    assert.Equal(pl.GetName(), privateLocationRequest.GetName())
+	assert.Equal(pl.GetName(), privateLocationRequest.GetName())
 
-    privateLocationID := pl.GetId()
+	privateLocationID := pl.GetId()
 
-    // edit private location
-    privateLocationUpdateRequest := datadog.SyntheticsPrivateLocation{
-        Description: "Private Location description",
-        Name: fmt.Sprintf("%s-updated", pl.GetName()),
-        Tags: []string{"testing:private-location"},
-    }
+	// edit private location
+	privateLocationUpdateRequest := datadog.SyntheticsPrivateLocation{
+		Description: "Private Location description",
+		Name:        fmt.Sprintf("%s-updated", pl.GetName()),
+		Tags:        []string{"testing:private-location"},
+	}
 
-    privateLocation, httpresp, err := Client(ctx).SyntheticsApi.UpdatePrivateLocation(ctx, privateLocationID).Body(privateLocationUpdateRequest).Execute()
-    if err != nil {
-        t.Fatalf("Error editing Synthetics private location %v: Response %s: %v", privateLocationRequest, err.(datadog.GenericOpenAPIError).Body(), err)
-    }
+	privateLocation, httpresp, err := Client(ctx).SyntheticsApi.UpdatePrivateLocation(ctx, privateLocationID).Body(privateLocationUpdateRequest).Execute()
+	if err != nil {
+		t.Fatalf("Error editing Synthetics private location %v: Response %s: %v", privateLocationRequest, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
 
-    assert.Equal(privateLocation.GetName(), privateLocationUpdateRequest.GetName())
+	assert.Equal(privateLocation.GetName(), privateLocationUpdateRequest.GetName())
 
-    // get private location
-    privateLocationResponse, httpresp, err := Client(ctx).SyntheticsApi.GetPrivateLocation(ctx, privateLocationID).Execute()
-    if err != nil {
-        t.Fatalf("Error getting Synthetics private location %s: Response %s: %v", privateLocationID, err.(datadog.GenericOpenAPIError).Body(), err)
-    }
-    assert.Equal(200, httpresp.StatusCode)
-    assert.Equal(privateLocationResponse.GetName(), privateLocation.GetName())
+	// get private location
+	privateLocationResponse, httpresp, err := Client(ctx).SyntheticsApi.GetPrivateLocation(ctx, privateLocationID).Execute()
+	if err != nil {
+		t.Fatalf("Error getting Synthetics private location %s: Response %s: %v", privateLocationID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(privateLocationResponse.GetName(), privateLocation.GetName())
 
-    // delete private location
-    httpresp, err = Client(ctx).SyntheticsApi.DeletePrivateLocation(ctx, privateLocationID).Execute()
-    if err != nil {
-        t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", privateLocationID, err.(datadog.GenericOpenAPIError).Body(), err)
-    }
-    assert.Equal(204, httpresp.StatusCode)
+	// delete private location
+	httpresp, err = Client(ctx).SyntheticsApi.DeletePrivateLocation(ctx, privateLocationID).Execute()
+	if err != nil {
+		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", privateLocationID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(204, httpresp.StatusCode)
 }

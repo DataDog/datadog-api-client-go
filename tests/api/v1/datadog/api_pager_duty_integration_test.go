@@ -23,7 +23,9 @@ func generatePagerDutyService(ctx context.Context, t *testing.T) datadog.PagerDu
 }
 
 func TestPagerDutyLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -61,8 +63,10 @@ func TestPagerDutyLifecycle(t *testing.T) {
 }
 
 func TestPagerDutyServicesCreateErrors(t *testing.T) {
-	ctx, close := WithRecorder(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(ctx, t)
+	defer finish()
 
 	pgService := generatePagerDutyService(ctx, t)
 
@@ -94,8 +98,8 @@ func TestPagerDutyServicesCreateErrors(t *testing.T) {
 }
 
 func TestPagerDutyServicesGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -125,8 +129,10 @@ func TestPagerDutyServicesGetErrors(t *testing.T) {
 }
 
 func TestPagerDutyServicesUpdateErrors(t *testing.T) {
-	ctx, close := WithRecorder(WithTestAuth(context.Background()), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
+	defer finish()
 
 	service := generatePagerDutyService(ctx, t)
 	_, _, err := Client(ctx).PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(ctx).Body(service).Execute()
@@ -165,8 +171,8 @@ func TestPagerDutyServicesUpdateErrors(t *testing.T) {
 }
 
 func TestPagerDutyServicesDeleteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
