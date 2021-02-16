@@ -354,7 +354,6 @@ func ClockFromContext(ctx context.Context) clockwork.FakeClock {
 	v := ctx.Value(clockKey)
 	fc, ok := v.(clockwork.FakeClock)
 	if !ok {
-		panic("woops")
 		log.Fatalf("invalid value %v should be clockwork.FakeClock{}", v)
 	}
 	return fc
