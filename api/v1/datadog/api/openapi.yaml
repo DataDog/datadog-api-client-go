@@ -15366,6 +15366,8 @@ components:
       - property
       - recordEvery
       - recordSome
+      - tlsVersion
+      - minTlsVersion
       type: string
       x-enum-varnames:
       - BODY
@@ -15376,6 +15378,8 @@ components:
       - PROPERTY
       - RECORD_EVERY
       - RECORD_SOME
+      - TLS_VERSION
+      - MIN_TLS_VERSION
     SyntheticsBasicAuth:
       description: Object to handle basic authentication when performing the test.
       example:
