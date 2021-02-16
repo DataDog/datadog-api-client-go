@@ -26,7 +26,7 @@ var targetTextHTML interface{} = "text/html"
 var target2000 interface{} = 2000
 var targetValue0 interface{} = "0"
 
-func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
+func getLegacyTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
 	assertionTextHTML := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
 	assertionTextHTML.Property = datadog.PtrString("{{ PROPERTY }}")
 	assertionTextHTML.Target = &targetTextHTML
@@ -98,6 +98,78 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 	}
 }
 
+func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestApi {
+	assertionTextHTML := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
+	assertionTextHTML.Property = datadog.PtrString("{{ PROPERTY }}")
+	assertionTextHTML.Target = &targetTextHTML
+
+	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
+	assertion2000.Target = &target2000
+
+	targetJSONPath := datadog.NewSyntheticsAssertionJSONPathTarget(datadog.SYNTHETICSASSERTIONJSONPATHOPERATOR_VALIDATES_JSON_PATH, datadog.SYNTHETICSASSERTIONTYPE_BODY)
+	targetJSONPath.SetTarget(
+		datadog.SyntheticsAssertionJSONPathTargetTarget{
+			JsonPath:    datadog.PtrString("topKey"),
+			Operator:    datadog.PtrString("isNot"),
+			TargetValue: &targetValue0,
+		},
+	)
+
+	return datadog.SyntheticsTestApi{
+		Config: &datadog.SyntheticsTestApiConfig{
+			Assertions: []datadog.SyntheticsAssertion{
+				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertionTextHTML),
+				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
+				datadog.SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion(targetJSONPath),
+			},
+			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
+				datadog.SyntheticsConfigVariable{
+					Name: "PROPERTY",
+					Example: "content-type",
+					Pattern: datadog.PtrString("content-type"),
+					Type: datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+				},
+			},
+			Request: datadog.SyntheticsTestRequest{
+				Headers: &map[string]string{"testingGoClient": "true"},
+				Method:  datadog.HTTPMETHOD_GET.Ptr(),
+				Timeout: datadog.PtrFloat64(10),
+				Url:     datadog.PtrString("https://datadoghq.com"),
+				Certificate: &datadog.SyntheticsTestRequestCertificate{
+					Cert: &datadog.SyntheticsTestRequestCertificateItem{
+						Content: datadog.PtrString("cert-content"),
+						Filename: datadog.PtrString("cert-filename"),
+						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
+					},
+					Key: &datadog.SyntheticsTestRequestCertificateItem{
+						Content: datadog.PtrString("key-content"),
+						Filename: datadog.PtrString("key-filename"),
+						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
+					},
+				},
+			},
+		},
+		Locations: &[]string{"aws:us-east-2"},
+		Message:   datadog.PtrString("Go client testing Synthetics API test - this is message"),
+		Name:      tests.UniqueEntityName(ctx, t),
+		Options: &datadog.SyntheticsTestOptions{
+			AcceptSelfSigned:   datadog.PtrBool(false),
+			AllowInsecure:      datadog.PtrBool(true),
+			FollowRedirects:    datadog.PtrBool(true),
+			MinFailureDuration: datadog.PtrInt64(10),
+			MinLocationFailed:  datadog.PtrInt64(1),
+			Retry: &datadog.SyntheticsTestOptionsRetry{
+				Count:    datadog.PtrInt64(3),
+				Interval: datadog.PtrFloat64(10),
+			},
+			TickEvery: datadog.SYNTHETICSTICKINTERVAL_MINUTE.Ptr(),
+		},
+		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
+		Tags:    &[]string{"testing:api"},
+		Type:    datadog.PtrString("api"),
+	}
+}
+
 func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
 	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
 	assertion2000.SetTarget(target2000)
@@ -152,7 +224,7 @@ func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.S
 	}
 }
 
-func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
+func getLegacyTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
 	return datadog.SyntheticsTestDetails{
 		Config: &datadog.SyntheticsTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{},
@@ -182,13 +254,43 @@ func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.Synthet
 	}
 }
 
+func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsTestBrowser {
+	return datadog.SyntheticsTestBrowser{
+		Config: &datadog.SyntheticsTestBrowserConfig{
+			Assertions: []datadog.SyntheticsAssertion{},
+			Request: datadog.SyntheticsTestRequest{
+				Method: datadog.HTTPMETHOD_GET.Ptr(),
+				Url:    datadog.PtrString("https://datadoghq.com"),
+			},
+		},
+		Locations: &[]string{"aws:us-east-2"},
+		Message:   datadog.PtrString("Go client testing Synthetics Browser test - this is message"),
+		Name:      tests.UniqueEntityName(ctx, t),
+		Options: &datadog.SyntheticsTestOptions{
+			AcceptSelfSigned:   datadog.PtrBool(false),
+			AllowInsecure:      datadog.PtrBool(true),
+			DeviceIds:          &[]datadog.SyntheticsDeviceID{datadog.SYNTHETICSDEVICEID_TABLET},
+			FollowRedirects:    datadog.PtrBool(true),
+			MinFailureDuration: datadog.PtrInt64(10),
+			MinLocationFailed:  datadog.PtrInt64(1),
+			Retry: &datadog.SyntheticsTestOptionsRetry{
+				Count:    datadog.PtrInt64(3),
+				Interval: datadog.PtrFloat64(10),
+			},
+			TickEvery: datadog.SYNTHETICSTICKINTERVAL_FIVE_MINUTES.Ptr(),
+		},
+		Tags: &[]string{"testing:browser"},
+		Type: datadog.PtrString("browser"),
+	}
+}
+
 func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
 	// Create API test
-	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
 	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -515,7 +617,7 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create Browser test
-	testSyntheticsBrowser := getTestSyntheticsBrowser(ctx, t)
+	testSyntheticsBrowser := getLegacyTestSyntheticsBrowser(ctx, t)
 	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsBrowser).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsBrowser, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -749,7 +851,7 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 
 	var syntAPI, syntBrowser datadog.SyntheticsTestDetails
 	// Create API test
-	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
 	syntAPI, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -760,7 +862,7 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 	assert.Equal(testSyntheticsAPI.GetName(), syntAPI.GetName())
 
 	// Create Browser test
-	testSyntheticsBrowser := getTestSyntheticsBrowser(ctx, t)
+	testSyntheticsBrowser := getLegacyTestSyntheticsBrowser(ctx, t)
 	syntBrowser, httpresp, err = Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsBrowser).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsBrowser, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -838,7 +940,7 @@ func TestSyntheticsUpdateStatusTestErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create API test
-	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
 	syntAPI, _, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
 	if err != nil {
 		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
@@ -1024,7 +1126,7 @@ func TestSyntheticsUpdateTestErrors(t *testing.T) {
 	defer finish()
 
 	// Create API test
-	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
 	syntAPI, _, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -1248,7 +1350,7 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// create test to use
-	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
 	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -1306,7 +1408,7 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// create api test to trigger later
-	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
 	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -1391,4 +1493,64 @@ func TestSyntheticsPrivateLocationLifecycle(t *testing.T) {
         t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", privateLocationID, err.(datadog.GenericOpenAPIError).Body(), err)
     }
     assert.Equal(204, httpresp.StatusCode)
+}
+
+func TestSyntheticsAPITestEndpointLifecycle(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	// Create API test
+	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateApiTest(ctx).Body(testSyntheticsAPI).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	publicID := synt.GetPublicId()
+	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(testSyntheticsAPI.GetName(), synt.GetName())
+
+	// Update API test
+	updatedName := fmt.Sprintf("%s-updated", testSyntheticsAPI.GetName())
+	synt.SetName(updatedName)
+	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
+	synt.MonitorId = nil
+	synt.PublicId = nil
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateApiTest(ctx, publicID).Body(synt).Execute()
+	if err != nil {
+		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(updatedName, synt.GetName())
+}
+
+func TestSyntheticsBrowserTestEndpointLifecycle(t *testing.T) {
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	// Create Browser test
+	testSyntheticsBrowser := getTestSyntheticsBrowser(ctx, t)
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateBrowserTest(ctx).Body(testSyntheticsBrowser).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsBrowser, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	publicID := synt.GetPublicId()
+	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(testSyntheticsBrowser.GetName(), synt.GetName())
+
+	// Update Browser test
+	updatedName := fmt.Sprintf("%s-updated", testSyntheticsBrowser.GetName())
+	synt.SetName(updatedName)
+	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
+	synt.MonitorId = nil
+	synt.PublicId = nil
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateBrowserTest(ctx, publicID).Body(synt).Execute()
+	if err != nil {
+		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(updatedName, synt.GetName())
 }
