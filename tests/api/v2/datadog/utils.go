@@ -137,18 +137,18 @@ func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
 	}
 }
 
-func GetTestDomain(ctx context.Context, client *datadog.APIClient) (string, error) {
-	baseUrl, err := client.GetConfig().ServerURLWithContext(ctx, "")
+func getTestDomain(ctx context.Context, client *datadog.APIClient) (string, error) {
+	baseURL, err := client.GetConfig().ServerURLWithContext(ctx, "")
 	if err != nil {
 		return "", fmt.Errorf("could not generate base url: %v", err)
 	}
 
-	parsedUrl, err := url.Parse(baseUrl)
+	parsedURL, err := url.Parse(baseURL)
 	if err != nil {
 		return "", fmt.Errorf("could not parse base url: %v", err)
 	}
 
-	host, err := publicsuffix.EffectiveTLDPlusOne(parsedUrl.Host)
+	host, err := publicsuffix.EffectiveTLDPlusOne(parsedURL.Host)
 	if err != nil {
 		return "", fmt.Errorf("could not parse TLD+1: %v", err)
 	}

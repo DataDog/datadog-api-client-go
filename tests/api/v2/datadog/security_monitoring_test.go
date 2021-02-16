@@ -57,7 +57,7 @@ func createRule(ctx context.Context, api *datadog.SecurityMonitoringApiService, 
 	return api.CreateSecurityMonitoringRule(ctx).Body(*createPayload).Execute()
 }
 
-func deleteRule(t *testing.T, ctx context.Context, api *datadog.SecurityMonitoringApiService, id string) {
+func deleteRule(ctx context.Context, t *testing.T, api *datadog.SecurityMonitoringApiService, id string) {
 	_, err := api.DeleteSecurityMonitoringRule(ctx, id).Execute()
 	if err != nil {
 		t.Logf("Error delete rule: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -83,7 +83,7 @@ func TestSecMonRulesCRUD(t *testing.T) {
 		}
 		assert.Equal(200, httpResponse.StatusCode)
 		ruleResponses = append(ruleResponses, ruleResponse)
-		defer deleteRule(t, ctx, api, ruleResponse.GetId())
+		defer deleteRule(ctx, t, api, ruleResponse.GetId())
 	}
 
 	// get single rule
@@ -276,7 +276,7 @@ func TestSearchSecurityMonitoringSignals(t *testing.T) {
 	respMeta := response.GetMeta()
 	respPage := respMeta.GetPage()
 	cursor := respPage.GetAfter()
-	firstId := response.GetData()[0].GetId()
+	firstID := response.GetData()[0].GetId()
 
 	request.Page.SetCursor(cursor)
 	response, httpResp, err = api.SearchSecurityMonitoringSignals(ctx).Body(*request).Execute()
@@ -285,9 +285,9 @@ func TestSearchSecurityMonitoringSignals(t *testing.T) {
 	}
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(1, len(response.GetData()))
-	secondId := response.GetData()[0].GetId()
+	secondID := response.GetData()[0].GetId()
 
-	assert.NotEqual(firstId, secondId)
+	assert.NotEqual(firstID, secondID)
 }
 
 func TestListSecurityMonitoringSignals(t *testing.T) {
@@ -381,7 +381,7 @@ func TestListSecurityMonitoringSignals(t *testing.T) {
 	respMeta := response.GetMeta()
 	respPage := respMeta.GetPage()
 	cursor := respPage.GetAfter()
-	firstId := response.GetData()[0].GetId()
+	firstID := response.GetData()[0].GetId()
 
 	response, httpResp, err = api.ListSecurityMonitoringSignals(ctx).
 		FilterQuery(*uniqueName).
@@ -395,9 +395,9 @@ func TestListSecurityMonitoringSignals(t *testing.T) {
 	}
 	assert.Equal(200, httpResp.StatusCode)
 	assert.Equal(1, len(response.GetData()))
-	secondId := response.GetData()[0].GetId()
+	secondID := response.GetData()[0].GetId()
 
-	assert.NotEqual(firstId, secondId)
+	assert.NotEqual(firstID, secondID)
 }
 
 func sendLogsSignals(ctx context.Context, client *datadog.APIClient, suffix string) error {
@@ -409,13 +409,13 @@ func sendLogsSignals(ctx context.Context, client *datadog.APIClient, suffix stri
 		source, (now.Unix()-1000)*1000, suffix,
 	)
 
-	domain, err := GetTestDomain(ctx, client)
+	domain, err := getTestDomain(ctx, client)
 	if err != nil {
 		return fmt.Errorf("parsing domain: %v", err)
 	}
-	intakeUrl := fmt.Sprintf("https://http-intake.logs.%s/v1/input", domain)
+	intakeURL := fmt.Sprintf("https://http-intake.logs.%s/v1/input", domain)
 
-	httpresp, respBody, err := SendRequest(ctx, "POST", intakeUrl, []byte(httpLog))
+	httpresp, respBody, err := SendRequest(ctx, "POST", intakeURL, []byte(httpLog))
 	if err != nil {
 		return fmt.Errorf("response %s: %v", respBody, err)
 	}
@@ -428,7 +428,7 @@ func sendLogsSignals(ctx context.Context, client *datadog.APIClient, suffix stri
 		source, now.Unix()*1000, suffix,
 	)
 
-	httpresp, respBody, err = SendRequest(ctx, "POST", intakeUrl, []byte(httpLog))
+	httpresp, respBody, err = SendRequest(ctx, "POST", intakeURL, []byte(httpLog))
 	if err != nil {
 		return fmt.Errorf("error creating log: Response %s: %v", respBody, err)
 	}
