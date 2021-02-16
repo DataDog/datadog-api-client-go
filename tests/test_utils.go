@@ -142,7 +142,7 @@ func SnakeToCamelCase(snake string) (camel string) {
 	return
 }
 
-func ToVarName(param string) (varName string) {
+func toVarName(param string) (varName string) {
 	isToUpper := true
 
 	for _, v := range param {
@@ -354,6 +354,7 @@ func ClockFromContext(ctx context.Context) clockwork.FakeClock {
 	v := ctx.Value(clockKey)
 	fc, ok := v.(clockwork.FakeClock)
 	if !ok {
+		panic("woops")
 		log.Fatalf("invalid value %v should be clockwork.FakeClock{}", v)
 	}
 	return fc

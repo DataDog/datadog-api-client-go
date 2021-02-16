@@ -65,7 +65,9 @@ func deleteRule(t *testing.T, ctx context.Context, api *datadog.SecurityMonitori
 }
 
 func TestSecMonRulesCRUD(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	api := Client(ctx).SecurityMonitoringApi
@@ -188,7 +190,9 @@ func TestSecMonRulesCRUD(t *testing.T) {
 }
 
 func TestSearchSecurityMonitoringSignals(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	defer enableSecMonUnstableOperations(ctx)()
@@ -287,7 +291,9 @@ func TestSearchSecurityMonitoringSignals(t *testing.T) {
 }
 
 func TestListSecurityMonitoringSignals(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	defer enableSecMonUnstableOperations(ctx)()
