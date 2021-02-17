@@ -98,7 +98,7 @@ func getLegacyTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.Synth
 	}
 }
 
-func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestApi {
+func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
 	assertionTextHTML := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
 	assertionTextHTML.Property = datadog.PtrString("{{ PROPERTY }}")
 	assertionTextHTML.Target = &targetTextHTML
@@ -115,8 +115,8 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsT
 		},
 	)
 
-	return datadog.SyntheticsTestApi{
-		Config: &datadog.SyntheticsTestApiConfig{
+	return datadog.SyntheticsAPITest{
+		Config: &datadog.SyntheticsAPITestConfig{
 			Assertions: []datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertionTextHTML),
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
@@ -254,8 +254,8 @@ func getLegacyTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.S
 	}
 }
 
-func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsTestBrowser {
-	return datadog.SyntheticsTestBrowser{
+func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsBrowserTest {
+	return datadog.SyntheticsBrowserTest{
 		Config: &datadog.SyntheticsTestBrowserConfig{
 			Assertions: []datadog.SyntheticsAssertion{},
 			Request: datadog.SyntheticsTestRequest{
@@ -1502,7 +1502,7 @@ func TestSyntheticsAPITestEndpointLifecycle(t *testing.T) {
 
 	// Create API test
 	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateApiTest(ctx).Body(testSyntheticsAPI).Execute()
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx).Body(testSyntheticsAPI).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1517,7 +1517,7 @@ func TestSyntheticsAPITestEndpointLifecycle(t *testing.T) {
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
 	synt.MonitorId = nil
 	synt.PublicId = nil
-	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateApiTest(ctx, publicID).Body(synt).Execute()
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID).Body(synt).Execute()
 	if err != nil {
 		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1532,7 +1532,7 @@ func TestSyntheticsBrowserTestEndpointLifecycle(t *testing.T) {
 
 	// Create Browser test
 	testSyntheticsBrowser := getTestSyntheticsBrowser(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateBrowserTest(ctx).Body(testSyntheticsBrowser).Execute()
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsBrowserTest(ctx).Body(testSyntheticsBrowser).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsBrowser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
