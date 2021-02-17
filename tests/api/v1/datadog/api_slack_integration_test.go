@@ -16,8 +16,8 @@ import (
 )
 
 const (
-	staticTeamName     = "slack_integration_test_team"
-	staticChannelName  = "#test-channel"
+	staticTeamName    = "slack_integration_test_team"
+	staticChannelName = "#test-channel"
 )
 
 func TestSlackIntegrationGetAllChannelsMocked(t *testing.T) {
