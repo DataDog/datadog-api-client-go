@@ -260,7 +260,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 
 		// Call builder pattern
 		for _, p := range s.Parameters {
-			name := ToVarName(p.Name)
+			name := toVarName(p.Name)
 			method := request.MethodByName(name)
 			if method.IsValid() {
 				v := p.Resolve(t, ctx, method.Type().In(0))
@@ -558,7 +558,7 @@ func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, va
 		return
 	}
 
-	name := ToVarName(param)
+	name := toVarName(param)
 	// Get the method for setting the current parameter
 	method := request.MethodByName(name)
 
@@ -582,7 +582,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	requestParameters := GetRequestParameters(ctx)
 
 	for param, value := range requestParameters {
-		name := ToVarName(param)
+		name := toVarName(param)
 		method := request.MethodByName(name)
 		if method.IsValid() {
 			if param == "body" {
