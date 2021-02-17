@@ -314,7 +314,7 @@ Example: `logs(query).index(index_name).rollup(rollup_method[, measure]).last(ti
 - **`index_name`** For multi-index organizations, the log index in which the request is performed.
 - **`rollup_method`** The stats roll-up method - supports `count`, `avg` and `cardinality`.
 - **`measure`** For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.
-- **`time_window`** #m (between 1 and 1440), #h (between 1 and 24)
+- **`time_window`** #m (between 1 and 2880), #h (between 1 and 48)
 - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 - **`#`** an integer or decimal number used to set the threshold.
 
