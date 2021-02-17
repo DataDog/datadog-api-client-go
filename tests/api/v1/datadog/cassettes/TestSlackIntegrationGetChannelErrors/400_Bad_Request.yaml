@@ -1,0 +1,47 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetSlackIntegrationChannel
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4037808526115080086"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "5026012642173765195"
+    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/go-TestSlackIntegrationGetChannelErrors-400_Bad_Request-local-1613570641/channels/go-TestSlackIntegrationGetChannelErrors-400_Bad_Request-local-1613570641
+    method: GET
+  response:
+    body: '{"errors": ["Integration is not configured"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "45"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 17 Feb 2021 14:04:01 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.3924484"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 400 Bad Request
+    code: 400
+    duration: ""
