@@ -23,7 +23,9 @@ func deleteRole(ctx context.Context, t *testing.T, roleID string) {
 }
 
 func TestRoleLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -104,7 +106,9 @@ func TestRoleLifecycle(t *testing.T) {
 }
 
 func TestRolePermissionsLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -166,7 +170,9 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 }
 
 func TestRoleUsersLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -254,7 +260,9 @@ func TestRoleUsersLifecycle(t *testing.T) {
 }
 
 func TestListRolesErrors(t *testing.T) {
-	ctx, finish := WithRecorder(context.Background(), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	testCases := map[string]struct {
@@ -280,8 +288,9 @@ func TestListRolesErrors(t *testing.T) {
 }
 
 func TestCreateRoleErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	// first, test creating a role
@@ -325,8 +334,9 @@ func TestCreateRoleErrors(t *testing.T) {
 }
 
 func TestGetRoleErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -375,8 +385,9 @@ func TestGetRoleErrors(t *testing.T) {
 }
 
 func TestUpdateRoleErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -443,8 +454,9 @@ func TestUpdateRoleErrors(t *testing.T) {
 }
 
 func TestDeleteRoleErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -493,8 +505,9 @@ func TestDeleteRoleErrors(t *testing.T) {
 }
 
 func TestListRolePermissionsErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -543,8 +556,9 @@ func TestListRolePermissionsErrors(t *testing.T) {
 }
 
 func TestAddPermissionToRoleErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -599,8 +613,9 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 }
 
 func TestRemovePermissionFromRoleErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -675,8 +690,9 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 }
 
 func TestListRoleUsersErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -725,8 +741,9 @@ func TestListRoleUsersErrors(t *testing.T) {
 }
 
 func TestAddUserToRoleErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -781,8 +798,9 @@ func TestAddUserToRoleErrors(t *testing.T) {
 }
 
 func TestRemoveUserFromRoleErrors(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 

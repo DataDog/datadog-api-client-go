@@ -143,7 +143,7 @@ func SnakeToCamelCase(snake string) (camel string) {
 	return
 }
 
-func ToVarName(param string) (varName string) {
+func toVarName(param string) (varName string) {
 	isToUpper := true
 
 	for _, v := range param {
