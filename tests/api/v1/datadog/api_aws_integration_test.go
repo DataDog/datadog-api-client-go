@@ -45,8 +45,10 @@ var TESTUPDATEAWSACCWITHEXCLUDEDREGION = datadog.AWSAccount{
 }
 
 func TestCreateAWSAccount(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -80,8 +82,10 @@ func TestCreateAWSAccount(t *testing.T) {
 }
 
 func TestUpdateAWSAccount(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -122,8 +126,10 @@ func TestUpdateAWSAccount(t *testing.T) {
 }
 
 func TestDisableAWSAcct(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	// We already test this in the disableAWSAccount cleanup function, but good to have an explicit test
@@ -136,8 +142,10 @@ func TestDisableAWSAcct(t *testing.T) {
 }
 
 func TestGenerateNewExternalId(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -155,8 +163,10 @@ func TestGenerateNewExternalId(t *testing.T) {
 }
 
 func TestListNamespaces(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -179,8 +189,8 @@ func TestListNamespaces(t *testing.T) {
 }
 
 func TestAWSIntegrationGenerateExternalIDErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -207,8 +217,8 @@ func TestAWSIntegrationGenerateExternalIDErrors(t *testing.T) {
 }
 
 func TestAWSIntegrationCreateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -235,7 +245,9 @@ func TestAWSIntegrationCreateErrors(t *testing.T) {
 }
 
 func TestAWSIntegrationCreateConflictErrors(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	testAWSAccount := generateUniqueAWSAccount(ctx, t)
@@ -260,8 +272,8 @@ func TestAWSIntegrationCreateConflictErrors(t *testing.T) {
 }
 
 func TestAWSIntegrationDeleteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -288,7 +300,9 @@ func TestAWSIntegrationDeleteErrors(t *testing.T) {
 }
 
 func TestAWSIntegrationGetAll403Error(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -301,7 +315,9 @@ func TestAWSIntegrationGetAll403Error(t *testing.T) {
 }
 
 func TestAWSIntegrationGetAll400Error(t *testing.T) {
-	ctx, finish := WithClient(context.Background(), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx = WithClient(ctx)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -325,7 +341,9 @@ func TestAWSIntegrationGetAll400Error(t *testing.T) {
 }
 
 func TestAWSIntegrationListNamespacesErrors(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -338,8 +356,8 @@ func TestAWSIntegrationListNamespacesErrors(t *testing.T) {
 }
 
 func TestAWSIntegrationUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context

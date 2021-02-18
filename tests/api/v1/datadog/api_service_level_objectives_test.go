@@ -1,7 +1,7 @@
 /*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
+* Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+* This product includes software developed at Datadog (https://www.datadoghq.com/).
+* Copyright 2019-Present Datadog, Inc.
  */
 
 package test
@@ -72,7 +72,9 @@ func isSLOIDPresent(sloID string, slos []datadog.ServiceLevelObjective) error {
 }
 
 func TestSLOMonitorLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -151,7 +153,9 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 }
 
 func TestSLOEventLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -219,7 +223,9 @@ func TestSLOEventLifecycle(t *testing.T) {
 }
 
 func TestSLOMultipleInstances(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -283,8 +289,8 @@ func TestSLOMultipleInstances(t *testing.T) {
 }
 
 func TestSLOCreateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -310,8 +316,8 @@ func TestSLOCreateErrors(t *testing.T) {
 }
 
 func TestSLOListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -339,8 +345,8 @@ func TestSLOListErrors(t *testing.T) {
 }
 
 func TestSLOUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -382,8 +388,8 @@ func TestSLOUpdateErrors(t *testing.T) {
 }
 
 func TestSLOGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -409,8 +415,8 @@ func TestSLOGetErrors(t *testing.T) {
 }
 
 func TestSLODeleteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -436,9 +442,10 @@ func TestSLODeleteErrors(t *testing.T) {
 }
 
 func TestSLODelete409Error(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Mocked as the feature is in a broken state right now
@@ -492,8 +499,10 @@ func TestSLODelete409Error(t *testing.T) {
 }
 
 func TestSLOHistoryGetErrors(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -536,8 +545,8 @@ func TestSLOHistoryGetErrors(t *testing.T) {
 }
 
 func TestSLOCanDeleteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -563,9 +572,10 @@ func TestSLOCanDeleteErrors(t *testing.T) {
 }
 
 func TestSLOCanDelete409Error(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Mocked as the feature is in a broken state right now
@@ -587,8 +597,8 @@ func TestSLOCanDelete409Error(t *testing.T) {
 }
 
 func TestSLOBulkDeleteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -622,7 +632,9 @@ func deleteSLOIfExists(ctx context.Context, t *testing.T, sloID string) {
 }
 
 func TestSLOCorrectionsLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 

@@ -37,7 +37,9 @@ func getStartEndMonth(ctx context.Context) (time.Time, time.Time) {
 }
 
 func TestUsageAnalyzedLogs(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -51,7 +53,9 @@ func TestUsageAnalyzedLogs(t *testing.T) {
 }
 
 func TestUsageFargate(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -65,7 +69,9 @@ func TestUsageFargate(t *testing.T) {
 }
 
 func TestUsageHosts(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -79,7 +85,9 @@ func TestUsageHosts(t *testing.T) {
 }
 
 func TestUsageLogs(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -93,7 +101,9 @@ func TestUsageLogs(t *testing.T) {
 }
 
 func TestUsageSynthetics(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -107,7 +117,9 @@ func TestUsageSynthetics(t *testing.T) {
 }
 
 func TestUsageSyntheticsAPI(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -121,7 +133,9 @@ func TestUsageSyntheticsAPI(t *testing.T) {
 }
 
 func TestUsageSyntheticsBrowser(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -135,7 +149,9 @@ func TestUsageSyntheticsBrowser(t *testing.T) {
 }
 
 func TestUsageTimeseries(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -149,7 +165,9 @@ func TestUsageTimeseries(t *testing.T) {
 }
 
 func TestUsageTopAvgMetrics(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -162,7 +180,9 @@ func TestUsageTopAvgMetrics(t *testing.T) {
 }
 
 func TestUsageIndexedSpans(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -176,7 +196,9 @@ func TestUsageIndexedSpans(t *testing.T) {
 }
 
 func TestUsageLogsByIndex(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -190,7 +212,9 @@ func TestUsageLogsByIndex(t *testing.T) {
 }
 
 func TestUsageLambda(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -204,7 +228,9 @@ func TestUsageLambda(t *testing.T) {
 }
 
 func TestUsageNetworkHosts(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -218,7 +244,9 @@ func TestUsageNetworkHosts(t *testing.T) {
 }
 
 func TestUsageNetworkFlows(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -232,7 +260,9 @@ func TestUsageNetworkFlows(t *testing.T) {
 }
 
 func TestUsageRumSessions(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -246,7 +276,9 @@ func TestUsageRumSessions(t *testing.T) {
 }
 
 func TestUsageMobileRumSessions(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -260,7 +292,9 @@ func TestUsageMobileRumSessions(t *testing.T) {
 }
 
 func TestUsageSNMP(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -274,7 +308,9 @@ func TestUsageSNMP(t *testing.T) {
 }
 
 func TestUsageProfiling(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -289,7 +325,9 @@ func TestUsageProfiling(t *testing.T) {
 }
 
 func TestUsageIngestedSpans(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -304,7 +342,9 @@ func TestUsageIngestedSpans(t *testing.T) {
 }
 
 func TestUsageIncidentManagement(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -319,8 +359,9 @@ func TestUsageIncidentManagement(t *testing.T) {
 }
 
 func TestUsageBillableSummary(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// startMonth := time.Date(2020, 06, 01, 0, 0, 0, 0, time.UTC)
@@ -376,7 +417,9 @@ func TestUsageBillableSummary(t *testing.T) {
 }
 
 func TestSpecifiedDailyCustomReports(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	currentDate := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1) // only have reports from day before
@@ -397,7 +440,9 @@ func TestSpecifiedDailyCustomReports(t *testing.T) {
 }
 
 func TestSpecifiedMonthlyCustomReports(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	currentDate := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1) // We will only have monthly reports on 2020-08-15 for this org
@@ -418,7 +463,9 @@ func TestSpecifiedMonthlyCustomReports(t *testing.T) {
 }
 
 func TestDailyCustomReports(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -437,7 +484,9 @@ func TestDailyCustomReports(t *testing.T) {
 }
 
 func TestMonthlyCustomReports(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -457,8 +506,9 @@ func TestMonthlyCustomReports(t *testing.T) {
 
 // This test needs multi-org token so make it a unit test
 func TestUsageSummary(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	startMonth := time.Date(2019, 02, 02, 23, 0, 0, 0, time.UTC)
@@ -556,7 +606,9 @@ func TestUsageSummary(t *testing.T) {
 }
 
 func TestUsageAttribution(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	startMonth := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1)
@@ -574,8 +626,8 @@ func TestUsageAttribution(t *testing.T) {
 }
 
 func TestUsageGetAnalyzedLogsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -601,8 +653,8 @@ func TestUsageGetAnalyzedLogsErrors(t *testing.T) {
 }
 
 func TestUsageGetHostsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -628,8 +680,8 @@ func TestUsageGetHostsErrors(t *testing.T) {
 }
 
 func TestUsageGetLogsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -655,8 +707,8 @@ func TestUsageGetLogsErrors(t *testing.T) {
 }
 
 func TestUsageGetLogsByIndexErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -682,8 +734,8 @@ func TestUsageGetLogsByIndexErrors(t *testing.T) {
 }
 
 func TestUsageGetSNMPErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -709,8 +761,8 @@ func TestUsageGetSNMPErrors(t *testing.T) {
 }
 
 func TestUsageGetBillableSummaryErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -736,8 +788,9 @@ func TestUsageGetBillableSummaryErrors(t *testing.T) {
 }
 
 func TestUsageGetBillableSummary400Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/usage/error_400.json")
@@ -759,8 +812,8 @@ func TestUsageGetBillableSummary400Error(t *testing.T) {
 }
 
 func TestUsageTimeSeriesErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -786,8 +839,8 @@ func TestUsageTimeSeriesErrors(t *testing.T) {
 }
 
 func TestUsageTopAvgMetricsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -813,8 +866,8 @@ func TestUsageTopAvgMetricsErrors(t *testing.T) {
 }
 
 func TestUsageIndexedSpansErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -840,8 +893,8 @@ func TestUsageIndexedSpansErrors(t *testing.T) {
 }
 
 func TestUsageSyntheticsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -867,8 +920,8 @@ func TestUsageSyntheticsErrors(t *testing.T) {
 }
 
 func TestUsageSyntheticsAPIErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -894,8 +947,8 @@ func TestUsageSyntheticsAPIErrors(t *testing.T) {
 }
 
 func TestUsageSyntheticsBrowserErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -921,8 +974,8 @@ func TestUsageSyntheticsBrowserErrors(t *testing.T) {
 }
 
 func TestUsageFargateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -948,8 +1001,8 @@ func TestUsageFargateErrors(t *testing.T) {
 }
 
 func TestUsageLambdaErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -975,8 +1028,8 @@ func TestUsageLambdaErrors(t *testing.T) {
 }
 
 func TestUsageRumSessionErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1002,8 +1055,10 @@ func TestUsageRumSessionErrors(t *testing.T) {
 }
 
 func TestUsageRumSessionBadType(t *testing.T) {
-	ctx, close := WithRecorder(WithTestAuth(context.Background()), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
+	defer finish()
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
@@ -1015,8 +1070,8 @@ func TestUsageRumSessionBadType(t *testing.T) {
 }
 
 func TestUsageNetworkHostsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1042,8 +1097,8 @@ func TestUsageNetworkHostsErrors(t *testing.T) {
 }
 
 func TestUsageNetworkFlowsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1069,8 +1124,8 @@ func TestUsageNetworkFlowsErrors(t *testing.T) {
 }
 
 func TestUsageSummaryErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1097,8 +1152,9 @@ func TestUsageSummaryErrors(t *testing.T) {
 }
 
 func TestUsageGetSummary400Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/usage/error_400.json")
@@ -1121,8 +1177,8 @@ func TestUsageGetSummary400Error(t *testing.T) {
 }
 
 func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1149,8 +1205,8 @@ func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
 }
 
 func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1177,8 +1233,8 @@ func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
 }
 
 func TestGetSpecifiedMonthlyCustomReports404Error(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1204,8 +1260,8 @@ func TestGetSpecifiedMonthlyCustomReports404Error(t *testing.T) {
 }
 
 func TestGetDailyCustomReportsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1231,8 +1287,8 @@ func TestGetDailyCustomReportsErrors(t *testing.T) {
 }
 
 func TestGetMonthlyCustomReportsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1258,8 +1314,8 @@ func TestGetMonthlyCustomReportsErrors(t *testing.T) {
 }
 
 func TestGetUsageProfilingErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1285,8 +1341,8 @@ func TestGetUsageProfilingErrors(t *testing.T) {
 }
 
 func TestGetIngestedSpansErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1312,8 +1368,8 @@ func TestGetIngestedSpansErrors(t *testing.T) {
 }
 
 func TestGetIncidentManagementErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1339,8 +1395,8 @@ func TestGetIncidentManagementErrors(t *testing.T) {
 }
 
 func TestGetUsageAttributionErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context

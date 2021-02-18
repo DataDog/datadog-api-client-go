@@ -20,9 +20,10 @@ import (
 )
 
 func TestListOrgs(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -53,9 +54,10 @@ func TestListOrgs(t *testing.T) {
 }
 
 func TestCreateOrg(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -112,9 +114,10 @@ func TestCreateOrg(t *testing.T) {
 }
 
 func TestUpdateOrg(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -161,9 +164,10 @@ func TestUpdateOrg(t *testing.T) {
 }
 
 func TestGetOrg(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -210,9 +214,10 @@ func TestGetOrg(t *testing.T) {
 }
 
 func TestUploadOrgIdpMeta(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -233,8 +238,8 @@ func TestUploadOrgIdpMeta(t *testing.T) {
 }
 
 func TestOrgsCreateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -261,8 +266,8 @@ func TestOrgsCreateErrors(t *testing.T) {
 }
 
 func TestOrgsListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -287,8 +292,8 @@ func TestOrgsListErrors(t *testing.T) {
 }
 
 func TestOrgsGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -314,8 +319,8 @@ func TestOrgsGetErrors(t *testing.T) {
 }
 
 func TestOrgsUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -341,8 +346,8 @@ func TestOrgsUpdateErrors(t *testing.T) {
 }
 
 func TestOrgsUploadIdpErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -373,9 +378,10 @@ func TestOrgsUploadIdpErrors(t *testing.T) {
 }
 
 func TestOrgsUploadIdp415Error(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/orgs/error_415.json")

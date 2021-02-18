@@ -19,6 +19,8 @@ import (
 // This test uses mocking because: 1) it relies on private data. 2) It relies on external services
 
 func TestLogsArchivesCreate(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	includeTags := true
 	testCases := []struct {
 		archiveType string
@@ -104,8 +106,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 	}
 	for _, tc := range testCases {
 		t.Run(tc.archiveType, func(t *testing.T) {
-			ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
-			defer finish()
+			ctx := WithClient(WithFakeAuth(ctx))
 
 			client := Client(ctx)
 			assert := tests.Assert(ctx, t)
@@ -129,8 +130,9 @@ func TestLogsArchivesCreate(t *testing.T) {
 }
 
 func TestLogsArchivesUpdate(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	client := Client(ctx)
 	archiveType := "s3"
@@ -170,8 +172,9 @@ func TestLogsArchivesUpdate(t *testing.T) {
 }
 
 func TestLogsArchivesGetByID(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	client := Client(ctx)
 	id := "FOObartotO"
@@ -190,8 +193,9 @@ func TestLogsArchivesGetByID(t *testing.T) {
 }
 
 func TestLogsArchivesDelete(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	id := "FOObartotO"
 	client := Client(ctx)
@@ -205,8 +209,9 @@ func TestLogsArchivesDelete(t *testing.T) {
 }
 
 func TestLogsArchivesGetAll(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	client := Client(ctx)
 	assert := tests.Assert(ctx, t)
 	action := "getall"
@@ -226,8 +231,9 @@ func TestLogsArchivesGetAll(t *testing.T) {
 }
 
 func TestGetLogsArchiveOrder(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	client := Client(ctx)
 	assert := tests.Assert(ctx, t)
 
@@ -248,8 +254,9 @@ func TestGetLogsArchiveOrder(t *testing.T) {
 }
 
 func TestUpdateLogsArchiveOrder(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	client := Client(ctx)
 	assert := tests.Assert(ctx, t)
 	input := createUpdatedLogsArchiveOrder(t)
