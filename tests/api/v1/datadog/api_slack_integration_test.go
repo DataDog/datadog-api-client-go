@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	staticTeamName    = "slack_integration_test_team"
+	staticAccountName    = "slack_integration_test_account"
 	staticChannelName = "#test-channel"
 )
 
@@ -39,7 +39,7 @@ func TestSlackIntegrationGetAllChannelsMocked(t *testing.T) {
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "SlackIntegrationApi.GetSlackIntegrationChannels")
 	assert.NoError(err)
 	gock.New(URL).
-		Get(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels", staticTeamName)).
+		Get(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels", staticAccountName)).
 		Reply(200).
 		JSON(data)
 
@@ -47,7 +47,7 @@ func TestSlackIntegrationGetAllChannelsMocked(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).SlackIntegrationApi
-	slackChannelsResp, httpResp, err := api.GetSlackIntegrationChannels(ctx, staticTeamName).Execute()
+	slackChannelsResp, httpResp, err := api.GetSlackIntegrationChannels(ctx, staticAccountName).Execute()
 	if err != nil {
 		t.Errorf("Failed to get slack integration all channels: %v", err)
 	}
@@ -74,8 +74,8 @@ func TestSlackIntegrationGetAllChannelsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			uniqueTeamName := *tests.UniqueEntityName(ctx, t)
-			_, httpresp, err := Client(ctx).SlackIntegrationApi.GetSlackIntegrationChannels(ctx, uniqueTeamName).Execute()
+			uniqueAccountName := *tests.UniqueEntityName(ctx, t)
+			_, httpresp, err := Client(ctx).SlackIntegrationApi.GetSlackIntegrationChannels(ctx, uniqueAccountName).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -103,7 +103,7 @@ func TestSlackIntegrationCreateChannelMocked(t *testing.T) {
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "SlackIntegrationApi.CreateSlackIntegrationChannel")
 	assert.NoError(err)
 	gock.New(URL).
-		Post(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels", staticTeamName)).
+		Post(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels", staticAccountName)).
 		Reply(200).
 		JSON(data)
 
@@ -121,7 +121,7 @@ func TestSlackIntegrationCreateChannelMocked(t *testing.T) {
 		Tags:     datadog.PtrBool(false),
 	}
 
-	slackChannelsResp, httpResp, err := api.CreateSlackIntegrationChannel(ctx, staticTeamName).Body(*channelPayload).Execute()
+	slackChannelsResp, httpResp, err := api.CreateSlackIntegrationChannel(ctx, staticAccountName).Body(*channelPayload).Execute()
 	if err != nil {
 		t.Errorf("Failed to create slack integration channel: %v", err)
 	}
@@ -148,8 +148,8 @@ func TestSlackIntegrationCreateChannelErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			uniqueTeamName := *tests.UniqueEntityName(ctx, t)
-			_, httpresp, err := Client(ctx).SlackIntegrationApi.CreateSlackIntegrationChannel(ctx, uniqueTeamName).Body(tc.Body).Execute()
+			uniqueAccountName := *tests.UniqueEntityName(ctx, t)
+			_, httpresp, err := Client(ctx).SlackIntegrationApi.CreateSlackIntegrationChannel(ctx, uniqueAccountName).Body(tc.Body).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -172,11 +172,11 @@ func TestSlackIntegrationCreateChannel404Error(t *testing.T) {
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "SlackIntegrationApi.CreateSlackIntegrationChannel")
 	assert.NoError(err)
 	gock.New(URL).
-		Post(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels", staticTeamName)).
+		Post(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels", staticAccountName)).
 		Reply(404).JSON(data)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).SlackIntegrationApi.CreateSlackIntegrationChannel(ctx, staticTeamName).Body(datadog.SlackIntegrationChannel{}).Execute()
+	_, httpresp, err := Client(ctx).SlackIntegrationApi.CreateSlackIntegrationChannel(ctx, staticAccountName).Body(datadog.SlackIntegrationChannel{}).Execute()
 	assert.Equal(404, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -202,7 +202,7 @@ func TestSlackIntegrationGetChannelMocked(t *testing.T) {
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "SlackIntegrationApi.GetSlackIntegrationChannel")
 	assert.NoError(err)
 	gock.New(URL).
-		Get(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels/%s", staticTeamName, staticChannelName)).
+		Get(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels/%s", staticAccountName, staticChannelName)).
 		Reply(200).
 		JSON(data)
 
@@ -210,7 +210,7 @@ func TestSlackIntegrationGetChannelMocked(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).SlackIntegrationApi
-	slackChannelsResp, httpResp, err := api.GetSlackIntegrationChannel(ctx, staticTeamName, staticChannelName).Execute()
+	slackChannelsResp, httpResp, err := api.GetSlackIntegrationChannel(ctx, staticAccountName, staticChannelName).Execute()
 	if err != nil {
 		t.Errorf("Failed to get slack integration channel: %v", err)
 	}
@@ -236,9 +236,9 @@ func TestSlackIntegrationGetChannelErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			uniqueTeamName := *tests.UniqueEntityName(ctx, t)
+			uniqueAccountName := *tests.UniqueEntityName(ctx, t)
 			uniqueChannelName := *tests.UniqueEntityName(ctx, t)
-			_, httpresp, err := Client(ctx).SlackIntegrationApi.GetSlackIntegrationChannel(ctx, uniqueTeamName, uniqueChannelName).Execute()
+			_, httpresp, err := Client(ctx).SlackIntegrationApi.GetSlackIntegrationChannel(ctx, uniqueAccountName, uniqueChannelName).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -261,11 +261,11 @@ func TestSlackIntegrationGetChannel404Error(t *testing.T) {
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "SlackIntegrationApi.GetSlackIntegrationChannel")
 	assert.NoError(err)
 	gock.New(URL).
-		Get(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels/%s", staticTeamName, staticChannelName)).
+		Get(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels/%s", staticAccountName, staticChannelName)).
 		Reply(404).JSON(data)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).SlackIntegrationApi.GetSlackIntegrationChannel(ctx, staticTeamName, staticChannelName).Execute()
+	_, httpresp, err := Client(ctx).SlackIntegrationApi.GetSlackIntegrationChannel(ctx, staticAccountName, staticChannelName).Execute()
 	assert.Equal(404, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -291,7 +291,7 @@ func TestSlackIntegrationUpdateChannelMocked(t *testing.T) {
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "SlackIntegrationApi.UpdateSlackIntegrationChannel")
 	assert.NoError(err)
 	gock.New(URL).
-		Patch(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels/%s", staticTeamName, staticChannelName)).
+		Patch(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels/%s", staticAccountName, staticChannelName)).
 		Reply(200).
 		JSON(data)
 
@@ -308,7 +308,7 @@ func TestSlackIntegrationUpdateChannelMocked(t *testing.T) {
 		Tags:     datadog.PtrBool(false),
 	}
 
-	slackChannelsResp, httpResp, err := api.UpdateSlackIntegrationChannel(ctx, staticTeamName, staticChannelName).Body(*channelPayload).Execute()
+	slackChannelsResp, httpResp, err := api.UpdateSlackIntegrationChannel(ctx, staticAccountName, staticChannelName).Body(*channelPayload).Execute()
 	if err != nil {
 		t.Errorf("Failed to update slack integration channel: %v", err)
 	}
@@ -335,9 +335,9 @@ func TestSlackIntegrationUpdateChannelErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			uniqueTeamName := *tests.UniqueEntityName(ctx, t)
+			uniqueAccountName := *tests.UniqueEntityName(ctx, t)
 			uniqueChannelName := *tests.UniqueEntityName(ctx, t)
-			_, httpresp, err := Client(ctx).SlackIntegrationApi.UpdateSlackIntegrationChannel(ctx, uniqueTeamName, uniqueChannelName).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).SlackIntegrationApi.UpdateSlackIntegrationChannel(ctx, uniqueAccountName, uniqueChannelName).Body(tc.Body).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -360,11 +360,11 @@ func TestSlackIntegrationUpdateChannel404Error(t *testing.T) {
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "SlackIntegrationApi.UpdateSlackIntegrationChannel")
 	assert.NoError(err)
 	gock.New(URL).
-		Patch(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels/%s", staticTeamName, staticChannelName)).
+		Patch(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels/%s", staticAccountName, staticChannelName)).
 		Reply(404).JSON(data)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).SlackIntegrationApi.UpdateSlackIntegrationChannel(ctx, staticTeamName, staticChannelName).Body(datadog.SlackIntegrationChannel{}).Execute()
+	_, httpresp, err := Client(ctx).SlackIntegrationApi.UpdateSlackIntegrationChannel(ctx, staticAccountName, staticChannelName).Body(datadog.SlackIntegrationChannel{}).Execute()
 	assert.Equal(404, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -381,11 +381,11 @@ func TestSlackIntegrationRemoveChannelMocked(t *testing.T) {
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "SlackIntegrationApi.RemoveSlackIntegrationChannel")
 	assert.NoError(err)
 	gock.New(URL).
-		Delete(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels/%s", staticTeamName, staticChannelName)).
+		Delete(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels/%s", staticAccountName, staticChannelName)).
 		Reply(204)
 
 	api := Client(ctx).SlackIntegrationApi
-	httpResp, err := api.RemoveSlackIntegrationChannel(ctx, staticTeamName, staticChannelName).Execute()
+	httpResp, err := api.RemoveSlackIntegrationChannel(ctx, staticAccountName, staticChannelName).Execute()
 	if err != nil {
 		t.Errorf("Failed to remove slack integration channel: %v", err)
 	}
@@ -410,9 +410,9 @@ func TestSlackIntegrationRemoveChannelErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			uniqueTeamName := *tests.UniqueEntityName(ctx, t)
+			uniqueAccountName := *tests.UniqueEntityName(ctx, t)
 			uniqueChannelName := *tests.UniqueEntityName(ctx, t)
-			httpresp, err := Client(ctx).SlackIntegrationApi.RemoveSlackIntegrationChannel(ctx, uniqueTeamName, uniqueChannelName).Execute()
+			httpresp, err := Client(ctx).SlackIntegrationApi.RemoveSlackIntegrationChannel(ctx, uniqueAccountName, uniqueChannelName).Execute()
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError := err.(datadog.GenericOpenAPIError)
 			assert.NotEmpty(apiError)

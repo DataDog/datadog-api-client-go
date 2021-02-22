@@ -12,17 +12,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2909272298323751810"
+      - "4080231662774555227"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5034145010681192672"
-    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/go-TestSlackIntegrationRemoveChannelErrors-400_Bad_Request-local-1613570642/channels/go-TestSlackIntegrationRemoveChannelErrors-400_Bad_Request-local-1613570642
+      - "5408158755158454214"
+    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/go-TestSlackIntegrationRemoveChannelErrors-400_Bad_Request-local-1614005868/channels/go-TestSlackIntegrationRemoveChannelErrors-400_Bad_Request-local-1614005868
     method: DELETE
   response:
     body: "\n\n\n<!DOCTYPE html>\n<!--\n______  _______ _______ _______ ______   _____
       \  ______\n|     \\ |_____|    |    |_____| |     \\ |     | |  ____\n|_____/
-      |     |    |    |     | |_____/ |_____| |_____|\n\n\ndU1BMX0+dtojC91cZUhkcxF/HwNonJ8cjV3fwMcu1JdVrVmQL7hb6v1ZVw1L/39NwkTlrfW/usp/4009p91SUz2DrL3QQFG95+sVwX6zdwwiGF7j4rmowsiKOQcEqmJSZZih1mbCL/gfdww3YE1hwZI54bzUwkFHbZorbm8A7HpYnRWON45XEE3lK84StPUj7hMhLba6Sm+o6kW/86TAC2Lj5FZs/PrKQvCY5N1tLbp1sTgN4g3lWyRk2l08UNaZqZABD8rZk2+aRyZMS1W6l+ul8X5133Ff7ZBwghZO64v5wwuqV6U8UDEStdMFe5w4ujZwh5TCmFFImYzer83h6mrzsZAkcVKRjVj7b/5mdfqsJ7RJ5Al2FJb4+HYAaY2Z0aVfZGzpZYwefqRZ0pt4kpCPAYxotGcBOBmL3uv7PcSwbWkWXoQXRRnlQG9h3uiXyYrf0jmwS1SI4g78mDXhIjy2DP8XiVhx20HR8HSxCwNIuB9cmcFtyL0NodUOTnBSmvUFfWc/eRT6+QPog11L1BLwhcsMTSIJC+8n4OF8mbxJ7JCEhAmqY0Makf/pSSty0dRmO8YN1N8ARqQ58TzFVd6ku6WMCTPifLLpI3GTi1vuuubF5iOpvpNgvhwcBnEUpj3ngbW5yi/sCK3uymtCEETGMIqmZyi56sohYgOVC7sBVn1UdmcNKqjYeNZg9hXCm36YdXqklEhDigoTmqMMPNyMzmlBUt0F6SY2PqP6fg/guedDr8q8nKpWsXjzlHLtDlOZpwZOM08/3hbUvgpz28tYKxibNM+jhy9eCGU/UpHzLUCHRjRwXHZYgVqFdR1+pqNUZBbv+y0f0HuRpW6sYVWE0USHSmOrksdPAVdeJHeCAaOX+smLOBuPT1wgCOmp0Mdof2MZTMXYMeEKmBXBcxpZL/Thqb08APeQwoAQrIXzV6nGFvkQvTQAGQnpfvqu2PoO+m9EI06g+dTV7qBajm5eoQ/13azQfSe4YncovLPoMFuRN+U0SbwXjiKCX1i3p4tt3kD6OP0sKWzWqB5SlS6PDxL67IUxNkmLMKsfSNbh4ctZCMph\n\n\n-->\n<html>\n
+      |     |    |    |     | |_____/ |_____| |_____|\n\n\n2vvySWx4qPfxbSa4bsApxss+l0KsXLFY+2lsRzUu922FHh0HhfatqaT9qhFR09nEtgAZvZfUFTvly+67k3XRA2GmvbIdIps2AWr3yM4QRWYjNs/HyzL92r669T3Vn5viVYuokiah8IMXNUDrXYPPCgaiMVncJE2lqZPaQHli7a5kNIABEtGDW4Z4447v9Pen++ngwriWdUIgaoxrCHkVbOEwxuF3qq1NfkmNhazzLnm1L61AlvpzamUNIwsv5+TWK5XXyCgQN3USo4buapzb5M0I8UvS3TgxvCEdw/0Pi2sLsq/tEtiVRLC+yKvV9fy+TCotwuQTFso0eK9H8FPXvo9ck2TIHJUq/Covq8ZFBIO5asIuGEjlXWPTYUmKJSPfufIe7IUDFU1jmqfVMJVrBSn+RBcIU6yq0/rKu3ictnjp8yq2OvZldMdaXUdNFGVCjScjhHnlQW4ycFA7QGs5l0RQ0DHHEKkSAoM9ZQb5ISBL/FCCYVK8XLiO8p5+sRq5SUs2K9C9f2Jwtzq4gOIq9gE7JqAK7WRUgJ2tzJyeAXaK8pUdGhIXDwo6P+witLIZksHP9XfzJ0xIyyAPNaczrWtrQGPnl3z4AcSQ2ijpMFDo8xS/EsGzQrLRWFrU8VPurNBFZddSAoQh2i5bkFgZqSvfEtjKeARIedvmeMvTOE2pBwAOKn81Esgpos4ghem0t198BRqGvrgB4ZjltjBiiCGaHH2LPuMZLB4fisJnFe+TOv+tDTYZjQ+pC5bxPG7UmhxlpL/A1YVx8hKgcBVLXYODAy2Buuziinn2R/9fjEfqlrr/gfUCAYNwE5L2s7m0NzjE7Px67fltpiLhdmr+0ozUh1b7quyW79OrfgMFxGRaCxWRjyDTR1JD0DVqlcUFkUxSSRQvwg3x40qc/Lj7h5lc8zrPqsmzq6EiqWNm9lsmlaLdbfoxCv7QmhntrwO+7Jp9ss+++peW1UlTZWqEB09cAeFcTUt4t8GDp+pgJGH5hz6ScxBoc/Y/tY7wdBoaqP01BEn3bSem391Xe4Yqyq1kbjie8POyDmMGROMDYG9ire9aP4w88g==\n\n\n-->\n<html>\n
       \   <head>\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
       \       <style>\n            @viewport {\n                width: device-width;\n
       \               initial-scale: 1;\n            }\n            body { padding:
@@ -32,13 +32,13 @@ interactions:
       \           }\n\n            img.mako_picture_dark {\n                filter:
       brightness(76%);\n            }\n        </style>\n        <title>\n          \n
       \ Error 400 | Datadog\n |\n        Datadog\n        </title>\n        <link
-      crossorigin=\"anonymous\" href=\"https://static.datadoghq.com/static/v/35.3924484/js/react-core.min.css\"
+      crossorigin=\"anonymous\" href=\"https://static.datadoghq.com/static/v/35.3956193/js/react-core.min.css\"
       media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n        \n        \n
       \       \n        \n    </head>\n    <body class=\"\n\">\n        \n\n\n\n<div
       class=\"error_page clearfix\">\n  <div class=\"error_img\">\n    <picture class=\"mako_picture\">\n
-      \     <img alt=\"Sad Datadog Logo\" class=\"mako_picture_light\" src=\"https://static.datadoghq.com/static/v/35.3924484/js/sad-bits.svg\"
+      \     <img alt=\"Sad Datadog Logo\" class=\"mako_picture_light\" src=\"https://static.datadoghq.com/static/v/35.3956193/js/sad-bits.svg\"
       width=\"276\" height=\"295\" />\n      <img alt=\"Sad Datadog Logo\" class=\"mako_picture_dark\"
-      src=\"https://static.datadoghq.com/static/v/35.3924484/js/sad-bits_reversed.svg\"
+      src=\"https://static.datadoghq.com/static/v/35.3956193/js/sad-bits_reversed.svg\"
       width=\"276\" height=\"295\" />\n    </picture>\n  </div>\n  <div class=\"error_msg\">\n
       \   <p class=\"arf line-10 text-size-96 text-contrast-80 text-bold text-displayface\">Arf.</p>\n
       \   <h1 class=\"line-10 text-size-48\">400 Bad Request</h1>\n    <ul>\n      <li
@@ -46,7 +46,7 @@ interactions:
       Homepage &rarr;</a></li>\n      <li><a href=\"https://docs.datadoghq.com/help/\">Datadog
       Help &rarr;</a></li>\n      <li><a href=\"/account/settings\">Datadog Setup
       Basics &rarr;</a></li>\n    </ul>\n  </div>\n</div>\n\n<!--page--></div>\n\n\n\n\n\n
-      \       <script>\n            window.DD_version=\"35.3924484\";\n        </script>\n\n
+      \       <script>\n            window.DD_version=\"35.3956193\";\n        </script>\n\n
       \       \n    <div style=\"display: none;\"><input id=\"3p-apps-init\" name=\"3p-apps-init\"
       type=\"hidden\" value=\"{&#34;statuspageio_page_url&#34;: &#34;https://status.datadoghq.com&#34;,
       &#34;dd_trace_js_env&#34;: &#34;datadoghq.com&#34;, &#34;dd_trace_js_url&#34;:
@@ -140,9 +140,9 @@ interactions:
       &#34;dist_dogweb&#34;, &#34;forecast_front&#34;, &#34;profiling_show_fg_dropdown_values&#34;,
       &#34;dash_extra_data_sources&#34;, &#34;anomalies_new_form_front&#34;, &#34;gohai_metadata&#34;,
       &#34;sqlserver&#34;, &#34;k9_security_agent_show_beta_signup&#34;, &#34;dataviz_geomap_widget&#34;,
-      &#34;monitor_watchdog&#34;, &#34;profiling_show_coalescing_frames_toggle&#34;,
-      &#34;azure_cosmosdb&#34;, &#34;azure_analysis_services&#34;, &#34;azure_network_interface&#34;,
-      &#34;watchdog_generate_whitelist&#34;, &#34;incidents_global_channel_settings&#34;,
+      &#34;monitor_watchdog&#34;, &#34;dataviz_histogram_rum&#34;, &#34;profiling_show_coalescing_frames_toggle&#34;,
+      &#34;k9_new_value_method&#34;, &#34;azure_cosmosdb&#34;, &#34;azure_analysis_services&#34;,
+      &#34;azure_network_interface&#34;, &#34;watchdog_generate_whitelist&#34;, &#34;incidents_global_channel_settings&#34;,
       &#34;azure_application_gateway&#34;, &#34;sentry&#34;, &#34;zk&#34;, &#34;logs_archive_include_tags&#34;,
       &#34;container_orchestration_new_resource_menu&#34;, &#34;process_distribution_metrics&#34;,
       &#34;rich_graph_pointer&#34;, &#34;univiz_dimensions_spy&#34;, &#34;correlations_resource_change&#34;,
@@ -151,9 +151,9 @@ interactions:
       &#34;rum_android_integration&#34;, &#34;kyototycoon&#34;, &#34;amazon_cloudfront&#34;,
       &#34;azure_search&#34;, &#34;amazon_auto_scaling&#34;, &#34;ts_filter_null&#34;,
       &#34;billing_plan&#34;, &#34;event_monitor_warning_threshold&#34;, &#34;query_alerts&#34;,
-      &#34;google_analytics&#34;, &#34;limit_monitor_graph_series&#34;, &#34;google_cloud_spanner&#34;,
-      &#34;in_app_commit&#34;, &#34;infralist_live_metrics&#34;, &#34;metrics_query_use_minmax_func&#34;,
-      &#34;google_cloud_firestore&#34;, &#34;process_discovery_show_detected_integrations&#34;,
+      &#34;google_analytics&#34;, &#34;relevant_template_variables&#34;, &#34;limit_monitor_graph_series&#34;,
+      &#34;google_cloud_spanner&#34;, &#34;in_app_commit&#34;, &#34;infralist_live_metrics&#34;,
+      &#34;metrics_query_use_minmax_func&#34;, &#34;google_cloud_firestore&#34;, &#34;process_discovery_show_detected_integrations&#34;,
       &#34;logs_historical_views&#34;, &#34;slo_product&#34;, &#34;k9_ip_dashboard&#34;,
       &#34;amazon_elasticache&#34;, &#34;monitor_create_v2&#34;, &#34;process_enable_new_historical_time_picker&#34;,
       &#34;google_cloud_tasks&#34;, &#34;uptime_widget_allow_service_check_alert&#34;,
@@ -165,10 +165,10 @@ interactions:
       &#34;dash_process_data_source&#34;, &#34;dataviz_virtualized_change_widget&#34;,
       &#34;timeboard_note_widget&#34;, &#34;mute_timeout&#34;, &#34;google_cloud_big_query&#34;,
       &#34;toplist_units&#34;, &#34;azure_event_grid&#34;, &#34;mongo&#34;, &#34;google_cloud_dataflow&#34;,
-      &#34;invoices&#34;, &#34;authenticated_public_dashboards_api&#34;, &#34;require_cc_for_upgrade&#34;,
-      &#34;query_editor_pct_aggr&#34;, &#34;google_cloud_loadbalancing&#34;, &#34;google_cloud_vpn&#34;,
-      &#34;amazon_cloudsearch&#34;, &#34;monitor_rbac_shadow_write&#34;, &#34;amazon_ecs&#34;,
-      &#34;google_compute_engine&#34;, &#34;use_streaming_snowplow_collector&#34;,
+      &#34;invoices&#34;, &#34;trace_show_breakdown_profiling_for_python&#34;, &#34;authenticated_public_dashboards_api&#34;,
+      &#34;require_cc_for_upgrade&#34;, &#34;query_editor_pct_aggr&#34;, &#34;google_cloud_loadbalancing&#34;,
+      &#34;google_cloud_vpn&#34;, &#34;amazon_cloudsearch&#34;, &#34;monitor_rbac_shadow_write&#34;,
+      &#34;amazon_ecs&#34;, &#34;google_compute_engine&#34;, &#34;use_streaming_snowplow_collector&#34;,
       &#34;trace_outliers_sidebar&#34;, &#34;release_notes&#34;, &#34;dataviz_custom_links&#34;,
       &#34;status_page_v2&#34;, &#34;azure_vm_scale_set&#34;, &#34;too_many_groups_timeout&#34;,
       &#34;google_cloud_platform&#34;, &#34;profile_feature&#34;, &#34;notebook_datasources&#34;,
@@ -205,9 +205,9 @@ interactions:
       &#34;renotify&#34;, &#34;amazon_sns&#34;, &#34;amazon_waf&#34;, &#34;logs_unified_explorer_groups&#34;,
       &#34;fifteen_minute_timeframe&#34;, &#34;trace_page_trace_apm_rum_integration_mvp&#34;,
       &#34;azure_sql_database&#34;, &#34;rum_applications_double_write&#34;, &#34;error_tracking_enable_alerting_v1_ui&#34;,
-      &#34;distributions_exclusion_blocker&#34;, &#34;trace_use_latency_breakdowns_from_tsq&#34;,
-      &#34;anomaly_autotune_front&#34;, &#34;tmpvar_selectable_enabled&#34;, &#34;amazon_cloudhsm&#34;,
-      &#34;pagerduty_incidents&#34;, &#34;trace_distribution_metrics&#34;, &#34;public_dash_get_template_vars_from_be&#34;,
+      &#34;distributions_exclusion_blocker&#34;, &#34;anomaly_autotune_front&#34;,
+      &#34;tmpvar_selectable_enabled&#34;, &#34;amazon_cloudhsm&#34;, &#34;pagerduty_incidents&#34;,
+      &#34;trace_distribution_metrics&#34;, &#34;public_dash_get_template_vars_from_be&#34;,
       &#34;trace_panel_metrics_dropdown&#34;, &#34;couch&#34;, &#34;amazon_polly&#34;,
       &#34;amazon_translate&#34;, &#34;amazon_step_functions&#34;, &#34;amazon_inspector&#34;,
       &#34;azure_service_bus&#34;, &#34;network_saved_views&#34;, &#34;amazon_swf&#34;,
@@ -241,10 +241,10 @@ interactions:
       &#34;dashboard_allow_metric_boolean_filter&#34;, &#34;watchdog_display_saved_views&#34;,
       &#34;amazon_rekognition&#34;, &#34;spa_help&#34;, &#34;as_count_validation&#34;,
       &#34;telemetry_time_react&#34;, &#34;dataviz_standardized_context_menu&#34;,
-      &#34;azure_govcloud&#34;, &#34;snyk&#34;, &#34;trace_service_widget&#34;, &#34;pagerduty_schedules&#34;,
-      &#34;monitor_status_v2&#34;, &#34;marketplace&#34;, &#34;trace_shadow_latency_breakdowns_from_tsq&#34;,
-      &#34;watchdog_show_aws_elb_stories&#34;, &#34;apm_frontend_rbac_beta&#34;, &#34;networks_in_apm&#34;,
-      &#34;k9_projections_enabled&#34;, &#34;azure_app_service_environment&#34;, &#34;k9_attrs_additional_dashboard_links&#34;,
+      &#34;azure_govcloud&#34;, &#34;snyk&#34;, &#34;pagerduty_schedules&#34;, &#34;monitor_status_v2&#34;,
+      &#34;dataviz_histogram_logs&#34;, &#34;marketplace&#34;, &#34;watchdog_show_aws_elb_stories&#34;,
+      &#34;apm_frontend_rbac_beta&#34;, &#34;networks_in_apm&#34;, &#34;k9_projections_enabled&#34;,
+      &#34;azure_app_service_environment&#34;, &#34;k9_attrs_additional_dashboard_links&#34;,
       &#34;amazon_kinesis&#34;, &#34;google_cloud_router&#34;, &#34;screenboard_global_time_selector&#34;,
       &#34;events_explorer_saved_views&#34;, &#34;amazon_ec2_spot&#34;, &#34;amazon_cloudtrail&#34;,
       &#34;azure_liftr_ui&#34;, &#34;slo_widget_v2&#34;, &#34;log_multi_monitors_release&#34;,
@@ -257,10 +257,10 @@ interactions:
       &#34;amazon_health&#34;, &#34;gearmand&#34;, &#34;parse_timeshift_monitor_view&#34;,
       &#34;serverless_actionable_insights&#34;, &#34;google_cloud_dataproc&#34;, &#34;sumo_frontend_v2&#34;,
       &#34;amazon_nat_gateway&#34;, &#34;k9_onboarding&#34;, &#34;google_container_engine&#34;,
-      &#34;profiling_show_fg_separator_option&#34;, &#34;azure_cognitive_services&#34;,
-      &#34;azure_stream_analytics&#34;, &#34;compliance_page_nav&#34;, &#34;amazon_documentdb&#34;,
-      &#34;trace_versions_table&#34;, &#34;gringotts_billing_history&#34;, &#34;limit_queried_timeseries&#34;,
-      &#34;render_bars_in_canvas&#34;, &#34;dataviz_new_histogram_trace_latency&#34;,
+      &#34;graph_editor_wild_card&#34;, &#34;profiling_show_fg_separator_option&#34;,
+      &#34;azure_cognitive_services&#34;, &#34;azure_stream_analytics&#34;, &#34;compliance_page_nav&#34;,
+      &#34;amazon_documentdb&#34;, &#34;trace_versions_table&#34;, &#34;gringotts_billing_history&#34;,
+      &#34;limit_queried_timeseries&#34;, &#34;render_bars_in_canvas&#34;, &#34;dataviz_new_histogram_trace_latency&#34;,
       &#34;watchdog_show_postgres_stories&#34;, &#34;monitor_evaluation_graph_live_process&#34;,
       &#34;profiling_trace_flamegraph&#34;, &#34;k9_rule_based_view&#34;, &#34;public_dash_get_timeframe_from_fe&#34;,
       &#34;azure_relay&#34;, &#34;azure_table_storage&#34;, &#34;aws_write_load_balancer_arns_as_aliases&#34;,
@@ -290,8 +290,8 @@ interactions:
       &#34;tqr_traces_sharding_by_trace_id&#34;, &#34;amazon_ebs&#34;, &#34;process_historical_min_max&#34;,
       &#34;google_cloud_interconnect&#34;, &#34;event_absolute_timestamps&#34;, &#34;logs_unified_explorer&#34;,
       &#34;azure_data_lake_analytics&#34;, &#34;graph_metrics_info_panel&#34;, &#34;azure_queue_storage&#34;,
-      &#34;trace_service_page_synthetics&#34;, &#34;amazon_dynamodb&#34;, &#34;use_ses_pwd_reset&#34;,
-      &#34;slo_widget_global_time&#34;, &#34;cloud_cost_management_athena_client&#34;,
+      &#34;dataviz_unit_label&#34;, &#34;trace_service_page_synthetics&#34;, &#34;amazon_dynamodb&#34;,
+      &#34;use_ses_pwd_reset&#34;, &#34;slo_widget_global_time&#34;, &#34;cloud_cost_management_athena_client&#34;,
       &#34;incident_management&#34;, &#34;oracle_cloud_infrastructure&#34;, &#34;azure_public_ip_address&#34;,
       &#34;amazon_glue&#34;, &#34;user_roles_ui&#34;, &#34;amazon_codebuild&#34;,
       &#34;metrics_query_use_clamp_func&#34;, &#34;amazon_rds&#34;, &#34;watchdog_show_redis_stories&#34;,
@@ -313,8 +313,8 @@ interactions:
       /></div>\n<div style=\"display: none;\"><input id=\"castleappid\" name=\"castleAppId\"
       type=\"hidden\" value=\"389912786276918\" /></div>\n<div style=\"display: none;\"><input
       id=\"castlerequestsignature\" name=\"castleRequestSignature\" type=\"hidden\"
-      value=\"c8247eb245c6414c737020afec747d5af4b06c0168ca2fab50ed78f5deaaa84a\" /></div>\n\n
-      \   <script crossorigin=\"anonymous\" src=\"https://static.datadoghq.com/static/v/35.3924484/js/react-core.min.js\"
+      value=\"e9b924dda93f4ad164ba106353d7e66974cb4e1883bb3a4a9d706a93d104c420\" /></div>\n\n
+      \   <script crossorigin=\"anonymous\" src=\"https://static.datadoghq.com/static/v/35.3956193/js/react-core.min.js\"
       type=\"text/javascript\"></script>\n\n\n    <script>DD.initApp();</script>\n\n
       \       \n\n    </body>\n</html>\n"
     headers:
@@ -323,11 +323,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - "28243"
+      - "28368"
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Wed, 17 Feb 2021 14:04:02 GMT
+      - Mon, 22 Feb 2021 14:57:48 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -335,7 +335,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.3924484"
+      - "35.3956193"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

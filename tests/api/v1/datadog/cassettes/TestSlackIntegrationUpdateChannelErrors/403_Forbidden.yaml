@@ -15,12 +15,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8581106747327959472"
+      - "8315956387655770554"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4391626842863028478"
-    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/go-TestSlackIntegrationUpdateChannelErrors-403_Forbidden-local-1613570642/channels/go-TestSlackIntegrationUpdateChannelErrors-403_Forbidden-local-1613570642
+      - "1333647547370883847"
+    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/go-TestSlackIntegrationUpdateChannelErrors-403_Forbidden-local-1614005868/channels/go-TestSlackIntegrationUpdateChannelErrors-403_Forbidden-local-1614005868
     method: PATCH
   response:
     body: |
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 17 Feb 2021 14:04:02 GMT
+      - Mon, 22 Feb 2021 14:57:48 GMT
       Via:
       - haproxy
     status: 403 Forbidden

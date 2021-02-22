@@ -15,12 +15,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6131900848546658579"
+      - "1304510783019030105"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3304602172385979495"
-    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/go-TestSlackIntegrationCreateChannelErrors-400_Bad_Request-local-1613570641/channels
+      - "2158329879006297296"
+    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/go-TestSlackIntegrationCreateChannelErrors-400_Bad_Request-local-1614005868/channels
     method: POST
   response:
     body: '{"errors": ["Required parameter ''name'' is missing"]}'
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 17 Feb 2021 14:04:01 GMT
+      - Mon, 22 Feb 2021 14:57:48 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.3924484"
+      - "35.3956193"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
