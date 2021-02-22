@@ -15,6 +15,7 @@ servers:
       description: The regional site for our customers.
       enum:
       - datadoghq.com
+      - us3.datadoghq.com
       - datadoghq.eu
       - ddog-gov.com
     subdomain:
@@ -2259,8 +2260,8 @@ paths:
       x-undo:
         type: safe
       x-unstable: |-
-        **Note: This endpoint is in public beta and is only accessible for customers who have Metrics Without Limits&trade;.
-        If you’re interested in this feature, please contact your Customer Support Manager.**
+        **Note: Use of this endpoint for count/gauge/rate metric types is only accessible for Metrics without Limits&trade; beta customers.
+        If you’re interested in Metrics without Limits&trade;, please contact your Customer Success Manager.**
   /api/v2/metrics/{metric_name}/tags:
     delete:
       description: |-
@@ -2304,8 +2305,8 @@ paths:
       x-undo:
         type: idempotent
       x-unstable: |-
-        **Note: This endpoint is in public beta and is only accessible for customers who have Metrics Without Limits&trade;.
-        If you’re interested in this feature, please contact your Customer Support Manager.**
+        **Note: Use of this endpoint for count/gauge/rate metric types is only accessible for Metrics without Limits&trade; beta customers.
+        If you’re interested in Metrics without Limits&trade;, please contact your Customer Success Manager.**
     get:
       description: Returns the tag configuration for the given metric name.
       operationId: ListTagConfigurationByName
@@ -2350,11 +2351,11 @@ paths:
       x-undo:
         type: safe
       x-unstable: |-
-        **Note: This endpoint is in public beta and is only accessible for customers who have Metrics Without Limits&trade;.
-        If you’re interested in this feature, please contact your Customer Support Manager.**
+        **Note: Use of this endpoint for count/gauge/rate metric types is only accessible for Metrics without Limits&trade; beta customers.
+        If you’re interested in Metrics without Limits&trade;, please contact your Customer Success Manager.**
     patch:
       description: |-
-        Update the tag configuration of a metric. Can only be used with
+        Update the tag configuration of a metric or percentile aggregations of a distribution metric. Can only be used with
         application keys from users with the `Manage Tags for Metrics` permission.
       operationId: UpdateTagConfiguration
       parameters:
@@ -2411,11 +2412,11 @@ paths:
       x-undo:
         type: idempotent
       x-unstable: |-
-        **Note: This endpoint is in public beta and is only accessible for customers who have Metrics Without Limits&trade;.
-        If you’re interested in this feature, please contact your Customer Support Manager.**
+        **Note: Use of this endpoint for count/gauge/rate metric types is only accessible for Metrics without Limits&trade; beta customers.
+        If you’re interested in Metrics without Limits&trade;, please contact your Customer Success Manager.**
     post:
       description: |-
-        Create and define a list of queryable tag keys for a count/gauge/rate/distribution metric.
+        Create and define a list of queryable tag keys for a count/gauge/rate/distribution metric. Optionally, include percentile aggregations on any distribution metric.
         Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
       operationId: CreateTagConfiguration
       parameters:
@@ -2494,8 +2495,8 @@ paths:
           source: data.id
         type: unsafe
       x-unstable: |-
-        **Note: This endpoint is in public beta and is only accessible for customers who have Metrics Without Limits&trade;.
-        If you’re interested in this feature, please contact your Customer Support Manager.**
+        **Note: Use of this endpoint for count/gauge/rate metric types is only accessible for Metrics without Limits&trade; beta customers.
+        If you’re interested in Metrics without Limits&trade;, please contact your Customer Success Manager.**
   /api/v2/permissions:
     get:
       description: Returns a list of all permissions, including name, description,
@@ -10032,7 +10033,8 @@ components:
           isDeleted: true
           isEnabled: true
           name: name
-          options: {}
+          options:
+            newValueOptions: {}
           id: id
         - cases:
           - condition: condition
@@ -10078,7 +10080,8 @@ components:
           isDeleted: true
           isEnabled: true
           name: name
-          options: {}
+          options:
+            newValueOptions: {}
           id: id
         meta:
           page:
@@ -10147,7 +10150,8 @@ components:
         cases: []
         isEnabled: true
         name: ""
-        options: {}
+        options:
+          newValueOptions: {}
         filters:
         - query: query
         - query: query
@@ -10206,6 +10210,15 @@ components:
       - options
       - queries
       type: object
+    SecurityMonitoringRuleDetectionMethod:
+      description: The detection method.
+      enum:
+      - threshold
+      - new_value
+      type: string
+      x-enum-varnames:
+      - THRESHOLD
+      - NEW_VALUE
     SecurityMonitoringRuleEvaluationWindow:
       description: |-
         A time window is specified to match when at least one of the cases matches true. This is a sliding window
@@ -10290,16 +10303,62 @@ components:
       - SIX_HOURS
       - TWELVE_HOURS
       - ONE_DAY
-    SecurityMonitoringRuleOptions:
-      description: Options on rules.
+    SecurityMonitoringRuleNewValueOptions:
+      description: Options on new value rules.
       example: {}
       properties:
+        forgetAfter:
+          $ref: '#/components/schemas/SecurityMonitoringRuleNewValueOptionsForgetAfter'
+        learningDuration:
+          $ref: '#/components/schemas/SecurityMonitoringRuleNewValueOptionsLearningDuration'
+      type: object
+    SecurityMonitoringRuleNewValueOptionsForgetAfter:
+      description: The duration in days after which a learned value is forgotten.
+      enum:
+      - 1
+      - 2
+      - 7
+      - 14
+      - 21
+      - 28
+      format: int32
+      type: integer
+      x-enum-varnames:
+      - ONE_DAY
+      - TWO_DAYS
+      - ONE_WEEK
+      - TWO_WEEKS
+      - THREE_WEEKS
+      - FOUR_WEEKS
+    SecurityMonitoringRuleNewValueOptionsLearningDuration:
+      description: |-
+        The duration in days during which values are learned, and after which signals will be generated for values that
+        weren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.
+      enum:
+      - 0
+      - 1
+      - 7
+      format: int32
+      type: integer
+      x-enum-varnames:
+      - ZERO_DAYS
+      - ONE_DAY
+      - SEVEN_DAYS
+    SecurityMonitoringRuleOptions:
+      description: Options on rules.
+      example:
+        newValueOptions: {}
+      properties:
+        detectionMethod:
+          $ref: '#/components/schemas/SecurityMonitoringRuleDetectionMethod'
         evaluationWindow:
           $ref: '#/components/schemas/SecurityMonitoringRuleEvaluationWindow'
         keepAlive:
           $ref: '#/components/schemas/SecurityMonitoringRuleKeepAlive'
         maxSignalDuration:
           $ref: '#/components/schemas/SecurityMonitoringRuleMaxSignalDuration'
+        newValueOptions:
+          $ref: '#/components/schemas/SecurityMonitoringRuleNewValueOptions'
       type: object
     SecurityMonitoringRuleQuery:
       description: Query for matching rule.
@@ -10347,12 +10406,14 @@ components:
       - cardinality
       - sum
       - max
+      - new_value
       type: string
       x-enum-varnames:
       - COUNT
       - CARDINALITY
       - SUM
       - MAX
+      - NEW_VALUE
     SecurityMonitoringRuleQueryCreate:
       description: Query for matching rule.
       properties:
@@ -10432,7 +10493,8 @@ components:
         isDeleted: true
         isEnabled: true
         name: name
-        options: {}
+        options:
+          newValueOptions: {}
         id: id
       properties:
         cases:
@@ -10520,7 +10582,8 @@ components:
           - notifications
         isEnabled: true
         name: name
-        options: {}
+        options:
+          newValueOptions: {}
         filters:
         - query: query
         - query: query

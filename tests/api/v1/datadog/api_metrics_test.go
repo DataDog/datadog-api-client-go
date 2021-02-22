@@ -21,7 +21,9 @@ import (
 )
 
 func TestMetrics(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -141,8 +143,9 @@ func TestMetrics(t *testing.T) {
 }
 
 func TestMetricListActive(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	data := setupGock(ctx, t, "metrics/active_metrics.json", "GET", "metrics")
 	defer gock.Off()
@@ -162,9 +165,10 @@ func TestMetricListActive(t *testing.T) {
 }
 
 func TestMetricsListActive400Error(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Error 400 cannot be triggered from the client due to client side validation, so mock it
@@ -185,8 +189,8 @@ func TestMetricsListActive400Error(t *testing.T) {
 }
 
 func TestMetricsListActiveErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -213,8 +217,8 @@ func TestMetricsListActiveErrors(t *testing.T) {
 }
 
 func TestMetricsMetadataGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -240,9 +244,10 @@ func TestMetricsMetadataGetErrors(t *testing.T) {
 }
 
 func TestMetricsMetadataUpdate400Error(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Error 400 cannot be triggered from the client due to client side validation, so mock it
@@ -263,8 +268,8 @@ func TestMetricsMetadataUpdate400Error(t *testing.T) {
 }
 
 func TestMetricsMetadataUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -291,9 +296,10 @@ func TestMetricsMetadataUpdateErrors(t *testing.T) {
 }
 
 func TestMetricsList400Error(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Error 400 cannot be triggered from the client due to client side validation, so mock it
@@ -314,8 +320,8 @@ func TestMetricsList400Error(t *testing.T) {
 }
 
 func TestMetricsListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -342,9 +348,10 @@ func TestMetricsListErrors(t *testing.T) {
 }
 
 func TestMetricsQuery400Error(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Error 400 cannot be triggered from the client due to client side validation, so mock it
@@ -365,8 +372,8 @@ func TestMetricsQuery400Error(t *testing.T) {
 }
 
 func TestMetricsQueryErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context

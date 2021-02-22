@@ -23,7 +23,9 @@ import (
 )
 
 func TestHosts(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -99,8 +101,9 @@ func TestHosts(t *testing.T) {
 }
 
 func TestHostTotalsMocked(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -134,8 +137,9 @@ func TestHostTotalsMocked(t *testing.T) {
 }
 
 func TestHostsSearchMocked(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -173,8 +177,8 @@ func TestHostsSearchMocked(t *testing.T) {
 }
 
 func TestHostsListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -200,8 +204,8 @@ func TestHostsListErrors(t *testing.T) {
 }
 
 func TestHostsGetTotalsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -227,8 +231,10 @@ func TestHostsGetTotalsErrors(t *testing.T) {
 }
 
 func TestHostsMuteErrors(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -267,8 +273,8 @@ func TestHostsMuteErrors(t *testing.T) {
 }
 
 func TestHostsUnmuteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -295,8 +301,9 @@ func TestHostsUnmuteErrors(t *testing.T) {
 }
 
 func TestHostsSearchMockedIncludeMutedHostsDataFalse(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -335,8 +342,9 @@ func TestHostsSearchMockedIncludeMutedHostsDataFalse(t *testing.T) {
 }
 
 func TestHostsSearchMockedIncludeMutedHostsDataTrue(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -375,8 +383,9 @@ func TestHostsSearchMockedIncludeMutedHostsDataTrue(t *testing.T) {
 }
 
 func TestHostsSearchMockedIncludeMutedHostsDataDefault(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -414,8 +423,9 @@ func TestHostsSearchMockedIncludeMutedHostsDataDefault(t *testing.T) {
 }
 
 func TestHostsSearchMockedIncludeHostsMetadataFalse(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -454,8 +464,9 @@ func TestHostsSearchMockedIncludeHostsMetadataFalse(t *testing.T) {
 }
 
 func TestHostsSearchMockedIncludeHostsMetadataTrue(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -494,8 +505,9 @@ func TestHostsSearchMockedIncludeHostsMetadataTrue(t *testing.T) {
 }
 
 func TestHostsSearchMockedIncludeHostsMetadataDefault(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	defer gock.Off()
 
@@ -533,7 +545,14 @@ func TestHostsSearchMockedIncludeHostsMetadataDefault(t *testing.T) {
 }
 
 func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Slow test")
+	}
+
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 

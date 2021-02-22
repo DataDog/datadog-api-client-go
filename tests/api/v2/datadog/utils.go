@@ -91,10 +91,8 @@ var (
 )
 
 // WithClient sets client for unit tests in context.
-func WithClient(ctx context.Context, t *testing.T) (context.Context, func()) {
-	ctx, finish := tests.WithTestSpan(ctx, t)
-	ctx = context.WithValue(ctx, clientKey, datadog.NewAPIClient(NewConfiguration()))
-	return ctx, finish
+func WithClient(ctx context.Context) context.Context {
+	return context.WithValue(ctx, clientKey, datadog.NewAPIClient(NewConfiguration()))
 }
 
 // ClientFromContext returns client and indication if it was successful.
@@ -120,7 +118,7 @@ func Client(ctx context.Context) *datadog.APIClient {
 
 // WithRecorder configures client with recorder.
 func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
-	ctx, finish := WithClient(ctx, t)
+	ctx = WithClient(ctx)
 	client := Client(ctx)
 
 	ctx, err := tests.WithClock(ctx, tests.SecurePath(t.Name()))
@@ -136,22 +134,21 @@ func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
 
 	return ctx, func() {
 		r.Stop()
-		finish()
 	}
 }
 
-func GetTestDomain(ctx context.Context, client *datadog.APIClient) (string, error) {
-	baseUrl, err := client.GetConfig().ServerURLWithContext(ctx, "")
+func getTestDomain(ctx context.Context, client *datadog.APIClient) (string, error) {
+	baseURL, err := client.GetConfig().ServerURLWithContext(ctx, "")
 	if err != nil {
 		return "", fmt.Errorf("could not generate base url: %v", err)
 	}
 
-	parsedUrl, err := url.Parse(baseUrl)
+	parsedURL, err := url.Parse(baseURL)
 	if err != nil {
 		return "", fmt.Errorf("could not parse base url: %v", err)
 	}
 
-	host, err := publicsuffix.EffectiveTLDPlusOne(parsedUrl.Host)
+	host, err := publicsuffix.EffectiveTLDPlusOne(parsedURL.Host)
 	if err != nil {
 		return "", fmt.Errorf("could not parse TLD+1: %v", err)
 	}

@@ -15,7 +15,7 @@ import (
 // AWSTagFilterListResponse An array of tag filter rules by `namespace` and tag filter string.
 type AWSTagFilterListResponse struct {
 	// An array of tag filters.
-	Filters *[]AWSTagFilterListResponseFilters `json:"filters,omitempty"`
+	Filters *[]AWSTagFilter `json:"filters,omitempty"`
 }
 
 // NewAWSTagFilterListResponse instantiates a new AWSTagFilterListResponse object
@@ -36,9 +36,9 @@ func NewAWSTagFilterListResponseWithDefaults() *AWSTagFilterListResponse {
 }
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
-func (o *AWSTagFilterListResponse) GetFilters() []AWSTagFilterListResponseFilters {
+func (o *AWSTagFilterListResponse) GetFilters() []AWSTagFilter {
 	if o == nil || o.Filters == nil {
-		var ret []AWSTagFilterListResponseFilters
+		var ret []AWSTagFilter
 		return ret
 	}
 	return *o.Filters
@@ -46,7 +46,7 @@ func (o *AWSTagFilterListResponse) GetFilters() []AWSTagFilterListResponseFilter
 
 // GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSTagFilterListResponse) GetFiltersOk() (*[]AWSTagFilterListResponseFilters, bool) {
+func (o *AWSTagFilterListResponse) GetFiltersOk() (*[]AWSTagFilter, bool) {
 	if o == nil || o.Filters == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *AWSTagFilterListResponse) HasFilters() bool {
 	return false
 }
 
-// SetFilters gets a reference to the given []AWSTagFilterListResponseFilters and assigns it to the Filters field.
-func (o *AWSTagFilterListResponse) SetFilters(v []AWSTagFilterListResponseFilters) {
+// SetFilters gets a reference to the given []AWSTagFilter and assigns it to the Filters field.
+func (o *AWSTagFilterListResponse) SetFilters(v []AWSTagFilter) {
 	o.Filters = &v
 }
 

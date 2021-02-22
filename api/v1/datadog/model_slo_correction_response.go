@@ -14,7 +14,7 @@ import (
 
 // SLOCorrectionResponse The response object of an SLO correction
 type SLOCorrectionResponse struct {
-	Data *SLOCorrectionResponseData `json:"data,omitempty"`
+	Data *SLOCorrection `json:"data,omitempty"`
 }
 
 // NewSLOCorrectionResponse instantiates a new SLOCorrectionResponse object
@@ -35,9 +35,9 @@ func NewSLOCorrectionResponseWithDefaults() *SLOCorrectionResponse {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *SLOCorrectionResponse) GetData() SLOCorrectionResponseData {
+func (o *SLOCorrectionResponse) GetData() SLOCorrection {
 	if o == nil || o.Data == nil {
-		var ret SLOCorrectionResponseData
+		var ret SLOCorrection
 		return ret
 	}
 	return *o.Data
@@ -45,7 +45,7 @@ func (o *SLOCorrectionResponse) GetData() SLOCorrectionResponseData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOCorrectionResponse) GetDataOk() (*SLOCorrectionResponseData, bool) {
+func (o *SLOCorrectionResponse) GetDataOk() (*SLOCorrection, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -61,8 +61,8 @@ func (o *SLOCorrectionResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given SLOCorrectionResponseData and assigns it to the Data field.
-func (o *SLOCorrectionResponse) SetData(v SLOCorrectionResponseData) {
+// SetData gets a reference to the given SLOCorrection and assigns it to the Data field.
+func (o *SLOCorrectionResponse) SetData(v SLOCorrection) {
 	o.Data = &v
 }
 

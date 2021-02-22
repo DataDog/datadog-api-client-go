@@ -90,10 +90,8 @@ var (
 )
 
 // WithClient sets client for unit tests in context.
-func WithClient(ctx context.Context, t *testing.T) (context.Context, func()) {
-	ctx, finish := tests.WithTestSpan(ctx, t)
-	ctx = context.WithValue(ctx, clientKey, datadog.NewAPIClient(NewConfiguration()))
-	return ctx, finish
+func WithClient(ctx context.Context) context.Context {
+	return context.WithValue(ctx, clientKey, datadog.NewAPIClient(NewConfiguration()))
 }
 
 // ClientFromContext returns client and indication if it was successful.
@@ -119,7 +117,7 @@ func Client(ctx context.Context) *datadog.APIClient {
 
 // WithRecorder configures client with recorder.
 func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
-	ctx, finish := WithClient(ctx, t)
+	ctx = WithClient(ctx)
 	client := Client(ctx)
 
 	ctx, err := tests.WithClock(ctx, tests.SecurePath(t.Name()))
@@ -135,7 +133,6 @@ func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
 
 	return ctx, func() {
 		r.Stop()
-		finish()
 	}
 }
 

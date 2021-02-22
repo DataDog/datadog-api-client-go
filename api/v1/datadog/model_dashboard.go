@@ -33,7 +33,7 @@ type Dashboard struct {
 	// Array of template variables saved views.
 	TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
 	// List of template variables for this dashboard.
-	TemplateVariables []DashboardTemplateVariables `json:"template_variables,omitempty"`
+	TemplateVariables []DashboardTemplateVariable `json:"template_variables,omitempty"`
 	// Title of the dashboard.
 	Title string `json:"title"`
 	// The URL of the dashboard.
@@ -360,9 +360,9 @@ func (o *Dashboard) SetTemplateVariablePresets(v []DashboardTemplateVariablePres
 }
 
 // GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Dashboard) GetTemplateVariables() []DashboardTemplateVariables {
+func (o *Dashboard) GetTemplateVariables() []DashboardTemplateVariable {
 	if o == nil {
-		var ret []DashboardTemplateVariables
+		var ret []DashboardTemplateVariable
 		return ret
 	}
 	return o.TemplateVariables
@@ -371,7 +371,7 @@ func (o *Dashboard) GetTemplateVariables() []DashboardTemplateVariables {
 // GetTemplateVariablesOk returns a tuple with the TemplateVariables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Dashboard) GetTemplateVariablesOk() (*[]DashboardTemplateVariables, bool) {
+func (o *Dashboard) GetTemplateVariablesOk() (*[]DashboardTemplateVariable, bool) {
 	if o == nil || o.TemplateVariables == nil {
 		return nil, false
 	}
@@ -387,8 +387,8 @@ func (o *Dashboard) HasTemplateVariables() bool {
 	return false
 }
 
-// SetTemplateVariables gets a reference to the given []DashboardTemplateVariables and assigns it to the TemplateVariables field.
-func (o *Dashboard) SetTemplateVariables(v []DashboardTemplateVariables) {
+// SetTemplateVariables gets a reference to the given []DashboardTemplateVariable and assigns it to the TemplateVariables field.
+func (o *Dashboard) SetTemplateVariables(v []DashboardTemplateVariable) {
 	o.TemplateVariables = v
 }
 

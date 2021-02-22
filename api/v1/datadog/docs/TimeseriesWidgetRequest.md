@@ -9,10 +9,11 @@ Name | Type | Description | Notes
 **EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Formulas** | Pointer to [**[]WidgetFormula**](WidgetFormula.md) | List of formulas that operate on queries. This feature is currently in beta. | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Metadata** | Pointer to [**[]TimeseriesWidgetRequestMetadata**](TimeseriesWidgetRequestMetadata.md) | Used to define expression aliases. | [optional] 
+**Metadata** | Pointer to [**[]TimeseriesWidgetExpressionAlias**](TimeseriesWidgetExpressionAlias.md) | Used to define expression aliases. | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **OnRightYaxis** | Pointer to **bool** | Whether or not to display a second y-axis on the right. | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
+**ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Q** | Pointer to **string** | Widget query. | [optional] 
 **Queries** | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. This feature is currently in beta. | [optional] 
 **ResponseFormat** | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md) |  | [optional] 
@@ -166,20 +167,20 @@ HasLogQuery returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *TimeseriesWidgetRequest) GetMetadata() []TimeseriesWidgetRequestMetadata`
+`func (o *TimeseriesWidgetRequest) GetMetadata() []TimeseriesWidgetExpressionAlias`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *TimeseriesWidgetRequest) GetMetadataOk() (*[]TimeseriesWidgetRequestMetadata, bool)`
+`func (o *TimeseriesWidgetRequest) GetMetadataOk() (*[]TimeseriesWidgetExpressionAlias, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *TimeseriesWidgetRequest) SetMetadata(v []TimeseriesWidgetRequestMetadata)`
+`func (o *TimeseriesWidgetRequest) SetMetadata(v []TimeseriesWidgetExpressionAlias)`
 
 SetMetadata sets Metadata field to given value.
 
@@ -263,6 +264,31 @@ SetProcessQuery sets ProcessQuery field to given value.
 `func (o *TimeseriesWidgetRequest) HasProcessQuery() bool`
 
 HasProcessQuery returns a boolean if a field has been set.
+
+### GetProfileMetricsQuery
+
+`func (o *TimeseriesWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition`
+
+GetProfileMetricsQuery returns the ProfileMetricsQuery field if non-nil, zero value otherwise.
+
+### GetProfileMetricsQueryOk
+
+`func (o *TimeseriesWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, bool)`
+
+GetProfileMetricsQueryOk returns a tuple with the ProfileMetricsQuery field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfileMetricsQuery
+
+`func (o *TimeseriesWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition)`
+
+SetProfileMetricsQuery sets ProfileMetricsQuery field to given value.
+
+### HasProfileMetricsQuery
+
+`func (o *TimeseriesWidgetRequest) HasProfileMetricsQuery() bool`
+
+HasProfileMetricsQuery returns a boolean if a field has been set.
 
 ### GetQ
 

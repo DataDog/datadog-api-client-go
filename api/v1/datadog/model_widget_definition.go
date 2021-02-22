@@ -23,6 +23,7 @@ type WidgetDefinition struct {
 	EventStreamWidgetDefinition    *EventStreamWidgetDefinition
 	EventTimelineWidgetDefinition  *EventTimelineWidgetDefinition
 	FreeTextWidgetDefinition       *FreeTextWidgetDefinition
+	GeomapWidgetDefinition         *GeomapWidgetDefinition
 	GroupWidgetDefinition          *GroupWidgetDefinition
 	HeatMapWidgetDefinition        *HeatMapWidgetDefinition
 	HostMapWidgetDefinition        *HostMapWidgetDefinition
@@ -79,6 +80,11 @@ func EventTimelineWidgetDefinitionAsWidgetDefinition(v *EventTimelineWidgetDefin
 // FreeTextWidgetDefinitionAsWidgetDefinition is a convenience function that returns FreeTextWidgetDefinition wrapped in WidgetDefinition
 func FreeTextWidgetDefinitionAsWidgetDefinition(v *FreeTextWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{FreeTextWidgetDefinition: v}
+}
+
+// GeomapWidgetDefinitionAsWidgetDefinition is a convenience function that returns GeomapWidgetDefinition wrapped in WidgetDefinition
+func GeomapWidgetDefinitionAsWidgetDefinition(v *GeomapWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{GeomapWidgetDefinition: v}
 }
 
 // GroupWidgetDefinitionAsWidgetDefinition is a convenience function that returns GroupWidgetDefinition wrapped in WidgetDefinition
@@ -267,6 +273,19 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		dst.FreeTextWidgetDefinition = nil
+	}
+
+	// try to unmarshal data into GeomapWidgetDefinition
+	err = json.Unmarshal(data, &dst.GeomapWidgetDefinition)
+	if err == nil {
+		jsonGeomapWidgetDefinition, _ := json.Marshal(dst.GeomapWidgetDefinition)
+		if string(jsonGeomapWidgetDefinition) == "{}" { // empty struct
+			dst.GeomapWidgetDefinition = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.GeomapWidgetDefinition = nil
 	}
 
 	// try to unmarshal data into GroupWidgetDefinition
@@ -487,6 +506,7 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.EventStreamWidgetDefinition = nil
 		dst.EventTimelineWidgetDefinition = nil
 		dst.FreeTextWidgetDefinition = nil
+		dst.GeomapWidgetDefinition = nil
 		dst.GroupWidgetDefinition = nil
 		dst.HeatMapWidgetDefinition = nil
 		dst.HostMapWidgetDefinition = nil
@@ -544,6 +564,10 @@ func (src WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if src.FreeTextWidgetDefinition != nil {
 		return json.Marshal(&src.FreeTextWidgetDefinition)
+	}
+
+	if src.GeomapWidgetDefinition != nil {
+		return json.Marshal(&src.GeomapWidgetDefinition)
 	}
 
 	if src.GroupWidgetDefinition != nil {
@@ -645,6 +669,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.FreeTextWidgetDefinition != nil {
 		return obj.FreeTextWidgetDefinition
+	}
+
+	if obj.GeomapWidgetDefinition != nil {
+		return obj.GeomapWidgetDefinition
 	}
 
 	if obj.GroupWidgetDefinition != nil {
