@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Message** | Pointer to **string** | Message indicating &#x60;success&#x60; if status is &#x60;ok&#x60;. | [optional] [readonly] 
 **Query** | Pointer to **string** | Query string | [optional] [readonly] 
 **ResType** | Pointer to **string** | Type of response. | [optional] [readonly] 
-**Series** | Pointer to [**[]MetricsQueryResponseSeries**](MetricsQueryResponseSeries.md) | List of timeseries queried. | [optional] [readonly] 
+**Series** | Pointer to [**[]MetricsQueryMetadata**](MetricsQueryMetadata.md) | List of timeseries queried. | [optional] [readonly] 
 **Status** | Pointer to **string** | Status of the query. | [optional] [readonly] 
 **ToDate** | Pointer to **int64** | End of requested time window, milliseconds since Unix epoch. | [optional] [readonly] 
 
@@ -185,20 +185,20 @@ HasResType returns a boolean if a field has been set.
 
 ### GetSeries
 
-`func (o *MetricsQueryResponse) GetSeries() []MetricsQueryResponseSeries`
+`func (o *MetricsQueryResponse) GetSeries() []MetricsQueryMetadata`
 
 GetSeries returns the Series field if non-nil, zero value otherwise.
 
 ### GetSeriesOk
 
-`func (o *MetricsQueryResponse) GetSeriesOk() (*[]MetricsQueryResponseSeries, bool)`
+`func (o *MetricsQueryResponse) GetSeriesOk() (*[]MetricsQueryMetadata, bool)`
 
 GetSeriesOk returns a tuple with the Series field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSeries
 
-`func (o *MetricsQueryResponse) SetSeries(v []MetricsQueryResponseSeries)`
+`func (o *MetricsQueryResponse) SetSeries(v []MetricsQueryMetadata)`
 
 SetSeries sets Series field to given value.
 

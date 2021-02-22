@@ -16,7 +16,9 @@ import (
 )
 
 func TestDowntimeLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -94,7 +96,9 @@ func TestDowntimeLifecycle(t *testing.T) {
 }
 
 func TestMonitorDowntime(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -129,7 +133,9 @@ func TestMonitorDowntime(t *testing.T) {
 }
 
 func TestScopedDowntime(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -186,7 +192,9 @@ func TestScopedDowntime(t *testing.T) {
 }
 
 func TestDowntimeRecurrence(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	start := tests.ClockFromContext(ctx).Now()
@@ -274,8 +282,8 @@ func TestDowntimeRecurrence(t *testing.T) {
 }
 
 func TestDowntimeListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -300,8 +308,8 @@ func TestDowntimeListErrors(t *testing.T) {
 }
 
 func TestDowntimeCreateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -328,8 +336,8 @@ func TestDowntimeCreateErrors(t *testing.T) {
 }
 
 func TestDowntimeCancelByScopeErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -357,8 +365,8 @@ func TestDowntimeCancelByScopeErrors(t *testing.T) {
 }
 
 func TestDowntimeCancelErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -384,8 +392,8 @@ func TestDowntimeCancelErrors(t *testing.T) {
 }
 
 func TestDowntimeGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -411,8 +419,8 @@ func TestDowntimeGetErrors(t *testing.T) {
 }
 
 func TestDowntimeUpdateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	// Endpoint will 400 if there are too many tags
 	badDowntime := *datadog.NewDowntimeWithDefaults()

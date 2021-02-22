@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errors** | Pointer to [**[]AWSLogsAsyncResponseErrors**](AWSLogsAsyncResponseErrors.md) | List of errors. | [optional] 
+**Errors** | Pointer to [**[]AWSLogsAsyncError**](AWSLogsAsyncError.md) | List of errors. | [optional] 
 **Status** | Pointer to **string** | Status of the properties. | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetErrors
 
-`func (o *AWSLogsAsyncResponse) GetErrors() []AWSLogsAsyncResponseErrors`
+`func (o *AWSLogsAsyncResponse) GetErrors() []AWSLogsAsyncError`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *AWSLogsAsyncResponse) GetErrorsOk() (*[]AWSLogsAsyncResponseErrors, bool)`
+`func (o *AWSLogsAsyncResponse) GetErrorsOk() (*[]AWSLogsAsyncError, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrors
 
-`func (o *AWSLogsAsyncResponse) SetErrors(v []AWSLogsAsyncResponseErrors)`
+`func (o *AWSLogsAsyncResponse) SetErrors(v []AWSLogsAsyncError)`
 
 SetErrors sets Errors field to given value.
 

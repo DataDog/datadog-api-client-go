@@ -11,7 +11,9 @@ import (
 )
 
 func TestLogsList(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -116,8 +118,8 @@ func TestLogsList(t *testing.T) {
 }
 
 func TestLogsListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	req := *datadog.NewLogsListRequestWithDefaults()
 	req.SetStartAt("notanid")

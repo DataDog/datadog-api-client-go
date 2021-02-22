@@ -65,7 +65,9 @@ func deleteDashboardList() {
 }
 
 func TestDashboardListItemCRUD(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -167,8 +169,8 @@ func TestDashboardListItemCRUD(t *testing.T) {
 }
 
 func TestDashboardListGetItemsErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -195,7 +197,9 @@ func TestDashboardListGetItemsErrors(t *testing.T) {
 
 func TestDashboardListCreateItemsErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	err := createDashboardList(ctx, t)
@@ -232,7 +236,9 @@ func TestDashboardListCreateItemsErrors(t *testing.T) {
 
 func TestDashboardListUpdateItemsErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	err := createDashboardList(ctx, t)
@@ -269,7 +275,9 @@ func TestDashboardListUpdateItemsErrors(t *testing.T) {
 
 func TestDashboardListDeleteItemsErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	err := createDashboardList(ctx, t)

@@ -39,8 +39,10 @@ func getUpdateUser(ctx context.Context, t *testing.T) datadog.User {
 }
 
 func TestCreateUser(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -75,8 +77,10 @@ func TestCreateUser(t *testing.T) {
 }
 
 func TestUpdateUser(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -109,8 +113,10 @@ func TestUpdateUser(t *testing.T) {
 }
 
 func TestDisableUser(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// We already test this in the disableUser cleanup function, but good to have an explicit test
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -136,8 +142,10 @@ func TestListUsers(t *testing.T) {
 		t.Skip("This test case does not support reply from recording")
 	}
 
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -153,8 +161,8 @@ func TestListUsers(t *testing.T) {
 }
 
 func TestUserCreateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -181,8 +189,9 @@ func TestUserCreateErrors(t *testing.T) {
 }
 
 func TestUserCreate409Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/user/error_409.json")
@@ -203,8 +212,8 @@ func TestUserCreate409Error(t *testing.T) {
 }
 
 func TestUserListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -229,8 +238,8 @@ func TestUserListErrors(t *testing.T) {
 }
 
 func TestUserGetErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -256,8 +265,10 @@ func TestUserGetErrors(t *testing.T) {
 }
 
 func TestUserUpdateErrors(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	// Create user
@@ -297,8 +308,10 @@ func TestUserUpdateErrors(t *testing.T) {
 }
 
 func TestUserDisableErrors(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	// Create user and disable it to trigger 400

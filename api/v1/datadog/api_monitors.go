@@ -245,6 +245,7 @@ The type of monitor chosen from:
 - process: `service check`
 - rum: `rum alert`
 - watchdog: `event alert`
+- event-v2: `event-2 alert`
 
 #### Query Types
 
@@ -295,6 +296,21 @@ Example: `events('sources:nagios status:error,warning priority:normal tags: "str
 - **`rollup`** the stats roll-up method. `count` is the only supported method now.
 - **`last`** the timeframe to roll up the counts. Examples: 45m, 4h. Supported timeframes: m, h and d. This value should not exceed 48 hours.
 
+**NOTE** Only available on US1 and EU.
+
+**Event V2 Alert Query**
+
+Example: `events(query).rollup(rollup_method[, measure]).last(time_window) operator #`
+
+- **`query`** The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).
+- **`rollup_method`** The stats roll-up method - supports `count`, `avg` and `cardinality`.
+- **`measure`** For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.
+- **`time_window`** #m (5, 10, 15, or 30), #h (1, 2, or 4, 24).
+- **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
+- **`#`** an integer or decimal number used to set the threshold.
+
+**NOTE** Only available on US1-FED, US3, and in closed beta on EU and US1.
+
 **Process Alert Query**
 
 Example: `processes(search).over(tags).rollup('count').last(timeframe) operator #`
@@ -314,7 +330,7 @@ Example: `logs(query).index(index_name).rollup(rollup_method[, measure]).last(ti
 - **`index_name`** For multi-index organizations, the log index in which the request is performed.
 - **`rollup_method`** The stats roll-up method - supports `count`, `avg` and `cardinality`.
 - **`measure`** For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.
-- **`time_window`** #m (between 1 and 1440), #h (between 1 and 24)
+- **`time_window`** #m (between 1 and 2880), #h (between 1 and 48)
 - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 - **`#`** an integer or decimal number used to set the threshold.
 

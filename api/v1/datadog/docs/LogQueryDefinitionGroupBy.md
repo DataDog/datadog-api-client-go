@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Facet** | **string** | Facet name. | 
 **Limit** | Pointer to **int64** | Maximum number of items in the group. | [optional] 
-**Sort** | Pointer to [**LogQueryDefinitionSort**](LogQueryDefinition_sort.md) |  | [optional] 
+**Sort** | Pointer to [**LogQueryDefinitionGroupBySort**](LogQueryDefinitionGroupBy_sort.md) |  | [optional] 
 
 ## Methods
 
@@ -74,20 +74,20 @@ HasLimit returns a boolean if a field has been set.
 
 ### GetSort
 
-`func (o *LogQueryDefinitionGroupBy) GetSort() LogQueryDefinitionSort`
+`func (o *LogQueryDefinitionGroupBy) GetSort() LogQueryDefinitionGroupBySort`
 
 GetSort returns the Sort field if non-nil, zero value otherwise.
 
 ### GetSortOk
 
-`func (o *LogQueryDefinitionGroupBy) GetSortOk() (*LogQueryDefinitionSort, bool)`
+`func (o *LogQueryDefinitionGroupBy) GetSortOk() (*LogQueryDefinitionGroupBySort, bool)`
 
 GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSort
 
-`func (o *LogQueryDefinitionGroupBy) SetSort(v LogQueryDefinitionSort)`
+`func (o *LogQueryDefinitionGroupBy) SetSort(v LogQueryDefinitionGroupBySort)`
 
 SetSort sets Sort field to given value.
 

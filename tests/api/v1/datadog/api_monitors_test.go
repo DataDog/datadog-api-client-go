@@ -69,7 +69,9 @@ var testUpdateMonitor = datadog.MonitorUpdateRequest{
 }
 
 func TestMonitorValidation(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	testCases := map[string]struct {
@@ -93,7 +95,9 @@ func TestMonitorValidation(t *testing.T) {
 }
 
 func TestMonitorLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -177,7 +181,9 @@ func TestMonitorLifecycle(t *testing.T) {
 }
 
 func TestMonitorPagination(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -207,8 +213,10 @@ func TestMonitorPagination(t *testing.T) {
 }
 
 func TestMonitorSyntheticsGet(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -231,8 +239,8 @@ func TestMonitorSyntheticsGet(t *testing.T) {
 }
 
 func TestMonitorsCreateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -259,8 +267,8 @@ func TestMonitorsCreateErrors(t *testing.T) {
 }
 
 func TestMonitorsListErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -286,8 +294,10 @@ func TestMonitorsListErrors(t *testing.T) {
 }
 
 func TestMonitorUpdateErrors(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -332,9 +342,10 @@ func TestMonitorUpdateErrors(t *testing.T) {
 }
 
 func TestMonitorUpdate401Error(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Cannot trigger 401 for client. Need underrestricted creds. Mock it.
@@ -355,8 +366,10 @@ func TestMonitorUpdate401Error(t *testing.T) {
 }
 
 func TestMonitorsGetErrors(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -395,8 +408,8 @@ func TestMonitorsGetErrors(t *testing.T) {
 }
 
 func TestMonitorDeleteErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -429,9 +442,10 @@ func TestMonitorDeleteErrors(t *testing.T) {
 }
 
 func TestMonitorDelete400Error(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Cannot trigger 400 due to client side validations, so mock it
@@ -452,9 +466,10 @@ func TestMonitorDelete400Error(t *testing.T) {
 }
 
 func TestMonitorDelete401Error(t *testing.T) {
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	// Setup the Client we'll use to interact with the Test account
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	// Cannot trigger 401 for client. Need underrestricted creds. Mock it.
@@ -475,8 +490,10 @@ func TestMonitorDelete401Error(t *testing.T) {
 }
 
 func TestMonitorCanDeleteErrors(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 
 	// Create monitor that can't be deleted
@@ -530,8 +547,8 @@ func TestMonitorCanDeleteErrors(t *testing.T) {
 }
 
 func TestMonitorValidateErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context

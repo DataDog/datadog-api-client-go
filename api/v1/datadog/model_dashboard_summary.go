@@ -15,7 +15,7 @@ import (
 // DashboardSummary Dashboard summary response.
 type DashboardSummary struct {
 	// List of dashboard definitions.
-	Dashboards *[]DashboardSummaryDashboards `json:"dashboards,omitempty"`
+	Dashboards *[]DashboardSummaryDefinition `json:"dashboards,omitempty"`
 }
 
 // NewDashboardSummary instantiates a new DashboardSummary object
@@ -36,9 +36,9 @@ func NewDashboardSummaryWithDefaults() *DashboardSummary {
 }
 
 // GetDashboards returns the Dashboards field value if set, zero value otherwise.
-func (o *DashboardSummary) GetDashboards() []DashboardSummaryDashboards {
+func (o *DashboardSummary) GetDashboards() []DashboardSummaryDefinition {
 	if o == nil || o.Dashboards == nil {
-		var ret []DashboardSummaryDashboards
+		var ret []DashboardSummaryDefinition
 		return ret
 	}
 	return *o.Dashboards
@@ -46,7 +46,7 @@ func (o *DashboardSummary) GetDashboards() []DashboardSummaryDashboards {
 
 // GetDashboardsOk returns a tuple with the Dashboards field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardSummary) GetDashboardsOk() (*[]DashboardSummaryDashboards, bool) {
+func (o *DashboardSummary) GetDashboardsOk() (*[]DashboardSummaryDefinition, bool) {
 	if o == nil || o.Dashboards == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *DashboardSummary) HasDashboards() bool {
 	return false
 }
 
-// SetDashboards gets a reference to the given []DashboardSummaryDashboards and assigns it to the Dashboards field.
-func (o *DashboardSummary) SetDashboards(v []DashboardSummaryDashboards) {
+// SetDashboards gets a reference to the given []DashboardSummaryDefinition and assigns it to the Dashboards field.
+func (o *DashboardSummary) SetDashboards(v []DashboardSummaryDefinition) {
 	o.Dashboards = &v
 }
 

@@ -19,6 +19,10 @@
 
 * `RECORD_SOME` (value: `"recordSome"`)
 
+* `TLS_VERSION` (value: `"tlsVersion"`)
+
+* `MIN_TLS_VERSION` (value: `"minTlsVersion"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

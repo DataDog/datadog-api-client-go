@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Categories** | [**[]LogsCategoryProcessorCategories**](LogsCategoryProcessorCategories.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
+**Categories** | [**[]LogsCategoryProcessorCategory**](LogsCategoryProcessorCategory.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Target** | **string** | Name of the target attribute which value is defined by the matching category. | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewLogsCategoryProcessor
 
-`func NewLogsCategoryProcessor(categories []LogsCategoryProcessorCategories, target string, type_ LogsCategoryProcessorType, ) *LogsCategoryProcessor`
+`func NewLogsCategoryProcessor(categories []LogsCategoryProcessorCategory, target string, type_ LogsCategoryProcessorType, ) *LogsCategoryProcessor`
 
 NewLogsCategoryProcessor instantiates a new LogsCategoryProcessor object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCategories
 
-`func (o *LogsCategoryProcessor) GetCategories() []LogsCategoryProcessorCategories`
+`func (o *LogsCategoryProcessor) GetCategories() []LogsCategoryProcessorCategory`
 
 GetCategories returns the Categories field if non-nil, zero value otherwise.
 
 ### GetCategoriesOk
 
-`func (o *LogsCategoryProcessor) GetCategoriesOk() (*[]LogsCategoryProcessorCategories, bool)`
+`func (o *LogsCategoryProcessor) GetCategoriesOk() (*[]LogsCategoryProcessorCategory, bool)`
 
 GetCategoriesOk returns a tuple with the Categories field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCategories
 
-`func (o *LogsCategoryProcessor) SetCategories(v []LogsCategoryProcessorCategories)`
+`func (o *LogsCategoryProcessor) SetCategories(v []LogsCategoryProcessorCategory)`
 
 SetCategories sets Categories field to given value.
 

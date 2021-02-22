@@ -4,9 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DetectionMethod** | Pointer to [**SecurityMonitoringRuleDetectionMethod**](SecurityMonitoringRuleDetectionMethod.md) |  | [optional] 
 **EvaluationWindow** | Pointer to [**SecurityMonitoringRuleEvaluationWindow**](SecurityMonitoringRuleEvaluationWindow.md) |  | [optional] 
 **KeepAlive** | Pointer to [**SecurityMonitoringRuleKeepAlive**](SecurityMonitoringRuleKeepAlive.md) |  | [optional] 
 **MaxSignalDuration** | Pointer to [**SecurityMonitoringRuleMaxSignalDuration**](SecurityMonitoringRuleMaxSignalDuration.md) |  | [optional] 
+**NewValueOptions** | Pointer to [**SecurityMonitoringRuleNewValueOptions**](SecurityMonitoringRuleNewValueOptions.md) |  | [optional] 
 
 ## Methods
 
@@ -26,6 +28,31 @@ will change when the set of required properties is changed
 NewSecurityMonitoringRuleOptionsWithDefaults instantiates a new SecurityMonitoringRuleOptions object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDetectionMethod
+
+`func (o *SecurityMonitoringRuleOptions) GetDetectionMethod() SecurityMonitoringRuleDetectionMethod`
+
+GetDetectionMethod returns the DetectionMethod field if non-nil, zero value otherwise.
+
+### GetDetectionMethodOk
+
+`func (o *SecurityMonitoringRuleOptions) GetDetectionMethodOk() (*SecurityMonitoringRuleDetectionMethod, bool)`
+
+GetDetectionMethodOk returns a tuple with the DetectionMethod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDetectionMethod
+
+`func (o *SecurityMonitoringRuleOptions) SetDetectionMethod(v SecurityMonitoringRuleDetectionMethod)`
+
+SetDetectionMethod sets DetectionMethod field to given value.
+
+### HasDetectionMethod
+
+`func (o *SecurityMonitoringRuleOptions) HasDetectionMethod() bool`
+
+HasDetectionMethod returns a boolean if a field has been set.
 
 ### GetEvaluationWindow
 
@@ -101,6 +128,31 @@ SetMaxSignalDuration sets MaxSignalDuration field to given value.
 `func (o *SecurityMonitoringRuleOptions) HasMaxSignalDuration() bool`
 
 HasMaxSignalDuration returns a boolean if a field has been set.
+
+### GetNewValueOptions
+
+`func (o *SecurityMonitoringRuleOptions) GetNewValueOptions() SecurityMonitoringRuleNewValueOptions`
+
+GetNewValueOptions returns the NewValueOptions field if non-nil, zero value otherwise.
+
+### GetNewValueOptionsOk
+
+`func (o *SecurityMonitoringRuleOptions) GetNewValueOptionsOk() (*SecurityMonitoringRuleNewValueOptions, bool)`
+
+GetNewValueOptionsOk returns a tuple with the NewValueOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNewValueOptions
+
+`func (o *SecurityMonitoringRuleOptions) SetNewValueOptions(v SecurityMonitoringRuleNewValueOptions)`
+
+SetNewValueOptions sets NewValueOptions field to given value.
+
+### HasNewValueOptions
+
+`func (o *SecurityMonitoringRuleOptions) HasNewValueOptions() bool`
+
+HasNewValueOptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

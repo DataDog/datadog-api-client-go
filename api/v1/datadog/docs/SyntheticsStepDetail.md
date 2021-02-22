@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **Type** | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md) |  | [optional] 
 **Url** | Pointer to **string** | URL to perform the step against. | [optional] 
 **Value** | Pointer to **interface{}** | Value for the step. | [optional] 
-**Warnings** | Pointer to [**[]SyntheticsStepDetailWarnings**](SyntheticsStepDetailWarnings.md) | Warning collected that didn&#39;t failed the step. | [optional] 
+**Warnings** | Pointer to [**[]SyntheticsStepDetailWarning**](SyntheticsStepDetailWarning.md) | Warning collected that didn&#39;t failed the step. | [optional] 
 
 ## Methods
 
@@ -417,20 +417,20 @@ HasValue returns a boolean if a field has been set.
 
 ### GetWarnings
 
-`func (o *SyntheticsStepDetail) GetWarnings() []SyntheticsStepDetailWarnings`
+`func (o *SyntheticsStepDetail) GetWarnings() []SyntheticsStepDetailWarning`
 
 GetWarnings returns the Warnings field if non-nil, zero value otherwise.
 
 ### GetWarningsOk
 
-`func (o *SyntheticsStepDetail) GetWarningsOk() (*[]SyntheticsStepDetailWarnings, bool)`
+`func (o *SyntheticsStepDetail) GetWarningsOk() (*[]SyntheticsStepDetailWarning, bool)`
 
 GetWarningsOk returns a tuple with the Warnings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWarnings
 
-`func (o *SyntheticsStepDetail) SetWarnings(v []SyntheticsStepDetailWarnings)`
+`func (o *SyntheticsStepDetail) SetWarnings(v []SyntheticsStepDetailWarning)`
 
 SetWarnings sets Warnings field to given value.
 

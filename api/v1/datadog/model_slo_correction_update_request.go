@@ -14,7 +14,7 @@ import (
 
 // SLOCorrectionUpdateRequest An object that defines a correction to be applied to an SLO
 type SLOCorrectionUpdateRequest struct {
-	Data *SLOCorrectionUpdateRequestData `json:"data,omitempty"`
+	Data *SLOCorrectionUpdateData `json:"data,omitempty"`
 }
 
 // NewSLOCorrectionUpdateRequest instantiates a new SLOCorrectionUpdateRequest object
@@ -35,9 +35,9 @@ func NewSLOCorrectionUpdateRequestWithDefaults() *SLOCorrectionUpdateRequest {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *SLOCorrectionUpdateRequest) GetData() SLOCorrectionUpdateRequestData {
+func (o *SLOCorrectionUpdateRequest) GetData() SLOCorrectionUpdateData {
 	if o == nil || o.Data == nil {
-		var ret SLOCorrectionUpdateRequestData
+		var ret SLOCorrectionUpdateData
 		return ret
 	}
 	return *o.Data
@@ -45,7 +45,7 @@ func (o *SLOCorrectionUpdateRequest) GetData() SLOCorrectionUpdateRequestData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOCorrectionUpdateRequest) GetDataOk() (*SLOCorrectionUpdateRequestData, bool) {
+func (o *SLOCorrectionUpdateRequest) GetDataOk() (*SLOCorrectionUpdateData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -61,8 +61,8 @@ func (o *SLOCorrectionUpdateRequest) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given SLOCorrectionUpdateRequestData and assigns it to the Data field.
-func (o *SLOCorrectionUpdateRequest) SetData(v SLOCorrectionUpdateRequestData) {
+// SetData gets a reference to the given SLOCorrectionUpdateData and assigns it to the Data field.
+func (o *SLOCorrectionUpdateRequest) SetData(v SLOCorrectionUpdateData) {
 	o.Data = &v
 }
 

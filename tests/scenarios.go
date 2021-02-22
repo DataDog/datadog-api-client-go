@@ -230,9 +230,11 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 
 		// Enable unstable operation
 		configInterface := reflect.Indirect(clientInterface.(reflect.Value)).Addr().MethodByName("GetConfig").Call(nil)[0]
-		configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{
-			reflect.ValueOf(s.OperationID), reflect.ValueOf(true),
-		})
+		if configInterface.MethodByName("IsUnstableOperation").Call([]reflect.Value{reflect.ValueOf(s.OperationID)})[0].Bool() {
+			configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{
+				reflect.ValueOf(s.OperationID), reflect.ValueOf(true),
+			})
+		}
 
 		// find API service based on undo tag value: `client.{{ undo.Tag }}Api`
 		tag := strings.Replace(s.Tag, " ", "", -1) + "Api"
@@ -258,7 +260,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 
 		// Call builder pattern
 		for _, p := range s.Parameters {
-			name := ToVarName(p.Name)
+			name := toVarName(p.Name)
 			method := request.MethodByName(name)
 			if method.IsValid() {
 				v := p.Resolve(t, ctx, method.Type().In(0))
@@ -337,9 +339,11 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 		return func() {
 			// enable unstable operation
 			configInterface := reflect.Indirect(undoClientInterface.(reflect.Value)).Addr().MethodByName("GetConfig").Call(nil)[0]
-			configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{
-				reflect.ValueOf(undo.Undo.OperationID), reflect.ValueOf(true),
-			})
+			if configInterface.MethodByName("IsUnstableOperation").Call([]reflect.Value{reflect.ValueOf(undo.Undo.OperationID)})[0].Bool() {
+				configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{
+					reflect.ValueOf(undo.Undo.OperationID), reflect.ValueOf(true),
+				})
+			}
 
 			// Assemble undo method as follows: Client(cctx).UsersApi.DisableUser(cctx, response.Data.GetId()).Execute()
 			in := make([]reflect.Value, undoOperation.Type().NumIn())
@@ -554,7 +558,7 @@ func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, va
 		return
 	}
 
-	name := ToVarName(param)
+	name := toVarName(param)
 	// Get the method for setting the current parameter
 	method := request.MethodByName(name)
 
@@ -578,7 +582,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	requestParameters := GetRequestParameters(ctx)
 
 	for param, value := range requestParameters {
-		name := ToVarName(param)
+		name := toVarName(param)
 		method := request.MethodByName(name)
 		if method.IsValid() {
 			if param == "body" {

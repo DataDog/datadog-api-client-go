@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Month** | Pointer to **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM]. | [optional] 
+**OrgName** | Pointer to **string** | The name of the organization. | [optional] 
 **PublicId** | Pointer to **string** | The organization public ID. | [optional] 
 **Tags** | Pointer to **map[string][]string** | Usage Summary by tag name. | [optional] 
 **UpdatedAt** | Pointer to **string** | Shows the the most recent hour in the current months for all organizations for which all usages were calculated. | [optional] 
@@ -53,6 +54,31 @@ SetMonth sets Month field to given value.
 `func (o *UsageAttributionBody) HasMonth() bool`
 
 HasMonth returns a boolean if a field has been set.
+
+### GetOrgName
+
+`func (o *UsageAttributionBody) GetOrgName() string`
+
+GetOrgName returns the OrgName field if non-nil, zero value otherwise.
+
+### GetOrgNameOk
+
+`func (o *UsageAttributionBody) GetOrgNameOk() (*string, bool)`
+
+GetOrgNameOk returns a tuple with the OrgName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrgName
+
+`func (o *UsageAttributionBody) SetOrgName(v string)`
+
+SetOrgName sets OrgName field to given value.
+
+### HasOrgName
+
+`func (o *UsageAttributionBody) HasOrgName() bool`
+
+HasOrgName returns a boolean if a field has been set.
 
 ### GetPublicId
 

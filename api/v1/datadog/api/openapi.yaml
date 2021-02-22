@@ -15,6 +15,7 @@ servers:
       description: The regional site for a Datadog customer.
       enum:
       - datadoghq.com
+      - us3.datadoghq.com
       - datadoghq.eu
       - ddog-gov.com
     subdomain:
@@ -250,6 +251,7 @@ paths:
             description: The regional site for our customers.
             enum:
             - datadoghq.com
+            - us3.datadoghq.com
             - datadoghq.eu
             - ddog-gov.com
           subdomain:
@@ -3816,6 +3818,7 @@ paths:
         - process: `service check`
         - rum: `rum alert`
         - watchdog: `event alert`
+        - event-v2: `event-2 alert`
 
         #### Query Types
 
@@ -3866,6 +3869,21 @@ paths:
         - **`rollup`** the stats roll-up method. `count` is the only supported method now.
         - **`last`** the timeframe to roll up the counts. Examples: 45m, 4h. Supported timeframes: m, h and d. This value should not exceed 48 hours.
 
+        **NOTE** Only available on US1 and EU.
+
+        **Event V2 Alert Query**
+
+        Example: `events(query).rollup(rollup_method[, measure]).last(time_window) operator #`
+
+        - **`query`** The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).
+        - **`rollup_method`** The stats roll-up method - supports `count`, `avg` and `cardinality`.
+        - **`measure`** For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.
+        - **`time_window`** #m (5, 10, 15, or 30), #h (1, 2, or 4, 24).
+        - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
+        - **`#`** an integer or decimal number used to set the threshold.
+
+        **NOTE** Only available on US1-FED, US3, and in closed beta on EU and US1.
+
         **Process Alert Query**
 
         Example: `processes(search).over(tags).rollup('count').last(timeframe) operator #`
@@ -3885,7 +3903,7 @@ paths:
         - **`index_name`** For multi-index organizations, the log index in which the request is performed.
         - **`rollup_method`** The stats roll-up method - supports `count`, `avg` and `cardinality`.
         - **`measure`** For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.
-        - **`time_window`** #m (between 1 and 1440), #h (between 1 and 24)
+        - **`time_window`** #m (between 1 and 2880), #h (between 1 and 48)
         - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
         - **`#`** an integer or decimal number used to set the threshold.
 
@@ -8087,6 +8105,21 @@ components:
             $ref: '#/components/schemas/AWSAccount'
           type: array
       type: object
+    AWSLogsAsyncError:
+      description: Description of errors.
+      example:
+        code: no_such_config
+        message: AWS account 12345 has no lambda config to update
+      properties:
+        code:
+          description: Code properties
+          example: no_such_config
+          type: string
+        message:
+          description: Message content.
+          example: AWS account 12345 has no lambda config to update
+          type: string
+      type: object
     AWSLogsAsyncResponse:
       description: A list of all Datadog-AWS logs integrations available in your Datadog
         organization.
@@ -8101,11 +8134,18 @@ components:
         errors:
           description: List of errors.
           items:
-            $ref: '#/components/schemas/AWSLogsAsyncResponse_errors'
+            $ref: '#/components/schemas/AWSLogsAsyncError'
           type: array
         status:
           description: Status of the properties.
           example: created
+          type: string
+      type: object
+    AWSLogsLambda:
+      description: Description of the Lambdas.
+      properties:
+        arn:
+          description: Available ARN IDs.
           type: string
       type: object
     AWSLogsListResponse:
@@ -8121,7 +8161,7 @@ components:
           example:
           - arn: arn:aws:lambda:us-east-1:1234567:function:LogsCollectionAPITest
           items:
-            $ref: '#/components/schemas/AWSLogsListResponse_lambdas'
+            $ref: '#/components/schemas/AWSLogsLambda'
           type: array
         services:
           description: Array of services IDs.
@@ -8205,6 +8245,18 @@ components:
       - CUSTOM
       - NETWORK_ELB
       - LAMBDA
+    AWSTagFilter:
+      description: A tag filter.
+      example:
+        tag_filter_str: prod*
+      properties:
+        namespace:
+          $ref: '#/components/schemas/AWSNamespace'
+        tag_filter_str:
+          description: The tag filter string.
+          example: prod*
+          type: string
+      type: object
     AWSTagFilterCreateRequest:
       description: The objects used to set an AWS tag filter.
       example:
@@ -8244,7 +8296,7 @@ components:
         filters:
           description: An array of tag filters.
           items:
-            $ref: '#/components/schemas/AWSTagFilterListResponse_filters'
+            $ref: '#/components/schemas/AWSTagFilter'
           type: array
       type: object
     AccessRole:
@@ -8679,6 +8731,8 @@ components:
           $ref: '#/components/schemas/WidgetSort'
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
+        profile_metrics_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         q:
           description: Query definition.
           type: string
@@ -8894,7 +8948,7 @@ components:
         template_variables:
           description: List of template variables for this dashboard.
           items:
-            $ref: '#/components/schemas/Dashboard_template_variables'
+            $ref: '#/components/schemas/DashboardTemplateVariable'
           nullable: true
           type: array
         title:
@@ -9060,8 +9114,75 @@ components:
         dashboards:
           description: List of dashboard definitions.
           items:
-            $ref: '#/components/schemas/DashboardSummary_dashboards'
+            $ref: '#/components/schemas/DashboardSummaryDefinition'
           type: array
+      type: object
+    DashboardSummaryDefinition:
+      description: Dashboard definition.
+      example:
+        created_at: 2000-01-23T04:56:07.000+00:00
+        description: description
+        is_read_only: true
+        id: id
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        title: title
+        author_handle: author_handle
+        url: url
+      properties:
+        author_handle:
+          description: Identifier of the dashboard author.
+          type: string
+        created_at:
+          description: Creation date of the dashboard.
+          format: date-time
+          type: string
+        description:
+          description: Description of the dashboard.
+          type: string
+        id:
+          description: Dashboard identifier.
+          type: string
+        is_read_only:
+          description: Whether this dashboard is read-only. If True, only the author
+            and admins can make changes to it.
+          type: boolean
+        layout_type:
+          $ref: '#/components/schemas/DashboardLayoutType'
+        modified_at:
+          description: Modification date of the dashboard.
+          format: date-time
+          type: string
+        title:
+          description: Title of the dashboard.
+          type: string
+        url:
+          description: URL of the dashboard.
+          type: string
+      type: object
+    DashboardTemplateVariable:
+      description: Template variable.
+      example:
+        default: my-host
+        prefix: host
+        name: host1
+      properties:
+        default:
+          description: The default value for the template variable on dashboard load.
+          example: my-host
+          nullable: true
+          type: string
+        name:
+          description: The name of the variable.
+          example: host1
+          type: string
+        prefix:
+          description: The tag prefix associated with the variable. Only tags with
+            this prefix appear in the variable drop-down.
+          example: host
+          nullable: true
+          type: string
+      required:
+      - name
       type: object
     DashboardTemplateVariablePreset:
       description: Template variables saved views.
@@ -9170,6 +9291,8 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
+        profile_metrics_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         q:
           description: Widget query.
           type: string
@@ -9878,6 +10001,70 @@ components:
       items:
         $ref: '#/components/schemas/GCPAccount'
       type: array
+    GeomapWidgetDefinition:
+      description: This visualization displays a series of values by country on a
+        world map.
+      properties:
+        custom_links:
+          description: A list of custom links.
+          items:
+            $ref: '#/components/schemas/WidgetCustomLink'
+          type: array
+        requests:
+          description: |-
+            Array of one request object to display in the widget. The request must contain a `group-by` tag whose value is a country ISO code.
+
+            See the [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)
+            for information about building the `REQUEST_SCHEMA`.
+          example:
+          - rum_query: <METRIC_1>{<SCOPE_1>}
+          items:
+            $ref: '#/components/schemas/GeomapWidgetRequest'
+          maxItems: 1
+          minItems: 1
+          type: array
+        style:
+          $ref: '#/components/schemas/GeomapWidgetDefinition_style'
+        time:
+          $ref: '#/components/schemas/WidgetTime'
+        title:
+          description: The title of your widget.
+          type: string
+        title_align:
+          $ref: '#/components/schemas/WidgetTextAlign'
+        title_size:
+          description: The size of the title.
+          type: string
+        type:
+          $ref: '#/components/schemas/GeomapWidgetDefinitionType'
+        view:
+          $ref: '#/components/schemas/GeomapWidgetDefinition_view'
+      required:
+      - requests
+      - style
+      - type
+      - view
+      type: object
+    GeomapWidgetDefinitionType:
+      default: geomap
+      description: Type of the geomap widget.
+      enum:
+      - geomap
+      example: geomap
+      type: string
+      x-enum-varnames:
+      - GEOMAP
+    GeomapWidgetRequest:
+      description: An updated geomap widget.
+      properties:
+        log_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+        q:
+          description: The widget metrics query.
+          type: string
+        rum_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+      type: object
     GraphSnapshot:
       description: Object representing a graph snapshot.
       example:
@@ -10026,6 +10213,8 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
+        profile_metrics_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         q:
           description: Widget query.
           type: string
@@ -10234,6 +10423,8 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
+        profile_metrics_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         q:
           description: Query definition.
           type: string
@@ -10762,7 +10953,7 @@ components:
         group_by:
           description: List of tag prefixes to group by in the case of a cluster check.
           items:
-            $ref: '#/components/schemas/LogQueryDefinition_group_by'
+            $ref: '#/components/schemas/LogQueryDefinitionGroupBy'
           type: array
         index:
           description: A coma separated-list of index names. Use "*" query all indexes
@@ -10776,6 +10967,23 @@ components:
           type: array
         search:
           $ref: '#/components/schemas/LogQueryDefinition_search'
+      type: object
+    LogQueryDefinitionGroupBy:
+      description: Defined items in the group.
+      properties:
+        facet:
+          description: Facet name.
+          example: resource_name
+          type: string
+        limit:
+          description: Maximum number of items in the group.
+          example: 50
+          format: int64
+          type: integer
+        sort:
+          $ref: '#/components/schemas/LogQueryDefinitionGroupBy_sort'
+      required:
+      - facet
       type: object
     LogStreamWidgetDefinition:
       description: The Log Stream displays a log flow matching the defined query.
@@ -11006,7 +11214,7 @@ components:
             corresponding `name`to assign a custom value to the log.
           example: []
           items:
-            $ref: '#/components/schemas/LogsCategoryProcessor_categories'
+            $ref: '#/components/schemas/LogsCategoryProcessorCategory'
           type: array
         is_enabled:
           default: false
@@ -11026,6 +11234,15 @@ components:
       - categories
       - target
       - type
+      type: object
+    LogsCategoryProcessorCategory:
+      description: Object describing the logs filter.
+      properties:
+        filter:
+          $ref: '#/components/schemas/LogsFilter'
+        name:
+          description: Value to assign to the target attribute.
+          type: string
       type: object
     LogsCategoryProcessorType:
       default: category-processor
@@ -12122,6 +12339,99 @@ components:
             type: string
           type: array
       type: object
+    MetricsQueryMetadata:
+      description: Object containing all metric names returned and their associated
+        metadata.
+      example:
+        unit:
+        - plural: minutes
+          name: minute
+          short_name: min
+          family: time
+          scale_factor: 60.0
+        - plural: minutes
+          name: minute
+          short_name: min
+          family: time
+          scale_factor: 60.0
+        expression: system.cpu.idle{host:foo,env:test}
+        metric: system.cpu.idle
+        pointlist:
+        - - 1575317847
+          - 0.5
+        - - 1575317847
+          - 0.5
+        scope: host:foo,env:test
+        length: 5
+        start: 5
+        end: 6
+        interval: 1
+        aggr: avg
+        display_name: system.cpu.idle
+      properties:
+        aggr:
+          description: Aggregation type.
+          example: avg
+          readOnly: true
+          type: string
+        display_name:
+          description: Display name of the metric.
+          example: system.cpu.idle
+          readOnly: true
+          type: string
+        end:
+          description: End of the time window, milliseconds since Unix epoch.
+          format: int64
+          readOnly: true
+          type: integer
+        expression:
+          description: Metric expression.
+          example: system.cpu.idle{host:foo,env:test}
+          readOnly: true
+          type: string
+        interval:
+          description: Number of seconds between data samples.
+          format: int64
+          readOnly: true
+          type: integer
+        length:
+          description: Number of data samples.
+          format: int64
+          readOnly: true
+          type: integer
+        metric:
+          description: Metric name.
+          example: system.cpu.idle
+          readOnly: true
+          type: string
+        pointlist:
+          description: List of points of the time series.
+          items:
+            $ref: '#/components/schemas/Point'
+          readOnly: true
+          type: array
+        scope:
+          description: Metric scope, comma separated list of tags.
+          example: host:foo,env:test
+          readOnly: true
+          type: string
+        start:
+          description: Start of the time window, milliseconds since Unix epoch.
+          format: int64
+          readOnly: true
+          type: integer
+        unit:
+          description: |-
+            Detailed information about the metric unit.
+            First element describes the "primary unit" (for example, `bytes` in `bytes per second`),
+            second describes the "per unit" (for example, `second` in `bytes per second`).
+          items:
+            $ref: '#/components/schemas/MetricsQueryUnit'
+          maxItems: 2
+          minItems: 2
+          readOnly: true
+          type: array
+      type: object
     MetricsQueryResponse:
       description: Response Object that includes your query and the list of metrics
         retrieved.
@@ -12220,7 +12530,7 @@ components:
         series:
           description: List of timeseries queried.
           items:
-            $ref: '#/components/schemas/MetricsQueryResponse_series'
+            $ref: '#/components/schemas/MetricsQueryMetadata'
           readOnly: true
           type: array
         status:
@@ -12233,6 +12543,44 @@ components:
           format: int64
           readOnly: true
           type: integer
+      type: object
+    MetricsQueryUnit:
+      description: Object containing the metric unit family, scale factor, name, and
+        short name.
+      example:
+        plural: minutes
+        name: minute
+        short_name: min
+        family: time
+        scale_factor: 60.0
+      properties:
+        family:
+          description: Unit family, allows for conversion between units of the same
+            family, for scaling.
+          example: time
+          readOnly: true
+          type: string
+        name:
+          description: Unit name
+          example: minute
+          readOnly: true
+          type: string
+        plural:
+          description: Plural form of the unit name.
+          example: minutes
+          readOnly: true
+          type: string
+        scale_factor:
+          description: Factor for scaling between units of the same family.
+          example: 60.0
+          format: double
+          readOnly: true
+          type: number
+        short_name:
+          description: Abbreviation of the unit.
+          example: min
+          readOnly: true
+          type: string
       type: object
     Monitor:
       description: Object describing a monitor.
@@ -12750,6 +13098,7 @@ components:
       - synthetics alert
       - trace-analytics alert
       - slo alert
+      - event-v2 alert
       type: string
       x-enum-varnames:
       - COMPOSITE
@@ -12763,6 +13112,7 @@ components:
       - SYNTHETICS_ALERT
       - TRACE_ANALYTICS_ALERT
       - SLO_ALERT
+      - EVENT_V2_ALERT
     MonitorUpdateRequest:
       description: Object describing a monitor update request.
       example:
@@ -13351,6 +13701,8 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
+        profile_metrics_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         q:
           description: TODO.
           type: string
@@ -13375,6 +13727,29 @@ components:
         id2:
         - 7d
         - 30d
+      type: object
+    SLOBulkDeleteError:
+      description: Object describing the error.
+      example:
+        id: ""
+        message: ""
+      properties:
+        id:
+          description: |-
+            The ID of the service level objective object associated with
+            this error.
+          example: ""
+          type: string
+        message:
+          description: The error message.
+          example: ""
+          type: string
+        timeframe:
+          $ref: '#/components/schemas/SLOErrorTimeframe'
+      required:
+      - id
+      - message
+      - timeframe
       type: object
     SLOBulkDeleteResponse:
       description: |-
@@ -13403,8 +13778,33 @@ components:
         errors:
           description: Array of errors object returned.
           items:
-            $ref: '#/components/schemas/SLOBulkDeleteResponse_errors'
+            $ref: '#/components/schemas/SLOBulkDeleteError'
           type: array
+      type: object
+    SLOCorrection:
+      description: The response object of a list of SLO corrections
+      example:
+        attributes:
+          creator:
+            name: name
+            handle: handle
+            email: email
+          timezone: timezone
+          slo_id: slo_id
+          start: 6
+          description: description
+          end: 0
+          category: Scheduled Maintenance
+        id: id
+        type: correction
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SLOCorrectionResponseAttributes'
+        id:
+          description: The ID of the SLO correction
+          type: string
+        type:
+          $ref: '#/components/schemas/SLOCorrectionType'
       type: object
     SLOCorrectionCategory:
       description: Category the SLO correction belongs to
@@ -13420,6 +13820,23 @@ components:
       - OUTSIDE_BUSINESS_HOURS
       - DEPLOYMENT
       - OTHER
+    SLOCorrectionCreateData:
+      description: The data object associated with the SLO correction to be created
+      example:
+        attributes:
+          timezone: UTC
+          slo_id: sloId
+          start: 1600000000
+          description: description
+          end: 1600000000
+          category: Scheduled Maintenance
+        type: correction
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SLOCorrectionCreateRequestAttributes'
+        type:
+          $ref: '#/components/schemas/SLOCorrectionType'
+      type: object
     SLOCorrectionCreateRequest:
       description: An object that defines a correction to be applied to an SLO
       example:
@@ -13434,7 +13851,7 @@ components:
           type: correction
       properties:
         data:
-          $ref: '#/components/schemas/SLOCorrectionCreateRequest_data'
+          $ref: '#/components/schemas/SLOCorrectionCreateData'
       type: object
     SLOCorrectionCreateRequestAttributes:
       description: The attribute object associated with the SLO correction to be created
@@ -13510,7 +13927,7 @@ components:
         data:
           description: The list of of SLO corrections objects
           items:
-            $ref: '#/components/schemas/SLOCorrectionListResponse_data'
+            $ref: '#/components/schemas/SLOCorrection'
           type: array
       type: object
     SLOCorrectionResponse:
@@ -13529,10 +13946,10 @@ components:
             end: 0
             category: Scheduled Maintenance
           id: id
-          type: type
+          type: correction
       properties:
         data:
-          $ref: '#/components/schemas/SLOCorrectionResponse_data'
+          $ref: '#/components/schemas/SLOCorrection'
       type: object
     SLOCorrectionResponseAttributes:
       description: The attribute object associated with the SLO correction
@@ -13571,6 +13988,31 @@ components:
             (defaults to "UTC")
           type: string
       type: object
+    SLOCorrectionType:
+      default: correction
+      description: SLO correction resource type.
+      enum:
+      - correction
+      example: correction
+      type: string
+      x-enum-varnames:
+      - CORRECTION
+    SLOCorrectionUpdateData:
+      description: The data object associated with the SLO correction to be updated
+      example:
+        attributes:
+          timezone: UTC
+          start: 1600000000
+          description: description
+          end: 1600000000
+          category: Scheduled Maintenance
+        type: correction
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SLOCorrectionUpdateRequestAttributes'
+        type:
+          $ref: '#/components/schemas/SLOCorrectionType'
+      type: object
     SLOCorrectionUpdateRequest:
       description: An object that defines a correction to be applied to an SLO
       example:
@@ -13584,7 +14026,7 @@ components:
           type: correction
       properties:
         data:
-          $ref: '#/components/schemas/SLOCorrectionUpdateRequest_data'
+          $ref: '#/components/schemas/SLOCorrectionUpdateData'
       type: object
     SLOCorrectionUpdateRequestAttributes:
       description: The attribute object associated with the SLO correction to be updated
@@ -14182,6 +14624,8 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
+        profile_metrics_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         q:
           description: Query definition.
           type: string
@@ -14942,6 +15386,8 @@ components:
       - property
       - recordEvery
       - recordSome
+      - tlsVersion
+      - minTlsVersion
       type: string
       x-enum-varnames:
       - BODY
@@ -14952,6 +15398,8 @@ components:
       - PROPERTY
       - RECORD_EVERY
       - RECORD_SOME
+      - TLS_VERSION
+      - MIN_TLS_VERSION
     SyntheticsBasicAuth:
       description: Object to handle basic authentication when performing the test.
       example:
@@ -15568,8 +16016,24 @@ components:
             Array of objects containing a deleted Synthetic test ID with
             the associated deletion timestamp.
           items:
-            $ref: '#/components/schemas/SyntheticsDeleteTestsResponse_deleted_tests'
+            $ref: '#/components/schemas/SyntheticsDeletedTest'
           type: array
+      type: object
+    SyntheticsDeletedTest:
+      description: |-
+        Object containing a deleted Synthetic test ID with the associated
+        deletion timestamp.
+      example:
+        deleted_at: 2000-01-23T04:56:07.000+00:00
+        public_id: public_id
+      properties:
+        deleted_at:
+          description: Deletion timestamp of the Synthetic test ID.
+          format: date-time
+          type: string
+        public_id:
+          description: The Synthetic test ID deleted.
+          type: string
       type: object
     SyntheticsDevice:
       description: Object describing the device used to perform the Synthetic test.
@@ -16279,8 +16743,23 @@ components:
         warnings:
           description: Warning collected that didn't failed the step.
           items:
-            $ref: '#/components/schemas/SyntheticsStepDetail_warnings'
+            $ref: '#/components/schemas/SyntheticsStepDetailWarning'
           type: array
+      type: object
+    SyntheticsStepDetailWarning:
+      description: Object collecting warnings for a given step.
+      example:
+        message: ""
+      properties:
+        message:
+          description: Message for the warning.
+          example: ""
+          type: string
+        type:
+          $ref: '#/components/schemas/SyntheticsWarningType'
+      required:
+      - message
+      - type
       type: object
     SyntheticsStepType:
       description: Step type used in your Synthetic test.
@@ -16834,6 +17313,40 @@ components:
           format: double
           type: number
       type: object
+    SyntheticsTriggerCITestLocation:
+      description: Synthetics location.
+      example:
+        name: name
+        id: 0
+      properties:
+        id:
+          description: Unique identifier of the location.
+          format: int64
+          type: integer
+        name:
+          description: Name of the location.
+          type: string
+      type: object
+    SyntheticsTriggerCITestRunResult:
+      description: Information about a single test run.
+      example:
+        result_id: result_id
+        location: 6
+        public_id: public_id
+      properties:
+        device:
+          $ref: '#/components/schemas/SyntheticsDeviceID'
+        location:
+          description: The location ID of the test run.
+          format: int64
+          type: integer
+        public_id:
+          description: The public ID of the Synthetics test.
+          type: string
+        result_id:
+          description: ID of the result.
+          type: string
+      type: object
     SyntheticsTriggerCITestsResponse:
       description: Object containing information about the tests triggered.
       example:
@@ -16856,12 +17369,12 @@ components:
         locations:
           description: List of Synthetics locations.
           items:
-            $ref: '#/components/schemas/SyntheticsTriggerCITestsResponse_locations'
+            $ref: '#/components/schemas/SyntheticsTriggerCITestLocation'
           type: array
         results:
           description: Information about the tests runs.
           items:
-            $ref: '#/components/schemas/SyntheticsTriggerCITestsResponse_results'
+            $ref: '#/components/schemas/SyntheticsTriggerCITestRunResult'
           type: array
         triggered_check_ids:
           description: The public IDs of the Synthetics test triggered.
@@ -16986,6 +17499,8 @@ components:
           $ref: '#/components/schemas/WidgetSort'
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
+        profile_metrics_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         q:
           description: Query definition.
           type: string
@@ -17040,7 +17555,7 @@ components:
         group_by:
           description: Group by options.
           items:
-            $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryDefinition_group_by'
+            $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryGroupBy'
           type: array
         indexes:
           description: An array of index names to query in the stream. Omit or use
@@ -17063,6 +17578,23 @@ components:
       required:
       - compute
       - data_source
+      type: object
+    TimeSeriesFormulaAndFunctionEventQueryGroupBy:
+      description: List of objects used to group by.
+      properties:
+        facet:
+          description: Event facet.
+          example: status.
+          type: string
+        limit:
+          description: Number of groups to return.
+          example: 10
+          format: int64
+          type: integer
+        sort:
+          $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryGroupBy_sort'
+      required:
+      - facet
       type: object
     TimeSeriesFormulaAndFunctionMetricQueryDefinition:
       description: A timeseries formula and functions metrics query.
@@ -17185,6 +17717,19 @@ components:
       type: string
       x-enum-varnames:
       - TIMESERIES
+    TimeseriesWidgetExpressionAlias:
+      description: Define an expression alias.
+      properties:
+        alias_name:
+          description: Expression alias.
+          type: string
+        expression:
+          description: Expression name.
+          example: ""
+          type: string
+      required:
+      - expression
+      type: object
     TimeseriesWidgetRequest:
       description: Updated timeseries widget.
       properties:
@@ -17205,7 +17750,7 @@ components:
         metadata:
           description: Used to define expression aliases.
           items:
-            $ref: '#/components/schemas/TimeseriesWidgetRequest_metadata'
+            $ref: '#/components/schemas/TimeseriesWidgetExpressionAlias'
           type: array
         network_query:
           $ref: '#/components/schemas/LogQueryDefinition'
@@ -17214,6 +17759,8 @@ components:
           type: boolean
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
+        profile_metrics_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         q:
           description: Widget query.
           type: string
@@ -17297,6 +17844,8 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         process_query:
           $ref: '#/components/schemas/ProcessQueryDefinition'
+        profile_metrics_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         q:
           description: Widget query.
           type: string
@@ -17391,6 +17940,7 @@ components:
           lambda_percentage: 9.965781217890562
           npm_host_usage: 8.762042012749001
           container_percentage: 4.145608029883936
+        org_name: org_name
         public_id: public_id
         tags:
           key:
@@ -17400,6 +17950,9 @@ components:
         month:
           description: 'Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM].'
           format: date-time
+          type: string
+        org_name:
+          description: The name of the organization.
           type: string
         public_id:
           description: The organization public ID.
@@ -17517,6 +18070,7 @@ components:
             lambda_percentage: 9.965781217890562
             npm_host_usage: 8.762042012749001
             container_percentage: 4.145608029883936
+          org_name: org_name
           public_id: public_id
           tags:
             key:
@@ -17547,6 +18101,7 @@ components:
             lambda_percentage: 9.965781217890562
             npm_host_usage: 8.762042012749001
             container_percentage: 4.145608029883936
+          org_name: org_name
           public_id: public_id
           tags:
             key:
@@ -20830,6 +21385,7 @@ components:
       - $ref: '#/components/schemas/EventStreamWidgetDefinition'
       - $ref: '#/components/schemas/EventTimelineWidgetDefinition'
       - $ref: '#/components/schemas/FreeTextWidgetDefinition'
+      - $ref: '#/components/schemas/GeomapWidgetDefinition'
       - $ref: '#/components/schemas/GroupWidgetDefinition'
       - $ref: '#/components/schemas/HeatMapWidgetDefinition'
       - $ref: '#/components/schemas/HostMapWidgetDefinition'
@@ -21322,40 +21878,6 @@ components:
       x-enum-varnames:
       - TIMESERIES
       - TOPLIST
-    AWSLogsAsyncResponse_errors:
-      description: Description of errors.
-      example:
-        code: no_such_config
-        message: AWS account 12345 has no lambda config to update
-      properties:
-        code:
-          description: Code properties
-          example: no_such_config
-          type: string
-        message:
-          description: Message content.
-          example: AWS account 12345 has no lambda config to update
-          type: string
-      type: object
-    AWSLogsListResponse_lambdas:
-      description: Description of the Lambdas.
-      properties:
-        arn:
-          description: Available ARN IDs.
-          type: string
-      type: object
-    AWSTagFilterListResponse_filters:
-      description: A list of tag filters.
-      example:
-        tag_filter_str: prod*
-      properties:
-        namespace:
-          $ref: '#/components/schemas/AWSNamespace'
-        tag_filter_str:
-          description: The tag filter string.
-          example: prod*
-          type: string
-      type: object
     CheckCanDeleteMonitorResponse_data:
       description: Wrapper object with the list of monitor IDs.
       example: {}
@@ -21382,72 +21904,36 @@ components:
             type: string
           type: array
       type: object
-    Dashboard_template_variables:
-      description: Template variable.
+    GeomapWidgetDefinition_style:
+      description: The style to apply to the widget.
       example:
-        default: my-host
-        prefix: host
-        name: host1
+        palette: hostmap_blues
+        palette_flip: false
       properties:
-        default:
-          description: The default value for the template variable on dashboard load.
-          example: my-host
-          nullable: true
+        palette:
+          description: The color palette to apply to the widget.
+          example: hostmap_blues
           type: string
-        name:
-          description: The name of the variable.
-          example: host1
-          type: string
-        prefix:
-          description: The tag prefix associated with the variable. Only tags with
-            this prefix appear in the variable drop-down.
-          example: host
-          nullable: true
+        palette_flip:
+          description: Whether to flip the palette tones.
+          example: false
+          type: boolean
+      required:
+      - palette
+      - palette_flip
+      type: object
+    GeomapWidgetDefinition_view:
+      description: The view of the world that the map should render.
+      example:
+        focus: WORLD
+      properties:
+        focus:
+          description: The 2-letter ISO code of a country to focus the map on. Or
+            `WORLD`.
+          example: WORLD
           type: string
       required:
-      - name
-      type: object
-    DashboardSummary_dashboards:
-      description: Dashboard definition.
-      example:
-        created_at: 2000-01-23T04:56:07.000+00:00
-        description: description
-        is_read_only: true
-        id: id
-        modified_at: 2000-01-23T04:56:07.000+00:00
-        title: title
-        author_handle: author_handle
-        url: url
-      properties:
-        author_handle:
-          description: Identifier of the dashboard author.
-          type: string
-        created_at:
-          description: Creation date of the dashboard.
-          format: date-time
-          type: string
-        description:
-          description: Description of the dashboard.
-          type: string
-        id:
-          description: Dashboard identifier.
-          type: string
-        is_read_only:
-          description: Whether this dashboard is read-only. If True, only the author
-            and admins can make changes to it.
-          type: boolean
-        layout_type:
-          $ref: '#/components/schemas/DashboardLayoutType'
-        modified_at:
-          description: Modification date of the dashboard.
-          format: date-time
-          type: string
-        title:
-          description: Title of the dashboard.
-          type: string
-        url:
-          description: URL of the dashboard.
-          type: string
+      - focus
       type: object
     Host_meta:
       description: Metadata associated with your host.
@@ -21567,7 +22053,17 @@ components:
           format: date-time
           type: string
       type: object
-    LogQueryDefinition_sort:
+    LogQueryDefinition_search:
+      description: The query being made on the logs.
+      properties:
+        query:
+          description: Search value to apply.
+          example: ""
+          type: string
+      required:
+      - query
+      type: object
+    LogQueryDefinitionGroupBy_sort:
       description: Define a sorting method.
       properties:
         aggregation:
@@ -21583,42 +22079,6 @@ components:
       required:
       - aggregation
       - order
-      type: object
-    LogQueryDefinition_group_by:
-      description: Defined items in the group.
-      properties:
-        facet:
-          description: Facet name.
-          example: resource_name
-          type: string
-        limit:
-          description: Maximum number of items in the group.
-          example: 50
-          format: int64
-          type: integer
-        sort:
-          $ref: '#/components/schemas/LogQueryDefinition_sort'
-      required:
-      - facet
-      type: object
-    LogQueryDefinition_search:
-      description: The query being made on the logs.
-      properties:
-        query:
-          description: Search value to apply.
-          example: ""
-          type: string
-      required:
-      - query
-      type: object
-    LogsCategoryProcessor_categories:
-      description: Object describing the logs filter.
-      properties:
-        filter:
-          $ref: '#/components/schemas/LogsFilter'
-        name:
-          description: Value to assign to the target attribute.
-          type: string
       type: object
     LogsListRequest_time:
       description: Timeframe to retrieve the log from.
@@ -21658,137 +22118,6 @@ components:
           items:
             description: Metric name.
             type: string
-          type: array
-      type: object
-    MetricsQueryResponse_unit:
-      description: Object containing the metric unit family, scale factor, name, and
-        short name.
-      example:
-        plural: minutes
-        name: minute
-        short_name: min
-        family: time
-        scale_factor: 60.0
-      properties:
-        family:
-          description: Unit family, allows for conversion between units of the same
-            family, for scaling.
-          example: time
-          readOnly: true
-          type: string
-        name:
-          description: Unit name
-          example: minute
-          readOnly: true
-          type: string
-        plural:
-          description: Plural form of the unit name.
-          example: minutes
-          readOnly: true
-          type: string
-        scale_factor:
-          description: Factor for scaling between units of the same family.
-          example: 60.0
-          format: double
-          readOnly: true
-          type: number
-        short_name:
-          description: Abbreviation of the unit.
-          example: min
-          readOnly: true
-          type: string
-      type: object
-    MetricsQueryResponse_series:
-      description: Object containing all metric names returned and their associated
-        metadata.
-      example:
-        unit:
-        - plural: minutes
-          name: minute
-          short_name: min
-          family: time
-          scale_factor: 60.0
-        - plural: minutes
-          name: minute
-          short_name: min
-          family: time
-          scale_factor: 60.0
-        expression: system.cpu.idle{host:foo,env:test}
-        metric: system.cpu.idle
-        pointlist:
-        - - 1575317847
-          - 0.5
-        - - 1575317847
-          - 0.5
-        scope: host:foo,env:test
-        length: 5
-        start: 5
-        end: 6
-        interval: 1
-        aggr: avg
-        display_name: system.cpu.idle
-      properties:
-        aggr:
-          description: Aggregation type.
-          example: avg
-          readOnly: true
-          type: string
-        display_name:
-          description: Display name of the metric.
-          example: system.cpu.idle
-          readOnly: true
-          type: string
-        end:
-          description: End of the time window, milliseconds since Unix epoch.
-          format: int64
-          readOnly: true
-          type: integer
-        expression:
-          description: Metric expression.
-          example: system.cpu.idle{host:foo,env:test}
-          readOnly: true
-          type: string
-        interval:
-          description: Number of seconds between data samples.
-          format: int64
-          readOnly: true
-          type: integer
-        length:
-          description: Number of data samples.
-          format: int64
-          readOnly: true
-          type: integer
-        metric:
-          description: Metric name.
-          example: system.cpu.idle
-          readOnly: true
-          type: string
-        pointlist:
-          description: List of points of the time series.
-          items:
-            $ref: '#/components/schemas/Point'
-          readOnly: true
-          type: array
-        scope:
-          description: Metric scope, comma separated list of tags.
-          example: host:foo,env:test
-          readOnly: true
-          type: string
-        start:
-          description: Start of the time window, milliseconds since Unix epoch.
-          format: int64
-          readOnly: true
-          type: integer
-        unit:
-          description: |-
-            Detailed information about the metric unit.
-            First element describes the "primary unit" (for example, `bytes` in `bytes per second`),
-            second describes the "per unit" (for example, `second` in `bytes per second`).
-          items:
-            $ref: '#/components/schemas/MetricsQueryResponse_unit'
-          maxItems: 2
-          minItems: 2
-          readOnly: true
           type: array
       type: object
     MonitorOptions_aggregation:
@@ -21951,119 +22280,6 @@ components:
             description: An updated SLO ID.
             type: string
           type: array
-      type: object
-    SLOBulkDeleteResponse_errors:
-      description: Object describing the error.
-      example:
-        id: ""
-        message: ""
-      properties:
-        id:
-          description: |-
-            The ID of the service level objective object associated with
-            this error.
-          example: ""
-          type: string
-        message:
-          description: The error message.
-          example: ""
-          type: string
-        timeframe:
-          $ref: '#/components/schemas/SLOErrorTimeframe'
-      required:
-      - id
-      - message
-      - timeframe
-      type: object
-    SLOCorrectionCreateRequest_data:
-      description: The data object associated with the SLO correction to be created
-      example:
-        attributes:
-          timezone: UTC
-          slo_id: sloId
-          start: 1600000000
-          description: description
-          end: 1600000000
-          category: Scheduled Maintenance
-        type: correction
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SLOCorrectionCreateRequestAttributes'
-        type:
-          default: correction
-          description: Should always be set to "correction"
-          type: string
-      type: object
-    SLOCorrectionListResponse_data:
-      description: The response object of a list of SLO corrections
-      example:
-        attributes:
-          creator:
-            name: name
-            handle: handle
-            email: email
-          timezone: timezone
-          slo_id: slo_id
-          start: 6
-          description: description
-          end: 0
-          category: Scheduled Maintenance
-        id: id
-        type: correction
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SLOCorrectionResponseAttributes'
-        id:
-          description: The ID of the SLO correction
-          type: string
-        type:
-          default: correction
-          description: Should always be set to "correction"
-          type: string
-      type: object
-    SLOCorrectionResponse_data:
-      description: The data object associated with the SLO correction
-      example:
-        attributes:
-          creator:
-            name: name
-            handle: handle
-            email: email
-          timezone: timezone
-          slo_id: slo_id
-          start: 6
-          description: description
-          end: 0
-          category: Scheduled Maintenance
-        id: id
-        type: type
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SLOCorrectionResponseAttributes'
-        id:
-          description: The ID of the SLO correction
-          type: string
-        type:
-          description: Should always return "correction"
-          type: string
-      type: object
-    SLOCorrectionUpdateRequest_data:
-      description: The data object associated with the SLO correction to be updated
-      example:
-        attributes:
-          timezone: UTC
-          start: 1600000000
-          description: description
-          end: 1600000000
-          category: Scheduled Maintenance
-        type: correction
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SLOCorrectionUpdateRequestAttributes'
-        type:
-          default: correction
-          description: Should always be set to "correction"
-          type: string
       type: object
     SLOHistoryMetricsSeries_metadata:
       description: Query metadata.
@@ -22393,22 +22609,6 @@ components:
         git:
           $ref: '#/components/schemas/SyntheticsCITest_metadata_git'
       type: object
-    SyntheticsDeleteTestsResponse_deleted_tests:
-      description: |-
-        Object containing a deleted Synthetic test ID with the associated
-        deletion timestamp.
-      example:
-        deleted_at: 2000-01-23T04:56:07.000+00:00
-        public_id: public_id
-      properties:
-        deleted_at:
-          description: Deletion timestamp of the Synthetic test ID.
-          format: date-time
-          type: string
-        public_id:
-          description: The Synthetic test ID deleted.
-          type: string
-      type: object
     SyntheticsGlobalVariable_parse_test_options_parser:
       description: Details of the parser to use for the global variable.
       example:
@@ -22562,21 +22762,6 @@ components:
           description: Subject Alternative Name associated with the certificate.
           type: string
       type: object
-    SyntheticsStepDetail_warnings:
-      description: Object collecting warnings for a given step.
-      example:
-        message: ""
-      properties:
-        message:
-          description: Message for the warning.
-          example: ""
-          type: string
-        type:
-          $ref: '#/components/schemas/SyntheticsWarningType'
-      required:
-      - message
-      - type
-      type: object
     SyntheticsTestOptions_monitor_options:
       description: |-
         Object containing the options for a Synthetic test as a monitor
@@ -22592,40 +22777,6 @@ components:
           maximum: 1440
           minimum: 0
           type: integer
-      type: object
-    SyntheticsTriggerCITestsResponse_locations:
-      description: Synthetics location.
-      example:
-        name: name
-        id: 0
-      properties:
-        id:
-          description: Unique identifier of the location.
-          format: int64
-          type: integer
-        name:
-          description: Name of the location.
-          type: string
-      type: object
-    SyntheticsTriggerCITestsResponse_results:
-      description: Information about a single test run.
-      example:
-        result_id: result_id
-        location: 6
-        public_id: public_id
-      properties:
-        device:
-          $ref: '#/components/schemas/SyntheticsDeviceID'
-        location:
-          description: The location ID of the test run.
-          format: int64
-          type: integer
-        public_id:
-          description: The public ID of the Synthetics test.
-          type: string
-        result_id:
-          description: ID of the result.
-          type: string
       type: object
     TimeSeriesFormulaAndFunctionEventQueryDefinition_compute:
       description: Compute options.
@@ -22644,7 +22795,17 @@ components:
       required:
       - aggregation
       type: object
-    TimeSeriesFormulaAndFunctionEventQueryDefinition_sort:
+    TimeSeriesFormulaAndFunctionEventQueryDefinition_search:
+      description: Search options.
+      properties:
+        query:
+          description: Events search string.
+          example: service:query
+          type: string
+      required:
+      - query
+      type: object
+    TimeSeriesFormulaAndFunctionEventQueryGroupBy_sort:
       description: Options for sorting group by results.
       properties:
         aggregation:
@@ -22656,46 +22817,6 @@ components:
           $ref: '#/components/schemas/QuerySortOrder'
       required:
       - aggregation
-      type: object
-    TimeSeriesFormulaAndFunctionEventQueryDefinition_group_by:
-      description: List of objects used to group by.
-      properties:
-        facet:
-          description: Event facet.
-          example: status.
-          type: string
-        limit:
-          description: Number of groups to return.
-          example: 10
-          format: int64
-          type: integer
-        sort:
-          $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionEventQueryDefinition_sort'
-      required:
-      - facet
-      type: object
-    TimeSeriesFormulaAndFunctionEventQueryDefinition_search:
-      description: Search options.
-      properties:
-        query:
-          description: Events search string.
-          example: service:query
-          type: string
-      required:
-      - query
-      type: object
-    TimeseriesWidgetRequest_metadata:
-      description: Define an expression alias.
-      properties:
-        alias_name:
-          description: Expression alias.
-          type: string
-        expression:
-          description: Expression name.
-          example: ""
-          type: string
-      required:
-      - expression
       type: object
     WidgetFormula_limit:
       description: Options for limiting results returned.

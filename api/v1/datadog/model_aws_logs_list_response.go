@@ -17,7 +17,7 @@ type AWSLogsListResponse struct {
 	// Your AWS Account ID without dashes.
 	AccountId *string `json:"account_id,omitempty"`
 	// List of ARNs configured in your Datadog account.
-	Lambdas *[]AWSLogsListResponseLambdas `json:"lambdas,omitempty"`
+	Lambdas *[]AWSLogsLambda `json:"lambdas,omitempty"`
 	// Array of services IDs.
 	Services *[]string `json:"services,omitempty"`
 }
@@ -72,9 +72,9 @@ func (o *AWSLogsListResponse) SetAccountId(v string) {
 }
 
 // GetLambdas returns the Lambdas field value if set, zero value otherwise.
-func (o *AWSLogsListResponse) GetLambdas() []AWSLogsListResponseLambdas {
+func (o *AWSLogsListResponse) GetLambdas() []AWSLogsLambda {
 	if o == nil || o.Lambdas == nil {
-		var ret []AWSLogsListResponseLambdas
+		var ret []AWSLogsLambda
 		return ret
 	}
 	return *o.Lambdas
@@ -82,7 +82,7 @@ func (o *AWSLogsListResponse) GetLambdas() []AWSLogsListResponseLambdas {
 
 // GetLambdasOk returns a tuple with the Lambdas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSLogsListResponse) GetLambdasOk() (*[]AWSLogsListResponseLambdas, bool) {
+func (o *AWSLogsListResponse) GetLambdasOk() (*[]AWSLogsLambda, bool) {
 	if o == nil || o.Lambdas == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *AWSLogsListResponse) HasLambdas() bool {
 	return false
 }
 
-// SetLambdas gets a reference to the given []AWSLogsListResponseLambdas and assigns it to the Lambdas field.
-func (o *AWSLogsListResponse) SetLambdas(v []AWSLogsListResponseLambdas) {
+// SetLambdas gets a reference to the given []AWSLogsLambda and assigns it to the Lambdas field.
+func (o *AWSLogsListResponse) SetLambdas(v []AWSLogsLambda) {
 	o.Lambdas = &v
 }
 

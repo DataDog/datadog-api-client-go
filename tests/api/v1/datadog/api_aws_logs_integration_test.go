@@ -41,8 +41,10 @@ func generateUniqueAWSLambdaAccounts(ctx context.Context, t *testing.T) (datadog
 
 // Test CreateAWSLambdaARN and EnableServices endpoints
 func TestAddAndSaveAWSLogs(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -66,8 +68,10 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 }
 
 func TestListAWSLogsServices(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -83,8 +87,10 @@ func TestListAWSLogsServices(t *testing.T) {
 }
 
 func TestListAndDeleteAWSLogs(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -140,7 +146,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
-	var listOfARNs2 []datadog.AWSLogsListResponseLambdas
+	var listOfARNs2 []datadog.AWSLogsLambda
 	var accountExistsAfterDelete = false
 	for _, Account := range listOutput2 {
 		if Account.GetAccountId() == *testAWSAcc.AccountId {
@@ -157,8 +163,10 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 }
 
 func TestCheckLambdaAsync(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -193,8 +201,10 @@ func TestCheckLambdaAsync(t *testing.T) {
 }
 
 func TestCheckServicesAsync(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -215,8 +225,9 @@ func TestCheckServicesAsync(t *testing.T) {
 }
 
 func TestAWSLogsList400Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
@@ -239,8 +250,10 @@ func TestAWSLogsList400Error(t *testing.T) {
 }
 
 func TestAWSLogsList403Error(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -253,8 +266,9 @@ func TestAWSLogsList403Error(t *testing.T) {
 }
 
 func TestAWSLogsAdd400Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
@@ -277,8 +291,10 @@ func TestAWSLogsAdd400Error(t *testing.T) {
 }
 
 func TestAWSLogsAdd403Error(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -291,8 +307,9 @@ func TestAWSLogsAdd403Error(t *testing.T) {
 }
 
 func TestAWSLogsDelete400Error(t *testing.T) {
-	ctx, finish := WithClient(WithFakeAuth(context.Background()), t)
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
 	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
@@ -315,8 +332,10 @@ func TestAWSLogsDelete400Error(t *testing.T) {
 }
 
 func TestAWSLogsDelete403Error(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -329,8 +348,10 @@ func TestAWSLogsDelete403Error(t *testing.T) {
 }
 
 func TestAWSLogsServicesListErrors(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 	// Setup the Client we'll use to interact with the Test account
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
@@ -343,8 +364,8 @@ func TestAWSLogsServicesListErrors(t *testing.T) {
 }
 
 func TestAWSLogsServicesEnableErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -372,8 +393,8 @@ func TestAWSLogsServicesEnableErrors(t *testing.T) {
 }
 
 func TestAWSLogsServicesCheckErrors(t *testing.T) {
-	ctx, close := tests.WithTestSpan(context.Background(), t)
-	defer close()
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context

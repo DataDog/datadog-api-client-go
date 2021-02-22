@@ -25,11 +25,12 @@ type TableWidgetRequest struct {
 	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	EventQuery         *LogQueryDefinition        `json:"event_query,omitempty"`
 	// For metric queries, the number of lines to show in the table. Only one request should have this property.
-	Limit        *int64                  `json:"limit,omitempty"`
-	LogQuery     *LogQueryDefinition     `json:"log_query,omitempty"`
-	NetworkQuery *LogQueryDefinition     `json:"network_query,omitempty"`
-	Order        *WidgetSort             `json:"order,omitempty"`
-	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+	Limit               *int64                  `json:"limit,omitempty"`
+	LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
+	NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
+	Order               *WidgetSort             `json:"order,omitempty"`
+	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
+	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
 	// Query definition.
 	Q             *string             `json:"q,omitempty"`
 	RumQuery      *LogQueryDefinition `json:"rum_query,omitempty"`
@@ -437,6 +438,38 @@ func (o *TableWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
 
+// GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
+func (o *TableWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
+	if o == nil || o.ProfileMetricsQuery == nil {
+		var ret LogQueryDefinition
+		return ret
+	}
+	return *o.ProfileMetricsQuery
+}
+
+// GetProfileMetricsQueryOk returns a tuple with the ProfileMetricsQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TableWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, bool) {
+	if o == nil || o.ProfileMetricsQuery == nil {
+		return nil, false
+	}
+	return o.ProfileMetricsQuery, true
+}
+
+// HasProfileMetricsQuery returns a boolean if a field has been set.
+func (o *TableWidgetRequest) HasProfileMetricsQuery() bool {
+	if o != nil && o.ProfileMetricsQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
+func (o *TableWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
+	o.ProfileMetricsQuery = &v
+}
+
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetQ() string {
 	if o == nil || o.Q == nil {
@@ -570,6 +603,9 @@ func (o TableWidgetRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.ProcessQuery != nil {
 		toSerialize["process_query"] = o.ProcessQuery
+	}
+	if o.ProfileMetricsQuery != nil {
+		toSerialize["profile_metrics_query"] = o.ProfileMetricsQuery
 	}
 	if o.Q != nil {
 		toSerialize["q"] = o.Q

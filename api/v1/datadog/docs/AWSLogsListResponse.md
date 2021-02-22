@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | Pointer to **string** | Your AWS Account ID without dashes. | [optional] 
-**Lambdas** | Pointer to [**[]AWSLogsListResponseLambdas**](AWSLogsListResponseLambdas.md) | List of ARNs configured in your Datadog account. | [optional] 
+**Lambdas** | Pointer to [**[]AWSLogsLambda**](AWSLogsLambda.md) | List of ARNs configured in your Datadog account. | [optional] 
 **Services** | Pointer to **[]string** | Array of services IDs. | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasAccountId returns a boolean if a field has been set.
 
 ### GetLambdas
 
-`func (o *AWSLogsListResponse) GetLambdas() []AWSLogsListResponseLambdas`
+`func (o *AWSLogsListResponse) GetLambdas() []AWSLogsLambda`
 
 GetLambdas returns the Lambdas field if non-nil, zero value otherwise.
 
 ### GetLambdasOk
 
-`func (o *AWSLogsListResponse) GetLambdasOk() (*[]AWSLogsListResponseLambdas, bool)`
+`func (o *AWSLogsListResponse) GetLambdasOk() (*[]AWSLogsLambda, bool)`
 
 GetLambdasOk returns a tuple with the Lambdas field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLambdas
 
-`func (o *AWSLogsListResponse) SetLambdas(v []AWSLogsListResponseLambdas)`
+`func (o *AWSLogsListResponse) SetLambdas(v []AWSLogsLambda)`
 
 SetLambdas sets Lambdas field to given value.
 

@@ -42,7 +42,7 @@ type SyntheticsStepDetail struct {
 	// Value for the step.
 	Value *interface{} `json:"value,omitempty"`
 	// Warning collected that didn't failed the step.
-	Warnings *[]SyntheticsStepDetailWarnings `json:"warnings,omitempty"`
+	Warnings *[]SyntheticsStepDetailWarning `json:"warnings,omitempty"`
 }
 
 // NewSyntheticsStepDetail instantiates a new SyntheticsStepDetail object
@@ -543,9 +543,9 @@ func (o *SyntheticsStepDetail) SetValue(v interface{}) {
 }
 
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
-func (o *SyntheticsStepDetail) GetWarnings() []SyntheticsStepDetailWarnings {
+func (o *SyntheticsStepDetail) GetWarnings() []SyntheticsStepDetailWarning {
 	if o == nil || o.Warnings == nil {
-		var ret []SyntheticsStepDetailWarnings
+		var ret []SyntheticsStepDetailWarning
 		return ret
 	}
 	return *o.Warnings
@@ -553,7 +553,7 @@ func (o *SyntheticsStepDetail) GetWarnings() []SyntheticsStepDetailWarnings {
 
 // GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetWarningsOk() (*[]SyntheticsStepDetailWarnings, bool) {
+func (o *SyntheticsStepDetail) GetWarningsOk() (*[]SyntheticsStepDetailWarning, bool) {
 	if o == nil || o.Warnings == nil {
 		return nil, false
 	}
@@ -569,8 +569,8 @@ func (o *SyntheticsStepDetail) HasWarnings() bool {
 	return false
 }
 
-// SetWarnings gets a reference to the given []SyntheticsStepDetailWarnings and assigns it to the Warnings field.
-func (o *SyntheticsStepDetail) SetWarnings(v []SyntheticsStepDetailWarnings) {
+// SetWarnings gets a reference to the given []SyntheticsStepDetailWarning and assigns it to the Warnings field.
+func (o *SyntheticsStepDetail) SetWarnings(v []SyntheticsStepDetailWarning) {
 	o.Warnings = &v
 }
 

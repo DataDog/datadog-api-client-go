@@ -15,7 +15,7 @@ import (
 // SyntheticsDeleteTestsResponse Response object for deleting Synthetic tests.
 type SyntheticsDeleteTestsResponse struct {
 	// Array of objects containing a deleted Synthetic test ID with the associated deletion timestamp.
-	DeletedTests *[]SyntheticsDeleteTestsResponseDeletedTests `json:"deleted_tests,omitempty"`
+	DeletedTests *[]SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
 }
 
 // NewSyntheticsDeleteTestsResponse instantiates a new SyntheticsDeleteTestsResponse object
@@ -36,9 +36,9 @@ func NewSyntheticsDeleteTestsResponseWithDefaults() *SyntheticsDeleteTestsRespon
 }
 
 // GetDeletedTests returns the DeletedTests field value if set, zero value otherwise.
-func (o *SyntheticsDeleteTestsResponse) GetDeletedTests() []SyntheticsDeleteTestsResponseDeletedTests {
+func (o *SyntheticsDeleteTestsResponse) GetDeletedTests() []SyntheticsDeletedTest {
 	if o == nil || o.DeletedTests == nil {
-		var ret []SyntheticsDeleteTestsResponseDeletedTests
+		var ret []SyntheticsDeletedTest
 		return ret
 	}
 	return *o.DeletedTests
@@ -46,7 +46,7 @@ func (o *SyntheticsDeleteTestsResponse) GetDeletedTests() []SyntheticsDeleteTest
 
 // GetDeletedTestsOk returns a tuple with the DeletedTests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsDeleteTestsResponse) GetDeletedTestsOk() (*[]SyntheticsDeleteTestsResponseDeletedTests, bool) {
+func (o *SyntheticsDeleteTestsResponse) GetDeletedTestsOk() (*[]SyntheticsDeletedTest, bool) {
 	if o == nil || o.DeletedTests == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *SyntheticsDeleteTestsResponse) HasDeletedTests() bool {
 	return false
 }
 
-// SetDeletedTests gets a reference to the given []SyntheticsDeleteTestsResponseDeletedTests and assigns it to the DeletedTests field.
-func (o *SyntheticsDeleteTestsResponse) SetDeletedTests(v []SyntheticsDeleteTestsResponseDeletedTests) {
+// SetDeletedTests gets a reference to the given []SyntheticsDeletedTest and assigns it to the DeletedTests field.
+func (o *SyntheticsDeleteTestsResponse) SetDeletedTests(v []SyntheticsDeletedTest) {
 	o.DeletedTests = &v
 }
 
