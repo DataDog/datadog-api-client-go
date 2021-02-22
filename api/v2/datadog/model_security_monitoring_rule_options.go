@@ -14,9 +14,11 @@ import (
 
 // SecurityMonitoringRuleOptions Options on rules.
 type SecurityMonitoringRuleOptions struct {
+	DetectionMethod   *SecurityMonitoringRuleDetectionMethod   `json:"detectionMethod,omitempty"`
 	EvaluationWindow  *SecurityMonitoringRuleEvaluationWindow  `json:"evaluationWindow,omitempty"`
 	KeepAlive         *SecurityMonitoringRuleKeepAlive         `json:"keepAlive,omitempty"`
 	MaxSignalDuration *SecurityMonitoringRuleMaxSignalDuration `json:"maxSignalDuration,omitempty"`
+	NewValueOptions   *SecurityMonitoringRuleNewValueOptions   `json:"newValueOptions,omitempty"`
 }
 
 // NewSecurityMonitoringRuleOptions instantiates a new SecurityMonitoringRuleOptions object
@@ -34,6 +36,38 @@ func NewSecurityMonitoringRuleOptions() *SecurityMonitoringRuleOptions {
 func NewSecurityMonitoringRuleOptionsWithDefaults() *SecurityMonitoringRuleOptions {
 	this := SecurityMonitoringRuleOptions{}
 	return &this
+}
+
+// GetDetectionMethod returns the DetectionMethod field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleOptions) GetDetectionMethod() SecurityMonitoringRuleDetectionMethod {
+	if o == nil || o.DetectionMethod == nil {
+		var ret SecurityMonitoringRuleDetectionMethod
+		return ret
+	}
+	return *o.DetectionMethod
+}
+
+// GetDetectionMethodOk returns a tuple with the DetectionMethod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleOptions) GetDetectionMethodOk() (*SecurityMonitoringRuleDetectionMethod, bool) {
+	if o == nil || o.DetectionMethod == nil {
+		return nil, false
+	}
+	return o.DetectionMethod, true
+}
+
+// HasDetectionMethod returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleOptions) HasDetectionMethod() bool {
+	if o != nil && o.DetectionMethod != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDetectionMethod gets a reference to the given SecurityMonitoringRuleDetectionMethod and assigns it to the DetectionMethod field.
+func (o *SecurityMonitoringRuleOptions) SetDetectionMethod(v SecurityMonitoringRuleDetectionMethod) {
+	o.DetectionMethod = &v
 }
 
 // GetEvaluationWindow returns the EvaluationWindow field value if set, zero value otherwise.
@@ -132,8 +166,43 @@ func (o *SecurityMonitoringRuleOptions) SetMaxSignalDuration(v SecurityMonitorin
 	o.MaxSignalDuration = &v
 }
 
+// GetNewValueOptions returns the NewValueOptions field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleOptions) GetNewValueOptions() SecurityMonitoringRuleNewValueOptions {
+	if o == nil || o.NewValueOptions == nil {
+		var ret SecurityMonitoringRuleNewValueOptions
+		return ret
+	}
+	return *o.NewValueOptions
+}
+
+// GetNewValueOptionsOk returns a tuple with the NewValueOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleOptions) GetNewValueOptionsOk() (*SecurityMonitoringRuleNewValueOptions, bool) {
+	if o == nil || o.NewValueOptions == nil {
+		return nil, false
+	}
+	return o.NewValueOptions, true
+}
+
+// HasNewValueOptions returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleOptions) HasNewValueOptions() bool {
+	if o != nil && o.NewValueOptions != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNewValueOptions gets a reference to the given SecurityMonitoringRuleNewValueOptions and assigns it to the NewValueOptions field.
+func (o *SecurityMonitoringRuleOptions) SetNewValueOptions(v SecurityMonitoringRuleNewValueOptions) {
+	o.NewValueOptions = &v
+}
+
 func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.DetectionMethod != nil {
+		toSerialize["detectionMethod"] = o.DetectionMethod
+	}
 	if o.EvaluationWindow != nil {
 		toSerialize["evaluationWindow"] = o.EvaluationWindow
 	}
@@ -142,6 +211,9 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	}
 	if o.MaxSignalDuration != nil {
 		toSerialize["maxSignalDuration"] = o.MaxSignalDuration
+	}
+	if o.NewValueOptions != nil {
+		toSerialize["newValueOptions"] = o.NewValueOptions
 	}
 	return json.Marshal(toSerialize)
 }
