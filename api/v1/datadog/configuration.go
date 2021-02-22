@@ -116,6 +116,7 @@ func NewConfiguration() *Configuration {
 						DefaultValue: "datadoghq.com",
 						EnumValues: []string{
 							"datadoghq.com",
+							"us3.datadoghq.com",
 							"datadoghq.eu",
 							"ddog-gov.com",
 						},
@@ -251,6 +252,7 @@ func NewConfiguration() *Configuration {
 							DefaultValue: "datadoghq.com",
 							EnumValues: []string{
 								"datadoghq.com",
+								"us3.datadoghq.com",
 								"datadoghq.eu",
 								"ddog-gov.com",
 							},
