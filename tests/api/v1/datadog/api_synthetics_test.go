@@ -166,7 +166,7 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
 		Tags:    &[]string{"testing:api"},
-		Type:    datadog.PtrString("api"),
+		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
 	}
 }
 
@@ -280,7 +280,7 @@ func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.Synthet
 			TickEvery: datadog.SYNTHETICSTICKINTERVAL_FIVE_MINUTES.Ptr(),
 		},
 		Tags: &[]string{"testing:browser"},
-		Type: datadog.PtrString("browser"),
+		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER.Ptr(),
 	}
 }
 
