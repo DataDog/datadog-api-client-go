@@ -25,6 +25,8 @@
 
 * `SLO_ALERT` (value: `"slo alert"`)
 
+* `EVENT_V2_ALERT` (value: `"event-v2 alert"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
