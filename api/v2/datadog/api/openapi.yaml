@@ -10032,6 +10032,7 @@ components:
           isDefault: true
           isDeleted: true
           isEnabled: true
+          hasExtendedTitle: true
           name: name
           options:
             newValueOptions: {}
@@ -10079,6 +10080,7 @@ components:
           isDefault: true
           isDeleted: true
           isEnabled: true
+          hasExtendedTitle: true
           name: name
           options:
             newValueOptions: {}
@@ -10149,6 +10151,7 @@ components:
       example:
         cases: []
         isEnabled: true
+        hasExtendedTitle: true
         name: ""
         options:
           newValueOptions: {}
@@ -10175,6 +10178,10 @@ components:
           type: array
         isEnabled:
           description: Whether the rule is enabled.
+          example: true
+          type: boolean
+        hasExtendedTitle:
+          description: Whether the rule has a title extended by group by values.
           example: true
           type: boolean
         message:
@@ -10492,6 +10499,7 @@ components:
         isDefault: true
         isDeleted: true
         isEnabled: true
+        hasExtendedTitle: true
         name: name
         options:
           newValueOptions: {}
@@ -10527,6 +10535,9 @@ components:
           type: boolean
         isEnabled:
           description: Whether the rule is enabled.
+          type: boolean
+        hasExtendedTitle:
+          description: Whether the rule has a title extended by its group by field.
           type: boolean
         message:
           description: Message for generated signals.
@@ -10581,6 +10592,7 @@ components:
           - notifications
           - notifications
         isEnabled: true
+        hasExtendedTitle: true
         name: name
         options:
           newValueOptions: {}
@@ -10624,6 +10636,10 @@ components:
           type: array
         isEnabled:
           description: Whether the rule is enabled.
+          type: boolean
+        hasExtendedTitle:
+          description: Whether the rule has an extended title based on its group by
+            field.
           type: boolean
         message:
           description: Message for generated signals.
