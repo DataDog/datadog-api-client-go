@@ -29,6 +29,7 @@ const (
 	MONITORTYPE_SYNTHETICS_ALERT      MonitorType = "synthetics alert"
 	MONITORTYPE_TRACE_ANALYTICS_ALERT MonitorType = "trace-analytics alert"
 	MONITORTYPE_SLO_ALERT             MonitorType = "slo alert"
+	MONITORTYPE_EVENT_V2_ALERT        MonitorType = "event-v2 alert"
 )
 
 var allowedMonitorTypeEnumValues = []MonitorType{
@@ -43,6 +44,7 @@ var allowedMonitorTypeEnumValues = []MonitorType{
 	"synthetics alert",
 	"trace-analytics alert",
 	"slo alert",
+	"event-v2 alert",
 }
 
 func (v *MonitorType) UnmarshalJSON(src []byte) error {
