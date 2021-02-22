@@ -17,6 +17,8 @@ import (
 type UsageAttributionBody struct {
 	// Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM].
 	Month *time.Time `json:"month,omitempty"`
+	// The name of the organization.
+	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// Usage Summary by tag name.
@@ -73,6 +75,38 @@ func (o *UsageAttributionBody) HasMonth() bool {
 // SetMonth gets a reference to the given time.Time and assigns it to the Month field.
 func (o *UsageAttributionBody) SetMonth(v time.Time) {
 	o.Month = &v
+}
+
+// GetOrgName returns the OrgName field value if set, zero value otherwise.
+func (o *UsageAttributionBody) GetOrgName() string {
+	if o == nil || o.OrgName == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrgName
+}
+
+// GetOrgNameOk returns a tuple with the OrgName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionBody) GetOrgNameOk() (*string, bool) {
+	if o == nil || o.OrgName == nil {
+		return nil, false
+	}
+	return o.OrgName, true
+}
+
+// HasOrgName returns a boolean if a field has been set.
+func (o *UsageAttributionBody) HasOrgName() bool {
+	if o != nil && o.OrgName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrgName gets a reference to the given string and assigns it to the OrgName field.
+func (o *UsageAttributionBody) SetOrgName(v string) {
+	o.OrgName = &v
 }
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
@@ -207,6 +241,9 @@ func (o UsageAttributionBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Month != nil {
 		toSerialize["month"] = o.Month
+	}
+	if o.OrgName != nil {
+		toSerialize["org_name"] = o.OrgName
 	}
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
