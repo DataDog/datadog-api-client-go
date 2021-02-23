@@ -697,22 +697,22 @@ func TestDashboardLifecycle(t *testing.T) {
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
 		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
-			TimeSeriesFormulaAndFunctionMetricQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionMetricQueryDefinition{
+			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
 				Name:       datadog.PtrString("query"),
 			},
 		},
 			{
-				TimeSeriesFormulaAndFunctionEventQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinition{
+				FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
 					DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
-					Compute: datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute{
+					Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
 						Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 					},
-					Search: &datadog.TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch{
+					Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
 						Query: "service:query Errors",
 					},
-					GroupBy: &[]datadog.TimeSeriesFormulaAndFunctionEventQueryGroupBy{{
+					GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{{
 						Facet: "host",
 					}},
 					Indexes: &[]string{"*"},
@@ -720,7 +720,7 @@ func TestDashboardLifecycle(t *testing.T) {
 				},
 			},
 			{
-				TimeSeriesFormulaAndFunctionProcessQueryDefinition: &datadog.TimeSeriesFormulaAndFunctionProcessQueryDefinition{
+				FormulaAndFunctionProcessQueryDefinition: &datadog.FormulaAndFunctionProcessQueryDefinition{
 					DataSource: datadog.FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS,
 					TextFilter: datadog.PtrString(""),
 					Metric:     "process.stat.cpu.total_pct",
