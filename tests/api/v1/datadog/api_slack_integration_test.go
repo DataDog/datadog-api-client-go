@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	staticAccountName    = "slack_integration_test_account"
+	staticAccountName = "slack_integration_test_account"
 	staticChannelName = "#test-channel"
 )
 
