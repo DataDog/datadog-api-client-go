@@ -24,6 +24,7 @@ api_organizations.go
 api_pager_duty_integration.go
 api_service_level_objective_corrections.go
 api_service_level_objectives.go
+api_slack_integration.go
 api_snapshots.go
 api_synthetics.go
 api_tags.go
@@ -315,6 +316,9 @@ docs/ServiceMapWidgetDefinition.md
 docs/ServiceMapWidgetDefinitionType.md
 docs/ServiceSummaryWidgetDefinition.md
 docs/ServiceSummaryWidgetDefinitionType.md
+docs/SlackIntegrationApi.md
+docs/SlackIntegrationChannel.md
+docs/SlackIntegrationChannelDisplay.md
 docs/SnapshotsApi.md
 docs/SyntheticsAPITestResultData.md
 docs/SyntheticsAPITestResultFull.md
@@ -774,6 +778,8 @@ model_service_map_widget_definition.go
 model_service_map_widget_definition_type.go
 model_service_summary_widget_definition.go
 model_service_summary_widget_definition_type.go
+model_slack_integration_channel.go
+model_slack_integration_channel_display.go
 model_slo_bulk_delete_error.go
 model_slo_bulk_delete_response.go
 model_slo_bulk_delete_response_data.go

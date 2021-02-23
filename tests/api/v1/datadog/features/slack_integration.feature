@@ -8,7 +8,7 @@ Feature: Slack Integration
     Given a valid "apiKeyAuth" key in the system
     And a valid "appKeyAuth" key in the system
     And an instance of "SlackIntegration" API
-    And request contains "team_name" parameter from "<PATH>"
+    And request contains "account_name" parameter from "<PATH>"
 
   @generated @skip
   Scenario: Create a Slack integration channel returns "Bad Request" response

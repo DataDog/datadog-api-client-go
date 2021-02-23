@@ -88,6 +88,8 @@ type APIClient struct {
 
 	ServiceLevelObjectivesApi *ServiceLevelObjectivesApiService
 
+	SlackIntegrationApi *SlackIntegrationApiService
+
 	SnapshotsApi *SnapshotsApiService
 
 	SyntheticsApi *SyntheticsApiService
@@ -136,6 +138,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.PagerDutyIntegrationApi = (*PagerDutyIntegrationApiService)(&c.common)
 	c.ServiceLevelObjectiveCorrectionsApi = (*ServiceLevelObjectiveCorrectionsApiService)(&c.common)
 	c.ServiceLevelObjectivesApi = (*ServiceLevelObjectivesApiService)(&c.common)
+	c.SlackIntegrationApi = (*SlackIntegrationApiService)(&c.common)
 	c.SnapshotsApi = (*SnapshotsApiService)(&c.common)
 	c.SyntheticsApi = (*SyntheticsApiService)(&c.common)
 	c.TagsApi = (*TagsApiService)(&c.common)
