@@ -12997,6 +12997,7 @@ components:
             group_by: host
             type: count
           evaluation_delay: 6
+          groupby_simple_monitor: true
           notify_audit: false
           min_location_failed: 5
           new_host_delay: 5
@@ -13133,6 +13134,7 @@ components:
           group_by: host
           type: count
         evaluation_delay: 6
+        groupby_simple_monitor: true
         notify_audit: false
         min_location_failed: 5
         new_host_delay: 5
@@ -13183,6 +13185,10 @@ components:
           format: int64
           nullable: true
           type: integer
+        groupby_simple_monitor:
+          description: Whether or not to trigger one alert if any source breaches
+            a threshold.
+          type: boolean
         include_tags:
           default: true
           description: |-
@@ -13528,6 +13534,7 @@ components:
             group_by: host
             type: count
           evaluation_delay: 6
+          groupby_simple_monitor: true
           notify_audit: false
           min_location_failed: 5
           new_host_delay: 5

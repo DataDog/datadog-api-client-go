@@ -23,6 +23,8 @@ type MonitorOptions struct {
 	EscalationMessage *string `json:"escalation_message,omitempty"`
 	// Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to `300` (5min), the timeframe is set to `last_5m` and the time is 7:00, the monitor evaluates data from 6:50 to 6:55. This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation.
 	EvaluationDelay NullableInt64 `json:"evaluation_delay,omitempty"`
+	// Whether or not to trigger one alert if any source breaches a threshold.
+	GroupbySimpleMonitor *bool `json:"groupby_simple_monitor,omitempty"`
 	// A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.  **Examples** - If `True`, `[Triggered on {host:h1}] Monitor Title` - If `False`, `[Triggered] Monitor Title`
 	IncludeTags *bool `json:"include_tags,omitempty"`
 	// Whether or not the monitor is locked (only editable by creator and admins).
@@ -267,6 +269,38 @@ func (o *MonitorOptions) SetEvaluationDelayNil() {
 // UnsetEvaluationDelay ensures that no value is present for EvaluationDelay, not even an explicit nil
 func (o *MonitorOptions) UnsetEvaluationDelay() {
 	o.EvaluationDelay.Unset()
+}
+
+// GetGroupbySimpleMonitor returns the GroupbySimpleMonitor field value if set, zero value otherwise.
+func (o *MonitorOptions) GetGroupbySimpleMonitor() bool {
+	if o == nil || o.GroupbySimpleMonitor == nil {
+		var ret bool
+		return ret
+	}
+	return *o.GroupbySimpleMonitor
+}
+
+// GetGroupbySimpleMonitorOk returns a tuple with the GroupbySimpleMonitor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorOptions) GetGroupbySimpleMonitorOk() (*bool, bool) {
+	if o == nil || o.GroupbySimpleMonitor == nil {
+		return nil, false
+	}
+	return o.GroupbySimpleMonitor, true
+}
+
+// HasGroupbySimpleMonitor returns a boolean if a field has been set.
+func (o *MonitorOptions) HasGroupbySimpleMonitor() bool {
+	if o != nil && o.GroupbySimpleMonitor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupbySimpleMonitor gets a reference to the given bool and assigns it to the GroupbySimpleMonitor field.
+func (o *MonitorOptions) SetGroupbySimpleMonitor(v bool) {
+	o.GroupbySimpleMonitor = &v
 }
 
 // GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.
@@ -842,6 +876,9 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	}
 	if o.EvaluationDelay.IsSet() {
 		toSerialize["evaluation_delay"] = o.EvaluationDelay.Get()
+	}
+	if o.GroupbySimpleMonitor != nil {
+		toSerialize["groupby_simple_monitor"] = o.GroupbySimpleMonitor
 	}
 	if o.IncludeTags != nil {
 		toSerialize["include_tags"] = o.IncludeTags
