@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **DataSource** | [**FormulaAndFunctionProcessQueryDataSource**](FormulaAndFunctionProcessQueryDataSource.md) |  | 
 **Name** | Pointer to **string** | Name of query for use in formulas. | [optional] 
 **Query** | **string** | Metrics query definition. | 
-**Compute** | [**TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute**](TimeSeriesFormulaAndFunctionEventQueryDefinition_compute.md) |  | 
-**GroupBy** | Pointer to [**[]TimeSeriesFormulaAndFunctionEventQueryGroupBy**](TimeSeriesFormulaAndFunctionEventQueryGroupBy.md) | Group by options. | [optional] 
+**Compute** | [**FormulaAndFunctionEventQueryDefinitionCompute**](FormulaAndFunctionEventQueryDefinition_compute.md) |  | 
+**GroupBy** | Pointer to [**[]FormulaAndFunctionEventQueryGroupBy**](FormulaAndFunctionEventQueryGroupBy.md) | Group by options. | [optional] 
 **Indexes** | Pointer to **[]string** | An array of index names to query in the stream. Omit or use &#x60;[]&#x60; to query all indexes at once. | [optional] 
-**Search** | Pointer to [**TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch**](TimeSeriesFormulaAndFunctionEventQueryDefinition_search.md) |  | [optional] 
+**Search** | Pointer to [**FormulaAndFunctionEventQueryDefinitionSearch**](FormulaAndFunctionEventQueryDefinition_search.md) |  | [optional] 
 **IsNormalizedCpu** | Pointer to **bool** | Whether to normalize the CPU percentages. | [optional] 
 **Limit** | Pointer to **int64** | Number of hits to return. | [optional] 
 **Metric** | **string** | Process metric name. | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewFormulaAndFunctionQueryDefinition
 
-`func NewFormulaAndFunctionQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, query string, compute TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute, metric string, ) *FormulaAndFunctionQueryDefinition`
+`func NewFormulaAndFunctionQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, query string, compute FormulaAndFunctionEventQueryDefinitionCompute, metric string, ) *FormulaAndFunctionQueryDefinition`
 
 NewFormulaAndFunctionQueryDefinition instantiates a new FormulaAndFunctionQueryDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -130,40 +130,40 @@ SetQuery sets Query field to given value.
 
 ### GetCompute
 
-`func (o *FormulaAndFunctionQueryDefinition) GetCompute() TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute`
+`func (o *FormulaAndFunctionQueryDefinition) GetCompute() FormulaAndFunctionEventQueryDefinitionCompute`
 
 GetCompute returns the Compute field if non-nil, zero value otherwise.
 
 ### GetComputeOk
 
-`func (o *FormulaAndFunctionQueryDefinition) GetComputeOk() (*TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute, bool)`
+`func (o *FormulaAndFunctionQueryDefinition) GetComputeOk() (*FormulaAndFunctionEventQueryDefinitionCompute, bool)`
 
 GetComputeOk returns a tuple with the Compute field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompute
 
-`func (o *FormulaAndFunctionQueryDefinition) SetCompute(v TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute)`
+`func (o *FormulaAndFunctionQueryDefinition) SetCompute(v FormulaAndFunctionEventQueryDefinitionCompute)`
 
 SetCompute sets Compute field to given value.
 
 
 ### GetGroupBy
 
-`func (o *FormulaAndFunctionQueryDefinition) GetGroupBy() []TimeSeriesFormulaAndFunctionEventQueryGroupBy`
+`func (o *FormulaAndFunctionQueryDefinition) GetGroupBy() []FormulaAndFunctionEventQueryGroupBy`
 
 GetGroupBy returns the GroupBy field if non-nil, zero value otherwise.
 
 ### GetGroupByOk
 
-`func (o *FormulaAndFunctionQueryDefinition) GetGroupByOk() (*[]TimeSeriesFormulaAndFunctionEventQueryGroupBy, bool)`
+`func (o *FormulaAndFunctionQueryDefinition) GetGroupByOk() (*[]FormulaAndFunctionEventQueryGroupBy, bool)`
 
 GetGroupByOk returns a tuple with the GroupBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupBy
 
-`func (o *FormulaAndFunctionQueryDefinition) SetGroupBy(v []TimeSeriesFormulaAndFunctionEventQueryGroupBy)`
+`func (o *FormulaAndFunctionQueryDefinition) SetGroupBy(v []FormulaAndFunctionEventQueryGroupBy)`
 
 SetGroupBy sets GroupBy field to given value.
 
@@ -200,20 +200,20 @@ HasIndexes returns a boolean if a field has been set.
 
 ### GetSearch
 
-`func (o *FormulaAndFunctionQueryDefinition) GetSearch() TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch`
+`func (o *FormulaAndFunctionQueryDefinition) GetSearch() FormulaAndFunctionEventQueryDefinitionSearch`
 
 GetSearch returns the Search field if non-nil, zero value otherwise.
 
 ### GetSearchOk
 
-`func (o *FormulaAndFunctionQueryDefinition) GetSearchOk() (*TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch, bool)`
+`func (o *FormulaAndFunctionQueryDefinition) GetSearchOk() (*FormulaAndFunctionEventQueryDefinitionSearch, bool)`
 
 GetSearchOk returns a tuple with the Search field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSearch
 
-`func (o *FormulaAndFunctionQueryDefinition) SetSearch(v TimeSeriesFormulaAndFunctionEventQueryDefinitionSearch)`
+`func (o *FormulaAndFunctionQueryDefinition) SetSearch(v FormulaAndFunctionEventQueryDefinitionSearch)`
 
 SetSearch sets Search field to given value.
 
