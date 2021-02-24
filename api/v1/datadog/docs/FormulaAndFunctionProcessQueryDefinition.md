@@ -1,4 +1,4 @@
-# TimeSeriesFormulaAndFunctionProcessQueryDefinition
+# FormulaAndFunctionProcessQueryDefinition
 
 ## Properties
 
@@ -16,235 +16,235 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewTimeSeriesFormulaAndFunctionProcessQueryDefinition
+### NewFormulaAndFunctionProcessQueryDefinition
 
-`func NewTimeSeriesFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, metric string, ) *TimeSeriesFormulaAndFunctionProcessQueryDefinition`
+`func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, metric string, ) *FormulaAndFunctionProcessQueryDefinition`
 
-NewTimeSeriesFormulaAndFunctionProcessQueryDefinition instantiates a new TimeSeriesFormulaAndFunctionProcessQueryDefinition object
+NewFormulaAndFunctionProcessQueryDefinition instantiates a new FormulaAndFunctionProcessQueryDefinition object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewTimeSeriesFormulaAndFunctionProcessQueryDefinitionWithDefaults
+### NewFormulaAndFunctionProcessQueryDefinitionWithDefaults
 
-`func NewTimeSeriesFormulaAndFunctionProcessQueryDefinitionWithDefaults() *TimeSeriesFormulaAndFunctionProcessQueryDefinition`
+`func NewFormulaAndFunctionProcessQueryDefinitionWithDefaults() *FormulaAndFunctionProcessQueryDefinition`
 
-NewTimeSeriesFormulaAndFunctionProcessQueryDefinitionWithDefaults instantiates a new TimeSeriesFormulaAndFunctionProcessQueryDefinition object
+NewFormulaAndFunctionProcessQueryDefinitionWithDefaults instantiates a new FormulaAndFunctionProcessQueryDefinition object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAggregator
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetAggregator() FormulaAndFunctionMetricAggregation`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetAggregator() FormulaAndFunctionMetricAggregation`
 
 GetAggregator returns the Aggregator field if non-nil, zero value otherwise.
 
 ### GetAggregatorOk
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetAggregatorOk() (*FormulaAndFunctionMetricAggregation, bool)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetAggregatorOk() (*FormulaAndFunctionMetricAggregation, bool)`
 
 GetAggregatorOk returns a tuple with the Aggregator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAggregator
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetAggregator(v FormulaAndFunctionMetricAggregation)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) SetAggregator(v FormulaAndFunctionMetricAggregation)`
 
 SetAggregator sets Aggregator field to given value.
 
 ### HasAggregator
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasAggregator() bool`
+`func (o *FormulaAndFunctionProcessQueryDefinition) HasAggregator() bool`
 
 HasAggregator returns a boolean if a field has been set.
 
 ### GetDataSource
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetDataSource() FormulaAndFunctionProcessQueryDataSource`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSource() FormulaAndFunctionProcessQueryDataSource`
 
 GetDataSource returns the DataSource field if non-nil, zero value otherwise.
 
 ### GetDataSourceOk
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetDataSourceOk() (*FormulaAndFunctionProcessQueryDataSource, bool)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSourceOk() (*FormulaAndFunctionProcessQueryDataSource, bool)`
 
 GetDataSourceOk returns a tuple with the DataSource field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDataSource
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetDataSource(v FormulaAndFunctionProcessQueryDataSource)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) SetDataSource(v FormulaAndFunctionProcessQueryDataSource)`
 
 SetDataSource sets DataSource field to given value.
 
 
 ### GetIsNormalizedCpu
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpu() bool`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpu() bool`
 
 GetIsNormalizedCpu returns the IsNormalizedCpu field if non-nil, zero value otherwise.
 
 ### GetIsNormalizedCpuOk
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpuOk() (*bool, bool)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpuOk() (*bool, bool)`
 
 GetIsNormalizedCpuOk returns a tuple with the IsNormalizedCpu field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIsNormalizedCpu
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetIsNormalizedCpu(v bool)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) SetIsNormalizedCpu(v bool)`
 
 SetIsNormalizedCpu sets IsNormalizedCpu field to given value.
 
 ### HasIsNormalizedCpu
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasIsNormalizedCpu() bool`
+`func (o *FormulaAndFunctionProcessQueryDefinition) HasIsNormalizedCpu() bool`
 
 HasIsNormalizedCpu returns a boolean if a field has been set.
 
 ### GetLimit
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetLimit() int64`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetLimit() int64`
 
 GetLimit returns the Limit field if non-nil, zero value otherwise.
 
 ### GetLimitOk
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetLimitOk() (*int64, bool)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetLimitOk() (*int64, bool)`
 
 GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLimit
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetLimit(v int64)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) SetLimit(v int64)`
 
 SetLimit sets Limit field to given value.
 
 ### HasLimit
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasLimit() bool`
+`func (o *FormulaAndFunctionProcessQueryDefinition) HasLimit() bool`
 
 HasLimit returns a boolean if a field has been set.
 
 ### GetMetric
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetMetric() string`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetMetric() string`
 
 GetMetric returns the Metric field if non-nil, zero value otherwise.
 
 ### GetMetricOk
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetMetricOk() (*string, bool)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetMetricOk() (*string, bool)`
 
 GetMetricOk returns a tuple with the Metric field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetric
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetMetric(v string)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) SetMetric(v string)`
 
 SetMetric sets Metric field to given value.
 
 
 ### GetName
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetName() string`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetNameOk() (*string, bool)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetName(v string)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasName() bool`
+`func (o *FormulaAndFunctionProcessQueryDefinition) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetSort
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetSort() QuerySortOrder`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetSort() QuerySortOrder`
 
 GetSort returns the Sort field if non-nil, zero value otherwise.
 
 ### GetSortOk
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetSortOk() (*QuerySortOrder, bool)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetSortOk() (*QuerySortOrder, bool)`
 
 GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSort
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetSort(v QuerySortOrder)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) SetSort(v QuerySortOrder)`
 
 SetSort sets Sort field to given value.
 
 ### HasSort
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasSort() bool`
+`func (o *FormulaAndFunctionProcessQueryDefinition) HasSort() bool`
 
 HasSort returns a boolean if a field has been set.
 
 ### GetTagFilters
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTagFilters() []string`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetTagFilters() []string`
 
 GetTagFilters returns the TagFilters field if non-nil, zero value otherwise.
 
 ### GetTagFiltersOk
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTagFiltersOk() (*[]string, bool)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetTagFiltersOk() (*[]string, bool)`
 
 GetTagFiltersOk returns a tuple with the TagFilters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagFilters
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetTagFilters(v []string)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) SetTagFilters(v []string)`
 
 SetTagFilters sets TagFilters field to given value.
 
 ### HasTagFilters
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasTagFilters() bool`
+`func (o *FormulaAndFunctionProcessQueryDefinition) HasTagFilters() bool`
 
 HasTagFilters returns a boolean if a field has been set.
 
 ### GetTextFilter
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTextFilter() string`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetTextFilter() string`
 
 GetTextFilter returns the TextFilter field if non-nil, zero value otherwise.
 
 ### GetTextFilterOk
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTextFilterOk() (*string, bool)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) GetTextFilterOk() (*string, bool)`
 
 GetTextFilterOk returns a tuple with the TextFilter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTextFilter
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetTextFilter(v string)`
+`func (o *FormulaAndFunctionProcessQueryDefinition) SetTextFilter(v string)`
 
 SetTextFilter sets TextFilter field to given value.
 
 ### HasTextFilter
 
-`func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasTextFilter() bool`
+`func (o *FormulaAndFunctionProcessQueryDefinition) HasTextFilter() bool`
 
 HasTextFilter returns a boolean if a field has been set.
 

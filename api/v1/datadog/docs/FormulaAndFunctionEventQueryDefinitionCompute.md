@@ -1,4 +1,4 @@
-# TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute
+# FormulaAndFunctionEventQueryDefinitionCompute
 
 ## Properties
 
@@ -10,90 +10,90 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewTimeSeriesFormulaAndFunctionEventQueryDefinitionCompute
+### NewFormulaAndFunctionEventQueryDefinitionCompute
 
-`func NewTimeSeriesFormulaAndFunctionEventQueryDefinitionCompute(aggregation FormulaAndFunctionEventAggregation, ) *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute`
+`func NewFormulaAndFunctionEventQueryDefinitionCompute(aggregation FormulaAndFunctionEventAggregation, ) *FormulaAndFunctionEventQueryDefinitionCompute`
 
-NewTimeSeriesFormulaAndFunctionEventQueryDefinitionCompute instantiates a new TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute object
+NewFormulaAndFunctionEventQueryDefinitionCompute instantiates a new FormulaAndFunctionEventQueryDefinitionCompute object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewTimeSeriesFormulaAndFunctionEventQueryDefinitionComputeWithDefaults
+### NewFormulaAndFunctionEventQueryDefinitionComputeWithDefaults
 
-`func NewTimeSeriesFormulaAndFunctionEventQueryDefinitionComputeWithDefaults() *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute`
+`func NewFormulaAndFunctionEventQueryDefinitionComputeWithDefaults() *FormulaAndFunctionEventQueryDefinitionCompute`
 
-NewTimeSeriesFormulaAndFunctionEventQueryDefinitionComputeWithDefaults instantiates a new TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute object
+NewFormulaAndFunctionEventQueryDefinitionComputeWithDefaults instantiates a new FormulaAndFunctionEventQueryDefinitionCompute object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAggregation
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute) GetAggregation() FormulaAndFunctionEventAggregation`
+`func (o *FormulaAndFunctionEventQueryDefinitionCompute) GetAggregation() FormulaAndFunctionEventAggregation`
 
 GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
 
 ### GetAggregationOk
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute) GetAggregationOk() (*FormulaAndFunctionEventAggregation, bool)`
+`func (o *FormulaAndFunctionEventQueryDefinitionCompute) GetAggregationOk() (*FormulaAndFunctionEventAggregation, bool)`
 
 GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAggregation
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute) SetAggregation(v FormulaAndFunctionEventAggregation)`
+`func (o *FormulaAndFunctionEventQueryDefinitionCompute) SetAggregation(v FormulaAndFunctionEventAggregation)`
 
 SetAggregation sets Aggregation field to given value.
 
 
 ### GetInterval
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute) GetInterval() int64`
+`func (o *FormulaAndFunctionEventQueryDefinitionCompute) GetInterval() int64`
 
 GetInterval returns the Interval field if non-nil, zero value otherwise.
 
 ### GetIntervalOk
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute) GetIntervalOk() (*int64, bool)`
+`func (o *FormulaAndFunctionEventQueryDefinitionCompute) GetIntervalOk() (*int64, bool)`
 
 GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInterval
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute) SetInterval(v int64)`
+`func (o *FormulaAndFunctionEventQueryDefinitionCompute) SetInterval(v int64)`
 
 SetInterval sets Interval field to given value.
 
 ### HasInterval
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute) HasInterval() bool`
+`func (o *FormulaAndFunctionEventQueryDefinitionCompute) HasInterval() bool`
 
 HasInterval returns a boolean if a field has been set.
 
 ### GetMetric
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute) GetMetric() string`
+`func (o *FormulaAndFunctionEventQueryDefinitionCompute) GetMetric() string`
 
 GetMetric returns the Metric field if non-nil, zero value otherwise.
 
 ### GetMetricOk
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute) GetMetricOk() (*string, bool)`
+`func (o *FormulaAndFunctionEventQueryDefinitionCompute) GetMetricOk() (*string, bool)`
 
 GetMetricOk returns a tuple with the Metric field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetric
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute) SetMetric(v string)`
+`func (o *FormulaAndFunctionEventQueryDefinitionCompute) SetMetric(v string)`
 
 SetMetric sets Metric field to given value.
 
 ### HasMetric
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryDefinitionCompute) HasMetric() bool`
+`func (o *FormulaAndFunctionEventQueryDefinitionCompute) HasMetric() bool`
 
 HasMetric returns a boolean if a field has been set.
 

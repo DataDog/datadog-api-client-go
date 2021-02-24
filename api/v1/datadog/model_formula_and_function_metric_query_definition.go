@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// TimeSeriesFormulaAndFunctionMetricQueryDefinition A timeseries formula and functions metrics query.
-type TimeSeriesFormulaAndFunctionMetricQueryDefinition struct {
+// FormulaAndFunctionMetricQueryDefinition A formula and functions metrics query.
+type FormulaAndFunctionMetricQueryDefinition struct {
 	Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
 	DataSource FormulaAndFunctionMetricDataSource   `json:"data_source"`
 	// Name of the query for use in formulas.
@@ -22,27 +22,27 @@ type TimeSeriesFormulaAndFunctionMetricQueryDefinition struct {
 	Query string `json:"query"`
 }
 
-// NewTimeSeriesFormulaAndFunctionMetricQueryDefinition instantiates a new TimeSeriesFormulaAndFunctionMetricQueryDefinition object
+// NewFormulaAndFunctionMetricQueryDefinition instantiates a new FormulaAndFunctionMetricQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTimeSeriesFormulaAndFunctionMetricQueryDefinition(dataSource FormulaAndFunctionMetricDataSource, query string) *TimeSeriesFormulaAndFunctionMetricQueryDefinition {
-	this := TimeSeriesFormulaAndFunctionMetricQueryDefinition{}
+func NewFormulaAndFunctionMetricQueryDefinition(dataSource FormulaAndFunctionMetricDataSource, query string) *FormulaAndFunctionMetricQueryDefinition {
+	this := FormulaAndFunctionMetricQueryDefinition{}
 	this.DataSource = dataSource
 	this.Query = query
 	return &this
 }
 
-// NewTimeSeriesFormulaAndFunctionMetricQueryDefinitionWithDefaults instantiates a new TimeSeriesFormulaAndFunctionMetricQueryDefinition object
+// NewFormulaAndFunctionMetricQueryDefinitionWithDefaults instantiates a new FormulaAndFunctionMetricQueryDefinition object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTimeSeriesFormulaAndFunctionMetricQueryDefinitionWithDefaults() *TimeSeriesFormulaAndFunctionMetricQueryDefinition {
-	this := TimeSeriesFormulaAndFunctionMetricQueryDefinition{}
+func NewFormulaAndFunctionMetricQueryDefinitionWithDefaults() *FormulaAndFunctionMetricQueryDefinition {
+	this := FormulaAndFunctionMetricQueryDefinition{}
 	return &this
 }
 
 // GetAggregator returns the Aggregator field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetAggregator() FormulaAndFunctionMetricAggregation {
+func (o *FormulaAndFunctionMetricQueryDefinition) GetAggregator() FormulaAndFunctionMetricAggregation {
 	if o == nil || o.Aggregator == nil {
 		var ret FormulaAndFunctionMetricAggregation
 		return ret
@@ -52,7 +52,7 @@ func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetAggregator() Form
 
 // GetAggregatorOk returns a tuple with the Aggregator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetAggregatorOk() (*FormulaAndFunctionMetricAggregation, bool) {
+func (o *FormulaAndFunctionMetricQueryDefinition) GetAggregatorOk() (*FormulaAndFunctionMetricAggregation, bool) {
 	if o == nil || o.Aggregator == nil {
 		return nil, false
 	}
@@ -60,7 +60,7 @@ func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetAggregatorOk() (*
 }
 
 // HasAggregator returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) HasAggregator() bool {
+func (o *FormulaAndFunctionMetricQueryDefinition) HasAggregator() bool {
 	if o != nil && o.Aggregator != nil {
 		return true
 	}
@@ -69,12 +69,12 @@ func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) HasAggregator() bool
 }
 
 // SetAggregator gets a reference to the given FormulaAndFunctionMetricAggregation and assigns it to the Aggregator field.
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) SetAggregator(v FormulaAndFunctionMetricAggregation) {
+func (o *FormulaAndFunctionMetricQueryDefinition) SetAggregator(v FormulaAndFunctionMetricAggregation) {
 	o.Aggregator = &v
 }
 
 // GetDataSource returns the DataSource field value
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetDataSource() FormulaAndFunctionMetricDataSource {
+func (o *FormulaAndFunctionMetricQueryDefinition) GetDataSource() FormulaAndFunctionMetricDataSource {
 	if o == nil {
 		var ret FormulaAndFunctionMetricDataSource
 		return ret
@@ -85,7 +85,7 @@ func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetDataSource() Form
 
 // GetDataSourceOk returns a tuple with the DataSource field value
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetDataSourceOk() (*FormulaAndFunctionMetricDataSource, bool) {
+func (o *FormulaAndFunctionMetricQueryDefinition) GetDataSourceOk() (*FormulaAndFunctionMetricDataSource, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,12 +93,12 @@ func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetDataSourceOk() (*
 }
 
 // SetDataSource sets field value
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) SetDataSource(v FormulaAndFunctionMetricDataSource) {
+func (o *FormulaAndFunctionMetricQueryDefinition) SetDataSource(v FormulaAndFunctionMetricDataSource) {
 	o.DataSource = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetName() string {
+func (o *FormulaAndFunctionMetricQueryDefinition) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -108,7 +108,7 @@ func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetNameOk() (*string, bool) {
+func (o *FormulaAndFunctionMetricQueryDefinition) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -116,7 +116,7 @@ func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetNameOk() (*string
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) HasName() bool {
+func (o *FormulaAndFunctionMetricQueryDefinition) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -125,12 +125,12 @@ func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) SetName(v string) {
+func (o *FormulaAndFunctionMetricQueryDefinition) SetName(v string) {
 	o.Name = &v
 }
 
 // GetQuery returns the Query field value
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetQuery() string {
+func (o *FormulaAndFunctionMetricQueryDefinition) GetQuery() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -141,7 +141,7 @@ func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetQuery() string {
 
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetQueryOk() (*string, bool) {
+func (o *FormulaAndFunctionMetricQueryDefinition) GetQueryOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -149,11 +149,11 @@ func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) GetQueryOk() (*strin
 }
 
 // SetQuery sets field value
-func (o *TimeSeriesFormulaAndFunctionMetricQueryDefinition) SetQuery(v string) {
+func (o *FormulaAndFunctionMetricQueryDefinition) SetQuery(v string) {
 	o.Query = v
 }
 
-func (o TimeSeriesFormulaAndFunctionMetricQueryDefinition) MarshalJSON() ([]byte, error) {
+func (o FormulaAndFunctionMetricQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Aggregator != nil {
 		toSerialize["aggregator"] = o.Aggregator
@@ -170,38 +170,38 @@ func (o TimeSeriesFormulaAndFunctionMetricQueryDefinition) MarshalJSON() ([]byte
 	return json.Marshal(toSerialize)
 }
 
-type NullableTimeSeriesFormulaAndFunctionMetricQueryDefinition struct {
-	value *TimeSeriesFormulaAndFunctionMetricQueryDefinition
+type NullableFormulaAndFunctionMetricQueryDefinition struct {
+	value *FormulaAndFunctionMetricQueryDefinition
 	isSet bool
 }
 
-func (v NullableTimeSeriesFormulaAndFunctionMetricQueryDefinition) Get() *TimeSeriesFormulaAndFunctionMetricQueryDefinition {
+func (v NullableFormulaAndFunctionMetricQueryDefinition) Get() *FormulaAndFunctionMetricQueryDefinition {
 	return v.value
 }
 
-func (v *NullableTimeSeriesFormulaAndFunctionMetricQueryDefinition) Set(val *TimeSeriesFormulaAndFunctionMetricQueryDefinition) {
+func (v *NullableFormulaAndFunctionMetricQueryDefinition) Set(val *FormulaAndFunctionMetricQueryDefinition) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTimeSeriesFormulaAndFunctionMetricQueryDefinition) IsSet() bool {
+func (v NullableFormulaAndFunctionMetricQueryDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTimeSeriesFormulaAndFunctionMetricQueryDefinition) Unset() {
+func (v *NullableFormulaAndFunctionMetricQueryDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTimeSeriesFormulaAndFunctionMetricQueryDefinition(val *TimeSeriesFormulaAndFunctionMetricQueryDefinition) *NullableTimeSeriesFormulaAndFunctionMetricQueryDefinition {
-	return &NullableTimeSeriesFormulaAndFunctionMetricQueryDefinition{value: val, isSet: true}
+func NewNullableFormulaAndFunctionMetricQueryDefinition(val *FormulaAndFunctionMetricQueryDefinition) *NullableFormulaAndFunctionMetricQueryDefinition {
+	return &NullableFormulaAndFunctionMetricQueryDefinition{value: val, isSet: true}
 }
 
-func (v NullableTimeSeriesFormulaAndFunctionMetricQueryDefinition) MarshalJSON() ([]byte, error) {
+func (v NullableFormulaAndFunctionMetricQueryDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTimeSeriesFormulaAndFunctionMetricQueryDefinition) UnmarshalJSON(src []byte) error {
+func (v *NullableFormulaAndFunctionMetricQueryDefinition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// TimeSeriesFormulaAndFunctionProcessQueryDefinition Process query using formulas and functions.
-type TimeSeriesFormulaAndFunctionProcessQueryDefinition struct {
+// FormulaAndFunctionProcessQueryDefinition Process query using formulas and functions.
+type FormulaAndFunctionProcessQueryDefinition struct {
 	Aggregator *FormulaAndFunctionMetricAggregation     `json:"aggregator,omitempty"`
 	DataSource FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
 	// Whether to normalize the CPU percentages.
@@ -31,12 +31,12 @@ type TimeSeriesFormulaAndFunctionProcessQueryDefinition struct {
 	TextFilter *string `json:"text_filter,omitempty"`
 }
 
-// NewTimeSeriesFormulaAndFunctionProcessQueryDefinition instantiates a new TimeSeriesFormulaAndFunctionProcessQueryDefinition object
+// NewFormulaAndFunctionProcessQueryDefinition instantiates a new FormulaAndFunctionProcessQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTimeSeriesFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, metric string) *TimeSeriesFormulaAndFunctionProcessQueryDefinition {
-	this := TimeSeriesFormulaAndFunctionProcessQueryDefinition{}
+func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, metric string) *FormulaAndFunctionProcessQueryDefinition {
+	this := FormulaAndFunctionProcessQueryDefinition{}
 	this.DataSource = dataSource
 	this.Metric = metric
 	var sort QuerySortOrder = "desc"
@@ -44,18 +44,18 @@ func NewTimeSeriesFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAnd
 	return &this
 }
 
-// NewTimeSeriesFormulaAndFunctionProcessQueryDefinitionWithDefaults instantiates a new TimeSeriesFormulaAndFunctionProcessQueryDefinition object
+// NewFormulaAndFunctionProcessQueryDefinitionWithDefaults instantiates a new FormulaAndFunctionProcessQueryDefinition object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTimeSeriesFormulaAndFunctionProcessQueryDefinitionWithDefaults() *TimeSeriesFormulaAndFunctionProcessQueryDefinition {
-	this := TimeSeriesFormulaAndFunctionProcessQueryDefinition{}
+func NewFormulaAndFunctionProcessQueryDefinitionWithDefaults() *FormulaAndFunctionProcessQueryDefinition {
+	this := FormulaAndFunctionProcessQueryDefinition{}
 	var sort QuerySortOrder = "desc"
 	this.Sort = &sort
 	return &this
 }
 
 // GetAggregator returns the Aggregator field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetAggregator() FormulaAndFunctionMetricAggregation {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetAggregator() FormulaAndFunctionMetricAggregation {
 	if o == nil || o.Aggregator == nil {
 		var ret FormulaAndFunctionMetricAggregation
 		return ret
@@ -65,7 +65,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetAggregator() For
 
 // GetAggregatorOk returns a tuple with the Aggregator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetAggregatorOk() (*FormulaAndFunctionMetricAggregation, bool) {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetAggregatorOk() (*FormulaAndFunctionMetricAggregation, bool) {
 	if o == nil || o.Aggregator == nil {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetAggregatorOk() (
 }
 
 // HasAggregator returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasAggregator() bool {
+func (o *FormulaAndFunctionProcessQueryDefinition) HasAggregator() bool {
 	if o != nil && o.Aggregator != nil {
 		return true
 	}
@@ -82,12 +82,12 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasAggregator() boo
 }
 
 // SetAggregator gets a reference to the given FormulaAndFunctionMetricAggregation and assigns it to the Aggregator field.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetAggregator(v FormulaAndFunctionMetricAggregation) {
+func (o *FormulaAndFunctionProcessQueryDefinition) SetAggregator(v FormulaAndFunctionMetricAggregation) {
 	o.Aggregator = &v
 }
 
 // GetDataSource returns the DataSource field value
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetDataSource() FormulaAndFunctionProcessQueryDataSource {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSource() FormulaAndFunctionProcessQueryDataSource {
 	if o == nil {
 		var ret FormulaAndFunctionProcessQueryDataSource
 		return ret
@@ -98,7 +98,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetDataSource() For
 
 // GetDataSourceOk returns a tuple with the DataSource field value
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetDataSourceOk() (*FormulaAndFunctionProcessQueryDataSource, bool) {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSourceOk() (*FormulaAndFunctionProcessQueryDataSource, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -106,12 +106,12 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetDataSourceOk() (
 }
 
 // SetDataSource sets field value
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetDataSource(v FormulaAndFunctionProcessQueryDataSource) {
+func (o *FormulaAndFunctionProcessQueryDefinition) SetDataSource(v FormulaAndFunctionProcessQueryDataSource) {
 	o.DataSource = v
 }
 
 // GetIsNormalizedCpu returns the IsNormalizedCpu field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpu() bool {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpu() bool {
 	if o == nil || o.IsNormalizedCpu == nil {
 		var ret bool
 		return ret
@@ -121,7 +121,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpu(
 
 // GetIsNormalizedCpuOk returns a tuple with the IsNormalizedCpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpuOk() (*bool, bool) {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpuOk() (*bool, bool) {
 	if o == nil || o.IsNormalizedCpu == nil {
 		return nil, false
 	}
@@ -129,7 +129,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpuO
 }
 
 // HasIsNormalizedCpu returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasIsNormalizedCpu() bool {
+func (o *FormulaAndFunctionProcessQueryDefinition) HasIsNormalizedCpu() bool {
 	if o != nil && o.IsNormalizedCpu != nil {
 		return true
 	}
@@ -138,12 +138,12 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasIsNormalizedCpu(
 }
 
 // SetIsNormalizedCpu gets a reference to the given bool and assigns it to the IsNormalizedCpu field.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetIsNormalizedCpu(v bool) {
+func (o *FormulaAndFunctionProcessQueryDefinition) SetIsNormalizedCpu(v bool) {
 	o.IsNormalizedCpu = &v
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetLimit() int64 {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
 		var ret int64
 		return ret
@@ -153,7 +153,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetLimit() int64 {
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetLimitOk() (*int64, bool) {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetLimitOk() (*int64, bool) {
 	if o == nil || o.Limit == nil {
 		return nil, false
 	}
@@ -161,7 +161,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetLimitOk() (*int6
 }
 
 // HasLimit returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasLimit() bool {
+func (o *FormulaAndFunctionProcessQueryDefinition) HasLimit() bool {
 	if o != nil && o.Limit != nil {
 		return true
 	}
@@ -170,12 +170,12 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasLimit() bool {
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetLimit(v int64) {
+func (o *FormulaAndFunctionProcessQueryDefinition) SetLimit(v int64) {
 	o.Limit = &v
 }
 
 // GetMetric returns the Metric field value
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetMetric() string {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetMetric() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -186,7 +186,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetMetric() string 
 
 // GetMetricOk returns a tuple with the Metric field value
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetMetricOk() (*string, bool) {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetMetricOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -194,12 +194,12 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetMetricOk() (*str
 }
 
 // SetMetric sets field value
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetMetric(v string) {
+func (o *FormulaAndFunctionProcessQueryDefinition) SetMetric(v string) {
 	o.Metric = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetName() string {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -209,7 +209,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetNameOk() (*string, bool) {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -217,7 +217,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetNameOk() (*strin
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasName() bool {
+func (o *FormulaAndFunctionProcessQueryDefinition) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -226,12 +226,12 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetName(v string) {
+func (o *FormulaAndFunctionProcessQueryDefinition) SetName(v string) {
 	o.Name = &v
 }
 
 // GetSort returns the Sort field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetSort() QuerySortOrder {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetSort() QuerySortOrder {
 	if o == nil || o.Sort == nil {
 		var ret QuerySortOrder
 		return ret
@@ -241,7 +241,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetSort() QuerySort
 
 // GetSortOk returns a tuple with the Sort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetSortOk() (*QuerySortOrder, bool) {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetSortOk() (*QuerySortOrder, bool) {
 	if o == nil || o.Sort == nil {
 		return nil, false
 	}
@@ -249,7 +249,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetSortOk() (*Query
 }
 
 // HasSort returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasSort() bool {
+func (o *FormulaAndFunctionProcessQueryDefinition) HasSort() bool {
 	if o != nil && o.Sort != nil {
 		return true
 	}
@@ -258,12 +258,12 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasSort() bool {
 }
 
 // SetSort gets a reference to the given QuerySortOrder and assigns it to the Sort field.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetSort(v QuerySortOrder) {
+func (o *FormulaAndFunctionProcessQueryDefinition) SetSort(v QuerySortOrder) {
 	o.Sort = &v
 }
 
 // GetTagFilters returns the TagFilters field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTagFilters() []string {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetTagFilters() []string {
 	if o == nil || o.TagFilters == nil {
 		var ret []string
 		return ret
@@ -273,7 +273,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTagFilters() []s
 
 // GetTagFiltersOk returns a tuple with the TagFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTagFiltersOk() (*[]string, bool) {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetTagFiltersOk() (*[]string, bool) {
 	if o == nil || o.TagFilters == nil {
 		return nil, false
 	}
@@ -281,7 +281,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTagFiltersOk() (
 }
 
 // HasTagFilters returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasTagFilters() bool {
+func (o *FormulaAndFunctionProcessQueryDefinition) HasTagFilters() bool {
 	if o != nil && o.TagFilters != nil {
 		return true
 	}
@@ -290,12 +290,12 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasTagFilters() boo
 }
 
 // SetTagFilters gets a reference to the given []string and assigns it to the TagFilters field.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetTagFilters(v []string) {
+func (o *FormulaAndFunctionProcessQueryDefinition) SetTagFilters(v []string) {
 	o.TagFilters = &v
 }
 
 // GetTextFilter returns the TextFilter field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTextFilter() string {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetTextFilter() string {
 	if o == nil || o.TextFilter == nil {
 		var ret string
 		return ret
@@ -305,7 +305,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTextFilter() str
 
 // GetTextFilterOk returns a tuple with the TextFilter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTextFilterOk() (*string, bool) {
+func (o *FormulaAndFunctionProcessQueryDefinition) GetTextFilterOk() (*string, bool) {
 	if o == nil || o.TextFilter == nil {
 		return nil, false
 	}
@@ -313,7 +313,7 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) GetTextFilterOk() (
 }
 
 // HasTextFilter returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasTextFilter() bool {
+func (o *FormulaAndFunctionProcessQueryDefinition) HasTextFilter() bool {
 	if o != nil && o.TextFilter != nil {
 		return true
 	}
@@ -322,11 +322,11 @@ func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) HasTextFilter() boo
 }
 
 // SetTextFilter gets a reference to the given string and assigns it to the TextFilter field.
-func (o *TimeSeriesFormulaAndFunctionProcessQueryDefinition) SetTextFilter(v string) {
+func (o *FormulaAndFunctionProcessQueryDefinition) SetTextFilter(v string) {
 	o.TextFilter = &v
 }
 
-func (o TimeSeriesFormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) {
+func (o FormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Aggregator != nil {
 		toSerialize["aggregator"] = o.Aggregator
@@ -358,38 +358,38 @@ func (o TimeSeriesFormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byt
 	return json.Marshal(toSerialize)
 }
 
-type NullableTimeSeriesFormulaAndFunctionProcessQueryDefinition struct {
-	value *TimeSeriesFormulaAndFunctionProcessQueryDefinition
+type NullableFormulaAndFunctionProcessQueryDefinition struct {
+	value *FormulaAndFunctionProcessQueryDefinition
 	isSet bool
 }
 
-func (v NullableTimeSeriesFormulaAndFunctionProcessQueryDefinition) Get() *TimeSeriesFormulaAndFunctionProcessQueryDefinition {
+func (v NullableFormulaAndFunctionProcessQueryDefinition) Get() *FormulaAndFunctionProcessQueryDefinition {
 	return v.value
 }
 
-func (v *NullableTimeSeriesFormulaAndFunctionProcessQueryDefinition) Set(val *TimeSeriesFormulaAndFunctionProcessQueryDefinition) {
+func (v *NullableFormulaAndFunctionProcessQueryDefinition) Set(val *FormulaAndFunctionProcessQueryDefinition) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTimeSeriesFormulaAndFunctionProcessQueryDefinition) IsSet() bool {
+func (v NullableFormulaAndFunctionProcessQueryDefinition) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTimeSeriesFormulaAndFunctionProcessQueryDefinition) Unset() {
+func (v *NullableFormulaAndFunctionProcessQueryDefinition) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTimeSeriesFormulaAndFunctionProcessQueryDefinition(val *TimeSeriesFormulaAndFunctionProcessQueryDefinition) *NullableTimeSeriesFormulaAndFunctionProcessQueryDefinition {
-	return &NullableTimeSeriesFormulaAndFunctionProcessQueryDefinition{value: val, isSet: true}
+func NewNullableFormulaAndFunctionProcessQueryDefinition(val *FormulaAndFunctionProcessQueryDefinition) *NullableFormulaAndFunctionProcessQueryDefinition {
+	return &NullableFormulaAndFunctionProcessQueryDefinition{value: val, isSet: true}
 }
 
-func (v NullableTimeSeriesFormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) {
+func (v NullableFormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTimeSeriesFormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(src []byte) error {
+func (v *NullableFormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
