@@ -182,8 +182,8 @@ func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T) datadog.Sy
                     Type: datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
                 },
             },
-            Steps: &[]datadog.SyntheticsApiStep{
-            	datadog.SyntheticsApiStep{
+            Steps: &[]datadog.SyntheticsAPIStep{
+            	datadog.SyntheticsAPIStep{
             		Assertions: &[]datadog.SyntheticsAssertion{},
             		Name: datadog.PtrString("First step"),
             		Request: &datadog.SyntheticsTestRequest{
