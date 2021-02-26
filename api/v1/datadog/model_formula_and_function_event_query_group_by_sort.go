@@ -12,38 +12,38 @@ import (
 	"encoding/json"
 )
 
-// TimeSeriesFormulaAndFunctionEventQueryGroupBySort Options for sorting group by results.
-type TimeSeriesFormulaAndFunctionEventQueryGroupBySort struct {
+// FormulaAndFunctionEventQueryGroupBySort Options for sorting group by results.
+type FormulaAndFunctionEventQueryGroupBySort struct {
 	Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"`
 	// Metric used for sorting group by results.
 	Metric *string         `json:"metric,omitempty"`
 	Order  *QuerySortOrder `json:"order,omitempty"`
 }
 
-// NewTimeSeriesFormulaAndFunctionEventQueryGroupBySort instantiates a new TimeSeriesFormulaAndFunctionEventQueryGroupBySort object
+// NewFormulaAndFunctionEventQueryGroupBySort instantiates a new FormulaAndFunctionEventQueryGroupBySort object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTimeSeriesFormulaAndFunctionEventQueryGroupBySort(aggregation FormulaAndFunctionEventAggregation) *TimeSeriesFormulaAndFunctionEventQueryGroupBySort {
-	this := TimeSeriesFormulaAndFunctionEventQueryGroupBySort{}
+func NewFormulaAndFunctionEventQueryGroupBySort(aggregation FormulaAndFunctionEventAggregation) *FormulaAndFunctionEventQueryGroupBySort {
+	this := FormulaAndFunctionEventQueryGroupBySort{}
 	this.Aggregation = aggregation
 	var order QuerySortOrder = "desc"
 	this.Order = &order
 	return &this
 }
 
-// NewTimeSeriesFormulaAndFunctionEventQueryGroupBySortWithDefaults instantiates a new TimeSeriesFormulaAndFunctionEventQueryGroupBySort object
+// NewFormulaAndFunctionEventQueryGroupBySortWithDefaults instantiates a new FormulaAndFunctionEventQueryGroupBySort object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTimeSeriesFormulaAndFunctionEventQueryGroupBySortWithDefaults() *TimeSeriesFormulaAndFunctionEventQueryGroupBySort {
-	this := TimeSeriesFormulaAndFunctionEventQueryGroupBySort{}
+func NewFormulaAndFunctionEventQueryGroupBySortWithDefaults() *FormulaAndFunctionEventQueryGroupBySort {
+	this := FormulaAndFunctionEventQueryGroupBySort{}
 	var order QuerySortOrder = "desc"
 	this.Order = &order
 	return &this
 }
 
 // GetAggregation returns the Aggregation field value
-func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetAggregation() FormulaAndFunctionEventAggregation {
+func (o *FormulaAndFunctionEventQueryGroupBySort) GetAggregation() FormulaAndFunctionEventAggregation {
 	if o == nil {
 		var ret FormulaAndFunctionEventAggregation
 		return ret
@@ -54,7 +54,7 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetAggregation() For
 
 // GetAggregationOk returns a tuple with the Aggregation field value
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetAggregationOk() (*FormulaAndFunctionEventAggregation, bool) {
+func (o *FormulaAndFunctionEventQueryGroupBySort) GetAggregationOk() (*FormulaAndFunctionEventAggregation, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,12 +62,12 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetAggregationOk() (
 }
 
 // SetAggregation sets field value
-func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) SetAggregation(v FormulaAndFunctionEventAggregation) {
+func (o *FormulaAndFunctionEventQueryGroupBySort) SetAggregation(v FormulaAndFunctionEventAggregation) {
 	o.Aggregation = v
 }
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetMetric() string {
+func (o *FormulaAndFunctionEventQueryGroupBySort) GetMetric() string {
 	if o == nil || o.Metric == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetMetric() string {
 
 // GetMetricOk returns a tuple with the Metric field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetMetricOk() (*string, bool) {
+func (o *FormulaAndFunctionEventQueryGroupBySort) GetMetricOk() (*string, bool) {
 	if o == nil || o.Metric == nil {
 		return nil, false
 	}
@@ -85,7 +85,7 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetMetricOk() (*stri
 }
 
 // HasMetric returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) HasMetric() bool {
+func (o *FormulaAndFunctionEventQueryGroupBySort) HasMetric() bool {
 	if o != nil && o.Metric != nil {
 		return true
 	}
@@ -94,12 +94,12 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) HasMetric() bool {
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
-func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) SetMetric(v string) {
+func (o *FormulaAndFunctionEventQueryGroupBySort) SetMetric(v string) {
 	o.Metric = &v
 }
 
 // GetOrder returns the Order field value if set, zero value otherwise.
-func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetOrder() QuerySortOrder {
+func (o *FormulaAndFunctionEventQueryGroupBySort) GetOrder() QuerySortOrder {
 	if o == nil || o.Order == nil {
 		var ret QuerySortOrder
 		return ret
@@ -109,7 +109,7 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetOrder() QuerySort
 
 // GetOrderOk returns a tuple with the Order field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetOrderOk() (*QuerySortOrder, bool) {
+func (o *FormulaAndFunctionEventQueryGroupBySort) GetOrderOk() (*QuerySortOrder, bool) {
 	if o == nil || o.Order == nil {
 		return nil, false
 	}
@@ -117,7 +117,7 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetOrderOk() (*Query
 }
 
 // HasOrder returns a boolean if a field has been set.
-func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) HasOrder() bool {
+func (o *FormulaAndFunctionEventQueryGroupBySort) HasOrder() bool {
 	if o != nil && o.Order != nil {
 		return true
 	}
@@ -126,11 +126,11 @@ func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) HasOrder() bool {
 }
 
 // SetOrder gets a reference to the given QuerySortOrder and assigns it to the Order field.
-func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) SetOrder(v QuerySortOrder) {
+func (o *FormulaAndFunctionEventQueryGroupBySort) SetOrder(v QuerySortOrder) {
 	o.Order = &v
 }
 
-func (o TimeSeriesFormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, error) {
+func (o FormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["aggregation"] = o.Aggregation
@@ -144,38 +144,38 @@ func (o TimeSeriesFormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte
 	return json.Marshal(toSerialize)
 }
 
-type NullableTimeSeriesFormulaAndFunctionEventQueryGroupBySort struct {
-	value *TimeSeriesFormulaAndFunctionEventQueryGroupBySort
+type NullableFormulaAndFunctionEventQueryGroupBySort struct {
+	value *FormulaAndFunctionEventQueryGroupBySort
 	isSet bool
 }
 
-func (v NullableTimeSeriesFormulaAndFunctionEventQueryGroupBySort) Get() *TimeSeriesFormulaAndFunctionEventQueryGroupBySort {
+func (v NullableFormulaAndFunctionEventQueryGroupBySort) Get() *FormulaAndFunctionEventQueryGroupBySort {
 	return v.value
 }
 
-func (v *NullableTimeSeriesFormulaAndFunctionEventQueryGroupBySort) Set(val *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) {
+func (v *NullableFormulaAndFunctionEventQueryGroupBySort) Set(val *FormulaAndFunctionEventQueryGroupBySort) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTimeSeriesFormulaAndFunctionEventQueryGroupBySort) IsSet() bool {
+func (v NullableFormulaAndFunctionEventQueryGroupBySort) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTimeSeriesFormulaAndFunctionEventQueryGroupBySort) Unset() {
+func (v *NullableFormulaAndFunctionEventQueryGroupBySort) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTimeSeriesFormulaAndFunctionEventQueryGroupBySort(val *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) *NullableTimeSeriesFormulaAndFunctionEventQueryGroupBySort {
-	return &NullableTimeSeriesFormulaAndFunctionEventQueryGroupBySort{value: val, isSet: true}
+func NewNullableFormulaAndFunctionEventQueryGroupBySort(val *FormulaAndFunctionEventQueryGroupBySort) *NullableFormulaAndFunctionEventQueryGroupBySort {
+	return &NullableFormulaAndFunctionEventQueryGroupBySort{value: val, isSet: true}
 }
 
-func (v NullableTimeSeriesFormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, error) {
+func (v NullableFormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTimeSeriesFormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(src []byte) error {
+func (v *NullableFormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

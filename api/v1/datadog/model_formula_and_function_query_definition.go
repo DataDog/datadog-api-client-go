@@ -15,74 +15,74 @@ import (
 
 // FormulaAndFunctionQueryDefinition - A formula and function query.
 type FormulaAndFunctionQueryDefinition struct {
-	TimeSeriesFormulaAndFunctionEventQueryDefinition   *TimeSeriesFormulaAndFunctionEventQueryDefinition
-	TimeSeriesFormulaAndFunctionMetricQueryDefinition  *TimeSeriesFormulaAndFunctionMetricQueryDefinition
-	TimeSeriesFormulaAndFunctionProcessQueryDefinition *TimeSeriesFormulaAndFunctionProcessQueryDefinition
+	FormulaAndFunctionEventQueryDefinition   *FormulaAndFunctionEventQueryDefinition
+	FormulaAndFunctionMetricQueryDefinition  *FormulaAndFunctionMetricQueryDefinition
+	FormulaAndFunctionProcessQueryDefinition *FormulaAndFunctionProcessQueryDefinition
 }
 
-// TimeSeriesFormulaAndFunctionEventQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns TimeSeriesFormulaAndFunctionEventQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
-func TimeSeriesFormulaAndFunctionEventQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *TimeSeriesFormulaAndFunctionEventQueryDefinition) FormulaAndFunctionQueryDefinition {
-	return FormulaAndFunctionQueryDefinition{TimeSeriesFormulaAndFunctionEventQueryDefinition: v}
+// FormulaAndFunctionEventQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionEventQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
+func FormulaAndFunctionEventQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *FormulaAndFunctionEventQueryDefinition) FormulaAndFunctionQueryDefinition {
+	return FormulaAndFunctionQueryDefinition{FormulaAndFunctionEventQueryDefinition: v}
 }
 
-// TimeSeriesFormulaAndFunctionMetricQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns TimeSeriesFormulaAndFunctionMetricQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
-func TimeSeriesFormulaAndFunctionMetricQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *TimeSeriesFormulaAndFunctionMetricQueryDefinition) FormulaAndFunctionQueryDefinition {
-	return FormulaAndFunctionQueryDefinition{TimeSeriesFormulaAndFunctionMetricQueryDefinition: v}
+// FormulaAndFunctionMetricQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionMetricQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
+func FormulaAndFunctionMetricQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *FormulaAndFunctionMetricQueryDefinition) FormulaAndFunctionQueryDefinition {
+	return FormulaAndFunctionQueryDefinition{FormulaAndFunctionMetricQueryDefinition: v}
 }
 
-// TimeSeriesFormulaAndFunctionProcessQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns TimeSeriesFormulaAndFunctionProcessQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
-func TimeSeriesFormulaAndFunctionProcessQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *TimeSeriesFormulaAndFunctionProcessQueryDefinition) FormulaAndFunctionQueryDefinition {
-	return FormulaAndFunctionQueryDefinition{TimeSeriesFormulaAndFunctionProcessQueryDefinition: v}
+// FormulaAndFunctionProcessQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionProcessQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
+func FormulaAndFunctionProcessQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *FormulaAndFunctionProcessQueryDefinition) FormulaAndFunctionQueryDefinition {
+	return FormulaAndFunctionQueryDefinition{FormulaAndFunctionProcessQueryDefinition: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into TimeSeriesFormulaAndFunctionEventQueryDefinition
-	err = json.Unmarshal(data, &dst.TimeSeriesFormulaAndFunctionEventQueryDefinition)
+	// try to unmarshal data into FormulaAndFunctionEventQueryDefinition
+	err = json.Unmarshal(data, &dst.FormulaAndFunctionEventQueryDefinition)
 	if err == nil {
-		jsonTimeSeriesFormulaAndFunctionEventQueryDefinition, _ := json.Marshal(dst.TimeSeriesFormulaAndFunctionEventQueryDefinition)
-		if string(jsonTimeSeriesFormulaAndFunctionEventQueryDefinition) == "{}" { // empty struct
-			dst.TimeSeriesFormulaAndFunctionEventQueryDefinition = nil
+		jsonFormulaAndFunctionEventQueryDefinition, _ := json.Marshal(dst.FormulaAndFunctionEventQueryDefinition)
+		if string(jsonFormulaAndFunctionEventQueryDefinition) == "{}" { // empty struct
+			dst.FormulaAndFunctionEventQueryDefinition = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.TimeSeriesFormulaAndFunctionEventQueryDefinition = nil
+		dst.FormulaAndFunctionEventQueryDefinition = nil
 	}
 
-	// try to unmarshal data into TimeSeriesFormulaAndFunctionMetricQueryDefinition
-	err = json.Unmarshal(data, &dst.TimeSeriesFormulaAndFunctionMetricQueryDefinition)
+	// try to unmarshal data into FormulaAndFunctionMetricQueryDefinition
+	err = json.Unmarshal(data, &dst.FormulaAndFunctionMetricQueryDefinition)
 	if err == nil {
-		jsonTimeSeriesFormulaAndFunctionMetricQueryDefinition, _ := json.Marshal(dst.TimeSeriesFormulaAndFunctionMetricQueryDefinition)
-		if string(jsonTimeSeriesFormulaAndFunctionMetricQueryDefinition) == "{}" { // empty struct
-			dst.TimeSeriesFormulaAndFunctionMetricQueryDefinition = nil
+		jsonFormulaAndFunctionMetricQueryDefinition, _ := json.Marshal(dst.FormulaAndFunctionMetricQueryDefinition)
+		if string(jsonFormulaAndFunctionMetricQueryDefinition) == "{}" { // empty struct
+			dst.FormulaAndFunctionMetricQueryDefinition = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.TimeSeriesFormulaAndFunctionMetricQueryDefinition = nil
+		dst.FormulaAndFunctionMetricQueryDefinition = nil
 	}
 
-	// try to unmarshal data into TimeSeriesFormulaAndFunctionProcessQueryDefinition
-	err = json.Unmarshal(data, &dst.TimeSeriesFormulaAndFunctionProcessQueryDefinition)
+	// try to unmarshal data into FormulaAndFunctionProcessQueryDefinition
+	err = json.Unmarshal(data, &dst.FormulaAndFunctionProcessQueryDefinition)
 	if err == nil {
-		jsonTimeSeriesFormulaAndFunctionProcessQueryDefinition, _ := json.Marshal(dst.TimeSeriesFormulaAndFunctionProcessQueryDefinition)
-		if string(jsonTimeSeriesFormulaAndFunctionProcessQueryDefinition) == "{}" { // empty struct
-			dst.TimeSeriesFormulaAndFunctionProcessQueryDefinition = nil
+		jsonFormulaAndFunctionProcessQueryDefinition, _ := json.Marshal(dst.FormulaAndFunctionProcessQueryDefinition)
+		if string(jsonFormulaAndFunctionProcessQueryDefinition) == "{}" { // empty struct
+			dst.FormulaAndFunctionProcessQueryDefinition = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.TimeSeriesFormulaAndFunctionProcessQueryDefinition = nil
+		dst.FormulaAndFunctionProcessQueryDefinition = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.TimeSeriesFormulaAndFunctionEventQueryDefinition = nil
-		dst.TimeSeriesFormulaAndFunctionMetricQueryDefinition = nil
-		dst.TimeSeriesFormulaAndFunctionProcessQueryDefinition = nil
+		dst.FormulaAndFunctionEventQueryDefinition = nil
+		dst.FormulaAndFunctionMetricQueryDefinition = nil
+		dst.FormulaAndFunctionProcessQueryDefinition = nil
 
 		return fmt.Errorf("Data matches more than one schema in oneOf(FormulaAndFunctionQueryDefinition)")
 	} else if match == 1 {
@@ -94,16 +94,16 @@ func (dst *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
-	if src.TimeSeriesFormulaAndFunctionEventQueryDefinition != nil {
-		return json.Marshal(&src.TimeSeriesFormulaAndFunctionEventQueryDefinition)
+	if src.FormulaAndFunctionEventQueryDefinition != nil {
+		return json.Marshal(&src.FormulaAndFunctionEventQueryDefinition)
 	}
 
-	if src.TimeSeriesFormulaAndFunctionMetricQueryDefinition != nil {
-		return json.Marshal(&src.TimeSeriesFormulaAndFunctionMetricQueryDefinition)
+	if src.FormulaAndFunctionMetricQueryDefinition != nil {
+		return json.Marshal(&src.FormulaAndFunctionMetricQueryDefinition)
 	}
 
-	if src.TimeSeriesFormulaAndFunctionProcessQueryDefinition != nil {
-		return json.Marshal(&src.TimeSeriesFormulaAndFunctionProcessQueryDefinition)
+	if src.FormulaAndFunctionProcessQueryDefinition != nil {
+		return json.Marshal(&src.FormulaAndFunctionProcessQueryDefinition)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -111,16 +111,16 @@ func (src FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *FormulaAndFunctionQueryDefinition) GetActualInstance() interface{} {
-	if obj.TimeSeriesFormulaAndFunctionEventQueryDefinition != nil {
-		return obj.TimeSeriesFormulaAndFunctionEventQueryDefinition
+	if obj.FormulaAndFunctionEventQueryDefinition != nil {
+		return obj.FormulaAndFunctionEventQueryDefinition
 	}
 
-	if obj.TimeSeriesFormulaAndFunctionMetricQueryDefinition != nil {
-		return obj.TimeSeriesFormulaAndFunctionMetricQueryDefinition
+	if obj.FormulaAndFunctionMetricQueryDefinition != nil {
+		return obj.FormulaAndFunctionMetricQueryDefinition
 	}
 
-	if obj.TimeSeriesFormulaAndFunctionProcessQueryDefinition != nil {
-		return obj.TimeSeriesFormulaAndFunctionProcessQueryDefinition
+	if obj.FormulaAndFunctionProcessQueryDefinition != nil {
+		return obj.FormulaAndFunctionProcessQueryDefinition
 	}
 
 	// all schemas are nil

@@ -66,6 +66,7 @@ var testFiles2EndpointTags = map[string]map[string]string{
 		"api_organizations_test":            "organizations",
 		"api_pager_duty_integration_test":   "integration-pagerduty",
 		"api_service_level_objectives_test": "service-level-objectives",
+		"api_slack_integration_test":        "integration-slack",
 		"api_snapshots_test":                "snapshots",
 		"api_synthetics_test":               "synthetics",
 		"api_tags_test":                     "tags",

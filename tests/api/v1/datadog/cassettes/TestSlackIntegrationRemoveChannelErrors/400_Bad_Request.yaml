@@ -1,0 +1,343 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - RemoveSlackIntegrationChannel
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4080231662774555227"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "5408158755158454214"
+    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/go-TestSlackIntegrationRemoveChannelErrors-400_Bad_Request-local-1614005868/channels/go-TestSlackIntegrationRemoveChannelErrors-400_Bad_Request-local-1614005868
+    method: DELETE
+  response:
+    body: "\n\n\n<!DOCTYPE html>\n<!--\n______  _______ _______ _______ ______   _____
+      \  ______\n|     \\ |_____|    |    |_____| |     \\ |     | |  ____\n|_____/
+      |     |    |    |     | |_____/ |_____| |_____|\n\n\n2vvySWx4qPfxbSa4bsApxss+l0KsXLFY+2lsRzUu922FHh0HhfatqaT9qhFR09nEtgAZvZfUFTvly+67k3XRA2GmvbIdIps2AWr3yM4QRWYjNs/HyzL92r669T3Vn5viVYuokiah8IMXNUDrXYPPCgaiMVncJE2lqZPaQHli7a5kNIABEtGDW4Z4447v9Pen++ngwriWdUIgaoxrCHkVbOEwxuF3qq1NfkmNhazzLnm1L61AlvpzamUNIwsv5+TWK5XXyCgQN3USo4buapzb5M0I8UvS3TgxvCEdw/0Pi2sLsq/tEtiVRLC+yKvV9fy+TCotwuQTFso0eK9H8FPXvo9ck2TIHJUq/Covq8ZFBIO5asIuGEjlXWPTYUmKJSPfufIe7IUDFU1jmqfVMJVrBSn+RBcIU6yq0/rKu3ictnjp8yq2OvZldMdaXUdNFGVCjScjhHnlQW4ycFA7QGs5l0RQ0DHHEKkSAoM9ZQb5ISBL/FCCYVK8XLiO8p5+sRq5SUs2K9C9f2Jwtzq4gOIq9gE7JqAK7WRUgJ2tzJyeAXaK8pUdGhIXDwo6P+witLIZksHP9XfzJ0xIyyAPNaczrWtrQGPnl3z4AcSQ2ijpMFDo8xS/EsGzQrLRWFrU8VPurNBFZddSAoQh2i5bkFgZqSvfEtjKeARIedvmeMvTOE2pBwAOKn81Esgpos4ghem0t198BRqGvrgB4ZjltjBiiCGaHH2LPuMZLB4fisJnFe+TOv+tDTYZjQ+pC5bxPG7UmhxlpL/A1YVx8hKgcBVLXYODAy2Buuziinn2R/9fjEfqlrr/gfUCAYNwE5L2s7m0NzjE7Px67fltpiLhdmr+0ozUh1b7quyW79OrfgMFxGRaCxWRjyDTR1JD0DVqlcUFkUxSSRQvwg3x40qc/Lj7h5lc8zrPqsmzq6EiqWNm9lsmlaLdbfoxCv7QmhntrwO+7Jp9ss+++peW1UlTZWqEB09cAeFcTUt4t8GDp+pgJGH5hz6ScxBoc/Y/tY7wdBoaqP01BEn3bSem391Xe4Yqyq1kbjie8POyDmMGROMDYG9ire9aP4w88g==\n\n\n-->\n<html>\n
+      \   <head>\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
+      \       <style>\n            @viewport {\n                width: device-width;\n
+      \               initial-scale: 1;\n            }\n            body { padding:
+      1px; }\n\n            body.dark-mode picture.mako_picture img.mako_picture_light
+      {\n                display: none;\n            }\n            body:not(.dark-mode)
+      picture.mako_picture img.mako_picture_dark {\n                display: none;\n
+      \           }\n\n            img.mako_picture_dark {\n                filter:
+      brightness(76%);\n            }\n        </style>\n        <title>\n          \n
+      \ Error 400 | Datadog\n |\n        Datadog\n        </title>\n        <link
+      crossorigin=\"anonymous\" href=\"https://static.datadoghq.com/static/v/35.3956193/js/react-core.min.css\"
+      media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n        \n        \n
+      \       \n        \n    </head>\n    <body class=\"\n\">\n        \n\n\n\n<div
+      class=\"error_page clearfix\">\n  <div class=\"error_img\">\n    <picture class=\"mako_picture\">\n
+      \     <img alt=\"Sad Datadog Logo\" class=\"mako_picture_light\" src=\"https://static.datadoghq.com/static/v/35.3956193/js/sad-bits.svg\"
+      width=\"276\" height=\"295\" />\n      <img alt=\"Sad Datadog Logo\" class=\"mako_picture_dark\"
+      src=\"https://static.datadoghq.com/static/v/35.3956193/js/sad-bits_reversed.svg\"
+      width=\"276\" height=\"295\" />\n    </picture>\n  </div>\n  <div class=\"error_msg\">\n
+      \   <p class=\"arf line-10 text-size-96 text-contrast-80 text-bold text-displayface\">Arf.</p>\n
+      \   <h1 class=\"line-10 text-size-48\">400 Bad Request</h1>\n    <ul>\n      <li
+      class=\"live-status\" id=\"error-status\"></li>\n      <li><a href=\"/\">Datadog
+      Homepage &rarr;</a></li>\n      <li><a href=\"https://docs.datadoghq.com/help/\">Datadog
+      Help &rarr;</a></li>\n      <li><a href=\"/account/settings\">Datadog Setup
+      Basics &rarr;</a></li>\n    </ul>\n  </div>\n</div>\n\n<!--page--></div>\n\n\n\n\n\n
+      \       <script>\n            window.DD_version=\"35.3956193\";\n        </script>\n\n
+      \       \n    <div style=\"display: none;\"><input id=\"3p-apps-init\" name=\"3p-apps-init\"
+      type=\"hidden\" value=\"{&#34;statuspageio_page_url&#34;: &#34;https://status.datadoghq.com&#34;,
+      &#34;dd_trace_js_env&#34;: &#34;datadoghq.com&#34;, &#34;dd_trace_js_url&#34;:
+      &#34;https://public-trace-http-intake.logs.datadoghq.com&#34;, &#34;dd_trace_js_debug&#34;:
+      &#34;false&#34;, &#34;intercom_app_id&#34;: &#34;x9u0q6k2&#34;, &#34;dd_trace_js_enabled&#34;:
+      &#34;true&#34;, &#34;statuspageio_pageid&#34;: &#34;1k6wzpspjf99&#34;, &#34;dd_trace_js_client_token&#34;:
+      &#34;pubef3abf6e375e23c862720d5a6c4bbafd&#34;, &#34;dd_trace_js_service&#34;:
+      &#34;web-ui&#34;}\" /></div>\n\n        \n\n<!-- DD JS -->\n\n<div style=\"display:
+      none;\"><input id=\"config-init\" name=\"config-init\" type=\"hidden\" value=\"{&#34;browser_email.domain&#34;:
+      &#34;synthetics.dtdg.co&#34;, &#34;watchdog.default_shadow_pipeline&#34;: null,
+      &#34;alerting.count_over_count_validation_min_id&#34;: 22196000, &#34;backoff&#34;:
+      {&#34;active&#34;: false}, &#34;visualizations.forecast_series_query_limit&#34;:
+      3000, &#34;telemetry.tag_by_dash_id&#34;: false, &#34;downtimes.manage_downtimes_poll_interval&#34;:
+      60, &#34;site.logs_live_tail_subdomain&#34;: &#34;live.logs&#34;, &#34;http2.max_num_requests&#34;:
+      100, &#34;dash.fast_search_delay_limit&#34;: 250, &#34;app_url&#34;: &#34;https://app.datadoghq.com/&#34;,
+      &#34;dash.max_picker_months_ago&#34;: 15, &#34;visualizations.line_series_query_limit&#34;:
+      6000, &#34;screen.inactivity_timeout_ms&#34;: 900000, &#34;dash.query_resp_fmt_version&#34;:
+      2, &#34;visualizations.area_series_query_limit&#34;: 5000, &#34;datacenter.name&#34;:
+      &#34;us1.prod.dog&#34;, &#34;browser_extension.unpacked_id&#34;: &#34;kagpdlocgomcgdogdpnjncacedobnmec&#34;,
+      &#34;visualizations.heatmap_series_query_limit&#34;: 120000, &#34;browser_extension.current_id&#34;:
+      &#34;kkbncfpddhdmkfmalecgnphegacgejoa&#34;, &#34;infrastructure.update_period_sec&#34;:
+      60, &#34;site.default_subdomain&#34;: &#34;app&#34;, &#34;castle_app_id&#34;:
+      &#34;389912786276918&#34;, &#34;visualizations.bars_series_query_limit&#34;:
+      110000, &#34;queries.blocked_metrics&#34;: &#34;&#34;, &#34;visualizations.scatterplot_series_query_limit&#34;:
+      1200000, &#34;dash.default_legend_entries&#34;: 100, &#34;site.domain&#34;:
+      &#34;datadoghq.com&#34;, &#34;dash.min_polling_interval&#34;: 20000, &#34;dash.hard_reload_after&#34;:
+      350, &#34;telemetry.sample_rate&#34;: 0.1, &#34;visualizations.distribution_series_query_limit&#34;:
+      120000, &#34;monitors.evaluation_graph_v2_cutoff_days&#34;: 7, &#34;permissions&#34;:
+      {&#34;metric_tags_write&#34;: &#34;46a301e4-ec5c-11ea-aa9f-87282b3a50cc&#34;,
+      &#34;apm_primary_operation_write&#34;: &#34;61765026-2dce-11eb-84c0-833e230d1b8f&#34;,
+      &#34;logs_write_pipelines&#34;: &#34;811ac4ca-dd12-11e8-9e57-676a7f0beef9&#34;,
+      &#34;org_app_keys_read&#34;: &#34;46a301db-ec5c-11ea-aa9f-2fe72193d60e&#34;,
+      &#34;apm_primary_operation_read&#34;: &#34;5f380b88-2dce-11eb-84c0-ff1b77ac54b8&#34;,
+      &#34;logs_public_config_api&#34;: &#34;1a92ede2-6cb2-11e9-99c6-2b3a4a0cdf0a&#34;,
+      &#34;integrations_api&#34;: &#34;fcac2ad8-2843-11eb-8315-0fe47949d625&#34;,
+      &#34;api_keys_write&#34;: &#34;3e4d4d28-f923-11ea-adbc-e3565938c12e&#34;, &#34;user_access_manage&#34;:
+      &#34;9de604d8-e707-11ea-aa2d-93f1a783b3a3&#34;, &#34;synthetics_global_variable_read&#34;:
+      &#34;4628ca54-f923-11ea-adbc-4b2b7f88c5e9&#34;, &#34;audit_logs_write&#34;:
+      &#34;04bc1cf2-340a-11eb-873a-43b973c760dd&#34;, &#34;apm_tag_management_read&#34;:
+      &#34;56d9b950-2dce-11eb-84c0-f7ddd5ed78b6&#34;, &#34;synthetics_default_settings_write&#34;:
+      &#34;642eebe6-f923-11ea-adbc-eb617674ea04&#34;, &#34;apm_apdex_manage_write&#34;:
+      &#34;53950c54-2dce-11eb-84c0-a79ae108f6f8&#34;, &#34;synthetics_read&#34;: &#34;5025ee24-f923-11ea-adbc-576ea241df8d&#34;,
+      &#34;apm_service_ingest_write&#34;: &#34;4e3f02b4-2dce-11eb-84c0-2fca946a6efc&#34;,
+      &#34;apm_read&#34;: &#34;417ba636-2dce-11eb-84c0-6bce5b0d9de0&#34;, &#34;logs_live_tail&#34;:
+      &#34;6f66600e-dd12-11e8-9e55-7f30fbb45e73&#34;, &#34;usage_read&#34;: &#34;46a301e1-ec5c-11ea-aa9f-afa39f6f3e36&#34;,
+      &#34;security_monitoring_rules_read&#34;: &#34;7314eb20-aa58-11ea-95e2-6fb6e4a451d5&#34;,
+      &#34;edit_login_methods&#34;: &#34;7f3b260e-f9cb-11ea-ae1d-674bb0cde36a&#34;,
+      &#34;billing_read&#34;: &#34;46a301df-ec5c-11ea-aa9f-970a9ae645e5&#34;, &#34;logs_write_processors&#34;:
+      &#34;84aa3ae4-dd12-11e8-9e58-a373a514ccd0&#34;, &#34;user_access_invite&#34;:
+      &#34;9ac1d8cc-e707-11ea-aa2d-73d37e989a9d&#34;, &#34;logs_write_historical_view&#34;:
+      &#34;07c3c146-f7f8-11ea-acf6-0bd62b9ae60e&#34;, &#34;dashboards_read&#34;: &#34;d90f6830-d3d8-11e9-a77a-b3404e5e9ee2&#34;,
+      &#34;usage_edit&#34;: &#34;46a301e2-ec5c-11ea-aa9f-1f511b7305fd&#34;, &#34;apm_service_ingest_read&#34;:
+      &#34;4916eebe-2dce-11eb-84c0-271cb2c672e8&#34;, &#34;apm_tag_management_write&#34;:
+      &#34;5cbe5f9c-2dce-11eb-84c0-872d3e9f1076&#34;, &#34;org_app_keys_write&#34;:
+      &#34;46a301dc-ec5c-11ea-aa9f-13b33f8f46ea&#34;, &#34;security_monitoring_signals_read&#34;:
+      &#34;80de1ec0-aa58-11ea-95e2-aff381626d5d&#34;, &#34;apm_retention_filter_write&#34;:
+      &#34;465cfe66-2dce-11eb-84c0-6baa888239fa&#34;, &#34;dashboards_public_share&#34;:
+      &#34;d90f6832-d3d8-11e9-a77a-bf8a2607f864&#34;, &#34;logs_write_exclusion_filters&#34;:
+      &#34;7d7c98ac-dd12-11e8-9e56-93700598622d&#34;, &#34;service_account_read&#34;:
+      &#34;a079963c-1476-11eb-bd08-2f2ff8a22b91&#34;, &#34;billing_edit&#34;: &#34;46a301e0-ec5c-11ea-aa9f-6ba6cc675d8c&#34;,
+      &#34;synthetics_global_variable_write&#34;: &#34;4ada6e36-f923-11ea-adbc-0788e5c5e3cf&#34;,
+      &#34;security_monitoring_rules_write&#34;: &#34;7b516476-aa58-11ea-95e2-93718cd56369&#34;,
+      &#34;logs_read_archives&#34;: &#34;b382b982-8535-11ea-93de-2bf1bdf20798&#34;,
+      &#34;logs_write_facets&#34;: &#34;6ba32d22-0e1a-11eb-ba44-bf9a5aafaa39&#34;,
+      &#34;logs_read_data&#34;: &#34;1af86ce4-7823-11ea-93dc-d7cad1b1c6cb&#34;, &#34;synthetics_default_settings_read&#34;:
+      &#34;5c6b88e2-f923-11ea-adbc-abf57d079420&#34;, &#34;apm_retention_filter_read&#34;:
+      &#34;43fa188e-2dce-11eb-84c0-835ad1fd6287&#34;, &#34;standard&#34;: &#34;984d2f00-d3b4-11e8-a200-bb47109e9987&#34;,
+      &#34;dashboards_write&#34;: &#34;d90f6831-d3d8-11e9-a77a-4fd230ddbc6a&#34;,
+      &#34;synthetics_write&#34;: &#34;55f4b5ec-f923-11ea-adbc-1bfa2334a755&#34;,
+      &#34;logs_modify_indexes&#34;: &#34;62cc036c-dd12-11e8-9e54-db9995643092&#34;,
+      &#34;logs_write_archives&#34;: &#34;87b00304-dd12-11e8-9e59-cbeb5f71f72f&#34;,
+      &#34;monitors_write&#34;: &#34;48ef71ea-d8b1-11e9-a77a-93f408470ad0&#34;, &#34;service_account_write&#34;:
+      &#34;a42e94b2-1476-11eb-bd08-efda28c04248&#34;, &#34;monitors_read&#34;: &#34;4441648c-d8b1-11e9-a77a-1b899a04b304&#34;,
+      &#34;metric_tags_read&#34;: &#34;46a301e3-ec5c-11ea-aa9f-5b4c11f52ad3&#34;,
+      &#34;logs_generate_metrics&#34;: &#34;979df720-aed7-11e9-99c6-a7eb8373165a&#34;,
+      &#34;admin&#34;: &#34;984a2bd4-d3b4-11e8-a1ff-a7f660d43029&#34;, &#34;user_app_keys&#34;:
+      &#34;46a301da-ec5c-11ea-aa9f-73bedeab67ee&#34;, &#34;monitors_downtime&#34;:
+      &#34;4d87d5f8-d8b1-11e9-a77a-eb9c8350d04f&#34;, &#34;api_keys_read&#34;: &#34;372896c4-f923-11ea-adbc-4fecd107156d&#34;,
+      &#34;logs_read_index_data&#34;: &#34;5e605652-dd12-11e8-9e53-375565b8970e&#34;,
+      &#34;synthetic_private_location_read&#34;: &#34;46a301dd-ec5c-11ea-aa9f-97edfb345bc9&#34;,
+      &#34;synthetic_private_location_write&#34;: &#34;46a301de-ec5c-11ea-aa9f-a73252c24806&#34;,
+      &#34;audit_logs_read&#34;: &#34;2fbdac76-f923-11ea-adbc-07f3823e2b43&#34;, &#34;rum_apps_write&#34;:
+      &#34;8106300a-54f7-11eb-8cbc-7781a434a67b&#34;, &#34;apm_apdex_manage_read&#34;:
+      &#34;5157f78a-2dce-11eb-84c0-af005d85cd4c&#34;}, &#34;feature_flags&#34;: [&#34;mixpanel&#34;,
+      &#34;no_data_in_triggered_list&#34;, &#34;export_monitor&#34;, &#34;public_links_sharing&#34;,
+      &#34;amazon_machine_learning&#34;, &#34;azure_container_instances&#34;, &#34;watchdog_show_s3_stories&#34;,
+      &#34;network_map_filtering&#34;, &#34;consul_config_file&#34;, &#34;azure_sql_elastic_pool&#34;,
+      &#34;google_cloud_pubsub&#34;, &#34;watchdog_show_memory_leak_stories&#34;,
+      &#34;k9_explorer_header_dashboards&#34;, &#34;watchdog_show_kubernetes_stories&#34;,
+      &#34;azure_data_factory&#34;, &#34;cc_form_recaptcha&#34;, &#34;process-agent-status-panel&#34;,
+      &#34;dist_dogweb&#34;, &#34;forecast_front&#34;, &#34;profiling_show_fg_dropdown_values&#34;,
+      &#34;dash_extra_data_sources&#34;, &#34;anomalies_new_form_front&#34;, &#34;gohai_metadata&#34;,
+      &#34;sqlserver&#34;, &#34;k9_security_agent_show_beta_signup&#34;, &#34;dataviz_geomap_widget&#34;,
+      &#34;monitor_watchdog&#34;, &#34;dataviz_histogram_rum&#34;, &#34;profiling_show_coalescing_frames_toggle&#34;,
+      &#34;k9_new_value_method&#34;, &#34;azure_cosmosdb&#34;, &#34;azure_analysis_services&#34;,
+      &#34;azure_network_interface&#34;, &#34;watchdog_generate_whitelist&#34;, &#34;incidents_global_channel_settings&#34;,
+      &#34;azure_application_gateway&#34;, &#34;sentry&#34;, &#34;zk&#34;, &#34;logs_archive_include_tags&#34;,
+      &#34;container_orchestration_new_resource_menu&#34;, &#34;process_distribution_metrics&#34;,
+      &#34;rich_graph_pointer&#34;, &#34;univiz_dimensions_spy&#34;, &#34;correlations_resource_change&#34;,
+      &#34;hostmap_screenboard_less_data&#34;, &#34;amazon_vpn&#34;, &#34;apm_frontend_rbac&#34;,
+      &#34;azure_customer_insights&#34;, &#34;serverless_deployments_ui&#34;, &#34;support_admin_dropdown_v2&#34;,
+      &#34;rum_android_integration&#34;, &#34;kyototycoon&#34;, &#34;amazon_cloudfront&#34;,
+      &#34;azure_search&#34;, &#34;amazon_auto_scaling&#34;, &#34;ts_filter_null&#34;,
+      &#34;billing_plan&#34;, &#34;event_monitor_warning_threshold&#34;, &#34;query_alerts&#34;,
+      &#34;google_analytics&#34;, &#34;relevant_template_variables&#34;, &#34;limit_monitor_graph_series&#34;,
+      &#34;google_cloud_spanner&#34;, &#34;in_app_commit&#34;, &#34;infralist_live_metrics&#34;,
+      &#34;metrics_query_use_minmax_func&#34;, &#34;google_cloud_firestore&#34;, &#34;process_discovery_show_detected_integrations&#34;,
+      &#34;logs_historical_views&#34;, &#34;slo_product&#34;, &#34;k9_ip_dashboard&#34;,
+      &#34;amazon_elasticache&#34;, &#34;monitor_create_v2&#34;, &#34;process_enable_new_historical_time_picker&#34;,
+      &#34;google_cloud_tasks&#34;, &#34;uptime_widget_allow_service_check_alert&#34;,
+      &#34;php_fpm&#34;, &#34;monitor_evaluation_graph_v2&#34;, &#34;riakcs&#34;,
+      &#34;moving_rollup_count_fix&#34;, &#34;amazon_network_firewall&#34;, &#34;azure_db_for_mysql&#34;,
+      &#34;consul_features_file&#34;, &#34;hostname_dropdown&#34;, &#34;allow_custom_integration_check_groups&#34;,
+      &#34;amazon_sqs&#34;, &#34;fuzzy_metrics&#34;, &#34;watchdog_disable_snapshot_greenlets&#34;,
+      &#34;slack_oauth_flow&#34;, &#34;watchdog_show_aws_alb_stories&#34;, &#34;notebooks_commenting&#34;,
+      &#34;dash_process_data_source&#34;, &#34;dataviz_virtualized_change_widget&#34;,
+      &#34;timeboard_note_widget&#34;, &#34;mute_timeout&#34;, &#34;google_cloud_big_query&#34;,
+      &#34;toplist_units&#34;, &#34;azure_event_grid&#34;, &#34;mongo&#34;, &#34;google_cloud_dataflow&#34;,
+      &#34;invoices&#34;, &#34;trace_show_breakdown_profiling_for_python&#34;, &#34;authenticated_public_dashboards_api&#34;,
+      &#34;require_cc_for_upgrade&#34;, &#34;query_editor_pct_aggr&#34;, &#34;google_cloud_loadbalancing&#34;,
+      &#34;google_cloud_vpn&#34;, &#34;amazon_cloudsearch&#34;, &#34;monitor_rbac_shadow_write&#34;,
+      &#34;amazon_ecs&#34;, &#34;google_compute_engine&#34;, &#34;use_streaming_snowplow_collector&#34;,
+      &#34;trace_outliers_sidebar&#34;, &#34;release_notes&#34;, &#34;dataviz_custom_links&#34;,
+      &#34;status_page_v2&#34;, &#34;azure_vm_scale_set&#34;, &#34;too_many_groups_timeout&#34;,
+      &#34;google_cloud_platform&#34;, &#34;profile_feature&#34;, &#34;notebook_datasources&#34;,
+      &#34;query_scheduler_delay_hidden_render&#34;, &#34;trace_latency_outliers&#34;,
+      &#34;amazon_ec2&#34;, &#34;amazon_opsworks&#34;, &#34;amazon_elastic_transcoder&#34;,
+      &#34;watchdog_show_tcp_retrans_jump_stories&#34;, &#34;google_cloud_datastore&#34;,
+      &#34;jira&#34;, &#34;delancie_schedules_file&#34;, &#34;gce_numeric_project_id_tag&#34;,
+      &#34;use_react_toggle_button&#34;, &#34;monitor_test_notifications&#34;, &#34;amazon_msk&#34;,
+      &#34;serverless-invocation-table&#34;, &#34;saved_host_map&#34;, &#34;frontend_enable_spa_error_reporting&#34;,
+      &#34;azure_api_management&#34;, &#34;google_cloud_redis&#34;, &#34;correlations_scoping_tags&#34;,
+      &#34;watchdog_show_cnh_stories&#34;, &#34;escalation_message&#34;, &#34;alert_clusters&#34;,
+      &#34;cloudfront_static_cdn&#34;, &#34;tag_dropdown_query_flat&#34;, &#34;amazon_web_services&#34;,
+      &#34;ci_app_show_test_detail_perf_tab&#34;, &#34;process_discovery_show_hosts_status&#34;,
+      &#34;g_suite&#34;, &#34;notebook_schema_writes&#34;, &#34;metrics_summary_distributions&#34;,
+      &#34;amazon_appstream&#34;, &#34;apm_new_settings&#34;, &#34;new_flamegraph&#34;,
+      &#34;multisize_layout_integration&#34;, &#34;kube_controller_manager&#34;, &#34;metadata_unit_labels&#34;,
+      &#34;switch_user_refactor&#34;, &#34;app_services_filtering&#34;, &#34;watchdog_show_nginx_stories&#34;,
+      &#34;multi_units_number_formatting&#34;, &#34;mcache&#34;, &#34;azure_notification_hubs&#34;,
+      &#34;watchdog_show_archive_button&#34;, &#34;dashboard_side_search&#34;, &#34;rum_apm_traces&#34;,
+      &#34;notebook_markdown_parser&#34;, &#34;monitor_summary_widget_v2&#34;, &#34;azure_devops&#34;,
+      &#34;amazon_trusted_advisor&#34;, &#34;status_v2_ignore_algo_rerouting&#34;,
+      &#34;azure_container_service&#34;, &#34;k9_rule_type&#34;, &#34;azure_data_lake_store&#34;,
+      &#34;users_v1_api&#34;, &#34;crosspage_widgets_data_fetching&#34;, &#34;elastic&#34;,
+      &#34;azure_load_balancer&#34;, &#34;lightbendrp&#34;, &#34;watchdog_show_monitors&#34;,
+      &#34;query_value_custom_image&#34;, &#34;azure_express_route&#34;, &#34;amazon_neptune&#34;,
+      &#34;amazon_elasticbeanstalk&#34;, &#34;crio&#34;, &#34;correlations_terminating_hosts&#34;,
+      &#34;watchdog_show_aws_dynamodb_stories&#34;, &#34;profile_visibility&#34;,
+      &#34;dash_new_process_widgets_to_timeseries&#34;, &#34;amazon_redshift&#34;,
+      &#34;notebooks_drag_cell_to_reorder&#34;, &#34;XPW_events-plateform_ts&#34;,
+      &#34;errors_to_sentry&#34;, &#34;azure_iot_hub&#34;, &#34;process_onboarding_page&#34;,
+      &#34;amazon_iot&#34;, &#34;monitors_spa_status&#34;, &#34;amazon_cognito&#34;,
+      &#34;azure_key_vault&#34;, &#34;apm_wide_search&#34;, &#34;azure_redis_cache&#34;,
+      &#34;amazon_lex&#34;, &#34;rum_table_waterfall&#34;, &#34;nginx_ingress_controller&#34;,
+      &#34;renotify&#34;, &#34;amazon_sns&#34;, &#34;amazon_waf&#34;, &#34;logs_unified_explorer_groups&#34;,
+      &#34;fifteen_minute_timeframe&#34;, &#34;trace_page_trace_apm_rum_integration_mvp&#34;,
+      &#34;azure_sql_database&#34;, &#34;rum_applications_double_write&#34;, &#34;error_tracking_enable_alerting_v1_ui&#34;,
+      &#34;distributions_exclusion_blocker&#34;, &#34;anomaly_autotune_front&#34;,
+      &#34;tmpvar_selectable_enabled&#34;, &#34;amazon_cloudhsm&#34;, &#34;pagerduty_incidents&#34;,
+      &#34;trace_distribution_metrics&#34;, &#34;public_dash_get_template_vars_from_be&#34;,
+      &#34;trace_panel_metrics_dropdown&#34;, &#34;couch&#34;, &#34;amazon_polly&#34;,
+      &#34;amazon_translate&#34;, &#34;amazon_step_functions&#34;, &#34;amazon_inspector&#34;,
+      &#34;azure_service_bus&#34;, &#34;network_saved_views&#34;, &#34;amazon_swf&#34;,
+      &#34;sigsci&#34;, &#34;transform_nagios_events_a6&#34;, &#34;logs-toolkit_leftright_groupby&#34;,
+      &#34;sketch_intake&#34;, &#34;dataviz_snapshot_refactoring&#34;, &#34;change_widget_no_interval&#34;,
+      &#34;amazon_dms&#34;, &#34;amazon_mediaconvert&#34;, &#34;query_value_custom_colors&#34;,
+      &#34;process_page_always_show_scatterplot&#34;, &#34;amazon_appsync&#34;, &#34;azure_logic_app&#34;,
+      &#34;google_cloud_firebase&#34;, &#34;google_cloudsql&#34;, &#34;trace_show_breakdown_profiling&#34;,
+      &#34;google_cloud_run&#34;, &#34;azure_all_metrics&#34;, &#34;infralist_paginated_endpoint&#34;,
+      &#34;azure_usage_and_quotas&#34;, &#34;watchdog_show_aws_nlb_stories&#34;, &#34;amazon_gamelift&#34;,
+      &#34;amazon_ml&#34;, &#34;profiling_analytics_ui&#34;, &#34;aws_detailed_elb_deduped_metrics_log&#34;,
+      &#34;amazon_mq&#34;, &#34;process_use_druids_table&#34;, &#34;google_cloud_functions&#34;,
+      &#34;dataviz_boolean_filter_input&#34;, &#34;google_cloud_composer&#34;, &#34;google_cloud_iot&#34;,
+      &#34;enable_olark_zendesk_info&#34;, &#34;logs_custom_metrics_percentiles&#34;,
+      &#34;create_monitor_v2&#34;, &#34;amazon_lambda&#34;, &#34;serverless_saved_views&#34;,
+      &#34;amazon_xray&#34;, &#34;azure_app_services&#34;, &#34;trace_enhanced_service_page_metrics&#34;,
+      &#34;watchdog_show_dashboard_correlations_section&#34;, &#34;azure_resources_crawler_fetch_status&#34;,
+      &#34;metrics_summary_tag_table&#34;, &#34;amazon_elb&#34;, &#34;enable_distribution&#34;,
+      &#34;amazon_ses&#34;, &#34;logzio&#34;, &#34;composite_monitors&#34;, &#34;metrics_summary_tag_filtering&#34;,
+      &#34;azure_blob_storage&#34;, &#34;container_es_reads_enabled&#34;, &#34;correlations_error_traces&#34;,
+      &#34;google_cloud_bigtable&#34;, &#34;dataviz_react_for_change_value_plot&#34;,
+      &#34;k9_threat_intel_details&#34;, &#34;google_cloud_tpu&#34;, &#34;container_orchestration_display_mock_views&#34;,
+      &#34;new_dashboards_list_onboarding&#34;, &#34;metric_summary_meta_display&#34;,
+      &#34;amazon_storage_gateway&#34;, &#34;process_use_facets_v2&#34;, &#34;google_cloud_apis&#34;,
+      &#34;amazon_billing&#34;, &#34;google_cloud_filestore&#34;, &#34;screen_ts_batch_query&#34;,
+      &#34;normalize_device_name&#34;, &#34;monitors_summary_ok_link&#34;, &#34;amazon_shield&#34;,
+      &#34;synthetics&#34;, &#34;compatibility_check&#34;, &#34;amazon_workspaces&#34;,
+      &#34;amazon_mediaconnect&#34;, &#34;outages_mode&#34;, &#34;dataviz_histogram_apm_stats_editor&#34;,
+      &#34;watchdog_activate_frontend_nav&#34;, &#34;watchdog_show_nginx_plus_stories&#34;,
+      &#34;trace_infra_metrics&#34;, &#34;process_variable_time_range_support&#34;,
+      &#34;dashboard_allow_metric_boolean_filter&#34;, &#34;watchdog_display_saved_views&#34;,
+      &#34;amazon_rekognition&#34;, &#34;spa_help&#34;, &#34;as_count_validation&#34;,
+      &#34;telemetry_time_react&#34;, &#34;dataviz_standardized_context_menu&#34;,
+      &#34;azure_govcloud&#34;, &#34;snyk&#34;, &#34;pagerduty_schedules&#34;, &#34;monitor_status_v2&#34;,
+      &#34;dataviz_histogram_logs&#34;, &#34;marketplace&#34;, &#34;watchdog_show_aws_elb_stories&#34;,
+      &#34;apm_frontend_rbac_beta&#34;, &#34;networks_in_apm&#34;, &#34;k9_projections_enabled&#34;,
+      &#34;azure_app_service_environment&#34;, &#34;k9_attrs_additional_dashboard_links&#34;,
+      &#34;amazon_kinesis&#34;, &#34;google_cloud_router&#34;, &#34;screenboard_global_time_selector&#34;,
+      &#34;events_explorer_saved_views&#34;, &#34;amazon_ec2_spot&#34;, &#34;amazon_cloudtrail&#34;,
+      &#34;azure_liftr_ui&#34;, &#34;slo_widget_v2&#34;, &#34;log_multi_monitors_release&#34;,
+      &#34;billable_usage_summary&#34;, &#34;castle_integration_js&#34;, &#34;trace_span_statistics&#34;,
+      &#34;watchdog_generate_infra_partitions&#34;, &#34;k9_rule_aggregation&#34;,
+      &#34;trace_enable_driveline&#34;, &#34;watchdog_generate_s3_insights&#34;, &#34;trace_runtime_metrics&#34;,
+      &#34;amazon_mediatailor&#34;, &#34;amazon_sagemaker&#34;, &#34;azure_cache_metrics_definitions&#34;,
+      &#34;azure_db_for_mariadb&#34;, &#34;google_cloud_storage&#34;, &#34;amazon_firehose&#34;,
+      &#34;process_list_in_apm&#34;, &#34;amazon_connect&#34;, &#34;error_tracking_session_timeline&#34;,
+      &#34;amazon_health&#34;, &#34;gearmand&#34;, &#34;parse_timeshift_monitor_view&#34;,
+      &#34;serverless_actionable_insights&#34;, &#34;google_cloud_dataproc&#34;, &#34;sumo_frontend_v2&#34;,
+      &#34;amazon_nat_gateway&#34;, &#34;k9_onboarding&#34;, &#34;google_container_engine&#34;,
+      &#34;graph_editor_wild_card&#34;, &#34;profiling_show_fg_separator_option&#34;,
+      &#34;azure_cognitive_services&#34;, &#34;azure_stream_analytics&#34;, &#34;compliance_page_nav&#34;,
+      &#34;amazon_documentdb&#34;, &#34;trace_versions_table&#34;, &#34;gringotts_billing_history&#34;,
+      &#34;limit_queried_timeseries&#34;, &#34;render_bars_in_canvas&#34;, &#34;dataviz_new_histogram_trace_latency&#34;,
+      &#34;watchdog_show_postgres_stories&#34;, &#34;monitor_evaluation_graph_live_process&#34;,
+      &#34;profiling_trace_flamegraph&#34;, &#34;k9_rule_based_view&#34;, &#34;public_dash_get_timeframe_from_fe&#34;,
+      &#34;azure_relay&#34;, &#34;azure_table_storage&#34;, &#34;aws_write_load_balancer_arns_as_aliases&#34;,
+      &#34;amazon_es&#34;, &#34;amazon_emr&#34;, &#34;agent_versions_csv_export&#34;,
+      &#34;azure_automation&#34;, &#34;amazon_s3&#34;, &#34;watchdog_show_aws_cloudfront_stories&#34;,
+      &#34;monitor_date-range-picker&#34;, &#34;paywall_apm&#34;, &#34;slo_saved_views&#34;,
+      &#34;intercom&#34;, &#34;aws_tile_one_click&#34;, &#34;hostmap_show_type_selector&#34;,
+      &#34;widget_clipboard&#34;, &#34;cloud_functions_query_logs_for_traces_ingestion&#34;,
+      &#34;monitor_saved_views&#34;, &#34;logs_init_default_view_for_user&#34;, &#34;rum_v2_format&#34;,
+      &#34;summary_metrics&#34;, &#34;alert_change_event&#34;, &#34;triggered_page_v2&#34;,
+      &#34;watchdog_show_drift_stories&#34;, &#34;amazon_ops_works&#34;, &#34;query_cache&#34;,
+      &#34;downtime_timezone&#34;, &#34;aws_crawl_times&#34;, &#34;monitor_rbac_read_roles&#34;,
+      &#34;notebooks_commenting_emails&#34;, &#34;render_hm_in_canvas&#34;, &#34;network_only_one_hr_timeframe&#34;,
+      &#34;marlo_custom_zstd_with_trace_id&#34;, &#34;trace_retention_filters_global_impact_estimation&#34;,
+      &#34;redisdb&#34;, &#34;event_timeline&#34;, &#34;amazon_route53&#34;, &#34;trace_ui&#34;,
+      &#34;statuswidget&#34;, &#34;alibaba_cloud&#34;, &#34;zendesk_chat&#34;, &#34;watchdog_overlapping_query_window&#34;,
+      &#34;azure_app_service_plan&#34;, &#34;amazon_codedeploy&#34;, &#34;google_stackdriver_logging&#34;,
+      &#34;k9_suppression_list&#34;, &#34;azure_db_for_postgresql&#34;, &#34;notebooks_live_editing&#34;,
+      &#34;google_app_engine&#34;, &#34;cloud_functions_query_logs_for_logs_ingestion&#34;,
+      &#34;metric_units&#34;, &#34;azure&#34;, &#34;gringotts_billing_user&#34;, &#34;amazon_efs&#34;,
+      &#34;google_cloud_ml&#34;, &#34;k9_sidebar&#34;, &#34;azure_vm&#34;, &#34;monitor_hide_classic_view&#34;,
+      &#34;notebooks_toplist&#34;, &#34;amazon_mediapackage&#34;, &#34;metric_alert_wildcard_filter_syntax&#34;,
+      &#34;ecs_fargate&#34;, &#34;process_similar_processes_tab&#34;, &#34;xmatters&#34;,
+      &#34;snowplow&#34;, &#34;timeboard_clusters&#34;, &#34;azure_resources_greenlets&#34;,
+      &#34;paywall&#34;, &#34;proc_queries&#34;, &#34;k9_rules_engine_count_unique&#34;,
+      &#34;trace_fetcher_decision_store_map_writer&#34;, &#34;watchdog_append_beta_to_stories_title&#34;,
+      &#34;tqr_traces_sharding_by_trace_id&#34;, &#34;amazon_ebs&#34;, &#34;process_historical_min_max&#34;,
+      &#34;google_cloud_interconnect&#34;, &#34;event_absolute_timestamps&#34;, &#34;logs_unified_explorer&#34;,
+      &#34;azure_data_lake_analytics&#34;, &#34;graph_metrics_info_panel&#34;, &#34;azure_queue_storage&#34;,
+      &#34;dataviz_unit_label&#34;, &#34;trace_service_page_synthetics&#34;, &#34;amazon_dynamodb&#34;,
+      &#34;use_ses_pwd_reset&#34;, &#34;slo_widget_global_time&#34;, &#34;cloud_cost_management_athena_client&#34;,
+      &#34;incident_management&#34;, &#34;oracle_cloud_infrastructure&#34;, &#34;azure_public_ip_address&#34;,
+      &#34;amazon_glue&#34;, &#34;user_roles_ui&#34;, &#34;amazon_codebuild&#34;,
+      &#34;metrics_query_use_clamp_func&#34;, &#34;amazon_rds&#34;, &#34;watchdog_show_redis_stories&#34;,
+      &#34;check_if_monitor_can_be_deleted&#34;, &#34;amazon_kms&#34;, &#34;azure_virtual_network&#34;,
+      &#34;metric_alert_result&#34;, &#34;metric_slo_alerts&#34;, &#34;azure_file_storage&#34;,
+      &#34;amazon_athena&#34;, &#34;service_map&#34;, &#34;trace_fetcher_decision_store_map_reader&#34;,
+      &#34;azure_hd_insight&#34;, &#34;public_api_key&#34;, &#34;rbac_app_keys&#34;,
+      &#34;azure_event_hub&#34;, &#34;downtime_recurrence_rrule&#34;, &#34;process_use_dogweb_tags_endpoint&#34;,
+      &#34;trace_onboarding&#34;, &#34;watchdog_generate_memory_leak_insights&#34;,
+      &#34;signup_region_select&#34;, &#34;recovery_thresholds&#34;, &#34;k9_saved_views&#34;,
+      &#34;kill_status_page_v1&#34;, &#34;kube-controller-manager&#34;, &#34;oracle&#34;,
+      &#34;amazon_api_gateway&#34;, &#34;synthetics_advanced_options&#34;], &#34;watchdog.default_feed.end&#34;:
+      null, &#34;visualizations.anomalies_series_query_limit&#34;: 5000, &#34;templeton.retain_deleted_groups_threshold&#34;:
+      86400, &#34;dash.hidden_update_factor&#34;: 30.0, &#34;watchdog.default_feed.start&#34;:
+      null, &#34;rum.rum_snippet_url&#34;: &#34;https://www.datadoghq-browser-agent.com/datadog-rum-us.js&#34;,
+      &#34;rum.recorder_poc_url&#34;: null, &#34;dash.backoff_fraction&#34;: 0.25,
+      &#34;dash.overall_update_factor&#34;: 1.0}\" /></div>\n<div style=\"display:
+      none;\"><input id=\"public-path\" name=\"public-path\" type=\"hidden\" value=\"&#34;https://static.datadoghq.com&#34;\"
+      /></div>\n<div style=\"display: none;\"><input id=\"castleappid\" name=\"castleAppId\"
+      type=\"hidden\" value=\"389912786276918\" /></div>\n<div style=\"display: none;\"><input
+      id=\"castlerequestsignature\" name=\"castleRequestSignature\" type=\"hidden\"
+      value=\"e9b924dda93f4ad164ba106353d7e66974cb4e1883bb3a4a9d706a93d104c420\" /></div>\n\n
+      \   <script crossorigin=\"anonymous\" src=\"https://static.datadoghq.com/static/v/35.3956193/js/react-core.min.js\"
+      type=\"text/javascript\"></script>\n\n\n    <script>DD.initApp();</script>\n\n
+      \       \n\n    </body>\n</html>\n"
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "28368"
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Mon, 22 Feb 2021 14:57:48 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.3956193"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 400 Bad Request
+    code: 400
+    duration: ""

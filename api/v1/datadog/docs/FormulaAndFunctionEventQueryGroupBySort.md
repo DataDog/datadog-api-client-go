@@ -1,4 +1,4 @@
-# TimeSeriesFormulaAndFunctionEventQueryGroupBySort
+# FormulaAndFunctionEventQueryGroupBySort
 
 ## Properties
 
@@ -10,90 +10,90 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewTimeSeriesFormulaAndFunctionEventQueryGroupBySort
+### NewFormulaAndFunctionEventQueryGroupBySort
 
-`func NewTimeSeriesFormulaAndFunctionEventQueryGroupBySort(aggregation FormulaAndFunctionEventAggregation, ) *TimeSeriesFormulaAndFunctionEventQueryGroupBySort`
+`func NewFormulaAndFunctionEventQueryGroupBySort(aggregation FormulaAndFunctionEventAggregation, ) *FormulaAndFunctionEventQueryGroupBySort`
 
-NewTimeSeriesFormulaAndFunctionEventQueryGroupBySort instantiates a new TimeSeriesFormulaAndFunctionEventQueryGroupBySort object
+NewFormulaAndFunctionEventQueryGroupBySort instantiates a new FormulaAndFunctionEventQueryGroupBySort object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewTimeSeriesFormulaAndFunctionEventQueryGroupBySortWithDefaults
+### NewFormulaAndFunctionEventQueryGroupBySortWithDefaults
 
-`func NewTimeSeriesFormulaAndFunctionEventQueryGroupBySortWithDefaults() *TimeSeriesFormulaAndFunctionEventQueryGroupBySort`
+`func NewFormulaAndFunctionEventQueryGroupBySortWithDefaults() *FormulaAndFunctionEventQueryGroupBySort`
 
-NewTimeSeriesFormulaAndFunctionEventQueryGroupBySortWithDefaults instantiates a new TimeSeriesFormulaAndFunctionEventQueryGroupBySort object
+NewFormulaAndFunctionEventQueryGroupBySortWithDefaults instantiates a new FormulaAndFunctionEventQueryGroupBySort object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAggregation
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetAggregation() FormulaAndFunctionEventAggregation`
+`func (o *FormulaAndFunctionEventQueryGroupBySort) GetAggregation() FormulaAndFunctionEventAggregation`
 
 GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
 
 ### GetAggregationOk
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetAggregationOk() (*FormulaAndFunctionEventAggregation, bool)`
+`func (o *FormulaAndFunctionEventQueryGroupBySort) GetAggregationOk() (*FormulaAndFunctionEventAggregation, bool)`
 
 GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAggregation
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) SetAggregation(v FormulaAndFunctionEventAggregation)`
+`func (o *FormulaAndFunctionEventQueryGroupBySort) SetAggregation(v FormulaAndFunctionEventAggregation)`
 
 SetAggregation sets Aggregation field to given value.
 
 
 ### GetMetric
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetMetric() string`
+`func (o *FormulaAndFunctionEventQueryGroupBySort) GetMetric() string`
 
 GetMetric returns the Metric field if non-nil, zero value otherwise.
 
 ### GetMetricOk
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetMetricOk() (*string, bool)`
+`func (o *FormulaAndFunctionEventQueryGroupBySort) GetMetricOk() (*string, bool)`
 
 GetMetricOk returns a tuple with the Metric field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetric
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) SetMetric(v string)`
+`func (o *FormulaAndFunctionEventQueryGroupBySort) SetMetric(v string)`
 
 SetMetric sets Metric field to given value.
 
 ### HasMetric
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) HasMetric() bool`
+`func (o *FormulaAndFunctionEventQueryGroupBySort) HasMetric() bool`
 
 HasMetric returns a boolean if a field has been set.
 
 ### GetOrder
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetOrder() QuerySortOrder`
+`func (o *FormulaAndFunctionEventQueryGroupBySort) GetOrder() QuerySortOrder`
 
 GetOrder returns the Order field if non-nil, zero value otherwise.
 
 ### GetOrderOk
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) GetOrderOk() (*QuerySortOrder, bool)`
+`func (o *FormulaAndFunctionEventQueryGroupBySort) GetOrderOk() (*QuerySortOrder, bool)`
 
 GetOrderOk returns a tuple with the Order field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrder
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) SetOrder(v QuerySortOrder)`
+`func (o *FormulaAndFunctionEventQueryGroupBySort) SetOrder(v QuerySortOrder)`
 
 SetOrder sets Order field to given value.
 
 ### HasOrder
 
-`func (o *TimeSeriesFormulaAndFunctionEventQueryGroupBySort) HasOrder() bool`
+`func (o *FormulaAndFunctionEventQueryGroupBySort) HasOrder() bool`
 
 HasOrder returns a boolean if a field has been set.
 
