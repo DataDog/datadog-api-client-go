@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **EnableLogsSample** | Pointer to **bool** | Whether or not to send a log sample when the log monitor triggers. | [optional] 
 **EscalationMessage** | Pointer to **string** | A message to include with a re-notification. Supports the &#x60;@username&#x60; notification we allow elsewhere. Not applicable if &#x60;renotify_interval&#x60; is &#x60;None&#x60;. | [optional] [default to "none"]
 **EvaluationDelay** | Pointer to **NullableInt64** | Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to &#x60;300&#x60; (5min), the timeframe is set to &#x60;last_5m&#x60; and the time is 7:00, the monitor evaluates data from 6:50 to 6:55. This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation. | [optional] 
-**GroupbySimpleMonitor** | Pointer to **bool** | Whether or not to trigger one alert if any source breaches a threshold. | [optional] 
 **IncludeTags** | Pointer to **bool** | A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.  **Examples** - If &#x60;True&#x60;, &#x60;[Triggered on {host:h1}] Monitor Title&#x60; - If &#x60;False&#x60;, &#x60;[Triggered] Monitor Title&#x60; | [optional] [default to true]
 **Locked** | Pointer to **bool** | Whether or not the monitor is locked (only editable by creator and admins). | [optional] 
 **MinFailureDuration** | Pointer to **NullableInt64** | How long the test should be in failure before alerting (integer, number of seconds, max 7200). | [optional] [default to 0]
@@ -180,31 +179,6 @@ HasEvaluationDelay returns a boolean if a field has been set.
 `func (o *MonitorOptions) UnsetEvaluationDelay()`
 
 UnsetEvaluationDelay ensures that no value is present for EvaluationDelay, not even an explicit nil
-### GetGroupbySimpleMonitor
-
-`func (o *MonitorOptions) GetGroupbySimpleMonitor() bool`
-
-GetGroupbySimpleMonitor returns the GroupbySimpleMonitor field if non-nil, zero value otherwise.
-
-### GetGroupbySimpleMonitorOk
-
-`func (o *MonitorOptions) GetGroupbySimpleMonitorOk() (*bool, bool)`
-
-GetGroupbySimpleMonitorOk returns a tuple with the GroupbySimpleMonitor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGroupbySimpleMonitor
-
-`func (o *MonitorOptions) SetGroupbySimpleMonitor(v bool)`
-
-SetGroupbySimpleMonitor sets GroupbySimpleMonitor field to given value.
-
-### HasGroupbySimpleMonitor
-
-`func (o *MonitorOptions) HasGroupbySimpleMonitor() bool`
-
-HasGroupbySimpleMonitor returns a boolean if a field has been set.
-
 ### GetIncludeTags
 
 `func (o *MonitorOptions) GetIncludeTags() bool`
