@@ -7,11 +7,14 @@ Name | Type | Description | Notes
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
 **EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+**Formulas** | Pointer to [**[]WidgetFormula**](WidgetFormula.md) | List of formulas that operate on queries. **This feature is currently in beta.** | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
 **ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Q** | Pointer to **string** | Widget query. | [optional] 
+**Queries** | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. **This feature is currently in beta.** | [optional] 
+**ResponseFormat** | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md) |  | [optional] 
 **RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **SecurityQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Style** | Pointer to [**WidgetRequestStyle**](WidgetRequestStyle.md) |  | [optional] 
@@ -109,6 +112,31 @@ SetEventQuery sets EventQuery field to given value.
 `func (o *ToplistWidgetRequest) HasEventQuery() bool`
 
 HasEventQuery returns a boolean if a field has been set.
+
+### GetFormulas
+
+`func (o *ToplistWidgetRequest) GetFormulas() []WidgetFormula`
+
+GetFormulas returns the Formulas field if non-nil, zero value otherwise.
+
+### GetFormulasOk
+
+`func (o *ToplistWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool)`
+
+GetFormulasOk returns a tuple with the Formulas field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFormulas
+
+`func (o *ToplistWidgetRequest) SetFormulas(v []WidgetFormula)`
+
+SetFormulas sets Formulas field to given value.
+
+### HasFormulas
+
+`func (o *ToplistWidgetRequest) HasFormulas() bool`
+
+HasFormulas returns a boolean if a field has been set.
 
 ### GetLogQuery
 
@@ -234,6 +262,56 @@ SetQ sets Q field to given value.
 `func (o *ToplistWidgetRequest) HasQ() bool`
 
 HasQ returns a boolean if a field has been set.
+
+### GetQueries
+
+`func (o *ToplistWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition`
+
+GetQueries returns the Queries field if non-nil, zero value otherwise.
+
+### GetQueriesOk
+
+`func (o *ToplistWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinition, bool)`
+
+GetQueriesOk returns a tuple with the Queries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQueries
+
+`func (o *ToplistWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition)`
+
+SetQueries sets Queries field to given value.
+
+### HasQueries
+
+`func (o *ToplistWidgetRequest) HasQueries() bool`
+
+HasQueries returns a boolean if a field has been set.
+
+### GetResponseFormat
+
+`func (o *ToplistWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat`
+
+GetResponseFormat returns the ResponseFormat field if non-nil, zero value otherwise.
+
+### GetResponseFormatOk
+
+`func (o *ToplistWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionResponseFormat, bool)`
+
+GetResponseFormatOk returns a tuple with the ResponseFormat field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResponseFormat
+
+`func (o *ToplistWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat)`
+
+SetResponseFormat sets ResponseFormat field to given value.
+
+### HasResponseFormat
+
+`func (o *ToplistWidgetRequest) HasResponseFormat() bool`
+
+HasResponseFormat returns a boolean if a field has been set.
 
 ### GetRumQuery
 
