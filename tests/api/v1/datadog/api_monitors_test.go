@@ -21,7 +21,7 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 	return datadog.Monitor{
 		Name:    tests.UniqueEntityName(ctx, t),
 		Type:    datadog.MONITORTYPE_LOG_ALERT.Ptr(),
-		Query:   datadog.PtrString("logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").last(\"5m\") > 2"),
+		Query:   datadog.PtrString("logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") > 2"),
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: &[]string{
 			"test",
@@ -34,6 +34,7 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 			TimeoutH:          *datadog.NewNullableInt64(datadog.PtrInt64(60)),
 			RenotifyInterval:  *datadog.NewNullableInt64(datadog.PtrInt64(60)),
 			EnableLogsSample:  datadog.PtrBool(true),
+			GroupbySimpleMonitor: datadog.PtrBool(true),
 			NoDataTimeframe:   *datadog.NewNullableInt64(nil),
 			NewHostDelay:      *datadog.NewNullableInt64(datadog.PtrInt64(600)),
 			RequireFullWindow: datadog.PtrBool(true),
