@@ -343,6 +343,55 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	queryValueWidget := datadog.NewWidget(datadog.QueryValueWidgetDefinitionAsWidgetDefinition(queryValueWidgetDefinition))
 
+	// Query Widget with Formulas and Functions Query
+	queryValueWidgetDefinitionFormulaFunctionsQuery := datadog.NewQueryValueWidgetDefinitionWithDefaults()
+
+	queryValueWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.QueryValueWidgetRequest{{
+		Formulas: &[]datadog.WidgetFormula{{
+			Formula: "(((errors * 0.2)) / (query * 0.3))",
+			Alias:   datadog.PtrString("sample_performance_calculator"),
+		}},
+		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
+				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
+				Name:       datadog.PtrString("query"),
+			},
+		},
+			{
+				FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
+					Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
+						Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+					},
+					Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
+						Query: "service:query Errors",
+					},
+					GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{{
+						Facet: "host",
+					}},
+					Indexes: &[]string{"*"},
+					Name:    datadog.PtrString("errors"),
+				},
+			},
+			{
+				FormulaAndFunctionProcessQueryDefinition: &datadog.FormulaAndFunctionProcessQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS,
+					TextFilter: datadog.PtrString(""),
+					Metric:     "process.stat.cpu.total_pct",
+					Limit:      datadog.PtrInt64(10),
+					Name:       datadog.PtrString("process_query"),
+				},
+			},
+		}}})
+	queryValueWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
+	queryValueWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	queryValueWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
+	queryValueWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+
+	queryValueWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.QueryValueWidgetDefinitionAsWidgetDefinition(queryValueWidgetDefinitionFormulaFunctionsQuery))
+
 	// Scatter Plot Widget
 	scatterPlotWidgetDefinition := datadog.NewScatterPlotWidgetDefinitionWithDefaults()
 	scatterPlotWidgetDefinition.SetRequests(datadog.ScatterPlotWidgetDefinitionRequests{
@@ -760,6 +809,55 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	toplistWidget := datadog.NewWidget(datadog.ToplistWidgetDefinitionAsWidgetDefinition(toplistWidgetDefinition))
 
+	// Toplist Widget with Formulas and Functions Query
+	toplistWidgetDefinitionFormulaFunctionsQuery := datadog.NewToplistWidgetDefinitionWithDefaults()
+
+	toplistWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.ToplistWidgetRequest{{
+		Formulas: &[]datadog.WidgetFormula{{
+			Formula: "(((errors * 0.2)) / (query * 0.3))",
+			Alias:   datadog.PtrString("sample_performance_calculator"),
+		}},
+		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
+		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
+				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
+				Name:       datadog.PtrString("query"),
+			},
+		},
+			{
+				FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
+					Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
+						Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+					},
+					Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
+						Query: "service:query Errors",
+					},
+					GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{{
+						Facet: "host",
+					}},
+					Indexes: &[]string{"*"},
+					Name:    datadog.PtrString("errors"),
+				},
+			},
+			{
+				FormulaAndFunctionProcessQueryDefinition: &datadog.FormulaAndFunctionProcessQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS,
+					TextFilter: datadog.PtrString(""),
+					Metric:     "process.stat.cpu.total_pct",
+					Limit:      datadog.PtrInt64(10),
+					Name:       datadog.PtrString("process_query"),
+				},
+			},
+		}}})
+	toplistWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
+	toplistWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	toplistWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
+	toplistWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+
+	toplistWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.ToplistWidgetDefinitionAsWidgetDefinition(toplistWidgetDefinitionFormulaFunctionsQuery))
+
 	// Template Variables
 	templateVariable := datadog.NewDashboardTemplateVariableWithDefaults()
 	templateVariable.SetName("test template var")
@@ -785,6 +883,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		*hostMapWidget,
 		*noteWidget,
 		*queryValueWidget,
+		*queryValueWidgetFormulaFunctionsQuery,
 		*scatterPlotWidget,
 		*sloWidget,
 		*serviceMapWidget,
@@ -795,6 +894,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		*timeseriesWidgetLogQuery,
 		*timeseriesWidgetEventQuery,
 		*timeseriesWidgetFormulaFunctionsQuery,
+		*toplistWidgetFormulaFunctionsQuery,
 		*toplistWidget,
 	}
 

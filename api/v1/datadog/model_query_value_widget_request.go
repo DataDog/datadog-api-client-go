@@ -17,16 +17,21 @@ type QueryValueWidgetRequest struct {
 	Aggregator *WidgetAggregator   `json:"aggregator,omitempty"`
 	ApmQuery   *LogQueryDefinition `json:"apm_query,omitempty"`
 	// List of conditional formats.
-	ConditionalFormats  *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
-	EventQuery          *LogQueryDefinition        `json:"event_query,omitempty"`
-	LogQuery            *LogQueryDefinition        `json:"log_query,omitempty"`
-	NetworkQuery        *LogQueryDefinition        `json:"network_query,omitempty"`
-	ProcessQuery        *ProcessQueryDefinition    `json:"process_query,omitempty"`
-	ProfileMetricsQuery *LogQueryDefinition        `json:"profile_metrics_query,omitempty"`
+	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
+	EventQuery         *LogQueryDefinition        `json:"event_query,omitempty"`
+	// List of formulas that operate on queries. **This feature is currently in beta.**
+	Formulas            *[]WidgetFormula        `json:"formulas,omitempty"`
+	LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
+	NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
+	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
+	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
 	// TODO.
-	Q             *string             `json:"q,omitempty"`
-	RumQuery      *LogQueryDefinition `json:"rum_query,omitempty"`
-	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+	Q *string `json:"q,omitempty"`
+	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
+	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
+	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
 }
 
 // NewQueryValueWidgetRequest instantiates a new QueryValueWidgetRequest object
@@ -172,6 +177,38 @@ func (o *QueryValueWidgetRequest) HasEventQuery() bool {
 // SetEventQuery gets a reference to the given LogQueryDefinition and assigns it to the EventQuery field.
 func (o *QueryValueWidgetRequest) SetEventQuery(v LogQueryDefinition) {
 	o.EventQuery = &v
+}
+
+// GetFormulas returns the Formulas field value if set, zero value otherwise.
+func (o *QueryValueWidgetRequest) GetFormulas() []WidgetFormula {
+	if o == nil || o.Formulas == nil {
+		var ret []WidgetFormula
+		return ret
+	}
+	return *o.Formulas
+}
+
+// GetFormulasOk returns a tuple with the Formulas field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryValueWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
+	if o == nil || o.Formulas == nil {
+		return nil, false
+	}
+	return o.Formulas, true
+}
+
+// HasFormulas returns a boolean if a field has been set.
+func (o *QueryValueWidgetRequest) HasFormulas() bool {
+	if o != nil && o.Formulas != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
+func (o *QueryValueWidgetRequest) SetFormulas(v []WidgetFormula) {
+	o.Formulas = &v
 }
 
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
@@ -334,6 +371,70 @@ func (o *QueryValueWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
 
+// GetQueries returns the Queries field value if set, zero value otherwise.
+func (o *QueryValueWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
+	if o == nil || o.Queries == nil {
+		var ret []FormulaAndFunctionQueryDefinition
+		return ret
+	}
+	return *o.Queries
+}
+
+// GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryValueWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinition, bool) {
+	if o == nil || o.Queries == nil {
+		return nil, false
+	}
+	return o.Queries, true
+}
+
+// HasQueries returns a boolean if a field has been set.
+func (o *QueryValueWidgetRequest) HasQueries() bool {
+	if o != nil && o.Queries != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
+func (o *QueryValueWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
+	o.Queries = &v
+}
+
+// GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
+func (o *QueryValueWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
+	if o == nil || o.ResponseFormat == nil {
+		var ret FormulaAndFunctionResponseFormat
+		return ret
+	}
+	return *o.ResponseFormat
+}
+
+// GetResponseFormatOk returns a tuple with the ResponseFormat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryValueWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionResponseFormat, bool) {
+	if o == nil || o.ResponseFormat == nil {
+		return nil, false
+	}
+	return o.ResponseFormat, true
+}
+
+// HasResponseFormat returns a boolean if a field has been set.
+func (o *QueryValueWidgetRequest) HasResponseFormat() bool {
+	if o != nil && o.ResponseFormat != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetResponseFormat gets a reference to the given FormulaAndFunctionResponseFormat and assigns it to the ResponseFormat field.
+func (o *QueryValueWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat) {
+	o.ResponseFormat = &v
+}
+
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetRumQuery() LogQueryDefinition {
 	if o == nil || o.RumQuery == nil {
@@ -412,6 +513,9 @@ func (o QueryValueWidgetRequest) MarshalJSON() ([]byte, error) {
 	if o.EventQuery != nil {
 		toSerialize["event_query"] = o.EventQuery
 	}
+	if o.Formulas != nil {
+		toSerialize["formulas"] = o.Formulas
+	}
 	if o.LogQuery != nil {
 		toSerialize["log_query"] = o.LogQuery
 	}
@@ -426,6 +530,12 @@ func (o QueryValueWidgetRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Q != nil {
 		toSerialize["q"] = o.Q
+	}
+	if o.Queries != nil {
+		toSerialize["queries"] = o.Queries
+	}
+	if o.ResponseFormat != nil {
+		toSerialize["response_format"] = o.ResponseFormat
 	}
 	if o.RumQuery != nil {
 		toSerialize["rum_query"] = o.RumQuery

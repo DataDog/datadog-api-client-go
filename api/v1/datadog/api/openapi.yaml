@@ -149,9 +149,6 @@ tags:
     and as the timeframe over which a metric is viewed increases,
     aggregation between points occurs to stay below that set number.
 
-    Datadog has a soft limit of 100 timeseries per host
-    where a timeseries is defined as a unique combination of metric name and tag.
-
     The Post, Patch, and Delete `manage_tags` API methods can only be performed by
     a user who has the `Manage Tags for Metrics` permission.
   name: Metrics
@@ -9747,16 +9744,17 @@ components:
           type: integer
         rrule:
           description: |-
-            The `RRULE` standard for defining recurring events. For example, to have a recurring event on the first day of each month,
-            select a type of `rrule` and set the `FREQ` to `MONTHLY` and `BYMONTHDAY` to `1`.
+            The `RRULE` standard for defining recurring events (**requires to set "type" to rrule**)
+            For example, to have a recurring event on the first day of each month, set the type to `rrule` and set the `FREQ` to `MONTHLY` and `BYMONTHDAY` to `1`.
             Most common `rrule` options from the [iCalendar Spec](https://tools.ietf.org/html/rfc5545) are supported.
 
             **Note**: Attributes specifying the duration in `RRULE` are not supported (for example, `DTSTART`, `DTEND`, `DURATION`).
+            More examples available in this [downtime guide](https://docs.datadoghq.com/monitors/guide/supress-alert-with-downtimes/?tab=api)
           example: FREQ=MONTHLY;BYSETPOS=3;BYDAY=WE;INTERVAL=1
           type: string
         type:
           description: The type of recurrence. Choose from `days`, `weeks`, `months`,
-            `years`.
+            `years`, `rrule`.
           example: weeks
           type: string
         until_date:
@@ -10258,7 +10256,7 @@ components:
       - $ref: '#/components/schemas/FormulaAndFunctionProcessQueryDefinition'
       type: object
     FormulaAndFunctionResponseFormat:
-      description: Timeseries or Scalar response. This feature is currently in beta.
+      description: Timeseries or Scalar response. **This feature is currently in beta.**
       enum:
       - timeseries
       - scalar
@@ -12997,6 +12995,7 @@ components:
             group_by: host
             type: count
           evaluation_delay: 6
+          groupby_simple_monitor: true
           notify_audit: false
           min_location_failed: 5
           new_host_delay: 5
@@ -13133,6 +13132,7 @@ components:
           group_by: host
           type: count
         evaluation_delay: 6
+        groupby_simple_monitor: true
         notify_audit: false
         min_location_failed: 5
         new_host_delay: 5
@@ -13183,6 +13183,10 @@ components:
           format: int64
           nullable: true
           type: integer
+        groupby_simple_monitor:
+          description: Whether the log alert monitor triggers a single alert or multiple
+            alerts when any group breaches a threshold.
+          type: boolean
         include_tags:
           default: true
           description: |-
@@ -13528,6 +13532,7 @@ components:
             group_by: host
             type: count
           evaluation_delay: 6
+          groupby_simple_monitor: true
           notify_audit: false
           min_location_failed: 5
           new_host_delay: 5
@@ -14078,6 +14083,12 @@ components:
           type: array
         event_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        formulas:
+          description: List of formulas that operate on queries. **This feature is
+            currently in beta.**
+          items:
+            $ref: '#/components/schemas/WidgetFormula'
+          type: array
         log_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         network_query:
@@ -14089,6 +14100,14 @@ components:
         q:
           description: TODO.
           type: string
+        queries:
+          description: List of queries that can be returned directly or used in formulas.
+            **This feature is currently in beta.**
+          items:
+            $ref: '#/components/schemas/FormulaAndFunctionQueryDefinition'
+          type: array
+        response_format:
+          $ref: '#/components/schemas/FormulaAndFunctionResponseFormat'
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         security_query:
@@ -18049,8 +18068,8 @@ components:
         event_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         formulas:
-          description: List of formulas that operate on queries. This feature is currently
-            in beta.
+          description: List of formulas that operate on queries. **This feature is
+            currently in beta.**
           items:
             $ref: '#/components/schemas/WidgetFormula'
           type: array
@@ -18075,7 +18094,7 @@ components:
           type: string
         queries:
           description: List of queries that can be returned directly or used in formulas.
-            This feature is currently in beta.
+            **This feature is currently in beta.**
           items:
             $ref: '#/components/schemas/FormulaAndFunctionQueryDefinition'
           type: array
@@ -18147,6 +18166,12 @@ components:
           type: array
         event_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        formulas:
+          description: List of formulas that operate on queries. **This feature is
+            currently in beta.**
+          items:
+            $ref: '#/components/schemas/WidgetFormula'
+          type: array
         log_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         network_query:
@@ -18158,6 +18183,14 @@ components:
         q:
           description: Widget query.
           type: string
+        queries:
+          description: List of queries that can be returned directly or used in formulas.
+            **This feature is currently in beta.**
+          items:
+            $ref: '#/components/schemas/FormulaAndFunctionQueryDefinition'
+          type: array
+        response_format:
+          $ref: '#/components/schemas/FormulaAndFunctionResponseFormat'
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         security_query:
