@@ -256,7 +256,7 @@ func getLegacyTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.S
 
 func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsBrowserTest {
 	return datadog.SyntheticsBrowserTest{
-		Config: &datadog.SyntheticsTestBrowserConfig{
+		Config: &datadog.SyntheticsBrowserTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{},
 			Request: datadog.SyntheticsTestRequest{
 				Method: datadog.HTTPMETHOD_GET.Ptr(),
