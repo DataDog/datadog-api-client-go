@@ -31,6 +31,10 @@ jobs:
     runs-on: ${{ matrix.platform }}
     if: github.event.pull_request.draft == false && !contains(github.event.pull_request.labels.*.name, 'ci/skip') && !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')
     steps:
+    - run: DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=${secrets.DD_API_KEY} DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_mac_os.sh)"
+      if: matrix.platform == 'macos-latest'
+    - run: DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=${secrets.DD_API_KEY} DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+      if: matrix.platform == 'ubuntu-latest'
     - name: Install Go
       uses: actions/setup-go@v2
       with:
