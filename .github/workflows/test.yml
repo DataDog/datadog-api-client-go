@@ -43,3 +43,5 @@ jobs:
       uses: actions/checkout@v2
     - name: Test
       run: ./run-tests.sh
+      env:
+        DD_TAGS: "git.repository_url:https://github.com/DataDog/datadog-api-client-go"
