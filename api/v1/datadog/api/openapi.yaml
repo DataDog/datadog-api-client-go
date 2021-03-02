@@ -149,9 +149,6 @@ tags:
     and as the timeframe over which a metric is viewed increases,
     aggregation between points occurs to stay below that set number.
 
-    Datadog has a soft limit of 100 timeseries per host
-    where a timeseries is defined as a unique combination of metric name and tag.
-
     The Post, Patch, and Delete `manage_tags` API methods can only be performed by
     a user who has the `Manage Tags for Metrics` permission.
   name: Metrics
@@ -12998,6 +12995,7 @@ components:
             group_by: host
             type: count
           evaluation_delay: 6
+          groupby_simple_monitor: true
           notify_audit: false
           min_location_failed: 5
           new_host_delay: 5
@@ -13134,6 +13132,7 @@ components:
           group_by: host
           type: count
         evaluation_delay: 6
+        groupby_simple_monitor: true
         notify_audit: false
         min_location_failed: 5
         new_host_delay: 5
@@ -13184,6 +13183,10 @@ components:
           format: int64
           nullable: true
           type: integer
+        groupby_simple_monitor:
+          description: Whether the log alert monitor triggers a single alert or multiple
+            alerts when any group breaches a threshold.
+          type: boolean
         include_tags:
           default: true
           description: |-
@@ -13529,6 +13532,7 @@ components:
             group_by: host
             type: count
           evaluation_delay: 6
+          groupby_simple_monitor: true
           notify_audit: false
           min_location_failed: 5
           new_host_delay: 5
