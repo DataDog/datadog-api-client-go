@@ -13,14 +13,14 @@ interactions:
       Dd-Operation-Id:
       - UpdateMonitor
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.5; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2207755125313377240"
+      - "5547038423827411570"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7346625148721226744"
-    url: https://api.datadoghq.com/api/v1/monitor/18411373
+      - "8038526237270993388"
+    url: https://api.datadoghq.com/api/v1/monitor/30993817
     method: PUT
   response:
     body: '{"errors":["Monitor type change not allowed"]}'
@@ -31,14 +31,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "46"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:32:54 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 26 Feb 2021 19:57:18 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -46,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.3992284"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -56,7 +52,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "499"
       X-Ratelimit-Reset:
-      - "6"
+      - "2"
     status: 400 Bad Request
     code: 400
     duration: ""
