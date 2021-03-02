@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","goFeatureMetricsScenarioListIngestedTagsbyMetricNamereturnsSuccessresponselocal1614268874"]},"id":"goFeatureMetricsScenarioListIngestedTagsbyMetricNamereturnsSuccessresponselocal1614268874","type":"manage_tags"}}
+      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016"]},"id":"goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016","type":"manage_tags"}}
     form: {}
     headers:
       Accept:
@@ -15,26 +15,26 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.16+dev (go go1.16; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "2948162791187112610"
+      - "6964417289148747032"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5558454941346232792"
-    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListIngestedTagsbyMetricNamereturnsSuccessresponselocal1614268874/tags
+      - "6673983223743865413"
+    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016/tags
     method: POST
   response:
-    body: '{"data":{"type":"manage_tags","id":"goFeatureMetricsScenarioListIngestedTagsbyMetricNamereturnsSuccessresponselocal1614268874","attributes":{"tags":["datacenter","app","goFeatureMetricsScenarioListIngestedTagsbyMetricNamereturnsSuccessresponselocal1614268874"],"include_percentiles":false,"created_at":"2021-02-25T16:01:14.936494+00:00","updated_at":"2021-02-25T16:01:14.936494+00:00","metric_type":"distribution"}}}'
+    body: '{"data":{"type":"manage_tags","id":"goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016","attributes":{"tags":["datacenter","app","goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016"],"include_percentiles":false,"created_at":"2021-03-01T20:53:36.294160+00:00","updated_at":"2021-03-01T20:53:36.294160+00:00","metric_type":"distribution"}}}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "416"
+      - "434"
       Content-Type:
       - application/json
       Date:
-      - Thu, 25 Feb 2021 16:01:14 GMT
+      - Mon, 01 Mar 2021 20:53:36 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
+      - 2328yjLSqI4XmR1pVqrPRR/SFcQsbafjEpPmZx7/3PfxUK1nJQQsX+wrMelyVyj+
       X-Dd-Version:
-      - "35.3982427"
+      - "35.4005111"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,7 +54,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "40"
       X-Ratelimit-Reset:
-      - "46"
+      - "24"
     status: 201 Created
     code: 201
     duration: ""
@@ -65,19 +65,19 @@ interactions:
       Accept:
       - application/json
       Dd-Operation-Id:
-      - ListIngestedTagsByMetricName
+      - ListVolumesByMetricName
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.16+dev (go go1.16; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "3479493770207696003"
+      - "5805794625542955031"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5558454941346232792"
-    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListIngestedTagsbyMetricNamereturnsSuccessresponselocal1614268874/all-tags
+      - "6673983223743865413"
+    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016/volumes
     method: GET
   response:
-    body: '{"data":{"type":"metrics","id":"goFeatureMetricsScenarioListIngestedTagsbyMetricNamereturnsSuccessresponselocal1614268874","attributes":{"tags":[]}}}'
+    body: '{"data":{"type":"metric_volumes","id":"goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016","attributes":{"indexed_volume":0,"ingested_volume":0}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -86,7 +86,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 25 Feb 2021 16:01:15 GMT
+      - Mon, 01 Mar 2021 20:53:36 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -96,9 +96,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
+      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
       X-Dd-Version:
-      - "35.3982427"
+      - "35.4005111"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -106,9 +106,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "597"
+      - "585"
       X-Ratelimit-Reset:
-      - "3526"
+      - "384"
     status: 200 OK
     code: 200
     duration: ""
@@ -123,12 +123,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.16+dev (go go1.16; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "1708696453525104990"
+      - "8072471826663461911"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5558454941346232792"
-    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListIngestedTagsbyMetricNamereturnsSuccessresponselocal1614268874/tags
+      - "6673983223743865413"
+    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016/tags
     method: DELETE
   response:
     body: ""
@@ -142,7 +142,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 25 Feb 2021 16:01:15 GMT
+      - Mon, 01 Mar 2021 20:53:36 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -150,9 +150,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
+      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
       X-Dd-Version:
-      - "35.3982427"
+      - "35.4005111"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -162,7 +162,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "39"
       X-Ratelimit-Reset:
-      - "45"
+      - "24"
     status: 204 No Content
     code: 204
     duration: ""
