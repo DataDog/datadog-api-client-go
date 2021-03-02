@@ -55,6 +55,6 @@ go.sum,github.com/chzyer/test,MIT,2016 Chzyer
 go.sum,github.com/google/pprof,Apache-2.0,Google Inc.
 go.sum,github.com/ianlancetaylor/demangle,BSD-3-Clause,2015 The Go Authors
 
-go.sum,github.com/Microsoft/go-winio,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/konsorten/go-windows-terminal-sequences,<LICENSE>,<COPYRIGHT>
-go.sum,github.com/sirupsen/logrus,<LICENSE>,<COPYRIGHT>
+go.sum,github.com/Microsoft/go-winio,MIT,2015 Microsoft
+go.sum,github.com/konsorten/go-windows-terminal-sequences,MIT,2017 marvin + konsorten GmbH
+go.sum,github.com/sirupsen/logrus,MIT,2014 Simon Eskildsen
