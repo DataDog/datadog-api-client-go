@@ -245,7 +245,7 @@ The type of monitor chosen from:
 - process: `service check`
 - rum: `rum alert`
 - watchdog: `event alert`
-- event-v2: `event-2 alert`
+- event-v2: `event-v2 alert`
 
 #### Query Types
 
