@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","goFeatureMetricsScenarioUpdateaTagConfigurationreturnsOKresponselocal1613038099"]},"id":"goFeatureMetricsScenarioUpdateaTagConfigurationreturnsOKresponselocal1613038099","type":"manage_tags"}}
+      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","goFeatureMetricsScenarioUpdateatagconfigurationreturnsOKresponselocal1614797943"]},"id":"goFeatureMetricsScenarioUpdateatagconfigurationreturnsOKresponselocal1614797943","type":"manage_tags"}}
     form: {}
     headers:
       Accept:
@@ -13,17 +13,17 @@ interactions:
       Dd-Operation-Id:
       - CreateTagConfiguration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.17+dev (go go1.16; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "140098794206133548"
+      - "8202539768397785312"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7923645226368004127"
-    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioUpdateaTagConfigurationreturnsOKresponselocal1613038099/tags
+      - "4024384465423180012"
+    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioUpdateatagconfigurationreturnsOKresponselocal1614797943/tags
     method: POST
   response:
-    body: '{"data":{"type":"manage_tags","id":"goFeatureMetricsScenarioUpdateaTagConfigurationreturnsOKresponselocal1613038099","attributes":{"tags":["datacenter","app","goFeatureMetricsScenarioUpdateaTagConfigurationreturnsOKresponselocal1613038099"],"include_percentiles":false,"created_at":"2021-02-11T10:08:20.000705+00:00","updated_at":"2021-02-11T10:08:20.000705+00:00","metric_type":"distribution"}}}'
+    body: '{"data":{"type":"manage_tags","id":"goFeatureMetricsScenarioUpdateatagconfigurationreturnsOKresponselocal1614797943","attributes":{"tags":["datacenter","app","goFeatureMetricsScenarioUpdateatagconfigurationreturnsOKresponselocal1614797943"],"include_percentiles":false,"created_at":"2021-03-03T18:59:03.809593+00:00","updated_at":"2021-03-03T18:59:03.809593+00:00","metric_type":"distribution"}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,20 +34,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Feb 2021 10:08:20 GMT
+      - Wed, 03 Mar 2021 18:59:03 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 18-Feb-2021 10:08:19 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - tpRCH6w417YjBovRJ8VmtuXmNONVYiRp2c8d2AxjPdGBn8PCtgG4vAztrx3qUZAN
+      - 5gfwVh/5HZ+AnGd/Di93w3NEWC6KMHT9KzmHEiRJmNdOjBtAsbOcgVFyqEChw71h
       X-Dd-Version:
-      - "35.3888455"
+      - "35.4022232"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -55,15 +52,15 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "38"
+      - "49"
       X-Ratelimit-Reset:
-      - "41"
+      - "57"
     status: 201 Created
     code: 201
     duration: ""
 - request:
     body: |
-      {"data":{"attributes":{"tags":["app"]},"id":"goFeatureMetricsScenarioUpdateaTagConfigurationreturnsOKresponselocal1613038099","type":"manage_tags"}}
+      {"data":{"attributes":{"tags":["app"]},"id":"goFeatureMetricsScenarioUpdateatagconfigurationreturnsOKresponselocal1614797943","type":"manage_tags"}}
     form: {}
     headers:
       Accept:
@@ -73,17 +70,17 @@ interactions:
       Dd-Operation-Id:
       - UpdateTagConfiguration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.17+dev (go go1.16; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "8102128248266550709"
+      - "3409206028999706229"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7923645226368004127"
-    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioUpdateaTagConfigurationreturnsOKresponselocal1613038099/tags
+      - "4024384465423180012"
+    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioUpdateatagconfigurationreturnsOKresponselocal1614797943/tags
     method: PATCH
   response:
-    body: '{"data":{"type":"manage_tags","id":"goFeatureMetricsScenarioUpdateaTagConfigurationreturnsOKresponselocal1613038099","attributes":{"tags":["app"],"include_percentiles":false,"created_at":"2021-02-11T10:08:20.000705+00:00","updated_at":"2021-02-11T10:08:20.163768+00:00","metric_type":"distribution"}}}'
+    body: '{"data":{"type":"manage_tags","id":"goFeatureMetricsScenarioUpdateatagconfigurationreturnsOKresponselocal1614797943","attributes":{"tags":["app"],"include_percentiles":false,"created_at":"2021-03-03T18:59:03.809593+00:00","updated_at":"2021-03-03T18:59:03.931367+00:00","metric_type":"distribution"}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -92,12 +89,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Feb 2021 10:08:20 GMT
+      - Wed, 03 Mar 2021 18:59:03 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 18-Feb-2021 10:08:20 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -105,9 +99,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - nLnnBNvlCFDECRnZvzDb0z4sAO35G+IMidcAs8vrCKyjvsKWE8Yd9S3n6OjZ1qRN
+      - fIO2C4qGDheGHy4YbS+r3a3CXbh4cbRo7roILOimQyiHGjQdOat0cIpWCkupM1uX
       X-Dd-Version:
-      - "35.3888455"
+      - "35.4022232"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -115,9 +109,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "37"
+      - "48"
       X-Ratelimit-Reset:
-      - "40"
+      - "57"
     status: 200 OK
     code: 200
     duration: ""
@@ -130,14 +124,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteTagConfiguration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.17+dev (go go1.16; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "6885540550837415743"
+      - "4168303717162395779"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7923645226368004127"
-    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioUpdateaTagConfigurationreturnsOKresponselocal1613038099/tags
+      - "4024384465423180012"
+    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioUpdateatagconfigurationreturnsOKresponselocal1614797943/tags
     method: DELETE
   response:
     body: ""
@@ -151,20 +145,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Feb 2021 10:08:20 GMT
+      - Wed, 03 Mar 2021 18:59:04 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 18-Feb-2021 10:08:20 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
+      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
       X-Dd-Version:
-      - "35.3888455"
+      - "35.4022232"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -172,9 +163,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "36"
+      - "47"
       X-Ratelimit-Reset:
-      - "40"
+      - "56"
     status: 204 No Content
     code: 204
     duration: ""

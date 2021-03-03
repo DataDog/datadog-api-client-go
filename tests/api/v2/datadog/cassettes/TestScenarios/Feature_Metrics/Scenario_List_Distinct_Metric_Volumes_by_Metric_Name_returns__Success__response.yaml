@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016"]},"id":"goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016","type":"manage_tags"}}
+      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","goFeatureMetricsScenarioListdistinctmetricvolumesbymetricnamereturnsSuccessresponselocal1614797919"]},"id":"goFeatureMetricsScenarioListdistinctmetricvolumesbymetricnamereturnsSuccessresponselocal1614797919","type":"manage_tags"}}
     form: {}
     headers:
       Accept:
@@ -13,17 +13,17 @@ interactions:
       Dd-Operation-Id:
       - CreateTagConfiguration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.16; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.17+dev (go go1.16; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "6964417289148747032"
+      - "644472244233140511"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6673983223743865413"
-    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016/tags
+      - "6085205592482722303"
+    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListdistinctmetricvolumesbymetricnamereturnsSuccessresponselocal1614797919/tags
     method: POST
   response:
-    body: '{"data":{"type":"manage_tags","id":"goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016","attributes":{"tags":["datacenter","app","goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016"],"include_percentiles":false,"created_at":"2021-03-01T20:53:36.294160+00:00","updated_at":"2021-03-01T20:53:36.294160+00:00","metric_type":"distribution"}}}'
+    body: '{"data":{"type":"manage_tags","id":"goFeatureMetricsScenarioListdistinctmetricvolumesbymetricnamereturnsSuccessresponselocal1614797919","attributes":{"tags":["datacenter","app","goFeatureMetricsScenarioListdistinctmetricvolumesbymetricnamereturnsSuccessresponselocal1614797919"],"include_percentiles":false,"created_at":"2021-03-03T18:58:39.979755+00:00","updated_at":"2021-03-03T18:58:39.979755+00:00","metric_type":"distribution"}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Mar 2021 20:53:36 GMT
+      - Wed, 03 Mar 2021 18:58:40 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 2328yjLSqI4XmR1pVqrPRR/SFcQsbafjEpPmZx7/3PfxUK1nJQQsX+wrMelyVyj+
+      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
       X-Dd-Version:
-      - "35.4005111"
+      - "35.4022232"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -52,9 +52,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "40"
+      - "44"
       X-Ratelimit-Reset:
-      - "24"
+      - "21"
     status: 201 Created
     code: 201
     duration: ""
@@ -67,17 +67,17 @@ interactions:
       Dd-Operation-Id:
       - ListVolumesByMetricName
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.16; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.17+dev (go go1.16; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "5805794625542955031"
+      - "7714890943015683338"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6673983223743865413"
-    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016/volumes
+      - "6085205592482722303"
+    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListdistinctmetricvolumesbymetricnamereturnsSuccessresponselocal1614797919/volumes
     method: GET
   response:
-    body: '{"data":{"type":"metric_volumes","id":"goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016","attributes":{"indexed_volume":0,"ingested_volume":0}}}'
+    body: '{"data":{"type":"metric_volumes","id":"goFeatureMetricsScenarioListdistinctmetricvolumesbymetricnamereturnsSuccessresponselocal1614797919","attributes":{"indexed_volume":0,"ingested_volume":0}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -86,7 +86,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Mar 2021 20:53:36 GMT
+      - Wed, 03 Mar 2021 18:58:40 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -96,9 +96,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
+      - PhosSd3Ch1B6B0DXI71steKUi7XhPDttnPiIP1NdXTw0VJNWpoUnYyBmODS5ne3q
       X-Dd-Version:
-      - "35.4005111"
+      - "35.4022232"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -106,9 +106,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "585"
+      - "595"
       X-Ratelimit-Reset:
-      - "384"
+      - "80"
     status: 200 OK
     code: 200
     duration: ""
@@ -121,14 +121,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteTagConfiguration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.16; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.17+dev (go go1.16; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "8072471826663461911"
+      - "4727510939389989759"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6673983223743865413"
-    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListDistinctMetricVolumesbyMetricNamereturnsSuccessresponselocal1614632016/tags
+      - "6085205592482722303"
+    url: https://api.datadoghq.com/api/v2/metrics/goFeatureMetricsScenarioListdistinctmetricvolumesbymetricnamereturnsSuccessresponselocal1614797919/tags
     method: DELETE
   response:
     body: ""
@@ -142,7 +142,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Mar 2021 20:53:36 GMT
+      - Wed, 03 Mar 2021 18:58:40 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -150,9 +150,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
+      - mNzaoDhdDKO7t4QSrAe5X7pHd0bJND187D+vRbwoluXouE2m1UaQQX0RGCvRpLVE
       X-Dd-Version:
-      - "35.4005111"
+      - "35.4022232"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -160,9 +160,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "39"
+      - "43"
       X-Ratelimit-Reset:
-      - "24"
+      - "20"
     status: 204 No Content
     code: 204
     duration: ""
