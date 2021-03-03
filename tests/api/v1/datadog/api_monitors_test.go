@@ -29,19 +29,19 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 		},
 		Priority: datadog.PtrInt64(3),
 		Options: &datadog.MonitorOptions{
-			NotifyAudit:       datadog.PtrBool(false),
-			Locked:            datadog.PtrBool(false),
-			TimeoutH:          *datadog.NewNullableInt64(datadog.PtrInt64(60)),
-			RenotifyInterval:  *datadog.NewNullableInt64(datadog.PtrInt64(60)),
-			EnableLogsSample:  datadog.PtrBool(true),
+			NotifyAudit:          datadog.PtrBool(false),
+			Locked:               datadog.PtrBool(false),
+			TimeoutH:             *datadog.NewNullableInt64(datadog.PtrInt64(60)),
+			RenotifyInterval:     *datadog.NewNullableInt64(datadog.PtrInt64(60)),
+			EnableLogsSample:     datadog.PtrBool(true),
 			GroupbySimpleMonitor: datadog.PtrBool(true),
-			NoDataTimeframe:   *datadog.NewNullableInt64(nil),
-			NewHostDelay:      *datadog.NewNullableInt64(datadog.PtrInt64(600)),
-			RequireFullWindow: datadog.PtrBool(true),
-			NotifyNoData:      datadog.PtrBool(false),
-			IncludeTags:       datadog.PtrBool(true),
-			EvaluationDelay:   *datadog.NewNullableInt64(datadog.PtrInt64(700)),
-			EscalationMessage: datadog.PtrString("the situation has escalated"),
+			NoDataTimeframe:      *datadog.NewNullableInt64(nil),
+			NewHostDelay:         *datadog.NewNullableInt64(datadog.PtrInt64(600)),
+			RequireFullWindow:    datadog.PtrBool(true),
+			NotifyNoData:         datadog.PtrBool(false),
+			IncludeTags:          datadog.PtrBool(true),
+			EvaluationDelay:      *datadog.NewNullableInt64(datadog.PtrInt64(700)),
+			EscalationMessage:    datadog.PtrString("the situation has escalated"),
 			Thresholds: &datadog.MonitorThresholds{
 				Critical: datadog.PtrFloat64(2),
 				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
@@ -222,7 +222,7 @@ func TestMonitorSyntheticsGet(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create a synthetics API test to retrieve its corresponding monitor via GetMonitor (we're borrowing these from api_synthetics_test.go)
-	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
 	syntheticsTest, _, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", syntheticsTest, err.(datadog.GenericOpenAPIError).Body(), err)

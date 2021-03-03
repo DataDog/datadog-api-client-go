@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 1.0.0-beta.16 / 2021-03-02
+
+* [Added] Add groupby_simple_monitor option to monitors. See [#758](https://github.com/DataDog/datadog-api-client-go/pull/758).
+* [Added] Allow formula and functions in query value requests. See [#756](https://github.com/DataDog/datadog-api-client-go/pull/756).
+* [Added] Allow formula and functions in toplist requests. See [#753](https://github.com/DataDog/datadog-api-client-go/pull/753).
+* [Added] Add slack resource. See [#744](https://github.com/DataDog/datadog-api-client-go/pull/744).
+* [Added] Add detectionMethod and newValueOptions fields to security monitoring rules. See [#739](https://github.com/DataDog/datadog-api-client-go/pull/739).
+* [Added] Expose "event-v2 alert" monitor type. See [#738](https://github.com/DataDog/datadog-api-client-go/pull/738).
+* [Added] Add new US3 region. See [#737](https://github.com/DataDog/datadog-api-client-go/pull/737).
+* [Added] Add org_name field to usage attribution response. See [#736](https://github.com/DataDog/datadog-api-client-go/pull/736).
+* [Added] Add profile_metrics_query properties to dashboard widget requests. See [#728](https://github.com/DataDog/datadog-api-client-go/pull/728).
+* [Added] Add geomap widget to dashboards. See [#720](https://github.com/DataDog/datadog-api-client-go/pull/720).
+* [Added] Add v2 API for metric tag configuration. See [#718](https://github.com/DataDog/datadog-api-client-go/pull/718).
+* [Added] Add Lambda invocations usage to response. See [#716](https://github.com/DataDog/datadog-api-client-go/pull/716).
+* [Added] Remove unstable flag for logs apis. See [#709](https://github.com/DataDog/datadog-api-client-go/pull/709).
+* [Fixed] Add missing tlsVersion and minTlsVersion to Synthetics assertion types. See [#731](https://github.com/DataDog/datadog-api-client-go/pull/731).
+* [Fixed] Change analyzed_spans to spans in dashboard. See [#711](https://github.com/DataDog/datadog-api-client-go/pull/711).
+* [Changed] Rename objects throughout the code for consistency. See [#724](https://github.com/DataDog/datadog-api-client-go/pull/724).
+* [Changed] Rename objects for formula and functions to be more generic. See [#747](https://github.com/DataDog/datadog-api-client-go/pull/747).
+
 ## v1.0.0-beta.15 / 2021-02-08
 
 * [Added] Add restricted roles to monitor update. See [#691](https://github.com/DataDog/datadog-api-client-go/pull/691).
