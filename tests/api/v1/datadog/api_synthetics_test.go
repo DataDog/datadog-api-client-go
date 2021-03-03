@@ -124,10 +124,10 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 			},
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
 				datadog.SyntheticsConfigVariable{
-					Name: "PROPERTY",
+					Name:    "PROPERTY",
 					Example: "content-type",
 					Pattern: datadog.PtrString("content-type"),
-					Type: datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
 			Request: datadog.SyntheticsTestRequest{
@@ -137,13 +137,13 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 				Url:     datadog.PtrString("https://datadoghq.com"),
 				Certificate: &datadog.SyntheticsTestRequestCertificate{
 					Cert: &datadog.SyntheticsTestRequestCertificateItem{
-						Content: datadog.PtrString("cert-content"),
-						Filename: datadog.PtrString("cert-filename"),
+						Content:   datadog.PtrString("cert-content"),
+						Filename:  datadog.PtrString("cert-filename"),
 						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
 					},
 					Key: &datadog.SyntheticsTestRequestCertificateItem{
-						Content: datadog.PtrString("key-content"),
-						Filename: datadog.PtrString("key-filename"),
+						Content:   datadog.PtrString("key-content"),
+						Filename:  datadog.PtrString("key-filename"),
 						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
 					},
 				},
