@@ -356,7 +356,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
-				Name:       datadog.PtrString("query"),
+				Name:       *datadog.PtrString("query"),
 			},
 		},
 			{
@@ -372,7 +372,7 @@ func TestDashboardLifecycle(t *testing.T) {
 						Facet: "host",
 					}},
 					Indexes: &[]string{"*"},
-					Name:    datadog.PtrString("errors"),
+					Name:    *datadog.PtrString("errors"),
 				},
 			},
 			{
@@ -381,7 +381,7 @@ func TestDashboardLifecycle(t *testing.T) {
 					TextFilter: datadog.PtrString(""),
 					Metric:     "process.stat.cpu.total_pct",
 					Limit:      datadog.PtrInt64(10),
-					Name:       datadog.PtrString("process_query"),
+					Name:       *datadog.PtrString("process_query"),
 				},
 			},
 		}}})
@@ -749,7 +749,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
-				Name:       datadog.PtrString("query"),
+				Name:       *datadog.PtrString("query"),
 			},
 		},
 			{
@@ -765,7 +765,7 @@ func TestDashboardLifecycle(t *testing.T) {
 						Facet: "host",
 					}},
 					Indexes: &[]string{"*"},
-					Name:    datadog.PtrString("errors"),
+					Name:    *datadog.PtrString("errors"),
 				},
 			},
 			{
@@ -774,7 +774,7 @@ func TestDashboardLifecycle(t *testing.T) {
 					TextFilter: datadog.PtrString(""),
 					Metric:     "process.stat.cpu.total_pct",
 					Limit:      datadog.PtrInt64(10),
-					Name:       datadog.PtrString("process_query"),
+					Name:       *datadog.PtrString("process_query"),
 				},
 			},
 		}}})
@@ -822,7 +822,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
-				Name:       datadog.PtrString("query"),
+				Name:       *datadog.PtrString("query"),
 			},
 		},
 			{
@@ -838,7 +838,7 @@ func TestDashboardLifecycle(t *testing.T) {
 						Facet: "host",
 					}},
 					Indexes: &[]string{"*"},
-					Name:    datadog.PtrString("errors"),
+					Name:    *datadog.PtrString("errors"),
 				},
 			},
 			{
@@ -847,7 +847,7 @@ func TestDashboardLifecycle(t *testing.T) {
 					TextFilter: datadog.PtrString(""),
 					Metric:     "process.stat.cpu.total_pct",
 					Limit:      datadog.PtrInt64(10),
-					Name:       datadog.PtrString("process_query"),
+					Name:       *datadog.PtrString("process_query"),
 				},
 			},
 		}}})
