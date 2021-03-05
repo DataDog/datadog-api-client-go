@@ -1,0 +1,40 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetSlackIntegrationChannel
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4253702498303635984"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7970045317810326260"
+    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/go-TestSlackIntegrationGetChannelErrors-403_Forbidden-local-1614005868/channels/go-TestSlackIntegrationGetChannelErrors-403_Forbidden-local-1614005868
+    method: GET
+  response:
+    body: |
+      {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "170"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 22 Feb 2021 14:57:48 GMT
+      Via:
+      - haproxy
+    status: 403 Forbidden
+    code: 403
+    duration: ""

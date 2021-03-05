@@ -88,6 +88,8 @@ type APIClient struct {
 
 	ServiceLevelObjectivesApi *ServiceLevelObjectivesApiService
 
+	SlackIntegrationApi *SlackIntegrationApiService
+
 	SnapshotsApi *SnapshotsApiService
 
 	SyntheticsApi *SyntheticsApiService
@@ -136,6 +138,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.PagerDutyIntegrationApi = (*PagerDutyIntegrationApiService)(&c.common)
 	c.ServiceLevelObjectiveCorrectionsApi = (*ServiceLevelObjectiveCorrectionsApiService)(&c.common)
 	c.ServiceLevelObjectivesApi = (*ServiceLevelObjectivesApiService)(&c.common)
+	c.SlackIntegrationApi = (*SlackIntegrationApiService)(&c.common)
 	c.SnapshotsApi = (*SnapshotsApiService)(&c.common)
 	c.SyntheticsApi = (*SyntheticsApiService)(&c.common)
 	c.TagsApi = (*TagsApiService)(&c.common)
@@ -230,8 +233,8 @@ func parameterToJson(obj interface{}) (string, error) {
 	return string(jsonBuf), err
 }
 
-// callAPI do the request.
-func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
+// CallAPI do the request.
+func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	if c.cfg.Debug {
 		dump, err := httputil.DumpRequestOut(request, true)
 		if err != nil {
@@ -269,8 +272,8 @@ func (c *APIClient) GetConfig() *Configuration {
 	return c.cfg
 }
 
-// prepareRequest build the request
-func (c *APIClient) prepareRequest(
+// PrepareRequest build the request
+func (c *APIClient) PrepareRequest(
 	ctx context.Context,
 	path string, method string,
 	postBody interface{},

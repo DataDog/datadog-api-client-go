@@ -437,6 +437,36 @@
       "type": "idempotent"
     }
   },
+  "GetSlackIntegrationChannels": {
+    "tag": "Slack Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateSlackIntegrationChannel": {
+    "tag": "Slack Integration",
+    "undo": {
+      "type": "unsafe"
+    }
+  },
+  "RemoveSlackIntegrationChannel": {
+    "tag": "Slack Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetSlackIntegrationChannel": {
+    "tag": "Slack Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateSlackIntegrationChannel": {
+    "tag": "Slack Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListLogs": {
     "tag": "Logs",
     "undo": {
@@ -796,10 +826,28 @@
       "type": "unsafe"
     }
   },
+  "CreateSyntheticsAPITest": {
+    "tag": "Synthetics"
+  },
+  "UpdateAPITest": {
+    "tag": "Synthetics",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "CreateSyntheticsBrowserTest": {
+    "tag": "Synthetics"
+  },
   "GetBrowserTest": {
     "tag": "Synthetics",
     "undo": {
       "type": "safe"
+    }
+  },
+  "UpdateBrowserTest": {
+    "tag": "Synthetics",
+    "undo": {
+      "type": "idempotent"
     }
   },
   "GetBrowserTestLatestResults": {

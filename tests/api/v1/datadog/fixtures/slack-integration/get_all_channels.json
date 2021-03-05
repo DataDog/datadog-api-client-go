@@ -1,0 +1,29 @@
+[
+  {
+    "name":"#test-channel",
+    "display":{
+      "notified":true,
+      "message":false,
+      "snapshot":true,
+      "tags":false
+    }
+  },
+  {
+    "name":"#general",
+    "display":{
+      "notified":true,
+      "message":true,
+      "snapshot":true,
+      "tags":true
+    }
+  },
+  {
+    "name":"#events",
+    "display":{
+      "notified":true,
+      "message":true,
+      "snapshot":true,
+      "tags":true
+    }
+  }
+]

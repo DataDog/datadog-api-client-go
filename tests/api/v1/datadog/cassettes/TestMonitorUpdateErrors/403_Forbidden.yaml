@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateMonitor
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.5; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6723701454090441139"
+      - "1862789026656027508"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7346625148721226744"
+      - "8038526237270993388"
     url: https://api.datadoghq.com/api/v1/monitor/1234
     method: PUT
   response:
@@ -30,12 +30,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:32:54 GMT
+      - Fri, 26 Feb 2021 19:57:18 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""
