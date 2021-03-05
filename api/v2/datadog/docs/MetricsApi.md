@@ -4,11 +4,13 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTagConfiguration**](MetricsApi.md#CreateTagConfiguration) | **Post** /api/v2/metrics/{metric_name}/tags | Create a Tag Configuration
-[**DeleteTagConfiguration**](MetricsApi.md#DeleteTagConfiguration) | **Delete** /api/v2/metrics/{metric_name}/tags | Delete a Tag Configuration
-[**ListTagConfigurationByName**](MetricsApi.md#ListTagConfigurationByName) | **Get** /api/v2/metrics/{metric_name}/tags | List Tag Configuration by Name
-[**ListTagConfigurations**](MetricsApi.md#ListTagConfigurations) | **Get** /api/v2/metrics | List Tag Configurations
-[**UpdateTagConfiguration**](MetricsApi.md#UpdateTagConfiguration) | **Patch** /api/v2/metrics/{metric_name}/tags | Update a Tag Configuration
+[**CreateTagConfiguration**](MetricsApi.md#CreateTagConfiguration) | **Post** /api/v2/metrics/{metric_name}/tags | Create a tag configuration
+[**DeleteTagConfiguration**](MetricsApi.md#DeleteTagConfiguration) | **Delete** /api/v2/metrics/{metric_name}/tags | Delete a tag configuration
+[**ListTagConfigurationByName**](MetricsApi.md#ListTagConfigurationByName) | **Get** /api/v2/metrics/{metric_name}/tags | List tag configuration by name
+[**ListTagConfigurations**](MetricsApi.md#ListTagConfigurations) | **Get** /api/v2/metrics | List tag configurations
+[**ListTagsByMetricName**](MetricsApi.md#ListTagsByMetricName) | **Get** /api/v2/metrics/{metric_name}/all-tags | List tags by metric name
+[**ListVolumesByMetricName**](MetricsApi.md#ListVolumesByMetricName) | **Get** /api/v2/metrics/{metric_name}/volumes | List distinct metric volumes by metric name
+[**UpdateTagConfiguration**](MetricsApi.md#UpdateTagConfiguration) | **Patch** /api/v2/metrics/{metric_name}/tags | Update a tag configuration
 
 
 
@@ -16,7 +18,7 @@ Method | HTTP request | Description
 
 > MetricTagConfigurationResponse CreateTagConfiguration(ctx, metricName).Body(body).Execute()
 
-Create a Tag Configuration
+Create a tag configuration
 
 
 
@@ -113,7 +115,7 @@ Name | Type | Description  | Notes
 
 > DeleteTagConfiguration(ctx, metricName).Execute()
 
-Delete a Tag Configuration
+Delete a tag configuration
 
 
 
@@ -204,7 +206,7 @@ Name | Type | Description  | Notes
 
 > MetricTagConfigurationResponse ListTagConfigurationByName(ctx, metricName).Execute()
 
-List Tag Configuration by Name
+List tag configuration by name
 
 
 
@@ -299,7 +301,7 @@ Name | Type | Description  | Notes
 
 > MetricsAndMetricTagConfigurationsResponse ListTagConfigurations(ctx).FilterConfigured(filterConfigured).FilterTagsConfigured(filterTagsConfigured).FilterMetricType(filterMetricType).FilterIncludePercentiles(filterIncludePercentiles).Execute()
 
-List Tag Configurations
+List tag configurations
 
 
 
@@ -392,11 +394,201 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListTagsByMetricName
+
+> MetricAllTagsResponse ListTagsByMetricName(ctx, metricName).Execute()
+
+List tags by metric name
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
+    metricName := "dist.http.endpoint.request" // string | The name of the metric.
+
+    configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("ListTagsByMetricName", true)
+
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.MetricsApi.ListTagsByMetricName(ctx, metricName).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagsByMetricName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListTagsByMetricName`: MetricAllTagsResponse
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListTagsByMetricName:\n%s\n", response_content)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**metricName** | **string** | The name of the metric. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListTagsByMetricNameRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**MetricAllTagsResponse**](MetricAllTagsResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListVolumesByMetricName
+
+> MetricVolumesResponse ListVolumesByMetricName(ctx, metricName).Execute()
+
+List distinct metric volumes by metric name
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
+    metricName := "dist.http.endpoint.request" // string | The name of the metric.
+
+    configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("ListVolumesByMetricName", true)
+
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.MetricsApi.ListVolumesByMetricName(ctx, metricName).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListVolumesByMetricName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVolumesByMetricName`: MetricVolumesResponse
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListVolumesByMetricName:\n%s\n", response_content)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**metricName** | **string** | The name of the metric. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVolumesByMetricNameRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**MetricVolumesResponse**](MetricVolumesResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateTagConfiguration
 
 > MetricTagConfigurationResponse UpdateTagConfiguration(ctx, metricName).Body(body).Execute()
 
-Update a Tag Configuration
+Update a tag configuration
 
 
 
