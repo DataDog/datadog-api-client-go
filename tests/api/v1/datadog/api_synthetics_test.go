@@ -124,10 +124,10 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 			},
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
 				datadog.SyntheticsConfigVariable{
-					Name: "PROPERTY",
+					Name:    "PROPERTY",
 					Example: "content-type",
 					Pattern: datadog.PtrString("content-type"),
-					Type: datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
 			Request: &datadog.SyntheticsTestRequest{
@@ -137,13 +137,13 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 				Url:     datadog.PtrString("https://datadoghq.com"),
 				Certificate: &datadog.SyntheticsTestRequestCertificate{
 					Cert: &datadog.SyntheticsTestRequestCertificateItem{
-						Content: datadog.PtrString("cert-content"),
-						Filename: datadog.PtrString("cert-filename"),
+						Content:   datadog.PtrString("cert-content"),
+						Filename:  datadog.PtrString("cert-filename"),
 						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
 					},
 					Key: &datadog.SyntheticsTestRequestCertificateItem{
-						Content: datadog.PtrString("key-content"),
-						Filename: datadog.PtrString("key-filename"),
+						Content:   datadog.PtrString("key-content"),
+						Filename:  datadog.PtrString("key-filename"),
 						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
 					},
 				},
@@ -171,60 +171,60 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 }
 
 func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
-    return datadog.SyntheticsAPITest{
-        Config: &datadog.SyntheticsAPITestConfig{
-            Assertions: []datadog.SyntheticsAssertion{},
-            ConfigVariables: &[]datadog.SyntheticsConfigVariable{
-                datadog.SyntheticsConfigVariable{
-                    Name: "PROPERTY",
-                    Example: "content-type",
-                    Pattern: datadog.PtrString("content-type"),
-                    Type: datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
-                },
-            },
-            Steps: &[]datadog.SyntheticsAPIStep{
-            	datadog.SyntheticsAPIStep{
-            		Assertions: &[]datadog.SyntheticsAssertion{},
-            		Name: datadog.PtrString("First step"),
-            		Request: &datadog.SyntheticsTestRequest{
-            		    Headers: &map[string]string{"testingGoClient": "true"},
-            		    Method:  datadog.HTTPMETHOD_GET.Ptr(),
-            		    Timeout: datadog.PtrFloat64(10),
-            		    Url:     datadog.PtrString("https://datadoghq.com"),
-            		},
-            		Subtype: datadog.SYNTHETICSAPISTEPSUBTYPE_HTTP.Ptr(),
-            		ExtractedValues: &[]datadog.SyntheticsParsingOptions{
-            			datadog.SyntheticsParsingOptions{
-            				Name: datadog.PtrString("EXTRACTED_VALUE"),
-            				Parser: &datadog.SyntheticsGlobalVariableParseTestOptionsParser{
-            					Type: datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW,
-            				},
-            				Type:  datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER.Ptr(),
-            				Field: datadog.PtrString("content-type"),
-            			},
-            		},
-            	},
-            },
-        },
-        Locations: &[]string{"aws:us-east-2"},
-        Message:   datadog.PtrString("Go client testing Synthetics API test - this is message"),
-        Name:      tests.UniqueEntityName(ctx, t),
-        Options: &datadog.SyntheticsTestOptions{
-            AcceptSelfSigned:   datadog.PtrBool(false),
-            AllowInsecure:      datadog.PtrBool(true),
-            FollowRedirects:    datadog.PtrBool(true),
-            MinFailureDuration: datadog.PtrInt64(10),
-            MinLocationFailed:  datadog.PtrInt64(1),
-            Retry: &datadog.SyntheticsTestOptionsRetry{
-                Count:    datadog.PtrInt64(3),
-                Interval: datadog.PtrFloat64(10),
-            },
-            TickEvery: datadog.SYNTHETICSTICKINTERVAL_MINUTE.Ptr(),
-        },
-        Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_MULTI.Ptr(),
-        Tags:    &[]string{"testing:api"},
-        Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
-    }
+	return datadog.SyntheticsAPITest{
+		Config: &datadog.SyntheticsAPITestConfig{
+			Assertions: []datadog.SyntheticsAssertion{},
+			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
+				datadog.SyntheticsConfigVariable{
+					Name:    "PROPERTY",
+					Example: "content-type",
+					Pattern: datadog.PtrString("content-type"),
+					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+				},
+			},
+			Steps: &[]datadog.SyntheticsAPIStep{
+				datadog.SyntheticsAPIStep{
+					Assertions: &[]datadog.SyntheticsAssertion{},
+					Name:       datadog.PtrString("First step"),
+					Request: &datadog.SyntheticsTestRequest{
+						Headers: &map[string]string{"testingGoClient": "true"},
+						Method:  datadog.HTTPMETHOD_GET.Ptr(),
+						Timeout: datadog.PtrFloat64(10),
+						Url:     datadog.PtrString("https://datadoghq.com"),
+					},
+					Subtype: datadog.SYNTHETICSAPISTEPSUBTYPE_HTTP.Ptr(),
+					ExtractedValues: &[]datadog.SyntheticsParsingOptions{
+						datadog.SyntheticsParsingOptions{
+							Name: datadog.PtrString("EXTRACTED_VALUE"),
+							Parser: &datadog.SyntheticsVariableParser{
+								Type: datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW,
+							},
+							Type:  datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER.Ptr(),
+							Field: datadog.PtrString("content-type"),
+						},
+					},
+				},
+			},
+		},
+		Locations: &[]string{"aws:us-east-2"},
+		Message:   datadog.PtrString("Go client testing Synthetics API test - this is message"),
+		Name:      tests.UniqueEntityName(ctx, t),
+		Options: &datadog.SyntheticsTestOptions{
+			AcceptSelfSigned:   datadog.PtrBool(false),
+			AllowInsecure:      datadog.PtrBool(true),
+			FollowRedirects:    datadog.PtrBool(true),
+			MinFailureDuration: datadog.PtrInt64(10),
+			MinLocationFailed:  datadog.PtrInt64(1),
+			Retry: &datadog.SyntheticsTestOptionsRetry{
+				Count:    datadog.PtrInt64(3),
+				Interval: datadog.PtrFloat64(10),
+			},
+			TickEvery: datadog.SYNTHETICSTICKINTERVAL_MINUTE.Ptr(),
+		},
+		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_MULTI.Ptr(),
+		Tags:    &[]string{"testing:api"},
+		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+	}
 }
 
 func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
@@ -313,7 +313,7 @@ func getLegacyTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.S
 
 func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsBrowserTest {
 	return datadog.SyntheticsBrowserTest{
-		Config: &datadog.SyntheticsTestBrowserConfig{
+		Config: &datadog.SyntheticsBrowserTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{},
 			Request: datadog.SyntheticsTestRequest{
 				Method: datadog.HTTPMETHOD_GET.Ptr(),
@@ -1447,7 +1447,7 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 		Description:       "variable from test description",
 		ParseTestPublicId: datadog.PtrString(publicID),
 		ParseTestOptions: &datadog.SyntheticsGlobalVariableParseTestOptions{
-			Parser: datadog.SyntheticsGlobalVariableParseTestOptionsParser{
+			Parser: datadog.SyntheticsVariableParser{
 				Type: datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW,
 			},
 			Type:  datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER,
@@ -1644,31 +1644,31 @@ func TestSyntheticsBrowserTestEndpointLifecycle(t *testing.T) {
 }
 
 func TestSyntheticsAPIMultistepTestEndpointLifecycle(t *testing.T) {
-    ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
-    defer finish()
-    assert := tests.Assert(ctx, t)
+	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
 
-    // Create API test
-    testSyntheticsAPI := getTestSyntheticsAPIMultistep(ctx, t)
-    synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx).Body(testSyntheticsAPI).Execute()
-    if err != nil {
-        t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
-    }
-    publicID := synt.GetPublicId()
-    defer deleteSyntheticsTestIfExists(ctx, t, publicID)
-    assert.Equal(200, httpresp.StatusCode)
-    assert.Equal(testSyntheticsAPI.GetName(), synt.GetName())
+	// Create API test
+	testSyntheticsAPI := getTestSyntheticsAPIMultistep(ctx, t)
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx).Body(testSyntheticsAPI).Execute()
+	if err != nil {
+		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	publicID := synt.GetPublicId()
+	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(testSyntheticsAPI.GetName(), synt.GetName())
 
-    // Update API test
-    updatedName := fmt.Sprintf("%s-updated", testSyntheticsAPI.GetName())
-    synt.SetName(updatedName)
-    // if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
-    synt.MonitorId = nil
-    synt.PublicId = nil
-    synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID).Body(synt).Execute()
-    if err != nil {
-        t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
-    }
-    assert.Equal(200, httpresp.StatusCode)
-    assert.Equal(updatedName, synt.GetName())
+	// Update API test
+	updatedName := fmt.Sprintf("%s-updated", testSyntheticsAPI.GetName())
+	synt.SetName(updatedName)
+	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
+	synt.MonitorId = nil
+	synt.PublicId = nil
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID).Body(synt).Execute()
+	if err != nil {
+		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(updatedName, synt.GetName())
 }
