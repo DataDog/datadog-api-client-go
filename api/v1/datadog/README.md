@@ -568,6 +568,7 @@ Class | Method | HTTP request | Description
  - [SyntheticsCheckType](docs/SyntheticsCheckType.md)
  - [SyntheticsConfigVariable](docs/SyntheticsConfigVariable.md)
  - [SyntheticsConfigVariableType](docs/SyntheticsConfigVariableType.md)
+ - [SyntheticsCoreWebVitals](docs/SyntheticsCoreWebVitals.md)
  - [SyntheticsDeleteTestsPayload](docs/SyntheticsDeleteTestsPayload.md)
  - [SyntheticsDeleteTestsResponse](docs/SyntheticsDeleteTestsResponse.md)
  - [SyntheticsDeletedTest](docs/SyntheticsDeletedTest.md)

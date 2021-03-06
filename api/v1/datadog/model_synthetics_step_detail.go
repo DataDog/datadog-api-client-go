@@ -41,6 +41,8 @@ type SyntheticsStepDetail struct {
 	Url *string `json:"url,omitempty"`
 	// Value for the step.
 	Value *interface{} `json:"value,omitempty"`
+	// Array of Core Web Vitals metrics for the step.
+	VitalsMetrics *[]SyntheticsCoreWebVitals `json:"vitalsMetrics,omitempty"`
 	// Warning collected that didn't failed the step.
 	Warnings *[]SyntheticsStepDetailWarning `json:"warnings,omitempty"`
 }
@@ -542,6 +544,38 @@ func (o *SyntheticsStepDetail) SetValue(v interface{}) {
 	o.Value = &v
 }
 
+// GetVitalsMetrics returns the VitalsMetrics field value if set, zero value otherwise.
+func (o *SyntheticsStepDetail) GetVitalsMetrics() []SyntheticsCoreWebVitals {
+	if o == nil || o.VitalsMetrics == nil {
+		var ret []SyntheticsCoreWebVitals
+		return ret
+	}
+	return *o.VitalsMetrics
+}
+
+// GetVitalsMetricsOk returns a tuple with the VitalsMetrics field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsStepDetail) GetVitalsMetricsOk() (*[]SyntheticsCoreWebVitals, bool) {
+	if o == nil || o.VitalsMetrics == nil {
+		return nil, false
+	}
+	return o.VitalsMetrics, true
+}
+
+// HasVitalsMetrics returns a boolean if a field has been set.
+func (o *SyntheticsStepDetail) HasVitalsMetrics() bool {
+	if o != nil && o.VitalsMetrics != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVitalsMetrics gets a reference to the given []SyntheticsCoreWebVitals and assigns it to the VitalsMetrics field.
+func (o *SyntheticsStepDetail) SetVitalsMetrics(v []SyntheticsCoreWebVitals) {
+	o.VitalsMetrics = &v
+}
+
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetWarnings() []SyntheticsStepDetailWarning {
 	if o == nil || o.Warnings == nil {
@@ -620,6 +654,9 @@ func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
 	}
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
+	}
+	if o.VitalsMetrics != nil {
+		toSerialize["vitalsMetrics"] = o.VitalsMetrics
 	}
 	if o.Warnings != nil {
 		toSerialize["warnings"] = o.Warnings

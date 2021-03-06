@@ -952,7 +952,7 @@ func (r ApiListVolumesByMetricNameRequest) Execute() (MetricVolumesResponse, *_n
  * ListVolumesByMetricName List distinct metric volumes by metric name
  * View distinct metrics volumes for the given metric name.
 
-Custom distribution metrics will return both ingested and indexed custom metrics.
+Custom distribution metrics will return both ingested and indexed custom metric volumes.
 For Metrics without Limits beta customers, all metrics will return both ingested/indexed volumes.
 Custom metrics generated in-app from other products will return `null` for ingested volumes.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
