@@ -44,7 +44,7 @@ func (r ApiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteSLOResponse, *_net
 
 /*
  * CheckCanDeleteSLO Check if SLOs can be safely deleted
- * Check if a SLO can be safely deleted. For example,
+ * Check if an SLO can be safely deleted. For example,
 assure an SLO can be deleted without disrupting a dashboard.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiCheckCanDeleteSLORequest
@@ -216,7 +216,7 @@ func (r ApiCreateSLORequest) Execute() (SLOListResponse, *_nethttp.Response, err
 }
 
 /*
- * CreateSLO Create a SLO object
+ * CreateSLO Create an SLO object
  * Create a service level objective object.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiCreateSLORequest
@@ -380,7 +380,7 @@ func (r ApiDeleteSLORequest) Execute() (SLODeleteResponse, *_nethttp.Response, e
 }
 
 /*
- * DeleteSLO Delete a SLO
+ * DeleteSLO Delete an SLO
  * Permanently delete the specified service level objective object.
 
 If an SLO is used in a dashboard, the `DELETE /v1/slo/` endpoint returns
@@ -719,7 +719,7 @@ func (r ApiGetSLORequest) Execute() (SLOResponse, *_nethttp.Response, error) {
 }
 
 /*
- * GetSLO Get a SLO's details
+ * GetSLO Get an SLO's details
  * Get a service level objective object.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sloId The ID of the service level objective object.
@@ -1275,7 +1275,7 @@ func (r ApiUpdateSLORequest) Execute() (SLOListResponse, *_nethttp.Response, err
 }
 
 /*
- * UpdateSLO Update a SLO
+ * UpdateSLO Update an SLO
  * Update the specified service level objective object.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sloId The ID of the service level objective object.

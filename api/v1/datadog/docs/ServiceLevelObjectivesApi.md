@@ -5,13 +5,13 @@ All URIs are relative to *https://api.datadoghq.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CheckCanDeleteSLO**](ServiceLevelObjectivesApi.md#CheckCanDeleteSLO) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted
-[**CreateSLO**](ServiceLevelObjectivesApi.md#CreateSLO) | **Post** /api/v1/slo | Create a SLO object
-[**DeleteSLO**](ServiceLevelObjectivesApi.md#DeleteSLO) | **Delete** /api/v1/slo/{slo_id} | Delete a SLO
+[**CreateSLO**](ServiceLevelObjectivesApi.md#CreateSLO) | **Post** /api/v1/slo | Create an SLO object
+[**DeleteSLO**](ServiceLevelObjectivesApi.md#DeleteSLO) | **Delete** /api/v1/slo/{slo_id} | Delete an SLO
 [**DeleteSLOTimeframeInBulk**](ServiceLevelObjectivesApi.md#DeleteSLOTimeframeInBulk) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
-[**GetSLO**](ServiceLevelObjectivesApi.md#GetSLO) | **Get** /api/v1/slo/{slo_id} | Get a SLO&#39;s details
+[**GetSLO**](ServiceLevelObjectivesApi.md#GetSLO) | **Get** /api/v1/slo/{slo_id} | Get an SLO&#39;s details
 [**GetSLOHistory**](ServiceLevelObjectivesApi.md#GetSLOHistory) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
 [**ListSLOs**](ServiceLevelObjectivesApi.md#ListSLOs) | **Get** /api/v1/slo | Get all SLOs
-[**UpdateSLO**](ServiceLevelObjectivesApi.md#UpdateSLO) | **Put** /api/v1/slo/{slo_id} | Update a SLO
+[**UpdateSLO**](ServiceLevelObjectivesApi.md#UpdateSLO) | **Put** /api/v1/slo/{slo_id} | Update an SLO
 
 
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 > SLOListResponse CreateSLO(ctx).Body(body).Execute()
 
-Create a SLO object
+Create an SLO object
 
 
 
@@ -199,7 +199,7 @@ Name | Type | Description  | Notes
 
 > SLODeleteResponse DeleteSLO(ctx, sloId).Force(force).Execute()
 
-Delete a SLO
+Delete an SLO
 
 
 
@@ -385,7 +385,7 @@ Name | Type | Description  | Notes
 
 > SLOResponse GetSLO(ctx, sloId).Execute()
 
-Get a SLO's details
+Get an SLO's details
 
 
 
@@ -674,7 +674,7 @@ Name | Type | Description  | Notes
 
 > SLOListResponse UpdateSLO(ctx, sloId).Body(body).Execute()
 
-Update a SLO
+Update an SLO
 
 
 
