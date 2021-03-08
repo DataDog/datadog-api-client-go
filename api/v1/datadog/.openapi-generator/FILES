@@ -327,6 +327,8 @@ docs/SlackIntegrationApi.md
 docs/SlackIntegrationChannel.md
 docs/SlackIntegrationChannelDisplay.md
 docs/SnapshotsApi.md
+docs/SyntheticsAPIStep.md
+docs/SyntheticsAPIStepSubtype.md
 docs/SyntheticsAPITest.md
 docs/SyntheticsAPITestConfig.md
 docs/SyntheticsAPITestResultData.md
@@ -375,13 +377,13 @@ docs/SyntheticsGetAPITestLatestResultsResponse.md
 docs/SyntheticsGetBrowserTestLatestResultsResponse.md
 docs/SyntheticsGlobalVariable.md
 docs/SyntheticsGlobalVariableParseTestOptions.md
-docs/SyntheticsGlobalVariableParseTestOptionsParser.md
 docs/SyntheticsGlobalVariableParseTestOptionsType.md
 docs/SyntheticsGlobalVariableParserType.md
 docs/SyntheticsGlobalVariableValue.md
 docs/SyntheticsListTestsResponse.md
 docs/SyntheticsLocation.md
 docs/SyntheticsLocations.md
+docs/SyntheticsParsingOptions.md
 docs/SyntheticsPlayingTab.md
 docs/SyntheticsPrivateLocation.md
 docs/SyntheticsPrivateLocationCreationResponse.md
@@ -415,6 +417,7 @@ docs/SyntheticsTriggerCITestLocation.md
 docs/SyntheticsTriggerCITestRunResult.md
 docs/SyntheticsTriggerCITestsResponse.md
 docs/SyntheticsUpdateTestPauseStatusPayload.md
+docs/SyntheticsVariableParser.md
 docs/SyntheticsWarningType.md
 docs/TableWidgetCellDisplayMode.md
 docs/TableWidgetDefinition.md
@@ -827,6 +830,8 @@ model_slo_type.go
 model_slo_type_numeric.go
 model_slo_widget_definition.go
 model_slo_widget_definition_type.go
+model_synthetics_api_step.go
+model_synthetics_api_step_subtype.go
 model_synthetics_api_test_.go
 model_synthetics_api_test_config.go
 model_synthetics_api_test_result_data.go
@@ -874,13 +879,13 @@ model_synthetics_get_api_test_latest_results_response.go
 model_synthetics_get_browser_test_latest_results_response.go
 model_synthetics_global_variable.go
 model_synthetics_global_variable_parse_test_options.go
-model_synthetics_global_variable_parse_test_options_parser.go
 model_synthetics_global_variable_parse_test_options_type.go
 model_synthetics_global_variable_parser_type.go
 model_synthetics_global_variable_value.go
 model_synthetics_list_tests_response.go
 model_synthetics_location.go
 model_synthetics_locations.go
+model_synthetics_parsing_options.go
 model_synthetics_playing_tab.go
 model_synthetics_private_location.go
 model_synthetics_private_location_creation_response.go
@@ -914,6 +919,7 @@ model_synthetics_trigger_ci_test_location.go
 model_synthetics_trigger_ci_test_run_result.go
 model_synthetics_trigger_ci_tests_response.go
 model_synthetics_update_test_pause_status_payload.go
+model_synthetics_variable_parser.go
 model_synthetics_warning_type.go
 model_table_widget_cell_display_mode.go
 model_table_widget_definition.go

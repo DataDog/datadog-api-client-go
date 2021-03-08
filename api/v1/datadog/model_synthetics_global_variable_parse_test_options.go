@@ -15,16 +15,16 @@ import (
 // SyntheticsGlobalVariableParseTestOptions Parser options to use for retrieving a Synthetics global variable from a Synthetics Test. Used in conjunction with `parse_test_public_id`.
 type SyntheticsGlobalVariableParseTestOptions struct {
 	// When type is `http_header`, name of the header to use to extract the value.
-	Field  *string                                        `json:"field,omitempty"`
-	Parser SyntheticsGlobalVariableParseTestOptionsParser `json:"parser"`
-	Type   SyntheticsGlobalVariableParseTestOptionsType   `json:"type"`
+	Field  *string                                      `json:"field,omitempty"`
+	Parser SyntheticsVariableParser                     `json:"parser"`
+	Type   SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 }
 
 // NewSyntheticsGlobalVariableParseTestOptions instantiates a new SyntheticsGlobalVariableParseTestOptions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsGlobalVariableParseTestOptions(parser SyntheticsGlobalVariableParseTestOptionsParser, type_ SyntheticsGlobalVariableParseTestOptionsType) *SyntheticsGlobalVariableParseTestOptions {
+func NewSyntheticsGlobalVariableParseTestOptions(parser SyntheticsVariableParser, type_ SyntheticsGlobalVariableParseTestOptionsType) *SyntheticsGlobalVariableParseTestOptions {
 	this := SyntheticsGlobalVariableParseTestOptions{}
 	this.Parser = parser
 	this.Type = type_
@@ -72,9 +72,9 @@ func (o *SyntheticsGlobalVariableParseTestOptions) SetField(v string) {
 }
 
 // GetParser returns the Parser field value
-func (o *SyntheticsGlobalVariableParseTestOptions) GetParser() SyntheticsGlobalVariableParseTestOptionsParser {
+func (o *SyntheticsGlobalVariableParseTestOptions) GetParser() SyntheticsVariableParser {
 	if o == nil {
-		var ret SyntheticsGlobalVariableParseTestOptionsParser
+		var ret SyntheticsVariableParser
 		return ret
 	}
 
@@ -83,7 +83,7 @@ func (o *SyntheticsGlobalVariableParseTestOptions) GetParser() SyntheticsGlobalV
 
 // GetParserOk returns a tuple with the Parser field value
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariableParseTestOptions) GetParserOk() (*SyntheticsGlobalVariableParseTestOptionsParser, bool) {
+func (o *SyntheticsGlobalVariableParseTestOptions) GetParserOk() (*SyntheticsVariableParser, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *SyntheticsGlobalVariableParseTestOptions) GetParserOk() (*SyntheticsGlo
 }
 
 // SetParser sets field value
-func (o *SyntheticsGlobalVariableParseTestOptions) SetParser(v SyntheticsGlobalVariableParseTestOptionsParser) {
+func (o *SyntheticsGlobalVariableParseTestOptions) SetParser(v SyntheticsVariableParser) {
 	o.Parser = v
 }
 

@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | Pointer to **string** | When type is &#x60;http_header&#x60;, name of the header to use to extract the value. | [optional] 
-**Parser** | [**SyntheticsGlobalVariableParseTestOptionsParser**](SyntheticsGlobalVariableParseTestOptionsParser.md) |  | 
+**Parser** | [**SyntheticsVariableParser**](SyntheticsVariableParser.md) |  | 
 **Type** | [**SyntheticsGlobalVariableParseTestOptionsType**](SyntheticsGlobalVariableParseTestOptionsType.md) |  | 
 
 ## Methods
 
 ### NewSyntheticsGlobalVariableParseTestOptions
 
-`func NewSyntheticsGlobalVariableParseTestOptions(parser SyntheticsGlobalVariableParseTestOptionsParser, type_ SyntheticsGlobalVariableParseTestOptionsType, ) *SyntheticsGlobalVariableParseTestOptions`
+`func NewSyntheticsGlobalVariableParseTestOptions(parser SyntheticsVariableParser, type_ SyntheticsGlobalVariableParseTestOptionsType, ) *SyntheticsGlobalVariableParseTestOptions`
 
 NewSyntheticsGlobalVariableParseTestOptions instantiates a new SyntheticsGlobalVariableParseTestOptions object
 This constructor will assign default values to properties that have it defined,
@@ -54,20 +54,20 @@ HasField returns a boolean if a field has been set.
 
 ### GetParser
 
-`func (o *SyntheticsGlobalVariableParseTestOptions) GetParser() SyntheticsGlobalVariableParseTestOptionsParser`
+`func (o *SyntheticsGlobalVariableParseTestOptions) GetParser() SyntheticsVariableParser`
 
 GetParser returns the Parser field if non-nil, zero value otherwise.
 
 ### GetParserOk
 
-`func (o *SyntheticsGlobalVariableParseTestOptions) GetParserOk() (*SyntheticsGlobalVariableParseTestOptionsParser, bool)`
+`func (o *SyntheticsGlobalVariableParseTestOptions) GetParserOk() (*SyntheticsVariableParser, bool)`
 
 GetParserOk returns a tuple with the Parser field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParser
 
-`func (o *SyntheticsGlobalVariableParseTestOptions) SetParser(v SyntheticsGlobalVariableParseTestOptionsParser)`
+`func (o *SyntheticsGlobalVariableParseTestOptions) SetParser(v SyntheticsVariableParser)`
 
 SetParser sets Parser field to given value.
 
