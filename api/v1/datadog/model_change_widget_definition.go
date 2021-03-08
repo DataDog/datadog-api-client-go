@@ -43,7 +43,7 @@ func NewChangeWidgetDefinition(requests []ChangeWidgetRequest, type_ ChangeWidge
 // but it doesn't guarantee that properties required by API are set
 func NewChangeWidgetDefinitionWithDefaults() *ChangeWidgetDefinition {
 	this := ChangeWidgetDefinition{}
-	var type_ ChangeWidgetDefinitionType = "change"
+	var type_ ChangeWidgetDefinitionType = CHANGEWIDGETDEFINITIONTYPE_CHANGE
 	this.Type = type_
 	return &this
 }

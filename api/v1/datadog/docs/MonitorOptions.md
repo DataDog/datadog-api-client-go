@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Aggregation** | Pointer to [**MonitorOptionsAggregation**](MonitorOptions_aggregation.md) |  | [optional] 
+**Aggregation** | Pointer to [**MonitorOptionsAggregation**](MonitorOptionsAggregation.md) |  | [optional] 
 **DeviceIds** | Pointer to [**[]MonitorDeviceID**](MonitorDeviceID.md) | IDs of the device the Synthetics monitor is running on. | [optional] [readonly] 
 **EnableLogsSample** | Pointer to **bool** | Whether or not to send a log sample when the log monitor triggers. | [optional] 
 **EscalationMessage** | Pointer to **string** | A message to include with a re-notification. Supports the &#x60;@username&#x60; notification we allow elsewhere. Not applicable if &#x60;renotify_interval&#x60; is &#x60;None&#x60;. | [optional] [default to "none"]

@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | A list of custom links. | [optional] 
 **Requests** | [**[]GeomapWidgetRequest**](GeomapWidgetRequest.md) | Array of one request object to display in the widget. The request must contain a &#x60;group-by&#x60; tag whose value is a country ISO code.  See the [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json) for information about building the &#x60;REQUEST_SCHEMA&#x60;. | 
-**Style** | [**GeomapWidgetDefinitionStyle**](GeomapWidgetDefinition_style.md) |  | 
+**Style** | [**GeomapWidgetDefinitionStyle**](GeomapWidgetDefinitionStyle.md) |  | 
 **Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
 **Title** | Pointer to **string** | The title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | The size of the title. | [optional] 
-**Type** | [**GeomapWidgetDefinitionType**](GeomapWidgetDefinitionType.md) |  | [default to "geomap"]
-**View** | [**GeomapWidgetDefinitionView**](GeomapWidgetDefinition_view.md) |  | 
+**Type** | [**GeomapWidgetDefinitionType**](GeomapWidgetDefinitionType.md) |  | [default to GEOMAPWIDGETDEFINITIONTYPE_GEOMAP]
+**View** | [**GeomapWidgetDefinitionView**](GeomapWidgetDefinitionView.md) |  | 
 
 ## Methods
 

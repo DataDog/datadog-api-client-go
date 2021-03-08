@@ -26,7 +26,7 @@ type UserInvitationResponseData struct {
 // will change when the set of required properties is changed
 func NewUserInvitationResponseData() *UserInvitationResponseData {
 	this := UserInvitationResponseData{}
-	var type_ UserInvitationsType = "user_invitations"
+	var type_ UserInvitationsType = USERINVITATIONSTYPE_USER_INVITATIONS
 	this.Type = &type_
 	return &this
 }
@@ -36,7 +36,7 @@ func NewUserInvitationResponseData() *UserInvitationResponseData {
 // but it doesn't guarantee that properties required by API are set
 func NewUserInvitationResponseDataWithDefaults() *UserInvitationResponseData {
 	this := UserInvitationResponseData{}
-	var type_ UserInvitationsType = "user_invitations"
+	var type_ UserInvitationsType = USERINVITATIONSTYPE_USER_INVITATIONS
 	this.Type = &type_
 	return &this
 }

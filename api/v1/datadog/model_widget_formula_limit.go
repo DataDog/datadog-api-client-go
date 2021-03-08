@@ -25,7 +25,7 @@ type WidgetFormulaLimit struct {
 // will change when the set of required properties is changed
 func NewWidgetFormulaLimit() *WidgetFormulaLimit {
 	this := WidgetFormulaLimit{}
-	var order QuerySortOrder = "desc"
+	var order QuerySortOrder = QUERYSORTORDER_DESC
 	this.Order = &order
 	return &this
 }
@@ -35,7 +35,7 @@ func NewWidgetFormulaLimit() *WidgetFormulaLimit {
 // but it doesn't guarantee that properties required by API are set
 func NewWidgetFormulaLimitWithDefaults() *WidgetFormulaLimit {
 	this := WidgetFormulaLimit{}
-	var order QuerySortOrder = "desc"
+	var order QuerySortOrder = QUERYSORTORDER_DESC
 	this.Order = &order
 	return &this
 }

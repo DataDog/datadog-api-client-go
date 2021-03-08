@@ -17,7 +17,7 @@ type FormulaAndFunctionMetricQueryDefinition struct {
 	Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
 	DataSource FormulaAndFunctionMetricDataSource   `json:"data_source"`
 	// Name of the query for use in formulas.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Metrics query definition.
 	Query string `json:"query"`
 }
@@ -26,9 +26,10 @@ type FormulaAndFunctionMetricQueryDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFormulaAndFunctionMetricQueryDefinition(dataSource FormulaAndFunctionMetricDataSource, query string) *FormulaAndFunctionMetricQueryDefinition {
+func NewFormulaAndFunctionMetricQueryDefinition(dataSource FormulaAndFunctionMetricDataSource, name string, query string) *FormulaAndFunctionMetricQueryDefinition {
 	this := FormulaAndFunctionMetricQueryDefinition{}
 	this.DataSource = dataSource
+	this.Name = name
 	this.Query = query
 	return &this
 }
@@ -97,36 +98,28 @@ func (o *FormulaAndFunctionMetricQueryDefinition) SetDataSource(v FormulaAndFunc
 	o.DataSource = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *FormulaAndFunctionMetricQueryDefinition) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionMetricQueryDefinition) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *FormulaAndFunctionMetricQueryDefinition) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *FormulaAndFunctionMetricQueryDefinition) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetQuery returns the Query field value
@@ -161,7 +154,7 @@ func (o FormulaAndFunctionMetricQueryDefinition) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["data_source"] = o.DataSource
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
 	if true {

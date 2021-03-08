@@ -44,7 +44,7 @@ func NewLogsArchiveDestinationAzure(container string, integration LogsArchiveInt
 // but it doesn't guarantee that properties required by API are set
 func NewLogsArchiveDestinationAzureWithDefaults() *LogsArchiveDestinationAzure {
 	this := LogsArchiveDestinationAzure{}
-	var type_ LogsArchiveDestinationAzureType = "azure"
+	var type_ LogsArchiveDestinationAzureType = LOGSARCHIVEDESTINATIONAZURETYPE_AZURE
 	this.Type = type_
 	return &this
 }

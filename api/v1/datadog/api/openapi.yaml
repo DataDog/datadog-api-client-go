@@ -10315,6 +10315,7 @@ components:
       required:
       - compute
       - data_source
+      - name
       type: object
     FormulaAndFunctionEventQueryGroupBy:
       description: List of objects used to group by.
@@ -10399,6 +10400,7 @@ components:
           type: string
       required:
       - data_source
+      - name
       - query
       type: object
     FormulaAndFunctionProcessQueryDataSource:
@@ -10430,6 +10432,7 @@ components:
           type: string
         name:
           description: Name of query for use in formulas.
+          example: query_errors
           type: string
         sort:
           $ref: '#/components/schemas/QuerySortOrder'
@@ -10445,6 +10448,7 @@ components:
       required:
       - data_source
       - metric
+      - name
       type: object
     FormulaAndFunctionQueryDefinition:
       description: A formula and function query.
@@ -16417,7 +16421,7 @@ components:
         thumbnailsBucketKey: true
         browserVersion: browserVersion
         receivedEmailCount: 5
-        timeToInteractive: 3.616076749251911
+        timeToInteractive: 4.145608029883936
         passed: true
         error: error
         device:
@@ -16438,6 +16442,13 @@ components:
           url: url
           skipped: true
           duration: 2.3021358869347655
+          vitalsMetrics:
+          - lcp: 2
+            cls: 3
+            url: url
+          - lcp: 2
+            cls: 3
+            url: url
           browserErrors:
           - name: ""
             description: ""
@@ -16461,6 +16472,13 @@ components:
           url: url
           skipped: true
           duration: 2.3021358869347655
+          vitalsMetrics:
+          - lcp: 2
+            cls: 3
+            url: url
+          - lcp: 2
+            cls: 3
+            url: url
           browserErrors:
           - name: ""
             description: ""
@@ -16523,7 +16541,7 @@ components:
           thumbnailsBucketKey: true
           browserVersion: browserVersion
           receivedEmailCount: 5
-          timeToInteractive: 3.616076749251911
+          timeToInteractive: 4.145608029883936
           passed: true
           error: error
           device:
@@ -16544,6 +16562,13 @@ components:
             url: url
             skipped: true
             duration: 2.3021358869347655
+            vitalsMetrics:
+            - lcp: 2
+              cls: 3
+              url: url
+            - lcp: 2
+              cls: 3
+              url: url
             browserErrors:
             - name: ""
               description: ""
@@ -16567,6 +16592,13 @@ components:
             url: url
             skipped: true
             duration: 2.3021358869347655
+            vitalsMetrics:
+            - lcp: 2
+              cls: 3
+              url: url
+            - lcp: 2
+              cls: 3
+              url: url
             browserErrors:
             - name: ""
               description: ""
@@ -16951,6 +16983,25 @@ components:
       type: string
       x-enum-varnames:
       - TEXT
+    SyntheticsCoreWebVitals:
+      description: Core Web Vitals attached to a browser test step.
+      example:
+        lcp: 2
+        cls: 3
+        url: url
+      properties:
+        cls:
+          description: Cumulative Layout Shift.
+          format: int64
+          type: integer
+        lcp:
+          description: Largest Contentful Paint in milliseconds.
+          format: int64
+          type: integer
+        url:
+          description: URL attached to the metrics.
+          type: string
+      type: object
     SyntheticsDeleteTestsPayload:
       description: |-
         A JSON list of the ID or IDs of the Synthetic tests that you want
@@ -17642,6 +17693,13 @@ components:
         url: url
         skipped: true
         duration: 2.3021358869347655
+        vitalsMetrics:
+        - lcp: 2
+          cls: 3
+          url: url
+        - lcp: 2
+          cls: 3
+          url: url
         browserErrors:
         - name: ""
           description: ""
@@ -17705,6 +17763,11 @@ components:
         value:
           description: Value for the step.
           type: object
+        vitalsMetrics:
+          description: Array of Core Web Vitals metrics for the step.
+          items:
+            $ref: '#/components/schemas/SyntheticsCoreWebVitals'
+          type: array
         warnings:
           description: Warning collected that didn't failed the step.
           items:

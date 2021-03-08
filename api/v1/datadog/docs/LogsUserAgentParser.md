@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Sources** | **[]string** | Array of source attributes. | [default to ["http.useragent"]]
 **Target** | **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "http.useragent_details"]
-**Type** | [**LogsUserAgentParserType**](LogsUserAgentParserType.md) |  | [default to "user-agent-parser"]
+**Type** | [**LogsUserAgentParserType**](LogsUserAgentParserType.md) |  | [default to LOGSUSERAGENTPARSERTYPE_USER_AGENT_PARSER]
 
 ## Methods
 

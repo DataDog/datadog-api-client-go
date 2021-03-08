@@ -45,7 +45,7 @@ func NewDistributionWidgetDefinition(requests []DistributionWidgetRequest, type_
 // but it doesn't guarantee that properties required by API are set
 func NewDistributionWidgetDefinitionWithDefaults() *DistributionWidgetDefinition {
 	this := DistributionWidgetDefinition{}
-	var type_ DistributionWidgetDefinitionType = "distribution"
+	var type_ DistributionWidgetDefinitionType = DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION
 	this.Type = type_
 	return &this
 }

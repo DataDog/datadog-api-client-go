@@ -27,7 +27,7 @@ type FormulaAndFunctionEventQueryGroupBySort struct {
 func NewFormulaAndFunctionEventQueryGroupBySort(aggregation FormulaAndFunctionEventAggregation) *FormulaAndFunctionEventQueryGroupBySort {
 	this := FormulaAndFunctionEventQueryGroupBySort{}
 	this.Aggregation = aggregation
-	var order QuerySortOrder = "desc"
+	var order QuerySortOrder = QUERYSORTORDER_DESC
 	this.Order = &order
 	return &this
 }
@@ -37,7 +37,7 @@ func NewFormulaAndFunctionEventQueryGroupBySort(aggregation FormulaAndFunctionEv
 // but it doesn't guarantee that properties required by API are set
 func NewFormulaAndFunctionEventQueryGroupBySortWithDefaults() *FormulaAndFunctionEventQueryGroupBySort {
 	this := FormulaAndFunctionEventQueryGroupBySort{}
-	var order QuerySortOrder = "desc"
+	var order QuerySortOrder = QUERYSORTORDER_DESC
 	this.Order = &order
 	return &this
 }

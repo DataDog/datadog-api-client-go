@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Description** | **string** | Description of the global variable. | 
 **Id** | Pointer to **string** | Unique identifier of the global variable. | [optional] [readonly] 
 **Name** | **string** | Name of the global variable. | 
-**ParseTestOptions** | Pointer to [**SyntheticsGlobalVariableParseTestOptions**](SyntheticsGlobalVariable_parse_test_options.md) |  | [optional] 
+**ParseTestOptions** | Pointer to [**SyntheticsGlobalVariableParseTestOptions**](SyntheticsGlobalVariableParseTestOptions.md) |  | [optional] 
 **ParseTestPublicId** | Pointer to **string** | A Synthetic test ID to use as a test to generate the variable value. | [optional] 
 **Tags** | **[]string** | Tags of the global variable. | 
 **Value** | [**SyntheticsGlobalVariableValue**](SyntheticsGlobalVariableValue.md) |  | 

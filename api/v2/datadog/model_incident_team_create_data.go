@@ -34,7 +34,7 @@ func NewIncidentTeamCreateData(type_ IncidentTeamType) *IncidentTeamCreateData {
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentTeamCreateDataWithDefaults() *IncidentTeamCreateData {
 	this := IncidentTeamCreateData{}
-	var type_ IncidentTeamType = "teams"
+	var type_ IncidentTeamType = INCIDENTTEAMTYPE_TEAMS
 	this.Type = type_
 	return &this
 }

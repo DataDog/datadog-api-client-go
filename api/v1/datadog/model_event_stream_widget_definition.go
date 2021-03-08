@@ -44,7 +44,7 @@ func NewEventStreamWidgetDefinition(query string, type_ EventStreamWidgetDefinit
 // but it doesn't guarantee that properties required by API are set
 func NewEventStreamWidgetDefinitionWithDefaults() *EventStreamWidgetDefinition {
 	this := EventStreamWidgetDefinition{}
-	var type_ EventStreamWidgetDefinitionType = "event_stream"
+	var type_ EventStreamWidgetDefinitionType = EVENTSTREAMWIDGETDEFINITIONTYPE_EVENT_STREAM
 	this.Type = type_
 	return &this
 }

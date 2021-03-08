@@ -25,7 +25,7 @@ type RelationshipToPermissionData struct {
 // will change when the set of required properties is changed
 func NewRelationshipToPermissionData() *RelationshipToPermissionData {
 	this := RelationshipToPermissionData{}
-	var type_ PermissionsType = "permissions"
+	var type_ PermissionsType = PERMISSIONSTYPE_PERMISSIONS
 	this.Type = &type_
 	return &this
 }
@@ -35,7 +35,7 @@ func NewRelationshipToPermissionData() *RelationshipToPermissionData {
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToPermissionDataWithDefaults() *RelationshipToPermissionData {
 	this := RelationshipToPermissionData{}
-	var type_ PermissionsType = "permissions"
+	var type_ PermissionsType = PERMISSIONSTYPE_PERMISSIONS
 	this.Type = &type_
 	return &this
 }

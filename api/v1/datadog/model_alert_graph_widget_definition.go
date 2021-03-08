@@ -43,7 +43,7 @@ func NewAlertGraphWidgetDefinition(alertId string, type_ AlertGraphWidgetDefinit
 // but it doesn't guarantee that properties required by API are set
 func NewAlertGraphWidgetDefinitionWithDefaults() *AlertGraphWidgetDefinition {
 	this := AlertGraphWidgetDefinition{}
-	var type_ AlertGraphWidgetDefinitionType = "alert_graph"
+	var type_ AlertGraphWidgetDefinitionType = ALERTGRAPHWIDGETDEFINITIONTYPE_ALERT_GRAPH
 	this.Type = type_
 	return &this
 }

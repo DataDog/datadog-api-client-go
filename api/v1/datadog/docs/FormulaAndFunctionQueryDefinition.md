@@ -6,16 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Aggregator** | Pointer to [**FormulaAndFunctionMetricAggregation**](FormulaAndFunctionMetricAggregation.md) |  | [optional] 
 **DataSource** | [**FormulaAndFunctionProcessQueryDataSource**](FormulaAndFunctionProcessQueryDataSource.md) |  | 
-**Name** | Pointer to **string** | Name of query for use in formulas. | [optional] 
+**Name** | **string** | Name of query for use in formulas. | 
 **Query** | **string** | Metrics query definition. | 
-**Compute** | [**FormulaAndFunctionEventQueryDefinitionCompute**](FormulaAndFunctionEventQueryDefinition_compute.md) |  | 
+**Compute** | [**FormulaAndFunctionEventQueryDefinitionCompute**](FormulaAndFunctionEventQueryDefinitionCompute.md) |  | 
 **GroupBy** | Pointer to [**[]FormulaAndFunctionEventQueryGroupBy**](FormulaAndFunctionEventQueryGroupBy.md) | Group by options. | [optional] 
 **Indexes** | Pointer to **[]string** | An array of index names to query in the stream. Omit or use &#x60;[]&#x60; to query all indexes at once. | [optional] 
-**Search** | Pointer to [**FormulaAndFunctionEventQueryDefinitionSearch**](FormulaAndFunctionEventQueryDefinition_search.md) |  | [optional] 
+**Search** | Pointer to [**FormulaAndFunctionEventQueryDefinitionSearch**](FormulaAndFunctionEventQueryDefinitionSearch.md) |  | [optional] 
 **IsNormalizedCpu** | Pointer to **bool** | Whether to normalize the CPU percentages. | [optional] 
 **Limit** | Pointer to **int64** | Number of hits to return. | [optional] 
 **Metric** | **string** | Process metric name. | 
-**Sort** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to "desc"]
+**Sort** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to QUERYSORTORDER_DESC]
 **TagFilters** | Pointer to **[]string** | An array of tags to filter by. | [optional] 
 **TextFilter** | Pointer to **string** | Text to use as filter. | [optional] 
 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewFormulaAndFunctionQueryDefinition
 
-`func NewFormulaAndFunctionQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, query string, compute FormulaAndFunctionEventQueryDefinitionCompute, metric string, ) *FormulaAndFunctionQueryDefinition`
+`func NewFormulaAndFunctionQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, name string, query string, compute FormulaAndFunctionEventQueryDefinitionCompute, metric string, ) *FormulaAndFunctionQueryDefinition`
 
 NewFormulaAndFunctionQueryDefinition instantiates a new FormulaAndFunctionQueryDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -102,11 +102,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *FormulaAndFunctionQueryDefinition) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetQuery
 

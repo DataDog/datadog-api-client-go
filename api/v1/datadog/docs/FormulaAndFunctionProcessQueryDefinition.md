@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **IsNormalizedCpu** | Pointer to **bool** | Whether to normalize the CPU percentages. | [optional] 
 **Limit** | Pointer to **int64** | Number of hits to return. | [optional] 
 **Metric** | **string** | Process metric name. | 
-**Name** | Pointer to **string** | Name of query for use in formulas. | [optional] 
-**Sort** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to "desc"]
+**Name** | **string** | Name of query for use in formulas. | 
+**Sort** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to QUERYSORTORDER_DESC]
 **TagFilters** | Pointer to **[]string** | An array of tags to filter by. | [optional] 
 **TextFilter** | Pointer to **string** | Text to use as filter. | [optional] 
 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewFormulaAndFunctionProcessQueryDefinition
 
-`func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, metric string, ) *FormulaAndFunctionProcessQueryDefinition`
+`func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, metric string, name string, ) *FormulaAndFunctionProcessQueryDefinition`
 
 NewFormulaAndFunctionProcessQueryDefinition instantiates a new FormulaAndFunctionProcessQueryDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -167,11 +167,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *FormulaAndFunctionProcessQueryDefinition) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetSort
 

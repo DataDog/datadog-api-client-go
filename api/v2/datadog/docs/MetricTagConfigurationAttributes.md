@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | Timestamp when the tag configuration was created. | [optional] 
 **IncludePercentiles** | Pointer to **bool** | Toggle to turn on/off percentile aggregations for distribution metrics. Only present when the &#x60;metric_type&#x60; is &#x60;distribution&#x60;. | [optional] 
-**MetricType** | Pointer to [**MetricTagConfigurationMetricTypes**](MetricTagConfigurationMetricTypes.md) |  | [optional] [default to "gauge"]
+**MetricType** | Pointer to [**MetricTagConfigurationMetricTypes**](MetricTagConfigurationMetricTypes.md) |  | [optional] [default to METRICTAGCONFIGURATIONMETRICTYPES_GAUGE]
 **ModifiedAt** | Pointer to **time.Time** | Timestamp when the tag configuration was last modified. | [optional] 
 **Tags** | Pointer to **[]string** | List of tag keys on which to group. | [optional] 
 

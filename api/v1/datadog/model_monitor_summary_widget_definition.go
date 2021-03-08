@@ -52,7 +52,7 @@ func NewMonitorSummaryWidgetDefinition(query string, type_ MonitorSummaryWidgetD
 // but it doesn't guarantee that properties required by API are set
 func NewMonitorSummaryWidgetDefinitionWithDefaults() *MonitorSummaryWidgetDefinition {
 	this := MonitorSummaryWidgetDefinition{}
-	var type_ MonitorSummaryWidgetDefinitionType = "manage_status"
+	var type_ MonitorSummaryWidgetDefinitionType = MONITORSUMMARYWIDGETDEFINITIONTYPE_MANAGE_STATUS
 	this.Type = type_
 	return &this
 }

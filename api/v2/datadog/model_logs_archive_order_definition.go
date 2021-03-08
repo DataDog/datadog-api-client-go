@@ -34,7 +34,7 @@ func NewLogsArchiveOrderDefinition(attributes LogsArchiveOrderAttributes, type_ 
 // but it doesn't guarantee that properties required by API are set
 func NewLogsArchiveOrderDefinitionWithDefaults() *LogsArchiveOrderDefinition {
 	this := LogsArchiveOrderDefinition{}
-	var type_ LogsArchiveOrderDefinitionType = "archive_order"
+	var type_ LogsArchiveOrderDefinitionType = LOGSARCHIVEORDERDEFINITIONTYPE_ARCHIVE_ORDER
 	this.Type = type_
 	return &this
 }

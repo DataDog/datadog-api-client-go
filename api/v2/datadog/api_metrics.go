@@ -9,6 +9,7 @@
 package datadog
 
 import (
+	"bytes"
 	_context "context"
 	_fmt "fmt"
 	_ioutil "io/ioutil"
@@ -157,6 +158,7 @@ func (a *MetricsApiService) CreateTagConfigurationExecute(r ApiCreateTagConfigur
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -338,6 +340,7 @@ func (a *MetricsApiService) DeleteTagConfigurationExecute(r ApiDeleteTagConfigur
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -501,6 +504,7 @@ func (a *MetricsApiService) ListTagConfigurationByNameExecute(r ApiListTagConfig
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -703,6 +707,7 @@ func (a *MetricsApiService) ListTagConfigurationsExecute(r ApiListTagConfigurati
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -875,6 +880,7 @@ func (a *MetricsApiService) ListTagsByMetricNameExecute(r ApiListTagsByMetricNam
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -952,7 +958,7 @@ func (r ApiListVolumesByMetricNameRequest) Execute() (MetricVolumesResponse, *_n
  * ListVolumesByMetricName List distinct metric volumes by metric name
  * View distinct metrics volumes for the given metric name.
 
-Custom distribution metrics will return both ingested and indexed custom metrics.
+Custom distribution metrics will return both ingested and indexed custom metric volumes.
 For Metrics without Limits beta customers, all metrics will return both ingested/indexed volumes.
 Custom metrics generated in-app from other products will return `null` for ingested volumes.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1061,6 +1067,7 @@ func (a *MetricsApiService) ListVolumesByMetricNameExecute(r ApiListVolumesByMet
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1255,6 +1262,7 @@ func (a *MetricsApiService) UpdateTagConfigurationExecute(r ApiUpdateTagConfigur
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

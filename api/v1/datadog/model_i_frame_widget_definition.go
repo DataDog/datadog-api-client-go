@@ -35,7 +35,7 @@ func NewIFrameWidgetDefinition(type_ IFrameWidgetDefinitionType, url string) *IF
 // but it doesn't guarantee that properties required by API are set
 func NewIFrameWidgetDefinitionWithDefaults() *IFrameWidgetDefinition {
 	this := IFrameWidgetDefinition{}
-	var type_ IFrameWidgetDefinitionType = "iframe"
+	var type_ IFrameWidgetDefinitionType = IFRAMEWIDGETDEFINITIONTYPE_IFRAME
 	this.Type = type_
 	return &this
 }

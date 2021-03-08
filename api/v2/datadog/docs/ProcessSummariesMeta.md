@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Page** | Pointer to [**ProcessSummariesMetaPage**](ProcessSummariesMeta_page.md) |  | [optional] 
+**Page** | Pointer to [**ProcessSummariesMetaPage**](ProcessSummariesMetaPage.md) |  | [optional] 
 
 ## Methods
 

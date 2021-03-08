@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to [**IncidentFieldAttributesSingleValueType**](IncidentFieldAttributesSingleValueType.md) |  | [optional] [default to "dropdown"]
+**Type** | Pointer to [**IncidentFieldAttributesSingleValueType**](IncidentFieldAttributesSingleValueType.md) |  | [optional] [default to INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN]
 **Value** | Pointer to **string** | The single value selected for this field. | [optional] 
 
 ## Methods

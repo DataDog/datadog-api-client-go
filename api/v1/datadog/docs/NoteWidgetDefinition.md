@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TickEdge** | Pointer to [**WidgetTickEdge**](WidgetTickEdge.md) |  | [optional] 
 **TickPos** | Pointer to **string** | Where to position the tick on an edge. | [optional] 
-**Type** | [**NoteWidgetDefinitionType**](NoteWidgetDefinitionType.md) |  | [default to "note"]
+**Type** | [**NoteWidgetDefinitionType**](NoteWidgetDefinitionType.md) |  | [default to NOTEWIDGETDEFINITIONTYPE_NOTE]
 
 ## Methods
 

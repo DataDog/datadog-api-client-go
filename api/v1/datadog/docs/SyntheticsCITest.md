@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **FollowRedirects** | Pointer to **bool** | For API HTTP test, whether or not the test should follow redirects. | [optional] 
 **Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
 **Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
-**Metadata** | Pointer to [**SyntheticsCITestMetadata**](SyntheticsCITest_metadata.md) |  | [optional] 
+**Metadata** | Pointer to [**SyntheticsCITestMetadata**](SyntheticsCITestMetadata.md) |  | [optional] 
 **PublicId** | **string** | The public ID of the Synthetics test to trigger. | 
 **Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |  | [optional] 
 **StartUrl** | Pointer to **string** | Starting URL for the browser test. | [optional] 

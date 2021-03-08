@@ -36,7 +36,7 @@ func NewRoleUpdateResponseData(type_ RolesType) *RoleUpdateResponseData {
 // but it doesn't guarantee that properties required by API are set
 func NewRoleUpdateResponseDataWithDefaults() *RoleUpdateResponseData {
 	this := RoleUpdateResponseData{}
-	var type_ RolesType = "roles"
+	var type_ RolesType = ROLESTYPE_ROLES
 	this.Type = type_
 	return &this
 }

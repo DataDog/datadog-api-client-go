@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Display** | Pointer to [**SlackIntegrationChannelDisplay**](SlackIntegrationChannel_display.md) |  | [optional] 
+**Display** | Pointer to [**SlackIntegrationChannelDisplay**](SlackIntegrationChannelDisplay.md) |  | [optional] 
 **Name** | Pointer to **string** | Your channel name. | [optional] 
 
 ## Methods

@@ -43,7 +43,7 @@ func NewLogsServiceRemapperWithDefaults() *LogsServiceRemapper {
 	this := LogsServiceRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsServiceRemapperType = "service-remapper"
+	var type_ LogsServiceRemapperType = LOGSSERVICEREMAPPERTYPE_SERVICE_REMAPPER
 	this.Type = type_
 	return &this
 }

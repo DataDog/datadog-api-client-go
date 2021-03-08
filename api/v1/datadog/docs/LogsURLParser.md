@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **NormalizeEndingSlashes** | Pointer to **NullableBool** | Normalize the ending slashes or not. | [optional] [default to false]
 **Sources** | **[]string** | Array of source attributes. | [default to ["http.url"]]
 **Target** | **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "http.url_details"]
-**Type** | [**LogsURLParserType**](LogsURLParserType.md) |  | [default to "url-parser"]
+**Type** | [**LogsURLParserType**](LogsURLParserType.md) |  | [default to LOGSURLPARSERTYPE_URL_PARSER]
 
 ## Methods
 

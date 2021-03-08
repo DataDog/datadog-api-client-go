@@ -26,7 +26,7 @@ type RoleCreateData struct {
 func NewRoleCreateData(attributes RoleCreateAttributes) *RoleCreateData {
 	this := RoleCreateData{}
 	this.Attributes = attributes
-	var type_ RolesType = "roles"
+	var type_ RolesType = ROLESTYPE_ROLES
 	this.Type = &type_
 	return &this
 }
@@ -36,7 +36,7 @@ func NewRoleCreateData(attributes RoleCreateAttributes) *RoleCreateData {
 // but it doesn't guarantee that properties required by API are set
 func NewRoleCreateDataWithDefaults() *RoleCreateData {
 	this := RoleCreateData{}
-	var type_ RolesType = "roles"
+	var type_ RolesType = ROLESTYPE_ROLES
 	this.Type = &type_
 	return &this
 }

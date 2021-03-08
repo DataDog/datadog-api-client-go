@@ -51,7 +51,7 @@ func NewLogsLookupProcessorWithDefaults() *LogsLookupProcessor {
 	this := LogsLookupProcessor{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsLookupProcessorType = "lookup-processor"
+	var type_ LogsLookupProcessorType = LOGSLOOKUPPROCESSORTYPE_LOOKUP_PROCESSOR
 	this.Type = type_
 	return &this
 }

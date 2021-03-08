@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Type** | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md) |  | [optional] 
 **Url** | Pointer to **string** | URL to perform the step against. | [optional] 
 **Value** | Pointer to **interface{}** | Value for the step. | [optional] 
+**VitalsMetrics** | Pointer to [**[]SyntheticsCoreWebVitals**](SyntheticsCoreWebVitals.md) | Array of Core Web Vitals metrics for the step. | [optional] 
 **Warnings** | Pointer to [**[]SyntheticsStepDetailWarning**](SyntheticsStepDetailWarning.md) | Warning collected that didn&#39;t failed the step. | [optional] 
 
 ## Methods
@@ -414,6 +415,31 @@ SetValue sets Value field to given value.
 `func (o *SyntheticsStepDetail) HasValue() bool`
 
 HasValue returns a boolean if a field has been set.
+
+### GetVitalsMetrics
+
+`func (o *SyntheticsStepDetail) GetVitalsMetrics() []SyntheticsCoreWebVitals`
+
+GetVitalsMetrics returns the VitalsMetrics field if non-nil, zero value otherwise.
+
+### GetVitalsMetricsOk
+
+`func (o *SyntheticsStepDetail) GetVitalsMetricsOk() (*[]SyntheticsCoreWebVitals, bool)`
+
+GetVitalsMetricsOk returns a tuple with the VitalsMetrics field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVitalsMetrics
+
+`func (o *SyntheticsStepDetail) SetVitalsMetrics(v []SyntheticsCoreWebVitals)`
+
+SetVitalsMetrics sets VitalsMetrics field to given value.
+
+### HasVitalsMetrics
+
+`func (o *SyntheticsStepDetail) HasVitalsMetrics() bool`
+
+HasVitalsMetrics returns a boolean if a field has been set.
 
 ### GetWarnings
 

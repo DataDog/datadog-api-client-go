@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Operator** | [**SyntheticsAssertionJSONPathOperator**](SyntheticsAssertionJSONPathOperator.md) |  | 
 **Property** | Pointer to **string** | The associated assertion property. | [optional] 
-**Target** | Pointer to [**SyntheticsAssertionJSONPathTargetTarget**](SyntheticsAssertionJSONPathTarget_target.md) |  | [optional] 
+**Target** | Pointer to [**SyntheticsAssertionJSONPathTargetTarget**](SyntheticsAssertionJSONPathTargetTarget.md) |  | [optional] 
 **Type** | [**SyntheticsAssertionType**](SyntheticsAssertionType.md) |  | 
 
 ## Methods

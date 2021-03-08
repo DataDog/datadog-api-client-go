@@ -25,7 +25,7 @@ type IncidentFieldAttributesMultipleValue struct {
 // will change when the set of required properties is changed
 func NewIncidentFieldAttributesMultipleValue() *IncidentFieldAttributesMultipleValue {
 	this := IncidentFieldAttributesMultipleValue{}
-	var type_ IncidentFieldAttributesValueType = "multiselect"
+	var type_ IncidentFieldAttributesValueType = INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT
 	this.Type = &type_
 	return &this
 }
@@ -35,7 +35,7 @@ func NewIncidentFieldAttributesMultipleValue() *IncidentFieldAttributesMultipleV
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentFieldAttributesMultipleValueWithDefaults() *IncidentFieldAttributesMultipleValue {
 	this := IncidentFieldAttributesMultipleValue{}
-	var type_ IncidentFieldAttributesValueType = "multiselect"
+	var type_ IncidentFieldAttributesValueType = INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT
 	this.Type = &type_
 	return &this
 }

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**RoleCreateResponseData**](RoleCreateResponse_data.md) |  | [optional] 
+**Data** | Pointer to [**RoleCreateResponseData**](RoleCreateResponseData.md) |  | [optional] 
 
 ## Methods
 

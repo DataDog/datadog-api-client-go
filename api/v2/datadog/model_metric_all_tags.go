@@ -26,7 +26,7 @@ type MetricAllTags struct {
 // will change when the set of required properties is changed
 func NewMetricAllTags() *MetricAllTags {
 	this := MetricAllTags{}
-	var type_ MetricType = "metrics"
+	var type_ MetricType = METRICTYPE_METRICS
 	this.Type = &type_
 	return &this
 }
@@ -36,7 +36,7 @@ func NewMetricAllTags() *MetricAllTags {
 // but it doesn't guarantee that properties required by API are set
 func NewMetricAllTagsWithDefaults() *MetricAllTags {
 	this := MetricAllTags{}
-	var type_ MetricType = "metrics"
+	var type_ MetricType = METRICTYPE_METRICS
 	this.Type = &type_
 	return &this
 }

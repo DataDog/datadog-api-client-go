@@ -45,7 +45,7 @@ func NewAlertValueWidgetDefinition(alertId string, type_ AlertValueWidgetDefinit
 // but it doesn't guarantee that properties required by API are set
 func NewAlertValueWidgetDefinitionWithDefaults() *AlertValueWidgetDefinition {
 	this := AlertValueWidgetDefinition{}
-	var type_ AlertValueWidgetDefinitionType = "alert_value"
+	var type_ AlertValueWidgetDefinitionType = ALERTVALUEWIDGETDEFINITIONTYPE_ALERT_VALUE
 	this.Type = type_
 	return &this
 }

@@ -48,7 +48,7 @@ func NewLogsGeoIPParserWithDefaults() *LogsGeoIPParser {
 	this.IsEnabled = &isEnabled
 	var target string = "network.client.geoip"
 	this.Target = target
-	var type_ LogsGeoIPParserType = "geo-ip-parser"
+	var type_ LogsGeoIPParserType = LOGSGEOIPPARSERTYPE_GEO_IP_PARSER
 	this.Type = type_
 	return &this
 }

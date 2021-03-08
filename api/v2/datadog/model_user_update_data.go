@@ -37,7 +37,7 @@ func NewUserUpdateData(attributes UserUpdateAttributes, id string, type_ UsersTy
 // but it doesn't guarantee that properties required by API are set
 func NewUserUpdateDataWithDefaults() *UserUpdateData {
 	this := UserUpdateData{}
-	var type_ UsersType = "users"
+	var type_ UsersType = USERSTYPE_USERS
 	this.Type = type_
 	return &this
 }

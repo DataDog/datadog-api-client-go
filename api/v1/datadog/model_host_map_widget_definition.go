@@ -53,7 +53,7 @@ func NewHostMapWidgetDefinition(requests HostMapWidgetDefinitionRequests, type_ 
 // but it doesn't guarantee that properties required by API are set
 func NewHostMapWidgetDefinitionWithDefaults() *HostMapWidgetDefinition {
 	this := HostMapWidgetDefinition{}
-	var type_ HostMapWidgetDefinitionType = "hostmap"
+	var type_ HostMapWidgetDefinitionType = HOSTMAPWIDGETDEFINITIONTYPE_HOSTMAP
 	this.Type = type_
 	return &this
 }

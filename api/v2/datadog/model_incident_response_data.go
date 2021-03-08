@@ -37,7 +37,7 @@ func NewIncidentResponseData(id string, type_ IncidentType) *IncidentResponseDat
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentResponseDataWithDefaults() *IncidentResponseData {
 	this := IncidentResponseData{}
-	var type_ IncidentType = "incidents"
+	var type_ IncidentType = INCIDENTTYPE_INCIDENTS
 	this.Type = type_
 	return &this
 }

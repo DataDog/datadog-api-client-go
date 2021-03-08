@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | [**ApplicationKeyUpdateAttributes**](ApplicationKeyUpdateAttributes.md) |  | 
 **Id** | **string** | ID of the application key. | 
-**Type** | [**ApplicationKeysType**](ApplicationKeysType.md) |  | [default to "application_keys"]
+**Type** | [**ApplicationKeysType**](ApplicationKeysType.md) |  | [default to APPLICATIONKEYSTYPE_APPLICATION_KEYS]
 
 ## Methods
 

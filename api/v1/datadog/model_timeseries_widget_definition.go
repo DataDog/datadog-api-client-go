@@ -53,7 +53,7 @@ func NewTimeseriesWidgetDefinition(requests []TimeseriesWidgetRequest, type_ Tim
 // but it doesn't guarantee that properties required by API are set
 func NewTimeseriesWidgetDefinitionWithDefaults() *TimeseriesWidgetDefinition {
 	this := TimeseriesWidgetDefinition{}
-	var type_ TimeseriesWidgetDefinitionType = "timeseries"
+	var type_ TimeseriesWidgetDefinitionType = TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES
 	this.Type = type_
 	return &this
 }

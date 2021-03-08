@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**LogsAggregateResponseData**](LogsAggregateResponse_data.md) |  | [optional] 
+**Data** | Pointer to [**LogsAggregateResponseData**](LogsAggregateResponseData.md) |  | [optional] 
 **Meta** | Pointer to [**LogsResponseMetadata**](LogsResponseMetadata.md) |  | [optional] 
 
 ## Methods
