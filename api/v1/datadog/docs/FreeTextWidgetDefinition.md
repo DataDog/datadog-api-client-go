@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **FontSize** | Pointer to **string** | Size of the text. | [optional] 
 **Text** | **string** | Text to display. | 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**Type** | [**FreeTextWidgetDefinitionType**](FreeTextWidgetDefinitionType.md) |  | [default to "free_text"]
+**Type** | [**FreeTextWidgetDefinitionType**](FreeTextWidgetDefinitionType.md) |  | [default to FREETEXTWIDGETDEFINITIONTYPE_FREE_TEXT]
 
 ## Methods
 

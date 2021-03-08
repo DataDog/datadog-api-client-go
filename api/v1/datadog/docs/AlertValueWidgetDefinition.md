@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of value in the widget. | [optional] 
-**Type** | [**AlertValueWidgetDefinitionType**](AlertValueWidgetDefinitionType.md) |  | [default to "alert_value"]
+**Type** | [**AlertValueWidgetDefinitionType**](AlertValueWidgetDefinitionType.md) |  | [default to ALERTVALUEWIDGETDEFINITIONTYPE_ALERT_VALUE]
 **Unit** | Pointer to **string** | Unit to display with the value. | [optional] 
 
 ## Methods

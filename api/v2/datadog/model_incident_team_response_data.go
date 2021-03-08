@@ -27,7 +27,7 @@ type IncidentTeamResponseData struct {
 // will change when the set of required properties is changed
 func NewIncidentTeamResponseData() *IncidentTeamResponseData {
 	this := IncidentTeamResponseData{}
-	var type_ IncidentTeamType = "teams"
+	var type_ IncidentTeamType = INCIDENTTEAMTYPE_TEAMS
 	this.Type = &type_
 	return &this
 }
@@ -37,7 +37,7 @@ func NewIncidentTeamResponseData() *IncidentTeamResponseData {
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentTeamResponseDataWithDefaults() *IncidentTeamResponseData {
 	this := IncidentTeamResponseData{}
-	var type_ IncidentTeamType = "teams"
+	var type_ IncidentTeamType = INCIDENTTEAMTYPE_TEAMS
 	this.Type = &type_
 	return &this
 }

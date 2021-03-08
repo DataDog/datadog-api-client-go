@@ -52,7 +52,7 @@ func NewLogsArithmeticProcessorWithDefaults() *LogsArithmeticProcessor {
 	this.IsEnabled = &isEnabled
 	var isReplaceMissing bool = false
 	this.IsReplaceMissing = &isReplaceMissing
-	var type_ LogsArithmeticProcessorType = "arithmetic-processor"
+	var type_ LogsArithmeticProcessorType = LOGSARITHMETICPROCESSORTYPE_ARITHMETIC_PROCESSOR
 	this.Type = type_
 	return &this
 }

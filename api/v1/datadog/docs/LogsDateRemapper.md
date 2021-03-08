@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Sources** | **[]string** | Array of source attributes. | 
-**Type** | [**LogsDateRemapperType**](LogsDateRemapperType.md) |  | [default to "date-remapper"]
+**Type** | [**LogsDateRemapperType**](LogsDateRemapperType.md) |  | [default to LOGSDATEREMAPPERTYPE_DATE_REMAPPER]
 
 ## Methods
 

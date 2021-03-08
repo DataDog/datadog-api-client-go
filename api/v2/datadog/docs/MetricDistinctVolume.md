@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**MetricDistinctVolumeAttributes**](MetricDistinctVolumeAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | The metric name for this resource. | [optional] 
-**Type** | Pointer to [**MetricDistinctVolumeType**](MetricDistinctVolumeType.md) |  | [optional] [default to "distinct_metric_volumes"]
+**Type** | Pointer to [**MetricDistinctVolumeType**](MetricDistinctVolumeType.md) |  | [optional] [default to METRICDISTINCTVOLUMETYPE_DISTINCT_METRIC_VOLUMES]
 
 ## Methods
 

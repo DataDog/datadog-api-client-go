@@ -35,7 +35,7 @@ func NewUserCreateData(attributes UserCreateAttributes, type_ UsersType) *UserCr
 // but it doesn't guarantee that properties required by API are set
 func NewUserCreateDataWithDefaults() *UserCreateData {
 	this := UserCreateData{}
-	var type_ UsersType = "users"
+	var type_ UsersType = USERSTYPE_USERS
 	this.Type = type_
 	return &this
 }

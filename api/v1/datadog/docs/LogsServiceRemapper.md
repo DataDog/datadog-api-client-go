@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Sources** | **[]string** | Array of source attributes. | 
-**Type** | [**LogsServiceRemapperType**](LogsServiceRemapperType.md) |  | [default to "service-remapper"]
+**Type** | [**LogsServiceRemapperType**](LogsServiceRemapperType.md) |  | [default to LOGSSERVICEREMAPPERTYPE_SERVICE_REMAPPER]
 
 ## Methods
 

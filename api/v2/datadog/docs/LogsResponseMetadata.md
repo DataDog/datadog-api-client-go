@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Elapsed** | Pointer to **int64** | The time elapsed in milliseconds | [optional] 
-**Page** | Pointer to [**LogsResponseMetadataPage**](LogsResponseMetadata_page.md) |  | [optional] 
+**Page** | Pointer to [**LogsResponseMetadataPage**](LogsResponseMetadataPage.md) |  | [optional] 
 **RequestId** | Pointer to **string** | The identifier of the request | [optional] 
 **Status** | Pointer to [**LogsAggregateResponseStatus**](LogsAggregateResponseStatus.md) |  | [optional] 
 **Warnings** | Pointer to [**[]LogsWarning**](LogsWarning.md) | A list of warnings (non fatal errors) encountered, partial results might be returned if warnings are present in the response. | [optional] 

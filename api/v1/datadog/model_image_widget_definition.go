@@ -37,7 +37,7 @@ func NewImageWidgetDefinition(type_ ImageWidgetDefinitionType, url string) *Imag
 // but it doesn't guarantee that properties required by API are set
 func NewImageWidgetDefinitionWithDefaults() *ImageWidgetDefinition {
 	this := ImageWidgetDefinition{}
-	var type_ ImageWidgetDefinitionType = "image"
+	var type_ ImageWidgetDefinitionType = IMAGEWIDGETDEFINITIONTYPE_IMAGE
 	this.Type = type_
 	return &this
 }

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**LogAttributes**](Log_attributes.md) |  | [optional] 
+**Attributes** | Pointer to [**LogAttributes**](LogAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | Unique ID of the Log. | [optional] 
-**Type** | Pointer to [**LogType**](LogType.md) |  | [optional] [default to "log"]
+**Type** | Pointer to [**LogType**](LogType.md) |  | [optional] [default to LOGTYPE_LOG]
 
 ## Methods
 

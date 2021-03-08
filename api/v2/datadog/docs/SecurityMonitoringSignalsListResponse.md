@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | Pointer to [**[]SecurityMonitoringSignal**](SecurityMonitoringSignal.md) | An array of security signals matching the request. | [optional] 
-**Links** | Pointer to [**SecurityMonitoringSignalsListResponseLinks**](SecurityMonitoringSignalsListResponse_links.md) |  | [optional] 
-**Meta** | Pointer to [**SecurityMonitoringSignalsListResponseMeta**](SecurityMonitoringSignalsListResponse_meta.md) |  | [optional] 
+**Links** | Pointer to [**SecurityMonitoringSignalsListResponseLinks**](SecurityMonitoringSignalsListResponseLinks.md) |  | [optional] 
+**Meta** | Pointer to [**SecurityMonitoringSignalsListResponseMeta**](SecurityMonitoringSignalsListResponseMeta.md) |  | [optional] 
 
 ## Methods
 

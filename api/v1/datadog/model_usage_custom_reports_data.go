@@ -26,7 +26,7 @@ type UsageCustomReportsData struct {
 // will change when the set of required properties is changed
 func NewUsageCustomReportsData() *UsageCustomReportsData {
 	this := UsageCustomReportsData{}
-	var type_ UsageReportsType = "reports"
+	var type_ UsageReportsType = USAGEREPORTSTYPE_REPORTS
 	this.Type = &type_
 	return &this
 }
@@ -36,7 +36,7 @@ func NewUsageCustomReportsData() *UsageCustomReportsData {
 // but it doesn't guarantee that properties required by API are set
 func NewUsageCustomReportsDataWithDefaults() *UsageCustomReportsData {
 	this := UsageCustomReportsData{}
-	var type_ UsageReportsType = "reports"
+	var type_ UsageReportsType = USAGEREPORTSTYPE_REPORTS
 	this.Type = &type_
 	return &this
 }

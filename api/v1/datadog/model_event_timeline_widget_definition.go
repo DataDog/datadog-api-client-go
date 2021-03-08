@@ -43,7 +43,7 @@ func NewEventTimelineWidgetDefinition(query string, type_ EventTimelineWidgetDef
 // but it doesn't guarantee that properties required by API are set
 func NewEventTimelineWidgetDefinitionWithDefaults() *EventTimelineWidgetDefinition {
 	this := EventTimelineWidgetDefinition{}
-	var type_ EventTimelineWidgetDefinitionType = "event_timeline"
+	var type_ EventTimelineWidgetDefinitionType = EVENTTIMELINEWIDGETDEFINITIONTYPE_EVENT_TIMELINE
 	this.Type = type_
 	return &this
 }

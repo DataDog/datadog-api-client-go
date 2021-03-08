@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Samples** | Pointer to **[]string** | List of sample logs to test this grok parser. | [optional] 
 **Source** | **string** | Name of the log attribute to parse. | [default to "message"]
-**Type** | [**LogsGrokParserType**](LogsGrokParserType.md) |  | [default to "grok-parser"]
+**Type** | [**LogsGrokParserType**](LogsGrokParserType.md) |  | [default to LOGSGROKPARSERTYPE_GROK_PARSER]
 
 ## Methods
 

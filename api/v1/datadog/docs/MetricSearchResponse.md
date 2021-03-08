@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Results** | Pointer to [**MetricSearchResponseResults**](MetricSearchResponse_results.md) |  | [optional] 
+**Results** | Pointer to [**MetricSearchResponseResults**](MetricSearchResponseResults.md) |  | [optional] 
 
 ## Methods
 

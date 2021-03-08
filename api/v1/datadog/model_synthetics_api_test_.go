@@ -39,7 +39,7 @@ type SyntheticsAPITest struct {
 // will change when the set of required properties is changed
 func NewSyntheticsAPITest() *SyntheticsAPITest {
 	this := SyntheticsAPITest{}
-	var type_ SyntheticsAPITestType = "api"
+	var type_ SyntheticsAPITestType = SYNTHETICSAPITESTTYPE_API
 	this.Type = &type_
 	return &this
 }
@@ -49,7 +49,7 @@ func NewSyntheticsAPITest() *SyntheticsAPITest {
 // but it doesn't guarantee that properties required by API are set
 func NewSyntheticsAPITestWithDefaults() *SyntheticsAPITest {
 	this := SyntheticsAPITest{}
-	var type_ SyntheticsAPITestType = "api"
+	var type_ SyntheticsAPITestType = SYNTHETICSAPITESTTYPE_API
 	this.Type = &type_
 	return &this
 }

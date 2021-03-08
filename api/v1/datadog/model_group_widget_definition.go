@@ -39,7 +39,7 @@ func NewGroupWidgetDefinition(layoutType WidgetLayoutType, type_ GroupWidgetDefi
 // but it doesn't guarantee that properties required by API are set
 func NewGroupWidgetDefinitionWithDefaults() *GroupWidgetDefinition {
 	this := GroupWidgetDefinition{}
-	var type_ GroupWidgetDefinitionType = "group"
+	var type_ GroupWidgetDefinitionType = GROUPWIDGETDEFINITIONTYPE_GROUP
 	this.Type = type_
 	return &this
 }

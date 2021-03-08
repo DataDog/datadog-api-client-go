@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
 **Steps** | Pointer to [**[]SyntheticsStep**](SyntheticsStep.md) | The steps of the test. | [optional] 
 **Tags** | Pointer to **[]string** | Array of tags attached to the test. | [optional] 
-**Type** | Pointer to [**SyntheticsBrowserTestType**](SyntheticsBrowserTestType.md) |  | [optional] [default to "browser"]
+**Type** | Pointer to [**SyntheticsBrowserTestType**](SyntheticsBrowserTestType.md) |  | [optional] [default to SYNTHETICSBROWSERTESTTYPE_BROWSER]
 
 ## Methods
 

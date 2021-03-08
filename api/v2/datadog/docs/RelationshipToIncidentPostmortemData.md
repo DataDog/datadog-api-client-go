@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | A unique identifier that represents the postmortem. | 
-**Type** | [**IncidentPostmortemType**](IncidentPostmortemType.md) |  | [default to "incident_postmortems"]
+**Type** | [**IncidentPostmortemType**](IncidentPostmortemType.md) |  | [default to INCIDENTPOSTMORTEMTYPE_INCIDENT_POSTMORTEMS]
 
 ## Methods
 

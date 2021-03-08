@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**ProcessSummaryAttributes**](ProcessSummaryAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | Process ID. | [optional] 
-**Type** | Pointer to [**ProcessSummaryType**](ProcessSummaryType.md) |  | [optional] [default to "process"]
+**Type** | Pointer to [**ProcessSummaryType**](ProcessSummaryType.md) |  | [optional] [default to PROCESSSUMMARYTYPE_PROCESS]
 
 ## Methods
 

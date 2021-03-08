@@ -37,7 +37,7 @@ func NewIncidentTeamUpdateData(id string, type_ IncidentTeamType) *IncidentTeamU
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentTeamUpdateDataWithDefaults() *IncidentTeamUpdateData {
 	this := IncidentTeamUpdateData{}
-	var type_ IncidentTeamType = "teams"
+	var type_ IncidentTeamType = INCIDENTTEAMTYPE_TEAMS
 	this.Type = type_
 	return &this
 }

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Samples** | Pointer to **[]string** | List of sample logs to test this grok parser. | [optional] 
 **Source** | **string** | Source attribute used to perform the lookup. | 
-**Type** | [**LogsTraceRemapperType**](LogsTraceRemapperType.md) |  | [default to "trace-id-remapper"]
+**Type** | [**LogsTraceRemapperType**](LogsTraceRemapperType.md) |  | [default to LOGSTRACEREMAPPERTYPE_TRACE_ID_REMAPPER]
 **Sources** | **[]string** | Array of source attributes. | [default to ["dd.trace_id"]]
 **OverrideOnConflict** | Pointer to **bool** | Override or not the target element if already set, | [optional] [default to false]
 **PreserveSource** | Pointer to **bool** | Remove or preserve the remapped source element. | [optional] [default to false]

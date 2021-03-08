@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Alias** | Pointer to **string** | Expression alias. | [optional] 
 **Formula** | **string** | String expression built from queries, formulas, and functions. | 
-**Limit** | Pointer to [**WidgetFormulaLimit**](WidgetFormula_limit.md) |  | [optional] 
+**Limit** | Pointer to [**WidgetFormulaLimit**](WidgetFormulaLimit.md) |  | [optional] 
 
 ## Methods
 

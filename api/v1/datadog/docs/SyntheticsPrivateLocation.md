@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Description** | **string** | Description of the private location. | 
 **Id** | Pointer to **string** | Unique identifier of the private location. | [optional] [readonly] 
 **Name** | **string** | Name of the private location. | 
-**Secrets** | Pointer to [**SyntheticsPrivateLocationSecrets**](SyntheticsPrivateLocation_secrets.md) |  | [optional] 
+**Secrets** | Pointer to [**SyntheticsPrivateLocationSecrets**](SyntheticsPrivateLocationSecrets.md) |  | [optional] 
 **Tags** | **[]string** | Array of tags attached to the private location. | 
 
 ## Methods

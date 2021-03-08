@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filter** | Pointer to [**SecurityMonitoringSignalListRequestFilter**](SecurityMonitoringSignalListRequest_filter.md) |  | [optional] 
-**Page** | Pointer to [**SecurityMonitoringSignalListRequestPage**](SecurityMonitoringSignalListRequest_page.md) |  | [optional] 
+**Filter** | Pointer to [**SecurityMonitoringSignalListRequestFilter**](SecurityMonitoringSignalListRequestFilter.md) |  | [optional] 
+**Page** | Pointer to [**SecurityMonitoringSignalListRequestPage**](SecurityMonitoringSignalListRequestPage.md) |  | [optional] 
 **Sort** | Pointer to [**SecurityMonitoringSignalsSort**](SecurityMonitoringSignalsSort.md) |  | [optional] 
 
 ## Methods

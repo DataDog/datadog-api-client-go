@@ -29,7 +29,7 @@ type LogsCompute struct {
 func NewLogsCompute(aggregation LogsAggregationFunction) *LogsCompute {
 	this := LogsCompute{}
 	this.Aggregation = aggregation
-	var type_ LogsComputeType = "total"
+	var type_ LogsComputeType = LOGSCOMPUTETYPE_TOTAL
 	this.Type = &type_
 	return &this
 }
@@ -39,7 +39,7 @@ func NewLogsCompute(aggregation LogsAggregationFunction) *LogsCompute {
 // but it doesn't guarantee that properties required by API are set
 func NewLogsComputeWithDefaults() *LogsCompute {
 	this := LogsCompute{}
-	var type_ LogsComputeType = "total"
+	var type_ LogsComputeType = LOGSCOMPUTETYPE_TOTAL
 	this.Type = &type_
 	return &this
 }

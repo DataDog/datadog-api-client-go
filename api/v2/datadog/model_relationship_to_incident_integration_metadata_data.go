@@ -35,7 +35,7 @@ func NewRelationshipToIncidentIntegrationMetadataData(id string, type_ IncidentI
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToIncidentIntegrationMetadataDataWithDefaults() *RelationshipToIncidentIntegrationMetadataData {
 	this := RelationshipToIncidentIntegrationMetadataData{}
-	var type_ IncidentIntegrationMetadataType = "incident_integration_metadata"
+	var type_ IncidentIntegrationMetadataType = INCIDENTINTEGRATIONMETADATATYPE_INCIDENT_INTEGRATION_METADATA
 	this.Type = type_
 	return &this
 }

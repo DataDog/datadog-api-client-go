@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**SLOBulkDeleteResponseData**](SLOBulkDeleteResponse_data.md) |  | [optional] 
+**Data** | Pointer to [**SLOBulkDeleteResponseData**](SLOBulkDeleteResponseData.md) |  | [optional] 
 **Errors** | Pointer to [**[]SLOBulkDeleteError**](SLOBulkDeleteError.md) | Array of errors object returned. | [optional] 
 
 ## Methods

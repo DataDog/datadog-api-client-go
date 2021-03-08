@@ -38,7 +38,7 @@ func NewIncidentTimelineCellMarkdownCreateAttributes(cellType IncidentTimelineCe
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentTimelineCellMarkdownCreateAttributesWithDefaults() *IncidentTimelineCellMarkdownCreateAttributes {
 	this := IncidentTimelineCellMarkdownCreateAttributes{}
-	var cellType IncidentTimelineCellMarkdownContentType = "markdown"
+	var cellType IncidentTimelineCellMarkdownContentType = INCIDENTTIMELINECELLMARKDOWNCONTENTTYPE_MARKDOWN
 	this.CellType = cellType
 	var important bool = false
 	this.Important = &important

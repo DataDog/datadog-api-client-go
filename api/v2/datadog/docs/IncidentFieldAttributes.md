@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | [**IncidentFieldAttributesValueType**](IncidentFieldAttributesValueType.md) |  | [default to "multiselect"]
+**Type** | [**IncidentFieldAttributesValueType**](IncidentFieldAttributesValueType.md) |  | [default to INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT]
 **Value** | Pointer to **[]string** | The multiple values selected for this field. | [optional] 
 
 ## Methods

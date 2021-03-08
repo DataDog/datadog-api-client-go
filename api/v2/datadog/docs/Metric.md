@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | The metric name for this resource. | [optional] 
-**Type** | Pointer to [**MetricType**](MetricType.md) |  | [optional] [default to "metrics"]
+**Type** | Pointer to [**MetricType**](MetricType.md) |  | [optional] [default to METRICTYPE_METRICS]
 
 ## Methods
 
