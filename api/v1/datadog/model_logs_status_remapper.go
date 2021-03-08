@@ -43,7 +43,7 @@ func NewLogsStatusRemapperWithDefaults() *LogsStatusRemapper {
 	this := LogsStatusRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsStatusRemapperType = "status-remapper"
+	var type_ LogsStatusRemapperType = LOGSSTATUSREMAPPERTYPE_STATUS_REMAPPER
 	this.Type = type_
 	return &this
 }

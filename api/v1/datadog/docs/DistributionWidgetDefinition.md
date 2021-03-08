@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**DistributionWidgetDefinitionType**](DistributionWidgetDefinitionType.md) |  | [default to "distribution"]
+**Type** | [**DistributionWidgetDefinitionType**](DistributionWidgetDefinitionType.md) |  | [default to DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION]
 
 ## Methods
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Page** | Pointer to [**SecurityMonitoringSignalsListResponseMetaPage**](SecurityMonitoringSignalsListResponse_meta_page.md) |  | [optional] 
+**Page** | Pointer to [**SecurityMonitoringSignalsListResponseMetaPage**](SecurityMonitoringSignalsListResponseMetaPage.md) |  | [optional] 
 
 ## Methods
 

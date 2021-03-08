@@ -43,7 +43,7 @@ func NewLogsMessageRemapperWithDefaults() *LogsMessageRemapper {
 	this := LogsMessageRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsMessageRemapperType = "message-remapper"
+	var type_ LogsMessageRemapperType = LOGSMESSAGEREMAPPERTYPE_MESSAGE_REMAPPER
 	this.Type = type_
 	return &this
 }

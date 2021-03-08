@@ -43,7 +43,7 @@ func NewLogsPipelineProcessorWithDefaults() *LogsPipelineProcessor {
 	this := LogsPipelineProcessor{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsPipelineProcessorType = "pipeline"
+	var type_ LogsPipelineProcessorType = LOGSPIPELINEPROCESSORTYPE_PIPELINE
 	this.Type = type_
 	return &this
 }

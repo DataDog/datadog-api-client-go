@@ -27,7 +27,7 @@ type FullAPIKey struct {
 // will change when the set of required properties is changed
 func NewFullAPIKey() *FullAPIKey {
 	this := FullAPIKey{}
-	var type_ APIKeysType = "api_keys"
+	var type_ APIKeysType = APIKEYSTYPE_API_KEYS
 	this.Type = &type_
 	return &this
 }
@@ -37,7 +37,7 @@ func NewFullAPIKey() *FullAPIKey {
 // but it doesn't guarantee that properties required by API are set
 func NewFullAPIKeyWithDefaults() *FullAPIKey {
 	this := FullAPIKey{}
-	var type_ APIKeysType = "api_keys"
+	var type_ APIKeysType = APIKEYSTYPE_API_KEYS
 	this.Type = &type_
 	return &this
 }

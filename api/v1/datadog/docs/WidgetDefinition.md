@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**ToplistWidgetDefinitionType**](ToplistWidgetDefinitionType.md) |  | [default to "toplist"]
+**Type** | [**ToplistWidgetDefinitionType**](ToplistWidgetDefinitionType.md) |  | [default to TOPLISTWIDGETDEFINITIONTYPE_TOPLIST]
 **VizType** | [**WidgetVizType**](WidgetVizType.md) |  | 
 **Precision** | Pointer to **int64** | Number of decimals to show. If not defined, the widget uses the raw value. | [optional] 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
@@ -29,8 +29,8 @@ Name | Type | Description | Notes
 **Color** | Pointer to **string** | Color of the text. | [optional] 
 **FontSize** | Pointer to **string** | Size of the text. | [optional] 
 **Text** | **string** | Text to display. | 
-**Style** | [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinition_style.md) |  | 
-**View** | [**GeomapWidgetDefinitionView**](GeomapWidgetDefinition_view.md) |  | 
+**Style** | [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinitionStyle.md) |  | 
+**View** | [**GeomapWidgetDefinitionView**](GeomapWidgetDefinitionView.md) |  | 
 **LayoutType** | [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
 **Widgets** | [**[]Widget**](Widget.md) | List of widget groups. | 
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 

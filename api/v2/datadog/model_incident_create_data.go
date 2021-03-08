@@ -35,7 +35,7 @@ func NewIncidentCreateData(attributes IncidentCreateAttributes, type_ IncidentTy
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentCreateDataWithDefaults() *IncidentCreateData {
 	this := IncidentCreateData{}
-	var type_ IncidentType = "incidents"
+	var type_ IncidentType = INCIDENTTYPE_INCIDENTS
 	this.Type = type_
 	return &this
 }

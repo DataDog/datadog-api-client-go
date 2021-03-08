@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Attributes** | Pointer to [**PartialAPIKeyAttributes**](PartialAPIKeyAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the API key. | [optional] 
 **Relationships** | Pointer to [**APIKeyRelationships**](APIKeyRelationships.md) |  | [optional] 
-**Type** | Pointer to [**APIKeysType**](APIKeysType.md) |  | [optional] [default to "api_keys"]
+**Type** | Pointer to [**APIKeysType**](APIKeysType.md) |  | [optional] [default to APIKEYSTYPE_API_KEYS]
 
 ## Methods
 

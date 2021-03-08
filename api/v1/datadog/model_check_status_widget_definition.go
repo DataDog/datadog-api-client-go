@@ -49,7 +49,7 @@ func NewCheckStatusWidgetDefinition(check string, grouping WidgetGrouping, type_
 // but it doesn't guarantee that properties required by API are set
 func NewCheckStatusWidgetDefinitionWithDefaults() *CheckStatusWidgetDefinition {
 	this := CheckStatusWidgetDefinition{}
-	var type_ CheckStatusWidgetDefinitionType = "check_status"
+	var type_ CheckStatusWidgetDefinitionType = CHECKSTATUSWIDGETDEFINITIONTYPE_CHECK_STATUS
 	this.Type = type_
 	return &this
 }

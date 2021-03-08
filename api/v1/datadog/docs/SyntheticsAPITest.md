@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
 **Subtype** | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | Array of tags attached to the test. | [optional] 
-**Type** | Pointer to [**SyntheticsAPITestType**](SyntheticsAPITestType.md) |  | [optional] [default to "api"]
+**Type** | Pointer to [**SyntheticsAPITestType**](SyntheticsAPITestType.md) |  | [optional] [default to SYNTHETICSAPITESTTYPE_API]
 
 ## Methods
 

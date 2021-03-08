@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IncludePercentiles** | Pointer to **bool** | Toggle to include/exclude percentiles for a distribution metric. Defaults to false. Can only be applied to metrics that have a &#x60;metric_type&#x60; of &#x60;distribution&#x60;. | [optional] [default to false]
-**MetricType** | [**MetricTagConfigurationMetricTypes**](MetricTagConfigurationMetricTypes.md) |  | [default to "gauge"]
+**MetricType** | [**MetricTagConfigurationMetricTypes**](MetricTagConfigurationMetricTypes.md) |  | [default to METRICTAGCONFIGURATIONMETRICTYPES_GAUGE]
 **Tags** | **[]string** | A list of tag keys that will be queryable for your metric. | [default to []]
 
 ## Methods

@@ -35,7 +35,7 @@ func NewPermission(type_ PermissionsType) *Permission {
 // but it doesn't guarantee that properties required by API are set
 func NewPermissionWithDefaults() *Permission {
 	this := Permission{}
-	var type_ PermissionsType = "permissions"
+	var type_ PermissionsType = PERMISSIONSTYPE_PERMISSIONS
 	this.Type = type_
 	return &this
 }

@@ -25,7 +25,7 @@ type RelationshipToRoleData struct {
 // will change when the set of required properties is changed
 func NewRelationshipToRoleData() *RelationshipToRoleData {
 	this := RelationshipToRoleData{}
-	var type_ RolesType = "roles"
+	var type_ RolesType = ROLESTYPE_ROLES
 	this.Type = &type_
 	return &this
 }
@@ -35,7 +35,7 @@ func NewRelationshipToRoleData() *RelationshipToRoleData {
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToRoleDataWithDefaults() *RelationshipToRoleData {
 	this := RelationshipToRoleData{}
-	var type_ RolesType = "roles"
+	var type_ RolesType = ROLESTYPE_ROLES
 	this.Type = &type_
 	return &this
 }

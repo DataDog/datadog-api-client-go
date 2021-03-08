@@ -37,7 +37,7 @@ func NewLogsMetricCreateData(attributes LogsMetricCreateAttributes, id string, t
 // but it doesn't guarantee that properties required by API are set
 func NewLogsMetricCreateDataWithDefaults() *LogsMetricCreateData {
 	this := LogsMetricCreateData{}
-	var type_ LogsMetricType = "logs_metrics"
+	var type_ LogsMetricType = LOGSMETRICTYPE_LOGS_METRICS
 	this.Type = type_
 	return &this
 }

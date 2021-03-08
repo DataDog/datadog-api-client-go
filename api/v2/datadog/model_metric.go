@@ -25,7 +25,7 @@ type Metric struct {
 // will change when the set of required properties is changed
 func NewMetric() *Metric {
 	this := Metric{}
-	var type_ MetricType = "metrics"
+	var type_ MetricType = METRICTYPE_METRICS
 	this.Type = &type_
 	return &this
 }
@@ -35,7 +35,7 @@ func NewMetric() *Metric {
 // but it doesn't guarantee that properties required by API are set
 func NewMetricWithDefaults() *Metric {
 	this := Metric{}
-	var type_ MetricType = "metrics"
+	var type_ MetricType = METRICTYPE_METRICS
 	this.Type = &type_
 	return &this
 }

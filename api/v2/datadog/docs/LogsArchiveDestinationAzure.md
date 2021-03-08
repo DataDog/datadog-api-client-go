@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Path** | Pointer to **string** | The archive path. | [optional] 
 **Region** | Pointer to **string** | The region where the archive will be stored. | [optional] 
 **StorageAccount** | **string** | The associated storage account. | 
-**Type** | [**LogsArchiveDestinationAzureType**](LogsArchiveDestinationAzureType.md) |  | [default to "azure"]
+**Type** | [**LogsArchiveDestinationAzureType**](LogsArchiveDestinationAzureType.md) |  | [default to LOGSARCHIVEDESTINATIONAZURETYPE_AZURE]
 
 ## Methods
 

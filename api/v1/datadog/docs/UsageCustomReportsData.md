@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**UsageCustomReportsAttributes**](UsageCustomReportsAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | The date for specified custom reports. | [optional] 
-**Type** | Pointer to [**UsageReportsType**](UsageReportsType.md) |  | [optional] [default to "reports"]
+**Type** | Pointer to [**UsageReportsType**](UsageReportsType.md) |  | [optional] [default to USAGEREPORTSTYPE_REPORTS]
 
 ## Methods
 

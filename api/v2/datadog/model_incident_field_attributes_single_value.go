@@ -25,7 +25,7 @@ type IncidentFieldAttributesSingleValue struct {
 // will change when the set of required properties is changed
 func NewIncidentFieldAttributesSingleValue() *IncidentFieldAttributesSingleValue {
 	this := IncidentFieldAttributesSingleValue{}
-	var type_ IncidentFieldAttributesSingleValueType = "dropdown"
+	var type_ IncidentFieldAttributesSingleValueType = INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN
 	this.Type = &type_
 	return &this
 }
@@ -35,7 +35,7 @@ func NewIncidentFieldAttributesSingleValue() *IncidentFieldAttributesSingleValue
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentFieldAttributesSingleValueWithDefaults() *IncidentFieldAttributesSingleValue {
 	this := IncidentFieldAttributesSingleValue{}
-	var type_ IncidentFieldAttributesSingleValueType = "dropdown"
+	var type_ IncidentFieldAttributesSingleValueType = INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN
 	this.Type = &type_
 	return &this
 }

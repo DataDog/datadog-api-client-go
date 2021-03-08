@@ -9,6 +9,7 @@
 package datadog
 
 import (
+	"bytes"
 	_context "context"
 	_fmt "fmt"
 	_ioutil "io/ioutil"
@@ -152,6 +153,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) CreateSLOCorrectionExecute(
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -312,6 +314,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) DeleteSLOCorrectionExecute(
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -465,6 +468,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) GetSLOCorrectionExecute(r A
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -623,6 +627,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) ListSLOCorrectionExecute(r 
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -786,6 +791,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) UpdateSLOCorrectionExecute(
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

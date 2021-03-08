@@ -46,7 +46,7 @@ func NewScatterPlotWidgetDefinition(requests ScatterPlotWidgetDefinitionRequests
 // but it doesn't guarantee that properties required by API are set
 func NewScatterPlotWidgetDefinitionWithDefaults() *ScatterPlotWidgetDefinition {
 	this := ScatterPlotWidgetDefinition{}
-	var type_ ScatterPlotWidgetDefinitionType = "scatterplot"
+	var type_ ScatterPlotWidgetDefinitionType = SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT
 	this.Type = type_
 	return &this
 }

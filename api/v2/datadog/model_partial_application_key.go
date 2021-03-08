@@ -27,7 +27,7 @@ type PartialApplicationKey struct {
 // will change when the set of required properties is changed
 func NewPartialApplicationKey() *PartialApplicationKey {
 	this := PartialApplicationKey{}
-	var type_ ApplicationKeysType = "application_keys"
+	var type_ ApplicationKeysType = APPLICATIONKEYSTYPE_APPLICATION_KEYS
 	this.Type = &type_
 	return &this
 }
@@ -37,7 +37,7 @@ func NewPartialApplicationKey() *PartialApplicationKey {
 // but it doesn't guarantee that properties required by API are set
 func NewPartialApplicationKeyWithDefaults() *PartialApplicationKey {
 	this := PartialApplicationKey{}
-	var type_ ApplicationKeysType = "application_keys"
+	var type_ ApplicationKeysType = APPLICATIONKEYSTYPE_APPLICATION_KEYS
 	this.Type = &type_
 	return &this
 }

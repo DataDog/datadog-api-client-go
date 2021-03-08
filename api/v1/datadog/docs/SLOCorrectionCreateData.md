@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**SLOCorrectionCreateRequestAttributes**](SLOCorrectionCreateRequestAttributes.md) |  | [optional] 
-**Type** | Pointer to [**SLOCorrectionType**](SLOCorrectionType.md) |  | [optional] [default to "correction"]
+**Type** | Pointer to [**SLOCorrectionType**](SLOCorrectionType.md) |  | [optional] [default to SLOCORRECTIONTYPE_CORRECTION]
 
 ## Methods
 

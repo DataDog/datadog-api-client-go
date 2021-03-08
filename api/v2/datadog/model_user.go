@@ -27,7 +27,7 @@ type User struct {
 // will change when the set of required properties is changed
 func NewUser() *User {
 	this := User{}
-	var type_ UsersType = "users"
+	var type_ UsersType = USERSTYPE_USERS
 	this.Type = &type_
 	return &this
 }
@@ -37,7 +37,7 @@ func NewUser() *User {
 // but it doesn't guarantee that properties required by API are set
 func NewUserWithDefaults() *User {
 	this := User{}
-	var type_ UsersType = "users"
+	var type_ UsersType = USERSTYPE_USERS
 	this.Type = &type_
 	return &this
 }

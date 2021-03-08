@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LayoutType** | [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
-**Type** | [**GroupWidgetDefinitionType**](GroupWidgetDefinitionType.md) |  | [default to "group"]
+**Type** | [**GroupWidgetDefinitionType**](GroupWidgetDefinitionType.md) |  | [default to GROUPWIDGETDEFINITIONTYPE_GROUP]
 **Widgets** | [**[]Widget**](Widget.md) | List of widget groups. | 
 
 ## Methods

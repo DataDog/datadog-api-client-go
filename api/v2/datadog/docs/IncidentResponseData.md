@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Attributes** | Pointer to [**IncidentResponseAttributes**](IncidentResponseAttributes.md) |  | [optional] 
 **Id** | **string** | The incident&#39;s ID. | 
 **Relationships** | Pointer to [**IncidentResponseRelationships**](IncidentResponseRelationships.md) |  | [optional] 
-**Type** | [**IncidentType**](IncidentType.md) |  | [default to "incidents"]
+**Type** | [**IncidentType**](IncidentType.md) |  | [default to INCIDENTTYPE_INCIDENTS]
 
 ## Methods
 

@@ -37,7 +37,7 @@ type OrganizationSettings struct {
 // will change when the set of required properties is changed
 func NewOrganizationSettings() *OrganizationSettings {
 	this := OrganizationSettings{}
-	var samlAutocreateAccessRole AccessRole = "st"
+	var samlAutocreateAccessRole AccessRole = ACCESSROLE_STANDARD
 	this.SamlAutocreateAccessRole = &samlAutocreateAccessRole
 	return &this
 }
@@ -47,7 +47,7 @@ func NewOrganizationSettings() *OrganizationSettings {
 // but it doesn't guarantee that properties required by API are set
 func NewOrganizationSettingsWithDefaults() *OrganizationSettings {
 	this := OrganizationSettings{}
-	var samlAutocreateAccessRole AccessRole = "st"
+	var samlAutocreateAccessRole AccessRole = ACCESSROLE_STANDARD
 	this.SamlAutocreateAccessRole = &samlAutocreateAccessRole
 	return &this
 }

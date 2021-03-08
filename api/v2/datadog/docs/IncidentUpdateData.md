@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Attributes** | Pointer to [**IncidentUpdateAttributes**](IncidentUpdateAttributes.md) |  | [optional] 
 **Id** | **string** | The team&#39;s ID. | 
 **Relationships** | Pointer to [**IncidentUpdateRelationships**](IncidentUpdateRelationships.md) |  | [optional] 
-**Type** | [**IncidentType**](IncidentType.md) |  | [default to "incidents"]
+**Type** | [**IncidentType**](IncidentType.md) |  | [default to INCIDENTTYPE_INCIDENTS]
 
 ## Methods
 

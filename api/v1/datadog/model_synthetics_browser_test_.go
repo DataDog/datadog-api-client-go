@@ -40,7 +40,7 @@ type SyntheticsBrowserTest struct {
 // will change when the set of required properties is changed
 func NewSyntheticsBrowserTest() *SyntheticsBrowserTest {
 	this := SyntheticsBrowserTest{}
-	var type_ SyntheticsBrowserTestType = "browser"
+	var type_ SyntheticsBrowserTestType = SYNTHETICSBROWSERTESTTYPE_BROWSER
 	this.Type = &type_
 	return &this
 }
@@ -50,7 +50,7 @@ func NewSyntheticsBrowserTest() *SyntheticsBrowserTest {
 // but it doesn't guarantee that properties required by API are set
 func NewSyntheticsBrowserTestWithDefaults() *SyntheticsBrowserTest {
 	this := SyntheticsBrowserTest{}
-	var type_ SyntheticsBrowserTestType = "browser"
+	var type_ SyntheticsBrowserTestType = SYNTHETICSBROWSERTESTTYPE_BROWSER
 	this.Type = &type_
 	return &this
 }

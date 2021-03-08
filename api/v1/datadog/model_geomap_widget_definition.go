@@ -47,7 +47,7 @@ func NewGeomapWidgetDefinition(requests []GeomapWidgetRequest, style GeomapWidge
 // but it doesn't guarantee that properties required by API are set
 func NewGeomapWidgetDefinitionWithDefaults() *GeomapWidgetDefinition {
 	this := GeomapWidgetDefinition{}
-	var type_ GeomapWidgetDefinitionType = "geomap"
+	var type_ GeomapWidgetDefinitionType = GEOMAPWIDGETDEFINITIONTYPE_GEOMAP
 	this.Type = type_
 	return &this
 }

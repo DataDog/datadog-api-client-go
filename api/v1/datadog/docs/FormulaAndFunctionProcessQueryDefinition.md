@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Limit** | Pointer to **int64** | Number of hits to return. | [optional] 
 **Metric** | **string** | Process metric name. | 
 **Name** | Pointer to **string** | Name of query for use in formulas. | [optional] 
-**Sort** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to "desc"]
+**Sort** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to QUERYSORTORDER_DESC]
 **TagFilters** | Pointer to **[]string** | An array of tags to filter by. | [optional] 
 **TextFilter** | Pointer to **string** | Text to use as filter. | [optional] 
 

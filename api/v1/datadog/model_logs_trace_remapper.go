@@ -42,7 +42,7 @@ func NewLogsTraceRemapperWithDefaults() *LogsTraceRemapper {
 	this := LogsTraceRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsTraceRemapperType = "trace-id-remapper"
+	var type_ LogsTraceRemapperType = LOGSTRACEREMAPPERTYPE_TRACE_ID_REMAPPER
 	this.Type = type_
 	return &this
 }

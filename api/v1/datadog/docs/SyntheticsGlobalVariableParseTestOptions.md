@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | Pointer to **string** | When type is &#x60;http_header&#x60;, name of the header to use to extract the value. | [optional] 
-**Parser** | [**SyntheticsGlobalVariableParseTestOptionsParser**](SyntheticsGlobalVariable_parse_test_options_parser.md) |  | 
+**Parser** | [**SyntheticsGlobalVariableParseTestOptionsParser**](SyntheticsGlobalVariableParseTestOptionsParser.md) |  | 
 **Type** | [**SyntheticsGlobalVariableParseTestOptionsType**](SyntheticsGlobalVariableParseTestOptionsType.md) |  | 
 
 ## Methods

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Filter** | Pointer to [**LogsQueryFilter**](LogsQueryFilter.md) |  | [optional] 
 **Options** | Pointer to [**LogsQueryOptions**](LogsQueryOptions.md) |  | [optional] 
-**Page** | Pointer to [**LogsListRequestPage**](LogsListRequest_page.md) |  | [optional] 
+**Page** | Pointer to [**LogsListRequestPage**](LogsListRequestPage.md) |  | [optional] 
 **Sort** | Pointer to [**LogsSort**](LogsSort.md) |  | [optional] 
 
 ## Methods

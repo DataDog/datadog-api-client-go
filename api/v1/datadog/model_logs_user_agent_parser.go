@@ -54,7 +54,7 @@ func NewLogsUserAgentParserWithDefaults() *LogsUserAgentParser {
 	this.IsEncoded = &isEncoded
 	var target string = "http.useragent_details"
 	this.Target = target
-	var type_ LogsUserAgentParserType = "user-agent-parser"
+	var type_ LogsUserAgentParserType = LOGSUSERAGENTPARSERTYPE_USER_AGENT_PARSER
 	this.Type = type_
 	return &this
 }

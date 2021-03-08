@@ -34,7 +34,7 @@ func NewApplicationKeyCreateData(attributes ApplicationKeyCreateAttributes, type
 // but it doesn't guarantee that properties required by API are set
 func NewApplicationKeyCreateDataWithDefaults() *ApplicationKeyCreateData {
 	this := ApplicationKeyCreateData{}
-	var type_ ApplicationKeysType = "application_keys"
+	var type_ ApplicationKeysType = APPLICATIONKEYSTYPE_APPLICATION_KEYS
 	this.Type = type_
 	return &this
 }

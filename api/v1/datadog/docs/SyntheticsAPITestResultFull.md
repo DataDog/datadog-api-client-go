@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Check** | Pointer to [**SyntheticsAPITestResultFullCheck**](SyntheticsAPITestResultFull_check.md) |  | [optional] 
+**Check** | Pointer to [**SyntheticsAPITestResultFullCheck**](SyntheticsAPITestResultFullCheck.md) |  | [optional] 
 **CheckTime** | Pointer to **float64** | When the API test was conducted. | [optional] 
 **CheckVersion** | Pointer to **int64** | Version of the API test used. | [optional] 
 **ProbeDc** | Pointer to **string** | Locations for which to query the API test results. | [optional] 

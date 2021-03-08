@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Bucket** | **string** | The bucket where the archive will be stored. | 
 **Integration** | [**LogsArchiveIntegrationGCS**](LogsArchiveIntegrationGCS.md) |  | 
 **Path** | Pointer to **string** | The archive path. | [optional] 
-**Type** | [**LogsArchiveDestinationGCSType**](LogsArchiveDestinationGCSType.md) |  | [default to "gcs"]
+**Type** | [**LogsArchiveDestinationGCSType**](LogsArchiveDestinationGCSType.md) |  | [default to LOGSARCHIVEDESTINATIONGCSTYPE_GCS]
 
 ## Methods
 

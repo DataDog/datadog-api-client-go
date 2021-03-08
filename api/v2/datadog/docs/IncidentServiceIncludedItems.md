@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Attributes** | Pointer to [**UserAttributes**](UserAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the user. | [optional] 
 **Relationships** | Pointer to [**UserResponseRelationships**](UserResponseRelationships.md) |  | [optional] 
-**Type** | Pointer to [**UsersType**](UsersType.md) |  | [optional] [default to "users"]
+**Type** | Pointer to [**UsersType**](UsersType.md) |  | [optional] [default to USERSTYPE_USERS]
 
 ## Methods
 

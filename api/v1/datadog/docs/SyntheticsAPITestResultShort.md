@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CheckTime** | Pointer to **float64** | Last time the API test was performed. | [optional] 
 **ProbeDc** | Pointer to **string** | Location from which the API test was performed. | [optional] 
-**Result** | Pointer to [**SyntheticsAPITestResultShortResult**](SyntheticsAPITestResultShort_result.md) |  | [optional] 
+**Result** | Pointer to [**SyntheticsAPITestResultShortResult**](SyntheticsAPITestResultShortResult.md) |  | [optional] 
 **ResultId** | Pointer to **string** | ID of the API test result. | [optional] 
 **Status** | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md) |  | [optional] 
 

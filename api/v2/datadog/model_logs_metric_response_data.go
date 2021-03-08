@@ -26,7 +26,7 @@ type LogsMetricResponseData struct {
 // will change when the set of required properties is changed
 func NewLogsMetricResponseData() *LogsMetricResponseData {
 	this := LogsMetricResponseData{}
-	var type_ LogsMetricType = "logs_metrics"
+	var type_ LogsMetricType = LOGSMETRICTYPE_LOGS_METRICS
 	this.Type = &type_
 	return &this
 }
@@ -36,7 +36,7 @@ func NewLogsMetricResponseData() *LogsMetricResponseData {
 // but it doesn't guarantee that properties required by API are set
 func NewLogsMetricResponseDataWithDefaults() *LogsMetricResponseData {
 	this := LogsMetricResponseData{}
-	var type_ LogsMetricType = "logs_metrics"
+	var type_ LogsMetricType = LOGSMETRICTYPE_LOGS_METRICS
 	this.Type = &type_
 	return &this
 }
