@@ -18,17 +18,18 @@ type SyntheticsAPITestConfig struct {
 	Assertions []SyntheticsAssertion `json:"assertions"`
 	// Array of variables used for the test.
 	ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
-	Request         SyntheticsTestRequest       `json:"request"`
+	Request         *SyntheticsTestRequest      `json:"request,omitempty"`
+	// When the test subtype is `multi`, the steps of the test.
+	Steps *[]SyntheticsAPIStep `json:"steps,omitempty"`
 }
 
 // NewSyntheticsAPITestConfig instantiates a new SyntheticsAPITestConfig object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsAPITestConfig(assertions []SyntheticsAssertion, request SyntheticsTestRequest) *SyntheticsAPITestConfig {
+func NewSyntheticsAPITestConfig(assertions []SyntheticsAssertion) *SyntheticsAPITestConfig {
 	this := SyntheticsAPITestConfig{}
 	this.Assertions = assertions
-	this.Request = request
 	return &this
 }
 
@@ -96,28 +97,68 @@ func (o *SyntheticsAPITestConfig) SetConfigVariables(v []SyntheticsConfigVariabl
 	o.ConfigVariables = &v
 }
 
-// GetRequest returns the Request field value
+// GetRequest returns the Request field value if set, zero value otherwise.
 func (o *SyntheticsAPITestConfig) GetRequest() SyntheticsTestRequest {
-	if o == nil {
+	if o == nil || o.Request == nil {
 		var ret SyntheticsTestRequest
 		return ret
 	}
-
-	return o.Request
+	return *o.Request
 }
 
-// GetRequestOk returns a tuple with the Request field value
+// GetRequestOk returns a tuple with the Request field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITestConfig) GetRequestOk() (*SyntheticsTestRequest, bool) {
-	if o == nil {
+	if o == nil || o.Request == nil {
 		return nil, false
 	}
-	return &o.Request, true
+	return o.Request, true
 }
 
-// SetRequest sets field value
+// HasRequest returns a boolean if a field has been set.
+func (o *SyntheticsAPITestConfig) HasRequest() bool {
+	if o != nil && o.Request != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRequest gets a reference to the given SyntheticsTestRequest and assigns it to the Request field.
 func (o *SyntheticsAPITestConfig) SetRequest(v SyntheticsTestRequest) {
-	o.Request = v
+	o.Request = &v
+}
+
+// GetSteps returns the Steps field value if set, zero value otherwise.
+func (o *SyntheticsAPITestConfig) GetSteps() []SyntheticsAPIStep {
+	if o == nil || o.Steps == nil {
+		var ret []SyntheticsAPIStep
+		return ret
+	}
+	return *o.Steps
+}
+
+// GetStepsOk returns a tuple with the Steps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsAPITestConfig) GetStepsOk() (*[]SyntheticsAPIStep, bool) {
+	if o == nil || o.Steps == nil {
+		return nil, false
+	}
+	return o.Steps, true
+}
+
+// HasSteps returns a boolean if a field has been set.
+func (o *SyntheticsAPITestConfig) HasSteps() bool {
+	if o != nil && o.Steps != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSteps gets a reference to the given []SyntheticsAPIStep and assigns it to the Steps field.
+func (o *SyntheticsAPITestConfig) SetSteps(v []SyntheticsAPIStep) {
+	o.Steps = &v
 }
 
 func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
@@ -128,8 +169,11 @@ func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
 	if o.ConfigVariables != nil {
 		toSerialize["configVariables"] = o.ConfigVariables
 	}
-	if true {
+	if o.Request != nil {
 		toSerialize["request"] = o.Request
+	}
+	if o.Steps != nil {
+		toSerialize["steps"] = o.Steps
 	}
 	return json.Marshal(toSerialize)
 }
