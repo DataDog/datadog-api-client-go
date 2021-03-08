@@ -71,7 +71,7 @@ func NewLogsAttributeRemapperWithDefaults() *LogsAttributeRemapper {
 	this.SourceType = &sourceType
 	var targetType string = "attribute"
 	this.TargetType = &targetType
-	var type_ LogsAttributeRemapperType = "attribute-remapper"
+	var type_ LogsAttributeRemapperType = LOGSATTRIBUTEREMAPPERTYPE_ATTRIBUTE_REMAPPER
 	this.Type = type_
 	return &this
 }

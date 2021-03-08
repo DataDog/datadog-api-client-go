@@ -26,7 +26,7 @@ type SecurityMonitoringSignal struct {
 // will change when the set of required properties is changed
 func NewSecurityMonitoringSignal() *SecurityMonitoringSignal {
 	this := SecurityMonitoringSignal{}
-	var type_ SecurityMonitoringSignalType = "signal"
+	var type_ SecurityMonitoringSignalType = SECURITYMONITORINGSIGNALTYPE_SIGNAL
 	this.Type = &type_
 	return &this
 }
@@ -36,7 +36,7 @@ func NewSecurityMonitoringSignal() *SecurityMonitoringSignal {
 // but it doesn't guarantee that properties required by API are set
 func NewSecurityMonitoringSignalWithDefaults() *SecurityMonitoringSignal {
 	this := SecurityMonitoringSignal{}
-	var type_ SecurityMonitoringSignalType = "signal"
+	var type_ SecurityMonitoringSignalType = SECURITYMONITORINGSIGNALTYPE_SIGNAL
 	this.Type = &type_
 	return &this
 }

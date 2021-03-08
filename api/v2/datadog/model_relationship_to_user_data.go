@@ -35,7 +35,7 @@ func NewRelationshipToUserData(id string, type_ UsersType) *RelationshipToUserDa
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToUserDataWithDefaults() *RelationshipToUserData {
 	this := RelationshipToUserData{}
-	var type_ UsersType = "users"
+	var type_ UsersType = USERSTYPE_USERS
 	this.Type = type_
 	return &this
 }

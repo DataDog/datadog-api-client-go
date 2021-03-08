@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**PermissionAttributes**](PermissionAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the permission. | [optional] 
-**Type** | [**PermissionsType**](PermissionsType.md) |  | [default to "permissions"]
+**Type** | [**PermissionsType**](PermissionsType.md) |  | [default to PERMISSIONSTYPE_PERMISSIONS]
 
 ## Methods
 

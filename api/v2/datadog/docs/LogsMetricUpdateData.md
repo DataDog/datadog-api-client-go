@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | [**LogsMetricUpdateAttributes**](LogsMetricUpdateAttributes.md) |  | 
-**Type** | [**LogsMetricType**](LogsMetricType.md) |  | [default to "logs_metrics"]
+**Type** | [**LogsMetricType**](LogsMetricType.md) |  | [default to LOGSMETRICTYPE_LOGS_METRICS]
 
 ## Methods
 

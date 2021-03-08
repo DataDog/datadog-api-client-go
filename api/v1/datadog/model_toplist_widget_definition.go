@@ -43,7 +43,7 @@ func NewToplistWidgetDefinition(requests []ToplistWidgetRequest, type_ ToplistWi
 // but it doesn't guarantee that properties required by API are set
 func NewToplistWidgetDefinitionWithDefaults() *ToplistWidgetDefinition {
 	this := ToplistWidgetDefinition{}
-	var type_ ToplistWidgetDefinitionType = "toplist"
+	var type_ ToplistWidgetDefinitionType = TOPLISTWIDGETDEFINITIONTYPE_TOPLIST
 	this.Type = type_
 	return &this
 }

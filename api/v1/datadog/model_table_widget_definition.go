@@ -44,7 +44,7 @@ func NewTableWidgetDefinition(requests []TableWidgetRequest, type_ TableWidgetDe
 // but it doesn't guarantee that properties required by API are set
 func NewTableWidgetDefinitionWithDefaults() *TableWidgetDefinition {
 	this := TableWidgetDefinition{}
-	var type_ TableWidgetDefinitionType = "query_table"
+	var type_ TableWidgetDefinitionType = TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE
 	this.Type = type_
 	return &this
 }

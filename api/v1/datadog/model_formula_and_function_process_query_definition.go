@@ -39,7 +39,7 @@ func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionPr
 	this := FormulaAndFunctionProcessQueryDefinition{}
 	this.DataSource = dataSource
 	this.Metric = metric
-	var sort QuerySortOrder = "desc"
+	var sort QuerySortOrder = QUERYSORTORDER_DESC
 	this.Sort = &sort
 	return &this
 }
@@ -49,7 +49,7 @@ func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionPr
 // but it doesn't guarantee that properties required by API are set
 func NewFormulaAndFunctionProcessQueryDefinitionWithDefaults() *FormulaAndFunctionProcessQueryDefinition {
 	this := FormulaAndFunctionProcessQueryDefinition{}
-	var sort QuerySortOrder = "desc"
+	var sort QuerySortOrder = QUERYSORTORDER_DESC
 	this.Sort = &sort
 	return &this
 }

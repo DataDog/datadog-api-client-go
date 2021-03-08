@@ -34,7 +34,7 @@ func NewLogsMetricUpdateData(attributes LogsMetricUpdateAttributes, type_ LogsMe
 // but it doesn't guarantee that properties required by API are set
 func NewLogsMetricUpdateDataWithDefaults() *LogsMetricUpdateData {
 	this := LogsMetricUpdateData{}
-	var type_ LogsMetricType = "logs_metrics"
+	var type_ LogsMetricType = LOGSMETRICTYPE_LOGS_METRICS
 	this.Type = type_
 	return &this
 }

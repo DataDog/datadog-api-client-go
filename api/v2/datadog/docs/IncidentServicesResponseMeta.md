@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pagination** | Pointer to [**IncidentServicesResponseMetaPagination**](IncidentServicesResponse_meta_pagination.md) |  | [optional] 
+**Pagination** | Pointer to [**IncidentServicesResponseMetaPagination**](IncidentServicesResponseMetaPagination.md) |  | [optional] 
 
 ## Methods
 

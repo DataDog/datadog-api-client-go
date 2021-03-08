@@ -35,7 +35,7 @@ func NewOrganization(type_ OrganizationsType) *Organization {
 // but it doesn't guarantee that properties required by API are set
 func NewOrganizationWithDefaults() *Organization {
 	this := Organization{}
-	var type_ OrganizationsType = "orgs"
+	var type_ OrganizationsType = ORGANIZATIONSTYPE_ORGS
 	this.Type = type_
 	return &this
 }

@@ -36,7 +36,7 @@ func NewMetricTagConfigurationCreateData(id string, type_ MetricTagConfiguration
 // but it doesn't guarantee that properties required by API are set
 func NewMetricTagConfigurationCreateDataWithDefaults() *MetricTagConfigurationCreateData {
 	this := MetricTagConfigurationCreateData{}
-	var type_ MetricTagConfigurationType = "manage_tags"
+	var type_ MetricTagConfigurationType = METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS
 	this.Type = type_
 	return &this
 }

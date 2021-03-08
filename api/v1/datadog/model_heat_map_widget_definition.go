@@ -50,7 +50,7 @@ func NewHeatMapWidgetDefinition(requests []HeatMapWidgetRequest, type_ HeatMapWi
 // but it doesn't guarantee that properties required by API are set
 func NewHeatMapWidgetDefinitionWithDefaults() *HeatMapWidgetDefinition {
 	this := HeatMapWidgetDefinition{}
-	var type_ HeatMapWidgetDefinitionType = "heatmap"
+	var type_ HeatMapWidgetDefinitionType = HEATMAPWIDGETDEFINITIONTYPE_HEATMAP
 	this.Type = type_
 	return &this
 }

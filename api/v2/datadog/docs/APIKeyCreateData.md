@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | [**APIKeyCreateAttributes**](APIKeyCreateAttributes.md) |  | 
-**Type** | [**APIKeysType**](APIKeysType.md) |  | [default to "api_keys"]
+**Type** | [**APIKeysType**](APIKeysType.md) |  | [default to APIKEYSTYPE_API_KEYS]
 
 ## Methods
 

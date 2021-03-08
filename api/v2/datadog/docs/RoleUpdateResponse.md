@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**RoleUpdateResponseData**](RoleUpdateResponse_data.md) |  | [optional] 
+**Data** | Pointer to [**RoleUpdateResponseData**](RoleUpdateResponseData.md) |  | [optional] 
 
 ## Methods
 

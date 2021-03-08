@@ -40,7 +40,7 @@ func NewFreeTextWidgetDefinition(text string, type_ FreeTextWidgetDefinitionType
 // but it doesn't guarantee that properties required by API are set
 func NewFreeTextWidgetDefinitionWithDefaults() *FreeTextWidgetDefinition {
 	this := FreeTextWidgetDefinition{}
-	var type_ FreeTextWidgetDefinitionType = "free_text"
+	var type_ FreeTextWidgetDefinitionType = FREETEXTWIDGETDEFINITIONTYPE_FREE_TEXT
 	this.Type = type_
 	return &this
 }

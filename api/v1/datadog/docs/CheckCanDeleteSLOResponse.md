@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**CheckCanDeleteSLOResponseData**](CheckCanDeleteSLOResponse_data.md) |  | [optional] 
+**Data** | Pointer to [**CheckCanDeleteSLOResponseData**](CheckCanDeleteSLOResponseData.md) |  | [optional] 
 **Errors** | Pointer to **map[string]string** | A mapping of SLO id to it&#39;s current usages. | [optional] 
 
 ## Methods

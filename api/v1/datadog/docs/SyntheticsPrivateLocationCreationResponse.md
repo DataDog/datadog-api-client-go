@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Config** | Pointer to **interface{}** | Configuration skeleton for the private location. See installation instructions of the private location on how to use this configuration. | [optional] 
 **PrivateLocation** | Pointer to [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) |  | [optional] 
-**ResultEncryption** | Pointer to [**SyntheticsPrivateLocationCreationResponseResultEncryption**](SyntheticsPrivateLocationCreationResponse_result_encryption.md) |  | [optional] 
+**ResultEncryption** | Pointer to [**SyntheticsPrivateLocationCreationResponseResultEncryption**](SyntheticsPrivateLocationCreationResponseResultEncryption.md) |  | [optional] 
 
 ## Methods
 

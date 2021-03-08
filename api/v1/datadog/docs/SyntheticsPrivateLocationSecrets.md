@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Authentication** | Pointer to [**SyntheticsPrivateLocationSecretsAuthentication**](SyntheticsPrivateLocation_secrets_authentication.md) |  | [optional] 
-**ConfigDecryption** | Pointer to [**SyntheticsPrivateLocationSecretsConfigDecryption**](SyntheticsPrivateLocation_secrets_config_decryption.md) |  | [optional] 
+**Authentication** | Pointer to [**SyntheticsPrivateLocationSecretsAuthentication**](SyntheticsPrivateLocationSecretsAuthentication.md) |  | [optional] 
+**ConfigDecryption** | Pointer to [**SyntheticsPrivateLocationSecretsConfigDecryption**](SyntheticsPrivateLocationSecretsConfigDecryption.md) |  | [optional] 
 
 ## Methods
 

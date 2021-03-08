@@ -46,7 +46,7 @@ func NewLogsCategoryProcessorWithDefaults() *LogsCategoryProcessor {
 	this := LogsCategoryProcessor{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsCategoryProcessorType = "category-processor"
+	var type_ LogsCategoryProcessorType = LOGSCATEGORYPROCESSORTYPE_CATEGORY_PROCESSOR
 	this.Type = type_
 	return &this
 }

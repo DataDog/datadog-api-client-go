@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**MetricIngestedIndexedVolumeAttributes**](MetricIngestedIndexedVolumeAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | The metric name for this resource. | [optional] 
-**Type** | Pointer to [**MetricIngestedIndexedVolumeType**](MetricIngestedIndexedVolumeType.md) |  | [optional] [default to "metric_volumes"]
+**Type** | Pointer to [**MetricIngestedIndexedVolumeType**](MetricIngestedIndexedVolumeType.md) |  | [optional] [default to METRICINGESTEDINDEXEDVOLUMETYPE_METRIC_VOLUMES]
 
 ## Methods
 

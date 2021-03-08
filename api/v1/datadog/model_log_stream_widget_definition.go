@@ -52,7 +52,7 @@ func NewLogStreamWidgetDefinition(type_ LogStreamWidgetDefinitionType) *LogStrea
 // but it doesn't guarantee that properties required by API are set
 func NewLogStreamWidgetDefinitionWithDefaults() *LogStreamWidgetDefinition {
 	this := LogStreamWidgetDefinition{}
-	var type_ LogStreamWidgetDefinitionType = "log_stream"
+	var type_ LogStreamWidgetDefinitionType = LOGSTREAMWIDGETDEFINITIONTYPE_LOG_STREAM
 	this.Type = type_
 	return &this
 }

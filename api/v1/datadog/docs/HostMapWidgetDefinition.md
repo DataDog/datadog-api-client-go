@@ -10,13 +10,13 @@ Name | Type | Description | Notes
 **NoMetricHosts** | Pointer to **bool** | Whether to show the hosts with no metrics. | [optional] 
 **NodeType** | Pointer to [**WidgetNodeType**](WidgetNodeType.md) |  | [optional] 
 **Notes** | Pointer to **string** | Notes on the title. | [optional] 
-**Requests** | [**HostMapWidgetDefinitionRequests**](HostMapWidgetDefinition_requests.md) |  | 
+**Requests** | [**HostMapWidgetDefinitionRequests**](HostMapWidgetDefinitionRequests.md) |  | 
 **Scope** | Pointer to **[]string** | List of tags used to filter the map. | [optional] 
-**Style** | Pointer to [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinition_style.md) |  | [optional] 
+**Style** | Pointer to [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinitionStyle.md) |  | [optional] 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**HostMapWidgetDefinitionType**](HostMapWidgetDefinitionType.md) |  | [default to "hostmap"]
+**Type** | [**HostMapWidgetDefinitionType**](HostMapWidgetDefinitionType.md) |  | [default to HOSTMAPWIDGETDEFINITIONTYPE_HOSTMAP]
 
 ## Methods
 

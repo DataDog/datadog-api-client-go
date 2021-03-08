@@ -50,7 +50,7 @@ func NewQueryValueWidgetDefinition(requests []QueryValueWidgetRequest, type_ Que
 // but it doesn't guarantee that properties required by API are set
 func NewQueryValueWidgetDefinitionWithDefaults() *QueryValueWidgetDefinition {
 	this := QueryValueWidgetDefinition{}
-	var type_ QueryValueWidgetDefinitionType = "query_value"
+	var type_ QueryValueWidgetDefinitionType = QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE
 	this.Type = type_
 	return &this
 }

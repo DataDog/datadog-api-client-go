@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Sources** | **[]string** | Array of source attributes. | [default to ["network.client.ip"]]
 **Target** | **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "network.client.geoip"]
-**Type** | [**LogsGeoIPParserType**](LogsGeoIPParserType.md) |  | [default to "geo-ip-parser"]
+**Type** | [**LogsGeoIPParserType**](LogsGeoIPParserType.md) |  | [default to LOGSGEOIPPARSERTYPE_GEO_IP_PARSER]
 
 ## Methods
 

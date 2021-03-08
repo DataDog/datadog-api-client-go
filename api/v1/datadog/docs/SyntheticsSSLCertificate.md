@@ -9,11 +9,11 @@ Name | Type | Description | Notes
 **ExtKeyUsage** | Pointer to **[]string** | Array of extensions and details used for the certificate. | [optional] 
 **Fingerprint** | Pointer to **string** | MD5 digest of the DER-encoded Certificate information. | [optional] 
 **Fingerprint256** | Pointer to **string** | SHA-1 digest of the DER-encoded Certificate information. | [optional] 
-**Issuer** | Pointer to [**SyntheticsSSLCertificateIssuer**](SyntheticsSSLCertificate_issuer.md) |  | [optional] 
+**Issuer** | Pointer to [**SyntheticsSSLCertificateIssuer**](SyntheticsSSLCertificateIssuer.md) |  | [optional] 
 **Modulus** | Pointer to **string** | Modulus associated to the SSL certificate private key. | [optional] 
 **Protocol** | Pointer to **string** | TLS protocol used for the test. | [optional] 
 **SerialNumber** | Pointer to **string** | Serial Number assigned by Symantec to the SSL certificate. | [optional] 
-**Subject** | Pointer to [**SyntheticsSSLCertificateSubject**](SyntheticsSSLCertificate_subject.md) |  | [optional] 
+**Subject** | Pointer to [**SyntheticsSSLCertificateSubject**](SyntheticsSSLCertificateSubject.md) |  | [optional] 
 **ValidFrom** | Pointer to **time.Time** | Date from which the SSL certificate is valid. | [optional] 
 **ValidTo** | Pointer to **time.Time** | Date until which the SSL certificate is valid. | [optional] 
 

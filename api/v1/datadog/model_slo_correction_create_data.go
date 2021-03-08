@@ -24,7 +24,7 @@ type SLOCorrectionCreateData struct {
 // will change when the set of required properties is changed
 func NewSLOCorrectionCreateData() *SLOCorrectionCreateData {
 	this := SLOCorrectionCreateData{}
-	var type_ SLOCorrectionType = "correction"
+	var type_ SLOCorrectionType = SLOCORRECTIONTYPE_CORRECTION
 	this.Type = &type_
 	return &this
 }
@@ -34,7 +34,7 @@ func NewSLOCorrectionCreateData() *SLOCorrectionCreateData {
 // but it doesn't guarantee that properties required by API are set
 func NewSLOCorrectionCreateDataWithDefaults() *SLOCorrectionCreateData {
 	this := SLOCorrectionCreateData{}
-	var type_ SLOCorrectionType = "correction"
+	var type_ SLOCorrectionType = SLOCORRECTIONTYPE_CORRECTION
 	this.Type = &type_
 	return &this
 }

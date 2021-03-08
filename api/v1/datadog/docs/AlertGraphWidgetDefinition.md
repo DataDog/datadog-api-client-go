@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | The title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**AlertGraphWidgetDefinitionType**](AlertGraphWidgetDefinitionType.md) |  | [default to "alert_graph"]
+**Type** | [**AlertGraphWidgetDefinitionType**](AlertGraphWidgetDefinitionType.md) |  | [default to ALERTGRAPHWIDGETDEFINITIONTYPE_ALERT_GRAPH]
 **VizType** | [**WidgetVizType**](WidgetVizType.md) |  | 
 
 ## Methods

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**IncidentServiceCreateAttributes**](IncidentServiceCreateAttributes.md) |  | [optional] 
 **Relationships** | Pointer to [**IncidentServiceRelationships**](IncidentServiceRelationships.md) |  | [optional] 
-**Type** | [**IncidentServiceType**](IncidentServiceType.md) |  | [default to "services"]
+**Type** | [**IncidentServiceType**](IncidentServiceType.md) |  | [default to INCIDENTSERVICETYPE_SERVICES]
 
 ## Methods
 

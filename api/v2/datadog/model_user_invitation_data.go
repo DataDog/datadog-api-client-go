@@ -34,7 +34,7 @@ func NewUserInvitationData(relationships UserInvitationRelationships, type_ User
 // but it doesn't guarantee that properties required by API are set
 func NewUserInvitationDataWithDefaults() *UserInvitationData {
 	this := UserInvitationData{}
-	var type_ UserInvitationsType = "user_invitations"
+	var type_ UserInvitationsType = USERINVITATIONSTYPE_USER_INVITATIONS
 	this.Type = type_
 	return &this
 }

@@ -26,7 +26,7 @@ type MetricIngestedIndexedVolume struct {
 // will change when the set of required properties is changed
 func NewMetricIngestedIndexedVolume() *MetricIngestedIndexedVolume {
 	this := MetricIngestedIndexedVolume{}
-	var type_ MetricIngestedIndexedVolumeType = "metric_volumes"
+	var type_ MetricIngestedIndexedVolumeType = METRICINGESTEDINDEXEDVOLUMETYPE_METRIC_VOLUMES
 	this.Type = &type_
 	return &this
 }
@@ -36,7 +36,7 @@ func NewMetricIngestedIndexedVolume() *MetricIngestedIndexedVolume {
 // but it doesn't guarantee that properties required by API are set
 func NewMetricIngestedIndexedVolumeWithDefaults() *MetricIngestedIndexedVolume {
 	this := MetricIngestedIndexedVolume{}
-	var type_ MetricIngestedIndexedVolumeType = "metric_volumes"
+	var type_ MetricIngestedIndexedVolumeType = METRICINGESTEDINDEXEDVOLUMETYPE_METRIC_VOLUMES
 	this.Type = &type_
 	return &this
 }

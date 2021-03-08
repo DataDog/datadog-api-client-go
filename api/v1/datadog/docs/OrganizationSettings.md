@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PrivateWidgetShare** | Pointer to **bool** | Whether or not the organization users can share widgets outside of Datadog. | [optional] 
-**Saml** | Pointer to [**OrganizationSettingsSaml**](Organization_settings_saml.md) |  | [optional] 
-**SamlAutocreateAccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] [default to "st"]
-**SamlAutocreateUsersDomains** | Pointer to [**OrganizationSettingsSamlAutocreateUsersDomains**](Organization_settings_saml_autocreate_users_domains.md) |  | [optional] 
+**Saml** | Pointer to [**OrganizationSettingsSaml**](OrganizationSettingsSaml.md) |  | [optional] 
+**SamlAutocreateAccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] [default to ACCESSROLE_STANDARD]
+**SamlAutocreateUsersDomains** | Pointer to [**OrganizationSettingsSamlAutocreateUsersDomains**](OrganizationSettingsSamlAutocreateUsersDomains.md) |  | [optional] 
 **SamlCanBeEnabled** | Pointer to **bool** | Whether or not SAML can be enabled for this organization. | [optional] 
 **SamlIdpEndpoint** | Pointer to **string** | Identity provider endpoint for SAML authentication. | [optional] 
-**SamlIdpInitiatedLogin** | Pointer to [**OrganizationSettingsSamlIdpInitiatedLogin**](Organization_settings_saml_idp_initiated_login.md) |  | [optional] 
+**SamlIdpInitiatedLogin** | Pointer to [**OrganizationSettingsSamlIdpInitiatedLogin**](OrganizationSettingsSamlIdpInitiatedLogin.md) |  | [optional] 
 **SamlIdpMetadataUploaded** | Pointer to **bool** | Whether or not a SAML identity provider metadata file was provided to the Datadog organization. | [optional] 
 **SamlLoginUrl** | Pointer to **string** | URL for SAML logging. | [optional] 
-**SamlStrictMode** | Pointer to [**OrganizationSettingsSamlStrictMode**](Organization_settings_saml_strict_mode.md) |  | [optional] 
+**SamlStrictMode** | Pointer to [**OrganizationSettingsSamlStrictMode**](OrganizationSettingsSamlStrictMode.md) |  | [optional] 
 
 ## Methods
 

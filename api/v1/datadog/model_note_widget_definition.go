@@ -45,7 +45,7 @@ func NewNoteWidgetDefinition(content string, type_ NoteWidgetDefinitionType) *No
 // but it doesn't guarantee that properties required by API are set
 func NewNoteWidgetDefinitionWithDefaults() *NoteWidgetDefinition {
 	this := NoteWidgetDefinition{}
-	var type_ NoteWidgetDefinitionType = "note"
+	var type_ NoteWidgetDefinitionType = NOTEWIDGETDEFINITIONTYPE_NOTE
 	this.Type = type_
 	return &this
 }

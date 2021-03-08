@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**HeatMapWidgetDefinitionType**](HeatMapWidgetDefinitionType.md) |  | [default to "heatmap"]
+**Type** | [**HeatMapWidgetDefinitionType**](HeatMapWidgetDefinitionType.md) |  | [default to HEATMAPWIDGETDEFINITIONTYPE_HEATMAP]
 **Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
 ## Methods
