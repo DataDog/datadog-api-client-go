@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **IsReplaceMissing** | Pointer to **bool** | If &#x60;true&#x60;, it replaces all missing attributes of expression by &#x60;0&#x60;, &#x60;false&#x60; skip the operation if an attribute is missing. | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Target** | **string** | Name of the attribute that contains the result of the arithmetic operation. | 
-**Type** | [**LogsArithmeticProcessorType**](LogsArithmeticProcessorType.md) |  | [default to "arithmetic-processor"]
+**Type** | [**LogsArithmeticProcessorType**](LogsArithmeticProcessorType.md) |  | [default to LOGSARITHMETICPROCESSORTYPE_ARITHMETIC_PROCESSOR]
 
 ## Methods
 

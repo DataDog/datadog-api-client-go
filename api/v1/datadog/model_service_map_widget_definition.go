@@ -45,7 +45,7 @@ func NewServiceMapWidgetDefinition(filters []string, service string, type_ Servi
 // but it doesn't guarantee that properties required by API are set
 func NewServiceMapWidgetDefinitionWithDefaults() *ServiceMapWidgetDefinition {
 	this := ServiceMapWidgetDefinition{}
-	var type_ ServiceMapWidgetDefinitionType = "servicemap"
+	var type_ ServiceMapWidgetDefinitionType = SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP
 	this.Type = type_
 	return &this
 }

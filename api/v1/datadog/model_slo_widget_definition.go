@@ -47,7 +47,7 @@ func NewSLOWidgetDefinition(type_ SLOWidgetDefinitionType, viewType string) *SLO
 // but it doesn't guarantee that properties required by API are set
 func NewSLOWidgetDefinitionWithDefaults() *SLOWidgetDefinition {
 	this := SLOWidgetDefinition{}
-	var type_ SLOWidgetDefinitionType = "slo"
+	var type_ SLOWidgetDefinitionType = SLOWIDGETDEFINITIONTYPE_SLO
 	this.Type = type_
 	var viewType string = "detail"
 	this.ViewType = viewType

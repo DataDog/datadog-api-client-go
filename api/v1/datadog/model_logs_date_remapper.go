@@ -43,7 +43,7 @@ func NewLogsDateRemapperWithDefaults() *LogsDateRemapper {
 	this := LogsDateRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsDateRemapperType = "date-remapper"
+	var type_ LogsDateRemapperType = LOGSDATEREMAPPERTYPE_DATE_REMAPPER
 	this.Type = type_
 	return &this
 }

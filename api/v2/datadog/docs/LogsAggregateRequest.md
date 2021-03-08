@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Filter** | Pointer to [**LogsQueryFilter**](LogsQueryFilter.md) |  | [optional] 
 **GroupBy** | Pointer to [**[]LogsGroupBy**](LogsGroupBy.md) | The rules for the group by | [optional] 
 **Options** | Pointer to [**LogsQueryOptions**](LogsQueryOptions.md) |  | [optional] 
-**Page** | Pointer to [**LogsAggregateRequestPage**](LogsAggregateRequest_page.md) |  | [optional] 
+**Page** | Pointer to [**LogsAggregateRequestPage**](LogsAggregateRequestPage.md) |  | [optional] 
 
 ## Methods
 

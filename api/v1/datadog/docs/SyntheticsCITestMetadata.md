@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ci** | Pointer to [**SyntheticsCITestMetadataCi**](SyntheticsCITest_metadata_ci.md) |  | [optional] 
-**Git** | Pointer to [**SyntheticsCITestMetadataGit**](SyntheticsCITest_metadata_git.md) |  | [optional] 
+**Ci** | Pointer to [**SyntheticsCITestMetadataCi**](SyntheticsCITestMetadataCi.md) |  | [optional] 
+**Git** | Pointer to [**SyntheticsCITestMetadataGit**](SyntheticsCITestMetadataGit.md) |  | [optional] 
 
 ## Methods
 

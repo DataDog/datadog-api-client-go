@@ -39,7 +39,7 @@ func NewLogsArchiveDestinationGCS(bucket string, integration LogsArchiveIntegrat
 // but it doesn't guarantee that properties required by API are set
 func NewLogsArchiveDestinationGCSWithDefaults() *LogsArchiveDestinationGCS {
 	this := LogsArchiveDestinationGCS{}
-	var type_ LogsArchiveDestinationGCSType = "gcs"
+	var type_ LogsArchiveDestinationGCSType = LOGSARCHIVEDESTINATIONGCSTYPE_GCS
 	this.Type = type_
 	return &this
 }

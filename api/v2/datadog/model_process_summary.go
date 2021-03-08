@@ -26,7 +26,7 @@ type ProcessSummary struct {
 // will change when the set of required properties is changed
 func NewProcessSummary() *ProcessSummary {
 	this := ProcessSummary{}
-	var type_ ProcessSummaryType = "process"
+	var type_ ProcessSummaryType = PROCESSSUMMARYTYPE_PROCESS
 	this.Type = &type_
 	return &this
 }
@@ -36,7 +36,7 @@ func NewProcessSummary() *ProcessSummary {
 // but it doesn't guarantee that properties required by API are set
 func NewProcessSummaryWithDefaults() *ProcessSummary {
 	this := ProcessSummary{}
-	var type_ ProcessSummaryType = "process"
+	var type_ ProcessSummaryType = PROCESSSUMMARYTYPE_PROCESS
 	this.Type = &type_
 	return &this
 }

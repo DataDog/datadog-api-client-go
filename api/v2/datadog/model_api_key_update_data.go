@@ -37,7 +37,7 @@ func NewAPIKeyUpdateData(attributes APIKeyUpdateAttributes, id string, type_ API
 // but it doesn't guarantee that properties required by API are set
 func NewAPIKeyUpdateDataWithDefaults() *APIKeyUpdateData {
 	this := APIKeyUpdateData{}
-	var type_ APIKeysType = "api_keys"
+	var type_ APIKeysType = APIKEYSTYPE_API_KEYS
 	this.Type = type_
 	return &this
 }

@@ -54,7 +54,7 @@ func NewLogsURLParserWithDefaults() *LogsURLParser {
 	this.NormalizeEndingSlashes = *NewNullableBool(&normalizeEndingSlashes)
 	var target string = "http.url_details"
 	this.Target = target
-	var type_ LogsURLParserType = "url-parser"
+	var type_ LogsURLParserType = LOGSURLPARSERTYPE_URL_PARSER
 	this.Type = type_
 	return &this
 }

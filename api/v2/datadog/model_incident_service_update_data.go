@@ -37,7 +37,7 @@ func NewIncidentServiceUpdateData(id string, type_ IncidentServiceType) *Inciden
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentServiceUpdateDataWithDefaults() *IncidentServiceUpdateData {
 	this := IncidentServiceUpdateData{}
-	var type_ IncidentServiceType = "services"
+	var type_ IncidentServiceType = INCIDENTSERVICETYPE_SERVICES
 	this.Type = type_
 	return &this
 }

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Facet** | **string** | The name of the facet to use (required) | 
-**Histogram** | Pointer to [**LogsGroupByHistogram**](LogsGroupBy_histogram.md) |  | [optional] 
+**Histogram** | Pointer to [**LogsGroupByHistogram**](LogsGroupByHistogram.md) |  | [optional] 
 **Limit** | Pointer to **int64** | The maximum buckets to return for this group by | [optional] [default to 10]
 **Missing** | Pointer to [**LogsGroupByMissing**](LogsGroupByMissing.md) |  | [optional] 
 **Sort** | Pointer to [**LogsAggregateSort**](LogsAggregateSort.md) |  | [optional] 

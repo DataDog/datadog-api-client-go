@@ -9,6 +9,7 @@
 package datadog
 
 import (
+	"bytes"
 	_context "context"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
@@ -153,6 +154,7 @@ func (a *MonitorsApiService) CheckCanDeleteMonitorExecute(r ApiCheckCanDeleteMon
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -245,7 +247,7 @@ The type of monitor chosen from:
 - process: `service check`
 - rum: `rum alert`
 - watchdog: `event alert`
-- event-v2: `event-2 alert`
+- event-v2: `event-v2 alert`
 
 #### Query Types
 
@@ -445,6 +447,7 @@ func (a *MonitorsApiService) CreateMonitorExecute(r ApiCreateMonitorRequest) (Mo
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -609,6 +612,7 @@ func (a *MonitorsApiService) DeleteMonitorExecute(r ApiDeleteMonitorRequest) (De
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -793,6 +797,7 @@ func (a *MonitorsApiService) GetMonitorExecute(r ApiGetMonitorRequest) (Monitor,
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1019,6 +1024,7 @@ func (a *MonitorsApiService) ListMonitorsExecute(r ApiListMonitorsRequest) ([]Mo
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1185,6 +1191,7 @@ func (a *MonitorsApiService) UpdateMonitorExecute(r ApiUpdateMonitorRequest) (Mo
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1367,6 +1374,7 @@ func (a *MonitorsApiService) ValidateMonitorExecute(r ApiValidateMonitorRequest)
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

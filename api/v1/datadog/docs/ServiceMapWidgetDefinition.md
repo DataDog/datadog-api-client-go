@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | The title of your widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**ServiceMapWidgetDefinitionType**](ServiceMapWidgetDefinitionType.md) |  | [default to "servicemap"]
+**Type** | [**ServiceMapWidgetDefinitionType**](ServiceMapWidgetDefinitionType.md) |  | [default to SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP]
 
 ## Methods
 

@@ -39,7 +39,7 @@ func NewLogsArchiveDestinationS3(bucket string, integration LogsArchiveIntegrati
 // but it doesn't guarantee that properties required by API are set
 func NewLogsArchiveDestinationS3WithDefaults() *LogsArchiveDestinationS3 {
 	this := LogsArchiveDestinationS3{}
-	var type_ LogsArchiveDestinationS3Type = "s3"
+	var type_ LogsArchiveDestinationS3Type = LOGSARCHIVEDESTINATIONS3TYPE_S3
 	this.Type = type_
 	return &this
 }

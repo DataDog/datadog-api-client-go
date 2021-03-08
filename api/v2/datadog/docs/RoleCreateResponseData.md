@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Attributes** | Pointer to [**RoleCreateAttributes**](RoleCreateAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the role. | [optional] 
 **Relationships** | Pointer to [**RoleResponseRelationships**](RoleResponseRelationships.md) |  | [optional] 
-**Type** | [**RolesType**](RolesType.md) |  | [default to "roles"]
+**Type** | [**RolesType**](RolesType.md) |  | [default to ROLESTYPE_ROLES]
 
 ## Methods
 

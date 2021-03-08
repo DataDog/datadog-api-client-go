@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | [**LogsMetricCreateAttributes**](LogsMetricCreateAttributes.md) |  | 
 **Id** | **string** | The name of the log-based metric. | 
-**Type** | [**LogsMetricType**](LogsMetricType.md) |  | [default to "logs_metrics"]
+**Type** | [**LogsMetricType**](LogsMetricType.md) |  | [default to LOGSMETRICTYPE_LOGS_METRICS]
 
 ## Methods
 

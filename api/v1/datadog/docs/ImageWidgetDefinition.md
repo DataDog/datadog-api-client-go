@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Margin** | Pointer to [**WidgetMargin**](WidgetMargin.md) |  | [optional] 
 **Sizing** | Pointer to [**WidgetImageSizing**](WidgetImageSizing.md) |  | [optional] 
-**Type** | [**ImageWidgetDefinitionType**](ImageWidgetDefinitionType.md) |  | [default to "image"]
+**Type** | [**ImageWidgetDefinitionType**](ImageWidgetDefinitionType.md) |  | [default to IMAGEWIDGETDEFINITIONTYPE_IMAGE]
 **Url** | **string** | URL of the image. | 
 
 ## Methods

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | Pointer to [**LogContent**](Log_content.md) |  | [optional] 
+**Content** | Pointer to [**LogContent**](LogContent.md) |  | [optional] 
 **Id** | Pointer to **string** | Unique ID of the Log. | [optional] 
 
 ## Methods

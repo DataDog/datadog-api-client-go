@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **DataSource** | [**FormulaAndFunctionProcessQueryDataSource**](FormulaAndFunctionProcessQueryDataSource.md) |  | 
 **Name** | Pointer to **string** | Name of query for use in formulas. | [optional] 
 **Query** | **string** | Metrics query definition. | 
-**Compute** | [**FormulaAndFunctionEventQueryDefinitionCompute**](FormulaAndFunctionEventQueryDefinition_compute.md) |  | 
+**Compute** | [**FormulaAndFunctionEventQueryDefinitionCompute**](FormulaAndFunctionEventQueryDefinitionCompute.md) |  | 
 **GroupBy** | Pointer to [**[]FormulaAndFunctionEventQueryGroupBy**](FormulaAndFunctionEventQueryGroupBy.md) | Group by options. | [optional] 
 **Indexes** | Pointer to **[]string** | An array of index names to query in the stream. Omit or use &#x60;[]&#x60; to query all indexes at once. | [optional] 
-**Search** | Pointer to [**FormulaAndFunctionEventQueryDefinitionSearch**](FormulaAndFunctionEventQueryDefinition_search.md) |  | [optional] 
+**Search** | Pointer to [**FormulaAndFunctionEventQueryDefinitionSearch**](FormulaAndFunctionEventQueryDefinitionSearch.md) |  | [optional] 
 **IsNormalizedCpu** | Pointer to **bool** | Whether to normalize the CPU percentages. | [optional] 
 **Limit** | Pointer to **int64** | Number of hits to return. | [optional] 
 **Metric** | **string** | Process metric name. | 
-**Sort** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to "desc"]
+**Sort** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to QUERYSORTORDER_DESC]
 **TagFilters** | Pointer to **[]string** | An array of tags to filter by. | [optional] 
 **TextFilter** | Pointer to **string** | Text to use as filter. | [optional] 
 

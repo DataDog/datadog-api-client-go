@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **FollowRedirects** | Pointer to **bool** | For API HTTP test, whether or not the test should follow redirects. | [optional] 
 **MinFailureDuration** | Pointer to **int64** | Minimum amount of time in failure required to trigger an alert. | [optional] 
 **MinLocationFailed** | Pointer to **int64** | Minimum number of locations in failure required to trigger an alert. | [optional] 
-**MonitorOptions** | Pointer to [**SyntheticsTestOptionsMonitorOptions**](SyntheticsTestOptions_monitor_options.md) |  | [optional] 
+**MonitorOptions** | Pointer to [**SyntheticsTestOptionsMonitorOptions**](SyntheticsTestOptionsMonitorOptions.md) |  | [optional] 
 **Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |  | [optional] 
 **TickEvery** | Pointer to [**SyntheticsTickInterval**](SyntheticsTickInterval.md) |  | [optional] 
 

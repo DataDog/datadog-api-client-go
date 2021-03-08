@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Compute** | [**FormulaAndFunctionEventQueryDefinitionCompute**](FormulaAndFunctionEventQueryDefinition_compute.md) |  | 
+**Compute** | [**FormulaAndFunctionEventQueryDefinitionCompute**](FormulaAndFunctionEventQueryDefinitionCompute.md) |  | 
 **DataSource** | [**FormulaAndFunctionEventsDataSource**](FormulaAndFunctionEventsDataSource.md) |  | 
 **GroupBy** | Pointer to [**[]FormulaAndFunctionEventQueryGroupBy**](FormulaAndFunctionEventQueryGroupBy.md) | Group by options. | [optional] 
 **Indexes** | Pointer to **[]string** | An array of index names to query in the stream. Omit or use &#x60;[]&#x60; to query all indexes at once. | [optional] 
 **Name** | Pointer to **string** | Name of the query for use in formulas. | [optional] 
-**Search** | Pointer to [**FormulaAndFunctionEventQueryDefinitionSearch**](FormulaAndFunctionEventQueryDefinition_search.md) |  | [optional] 
+**Search** | Pointer to [**FormulaAndFunctionEventQueryDefinitionSearch**](FormulaAndFunctionEventQueryDefinitionSearch.md) |  | [optional] 
 
 ## Methods
 

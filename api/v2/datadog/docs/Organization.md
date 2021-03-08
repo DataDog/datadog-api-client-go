@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**OrganizationAttributes**](OrganizationAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the organization. | [optional] 
-**Type** | [**OrganizationsType**](OrganizationsType.md) |  | [default to "orgs"]
+**Type** | [**OrganizationsType**](OrganizationsType.md) |  | [default to ORGANIZATIONSTYPE_ORGS]
 
 ## Methods
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | A unique identifier that represents the user. | 
-**Type** | [**UsersType**](UsersType.md) |  | [default to "users"]
+**Type** | [**UsersType**](UsersType.md) |  | [default to USERSTYPE_USERS]
 
 ## Methods
 

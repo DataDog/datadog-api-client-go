@@ -61,7 +61,7 @@ func NewServiceSummaryWidgetDefinition(env string, service string, spanName stri
 // but it doesn't guarantee that properties required by API are set
 func NewServiceSummaryWidgetDefinitionWithDefaults() *ServiceSummaryWidgetDefinition {
 	this := ServiceSummaryWidgetDefinition{}
-	var type_ ServiceSummaryWidgetDefinitionType = "trace_service"
+	var type_ ServiceSummaryWidgetDefinitionType = SERVICESUMMARYWIDGETDEFINITIONTYPE_TRACE_SERVICE
 	this.Type = type_
 	return &this
 }

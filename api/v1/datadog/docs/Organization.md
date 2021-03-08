@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Description of the organization. | [optional] 
 **Name** | Pointer to **string** | The name of the new child-organization, limited to 32 characters. | [optional] 
 **PublicId** | Pointer to **string** | The &#x60;public_id&#x60; of the organization you are operating within. | [optional] 
-**Settings** | Pointer to [**OrganizationSettings**](Organization_settings.md) |  | [optional] 
+**Settings** | Pointer to [**OrganizationSettings**](OrganizationSettings.md) |  | [optional] 
 **Subscription** | Pointer to [**OrganizationSubscription**](OrganizationSubscription.md) |  | [optional] 
 
 ## Methods

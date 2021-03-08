@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Attributes** | Pointer to [**PartialApplicationKeyAttributes**](PartialApplicationKeyAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the application key. | [optional] 
 **Relationships** | Pointer to [**ApplicationKeyRelationships**](ApplicationKeyRelationships.md) |  | [optional] 
-**Type** | Pointer to [**ApplicationKeysType**](ApplicationKeysType.md) |  | [optional] [default to "application_keys"]
+**Type** | Pointer to [**ApplicationKeysType**](ApplicationKeysType.md) |  | [optional] [default to APPLICATIONKEYSTYPE_APPLICATION_KEYS]
 
 ## Methods
 

@@ -27,7 +27,7 @@ type LogsAggregateSort struct {
 // will change when the set of required properties is changed
 func NewLogsAggregateSort() *LogsAggregateSort {
 	this := LogsAggregateSort{}
-	var type_ LogsAggregateSortType = "alphabetical"
+	var type_ LogsAggregateSortType = LOGSAGGREGATESORTTYPE_ALPHABETICAL
 	this.Type = &type_
 	return &this
 }
@@ -37,7 +37,7 @@ func NewLogsAggregateSort() *LogsAggregateSort {
 // but it doesn't guarantee that properties required by API are set
 func NewLogsAggregateSortWithDefaults() *LogsAggregateSort {
 	this := LogsAggregateSort{}
-	var type_ LogsAggregateSortType = "alphabetical"
+	var type_ LogsAggregateSortType = LOGSAGGREGATESORTTYPE_ALPHABETICAL
 	this.Type = &type_
 	return &this
 }

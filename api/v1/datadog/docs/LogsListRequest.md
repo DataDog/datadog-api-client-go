@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Query** | Pointer to **string** | The search query - following the log search syntax. | [optional] 
 **Sort** | Pointer to [**LogsSort**](LogsSort.md) |  | [optional] 
 **StartAt** | Pointer to **string** | Hash identifier of the first log to return in the list, available in a log &#x60;id&#x60; attribute. This parameter is used for the pagination feature.  **Note**: This parameter is ignored if the corresponding log is out of the scope of the specified time window. | [optional] 
-**Time** | [**LogsListRequestTime**](LogsListRequest_time.md) |  | 
+**Time** | [**LogsListRequestTime**](LogsListRequestTime.md) |  | 
 
 ## Methods
 

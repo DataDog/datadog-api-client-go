@@ -35,7 +35,7 @@ func NewRelationshipToOrganizationData(id string, type_ OrganizationsType) *Rela
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToOrganizationDataWithDefaults() *RelationshipToOrganizationData {
 	this := RelationshipToOrganizationData{}
-	var type_ OrganizationsType = "orgs"
+	var type_ OrganizationsType = ORGANIZATIONSTYPE_ORGS
 	this.Type = type_
 	return &this
 }

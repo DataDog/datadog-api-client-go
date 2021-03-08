@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**SecurityMonitoringSignalAttributes**](SecurityMonitoringSignal_attributes.md) |  | [optional] 
+**Attributes** | Pointer to [**SecurityMonitoringSignalAttributes**](SecurityMonitoringSignalAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | The unique ID of the security signal. | [optional] 
-**Type** | Pointer to [**SecurityMonitoringSignalType**](SecurityMonitoringSignalType.md) |  | [optional] [default to "signal"]
+**Type** | Pointer to [**SecurityMonitoringSignalType**](SecurityMonitoringSignalType.md) |  | [optional] [default to SECURITYMONITORINGSIGNALTYPE_SIGNAL]
 
 ## Methods
 

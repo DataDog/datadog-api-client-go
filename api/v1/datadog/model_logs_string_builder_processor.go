@@ -52,7 +52,7 @@ func NewLogsStringBuilderProcessorWithDefaults() *LogsStringBuilderProcessor {
 	this.IsEnabled = &isEnabled
 	var isReplaceMissing bool = false
 	this.IsReplaceMissing = &isReplaceMissing
-	var type_ LogsStringBuilderProcessorType = "string-builder-processor"
+	var type_ LogsStringBuilderProcessorType = LOGSSTRINGBUILDERPROCESSORTYPE_STRING_BUILDER_PROCESSOR
 	this.Type = type_
 	return &this
 }

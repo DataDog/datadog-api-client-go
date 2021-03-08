@@ -27,7 +27,7 @@ type PartialAPIKey struct {
 // will change when the set of required properties is changed
 func NewPartialAPIKey() *PartialAPIKey {
 	this := PartialAPIKey{}
-	var type_ APIKeysType = "api_keys"
+	var type_ APIKeysType = APIKEYSTYPE_API_KEYS
 	this.Type = &type_
 	return &this
 }
@@ -37,7 +37,7 @@ func NewPartialAPIKey() *PartialAPIKey {
 // but it doesn't guarantee that properties required by API are set
 func NewPartialAPIKeyWithDefaults() *PartialAPIKey {
 	this := PartialAPIKey{}
-	var type_ APIKeysType = "api_keys"
+	var type_ APIKeysType = APIKEYSTYPE_API_KEYS
 	this.Type = &type_
 	return &this
 }

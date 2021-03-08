@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CellType** | [**IncidentTimelineCellMarkdownContentType**](IncidentTimelineCellMarkdownContentType.md) |  | [default to "markdown"]
-**Content** | [**IncidentTimelineCellMarkdownCreateAttributesContent**](IncidentTimelineCellMarkdownCreateAttributes_content.md) |  | 
+**CellType** | [**IncidentTimelineCellMarkdownContentType**](IncidentTimelineCellMarkdownContentType.md) |  | [default to INCIDENTTIMELINECELLMARKDOWNCONTENTTYPE_MARKDOWN]
+**Content** | [**IncidentTimelineCellMarkdownCreateAttributesContent**](IncidentTimelineCellMarkdownCreateAttributesContent.md) |  | 
 **Important** | Pointer to **bool** | A flag indicating whether the timeline cell is important and should be highlighted. | [optional] [default to false]
 
 ## Methods

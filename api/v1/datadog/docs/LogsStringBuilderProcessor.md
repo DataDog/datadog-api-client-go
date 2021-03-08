@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the processor. | [optional] 
 **Target** | **string** | The name of the attribute that contains the result of the template. | 
 **Template** | **string** | A formula with one or more attributes and raw text. | 
-**Type** | [**LogsStringBuilderProcessorType**](LogsStringBuilderProcessorType.md) |  | [default to "string-builder-processor"]
+**Type** | [**LogsStringBuilderProcessorType**](LogsStringBuilderProcessorType.md) |  | [default to LOGSSTRINGBUILDERPROCESSORTYPE_STRING_BUILDER_PROCESSOR]
 
 ## Methods
 

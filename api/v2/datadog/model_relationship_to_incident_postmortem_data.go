@@ -35,7 +35,7 @@ func NewRelationshipToIncidentPostmortemData(id string, type_ IncidentPostmortem
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToIncidentPostmortemDataWithDefaults() *RelationshipToIncidentPostmortemData {
 	this := RelationshipToIncidentPostmortemData{}
-	var type_ IncidentPostmortemType = "incident_postmortems"
+	var type_ IncidentPostmortemType = INCIDENTPOSTMORTEMTYPE_INCIDENT_POSTMORTEMS
 	this.Type = type_
 	return &this
 }
