@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Aggregator** | Pointer to [**FormulaAndFunctionMetricAggregation**](FormulaAndFunctionMetricAggregation.md) |  | [optional] 
 **DataSource** | [**FormulaAndFunctionMetricDataSource**](FormulaAndFunctionMetricDataSource.md) |  | 
-**Name** | Pointer to **string** | Name of the query for use in formulas. | [optional] 
+**Name** | **string** | Name of the query for use in formulas. | 
 **Query** | **string** | Metrics query definition. | 
 
 ## Methods
 
 ### NewFormulaAndFunctionMetricQueryDefinition
 
-`func NewFormulaAndFunctionMetricQueryDefinition(dataSource FormulaAndFunctionMetricDataSource, query string, ) *FormulaAndFunctionMetricQueryDefinition`
+`func NewFormulaAndFunctionMetricQueryDefinition(dataSource FormulaAndFunctionMetricDataSource, name string, query string, ) *FormulaAndFunctionMetricQueryDefinition`
 
 NewFormulaAndFunctionMetricQueryDefinition instantiates a new FormulaAndFunctionMetricQueryDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -92,11 +92,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *FormulaAndFunctionMetricQueryDefinition) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetQuery
 

@@ -23,7 +23,7 @@ type FormulaAndFunctionProcessQueryDefinition struct {
 	// Process metric name.
 	Metric string `json:"metric"`
 	// Name of query for use in formulas.
-	Name *string         `json:"name,omitempty"`
+	Name string          `json:"name"`
 	Sort *QuerySortOrder `json:"sort,omitempty"`
 	// An array of tags to filter by.
 	TagFilters *[]string `json:"tag_filters,omitempty"`
@@ -35,10 +35,11 @@ type FormulaAndFunctionProcessQueryDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, metric string) *FormulaAndFunctionProcessQueryDefinition {
+func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, metric string, name string) *FormulaAndFunctionProcessQueryDefinition {
 	this := FormulaAndFunctionProcessQueryDefinition{}
 	this.DataSource = dataSource
 	this.Metric = metric
+	this.Name = name
 	var sort QuerySortOrder = QUERYSORTORDER_DESC
 	this.Sort = &sort
 	return &this
@@ -198,36 +199,28 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetMetric(v string) {
 	o.Metric = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *FormulaAndFunctionProcessQueryDefinition) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *FormulaAndFunctionProcessQueryDefinition) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *FormulaAndFunctionProcessQueryDefinition) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetSort returns the Sort field value if set, zero value otherwise.
@@ -343,7 +336,7 @@ func (o FormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) 
 	if true {
 		toSerialize["metric"] = o.Metric
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
 	if o.Sort != nil {
