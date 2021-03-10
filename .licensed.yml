@@ -1,0 +1,15 @@
+allowed:
+  - mit
+  - apache-2.0
+  - bsd-3-clause
+
+sources:
+  go: true
+
+source_path: "api/*/datadog"
+cache_path: ".licenses"
+shared_cache: true
+
+reviewed:
+  go:
+    - golang.org/x/net/context/ctxhttp

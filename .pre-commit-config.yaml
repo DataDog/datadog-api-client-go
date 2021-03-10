@@ -7,3 +7,23 @@ repos:
     entry: Unstage generated files with 'git reset --' command
     files: '^api/.*(?<!\_test.go)$'
     verbose: true
+  - id: licensed
+    name: Licensed
+    language: ruby
+    language_version: system
+    additional_dependencies:
+      - licensed
+    entry: .licenses/check.sh
+    pass_filenames: false
+    files: "^(go.mod|go.sum|.licensed.yml|.licenses/.*)$"
+    verbose: true
+  - id: license-3rdparty
+    name: LICENSE-3rdparty
+    language: python
+    language_version: '3'
+    additional_dependencies:
+      - pyyaml
+    entry: .licenses/licenses.py
+    pass_filenames: false
+    files: "^(go.mod|go.sum|.licensed.yml|.licenses/.*.dep.yml)$"
+    verbose: true
