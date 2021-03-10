@@ -6,13 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Assertions** | [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [default to []]
 **ConfigVariables** | Pointer to [**[]SyntheticsConfigVariable**](SyntheticsConfigVariable.md) | Array of variables used for the test. | [optional] 
-**Request** | [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | 
+**Request** | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | [optional] 
+**Steps** | Pointer to [**[]SyntheticsAPIStep**](SyntheticsAPIStep.md) | When the test subtype is &#x60;multi&#x60;, the steps of the test. | [optional] 
 
 ## Methods
 
 ### NewSyntheticsAPITestConfig
 
-`func NewSyntheticsAPITestConfig(assertions []SyntheticsAssertion, request SyntheticsTestRequest, ) *SyntheticsAPITestConfig`
+`func NewSyntheticsAPITestConfig(assertions []SyntheticsAssertion, ) *SyntheticsAPITestConfig`
 
 NewSyntheticsAPITestConfig instantiates a new SyntheticsAPITestConfig object
 This constructor will assign default values to properties that have it defined,
@@ -91,6 +92,36 @@ and a boolean to check if the value has been set.
 
 SetRequest sets Request field to given value.
 
+### HasRequest
+
+`func (o *SyntheticsAPITestConfig) HasRequest() bool`
+
+HasRequest returns a boolean if a field has been set.
+
+### GetSteps
+
+`func (o *SyntheticsAPITestConfig) GetSteps() []SyntheticsAPIStep`
+
+GetSteps returns the Steps field if non-nil, zero value otherwise.
+
+### GetStepsOk
+
+`func (o *SyntheticsAPITestConfig) GetStepsOk() (*[]SyntheticsAPIStep, bool)`
+
+GetStepsOk returns a tuple with the Steps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSteps
+
+`func (o *SyntheticsAPITestConfig) SetSteps(v []SyntheticsAPIStep)`
+
+SetSteps sets Steps field to given value.
+
+### HasSteps
+
+`func (o *SyntheticsAPITestConfig) HasSteps() bool`
+
+HasSteps returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

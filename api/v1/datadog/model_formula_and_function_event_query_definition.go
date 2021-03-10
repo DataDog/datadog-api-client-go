@@ -21,7 +21,7 @@ type FormulaAndFunctionEventQueryDefinition struct {
 	// An array of index names to query in the stream. Omit or use `[]` to query all indexes at once.
 	Indexes *[]string `json:"indexes,omitempty"`
 	// Name of the query for use in formulas.
-	Name   *string                                       `json:"name,omitempty"`
+	Name   string                                        `json:"name"`
 	Search *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 }
 
@@ -29,10 +29,11 @@ type FormulaAndFunctionEventQueryDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFormulaAndFunctionEventQueryDefinition(compute FormulaAndFunctionEventQueryDefinitionCompute, dataSource FormulaAndFunctionEventsDataSource) *FormulaAndFunctionEventQueryDefinition {
+func NewFormulaAndFunctionEventQueryDefinition(compute FormulaAndFunctionEventQueryDefinitionCompute, dataSource FormulaAndFunctionEventsDataSource, name string) *FormulaAndFunctionEventQueryDefinition {
 	this := FormulaAndFunctionEventQueryDefinition{}
 	this.Compute = compute
 	this.DataSource = dataSource
+	this.Name = name
 	return &this
 }
 
@@ -156,36 +157,28 @@ func (o *FormulaAndFunctionEventQueryDefinition) SetIndexes(v []string) {
 	o.Indexes = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *FormulaAndFunctionEventQueryDefinition) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionEventQueryDefinition) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *FormulaAndFunctionEventQueryDefinition) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *FormulaAndFunctionEventQueryDefinition) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetSearch returns the Search field value if set, zero value otherwise.
@@ -234,7 +227,7 @@ func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
 	if o.Search != nil {
