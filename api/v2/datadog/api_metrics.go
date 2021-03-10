@@ -565,6 +565,8 @@ type ApiListTagConfigurationsRequest struct {
 	filterTagsConfigured     *string
 	filterMetricType         *MetricTagConfigurationMetricTypes
 	filterIncludePercentiles *bool
+	filterTags               *string
+	windowSeconds            *int64
 }
 
 func (r ApiListTagConfigurationsRequest) FilterConfigured(filterConfigured bool) ApiListTagConfigurationsRequest {
@@ -581,6 +583,14 @@ func (r ApiListTagConfigurationsRequest) FilterMetricType(filterMetricType Metri
 }
 func (r ApiListTagConfigurationsRequest) FilterIncludePercentiles(filterIncludePercentiles bool) ApiListTagConfigurationsRequest {
 	r.filterIncludePercentiles = &filterIncludePercentiles
+	return r
+}
+func (r ApiListTagConfigurationsRequest) FilterTags(filterTags string) ApiListTagConfigurationsRequest {
+	r.filterTags = &filterTags
+	return r
+}
+func (r ApiListTagConfigurationsRequest) WindowSeconds(windowSeconds int64) ApiListTagConfigurationsRequest {
+	r.windowSeconds = &windowSeconds
 	return r
 }
 
@@ -645,6 +655,12 @@ func (a *MetricsApiService) ListTagConfigurationsExecute(r ApiListTagConfigurati
 	}
 	if r.filterIncludePercentiles != nil {
 		localVarQueryParams.Add("filter[include_percentiles]", parameterToString(*r.filterIncludePercentiles, ""))
+	}
+	if r.filterTags != nil {
+		localVarQueryParams.Add("filter[tags]", parameterToString(*r.filterTags, ""))
+	}
+	if r.windowSeconds != nil {
+		localVarQueryParams.Add("window[seconds]", parameterToString(*r.windowSeconds, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
