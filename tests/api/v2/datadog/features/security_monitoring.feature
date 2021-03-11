@@ -14,15 +14,14 @@ Feature: Security Monitoring
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @generated @skip
   Scenario: Create a detection rule returns "OK" response
     Given new "CreateSecurityMonitoringRule" request
-    And body {}
+    And body {"name":"[Test create rule] Test rule FFFFE","queries":[{"query":"@test:true","aggregation":"count","groupByFields":[],"distinctFields":[],"metric":""}],"filters":[],"cases":[{"name":"","status":"info","condition":"a > 0","notifications":[]}],"options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"hasExtendedTitle":false,"message":"Test rule","tags":[],"isDefault":false,"isEnabled":true,"type":"log_detection"}
     When the request is sent
     Then the response status is 200 OK
 
   @generated @skip
-  Scenario: Delete an existing rule returns "Not Found" response
+  Scenario: Delete a non existing rule returns "Not Found" response
     Given new "DeleteSecurityMonitoringRule" request
     And request contains "rule_id" parameter from "<PATH>"
     When the request is sent
