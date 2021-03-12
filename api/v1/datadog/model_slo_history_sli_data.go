@@ -12,21 +12,31 @@ import (
 	"encoding/json"
 )
 
-// SLOHistorySLIData An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value or the SLI value for a specific monitor (in multi-monitor SLOs) or group (in grouped SLOs). The uptime history is included for monitor SLOs.
+// SLOHistorySLIData An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value. This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
 type SLOHistorySLIData struct {
+	// A mapping of threshold `timeframe` to the remaining error budget.
+	ErrorBudgetRemaining *map[string]float64 `json:"error_budget_remaining,omitempty"`
+	// A list of errors while querying the history data for the service level objective.
+	Errors *[]SLOHistoryResponseError `json:"errors,omitempty"`
+	// For groups in a grouped SLO, this is the group name.
+	Group *string `json:"group,omitempty"`
 	// For `monitor` based SLOs, this includes the aggregated history uptime time series.
 	History *[][]float64 `json:"history,omitempty"`
-	// For groups in a grouped SLO this is the group name. For monitors in a multi-monitor SLO this is the monitor name.
+	// For `monitor` based SLOs, this is the last modified timestamp in epoch seconds of the monitor.
+	MonitorModified *int64 `json:"monitor_modified,omitempty"`
+	// For `monitor` based SLOs, this describes the type of monitor.
+	MonitorType *string `json:"monitor_type,omitempty"`
+	// For groups in a grouped SLO, this is the group name. For monitors in a multi-monitor SLO, this is the monitor name.
 	Name *string `json:"name,omitempty"`
 	// A mapping of threshold `timeframe` to number of accurate decimals, regardless of the from && to timestamp.
 	Precision *map[string]float64 `json:"precision,omitempty"`
-	// For `monitor` based SLOs when `true` this indicates that a replay is in progress to give an accurate uptime calculation.
+	// For `monitor` based SLOs, when `true` this indicates that a replay is in progress to give an accurate uptime calculation.
 	Preview *bool `json:"preview,omitempty"`
 	// The current SLI value of the SLO over the history window.
 	SliValue *float64 `json:"sli_value,omitempty"`
 	// The amount of decimal places the SLI value is accurate to for the given from `&&` to timestamp.
 	SpanPrecision *float64 `json:"span_precision,omitempty"`
-	// Deprecated. Use `sli_value` instead.
+	// Use `sli_value` instead.
 	Uptime *float64 `json:"uptime,omitempty"`
 }
 
@@ -45,6 +55,102 @@ func NewSLOHistorySLIData() *SLOHistorySLIData {
 func NewSLOHistorySLIDataWithDefaults() *SLOHistorySLIData {
 	this := SLOHistorySLIData{}
 	return &this
+}
+
+// GetErrorBudgetRemaining returns the ErrorBudgetRemaining field value if set, zero value otherwise.
+func (o *SLOHistorySLIData) GetErrorBudgetRemaining() map[string]float64 {
+	if o == nil || o.ErrorBudgetRemaining == nil {
+		var ret map[string]float64
+		return ret
+	}
+	return *o.ErrorBudgetRemaining
+}
+
+// GetErrorBudgetRemainingOk returns a tuple with the ErrorBudgetRemaining field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOHistorySLIData) GetErrorBudgetRemainingOk() (*map[string]float64, bool) {
+	if o == nil || o.ErrorBudgetRemaining == nil {
+		return nil, false
+	}
+	return o.ErrorBudgetRemaining, true
+}
+
+// HasErrorBudgetRemaining returns a boolean if a field has been set.
+func (o *SLOHistorySLIData) HasErrorBudgetRemaining() bool {
+	if o != nil && o.ErrorBudgetRemaining != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorBudgetRemaining gets a reference to the given map[string]float64 and assigns it to the ErrorBudgetRemaining field.
+func (o *SLOHistorySLIData) SetErrorBudgetRemaining(v map[string]float64) {
+	o.ErrorBudgetRemaining = &v
+}
+
+// GetErrors returns the Errors field value if set, zero value otherwise.
+func (o *SLOHistorySLIData) GetErrors() []SLOHistoryResponseError {
+	if o == nil || o.Errors == nil {
+		var ret []SLOHistoryResponseError
+		return ret
+	}
+	return *o.Errors
+}
+
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOHistorySLIData) GetErrorsOk() (*[]SLOHistoryResponseError, bool) {
+	if o == nil || o.Errors == nil {
+		return nil, false
+	}
+	return o.Errors, true
+}
+
+// HasErrors returns a boolean if a field has been set.
+func (o *SLOHistorySLIData) HasErrors() bool {
+	if o != nil && o.Errors != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetErrors gets a reference to the given []SLOHistoryResponseError and assigns it to the Errors field.
+func (o *SLOHistorySLIData) SetErrors(v []SLOHistoryResponseError) {
+	o.Errors = &v
+}
+
+// GetGroup returns the Group field value if set, zero value otherwise.
+func (o *SLOHistorySLIData) GetGroup() string {
+	if o == nil || o.Group == nil {
+		var ret string
+		return ret
+	}
+	return *o.Group
+}
+
+// GetGroupOk returns a tuple with the Group field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOHistorySLIData) GetGroupOk() (*string, bool) {
+	if o == nil || o.Group == nil {
+		return nil, false
+	}
+	return o.Group, true
+}
+
+// HasGroup returns a boolean if a field has been set.
+func (o *SLOHistorySLIData) HasGroup() bool {
+	if o != nil && o.Group != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGroup gets a reference to the given string and assigns it to the Group field.
+func (o *SLOHistorySLIData) SetGroup(v string) {
+	o.Group = &v
 }
 
 // GetHistory returns the History field value if set, zero value otherwise.
@@ -77,6 +183,70 @@ func (o *SLOHistorySLIData) HasHistory() bool {
 // SetHistory gets a reference to the given [][]float64 and assigns it to the History field.
 func (o *SLOHistorySLIData) SetHistory(v [][]float64) {
 	o.History = &v
+}
+
+// GetMonitorModified returns the MonitorModified field value if set, zero value otherwise.
+func (o *SLOHistorySLIData) GetMonitorModified() int64 {
+	if o == nil || o.MonitorModified == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MonitorModified
+}
+
+// GetMonitorModifiedOk returns a tuple with the MonitorModified field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOHistorySLIData) GetMonitorModifiedOk() (*int64, bool) {
+	if o == nil || o.MonitorModified == nil {
+		return nil, false
+	}
+	return o.MonitorModified, true
+}
+
+// HasMonitorModified returns a boolean if a field has been set.
+func (o *SLOHistorySLIData) HasMonitorModified() bool {
+	if o != nil && o.MonitorModified != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitorModified gets a reference to the given int64 and assigns it to the MonitorModified field.
+func (o *SLOHistorySLIData) SetMonitorModified(v int64) {
+	o.MonitorModified = &v
+}
+
+// GetMonitorType returns the MonitorType field value if set, zero value otherwise.
+func (o *SLOHistorySLIData) GetMonitorType() string {
+	if o == nil || o.MonitorType == nil {
+		var ret string
+		return ret
+	}
+	return *o.MonitorType
+}
+
+// GetMonitorTypeOk returns a tuple with the MonitorType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOHistorySLIData) GetMonitorTypeOk() (*string, bool) {
+	if o == nil || o.MonitorType == nil {
+		return nil, false
+	}
+	return o.MonitorType, true
+}
+
+// HasMonitorType returns a boolean if a field has been set.
+func (o *SLOHistorySLIData) HasMonitorType() bool {
+	if o != nil && o.MonitorType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitorType gets a reference to the given string and assigns it to the MonitorType field.
+func (o *SLOHistorySLIData) SetMonitorType(v string) {
+	o.MonitorType = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -273,8 +443,23 @@ func (o *SLOHistorySLIData) SetUptime(v float64) {
 
 func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.ErrorBudgetRemaining != nil {
+		toSerialize["error_budget_remaining"] = o.ErrorBudgetRemaining
+	}
+	if o.Errors != nil {
+		toSerialize["errors"] = o.Errors
+	}
+	if o.Group != nil {
+		toSerialize["group"] = o.Group
+	}
 	if o.History != nil {
 		toSerialize["history"] = o.History
+	}
+	if o.MonitorModified != nil {
+		toSerialize["monitor_modified"] = o.MonitorModified
+	}
+	if o.MonitorType != nil {
+		toSerialize["monitor_type"] = o.MonitorType
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
