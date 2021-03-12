@@ -57,6 +57,15 @@ func Lookup(i interface{}, path string) (reflect.Value, error) {
 		if err == nil {
 			continue
 		}
+
+		if slice, ok := parent.Interface().([]reflect.Value); ok {
+			a := slice[0]
+			value, err = lookup.LookupI(a.Interface(), part)
+			if err == nil {
+				continue
+			}
+		}
+
 		// try oneOf: func (obj *T) GetActualInstance() interface{}
 		var oneOf reflect.Value
 		// parent might be a pointer
