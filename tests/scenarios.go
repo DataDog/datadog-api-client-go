@@ -57,7 +57,6 @@ func Lookup(i interface{}, path string) (reflect.Value, error) {
 		if err == nil {
 			continue
 		}
-
 		// try oneOf: func (obj *T) GetActualInstance() interface{}
 		var oneOf reflect.Value
 		// parent might be a pointer
@@ -363,7 +362,6 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func([]reflect.Valu
 			in := make([]reflect.Value, undoOperation.Type().NumIn())
 			// first argument is always context.Context
 			in[0] = reflect.ValueOf(GetCtx(ctx))
-
 			for i := 1; i < undoOperation.Type().NumIn(); i++ {
 				object, err := Lookup(response[0].Interface(), SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
 				if err != nil {
@@ -534,9 +532,8 @@ func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path string) {
 	value, err := Lookup(GetData(ctx), SnakeToCamelCase(path))
 	if err != nil {
-		t.Errorf("key %s: %q", path, err)
+		t.Errorf("key %s: %v", path, err)
 	}
-
 	GetRequestParameters(ctx)[name] = value
 	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
 }
@@ -642,7 +639,6 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 }
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
-	t.Logf("\n\n>>>>>>>>>>>>>>>>>: %s\n\n\n", body)
 	GetRequestParameters(ctx)["body"] = Templated(t, GetData(ctx), body)
 }
 
