@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
 **Host** | Pointer to **string** | Host name to perform the test with. | [optional] 
 **Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | [optional] 
+**NoSavingResponseBody** | Pointer to **bool** | Determines whether or not to save the response body. | [optional] 
 **Port** | Pointer to **int64** | Port to use when performing the test. | [optional] 
 **Query** | Pointer to **interface{}** | Query to use for the test. | [optional] 
 **Timeout** | Pointer to **float64** | Timeout in seconds for the test. | [optional] 
@@ -209,6 +210,31 @@ SetMethod sets Method field to given value.
 `func (o *SyntheticsTestRequest) HasMethod() bool`
 
 HasMethod returns a boolean if a field has been set.
+
+### GetNoSavingResponseBody
+
+`func (o *SyntheticsTestRequest) GetNoSavingResponseBody() bool`
+
+GetNoSavingResponseBody returns the NoSavingResponseBody field if non-nil, zero value otherwise.
+
+### GetNoSavingResponseBodyOk
+
+`func (o *SyntheticsTestRequest) GetNoSavingResponseBodyOk() (*bool, bool)`
+
+GetNoSavingResponseBodyOk returns a tuple with the NoSavingResponseBody field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNoSavingResponseBody
+
+`func (o *SyntheticsTestRequest) SetNoSavingResponseBody(v bool)`
+
+SetNoSavingResponseBody sets NoSavingResponseBody field to given value.
+
+### HasNoSavingResponseBody
+
+`func (o *SyntheticsTestRequest) HasNoSavingResponseBody() bool`
+
+HasNoSavingResponseBody returns a boolean if a field has been set.
 
 ### GetPort
 

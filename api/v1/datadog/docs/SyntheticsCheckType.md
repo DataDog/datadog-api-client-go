@@ -25,6 +25,12 @@
 
 * `MATCH_REGEX` (value: `"matchRegex"`)
 
+* `BETWEEN` (value: `"between"`)
+
+* `IS_EMPTY` (value: `"isEmpty"`)
+
+* `NOT_IS_EMPTY` (value: `"notIsEmpty"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

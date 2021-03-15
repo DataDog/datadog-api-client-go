@@ -25,6 +25,8 @@ type SyntheticsTestRequest struct {
 	// Host name to perform the test with.
 	Host   *string     `json:"host,omitempty"`
 	Method *HTTPMethod `json:"method,omitempty"`
+	// Determines whether or not to save the response body.
+	NoSavingResponseBody *bool `json:"noSavingResponseBody,omitempty"`
 	// Port to use when performing the test.
 	Port *int64 `json:"port,omitempty"`
 	// Query to use for the test.
@@ -276,6 +278,38 @@ func (o *SyntheticsTestRequest) SetMethod(v HTTPMethod) {
 	o.Method = &v
 }
 
+// GetNoSavingResponseBody returns the NoSavingResponseBody field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetNoSavingResponseBody() bool {
+	if o == nil || o.NoSavingResponseBody == nil {
+		var ret bool
+		return ret
+	}
+	return *o.NoSavingResponseBody
+}
+
+// GetNoSavingResponseBodyOk returns a tuple with the NoSavingResponseBody field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetNoSavingResponseBodyOk() (*bool, bool) {
+	if o == nil || o.NoSavingResponseBody == nil {
+		return nil, false
+	}
+	return o.NoSavingResponseBody, true
+}
+
+// HasNoSavingResponseBody returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasNoSavingResponseBody() bool {
+	if o != nil && o.NoSavingResponseBody != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNoSavingResponseBody gets a reference to the given bool and assigns it to the NoSavingResponseBody field.
+func (o *SyntheticsTestRequest) SetNoSavingResponseBody(v bool) {
+	o.NoSavingResponseBody = &v
+}
+
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetPort() int64 {
 	if o == nil || o.Port == nil {
@@ -426,6 +460,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Method != nil {
 		toSerialize["method"] = o.Method
+	}
+	if o.NoSavingResponseBody != nil {
+		toSerialize["noSavingResponseBody"] = o.NoSavingResponseBody
 	}
 	if o.Port != nil {
 		toSerialize["port"] = o.Port
