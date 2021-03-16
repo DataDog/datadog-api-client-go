@@ -430,6 +430,7 @@ docs/TargetFormatType.md
 docs/TimeseriesWidgetDefinition.md
 docs/TimeseriesWidgetDefinitionType.md
 docs/TimeseriesWidgetExpressionAlias.md
+docs/TimeseriesWidgetLegendLayout.md
 docs/TimeseriesWidgetRequest.md
 docs/ToplistWidgetDefinition.md
 docs/ToplistWidgetDefinitionType.md
@@ -931,6 +932,7 @@ model_target_format_type.go
 model_timeseries_widget_definition.go
 model_timeseries_widget_definition_type.go
 model_timeseries_widget_expression_alias.go
+model_timeseries_widget_legend_layout.go
 model_timeseries_widget_request.go
 model_toplist_widget_definition.go
 model_toplist_widget_definition_type.go
