@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Metadata** | Pointer to [**UsageTopAvgMetricsMetadata**](UsageTopAvgMetricsMetadata.md) |  | [optional] 
 **Usage** | Pointer to [**[]UsageTopAvgMetricsHour**](UsageTopAvgMetricsHour.md) | Number of hourly recorded custom metrics for a given organization. | [optional] 
 
 ## Methods
@@ -24,6 +25,31 @@ will change when the set of required properties is changed
 NewUsageTopAvgMetricsResponseWithDefaults instantiates a new UsageTopAvgMetricsResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetMetadata
+
+`func (o *UsageTopAvgMetricsResponse) GetMetadata() UsageTopAvgMetricsMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *UsageTopAvgMetricsResponse) GetMetadataOk() (*UsageTopAvgMetricsMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *UsageTopAvgMetricsResponse) SetMetadata(v UsageTopAvgMetricsMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *UsageTopAvgMetricsResponse) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetUsage
 
