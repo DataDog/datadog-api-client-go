@@ -15,10 +15,15 @@ import (
 // SLOHistoryResponseData An array of service level objective objects.
 type SLOHistoryResponseData struct {
 	// The `from` timestamp in epoch seconds.
-	FromTs  *int64             `json:"from_ts,omitempty"`
-	Groups  *SLOHistorySLIData `json:"groups,omitempty"`
-	Overall *SLOHistorySLIData `json:"overall,omitempty"`
-	Series  *SLOHistoryMetrics `json:"series,omitempty"`
+	FromTs *int64 `json:"from_ts,omitempty"`
+	// For `metric` based SLOs where the query includes a group-by clause, this represents the list of grouping parameters.  This is not included in responses for `monitor` based SLOs.
+	GroupBy *[]string `json:"group_by,omitempty"`
+	// For grouped SLOs, this represents SLI data for specific groups.  This is not included in the responses for `metric` based SLOs.
+	Groups *[]SLOHistorySLIData `json:"groups,omitempty"`
+	// For multi-monitor SLOs, this represents SLI data for specific monitors.  This is not included in the responses for `metric` based SLOs.
+	Monitors *[]SLOHistorySLIData `json:"monitors,omitempty"`
+	Overall  *SLOHistorySLIData   `json:"overall,omitempty"`
+	Series   *SLOHistoryMetrics   `json:"series,omitempty"`
 	// mapping of string timeframe to the SLO threshold.
 	Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
 	// The `to` timestamp in epoch seconds.
@@ -76,10 +81,42 @@ func (o *SLOHistoryResponseData) SetFromTs(v int64) {
 	o.FromTs = &v
 }
 
+// GetGroupBy returns the GroupBy field value if set, zero value otherwise.
+func (o *SLOHistoryResponseData) GetGroupBy() []string {
+	if o == nil || o.GroupBy == nil {
+		var ret []string
+		return ret
+	}
+	return *o.GroupBy
+}
+
+// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOHistoryResponseData) GetGroupByOk() (*[]string, bool) {
+	if o == nil || o.GroupBy == nil {
+		return nil, false
+	}
+	return o.GroupBy, true
+}
+
+// HasGroupBy returns a boolean if a field has been set.
+func (o *SLOHistoryResponseData) HasGroupBy() bool {
+	if o != nil && o.GroupBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
+func (o *SLOHistoryResponseData) SetGroupBy(v []string) {
+	o.GroupBy = &v
+}
+
 // GetGroups returns the Groups field value if set, zero value otherwise.
-func (o *SLOHistoryResponseData) GetGroups() SLOHistorySLIData {
+func (o *SLOHistoryResponseData) GetGroups() []SLOHistorySLIData {
 	if o == nil || o.Groups == nil {
-		var ret SLOHistorySLIData
+		var ret []SLOHistorySLIData
 		return ret
 	}
 	return *o.Groups
@@ -87,7 +124,7 @@ func (o *SLOHistoryResponseData) GetGroups() SLOHistorySLIData {
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistoryResponseData) GetGroupsOk() (*SLOHistorySLIData, bool) {
+func (o *SLOHistoryResponseData) GetGroupsOk() (*[]SLOHistorySLIData, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
@@ -103,9 +140,41 @@ func (o *SLOHistoryResponseData) HasGroups() bool {
 	return false
 }
 
-// SetGroups gets a reference to the given SLOHistorySLIData and assigns it to the Groups field.
-func (o *SLOHistoryResponseData) SetGroups(v SLOHistorySLIData) {
+// SetGroups gets a reference to the given []SLOHistorySLIData and assigns it to the Groups field.
+func (o *SLOHistoryResponseData) SetGroups(v []SLOHistorySLIData) {
 	o.Groups = &v
+}
+
+// GetMonitors returns the Monitors field value if set, zero value otherwise.
+func (o *SLOHistoryResponseData) GetMonitors() []SLOHistorySLIData {
+	if o == nil || o.Monitors == nil {
+		var ret []SLOHistorySLIData
+		return ret
+	}
+	return *o.Monitors
+}
+
+// GetMonitorsOk returns a tuple with the Monitors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOHistoryResponseData) GetMonitorsOk() (*[]SLOHistorySLIData, bool) {
+	if o == nil || o.Monitors == nil {
+		return nil, false
+	}
+	return o.Monitors, true
+}
+
+// HasMonitors returns a boolean if a field has been set.
+func (o *SLOHistoryResponseData) HasMonitors() bool {
+	if o != nil && o.Monitors != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitors gets a reference to the given []SLOHistorySLIData and assigns it to the Monitors field.
+func (o *SLOHistoryResponseData) SetMonitors(v []SLOHistorySLIData) {
+	o.Monitors = &v
 }
 
 // GetOverall returns the Overall field value if set, zero value otherwise.
@@ -305,8 +374,14 @@ func (o SLOHistoryResponseData) MarshalJSON() ([]byte, error) {
 	if o.FromTs != nil {
 		toSerialize["from_ts"] = o.FromTs
 	}
+	if o.GroupBy != nil {
+		toSerialize["group_by"] = o.GroupBy
+	}
 	if o.Groups != nil {
 		toSerialize["groups"] = o.Groups
+	}
+	if o.Monitors != nil {
+		toSerialize["monitors"] = o.Monitors
 	}
 	if o.Overall != nil {
 		toSerialize["overall"] = o.Overall

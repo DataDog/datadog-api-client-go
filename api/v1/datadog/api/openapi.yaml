@@ -14686,6 +14686,13 @@ components:
             error as value.
           type: object
       type: object
+    SLOErrorBudgetRemainingData:
+      additionalProperties:
+        description: Remaining error budget.
+        format: double
+        type: number
+      description: A mapping of threshold `timeframe` to the remaining error budget.
+      type: object
     SLOErrorTimeframe:
       description: |-
         The timeframe of the threshold associated with this error
@@ -14702,7 +14709,10 @@ components:
       - NINETY_DAYS
       - ALL
     SLOHistoryMetrics:
-      description: A `metric` based SLO history response.
+      description: |-
+        A `metric` based SLO history response.
+
+        This is not included in responses for `monitor` based SLOs.
       example:
         res_type: ""
         resp_version: 0
@@ -14838,9 +14848,9 @@ components:
             key:
               warning_display: warning_display
               target_display: "99.9"
-              warning: 2.3021358869347655
+              warning: 9.301444243932576
               target: 0.0
-          to_ts: 7
+          to_ts: 3
           series:
             res_type: ""
             resp_version: 0
@@ -14860,32 +14870,112 @@ components:
               sum: 0.0
           type_id: 0
           from_ts: 0
+          group_by:
+          - group_by
+          - group_by
           groups:
-            preview: true
+          - preview: true
+            monitor_modified: 5
             sli_value: 99.99
             precision:
-              key: 1.4658129805029452
+              key: 5.637376656633329
+            error_budget_remaining:
+              key: 6.027456183070403
             name: name
-            span_precision: 5.962133916683182
+            span_precision: 2.3021358869347655
             history:
-            - - 6.027456183070403
-              - 6.027456183070403
-            - - 6.027456183070403
-              - 6.027456183070403
-            uptime: 5.637376656633329
+            - - 1.4658129805029452
+              - 1.4658129805029452
+            - - 1.4658129805029452
+              - 1.4658129805029452
+            monitor_type: monitor_type
+            errors:
+            - error: error
+            - error: error
+            group: group
+            uptime: 7.061401241503109
+          - preview: true
+            monitor_modified: 5
+            sli_value: 99.99
+            precision:
+              key: 5.637376656633329
+            error_budget_remaining:
+              key: 6.027456183070403
+            name: name
+            span_precision: 2.3021358869347655
+            history:
+            - - 1.4658129805029452
+              - 1.4658129805029452
+            - - 1.4658129805029452
+              - 1.4658129805029452
+            monitor_type: monitor_type
+            errors:
+            - error: error
+            - error: error
+            group: group
+            uptime: 7.061401241503109
           overall:
             preview: true
+            monitor_modified: 5
             sli_value: 99.99
             precision:
-              key: 1.4658129805029452
+              key: 5.637376656633329
+            error_budget_remaining:
+              key: 6.027456183070403
             name: name
-            span_precision: 5.962133916683182
+            span_precision: 2.3021358869347655
             history:
-            - - 6.027456183070403
-              - 6.027456183070403
-            - - 6.027456183070403
-              - 6.027456183070403
-            uptime: 5.637376656633329
+            - - 1.4658129805029452
+              - 1.4658129805029452
+            - - 1.4658129805029452
+              - 1.4658129805029452
+            monitor_type: monitor_type
+            errors:
+            - error: error
+            - error: error
+            group: group
+            uptime: 7.061401241503109
+          monitors:
+          - preview: true
+            monitor_modified: 5
+            sli_value: 99.99
+            precision:
+              key: 5.637376656633329
+            error_budget_remaining:
+              key: 6.027456183070403
+            name: name
+            span_precision: 2.3021358869347655
+            history:
+            - - 1.4658129805029452
+              - 1.4658129805029452
+            - - 1.4658129805029452
+              - 1.4658129805029452
+            monitor_type: monitor_type
+            errors:
+            - error: error
+            - error: error
+            group: group
+            uptime: 7.061401241503109
+          - preview: true
+            monitor_modified: 5
+            sli_value: 99.99
+            precision:
+              key: 5.637376656633329
+            error_budget_remaining:
+              key: 6.027456183070403
+            name: name
+            span_precision: 2.3021358869347655
+            history:
+            - - 1.4658129805029452
+              - 1.4658129805029452
+            - - 1.4658129805029452
+              - 1.4658129805029452
+            monitor_type: monitor_type
+            errors:
+            - error: error
+            - error: error
+            group: group
+            uptime: 7.061401241503109
         errors:
         - error: error
         - error: error
@@ -14910,23 +15000,46 @@ components:
       type: object
     SLOHistorySLIData:
       description: |-
-        An object that holds an SLI value and its associated data. It can represent
-        an SLO's overall SLI value or the SLI value for a specific monitor (in multi-monitor SLOs)
-        or group (in grouped SLOs). The uptime history is included for monitor SLOs.
+        An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.
+        This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
       example:
         preview: true
+        monitor_modified: 5
         sli_value: 99.99
         precision:
-          key: 1.4658129805029452
+          key: 5.637376656633329
+        error_budget_remaining:
+          key: 6.027456183070403
         name: name
-        span_precision: 5.962133916683182
+        span_precision: 2.3021358869347655
         history:
-        - - 6.027456183070403
-          - 6.027456183070403
-        - - 6.027456183070403
-          - 6.027456183070403
-        uptime: 5.637376656633329
+        - - 1.4658129805029452
+          - 1.4658129805029452
+        - - 1.4658129805029452
+          - 1.4658129805029452
+        monitor_type: monitor_type
+        errors:
+        - error: error
+        - error: error
+        group: group
+        uptime: 7.061401241503109
       properties:
+        error_budget_remaining:
+          additionalProperties:
+            description: Remaining error budget.
+            format: double
+            type: number
+          description: A mapping of threshold `timeframe` to the remaining error budget.
+          type: object
+        errors:
+          description: A list of errors while querying the history data for the service
+            level objective.
+          items:
+            $ref: '#/components/schemas/SLOHistoryResponseError'
+          type: array
+        group:
+          description: For groups in a grouped SLO, this is the group name.
+          type: string
         history:
           description: For `monitor` based SLOs, this includes the aggregated history
             uptime time series.
@@ -14941,9 +15054,17 @@ components:
             minItems: 2
             type: array
           type: array
+        monitor_modified:
+          description: For `monitor` based SLOs, this is the last modified timestamp
+            in epoch seconds of the monitor.
+          format: int64
+          type: integer
+        monitor_type:
+          description: For `monitor` based SLOs, this describes the type of monitor.
+          type: string
         name:
-          description: For groups in a grouped SLO this is the group name. For monitors
-            in a multi-monitor SLO this is the monitor name.
+          description: For groups in a grouped SLO, this is the group name. For monitors
+            in a multi-monitor SLO, this is the monitor name.
           type: string
         precision:
           additionalProperties:
@@ -14955,7 +15076,7 @@ components:
           type: object
         preview:
           description: |-
-            For `monitor` based SLOs when `true` this indicates that a replay is in progress to give an accurate uptime
+            For `monitor` based SLOs, when `true` this indicates that a replay is in progress to give an accurate uptime
             calculation.
           type: boolean
         sli_value:
@@ -14970,7 +15091,7 @@ components:
           type: number
         uptime:
           deprecated: true
-          description: Deprecated. Use `sli_value` instead.
+          description: Use `sli_value` instead.
           format: double
           type: number
       type: object
@@ -15097,7 +15218,7 @@ components:
       example:
         warning_display: warning_display
         target_display: "99.9"
-        warning: 2.3021358869347655
+        warning: 9.301444243932576
         target: 0.0
       properties:
         target:
@@ -23544,9 +23665,9 @@ components:
           key:
             warning_display: warning_display
             target_display: "99.9"
-            warning: 2.3021358869347655
+            warning: 9.301444243932576
             target: 0.0
-        to_ts: 7
+        to_ts: 3
         series:
           res_type: ""
           resp_version: 0
@@ -23566,39 +23687,142 @@ components:
             sum: 0.0
         type_id: 0
         from_ts: 0
+        group_by:
+        - group_by
+        - group_by
         groups:
-          preview: true
+        - preview: true
+          monitor_modified: 5
           sli_value: 99.99
           precision:
-            key: 1.4658129805029452
+            key: 5.637376656633329
+          error_budget_remaining:
+            key: 6.027456183070403
           name: name
-          span_precision: 5.962133916683182
+          span_precision: 2.3021358869347655
           history:
-          - - 6.027456183070403
-            - 6.027456183070403
-          - - 6.027456183070403
-            - 6.027456183070403
-          uptime: 5.637376656633329
+          - - 1.4658129805029452
+            - 1.4658129805029452
+          - - 1.4658129805029452
+            - 1.4658129805029452
+          monitor_type: monitor_type
+          errors:
+          - error: error
+          - error: error
+          group: group
+          uptime: 7.061401241503109
+        - preview: true
+          monitor_modified: 5
+          sli_value: 99.99
+          precision:
+            key: 5.637376656633329
+          error_budget_remaining:
+            key: 6.027456183070403
+          name: name
+          span_precision: 2.3021358869347655
+          history:
+          - - 1.4658129805029452
+            - 1.4658129805029452
+          - - 1.4658129805029452
+            - 1.4658129805029452
+          monitor_type: monitor_type
+          errors:
+          - error: error
+          - error: error
+          group: group
+          uptime: 7.061401241503109
         overall:
           preview: true
+          monitor_modified: 5
           sli_value: 99.99
           precision:
-            key: 1.4658129805029452
+            key: 5.637376656633329
+          error_budget_remaining:
+            key: 6.027456183070403
           name: name
-          span_precision: 5.962133916683182
+          span_precision: 2.3021358869347655
           history:
-          - - 6.027456183070403
-            - 6.027456183070403
-          - - 6.027456183070403
-            - 6.027456183070403
-          uptime: 5.637376656633329
+          - - 1.4658129805029452
+            - 1.4658129805029452
+          - - 1.4658129805029452
+            - 1.4658129805029452
+          monitor_type: monitor_type
+          errors:
+          - error: error
+          - error: error
+          group: group
+          uptime: 7.061401241503109
+        monitors:
+        - preview: true
+          monitor_modified: 5
+          sli_value: 99.99
+          precision:
+            key: 5.637376656633329
+          error_budget_remaining:
+            key: 6.027456183070403
+          name: name
+          span_precision: 2.3021358869347655
+          history:
+          - - 1.4658129805029452
+            - 1.4658129805029452
+          - - 1.4658129805029452
+            - 1.4658129805029452
+          monitor_type: monitor_type
+          errors:
+          - error: error
+          - error: error
+          group: group
+          uptime: 7.061401241503109
+        - preview: true
+          monitor_modified: 5
+          sli_value: 99.99
+          precision:
+            key: 5.637376656633329
+          error_budget_remaining:
+            key: 6.027456183070403
+          name: name
+          span_precision: 2.3021358869347655
+          history:
+          - - 1.4658129805029452
+            - 1.4658129805029452
+          - - 1.4658129805029452
+            - 1.4658129805029452
+          monitor_type: monitor_type
+          errors:
+          - error: error
+          - error: error
+          group: group
+          uptime: 7.061401241503109
       properties:
         from_ts:
           description: The `from` timestamp in epoch seconds.
           format: int64
           type: integer
+        group_by:
+          description: |-
+            For `metric` based SLOs where the query includes a group-by clause, this represents the list of grouping parameters.
+
+            This is not included in responses for `monitor` based SLOs.
+          items:
+            description: A grouping parameter.
+            type: string
+          type: array
         groups:
-          $ref: '#/components/schemas/SLOHistorySLIData'
+          description: |-
+            For grouped SLOs, this represents SLI data for specific groups.
+
+            This is not included in the responses for `metric` based SLOs.
+          items:
+            $ref: '#/components/schemas/SLOHistorySLIData'
+          type: array
+        monitors:
+          description: |-
+            For multi-monitor SLOs, this represents SLI data for specific monitors.
+
+            This is not included in the responses for `metric` based SLOs.
+          items:
+            $ref: '#/components/schemas/SLOHistorySLIData'
+          type: array
         overall:
           $ref: '#/components/schemas/SLOHistorySLIData'
         series:

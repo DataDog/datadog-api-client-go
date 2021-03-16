@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SLOHistoryMetrics A `metric` based SLO history response.
+// SLOHistoryMetrics A `metric` based SLO history response.  This is not included in responses for `monitor` based SLOs.
 type SLOHistoryMetrics struct {
 	Denominator SLOHistoryMetricsSeries `json:"denominator"`
 	// The aggregated query interval for the series data. It's implicit based on the query time window.

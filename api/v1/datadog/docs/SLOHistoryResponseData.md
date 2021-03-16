@@ -5,7 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FromTs** | Pointer to **int64** | The &#x60;from&#x60; timestamp in epoch seconds. | [optional] 
-**Groups** | Pointer to [**SLOHistorySLIData**](SLOHistorySLIData.md) |  | [optional] 
+**GroupBy** | Pointer to **[]string** | For &#x60;metric&#x60; based SLOs where the query includes a group-by clause, this represents the list of grouping parameters.  This is not included in responses for &#x60;monitor&#x60; based SLOs. | [optional] 
+**Groups** | Pointer to [**[]SLOHistorySLIData**](SLOHistorySLIData.md) | For grouped SLOs, this represents SLI data for specific groups.  This is not included in the responses for &#x60;metric&#x60; based SLOs. | [optional] 
+**Monitors** | Pointer to [**[]SLOHistorySLIData**](SLOHistorySLIData.md) | For multi-monitor SLOs, this represents SLI data for specific monitors.  This is not included in the responses for &#x60;metric&#x60; based SLOs. | [optional] 
 **Overall** | Pointer to [**SLOHistorySLIData**](SLOHistorySLIData.md) |  | [optional] 
 **Series** | Pointer to [**SLOHistoryMetrics**](SLOHistoryMetrics.md) |  | [optional] 
 **Thresholds** | Pointer to [**map[string]SLOThreshold**](SLOThreshold.md) | mapping of string timeframe to the SLO threshold. | [optional] 
@@ -57,22 +59,47 @@ SetFromTs sets FromTs field to given value.
 
 HasFromTs returns a boolean if a field has been set.
 
+### GetGroupBy
+
+`func (o *SLOHistoryResponseData) GetGroupBy() []string`
+
+GetGroupBy returns the GroupBy field if non-nil, zero value otherwise.
+
+### GetGroupByOk
+
+`func (o *SLOHistoryResponseData) GetGroupByOk() (*[]string, bool)`
+
+GetGroupByOk returns a tuple with the GroupBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupBy
+
+`func (o *SLOHistoryResponseData) SetGroupBy(v []string)`
+
+SetGroupBy sets GroupBy field to given value.
+
+### HasGroupBy
+
+`func (o *SLOHistoryResponseData) HasGroupBy() bool`
+
+HasGroupBy returns a boolean if a field has been set.
+
 ### GetGroups
 
-`func (o *SLOHistoryResponseData) GetGroups() SLOHistorySLIData`
+`func (o *SLOHistoryResponseData) GetGroups() []SLOHistorySLIData`
 
 GetGroups returns the Groups field if non-nil, zero value otherwise.
 
 ### GetGroupsOk
 
-`func (o *SLOHistoryResponseData) GetGroupsOk() (*SLOHistorySLIData, bool)`
+`func (o *SLOHistoryResponseData) GetGroupsOk() (*[]SLOHistorySLIData, bool)`
 
 GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroups
 
-`func (o *SLOHistoryResponseData) SetGroups(v SLOHistorySLIData)`
+`func (o *SLOHistoryResponseData) SetGroups(v []SLOHistorySLIData)`
 
 SetGroups sets Groups field to given value.
 
@@ -81,6 +108,31 @@ SetGroups sets Groups field to given value.
 `func (o *SLOHistoryResponseData) HasGroups() bool`
 
 HasGroups returns a boolean if a field has been set.
+
+### GetMonitors
+
+`func (o *SLOHistoryResponseData) GetMonitors() []SLOHistorySLIData`
+
+GetMonitors returns the Monitors field if non-nil, zero value otherwise.
+
+### GetMonitorsOk
+
+`func (o *SLOHistoryResponseData) GetMonitorsOk() (*[]SLOHistorySLIData, bool)`
+
+GetMonitorsOk returns a tuple with the Monitors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMonitors
+
+`func (o *SLOHistoryResponseData) SetMonitors(v []SLOHistorySLIData)`
+
+SetMonitors sets Monitors field to given value.
+
+### HasMonitors
+
+`func (o *SLOHistoryResponseData) HasMonitors() bool`
+
+HasMonitors returns a boolean if a field has been set.
 
 ### GetOverall
 
