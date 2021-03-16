@@ -439,6 +439,7 @@ Class | Method | HTTP request | Description
  - [SecurityMonitoringRuleResponse](docs/SecurityMonitoringRuleResponse.md)
  - [SecurityMonitoringRuleSeverity](docs/SecurityMonitoringRuleSeverity.md)
  - [SecurityMonitoringRuleUpdatePayload](docs/SecurityMonitoringRuleUpdatePayload.md)
+ - [SecurityMonitoringRuntimeAgentRule](docs/SecurityMonitoringRuntimeAgentRule.md)
  - [SecurityMonitoringSignal](docs/SecurityMonitoringSignal.md)
  - [SecurityMonitoringSignalAttributes](docs/SecurityMonitoringSignalAttributes.md)
  - [SecurityMonitoringSignalListRequest](docs/SecurityMonitoringSignalListRequest.md)
