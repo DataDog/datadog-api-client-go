@@ -185,6 +185,19 @@ func GetResponse(ctx gobdd.Context) []reflect.Value {
 	return r.([]reflect.Value)
 }
 
+// GetResponseStatusCode returns request response status code.
+func GetResponseStatusCode(resp []reflect.Value) (int, error) {
+	if len(resp) < 2 {
+		return -1, fmt.Errorf("needs at least 2 values, got %d", len(resp))
+	}
+	// Execute() returns triples -> 2nd value is *http.Response -> get StatusCode]
+	response := resp[len(resp)-2].Interface().(*http.Response)
+	if response == nil {
+		return -1, errors.New("response is nil")
+	}
+	return response.StatusCode, nil
+}
+
 // LoadRequestsUndo load undo configuration.
 func LoadRequestsUndo(file string) (map[string]UndoAction, error) {
 	f, err := os.Open(file)
@@ -282,7 +295,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 		response := result[0]
 
 		if undo != nil {
-			GetCleanup(ctx)[fmt.Sprintf("00-given-%s", s.Key)] = undo(result[0].Interface())
+			GetCleanup(ctx)[fmt.Sprintf("00-given-%s", s.Key)] = undo(result)
 		}
 
 		if s.Source != nil {
@@ -299,7 +312,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 }
 
 // GetRequestsUndo gets map with undo function for each request.
-func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) func(), error) {
+func GetRequestsUndo(ctx gobdd.Context, operationID string) (func([]reflect.Value) func(), error) {
 	requestsUndo, err := ctx.Get(ctxRequestsUndoKey{})
 	if err != nil {
 		return nil, err
@@ -335,8 +348,18 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 		return nil, fmt.Errorf("invalid method name %s", undo.Undo.OperationID)
 	}
 
-	return func(response interface{}) func() {
+	return func(response []reflect.Value) func() {
 		return func() {
+			responseStatusCode, err := GetResponseStatusCode(response)
+			if err != nil {
+				t.Fatalf("%v", err)
+			}
+
+			// No object is created when it's a Bad Request
+			if responseStatusCode >= 400 {
+				return
+			}
+
 			// enable unstable operation
 			configInterface := reflect.Indirect(undoClientInterface.(reflect.Value)).Addr().MethodByName("GetConfig").Call(nil)[0]
 			if configInterface.MethodByName("IsUnstableOperation").Call([]reflect.Value{reflect.ValueOf(undo.Undo.OperationID)})[0].Bool() {
@@ -349,8 +372,9 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func(interface{}) f
 			in := make([]reflect.Value, undoOperation.Type().NumIn())
 			// first argument is always context.Context
 			in[0] = reflect.ValueOf(GetCtx(ctx))
+
 			for i := 1; i < undoOperation.Type().NumIn(); i++ {
-				object, err := Lookup(response, SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
+				object, err := Lookup(response[0].Interface(), SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
 				if err != nil {
 					t.Fatalf("%v", err)
 				}
@@ -510,9 +534,12 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, error) {
 func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 	// Execute() returns triples -> 2nd value is *http.Response -> get StatusCode
 	resp := GetResponse(ctx)
-	code := resp[len(resp)-2].Interface().(*http.Response).StatusCode
+	code, err := GetResponseStatusCode(resp)
+	if err != nil {
+		t.Fatal(err)
+	}
 	if expected != code {
-		t.Fatalf("Excepted %d got %d", expected, code)
+		t.Fatalf("Expected %d got %d", expected, code)
 	}
 }
 
@@ -521,6 +548,7 @@ func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path str
 	if err != nil {
 		t.Errorf("key %s: %v", path, err)
 	}
+
 	GetRequestParameters(ctx)[name] = value
 	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
 }
@@ -609,7 +637,11 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 
 	// Report probable serialization errors
 	if len(result) > 2 {
-		code := result[len(result)-2].Interface().(*http.Response).StatusCode
+		resp := result[len(result)-2].Interface().(*http.Response)
+		if resp == nil {
+			return
+		}
+		code := resp.StatusCode
 		err := result[len(result)-1].Interface()
 		if code < 300 && err != nil {
 			t.Errorf("unexpected error: %v", err)
@@ -617,7 +649,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	}
 
 	if undo != nil {
-		GetCleanup(ctx)["01-undo"] = undo(result[0].Interface())
+		GetCleanup(ctx)["01-undo"] = undo(result)
 	}
 }
 

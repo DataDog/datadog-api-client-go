@@ -83,6 +83,8 @@ Name | Type | Description | Notes
 **SizeFormat** | Pointer to [**WidgetSizeFormat**](WidgetSizeFormat.md) |  | [optional] 
 **SpanName** | **string** | APM span name. | 
 **HasSearchBar** | Pointer to [**TableWidgetHasSearchBar**](TableWidgetHasSearchBar.md) |  | [optional] 
+**LegendColumns** | Pointer to **[]string** | Columns displayed in the legend. | [optional] 
+**LegendLayout** | Pointer to [**TimeseriesWidgetLegendLayout**](TimeseriesWidgetLegendLayout.md) |  | [optional] 
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
 **RightYaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
@@ -1984,6 +1986,56 @@ SetHasSearchBar sets HasSearchBar field to given value.
 `func (o *WidgetDefinition) HasHasSearchBar() bool`
 
 HasHasSearchBar returns a boolean if a field has been set.
+
+### GetLegendColumns
+
+`func (o *WidgetDefinition) GetLegendColumns() []string`
+
+GetLegendColumns returns the LegendColumns field if non-nil, zero value otherwise.
+
+### GetLegendColumnsOk
+
+`func (o *WidgetDefinition) GetLegendColumnsOk() (*[]string, bool)`
+
+GetLegendColumnsOk returns a tuple with the LegendColumns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLegendColumns
+
+`func (o *WidgetDefinition) SetLegendColumns(v []string)`
+
+SetLegendColumns sets LegendColumns field to given value.
+
+### HasLegendColumns
+
+`func (o *WidgetDefinition) HasLegendColumns() bool`
+
+HasLegendColumns returns a boolean if a field has been set.
+
+### GetLegendLayout
+
+`func (o *WidgetDefinition) GetLegendLayout() TimeseriesWidgetLegendLayout`
+
+GetLegendLayout returns the LegendLayout field if non-nil, zero value otherwise.
+
+### GetLegendLayoutOk
+
+`func (o *WidgetDefinition) GetLegendLayoutOk() (*TimeseriesWidgetLegendLayout, bool)`
+
+GetLegendLayoutOk returns a tuple with the LegendLayout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLegendLayout
+
+`func (o *WidgetDefinition) SetLegendLayout(v TimeseriesWidgetLegendLayout)`
+
+SetLegendLayout sets LegendLayout field to given value.
+
+### HasLegendLayout
+
+`func (o *WidgetDefinition) HasLegendLayout() bool`
+
+HasLegendLayout returns a boolean if a field has been set.
 
 ### GetMarkers
 

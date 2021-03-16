@@ -18,6 +18,9 @@ type TimeseriesWidgetDefinition struct {
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
 	// List of widget events.
 	Events *[]WidgetEvent `json:"events,omitempty"`
+	// Columns displayed in the legend.
+	LegendColumns *[]string                     `json:"legend_columns,omitempty"`
+	LegendLayout  *TimeseriesWidgetLegendLayout `json:"legend_layout,omitempty"`
 	// Available legend sizes for a widget. Should be one of \"0\", \"2\", \"4\", \"8\", \"16\", or \"auto\".
 	LegendSize *string `json:"legend_size,omitempty"`
 	// List of markers.
@@ -120,6 +123,70 @@ func (o *TimeseriesWidgetDefinition) HasEvents() bool {
 // SetEvents gets a reference to the given []WidgetEvent and assigns it to the Events field.
 func (o *TimeseriesWidgetDefinition) SetEvents(v []WidgetEvent) {
 	o.Events = &v
+}
+
+// GetLegendColumns returns the LegendColumns field value if set, zero value otherwise.
+func (o *TimeseriesWidgetDefinition) GetLegendColumns() []string {
+	if o == nil || o.LegendColumns == nil {
+		var ret []string
+		return ret
+	}
+	return *o.LegendColumns
+}
+
+// GetLegendColumnsOk returns a tuple with the LegendColumns field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetDefinition) GetLegendColumnsOk() (*[]string, bool) {
+	if o == nil || o.LegendColumns == nil {
+		return nil, false
+	}
+	return o.LegendColumns, true
+}
+
+// HasLegendColumns returns a boolean if a field has been set.
+func (o *TimeseriesWidgetDefinition) HasLegendColumns() bool {
+	if o != nil && o.LegendColumns != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLegendColumns gets a reference to the given []string and assigns it to the LegendColumns field.
+func (o *TimeseriesWidgetDefinition) SetLegendColumns(v []string) {
+	o.LegendColumns = &v
+}
+
+// GetLegendLayout returns the LegendLayout field value if set, zero value otherwise.
+func (o *TimeseriesWidgetDefinition) GetLegendLayout() TimeseriesWidgetLegendLayout {
+	if o == nil || o.LegendLayout == nil {
+		var ret TimeseriesWidgetLegendLayout
+		return ret
+	}
+	return *o.LegendLayout
+}
+
+// GetLegendLayoutOk returns a tuple with the LegendLayout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetDefinition) GetLegendLayoutOk() (*TimeseriesWidgetLegendLayout, bool) {
+	if o == nil || o.LegendLayout == nil {
+		return nil, false
+	}
+	return o.LegendLayout, true
+}
+
+// HasLegendLayout returns a boolean if a field has been set.
+func (o *TimeseriesWidgetDefinition) HasLegendLayout() bool {
+	if o != nil && o.LegendLayout != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLegendLayout gets a reference to the given TimeseriesWidgetLegendLayout and assigns it to the LegendLayout field.
+func (o *TimeseriesWidgetDefinition) SetLegendLayout(v TimeseriesWidgetLegendLayout) {
+	o.LegendLayout = &v
 }
 
 // GetLegendSize returns the LegendSize field value if set, zero value otherwise.
@@ -465,6 +532,12 @@ func (o TimeseriesWidgetDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if o.Events != nil {
 		toSerialize["events"] = o.Events
+	}
+	if o.LegendColumns != nil {
+		toSerialize["legend_columns"] = o.LegendColumns
+	}
+	if o.LegendLayout != nil {
+		toSerialize["legend_layout"] = o.LegendLayout
 	}
 	if o.LegendSize != nil {
 		toSerialize["legend_size"] = o.LegendSize

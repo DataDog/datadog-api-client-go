@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
+**LegendColumns** | Pointer to **[]string** | Columns displayed in the legend. | [optional] 
+**LegendLayout** | Pointer to [**TimeseriesWidgetLegendLayout**](TimeseriesWidgetLegendLayout.md) |  | [optional] 
 **LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
 **Requests** | [**[]TimeseriesWidgetRequest**](TimeseriesWidgetRequest.md) | List of timeseries widget requests. | 
@@ -86,6 +88,56 @@ SetEvents sets Events field to given value.
 `func (o *TimeseriesWidgetDefinition) HasEvents() bool`
 
 HasEvents returns a boolean if a field has been set.
+
+### GetLegendColumns
+
+`func (o *TimeseriesWidgetDefinition) GetLegendColumns() []string`
+
+GetLegendColumns returns the LegendColumns field if non-nil, zero value otherwise.
+
+### GetLegendColumnsOk
+
+`func (o *TimeseriesWidgetDefinition) GetLegendColumnsOk() (*[]string, bool)`
+
+GetLegendColumnsOk returns a tuple with the LegendColumns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLegendColumns
+
+`func (o *TimeseriesWidgetDefinition) SetLegendColumns(v []string)`
+
+SetLegendColumns sets LegendColumns field to given value.
+
+### HasLegendColumns
+
+`func (o *TimeseriesWidgetDefinition) HasLegendColumns() bool`
+
+HasLegendColumns returns a boolean if a field has been set.
+
+### GetLegendLayout
+
+`func (o *TimeseriesWidgetDefinition) GetLegendLayout() TimeseriesWidgetLegendLayout`
+
+GetLegendLayout returns the LegendLayout field if non-nil, zero value otherwise.
+
+### GetLegendLayoutOk
+
+`func (o *TimeseriesWidgetDefinition) GetLegendLayoutOk() (*TimeseriesWidgetLegendLayout, bool)`
+
+GetLegendLayoutOk returns a tuple with the LegendLayout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLegendLayout
+
+`func (o *TimeseriesWidgetDefinition) SetLegendLayout(v TimeseriesWidgetLegendLayout)`
+
+SetLegendLayout sets LegendLayout field to given value.
+
+### HasLegendLayout
+
+`func (o *TimeseriesWidgetDefinition) HasLegendLayout() bool`
+
+HasLegendLayout returns a boolean if a field has been set.
 
 ### GetLegendSize
 
