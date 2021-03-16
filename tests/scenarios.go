@@ -186,9 +186,16 @@ func GetResponse(ctx gobdd.Context) []reflect.Value {
 }
 
 // GetResponseStatusCode returns request response status code.
-func GetResponseStatusCode(resp []reflect.Value) int {
-	// Execute() returns triples -> 2nd value is *http.Response -> get StatusCode
-	return resp[len(resp)-2].Interface().(*http.Response).StatusCode
+func GetResponseStatusCode(resp []reflect.Value) (int, error) {
+	if len(resp) < 2 {
+		return -1, fmt.Errorf("needs at least 2 values, got %d", len(resp))
+	}
+	// Execute() returns triples -> 2nd value is *http.Response -> get StatusCode]
+	response := resp[len(resp)-2].Interface().(*http.Response)
+	if response == nil {
+		return -1, errors.New("response is nil")
+	}
+	return response.StatusCode, nil
 }
 
 // LoadRequestsUndo load undo configuration.
@@ -343,7 +350,10 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func([]reflect.Valu
 
 	return func(response []reflect.Value) func() {
 		return func() {
-			responseStatusCode := GetResponseStatusCode(response)
+			responseStatusCode, err := GetResponseStatusCode(response)
+			if err != nil {
+				t.Fatalf("%v", err)
+			}
 
 			// No object is created when it's a Bad Request
 			if responseStatusCode >= 400 {
@@ -362,6 +372,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func([]reflect.Valu
 			in := make([]reflect.Value, undoOperation.Type().NumIn())
 			// first argument is always context.Context
 			in[0] = reflect.ValueOf(GetCtx(ctx))
+
 			for i := 1; i < undoOperation.Type().NumIn(); i++ {
 				object, err := Lookup(response[0].Interface(), SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
 				if err != nil {
@@ -523,7 +534,10 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, error) {
 func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 	// Execute() returns triples -> 2nd value is *http.Response -> get StatusCode
 	resp := GetResponse(ctx)
-	code := GetResponseStatusCode(resp)
+	code, err := GetResponseStatusCode(resp)
+	if err != nil {
+		t.Fatal(err)
+	}
 	if expected != code {
 		t.Fatalf("Expected %d got %d", expected, code)
 	}
@@ -534,6 +548,7 @@ func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path str
 	if err != nil {
 		t.Errorf("key %s: %v", path, err)
 	}
+
 	GetRequestParameters(ctx)[name] = value
 	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
 }
