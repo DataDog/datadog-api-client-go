@@ -7,19 +7,23 @@ Feature: Security Monitoring
     And a valid "appKeyAuth" key in the system
     And an instance of "SecurityMonitoring" API
 
-  @generated @skip
   Scenario: Create a detection rule returns "Bad Request" response
     Given new "CreateSecurityMonitoringRule" request
     And body {}
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @generated @skip
   Scenario: Create a detection rule returns "OK" response
     Given new "CreateSecurityMonitoringRule" request
-    And body {}
+    And body {"name":"[Test create rule] Test rule 012345", "queries":[{"query":"@test:true","aggregation":"count","groupByFields":[],"distinctFields":[],"metric":""}],"filters":[],"cases":[{"name":"","status":"info","condition":"a > 0","notifications":[]}],"options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"hasExtendedTitle":false,"message":"Test rule","tags":[],"isDefault":false,"isEnabled":true,"type":"log_detection"}
     When the request is sent
     Then the response status is 200 OK
+
+  Scenario: Delete a non existing rule returns "Not Found" response
+    Given new "DeleteSecurityMonitoringRule" request
+    And request contains "rule_id" parameter with value "ThisRuleIdProbablyDoesntExist"
+    When the request is sent
+    Then the response status is 404 Not Found
 
   @generated @skip
   Scenario: Delete an existing rule returns "Not Found" response
@@ -28,10 +32,10 @@ Feature: Security Monitoring
     When the request is sent
     Then the response status is 404 Not Found
 
-  @generated @skip
   Scenario: Delete an existing rule returns "OK" response
-    Given new "DeleteSecurityMonitoringRule" request
-    And request contains "rule_id" parameter from "<PATH>"
+    Given there is a valid "security_rule" in the system
+    And new "DeleteSecurityMonitoringRule" request
+    And request contains "rule_id" parameter from "security_rule.id"
     When the request is sent
     Then the response status is 204 OK
 
