@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**ListActiveMetrics**](MetricsApi.md#ListActiveMetrics) | **Get** /api/v1/metrics | Get active metrics list
 [**ListMetrics**](MetricsApi.md#ListMetrics) | **Get** /api/v1/search | Search metrics
 [**QueryMetrics**](MetricsApi.md#QueryMetrics) | **Get** /api/v1/query | Query timeseries points
+[**SubmitMetrics**](MetricsApi.md#SubmitMetrics) | **Post** /api/v1/series | Submit metrics
 [**UpdateMetricMetadata**](MetricsApi.md#UpdateMetricMetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
 
 
@@ -375,6 +376,93 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SubmitMetrics
+
+> IntakePayloadAccepted SubmitMetrics(ctx).Body(body).Execute()
+
+Submit metrics
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+        },
+    )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
+    body := *datadog.NewMetricsPayload() // MetricsPayload | 
+
+    configuration := datadog.NewConfiguration()
+
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.MetricsApi.SubmitMetrics(ctx).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SubmitMetrics`: IntakePayloadAccepted
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.SubmitMetrics:\n%s\n", response_content)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSubmitMetricsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**MetricsPayload**](MetricsPayload.md) |  | 
+
+### Return type
+
+[**IntakePayloadAccepted**](IntakePayloadAccepted.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
