@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"[Test create rule] Test rule 012345","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metric":"","query":"@test:true"}],"tags":[]}
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"go-Feature_Security_Monitoring-Scenario_Create_a_detection_rule_returns__OK__response-local-1615994969","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metric":"","query":"@test:true"}],"tags":[]}
     form: {}
     headers:
       Accept:
@@ -15,18 +15,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.18+dev (go go1.16; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8821199132187131476"
+      - "3449460957251554308"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "9156196848142825706"
+      - "4575537513082262255"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
-      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1615847382379,"filters":[],"queries":[{"distinctFields":[],"name":"","metric":"","aggregation":"count","groupByFields":[],"query":"@test:true","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
-      > 0"}],"type":"log_detection","id":"3ho-a2o-rwt","isDefault":false,"name":"[Test
-      create rule] Test rule 012345"}'
+      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1615994969588,"filters":[],"queries":[{"distinctFields":[],"name":"","metric":"","aggregation":"count","groupByFields":[],"query":"@test:true","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"kmi-dar-wcf","isDefault":false,"name":"go-Feature_Security_Monitoring-Scenario_Create_a_detection_rule_returns__OK__response-local-1615994969"}'
     headers:
       Cache-Control:
       - no-cache
@@ -37,7 +36,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 15 Mar 2021 22:29:42 GMT
+      - Wed, 17 Mar 2021 15:29:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -47,9 +46,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
+      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
       X-Dd-Version:
-      - "35.4101760"
+      - "35.4112776"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -66,12 +65,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.18+dev (go go1.16; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5085878088689804122"
+      - "7738146263279773351"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "9156196848142825706"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/3ho-a2o-rwt
+      - "4575537513082262255"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/kmi-dar-wcf
     method: DELETE
   response:
     body: ""
@@ -85,7 +84,7 @@ interactions:
       Content-Length:
       - "2"
       Date:
-      - Mon, 15 Mar 2021 22:29:42 GMT
+      - Wed, 17 Mar 2021 15:29:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -93,9 +92,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
+      - /L+SFFO+m1pPY+hRCpk5325fvfrNl0KmiquUNJolBN/5hu3HIwflqjZSbJ6NxDFG
       X-Dd-Version:
-      - "35.4101760"
+      - "35.4112776"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content

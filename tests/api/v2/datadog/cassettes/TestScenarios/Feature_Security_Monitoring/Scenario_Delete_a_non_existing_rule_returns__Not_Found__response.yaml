@@ -12,11 +12,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.18+dev (go go1.16; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "654422329914678365"
+      - "2559481307850499512"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1571544068505365248"
+      - "2578894568390468290"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules/ThisRuleIdProbablyDoesntExist
     method: DELETE
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 15 Mar 2021 22:29:42 GMT
+      - Wed, 17 Mar 2021 15:29:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -40,7 +40,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4101760"
+      - "35.4112776"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
