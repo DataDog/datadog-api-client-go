@@ -633,6 +633,7 @@ Class | Method | HTTP request | Description
  - [TimeseriesWidgetDefinition](docs/TimeseriesWidgetDefinition.md)
  - [TimeseriesWidgetDefinitionType](docs/TimeseriesWidgetDefinitionType.md)
  - [TimeseriesWidgetExpressionAlias](docs/TimeseriesWidgetExpressionAlias.md)
+ - [TimeseriesWidgetLegendColumn](docs/TimeseriesWidgetLegendColumn.md)
  - [TimeseriesWidgetLegendLayout](docs/TimeseriesWidgetLegendLayout.md)
  - [TimeseriesWidgetRequest](docs/TimeseriesWidgetRequest.md)
  - [ToplistWidgetDefinition](docs/ToplistWidgetDefinition.md)

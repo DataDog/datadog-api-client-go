@@ -83,7 +83,7 @@ Name | Type | Description | Notes
 **SizeFormat** | Pointer to [**WidgetSizeFormat**](WidgetSizeFormat.md) |  | [optional] 
 **SpanName** | **string** | APM span name. | 
 **HasSearchBar** | Pointer to [**TableWidgetHasSearchBar**](TableWidgetHasSearchBar.md) |  | [optional] 
-**LegendColumns** | Pointer to **[]string** | Columns displayed in the legend. | [optional] 
+**LegendColumns** | Pointer to [**[]TimeseriesWidgetLegendColumn**](TimeseriesWidgetLegendColumn.md) | Columns displayed in the legend. | [optional] 
 **LegendLayout** | Pointer to [**TimeseriesWidgetLegendLayout**](TimeseriesWidgetLegendLayout.md) |  | [optional] 
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
 **RightYaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
@@ -1989,20 +1989,20 @@ HasHasSearchBar returns a boolean if a field has been set.
 
 ### GetLegendColumns
 
-`func (o *WidgetDefinition) GetLegendColumns() []string`
+`func (o *WidgetDefinition) GetLegendColumns() []TimeseriesWidgetLegendColumn`
 
 GetLegendColumns returns the LegendColumns field if non-nil, zero value otherwise.
 
 ### GetLegendColumnsOk
 
-`func (o *WidgetDefinition) GetLegendColumnsOk() (*[]string, bool)`
+`func (o *WidgetDefinition) GetLegendColumnsOk() (*[]TimeseriesWidgetLegendColumn, bool)`
 
 GetLegendColumnsOk returns a tuple with the LegendColumns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLegendColumns
 
-`func (o *WidgetDefinition) SetLegendColumns(v []string)`
+`func (o *WidgetDefinition) SetLegendColumns(v []TimeseriesWidgetLegendColumn)`
 
 SetLegendColumns sets LegendColumns field to given value.
 
