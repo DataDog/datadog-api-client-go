@@ -19,8 +19,8 @@ type TimeseriesWidgetDefinition struct {
 	// List of widget events.
 	Events *[]WidgetEvent `json:"events,omitempty"`
 	// Columns displayed in the legend.
-	LegendColumns *[]string                     `json:"legend_columns,omitempty"`
-	LegendLayout  *TimeseriesWidgetLegendLayout `json:"legend_layout,omitempty"`
+	LegendColumns *[]TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
+	LegendLayout  *TimeseriesWidgetLegendLayout   `json:"legend_layout,omitempty"`
 	// Available legend sizes for a widget. Should be one of \"0\", \"2\", \"4\", \"8\", \"16\", or \"auto\".
 	LegendSize *string `json:"legend_size,omitempty"`
 	// List of markers.
@@ -126,9 +126,9 @@ func (o *TimeseriesWidgetDefinition) SetEvents(v []WidgetEvent) {
 }
 
 // GetLegendColumns returns the LegendColumns field value if set, zero value otherwise.
-func (o *TimeseriesWidgetDefinition) GetLegendColumns() []string {
+func (o *TimeseriesWidgetDefinition) GetLegendColumns() []TimeseriesWidgetLegendColumn {
 	if o == nil || o.LegendColumns == nil {
-		var ret []string
+		var ret []TimeseriesWidgetLegendColumn
 		return ret
 	}
 	return *o.LegendColumns
@@ -136,7 +136,7 @@ func (o *TimeseriesWidgetDefinition) GetLegendColumns() []string {
 
 // GetLegendColumnsOk returns a tuple with the LegendColumns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetDefinition) GetLegendColumnsOk() (*[]string, bool) {
+func (o *TimeseriesWidgetDefinition) GetLegendColumnsOk() (*[]TimeseriesWidgetLegendColumn, bool) {
 	if o == nil || o.LegendColumns == nil {
 		return nil, false
 	}
@@ -152,8 +152,8 @@ func (o *TimeseriesWidgetDefinition) HasLegendColumns() bool {
 	return false
 }
 
-// SetLegendColumns gets a reference to the given []string and assigns it to the LegendColumns field.
-func (o *TimeseriesWidgetDefinition) SetLegendColumns(v []string) {
+// SetLegendColumns gets a reference to the given []TimeseriesWidgetLegendColumn and assigns it to the LegendColumns field.
+func (o *TimeseriesWidgetDefinition) SetLegendColumns(v []TimeseriesWidgetLegendColumn) {
 	o.LegendColumns = &v
 }
 
