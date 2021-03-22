@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
-**LegendColumns** | Pointer to **[]string** | Columns displayed in the legend. | [optional] 
+**LegendColumns** | Pointer to [**[]TimeseriesWidgetLegendColumn**](TimeseriesWidgetLegendColumn.md) | Columns displayed in the legend. | [optional] 
 **LegendLayout** | Pointer to [**TimeseriesWidgetLegendLayout**](TimeseriesWidgetLegendLayout.md) |  | [optional] 
 **LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
 **Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
@@ -91,20 +91,20 @@ HasEvents returns a boolean if a field has been set.
 
 ### GetLegendColumns
 
-`func (o *TimeseriesWidgetDefinition) GetLegendColumns() []string`
+`func (o *TimeseriesWidgetDefinition) GetLegendColumns() []TimeseriesWidgetLegendColumn`
 
 GetLegendColumns returns the LegendColumns field if non-nil, zero value otherwise.
 
 ### GetLegendColumnsOk
 
-`func (o *TimeseriesWidgetDefinition) GetLegendColumnsOk() (*[]string, bool)`
+`func (o *TimeseriesWidgetDefinition) GetLegendColumnsOk() (*[]TimeseriesWidgetLegendColumn, bool)`
 
 GetLegendColumnsOk returns a tuple with the LegendColumns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLegendColumns
 
-`func (o *TimeseriesWidgetDefinition) SetLegendColumns(v []string)`
+`func (o *TimeseriesWidgetDefinition) SetLegendColumns(v []TimeseriesWidgetLegendColumn)`
 
 SetLegendColumns sets LegendColumns field to given value.
 
