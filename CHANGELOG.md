@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-beta.18 / 2021-03-22
+
+* [Added] Add `legend_layout` and `legend_columns` to timeseries widget definition. See [#791](https://github.com/DataDog/datadog-api-client-go/pull/791).
+
 ## 1.0.0-beta.17 / 2021-03-15
 
 * [Added] Add support for multistep tests in Synthetics. See [#775](https://github.com/DataDog/datadog-api-client-go/pull/775).
