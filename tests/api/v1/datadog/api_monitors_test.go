@@ -137,7 +137,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Equal(true, ok2)
 
 	nhd, ok3 := monitorOptions.GetNewHostDelayOk()
-	assert.Nil(nhd)
+	assert.NotNil(nhd)
 	assert.Equal(true, ok3)
 
 	ed, ok4 := monitorOptions.GetEvaluationDelayOk()
