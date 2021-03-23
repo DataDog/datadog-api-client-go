@@ -27,29 +27,63 @@ package main
 
 import (
     "context"
+{{#returnType}}
+    "encoding/json"
+{{/returnType}}
     "fmt"
     "os"
 {{#vendorExtensions.x-go-import}}
 {{{vendorExtensions.x-go-import}}}
 {{/vendorExtensions.x-go-import}}
-    {{goImportAlias}} "./openapi"
+    {{goImportAlias}} "{{goImport}}"
 )
 
 func main() {
+    {{#hasAuthMethods}}
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+        {{#authMethods}}
+        {{#isApiKey}}
+        {{^isKeyInCookie}}
+            "{{#vendorExtensions.x-auth-id-alias}}{{.}}{{/vendorExtensions.x-auth-id-alias}}{{^vendorExtensions.x-auth-id-alias}}{{name}}{{/vendorExtensions.x-auth-id-alias}}": {
+                Key: os.Getenv("{{#vendorExtensions.x-env-name}}{{.}}{{/vendorExtensions.x-env-name}}{{^vendorExtensions.x-env-name}}{{name}}{{/vendorExtensions.x-env-name}}"),
+            },
+        {{/isKeyInCookie}}
+        {{/isApiKey}}
+        {{/authMethods}}
+        },
+    )
+    {{/hasAuthMethods}}
+    {{^hasAuthMethods}}
+    ctx := context.Background()
+    {{/hasAuthMethods}}
+
     {{#allParams}}
     {{paramName}} := {{{vendorExtensions.x-go-example}}} // {{{dataType}}} | {{{description}}}{{^required}} (optional){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
     {{/allParams}}
 
     configuration := {{goImportAlias}}.NewConfiguration()
+    {{#vendorExtensions.x-unstable}}
+    configuration.SetUnstableOperationEnabled("{{operationId}}", true)
+    {{/vendorExtensions.x-unstable}}
+
     api_client := {{goImportAlias}}.NewAPIClient(configuration)
-    resp, r, err := api_client.{{classname}}.{{operationId}}(context.Background(){{#pathParams}}, {{paramName}}{{/pathParams}}){{#allParams}}{{^isPathParam}}.{{vendorExtensions.x-export-param-name}}({{paramName}}){{/isPathParam}}{{/allParams}}.Execute()
+    {{#returnType}}
+    resp, r, err := api_client.{{classname}}.{{operationId}}(ctx{{#pathParams}}, {{paramName}}{{/pathParams}}){{#allParams}}{{^isPathParam}}.{{vendorExtensions.x-export-param-name}}({{paramName}}){{/isPathParam}}{{/allParams}}.Execute()
+    {{/returnType}}
+    {{^returnType}}
+    r, err := api_client.{{classname}}.{{operationId}}(ctx{{#pathParams}}, {{paramName}}{{/pathParams}}){{#allParams}}{{^isPathParam}}.{{vendorExtensions.x-export-param-name}}({{paramName}}){{/isPathParam}}{{/allParams}}.Execute()
+    {{/returnType}}
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `{{classname}}.{{operationId}}``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     {{#returnType}}
     // response from `{{operationId}}`: {{{.}}}
-    fmt.Fprintf(os.Stdout, "Response from `{{classname}}.{{operationId}}`: %v\n", resp)
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from {{classname}}.{{operationId}}:\n%s\n", response_content)
     {{/returnType}}
 }
 ```
