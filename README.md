@@ -6,6 +6,10 @@ This repository contains a Go API client for the [Datadog API](https://docs.data
 The code is generated using [openapi-generator](https://github.com/OpenAPITools/openapi-generator)
 and [apigentools](https://github.com/DataDog/apigentools).
 
+## Requirements
+
+- Go 1.14+
+
 ## Layout
 
 This repository contains per-major-version API client packages. Right
