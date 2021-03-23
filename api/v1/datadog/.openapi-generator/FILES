@@ -504,6 +504,7 @@ docs/UsageSyntheticsResponse.md
 docs/UsageTimeseriesHour.md
 docs/UsageTimeseriesResponse.md
 docs/UsageTopAvgMetricsHour.md
+docs/UsageTopAvgMetricsMetadata.md
 docs/UsageTopAvgMetricsResponse.md
 docs/UsageTraceHour.md
 docs/UsageTraceResponse.md
@@ -1006,6 +1007,7 @@ model_usage_synthetics_response.go
 model_usage_timeseries_hour.go
 model_usage_timeseries_response.go
 model_usage_top_avg_metrics_hour.go
+model_usage_top_avg_metrics_metadata.go
 model_usage_top_avg_metrics_response.go
 model_usage_trace_hour.go
 model_usage_trace_response.go

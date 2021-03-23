@@ -7990,15 +7990,29 @@ paths:
   /api/v1/usage/top_avg_metrics:
     get:
       description: Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/)
-        by hourly average.
+        by hourly average. Use the month parameter to get a month-to-date data resolution
+        or use the day parameter to get a daily resolution. One of the two is required,
+        and only one of the two is allowed.
       operationId: GetUsageTopAvgMetrics
       parameters:
       - description: 'Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM]
-          for usage beginning at this hour.'
+          for usage beginning at this hour. (Either month or day should be specified,
+          but not both)'
         explode: true
         in: query
         name: month
-        required: true
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: 'Datetime in ISO-8601 format, UTC, precise to day: [YYYY-MM-DD]
+          for usage beginning at this hour. (Either month or day should be specified,
+          but not both)'
+        explode: true
+        in: query
+        name: day
+        required: false
         schema:
           format: date-time
           type: string
@@ -22331,10 +22345,40 @@ components:
           description: Contains the custom metric name.
           type: string
       type: object
+    UsageTopAvgMetricsMetadata:
+      description: The object containing document metadata.
+      example:
+        pagination:
+          sort_direction: sort_direction
+          total_number_of_records: 5
+          offset: 1
+          limit: 6
+          sort_name: sort_name
+        month: ""
+        day: ""
+      properties:
+        day:
+          description: The day value from the user request that contains the returned
+            usage data. (If day was used the request)
+        month:
+          description: The month value from the user request that contains the returned
+            usage data. (If month was used the request)
+        pagination:
+          $ref: '#/components/schemas/UsageAttributionPagination'
+      type: object
     UsageTopAvgMetricsResponse:
       description: Response containing the number of hourly recorded custom metrics
         for a given organization.
       example:
+        metadata:
+          pagination:
+            sort_direction: sort_direction
+            total_number_of_records: 5
+            offset: 1
+            limit: 6
+            sort_name: sort_name
+          month: ""
+          day: ""
         usage:
         - max_metric_hour: 6
           metric_name: metric_name
@@ -22343,6 +22387,8 @@ components:
           metric_name: metric_name
           avg_metric_hour: 0
       properties:
+        metadata:
+          $ref: '#/components/schemas/UsageTopAvgMetricsMetadata'
         usage:
           description: Number of hourly recorded custom metrics for a given organization.
           items:

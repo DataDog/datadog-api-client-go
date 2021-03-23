@@ -2572,7 +2572,7 @@ Name | Type | Description  | Notes
 
 ## GetUsageTopAvgMetrics
 
-> UsageTopAvgMetricsResponse GetUsageTopAvgMetrics(ctx).Month(month).Names(names).Limit(limit).Execute()
+> UsageTopAvgMetricsResponse GetUsageTopAvgMetrics(ctx).Month(month).Day(day).Names(names).Limit(limit).Execute()
 
 Get top custom metrics by hourly average
 
@@ -2614,14 +2614,15 @@ func main() {
         )
     }
 
-    month := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour.
+    month := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour. (Either month or day should be specified, but not both) (optional)
+    day := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to day: [YYYY-MM-DD] for usage beginning at this hour. (Either month or day should be specified, but not both) (optional)
     names := []string{"Inner_example"} // []string | Comma-separated list of metric names. (optional)
     limit := int32(56) // int32 | Maximum number of results to return (between 1 and 5000) - defaults to 500 results if limit not specified. (optional) (default to 500)
 
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.UsageMeteringApi.GetUsageTopAvgMetrics(ctx).Month(month).Names(names).Limit(limit).Execute()
+    resp, r, err := api_client.UsageMeteringApi.GetUsageTopAvgMetrics(ctx).Month(month).Day(day).Names(names).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTopAvgMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2643,7 +2644,8 @@ Other parameters are passed through a pointer to a apiGetUsageTopAvgMetricsReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **month** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour. | 
+ **month** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour. (Either month or day should be specified, but not both) | 
+ **day** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to day: [YYYY-MM-DD] for usage beginning at this hour. (Either month or day should be specified, but not both) | 
  **names** | **[]string** | Comma-separated list of metric names. | 
  **limit** | **int32** | Maximum number of results to return (between 1 and 5000) - defaults to 500 results if limit not specified. | [default to 500]
 
