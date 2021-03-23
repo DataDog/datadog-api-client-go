@@ -706,6 +706,7 @@ Class | Method | HTTP request | Description
  - [UsageTimeseriesHour](docs/UsageTimeseriesHour.md)
  - [UsageTimeseriesResponse](docs/UsageTimeseriesResponse.md)
  - [UsageTopAvgMetricsHour](docs/UsageTopAvgMetricsHour.md)
+ - [UsageTopAvgMetricsMetadata](docs/UsageTopAvgMetricsMetadata.md)
  - [UsageTopAvgMetricsResponse](docs/UsageTopAvgMetricsResponse.md)
  - [UsageTraceHour](docs/UsageTraceHour.md)
  - [UsageTraceResponse](docs/UsageTraceResponse.md)
