@@ -7,6 +7,8 @@
 
 * `CARDINALITY` (value: `"cardinality"`)
 
+* `MEDIAN` (value: `"median"`)
+
 * `PC75` (value: `"pc75"`)
 
 * `PC90` (value: `"pc90"`)
