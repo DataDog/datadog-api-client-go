@@ -10267,6 +10267,7 @@ components:
       enum:
       - count
       - cardinality
+      - median
       - pc75
       - pc90
       - pc95
@@ -10281,6 +10282,7 @@ components:
       x-enum-varnames:
       - COUNT
       - CARDINALITY
+      - MEDIAN
       - PC75
       - PC90
       - PC95
