@@ -20,6 +20,7 @@ type FormulaAndFunctionEventAggregation string
 const (
 	FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT       FormulaAndFunctionEventAggregation = "count"
 	FORMULAANDFUNCTIONEVENTAGGREGATION_CARDINALITY FormulaAndFunctionEventAggregation = "cardinality"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_MEDIAN      FormulaAndFunctionEventAggregation = "median"
 	FORMULAANDFUNCTIONEVENTAGGREGATION_PC75        FormulaAndFunctionEventAggregation = "pc75"
 	FORMULAANDFUNCTIONEVENTAGGREGATION_PC90        FormulaAndFunctionEventAggregation = "pc90"
 	FORMULAANDFUNCTIONEVENTAGGREGATION_PC95        FormulaAndFunctionEventAggregation = "pc95"
@@ -34,6 +35,7 @@ const (
 var allowedFormulaAndFunctionEventAggregationEnumValues = []FormulaAndFunctionEventAggregation{
 	"count",
 	"cardinality",
+	"median",
 	"pc75",
 	"pc90",
 	"pc95",
