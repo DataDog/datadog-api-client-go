@@ -16549,7 +16549,7 @@ components:
         locations:
         - locations
         - locations
-        message: message
+        message: ""
         type: browser
         config:
           request:
@@ -16607,7 +16607,9 @@ components:
             type: string
           type: array
         message:
-          description: Notification message associated with the test.
+          description: Notification message associated with the test. Message can
+            either be text or an empty string.
+          example: ""
           type: string
         monitor_id:
           description: The associated monitor ID.
@@ -16636,6 +16638,8 @@ components:
           type: array
         type:
           $ref: '#/components/schemas/SyntheticsBrowserTestType'
+      required:
+      - message
       type: object
     SyntheticsBrowserTestConfig:
       description: Configuration object for a Synthetic browser test.
