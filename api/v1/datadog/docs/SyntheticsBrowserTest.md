@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Config** | Pointer to [**SyntheticsBrowserTestConfig**](SyntheticsBrowserTestConfig.md) |  | [optional] 
 **Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
-**Message** | Pointer to **string** | Notification message associated with the test. | [optional] 
+**Message** | **string** | Notification message associated with the test. Message can either be text or an empty string. | 
 **MonitorId** | Pointer to **int64** | The associated monitor ID. | [optional] 
 **Name** | Pointer to **string** | Name of the test. | [optional] 
 **Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewSyntheticsBrowserTest
 
-`func NewSyntheticsBrowserTest() *SyntheticsBrowserTest`
+`func NewSyntheticsBrowserTest(message string, ) *SyntheticsBrowserTest`
 
 NewSyntheticsBrowserTest instantiates a new SyntheticsBrowserTest object
 This constructor will assign default values to properties that have it defined,
@@ -104,11 +104,6 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
-### HasMessage
-
-`func (o *SyntheticsBrowserTest) HasMessage() bool`
-
-HasMessage returns a boolean if a field has been set.
 
 ### GetMonitorId
 

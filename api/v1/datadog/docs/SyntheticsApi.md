@@ -345,7 +345,7 @@ func main() {
         )
     }
 
-    body := *datadog.NewSyntheticsBrowserTest() // SyntheticsBrowserTest | Details of the test to create.
+    body := *datadog.NewSyntheticsBrowserTest("Message_example") // SyntheticsBrowserTest | Details of the test to create.
 
     configuration := datadog.NewConfiguration()
 
@@ -2018,7 +2018,7 @@ func main() {
     }
 
     publicId := "publicId_example" // string | The public ID of the test to get details from.
-    body := *datadog.NewSyntheticsBrowserTest() // SyntheticsBrowserTest | New test details to be saved.
+    body := *datadog.NewSyntheticsBrowserTest("Message_example") // SyntheticsBrowserTest | New test details to be saved.
 
     configuration := datadog.NewConfiguration()
 
