@@ -5788,6 +5788,10 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-undo:
+        operationId: TODO
+        parameters: []
+        type: unsafe
   /api/v1/synthetics/tests/api/{public_id}:
     put:
       description: Edit the configuration of a Synthetic API test.
@@ -5886,6 +5890,10 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-undo:
+        operationId: TODO
+        parameters: []
+        type: unsafe
   /api/v1/synthetics/tests/browser/{public_id}:
     get:
       description: |-
@@ -10259,6 +10267,7 @@ components:
       enum:
       - count
       - cardinality
+      - median
       - pc75
       - pc90
       - pc95
@@ -10273,6 +10282,7 @@ components:
       x-enum-varnames:
       - COUNT
       - CARDINALITY
+      - MEDIAN
       - PC75
       - PC90
       - PC95
