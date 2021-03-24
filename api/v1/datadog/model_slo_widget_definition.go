@@ -14,6 +14,8 @@ import (
 
 // SLOWidgetDefinition Use the SLO and uptime widget to track your SLOs (Service Level Objectives) and uptime on screenboards and timeboards.
 type SLOWidgetDefinition struct {
+	// Defined global time target.
+	GlobalTimeTarget *string `json:"global_time_target,omitempty"`
 	// Defined error budget.
 	ShowErrorBudget *bool `json:"show_error_budget,omitempty"`
 	// ID of the SLO displayed.
@@ -52,6 +54,38 @@ func NewSLOWidgetDefinitionWithDefaults() *SLOWidgetDefinition {
 	var viewType string = "detail"
 	this.ViewType = viewType
 	return &this
+}
+
+// GetGlobalTimeTarget returns the GlobalTimeTarget field value if set, zero value otherwise.
+func (o *SLOWidgetDefinition) GetGlobalTimeTarget() string {
+	if o == nil || o.GlobalTimeTarget == nil {
+		var ret string
+		return ret
+	}
+	return *o.GlobalTimeTarget
+}
+
+// GetGlobalTimeTargetOk returns a tuple with the GlobalTimeTarget field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOWidgetDefinition) GetGlobalTimeTargetOk() (*string, bool) {
+	if o == nil || o.GlobalTimeTarget == nil {
+		return nil, false
+	}
+	return o.GlobalTimeTarget, true
+}
+
+// HasGlobalTimeTarget returns a boolean if a field has been set.
+func (o *SLOWidgetDefinition) HasGlobalTimeTarget() bool {
+	if o != nil && o.GlobalTimeTarget != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGlobalTimeTarget gets a reference to the given string and assigns it to the GlobalTimeTarget field.
+func (o *SLOWidgetDefinition) SetGlobalTimeTarget(v string) {
+	o.GlobalTimeTarget = &v
 }
 
 // GetShowErrorBudget returns the ShowErrorBudget field value if set, zero value otherwise.
@@ -328,6 +362,9 @@ func (o *SLOWidgetDefinition) SetViewType(v string) {
 
 func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.GlobalTimeTarget != nil {
+		toSerialize["global_time_target"] = o.GlobalTimeTarget
+	}
 	if o.ShowErrorBudget != nil {
 		toSerialize["show_error_budget"] = o.ShowErrorBudget
 	}
