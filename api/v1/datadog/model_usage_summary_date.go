@@ -45,6 +45,8 @@ type UsageSummaryDate struct {
 	FargateTasksCountHwm *int64 `json:"fargate_tasks_count_hwm,omitempty"`
 	// Shows the 99th percentile of all GCP hosts over all hours in the current date for all organizations.
 	GcpHostTop99p *int64 `json:"gcp_host_top99p,omitempty"`
+	// Shows the 99th percentile of all Heroku dynos over all hours in the current date for all organizations.
+	HerokuHostTop99pSum *int64 `json:"heroku_host_top99p_sum,omitempty"`
 	// Shows the high-water mark of incident management monthly active users over all hours in the current date for all organizations.
 	IncidentManagementMonthlyActiveUsersHwm *int64 `json:"incident_management_monthly_active_users_hwm,omitempty"`
 	// Shows the sum of all log events indexed over all hours in the current date for all organizations.
@@ -67,6 +69,8 @@ type UsageSummaryDate struct {
 	NetflowIndexedEventsCountSum *int64 `json:"netflow_indexed_events_count_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all organizations.
 	NpmHostTop99p *int64 `json:"npm_host_top99p,omitempty"`
+	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for all organizations.
+	OpentelemetryHostTop99pSum *int64 `json:"opentelemetry_host_top99p_sum,omitempty"`
 	// Organizations associated with a user.
 	Orgs *[]UsageSummaryDateOrg `json:"orgs,omitempty"`
 	// Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations.
@@ -582,6 +586,38 @@ func (o *UsageSummaryDate) SetGcpHostTop99p(v int64) {
 	o.GcpHostTop99p = &v
 }
 
+// GetHerokuHostTop99pSum returns the HerokuHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetHerokuHostTop99pSum() int64 {
+	if o == nil || o.HerokuHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.HerokuHostTop99pSum
+}
+
+// GetHerokuHostTop99pSumOk returns a tuple with the HerokuHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetHerokuHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.HerokuHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.HerokuHostTop99pSum, true
+}
+
+// HasHerokuHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasHerokuHostTop99pSum() bool {
+	if o != nil && o.HerokuHostTop99pSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHerokuHostTop99pSum gets a reference to the given int64 and assigns it to the HerokuHostTop99pSum field.
+func (o *UsageSummaryDate) SetHerokuHostTop99pSum(v int64) {
+	o.HerokuHostTop99pSum = &v
+}
+
 // GetIncidentManagementMonthlyActiveUsersHwm returns the IncidentManagementMonthlyActiveUsersHwm field value if set, zero value otherwise.
 func (o *UsageSummaryDate) GetIncidentManagementMonthlyActiveUsersHwm() int64 {
 	if o == nil || o.IncidentManagementMonthlyActiveUsersHwm == nil {
@@ -934,6 +970,38 @@ func (o *UsageSummaryDate) SetNpmHostTop99p(v int64) {
 	o.NpmHostTop99p = &v
 }
 
+// GetOpentelemetryHostTop99pSum returns the OpentelemetryHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetOpentelemetryHostTop99pSum() int64 {
+	if o == nil || o.OpentelemetryHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.OpentelemetryHostTop99pSum
+}
+
+// GetOpentelemetryHostTop99pSumOk returns a tuple with the OpentelemetryHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetOpentelemetryHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.OpentelemetryHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.OpentelemetryHostTop99pSum, true
+}
+
+// HasOpentelemetryHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasOpentelemetryHostTop99pSum() bool {
+	if o != nil && o.OpentelemetryHostTop99pSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOpentelemetryHostTop99pSum gets a reference to the given int64 and assigns it to the OpentelemetryHostTop99pSum field.
+func (o *UsageSummaryDate) SetOpentelemetryHostTop99pSum(v int64) {
+	o.OpentelemetryHostTop99pSum = &v
+}
+
 // GetOrgs returns the Orgs field value if set, zero value otherwise.
 func (o *UsageSummaryDate) GetOrgs() []UsageSummaryDateOrg {
 	if o == nil || o.Orgs == nil {
@@ -1237,6 +1305,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.GcpHostTop99p != nil {
 		toSerialize["gcp_host_top99p"] = o.GcpHostTop99p
 	}
+	if o.HerokuHostTop99pSum != nil {
+		toSerialize["heroku_host_top99p_sum"] = o.HerokuHostTop99pSum
+	}
 	if o.IncidentManagementMonthlyActiveUsersHwm != nil {
 		toSerialize["incident_management_monthly_active_users_hwm"] = o.IncidentManagementMonthlyActiveUsersHwm
 	}
@@ -1269,6 +1340,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	}
 	if o.NpmHostTop99p != nil {
 		toSerialize["npm_host_top99p"] = o.NpmHostTop99p
+	}
+	if o.OpentelemetryHostTop99pSum != nil {
+		toSerialize["opentelemetry_host_top99p_sum"] = o.OpentelemetryHostTop99pSum
 	}
 	if o.Orgs != nil {
 		toSerialize["orgs"] = o.Orgs
