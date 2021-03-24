@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **FargateTasksCountAvgSum** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current months for all organizations. | [optional] 
 **FargateTasksCountHwmSum** | Pointer to **int64** | Shows the sum of the high-water marks of all Fargate tasks over all hours in the current months for all organizations. | [optional] 
 **GcpHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current months for all organizations. | [optional] 
+**HerokuHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Heroku dynos over all hours in the current months for all organizations. | [optional] 
 **IncidentManagementMonthlyActiveUsersHwmSum** | Pointer to **int64** | Shows sum of the the high-water marks of incident management monthly active users in the current months for all organizations. | [optional] 
 **IndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current months for all organizations. | [optional] 
 **InfraHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current months for all organizations. | [optional] 
@@ -34,6 +35,7 @@ Name | Type | Description | Notes
 **MobileRumSessionCountIosAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on iOS over all hours in the current months for all organizations. | [optional] 
 **NetflowIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current months for all organizations. | [optional] 
 **NpmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current months for all organizations. | [optional] 
+**OpentelemetryHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current months for all organizations. | [optional] 
 **ProfilingContainerAgentCountAvg** | Pointer to **int64** | Shows the average number of profiled containers over all hours in the current months for all organizations. | [optional] 
 **ProfilingHostCountTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current months for all organizations. | [optional] 
 **RehydratedIndexedEventsAggSum** | Pointer to **int64** | Shows the sum of all rehydrated logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020). | [optional] 
@@ -466,6 +468,31 @@ SetGcpHostTop99pSum sets GcpHostTop99pSum field to given value.
 
 HasGcpHostTop99pSum returns a boolean if a field has been set.
 
+### GetHerokuHostTop99pSum
+
+`func (o *UsageSummaryResponse) GetHerokuHostTop99pSum() int64`
+
+GetHerokuHostTop99pSum returns the HerokuHostTop99pSum field if non-nil, zero value otherwise.
+
+### GetHerokuHostTop99pSumOk
+
+`func (o *UsageSummaryResponse) GetHerokuHostTop99pSumOk() (*int64, bool)`
+
+GetHerokuHostTop99pSumOk returns a tuple with the HerokuHostTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHerokuHostTop99pSum
+
+`func (o *UsageSummaryResponse) SetHerokuHostTop99pSum(v int64)`
+
+SetHerokuHostTop99pSum sets HerokuHostTop99pSum field to given value.
+
+### HasHerokuHostTop99pSum
+
+`func (o *UsageSummaryResponse) HasHerokuHostTop99pSum() bool`
+
+HasHerokuHostTop99pSum returns a boolean if a field has been set.
+
 ### GetIncidentManagementMonthlyActiveUsersHwmSum
 
 `func (o *UsageSummaryResponse) GetIncidentManagementMonthlyActiveUsersHwmSum() int64`
@@ -815,6 +842,31 @@ SetNpmHostTop99pSum sets NpmHostTop99pSum field to given value.
 `func (o *UsageSummaryResponse) HasNpmHostTop99pSum() bool`
 
 HasNpmHostTop99pSum returns a boolean if a field has been set.
+
+### GetOpentelemetryHostTop99pSum
+
+`func (o *UsageSummaryResponse) GetOpentelemetryHostTop99pSum() int64`
+
+GetOpentelemetryHostTop99pSum returns the OpentelemetryHostTop99pSum field if non-nil, zero value otherwise.
+
+### GetOpentelemetryHostTop99pSumOk
+
+`func (o *UsageSummaryResponse) GetOpentelemetryHostTop99pSumOk() (*int64, bool)`
+
+GetOpentelemetryHostTop99pSumOk returns a tuple with the OpentelemetryHostTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOpentelemetryHostTop99pSum
+
+`func (o *UsageSummaryResponse) SetOpentelemetryHostTop99pSum(v int64)`
+
+SetOpentelemetryHostTop99pSum sets OpentelemetryHostTop99pSum field to given value.
+
+### HasOpentelemetryHostTop99pSum
+
+`func (o *UsageSummaryResponse) HasOpentelemetryHostTop99pSum() bool`
+
+HasOpentelemetryHostTop99pSum returns a boolean if a field has been set.
 
 ### GetProfilingContainerAgentCountAvg
 
