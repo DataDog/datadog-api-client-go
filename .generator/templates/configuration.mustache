@@ -377,7 +377,7 @@ func getUserAgent() string {
 // NewDefaultContext returns a new context setup with environment variables
 func NewDefaultContext(ctx context.Context) context.Context {
 	if ctx == nil {
-		ctx = context.Background()
+		ctx	= context.Background()
 	}
 
 	if site, ok := os.LookupEnv("DD_SITE"); ok {
@@ -388,20 +388,21 @@ func NewDefaultContext(ctx context.Context) context.Context {
 		)
 	}
 
-	if apiKey, ok := os.LookupEnv("DD_API_KEY"); ok {
-		ctx = context.WithValue(
-			ctx,
-			ContextAPIKeys,
-			map[string]APIKey{
-				"apiKeyAuth": {
-					Key: apiKey,
-				},
-				"appKeyAuth": {
-					Key: os.Getenv("DD_APP_KEY"),
-				},
-			},
-		)
+	keys := make(map[string]APIKey)
+	{{#authMethods}}
+	{{#isApiKey}}
+	{{#isKeyInHeader}}
+	if apiKey, ok := os.LookupEnv("{{vendorExtensions.x-env-name}}"); ok {
+		keys["{{name}}"] = APIKey{Key: apiKey}
 	}
+	{{/isKeyInHeader}}
+	{{/isApiKey}}
+	{{/authMethods}}
+	ctx = context.WithValue(
+		ctx,
+		ContextAPIKeys,
+		keys,
+	)
 
 	return ctx
 }
