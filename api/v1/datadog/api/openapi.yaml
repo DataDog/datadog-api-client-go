@@ -20542,17 +20542,19 @@ components:
     UsageHostHour:
       description: Number of hosts/containers recorded for each hour for a given organization.
       example:
-        infra_azure_app_service: 2
+        infra_azure_app_service: 4
         apm_host_count: 5
-        hour: 2000-01-23T04:56:07.000+00:00
         agent_host_count: 0
         aws_host_count: 5
         apm_azure_app_service_host_count: 1
-        host_count: 3
+        host_count: 2
         azure_host_count: 2
-        alibaba_host_count: 6
-        gcp_host_count: 9
         container_count: 7
+        heroku_host_count: 3
+        hour: 2000-01-23T04:56:07.000+00:00
+        alibaba_host_count: 6
+        opentelemetry_host_count: 7
+        gcp_host_count: 9
       properties:
         agent_host_count:
           description: |-
@@ -20600,6 +20602,11 @@ components:
             (and were NOT running the Datadog Agent).
           format: int64
           type: integer
+        heroku_host_count:
+          description: Contains the total number of Heroku dynos reported by the Datadog
+            Agent.
+          format: int64
+          type: integer
         host_count:
           description: |-
             Contains the total number of billable infrastructure hosts reporting during a given hour.
@@ -20616,33 +20623,42 @@ components:
             (and were NOT running the Datadog Agent).
           format: int64
           type: integer
+        opentelemetry_host_count:
+          description: Contains the total number of hosts reported by Datadog exporter
+            for the OpenTelemetry Collector.
+          format: int64
+          type: integer
       type: object
     UsageHostsResponse:
       description: Host usage response.
       example:
         usage:
-        - infra_azure_app_service: 2
+        - infra_azure_app_service: 4
           apm_host_count: 5
-          hour: 2000-01-23T04:56:07.000+00:00
           agent_host_count: 0
           aws_host_count: 5
           apm_azure_app_service_host_count: 1
-          host_count: 3
+          host_count: 2
           azure_host_count: 2
-          alibaba_host_count: 6
-          gcp_host_count: 9
           container_count: 7
-        - infra_azure_app_service: 2
-          apm_host_count: 5
+          heroku_host_count: 3
           hour: 2000-01-23T04:56:07.000+00:00
+          alibaba_host_count: 6
+          opentelemetry_host_count: 7
+          gcp_host_count: 9
+        - infra_azure_app_service: 4
+          apm_host_count: 5
           agent_host_count: 0
           aws_host_count: 5
           apm_azure_app_service_host_count: 1
-          host_count: 3
+          host_count: 2
           azure_host_count: 2
-          alibaba_host_count: 6
-          gcp_host_count: 9
           container_count: 7
+          heroku_host_count: 3
+          hour: 2000-01-23T04:56:07.000+00:00
+          alibaba_host_count: 6
+          opentelemetry_host_count: 7
+          gcp_host_count: 9
       properties:
         usage:
           description: An array of objects related to host usage.
@@ -21275,107 +21291,113 @@ components:
       example:
         date: 2000-01-23T04:56:07.000+00:00
         npm_host_top99p: 4
-        container_hwm: 5
-        billable_ingested_bytes_sum: 3
-        iot_device_top99p_sum: 0
-        fargate_tasks_count_avg: 4
-        rum_session_count_sum: 0
-        ingested_events_bytes_sum: 7
-        mobile_rum_session_count_sum: 7
-        container_avg: 7
-        netflow_indexed_events_count_sum: 5
-        aws_lambda_func_count: 8
-        rum_total_session_count_sum: 7
-        mobile_rum_session_count_ios_sum: 0
-        fargate_tasks_count_hwm: 0
-        iot_device_agg_sum: 9
+        container_hwm: 4
+        billable_ingested_bytes_sum: 5
+        iot_device_top99p_sum: 7
+        fargate_tasks_count_avg: 6
+        rum_session_count_sum: 2
+        ingested_events_bytes_sum: 9
+        mobile_rum_session_count_sum: 6
+        container_avg: 3
+        netflow_indexed_events_count_sum: 8
+        aws_lambda_func_count: 3
+        rum_total_session_count_sum: 6
+        mobile_rum_session_count_ios_sum: 4
+        fargate_tasks_count_hwm: 4
+        opentelemetry_host_top99p_sum: 3
+        iot_device_agg_sum: 0
         profiling_host_top99p: 0
-        gcp_host_top99p: 6
-        azure_app_service_top99p: 3
-        apm_azure_app_service_host_top99p: 6
-        mobile_rum_session_count_android_sum: 9
-        apm_host_top99p: 0
-        synthetics_check_calls_count_sum: 2
-        aws_host_top99p: 4
-        incident_management_monthly_active_users_hwm: 4
-        custom_ts_avg: 3
+        gcp_host_top99p: 1
+        azure_app_service_top99p: 7
+        apm_azure_app_service_host_top99p: 4
+        mobile_rum_session_count_android_sum: 5
+        apm_host_top99p: 8
+        synthetics_check_calls_count_sum: 6
+        aws_host_top99p: 7
+        incident_management_monthly_active_users_hwm: 7
+        custom_ts_avg: 0
         trace_search_indexed_events_count_sum: 9
-        twol_ingested_events_bytes_sum: 0
-        agent_host_top99p: 7
-        indexed_events_count_sum: 1
-        infra_host_top99p: 4
+        twol_ingested_events_bytes_sum: 1
+        agent_host_top99p: 0
+        indexed_events_count_sum: 9
+        infra_host_top99p: 0
+        heroku_host_top99p_sum: 4
         orgs:
-        - npm_host_top99p: 5
-          container_hwm: 4
-          billable_ingested_bytes_sum: 8
-          iot_device_top99p_sum: 8
-          fargate_tasks_count_avg: 9
+        - npm_host_top99p: 3
+          container_hwm: 3
+          billable_ingested_bytes_sum: 9
+          iot_device_top99p_sum: 5
+          fargate_tasks_count_avg: 8
           rum_session_count_sum: 0
-          ingested_events_bytes_sum: 5
+          ingested_events_bytes_sum: 3
           public_id: public_id
           mobile_rum_session_count_sum: 3
-          container_avg: 6
-          netflow_indexed_events_count_sum: 9
-          aws_lambda_func_count: 0
-          rum_total_session_count_sum: 3
+          container_avg: 1
+          netflow_indexed_events_count_sum: 2
+          aws_lambda_func_count: 6
+          rum_total_session_count_sum: 0
           id: id
-          mobile_rum_session_count_ios_sum: 3
-          fargate_tasks_count_hwm: 1
-          iot_device_agg_sum: 5
-          profiling_host_top99p: 7
-          gcp_host_top99p: 3
-          azure_app_service_top99p: 1
-          apm_azure_app_service_host_top99p: 8
+          mobile_rum_session_count_ios_sum: 0
+          fargate_tasks_count_hwm: 0
+          iot_device_agg_sum: 9
+          opentelemetry_host_top99p: 8
+          profiling_host_top99p: 4
+          gcp_host_top99p: 5
+          azure_app_service_top99p: 8
+          apm_azure_app_service_host_top99p: 2
           mobile_rum_session_count_android_sum: 7
-          apm_host_top99p: 4
-          synthetics_check_calls_count_sum: 3
-          aws_host_top99p: 3
-          incident_management_monthly_active_users_hwm: 9
-          custom_ts_avg: 8
-          trace_search_indexed_events_count_sum: 8
-          twol_ingested_events_bytes_sum: 4
-          agent_host_top99p: 6
-          indexed_events_count_sum: 8
-          infra_host_top99p: 0
+          apm_host_top99p: 1
+          synthetics_check_calls_count_sum: 4
+          aws_host_top99p: 8
+          heroku_host_top99p: 5
+          incident_management_monthly_active_users_hwm: 8
+          custom_ts_avg: 9
+          trace_search_indexed_events_count_sum: 2
+          twol_ingested_events_bytes_sum: 9
+          agent_host_top99p: 0
+          indexed_events_count_sum: 7
+          infra_host_top99p: 3
           name: name
-          aws_lambda_invocations_sum: 2
-          synthetics_browser_check_calls_count_sum: 2
-        - npm_host_top99p: 5
-          container_hwm: 4
-          billable_ingested_bytes_sum: 8
-          iot_device_top99p_sum: 8
-          fargate_tasks_count_avg: 9
+          aws_lambda_invocations_sum: 4
+          synthetics_browser_check_calls_count_sum: 7
+        - npm_host_top99p: 3
+          container_hwm: 3
+          billable_ingested_bytes_sum: 9
+          iot_device_top99p_sum: 5
+          fargate_tasks_count_avg: 8
           rum_session_count_sum: 0
-          ingested_events_bytes_sum: 5
+          ingested_events_bytes_sum: 3
           public_id: public_id
           mobile_rum_session_count_sum: 3
-          container_avg: 6
-          netflow_indexed_events_count_sum: 9
-          aws_lambda_func_count: 0
-          rum_total_session_count_sum: 3
+          container_avg: 1
+          netflow_indexed_events_count_sum: 2
+          aws_lambda_func_count: 6
+          rum_total_session_count_sum: 0
           id: id
-          mobile_rum_session_count_ios_sum: 3
-          fargate_tasks_count_hwm: 1
-          iot_device_agg_sum: 5
-          profiling_host_top99p: 7
-          gcp_host_top99p: 3
-          azure_app_service_top99p: 1
-          apm_azure_app_service_host_top99p: 8
+          mobile_rum_session_count_ios_sum: 0
+          fargate_tasks_count_hwm: 0
+          iot_device_agg_sum: 9
+          opentelemetry_host_top99p: 8
+          profiling_host_top99p: 4
+          gcp_host_top99p: 5
+          azure_app_service_top99p: 8
+          apm_azure_app_service_host_top99p: 2
           mobile_rum_session_count_android_sum: 7
-          apm_host_top99p: 4
-          synthetics_check_calls_count_sum: 3
-          aws_host_top99p: 3
-          incident_management_monthly_active_users_hwm: 9
-          custom_ts_avg: 8
-          trace_search_indexed_events_count_sum: 8
-          twol_ingested_events_bytes_sum: 4
-          agent_host_top99p: 6
-          indexed_events_count_sum: 8
-          infra_host_top99p: 0
+          apm_host_top99p: 1
+          synthetics_check_calls_count_sum: 4
+          aws_host_top99p: 8
+          heroku_host_top99p: 5
+          incident_management_monthly_active_users_hwm: 8
+          custom_ts_avg: 9
+          trace_search_indexed_events_count_sum: 2
+          twol_ingested_events_bytes_sum: 9
+          agent_host_top99p: 0
+          indexed_events_count_sum: 7
+          infra_host_top99p: 3
           name: name
-          aws_lambda_invocations_sum: 2
-          synthetics_browser_check_calls_count_sum: 2
-        aws_lambda_invocations_sum: 7
+          aws_lambda_invocations_sum: 4
+          synthetics_browser_check_calls_count_sum: 7
+        aws_lambda_invocations_sum: 3
         synthetics_browser_check_calls_count_sum: 4
       properties:
         agent_host_top99p:
@@ -21452,6 +21474,11 @@ components:
             the current date for all organizations.
           format: int64
           type: integer
+        heroku_host_top99p_sum:
+          description: Shows the 99th percentile of all Heroku dynos over all hours
+            in the current date for all organizations.
+          format: int64
+          type: integer
         incident_management_monthly_active_users_hwm:
           description: Shows the high-water mark of incident management monthly active
             users over all hours in the current date for all organizations.
@@ -21507,6 +21534,12 @@ components:
             all hours in the current date for all organizations.
           format: int64
           type: integer
+        opentelemetry_host_top99p_sum:
+          description: Shows the 99th percentile of all hosts reported by the Datadog
+            exporter for the OpenTelemetry Collector over all hours in the current
+            date for all organizations.
+          format: int64
+          type: integer
         orgs:
           description: Organizations associated with a user.
           items:
@@ -21552,41 +21585,43 @@ components:
       description: Global hourly report of all data billed by Datadog for a given
         organization.
       example:
-        npm_host_top99p: 5
-        container_hwm: 4
-        billable_ingested_bytes_sum: 8
-        iot_device_top99p_sum: 8
-        fargate_tasks_count_avg: 9
+        npm_host_top99p: 3
+        container_hwm: 3
+        billable_ingested_bytes_sum: 9
+        iot_device_top99p_sum: 5
+        fargate_tasks_count_avg: 8
         rum_session_count_sum: 0
-        ingested_events_bytes_sum: 5
+        ingested_events_bytes_sum: 3
         public_id: public_id
         mobile_rum_session_count_sum: 3
-        container_avg: 6
-        netflow_indexed_events_count_sum: 9
-        aws_lambda_func_count: 0
-        rum_total_session_count_sum: 3
+        container_avg: 1
+        netflow_indexed_events_count_sum: 2
+        aws_lambda_func_count: 6
+        rum_total_session_count_sum: 0
         id: id
-        mobile_rum_session_count_ios_sum: 3
-        fargate_tasks_count_hwm: 1
-        iot_device_agg_sum: 5
-        profiling_host_top99p: 7
-        gcp_host_top99p: 3
-        azure_app_service_top99p: 1
-        apm_azure_app_service_host_top99p: 8
+        mobile_rum_session_count_ios_sum: 0
+        fargate_tasks_count_hwm: 0
+        iot_device_agg_sum: 9
+        opentelemetry_host_top99p: 8
+        profiling_host_top99p: 4
+        gcp_host_top99p: 5
+        azure_app_service_top99p: 8
+        apm_azure_app_service_host_top99p: 2
         mobile_rum_session_count_android_sum: 7
-        apm_host_top99p: 4
-        synthetics_check_calls_count_sum: 3
-        aws_host_top99p: 3
-        incident_management_monthly_active_users_hwm: 9
-        custom_ts_avg: 8
-        trace_search_indexed_events_count_sum: 8
-        twol_ingested_events_bytes_sum: 4
-        agent_host_top99p: 6
-        indexed_events_count_sum: 8
-        infra_host_top99p: 0
+        apm_host_top99p: 1
+        synthetics_check_calls_count_sum: 4
+        aws_host_top99p: 8
+        heroku_host_top99p: 5
+        incident_management_monthly_active_users_hwm: 8
+        custom_ts_avg: 9
+        trace_search_indexed_events_count_sum: 2
+        twol_ingested_events_bytes_sum: 9
+        agent_host_top99p: 0
+        indexed_events_count_sum: 7
+        infra_host_top99p: 3
         name: name
-        aws_lambda_invocations_sum: 2
-        synthetics_browser_check_calls_count_sum: 2
+        aws_lambda_invocations_sum: 4
+        synthetics_browser_check_calls_count_sum: 7
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -21657,6 +21692,11 @@ components:
             the current date for the given org.
           format: int64
           type: integer
+        heroku_host_top99p:
+          description: Shows the 99th percentile of all Heroku dynos over all hours
+            in the current date for the given org.
+          format: int64
+          type: integer
         id:
           description: The organization id.
           type: string
@@ -21718,6 +21758,12 @@ components:
             all hours in the current date for the given org.
           format: int64
           type: integer
+        opentelemetry_host_top99p:
+          description: Shows the 99th percentile of all hosts reported by the Datadog
+            exporter for the OpenTelemetry Collector over all hours in the current
+            date for the given org.
+          format: int64
+          type: integer
         profiling_host_top99p:
           description: Shows the 99th percentile of all profiled hosts over all hours
             in the current date for the given org.
@@ -21765,250 +21811,264 @@ components:
         usage:
         - date: 2000-01-23T04:56:07.000+00:00
           npm_host_top99p: 4
-          container_hwm: 5
-          billable_ingested_bytes_sum: 3
-          iot_device_top99p_sum: 0
-          fargate_tasks_count_avg: 4
-          rum_session_count_sum: 0
-          ingested_events_bytes_sum: 7
-          mobile_rum_session_count_sum: 7
-          container_avg: 7
-          netflow_indexed_events_count_sum: 5
-          aws_lambda_func_count: 8
-          rum_total_session_count_sum: 7
-          mobile_rum_session_count_ios_sum: 0
-          fargate_tasks_count_hwm: 0
-          iot_device_agg_sum: 9
+          container_hwm: 4
+          billable_ingested_bytes_sum: 5
+          iot_device_top99p_sum: 7
+          fargate_tasks_count_avg: 6
+          rum_session_count_sum: 2
+          ingested_events_bytes_sum: 9
+          mobile_rum_session_count_sum: 6
+          container_avg: 3
+          netflow_indexed_events_count_sum: 8
+          aws_lambda_func_count: 3
+          rum_total_session_count_sum: 6
+          mobile_rum_session_count_ios_sum: 4
+          fargate_tasks_count_hwm: 4
+          opentelemetry_host_top99p_sum: 3
+          iot_device_agg_sum: 0
           profiling_host_top99p: 0
-          gcp_host_top99p: 6
-          azure_app_service_top99p: 3
-          apm_azure_app_service_host_top99p: 6
-          mobile_rum_session_count_android_sum: 9
-          apm_host_top99p: 0
-          synthetics_check_calls_count_sum: 2
-          aws_host_top99p: 4
-          incident_management_monthly_active_users_hwm: 4
-          custom_ts_avg: 3
+          gcp_host_top99p: 1
+          azure_app_service_top99p: 7
+          apm_azure_app_service_host_top99p: 4
+          mobile_rum_session_count_android_sum: 5
+          apm_host_top99p: 8
+          synthetics_check_calls_count_sum: 6
+          aws_host_top99p: 7
+          incident_management_monthly_active_users_hwm: 7
+          custom_ts_avg: 0
           trace_search_indexed_events_count_sum: 9
-          twol_ingested_events_bytes_sum: 0
-          agent_host_top99p: 7
-          indexed_events_count_sum: 1
-          infra_host_top99p: 4
+          twol_ingested_events_bytes_sum: 1
+          agent_host_top99p: 0
+          indexed_events_count_sum: 9
+          infra_host_top99p: 0
+          heroku_host_top99p_sum: 4
           orgs:
-          - npm_host_top99p: 5
-            container_hwm: 4
-            billable_ingested_bytes_sum: 8
-            iot_device_top99p_sum: 8
-            fargate_tasks_count_avg: 9
+          - npm_host_top99p: 3
+            container_hwm: 3
+            billable_ingested_bytes_sum: 9
+            iot_device_top99p_sum: 5
+            fargate_tasks_count_avg: 8
             rum_session_count_sum: 0
-            ingested_events_bytes_sum: 5
+            ingested_events_bytes_sum: 3
             public_id: public_id
             mobile_rum_session_count_sum: 3
-            container_avg: 6
-            netflow_indexed_events_count_sum: 9
-            aws_lambda_func_count: 0
-            rum_total_session_count_sum: 3
+            container_avg: 1
+            netflow_indexed_events_count_sum: 2
+            aws_lambda_func_count: 6
+            rum_total_session_count_sum: 0
             id: id
-            mobile_rum_session_count_ios_sum: 3
-            fargate_tasks_count_hwm: 1
-            iot_device_agg_sum: 5
-            profiling_host_top99p: 7
-            gcp_host_top99p: 3
-            azure_app_service_top99p: 1
-            apm_azure_app_service_host_top99p: 8
+            mobile_rum_session_count_ios_sum: 0
+            fargate_tasks_count_hwm: 0
+            iot_device_agg_sum: 9
+            opentelemetry_host_top99p: 8
+            profiling_host_top99p: 4
+            gcp_host_top99p: 5
+            azure_app_service_top99p: 8
+            apm_azure_app_service_host_top99p: 2
             mobile_rum_session_count_android_sum: 7
-            apm_host_top99p: 4
-            synthetics_check_calls_count_sum: 3
-            aws_host_top99p: 3
-            incident_management_monthly_active_users_hwm: 9
-            custom_ts_avg: 8
-            trace_search_indexed_events_count_sum: 8
-            twol_ingested_events_bytes_sum: 4
-            agent_host_top99p: 6
-            indexed_events_count_sum: 8
-            infra_host_top99p: 0
+            apm_host_top99p: 1
+            synthetics_check_calls_count_sum: 4
+            aws_host_top99p: 8
+            heroku_host_top99p: 5
+            incident_management_monthly_active_users_hwm: 8
+            custom_ts_avg: 9
+            trace_search_indexed_events_count_sum: 2
+            twol_ingested_events_bytes_sum: 9
+            agent_host_top99p: 0
+            indexed_events_count_sum: 7
+            infra_host_top99p: 3
             name: name
-            aws_lambda_invocations_sum: 2
-            synthetics_browser_check_calls_count_sum: 2
-          - npm_host_top99p: 5
-            container_hwm: 4
-            billable_ingested_bytes_sum: 8
-            iot_device_top99p_sum: 8
-            fargate_tasks_count_avg: 9
+            aws_lambda_invocations_sum: 4
+            synthetics_browser_check_calls_count_sum: 7
+          - npm_host_top99p: 3
+            container_hwm: 3
+            billable_ingested_bytes_sum: 9
+            iot_device_top99p_sum: 5
+            fargate_tasks_count_avg: 8
             rum_session_count_sum: 0
-            ingested_events_bytes_sum: 5
+            ingested_events_bytes_sum: 3
             public_id: public_id
             mobile_rum_session_count_sum: 3
-            container_avg: 6
-            netflow_indexed_events_count_sum: 9
-            aws_lambda_func_count: 0
-            rum_total_session_count_sum: 3
+            container_avg: 1
+            netflow_indexed_events_count_sum: 2
+            aws_lambda_func_count: 6
+            rum_total_session_count_sum: 0
             id: id
-            mobile_rum_session_count_ios_sum: 3
-            fargate_tasks_count_hwm: 1
-            iot_device_agg_sum: 5
-            profiling_host_top99p: 7
-            gcp_host_top99p: 3
-            azure_app_service_top99p: 1
-            apm_azure_app_service_host_top99p: 8
+            mobile_rum_session_count_ios_sum: 0
+            fargate_tasks_count_hwm: 0
+            iot_device_agg_sum: 9
+            opentelemetry_host_top99p: 8
+            profiling_host_top99p: 4
+            gcp_host_top99p: 5
+            azure_app_service_top99p: 8
+            apm_azure_app_service_host_top99p: 2
             mobile_rum_session_count_android_sum: 7
-            apm_host_top99p: 4
-            synthetics_check_calls_count_sum: 3
-            aws_host_top99p: 3
-            incident_management_monthly_active_users_hwm: 9
-            custom_ts_avg: 8
-            trace_search_indexed_events_count_sum: 8
-            twol_ingested_events_bytes_sum: 4
-            agent_host_top99p: 6
-            indexed_events_count_sum: 8
-            infra_host_top99p: 0
+            apm_host_top99p: 1
+            synthetics_check_calls_count_sum: 4
+            aws_host_top99p: 8
+            heroku_host_top99p: 5
+            incident_management_monthly_active_users_hwm: 8
+            custom_ts_avg: 9
+            trace_search_indexed_events_count_sum: 2
+            twol_ingested_events_bytes_sum: 9
+            agent_host_top99p: 0
+            indexed_events_count_sum: 7
+            infra_host_top99p: 3
             name: name
-            aws_lambda_invocations_sum: 2
-            synthetics_browser_check_calls_count_sum: 2
-          aws_lambda_invocations_sum: 7
+            aws_lambda_invocations_sum: 4
+            synthetics_browser_check_calls_count_sum: 7
+          aws_lambda_invocations_sum: 3
           synthetics_browser_check_calls_count_sum: 4
         - date: 2000-01-23T04:56:07.000+00:00
           npm_host_top99p: 4
-          container_hwm: 5
-          billable_ingested_bytes_sum: 3
-          iot_device_top99p_sum: 0
-          fargate_tasks_count_avg: 4
-          rum_session_count_sum: 0
-          ingested_events_bytes_sum: 7
-          mobile_rum_session_count_sum: 7
-          container_avg: 7
-          netflow_indexed_events_count_sum: 5
-          aws_lambda_func_count: 8
-          rum_total_session_count_sum: 7
-          mobile_rum_session_count_ios_sum: 0
-          fargate_tasks_count_hwm: 0
-          iot_device_agg_sum: 9
+          container_hwm: 4
+          billable_ingested_bytes_sum: 5
+          iot_device_top99p_sum: 7
+          fargate_tasks_count_avg: 6
+          rum_session_count_sum: 2
+          ingested_events_bytes_sum: 9
+          mobile_rum_session_count_sum: 6
+          container_avg: 3
+          netflow_indexed_events_count_sum: 8
+          aws_lambda_func_count: 3
+          rum_total_session_count_sum: 6
+          mobile_rum_session_count_ios_sum: 4
+          fargate_tasks_count_hwm: 4
+          opentelemetry_host_top99p_sum: 3
+          iot_device_agg_sum: 0
           profiling_host_top99p: 0
-          gcp_host_top99p: 6
-          azure_app_service_top99p: 3
-          apm_azure_app_service_host_top99p: 6
-          mobile_rum_session_count_android_sum: 9
-          apm_host_top99p: 0
-          synthetics_check_calls_count_sum: 2
-          aws_host_top99p: 4
-          incident_management_monthly_active_users_hwm: 4
-          custom_ts_avg: 3
+          gcp_host_top99p: 1
+          azure_app_service_top99p: 7
+          apm_azure_app_service_host_top99p: 4
+          mobile_rum_session_count_android_sum: 5
+          apm_host_top99p: 8
+          synthetics_check_calls_count_sum: 6
+          aws_host_top99p: 7
+          incident_management_monthly_active_users_hwm: 7
+          custom_ts_avg: 0
           trace_search_indexed_events_count_sum: 9
-          twol_ingested_events_bytes_sum: 0
-          agent_host_top99p: 7
-          indexed_events_count_sum: 1
-          infra_host_top99p: 4
+          twol_ingested_events_bytes_sum: 1
+          agent_host_top99p: 0
+          indexed_events_count_sum: 9
+          infra_host_top99p: 0
+          heroku_host_top99p_sum: 4
           orgs:
-          - npm_host_top99p: 5
-            container_hwm: 4
-            billable_ingested_bytes_sum: 8
-            iot_device_top99p_sum: 8
-            fargate_tasks_count_avg: 9
+          - npm_host_top99p: 3
+            container_hwm: 3
+            billable_ingested_bytes_sum: 9
+            iot_device_top99p_sum: 5
+            fargate_tasks_count_avg: 8
             rum_session_count_sum: 0
-            ingested_events_bytes_sum: 5
+            ingested_events_bytes_sum: 3
             public_id: public_id
             mobile_rum_session_count_sum: 3
-            container_avg: 6
-            netflow_indexed_events_count_sum: 9
-            aws_lambda_func_count: 0
-            rum_total_session_count_sum: 3
+            container_avg: 1
+            netflow_indexed_events_count_sum: 2
+            aws_lambda_func_count: 6
+            rum_total_session_count_sum: 0
             id: id
-            mobile_rum_session_count_ios_sum: 3
-            fargate_tasks_count_hwm: 1
-            iot_device_agg_sum: 5
-            profiling_host_top99p: 7
-            gcp_host_top99p: 3
-            azure_app_service_top99p: 1
-            apm_azure_app_service_host_top99p: 8
+            mobile_rum_session_count_ios_sum: 0
+            fargate_tasks_count_hwm: 0
+            iot_device_agg_sum: 9
+            opentelemetry_host_top99p: 8
+            profiling_host_top99p: 4
+            gcp_host_top99p: 5
+            azure_app_service_top99p: 8
+            apm_azure_app_service_host_top99p: 2
             mobile_rum_session_count_android_sum: 7
-            apm_host_top99p: 4
-            synthetics_check_calls_count_sum: 3
-            aws_host_top99p: 3
-            incident_management_monthly_active_users_hwm: 9
-            custom_ts_avg: 8
-            trace_search_indexed_events_count_sum: 8
-            twol_ingested_events_bytes_sum: 4
-            agent_host_top99p: 6
-            indexed_events_count_sum: 8
-            infra_host_top99p: 0
+            apm_host_top99p: 1
+            synthetics_check_calls_count_sum: 4
+            aws_host_top99p: 8
+            heroku_host_top99p: 5
+            incident_management_monthly_active_users_hwm: 8
+            custom_ts_avg: 9
+            trace_search_indexed_events_count_sum: 2
+            twol_ingested_events_bytes_sum: 9
+            agent_host_top99p: 0
+            indexed_events_count_sum: 7
+            infra_host_top99p: 3
             name: name
-            aws_lambda_invocations_sum: 2
-            synthetics_browser_check_calls_count_sum: 2
-          - npm_host_top99p: 5
-            container_hwm: 4
-            billable_ingested_bytes_sum: 8
-            iot_device_top99p_sum: 8
-            fargate_tasks_count_avg: 9
+            aws_lambda_invocations_sum: 4
+            synthetics_browser_check_calls_count_sum: 7
+          - npm_host_top99p: 3
+            container_hwm: 3
+            billable_ingested_bytes_sum: 9
+            iot_device_top99p_sum: 5
+            fargate_tasks_count_avg: 8
             rum_session_count_sum: 0
-            ingested_events_bytes_sum: 5
+            ingested_events_bytes_sum: 3
             public_id: public_id
             mobile_rum_session_count_sum: 3
-            container_avg: 6
-            netflow_indexed_events_count_sum: 9
-            aws_lambda_func_count: 0
-            rum_total_session_count_sum: 3
+            container_avg: 1
+            netflow_indexed_events_count_sum: 2
+            aws_lambda_func_count: 6
+            rum_total_session_count_sum: 0
             id: id
-            mobile_rum_session_count_ios_sum: 3
-            fargate_tasks_count_hwm: 1
-            iot_device_agg_sum: 5
-            profiling_host_top99p: 7
-            gcp_host_top99p: 3
-            azure_app_service_top99p: 1
-            apm_azure_app_service_host_top99p: 8
+            mobile_rum_session_count_ios_sum: 0
+            fargate_tasks_count_hwm: 0
+            iot_device_agg_sum: 9
+            opentelemetry_host_top99p: 8
+            profiling_host_top99p: 4
+            gcp_host_top99p: 5
+            azure_app_service_top99p: 8
+            apm_azure_app_service_host_top99p: 2
             mobile_rum_session_count_android_sum: 7
-            apm_host_top99p: 4
-            synthetics_check_calls_count_sum: 3
-            aws_host_top99p: 3
-            incident_management_monthly_active_users_hwm: 9
-            custom_ts_avg: 8
-            trace_search_indexed_events_count_sum: 8
-            twol_ingested_events_bytes_sum: 4
-            agent_host_top99p: 6
-            indexed_events_count_sum: 8
-            infra_host_top99p: 0
+            apm_host_top99p: 1
+            synthetics_check_calls_count_sum: 4
+            aws_host_top99p: 8
+            heroku_host_top99p: 5
+            incident_management_monthly_active_users_hwm: 8
+            custom_ts_avg: 9
+            trace_search_indexed_events_count_sum: 2
+            twol_ingested_events_bytes_sum: 9
+            agent_host_top99p: 0
+            indexed_events_count_sum: 7
+            infra_host_top99p: 3
             name: name
-            aws_lambda_invocations_sum: 2
-            synthetics_browser_check_calls_count_sum: 2
-          aws_lambda_invocations_sum: 7
+            aws_lambda_invocations_sum: 4
+            synthetics_browser_check_calls_count_sum: 7
+          aws_lambda_invocations_sum: 3
           synthetics_browser_check_calls_count_sum: 4
         iot_device_top99p_sum: 9
-        live_ingested_bytes_agg_sum: 6
+        live_ingested_bytes_agg_sum: 8
         rehydrated_ingested_bytes_agg_sum: 6
         container_hwm_sum: 4
-        synthetics_browser_check_calls_count_agg_sum: 3
+        synthetics_browser_check_calls_count_agg_sum: 7
         apm_host_top99p_sum: 1
-        mobile_rum_session_count_android_agg_sum: 9
-        npm_host_top99p_sum: 6
+        mobile_rum_session_count_android_agg_sum: 6
+        npm_host_top99p_sum: 1
         container_avg_sum: 2
-        mobile_rum_session_count_agg_sum: 8
+        mobile_rum_session_count_agg_sum: 9
         agent_host_top99p_sum: 0
-        infra_host_top99p_sum: 1
+        infra_host_top99p_sum: 4
         custom_ts_sum: 7
-        synthetics_check_calls_count_agg_sum: 3
+        synthetics_check_calls_count_agg_sum: 0
         aws_lambda_func_count: 5
-        netflow_indexed_events_count_agg_sum: 3
+        netflow_indexed_events_count_agg_sum: 6
         apm_azure_app_service_host_top99p_sum: 6
         fargate_tasks_count_avg_sum: 1
         fargate_tasks_count_hwm_sum: 1
         azure_app_service_top99p_sum: 7
+        opentelemetry_host_top99p_sum: 2
         start_date: 2000-01-23T04:56:07.000+00:00
         billable_ingested_bytes_agg_sum: 3
-        ingested_events_bytes_agg_sum: 4
-        twol_ingested_events_bytes_agg_sum: 0
-        iot_device_agg_sum: 5
+        ingested_events_bytes_agg_sum: 5
+        twol_ingested_events_bytes_agg_sum: 6
+        iot_device_agg_sum: 9
         last_updated: 2000-01-23T04:56:07.000+00:00
-        indexed_events_count_agg_sum: 7
-        rehydrated_indexed_events_agg_sum: 6
-        mobile_rum_session_count_ios_agg_sum: 6
-        incident_management_monthly_active_users_hwm_sum: 6
+        indexed_events_count_agg_sum: 1
+        rehydrated_indexed_events_agg_sum: 5
+        mobile_rum_session_count_ios_agg_sum: 3
+        incident_management_monthly_active_users_hwm_sum: 7
         gcp_host_top99p_sum: 1
-        live_indexed_events_agg_sum: 9
-        rum_session_count_agg_sum: 5
+        live_indexed_events_agg_sum: 6
+        rum_session_count_agg_sum: 3
         aws_host_top99p_sum: 5
-        profiling_container_agent_count_avg: 1
-        profiling_host_count_top99p_sum: 2
+        profiling_container_agent_count_avg: 6
+        heroku_host_top99p_sum: 6
+        profiling_host_count_top99p_sum: 6
         aws_lambda_invocations_sum: 2
-        rum_total_session_count_agg_sum: 6
+        rum_total_session_count_agg_sum: 3
         trace_search_indexed_events_count_agg_sum: 7
       properties:
         agent_host_top99p_sum:
@@ -22091,6 +22151,11 @@ components:
             the current months for all organizations.
           format: int64
           type: integer
+        heroku_host_top99p_sum:
+          description: Shows the 99th percentile of all Heroku dynos over all hours
+            in the current months for all organizations.
+          format: int64
+          type: integer
         incident_management_monthly_active_users_hwm_sum:
           description: Shows sum of the the high-water marks of incident management
             monthly active users in the current months for all organizations.
@@ -22161,6 +22226,12 @@ components:
         npm_host_top99p_sum:
           description: Shows the 99th percentile of all distinct Networks hosts over
             all hours in the current months for all organizations.
+          format: int64
+          type: integer
+        opentelemetry_host_top99p_sum:
+          description: Shows the 99th percentile of all hosts reported by the Datadog
+            exporter for the OpenTelemetry Collector over all hours in the current
+            months for all organizations.
           format: int64
           type: integer
         profiling_container_agent_count_avg:

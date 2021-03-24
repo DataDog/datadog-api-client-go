@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **FargateTasksCountAvg** | Pointer to **int64** | The average task count for Fargate. | [optional] 
 **FargateTasksCountHwm** | Pointer to **int64** | Shows the high-water mark of all Fargate tasks over all hours in the current date for the given org. | [optional] 
 **GcpHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current date for the given org. | [optional] 
+**HerokuHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Heroku dynos over all hours in the current date for the given org. | [optional] 
 **Id** | Pointer to **string** | The organization id. | [optional] 
 **IncidentManagementMonthlyActiveUsersHwm** | Pointer to **int64** | Shows the high-water mark of incident management monthly active users over all hours in the current date for the given org. | [optional] 
 **IndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current date for the given org. | [optional] 
@@ -31,6 +32,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The organization name. | [optional] 
 **NetflowIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current date for the given org. | [optional] 
 **NpmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for the given org. | [optional] 
+**OpentelemetryHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for the given org. | [optional] 
 **ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for the given org. | [optional] 
 **PublicId** | Pointer to **string** | The organization public id. | [optional] 
 **RumSessionCountSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current date for the given org. | [optional] 
@@ -409,6 +411,31 @@ SetGcpHostTop99p sets GcpHostTop99p field to given value.
 
 HasGcpHostTop99p returns a boolean if a field has been set.
 
+### GetHerokuHostTop99p
+
+`func (o *UsageSummaryDateOrg) GetHerokuHostTop99p() int64`
+
+GetHerokuHostTop99p returns the HerokuHostTop99p field if non-nil, zero value otherwise.
+
+### GetHerokuHostTop99pOk
+
+`func (o *UsageSummaryDateOrg) GetHerokuHostTop99pOk() (*int64, bool)`
+
+GetHerokuHostTop99pOk returns a tuple with the HerokuHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHerokuHostTop99p
+
+`func (o *UsageSummaryDateOrg) SetHerokuHostTop99p(v int64)`
+
+SetHerokuHostTop99p sets HerokuHostTop99p field to given value.
+
+### HasHerokuHostTop99p
+
+`func (o *UsageSummaryDateOrg) HasHerokuHostTop99p() bool`
+
+HasHerokuHostTop99p returns a boolean if a field has been set.
+
 ### GetId
 
 `func (o *UsageSummaryDateOrg) GetId() string`
@@ -733,6 +760,31 @@ SetNpmHostTop99p sets NpmHostTop99p field to given value.
 `func (o *UsageSummaryDateOrg) HasNpmHostTop99p() bool`
 
 HasNpmHostTop99p returns a boolean if a field has been set.
+
+### GetOpentelemetryHostTop99p
+
+`func (o *UsageSummaryDateOrg) GetOpentelemetryHostTop99p() int64`
+
+GetOpentelemetryHostTop99p returns the OpentelemetryHostTop99p field if non-nil, zero value otherwise.
+
+### GetOpentelemetryHostTop99pOk
+
+`func (o *UsageSummaryDateOrg) GetOpentelemetryHostTop99pOk() (*int64, bool)`
+
+GetOpentelemetryHostTop99pOk returns a tuple with the OpentelemetryHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOpentelemetryHostTop99p
+
+`func (o *UsageSummaryDateOrg) SetOpentelemetryHostTop99p(v int64)`
+
+SetOpentelemetryHostTop99p sets OpentelemetryHostTop99p field to given value.
+
+### HasOpentelemetryHostTop99p
+
+`func (o *UsageSummaryDateOrg) HasOpentelemetryHostTop99p() bool`
+
+HasOpentelemetryHostTop99p returns a boolean if a field has been set.
 
 ### GetProfilingHostTop99p
 

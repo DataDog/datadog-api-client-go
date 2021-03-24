@@ -12,9 +12,11 @@ Name | Type | Description | Notes
 **AzureHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Azure integration (and were NOT running the Datadog Agent). | [optional] 
 **ContainerCount** | Pointer to **int64** | Shows the total number of containers reported by the Docker integration during the hour. | [optional] 
 **GcpHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via the Google Cloud integration (and were NOT running the Datadog Agent). | [optional] 
+**HerokuHostCount** | Pointer to **int64** | Contains the total number of Heroku dynos reported by the Datadog Agent. | [optional] 
 **HostCount** | Pointer to **int64** | Contains the total number of billable infrastructure hosts reporting during a given hour. This is the sum of &#x60;agent_host_count&#x60;, &#x60;aws_host_count&#x60;, and &#x60;gcp_host_count&#x60;. | [optional] 
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **InfraAzureAppService** | Pointer to **int64** | Contains the total number of hosts that reported via the Azure App Services integration (and were NOT running the Datadog Agent). | [optional] 
+**OpentelemetryHostCount** | Pointer to **int64** | Contains the total number of hosts reported by Datadog exporter for the OpenTelemetry Collector. | [optional] 
 
 ## Methods
 
@@ -235,6 +237,31 @@ SetGcpHostCount sets GcpHostCount field to given value.
 
 HasGcpHostCount returns a boolean if a field has been set.
 
+### GetHerokuHostCount
+
+`func (o *UsageHostHour) GetHerokuHostCount() int64`
+
+GetHerokuHostCount returns the HerokuHostCount field if non-nil, zero value otherwise.
+
+### GetHerokuHostCountOk
+
+`func (o *UsageHostHour) GetHerokuHostCountOk() (*int64, bool)`
+
+GetHerokuHostCountOk returns a tuple with the HerokuHostCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHerokuHostCount
+
+`func (o *UsageHostHour) SetHerokuHostCount(v int64)`
+
+SetHerokuHostCount sets HerokuHostCount field to given value.
+
+### HasHerokuHostCount
+
+`func (o *UsageHostHour) HasHerokuHostCount() bool`
+
+HasHerokuHostCount returns a boolean if a field has been set.
+
 ### GetHostCount
 
 `func (o *UsageHostHour) GetHostCount() int64`
@@ -309,6 +336,31 @@ SetInfraAzureAppService sets InfraAzureAppService field to given value.
 `func (o *UsageHostHour) HasInfraAzureAppService() bool`
 
 HasInfraAzureAppService returns a boolean if a field has been set.
+
+### GetOpentelemetryHostCount
+
+`func (o *UsageHostHour) GetOpentelemetryHostCount() int64`
+
+GetOpentelemetryHostCount returns the OpentelemetryHostCount field if non-nil, zero value otherwise.
+
+### GetOpentelemetryHostCountOk
+
+`func (o *UsageHostHour) GetOpentelemetryHostCountOk() (*int64, bool)`
+
+GetOpentelemetryHostCountOk returns a tuple with the OpentelemetryHostCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOpentelemetryHostCount
+
+`func (o *UsageHostHour) SetOpentelemetryHostCount(v int64)`
+
+SetOpentelemetryHostCount sets OpentelemetryHostCount field to given value.
+
+### HasOpentelemetryHostCount
+
+`func (o *UsageHostHour) HasOpentelemetryHostCount() bool`
+
+HasOpentelemetryHostCount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
