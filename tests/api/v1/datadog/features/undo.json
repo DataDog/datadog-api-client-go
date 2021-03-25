@@ -827,7 +827,18 @@
     }
   },
   "CreateSyntheticsAPITest": {
-    "tag": "Synthetics"
+    "tag": "Synthetics",
+    "undo": {
+      "operationId": "TODO",
+      "parameters": [],
+      "type": "unsafe"
+    }
+  },
+  "GetAPITest": {
+    "tag": "Synthetics",
+    "undo": {
+      "type": "safe"
+    }
   },
   "UpdateAPITest": {
     "tag": "Synthetics",
@@ -836,7 +847,12 @@
     }
   },
   "CreateSyntheticsBrowserTest": {
-    "tag": "Synthetics"
+    "tag": "Synthetics",
+    "undo": {
+      "operationId": "TODO",
+      "parameters": [],
+      "type": "unsafe"
+    }
   },
   "GetBrowserTest": {
     "tag": "Synthetics",

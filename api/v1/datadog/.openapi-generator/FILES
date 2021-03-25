@@ -430,6 +430,8 @@ docs/TargetFormatType.md
 docs/TimeseriesWidgetDefinition.md
 docs/TimeseriesWidgetDefinitionType.md
 docs/TimeseriesWidgetExpressionAlias.md
+docs/TimeseriesWidgetLegendColumn.md
+docs/TimeseriesWidgetLegendLayout.md
 docs/TimeseriesWidgetRequest.md
 docs/ToplistWidgetDefinition.md
 docs/ToplistWidgetDefinitionType.md
@@ -502,6 +504,7 @@ docs/UsageSyntheticsResponse.md
 docs/UsageTimeseriesHour.md
 docs/UsageTimeseriesResponse.md
 docs/UsageTopAvgMetricsHour.md
+docs/UsageTopAvgMetricsMetadata.md
 docs/UsageTopAvgMetricsResponse.md
 docs/UsageTraceHour.md
 docs/UsageTraceResponse.md
@@ -931,6 +934,8 @@ model_target_format_type.go
 model_timeseries_widget_definition.go
 model_timeseries_widget_definition_type.go
 model_timeseries_widget_expression_alias.go
+model_timeseries_widget_legend_column.go
+model_timeseries_widget_legend_layout.go
 model_timeseries_widget_request.go
 model_toplist_widget_definition.go
 model_toplist_widget_definition_type.go
@@ -1002,6 +1007,7 @@ model_usage_synthetics_response.go
 model_usage_timeseries_hour.go
 model_usage_timeseries_response.go
 model_usage_top_avg_metrics_hour.go
+model_usage_top_avg_metrics_metadata.go
 model_usage_top_avg_metrics_response.go
 model_usage_trace_hour.go
 model_usage_trace_response.go

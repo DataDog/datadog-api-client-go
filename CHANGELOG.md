@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 1.0.0-beta.18 / 2021-03-22
+
+* [Added] Add `legend_layout` and `legend_columns` to timeseries widget definition. See [#791](https://github.com/DataDog/datadog-api-client-go/pull/791).
+
+## 1.0.0-beta.17 / 2021-03-15
+
+* [Added] Add support for multistep tests in Synthetics. See [#775](https://github.com/DataDog/datadog-api-client-go/pull/775).
+* [Added] Add core web vitals to synthetics browser test results. See [#771](https://github.com/DataDog/datadog-api-client-go/pull/771).
+* [Added] Add v2 metric tags and metric volumes endpoints. See [#769](https://github.com/DataDog/datadog-api-client-go/pull/769).
+* [Added] Add new endpoints for browser and API tests in Synthetics. See [#762](https://github.com/DataDog/datadog-api-client-go/pull/762).
+* [Changed] Update response schema for service level objective operation `GetSLOHistory`. See [#784](https://github.com/DataDog/datadog-api-client-go/pull/784).
+* [Changed] Make query name required in formulas and functions queries. See [#774](https://github.com/DataDog/datadog-api-client-go/pull/774).
+
 ## 1.0.0-beta.16 / 2021-03-02
 
 * [Added] Add groupby_simple_monitor option to monitors. See [#758](https://github.com/DataDog/datadog-api-client-go/pull/758).

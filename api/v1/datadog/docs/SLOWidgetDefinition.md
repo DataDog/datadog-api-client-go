@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**GlobalTimeTarget** | Pointer to **string** | Defined global time target. | [optional] 
 **ShowErrorBudget** | Pointer to **bool** | Defined error budget. | [optional] 
 **SloId** | Pointer to **string** | ID of the SLO displayed. | [optional] 
 **TimeWindows** | Pointer to [**[]WidgetTimeWindows**](WidgetTimeWindows.md) | Times being monitored. | [optional] 
@@ -32,6 +33,31 @@ will change when the set of required properties is changed
 NewSLOWidgetDefinitionWithDefaults instantiates a new SLOWidgetDefinition object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetGlobalTimeTarget
+
+`func (o *SLOWidgetDefinition) GetGlobalTimeTarget() string`
+
+GetGlobalTimeTarget returns the GlobalTimeTarget field if non-nil, zero value otherwise.
+
+### GetGlobalTimeTargetOk
+
+`func (o *SLOWidgetDefinition) GetGlobalTimeTargetOk() (*string, bool)`
+
+GetGlobalTimeTargetOk returns a tuple with the GlobalTimeTarget field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGlobalTimeTarget
+
+`func (o *SLOWidgetDefinition) SetGlobalTimeTarget(v string)`
+
+SetGlobalTimeTarget sets GlobalTimeTarget field to given value.
+
+### HasGlobalTimeTarget
+
+`func (o *SLOWidgetDefinition) HasGlobalTimeTarget() bool`
+
+HasGlobalTimeTarget returns a boolean if a field has been set.
 
 ### GetShowErrorBudget
 

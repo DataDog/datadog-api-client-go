@@ -565,6 +565,8 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinition.SetTime(*widgetTime)
 	timeseriesWidgetDefinition.SetShowLegend(true)
 	timeseriesWidgetDefinition.SetLegendSize("16")
+	timeseriesWidgetDefinition.SetLegendLayout("horizontal")
+	timeseriesWidgetDefinition.SetLegendColumns([]datadog.TimeseriesWidgetLegendColumn{"value", "min", "max"})
 	timeseriesWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
 		Label: "Test Custom Link label",
 		Link:  "https://app.datadoghq.com/dashboard/lists",

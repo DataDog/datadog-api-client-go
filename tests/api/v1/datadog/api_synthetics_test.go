@@ -321,7 +321,7 @@ func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.Synthet
 			},
 		},
 		Locations: &[]string{"aws:us-east-2"},
-		Message:   datadog.PtrString("Go client testing Synthetics Browser test - this is message"),
+		Message:   "Go client testing Synthetics Browser test - this is message",
 		Name:      tests.UniqueEntityName(ctx, t),
 		Options: &datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),

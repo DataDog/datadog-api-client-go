@@ -47,6 +47,8 @@ type UsageSummaryResponse struct {
 	FargateTasksCountHwmSum *int64 `json:"fargate_tasks_count_hwm_sum,omitempty"`
 	// Shows the 99th percentile of all GCP hosts over all hours in the current months for all organizations.
 	GcpHostTop99pSum *int64 `json:"gcp_host_top99p_sum,omitempty"`
+	// Shows the 99th percentile of all Heroku dynos over all hours in the current months for all organizations.
+	HerokuHostTop99pSum *int64 `json:"heroku_host_top99p_sum,omitempty"`
 	// Shows sum of the the high-water marks of incident management monthly active users in the current months for all organizations.
 	IncidentManagementMonthlyActiveUsersHwmSum *int64 `json:"incident_management_monthly_active_users_hwm_sum,omitempty"`
 	// Shows the sum of all log events indexed over all hours in the current months for all organizations.
@@ -75,6 +77,8 @@ type UsageSummaryResponse struct {
 	NetflowIndexedEventsCountAggSum *int64 `json:"netflow_indexed_events_count_agg_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current months for all organizations.
 	NpmHostTop99pSum *int64 `json:"npm_host_top99p_sum,omitempty"`
+	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current months for all organizations.
+	OpentelemetryHostTop99pSum *int64 `json:"opentelemetry_host_top99p_sum,omitempty"`
 	// Shows the average number of profiled containers over all hours in the current months for all organizations.
 	ProfilingContainerAgentCountAvg *int64 `json:"profiling_container_agent_count_avg,omitempty"`
 	// Shows the 99th percentile of all profiled hosts over all hours in the current months for all organizations.
@@ -630,6 +634,38 @@ func (o *UsageSummaryResponse) SetGcpHostTop99pSum(v int64) {
 	o.GcpHostTop99pSum = &v
 }
 
+// GetHerokuHostTop99pSum returns the HerokuHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetHerokuHostTop99pSum() int64 {
+	if o == nil || o.HerokuHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.HerokuHostTop99pSum
+}
+
+// GetHerokuHostTop99pSumOk returns a tuple with the HerokuHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetHerokuHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.HerokuHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.HerokuHostTop99pSum, true
+}
+
+// HasHerokuHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasHerokuHostTop99pSum() bool {
+	if o != nil && o.HerokuHostTop99pSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHerokuHostTop99pSum gets a reference to the given int64 and assigns it to the HerokuHostTop99pSum field.
+func (o *UsageSummaryResponse) SetHerokuHostTop99pSum(v int64) {
+	o.HerokuHostTop99pSum = &v
+}
+
 // GetIncidentManagementMonthlyActiveUsersHwmSum returns the IncidentManagementMonthlyActiveUsersHwmSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetIncidentManagementMonthlyActiveUsersHwmSum() int64 {
 	if o == nil || o.IncidentManagementMonthlyActiveUsersHwmSum == nil {
@@ -1078,6 +1114,38 @@ func (o *UsageSummaryResponse) SetNpmHostTop99pSum(v int64) {
 	o.NpmHostTop99pSum = &v
 }
 
+// GetOpentelemetryHostTop99pSum returns the OpentelemetryHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetOpentelemetryHostTop99pSum() int64 {
+	if o == nil || o.OpentelemetryHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.OpentelemetryHostTop99pSum
+}
+
+// GetOpentelemetryHostTop99pSumOk returns a tuple with the OpentelemetryHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetOpentelemetryHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.OpentelemetryHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.OpentelemetryHostTop99pSum, true
+}
+
+// HasOpentelemetryHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasOpentelemetryHostTop99pSum() bool {
+	if o != nil && o.OpentelemetryHostTop99pSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOpentelemetryHostTop99pSum gets a reference to the given int64 and assigns it to the OpentelemetryHostTop99pSum field.
+func (o *UsageSummaryResponse) SetOpentelemetryHostTop99pSum(v int64) {
+	o.OpentelemetryHostTop99pSum = &v
+}
+
 // GetProfilingContainerAgentCountAvg returns the ProfilingContainerAgentCountAvg field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetProfilingContainerAgentCountAvg() int64 {
 	if o == nil || o.ProfilingContainerAgentCountAvg == nil {
@@ -1512,6 +1580,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.GcpHostTop99pSum != nil {
 		toSerialize["gcp_host_top99p_sum"] = o.GcpHostTop99pSum
 	}
+	if o.HerokuHostTop99pSum != nil {
+		toSerialize["heroku_host_top99p_sum"] = o.HerokuHostTop99pSum
+	}
 	if o.IncidentManagementMonthlyActiveUsersHwmSum != nil {
 		toSerialize["incident_management_monthly_active_users_hwm_sum"] = o.IncidentManagementMonthlyActiveUsersHwmSum
 	}
@@ -1553,6 +1624,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.NpmHostTop99pSum != nil {
 		toSerialize["npm_host_top99p_sum"] = o.NpmHostTop99pSum
+	}
+	if o.OpentelemetryHostTop99pSum != nil {
+		toSerialize["opentelemetry_host_top99p_sum"] = o.OpentelemetryHostTop99pSum
 	}
 	if o.ProfilingContainerAgentCountAvg != nil {
 		toSerialize["profiling_container_agent_count_avg"] = o.ProfilingContainerAgentCountAvg

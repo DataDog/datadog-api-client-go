@@ -17,8 +17,8 @@ type SyntheticsBrowserTest struct {
 	Config *SyntheticsBrowserTestConfig `json:"config,omitempty"`
 	// Array of locations used to run the test.
 	Locations *[]string `json:"locations,omitempty"`
-	// Notification message associated with the test.
-	Message *string `json:"message,omitempty"`
+	// Notification message associated with the test. Message can either be text or an empty string.
+	Message string `json:"message"`
 	// The associated monitor ID.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// Name of the test.
@@ -38,8 +38,9 @@ type SyntheticsBrowserTest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsBrowserTest() *SyntheticsBrowserTest {
+func NewSyntheticsBrowserTest(message string) *SyntheticsBrowserTest {
 	this := SyntheticsBrowserTest{}
+	this.Message = message
 	var type_ SyntheticsBrowserTestType = SYNTHETICSBROWSERTESTTYPE_BROWSER
 	this.Type = &type_
 	return &this
@@ -119,36 +120,28 @@ func (o *SyntheticsBrowserTest) SetLocations(v []string) {
 	o.Locations = &v
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise.
+// GetMessage returns the Message field value
 func (o *SyntheticsBrowserTest) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Message
+
+	return o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTest) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Message, true
+	return &o.Message, true
 }
 
-// HasMessage returns a boolean if a field has been set.
-func (o *SyntheticsBrowserTest) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMessage gets a reference to the given string and assigns it to the Message field.
+// SetMessage sets field value
 func (o *SyntheticsBrowserTest) SetMessage(v string) {
-	o.Message = &v
+	o.Message = v
 }
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise.
@@ -415,7 +408,7 @@ func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
 	if o.Locations != nil {
 		toSerialize["locations"] = o.Locations
 	}
-	if o.Message != nil {
+	if true {
 		toSerialize["message"] = o.Message
 	}
 	if o.MonitorId != nil {

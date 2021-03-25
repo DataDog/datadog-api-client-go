@@ -201,6 +201,7 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**DeletePrivateLocation**](docs/SyntheticsApi.md#deleteprivatelocation) | **Delete** /api/v1/synthetics/private-locations/{location_id} | Delete a private location
 *SyntheticsApi* | [**DeleteTests**](docs/SyntheticsApi.md#deletetests) | **Post** /api/v1/synthetics/tests/delete | Delete tests
 *SyntheticsApi* | [**EditGlobalVariable**](docs/SyntheticsApi.md#editglobalvariable) | **Put** /api/v1/synthetics/variables/{variable_id} | Edit a global variable
+*SyntheticsApi* | [**GetAPITest**](docs/SyntheticsApi.md#getapitest) | **Get** /api/v1/synthetics/tests/api/{public_id} | Get an API test
 *SyntheticsApi* | [**GetAPITestLatestResults**](docs/SyntheticsApi.md#getapitestlatestresults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get the test&#39;s latest results summaries (API)
 *SyntheticsApi* | [**GetAPITestResult**](docs/SyntheticsApi.md#getapitestresult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get a test result (API)
 *SyntheticsApi* | [**GetBrowserTest**](docs/SyntheticsApi.md#getbrowsertest) | **Get** /api/v1/synthetics/tests/browser/{public_id} | Get a test configuration (browser)
@@ -633,6 +634,8 @@ Class | Method | HTTP request | Description
  - [TimeseriesWidgetDefinition](docs/TimeseriesWidgetDefinition.md)
  - [TimeseriesWidgetDefinitionType](docs/TimeseriesWidgetDefinitionType.md)
  - [TimeseriesWidgetExpressionAlias](docs/TimeseriesWidgetExpressionAlias.md)
+ - [TimeseriesWidgetLegendColumn](docs/TimeseriesWidgetLegendColumn.md)
+ - [TimeseriesWidgetLegendLayout](docs/TimeseriesWidgetLegendLayout.md)
  - [TimeseriesWidgetRequest](docs/TimeseriesWidgetRequest.md)
  - [ToplistWidgetDefinition](docs/ToplistWidgetDefinition.md)
  - [ToplistWidgetDefinitionType](docs/ToplistWidgetDefinitionType.md)
@@ -704,6 +707,7 @@ Class | Method | HTTP request | Description
  - [UsageTimeseriesHour](docs/UsageTimeseriesHour.md)
  - [UsageTimeseriesResponse](docs/UsageTimeseriesResponse.md)
  - [UsageTopAvgMetricsHour](docs/UsageTopAvgMetricsHour.md)
+ - [UsageTopAvgMetricsMetadata](docs/UsageTopAvgMetricsMetadata.md)
  - [UsageTopAvgMetricsResponse](docs/UsageTopAvgMetricsResponse.md)
  - [UsageTraceHour](docs/UsageTraceHour.md)
  - [UsageTraceResponse](docs/UsageTraceResponse.md)

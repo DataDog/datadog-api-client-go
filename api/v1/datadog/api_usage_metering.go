@@ -4690,12 +4690,17 @@ type ApiGetUsageTopAvgMetricsRequest struct {
 	ctx        _context.Context
 	ApiService *UsageMeteringApiService
 	month      *time.Time
+	day        *time.Time
 	names      *[]string
 	limit      *int32
 }
 
 func (r ApiGetUsageTopAvgMetricsRequest) Month(month time.Time) ApiGetUsageTopAvgMetricsRequest {
 	r.month = &month
+	return r
+}
+func (r ApiGetUsageTopAvgMetricsRequest) Day(day time.Time) ApiGetUsageTopAvgMetricsRequest {
+	r.day = &day
 	return r
 }
 func (r ApiGetUsageTopAvgMetricsRequest) Names(names []string) ApiGetUsageTopAvgMetricsRequest {
@@ -4713,7 +4718,7 @@ func (r ApiGetUsageTopAvgMetricsRequest) Execute() (UsageTopAvgMetricsResponse, 
 
 /*
  * GetUsageTopAvgMetrics Get top custom metrics by hourly average
- * Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average.
+ * Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiGetUsageTopAvgMetricsRequest
  */
@@ -4748,11 +4753,13 @@ func (a *UsageMeteringApiService) GetUsageTopAvgMetricsExecute(r ApiGetUsageTopA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.month == nil {
-		return localVarReturnValue, nil, reportError("month is required and must be specified")
-	}
 
-	localVarQueryParams.Add("month", parameterToString(*r.month, ""))
+	if r.month != nil {
+		localVarQueryParams.Add("month", parameterToString(*r.month, ""))
+	}
+	if r.day != nil {
+		localVarQueryParams.Add("day", parameterToString(*r.day, ""))
+	}
 	if r.names != nil {
 		t := *r.names
 		if reflect.TypeOf(t).Kind() == reflect.Slice {

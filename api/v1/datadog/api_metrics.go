@@ -186,6 +186,7 @@ type ApiListActiveMetricsRequest struct {
 	ApiService *MetricsApiService
 	from       *int64
 	host       *string
+	tagFilter  *string
 }
 
 func (r ApiListActiveMetricsRequest) From(from int64) ApiListActiveMetricsRequest {
@@ -194,6 +195,10 @@ func (r ApiListActiveMetricsRequest) From(from int64) ApiListActiveMetricsReques
 }
 func (r ApiListActiveMetricsRequest) Host(host string) ApiListActiveMetricsRequest {
 	r.host = &host
+	return r
+}
+func (r ApiListActiveMetricsRequest) TagFilter(tagFilter string) ApiListActiveMetricsRequest {
+	r.tagFilter = &tagFilter
 	return r
 }
 
@@ -245,6 +250,9 @@ func (a *MetricsApiService) ListActiveMetricsExecute(r ApiListActiveMetricsReque
 	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
 	if r.host != nil {
 		localVarQueryParams.Add("host", parameterToString(*r.host, ""))
+	}
+	if r.tagFilter != nil {
+		localVarQueryParams.Add("tag_filter", parameterToString(*r.tagFilter, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

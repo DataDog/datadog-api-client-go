@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 
 ## ListTagConfigurations
 
-> MetricsAndMetricTagConfigurationsResponse ListTagConfigurations(ctx).FilterConfigured(filterConfigured).FilterTagsConfigured(filterTagsConfigured).FilterMetricType(filterMetricType).FilterIncludePercentiles(filterIncludePercentiles).Execute()
+> MetricsAndMetricTagConfigurationsResponse ListTagConfigurations(ctx).FilterConfigured(filterConfigured).FilterTagsConfigured(filterTagsConfigured).FilterMetricType(filterMetricType).FilterIncludePercentiles(filterIncludePercentiles).FilterTags(filterTags).WindowSeconds(windowSeconds).Execute()
 
 List tag configurations
 
@@ -344,12 +344,14 @@ func main() {
     filterTagsConfigured := "app" // string | Filter tag configurations by configured tags. (optional)
     filterMetricType := datadog.MetricTagConfigurationMetricTypes("gauge") // MetricTagConfigurationMetricTypes | Filter tag configurations by metric type. (optional) (default to "gauge")
     filterIncludePercentiles := true // bool | Filter distributions with additional percentile aggregations enabled or disabled. (optional)
+    filterTags := "env IN (staging,test) AND service:web" // string | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. (optional)
+    windowSeconds := int64(3600) // int64 | The number of seconds of look back (from now) to apply to a filter[tag] query. Defaults value is 3600 (1 hour), maximum value is 172,800 (2 days). (optional)
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("ListTagConfigurations", true)
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.ListTagConfigurations(ctx).FilterConfigured(filterConfigured).FilterTagsConfigured(filterTagsConfigured).FilterMetricType(filterMetricType).FilterIncludePercentiles(filterIncludePercentiles).Execute()
+    resp, r, err := api_client.MetricsApi.ListTagConfigurations(ctx).FilterConfigured(filterConfigured).FilterTagsConfigured(filterTagsConfigured).FilterMetricType(filterMetricType).FilterIncludePercentiles(filterIncludePercentiles).FilterTags(filterTags).WindowSeconds(windowSeconds).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -375,6 +377,8 @@ Name | Type | Description  | Notes
  **filterTagsConfigured** | **string** | Filter tag configurations by configured tags. | 
  **filterMetricType** | [**MetricTagConfigurationMetricTypes**](MetricTagConfigurationMetricTypes.md) | Filter tag configurations by metric type. | [default to &quot;gauge&quot;]
  **filterIncludePercentiles** | **bool** | Filter distributions with additional percentile aggregations enabled or disabled. | 
+ **filterTags** | **string** | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. | 
+ **windowSeconds** | **int64** | The number of seconds of look back (from now) to apply to a filter[tag] query. Defaults value is 3600 (1 hour), maximum value is 172,800 (2 days). | 
 
 ### Return type
 

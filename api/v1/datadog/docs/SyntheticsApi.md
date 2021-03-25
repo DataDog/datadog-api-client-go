@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**DeletePrivateLocation**](SyntheticsApi.md#DeletePrivateLocation) | **Delete** /api/v1/synthetics/private-locations/{location_id} | Delete a private location
 [**DeleteTests**](SyntheticsApi.md#DeleteTests) | **Post** /api/v1/synthetics/tests/delete | Delete tests
 [**EditGlobalVariable**](SyntheticsApi.md#EditGlobalVariable) | **Put** /api/v1/synthetics/variables/{variable_id} | Edit a global variable
+[**GetAPITest**](SyntheticsApi.md#GetAPITest) | **Get** /api/v1/synthetics/tests/api/{public_id} | Get an API test
 [**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get the test&#39;s latest results summaries (API)
 [**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get a test result (API)
 [**GetBrowserTest**](SyntheticsApi.md#GetBrowserTest) | **Get** /api/v1/synthetics/tests/browser/{public_id} | Get a test configuration (browser)
@@ -345,7 +346,7 @@ func main() {
         )
     }
 
-    body := *datadog.NewSyntheticsBrowserTest() // SyntheticsBrowserTest | Details of the test to create.
+    body := *datadog.NewSyntheticsBrowserTest("Message_example") // SyntheticsBrowserTest | Details of the test to create.
 
     configuration := datadog.NewConfiguration()
 
@@ -841,6 +842,100 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAPITest
+
+> SyntheticsAPITest GetAPITest(ctx, publicId).Execute()
+
+Get an API test
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            "apiKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_API_KEY"),
+            },
+            "appKeyAuth": {
+                Key: os.Getenv("DD_CLIENT_APP_KEY"),
+            },
+        },
+    )
+
+    if site, ok := os.LookupEnv("DD_SITE"); ok {
+        ctx = context.WithValue(
+            ctx,
+            datadog.ContextServerVariables,
+            map[string]string{"site": site},
+        )
+    }
+
+    publicId := "publicId_example" // string | The public ID of the test to get details from.
+
+    configuration := datadog.NewConfiguration()
+
+    api_client := datadog.NewAPIClient(configuration)
+    resp, r, err := api_client.SyntheticsApi.GetAPITest(ctx, publicId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAPITest`: SyntheticsAPITest
+    response_content, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetAPITest:\n%s\n", response_content)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**publicId** | **string** | The public ID of the test to get details from. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAPITestRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**SyntheticsAPITest**](SyntheticsAPITest.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -2018,7 +2113,7 @@ func main() {
     }
 
     publicId := "publicId_example" // string | The public ID of the test to get details from.
-    body := *datadog.NewSyntheticsBrowserTest() // SyntheticsBrowserTest | New test details to be saved.
+    body := *datadog.NewSyntheticsBrowserTest("Message_example") // SyntheticsBrowserTest | New test details to be saved.
 
     configuration := datadog.NewConfiguration()
 
