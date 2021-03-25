@@ -66,6 +66,7 @@ Name | Type | Description | Notes
 **CustomUnit** | Pointer to **string** | Display a unit of your choice on the widget. | [optional] 
 **ColorByGroups** | Pointer to **[]string** | List of groups used for colors. | [optional] 
 **Xaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
+**GlobalTimeTarget** | Pointer to **string** | Defined global time target. | [optional] 
 **ShowErrorBudget** | Pointer to **bool** | Defined error budget. | [optional] 
 **SloId** | Pointer to **string** | ID of the SLO displayed. | [optional] 
 **TimeWindows** | Pointer to [**[]WidgetTimeWindows**](WidgetTimeWindows.md) | Times being monitored. | [optional] 
@@ -1586,6 +1587,31 @@ SetXaxis sets Xaxis field to given value.
 `func (o *WidgetDefinition) HasXaxis() bool`
 
 HasXaxis returns a boolean if a field has been set.
+
+### GetGlobalTimeTarget
+
+`func (o *WidgetDefinition) GetGlobalTimeTarget() string`
+
+GetGlobalTimeTarget returns the GlobalTimeTarget field if non-nil, zero value otherwise.
+
+### GetGlobalTimeTargetOk
+
+`func (o *WidgetDefinition) GetGlobalTimeTargetOk() (*string, bool)`
+
+GetGlobalTimeTargetOk returns a tuple with the GlobalTimeTarget field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGlobalTimeTarget
+
+`func (o *WidgetDefinition) SetGlobalTimeTarget(v string)`
+
+SetGlobalTimeTarget sets GlobalTimeTarget field to given value.
+
+### HasGlobalTimeTarget
+
+`func (o *WidgetDefinition) HasGlobalTimeTarget() bool`
+
+HasGlobalTimeTarget returns a boolean if a field has been set.
 
 ### GetShowErrorBudget
 

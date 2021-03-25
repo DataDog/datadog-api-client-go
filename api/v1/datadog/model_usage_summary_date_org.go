@@ -42,6 +42,8 @@ type UsageSummaryDateOrg struct {
 	FargateTasksCountHwm *int64 `json:"fargate_tasks_count_hwm,omitempty"`
 	// Shows the 99th percentile of all GCP hosts over all hours in the current date for the given org.
 	GcpHostTop99p *int64 `json:"gcp_host_top99p,omitempty"`
+	// Shows the 99th percentile of all Heroku dynos over all hours in the current date for the given org.
+	HerokuHostTop99p *int64 `json:"heroku_host_top99p,omitempty"`
 	// The organization id.
 	Id *string `json:"id,omitempty"`
 	// Shows the high-water mark of incident management monthly active users over all hours in the current date for the given org.
@@ -68,6 +70,8 @@ type UsageSummaryDateOrg struct {
 	NetflowIndexedEventsCountSum *int64 `json:"netflow_indexed_events_count_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for the given org.
 	NpmHostTop99p *int64 `json:"npm_host_top99p,omitempty"`
+	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for the given org.
+	OpentelemetryHostTop99p *int64 `json:"opentelemetry_host_top99p,omitempty"`
 	// Shows the 99th percentile of all profiled hosts over all hours in the current date for the given org.
 	ProfilingHostTop99p *int64 `json:"profiling_host_top99p,omitempty"`
 	// The organization public id.
@@ -551,6 +555,38 @@ func (o *UsageSummaryDateOrg) SetGcpHostTop99p(v int64) {
 	o.GcpHostTop99p = &v
 }
 
+// GetHerokuHostTop99p returns the HerokuHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetHerokuHostTop99p() int64 {
+	if o == nil || o.HerokuHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.HerokuHostTop99p
+}
+
+// GetHerokuHostTop99pOk returns a tuple with the HerokuHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetHerokuHostTop99pOk() (*int64, bool) {
+	if o == nil || o.HerokuHostTop99p == nil {
+		return nil, false
+	}
+	return o.HerokuHostTop99p, true
+}
+
+// HasHerokuHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasHerokuHostTop99p() bool {
+	if o != nil && o.HerokuHostTop99p != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHerokuHostTop99p gets a reference to the given int64 and assigns it to the HerokuHostTop99p field.
+func (o *UsageSummaryDateOrg) SetHerokuHostTop99p(v int64) {
+	o.HerokuHostTop99p = &v
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetId() string {
 	if o == nil || o.Id == nil {
@@ -967,6 +1003,38 @@ func (o *UsageSummaryDateOrg) SetNpmHostTop99p(v int64) {
 	o.NpmHostTop99p = &v
 }
 
+// GetOpentelemetryHostTop99p returns the OpentelemetryHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetOpentelemetryHostTop99p() int64 {
+	if o == nil || o.OpentelemetryHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.OpentelemetryHostTop99p
+}
+
+// GetOpentelemetryHostTop99pOk returns a tuple with the OpentelemetryHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetOpentelemetryHostTop99pOk() (*int64, bool) {
+	if o == nil || o.OpentelemetryHostTop99p == nil {
+		return nil, false
+	}
+	return o.OpentelemetryHostTop99p, true
+}
+
+// HasOpentelemetryHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasOpentelemetryHostTop99p() bool {
+	if o != nil && o.OpentelemetryHostTop99p != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOpentelemetryHostTop99p gets a reference to the given int64 and assigns it to the OpentelemetryHostTop99p field.
+func (o *UsageSummaryDateOrg) SetOpentelemetryHostTop99p(v int64) {
+	o.OpentelemetryHostTop99p = &v
+}
+
 // GetProfilingHostTop99p returns the ProfilingHostTop99p field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetProfilingHostTop99p() int64 {
 	if o == nil || o.ProfilingHostTop99p == nil {
@@ -1267,6 +1335,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.GcpHostTop99p != nil {
 		toSerialize["gcp_host_top99p"] = o.GcpHostTop99p
 	}
+	if o.HerokuHostTop99p != nil {
+		toSerialize["heroku_host_top99p"] = o.HerokuHostTop99p
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -1305,6 +1376,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	}
 	if o.NpmHostTop99p != nil {
 		toSerialize["npm_host_top99p"] = o.NpmHostTop99p
+	}
+	if o.OpentelemetryHostTop99p != nil {
+		toSerialize["opentelemetry_host_top99p"] = o.OpentelemetryHostTop99p
 	}
 	if o.ProfilingHostTop99p != nil {
 		toSerialize["profiling_host_top99p"] = o.ProfilingHostTop99p

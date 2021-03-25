@@ -31,12 +31,16 @@ type UsageHostHour struct {
 	ContainerCount *int64 `json:"container_count,omitempty"`
 	// Contains the total number of hosts that reported via the Google Cloud integration (and were NOT running the Datadog Agent).
 	GcpHostCount *int64 `json:"gcp_host_count,omitempty"`
+	// Contains the total number of Heroku dynos reported by the Datadog Agent.
+	HerokuHostCount *int64 `json:"heroku_host_count,omitempty"`
 	// Contains the total number of billable infrastructure hosts reporting during a given hour. This is the sum of `agent_host_count`, `aws_host_count`, and `gcp_host_count`.
 	HostCount *int64 `json:"host_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the total number of hosts that reported via the Azure App Services integration (and were NOT running the Datadog Agent).
 	InfraAzureAppService *int64 `json:"infra_azure_app_service,omitempty"`
+	// Contains the total number of hosts reported by Datadog exporter for the OpenTelemetry Collector.
+	OpentelemetryHostCount *int64 `json:"opentelemetry_host_count,omitempty"`
 }
 
 // NewUsageHostHour instantiates a new UsageHostHour object
@@ -312,6 +316,38 @@ func (o *UsageHostHour) SetGcpHostCount(v int64) {
 	o.GcpHostCount = &v
 }
 
+// GetHerokuHostCount returns the HerokuHostCount field value if set, zero value otherwise.
+func (o *UsageHostHour) GetHerokuHostCount() int64 {
+	if o == nil || o.HerokuHostCount == nil {
+		var ret int64
+		return ret
+	}
+	return *o.HerokuHostCount
+}
+
+// GetHerokuHostCountOk returns a tuple with the HerokuHostCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageHostHour) GetHerokuHostCountOk() (*int64, bool) {
+	if o == nil || o.HerokuHostCount == nil {
+		return nil, false
+	}
+	return o.HerokuHostCount, true
+}
+
+// HasHerokuHostCount returns a boolean if a field has been set.
+func (o *UsageHostHour) HasHerokuHostCount() bool {
+	if o != nil && o.HerokuHostCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHerokuHostCount gets a reference to the given int64 and assigns it to the HerokuHostCount field.
+func (o *UsageHostHour) SetHerokuHostCount(v int64) {
+	o.HerokuHostCount = &v
+}
+
 // GetHostCount returns the HostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetHostCount() int64 {
 	if o == nil || o.HostCount == nil {
@@ -408,6 +444,38 @@ func (o *UsageHostHour) SetInfraAzureAppService(v int64) {
 	o.InfraAzureAppService = &v
 }
 
+// GetOpentelemetryHostCount returns the OpentelemetryHostCount field value if set, zero value otherwise.
+func (o *UsageHostHour) GetOpentelemetryHostCount() int64 {
+	if o == nil || o.OpentelemetryHostCount == nil {
+		var ret int64
+		return ret
+	}
+	return *o.OpentelemetryHostCount
+}
+
+// GetOpentelemetryHostCountOk returns a tuple with the OpentelemetryHostCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageHostHour) GetOpentelemetryHostCountOk() (*int64, bool) {
+	if o == nil || o.OpentelemetryHostCount == nil {
+		return nil, false
+	}
+	return o.OpentelemetryHostCount, true
+}
+
+// HasOpentelemetryHostCount returns a boolean if a field has been set.
+func (o *UsageHostHour) HasOpentelemetryHostCount() bool {
+	if o != nil && o.OpentelemetryHostCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOpentelemetryHostCount gets a reference to the given int64 and assigns it to the OpentelemetryHostCount field.
+func (o *UsageHostHour) SetOpentelemetryHostCount(v int64) {
+	o.OpentelemetryHostCount = &v
+}
+
 func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AgentHostCount != nil {
@@ -434,6 +502,9 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	if o.GcpHostCount != nil {
 		toSerialize["gcp_host_count"] = o.GcpHostCount
 	}
+	if o.HerokuHostCount != nil {
+		toSerialize["heroku_host_count"] = o.HerokuHostCount
+	}
 	if o.HostCount != nil {
 		toSerialize["host_count"] = o.HostCount
 	}
@@ -442,6 +513,9 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.InfraAzureAppService != nil {
 		toSerialize["infra_azure_app_service"] = o.InfraAzureAppService
+	}
+	if o.OpentelemetryHostCount != nil {
+		toSerialize["opentelemetry_host_count"] = o.OpentelemetryHostCount
 	}
 	return json.Marshal(toSerialize)
 }
