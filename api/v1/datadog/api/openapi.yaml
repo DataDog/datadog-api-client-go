@@ -3826,6 +3826,17 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions.
+          Cannot be combined with other filters.
+        example: env IN (staging,test) AND service:web
+        explode: true
+        in: query
+        name: tag_filter
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
