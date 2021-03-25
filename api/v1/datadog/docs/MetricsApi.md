@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ## ListActiveMetrics
 
-> MetricsListResponse ListActiveMetrics(ctx).From(from).Host(host).Execute()
+> MetricsListResponse ListActiveMetrics(ctx).From(from).Host(host).TagFilter(tagFilter).Execute()
 
 Get active metrics list
 
@@ -151,11 +151,12 @@ func main() {
 
     from := int64(789) // int64 | Seconds since the Unix epoch.
     host := "host_example" // string | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. (optional)
+    tagFilter := "env IN (staging,test) AND service:web" // string | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. (optional)
 
     configuration := datadog.NewConfiguration()
 
     api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.ListActiveMetrics(ctx).From(from).Host(host).Execute()
+    resp, r, err := api_client.MetricsApi.ListActiveMetrics(ctx).From(from).Host(host).TagFilter(tagFilter).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListActiveMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -179,6 +180,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **from** | **int64** | Seconds since the Unix epoch. | 
  **host** | **string** | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. | 
+ **tagFilter** | **string** | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. | 
 
 ### Return type
 
