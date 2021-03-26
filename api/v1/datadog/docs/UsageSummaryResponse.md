@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **AzureAppServiceTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure app services over all hours in the current months for all organizations. | [optional] 
 **AzureHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure hosts over all hours in the current months for all organizations. | [optional] 
 **BillableIngestedBytesAggSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current months for all organizations. | [optional] 
+**ComplianceContainerAggSum** | Pointer to **interface{}** | Shows the sum of all compliance containers over all hours in the current months for all organizations. | [optional] 
+**ComplianceHostAggSum** | Pointer to **int64** | Shows the sum of all compliance hosts over all hours in the current months for all organizations. | [optional] 
 **ContainerAvgSum** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current months for all organizations. | [optional] 
 **ContainerHwmSum** | Pointer to **int64** | Shows the sum of the high-water marks of all distinct containers over all hours in the current months for all organizations. | [optional] 
 **CustomTsSum** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current months for all organizations. | [optional] 
@@ -292,6 +294,66 @@ SetBillableIngestedBytesAggSum sets BillableIngestedBytesAggSum field to given v
 `func (o *UsageSummaryResponse) HasBillableIngestedBytesAggSum() bool`
 
 HasBillableIngestedBytesAggSum returns a boolean if a field has been set.
+
+### GetComplianceContainerAggSum
+
+`func (o *UsageSummaryResponse) GetComplianceContainerAggSum() interface{}`
+
+GetComplianceContainerAggSum returns the ComplianceContainerAggSum field if non-nil, zero value otherwise.
+
+### GetComplianceContainerAggSumOk
+
+`func (o *UsageSummaryResponse) GetComplianceContainerAggSumOk() (*interface{}, bool)`
+
+GetComplianceContainerAggSumOk returns a tuple with the ComplianceContainerAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetComplianceContainerAggSum
+
+`func (o *UsageSummaryResponse) SetComplianceContainerAggSum(v interface{})`
+
+SetComplianceContainerAggSum sets ComplianceContainerAggSum field to given value.
+
+### HasComplianceContainerAggSum
+
+`func (o *UsageSummaryResponse) HasComplianceContainerAggSum() bool`
+
+HasComplianceContainerAggSum returns a boolean if a field has been set.
+
+### SetComplianceContainerAggSumNil
+
+`func (o *UsageSummaryResponse) SetComplianceContainerAggSumNil(b bool)`
+
+ SetComplianceContainerAggSumNil sets the value for ComplianceContainerAggSum to be an explicit nil
+
+### UnsetComplianceContainerAggSum
+`func (o *UsageSummaryResponse) UnsetComplianceContainerAggSum()`
+
+UnsetComplianceContainerAggSum ensures that no value is present for ComplianceContainerAggSum, not even an explicit nil
+### GetComplianceHostAggSum
+
+`func (o *UsageSummaryResponse) GetComplianceHostAggSum() int64`
+
+GetComplianceHostAggSum returns the ComplianceHostAggSum field if non-nil, zero value otherwise.
+
+### GetComplianceHostAggSumOk
+
+`func (o *UsageSummaryResponse) GetComplianceHostAggSumOk() (*int64, bool)`
+
+GetComplianceHostAggSumOk returns a tuple with the ComplianceHostAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetComplianceHostAggSum
+
+`func (o *UsageSummaryResponse) SetComplianceHostAggSum(v int64)`
+
+SetComplianceHostAggSum sets ComplianceHostAggSum field to given value.
+
+### HasComplianceHostAggSum
+
+`func (o *UsageSummaryResponse) HasComplianceHostAggSum() bool`
+
+HasComplianceHostAggSum returns a boolean if a field has been set.
 
 ### GetContainerAvgSum
 
