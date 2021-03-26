@@ -449,6 +449,8 @@ docs/UsageBillableSummaryBody.md
 docs/UsageBillableSummaryHour.md
 docs/UsageBillableSummaryKeys.md
 docs/UsageBillableSummaryResponse.md
+docs/UsageComplianceHour.md
+docs/UsageComplianceResponse.md
 docs/UsageCustomReportsAttributes.md
 docs/UsageCustomReportsData.md
 docs/UsageCustomReportsMeta.md
@@ -953,6 +955,8 @@ model_usage_billable_summary_body.go
 model_usage_billable_summary_hour.go
 model_usage_billable_summary_keys.go
 model_usage_billable_summary_response.go
+model_usage_compliance_hour.go
+model_usage_compliance_response.go
 model_usage_custom_reports_attributes.go
 model_usage_custom_reports_data.go
 model_usage_custom_reports_meta.go
