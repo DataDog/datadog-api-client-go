@@ -30,6 +30,10 @@ type UsageSummaryDateOrg struct {
 	AzureAppServiceTop99p *int64 `json:"azure_app_service_top99p,omitempty"`
 	// Shows the sum of all log bytes ingested over all hours in the current date for the given org.
 	BillableIngestedBytesSum *int64 `json:"billable_ingested_bytes_sum,omitempty"`
+	// Shows the sum of all compliance containers over all hours in the current date for the given org.
+	ComplianceContainerAggSum interface{} `json:"compliance_container_agg_sum,omitempty"`
+	// Shows the sum of all compliance hosts over all hours in the current date for the given org.
+	ComplianceHostAggSum *int64 `json:"compliance_host_agg_sum,omitempty"`
 	// Shows the average of all distinct containers over all hours in the current date for the given org.
 	ContainerAvg *int64 `json:"container_avg,omitempty"`
 	// Shows the high-water mark of all distinct containers over all hours in the current date for the given org.
@@ -361,6 +365,71 @@ func (o *UsageSummaryDateOrg) HasBillableIngestedBytesSum() bool {
 // SetBillableIngestedBytesSum gets a reference to the given int64 and assigns it to the BillableIngestedBytesSum field.
 func (o *UsageSummaryDateOrg) SetBillableIngestedBytesSum(v int64) {
 	o.BillableIngestedBytesSum = &v
+}
+
+// GetComplianceContainerAggSum returns the ComplianceContainerAggSum field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UsageSummaryDateOrg) GetComplianceContainerAggSum() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.ComplianceContainerAggSum
+}
+
+// GetComplianceContainerAggSumOk returns a tuple with the ComplianceContainerAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UsageSummaryDateOrg) GetComplianceContainerAggSumOk() (*interface{}, bool) {
+	if o == nil || o.ComplianceContainerAggSum == nil {
+		return nil, false
+	}
+	return &o.ComplianceContainerAggSum, true
+}
+
+// HasComplianceContainerAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasComplianceContainerAggSum() bool {
+	if o != nil && o.ComplianceContainerAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetComplianceContainerAggSum gets a reference to the given interface{} and assigns it to the ComplianceContainerAggSum field.
+func (o *UsageSummaryDateOrg) SetComplianceContainerAggSum(v interface{}) {
+	o.ComplianceContainerAggSum = v
+}
+
+// GetComplianceHostAggSum returns the ComplianceHostAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetComplianceHostAggSum() int64 {
+	if o == nil || o.ComplianceHostAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ComplianceHostAggSum
+}
+
+// GetComplianceHostAggSumOk returns a tuple with the ComplianceHostAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetComplianceHostAggSumOk() (*int64, bool) {
+	if o == nil || o.ComplianceHostAggSum == nil {
+		return nil, false
+	}
+	return o.ComplianceHostAggSum, true
+}
+
+// HasComplianceHostAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasComplianceHostAggSum() bool {
+	if o != nil && o.ComplianceHostAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetComplianceHostAggSum gets a reference to the given int64 and assigns it to the ComplianceHostAggSum field.
+func (o *UsageSummaryDateOrg) SetComplianceHostAggSum(v int64) {
+	o.ComplianceHostAggSum = &v
 }
 
 // GetContainerAvg returns the ContainerAvg field value if set, zero value otherwise.
@@ -1316,6 +1385,12 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	}
 	if o.BillableIngestedBytesSum != nil {
 		toSerialize["billable_ingested_bytes_sum"] = o.BillableIngestedBytesSum
+	}
+	if o.ComplianceContainerAggSum != nil {
+		toSerialize["compliance_container_agg_sum"] = o.ComplianceContainerAggSum
+	}
+	if o.ComplianceHostAggSum != nil {
+		toSerialize["compliance_host_agg_sum"] = o.ComplianceHostAggSum
 	}
 	if o.ContainerAvg != nil {
 		toSerialize["container_avg"] = o.ContainerAvg
