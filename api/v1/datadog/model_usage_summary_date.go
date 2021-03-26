@@ -31,6 +31,10 @@ type UsageSummaryDate struct {
 	AzureAppServiceTop99p *int64 `json:"azure_app_service_top99p,omitempty"`
 	// Shows the sum of all log bytes ingested over all hours in the current date for all organizations.
 	BillableIngestedBytesSum *int64 `json:"billable_ingested_bytes_sum,omitempty"`
+	// Shows the sum of compliance containers over all hours in the current date for all organizations.
+	ComplianceContainerCountSum interface{} `json:"compliance_container_count_sum,omitempty"`
+	// Shows the sum of compliance hosts over all hours in the current date for all organizations.
+	ComplianceHostCountSum *int64 `json:"compliance_host_count_sum,omitempty"`
 	// Shows the average of all distinct containers over all hours in the current date for all organizations.
 	ContainerAvg *int64 `json:"container_avg,omitempty"`
 	// Shows the high-water mark of all distinct containers over all hours in the current date for all organizations.
@@ -360,6 +364,71 @@ func (o *UsageSummaryDate) HasBillableIngestedBytesSum() bool {
 // SetBillableIngestedBytesSum gets a reference to the given int64 and assigns it to the BillableIngestedBytesSum field.
 func (o *UsageSummaryDate) SetBillableIngestedBytesSum(v int64) {
 	o.BillableIngestedBytesSum = &v
+}
+
+// GetComplianceContainerCountSum returns the ComplianceContainerCountSum field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UsageSummaryDate) GetComplianceContainerCountSum() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.ComplianceContainerCountSum
+}
+
+// GetComplianceContainerCountSumOk returns a tuple with the ComplianceContainerCountSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UsageSummaryDate) GetComplianceContainerCountSumOk() (*interface{}, bool) {
+	if o == nil || o.ComplianceContainerCountSum == nil {
+		return nil, false
+	}
+	return &o.ComplianceContainerCountSum, true
+}
+
+// HasComplianceContainerCountSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasComplianceContainerCountSum() bool {
+	if o != nil && o.ComplianceContainerCountSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetComplianceContainerCountSum gets a reference to the given interface{} and assigns it to the ComplianceContainerCountSum field.
+func (o *UsageSummaryDate) SetComplianceContainerCountSum(v interface{}) {
+	o.ComplianceContainerCountSum = v
+}
+
+// GetComplianceHostCountSum returns the ComplianceHostCountSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetComplianceHostCountSum() int64 {
+	if o == nil || o.ComplianceHostCountSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ComplianceHostCountSum
+}
+
+// GetComplianceHostCountSumOk returns a tuple with the ComplianceHostCountSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetComplianceHostCountSumOk() (*int64, bool) {
+	if o == nil || o.ComplianceHostCountSum == nil {
+		return nil, false
+	}
+	return o.ComplianceHostCountSum, true
+}
+
+// HasComplianceHostCountSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasComplianceHostCountSum() bool {
+	if o != nil && o.ComplianceHostCountSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetComplianceHostCountSum gets a reference to the given int64 and assigns it to the ComplianceHostCountSum field.
+func (o *UsageSummaryDate) SetComplianceHostCountSum(v int64) {
+	o.ComplianceHostCountSum = &v
 }
 
 // GetContainerAvg returns the ContainerAvg field value if set, zero value otherwise.
@@ -1283,6 +1352,12 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	}
 	if o.BillableIngestedBytesSum != nil {
 		toSerialize["billable_ingested_bytes_sum"] = o.BillableIngestedBytesSum
+	}
+	if o.ComplianceContainerCountSum != nil {
+		toSerialize["compliance_container_count_sum"] = o.ComplianceContainerCountSum
+	}
+	if o.ComplianceHostCountSum != nil {
+		toSerialize["compliance_host_count_sum"] = o.ComplianceHostCountSum
 	}
 	if o.ContainerAvg != nil {
 		toSerialize["container_avg"] = o.ContainerAvg
