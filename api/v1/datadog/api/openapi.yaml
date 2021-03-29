@@ -15899,6 +15899,7 @@ components:
         request:
           headers:
             key: headers
+          noSavingResponseBody: true
           port: 0
           basicAuth:
             password: ""
@@ -15958,8 +15959,10 @@ components:
           min_location_failed: 5
           monitor_options:
             renotify_interval: 331
+          disableCors: true
           min_failure_duration: 5
           allow_insecure: true
+          noScreenshot: true
           device_ids:
           - null
           - null
@@ -15977,6 +15980,7 @@ components:
           request:
             headers:
               key: headers
+            noSavingResponseBody: true
             port: 0
             basicAuth:
               password: ""
@@ -16012,6 +16016,7 @@ components:
             request:
               headers:
                 key: headers
+              noSavingResponseBody: true
               port: 0
               basicAuth:
                 password: ""
@@ -16047,6 +16052,7 @@ components:
             request:
               headers:
                 key: headers
+              noSavingResponseBody: true
               port: 0
               basicAuth:
                 password: ""
@@ -16122,6 +16128,7 @@ components:
         request:
           headers:
             key: headers
+          noSavingResponseBody: true
           port: 0
           basicAuth:
             password: ""
@@ -16157,6 +16164,7 @@ components:
           request:
             headers:
               key: headers
+            noSavingResponseBody: true
             port: 0
             basicAuth:
               password: ""
@@ -16192,6 +16200,7 @@ components:
           request:
             headers:
               key: headers
+            noSavingResponseBody: true
             port: 0
             basicAuth:
               password: ""
@@ -16386,6 +16395,7 @@ components:
             request:
               headers:
                 key: headers
+              noSavingResponseBody: true
               port: 0
               basicAuth:
                 password: ""
@@ -16459,6 +16469,7 @@ components:
             dns: 1.4658129805029452
             firstByte: 5.637376656633329
             ssl: 9.301444243932576
+          passed: true
         probe_dc: probe_dc
         result_id: result_id
         check_time: 6.027456183070403
@@ -16654,8 +16665,10 @@ components:
           min_location_failed: 5
           monitor_options:
             renotify_interval: 331
+          disableCors: true
           min_failure_duration: 5
           allow_insecure: true
+          noScreenshot: true
           device_ids:
           - null
           - null
@@ -16673,6 +16686,7 @@ components:
           request:
             headers:
               key: headers
+            noSavingResponseBody: true
             port: 0
             basicAuth:
               password: ""
@@ -16765,6 +16779,7 @@ components:
         request:
           headers:
             key: headers
+          noSavingResponseBody: true
           port: 0
           basicAuth:
             password: ""
@@ -17019,6 +17034,7 @@ components:
             request:
               headers:
                 key: headers
+              noSavingResponseBody: true
               port: 0
               basicAuth:
                 password: ""
@@ -17339,6 +17355,9 @@ components:
       - greaterEquals
       - lowerEquals
       - matchRegex
+      - between
+      - isEmpty
+      - notIsEmpty
       type: string
       x-enum-varnames:
       - EQUALS
@@ -17352,6 +17371,9 @@ components:
       - GREATER_EQUALS
       - LOWER_EQUALS
       - MATCH_REGEX
+      - BETWEEN
+      - IS_EMPTY
+      - NOT_IS_EMPTY
     SyntheticsConfigVariable:
       description: Object defining a variable that can be used in your test configuration.
       example:
@@ -17542,6 +17564,7 @@ components:
               dns: 1.4658129805029452
               firstByte: 5.637376656633329
               ssl: 9.301444243932576
+            passed: true
           probe_dc: probe_dc
           result_id: result_id
           check_time: 6.027456183070403
@@ -17556,6 +17579,7 @@ components:
               dns: 1.4658129805029452
               firstByte: 5.637376656633329
               ssl: 9.301444243932576
+            passed: true
           probe_dc: probe_dc
           result_id: result_id
           check_time: 6.027456183070403
@@ -17716,8 +17740,10 @@ components:
             min_location_failed: 5
             monitor_options:
               renotify_interval: 331
+            disableCors: true
             min_failure_duration: 5
             allow_insecure: true
+            noScreenshot: true
             device_ids:
             - null
             - null
@@ -17734,6 +17760,7 @@ components:
             request:
               headers:
                 key: headers
+              noSavingResponseBody: true
               port: 0
               basicAuth:
                 password: ""
@@ -17789,8 +17816,10 @@ components:
             min_location_failed: 5
             monitor_options:
               renotify_interval: 331
+            disableCors: true
             min_failure_duration: 5
             allow_insecure: true
+            noScreenshot: true
             device_ids:
             - null
             - null
@@ -17807,6 +17836,7 @@ components:
             request:
               headers:
                 key: headers
+              noSavingResponseBody: true
               port: 0
               basicAuth:
                 password: ""
@@ -18272,6 +18302,7 @@ components:
         request:
           headers:
             key: headers
+          noSavingResponseBody: true
           port: 0
           basicAuth:
             password: ""
@@ -18341,8 +18372,10 @@ components:
           min_location_failed: 5
           monitor_options:
             renotify_interval: 331
+          disableCors: true
           min_failure_duration: 5
           allow_insecure: true
+          noScreenshot: true
           device_ids:
           - null
           - null
@@ -18359,6 +18392,7 @@ components:
           request:
             headers:
               key: headers
+            noSavingResponseBody: true
             port: 0
             basicAuth:
               password: ""
@@ -18504,8 +18538,10 @@ components:
         min_location_failed: 5
         monitor_options:
           renotify_interval: 331
+        disableCors: true
         min_failure_duration: 5
         allow_insecure: true
+        noScreenshot: true
         device_ids:
         - null
         - null
@@ -18529,6 +18565,9 @@ components:
           items:
             $ref: '#/components/schemas/SyntheticsDeviceID'
           type: array
+        disableCors:
+          description: Whether or not to disable CORS mechanism.
+          type: boolean
         follow_redirects:
           description: For API HTTP test, whether or not the test should follow redirects.
           type: boolean
@@ -18544,6 +18583,9 @@ components:
           type: integer
         monitor_options:
           $ref: '#/components/schemas/SyntheticsTestOptions_monitor_options'
+        noScreenshot:
+          description: Prevents saving screenshots of the steps.
+          type: boolean
         retry:
           $ref: '#/components/schemas/SyntheticsTestOptionsRetry'
         tick_every:
@@ -18599,6 +18641,7 @@ components:
       example:
         headers:
           key: headers
+        noSavingResponseBody: true
         port: 0
         basicAuth:
           password: ""
@@ -18640,6 +18683,9 @@ components:
           type: string
         method:
           $ref: '#/components/schemas/HTTPMethod'
+        noSavingResponseBody:
+          description: Determines whether or not to save the response body.
+          type: boolean
         port:
           description: Port to use when performing the test.
           format: int64
@@ -24097,6 +24143,7 @@ components:
           request:
             headers:
               key: headers
+            noSavingResponseBody: true
             port: 0
             basicAuth:
               password: ""
@@ -24152,7 +24199,11 @@ components:
           dns: 1.4658129805029452
           firstByte: 5.637376656633329
           ssl: 9.301444243932576
+        passed: true
       properties:
+        passed:
+          description: Describes if the test run has passed or failed.
+          type: boolean
         timings:
           $ref: '#/components/schemas/SyntheticsTiming'
       type: object
@@ -24176,6 +24227,7 @@ components:
           request:
             headers:
               key: headers
+            noSavingResponseBody: true
             port: 0
             basicAuth:
               password: ""

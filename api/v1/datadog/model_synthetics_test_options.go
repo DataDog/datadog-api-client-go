@@ -20,6 +20,8 @@ type SyntheticsTestOptions struct {
 	AllowInsecure *bool `json:"allow_insecure,omitempty"`
 	// For browser test, array with the different device IDs used to run the test.
 	DeviceIds *[]SyntheticsDeviceID `json:"device_ids,omitempty"`
+	// Whether or not to disable CORS mechanism.
+	DisableCors *bool `json:"disableCors,omitempty"`
 	// For API HTTP test, whether or not the test should follow redirects.
 	FollowRedirects *bool `json:"follow_redirects,omitempty"`
 	// Minimum amount of time in failure required to trigger an alert.
@@ -27,8 +29,10 @@ type SyntheticsTestOptions struct {
 	// Minimum number of locations in failure required to trigger an alert.
 	MinLocationFailed *int64                               `json:"min_location_failed,omitempty"`
 	MonitorOptions    *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
-	Retry             *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
-	TickEvery         *SyntheticsTickInterval              `json:"tick_every,omitempty"`
+	// Prevents saving screenshots of the steps.
+	NoScreenshot *bool                       `json:"noScreenshot,omitempty"`
+	Retry        *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+	TickEvery    *SyntheticsTickInterval     `json:"tick_every,omitempty"`
 }
 
 // NewSyntheticsTestOptions instantiates a new SyntheticsTestOptions object
@@ -142,6 +146,38 @@ func (o *SyntheticsTestOptions) HasDeviceIds() bool {
 // SetDeviceIds gets a reference to the given []SyntheticsDeviceID and assigns it to the DeviceIds field.
 func (o *SyntheticsTestOptions) SetDeviceIds(v []SyntheticsDeviceID) {
 	o.DeviceIds = &v
+}
+
+// GetDisableCors returns the DisableCors field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetDisableCors() bool {
+	if o == nil || o.DisableCors == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DisableCors
+}
+
+// GetDisableCorsOk returns a tuple with the DisableCors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetDisableCorsOk() (*bool, bool) {
+	if o == nil || o.DisableCors == nil {
+		return nil, false
+	}
+	return o.DisableCors, true
+}
+
+// HasDisableCors returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasDisableCors() bool {
+	if o != nil && o.DisableCors != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDisableCors gets a reference to the given bool and assigns it to the DisableCors field.
+func (o *SyntheticsTestOptions) SetDisableCors(v bool) {
+	o.DisableCors = &v
 }
 
 // GetFollowRedirects returns the FollowRedirects field value if set, zero value otherwise.
@@ -272,6 +308,38 @@ func (o *SyntheticsTestOptions) SetMonitorOptions(v SyntheticsTestOptionsMonitor
 	o.MonitorOptions = &v
 }
 
+// GetNoScreenshot returns the NoScreenshot field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetNoScreenshot() bool {
+	if o == nil || o.NoScreenshot == nil {
+		var ret bool
+		return ret
+	}
+	return *o.NoScreenshot
+}
+
+// GetNoScreenshotOk returns a tuple with the NoScreenshot field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetNoScreenshotOk() (*bool, bool) {
+	if o == nil || o.NoScreenshot == nil {
+		return nil, false
+	}
+	return o.NoScreenshot, true
+}
+
+// HasNoScreenshot returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasNoScreenshot() bool {
+	if o != nil && o.NoScreenshot != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNoScreenshot gets a reference to the given bool and assigns it to the NoScreenshot field.
+func (o *SyntheticsTestOptions) SetNoScreenshot(v bool) {
+	o.NoScreenshot = &v
+}
+
 // GetRetry returns the Retry field value if set, zero value otherwise.
 func (o *SyntheticsTestOptions) GetRetry() SyntheticsTestOptionsRetry {
 	if o == nil || o.Retry == nil {
@@ -347,6 +415,9 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.DeviceIds != nil {
 		toSerialize["device_ids"] = o.DeviceIds
 	}
+	if o.DisableCors != nil {
+		toSerialize["disableCors"] = o.DisableCors
+	}
 	if o.FollowRedirects != nil {
 		toSerialize["follow_redirects"] = o.FollowRedirects
 	}
@@ -358,6 +429,9 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	}
 	if o.MonitorOptions != nil {
 		toSerialize["monitor_options"] = o.MonitorOptions
+	}
+	if o.NoScreenshot != nil {
+		toSerialize["noScreenshot"] = o.NoScreenshot
 	}
 	if o.Retry != nil {
 		toSerialize["retry"] = o.Retry
