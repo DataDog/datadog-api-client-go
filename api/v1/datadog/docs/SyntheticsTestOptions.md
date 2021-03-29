@@ -7,10 +7,12 @@ Name | Type | Description | Notes
 **AcceptSelfSigned** | Pointer to **bool** | For SSL test, whether or not the test should allow self signed certificates. | [optional] 
 **AllowInsecure** | Pointer to **bool** | Allows loading insecure content for an HTTP request. | [optional] 
 **DeviceIds** | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md) | For browser test, array with the different device IDs used to run the test. | [optional] 
+**DisableCors** | Pointer to **bool** | Whether or not to disable CORS mechanism. | [optional] 
 **FollowRedirects** | Pointer to **bool** | For API HTTP test, whether or not the test should follow redirects. | [optional] 
 **MinFailureDuration** | Pointer to **int64** | Minimum amount of time in failure required to trigger an alert. | [optional] 
 **MinLocationFailed** | Pointer to **int64** | Minimum number of locations in failure required to trigger an alert. | [optional] 
 **MonitorOptions** | Pointer to [**SyntheticsTestOptionsMonitorOptions**](SyntheticsTestOptionsMonitorOptions.md) |  | [optional] 
+**NoScreenshot** | Pointer to **bool** | Prevents saving screenshots of the steps. | [optional] 
 **Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |  | [optional] 
 **TickEvery** | Pointer to [**SyntheticsTickInterval**](SyntheticsTickInterval.md) |  | [optional] 
 
@@ -107,6 +109,31 @@ SetDeviceIds sets DeviceIds field to given value.
 `func (o *SyntheticsTestOptions) HasDeviceIds() bool`
 
 HasDeviceIds returns a boolean if a field has been set.
+
+### GetDisableCors
+
+`func (o *SyntheticsTestOptions) GetDisableCors() bool`
+
+GetDisableCors returns the DisableCors field if non-nil, zero value otherwise.
+
+### GetDisableCorsOk
+
+`func (o *SyntheticsTestOptions) GetDisableCorsOk() (*bool, bool)`
+
+GetDisableCorsOk returns a tuple with the DisableCors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableCors
+
+`func (o *SyntheticsTestOptions) SetDisableCors(v bool)`
+
+SetDisableCors sets DisableCors field to given value.
+
+### HasDisableCors
+
+`func (o *SyntheticsTestOptions) HasDisableCors() bool`
+
+HasDisableCors returns a boolean if a field has been set.
 
 ### GetFollowRedirects
 
@@ -207,6 +234,31 @@ SetMonitorOptions sets MonitorOptions field to given value.
 `func (o *SyntheticsTestOptions) HasMonitorOptions() bool`
 
 HasMonitorOptions returns a boolean if a field has been set.
+
+### GetNoScreenshot
+
+`func (o *SyntheticsTestOptions) GetNoScreenshot() bool`
+
+GetNoScreenshot returns the NoScreenshot field if non-nil, zero value otherwise.
+
+### GetNoScreenshotOk
+
+`func (o *SyntheticsTestOptions) GetNoScreenshotOk() (*bool, bool)`
+
+GetNoScreenshotOk returns a tuple with the NoScreenshot field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNoScreenshot
+
+`func (o *SyntheticsTestOptions) SetNoScreenshot(v bool)`
+
+SetNoScreenshot sets NoScreenshot field to given value.
+
+### HasNoScreenshot
+
+`func (o *SyntheticsTestOptions) HasNoScreenshot() bool`
+
+HasNoScreenshot returns a boolean if a field has been set.
 
 ### GetRetry
 

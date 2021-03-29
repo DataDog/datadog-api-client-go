@@ -14,6 +14,8 @@ import (
 
 // SyntheticsAPITestResultShortResult Result of the last API test run.
 type SyntheticsAPITestResultShortResult struct {
+	// Describes if the test run has passed or failed.
+	Passed  *bool             `json:"passed,omitempty"`
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 }
 
@@ -32,6 +34,38 @@ func NewSyntheticsAPITestResultShortResult() *SyntheticsAPITestResultShortResult
 func NewSyntheticsAPITestResultShortResultWithDefaults() *SyntheticsAPITestResultShortResult {
 	this := SyntheticsAPITestResultShortResult{}
 	return &this
+}
+
+// GetPassed returns the Passed field value if set, zero value otherwise.
+func (o *SyntheticsAPITestResultShortResult) GetPassed() bool {
+	if o == nil || o.Passed == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Passed
+}
+
+// GetPassedOk returns a tuple with the Passed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsAPITestResultShortResult) GetPassedOk() (*bool, bool) {
+	if o == nil || o.Passed == nil {
+		return nil, false
+	}
+	return o.Passed, true
+}
+
+// HasPassed returns a boolean if a field has been set.
+func (o *SyntheticsAPITestResultShortResult) HasPassed() bool {
+	if o != nil && o.Passed != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPassed gets a reference to the given bool and assigns it to the Passed field.
+func (o *SyntheticsAPITestResultShortResult) SetPassed(v bool) {
+	o.Passed = &v
 }
 
 // GetTimings returns the Timings field value if set, zero value otherwise.
@@ -68,6 +102,9 @@ func (o *SyntheticsAPITestResultShortResult) SetTimings(v SyntheticsTiming) {
 
 func (o SyntheticsAPITestResultShortResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Passed != nil {
+		toSerialize["passed"] = o.Passed
+	}
 	if o.Timings != nil {
 		toSerialize["timings"] = o.Timings
 	}
