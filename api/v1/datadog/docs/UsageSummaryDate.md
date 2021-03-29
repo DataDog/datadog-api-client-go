@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **AwsLambdaInvocationsSum** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current date for all organizations. | [optional] 
 **AzureAppServiceTop99p** | Pointer to **int64** | Shows the 99th percentile of all Azure app services over all hours in the current date for all organizations. | [optional] 
 **BillableIngestedBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for all organizations. | [optional] 
+**ComplianceContainerCountSum** | Pointer to **interface{}** | Shows the sum of compliance containers over all hours in the current date for all organizations. | [optional] 
+**ComplianceHostCountSum** | Pointer to **int64** | Shows the sum of compliance hosts over all hours in the current date for all organizations. | [optional] 
 **ContainerAvg** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current date for all organizations. | [optional] 
 **ContainerHwm** | Pointer to **int64** | Shows the high-water mark of all distinct containers over all hours in the current date for all organizations. | [optional] 
 **CustomTsAvg** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current date for all organizations. | [optional] 
@@ -259,6 +261,66 @@ SetBillableIngestedBytesSum sets BillableIngestedBytesSum field to given value.
 `func (o *UsageSummaryDate) HasBillableIngestedBytesSum() bool`
 
 HasBillableIngestedBytesSum returns a boolean if a field has been set.
+
+### GetComplianceContainerCountSum
+
+`func (o *UsageSummaryDate) GetComplianceContainerCountSum() interface{}`
+
+GetComplianceContainerCountSum returns the ComplianceContainerCountSum field if non-nil, zero value otherwise.
+
+### GetComplianceContainerCountSumOk
+
+`func (o *UsageSummaryDate) GetComplianceContainerCountSumOk() (*interface{}, bool)`
+
+GetComplianceContainerCountSumOk returns a tuple with the ComplianceContainerCountSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetComplianceContainerCountSum
+
+`func (o *UsageSummaryDate) SetComplianceContainerCountSum(v interface{})`
+
+SetComplianceContainerCountSum sets ComplianceContainerCountSum field to given value.
+
+### HasComplianceContainerCountSum
+
+`func (o *UsageSummaryDate) HasComplianceContainerCountSum() bool`
+
+HasComplianceContainerCountSum returns a boolean if a field has been set.
+
+### SetComplianceContainerCountSumNil
+
+`func (o *UsageSummaryDate) SetComplianceContainerCountSumNil(b bool)`
+
+ SetComplianceContainerCountSumNil sets the value for ComplianceContainerCountSum to be an explicit nil
+
+### UnsetComplianceContainerCountSum
+`func (o *UsageSummaryDate) UnsetComplianceContainerCountSum()`
+
+UnsetComplianceContainerCountSum ensures that no value is present for ComplianceContainerCountSum, not even an explicit nil
+### GetComplianceHostCountSum
+
+`func (o *UsageSummaryDate) GetComplianceHostCountSum() int64`
+
+GetComplianceHostCountSum returns the ComplianceHostCountSum field if non-nil, zero value otherwise.
+
+### GetComplianceHostCountSumOk
+
+`func (o *UsageSummaryDate) GetComplianceHostCountSumOk() (*int64, bool)`
+
+GetComplianceHostCountSumOk returns a tuple with the ComplianceHostCountSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetComplianceHostCountSum
+
+`func (o *UsageSummaryDate) SetComplianceHostCountSum(v int64)`
+
+SetComplianceHostCountSum sets ComplianceHostCountSum field to given value.
+
+### HasComplianceHostCountSum
+
+`func (o *UsageSummaryDate) HasComplianceHostCountSum() bool`
+
+HasComplianceHostCountSum returns a boolean if a field has been set.
 
 ### GetContainerAvg
 
