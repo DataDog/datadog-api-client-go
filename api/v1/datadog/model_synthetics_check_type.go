@@ -29,6 +29,9 @@ const (
 	SYNTHETICSCHECKTYPE_GREATER_EQUALS  SyntheticsCheckType = "greaterEquals"
 	SYNTHETICSCHECKTYPE_LOWER_EQUALS    SyntheticsCheckType = "lowerEquals"
 	SYNTHETICSCHECKTYPE_MATCH_REGEX     SyntheticsCheckType = "matchRegex"
+	SYNTHETICSCHECKTYPE_BETWEEN         SyntheticsCheckType = "between"
+	SYNTHETICSCHECKTYPE_IS_EMPTY        SyntheticsCheckType = "isEmpty"
+	SYNTHETICSCHECKTYPE_NOT_IS_EMPTY    SyntheticsCheckType = "notIsEmpty"
 )
 
 var allowedSyntheticsCheckTypeEnumValues = []SyntheticsCheckType{
@@ -43,6 +46,9 @@ var allowedSyntheticsCheckTypeEnumValues = []SyntheticsCheckType{
 	"greaterEquals",
 	"lowerEquals",
 	"matchRegex",
+	"between",
+	"isEmpty",
+	"notIsEmpty",
 }
 
 func (v *SyntheticsCheckType) UnmarshalJSON(src []byte) error {

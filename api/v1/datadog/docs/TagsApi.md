@@ -34,26 +34,7 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     hostName := "hostName_example" // string | This endpoint allows you to add new tags to a host, optionally specifying where the tags came from.
     body := *datadog.NewHostTags() // HostTags | Update host tags request body.
@@ -61,15 +42,15 @@ func main() {
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.CreateHostTags(ctx, hostName).Body(body).Source(source).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.TagsApi.CreateHostTags(ctx, hostName).Body(body).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.CreateHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateHostTags`: HostTags
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from TagsApi.CreateHostTags:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.CreateHostTags:\n%s\n", responseContent)
 }
 ```
 
@@ -131,34 +112,15 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     hostName := "hostName_example" // string | This endpoint allows you to remove all user-assigned tags for a single host.
     source := "source_example" // string | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). (optional)
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    r, err := api_client.TagsApi.DeleteHostTags(ctx, hostName).Source(source).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    r, err := apiClient.TagsApi.DeleteHostTags(ctx, hostName).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.DeleteHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -224,41 +186,22 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     hostName := "hostName_example" // string | When specified, filters list of tags to those tags with the specified source.
     source := "source_example" // string | Source to filter. (optional)
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.GetHostTags(ctx, hostName).Source(source).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.TagsApi.GetHostTags(ctx, hostName).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.GetHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetHostTags`: HostTags
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from TagsApi.GetHostTags:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.GetHostTags:\n%s\n", responseContent)
 }
 ```
 
@@ -320,40 +263,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     source := "source_example" // string | When specified, filters host list to those tags with the specified source. (optional)
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.ListHostTags(ctx).Source(source).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.TagsApi.ListHostTags(ctx).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.ListHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListHostTags`: TagToHosts
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from TagsApi.ListHostTags:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.ListHostTags:\n%s\n", responseContent)
 }
 ```
 
@@ -410,26 +334,7 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     hostName := "hostName_example" // string | This endpoint allows you to update/replace all in an integration source with those supplied in the request.
     body := *datadog.NewHostTags() // HostTags | Add tags to host
@@ -437,15 +342,15 @@ func main() {
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.UpdateHostTags(ctx, hostName).Body(body).Source(source).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.TagsApi.UpdateHostTags(ctx, hostName).Body(body).Source(source).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.UpdateHostTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateHostTags`: HostTags
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from TagsApi.UpdateHostTags:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from TagsApi.UpdateHostTags:\n%s\n", responseContent)
 }
 ```
 

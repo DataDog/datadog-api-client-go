@@ -34,40 +34,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     metricName := "metricName_example" // string | Name of the metric for which to get metadata.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.GetMetricMetadata(ctx, metricName).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetricsApi.GetMetricMetadata(ctx, metricName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetMetricMetadata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetMetricMetadata`: MetricMetadata
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MetricsApi.GetMetricMetadata:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.GetMetricMetadata:\n%s\n", responseContent)
 }
 ```
 
@@ -128,26 +109,7 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     from := int64(789) // int64 | Seconds since the Unix epoch.
     host := "host_example" // string | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. (optional)
@@ -155,15 +117,15 @@ func main() {
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.ListActiveMetrics(ctx).From(from).Host(host).TagFilter(tagFilter).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetricsApi.ListActiveMetrics(ctx).From(from).Host(host).TagFilter(tagFilter).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListActiveMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListActiveMetrics`: MetricsListResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListActiveMetrics:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListActiveMetrics:\n%s\n", responseContent)
 }
 ```
 
@@ -222,40 +184,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     q := "q_example" // string | Query string to search metrics upon. Must be prefixed with `metrics:`.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.ListMetrics(ctx).Q(q).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetricsApi.ListMetrics(ctx).Q(q).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListMetrics`: MetricSearchResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListMetrics:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.ListMetrics:\n%s\n", responseContent)
 }
 ```
 
@@ -312,26 +255,7 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     from := int64(789) // int64 | Start of the queried time period, seconds since the Unix epoch.
     to := int64(789) // int64 | End of the queried time period, seconds since the Unix epoch.
@@ -339,15 +263,15 @@ func main() {
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.QueryMetrics(ctx).From(from).To(to).Query(query).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetricsApi.QueryMetrics(ctx).From(from).To(to).Query(query).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.QueryMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `QueryMetrics`: MetricsQueryResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MetricsApi.QueryMetrics:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.QueryMetrics:\n%s\n", responseContent)
 }
 ```
 
@@ -406,41 +330,22 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     metricName := "metricName_example" // string | Name of the metric for which to edit metadata.
     body := *datadog.NewMetricMetadata() // MetricMetadata | New metadata.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.UpdateMetricMetadata(ctx, metricName).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetricsApi.UpdateMetricMetadata(ctx, metricName).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.UpdateMetricMetadata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateMetricMetadata`: MetricMetadata
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MetricsApi.UpdateMetricMetadata:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MetricsApi.UpdateMetricMetadata:\n%s\n", responseContent)
 }
 ```
 

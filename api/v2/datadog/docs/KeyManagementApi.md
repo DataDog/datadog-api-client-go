@@ -42,40 +42,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewAPIKeyCreateRequest(*datadog.NewAPIKeyCreateData(*datadog.NewAPIKeyCreateAttributes("API Key for submitting metrics"), datadog.APIKeysType("api_keys"))) // APIKeyCreateRequest | 
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.CreateAPIKey(ctx).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.KeyManagementApi.CreateAPIKey(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateAPIKey`: APIKeyResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateAPIKey:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateAPIKey:\n%s\n", responseContent)
 }
 ```
 
@@ -132,40 +113,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewApplicationKeyCreateRequest(*datadog.NewApplicationKeyCreateData(*datadog.NewApplicationKeyCreateAttributes("Application Key for submitting metrics"), datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyCreateRequest | 
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.CreateCurrentUserApplicationKey(ctx).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.KeyManagementApi.CreateCurrentUserApplicationKey(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateCurrentUserApplicationKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateCurrentUserApplicationKey`: ApplicationKeyResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateCurrentUserApplicationKey:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.CreateCurrentUserApplicationKey:\n%s\n", responseContent)
 }
 ```
 
@@ -221,33 +183,14 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     apiKeyId := "apiKeyId_example" // string | The ID of the API key.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    r, err := api_client.KeyManagementApi.DeleteAPIKey(ctx, apiKeyId).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    r, err := apiClient.KeyManagementApi.DeleteAPIKey(ctx, apiKeyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,33 +254,14 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     appKeyId := "appKeyId_example" // string | The ID of the application key.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    r, err := api_client.KeyManagementApi.DeleteApplicationKey(ctx, appKeyId).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    r, err := apiClient.KeyManagementApi.DeleteApplicationKey(ctx, appKeyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteApplicationKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -401,33 +325,14 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     appKeyId := "appKeyId_example" // string | The ID of the application key.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    r, err := api_client.KeyManagementApi.DeleteCurrentUserApplicationKey(ctx, appKeyId).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    r, err := apiClient.KeyManagementApi.DeleteCurrentUserApplicationKey(ctx, appKeyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteCurrentUserApplicationKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -492,41 +397,22 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     apiKeyId := "apiKeyId_example" // string | The ID of the API key.
     include := "created_by,modified_by" // string | Comma separated list of resource paths for related resources to include in the response. Supported resource paths are `created_by` and `modified_by`. (optional)
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.GetAPIKey(ctx, apiKeyId).Include(include).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.KeyManagementApi.GetAPIKey(ctx, apiKeyId).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAPIKey`: APIKeyResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetAPIKey:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetAPIKey:\n%s\n", responseContent)
 }
 ```
 
@@ -588,40 +474,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     appKeyId := "appKeyId_example" // string | The ID of the application key.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.GetCurrentUserApplicationKey(ctx, appKeyId).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.KeyManagementApi.GetCurrentUserApplicationKey(ctx, appKeyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetCurrentUserApplicationKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetCurrentUserApplicationKey`: ApplicationKeyResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetCurrentUserApplicationKey:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetCurrentUserApplicationKey:\n%s\n", responseContent)
 }
 ```
 
@@ -682,26 +549,7 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
@@ -715,15 +563,15 @@ func main() {
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.ListAPIKeys(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).FilterCreatedAtStart(filterCreatedAtStart).FilterCreatedAtEnd(filterCreatedAtEnd).FilterModifiedAtStart(filterModifiedAtStart).FilterModifiedAtEnd(filterModifiedAtEnd).Include(include).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.KeyManagementApi.ListAPIKeys(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).FilterCreatedAtStart(filterCreatedAtStart).FilterCreatedAtEnd(filterCreatedAtEnd).FilterModifiedAtStart(filterModifiedAtStart).FilterModifiedAtEnd(filterModifiedAtEnd).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListAPIKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListAPIKeys`: APIKeysResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListAPIKeys:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListAPIKeys:\n%s\n", responseContent)
 }
 ```
 
@@ -788,26 +636,7 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
@@ -818,15 +647,15 @@ func main() {
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.ListApplicationKeys(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).FilterCreatedAtStart(filterCreatedAtStart).FilterCreatedAtEnd(filterCreatedAtEnd).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.KeyManagementApi.ListApplicationKeys(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).FilterCreatedAtStart(filterCreatedAtStart).FilterCreatedAtEnd(filterCreatedAtEnd).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListApplicationKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListApplicationKeys`: ListApplicationKeysResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListApplicationKeys:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListApplicationKeys:\n%s\n", responseContent)
 }
 ```
 
@@ -888,26 +717,7 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
@@ -918,15 +728,15 @@ func main() {
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.ListCurrentUserApplicationKeys(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).FilterCreatedAtStart(filterCreatedAtStart).FilterCreatedAtEnd(filterCreatedAtEnd).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.KeyManagementApi.ListCurrentUserApplicationKeys(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).Filter(filter).FilterCreatedAtStart(filterCreatedAtStart).FilterCreatedAtEnd(filterCreatedAtEnd).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListCurrentUserApplicationKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListCurrentUserApplicationKeys`: ListApplicationKeysResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListCurrentUserApplicationKeys:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.ListCurrentUserApplicationKeys:\n%s\n", responseContent)
 }
 ```
 
@@ -988,41 +798,22 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     apiKeyId := "apiKeyId_example" // string | The ID of the API key.
     body := *datadog.NewAPIKeyUpdateRequest(*datadog.NewAPIKeyUpdateData(*datadog.NewAPIKeyUpdateAttributes("API Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.APIKeysType("api_keys"))) // APIKeyUpdateRequest | 
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.UpdateAPIKey(ctx, apiKeyId).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.KeyManagementApi.UpdateAPIKey(ctx, apiKeyId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateAPIKey`: APIKeyResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateAPIKey:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateAPIKey:\n%s\n", responseContent)
 }
 ```
 
@@ -1084,41 +875,22 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     appKeyId := "appKeyId_example" // string | The ID of the application key.
     body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes("Application Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest | 
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.UpdateApplicationKey(ctx, appKeyId).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.KeyManagementApi.UpdateApplicationKey(ctx, appKeyId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateApplicationKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateApplicationKey`: ApplicationKeyResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateApplicationKey:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateApplicationKey:\n%s\n", responseContent)
 }
 ```
 
@@ -1180,41 +952,22 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     appKeyId := "appKeyId_example" // string | The ID of the application key.
     body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes("Application Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest | 
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.KeyManagementApi.UpdateCurrentUserApplicationKey(ctx, appKeyId).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.KeyManagementApi.UpdateCurrentUserApplicationKey(ctx, appKeyId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateCurrentUserApplicationKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateCurrentUserApplicationKey`: ApplicationKeyResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateCurrentUserApplicationKey:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.UpdateCurrentUserApplicationKey:\n%s\n", responseContent)
 }
 ```
 

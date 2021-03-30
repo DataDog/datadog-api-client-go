@@ -40,33 +40,11 @@ import (
 
 func main() {
     {{#hasAuthMethods}}
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-        {{#authMethods}}
-        {{#isApiKey}}
-        {{^isKeyInCookie}}
-            "{{#vendorExtensions.x-auth-id-alias}}{{.}}{{/vendorExtensions.x-auth-id-alias}}{{^vendorExtensions.x-auth-id-alias}}{{name}}{{/vendorExtensions.x-auth-id-alias}}": {
-                Key: os.Getenv("{{#vendorExtensions.x-env-name}}{{.}}{{/vendorExtensions.x-env-name}}{{^vendorExtensions.x-env-name}}{{name}}{{/vendorExtensions.x-env-name}}"),
-            },
-        {{/isKeyInCookie}}
-        {{/isApiKey}}
-        {{/authMethods}}
-        },
-    )
+    ctx := {{goImportAlias}}.NewDefaultContext(context.Background())
     {{/hasAuthMethods}}
     {{^hasAuthMethods}}
     ctx := context.Background()
     {{/hasAuthMethods}}
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
 
     {{#allParams}}
     {{paramName}} := {{{vendorExtensions.x-go-example}}} // {{{dataType}}} | {{{description}}}{{^required}} (optional){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
@@ -77,12 +55,12 @@ func main() {
     configuration.SetUnstableOperationEnabled("{{operationId}}", true)
     {{/vendorExtensions.x-unstable}}
 
-    api_client := {{goImportAlias}}.NewAPIClient(configuration)
+    apiClient := {{goImportAlias}}.NewAPIClient(configuration)
     {{#returnType}}
-    resp, r, err := api_client.{{classname}}.{{operationId}}(ctx{{#pathParams}}, {{paramName}}{{/pathParams}}){{#allParams}}{{^isPathParam}}.{{vendorExtensions.x-export-param-name}}({{paramName}}){{/isPathParam}}{{/allParams}}.Execute()
+    resp, r, err := apiClient.{{classname}}.{{operationId}}(ctx{{#pathParams}}, {{paramName}}{{/pathParams}}){{#allParams}}{{^isPathParam}}.{{vendorExtensions.x-export-param-name}}({{paramName}}){{/isPathParam}}{{/allParams}}.Execute()
     {{/returnType}}
     {{^returnType}}
-    r, err := api_client.{{classname}}.{{operationId}}(ctx{{#pathParams}}, {{paramName}}{{/pathParams}}){{#allParams}}{{^isPathParam}}.{{vendorExtensions.x-export-param-name}}({{paramName}}){{/isPathParam}}{{/allParams}}.Execute()
+    r, err := apiClient.{{classname}}.{{operationId}}(ctx{{#pathParams}}, {{paramName}}{{/pathParams}}){{#allParams}}{{^isPathParam}}.{{vendorExtensions.x-export-param-name}}({{paramName}}){{/isPathParam}}{{/allParams}}.Execute()
     {{/returnType}}
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `{{classname}}.{{operationId}}``: %v\n", err)
@@ -90,8 +68,8 @@ func main() {
     }
     {{#returnType}}
     // response from `{{operationId}}`: {{{.}}}
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from {{classname}}.{{operationId}}:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from {{classname}}.{{operationId}}:\n%s\n", responseContent)
     {{/returnType}}
 }
 ```

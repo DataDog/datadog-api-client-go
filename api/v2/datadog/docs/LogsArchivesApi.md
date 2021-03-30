@@ -38,34 +38,15 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     archiveId := "archiveId_example" // string | The ID of the archive.
     body := *datadog.NewRelationshipToRole() // RelationshipToRole | 
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    r, err := api_client.LogsArchivesApi.AddReadRoleToArchive(ctx, archiveId).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    r, err := apiClient.LogsArchivesApi.AddReadRoleToArchive(ctx, archiveId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.AddReadRoleToArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,40 +112,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewLogsArchiveCreateRequest() // LogsArchiveCreateRequest | The definition of the new archive.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.CreateLogsArchive(ctx).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.LogsArchivesApi.CreateLogsArchive(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.CreateLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateLogsArchive`: LogsArchive
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.CreateLogsArchive:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.CreateLogsArchive:\n%s\n", responseContent)
 }
 ```
 
@@ -220,33 +182,14 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     archiveId := "archiveId_example" // string | The ID of the archive.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    r, err := api_client.LogsArchivesApi.DeleteLogsArchive(ctx, archiveId).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    r, err := apiClient.LogsArchivesApi.DeleteLogsArchive(ctx, archiveId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.DeleteLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,40 +254,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     archiveId := "archiveId_example" // string | The ID of the archive.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.GetLogsArchive(ctx, archiveId).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.LogsArchivesApi.GetLogsArchive(ctx, archiveId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.GetLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsArchive`: LogsArchive
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.GetLogsArchive:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.GetLogsArchive:\n%s\n", responseContent)
 }
 ```
 
@@ -405,39 +329,20 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.GetLogsArchiveOrder(ctx).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.LogsArchivesApi.GetLogsArchiveOrder(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.GetLogsArchiveOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsArchiveOrder`: LogsArchiveOrder
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.GetLogsArchiveOrder:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.GetLogsArchiveOrder:\n%s\n", responseContent)
 }
 ```
 
@@ -490,40 +395,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     archiveId := "archiveId_example" // string | The ID of the archive.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.ListArchiveReadRoles(ctx, archiveId).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.LogsArchivesApi.ListArchiveReadRoles(ctx, archiveId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.ListArchiveReadRoles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListArchiveReadRoles`: RolesResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.ListArchiveReadRoles:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.ListArchiveReadRoles:\n%s\n", responseContent)
 }
 ```
 
@@ -584,39 +470,20 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.ListLogsArchives(ctx).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.LogsArchivesApi.ListLogsArchives(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.ListLogsArchives``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLogsArchives`: LogsArchives
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.ListLogsArchives:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.ListLogsArchives:\n%s\n", responseContent)
 }
 ```
 
@@ -668,34 +535,15 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     archiveId := "archiveId_example" // string | The ID of the archive.
     body := *datadog.NewRelationshipToRole() // RelationshipToRole | 
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    r, err := api_client.LogsArchivesApi.RemoveRoleFromArchive(ctx, archiveId).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    r, err := apiClient.LogsArchivesApi.RemoveRoleFromArchive(ctx, archiveId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.RemoveRoleFromArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -761,41 +609,22 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     archiveId := "archiveId_example" // string | The ID of the archive.
     body := *datadog.NewLogsArchiveCreateRequest() // LogsArchiveCreateRequest | New definition of the archive.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.UpdateLogsArchive(ctx, archiveId).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.LogsArchivesApi.UpdateLogsArchive(ctx, archiveId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsArchive`: LogsArchive
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.UpdateLogsArchive:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.UpdateLogsArchive:\n%s\n", responseContent)
 }
 ```
 
@@ -857,40 +686,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewLogsArchiveOrder() // LogsArchiveOrder | An object containing the new ordered list of archive IDs.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsArchivesApi.UpdateLogsArchiveOrder(ctx).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.LogsArchivesApi.UpdateLogsArchiveOrder(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchiveOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsArchiveOrder`: LogsArchiveOrder
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.UpdateLogsArchiveOrder:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from LogsArchivesApi.UpdateLogsArchiveOrder:\n%s\n", responseContent)
 }
 ```
 
