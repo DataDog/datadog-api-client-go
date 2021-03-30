@@ -30,26 +30,7 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     start := int64(789) // int64 | The POSIX timestamp of the start of the query.
     end := int64(789) // int64 | The POSIX timestamp of the end of the query.
@@ -60,15 +41,15 @@ func main() {
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.SnapshotsApi.GetGraphSnapshot(ctx).Start(start).End(end).MetricQuery(metricQuery).EventQuery(eventQuery).GraphDef(graphDef).Title(title).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.SnapshotsApi.GetGraphSnapshot(ctx).Start(start).End(end).MetricQuery(metricQuery).EventQuery(eventQuery).GraphDef(graphDef).Title(title).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SnapshotsApi.GetGraphSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetGraphSnapshot`: GraphSnapshot
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SnapshotsApi.GetGraphSnapshot:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SnapshotsApi.GetGraphSnapshot:\n%s\n", responseContent)
 }
 ```
 

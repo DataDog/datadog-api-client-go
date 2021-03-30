@@ -30,26 +30,7 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     search := "search_example" // string | String to search processes by. (optional)
     tags := "account:prod,user:admin" // string | Comma-separated list of tags to filter processes by. (optional)
@@ -60,15 +41,15 @@ func main() {
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.ProcessesApi.ListProcesses(ctx).Search(search).Tags(tags).From(from).To(to).PageLimit(pageLimit).PageCursor(pageCursor).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProcessesApi.ListProcesses(ctx).Search(search).Tags(tags).From(from).To(to).PageLimit(pageLimit).PageCursor(pageCursor).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProcessesApi.ListProcesses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListProcesses`: ProcessSummariesResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from ProcessesApi.ListProcesses:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ProcessesApi.ListProcesses:\n%s\n", responseContent)
 }
 ```
 
