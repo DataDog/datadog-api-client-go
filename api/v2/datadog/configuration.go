@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"runtime"
 	"strings"
 
@@ -335,4 +336,34 @@ func getUserAgent() string {
 		runtime.GOOS,
 		runtime.GOARCH,
 	)
+}
+
+// NewDefaultContext returns a new context setup with environment variables
+func NewDefaultContext(ctx context.Context) context.Context {
+	if ctx == nil {
+		ctx = context.Background()
+	}
+
+	if site, ok := os.LookupEnv("DD_SITE"); ok {
+		ctx = context.WithValue(
+			ctx,
+			ContextServerVariables,
+			map[string]string{"site": site},
+		)
+	}
+
+	keys := make(map[string]APIKey)
+	if apiKey, ok := os.LookupEnv("DD_API_KEY"); ok {
+		keys["apiKeyAuth"] = APIKey{Key: apiKey}
+	}
+	if apiKey, ok := os.LookupEnv("DD_APP_KEY"); ok {
+		keys["appKeyAuth"] = APIKey{Key: apiKey}
+	}
+	ctx = context.WithValue(
+		ctx,
+		ContextAPIKeys,
+		keys,
+	)
+
+	return ctx
 }
