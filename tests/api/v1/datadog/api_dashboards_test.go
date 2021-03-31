@@ -175,6 +175,72 @@ func TestDashboardLifecycle(t *testing.T) {
 	freeTextWidget.SetDefinition(datadog.FreeTextWidgetDefinitionAsWidgetDefinition(freeTextWidgetDefinition))
 	freeTextWidget.SetLayout(*widgetLayout)
 
+	// Geomap with Formulas and Functions Query
+	geoMapWidgetDefinitionFormulaFunctionsQuery := datadog.NewGeomapWidgetDefinitionWithDefaults()
+	geoMapWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.GeomapWidgetRequest{{
+		Formulas: &[]datadog.WidgetFormula{{
+			Formula: "query1",
+		}},
+		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+			{
+				FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_RUM,
+					Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
+						Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+					},
+					GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{{
+						Facet: "@geo.country_iso_code",
+						Limit: datadog.PtrInt64(250),
+						Sort: &datadog.FormulaAndFunctionEventQueryGroupBySort{
+							Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+						}}},
+					Indexes: &[]string{"*"},
+					Name:    "query1",
+				},
+			},
+		}}})
+	geoMapWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
+	geoMapWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	geoMapWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
+	geoMapWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+	geoMapWidgetDefinitionFormulaFunctionsQuery.SetStyle(datadog.GeomapWidgetDefinitionStyle{
+		Palette:     *datadog.PtrString("dog_classic"),
+		PaletteFlip: *datadog.PtrBool(true),
+	})
+	geoMapWidgetDefinitionFormulaFunctionsQuery.SetView(datadog.GeomapWidgetDefinitionView{
+		Focus: *datadog.PtrString("WORLD"),
+	})
+
+	geoMapWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.GeomapWidgetDefinitionAsWidgetDefinition(geoMapWidgetDefinitionFormulaFunctionsQuery))
+
+	// Geomap Widget
+	geoMapWidgetDefinition := datadog.NewGeomapWidgetDefinitionWithDefaults()
+	geoMapWidgetDefinition.SetRequests([]datadog.GeomapWidgetRequest{{
+		LogQuery: &datadog.LogQueryDefinition{
+			Index: datadog.PtrString("*"),
+			Compute: &datadog.LogsQueryCompute{
+				Aggregation: "count",
+			},
+			GroupBy: &[]datadog.LogQueryDefinitionGroupBy{{
+				Facet: "@geo.country_iso_code",
+				Limit: datadog.PtrInt64(250),
+				Sort: &datadog.LogQueryDefinitionGroupBySort{
+					Aggregation: "count",
+					Order:       datadog.WIDGETSORT_DESCENDING,
+				},
+			}},
+		},
+	}})
+	geoMapWidgetDefinition.SetStyle(datadog.GeomapWidgetDefinitionStyle{
+		Palette:     *datadog.PtrString("dog_classic"),
+		PaletteFlip: *datadog.PtrBool(true),
+	})
+	geoMapWidgetDefinition.SetView(datadog.GeomapWidgetDefinitionView{
+		Focus: *datadog.PtrString("WORLD"),
+	})
+	geoMapWidget := datadog.NewWidget(datadog.GeomapWidgetDefinitionAsWidgetDefinition(geoMapWidgetDefinition))
+
 	// Group Widget
 	groupNoteWidgetDefinition := datadog.NewNoteWidgetDefinitionWithDefaults()
 	groupNoteWidgetDefinition.SetContent("Test Note Inside Group")
@@ -880,6 +946,8 @@ func TestDashboardLifecycle(t *testing.T) {
 		*changeWidget,
 		*checkStatusWidget,
 		*distributionWidget,
+		*geoMapWidget,
+		*geoMapWidgetFormulaFunctionsQuery,
 		*groupWidget,
 		*heatMapWidget,
 		*hostMapWidget,
