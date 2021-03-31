@@ -1,0 +1,100 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"layout_type":"ordered","title":"go-Feature_Dashboards-Scenario_Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes-local-1617180960 with Profile Metrics Query","widgets":[{"definition":{"requests":[{"display_type":"bars","on_right_yaxis":false,"q":"sum:trace.test.errors{env:prod,service:datadog-api-client-python} by {resource_name}.as_count()","style":{"line_type":"solid","line_width":"normal","palette":"warm"}}],"type":"timeseries"}}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateDashboard
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.16; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5394678001187457855"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3145890460491543734"
+    url: https://api.datadoghq.com/api/v1/dashboard
+    method: POST
+  response:
+    body: '{"notify_list":null,"description":null,"author_name":null,"template_variables":null,"is_read_only":false,"id":"azr-ya8-4tj","title":"go-Feature_Dashboards-Scenario_Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes-local-1617180960
+      with Profile Metrics Query","url":"/dashboard/azr-ya8-4tj/go-featuredashboards-scenariocreateanewdashboardwithtimeserieswidgetcontainingst","created_at":"2021-03-31T08:56:00.659202+00:00","modified_at":"2021-03-31T08:56:00.659202+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"q":"sum:trace.test.errors{env:prod,service:datadog-api-client-python}
+      by {resource_name}.as_count()","on_right_yaxis":false,"style":{"line_width":"normal","palette":"warm","line_type":"solid"},"display_type":"bars"}],"type":"timeseries"},"id":8769324772938609}],"layout_type":"ordered"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 31 Mar 2021 08:56:00 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 25u1gDlL724DHllbjFT4BhOLorBTilh+aah2uWAUEjFC/+rjczJdiyWrV/HwLwe/
+      X-Dd-Version:
+      - "35.4206674"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteDashboard
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.16; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "124732385097871626"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3145890460491543734"
+    url: https://api.datadoghq.com/api/v1/dashboard/azr-ya8-4tj
+    method: DELETE
+  response:
+    body: '{"deleted_dashboard_id":"azr-ya8-4tj"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 31 Mar 2021 08:56:00 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
+      X-Dd-Version:
+      - "35.4206674"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
