@@ -34,40 +34,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewAzureAccount() // AzureAccount | Create a Datadog-Azure integration for your Datadog account request body.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.CreateAzureIntegration(ctx).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.AzureIntegrationApi.CreateAzureIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.CreateAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateAzureIntegration`: interface{}
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.CreateAzureIntegration:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.CreateAzureIntegration:\n%s\n", responseContent)
 }
 ```
 
@@ -124,40 +105,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewAzureAccount() // AzureAccount | Delete a given Datadog-Azure integration request body.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.DeleteAzureIntegration(ctx).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.AzureIntegrationApi.DeleteAzureIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.DeleteAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteAzureIntegration`: interface{}
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.DeleteAzureIntegration:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.DeleteAzureIntegration:\n%s\n", responseContent)
 }
 ```
 
@@ -214,39 +176,20 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.ListAzureIntegration(ctx).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.AzureIntegrationApi.ListAzureIntegration(ctx).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.ListAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListAzureIntegration`: []AzureAccount
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.ListAzureIntegration:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.ListAzureIntegration:\n%s\n", responseContent)
 }
 ```
 
@@ -299,40 +242,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewAzureAccount() // AzureAccount | Update a Datadog-Azure integration's host filters request body.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.UpdateAzureHostFilters(ctx).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.AzureIntegrationApi.UpdateAzureHostFilters(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureHostFilters``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateAzureHostFilters`: interface{}
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.UpdateAzureHostFilters:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.UpdateAzureHostFilters:\n%s\n", responseContent)
 }
 ```
 
@@ -389,40 +313,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewAzureAccount() // AzureAccount | Update a Datadog-Azure integration request body.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.AzureIntegrationApi.UpdateAzureIntegration(ctx).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.AzureIntegrationApi.UpdateAzureIntegration(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateAzureIntegration`: interface{}
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.UpdateAzureIntegration:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from AzureIntegrationApi.UpdateAzureIntegration:\n%s\n", responseContent)
 }
 ```
 

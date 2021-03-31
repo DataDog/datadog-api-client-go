@@ -11104,6 +11104,7 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           disabled: true
           handle: handle
+          modified_at: 2000-01-23T04:56:07.000+00:00
           title: title
           email: email
           status: status
@@ -11129,6 +11130,7 @@ components:
         created_at: 2000-01-23T04:56:07.000+00:00
         disabled: true
         handle: handle
+        modified_at: 2000-01-23T04:56:07.000+00:00
         title: title
         email: email
         status: status
@@ -11148,6 +11150,10 @@ components:
           type: string
         icon:
           description: URL of the user's icon.
+          type: string
+        modified_at:
+          description: Time that the user was last modified.
+          format: date-time
           type: string
         name:
           description: Name of the user.
@@ -11393,6 +11399,7 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             disabled: true
             handle: handle
+            modified_at: 2000-01-23T04:56:07.000+00:00
             title: title
             email: email
             status: status
@@ -11526,6 +11533,7 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             disabled: true
             handle: handle
+            modified_at: 2000-01-23T04:56:07.000+00:00
             title: title
             email: email
             status: status
@@ -11553,6 +11561,7 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             disabled: true
             handle: handle
+            modified_at: 2000-01-23T04:56:07.000+00:00
             title: title
             email: email
             status: status
@@ -12006,11 +12015,11 @@ components:
       in: header
       name: DD-API-KEY
       type: apiKey
-      x-env-name: DD_CLIENT_API_KEY
+      x-env-name: DD_API_KEY
     appKeyAuth:
       description: Your Datadog APP Key.
       in: header
       name: DD-APPLICATION-KEY
       type: apiKey
-      x-env-name: DD_CLIENT_APP_KEY
+      x-env-name: DD_APP_KEY
 x-group-parameters: true

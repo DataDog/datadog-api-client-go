@@ -36,40 +36,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     monitorIds := []int64{int64(123)} // []int64 | The IDs of the monitor to check.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.CheckCanDeleteMonitor(ctx).MonitorIds(monitorIds).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorsApi.CheckCanDeleteMonitor(ctx).MonitorIds(monitorIds).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CheckCanDeleteMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CheckCanDeleteMonitor`: CheckCanDeleteMonitorResponse
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.CheckCanDeleteMonitor:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.CheckCanDeleteMonitor:\n%s\n", responseContent)
 }
 ```
 
@@ -126,40 +107,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewMonitor() // Monitor | Create a monitor request body.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.CreateMonitor(ctx).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorsApi.CreateMonitor(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CreateMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateMonitor`: Monitor
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.CreateMonitor:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.CreateMonitor:\n%s\n", responseContent)
 }
 ```
 
@@ -216,41 +178,22 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     monitorId := int64(789) // int64 | The ID of the monitor.
     force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.DeleteMonitor(ctx, monitorId).Force(force).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorsApi.DeleteMonitor(ctx, monitorId).Force(force).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.DeleteMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteMonitor`: DeletedMonitor
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.DeleteMonitor:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.DeleteMonitor:\n%s\n", responseContent)
 }
 ```
 
@@ -312,41 +255,22 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     monitorId := int64(789) // int64 | The ID of the monitor
     groupStates := "groupStates_example" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.GetMonitor(ctx, monitorId).GroupStates(groupStates).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorsApi.GetMonitor(ctx, monitorId).GroupStates(groupStates).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.GetMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetMonitor`: Monitor
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.GetMonitor:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.GetMonitor:\n%s\n", responseContent)
 }
 ```
 
@@ -408,26 +332,7 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     groupStates := "groupStates_example" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
     name := "name_example" // string | A string to filter monitors by name. (optional)
@@ -440,15 +345,15 @@ func main() {
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.ListMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).IdOffset(idOffset).Page(page).PageSize(pageSize).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorsApi.ListMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).IdOffset(idOffset).Page(page).PageSize(pageSize).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ListMonitors``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListMonitors`: []Monitor
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ListMonitors:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ListMonitors:\n%s\n", responseContent)
 }
 ```
 
@@ -512,41 +417,22 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     monitorId := int64(789) // int64 | The ID of the monitor.
     body := *datadog.NewMonitorUpdateRequest() // MonitorUpdateRequest | Edit a monitor request body.
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.UpdateMonitor(ctx, monitorId).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorsApi.UpdateMonitor(ctx, monitorId).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.UpdateMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateMonitor`: Monitor
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.UpdateMonitor:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.UpdateMonitor:\n%s\n", responseContent)
 }
 ```
 
@@ -608,40 +494,21 @@ import (
 )
 
 func main() {
-    ctx := context.WithValue(
-        context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
-            "apiKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_API_KEY"),
-            },
-            "appKeyAuth": {
-                Key: os.Getenv("DD_CLIENT_APP_KEY"),
-            },
-        },
-    )
-
-    if site, ok := os.LookupEnv("DD_SITE"); ok {
-        ctx = context.WithValue(
-            ctx,
-            datadog.ContextServerVariables,
-            map[string]string{"site": site},
-        )
-    }
+    ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewMonitor() // Monitor | Monitor request object
 
     configuration := datadog.NewConfiguration()
 
-    api_client := datadog.NewAPIClient(configuration)
-    resp, r, err := api_client.MonitorsApi.ValidateMonitor(ctx).Body(body).Execute()
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorsApi.ValidateMonitor(ctx).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ValidateMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ValidateMonitor`: Monitor
-    response_content, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ValidateMonitor:\n%s\n", response_content)
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ValidateMonitor:\n%s\n", responseContent)
 }
 ```
 
