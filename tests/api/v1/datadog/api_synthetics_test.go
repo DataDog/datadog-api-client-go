@@ -1643,6 +1643,14 @@ func TestSyntheticsBrowserTestEndpointLifecycle(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(updatedName, synt.GetName())
+
+	// Get Browser test
+	synt, httpresp, err = Client(ctx).SyntheticsApi.GetBrowserTest(ctx, publicID).Execute()
+	if err != nil {
+		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(updatedName, synt.GetName())
 }
 
 func TestSyntheticsAPIMultistepTestEndpointLifecycle(t *testing.T) {
