@@ -4537,7 +4537,8 @@ paths:
               {
                 "data": {
                   "attributes": {
-                    "email": "{{ unique }}@datadoghq.com"
+                    "email": "{{ unique }}@datadoghq.com",
+                    "title": "user title"
                    },
                    "type": "users"
                 }
