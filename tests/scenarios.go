@@ -7,6 +7,7 @@
 package tests
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
@@ -46,41 +47,6 @@ type operationParameter struct {
 	Value  *string `json:"value"`
 }
 
-// Lookup performs a lookup into a value, using a string.
-func Lookup(i interface{}, path string) (reflect.Value, error) {
-	value := reflect.ValueOf(i)
-	var parent reflect.Value
-	var err error
-	for _, part := range strings.Split(path, lookup.SplitToken) {
-		parent = value
-		value, err = lookup.LookupI(value.Interface(), part)
-		if err == nil {
-			continue
-		}
-		// try oneOf: func (obj *T) GetActualInstance() interface{}
-		var oneOf reflect.Value
-		// parent might be a pointer
-		oneOf = parent.MethodByName("GetActualInstance")
-		if !oneOf.IsValid() {
-			if !parent.CanAddr() {
-				return parent, err
-			}
-			// or parent might be a value hence get its address
-			oneOf = parent.Addr().MethodByName("GetActualInstance")
-			if !oneOf.IsValid() {
-				// give up
-				return parent, err
-			}
-		}
-		value = oneOf.Call([]reflect.Value{})[0]
-		value, err = lookup.LookupI(value.Interface(), part)
-		if err != nil {
-			break
-		}
-	}
-	return value, err
-}
-
 func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp reflect.Type) reflect.Value {
 	if p.Value != nil {
 		tpl := Templated(t, GetData(ctx), *p.Value)
@@ -91,7 +57,7 @@ func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp refl
 		}
 		return v.Elem()
 	}
-	v, _ := Lookup(GetData(ctx), SnakeToCamelCase(*p.Source))
+	v, _ := lookup.LookupStringI(GetData(ctx), *p.Source)
 	return v
 }
 
@@ -114,6 +80,7 @@ type requestArgsKey struct{}
 type requestParamsKey struct{}
 type ctxRequestsUndoKey struct{}
 type responseKey struct{}
+type jsonResponseKey struct{}
 type dataKey struct{}
 type bodyKey struct{}
 type cleanupKey struct{}
@@ -134,12 +101,9 @@ func Templated(t gobdd.StepTest, data interface{}, source string) string {
 	re := regexp.MustCompile(`{{ ?([^}])+ ?}}`)
 	replace := func(source string) string {
 		path := strings.Trim(source, "{ }")
-		v, err := Lookup(data, path)
+		v, err := lookup.LookupStringI(data, path)
 		if err != nil {
-			v, err = Lookup(data, SnakeToCamelCase(path))
-			if err != nil {
-				t.Fatalf("problem with replacement of %s: %v", source, err)
-			}
+			t.Fatalf("problem with replacement of %s: %v", source, err)
 		}
 		switch v.Kind() {
 		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
@@ -183,6 +147,15 @@ func GetResponse(ctx gobdd.Context) []reflect.Value {
 		GetT(ctx).Logf("could not get a response: %v", err)
 	}
 	return r.([]reflect.Value)
+}
+
+// GetResponse returns request response.
+func GetJSONResponse(ctx gobdd.Context) interface{} {
+	r, err := ctx.Get(jsonResponseKey{})
+	if err != nil {
+		GetT(ctx).Logf("could not get a json response: %v", err)
+	}
+	return r
 }
 
 // GetResponseStatusCode returns request response status code.
@@ -292,21 +265,21 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 			t.Fatal(result[len(result)-1])
 		}
 
-		response := result[0]
+		responseJSON, err := toJSON(result[0])
 
 		if undo != nil {
 			GetCleanup(ctx)[fmt.Sprintf("00-given-%s", s.Key)] = undo(result)
 		}
 
 		if s.Source != nil {
-			response, err = Lookup(response.Interface(), SnakeToCamelCase(*s.Source))
-
+			responseJSON, err = lookup.LookupStringI(responseJSON, *s.Source)
 			if err != nil {
 				t.Error(err)
 			}
+			responseJSON = responseJSON.(reflect.Value).Interface()
 		}
 
-		GetData(ctx)[SnakeToCamelCase(s.Key)] = response.Interface()
+		GetData(ctx)[s.Key] = responseJSON
 	}
 	suite.AddStep(s.Step, given)
 }
@@ -354,6 +327,10 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func([]reflect.Valu
 			if err != nil {
 				t.Fatalf("%v", err)
 			}
+			responseJSON, err := toJSON(response[0])
+			if err != nil {
+				t.Fatalf("%v", err)
+			}
 
 			// No object is created when it's a Bad Request
 			if responseStatusCode >= 400 {
@@ -374,7 +351,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func([]reflect.Valu
 			in[0] = reflect.ValueOf(GetCtx(ctx))
 
 			for i := 1; i < undoOperation.Type().NumIn(); i++ {
-				object, err := Lookup(response[0].Interface(), SnakeToCamelCase(undo.Undo.Parameters[i-1].Source))
+				object, err :=lookup.LookupStringI(responseJSON, undo.Undo.Parameters[i-1].Source)
 				if err != nil {
 					t.Fatalf("%v", err)
 				}
@@ -544,9 +521,9 @@ func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 }
 
 func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path string) {
-	value, err := Lookup(GetData(ctx), SnakeToCamelCase(path))
+	value, err := lookup.LookupStringI(GetData(ctx), path)
 	if err != nil {
-		t.Errorf("key %s: %v", path, err)
+		t.Errorf("key %s in %+v: %v", path, GetData(ctx), err)
 	}
 
 	GetRequestParameters(ctx)[name] = value
@@ -600,8 +577,19 @@ func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, va
 	}
 }
 
-func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
+func toJSON(o reflect.Value) (interface{}, error) {
+	var jsonResult interface{}
+	buf := &bytes.Buffer{}
+	if err := json.NewEncoder(buf).Encode(o.Interface()); err != nil {
+		return nil, err
+	}
+	if err := json.Unmarshal(buf.Bytes(), &jsonResult); err != nil {
+		return nil, err
+	}
+	return jsonResult, nil
+}
 
+func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	request, err := getRequestBuilder(ctx)
 	if err != nil {
 		t.Error(err)
@@ -646,6 +634,12 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 		if code < 300 && err != nil {
 			t.Errorf("unexpected error: %v", err)
 		}
+		// Store the unmarshalled JSON in context
+		responseJSON, err := toJSON(result[0])
+		if err != nil {
+			t.Errorf("Unable to decode response object to JSON: %v", err)
+		}
+		ctx.Set(jsonResponseKey{}, responseJSON)
 	}
 
 	if undo != nil {
@@ -663,19 +657,27 @@ func stringToType(s string, t interface{}) (interface{}, error) {
 		return strconv.Atoi(s)
 	case int64:
 		return strconv.ParseInt(s, 10, 64)
+	case float64:
+		return strconv.ParseFloat(s, 64)
 	case string:
 		return strconv.Unquote(s)
 	case bool:
 		return strconv.ParseBool(s)
+	case map[string]interface{}, []interface{}:
+		var res map[string]interface{}
+		if err := json.Unmarshal([]byte(s), &res); err != nil {
+			return nil, fmt.Errorf("error converting %s to %T: %v", s, t, err)
+		}
+		return res, nil
 	default:
-		return nil, errors.New("Unknown type to convert")
+		return nil, fmt.Errorf("unknown type '%T' to convert", t)
 	}
 }
 
 func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value string) {
-	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := lookup.LookupStringI(GetJSONResponse(ctx), responsePath)
 	if err != nil {
-		t.Errorf("could not lookup response value %s in %v: %v", responsePath, GetResponse(ctx)[0].Interface(), err)
+		t.Errorf("could not lookup response value %s in %+v: %v", responsePath, GetJSONResponse(ctx), err)
 	}
 
 	templatedValue := Templated(t, GetData(ctx), value)
@@ -691,11 +693,11 @@ func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value
 }
 
 func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, fixturePath string) {
-	fixtureValue, err := Lookup(GetData(ctx), SnakeToCamelCase(fixturePath))
+	fixtureValue, err := lookup.LookupStringI(GetData(ctx), fixturePath)
 	if err != nil {
-		t.Fatalf("could not lookup fixture value %s: %v", fixturePath, err)
+		t.Fatalf("could not lookup fixture value %s in %+v: %v", fixturePath, GetData(ctx), err)
 	}
-	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := lookup.LookupStringI(GetJSONResponse(ctx), responsePath)
 	if err != nil {
 		t.Fatalf("could not lookup response value %s: %v", SnakeToCamelCase(responsePath), err)
 	}
@@ -714,7 +716,7 @@ func expectLengthEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string,
 	if err != nil {
 		t.Fatalf("assertion length value is not a number %s: %v", fixtureLength, err)
 	}
-	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := lookup.LookupStringI(GetJSONResponse(ctx), responsePath)
 	if err != nil {
 		t.Fatalf("could not lookup response value %s: %v", responsePath, err)
 	}
@@ -725,7 +727,7 @@ func expectLengthEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string,
 }
 
 func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
-	responseValue, err := Lookup(GetResponse(ctx)[0].Interface(), SnakeToCamelCase(responsePath))
+	responseValue, err := lookup.LookupStringI(GetJSONResponse(ctx), responsePath)
 	if err != nil {
 		t.Errorf("could not lookup value: %v", err)
 	}
