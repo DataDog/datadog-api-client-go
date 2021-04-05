@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**CreateDowntime**](DowntimesApi.md#CreateDowntime) | **Post** /api/v1/downtime | Schedule a downtime
 [**GetDowntime**](DowntimesApi.md#GetDowntime) | **Get** /api/v1/downtime/{downtime_id} | Get a downtime
 [**ListDowntimes**](DowntimesApi.md#ListDowntimes) | **Get** /api/v1/downtime | Get all downtimes
+[**ListMonitorDowntimes**](DowntimesApi.md#ListMonitorDowntimes) | **Get** /api/v1/monitor/{monitor_id}/downtimes | Get all downtimes for a monitor
 [**UpdateDowntime**](DowntimesApi.md#UpdateDowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
 
 
@@ -353,6 +354,81 @@ Other parameters are passed through a pointer to a apiListDowntimesRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currentOnly** | **bool** | Only return downtimes that are active when the request is made. | 
+
+### Return type
+
+[**[]Downtime**](Downtime.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListMonitorDowntimes
+
+> []Downtime ListMonitorDowntimes(ctx, monitorId).Execute()
+
+Get all downtimes for a monitor
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    monitorId := int64(789) // int64 | The id of the monitor
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.DowntimesApi.ListMonitorDowntimes(ctx, monitorId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListMonitorDowntimes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListMonitorDowntimes`: []Downtime
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from DowntimesApi.ListMonitorDowntimes:\n%s\n", responseContent)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**monitorId** | **int64** | The id of the monitor | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListMonitorDowntimesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
