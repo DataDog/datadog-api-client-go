@@ -2013,7 +2013,7 @@ type ApiGetBrowserTestRequest struct {
 	publicId   string
 }
 
-func (r ApiGetBrowserTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Response, error) {
+func (r ApiGetBrowserTestRequest) Execute() (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	return r.ApiService.GetBrowserTestExecute(r)
 }
 
@@ -2035,16 +2035,16 @@ func (a *SyntheticsApiService) GetBrowserTest(ctx _context.Context, publicId str
 
 /*
  * Execute executes the request
- * @return SyntheticsTestDetails
+ * @return SyntheticsBrowserTest
  */
-func (a *SyntheticsApiService) GetBrowserTestExecute(r ApiGetBrowserTestRequest) (SyntheticsTestDetails, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) GetBrowserTestExecute(r ApiGetBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsTestDetails
+		localVarReturnValue  SyntheticsBrowserTest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetBrowserTest")
