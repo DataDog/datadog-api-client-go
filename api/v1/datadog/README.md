@@ -116,6 +116,7 @@ Class | Method | HTTP request | Description
 *DowntimesApi* | [**CreateDowntime**](docs/DowntimesApi.md#createdowntime) | **Post** /api/v1/downtime | Schedule a downtime
 *DowntimesApi* | [**GetDowntime**](docs/DowntimesApi.md#getdowntime) | **Get** /api/v1/downtime/{downtime_id} | Get a downtime
 *DowntimesApi* | [**ListDowntimes**](docs/DowntimesApi.md#listdowntimes) | **Get** /api/v1/downtime | Get all downtimes
+*DowntimesApi* | [**ListMonitorDowntimes**](docs/DowntimesApi.md#listmonitordowntimes) | **Get** /api/v1/monitor/{monitor_id}/downtimes | Get all downtimes for a monitor
 *DowntimesApi* | [**UpdateDowntime**](docs/DowntimesApi.md#updatedowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
 *EventsApi* | [**GetEvent**](docs/EventsApi.md#getevent) | **Get** /api/v1/events/{event_id} | Get an event
 *EventsApi* | [**ListEvents**](docs/EventsApi.md#listevents) | **Get** /api/v1/events | Query the event stream
