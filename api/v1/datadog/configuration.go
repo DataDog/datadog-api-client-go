@@ -142,6 +142,20 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
+			{
+				URL:         "https://{subdomain}.{site}",
+				Description: "No description provided",
+				Variables: map[string]ServerVariable{
+					"site": ServerVariable{
+						Description:  "Any Datadog deployment.",
+						DefaultValue: "datadoghq.com",
+					},
+					"subdomain": ServerVariable{
+						Description:  "The subdomain where the API is deployed.",
+						DefaultValue: "api",
+					},
+				},
+			},
 		},
 		OperationServers: map[string]ServerConfigurations{
 			"AWSIntegrationApiService.CreateAWSTagFilter": {
@@ -173,6 +187,20 @@ func NewConfiguration() *Configuration {
 						"protocol": ServerVariable{
 							Description:  "The protocol for accessing the API.",
 							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": ServerVariable{
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": ServerVariable{
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "api",
 						},
 					},
 				},
@@ -209,6 +237,20 @@ func NewConfiguration() *Configuration {
 						},
 					},
 				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": ServerVariable{
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": ServerVariable{
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "api",
+						},
+					},
+				},
 			},
 			"AWSIntegrationApiService.ListAWSTagFilters": {
 				{
@@ -239,6 +281,20 @@ func NewConfiguration() *Configuration {
 						"protocol": ServerVariable{
 							Description:  "The protocol for accessing the API.",
 							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": ServerVariable{
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": ServerVariable{
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "api",
 						},
 					},
 				},
@@ -275,6 +331,16 @@ func NewConfiguration() *Configuration {
 						"protocol": ServerVariable{
 							Description:  "The protocol for accessing the API.",
 							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.datadoghq.com",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"subdomain": ServerVariable{
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "ip-ranges",
 						},
 					},
 				},

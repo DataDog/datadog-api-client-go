@@ -32,7 +32,7 @@ func TestScenarios(t *testing.T) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
 			cctx, finish := WithRecorder(
 				context.WithValue(
-					context.Background(),
+					NewDefaultContext(context.Background()),
 					datadog.ContextAPIKeys,
 					map[string]datadog.APIKey{},
 				),
