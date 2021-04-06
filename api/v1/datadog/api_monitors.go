@@ -280,8 +280,8 @@ Example: `"check".over(tags).last(count).count_by_status()`
 
 - **`check`** name of the check, e.g. `datadog.agent.up`
 - **`tags`** one or more quoted tags (comma-separated), or "*". e.g.: `.over("env:prod", "role:db")`
-- **`count`** must be at >= your max threshold (defined in the `options`).
-e.g. if you want to notify on 1 critical, 3 ok and 2 warn statuses count should be 3. It is limited to 100.
+- **`count`** must be at greater than or equal to your max threshold (defined in the `options`). It is limited to 100.
+For example, if you've specified to notify on 1 critical, 3 ok, and 2 warn statuses, `count` should be 3.
 
 **Event Alert Query**
 
