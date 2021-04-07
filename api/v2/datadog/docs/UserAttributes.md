@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Email** | Pointer to **string** | Email of the user. | [optional] 
 **Handle** | Pointer to **string** | Handle of the user. | [optional] 
 **Icon** | Pointer to **string** | URL of the user&#39;s icon. | [optional] 
+**ModifiedAt** | Pointer to **time.Time** | Time that the user was last modified. | [optional] 
 **Name** | Pointer to **string** | Name of the user. | [optional] 
 **Status** | Pointer to **string** | Status of the user. | [optional] 
 **Title** | Pointer to **string** | Title of the user. | [optional] 
@@ -157,6 +158,31 @@ SetIcon sets Icon field to given value.
 `func (o *UserAttributes) HasIcon() bool`
 
 HasIcon returns a boolean if a field has been set.
+
+### GetModifiedAt
+
+`func (o *UserAttributes) GetModifiedAt() time.Time`
+
+GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
+
+### GetModifiedAtOk
+
+`func (o *UserAttributes) GetModifiedAtOk() (*time.Time, bool)`
+
+GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifiedAt
+
+`func (o *UserAttributes) SetModifiedAt(v time.Time)`
+
+SetModifiedAt sets ModifiedAt field to given value.
+
+### HasModifiedAt
+
+`func (o *UserAttributes) HasModifiedAt() bool`
+
+HasModifiedAt returns a boolean if a field has been set.
 
 ### GetName
 

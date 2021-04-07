@@ -914,7 +914,7 @@ Name | Type | Description  | Notes
 
 ## GetBrowserTest
 
-> SyntheticsTestDetails GetBrowserTest(ctx, publicId).Execute()
+> SyntheticsBrowserTest GetBrowserTest(ctx, publicId).Execute()
 
 Get a test configuration (browser)
 
@@ -946,7 +946,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetBrowserTest`: SyntheticsTestDetails
+    // response from `GetBrowserTest`: SyntheticsBrowserTest
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
     fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.GetBrowserTest:\n%s\n", responseContent)
 }
@@ -971,7 +971,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SyntheticsTestDetails**](SyntheticsTestDetails.md)
+[**SyntheticsBrowserTest**](SyntheticsBrowserTest.md)
 
 ### Authorization
 

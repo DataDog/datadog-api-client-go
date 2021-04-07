@@ -25,6 +25,8 @@ type UserAttributes struct {
 	Handle *string `json:"handle,omitempty"`
 	// URL of the user's icon.
 	Icon *string `json:"icon,omitempty"`
+	// Time that the user was last modified.
+	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// Name of the user.
 	Name *string `json:"name,omitempty"`
 	// Status of the user.
@@ -212,6 +214,38 @@ func (o *UserAttributes) SetIcon(v string) {
 	o.Icon = &v
 }
 
+// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
+func (o *UserAttributes) GetModifiedAt() time.Time {
+	if o == nil || o.ModifiedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ModifiedAt
+}
+
+// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserAttributes) GetModifiedAtOk() (*time.Time, bool) {
+	if o == nil || o.ModifiedAt == nil {
+		return nil, false
+	}
+	return o.ModifiedAt, true
+}
+
+// HasModifiedAt returns a boolean if a field has been set.
+func (o *UserAttributes) HasModifiedAt() bool {
+	if o != nil && o.ModifiedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
+func (o *UserAttributes) SetModifiedAt(v time.Time) {
+	o.ModifiedAt = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UserAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -356,6 +390,9 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Icon != nil {
 		toSerialize["icon"] = o.Icon
+	}
+	if o.ModifiedAt != nil {
+		toSerialize["modified_at"] = o.ModifiedAt
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name

@@ -142,6 +142,20 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
+			{
+				URL:         "https://{subdomain}.{site}",
+				Description: "No description provided",
+				Variables: map[string]ServerVariable{
+					"site": ServerVariable{
+						Description:  "Any Datadog deployment.",
+						DefaultValue: "datadoghq.com",
+					},
+					"subdomain": ServerVariable{
+						Description:  "The subdomain where the API is deployed.",
+						DefaultValue: "api",
+					},
+				},
+			},
 		},
 		OperationServers: map[string]ServerConfigurations{},
 		unstableOperations: map[string]bool{
