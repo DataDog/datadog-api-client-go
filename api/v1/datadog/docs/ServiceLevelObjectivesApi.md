@@ -110,7 +110,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewServiceLevelObjectiveRequest("Name_example", []datadog.SLOThreshold{*datadog.NewSLOThreshold(float64(99.9), datadog.SLOTimeframe("7d"))}, datadog.SLOType("metric")) // ServiceLevelObjectiveRequest | Service level objective request object.
+    body := *datadog.NewServiceLevelObjectiveRequest("Custom Metric SLO", []datadog.SLOThreshold{*datadog.NewSLOThreshold(float64(99.9), datadog.SLOTimeframe("7d"))}, datadog.SLOType("metric")) // ServiceLevelObjectiveRequest | Service level objective request object.
 
     configuration := datadog.NewConfiguration()
 
@@ -562,7 +562,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     sloId := "sloId_example" // string | The ID of the service level objective object.
-    body := *datadog.NewServiceLevelObjective("Name_example", []datadog.SLOThreshold{*datadog.NewSLOThreshold(float64(99.9), datadog.SLOTimeframe("7d"))}, datadog.SLOType("metric")) // ServiceLevelObjective | The edited service level objective request object.
+    body := *datadog.NewServiceLevelObjective("Custom Metric SLO", []datadog.SLOThreshold{*datadog.NewSLOThreshold(float64(99.9), datadog.SLOTimeframe("7d"))}, datadog.SLOType("metric")) // ServiceLevelObjective | The edited service level objective request object.
 
     configuration := datadog.NewConfiguration()
 

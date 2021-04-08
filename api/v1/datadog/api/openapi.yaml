@@ -15238,8 +15238,8 @@ components:
             handle: handle
             email: email
           query:
-            denominator: ""
-            numerator: ""
+            denominator: sum:my.custom.metric{*}.as_count()
+            numerator: sum:my.custom.metric{type:good}.as_count()
           created_at: 0
           description: description
           groups:
@@ -15249,11 +15249,16 @@ components:
           tags:
           - env:prod
           - app:core
-          thresholds: []
+          thresholds:
+          - target: 95
+            timeframe: 7d
+          - target: 95
+            timeframe: 30d
+            warning: 97
           monitor_ids:
           - 1
           - 1
-          name: ""
+          name: Custom Metric SLO
           id: id
           modified_at: 6
           monitor_tags:
@@ -15264,8 +15269,8 @@ components:
             handle: handle
             email: email
           query:
-            denominator: ""
-            numerator: ""
+            denominator: sum:my.custom.metric{*}.as_count()
+            numerator: sum:my.custom.metric{type:good}.as_count()
           created_at: 0
           description: description
           groups:
@@ -15275,11 +15280,16 @@ components:
           tags:
           - env:prod
           - app:core
-          thresholds: []
+          thresholds:
+          - target: 95
+            timeframe: 7d
+          - target: 95
+            timeframe: 30d
+            warning: 97
           monitor_ids:
           - 1
           - 1
-          name: ""
+          name: Custom Metric SLO
           id: id
           modified_at: 6
           monitor_tags:
@@ -15313,8 +15323,8 @@ components:
             handle: handle
             email: email
           query:
-            denominator: ""
-            numerator: ""
+            denominator: sum:my.custom.metric{*}.as_count()
+            numerator: sum:my.custom.metric{type:good}.as_count()
           created_at: 0
           description: description
           groups:
@@ -15324,11 +15334,16 @@ components:
           tags:
           - env:prod
           - app:core
-          thresholds: []
+          thresholds:
+          - target: 95
+            timeframe: 7d
+          - target: 95
+            timeframe: 30d
+            warning: 97
           monitor_ids:
           - 1
           - 1
-          name: ""
+          name: Custom Metric SLO
           id: id
           modified_at: 6
           monitor_tags:
@@ -15553,8 +15568,8 @@ components:
           handle: handle
           email: email
         query:
-          denominator: ""
-          numerator: ""
+          denominator: sum:my.custom.metric{*}.as_count()
+          numerator: sum:my.custom.metric{type:good}.as_count()
         created_at: 0
         description: description
         groups:
@@ -15564,11 +15579,16 @@ components:
         tags:
         - env:prod
         - app:core
-        thresholds: []
+        thresholds:
+        - target: 95
+          timeframe: 7d
+        - target: 95
+          timeframe: 30d
+          warning: 97
         monitor_ids:
         - 1
         - 1
-        name: ""
+        name: Custom Metric SLO
         id: id
         modified_at: 6
         monitor_tags:
@@ -15645,7 +15665,7 @@ components:
           type: array
         name:
           description: The name of the service level objective object.
-          example: ""
+          example: Custom Metric SLO
           type: string
         query:
           $ref: '#/components/schemas/ServiceLevelObjectiveQuery'
@@ -15665,7 +15685,12 @@ components:
           description: |-
             The thresholds (timeframes and associated targets) for this service level
             objective object.
-          example: []
+          example:
+          - target: 95
+            timeframe: 7d
+          - target: 95
+            timeframe: 30d
+            warning: 97
           items:
             $ref: '#/components/schemas/SLOThreshold'
           type: array
@@ -15681,16 +15706,16 @@ components:
         to be used because this will sum up all request counts instead of averaging them, or taking the max or
         min of all of those requests.
       example:
-        denominator: ""
-        numerator: ""
+        denominator: sum:my.custom.metric{*}.as_count()
+        numerator: sum:my.custom.metric{type:good}.as_count()
       properties:
         denominator:
           description: A Datadog metric query for total (valid) events.
-          example: ""
+          example: sum:my.custom.metric{*}.as_count()
           type: string
         numerator:
           description: A Datadog metric query for good events.
-          example: ""
+          example: sum:my.custom.metric{type:good}.as_count()
           type: string
       required:
       - denominator
@@ -15701,40 +15726,28 @@ components:
         A service level objective object includes a service level indicator, thresholds
         for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
       example:
-        creator:
-          name: name
-          handle: handle
-          email: email
-        thresholds: []
+        thresholds:
+        - target: 95
+          timeframe: 7d
+        - target: 95
+          timeframe: 30d
+          warning: 97
         query:
-          denominator: ""
-          numerator: ""
+          denominator: sum:my.custom.metric{*}.as_count()
+          numerator: sum:my.custom.metric{type:good}.as_count()
         monitor_ids:
-        - 1
-        - 1
-        name: ""
-        created_at: 0
+        - 0
+        - 0
+        name: Custom Metric SLO
         description: description
         groups:
         - env:prod
         - role:mysql
-        id: id
-        modified_at: 6
         type: metric
         tags:
         - env:prod
         - app:core
       properties:
-        created_at:
-          description: |-
-            Creation timestamp (UNIX time in seconds)
-
-            Always included in service level objective responses.
-          format: int64
-          readOnly: true
-          type: integer
-        creator:
-          $ref: '#/components/schemas/Creator'
         description:
           description: |-
             A user-defined description of the service level objective.
@@ -15757,21 +15770,6 @@ components:
             description: A group name, for instance `env:prod`.
             type: string
           type: array
-        id:
-          description: |-
-            A unique identifier for the service level objective object.
-
-            Always included in service level objective responses.
-          readOnly: true
-          type: string
-        modified_at:
-          description: |-
-            Modification timestamp (UNIX time in seconds)
-
-            Always included in service level objective responses.
-          format: int64
-          readOnly: true
-          type: integer
         monitor_ids:
           description: |-
             A list of monitor ids that defines the scope of a monitor service level
@@ -15783,7 +15781,7 @@ components:
           type: array
         name:
           description: The name of the service level objective object.
-          example: ""
+          example: Custom Metric SLO
           type: string
         query:
           $ref: '#/components/schemas/ServiceLevelObjectiveQuery'
@@ -15803,7 +15801,12 @@ components:
           description: |-
             The thresholds (timeframes and associated targets) for this service level
             objective object.
-          example: []
+          example:
+          - target: 95
+            timeframe: 7d
+          - target: 95
+            timeframe: 30d
+            warning: 97
           items:
             $ref: '#/components/schemas/SLOThreshold'
           type: array
