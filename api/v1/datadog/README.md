@@ -118,6 +118,7 @@ Class | Method | HTTP request | Description
 *DowntimesApi* | [**ListDowntimes**](docs/DowntimesApi.md#listdowntimes) | **Get** /api/v1/downtime | Get all downtimes
 *DowntimesApi* | [**ListMonitorDowntimes**](docs/DowntimesApi.md#listmonitordowntimes) | **Get** /api/v1/monitor/{monitor_id}/downtimes | Get all downtimes for a monitor
 *DowntimesApi* | [**UpdateDowntime**](docs/DowntimesApi.md#updatedowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
+*EventsApi* | [**CreateEvent**](docs/EventsApi.md#createevent) | **Post** /api/v1/events | Post an event
 *EventsApi* | [**GetEvent**](docs/EventsApi.md#getevent) | **Get** /api/v1/events/{event_id} | Get an event
 *EventsApi* | [**ListEvents**](docs/EventsApi.md#listevents) | **Get** /api/v1/events | Query the event stream
 *GCPIntegrationApi* | [**CreateGCPIntegration**](docs/GCPIntegrationApi.md#creategcpintegration) | **Post** /api/v1/integration/gcp | Create a GCP integration
@@ -140,6 +141,7 @@ Class | Method | HTTP request | Description
 *KeyManagementApi* | [**UpdateAPIKey**](docs/KeyManagementApi.md#updateapikey) | **Put** /api/v1/api_key/{key} | Edit an API key
 *KeyManagementApi* | [**UpdateApplicationKey**](docs/KeyManagementApi.md#updateapplicationkey) | **Put** /api/v1/application_key/{key} | Edit an application key
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v1/logs-queries/list | Search logs
+*LogsApi* | [**SubmitLog**](docs/LogsApi.md#submitlog) | **Post** /v1/input | Send logs
 *LogsIndexesApi* | [**CreateLogsIndex**](docs/LogsIndexesApi.md#createlogsindex) | **Post** /api/v1/logs/config/indexes | Create an index
 *LogsIndexesApi* | [**GetLogsIndex**](docs/LogsIndexesApi.md#getlogsindex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
 *LogsIndexesApi* | [**GetLogsIndexOrder**](docs/LogsIndexesApi.md#getlogsindexorder) | **Get** /api/v1/logs/config/index-order | Get indexes order
@@ -157,6 +159,7 @@ Class | Method | HTTP request | Description
 *MetricsApi* | [**ListActiveMetrics**](docs/MetricsApi.md#listactivemetrics) | **Get** /api/v1/metrics | Get active metrics list
 *MetricsApi* | [**ListMetrics**](docs/MetricsApi.md#listmetrics) | **Get** /api/v1/search | Search metrics
 *MetricsApi* | [**QueryMetrics**](docs/MetricsApi.md#querymetrics) | **Get** /api/v1/query | Query timeseries points
+*MetricsApi* | [**SubmitMetrics**](docs/MetricsApi.md#submitmetrics) | **Post** /api/v1/series | Submit metrics
 *MetricsApi* | [**UpdateMetricMetadata**](docs/MetricsApi.md#updatemetricmetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
 *MonitorsApi* | [**CheckCanDeleteMonitor**](docs/MonitorsApi.md#checkcandeletemonitor) | **Get** /api/v1/monitor/can_delete | Check if a monitor can be deleted
 *MonitorsApi* | [**CreateMonitor**](docs/MonitorsApi.md#createmonitor) | **Post** /api/v1/monitor | Create a monitor
@@ -174,6 +177,7 @@ Class | Method | HTTP request | Description
 *PagerDutyIntegrationApi* | [**DeletePagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#deletepagerdutyintegrationservice) | **Delete** /api/v1/integration/pagerduty/configuration/services/{service_name} | Delete a single service object
 *PagerDutyIntegrationApi* | [**GetPagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#getpagerdutyintegrationservice) | **Get** /api/v1/integration/pagerduty/configuration/services/{service_name} | Get a single service object
 *PagerDutyIntegrationApi* | [**UpdatePagerDutyIntegrationService**](docs/PagerDutyIntegrationApi.md#updatepagerdutyintegrationservice) | **Put** /api/v1/integration/pagerduty/configuration/services/{service_name} | Update a single service object
+*ServiceChecksApi* | [**SubmitServiceCheck**](docs/ServiceChecksApi.md#submitservicecheck) | **Post** /api/v1/check_run | Submit a Service Check
 *ServiceLevelObjectiveCorrectionsApi* | [**CreateSLOCorrection**](docs/ServiceLevelObjectiveCorrectionsApi.md#createslocorrection) | **Post** /api/v1/slo/correction | Create an SLO correction
 *ServiceLevelObjectiveCorrectionsApi* | [**DeleteSLOCorrection**](docs/ServiceLevelObjectiveCorrectionsApi.md#deleteslocorrection) | **Delete** /api/v1/slo/correction/{slo_correction_id} | Delete an SLO Correction
 *ServiceLevelObjectiveCorrectionsApi* | [**GetSLOCorrection**](docs/ServiceLevelObjectiveCorrectionsApi.md#getslocorrection) | **Get** /api/v1/slo/correction/{slo_correction_id} | Get an SLO correction for an SLO
@@ -306,6 +310,7 @@ Class | Method | HTTP request | Description
  - [CheckCanDeleteSLOResponseData](docs/CheckCanDeleteSLOResponseData.md)
  - [CheckStatusWidgetDefinition](docs/CheckStatusWidgetDefinition.md)
  - [CheckStatusWidgetDefinitionType](docs/CheckStatusWidgetDefinitionType.md)
+ - [ContentEncoding](docs/ContentEncoding.md)
  - [Creator](docs/Creator.md)
  - [Dashboard](docs/Dashboard.md)
  - [DashboardDeleteResponse](docs/DashboardDeleteResponse.md)
@@ -326,6 +331,8 @@ Class | Method | HTTP request | Description
  - [DowntimeRecurrence](docs/DowntimeRecurrence.md)
  - [Event](docs/Event.md)
  - [EventAlertType](docs/EventAlertType.md)
+ - [EventCreateRequest](docs/EventCreateRequest.md)
+ - [EventCreateResponse](docs/EventCreateResponse.md)
  - [EventListResponse](docs/EventListResponse.md)
  - [EventPriority](docs/EventPriority.md)
  - [EventQueryDefinition](docs/EventQueryDefinition.md)
@@ -359,6 +366,8 @@ Class | Method | HTTP request | Description
  - [GraphSnapshot](docs/GraphSnapshot.md)
  - [GroupWidgetDefinition](docs/GroupWidgetDefinition.md)
  - [GroupWidgetDefinitionType](docs/GroupWidgetDefinitionType.md)
+ - [HTTPLogError](docs/HTTPLogError.md)
+ - [HTTPLogItem](docs/HTTPLogItem.md)
  - [HTTPMethod](docs/HTTPMethod.md)
  - [HeatMapWidgetDefinition](docs/HeatMapWidgetDefinition.md)
  - [HeatMapWidgetDefinitionType](docs/HeatMapWidgetDefinitionType.md)
@@ -390,6 +399,7 @@ Class | Method | HTTP request | Description
  - [IdpResponse](docs/IdpResponse.md)
  - [ImageWidgetDefinition](docs/ImageWidgetDefinition.md)
  - [ImageWidgetDefinitionType](docs/ImageWidgetDefinitionType.md)
+ - [IntakePayloadAccepted](docs/IntakePayloadAccepted.md)
  - [Log](docs/Log.md)
  - [LogContent](docs/LogContent.md)
  - [LogQueryDefinition](docs/LogQueryDefinition.md)
@@ -451,6 +461,7 @@ Class | Method | HTTP request | Description
  - [MetricSearchResponse](docs/MetricSearchResponse.md)
  - [MetricSearchResponseResults](docs/MetricSearchResponseResults.md)
  - [MetricsListResponse](docs/MetricsListResponse.md)
+ - [MetricsPayload](docs/MetricsPayload.md)
  - [MetricsQueryMetadata](docs/MetricsQueryMetadata.md)
  - [MetricsQueryResponse](docs/MetricsQueryResponse.md)
  - [MetricsQueryUnit](docs/MetricsQueryUnit.md)
@@ -526,6 +537,9 @@ Class | Method | HTTP request | Description
  - [ScatterPlotWidgetDefinition](docs/ScatterPlotWidgetDefinition.md)
  - [ScatterPlotWidgetDefinitionRequests](docs/ScatterPlotWidgetDefinitionRequests.md)
  - [ScatterPlotWidgetDefinitionType](docs/ScatterPlotWidgetDefinitionType.md)
+ - [Series](docs/Series.md)
+ - [ServiceCheck](docs/ServiceCheck.md)
+ - [ServiceCheckStatus](docs/ServiceCheckStatus.md)
  - [ServiceLevelObjective](docs/ServiceLevelObjective.md)
  - [ServiceLevelObjectiveQuery](docs/ServiceLevelObjectiveQuery.md)
  - [ServiceLevelObjectiveRequest](docs/ServiceLevelObjectiveRequest.md)
