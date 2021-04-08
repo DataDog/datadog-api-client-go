@@ -14,17 +14,10 @@ import (
 
 // ServiceLevelObjectiveRequest A service level objective object includes a service level indicator, thresholds for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
 type ServiceLevelObjectiveRequest struct {
-	// Creation timestamp (UNIX time in seconds)  Always included in service level objective responses.
-	CreatedAt *int64   `json:"created_at,omitempty"`
-	Creator   *Creator `json:"creator,omitempty"`
 	// A user-defined description of the service level objective.  Always included in service level objective responses (but may be `null`). Optional in create/update requests.
 	Description NullableString `json:"description,omitempty"`
 	// A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.  Included in service level objective responses if it is not empty. Optional in create/update requests for monitor service level objectives, but may only be used when then length of the `monitor_ids` field is one.
 	Groups *[]string `json:"groups,omitempty"`
-	// A unique identifier for the service level objective object.  Always included in service level objective responses.
-	Id *string `json:"id,omitempty"`
-	// Modification timestamp (UNIX time in seconds)  Always included in service level objective responses.
-	ModifiedAt *int64 `json:"modified_at,omitempty"`
 	// A list of monitor ids that defines the scope of a monitor service level objective. **Required if type is `monitor`**.
 	MonitorIds *[]int64 `json:"monitor_ids,omitempty"`
 	// The name of the service level objective object.
@@ -55,70 +48,6 @@ func NewServiceLevelObjectiveRequest(name string, thresholds []SLOThreshold, typ
 func NewServiceLevelObjectiveRequestWithDefaults() *ServiceLevelObjectiveRequest {
 	this := ServiceLevelObjectiveRequest{}
 	return &this
-}
-
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *ServiceLevelObjectiveRequest) GetCreatedAt() int64 {
-	if o == nil || o.CreatedAt == nil {
-		var ret int64
-		return ret
-	}
-	return *o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectiveRequest) GetCreatedAtOk() (*int64, bool) {
-	if o == nil || o.CreatedAt == nil {
-		return nil, false
-	}
-	return o.CreatedAt, true
-}
-
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *ServiceLevelObjectiveRequest) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
-func (o *ServiceLevelObjectiveRequest) SetCreatedAt(v int64) {
-	o.CreatedAt = &v
-}
-
-// GetCreator returns the Creator field value if set, zero value otherwise.
-func (o *ServiceLevelObjectiveRequest) GetCreator() Creator {
-	if o == nil || o.Creator == nil {
-		var ret Creator
-		return ret
-	}
-	return *o.Creator
-}
-
-// GetCreatorOk returns a tuple with the Creator field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectiveRequest) GetCreatorOk() (*Creator, bool) {
-	if o == nil || o.Creator == nil {
-		return nil, false
-	}
-	return o.Creator, true
-}
-
-// HasCreator returns a boolean if a field has been set.
-func (o *ServiceLevelObjectiveRequest) HasCreator() bool {
-	if o != nil && o.Creator != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCreator gets a reference to the given Creator and assigns it to the Creator field.
-func (o *ServiceLevelObjectiveRequest) SetCreator(v Creator) {
-	o.Creator = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -194,70 +123,6 @@ func (o *ServiceLevelObjectiveRequest) HasGroups() bool {
 // SetGroups gets a reference to the given []string and assigns it to the Groups field.
 func (o *ServiceLevelObjectiveRequest) SetGroups(v []string) {
 	o.Groups = &v
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *ServiceLevelObjectiveRequest) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectiveRequest) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *ServiceLevelObjectiveRequest) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *ServiceLevelObjectiveRequest) SetId(v string) {
-	o.Id = &v
-}
-
-// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
-func (o *ServiceLevelObjectiveRequest) GetModifiedAt() int64 {
-	if o == nil || o.ModifiedAt == nil {
-		var ret int64
-		return ret
-	}
-	return *o.ModifiedAt
-}
-
-// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceLevelObjectiveRequest) GetModifiedAtOk() (*int64, bool) {
-	if o == nil || o.ModifiedAt == nil {
-		return nil, false
-	}
-	return o.ModifiedAt, true
-}
-
-// HasModifiedAt returns a boolean if a field has been set.
-func (o *ServiceLevelObjectiveRequest) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetModifiedAt gets a reference to the given int64 and assigns it to the ModifiedAt field.
-func (o *ServiceLevelObjectiveRequest) SetModifiedAt(v int64) {
-	o.ModifiedAt = &v
 }
 
 // GetMonitorIds returns the MonitorIds field value if set, zero value otherwise.
@@ -430,23 +295,11 @@ func (o *ServiceLevelObjectiveRequest) SetType(v SLOType) {
 
 func (o ServiceLevelObjectiveRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.Creator != nil {
-		toSerialize["creator"] = o.Creator
-	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
 	if o.Groups != nil {
 		toSerialize["groups"] = o.Groups
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.ModifiedAt != nil {
-		toSerialize["modified_at"] = o.ModifiedAt
 	}
 	if o.MonitorIds != nil {
 		toSerialize["monitor_ids"] = o.MonitorIds
