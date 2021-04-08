@@ -4,12 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **int64** | Creation timestamp (UNIX time in seconds)  Always included in service level objective responses. | [optional] [readonly] 
-**Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
 **Description** | Pointer to **NullableString** | A user-defined description of the service level objective.  Always included in service level objective responses (but may be &#x60;null&#x60;). Optional in create/update requests. | [optional] 
 **Groups** | Pointer to **[]string** | A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.  Included in service level objective responses if it is not empty. Optional in create/update requests for monitor service level objectives, but may only be used when then length of the &#x60;monitor_ids&#x60; field is one. | [optional] 
-**Id** | Pointer to **string** | A unique identifier for the service level objective object.  Always included in service level objective responses. | [optional] [readonly] 
-**ModifiedAt** | Pointer to **int64** | Modification timestamp (UNIX time in seconds)  Always included in service level objective responses. | [optional] [readonly] 
 **MonitorIds** | Pointer to **[]int64** | A list of monitor ids that defines the scope of a monitor service level objective. **Required if type is &#x60;monitor&#x60;**. | [optional] 
 **Name** | **string** | The name of the service level objective object. | 
 **Query** | Pointer to [**ServiceLevelObjectiveQuery**](ServiceLevelObjectiveQuery.md) |  | [optional] 
@@ -35,56 +31,6 @@ will change when the set of required properties is changed
 NewServiceLevelObjectiveRequestWithDefaults instantiates a new ServiceLevelObjectiveRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetCreatedAt
-
-`func (o *ServiceLevelObjectiveRequest) GetCreatedAt() int64`
-
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
-
-### GetCreatedAtOk
-
-`func (o *ServiceLevelObjectiveRequest) GetCreatedAtOk() (*int64, bool)`
-
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedAt
-
-`func (o *ServiceLevelObjectiveRequest) SetCreatedAt(v int64)`
-
-SetCreatedAt sets CreatedAt field to given value.
-
-### HasCreatedAt
-
-`func (o *ServiceLevelObjectiveRequest) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
-
-### GetCreator
-
-`func (o *ServiceLevelObjectiveRequest) GetCreator() Creator`
-
-GetCreator returns the Creator field if non-nil, zero value otherwise.
-
-### GetCreatorOk
-
-`func (o *ServiceLevelObjectiveRequest) GetCreatorOk() (*Creator, bool)`
-
-GetCreatorOk returns a tuple with the Creator field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreator
-
-`func (o *ServiceLevelObjectiveRequest) SetCreator(v Creator)`
-
-SetCreator sets Creator field to given value.
-
-### HasCreator
-
-`func (o *ServiceLevelObjectiveRequest) HasCreator() bool`
-
-HasCreator returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -145,56 +91,6 @@ SetGroups sets Groups field to given value.
 `func (o *ServiceLevelObjectiveRequest) HasGroups() bool`
 
 HasGroups returns a boolean if a field has been set.
-
-### GetId
-
-`func (o *ServiceLevelObjectiveRequest) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *ServiceLevelObjectiveRequest) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *ServiceLevelObjectiveRequest) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *ServiceLevelObjectiveRequest) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetModifiedAt
-
-`func (o *ServiceLevelObjectiveRequest) GetModifiedAt() int64`
-
-GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
-
-### GetModifiedAtOk
-
-`func (o *ServiceLevelObjectiveRequest) GetModifiedAtOk() (*int64, bool)`
-
-GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModifiedAt
-
-`func (o *ServiceLevelObjectiveRequest) SetModifiedAt(v int64)`
-
-SetModifiedAt sets ModifiedAt field to given value.
-
-### HasModifiedAt
-
-`func (o *ServiceLevelObjectiveRequest) HasModifiedAt() bool`
-
-HasModifiedAt returns a boolean if a field has been set.
 
 ### GetMonitorIds
 
