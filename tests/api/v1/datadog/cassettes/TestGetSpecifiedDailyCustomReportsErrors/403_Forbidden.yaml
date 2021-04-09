@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - GetSpecifiedDailyCustomReports
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7101122012473571411"
+      - "457461788117226752"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5535048206352670465"
+      - "8855353870704555471"
     url: https://api.datadoghq.com/api/v1/daily_custom_reports/2010-01-01
     method: GET
   response:
@@ -27,12 +27,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Thu, 16 Jul 2020 18:55:59 GMT
+      - Fri, 09 Apr 2021 14:19:57 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

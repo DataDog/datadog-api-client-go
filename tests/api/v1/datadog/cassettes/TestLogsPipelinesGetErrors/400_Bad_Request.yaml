@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - GetLogsPipeline
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5177282418704149457"
+      - "4610700039752083098"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6083280995466279807"
+      - "865035119456876293"
     url: https://api.datadoghq.com/api/v1/logs/config/pipelines/id
     method: GET
   response:
@@ -28,14 +28,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "70"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:49 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:17:10 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,7 +39,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2493025"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -51,9 +47,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "4990"
+      - "4988"
       X-Ratelimit-Reset:
-      - "1691"
+      - "2571"
     status: 400 Bad Request
     code: 400
     duration: ""

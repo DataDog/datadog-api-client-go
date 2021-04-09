@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4918933915849250801"
+      - "2416455424882357520"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1364195932317424027"
+      - "3526280842162150238"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:26:04 GMT
+      - Fri, 09 Apr 2021 14:14:36 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276054"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

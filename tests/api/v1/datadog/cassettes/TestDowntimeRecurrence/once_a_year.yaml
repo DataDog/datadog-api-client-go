@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"go-TestDowntimeRecurrence-once_a_year-local-1589290250; once a year","recurrence":{"period":1,"type":"years"},"scope":["*"],"start":1589290248,"timezone":"Etc/UTC"}
+      {"message":"Test-TestDowntimeRecurrence-once_a_year-1617977627; once a year","recurrence":{"period":1,"type":"years"},"scope":["*"],"start":1617977627,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -13,46 +13,37 @@ interactions:
       Dd-Operation-Id:
       - CreateDowntime
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "543721321004881404"
+      - "3394285710792511079"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2107215364500257571"
+      - "8616648158461548480"
     url: https://api.datadoghq.com/api/v1/downtime
     method: POST
   response:
-    body: '{"recurrence":{"until_date":null,"until_occurrences":null,"week_days":null,"type":"years","period":1},"end":null,"monitor_tags":["*"],"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1589290248,"creator_id":1379826,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"go-TestDowntimeRecurrence-once_a_year-local-1589290250;
-      once a year","downtime_type":0,"id":825972152,"updater_id":null}'
+    body: '{"recurrence":{"until_date":null,"until_occurrences":null,"week_days":null,"type":"years","period":1},"end":null,"monitor_tags":["*"],"child_id":null,"canceled":null,"monitor_id":null,"org_id":321813,"disabled":false,"start":1617977627,"creator_id":1445416,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"Test-TestDowntimeRecurrence-once_a_year-1617977627;
+      once a year","downtime_type":0,"id":1213943814,"updater_id":null}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
-      - application/json; charset=utf-8
+      - application/json
       Date:
-      - Tue, 12 May 2020 13:30:50 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:13:48 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:30:50 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - DNJM9d0LaQZJbuEjasKEmgCwDoiLnJW9mPQJm+yWIlQRbFhX4Vzx4uuDCt38dWhb
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -67,14 +58,14 @@ interactions:
       Dd-Operation-Id:
       - CancelDowntime
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8062560961873600530"
+      - "3238410692056149857"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2107215364500257571"
-    url: https://api.datadoghq.com/api/v1/downtime/825972152
+      - "8616648158461548480"
+    url: https://api.datadoghq.com/api/v1/downtime/1213943814
     method: DELETE
   response:
     body: ""
@@ -85,27 +76,18 @@ interactions:
       - keep-alive
       Content-Length:
       - "0"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
-      - text/html; charset=utf-8
+      - application/json
       Date:
-      - Tue, 12 May 2020 13:30:50 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:13:48 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:30:50 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - nwn8Akm+cp12Jtby9xyfYjHWK2KZDWf5LxY+SMa+2NK6hVIBcKsVHXjynaTEG+o0
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content

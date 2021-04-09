@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-Get_a_role_returns_OK_response-1617974758"},"type":"roles"}}
+      {"data":{"attributes":{"name":"Test-Get_a_role_returns_OK_response-1617977669"},"type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7362164191305848822"
+      - "8998373833420607915"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4033712618450727095"
+      - "665182133366914258"
     url: https://api.datadoghq.com/api/v2/roles
     method: POST
   response:
-    body: '{"data":{"type":"roles","id":"1ee5c9ba-9937-11eb-9ceb-da7ad0900002","attributes":{"name":"Test-Get_a_role_returns_OK_response-1617974758","created_at":"2021-04-09T13:25:58.555041+00:00","modified_at":"2021-04-09T13:25:58.555041+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"}]}}}}'
+    body: '{"data":{"type":"roles","id":"e637af00-993d-11eb-9ceb-da7ad0900002","attributes":{"name":"Test-Get_a_role_returns_OK_response-1617977669","created_at":"2021-04-09T14:14:29.938563+00:00","modified_at":"2021-04-09T14:14:29.938563+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"}]}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:25:58 GMT
+      - Fri, 09 Apr 2021 14:14:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
+      - dCmL/3rURV6BPeaqeP3Rxigq41m5CAb17XjrRE42uZ01zpr07HVhbL5/3TWMkvgu
       X-Dd-Version:
-      - "35.4276054"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -52,9 +52,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "487"
+      - "491"
       X-Ratelimit-Reset:
-      - "2"
+      - "31"
     status: 200 OK
     code: 200
     duration: ""
@@ -69,15 +69,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4413170526667058284"
+      - "8519853128924371726"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4033712618450727095"
-    url: https://api.datadoghq.com/api/v2/roles/1ee5c9ba-9937-11eb-9ceb-da7ad0900002
+      - "665182133366914258"
+    url: https://api.datadoghq.com/api/v2/roles/e637af00-993d-11eb-9ceb-da7ad0900002
     method: GET
   response:
-    body: '{"data":{"type":"roles","id":"1ee5c9ba-9937-11eb-9ceb-da7ad0900002","attributes":{"name":"Test-Get_a_role_returns_OK_response-1617974758","created_at":"2021-04-09T13:25:58.555041+00:00","modified_at":"2021-04-09T13:25:58.555041+00:00","user_count":0},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"}]}}}}'
+    body: '{"data":{"type":"roles","id":"e637af00-993d-11eb-9ceb-da7ad0900002","attributes":{"name":"Test-Get_a_role_returns_OK_response-1617977669","created_at":"2021-04-09T14:14:29.938563+00:00","modified_at":"2021-04-09T14:14:29.938563+00:00","user_count":0},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"}]}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -86,7 +86,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:25:58 GMT
+      - Fri, 09 Apr 2021 14:14:30 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -96,9 +96,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
+      - B1nwy/pPNqX+q4pQT22cdp1QCexE35IF8qwSHy0Nf7IW0Y881qtn4tXN1lpmzaKc
       X-Dd-Version:
-      - "35.4276054"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -106,9 +106,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "486"
+      - "490"
       X-Ratelimit-Reset:
-      - "2"
+      - "30"
     status: 200 OK
     code: 200
     duration: ""
@@ -123,12 +123,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5851868075271393228"
+      - "6200679181163378374"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4033712618450727095"
-    url: https://api.datadoghq.com/api/v2/roles/1ee5c9ba-9937-11eb-9ceb-da7ad0900002
+      - "665182133366914258"
+    url: https://api.datadoghq.com/api/v2/roles/e637af00-993d-11eb-9ceb-da7ad0900002
     method: DELETE
   response:
     body: ""
@@ -142,7 +142,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:25:58 GMT
+      - Fri, 09 Apr 2021 14:14:30 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -150,9 +150,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
+      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
       X-Dd-Version:
-      - "35.4276054"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -160,9 +160,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "485"
+      - "489"
       X-Ratelimit-Reset:
-      - "2"
+      - "30"
     status: 204 No Content
     code: 204
     duration: ""

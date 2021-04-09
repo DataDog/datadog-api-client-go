@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"go-TestAWSIntegrationCreateConflictErrors-local-1598601523","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestAWSIntegrationCreateConflictErrors-1617977584","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - CreateAWSAccount
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.15; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3588347143740989606"
+      - "3440019712103124127"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6514991348278065548"
+      - "3754509228850180414"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
@@ -34,20 +34,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 28 Aug 2020 07:58:45 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:13:05 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 04-Sep-2020 07:58:45 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2947776"
+      - "35.4276543"
       X-Frame-Options:
       - SAMEORIGIN
     status: 409 Conflict

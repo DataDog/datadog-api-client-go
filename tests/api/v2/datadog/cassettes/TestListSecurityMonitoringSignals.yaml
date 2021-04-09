@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"go-TestListSecurityMonitoringSignals-local-1609250624","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"go-TestListSecurityMonitoringSignals-local-1609250624"}]}
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"Test-TestListSecurityMonitoringSignals-1617978301","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"Test-TestListSecurityMonitoringSignals-1617978301"}]}
     form: {}
     headers:
       Accept:
@@ -13,19 +13,19 @@ interactions:
       Dd-Operation-Id:
       - CreateSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7495779202414376778"
+      - "3894358888564986760"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8696295697496466997"
+      - "1255819800666471206"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1609250624906,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1609250624","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"yyp-jqs-yzj","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1609250624"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617978302186,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestListSecurityMonitoringSignals-1617978301","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"cyp-scn-o3m","isDefault":false,"name":"Test-TestListSecurityMonitoringSignals-1617978301"}'
     headers:
       Cache-Control:
       - no-cache
@@ -36,14 +36,9 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 29 Dec 2020 14:03:44 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:25:02 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:03:44 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -51,28 +46,28 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - amxMFAqiSVjNyNv9bH0oCnBEjAVk4yOIMrMQTyRWQ0WFa2JUcjQXHejBMO8Fj7RQ
+      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
       X-Dd-Version:
-      - "35.3609133"
+      - "35.4276812"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609249624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617977301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "1054981987080924330"
+      - "3419518213206230537"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1054981987080924330"
+      - "3419518213206230537"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -83,24 +78,24 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:03:45 GMT
+      - Fri, 09 Apr 2021 14:25:02 GMT
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609250624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617978301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "352410072392623710"
+      - "6182011815823043785"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "352410072392623710"
+      - "6182011815823043785"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -111,7 +106,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:03:45 GMT
+      - Fri, 09 Apr 2021 14:25:02 GMT
     status: 200 OK
     code: 200
     duration: ""
@@ -124,14 +119,14 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringSignals
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "865390082516425437"
+      - "8301986336811430821"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8696295697496466997"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00
+      - "1255819800666471206"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00
     method: GET
   response:
     body: '{"data":[]}'
@@ -147,41 +142,36 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 29 Dec 2020 14:03:45 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:25:02 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:03:45 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - T0M8IUSL6bs+R5gmxnIS28KoD5lx0N0IU04TSlNtiD3lkhl9dUsMKLoAlE6epfmg
+      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
       X-Dd-Version:
-      - "35.3609133"
+      - "35.4276812"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609249624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617977301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "4262968057701900405"
+      - "8594866898820755813"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4262968057701900405"
+      - "8594866898820755813"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -192,24 +182,24 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:03:50 GMT
+      - Fri, 09 Apr 2021 14:25:07 GMT
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609250624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617978301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "5412039193893455"
+      - "7831451565982727150"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5412039193893455"
+      - "7831451565982727150"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -220,7 +210,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:03:50 GMT
+      - Fri, 09 Apr 2021 14:25:08 GMT
     status: 200 OK
     code: 200
     duration: ""
@@ -233,14 +223,14 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringSignals
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2545084250329838392"
+      - "251544674050993802"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8696295697496466997"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00
+      - "1255819800666471206"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00
     method: GET
   response:
     body: '{"data":[]}'
@@ -256,41 +246,36 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 29 Dec 2020 14:03:51 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:25:08 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:03:51 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - t3HUEZc5ir8lXNnqzkff2uqNehUi1czGcghjOPRgwaz4xZmG6O4HwEI6mdtgJV0i
+      - B1nwy/pPNqX+q4pQT22cdp1QCexE35IF8qwSHy0Nf7IW0Y881qtn4tXN1lpmzaKc
       X-Dd-Version:
-      - "35.3609133"
+      - "35.4276812"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609249624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617977301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "5376472533184067173"
+      - "7438118516545999776"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5376472533184067173"
+      - "7438118516545999776"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -301,24 +286,24 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:03:56 GMT
+      - Fri, 09 Apr 2021 14:25:13 GMT
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609250624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617978301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "3941805464702250176"
+      - "7265207958199778862"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3941805464702250176"
+      - "7265207958199778862"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -329,7 +314,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:03:56 GMT
+      - Fri, 09 Apr 2021 14:25:13 GMT
     status: 200 OK
     code: 200
     duration: ""
@@ -342,14 +327,14 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringSignals
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9165630612535243793"
+      - "2565516796890133085"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8696295697496466997"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00
+      - "1255819800666471206"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00
     method: GET
   response:
     body: '{"data":[]}'
@@ -365,41 +350,36 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 29 Dec 2020 14:03:56 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:25:13 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:03:56 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - kU8oLj3zrGL/NsMXNRXUrvjc5SX7m5Zi20YpnuFt2mcszekWqSDwHwhFasJc2aus
+      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
       X-Dd-Version:
-      - "35.3609133"
+      - "35.4276812"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609249624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617977301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "3250818975204920403"
+      - "4136794487234424277"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3250818975204920403"
+      - "4136794487234424277"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -410,24 +390,24 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:04:01 GMT
+      - Fri, 09 Apr 2021 14:25:18 GMT
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609250624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617978301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "7775002612593356095"
+      - "270076095936501822"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7775002612593356095"
+      - "270076095936501822"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -438,7 +418,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:04:01 GMT
+      - Fri, 09 Apr 2021 14:25:18 GMT
     status: 200 OK
     code: 200
     duration: ""
@@ -451,20 +431,17 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringSignals
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8339395037567685500"
+      - "5203388771601813945"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8696295697496466997"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00
+      - "1255819800666471206"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00
     method: GET
   response:
-    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGF1el9BZUFBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYcExRVUZEVWpZeGVIaHllakk1V2tGQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","groupByPaths":[]}],"title":"go-TestListSecurityMonitoringSignals-local-1609250624
-      - rule-case","relatedLogsQuery":{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","from":"2020-12-29T13:48:44.000Z","to":"2020-12-30T14:03:44.000Z"},"samples":[{"eventId":"AQAAAXauz9IAK5dbhgAAAABBWGF1ei16S0FBQ1I2MXh4cnoyOVpBQUE","content":{"status":"info","tags":["env:prod","test","go","signal","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:44.000Z","ingest_size_in_bytes":238,"custom":{"timestamp":1609250624000},"source":"go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","tiebreaker":731339654,"message":"go-TestListSecurityMonitoringSignals-local-1609250624"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXauz-zKAACR61xxrz29ZAAA"}],"workflow":{"events_matched":1,"first_seen":"2020-12-29T14:03:44.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
-      Detection","name":"go-TestListSecurityMonitoringSignals-local-1609250624","id":"yyp-jqs-yzj"},"last_seen":"2020-12-29T14:03:44.000Z"}},"message":"%%%\nrule
-      message\n%%%","tags":["source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","env:prod","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:51.710Z"},"type":"signal","id":"AQAAAXauz_AeAAAAAAAAAAB5eXAtanFzLXl6ai0xLUFYYXV6LXpLQUFDUjYxeHhyejI5WkFBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGF1el9BZUFBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYcExRVUZEVWpZeGVIaHllakk1V2tGQlFRIn0&filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00"}}'
+    body: '{"data":[]}'
     headers:
       Cache-Control:
       - no-cache
@@ -472,46 +449,41 @@ interactions:
       - keep-alive
       Content-Disposition:
       - inline
+      Content-Length:
+      - "11"
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 29 Dec 2020 14:04:01 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:25:18 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:04:01 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 0EJutvpOrBJC63ni/O57leUa99Oey4n8MQPI1nQqGf8zcU0cRqWsvs49QUsgOTGg
+      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
       X-Dd-Version:
-      - "35.3609133"
+      - "35.4276812"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609249624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617977301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "605032203307520989"
+      - "8255224159364314426"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "605032203307520989"
+      - "8255224159364314426"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -522,24 +494,24 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:04:07 GMT
+      - Fri, 09 Apr 2021 14:25:24 GMT
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609250624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617978301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "8217423953862528766"
+      - "619903000495466734"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8217423953862528766"
+      - "619903000495466734"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -550,7 +522,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:04:07 GMT
+      - Fri, 09 Apr 2021 14:25:24 GMT
     status: 200 OK
     code: 200
     duration: ""
@@ -563,20 +535,17 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringSignals
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1412391831246220227"
+      - "8581351094710366054"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8696295697496466997"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00
+      - "1255819800666471206"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00
     method: GET
   response:
-    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGF1el9BZUFBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYcExRVUZEVWpZeGVIaHllakk1V2tGQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","groupByPaths":[]}],"title":"go-TestListSecurityMonitoringSignals-local-1609250624
-      - rule-case","relatedLogsQuery":{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","from":"2020-12-29T13:48:44.000Z","to":"2020-12-30T14:03:44.000Z"},"samples":[{"eventId":"AQAAAXauz9IAK5dbhgAAAABBWGF1ei16S0FBQ1I2MXh4cnoyOVpBQUE","content":{"status":"info","tags":["env:prod","test","go","signal","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:44.000Z","ingest_size_in_bytes":238,"custom":{"timestamp":1609250624000},"source":"go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","tiebreaker":731339654,"message":"go-TestListSecurityMonitoringSignals-local-1609250624"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXauz-zKAACR61xxrz29ZAAA"}],"workflow":{"events_matched":1,"first_seen":"2020-12-29T14:03:44.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
-      Detection","name":"go-TestListSecurityMonitoringSignals-local-1609250624","id":"yyp-jqs-yzj"},"last_seen":"2020-12-29T14:03:44.000Z"}},"message":"%%%\nrule
-      message\n%%%","tags":["source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","env:prod","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:51.710Z"},"type":"signal","id":"AQAAAXauz_AeAAAAAAAAAAB5eXAtanFzLXl6ai0xLUFYYXV6LXpLQUFDUjYxeHhyejI5WkFBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGF1el9BZUFBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYcExRVUZEVWpZeGVIaHllakk1V2tGQlFRIn0&filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00"}}'
+    body: '{"data":[]}'
     headers:
       Cache-Control:
       - no-cache
@@ -584,46 +553,41 @@ interactions:
       - keep-alive
       Content-Disposition:
       - inline
+      Content-Length:
+      - "11"
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 29 Dec 2020 14:04:07 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:25:24 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:04:07 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Xg/YZweB8L/9y2bk9dLfKv6mTe53iWJN13eGXk6rwnDvTKZPuXf1i9AdXnCIzJ+B
+      - fIO2C4qGDheGHy4YbS+r3a3CXbh4cbRo7roILOimQyiHGjQdOat0cIpWCkupM1uX
       X-Dd-Version:
-      - "35.3609133"
+      - "35.4276812"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609249624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617977301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "8416908002312186507"
+      - "4904811738393191207"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8416908002312186507"
+      - "4904811738393191207"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -634,24 +598,24 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:04:12 GMT
+      - Fri, 09 Apr 2021 14:25:29 GMT
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"ddsource": "go-client-test-go-TestListSecurityMonitoringSignals-local-1609250624",
-      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1609250624000,
-      \"message\": \"go-TestListSecurityMonitoringSignals-local-1609250624\"}"}'
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617978301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "48046252026453377"
+      - "8764147009999610059"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "48046252026453377"
+      - "8764147009999610059"
     url: https://http-intake.logs.datadoghq.com/v1/input
     method: POST
   response:
@@ -662,7 +626,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 29 Dec 2020 14:04:12 GMT
+      - Fri, 09 Apr 2021 14:25:29 GMT
     status: 200 OK
     code: 200
     duration: ""
@@ -675,23 +639,127 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringSignals
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6059022089373988769"
+      - "5811577083954903604"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8696295697496466997"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00
+      - "1255819800666471206"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00
     method: GET
   response:
-    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGF1ei05N0FBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYaFBRVUZEYUdaZmMyRkhOWHBpYkdkQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","groupByPaths":[]}],"title":"go-TestListSecurityMonitoringSignals-local-1609250624
-      - rule-case","relatedLogsQuery":{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","from":"2020-12-29T13:48:44.000Z","to":"2020-12-30T14:03:44.000Z"},"samples":[{"eventId":"AQAAAXauz9IAK5dbhgAAAABBWGF1ei16S0FBQ1I2MXh4cnoyOVpBQUE","content":{"status":"info","tags":["env:prod","test","go","signal","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:44.000Z","ingest_size_in_bytes":238,"custom":{"timestamp":1609250624000},"source":"go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","tiebreaker":731339654,"message":"go-TestListSecurityMonitoringSignals-local-1609250624"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXauz-zKAACR61xxrz29ZAAA"}],"workflow":{"events_matched":1,"first_seen":"2020-12-29T14:03:44.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
-      Detection","name":"go-TestListSecurityMonitoringSignals-local-1609250624","id":"yyp-jqs-yzj"},"last_seen":"2020-12-29T14:03:44.000Z"}},"message":"%%%\nrule
-      message\n%%%","tags":["source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","env:prod","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:51.710Z"},"type":"signal","id":"AQAAAXauz_AeAAAAAAAAAAB5eXAtanFzLXl6ai0xLUFYYXV6LXpLQUFDUjYxeHhyejI5WkFBQQ"},{"attributes":{"status":"info","attributes":{"queries":[{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","groupByPaths":[]}],"title":"go-TestListSecurityMonitoringSignals-local-1609250624
-      - rule-case","relatedLogsQuery":{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","from":"2020-12-29T13:32:04.000Z","to":"2020-12-30T13:47:04.000Z"},"samples":[{"eventId":"AQAAAXauwI_Acr8JQQAAAABBWGF1ei14T0FBQ2hmX3NhRzV6YmxnQUE","content":{"status":"info","tags":["env:prod","test","go","signal","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T13:47:04.000Z","ingest_size_in_bytes":238,"custom":{"timestamp":1609249624000},"source":"go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","tiebreaker":1925122369,"message":"go-TestListSecurityMonitoringSignals-local-1609250624"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXauz-xOAAChf_saG5zblgAA"}],"workflow":{"events_matched":1,"first_seen":"2020-12-29T13:47:04.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
-      Detection","name":"go-TestListSecurityMonitoringSignals-local-1609250624","id":"yyp-jqs-yzj"},"last_seen":"2020-12-29T13:47:04.000Z"}},"message":"%%%\nrule
-      message\n%%%","tags":["source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","env:prod","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:51.547Z"},"type":"signal","id":"AQAAAXauz-97AAAAAAAAAAB5eXAtanFzLXl6ai0xLUFYYXV6LXhPQUFDaGZfc2FHNXpibGdBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGF1ei05N0FBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYaFBRVUZEYUdaZmMyRkhOWHBpYkdkQlFRIn0&filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00"}}'
+    body: '{"data":[]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - "11"
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Fri, 09 Apr 2021 14:25:29 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - nLnnBNvlCFDECRnZvzDb0z4sAO35G+IMidcAs8vrCKyjvsKWE8Yd9S3n6OjZ1qRN
+      X-Dd-Version:
+      - "35.4276812"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617977301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      X-Datadog-Parent-Id:
+      - "633263560409713571"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "633263560409713571"
+    url: https://http-intake.logs.datadoghq.com/v1/input
+    method: POST
+  response:
+    body: '{}'
+    headers:
+      Content-Length:
+      - "2"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Apr 2021 14:25:34 GMT
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"ddsource": "go-client-test-Test-TestListSecurityMonitoringSignals-1617978301",
+      "ddtags": "go,test,signal,env:prod", "message": "{\"timestamp\": 1617978301000,
+      \"message\": \"Test-TestListSecurityMonitoringSignals-1617978301\"}"}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      X-Datadog-Parent-Id:
+      - "97970004659091388"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "97970004659091388"
+    url: https://http-intake.logs.datadoghq.com/v1/input
+    method: POST
+  response:
+    body: '{}'
+    headers:
+      Content-Length:
+      - "2"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Apr 2021 14:25:35 GMT
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListSecurityMonitoringSignals
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5280428516622937193"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "1255819800666471206"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00
+    method: GET
+  response:
+    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGkzQmFWbEFBQUFBQUFBQUFCamVYQXRjMk51TFc4emJTMHhMVUZZYVROQ1lVSlNRVUZFVm1sTlprOXRhRnA0VEdkQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"Test-TestListSecurityMonitoringSignals-1617978301","groupByPaths":[]}],"title":"Test-TestListSecurityMonitoringSignals-1617978301
+      - rule-case","relatedLogsQuery":{"from":"2021-04-09T14:10:01.000Z","metric":null,"aggregation":"count","to":"2021-04-10T14:25:01.000Z","viewParams":null,"query":"Test-TestListSecurityMonitoringSignals-1617978301"},"samples":[{"eventId":"AQAAAXi3BZpIQ01augAAAABBWGkzQmFEZEFBQ2ZucnEtWDg4aUF3QUE","content":{"status":"info","tags":["env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","test","go","signal"],"timestamp":"2021-04-09T14:25:01.000Z","ingest_size_in_bytes":230,"custom":{"timestamp":1617978301000},"source":"go-client-test-test-testlistsecuritymonitoringsignals-1617978301","tiebreaker":1129142970,"message":"Test-TestListSecurityMonitoringSignals-1617978301"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXi3BaDdAACfnrq-X88iAwAA"}],"workflow":{"events_matched":1,"first_seen":"2021-04-09T14:25:01.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
+      Detection","name":"Test-TestListSecurityMonitoringSignals-1617978301","id":"cyp-scn-o3m"},"last_seen":"2021-04-09T14:25:01.000Z"}},"message":"%%%\nrule
+      message\n%%%","tags":["source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301"],"timestamp":"2021-04-09T14:25:03.846Z"},"type":"signal","id":"AQAAAXi3BaVmAAAAAAAAAABjeXAtc2NuLW8zbS0xLUFYaTNCYURkQUFDZm5ycS1YODhpQXdBQQ"},{"attributes":{"status":"info","attributes":{"queries":[{"query":"Test-TestListSecurityMonitoringSignals-1617978301","groupByPaths":[]}],"title":"Test-TestListSecurityMonitoringSignals-1617978301
+      - rule-case","relatedLogsQuery":{"from":"2021-04-09T13:53:21.000Z","metric":null,"aggregation":"count","to":"2021-04-10T14:08:21.000Z","viewParams":null,"query":"Test-TestListSecurityMonitoringSignals-1617978301"},"samples":[{"eventId":"AQAAAXi29lgIbRlaCQAAAABBWGkzQmFCUkFBRFZpTWZPbWhaeExnQUE","content":{"status":"info","tags":["env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","test","go","signal"],"timestamp":"2021-04-09T14:08:21.000Z","ingest_size_in_bytes":230,"custom":{"timestamp":1617977301000},"source":"go-client-test-test-testlistsecuritymonitoringsignals-1617978301","tiebreaker":1830377993,"message":"Test-TestListSecurityMonitoringSignals-1617978301"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXi3BaBRAADViMfOmhZxLgAA"}],"workflow":{"events_matched":1,"first_seen":"2021-04-09T14:08:21.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
+      Detection","name":"Test-TestListSecurityMonitoringSignals-1617978301","id":"cyp-scn-o3m"},"last_seen":"2021-04-09T14:08:21.000Z"}},"message":"%%%\nrule
+      message\n%%%","tags":["source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301"],"timestamp":"2021-04-09T14:25:03.845Z"},"type":"signal","id":"AQAAAXi3BaVlAAAAAAAAAABjeXAtc2NuLW8zbS0xLUFYaTNCYUJSQUFEVmlNZk9taFp4TGdBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGkzQmFWbEFBQUFBQUFBQUFCamVYQXRjMk51TFc4emJTMHhMVUZZYVROQ1lVSlNRVUZFVm1sTlprOXRhRnA0VEdkQlFRIn0&filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -702,14 +770,9 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 29 Dec 2020 14:04:12 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:25:35 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:04:12 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -717,9 +780,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - ks6TYG2WFSBr2qT+ZTFJB8BB7VWuwPmODDq52A4JjLzCAAitR8HQc9JBq+LHjJu4
+      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
       X-Dd-Version:
-      - "35.3609133"
+      - "35.4276812"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -734,23 +797,23 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringSignals
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7843635181871538734"
+      - "5617923667618871598"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8696295697496466997"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00&sort=timestamp
+      - "1255819800666471206"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00&sort=timestamp
     method: GET
   response:
-    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGF1el9BZUFBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYcExRVUZEVWpZeGVIaHllakk1V2tGQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","groupByPaths":[]}],"title":"go-TestListSecurityMonitoringSignals-local-1609250624
-      - rule-case","relatedLogsQuery":{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","from":"2020-12-29T13:32:04.000Z","to":"2020-12-30T13:47:04.000Z"},"samples":[{"eventId":"AQAAAXauwI_Acr8JQQAAAABBWGF1ei14T0FBQ2hmX3NhRzV6YmxnQUE","content":{"status":"info","tags":["env:prod","test","go","signal","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T13:47:04.000Z","ingest_size_in_bytes":238,"custom":{"timestamp":1609249624000},"source":"go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","tiebreaker":1925122369,"message":"go-TestListSecurityMonitoringSignals-local-1609250624"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXauz-xOAAChf_saG5zblgAA"}],"workflow":{"events_matched":1,"first_seen":"2020-12-29T13:47:04.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
-      Detection","name":"go-TestListSecurityMonitoringSignals-local-1609250624","id":"yyp-jqs-yzj"},"last_seen":"2020-12-29T13:47:04.000Z"}},"message":"%%%\nrule
-      message\n%%%","tags":["source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","env:prod","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:51.547Z"},"type":"signal","id":"AQAAAXauz-97AAAAAAAAAAB5eXAtanFzLXl6ai0xLUFYYXV6LXhPQUFDaGZfc2FHNXpibGdBQQ"},{"attributes":{"status":"info","attributes":{"queries":[{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","groupByPaths":[]}],"title":"go-TestListSecurityMonitoringSignals-local-1609250624
-      - rule-case","relatedLogsQuery":{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","from":"2020-12-29T13:48:44.000Z","to":"2020-12-30T14:03:44.000Z"},"samples":[{"eventId":"AQAAAXauz9IAK5dbhgAAAABBWGF1ei16S0FBQ1I2MXh4cnoyOVpBQUE","content":{"status":"info","tags":["env:prod","test","go","signal","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:44.000Z","ingest_size_in_bytes":238,"custom":{"timestamp":1609250624000},"source":"go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","tiebreaker":731339654,"message":"go-TestListSecurityMonitoringSignals-local-1609250624"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXauz-zKAACR61xxrz29ZAAA"}],"workflow":{"events_matched":1,"first_seen":"2020-12-29T14:03:44.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
-      Detection","name":"go-TestListSecurityMonitoringSignals-local-1609250624","id":"yyp-jqs-yzj"},"last_seen":"2020-12-29T14:03:44.000Z"}},"message":"%%%\nrule
-      message\n%%%","tags":["source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","env:prod","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:51.710Z"},"type":"signal","id":"AQAAAXauz_AeAAAAAAAAAAB5eXAtanFzLXl6ai0xLUFYYXV6LXpLQUFDUjYxeHhyejI5WkFBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?sort=timestamp&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGF1el9BZUFBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYcExRVUZEVWpZeGVIaHllakk1V2tGQlFRIn0&filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00"}}'
+    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGkzQmFWbUFBQUFBQUFBQUFCamVYQXRjMk51TFc4emJTMHhMVUZZYVROQ1lVUmtRVUZEWm01eWNTMVlPRGhwUVhkQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"Test-TestListSecurityMonitoringSignals-1617978301","groupByPaths":[]}],"title":"Test-TestListSecurityMonitoringSignals-1617978301
+      - rule-case","relatedLogsQuery":{"from":"2021-04-09T13:53:21.000Z","metric":null,"aggregation":"count","to":"2021-04-10T14:08:21.000Z","viewParams":null,"query":"Test-TestListSecurityMonitoringSignals-1617978301"},"samples":[{"eventId":"AQAAAXi29lgIbRlaCQAAAABBWGkzQmFCUkFBRFZpTWZPbWhaeExnQUE","content":{"status":"info","tags":["env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","test","go","signal"],"timestamp":"2021-04-09T14:08:21.000Z","ingest_size_in_bytes":230,"custom":{"timestamp":1617977301000},"source":"go-client-test-test-testlistsecuritymonitoringsignals-1617978301","tiebreaker":1830377993,"message":"Test-TestListSecurityMonitoringSignals-1617978301"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXi3BaBRAADViMfOmhZxLgAA"}],"workflow":{"events_matched":1,"first_seen":"2021-04-09T14:08:21.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
+      Detection","name":"Test-TestListSecurityMonitoringSignals-1617978301","id":"cyp-scn-o3m"},"last_seen":"2021-04-09T14:08:21.000Z"}},"message":"%%%\nrule
+      message\n%%%","tags":["source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301"],"timestamp":"2021-04-09T14:25:03.845Z"},"type":"signal","id":"AQAAAXi3BaVlAAAAAAAAAABjeXAtc2NuLW8zbS0xLUFYaTNCYUJSQUFEVmlNZk9taFp4TGdBQQ"},{"attributes":{"status":"info","attributes":{"queries":[{"query":"Test-TestListSecurityMonitoringSignals-1617978301","groupByPaths":[]}],"title":"Test-TestListSecurityMonitoringSignals-1617978301
+      - rule-case","relatedLogsQuery":{"from":"2021-04-09T14:10:01.000Z","metric":null,"aggregation":"count","to":"2021-04-10T14:25:01.000Z","viewParams":null,"query":"Test-TestListSecurityMonitoringSignals-1617978301"},"samples":[{"eventId":"AQAAAXi3BZpIQ01augAAAABBWGkzQmFEZEFBQ2ZucnEtWDg4aUF3QUE","content":{"status":"info","tags":["env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","test","go","signal"],"timestamp":"2021-04-09T14:25:01.000Z","ingest_size_in_bytes":230,"custom":{"timestamp":1617978301000},"source":"go-client-test-test-testlistsecuritymonitoringsignals-1617978301","tiebreaker":1129142970,"message":"Test-TestListSecurityMonitoringSignals-1617978301"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXi3BaDdAACfnrq-X88iAwAA"}],"workflow":{"events_matched":1,"first_seen":"2021-04-09T14:25:01.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
+      Detection","name":"Test-TestListSecurityMonitoringSignals-1617978301","id":"cyp-scn-o3m"},"last_seen":"2021-04-09T14:25:01.000Z"}},"message":"%%%\nrule
+      message\n%%%","tags":["source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301"],"timestamp":"2021-04-09T14:25:03.846Z"},"type":"signal","id":"AQAAAXi3BaVmAAAAAAAAAABjeXAtc2NuLW8zbS0xLUFYaTNCYURkQUFDZm5ycS1YODhpQXdBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?sort=timestamp&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGkzQmFWbUFBQUFBQUFBQUFCamVYQXRjMk51TFc4emJTMHhMVUZZYVROQ1lVUmtRVUZEWm01eWNTMVlPRGhwUVhkQlFRIn0&filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -761,14 +824,9 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 29 Dec 2020 14:04:13 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:25:35 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:04:13 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -776,9 +834,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - mpg/BCzsUMOxVwcAuQg/6c40bDAb3ejXVT4tkiODN0ExybQ/Ia68faurJX6CivjX
+      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
       X-Dd-Version:
-      - "35.3609133"
+      - "35.4276812"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -793,23 +851,23 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringSignals
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5640130836459890930"
+      - "6356459919410673037"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8696295697496466997"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00&sort=-timestamp
+      - "1255819800666471206"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00&sort=-timestamp
     method: GET
   response:
-    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGF1ei05N0FBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYaFBRVUZEYUdaZmMyRkhOWHBpYkdkQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","groupByPaths":[]}],"title":"go-TestListSecurityMonitoringSignals-local-1609250624
-      - rule-case","relatedLogsQuery":{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","from":"2020-12-29T13:48:44.000Z","to":"2020-12-30T14:03:44.000Z"},"samples":[{"eventId":"AQAAAXauz9IAK5dbhgAAAABBWGF1ei16S0FBQ1I2MXh4cnoyOVpBQUE","content":{"status":"info","tags":["env:prod","test","go","signal","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:44.000Z","ingest_size_in_bytes":238,"custom":{"timestamp":1609250624000},"source":"go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","tiebreaker":731339654,"message":"go-TestListSecurityMonitoringSignals-local-1609250624"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXauz-zKAACR61xxrz29ZAAA"}],"workflow":{"events_matched":1,"first_seen":"2020-12-29T14:03:44.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
-      Detection","name":"go-TestListSecurityMonitoringSignals-local-1609250624","id":"yyp-jqs-yzj"},"last_seen":"2020-12-29T14:03:44.000Z"}},"message":"%%%\nrule
-      message\n%%%","tags":["source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","env:prod","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:51.710Z"},"type":"signal","id":"AQAAAXauz_AeAAAAAAAAAAB5eXAtanFzLXl6ai0xLUFYYXV6LXpLQUFDUjYxeHhyejI5WkFBQQ"},{"attributes":{"status":"info","attributes":{"queries":[{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","groupByPaths":[]}],"title":"go-TestListSecurityMonitoringSignals-local-1609250624
-      - rule-case","relatedLogsQuery":{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","from":"2020-12-29T13:32:04.000Z","to":"2020-12-30T13:47:04.000Z"},"samples":[{"eventId":"AQAAAXauwI_Acr8JQQAAAABBWGF1ei14T0FBQ2hmX3NhRzV6YmxnQUE","content":{"status":"info","tags":["env:prod","test","go","signal","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T13:47:04.000Z","ingest_size_in_bytes":238,"custom":{"timestamp":1609249624000},"source":"go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","tiebreaker":1925122369,"message":"go-TestListSecurityMonitoringSignals-local-1609250624"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXauz-xOAAChf_saG5zblgAA"}],"workflow":{"events_matched":1,"first_seen":"2020-12-29T13:47:04.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
-      Detection","name":"go-TestListSecurityMonitoringSignals-local-1609250624","id":"yyp-jqs-yzj"},"last_seen":"2020-12-29T13:47:04.000Z"}},"message":"%%%\nrule
-      message\n%%%","tags":["source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","env:prod","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:51.547Z"},"type":"signal","id":"AQAAAXauz-97AAAAAAAAAAB5eXAtanFzLXl6ai0xLUFYYXV6LXhPQUFDaGZfc2FHNXpibGdBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?sort=-timestamp&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGF1ei05N0FBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYaFBRVUZEYUdaZmMyRkhOWHBpYkdkQlFRIn0&filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00"}}'
+    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGkzQmFWbEFBQUFBQUFBQUFCamVYQXRjMk51TFc4emJTMHhMVUZZYVROQ1lVSlNRVUZFVm1sTlprOXRhRnA0VEdkQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"Test-TestListSecurityMonitoringSignals-1617978301","groupByPaths":[]}],"title":"Test-TestListSecurityMonitoringSignals-1617978301
+      - rule-case","relatedLogsQuery":{"from":"2021-04-09T14:10:01.000Z","metric":null,"aggregation":"count","to":"2021-04-10T14:25:01.000Z","viewParams":null,"query":"Test-TestListSecurityMonitoringSignals-1617978301"},"samples":[{"eventId":"AQAAAXi3BZpIQ01augAAAABBWGkzQmFEZEFBQ2ZucnEtWDg4aUF3QUE","content":{"status":"info","tags":["env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","test","go","signal"],"timestamp":"2021-04-09T14:25:01.000Z","ingest_size_in_bytes":230,"custom":{"timestamp":1617978301000},"source":"go-client-test-test-testlistsecuritymonitoringsignals-1617978301","tiebreaker":1129142970,"message":"Test-TestListSecurityMonitoringSignals-1617978301"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXi3BaDdAACfnrq-X88iAwAA"}],"workflow":{"events_matched":1,"first_seen":"2021-04-09T14:25:01.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
+      Detection","name":"Test-TestListSecurityMonitoringSignals-1617978301","id":"cyp-scn-o3m"},"last_seen":"2021-04-09T14:25:01.000Z"}},"message":"%%%\nrule
+      message\n%%%","tags":["source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301"],"timestamp":"2021-04-09T14:25:03.846Z"},"type":"signal","id":"AQAAAXi3BaVmAAAAAAAAAABjeXAtc2NuLW8zbS0xLUFYaTNCYURkQUFDZm5ycS1YODhpQXdBQQ"},{"attributes":{"status":"info","attributes":{"queries":[{"query":"Test-TestListSecurityMonitoringSignals-1617978301","groupByPaths":[]}],"title":"Test-TestListSecurityMonitoringSignals-1617978301
+      - rule-case","relatedLogsQuery":{"from":"2021-04-09T13:53:21.000Z","metric":null,"aggregation":"count","to":"2021-04-10T14:08:21.000Z","viewParams":null,"query":"Test-TestListSecurityMonitoringSignals-1617978301"},"samples":[{"eventId":"AQAAAXi29lgIbRlaCQAAAABBWGkzQmFCUkFBRFZpTWZPbWhaeExnQUE","content":{"status":"info","tags":["env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","test","go","signal"],"timestamp":"2021-04-09T14:08:21.000Z","ingest_size_in_bytes":230,"custom":{"timestamp":1617977301000},"source":"go-client-test-test-testlistsecuritymonitoringsignals-1617978301","tiebreaker":1830377993,"message":"Test-TestListSecurityMonitoringSignals-1617978301"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXi3BaBRAADViMfOmhZxLgAA"}],"workflow":{"events_matched":1,"first_seen":"2021-04-09T14:08:21.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
+      Detection","name":"Test-TestListSecurityMonitoringSignals-1617978301","id":"cyp-scn-o3m"},"last_seen":"2021-04-09T14:08:21.000Z"}},"message":"%%%\nrule
+      message\n%%%","tags":["source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301"],"timestamp":"2021-04-09T14:25:03.845Z"},"type":"signal","id":"AQAAAXi3BaVlAAAAAAAAAABjeXAtc2NuLW8zbS0xLUFYaTNCYUJSQUFEVmlNZk9taFp4TGdBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?sort=-timestamp&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGkzQmFWbEFBQUFBQUFBQUFCamVYQXRjMk51TFc4emJTMHhMVUZZYVROQ1lVSlNRVUZFVm1sTlprOXRhRnA0VEdkQlFRIn0&filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -820,14 +878,9 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 29 Dec 2020 14:04:13 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:25:35 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:04:13 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -835,9 +888,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - cwBlcFIcwDsv4IobSK5BCzc5xYE7Ob8qdF8Udq49IJhq23UAvY7SHKc1FyJJqC66
+      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
       X-Dd-Version:
-      - "35.3609133"
+      - "35.4276812"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -852,20 +905,20 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringSignals
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2082978018165967245"
+      - "1031634690420001159"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8696295697496466997"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00&page%5Blimit%5D=1
+      - "1255819800666471206"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00&page%5Blimit%5D=1
     method: GET
   response:
-    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGF1el9BZUFBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYcExRVUZEVWpZeGVIaHllakk1V2tGQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","groupByPaths":[]}],"title":"go-TestListSecurityMonitoringSignals-local-1609250624
-      - rule-case","relatedLogsQuery":{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","from":"2020-12-29T13:48:44.000Z","to":"2020-12-30T14:03:44.000Z"},"samples":[{"eventId":"AQAAAXauz9IAK5dbhgAAAABBWGF1ei16S0FBQ1I2MXh4cnoyOVpBQUE","content":{"status":"info","tags":["env:prod","test","go","signal","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:44.000Z","ingest_size_in_bytes":238,"custom":{"timestamp":1609250624000},"source":"go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","tiebreaker":731339654,"message":"go-TestListSecurityMonitoringSignals-local-1609250624"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXauz-zKAACR61xxrz29ZAAA"}],"workflow":{"events_matched":1,"first_seen":"2020-12-29T14:03:44.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
-      Detection","name":"go-TestListSecurityMonitoringSignals-local-1609250624","id":"yyp-jqs-yzj"},"last_seen":"2020-12-29T14:03:44.000Z"}},"message":"%%%\nrule
-      message\n%%%","tags":["source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","env:prod","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:51.710Z"},"type":"signal","id":"AQAAAXauz_AeAAAAAAAAAAB5eXAtanFzLXl6ai0xLUFYYXV6LXpLQUFDUjYxeHhyejI5WkFBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGF1el9BZUFBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYcExRVUZEVWpZeGVIaHllakk1V2tGQlFRIn0&page%5Blimit%5D=1&filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00"}}'
+    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGkzQmFWbUFBQUFBQUFBQUFCamVYQXRjMk51TFc4emJTMHhMVUZZYVROQ1lVUmtRVUZEWm01eWNTMVlPRGhwUVhkQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"Test-TestListSecurityMonitoringSignals-1617978301","groupByPaths":[]}],"title":"Test-TestListSecurityMonitoringSignals-1617978301
+      - rule-case","relatedLogsQuery":{"from":"2021-04-09T14:10:01.000Z","metric":null,"aggregation":"count","to":"2021-04-10T14:25:01.000Z","viewParams":null,"query":"Test-TestListSecurityMonitoringSignals-1617978301"},"samples":[{"eventId":"AQAAAXi3BZpIQ01augAAAABBWGkzQmFEZEFBQ2ZucnEtWDg4aUF3QUE","content":{"status":"info","tags":["env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","test","go","signal"],"timestamp":"2021-04-09T14:25:01.000Z","ingest_size_in_bytes":230,"custom":{"timestamp":1617978301000},"source":"go-client-test-test-testlistsecuritymonitoringsignals-1617978301","tiebreaker":1129142970,"message":"Test-TestListSecurityMonitoringSignals-1617978301"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXi3BaDdAACfnrq-X88iAwAA"}],"workflow":{"events_matched":1,"first_seen":"2021-04-09T14:25:01.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
+      Detection","name":"Test-TestListSecurityMonitoringSignals-1617978301","id":"cyp-scn-o3m"},"last_seen":"2021-04-09T14:25:01.000Z"}},"message":"%%%\nrule
+      message\n%%%","tags":["source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301"],"timestamp":"2021-04-09T14:25:03.846Z"},"type":"signal","id":"AQAAAXi3BaVmAAAAAAAAAABjeXAtc2NuLW8zbS0xLUFYaTNCYURkQUFDZm5ycS1YODhpQXdBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGkzQmFWbUFBQUFBQUFBQUFCamVYQXRjMk51TFc4emJTMHhMVUZZYVROQ1lVUmtRVUZEWm01eWNTMVlPRGhwUVhkQlFRIn0&page%5Blimit%5D=1&filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -876,14 +929,9 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 29 Dec 2020 14:04:13 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:25:35 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:04:13 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -891,9 +939,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - NAgpeopdgW9X30OuB191/muuvQIfRBmU7ohOgihh9xKnn0bCG7Kguc4bGAIB6OKr
+      - fIO2C4qGDheGHy4YbS+r3a3CXbh4cbRo7roILOimQyiHGjQdOat0cIpWCkupM1uX
       X-Dd-Version:
-      - "35.3609133"
+      - "35.4276812"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -908,20 +956,20 @@ interactions:
       Dd-Operation-Id:
       - ListSecurityMonitoringSignals
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.13+dev (go go1.15.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "829250627210775348"
+      - "2721386593203402492"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8696295697496466997"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGF1el9BZUFBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYcExRVUZEVWpZeGVIaHllakk1V2tGQlFRIn0&page%5Blimit%5D=1
+      - "1255819800666471206"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGkzQmFWbUFBQUFBQUFBQUFCamVYQXRjMk51TFc4emJTMHhMVUZZYVROQ1lVUmtRVUZEWm01eWNTMVlPRGhwUVhkQlFRIn0&page%5Blimit%5D=1
     method: GET
   response:
-    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGF1ei05N0FBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYaFBRVUZEYUdaZmMyRkhOWHBpYkdkQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","groupByPaths":[]}],"title":"go-TestListSecurityMonitoringSignals-local-1609250624
-      - rule-case","relatedLogsQuery":{"query":"go-TestListSecurityMonitoringSignals-local-1609250624","from":"2020-12-29T13:32:04.000Z","to":"2020-12-30T13:47:04.000Z"},"samples":[{"eventId":"AQAAAXauwI_Acr8JQQAAAABBWGF1ei14T0FBQ2hmX3NhRzV6YmxnQUE","content":{"status":"info","tags":["env:prod","test","go","signal","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T13:47:04.000Z","ingest_size_in_bytes":238,"custom":{"timestamp":1609249624000},"source":"go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","tiebreaker":1925122369,"message":"go-TestListSecurityMonitoringSignals-local-1609250624"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXauz-xOAAChf_saG5zblgAA"}],"workflow":{"events_matched":1,"first_seen":"2020-12-29T13:47:04.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
-      Detection","name":"go-TestListSecurityMonitoringSignals-local-1609250624","id":"yyp-jqs-yzj"},"last_seen":"2020-12-29T13:47:04.000Z"}},"message":"%%%\nrule
-      message\n%%%","tags":["source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624","env:prod","source:go-client-test-go-testlistsecuritymonitoringsignals-local-1609250624"],"timestamp":"2020-12-29T14:03:51.547Z"},"type":"signal","id":"AQAAAXauz-97AAAAAAAAAAB5eXAtanFzLXl6ai0xLUFYYXV6LXhPQUFDaGZfc2FHNXpibGdBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bquery%5D=go-TestListSecurityMonitoringSignals-local-1609250624&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGF1ei05N0FBQUFBQUFBQUFCNWVYQXRhbkZ6TFhsNmFpMHhMVUZZWVhWNkxYaFBRVUZEYUdaZmMyRkhOWHBpYkdkQlFRIn0&page%5Blimit%5D=1&filter%5Bfrom%5D=2020-12-29T13%3A03%3A44%2B01%3A00&filter%5Bto%5D=2020-12-29T17%3A03%3A44%2B01%3A00"}}'
+    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGkzQmFWbEFBQUFBQUFBQUFCamVYQXRjMk51TFc4emJTMHhMVUZZYVROQ1lVSlNRVUZFVm1sTlprOXRhRnA0VEdkQlFRIn0"}},"data":[{"attributes":{"status":"info","attributes":{"queries":[{"query":"Test-TestListSecurityMonitoringSignals-1617978301","groupByPaths":[]}],"title":"Test-TestListSecurityMonitoringSignals-1617978301
+      - rule-case","relatedLogsQuery":{"from":"2021-04-09T13:53:21.000Z","metric":null,"aggregation":"count","to":"2021-04-10T14:08:21.000Z","viewParams":null,"query":"Test-TestListSecurityMonitoringSignals-1617978301"},"samples":[{"eventId":"AQAAAXi29lgIbRlaCQAAAABBWGkzQmFCUkFBRFZpTWZPbWhaeExnQUE","content":{"status":"info","tags":["env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","test","go","signal"],"timestamp":"2021-04-09T14:08:21.000Z","ingest_size_in_bytes":230,"custom":{"timestamp":1617977301000},"source":"go-client-test-test-testlistsecuritymonitoringsignals-1617978301","tiebreaker":1830377993,"message":"Test-TestListSecurityMonitoringSignals-1617978301"},"queryIndex":0,"trackKey":{"orgId":321813,"type":"logs"},"id":"AXi3BaBRAADViMfOmhZxLgAA"}],"workflow":{"events_matched":1,"first_seen":"2021-04-09T14:08:21.000Z","rule":{"detectionMethod":"threshold","version":1,"type":"Log
+      Detection","name":"Test-TestListSecurityMonitoringSignals-1617978301","id":"cyp-scn-o3m"},"last_seen":"2021-04-09T14:08:21.000Z"}},"message":"%%%\nrule
+      message\n%%%","tags":["source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301","env:prod","source:go-client-test-test-testlistsecuritymonitoringsignals-1617978301"],"timestamp":"2021-04-09T14:25:03.845Z"},"type":"signal","id":"AQAAAXi3BaVlAAAAAAAAAABjeXAtc2NuLW8zbS0xLUFYaTNCYUJSQUFEVmlNZk9taFp4TGdBQQ"}],"links":{"next":"https://api.datadoghq.com/api/v2/security_monitoring/signals?filter%5Bquery%5D=Test-TestListSecurityMonitoringSignals-1617978301&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGkzQmFWbEFBQUFBQUFBQUFCamVYQXRjMk51TFc4emJTMHhMVUZZYVROQ1lVSlNRVUZFVm1sTlprOXRhRnA0VEdkQlFRIn0&page%5Blimit%5D=1&filter%5Bfrom%5D=2021-04-09T14%3A25%3A01%2B02%3A00&filter%5Bto%5D=2021-04-09T18%3A25%3A01%2B02%3A00"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -932,14 +980,9 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 29 Dec 2020 14:04:14 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:25:35 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 05-Jan-2021 14:04:14 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -947,9 +990,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - O3O7xE5uwHtX7J0LqZ8TwbNGWo9Sdsox9lgU7fr/GZp13UzdkbKQZW76fPVpoSDj
+      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
       X-Dd-Version:
-      - "35.3609133"
+      - "35.4276812"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

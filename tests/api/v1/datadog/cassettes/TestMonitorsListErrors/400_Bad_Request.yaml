@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - ListMonitors
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7574268509178981720"
+      - "8941255408778745687"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6598237108190215020"
+      - "9074625648287979089"
     url: https://api.datadoghq.com/api/v1/monitor?group_states=notagroupstate
     method: GET
   response:
@@ -28,14 +28,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "43"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:32:54 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:18:11 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,7 +39,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -51,9 +47,9 @@ interactions:
       X-Ratelimit-Period:
       - "10"
       X-Ratelimit-Remaining:
-      - "998"
+      - "999"
       X-Ratelimit-Reset:
-      - "6"
+      - "10"
     status: 400 Bad Request
     code: 400
     duration: ""

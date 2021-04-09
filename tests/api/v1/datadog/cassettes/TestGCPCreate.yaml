@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"auth_provider_x509_cert_url":"fake_url","auth_uri":"fake_uri","automute":false,"client_email":"go-TestGCPCreate-local-1589290270@fake-sandbox.iam.gserviceaccount.com","client_id":"123456712345671234567","client_x509_cert_url":"fake_url","host_filters":"fake:tag,example:test","private_key":"fake_key","private_key_id":"fake_private_key_id","project_id":"go-TestGCPCreate-local-1589290270","token_uri":"fake_uri","type":"service_account"}
+      {"auth_provider_x509_cert_url":"fake_url","auth_uri":"fake_uri","automute":false,"client_email":"Test-TestGCPCreate-1617977647@fake-sandbox.iam.gserviceaccount.com","client_id":"123456712345671234567","client_x509_cert_url":"fake_url","host_filters":"fake:tag,example:test","private_key":"fake_key","private_key_id":"fake_private_key_id","project_id":"Test-TestGCPCreate-1617977647","token_uri":"fake_uri","type":"service_account"}
     form: {}
     headers:
       Accept:
@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - CreateGCPIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "234581982049421125"
+      - "1855083494025415624"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4381588671255978559"
+      - "776903939884313792"
     url: https://api.datadoghq.com/api/v1/integration/gcp
     method: POST
   response:
@@ -31,27 +31,20 @@ interactions:
       - keep-alive
       Content-Length:
       - "2"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:11 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:14:07 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:10 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - yqCkAb2Y8/4OgTSGYvedTl/k5gsPukDI7OLTlGSm9adIbRDVlGb00Ve5DDv9ImFD
+      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -59,7 +52,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"auth_provider_x509_cert_url":"fake_url","auth_uri":"fake_uri","automute":false,"client_email":"go-TestGCPCreate-local-1589290270@fake-sandbox.iam.gserviceaccount.com","client_id":"123456712345671234567","client_x509_cert_url":"fake_url","host_filters":"fake:tag,example:test","private_key":"fake_key","private_key_id":"fake_private_key_id","project_id":"go-TestGCPCreate-local-1589290270","token_uri":"fake_uri","type":"service_account"}
+      {"auth_provider_x509_cert_url":"fake_url","auth_uri":"fake_uri","automute":false,"client_email":"Test-TestGCPCreate-1617977647@fake-sandbox.iam.gserviceaccount.com","client_id":"123456712345671234567","client_x509_cert_url":"fake_url","host_filters":"fake:tag,example:test","private_key":"fake_key","private_key_id":"fake_private_key_id","project_id":"Test-TestGCPCreate-1617977647","token_uri":"fake_uri","type":"service_account"}
     form: {}
     headers:
       Accept:
@@ -69,13 +62,13 @@ interactions:
       Dd-Operation-Id:
       - DeleteGCPIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6462504940361215776"
+      - "409410561353380922"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4381588671255978559"
+      - "776903939884313792"
     url: https://api.datadoghq.com/api/v1/integration/gcp
     method: DELETE
   response:
@@ -87,27 +80,20 @@ interactions:
       - keep-alive
       Content-Length:
       - "2"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:11 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:14:07 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:11 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - DAk/CQntZmry+u4cYsuVOELuKFo1I3NzKRNwPlY9WvlbH+rffk5VylB8tKDaSRWP
+      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

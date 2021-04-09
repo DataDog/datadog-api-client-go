@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - ListLocations
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5522855709875726282"
+      - "2568150877023957712"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7102688843433838762"
+      - "1184713272590242449"
     url: https://api.datadoghq.com/api/v1/synthetics/locations
     method: GET
   response:
@@ -27,7 +27,7 @@ interactions:
       (AWS)"},{"id":"aws:eu-west-1","name":"Ireland (AWS)"},{"id":"aws:eu-west-2","name":"London
       (AWS)"},{"id":"aws:eu-west-3","name":"Paris (AWS)"},{"id":"aws:sa-east-1","name":"S\u00e3o
       Paulo (AWS)"},{"id":"aws:us-east-2","name":"Ohio (AWS)"},{"id":"aws:us-west-1","name":"N.
-      California (AWS)"},{"id":"aws:us-west-2","name":"Oregon (AWS)"}]}'
+      California (AWS)"},{"id":"aws:us-west-2","name":"Oregon (AWS)"},{"id":"pl:go-testsyntheticsprivatelocationlifecycle-54660-1616933189-52d769fe26874092b32645b81df54ebb","name":"go-TestSyntheticsPrivateLocationLifecycle-54660-1616933189-updated"},{"id":"pl:go-testsyntheticsprivatelocationlifecycle-57104-1617890825-ec69d676c9c06aec0b8250ae18248b74","name":"go-TestSyntheticsPrivateLocationLifecycle-57104-1617890825-updated"},{"id":"pl:tf-testaccdatadogsyntheticsprivatelocation_updated-55205-1617192371-261a8f0162cb7dec553ea3182b4147a1","name":"tf-TestAccDatadogSyntheticsPrivateLocation_Updated-55205-1617192371"}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -36,14 +36,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Jul 2020 09:33:45 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:19:16 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 31-Jul-2020 09:33:45 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -51,9 +46,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 5gIeAyE850e1lqVwTAgwvudewR8EzuQd3qGaXsS2D0CKQVhFOIjBoeQYiH0qPohy
+      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
       X-Dd-Version:
-      - "35.2781966"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -63,7 +58,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "119"
       X-Ratelimit-Reset:
-      - "15"
+      - "44"
     status: 200 OK
     code: 200
     duration: ""

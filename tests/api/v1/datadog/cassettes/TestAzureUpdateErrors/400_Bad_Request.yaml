@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateAzureIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8151549502831465333"
+      - "1991930377830462270"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1842850388032413658"
+      - "4693042290761703749"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: PUT
   response:
@@ -34,9 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 09:25:07 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:13:30 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2676641"
+      - "35.4276543"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

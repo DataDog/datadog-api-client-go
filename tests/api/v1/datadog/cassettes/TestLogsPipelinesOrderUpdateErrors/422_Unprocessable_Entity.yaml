@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateLogsPipelineOrder
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5579222601274831887"
+      - "4523631496383357732"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3025319915432624904"
+      - "8787065930113245386"
     url: https://api.datadoghq.com/api/v1/logs/config/pipeline-order
     method: PUT
   response:
@@ -34,25 +34,18 @@ interactions:
       - inline
       Content-Length:
       - "90"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 12 May 2020 13:31:48 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:17:09 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:48 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -60,9 +53,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "79"
+      - "73"
       X-Ratelimit-Reset:
-      - "1692"
+      - "2571"
     status: 422 Unprocessable Entity
     code: 422
     duration: ""

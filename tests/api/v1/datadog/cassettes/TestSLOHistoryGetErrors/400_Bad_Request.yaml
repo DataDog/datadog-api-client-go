@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - GetSLOHistory
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4508899047210053333"
+      - "4604086396914085558"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "292846022901459996"
-    url: https://api.datadoghq.com/api/v1/slo/f461914b99e55cb9916cd8d5fc2339eb/history?from_ts=123&to_ts=12
+      - "5184756997320737451"
+    url: https://api.datadoghq.com/api/v1/slo/f8602af5baf85a1094065ed57de26566/history?from_ts=123&to_ts=12
     method: GET
   response:
     body: '{"errors": ["The timeframe is incorrect: invalid from 123 or to 12 timestamp"]}'
@@ -28,14 +28,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "79"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:33:24 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:18:36 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,9 +39,17 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2493025"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "150"
+      X-Ratelimit-Period:
+      - "10"
+      X-Ratelimit-Remaining:
+      - "147"
+      X-Ratelimit-Reset:
+      - "4"
     status: 400 Bad Request
     code: 400
     duration: ""

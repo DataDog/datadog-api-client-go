@@ -10,18 +10,18 @@ interactions:
       Dd-Operation-Id:
       - GetUsageTopAvgMetrics
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5273449942506591544"
+      - "4927658354118775569"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2371569589248718335"
-    url: https://api.datadoghq.com/api/v1/usage/top_avg_metrics?month=2018-05-12T15%3A34%3A19%2B02%3A00
+      - "4944809930128692126"
+    url: https://api.datadoghq.com/api/v1/usage/top_avg_metrics?month=2019-04-09T16%3A19%3A55%2B02%3A00
     method: GET
   response:
     body: '{"errors": ["month cannot go beyond 15 months in the past; the farthest
-      you can go: 2019-02"]}'
+      you can go: 2020-01"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -29,14 +29,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "94"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:34:19 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:19:55 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,17 +40,17 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "200"
+      - "400"
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "153"
+      - "291"
       X-Ratelimit-Reset:
-      - "1541"
+      - "2405"
     status: 400 Bad Request
     code: 400
     duration: ""

@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateSLO
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3111015411084747018"
+      - "2716583156200687965"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7422613911971646579"
+      - "4615606512326133346"
     url: https://api.datadoghq.com/api/v1/slo/id
     method: PUT
   response:
@@ -32,14 +32,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "79"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:33:23 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:18:36 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -47,9 +43,17 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "500"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "496"
+      X-Ratelimit-Reset:
+      - "25"
     status: 400 Bad Request
     code: 400
     duration: ""

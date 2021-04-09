@@ -2,9 +2,9 @@
 version: 1
 interactions:
 - request:
-    body: "--ab11c937431c295965f5aee3907df4fc20693481893ce977e984377c4a6f\r\nContent-Disposition:
+    body: "--82d8df0547cb808e5856e415a1c17d736cbf8cabde47a32bd3a184853974\r\nContent-Disposition:
       form-data; name=\"idp_file\"; filename=\"error_415.json\"\r\nContent-Type: application/octet-stream\r\n\r\n{\"errors\":
-      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--ab11c937431c295965f5aee3907df4fc20693481893ce977e984377c4a6f--\r\n"
+      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--82d8df0547cb808e5856e415a1c17d736cbf8cabde47a32bd3a184853974--\r\n"
     form: {}
     headers:
       Accept:
@@ -12,18 +12,18 @@ interactions:
       Content-Length:
       - "262"
       Content-Type:
-      - multipart/form-data; boundary=ab11c937431c295965f5aee3907df4fc20693481893ce977e984377c4a6f
+      - multipart/form-data; boundary=82d8df0547cb808e5856e415a1c17d736cbf8cabde47a32bd3a184853974
       Dd-Operation-Id:
       - UploadIdPForOrg
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3640858246662934245"
+      - "8328418041064760270"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7580522744653002524"
-    url: https://api.datadoghq.com/api/v1/org/go-TestOrgsUploadIdpErrors-403_Forbidden-local-1599060742/idp_metadata
+      - "7113960465993310141"
+    url: https://api.datadoghq.com/api/v1/org/Test-TestOrgsUploadIdpErrors-403_Forbidden-1617977905/idp_metadata
     method: POST
   response:
     body: |
@@ -33,12 +33,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Wed, 02 Sep 2020 15:32:22 GMT
+      - Fri, 09 Apr 2021 14:18:25 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

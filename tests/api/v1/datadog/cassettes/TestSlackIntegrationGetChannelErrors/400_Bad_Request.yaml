@@ -10,28 +10,28 @@ interactions:
       Dd-Operation-Id:
       - GetSlackIntegrationChannel
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.16+dev (go go1.15.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6888140746201297758"
+      - "7967727156521224084"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7970045317810326260"
-    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/go-TestSlackIntegrationGetChannelErrors-400_Bad_Request-local-1614005868/channels/go-TestSlackIntegrationGetChannelErrors-400_Bad_Request-local-1614005868
+      - "3229936893434936867"
+    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/Test-TestSlackIntegrationGetChannelErrors-400_Bad_Request-1617977937/channels/Test-TestSlackIntegrationGetChannelErrors-400_Bad_Request-1617977937
     method: GET
   response:
-    body: '{"errors": ["Account is not configured: go-TestSlackIntegrationGetChannelErrors-400_Bad_Request-local-1614005868"]}'
+    body: '{"errors": ["Account is not configured: Test-TestSlackIntegrationGetChannelErrors-400_Bad_Request-1617977937"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "115"
+      - "111"
       Content-Type:
       - application/json
       Date:
-      - Mon, 22 Feb 2021 14:57:48 GMT
+      - Fri, 09 Apr 2021 14:18:58 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -39,7 +39,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.3956193"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

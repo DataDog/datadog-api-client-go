@@ -12,11 +12,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1416614709375404294"
+      - "5969872149814458641"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3963170746072684243"
+      - "6367642167507210980"
     url: https://ip-ranges.datadoghq.com/
     method: GET
   response:
@@ -425,12 +425,14 @@ interactions:
           }
       }
     headers:
+      Age:
+      - "76"
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:25:36 GMT
+      - Fri, 09 Apr 2021 14:19:38 GMT
       Etag:
       - W/"ecb4ed42838b56fe91b86d372e2f1b0e"
       Last-Modified:
@@ -440,13 +442,13 @@ interactions:
       Vary:
       - Accept-Encoding
       Via:
-      - 1.1 cbd142ed1a4d4c12006d99756547bb8a.cloudfront.net (CloudFront)
+      - 1.1 4fa61644a4cc2dfcb32e66f7e29f0077.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - Q55LNqRBFPZZYqgy02vTprbiehUXnvgDi1iInCcYCorU-jS90d9U-Q==
+      - qjfx-xlBibpTVlLUbs9IgbbcG7oKxO9wU3O7tK8QxaK_yCHx9XKlxg==
       X-Amz-Cf-Pop:
-      - MAD51-C1
+      - AMS54-C1
       X-Cache:
-      - RefreshHit from cloudfront
+      - Hit from cloudfront
     status: 200 OK
     code: 200
     duration: ""

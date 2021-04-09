@@ -10,17 +10,22 @@ interactions:
       Dd-Operation-Id:
       - GetUsageAttribution
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.11 (go go1.15; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6574935632443641331"
+      - "288132087404538761"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "541473442393108876"
-    url: https://api.datadoghq.com/api/v1/usage/attribution?fields=%2A&start_month=2020-11-18T14%3A12%3A55-03%3A00
+      - "341069355263286951"
+    url: https://api.datadoghq.com/api/v1/usage/attribution?fields=%2A&start_month=2021-04-08T16%3A19%3A53%2B02%3A00
     method: GET
   response:
-    body: '{"usage":[{"public_id":"fasjyydbcgwwc2uc","month":"2020-11-01T00:00:00+00:00","values":{"api_percentage":100.0,"snmp_usage":0,"lambda_percentage":0.0,"apm_host_usage":1,"api_usage":106223,"container_usage":1.03,"custom_timeseries_percentage":100.0,"container_percentage":100.0,"lambda_usage":0.0,"apm_host_percentage":100.0,"npm_host_percentage":100.0,"custom_timeseries_usage":10.97,"browser_percentage":100.0,"infra_host_percentage":100.0,"snmp_percentage":0.0,"npm_host_usage":2,"infra_host_usage":3,"browser_usage":2},"updated_at":"2020-11-18T20","tags":null},{"public_id":"fasjyydbcgwwc2uc","month":"2020-11-01T00:00:00+00:00","values":{"api_percentage":100.0,"snmp_usage":0,"lambda_percentage":0.0,"apm_host_usage":1,"api_usage":106223,"container_usage":1.03,"custom_timeseries_percentage":100.0,"container_percentage":100.0,"lambda_usage":0.0,"apm_host_percentage":100.0,"npm_host_percentage":100.0,"custom_timeseries_usage":10.97,"browser_percentage":100.0,"infra_host_percentage":100.0,"snmp_percentage":0.0,"npm_host_usage":2,"infra_host_usage":3,"browser_usage":2},"updated_at":"2020-11-18T20","tags":null},{"public_id":"fasjyydbcgwwc2uc","month":"2020-11-01T00:00:00+00:00","values":{"api_percentage":0.0,"snmp_usage":0,"lambda_percentage":0.0,"apm_host_usage":0,"api_usage":0,"container_usage":0.0,"custom_timeseries_percentage":72.93,"container_percentage":0.0,"lambda_usage":0.0,"apm_host_percentage":0.0,"npm_host_percentage":100.0,"custom_timeseries_usage":8.0,"browser_percentage":0.0,"infra_host_percentage":66.67,"snmp_percentage":0.0,"npm_host_usage":2,"infra_host_usage":2,"browser_usage":0},"updated_at":"2020-11-18T20","tags":{"project":["datadog-integrations-lab"]}},{"public_id":"fasjyydbcgwwc2uc","month":"2020-11-01T00:00:00+00:00","values":{"api_percentage":100.0,"snmp_usage":0,"lambda_percentage":0.0,"apm_host_usage":1,"api_usage":106223,"container_usage":1.03,"custom_timeseries_percentage":27.07,"container_percentage":100.0,"lambda_usage":0.0,"apm_host_percentage":100.0,"npm_host_percentage":0.0,"custom_timeseries_usage":2.97,"browser_percentage":100.0,"infra_host_percentage":33.33,"snmp_percentage":0.0,"npm_host_usage":0,"infra_host_usage":1,"browser_usage":2},"updated_at":"2020-11-18T20","tags":{"project":[]}}],"metadata":{"pagination":{"sort_direction":"DESC","sort_name":"custom_timeseries_usage","limit":5000,"total_number_of_records":4,"offset":0},"aggregates":[{"field":"custom_timeseries_usage","value":32.91,"agg_type":"sum"},{"field":"container_usage","value":3.09,"agg_type":"sum"},{"field":"snmp_percentage","value":0.0,"agg_type":"sum"},{"field":"apm_host_usage","value":3.0,"agg_type":"sum"},{"field":"browser_usage","value":6.0,"agg_type":"sum"},{"field":"npm_host_percentage","value":300.0,"agg_type":"sum"},{"field":"infra_host_usage","value":9.0,"agg_type":"sum"},{"field":"custom_timeseries_percentage","value":300.0,"agg_type":"sum"},{"field":"container_percentage","value":300.0,"agg_type":"sum"},{"field":"lambda_usage","value":0.0,"agg_type":"sum"},{"field":"api_usage","value":318669.0,"agg_type":"sum"},{"field":"apm_host_percentage","value":300.0,"agg_type":"sum"},{"field":"infra_host_percentage","value":300.0,"agg_type":"sum"},{"field":"snmp_usage","value":0.0,"agg_type":"sum"},{"field":"browser_percentage","value":300.0,"agg_type":"sum"},{"field":"api_percentage","value":300.0,"agg_type":"sum"},{"field":"lambda_percentage","value":0.0,"agg_type":"sum"},{"field":"npm_host_usage","value":6.0,"agg_type":"sum"}]}}'
+    body: '{"usage":[{"org_name":"DD Integration Tests (321813)","public_id":"fasjyydbcgwwc2uc","tags":null,"updated_at":"2021-04-08T22","month":"2021-04-01T00:00:00+00:00","values":{"lambda_percentage":0.0,"apm_host_usage":2,"api_usage":123236,"custom_timeseries_percentage":100.0,"fargate_usage":0.0,"lambda_invocations_percentage":0.0,"container_percentage":100.0,"browser_usage":72,"snmp_percentage":0.0,"lambda_functions_usage":0.0,"snmp_usage":0,"lambda_functions_percentage":0.0,"container_usage":1.08,"lambda_usage":0.0,"apm_host_percentage":100.0,"infra_host_percentage":100.0,"npm_host_usage":4,"infra_host_usage":25,"api_percentage":100.0,"npm_host_percentage":100.0,"lambda_invocations_usage":0.0,"fargate_percentage":0.0,"browser_percentage":100.0,"custom_timeseries_usage":20.98}},{"org_name":"DD
+      Integration Tests (321813)","public_id":"fasjyydbcgwwc2uc","tags":null,"updated_at":"2021-04-08T22","month":"2021-04-01T00:00:00+00:00","values":{"lambda_percentage":0.0,"apm_host_usage":2,"api_usage":123236,"custom_timeseries_percentage":100.0,"fargate_usage":0.0,"lambda_invocations_percentage":0.0,"container_percentage":100.0,"browser_usage":72,"snmp_percentage":0.0,"lambda_functions_usage":0.0,"snmp_usage":0,"lambda_functions_percentage":0.0,"container_usage":1.08,"lambda_usage":0.0,"apm_host_percentage":100.0,"infra_host_percentage":100.0,"npm_host_usage":4,"infra_host_usage":25,"api_percentage":100.0,"npm_host_percentage":100.0,"lambda_invocations_usage":0.0,"fargate_percentage":0.0,"browser_percentage":100.0,"custom_timeseries_usage":20.98}},{"org_name":"DD
+      Integration Tests (321813)","public_id":"fasjyydbcgwwc2uc","tags":{"project":[]},"updated_at":"2021-04-08T22","month":"2021-04-01T00:00:00+00:00","values":{"lambda_percentage":0.0,"apm_host_usage":2,"api_usage":123236,"custom_timeseries_percentage":61.87,"fargate_usage":0.0,"lambda_invocations_percentage":0.0,"container_percentage":100.0,"browser_usage":72,"snmp_percentage":0.0,"lambda_functions_usage":0.0,"snmp_usage":0,"lambda_functions_percentage":0.0,"container_usage":1.08,"lambda_usage":0.0,"apm_host_percentage":100.0,"infra_host_percentage":16.0,"npm_host_usage":0,"infra_host_usage":4,"api_percentage":100.0,"npm_host_percentage":0.0,"lambda_invocations_usage":0.0,"fargate_percentage":0.0,"browser_percentage":100.0,"custom_timeseries_usage":12.98}},{"org_name":"DD
+      Integration Tests (321813)","public_id":"fasjyydbcgwwc2uc","tags":{"project":["datadog-integrations-lab"]},"updated_at":"2021-04-08T22","month":"2021-04-01T00:00:00+00:00","values":{"lambda_percentage":0.0,"apm_host_usage":0,"api_usage":0,"custom_timeseries_percentage":38.13,"fargate_usage":0.0,"lambda_invocations_percentage":0.0,"container_percentage":0.0,"browser_usage":0,"snmp_percentage":0.0,"lambda_functions_usage":0.0,"snmp_usage":0,"lambda_functions_percentage":0.0,"container_usage":0.0,"lambda_usage":0.0,"apm_host_percentage":0.0,"infra_host_percentage":60.0,"npm_host_usage":4,"infra_host_usage":15,"api_percentage":0.0,"npm_host_percentage":100.0,"lambda_invocations_usage":0.0,"fargate_percentage":0.0,"browser_percentage":0.0,"custom_timeseries_usage":8.0}},{"org_name":"DD
+      Integration Tests (321813)","public_id":"fasjyydbcgwwc2uc","tags":{"project":["cf-platform-engineering-cipp2"]},"updated_at":"2021-04-08T22","month":"2021-04-01T00:00:00+00:00","values":{"lambda_percentage":0.0,"apm_host_usage":0,"api_usage":0,"custom_timeseries_percentage":0.0,"fargate_usage":0.0,"lambda_invocations_percentage":0.0,"container_percentage":0.0,"browser_usage":0,"snmp_percentage":0.0,"lambda_functions_usage":0.0,"snmp_usage":0,"lambda_functions_percentage":0.0,"container_usage":0.0,"lambda_usage":0.0,"apm_host_percentage":0.0,"infra_host_percentage":16.0,"npm_host_usage":0,"infra_host_usage":4,"api_percentage":0.0,"npm_host_percentage":0.0,"lambda_invocations_usage":0.0,"fargate_percentage":0.0,"browser_percentage":0.0,"custom_timeseries_usage":0.0}},{"org_name":"DD
+      Integration Tests (321813)","public_id":"fasjyydbcgwwc2uc","tags":{"project":["cf-platform-engineering-cipp1"]},"updated_at":"2021-04-08T22","month":"2021-04-01T00:00:00+00:00","values":{"lambda_percentage":0.0,"apm_host_usage":0,"api_usage":0,"custom_timeseries_percentage":0.0,"fargate_usage":0.0,"lambda_invocations_percentage":0.0,"container_percentage":0.0,"browser_usage":0,"snmp_percentage":0.0,"lambda_functions_usage":0.0,"snmp_usage":0,"lambda_functions_percentage":0.0,"container_usage":0.0,"lambda_usage":0.0,"apm_host_percentage":0.0,"infra_host_percentage":8.0,"npm_host_usage":0,"infra_host_usage":2,"api_percentage":0.0,"npm_host_percentage":0.0,"lambda_invocations_usage":0.0,"fargate_percentage":0.0,"browser_percentage":0.0,"custom_timeseries_usage":0.0}}],"metadata":{"pagination":{"sort_direction":"DESC","sort_name":"custom_timeseries_usage","limit":5000,"total_number_of_records":6,"offset":0},"aggregates":[{"field":"custom_timeseries_usage","value":62.94,"agg_type":"sum"},{"field":"container_usage","value":3.24,"agg_type":"sum"},{"field":"snmp_percentage","value":0.0,"agg_type":"sum"},{"field":"apm_host_usage","value":6.0,"agg_type":"sum"},{"field":"browser_usage","value":216.0,"agg_type":"sum"},{"field":"npm_host_percentage","value":300.0,"agg_type":"sum"},{"field":"infra_host_usage","value":75.0,"agg_type":"sum"},{"field":"custom_timeseries_percentage","value":300.0,"agg_type":"sum"},{"field":"container_percentage","value":300.0,"agg_type":"sum"},{"field":"lambda_usage","value":0.0,"agg_type":"sum"},{"field":"api_usage","value":369708.0,"agg_type":"sum"},{"field":"apm_host_percentage","value":300.0,"agg_type":"sum"},{"field":"infra_host_percentage","value":300.0,"agg_type":"sum"},{"field":"snmp_usage","value":0.0,"agg_type":"sum"},{"field":"browser_percentage","value":300.0,"agg_type":"sum"},{"field":"api_percentage","value":300.0,"agg_type":"sum"},{"field":"lambda_percentage","value":0.0,"agg_type":"sum"},{"field":"npm_host_usage","value":12.0,"agg_type":"sum"},{"field":"lambda_functions_usage","value":0.0,"agg_type":"sum"},{"field":"lambda_functions_percentage","value":0.0,"agg_type":"sum"},{"field":"lambda_invocations_usage","value":0.0,"agg_type":"sum"},{"field":"lambda_invocations_percentage","value":0.0,"agg_type":"sum"},{"field":"fargate_usage","value":0.0,"agg_type":"sum"},{"field":"fargate_percentage","value":0.0,"agg_type":"sum"}]}}'
     headers:
       Cache-Control:
       - no-cache
@@ -29,14 +34,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 19 Nov 2020 17:12:56 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:19:53 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 26-Nov-2020 17:12:56 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -44,9 +44,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - wPy9KjXl2oNb+h2/g04nAXAfCw85Ldy7iFswtPRipzmiU2125I+aoUKIFsQZLFpS
+      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
       X-Dd-Version:
-      - "35.3399924"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,9 +54,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "394"
+      - "298"
       X-Ratelimit-Reset:
-      - "2824"
+      - "2407"
     status: 200 OK
     code: 200
     duration: ""

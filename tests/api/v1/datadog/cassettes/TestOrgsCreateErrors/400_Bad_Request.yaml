@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - CreateChildOrg
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.11 (go go1.15.5; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2528411032816720945"
+      - "6000340836433634604"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2510611225436212783"
+      - "3072726888022749066"
     url: https://api.datadoghq.com/api/v1/org
     method: POST
   response:
@@ -34,9 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 24 Nov 2020 10:57:31 GMT
-      Dd-Pool:
-      - dogweb_wallace
+      - Fri, 09 Apr 2021 14:18:24 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.3423311"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

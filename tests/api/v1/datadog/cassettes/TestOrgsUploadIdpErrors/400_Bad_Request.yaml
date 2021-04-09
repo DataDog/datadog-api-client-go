@@ -2,9 +2,9 @@
 version: 1
 interactions:
 - request:
-    body: "--fe8241bf4ade987b60395d23d841199279ee162ba9f7462b94c324c5f61a\r\nContent-Disposition:
+    body: "--1b576081b92ba0f1061d202d88b9867cad3a460c2fb33aa615e28fd2a92d\r\nContent-Disposition:
       form-data; name=\"idp_file\"; filename=\"error_415.json\"\r\nContent-Type: application/octet-stream\r\n\r\n{\"errors\":
-      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--fe8241bf4ade987b60395d23d841199279ee162ba9f7462b94c324c5f61a--\r\n"
+      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--1b576081b92ba0f1061d202d88b9867cad3a460c2fb33aa615e28fd2a92d--\r\n"
     form: {}
     headers:
       Accept:
@@ -12,18 +12,18 @@ interactions:
       Content-Length:
       - "262"
       Content-Type:
-      - multipart/form-data; boundary=fe8241bf4ade987b60395d23d841199279ee162ba9f7462b94c324c5f61a
+      - multipart/form-data; boundary=1b576081b92ba0f1061d202d88b9867cad3a460c2fb33aa615e28fd2a92d
       Dd-Operation-Id:
       - UploadIdPForOrg
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2706384159136266285"
+      - "7809406431270292565"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7580522744653002524"
-    url: https://api.datadoghq.com/api/v1/org/go-TestOrgsUploadIdpErrors-400_Bad_Request-local-1599060742/idp_metadata
+      - "7113960465993310141"
+    url: https://api.datadoghq.com/api/v1/org/Test-TestOrgsUploadIdpErrors-400_Bad_Request-1617977905/idp_metadata
     method: POST
   response:
     body: '{"errors": ["Not allowed to access this organization"]}'
@@ -37,9 +37,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 02 Sep 2020 15:32:25 GMT
-      Dd-Pool:
-      - dogweb_wallace
+      - Fri, 09 Apr 2021 14:18:25 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -47,7 +45,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2973583"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

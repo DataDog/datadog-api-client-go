@@ -12,11 +12,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4415635295551399689"
+      - "2396992647262531384"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1233110192978636661"
+      - "2477282848620109762"
     url: https://api.datadoghq.com/api/v2/processes?page%5Blimit%5D=2&search=process-agent&tags=testing%3Atrue
     method: GET
   response:
@@ -29,7 +29,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:25:56 GMT
+      - Fri, 09 Apr 2021 14:14:27 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -39,9 +39,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - FTwGKwy9Lra7fBbE6euCkrJgY113+qvKr/RvEUSf/VUEEMB7NzTLaZqnk4ey6B6T
+      - dTqo6OvpOpdLU13VpZKBZ8geMcifKvehD45FyYb/zt/ze/4uDIo7eOcRYxvyIT/+
       X-Dd-Version:
-      - "35.4276054"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -51,7 +51,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "99"
       X-Ratelimit-Reset:
-      - "4"
+      - "33"
     status: 200 OK
     code: 200
     duration: ""

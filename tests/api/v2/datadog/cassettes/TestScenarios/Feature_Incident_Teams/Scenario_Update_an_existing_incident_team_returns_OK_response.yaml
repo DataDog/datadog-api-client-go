@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-Update_an_existing_incident_team_returns_OK_response-1617974737"},"type":"teams"}}
+      {"data":{"attributes":{"name":"Test-Update_an_existing_incident_team_returns_OK_response-1617977648"},"type":"teams"}}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8633074613470803632"
+      - "1480144502001968265"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2030736266617435909"
+      - "1624482442401595538"
     url: https://api.datadoghq.com/api/v2/teams
     method: POST
   response:
-    body: '{"included":[{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0","attributes":{"name":null,"handle":"frog@datadoghq.com","created_at":"2019-10-02T08:15:39.795051+00:00","modified_at":"2020-06-15T12:33:12.884459+00:00","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Active"},"relationships":{"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}],"data":{"type":"teams","id":"3f3e3358-9cd3-529c-a0d6-51f14d16eba3","attributes":{"name":"Test-Update_an_existing_incident_team_returns_OK_response-1617974737","created":"2021-04-09T13:25:37.874344+00:00","modified":"2021-04-09T13:25:37.874344+00:00"},"relationships":{"last_modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}}}}'
+    body: '{"included":[{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0","attributes":{"name":null,"handle":"frog@datadoghq.com","created_at":"2019-10-02T08:15:39.795051+00:00","modified_at":"2020-06-15T12:33:12.884459+00:00","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Active"},"relationships":{"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}],"data":{"type":"teams","id":"a3fd9d7a-9477-5a9e-a3b7-e0cdd29deb2b","attributes":{"name":"Test-Update_an_existing_incident_team_returns_OK_response-1617977648","created":"2021-04-09T14:14:08.678642+00:00","modified":"2021-04-09T14:14:08.678642+00:00"},"relationships":{"last_modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:25:37 GMT
+      - Fri, 09 Apr 2021 14:14:08 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
+      - fIO2C4qGDheGHy4YbS+r3a3CXbh4cbRo7roILOimQyiHGjQdOat0cIpWCkupM1uX
       X-Dd-Version:
-      - "35.4276054"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,13 +54,13 @@ interactions:
       X-Ratelimit-Remaining:
       - "95"
       X-Ratelimit-Reset:
-      - "23"
+      - "52"
     status: 201 Created
     code: 201
     duration: ""
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-Update_an_existing_incident_team_returns_OK_response-1617974737-updated"},"id":"","type":"teams"}}
+      {"data":{"attributes":{"name":"Test-Update_an_existing_incident_team_returns_OK_response-1617977648-updated"},"id":"","type":"teams"}}
     form: {}
     headers:
       Accept:
@@ -72,15 +72,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4737204022338207737"
+      - "6180542420267294609"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2030736266617435909"
-    url: https://api.datadoghq.com/api/v2/teams/3f3e3358-9cd3-529c-a0d6-51f14d16eba3
+      - "1624482442401595538"
+    url: https://api.datadoghq.com/api/v2/teams/a3fd9d7a-9477-5a9e-a3b7-e0cdd29deb2b
     method: PATCH
   response:
-    body: '{"included":[{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0","attributes":{"name":null,"handle":"frog@datadoghq.com","created_at":"2019-10-02T08:15:39.795051+00:00","modified_at":"2020-06-15T12:33:12.884459+00:00","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Active"},"relationships":{"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}],"data":{"type":"teams","id":"3f3e3358-9cd3-529c-a0d6-51f14d16eba3","attributes":{"name":"Test-Update_an_existing_incident_team_returns_OK_response-1617974737-updated","created":"2021-04-09T13:25:37.874344+00:00","modified":"2021-04-09T13:25:38.029788+00:00"},"relationships":{"last_modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}}}}'
+    body: '{"included":[{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0","attributes":{"name":null,"handle":"frog@datadoghq.com","created_at":"2019-10-02T08:15:39.795051+00:00","modified_at":"2020-06-15T12:33:12.884459+00:00","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Active"},"relationships":{"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}],"data":{"type":"teams","id":"a3fd9d7a-9477-5a9e-a3b7-e0cdd29deb2b","attributes":{"name":"Test-Update_an_existing_incident_team_returns_OK_response-1617977648-updated","created":"2021-04-09T14:14:08.678642+00:00","modified":"2021-04-09T14:14:08.827414+00:00"},"relationships":{"last_modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -89,7 +89,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:25:38 GMT
+      - Fri, 09 Apr 2021 14:14:08 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -99,9 +99,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
+      - /L+SFFO+m1pPY+hRCpk5325fvfrNl0KmiquUNJolBN/5hu3HIwflqjZSbJ6NxDFG
       X-Dd-Version:
-      - "35.4276054"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -111,7 +111,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "99"
       X-Ratelimit-Reset:
-      - "22"
+      - "52"
     status: 200 OK
     code: 200
     duration: ""
@@ -126,12 +126,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8492544685352959526"
+      - "4235811169966132044"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2030736266617435909"
-    url: https://api.datadoghq.com/api/v2/teams/3f3e3358-9cd3-529c-a0d6-51f14d16eba3
+      - "1624482442401595538"
+    url: https://api.datadoghq.com/api/v2/teams/a3fd9d7a-9477-5a9e-a3b7-e0cdd29deb2b
     method: DELETE
   response:
     body: ""
@@ -145,7 +145,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:25:38 GMT
+      - Fri, 09 Apr 2021 14:14:08 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -153,9 +153,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
+      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
       X-Dd-Version:
-      - "35.4276054"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -165,7 +165,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "94"
       X-Ratelimit-Reset:
-      - "22"
+      - "52"
     status: 204 No Content
     code: 204
     duration: ""

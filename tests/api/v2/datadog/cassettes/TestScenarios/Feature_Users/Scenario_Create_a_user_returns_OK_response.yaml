@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"email":"Test-Create_a_user_returns_OK_response-1617974765@datadoghq.com","name":"Datadog API Client Python"},"type":"users"}}
+      {"data":{"attributes":{"email":"Test-Create_a_user_returns_OK_response-1617977676@datadoghq.com","name":"Datadog API Client Python"},"type":"users"}}
     form: {}
     headers:
       Accept:
@@ -15,16 +15,16 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6415188408241052364"
+      - "8514450781401970724"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4627861128435982335"
+      - "6860552028672785417"
     url: https://api.datadoghq.com/api/v2/users
     method: POST
   response:
-    body: '{"data":{"type":"users","id":"233fcc22-9937-11eb-9ceb-da7ad0900002","attributes":{"name":"Datadog
-      API Client Python","handle":"test-create_a_user_returns_ok_response-1617974765@datadoghq.com","created_at":"2021-04-09T13:26:05.854823+00:00","modified_at":"2021-04-09T13:26:05.870611+00:00","email":"test-create_a_user_returns_ok_response-1617974765@datadoghq.com","icon":"https://secure.gravatar.com/avatar/a12793662395860a0ce0b0c4fa4befe8?s=48&d=retro","title":null,"verified":false,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
+    body: '{"data":{"type":"users","id":"ea7507e8-993d-11eb-9ceb-da7ad0900002","attributes":{"name":"Datadog
+      API Client Python","handle":"test-create_a_user_returns_ok_response-1617977676@datadoghq.com","created_at":"2021-04-09T14:14:37.050014+00:00","modified_at":"2021-04-09T14:14:37.070137+00:00","email":"test-create_a_user_returns_ok_response-1617977676@datadoghq.com","icon":"https://secure.gravatar.com/avatar/af6b8151f5bbad5741376fdaf9bc4348?s=48&d=retro","title":null,"verified":false,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:26:05 GMT
+      - Fri, 09 Apr 2021 14:14:37 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,9 +43,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
+      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
       X-Dd-Version:
-      - "35.4276054"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 201 Created
@@ -62,12 +62,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "53106778707721456"
+      - "8945955272528237124"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4627861128435982335"
-    url: https://api.datadoghq.com/api/v2/users/233fcc22-9937-11eb-9ceb-da7ad0900002
+      - "6860552028672785417"
+    url: https://api.datadoghq.com/api/v2/users/ea7507e8-993d-11eb-9ceb-da7ad0900002
     method: DELETE
   response:
     body: ""
@@ -81,7 +81,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:26:06 GMT
+      - Fri, 09 Apr 2021 14:14:38 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -89,9 +89,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - tpRCH6w417YjBovRJ8VmtuXmNONVYiRp2c8d2AxjPdGBn8PCtgG4vAztrx3qUZAN
+      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
       X-Dd-Version:
-      - "35.4276054"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content

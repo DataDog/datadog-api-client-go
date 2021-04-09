@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"series":[{"metric":"system.load.1","points":[[1600348600,1.1]],"tags":["test:TestSubmitmetricsreturnsPayloadacceptedresponse1617974735"]}]}
+      {"series":[{"metric":"system.load.1","points":[[1600348600,1.1]],"tags":["test:TestSubmitmetricsreturnsPayloadacceptedresponse1617978054"]}]}
     form: {}
     headers:
       Accept:
@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "713896085407051535"
+      - "4089708766381786733"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5900832125227286655"
+      - "3936915200698639505"
     url: https://api.datadoghq.com/api/v1/series
     method: POST
   response:
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - text/json
       Date:
-      - Fri, 09 Apr 2021 13:25:35 GMT
+      - Fri, 09 Apr 2021 14:20:54 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:

@@ -13,32 +13,28 @@ interactions:
       Dd-Operation-Id:
       - CreateMonitor
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7824760841885329104"
+      - "2464606438355764278"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "441585467022422768"
+      - "1128526508476578306"
     url: https://api.datadoghq.com/api/v1/monitor
     method: POST
   response:
-    body: '{"errors":["The parameter ''type'' is required"]}'
+    body: '{"errors": ["The parameter ''type'' is required"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "47"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      - "48"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:32:53 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:18:10 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -46,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -56,7 +52,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "499"
       X-Ratelimit-Reset:
-      - "7"
+      - "10"
     status: 400 Bad Request
     code: 400
     duration: ""

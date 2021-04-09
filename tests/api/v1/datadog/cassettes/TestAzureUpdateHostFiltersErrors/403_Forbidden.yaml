@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateAzureHostFilters
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6879626840950699557"
+      - "2844906279316806425"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6148924464508778789"
+      - "2920034630383572237"
     url: https://api.datadoghq.com/api/v1/integration/azure/host_filters
     method: POST
   response:
@@ -30,12 +30,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 09:25:07 GMT
+      - Fri, 09 Apr 2021 14:13:30 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

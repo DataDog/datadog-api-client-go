@@ -10,35 +10,28 @@ interactions:
       Dd-Operation-Id:
       - ListAvailableAWSNamespaces
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6290164668506856327"
+      - "8606049998157077469"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5776655292003301736"
+      - "6583302436138731537"
     url: https://api.datadoghq.com/api/v1/integration/aws/available_namespace_rules
     method: GET
   response:
-    body: '["api_gateway","application_elb","appstream","appsync","athena","auto_scaling","billing","budgeting","cloudfront","cloudhsm","cloudsearch","cloudwatch_events","cloudwatch_logs","codebuild","cognito","collect_custom_metrics","connect","crawl_alarms","directconnect","dms","documentdb","dynamodb","ebs","ec2","ec2api","ec2spot","ecs","efs","elasticache","elasticbeanstalk","elasticinference","elastictranscoder","elb","emr","es","firehose","gamelift","glue","inspector","iot","kinesis","kinesis_analytics","kms","lambda","lex","mediaconnect","mediaconvert","mediapackage","mediatailor","ml","mq","msk","nat_gateway","neptune","network_elb","opsworks","polly","rds","redshift","rekognition","route53","route53resolver","s3","sagemaker","ses","shield","sns","sqs","step_functions","storage_gateway","swf","transitgateway","translate","trusted_advisor","usage","vpn","waf","wafv2","workspaces","xray"]'
+    body: '["api_gateway","application_elb","appstream","appsync","athena","auto_scaling","billing","budgeting","cloudfront","cloudhsm","cloudsearch","cloudwatch_events","cloudwatch_logs","codebuild","cognito","collect_custom_metrics","connect","crawl_alarms","directconnect","dms","documentdb","dynamodb","ebs","ec2","ec2api","ec2spot","ecs","efs","elasticache","elasticbeanstalk","elasticinference","elastictranscoder","elb","emr","es","firehose","gamelift","glue","inspector","iot","kinesis","kinesis_analytics","kms","lambda","lex","mediaconnect","mediaconvert","mediapackage","mediatailor","ml","mq","msk","nat_gateway","neptune","network_elb","networkfirewall","opsworks","polly","rds","redshift","rekognition","route53","route53resolver","s3","sagemaker","ses","shield","sns","sqs","step_functions","storage_gateway","swf","transitgateway","translate","trusted_advisor","usage","vpn","waf","wafv2","workspaces","xray"]'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:29 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:13:04 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:29 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -46,9 +39,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - F2g1vP9i37Cj4rH5vEufbSNzCmriMTDVzKKqVk/JOUesbIz8psR3R2945wO0PbTf
+      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276543"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

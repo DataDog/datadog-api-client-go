@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - GetUsageRumSessions
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.9+dev (go go1.14.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2034863524942364725"
+      - "5579852910875303356"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4207909460695014182"
-    url: https://api.datadoghq.com/api/v1/usage/rum_sessions?end_hr=2020-08-13T00%3A00%3A00Z&start_hr=2020-08-12T00%3A00%3A00Z&type=invalid
+      - "2819588984712877479"
+    url: https://api.datadoghq.com/api/v1/usage/rum_sessions?end_hr=2021-03-13T00%3A00%3A00Z&start_hr=2021-03-12T00%3A00%3A00Z&type=invalid
     method: GET
   response:
     body: '{"errors": ["Invalid type parameter invalid. Must be (browser|mobile)"]}'
@@ -31,9 +31,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 17 Sep 2020 17:35:20 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:19:57 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -41,17 +39,17 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.3052480"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "12000"
+      - "400"
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "9839"
+      - "283"
       X-Ratelimit-Reset:
-      - "1480"
+      - "2404"
     status: 400 Bad Request
     code: 400
     duration: ""

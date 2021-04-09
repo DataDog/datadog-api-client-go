@@ -2,18 +2,18 @@
 version: 1
 interactions:
 - request:
-    body: '{"series": [{"host": "go-TestHosts-local-1589290276", "metric": "go.client.test.metric",
-      "points": [[1589290276.000000, 0]]}]}'
+    body: '{"series": [{"host": "Test-TestHosts-1617977651", "metric": "go.client.test.metric",
+      "points": [[1617977651.000000, 0]]}]}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "6894130660811019038"
+      - "6772828266091007446"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6894130660811019038"
+      - "6772828266091007446"
     url: https://api.datadoghq.com/api/v1/series
     method: POST
   response:
@@ -23,14 +23,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "16"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - text/json
       Date:
-      - Tue, 12 May 2020 13:31:16 GMT
-      Dd-Pool:
-      - propjoe
+      - Fri, 09 Apr 2021 14:14:11 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
@@ -49,14 +45,14 @@ interactions:
       Dd-Operation-Id:
       - GetHostTags
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5083585123385857779"
+      - "6785075011544095611"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4406687863899018855"
-    url: https://api.datadoghq.com/api/v1/tags/hosts/go-TestHosts-local-1589290276
+      - "7845006176385606275"
+    url: https://api.datadoghq.com/api/v1/tags/hosts/Test-TestHosts-1617977651
     method: GET
   response:
     body: '{"errors": ["No host matches that host_id"]}'
@@ -65,14 +61,10 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:17 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:14:11 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -82,7 +74,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -97,14 +89,14 @@ interactions:
       Dd-Operation-Id:
       - GetHostTags
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6994886605432192006"
+      - "4128431834538575983"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4406687863899018855"
-    url: https://api.datadoghq.com/api/v1/tags/hosts/go-TestHosts-local-1589290276
+      - "7845006176385606275"
+    url: https://api.datadoghq.com/api/v1/tags/hosts/Test-TestHosts-1617977651
     method: GET
   response:
     body: '{"tags":[]}'
@@ -115,27 +107,20 @@ interactions:
       - keep-alive
       Content-Length:
       - "11"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:27 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:14:21 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:27 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - A5a5htKhTUF1FdBQZRUZl4RVawKwk2RUtaZz3EDBmdXc0X6i0O7TBEBWn4bIBQ01
+      - l8RQo2maZqJf6GFThBbKNE6dvthz6njusVtau3dPXJWL2RLFoN81H+BLPB/1xgs1
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -143,7 +128,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"end":1589290336,"message":"muting for test"}
+      {"end":1617977711,"message":"muting for test"}
     form: {}
     headers:
       Accept:
@@ -153,36 +138,29 @@ interactions:
       Dd-Operation-Id:
       - MuteHost
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5602498095458036773"
+      - "5465198889191085006"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4406687863899018855"
-    url: https://api.datadoghq.com/api/v1/host/go-TestHosts-local-1589290276/mute
+      - "7845006176385606275"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1617977651/mute
     method: POST
   response:
-    body: '{"action":"Muted","downtime_id":825973256,"hostname":"go-TestHosts-local-1589290276","end":1589290336,"message":"muting
+    body: '{"action":"Muted","downtime_id":1213944315,"hostname":"Test-TestHosts-1617977651","end":1617977711,"message":"muting
       for test"}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:27 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:14:21 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:27 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -190,9 +168,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - rxkz+JB0yzarEINDeNWQGs9dk7PLNAMnAw2wV8MNkZOhKDtz+JOpGuIyyBUaWwyF
+      - SY1h8ScsWq+kYmtbh63ltMLFAZsQjqfrgvdfAoRX+9TzT1sgMBRYaFRwfWWRRe9a
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -200,7 +178,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"end":1589290396,"message":"muting for test override"}
+      {"end":1617977771,"message":"muting for test override"}
     form: {}
     headers:
       Accept:
@@ -210,34 +188,29 @@ interactions:
       Dd-Operation-Id:
       - MuteHost
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "220267484207812250"
+      - "1998495677638864761"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4406687863899018855"
-    url: https://api.datadoghq.com/api/v1/host/go-TestHosts-local-1589290276/mute
+      - "7845006176385606275"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1617977651/mute
     method: POST
   response:
-    body: '{"errors": ["host:go-TestHosts-local-1589290276 is already muted. To mute
-      this host with a different end timestamp,                             add ?override=true
-      to your request."]}'
+    body: '{"errors": ["host:Test-TestHosts-1617977651 is already muted. To mute this
+      host with a different end timestamp, add ?override=true to your request."]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "182"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      - "150"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:27 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:14:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -245,7 +218,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
@@ -253,7 +226,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"end":1589290396,"message":"muting for test override","override":true}
+      {"end":1617977771,"message":"muting for test override","override":true}
     form: {}
     headers:
       Accept:
@@ -263,36 +236,29 @@ interactions:
       Dd-Operation-Id:
       - MuteHost
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1462857173453047934"
+      - "3244081916926813294"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4406687863899018855"
-    url: https://api.datadoghq.com/api/v1/host/go-TestHosts-local-1589290276/mute
+      - "7845006176385606275"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1617977651/mute
     method: POST
   response:
-    body: '{"action":"Muted","downtime_id":825973265,"hostname":"go-TestHosts-local-1589290276","end":1589290396,"message":"muting
+    body: '{"action":"Muted","downtime_id":1213944316,"hostname":"Test-TestHosts-1617977651","end":1617977771,"message":"muting
       for test override"}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:27 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:14:22 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:27 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -300,9 +266,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - pdoE+6MDHF3ASB0y6TdRZq9HO/3uAKc0XPY7EkyNyaFqpXeeAHwz2Ce2QWIN714X
+      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -317,35 +283,28 @@ interactions:
       Dd-Operation-Id:
       - UnmuteHost
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5075576121830577900"
+      - "6489172879113708369"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4406687863899018855"
-    url: https://api.datadoghq.com/api/v1/host/go-TestHosts-local-1589290276/unmute
+      - "7845006176385606275"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1617977651/unmute
     method: POST
   response:
-    body: '{"action":"Unmuted","downtime_id":825973265,"hostname":"go-TestHosts-local-1589290276"}'
+    body: '{"action":"Unmuted","downtime_id":1213944316,"hostname":"Test-TestHosts-1617977651"}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:28 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:14:23 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:28 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -353,9 +312,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - rK52fEhHKxisnKo2rembr3YValr4L+BG6/8tD9iNDc8Prg2mnV6DynBkS75++wh/
+      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

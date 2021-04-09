@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"access_role":"ro","email":"go-testdisableuser-local-1591954353@integration-tests-accnt-for-sdk-ci.com","handle":"go-testdisableuser-local-1591954353@integration-tests-accnt-for-sdk-ci.com","name":"go-TestDisableUser-local-1591954353"}
+      {"access_role":"ro","email":"test-testdisableuser-1617978002@integration-tests-accnt-for-sdk-ci.com","handle":"test-testdisableuser-1617978002@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestDisableUser-1617978002"}
     form: {}
     headers:
       Accept:
@@ -13,17 +13,17 @@ interactions:
       Dd-Operation-Id:
       - CreateUser
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.5+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8235363339164974009"
+      - "1893570249727990677"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4442731903013944008"
+      - "2153551413015429022"
     url: https://api.datadoghq.com/api/v1/user
     method: POST
   response:
-    body: '{"user":{"disabled":false,"handle":"go-testdisableuser-local-1591954353@integration-tests-accnt-for-sdk-ci.com","name":"go-TestDisableUser-local-1591954353","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"go-testdisableuser-local-1591954353@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/8070379f091ecb9f491cd41a11dd8a64?s=48&d=retro"}}'
+    body: '{"user":{"disabled":false,"handle":"test-testdisableuser-1617978002@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestDisableUser-1617978002","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"test-testdisableuser-1617978002@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/b72f34c1c3254df1f29069b9c660cf95?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,14 +32,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 12 Jun 2020 09:32:37 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:20:03 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 19-Jun-2020 09:32:35 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -47,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 3OCRM/4FZbkllI4iloi1acHDABD1SJi2aj2fysEPLLsOVOk5Ki6mi6IOsVG7JIay
+      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
       X-Dd-Version:
-      - "35.2613383"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -60,21 +55,21 @@ interactions:
     form: {}
     headers:
       Accept:
-      - applcation/json
+      - application/json
       Dd-Operation-Id:
       - DisableUser
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.5+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1345358252951329515"
+      - "2051176491910568936"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4442731903013944008"
-    url: https://api.datadoghq.com/api/v1/user/go-testdisableuser-local-1591954353@integration-tests-accnt-for-sdk-ci.com
+      - "2153551413015429022"
+    url: https://api.datadoghq.com/api/v1/user/test-testdisableuser-1617978002@integration-tests-accnt-for-sdk-ci.com
     method: DELETE
   response:
-    body: '{"message":"User go-testdisableuser-local-1591954353@integration-tests-accnt-for-sdk-ci.com
+    body: '{"message":"User test-testdisableuser-1617978002@integration-tests-accnt-for-sdk-ci.com
       disabled"}'
     headers:
       Cache-Control:
@@ -84,14 +79,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 12 Jun 2020 09:32:37 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:20:04 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 19-Jun-2020 09:32:37 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -99,9 +89,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 2AZOmbSnS2o4jaTO55IoEgDi10r3ewUAnpo5XLuAFAThAxt0uvbRy8dZoSIDmBYA
+      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
       X-Dd-Version:
-      - "35.2613383"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -112,18 +102,18 @@ interactions:
     form: {}
     headers:
       Accept:
-      - applcation/json
+      - application/json
       Dd-Operation-Id:
       - DisableUser
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.5+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7767092908711510305"
+      - "4312154358417499402"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4442731903013944008"
-    url: https://api.datadoghq.com/api/v1/user/go-testdisableuser-local-1591954353@integration-tests-accnt-for-sdk-ci.com
+      - "2153551413015429022"
+    url: https://api.datadoghq.com/api/v1/user/test-testdisableuser-1617978002@integration-tests-accnt-for-sdk-ci.com
     method: DELETE
   response:
     body: '{"errors": ["User is already disabled"]}'
@@ -137,9 +127,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 12 Jun 2020 09:32:37 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:20:05 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -147,7 +135,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2613383"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - GetUsageAnalyzedLogs
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14.2; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4880938843045917715"
+      - "8935564474235665148"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "9218484283802243526"
-    url: https://api.datadoghq.com/api/v1/usage/analyzed_logs?start_hr=2020-06-18T18%3A23%3A26-04%3A00
+      - "485119256824113177"
+    url: https://api.datadoghq.com/api/v1/usage/analyzed_logs?start_hr=2021-05-09T16%3A19%3A53%2B02%3A00
     method: GET
   response:
     body: '{"errors": ["start_hr cannot be in the future"]}'
@@ -28,14 +28,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "48"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 18 May 2020 22:23:27 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:19:53 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,17 +39,17 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2519533"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "200"
+      - "400"
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "152"
+      - "297"
       X-Ratelimit-Reset:
-      - "2193"
+      - "2407"
     status: 400 Bad Request
     code: 400
     duration: ""

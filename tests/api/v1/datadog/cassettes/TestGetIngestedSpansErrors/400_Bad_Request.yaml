@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - GetIngestedSpans
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.11+dev (go go1.14.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9165594248106701592"
+      - "3155460581328624803"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5293707962694188180"
-    url: https://api.datadoghq.com/api/v1/usage/ingested-spans?start_hr=2020-12-04T18%3A21%3A16-05%3A00
+      - "4838722150132893012"
+    url: https://api.datadoghq.com/api/v1/usage/ingested-spans?start_hr=2021-05-09T16%3A19%3A59%2B02%3A00
     method: GET
   response:
     body: '{"errors": ["start_hr cannot be in the future"]}'
@@ -31,9 +31,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 04 Nov 2020 23:21:18 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:19:59 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -41,7 +39,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.3316267"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -49,9 +47,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "398"
+      - "279"
       X-Ratelimit-Reset:
-      - "2322"
+      - "2401"
     status: 400 Bad Request
     code: 400
     duration: ""

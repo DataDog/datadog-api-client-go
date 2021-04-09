@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"tags":["test:TestPostaneventreturnsOKresponse1617974734"],"text":"A text message.","title":"Test-Post_an_event_returns_OK_response-1617974734"}
+      {"tags":["test:TestPostaneventreturnsOKresponse1617978053"],"text":"A text message.","title":"Test-Post_an_event_returns_OK_response-1617978053"}
     form: {}
     headers:
       Accept:
@@ -15,16 +15,16 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5482078389636778087"
+      - "5589327904890361754"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7539479226217973440"
+      - "8250558703743070155"
     url: https://api.datadoghq.com/api/v1/events
     method: POST
   response:
-    body: '{"status":"ok","event":{"id":5934300423345428539,"title":"Test-Post_an_event_returns_OK_response-1617974734","text":"A
-      text message.","date_happened":1617974734,"handle":null,"priority":null,"related_event_id":null,"tags":["test:TestPostaneventreturnsOKresponse1617974734"],"url":"https://app.datadoghq.com/event/event?id=5934300423345428539"}}'
+    body: '{"status":"ok","event":{"id":5934356106585878638,"title":"Test-Post_an_event_returns_OK_response-1617978053","text":"A
+      text message.","date_happened":1617978053,"handle":null,"priority":null,"related_event_id":null,"tags":["test:TestPostaneventreturnsOKresponse1617978053"],"url":"https://app.datadoghq.com/event/event?id=5934356106585878638"}}'
     headers:
       Connection:
       - keep-alive
@@ -33,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 13:25:34 GMT
+      - Fri, 09 Apr 2021 14:20:53 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:

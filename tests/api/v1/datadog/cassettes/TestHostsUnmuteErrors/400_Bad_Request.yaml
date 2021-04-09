@@ -10,17 +10,17 @@ interactions:
       Dd-Operation-Id:
       - UnmuteHost
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1025237141393174499"
+      - "1443029842241639274"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6182508693193709036"
-    url: https://api.datadoghq.com/api/v1/host/go-TestHostsUnmuteErrors-400_Bad_Request-local-1589290290/unmute
+      - "1029355915226169120"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHostsUnmuteErrors-400_Bad_Request-1617977665/unmute
     method: POST
   response:
-    body: '{"errors": ["host:go-TestHostsUnmuteErrors-400_Bad_Request-local-1589290290
+    body: '{"errors": ["host:Test-TestHostsUnmuteErrors-400_Bad_Request-1617977665
       is not muted."]}'
     headers:
       Cache-Control:
@@ -28,15 +28,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - "92"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      - "88"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:31 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:14:25 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,7 +40,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

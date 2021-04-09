@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - GetUsageAttribution
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.11 (go go1.15; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8971958325381126221"
+      - "1121524461490951447"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3913034877789989940"
-    url: https://api.datadoghq.com/api/v1/usage/attribution?fields=%2A&start_month=2020-12-17T16%3A26%3A27-03%3A00
+      - "2604005239649159734"
+    url: https://api.datadoghq.com/api/v1/usage/attribution?fields=%2A&start_month=2021-05-09T16%3A19%3A59%2B02%3A00
     method: GET
   response:
     body: |
@@ -27,12 +27,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Tue, 17 Nov 2020 19:26:27 GMT
+      - Fri, 09 Apr 2021 14:19:59 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateDashboardList
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3604157690403330036"
+      - "6419471371680140269"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5263982955227616030"
+      - "7232404784171607275"
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/1234
     method: PUT
   response:
@@ -30,12 +30,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:30:21 GMT
+      - Fri, 09 Apr 2021 14:13:32 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

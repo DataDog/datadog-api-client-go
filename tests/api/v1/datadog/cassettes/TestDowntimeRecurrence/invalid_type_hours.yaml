@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"go-TestDowntimeRecurrence-invalid_type_hours-local-1589290250; invalid type hours","recurrence":{"period":1,"type":"hours"},"scope":["*"],"start":1589290248,"timezone":"Etc/UTC"}
+      {"message":"Test-TestDowntimeRecurrence-invalid_type_hours-1617977628; invalid type hours","recurrence":{"period":1,"type":"hours"},"scope":["*"],"start":1617977627,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -13,32 +13,28 @@ interactions:
       Dd-Operation-Id:
       - CreateDowntime
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7332243859943279092"
+      - "4891121707145927197"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2107215364500257571"
+      - "8616648158461548480"
     url: https://api.datadoghq.com/api/v1/downtime
     method: POST
   response:
-    body: '{"errors":["Invalid recurrence type"]}'
+    body: '{"errors": ["Invalid recurrence type"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "38"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      - "39"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:30:50 GMT
-      Dd-Pool:
-      - dogweb
+      - Fri, 09 Apr 2021 14:13:48 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -46,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4276613"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
