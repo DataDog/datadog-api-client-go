@@ -4,9 +4,81 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateEvent**](EventsApi.md#CreateEvent) | **Post** /api/v1/events | Post an event
 [**GetEvent**](EventsApi.md#GetEvent) | **Get** /api/v1/events/{event_id} | Get an event
 [**ListEvents**](EventsApi.md#ListEvents) | **Get** /api/v1/events | Query the event stream
 
+
+
+## CreateEvent
+
+> EventCreateResponse CreateEvent(ctx).Body(body).Execute()
+
+Post an event
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    body := *datadog.NewEventCreateRequest("Oh boy!", "Did you hear the news today?") // EventCreateRequest | Event request object
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.EventsApi.CreateEvent(ctx).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.CreateEvent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateEvent`: EventCreateResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from EventsApi.CreateEvent:\n%s\n", responseContent)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateEventRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**EventCreateRequest**](EventCreateRequest.md) | Event request object | 
+
+### Return type
+
+[**EventCreateResponse**](EventCreateResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetEvent

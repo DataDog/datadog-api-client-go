@@ -3417,11 +3417,45 @@ paths:
       tags:
       - Security Monitoring
       x-codegen-request-body-name: body
+      x-given:
+        security_rule:
+          parameters:
+          - name: body
+            value: |-
+              {
+                "name": "{{ unique }}",
+                "queries": [{
+                  "query": "@test:true",
+                  "aggregation": "count",
+                  "groupByFields": [],
+                  "distinctFields": [],
+                  "metric": ""
+                }],
+                "filters": [],
+                "cases": [{
+                  "name": "",
+                  "status": "info",
+                  "condition": "a > 0",
+                  "notifications": []
+                }],
+                "options": {
+                  "evaluationWindow": 900,
+                  "keepAlive": 3600,
+                  "maxSignalDuration": 86400
+                },
+                "hasExtendedTitle": false,
+                "message": "Test rule",
+                "tags": [],
+                "isDefault": false,
+                "isEnabled": true,
+                "type": "log_detection"
+              }
+          step: there is a valid "security_rule" in the system
       x-undo:
         operationId: DeleteSecurityMonitoringRule
         parameters:
         - name: rule_id
-          source: data.id
+          source: id
         type: unsafe
   /api/v2/security_monitoring/rules/{rule_id}:
     delete:
