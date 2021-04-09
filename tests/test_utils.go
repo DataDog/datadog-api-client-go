@@ -332,9 +332,15 @@ func WithUniqueSurrounding(ctx context.Context, name string) string {
 	// Replace all - with _ in the test name (scenario test names can include -)
 	name = strings.ReplaceAll(name, "-", "_")
 
+	prefix := "Test"
+	if GetRecording() == ModeIgnore {
+		// In ignore mode we add the language prefix to track unremoved data
+		prefix = "Test-Go"
+	}
+
 	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
 	// so we need to keep this short
-	result := fmt.Sprintf("Test-%s-%d", SecurePath(name), ClockFromContext(ctx).Now().Unix())
+	result := fmt.Sprintf("%s-%s-%d", prefix, SecurePath(name), ClockFromContext(ctx).Now().Unix())
 	// In case this is used in URL, make sure we replace the slash that is added by subtests
 	result = strings.ReplaceAll(result, "/", "-")
 	return result
