@@ -99,9 +99,12 @@ func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#requiredP
         {{/returnType}}
         return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("only one argument of type {{operationIdOriginal}}Parameters is allowed")
     }
+
+    if o != nil {
     {{#optionalParams}}
         req.{{paramName}} = o[0].{{vendorExtensions.x-export-param-name}}
     {{/optionalParams}}
+    }
     {{/hasOptionalParams}}
 
     return req.ApiService.{{#lambda.camelcase}}{{nickname}}Execute{{/lambda.camelcase}}(req)
