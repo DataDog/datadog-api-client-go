@@ -14,10 +14,16 @@ import (
 
 // GeomapWidgetRequest An updated geomap widget.
 type GeomapWidgetRequest struct {
+	// List of formulas that operate on queries. **This feature is currently in beta.**
+	Formulas *[]WidgetFormula    `json:"formulas,omitempty"`
 	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
 	// The widget metrics query.
-	Q        *string             `json:"q,omitempty"`
-	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+	Q *string `json:"q,omitempty"`
+	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
+	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
+	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
 }
 
 // NewGeomapWidgetRequest instantiates a new GeomapWidgetRequest object
@@ -35,6 +41,38 @@ func NewGeomapWidgetRequest() *GeomapWidgetRequest {
 func NewGeomapWidgetRequestWithDefaults() *GeomapWidgetRequest {
 	this := GeomapWidgetRequest{}
 	return &this
+}
+
+// GetFormulas returns the Formulas field value if set, zero value otherwise.
+func (o *GeomapWidgetRequest) GetFormulas() []WidgetFormula {
+	if o == nil || o.Formulas == nil {
+		var ret []WidgetFormula
+		return ret
+	}
+	return *o.Formulas
+}
+
+// GetFormulasOk returns a tuple with the Formulas field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GeomapWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
+	if o == nil || o.Formulas == nil {
+		return nil, false
+	}
+	return o.Formulas, true
+}
+
+// HasFormulas returns a boolean if a field has been set.
+func (o *GeomapWidgetRequest) HasFormulas() bool {
+	if o != nil && o.Formulas != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
+func (o *GeomapWidgetRequest) SetFormulas(v []WidgetFormula) {
+	o.Formulas = &v
 }
 
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
@@ -101,6 +139,70 @@ func (o *GeomapWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
 
+// GetQueries returns the Queries field value if set, zero value otherwise.
+func (o *GeomapWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
+	if o == nil || o.Queries == nil {
+		var ret []FormulaAndFunctionQueryDefinition
+		return ret
+	}
+	return *o.Queries
+}
+
+// GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GeomapWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinition, bool) {
+	if o == nil || o.Queries == nil {
+		return nil, false
+	}
+	return o.Queries, true
+}
+
+// HasQueries returns a boolean if a field has been set.
+func (o *GeomapWidgetRequest) HasQueries() bool {
+	if o != nil && o.Queries != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
+func (o *GeomapWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
+	o.Queries = &v
+}
+
+// GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
+func (o *GeomapWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
+	if o == nil || o.ResponseFormat == nil {
+		var ret FormulaAndFunctionResponseFormat
+		return ret
+	}
+	return *o.ResponseFormat
+}
+
+// GetResponseFormatOk returns a tuple with the ResponseFormat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GeomapWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionResponseFormat, bool) {
+	if o == nil || o.ResponseFormat == nil {
+		return nil, false
+	}
+	return o.ResponseFormat, true
+}
+
+// HasResponseFormat returns a boolean if a field has been set.
+func (o *GeomapWidgetRequest) HasResponseFormat() bool {
+	if o != nil && o.ResponseFormat != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetResponseFormat gets a reference to the given FormulaAndFunctionResponseFormat and assigns it to the ResponseFormat field.
+func (o *GeomapWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat) {
+	o.ResponseFormat = &v
+}
+
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetRumQuery() LogQueryDefinition {
 	if o == nil || o.RumQuery == nil {
@@ -133,16 +235,60 @@ func (o *GeomapWidgetRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
 
+// GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
+func (o *GeomapWidgetRequest) GetSecurityQuery() LogQueryDefinition {
+	if o == nil || o.SecurityQuery == nil {
+		var ret LogQueryDefinition
+		return ret
+	}
+	return *o.SecurityQuery
+}
+
+// GetSecurityQueryOk returns a tuple with the SecurityQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GeomapWidgetRequest) GetSecurityQueryOk() (*LogQueryDefinition, bool) {
+	if o == nil || o.SecurityQuery == nil {
+		return nil, false
+	}
+	return o.SecurityQuery, true
+}
+
+// HasSecurityQuery returns a boolean if a field has been set.
+func (o *GeomapWidgetRequest) HasSecurityQuery() bool {
+	if o != nil && o.SecurityQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSecurityQuery gets a reference to the given LogQueryDefinition and assigns it to the SecurityQuery field.
+func (o *GeomapWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
+	o.SecurityQuery = &v
+}
+
 func (o GeomapWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Formulas != nil {
+		toSerialize["formulas"] = o.Formulas
+	}
 	if o.LogQuery != nil {
 		toSerialize["log_query"] = o.LogQuery
 	}
 	if o.Q != nil {
 		toSerialize["q"] = o.Q
 	}
+	if o.Queries != nil {
+		toSerialize["queries"] = o.Queries
+	}
+	if o.ResponseFormat != nil {
+		toSerialize["response_format"] = o.ResponseFormat
+	}
 	if o.RumQuery != nil {
 		toSerialize["rum_query"] = o.RumQuery
+	}
+	if o.SecurityQuery != nil {
+		toSerialize["security_query"] = o.SecurityQuery
 	}
 	return json.Marshal(toSerialize)
 }
