@@ -1,0 +1,168 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","TestListtagsbymetricnamereturnsSuccessresponse1617974755"]},"id":"TestListtagsbymetricnamereturnsSuccessresponse1617974755","type":"manage_tags"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateTagConfiguration
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5610112861303415379"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8869411192022816811"
+    url: https://api.datadoghq.com/api/v2/metrics/TestListtagsbymetricnamereturnsSuccessresponse1617974755/tags
+    method: POST
+  response:
+    body: '{"data":{"type":"manage_tags","id":"TestListtagsbymetricnamereturnsSuccessresponse1617974755","attributes":{"tags":["datacenter","app","TestListtagsbymetricnamereturnsSuccessresponse1617974755"],"include_percentiles":false,"created_at":"2021-04-09T13:25:55.214795+00:00","updated_at":"2021-04-09T13:25:55.214795+00:00","metric_type":"distribution"}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "350"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Apr 2021 13:25:55 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
+      X-Dd-Version:
+      - "35.4276054"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "50"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "34"
+      X-Ratelimit-Reset:
+      - "5"
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListTagsByMetricName
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4571068150139662714"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8869411192022816811"
+    url: https://api.datadoghq.com/api/v2/metrics/TestListtagsbymetricnamereturnsSuccessresponse1617974755/all-tags
+    method: GET
+  response:
+    body: '{"data":{"type":"metrics","id":"TestListtagsbymetricnamereturnsSuccessresponse1617974755","attributes":{"tags":[]}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Apr 2021 13:25:55 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - fIO2C4qGDheGHy4YbS+r3a3CXbh4cbRo7roILOimQyiHGjQdOat0cIpWCkupM1uX
+      X-Dd-Version:
+      - "35.4276054"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "600"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "590"
+      X-Ratelimit-Reset:
+      - "2045"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteTagConfiguration
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8016870181070071618"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8869411192022816811"
+    url: https://api.datadoghq.com/api/v2/metrics/TestListtagsbymetricnamereturnsSuccessresponse1617974755/tags
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Apr 2021 13:25:55 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
+      X-Dd-Version:
+      - "35.4276054"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "50"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "33"
+      X-Ratelimit-Reset:
+      - "5"
+    status: 204 No Content
+    code: 204
+    duration: ""

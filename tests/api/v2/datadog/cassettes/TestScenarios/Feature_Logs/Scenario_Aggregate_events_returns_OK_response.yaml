@@ -1,0 +1,60 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"compute":[{"aggregation":"count","interval":"300","metric":"test.aggregation.Test-Aggregate_events_returns_OK_response-1617974742","type":"timeseries"}],"filter":{"from":"1600348573","indexes":["main"],"query":"datadog-agent","to":"1600348600"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - AggregateLogs
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "307096823325531191"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8666950489775665423"
+    url: https://api.datadoghq.com/api/v2/logs/analytics/aggregate
+    method: POST
+  response:
+    body: '{"meta":{"status":"done","request_id":"pddv1ChZWZkx6RmRjeVJaMnNlRGs5VlA5b3FBIiwKHCTIqPgOsgrlF9NMImdV0XTmAar38XP9XzbNYHwSDI8kWiF1-MJ3kD5ZyA","elapsed":0},"data":{"buckets":[]}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Apr 2021 13:25:42 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - PhosSd3Ch1B6B0DXI71steKUi7XhPDttnPiIP1NdXTw0VJNWpoUnYyBmODS5ne3q
+      X-Dd-Version:
+      - "35.4276054"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "300"
+      X-Ratelimit-Period:
+      - "300"
+      X-Ratelimit-Remaining:
+      - "299"
+      X-Ratelimit-Reset:
+      - "258"
+    status: 200 OK
+    code: 200
+    duration: ""

@@ -112,7 +112,7 @@ func IsCIRun() bool {
 func SecurePath(path string) string {
 	badChars := []string{"\\", "?", "%", "*", ":", "|", `"`, "<", ">", "'"}
 	for _, c := range badChars {
-		path = strings.ReplaceAll(path, c, "_")
+		path = strings.ReplaceAll(path, c, "")
 	}
 	return filepath.Clean(path)
 }
@@ -320,28 +320,21 @@ func WithClock(ctx context.Context, path string) (context.Context, error) {
 }
 
 // UniqueEntityName will return a unique string that can be used as a title/description/summary/...
-// of an API entity. When used in Azure Pipelines and RECORD=true or RECORD=none, it will include
-// BuildId to enable mapping resources that weren't deleted to builds.
+// of an API entity.
 func UniqueEntityName(ctx context.Context, t *testing.T) *string {
 	name := WithUniqueSurrounding(ctx, t.Name())
 	return &name
 }
 
 // WithUniqueSurrounding will wrap a string that can be used as a title/description/summary/...
-// of an API entity. When used in Azure Pipelines and RECORD=true or RECORD=none, it will include
-// BuildId to enable mapping resources that weren't deleted to builds.
+// of an API entity.
 func WithUniqueSurrounding(ctx context.Context, name string) string {
-	buildID, present := os.LookupEnv("BUILD_BUILDID")
-	if !present || !IsCIRun() || GetRecording() == ModeReplaying {
-		buildID = "local"
-	}
-
 	// Replace all - with _ in the test name (scenario test names can include -)
 	name = strings.ReplaceAll(name, "-", "_")
 
 	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
 	// so we need to keep this short
-	result := fmt.Sprintf("go-%s-%s-%d", SecurePath(name), buildID, ClockFromContext(ctx).Now().Unix())
+	result := fmt.Sprintf("Test-%s-%d", SecurePath(name), ClockFromContext(ctx).Now().Unix())
 	// In case this is used in URL, make sure we replace the slash that is added by subtests
 	result = strings.ReplaceAll(result, "/", "-")
 	return result

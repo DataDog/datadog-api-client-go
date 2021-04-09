@@ -376,7 +376,7 @@ func SetCtx(ctx gobdd.Context, value context.Context) {
 func SetFixtureData(ctx gobdd.Context) {
 	ct, _ := ctx.Get(gobdd.TestingTKey{})
 	cctx := GetCtx(ctx)
-	testName := strings.Join(strings.Split(ct.(*testing.T).Name(), "/")[1:3], "/")
+	testName := strings.SplitN(strings.Split(ct.(*testing.T).Name(), "/")[2], "_", 2)[1]
 	unique := WithUniqueSurrounding(cctx, testName)
 	alnum := regexp.MustCompile(`[^A-Za-z0-9]+`)
 	data := GetData(ctx)

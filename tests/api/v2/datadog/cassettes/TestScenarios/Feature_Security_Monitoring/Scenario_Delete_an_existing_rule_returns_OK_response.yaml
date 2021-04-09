@@ -1,0 +1,146 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Delete_an_existing_rule_returns_OK_response-1617974765","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metric":"","query":"@test:true"}],"tags":[]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7773636791531063273"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "199941740055629399"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
+    method: POST
+  response:
+    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
+      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1617974765428,"filters":[],"queries":[{"distinctFields":[],"name":"","metric":"","aggregation":"count","groupByFields":[],"query":"@test:true","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"jno-noy-jnm","isDefault":false,"name":"Test-Delete_an_existing_rule_returns_OK_response-1617974765"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Fri, 09 Apr 2021 13:26:05 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
+      X-Dd-Version:
+      - "35.4276054"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7383700732171314283"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "199941740055629399"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/jno-noy-jnm
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - "0"
+      Date:
+      - Fri, 09 Apr 2021 13:26:05 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - B1nwy/pPNqX+q4pQT22cdp1QCexE35IF8qwSHy0Nf7IW0Y881qtn4tXN1lpmzaKc
+      X-Dd-Version:
+      - "35.4276054"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8309866589363629918"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "199941740055629399"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/jno-noy-jnm
+    method: DELETE
+  response:
+    body: '{"errors":["Threat detection rule not found: jno-noy-jnm"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Apr 2021 13:26:05 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.4276054"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 404 Not Found
+    code: 404
+    duration: ""

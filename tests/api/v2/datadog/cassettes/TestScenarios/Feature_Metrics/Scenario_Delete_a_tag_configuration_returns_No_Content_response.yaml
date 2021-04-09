@@ -1,0 +1,167 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","TestDeleteatagconfigurationreturnsNoContentresponse1617974746"]},"id":"TestDeleteatagconfigurationreturnsNoContentresponse1617974746","type":"manage_tags"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateTagConfiguration
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5716365483573065822"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3359766858853317353"
+    url: https://api.datadoghq.com/api/v2/metrics/TestDeleteatagconfigurationreturnsNoContentresponse1617974746/tags
+    method: POST
+  response:
+    body: '{"data":{"type":"manage_tags","id":"TestDeleteatagconfigurationreturnsNoContentresponse1617974746","attributes":{"tags":["datacenter","app","TestDeleteatagconfigurationreturnsNoContentresponse1617974746"],"include_percentiles":false,"created_at":"2021-04-09T13:25:46.785072+00:00","updated_at":"2021-04-09T13:25:46.785072+00:00","metric_type":"distribution"}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "360"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Apr 2021 13:25:46 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
+      X-Dd-Version:
+      - "35.4276054"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "50"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "47"
+      X-Ratelimit-Reset:
+      - "14"
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteTagConfiguration
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7006857571543647435"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3359766858853317353"
+    url: https://api.datadoghq.com/api/v2/metrics/TestDeleteatagconfigurationreturnsNoContentresponse1617974746/tags
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Apr 2021 13:25:46 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - fIO2C4qGDheGHy4YbS+r3a3CXbh4cbRo7roILOimQyiHGjQdOat0cIpWCkupM1uX
+      X-Dd-Version:
+      - "35.4276054"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "50"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "46"
+      X-Ratelimit-Reset:
+      - "14"
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteTagConfiguration
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5104418872792984647"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3359766858853317353"
+    url: https://api.datadoghq.com/api/v2/metrics/TestDeleteatagconfigurationreturnsNoContentresponse1617974746/tags
+    method: DELETE
+  response:
+    body: '{"errors": ["TestDeleteatagconfigurationreturnsNoContentresponse1617974746
+      not found"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Apr 2021 13:25:47 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.4276054"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "50"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "45"
+      X-Ratelimit-Reset:
+      - "13"
+    status: 404 Not Found
+    code: 404
+    duration: ""
