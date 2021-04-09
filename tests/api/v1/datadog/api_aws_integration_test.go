@@ -60,8 +60,8 @@ func TestCreateAWSAccount(t *testing.T) {
 
 	awsAccts, httpresp, err := Client(ctx).AWSIntegrationApi.
 		ListAWSAccounts(ctx, *datadog.NewListAWSAccountsParameters().
-		WithAccountId(testAWSAccount.GetAccountId()).
-		WithRoleName(testAWSAccount.GetRoleName()))
+			WithAccountId(testAWSAccount.GetAccountId()).
+			WithRoleName(testAWSAccount.GetRoleName()))
 	if err != nil {
 		t.Fatalf("Error getting AWS Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

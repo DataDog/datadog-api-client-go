@@ -133,7 +133,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	// Get SLO history
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
 	now := tests.ClockFromContext(ctx).Now().Unix()
-	_, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.GetSLOHistory(ctx, slo3.GetId(), now - 11, now -1)
+	_, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.GetSLOHistory(ctx, slo3.GetId(), now-11, now-1)
 	// the contents of history really depend on the org that this test is running in, so we just ensure
 	// that the structure deserialized properly and no error was returned
 	if err != nil {
@@ -202,7 +202,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 	// Get SLO history
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
 	now := tests.ClockFromContext(ctx).Now().Unix()
-	_, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.GetSLOHistory(ctx, slo3.GetId(), now - 11, now - 1)
+	_, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.GetSLOHistory(ctx, slo3.GetId(), now-11, now-1)
 	// the contents of history really depend on the org that this test is running in, so we just ensure
 	// that the structure deserialized properly and no error was returned
 	if err != nil {
@@ -274,8 +274,8 @@ func TestSLOMultipleInstances(t *testing.T) {
 	var deleteResp datadog.SLOBulkDeleteResponse
 	deleteResp, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk(ctx,
 		map[string][]datadog.SLOTimeframe{
-		eventSLO.GetId(): {datadog.SLOTIMEFRAME_SEVEN_DAYS},
-	})
+			eventSLO.GetId(): {datadog.SLOTIMEFRAME_SEVEN_DAYS},
+		})
 
 	if err != nil {
 		t.Fatalf("Error bulk deleting SLOs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)

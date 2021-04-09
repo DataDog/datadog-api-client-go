@@ -306,7 +306,7 @@ func TestMonitorUpdateErrors(t *testing.T) {
 
 	// Create monitor
 	tm := testMonitor(ctx, t)
-	monitor, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx, tm )
+	monitor, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx, tm)
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
