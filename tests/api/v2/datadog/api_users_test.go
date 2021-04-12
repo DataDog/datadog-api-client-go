@@ -93,7 +93,7 @@ func TestUserLifecycle(t *testing.T) {
 	assert.Equal(httpresp.StatusCode, 204)
 
 	// now, test filtering for it in the list call
-	usrp, httpresp, err := Client(ctx).UsersApi.ListUsers(ctx, *datadog.NewListUsersParameters().
+	usrp, httpresp, err := Client(ctx).UsersApi.ListUsers(ctx, *datadog.NewListUsersOptionalParameters().
 		WithFilter(uca.GetEmail()).
 		WithPageSize(1).
 		WithPageNumber(0).

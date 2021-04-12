@@ -77,7 +77,7 @@ func TestRoleLifecycle(t *testing.T) {
 	assert.Equal(updatedRoleName, getAttributes.GetName())
 
 	// now, test filtering for it in the list call
-	rsr, httpresp, err := Client(ctx).RolesApi.ListRoles(ctx, *datadog.NewListRolesParameters().
+	rsr, httpresp, err := Client(ctx).RolesApi.ListRoles(ctx, *datadog.NewListRolesOptionalParameters().
 		WithFilter(updatedRoleName).
 		WithPageSize(1).
 		WithPageNumber(0).

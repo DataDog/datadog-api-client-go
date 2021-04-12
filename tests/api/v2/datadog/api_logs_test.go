@@ -40,7 +40,7 @@ func TestLogsList(t *testing.T) {
 
 	// Make sure both logs are indexed
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsParameters().WithBody(*request))
+		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
 		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
 	})
 
@@ -51,7 +51,7 @@ func TestLogsList(t *testing.T) {
 	// Sort works correctly
 	request.SetSort(datadog.LOGSSORT_TIMESTAMP_ASCENDING)
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsParameters().WithBody(*request))
+		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
@@ -71,7 +71,7 @@ func TestLogsList(t *testing.T) {
 	request.SetSort(datadog.LOGSSORT_TIMESTAMP_DESCENDING)
 
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsParameters().WithBody(*request))
+		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
@@ -93,7 +93,7 @@ func TestLogsList(t *testing.T) {
 	page.SetLimit(1)
 	request.SetPage(*page)
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsParameters().WithBody(*request))
+		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
@@ -112,7 +112,7 @@ func TestLogsList(t *testing.T) {
 
 	request.Page.SetCursor(cursor)
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsParameters().WithBody(*request))
+		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
@@ -153,7 +153,7 @@ func TestLogsListGet(t *testing.T) {
 
 	// Make sure both logs are indexed
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetParameters().
+		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
 			WithFilterQuery(*suffix).
 			WithFilterFrom(from).
 			WithFilterTo(to))
@@ -166,7 +166,7 @@ func TestLogsListGet(t *testing.T) {
 
 	// Sort works correctly
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetParameters().
+		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
 			WithFilterQuery(*suffix).
 			WithFilterFrom(from).
 			WithFilterTo(to).
@@ -189,7 +189,7 @@ func TestLogsListGet(t *testing.T) {
 	assert.Equal("test-log-list-2 "+*suffix, attributes.GetMessage())
 
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetParameters().
+		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
 			WithFilterQuery(*suffix).
 			WithFilterFrom(from).
 			WithFilterTo(to).
@@ -213,7 +213,7 @@ func TestLogsListGet(t *testing.T) {
 
 	// Paging
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetParameters().
+		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
 			WithFilterQuery(*suffix).
 			WithFilterFrom(from).
 			WithFilterTo(to).
@@ -235,7 +235,7 @@ func TestLogsListGet(t *testing.T) {
 	firstID := response.GetData()[0].GetId()
 
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetParameters().
+		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
 			WithFilterQuery(*suffix).
 			WithFilterFrom(from).
 			WithFilterTo(to).

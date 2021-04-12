@@ -59,18 +59,18 @@ type {{#lambda.camelcase}}{{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{o
 }
 
 {{#hasOptionalParams}}
-type {{operationIdOriginal}}Parameters struct {
+type {{operationIdOriginal}}OptionalParameters struct {
     {{#optionalParams}}
     {{vendorExtensions.x-export-param-name}} {{^isPathParam}}*{{/isPathParam}}{{{dataType}}}
     {{/optionalParams}}
 }
 
-func New{{operationIdOriginal}}Parameters() *{{operationIdOriginal}}Parameters {
-    this := {{operationIdOriginal}}Parameters{}
+func New{{operationIdOriginal}}OptionalParameters() *{{operationIdOriginal}}OptionalParameters {
+    this := {{operationIdOriginal}}OptionalParameters{}
     return &this
 }
 {{#optionalParams}}
-func (r *{{operationIdOriginal}}Parameters) With{{vendorExtensions.x-export-param-name}}({{paramName}} {{{dataType}}}) *{{operationIdOriginal}}Parameters {
+func (r *{{operationIdOriginal}}OptionalParameters) With{{vendorExtensions.x-export-param-name}}({{paramName}} {{{dataType}}}) *{{operationIdOriginal}}OptionalParameters {
     r.{{vendorExtensions.x-export-param-name}} = &{{paramName}}
     return r
 }
@@ -83,7 +83,7 @@ func (r *{{operationIdOriginal}}Parameters) With{{vendorExtensions.x-export-para
  * {{{unescapedNotes}}}
 {{/notes}}
  */
-func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#requiredParams}}, {{paramName}} {{{dataType}}}{{/requiredParams}}{{#hasOptionalParams}}, o ...{{operationIdOriginal}}Parameters{{/hasOptionalParams}}) ({{#returnType}}{{{.}}}, {{/returnType}}*_nethttp.Response, error) {
+func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#requiredParams}}, {{paramName}} {{{dataType}}}{{/requiredParams}}{{#hasOptionalParams}}, o ...{{operationIdOriginal}}OptionalParameters{{/hasOptionalParams}}) ({{#returnType}}{{{.}}}, {{/returnType}}*_nethttp.Response, error) {
 	req := {{#lambda.camelcase}}{{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request{{/lambda.camelcase}}{
 		ApiService: a,
 		ctx: ctx,
@@ -97,7 +97,7 @@ func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#requiredP
         {{#returnType}}
          var localVarReturnValue {{{.}}}
         {{/returnType}}
-        return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("only one argument of type {{operationIdOriginal}}Parameters is allowed")
+        return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("only one argument of type {{operationIdOriginal}}OptionalParameters is allowed")
     }
 
     if o != nil {

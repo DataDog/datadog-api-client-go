@@ -44,7 +44,7 @@ func TestUsageAnalyzedLogs(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageAnalyzedLogs(ctx, startHr, *datadog.NewGetUsageAnalyzedLogsParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageAnalyzedLogs(ctx, startHr, *datadog.NewGetUsageAnalyzedLogsOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Analyzed Logs (Security Monitoring): Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -60,7 +60,7 @@ func TestUsageFargate(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageFargate(ctx, startHr, *datadog.NewGetUsageFargateParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageFargate(ctx, startHr, *datadog.NewGetUsageFargateOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Fargate: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -76,7 +76,7 @@ func TestUsageHosts(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageHosts(ctx, startHr, *datadog.NewGetUsageHostsParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageHosts(ctx, startHr, *datadog.NewGetUsageHostsOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -92,7 +92,7 @@ func TestUsageLogs(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageLogs(ctx, startHr, *datadog.NewGetUsageLogsParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageLogs(ctx, startHr, *datadog.NewGetUsageLogsOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -108,7 +108,7 @@ func TestUsageSynthetics(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSynthetics(ctx, startHr, *datadog.NewGetUsageSyntheticsParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSynthetics(ctx, startHr, *datadog.NewGetUsageSyntheticsOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Synthetics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -124,7 +124,7 @@ func TestUsageSyntheticsAPI(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSyntheticsAPI(ctx, startHr, *datadog.NewGetUsageSyntheticsAPIParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSyntheticsAPI(ctx, startHr, *datadog.NewGetUsageSyntheticsAPIOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Synthetics API: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -140,7 +140,7 @@ func TestUsageSyntheticsBrowser(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSyntheticsBrowser(ctx, startHr, *datadog.NewGetUsageSyntheticsBrowserParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSyntheticsBrowser(ctx, startHr, *datadog.NewGetUsageSyntheticsBrowserOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Synthetics Browser: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -156,7 +156,7 @@ func TestUsageTimeseries(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageTimeseries(ctx, startHr, *datadog.NewGetUsageTimeseriesParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageTimeseries(ctx, startHr, *datadog.NewGetUsageTimeseriesOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Timeseries: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -171,7 +171,7 @@ func TestUsageTopAvgMetrics(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageTopAvgMetrics(ctx, *datadog.NewGetUsageTopAvgMetricsParameters().WithMonth(tests.ClockFromContext(ctx).Now()))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageTopAvgMetrics(ctx, *datadog.NewGetUsageTopAvgMetricsOptionalParameters().WithMonth(tests.ClockFromContext(ctx).Now()))
 	if err != nil {
 		t.Errorf("Error getting Usage Avg Metrics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -187,7 +187,7 @@ func TestUsageIndexedSpans(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageIndexedSpans(ctx, startHr, *datadog.NewGetUsageIndexedSpansParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageIndexedSpans(ctx, startHr, *datadog.NewGetUsageIndexedSpansOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Indexed Spans: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -203,7 +203,7 @@ func TestUsageLogsByIndex(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageLogsByIndex(ctx, startHr, *datadog.NewGetUsageLogsByIndexParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageLogsByIndex(ctx, startHr, *datadog.NewGetUsageLogsByIndexOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Logs by Index: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -219,7 +219,7 @@ func TestUsageLambda(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageLambda(ctx, startHr, *datadog.NewGetUsageLambdaParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageLambda(ctx, startHr, *datadog.NewGetUsageLambdaOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Lambda: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -235,7 +235,7 @@ func TestUsageNetworkHosts(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageNetworkHosts(ctx, startHr, *datadog.NewGetUsageNetworkHostsParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageNetworkHosts(ctx, startHr, *datadog.NewGetUsageNetworkHostsOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Network Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -251,7 +251,7 @@ func TestUsageNetworkFlows(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageNetworkFlows(ctx, startHr, *datadog.NewGetUsageNetworkFlowsParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageNetworkFlows(ctx, startHr, *datadog.NewGetUsageNetworkFlowsOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Network Flows: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -267,7 +267,7 @@ func TestUsageRumSessions(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage RUM Sessions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -283,7 +283,7 @@ func TestUsageMobileRumSessions(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsParameters().WithEndHr(endHr).WithType_("mobile"))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsOptionalParameters().WithEndHr(endHr).WithType_("mobile"))
 	if err != nil {
 		t.Errorf("Error getting Usage RUM Sessions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -299,7 +299,7 @@ func TestUsageSNMP(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSNMP(ctx, startHr, *datadog.NewGetUsageSNMPParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageSNMP(ctx, startHr, *datadog.NewGetUsageSNMPOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage SNMP Devices: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -316,7 +316,7 @@ func TestUsageProfiling(t *testing.T) {
 
 	startHr, endHr := getStartEndHr(ctx)
 
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageProfiling(ctx, startHr, *datadog.NewGetUsageProfilingParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageProfiling(ctx, startHr, *datadog.NewGetUsageProfilingOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -333,7 +333,7 @@ func TestUsageIngestedSpans(t *testing.T) {
 
 	startHr, endHr := getStartEndHr(ctx)
 
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetIngestedSpans(ctx, startHr, *datadog.NewGetIngestedSpansParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetIngestedSpans(ctx, startHr, *datadog.NewGetIngestedSpansOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -350,7 +350,7 @@ func TestUsageIncidentManagement(t *testing.T) {
 
 	startHr, endHr := getStartEndHr(ctx)
 
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetIncidentManagement(ctx, startHr, *datadog.NewGetIncidentManagementParameters().WithEndHr(endHr))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetIncidentManagement(ctx, startHr, *datadog.NewGetIncidentManagementOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting Usage Hosts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -540,7 +540,7 @@ func TestUsageSummary(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).UsageMeteringApi
-	usage, httpresp, err := api.GetUsageSummary(ctx, startMonth, *datadog.NewGetUsageSummaryParameters().WithEndMonth(endMonth).WithIncludeOrgDetails(includeOrgDetails))
+	usage, httpresp, err := api.GetUsageSummary(ctx, startMonth, *datadog.NewGetUsageSummaryOptionalParameters().WithEndMonth(endMonth).WithIncludeOrgDetails(includeOrgDetails))
 	if err != nil {
 		t.Errorf("Failed to get Usage Summary: %v", err)
 	}
@@ -856,7 +856,7 @@ func TestUsageTopAvgMetricsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageTopAvgMetrics(ctx, *datadog.NewGetUsageTopAvgMetricsParameters().WithMonth(tests.ClockFromContext(ctx).Now().AddDate(-2, 0, 0)))
+			_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageTopAvgMetrics(ctx, *datadog.NewGetUsageTopAvgMetricsOptionalParameters().WithMonth(tests.ClockFromContext(ctx).Now().AddDate(-2, 0, 0)))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -1062,7 +1062,7 @@ func TestUsageRumSessionBadType(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsParameters().WithEndHr(endHr).WithType_("invalid"))
+	_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsOptionalParameters().WithEndHr(endHr).WithType_("invalid"))
 	assert.Equal(400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)

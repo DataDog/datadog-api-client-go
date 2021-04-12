@@ -433,7 +433,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	// Get the most recent API test results
 	var latestResults datadog.SyntheticsGetAPITestLatestResultsResponse
 	locs := synt.GetLocations()
-	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID, *datadog.NewGetAPITestLatestResultsParameters().
+	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID, *datadog.NewGetAPITestLatestResultsOptionalParameters().
 		WithFromTs(0).
 		WithToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
 		WithProbeDc(locs))
@@ -535,7 +535,7 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 	// Get the most recent API test results
 	var latestResults datadog.SyntheticsGetAPITestLatestResultsResponse
 	locs := synt.GetLocations()
-	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID, *datadog.NewGetAPITestLatestResultsParameters().
+	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID, *datadog.NewGetAPITestLatestResultsOptionalParameters().
 		WithFromTs(0).
 		WithToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
 		WithProbeDc(locs))
@@ -637,7 +637,7 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 	// Get the most recent API test results
 	var latestResults datadog.SyntheticsGetAPITestLatestResultsResponse
 	locs := synt.GetLocations()
-	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID, *datadog.NewGetAPITestLatestResultsParameters().
+	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID, *datadog.NewGetAPITestLatestResultsOptionalParameters().
 		WithFromTs(0).
 		WithToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
 		WithProbeDc(locs))
@@ -726,7 +726,7 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	// Get the most recent Browser test results
 	var latestResults datadog.SyntheticsGetBrowserTestLatestResultsResponse
 	locs := synt.GetLocations()
-	latestResults, httpresp, err = Client(ctx).SyntheticsApi.GetBrowserTestLatestResults(ctx, publicID, *datadog.NewGetBrowserTestLatestResultsParameters().
+	latestResults, httpresp, err = Client(ctx).SyntheticsApi.GetBrowserTestLatestResults(ctx, publicID, *datadog.NewGetBrowserTestLatestResultsOptionalParameters().
 		WithFromTs(0).
 		WithToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
 		WithProbeDc(locs))

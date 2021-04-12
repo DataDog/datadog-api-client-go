@@ -59,7 +59,7 @@ func TestCreateAWSAccount(t *testing.T) {
 	defer retryDeleteAccount(ctx, t, testAWSAccount)
 
 	awsAccts, httpresp, err := Client(ctx).AWSIntegrationApi.
-		ListAWSAccounts(ctx, *datadog.NewListAWSAccountsParameters().
+		ListAWSAccounts(ctx, *datadog.NewListAWSAccountsOptionalParameters().
 			WithAccountId(testAWSAccount.GetAccountId()).
 			WithRoleName(testAWSAccount.GetRoleName()))
 	if err != nil {
@@ -102,7 +102,7 @@ func TestUpdateAWSAccount(t *testing.T) {
 	defer retryDeleteAccount(ctx, t, UPDATEDAWSACCT)
 
 	// Assert AWS Account Get with proper fields
-	awsAccts, httpresp, err := Client(ctx).AWSIntegrationApi.ListAWSAccounts(ctx, *datadog.NewListAWSAccountsParameters().
+	awsAccts, httpresp, err := Client(ctx).AWSIntegrationApi.ListAWSAccounts(ctx, *datadog.NewListAWSAccountsOptionalParameters().
 		WithAccountId(UPDATEDAWSACCT.GetAccountId()).
 		WithRoleName(UPDATEDAWSACCT.GetRoleName()))
 
@@ -410,7 +410,7 @@ func retryCreateAccount(ctx context.Context, t *testing.T, awsAccount datadog.AW
 
 func retryUpdateAccount(ctx context.Context, t *testing.T, body datadog.AWSAccount, accountID string, roleName string) {
 	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
-		_, httpresp, _ := Client(ctx).AWSIntegrationApi.UpdateAWSAccount(ctx, body, *datadog.NewUpdateAWSAccountParameters().
+		_, httpresp, _ := Client(ctx).AWSIntegrationApi.UpdateAWSAccount(ctx, body, *datadog.NewUpdateAWSAccountOptionalParameters().
 			WithAccountId(accountID).
 			WithRoleName(roleName))
 		if httpresp.StatusCode == 502 {

@@ -83,7 +83,7 @@ func TestEventLifecycle(t *testing.T) {
 	// some time for our event to show up in the response
 	tests.Retry(time.Duration(5*time.Second), 20, func() bool {
 		var matchedEvent = false
-		eventListResponse, httpresp, err = Client(ctx).EventsApi.ListEvents(ctx, start, end, *datadog.NewListEventsParameters().WithPriority("normal").
+		eventListResponse, httpresp, err = Client(ctx).EventsApi.ListEvents(ctx, start, end, *datadog.NewListEventsOptionalParameters().WithPriority("normal").
 			WithSources("datadog-api-client-go").
 			WithTags("test,client:go").
 			WithUnaggregated(true))

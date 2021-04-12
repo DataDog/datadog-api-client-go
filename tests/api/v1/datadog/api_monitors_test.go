@@ -197,7 +197,7 @@ func TestMonitorPagination(t *testing.T) {
 	}
 	defer deleteMonitor(ctx, t, monitor.GetId())
 
-	monitors, httpresp, err := Client(ctx).MonitorsApi.ListMonitors(ctx, *datadog.NewListMonitorsParameters().
+	monitors, httpresp, err := Client(ctx).MonitorsApi.ListMonitors(ctx, *datadog.NewListMonitorsOptionalParameters().
 		WithPage(0).
 		WithPageSize(1))
 	if err != nil {
@@ -206,7 +206,7 @@ func TestMonitorPagination(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(1, len(monitors))
 
-	monitors, httpresp, err = Client(ctx).MonitorsApi.ListMonitors(ctx, *datadog.NewListMonitorsParameters().WithIdOffset(monitor.GetId() - 1).WithPageSize(1))
+	monitors, httpresp, err = Client(ctx).MonitorsApi.ListMonitors(ctx, *datadog.NewListMonitorsOptionalParameters().WithIdOffset(monitor.GetId() - 1).WithPageSize(1))
 	if err != nil {
 		t.Errorf("Error fetching monitors: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -287,7 +287,7 @@ func TestMonitorsListErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).MonitorsApi.ListMonitors(ctx, *datadog.NewListMonitorsParameters().WithGroupStates("notagroupstate"))
+			_, httpresp, err := Client(ctx).MonitorsApi.ListMonitors(ctx, *datadog.NewListMonitorsOptionalParameters().WithGroupStates("notagroupstate"))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -401,7 +401,7 @@ func TestMonitorsGetErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).MonitorsApi.GetMonitor(ctx, tc.ID, *datadog.NewGetMonitorParameters().
+			_, httpresp, err := Client(ctx).MonitorsApi.GetMonitor(ctx, tc.ID, *datadog.NewGetMonitorOptionalParameters().
 				WithGroupStates("notagroupstate"))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

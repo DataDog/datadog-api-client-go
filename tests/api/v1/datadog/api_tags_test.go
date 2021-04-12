@@ -61,7 +61,7 @@ func TestTags(t *testing.T) {
 	hostTags := datadog.HostTags{
 		Tags: &[]string{"test:client_go"},
 	}
-	sentHostTags, httpresp, err := api.CreateHostTags(ctx, hostname, hostTags, *datadog.NewCreateHostTagsParameters().
+	sentHostTags, httpresp, err := api.CreateHostTags(ctx, hostname, hostTags, *datadog.NewCreateHostTagsOptionalParameters().
 		WithSource("datadog"))
 	if err != nil {
 		t.Fatalf("Error adding tags to %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -70,7 +70,7 @@ func TestTags(t *testing.T) {
 	assert.Equal(hostname, sentHostTags.GetHost())
 	assert.Equal(hostTags.GetTags(), sentHostTags.GetTags())
 
-	getHostTags, httpresp, err := api.GetHostTags(ctx, hostname, *datadog.NewGetHostTagsParameters().
+	getHostTags, httpresp, err := api.GetHostTags(ctx, hostname, *datadog.NewGetHostTagsOptionalParameters().
 		WithSource("datadog"))
 	if err != nil {
 		t.Errorf("Error getting tags from %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -78,7 +78,7 @@ func TestTags(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(hostTags.GetTags(), getHostTags.GetTags())
 
-	getHostTags, httpresp, err = api.GetHostTags(ctx, hostname, *datadog.NewGetHostTagsParameters().
+	getHostTags, httpresp, err = api.GetHostTags(ctx, hostname, *datadog.NewGetHostTagsOptionalParameters().
 		WithSource("users"))
 	if err != nil {
 		t.Errorf("Error getting tags from %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -87,7 +87,7 @@ func TestTags(t *testing.T) {
 	assert.Equal(0, len(getHostTags.GetTags())) // filtering on a different source gives 0 tags
 
 	err = tests.Retry(10*time.Second, 10, func() bool {
-		hostTagsList, httpresp, err := api.ListHostTags(ctx, *datadog.NewListHostTagsParameters().
+		hostTagsList, httpresp, err := api.ListHostTags(ctx, *datadog.NewListHostTagsOptionalParameters().
 			WithSource("datadog"))
 		if err != nil {
 			t.Logf("Error getting all tags: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -105,7 +105,7 @@ func TestTags(t *testing.T) {
 		t.Errorf("%v", err)
 	}
 
-	hostTagsList, httpresp, err := api.ListHostTags(ctx, *datadog.NewListHostTagsParameters().
+	hostTagsList, httpresp, err := api.ListHostTags(ctx, *datadog.NewListHostTagsOptionalParameters().
 		WithSource("users"))
 	if err != nil {
 		t.Errorf("Error getting all tags: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -114,7 +114,7 @@ func TestTags(t *testing.T) {
 	assert.NotContains(hostTagsList.GetTags(), "test:client_go") // filtering on a different source gives 0 tags
 
 	hostTags.Tags = &[]string{"foo:bar", "toto:tata"}
-	updatedHostTags, httpresp, err := api.UpdateHostTags(ctx, hostname, hostTags, *datadog.NewUpdateHostTagsParameters().
+	updatedHostTags, httpresp, err := api.UpdateHostTags(ctx, hostname, hostTags, *datadog.NewUpdateHostTagsOptionalParameters().
 		WithSource("datadog"))
 	if err != nil {
 		t.Errorf("Error updating tags for %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -124,7 +124,7 @@ func TestTags(t *testing.T) {
 	assert.Equal(hostname, updatedHostTags.GetHost())
 
 	hostTags.Tags = &[]string{"foo:bar", "toto:tata"}
-	httpresp, err = api.DeleteHostTags(ctx, hostname, *datadog.NewDeleteHostTagsParameters().WithSource("datadog"))
+	httpresp, err = api.DeleteHostTags(ctx, hostname, *datadog.NewDeleteHostTagsOptionalParameters().WithSource("datadog"))
 	if err != nil {
 		t.Errorf("Error deleting tags for %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -149,7 +149,7 @@ func TestTagsListErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).TagsApi.ListHostTags(ctx, *datadog.NewListHostTagsParameters().
+			_, httpresp, err := Client(ctx).TagsApi.ListHostTags(ctx, *datadog.NewListHostTagsOptionalParameters().
 				WithSource("nosource"))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

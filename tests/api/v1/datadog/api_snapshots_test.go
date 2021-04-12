@@ -28,7 +28,7 @@ func TestGetGraphSnapshot(t *testing.T) {
 	eventQuery := "successful builds"
 
 	// Try to create a snapshot with a metric_query (and an optional event_query)
-	snapshot, httpresp, err := Client(ctx).SnapshotsApi.GetGraphSnapshot(ctx, start, end, *datadog.NewGetGraphSnapshotParameters().WithMetricQuery(metricQuery).WithEventQuery(eventQuery))
+	snapshot, httpresp, err := Client(ctx).SnapshotsApi.GetGraphSnapshot(ctx, start, end, *datadog.NewGetGraphSnapshotOptionalParameters().WithMetricQuery(metricQuery).WithEventQuery(eventQuery))
 	if err != nil {
 		t.Fatalf("Error creating Snapshot: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -39,7 +39,7 @@ func TestGetGraphSnapshot(t *testing.T) {
 	assert.NotEmpty(snapshot.GetSnapshotUrl())
 
 	// Try to create a snapshot with a graph_def
-	snapshot, httpresp, err = Client(ctx).SnapshotsApi.GetGraphSnapshot(ctx, start, end, *datadog.NewGetGraphSnapshotParameters().WithGraphDef(graphDef))
+	snapshot, httpresp, err = Client(ctx).SnapshotsApi.GetGraphSnapshot(ctx, start, end, *datadog.NewGetGraphSnapshotOptionalParameters().WithGraphDef(graphDef))
 	if err != nil {
 		t.Fatalf("Error creating Snapshot: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

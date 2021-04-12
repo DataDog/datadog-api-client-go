@@ -260,7 +260,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 
 	// Get multiple SLOs
 	var slosResp datadog.SLOListResponse
-	slosResp, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.ListSLOs(ctx, *datadog.NewListSLOsParameters().
+	slosResp, httpresp, err = Client(ctx).ServiceLevelObjectivesApi.ListSLOs(ctx, *datadog.NewListSLOsOptionalParameters().
 		WithIds(fmt.Sprintf("%s,%s", monitorSLO.GetId(), eventSLO.GetId())))
 	if err != nil {
 		t.Fatalf("Error getting SLOs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -333,7 +333,7 @@ func TestSLOListErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.ListSLOs(ctx, *datadog.NewListSLOsParameters().WithIds(tc.Ids))
+			_, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.ListSLOs(ctx, *datadog.NewListSLOsOptionalParameters().WithIds(tc.Ids))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)

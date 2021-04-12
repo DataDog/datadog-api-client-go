@@ -155,7 +155,7 @@ func TestMetricListActive(t *testing.T) {
 
 	api := Client(ctx).MetricsApi
 
-	metrics, _, err := api.ListActiveMetrics(ctx, 1, *datadog.NewListActiveMetricsParameters().WithHost("host"))
+	metrics, _, err := api.ListActiveMetrics(ctx, 1, *datadog.NewListActiveMetricsOptionalParameters().WithHost("host"))
 	assert.Nil(err)
 	assert.Equal(expected.GetMetrics(), metrics.GetMetrics())
 	assert.Equal(expected.GetFrom(), metrics.GetFrom())

@@ -128,7 +128,7 @@ func TestHostTotalsMocked(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).HostsApi
-	hostListResp, httpresp, err := api.GetHostTotals(ctx, *datadog.NewGetHostTotalsParameters().WithFrom(123))
+	hostListResp, httpresp, err := api.GetHostTotals(ctx, *datadog.NewGetHostTotalsOptionalParameters().WithFrom(123))
 	if err != nil {
 		t.Errorf("Failed to get host totals: %v", err)
 	}
@@ -168,7 +168,7 @@ func TestHostsSearchMocked(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).HostsApi
-	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsParameters().
+	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).WithFrom(123).
 		WithSortDir("asc").
@@ -199,7 +199,7 @@ func TestHostsListErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).HostsApi.ListHosts(ctx, *datadog.NewListHostsParameters().
+			_, httpresp, err := Client(ctx).HostsApi.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 				WithCount(-1))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -227,7 +227,7 @@ func TestHostsGetTotalsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).HostsApi.GetHostTotals(ctx, *datadog.NewGetHostTotalsParameters().
+			_, httpresp, err := Client(ctx).HostsApi.GetHostTotals(ctx, *datadog.NewGetHostTotalsOptionalParameters().
 				WithFrom(tests.ClockFromContext(ctx).Now().Unix() + 60))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -340,7 +340,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataFalse(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).HostsApi
-	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsParameters().
+	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).WithFrom(123).
 		WithSortDir("asc").
@@ -387,7 +387,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataTrue(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).HostsApi
-	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsParameters().
+	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).
 		WithFrom(123).
@@ -434,7 +434,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataDefault(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).HostsApi
-	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsParameters().
+	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).
 		WithFrom(123).
@@ -481,7 +481,7 @@ func TestHostsSearchMockedIncludeHostsMetadataFalse(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).HostsApi
-	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsParameters().
+	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).
 		WithFrom(123).
@@ -529,7 +529,7 @@ func TestHostsSearchMockedIncludeHostsMetadataTrue(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).HostsApi
-	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsParameters().
+	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).
 		WithFrom(123).
@@ -576,7 +576,7 @@ func TestHostsSearchMockedIncludeHostsMetadataDefault(t *testing.T) {
 	json.Unmarshal([]byte(data), &expected)
 
 	api := Client(ctx).HostsApi
-	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsParameters().
+	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).WithFrom(123).
 		WithSortDir("asc").
@@ -634,7 +634,7 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 
 	// waiting for host to appear on infralist
 	err = tests.Retry(10*time.Second, 10, func() bool {
-		hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsParameters().WithFilter(hostname))
+		hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().WithFilter(hostname))
 		if err != nil {
 			t.Errorf("Failed to get hosts: %v", err)
 		}
@@ -658,7 +658,7 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 
 	// waiting for host to be muted
 	err = tests.Retry(10*time.Second, 10, func() bool {
-		hostListResp, httpresp, err = api.ListHosts(ctx, *datadog.NewListHostsParameters().WithFilter(hostname))
+		hostListResp, httpresp, err = api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().WithFilter(hostname))
 		if err != nil {
 			t.Errorf("Failed to get hosts: %v", err)
 		}
@@ -674,7 +674,7 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 
 	// this is the case where the include_muted_hosts_data is true, should have muted data
 	err = tests.Retry(10*time.Second, 10, func() bool {
-		hostListResp, httpresp, err = api.ListHosts(ctx, *datadog.NewListHostsParameters().
+		hostListResp, httpresp, err = api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 			WithFilter(hostname).
 			WithIncludeMutedHostsData(true))
 		if err != nil {
@@ -690,7 +690,7 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 
 	// this is the case where the include_muted_hosts_data is false, should not have muted data
 	err = tests.Retry(10*time.Second, 10, func() bool {
-		hostListResp, httpresp, err = api.ListHosts(ctx, *datadog.NewListHostsParameters().
+		hostListResp, httpresp, err = api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 			WithFilter(hostname).
 			WithIncludeMutedHostsData(false))
 		if err != nil {
