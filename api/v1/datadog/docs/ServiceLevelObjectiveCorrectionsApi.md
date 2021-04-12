@@ -5,10 +5,10 @@ All URIs are relative to *https://api.datadoghq.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#CreateSLOCorrection) | **Post** /api/v1/slo/correction | Create an SLO correction
-[**DeleteSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#DeleteSLOCorrection) | **Delete** /api/v1/slo/correction/{slo_correction_id} | Delete an SLO Correction
+[**DeleteSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#DeleteSLOCorrection) | **Delete** /api/v1/slo/correction/{slo_correction_id} | Delete an SLO correction
 [**GetSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#GetSLOCorrection) | **Get** /api/v1/slo/correction/{slo_correction_id} | Get an SLO correction for an SLO
 [**ListSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#ListSLOCorrection) | **Get** /api/v1/slo/correction | Get all SLO corrections
-[**UpdateSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#UpdateSLOCorrection) | **Patch** /api/v1/slo/correction/{slo_correction_id} | Update an SLO Correction
+[**UpdateSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#UpdateSLOCorrection) | **Patch** /api/v1/slo/correction/{slo_correction_id} | Update an SLO correction
 
 
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 > DeleteSLOCorrection(ctx, sloCorrectionId).Execute()
 
-Delete an SLO Correction
+Delete an SLO correction
 
 
 
@@ -303,7 +303,7 @@ Other parameters are passed through a pointer to a apiListSLOCorrectionRequest s
 
 > SLOCorrectionResponse UpdateSLOCorrection(ctx, sloCorrectionId).Body(body).Execute()
 
-Update an SLO Correction
+Update an SLO correction
 
 
 
