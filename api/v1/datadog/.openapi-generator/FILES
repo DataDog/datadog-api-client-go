@@ -89,6 +89,7 @@ docs/DashboardList.md
 docs/DashboardListDeleteResponse.md
 docs/DashboardListListResponse.md
 docs/DashboardListsApi.md
+docs/DashboardReflowType.md
 docs/DashboardSummary.md
 docs/DashboardSummaryDefinition.md
 docs/DashboardTemplateVariable.md
@@ -626,6 +627,7 @@ model_dashboard_layout_type.go
 model_dashboard_list.go
 model_dashboard_list_delete_response.go
 model_dashboard_list_list_response.go
+model_dashboard_reflow_type.go
 model_dashboard_summary.go
 model_dashboard_summary_definition.go
 model_dashboard_template_variable.go

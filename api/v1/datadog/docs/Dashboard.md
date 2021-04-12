@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **LayoutType** | [**DashboardLayoutType**](DashboardLayoutType.md) |  | 
 **ModifiedAt** | Pointer to **time.Time** | Modification date of the dashboard. | [optional] [readonly] 
 **NotifyList** | Pointer to **[]string** | List of handles of users to notify when changes are made to this dashboard. | [optional] 
+**ReflowType** | Pointer to [**DashboardReflowType**](DashboardReflowType.md) |  | [optional] 
 **TemplateVariablePresets** | Pointer to [**[]DashboardTemplateVariablePreset**](DashboardTemplateVariablePreset.md) | Array of template variables saved views. | [optional] 
 **TemplateVariables** | Pointer to [**[]DashboardTemplateVariable**](DashboardTemplateVariable.md) | List of template variables for this dashboard. | [optional] 
 **Title** | **string** | Title of the dashboard. | 
@@ -252,6 +253,31 @@ HasNotifyList returns a boolean if a field has been set.
 `func (o *Dashboard) UnsetNotifyList()`
 
 UnsetNotifyList ensures that no value is present for NotifyList, not even an explicit nil
+### GetReflowType
+
+`func (o *Dashboard) GetReflowType() DashboardReflowType`
+
+GetReflowType returns the ReflowType field if non-nil, zero value otherwise.
+
+### GetReflowTypeOk
+
+`func (o *Dashboard) GetReflowTypeOk() (*DashboardReflowType, bool)`
+
+GetReflowTypeOk returns a tuple with the ReflowType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReflowType
+
+`func (o *Dashboard) SetReflowType(v DashboardReflowType)`
+
+SetReflowType sets ReflowType field to given value.
+
+### HasReflowType
+
+`func (o *Dashboard) HasReflowType() bool`
+
+HasReflowType returns a boolean if a field has been set.
+
 ### GetTemplateVariablePresets
 
 `func (o *Dashboard) GetTemplateVariablePresets() []DashboardTemplateVariablePreset`

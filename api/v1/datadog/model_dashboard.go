@@ -29,7 +29,8 @@ type Dashboard struct {
 	// Modification date of the dashboard.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// List of handles of users to notify when changes are made to this dashboard.
-	NotifyList []string `json:"notify_list,omitempty"`
+	NotifyList []string             `json:"notify_list,omitempty"`
+	ReflowType *DashboardReflowType `json:"reflow_type,omitempty"`
 	// Array of template variables saved views.
 	TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
 	// List of template variables for this dashboard.
@@ -326,6 +327,38 @@ func (o *Dashboard) SetNotifyList(v []string) {
 	o.NotifyList = v
 }
 
+// GetReflowType returns the ReflowType field value if set, zero value otherwise.
+func (o *Dashboard) GetReflowType() DashboardReflowType {
+	if o == nil || o.ReflowType == nil {
+		var ret DashboardReflowType
+		return ret
+	}
+	return *o.ReflowType
+}
+
+// GetReflowTypeOk returns a tuple with the ReflowType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Dashboard) GetReflowTypeOk() (*DashboardReflowType, bool) {
+	if o == nil || o.ReflowType == nil {
+		return nil, false
+	}
+	return o.ReflowType, true
+}
+
+// HasReflowType returns a boolean if a field has been set.
+func (o *Dashboard) HasReflowType() bool {
+	if o != nil && o.ReflowType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReflowType gets a reference to the given DashboardReflowType and assigns it to the ReflowType field.
+func (o *Dashboard) SetReflowType(v DashboardReflowType) {
+	o.ReflowType = &v
+}
+
 // GetTemplateVariablePresets returns the TemplateVariablePresets field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetTemplateVariablePresets() []DashboardTemplateVariablePreset {
 	if o == nil {
@@ -497,6 +530,9 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 	}
 	if o.NotifyList != nil {
 		toSerialize["notify_list"] = o.NotifyList
+	}
+	if o.ReflowType != nil {
+		toSerialize["reflow_type"] = o.ReflowType
 	}
 	if o.TemplateVariablePresets != nil {
 		toSerialize["template_variable_presets"] = o.TemplateVariablePresets
