@@ -318,6 +318,7 @@ Class | Method | HTTP request | Description
  - [DashboardList](docs/DashboardList.md)
  - [DashboardListDeleteResponse](docs/DashboardListDeleteResponse.md)
  - [DashboardListListResponse](docs/DashboardListListResponse.md)
+ - [DashboardReflowType](docs/DashboardReflowType.md)
  - [DashboardSummary](docs/DashboardSummary.md)
  - [DashboardSummaryDefinition](docs/DashboardSummaryDefinition.md)
  - [DashboardTemplateVariable](docs/DashboardTemplateVariable.md)
