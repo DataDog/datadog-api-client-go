@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"name":"go-Feature_Service_Level_Objectives-Scenario_Delete_an_SLO_returns__OK__response-local-1617788398","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"thresholds":[{"target":95,"timeframe":"7d","warning":98}],"type":"metric"}
+      {"name":"Test-Delete_an_SLO_returns_OK_response-1618226900","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"thresholds":[{"target":95,"timeframe":"7d","warning":98}],"type":"metric"}
     form: {}
     headers:
       Accept:
@@ -13,18 +13,17 @@ interactions:
       Dd-Operation-Id:
       - CreateSLO
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.16.3; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2790631053460578483"
+      - "82780096298887897"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2479587798270964336"
+      - "9114791313350450210"
     url: https://api.datadoghq.com/api/v1/slo
     method: POST
   response:
-    body: '{"data":[{"description":"","monitor_tags":[],"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
-      Account","email":"team-intg-tools-libs@datadoghq.com"},"thresholds":[{"warning":98.0,"warning_display":"98.","target":95.0,"target_display":"95.","timeframe":"7d"}],"type_id":1,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"id":"4a32af3bf9ce57af8de3a386b7e0b741","name":"go-Feature_Service_Level_Objectives-Scenario_Delete_an_SLO_returns__OK__response-local-1617788398","created_at":1617788398,"tags":[],"modified_at":1617788398,"type":"metric"}],"error":null}'
+    body: '{"data":[{"description":"","monitor_tags":[],"creator":{"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"thresholds":[{"warning":98.0,"warning_display":"98.","target":95.0,"target_display":"95.","timeframe":"7d"}],"type_id":1,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"id":"de68b97598a452349b4c9edffef36035","name":"Test-Delete_an_SLO_returns_OK_response-1618226900","created_at":1618226900,"tags":[],"modified_at":1618226900,"type":"metric"}],"error":null}'
     headers:
       Cache-Control:
       - no-cache
@@ -33,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 07 Apr 2021 09:39:58 GMT
+      - Mon, 12 Apr 2021 11:28:20 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4254518"
+      - "35.4288098"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -51,9 +50,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "496"
+      - "497"
       X-Ratelimit-Reset:
-      - "2"
+      - "40"
     status: 200 OK
     code: 200
     duration: ""
@@ -66,17 +65,17 @@ interactions:
       Dd-Operation-Id:
       - DeleteSLO
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.16.3; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1322013175082195415"
+      - "3622467740439324037"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2479587798270964336"
-    url: https://api.datadoghq.com/api/v1/slo/4a32af3bf9ce57af8de3a386b7e0b741
+      - "9114791313350450210"
+    url: https://api.datadoghq.com/api/v1/slo/de68b97598a452349b4c9edffef36035
     method: DELETE
   response:
-    body: '{"data":["4a32af3bf9ce57af8de3a386b7e0b741"],"error":null}'
+    body: '{"data":["de68b97598a452349b4c9edffef36035"],"error":null}'
     headers:
       Cache-Control:
       - no-cache
@@ -85,7 +84,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 07 Apr 2021 09:39:58 GMT
+      - Mon, 12 Apr 2021 11:28:20 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -95,59 +94,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4254518"
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "3000"
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "2998"
-      X-Ratelimit-Reset:
-      - "2"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteSLO
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.16.3; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "5537049629030358202"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "2479587798270964336"
-    url: https://api.datadoghq.com/api/v1/slo/4a32af3bf9ce57af8de3a386b7e0b741
-    method: DELETE
-  response:
-    body: '{"errors": ["SLO not found: 4a32af3bf9ce57af8de3a386b7e0b741 not found"]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Wed, 07 Apr 2021 09:39:58 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Version:
-      - "35.4254518"
+      - "35.4288098"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -157,7 +104,59 @@ interactions:
       X-Ratelimit-Remaining:
       - "2997"
       X-Ratelimit-Reset:
-      - "2"
+      - "10"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteSLO
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4955352316225903216"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9114791313350450210"
+    url: https://api.datadoghq.com/api/v1/slo/de68b97598a452349b4c9edffef36035
+    method: DELETE
+  response:
+    body: '{"errors": ["SLO not found: de68b97598a452349b4c9edffef36035 not found"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 11:28:20 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.4288098"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "3000"
+      X-Ratelimit-Period:
+      - "10"
+      X-Ratelimit-Remaining:
+      - "2996"
+      X-Ratelimit-Reset:
+      - "10"
     status: 404 Not Found
     code: 404
     duration: ""

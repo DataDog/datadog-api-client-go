@@ -2,55 +2,58 @@
 version: 1
 interactions:
 - request:
-    body: ""
+    body: |
+      {"name":"","thresholds":null,"type":""}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Type:
+      - application/json
       Dd-Operation-Id:
-      - DeleteSLO
+      - UpdateSLO
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.16.3; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8649165595264717955"
+      - "7520312628307400212"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5907615283249995868"
-    url: https://api.datadoghq.com/api/v1/slo/gofeatureservicelevelobjectivesscenariodeleteansloreturnsnotfoundresponselocal1617788394
-    method: DELETE
+      - "9053637364538536117"
+    url: https://api.datadoghq.com/api/v1/slo/testupdateansloreturnsbadrequestresponse1618226900
+    method: PUT
   response:
-    body: '{"errors": ["SLO not found: gofeatureservicelevelobjectivesscenariodeleteansloreturnsnotfoundresponselocal1617788394
-      not found"]}'
+    body: '{"errors": ["Invalid payload: Minimum length of parameter ''name'' should
+      be 1"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "79"
       Content-Type:
       - application/json
       Date:
-      - Wed, 07 Apr 2021 09:39:54 GMT
+      - Mon, 12 Apr 2021 11:28:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4254518"
+      - "35.4288098"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "3000"
+      - "500"
       X-Ratelimit-Period:
-      - "10"
+      - "60"
       X-Ratelimit-Remaining:
-      - "2999"
+      - "499"
       X-Ratelimit-Reset:
-      - "6"
-    status: 404 Not Found
-    code: 404
+      - "39"
+    status: 400 Bad Request
+    code: 400
     duration: ""
