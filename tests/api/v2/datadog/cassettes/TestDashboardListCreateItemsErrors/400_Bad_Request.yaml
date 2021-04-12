@@ -13,14 +13,14 @@ interactions:
       Dd-Operation-Id:
       - CreateDashboardListItems
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2155334698769118185"
+      - "4953137971847353548"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3516062951583341138"
-    url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/116126/dashboards
+      - "6649937793708038145"
+    url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/191749/dashboards
     method: POST
   response:
     body: '{"errors": ["Required parameter ''dashboards'' is missing"]}'
@@ -34,9 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Jul 2020 09:34:33 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:48:03 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2781966"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

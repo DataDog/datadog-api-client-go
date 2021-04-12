@@ -10,33 +10,28 @@ interactions:
       Dd-Operation-Id:
       - GetMonthlyCustomReports
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2877310071889844410"
+      - "7269390224612047224"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3979300022193849650"
+      - "6033368581788761903"
     url: https://api.datadoghq.com/api/v1/monthly_custom_reports
     method: GET
   response:
-    body: '{"meta":{"page":{"total_count":0}},"data":[]}'
+    body: '{"meta":{"page":{"total_count":9}},"data":[{"type":"reports","id":"2021-03-01","attributes":{"tags":["project"],"start_date":"2021-03-01","end_date":"2021-04-01","size":33516,"computed_on":"2021-04-02T05:00:58+00:00"}},{"type":"reports","id":"2021-02-01","attributes":{"tags":["project"],"start_date":"2021-02-01","end_date":"2021-03-01","size":35757,"computed_on":"2021-03-02T15:37:35+00:00"}},{"type":"reports","id":"2021-01-01","attributes":{"tags":["project"],"start_date":"2021-01-01","end_date":"2021-02-01","size":24212,"computed_on":"2021-02-01T17:08:40+00:00"}},{"type":"reports","id":"2020-12-01","attributes":{"tags":["project"],"start_date":"2020-12-01","end_date":"2021-01-01","size":33282,"computed_on":"2021-01-01T15:55:41+00:00"}},{"type":"reports","id":"2020-11-01","attributes":{"tags":["project"],"start_date":"2020-11-01","end_date":"2020-12-01","size":22299,"computed_on":"2020-12-07T23:47:00+00:00"}},{"type":"reports","id":"2020-10-01","attributes":{"tags":["project"],"start_date":"2020-10-01","end_date":"2020-11-01","size":11920,"computed_on":"2020-12-07T23:43:28+00:00"}},{"type":"reports","id":"2020-09-01","attributes":{"tags":["project"],"start_date":"2020-09-01","end_date":"2020-10-01","size":212363,"computed_on":"2020-10-03T02:00:02+00:00"}},{"type":"reports","id":"2020-08-01","attributes":{"tags":["project"],"start_date":"2020-08-01","end_date":"2020-09-01","size":346966,"computed_on":"2020-09-01T17:02:30+00:00"}},{"type":"reports","id":"2020-07-15","attributes":{"tags":["project"],"start_date":"2020-07-15","end_date":"2020-08-01","size":189933,"computed_on":"2020-08-01T17:25:00+00:00"}}]}'
     headers:
       Cache-Control:
-      - max-age=300
+      - no-cache
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Thu, 16 Jul 2020 18:54:44 GMT
-      Dd-Pool:
-      - dogweb_wallace
-      Expires:
-      - Thu, 16 Jul 2020 18:59:44 GMT
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 23-Jul-2020 18:54:44 GMT;
-        secure; HttpOnly
+      - Mon, 12 Apr 2021 09:55:00 GMT
+      Pragma:
+      - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -44,9 +39,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - ahxEhBnK6gTKau+YHdT5vDReJIRJqKykqEsbF4Pw9NfUaIrDkEtMFqGa2IE1DX6i
+      - ZrpK0iZ3z6G9rRQ4Xdad+E2q8ts0/vn3lpkWYLV8Xt3/HusPoRHeJdSO6vBq670u
       X-Dd-Version:
-      - "35.2747870"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

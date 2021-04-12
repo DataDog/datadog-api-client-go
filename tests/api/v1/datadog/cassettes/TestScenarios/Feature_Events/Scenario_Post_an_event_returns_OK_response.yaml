@@ -1,0 +1,45 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"tags":["test:TestPostaneventreturnsOKresponse1618221316"],"text":"A text message.","title":"Test-Post_an_event_returns_OK_response-1618221316"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateEvent
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4714379996453871731"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4824859696343800558"
+    url: https://api.datadoghq.com/api/v1/events
+    method: POST
+  response:
+    body: '{"status":"ok","event":{"id":5938437374431181378,"title":"Test-Post_an_event_returns_OK_response-1618221316","text":"A
+      text message.","date_happened":1618221316,"handle":null,"priority":null,"related_event_id":null,"tags":["test:TestPostaneventreturnsOKresponse1618221316"],"url":"https://app.datadoghq.com/event/event?id=5938437374431181378"}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "344"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 09:55:16 GMT
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 202 Accepted
+    code: 202
+    duration: ""

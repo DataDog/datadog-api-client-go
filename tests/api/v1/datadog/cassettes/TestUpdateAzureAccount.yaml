@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"client_id":"testc7f6-1234-5678-9101-tt1593422672","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"go-TestUpdateAzureAccount-local-1593422672"}
+      {"client_id":"testc7f6-1234-5678-9101-tt1618220915","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"Test-TestUpdateAzureAccount-1618220915"}
     form: {}
     headers:
       Accept:
@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - CreateAzureIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1132728170134220006"
+      - "6005438601787568128"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6020190482981966023"
+      - "2704869412419985262"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: POST
   response:
@@ -34,22 +34,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 09:24:33 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:48:36 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 09:24:33 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - rK52fEhHKxisnKo2rembr3YValr4L+BG6/8tD9iNDc8Prg2mnV6DynBkS75++wh/
+      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
       X-Dd-Version:
-      - "35.2676641"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -57,7 +52,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"client_id":"testc7f6-1234-5678-9101-tt1593422672","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","host_filters":"filter:foo,test:bar","new_client_id":"testc7f6-1234-5678-9101-uu1593422672","new_tenant_name":"go-TestUpdateAzureAccount-local-1593422672-updated","tenant_name":"go-TestUpdateAzureAccount-local-1593422672"}
+      {"client_id":"testc7f6-1234-5678-9101-tt1618220915","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","host_filters":"filter:foo,test:bar","new_client_id":"testc7f6-1234-5678-9101-uu1618220915","new_tenant_name":"Test-TestUpdateAzureAccount-1618220915-updated","tenant_name":"Test-TestUpdateAzureAccount-1618220915"}
     form: {}
     headers:
       Accept:
@@ -67,13 +62,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateAzureIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1076482245219872311"
+      - "1734081224431064075"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6020190482981966023"
+      - "2704869412419985262"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: PUT
   response:
@@ -88,22 +83,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 09:24:34 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:48:38 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 09:24:33 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Wn01ZjXucAfzJfwvKAkpy0yFfNtHyWu4ZB2aA4ZDwwhXkyLHirYeUNsx208dZz9p
+      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
       X-Dd-Version:
-      - "35.2676641"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -118,17 +108,17 @@ interactions:
       Dd-Operation-Id:
       - ListAzureIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8392782256512439011"
+      - "4254569536241635841"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6020190482981966023"
+      - "2704869412419985262"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: GET
   response:
-    body: '[{"tenant_name":"go-TestUpdateAzureAccount-local-1593422672-updated","errors":[],"host_filters":"filter:foo,test:bar","client_id":"testc7f6-1234-5678-9101-uu1593422672"}]'
+    body: '[{"tenant_name":"Test-TestUpdateAzureAccount-1618220915-updated","automute":false,"errors":[],"host_filters":"filter:foo,test:bar","client_id":"testc7f6-1234-5678-9101-uu1618220915"}]'
     headers:
       Cache-Control:
       - no-cache
@@ -137,14 +127,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 09:24:35 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:48:38 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 09:24:34 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -152,9 +137,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - BQaWiIhDCyK3JbvyPZudxtMuoedbvOKE6tb5GJMfo6GT4EOQ8qx9lqgA4UCxp88q
+      - l8RQo2maZqJf6GFThBbKNE6dvthz6njusVtau3dPXJWL2RLFoN81H+BLPB/1xgs1
       X-Dd-Version:
-      - "35.2676641"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -162,7 +147,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"client_id":"testc7f6-1234-5678-9101-uu1593422672","host_filters":"test:foo,test:bar","tenant_name":"go-TestUpdateAzureAccount-local-1593422672-updated"}
+      {"client_id":"testc7f6-1234-5678-9101-uu1618220915","host_filters":"test:foo,test:bar","tenant_name":"Test-TestUpdateAzureAccount-1618220915-updated"}
     form: {}
     headers:
       Accept:
@@ -172,13 +157,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateAzureHostFilters
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7971941959539018810"
+      - "7157450750817254298"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6020190482981966023"
+      - "2704869412419985262"
     url: https://api.datadoghq.com/api/v1/integration/azure/host_filters
     method: POST
   response:
@@ -193,22 +178,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 09:24:35 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:48:38 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 09:24:35 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - IkXBg4ZNMRmDsobzMjEa2v35+NuPiQI0gFmho/o6e7+hfyyJl3rjuklsE4uVJo7l
+      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
       X-Dd-Version:
-      - "35.2676641"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -223,17 +203,17 @@ interactions:
       Dd-Operation-Id:
       - ListAzureIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5954560880474722968"
+      - "5994423024237654305"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6020190482981966023"
+      - "2704869412419985262"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: GET
   response:
-    body: '[{"tenant_name":"go-TestUpdateAzureAccount-local-1593422672-updated","errors":[],"host_filters":"test:foo,test:bar","client_id":"testc7f6-1234-5678-9101-uu1593422672"}]'
+    body: '[{"tenant_name":"Test-TestUpdateAzureAccount-1618220915-updated","automute":false,"errors":[],"host_filters":"test:foo,test:bar","client_id":"testc7f6-1234-5678-9101-uu1618220915"}]'
     headers:
       Cache-Control:
       - no-cache
@@ -242,14 +222,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 09:24:36 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:48:38 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 09:24:35 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -257,9 +232,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Lo9psmCk9egobltaxBGqrQFhgCcgUTQoFZpr2xiSR+6tucB/owychJvFjr9YMWzu
+      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
       X-Dd-Version:
-      - "35.2676641"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -267,7 +242,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"client_id":"testc7f6-1234-5678-9101-uu1593422672","tenant_name":"go-TestUpdateAzureAccount-local-1593422672-updated"}
+      {"client_id":"testc7f6-1234-5678-9101-uu1618220915","tenant_name":"Test-TestUpdateAzureAccount-1618220915-updated"}
     form: {}
     headers:
       Accept:
@@ -277,13 +252,13 @@ interactions:
       Dd-Operation-Id:
       - DeleteAzureIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5617928644343633102"
+      - "8300424298363143117"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6020190482981966023"
+      - "2704869412419985262"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: DELETE
   response:
@@ -298,22 +273,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 09:24:37 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:48:39 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Mon, 06-Jul-2020 09:24:36 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - PcnVfOcEtqolY6fi98GEVSGXOZZkwQSBbl/twLr2TucYRfYyGCLXvKm6pTUNQt1l
+      - B1nwy/pPNqX+q4pQT22cdp1QCexE35IF8qwSHy0Nf7IW0Y881qtn4tXN1lpmzaKc
       X-Dd-Version:
-      - "35.2676641"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -321,7 +291,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"client_id":"testc7f6-1234-5678-9101-tt1593422672","tenant_name":"go-TestUpdateAzureAccount-local-1593422672"}
+      {"client_id":"testc7f6-1234-5678-9101-tt1618220915","tenant_name":"Test-TestUpdateAzureAccount-1618220915"}
     form: {}
     headers:
       Accept:
@@ -331,13 +301,13 @@ interactions:
       Dd-Operation-Id:
       - DeleteAzureIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5592117805309478011"
+      - "5841418657663708428"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6020190482981966023"
+      - "2704869412419985262"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: DELETE
   response:
@@ -353,9 +323,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 09:24:37 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:48:39 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -363,7 +331,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2676641"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

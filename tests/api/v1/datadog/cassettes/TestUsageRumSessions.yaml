@@ -10,35 +10,28 @@ interactions:
       Dd-Operation-Id:
       - GetUsageRumSessions
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7315616214211247046"
+      - "6072240396146625758"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5935640863776594638"
-    url: https://api.datadoghq.com/api/v1/usage/rum_sessions?end_hr=2020-04-13T00%3A00%3A00Z&start_hr=2020-04-12T00%3A00%3A00Z
+      - "3681001335214814284"
+    url: https://api.datadoghq.com/api/v1/usage/rum_sessions?end_hr=2021-03-13T00%3A00%3A00Z&start_hr=2021-03-12T00%3A00%3A00Z
     method: GET
   response:
-    body: '{"usage":[{"session_count":0,"hour":"2020-04-12T00:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T01:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T02:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T03:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T04:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T05:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T06:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T07:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T08:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T09:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T10:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T11:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T12:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T13:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T14:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T15:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T16:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T17:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T18:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T19:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T20:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T21:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T22:00:00+00:00"},{"session_count":0,"hour":"2020-04-12T23:00:00+00:00"}]}'
+    body: '{"usage":[{"session_count":0,"hour":"2021-03-12T00:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T01:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T02:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T03:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T04:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T05:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T06:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T07:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T08:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T09:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T10:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T11:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T12:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T13:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T14:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T15:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T16:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T17:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T18:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T19:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T20:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T21:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T22:00:00+00:00"},{"session_count":0,"hour":"2021-03-12T23:00:00+00:00"}]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:34:18 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:54:57 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:34:17 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -46,19 +39,19 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - ns395qtajdi4vImLC5PhByq3vzX3KV9r4kOaLqZ3Kb42AGxxpM06vNzB/Pdubr1b
+      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
       X-Dd-Version:
-      - "35.2493025"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "200"
+      - "400"
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "158"
+      - "222"
       X-Ratelimit-Reset:
-      - "1542"
+      - "303"
     status: 200 OK
     code: 200
     duration: ""

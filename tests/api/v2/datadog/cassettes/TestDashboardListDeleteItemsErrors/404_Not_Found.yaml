@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - DeleteDashboardListItems
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7329266197654034542"
+      - "2601831286047434931"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4092183642028512281"
+      - "2946592277318696709"
     url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/0/dashboards
     method: DELETE
   response:
@@ -32,9 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Jul 2020 09:13:32 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:48:04 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2781806"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

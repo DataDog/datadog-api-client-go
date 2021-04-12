@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"filter":{"query":"query"},"is_enabled":true,"name":"go-TestLogsPipelinesLifecycle-local-1601978313","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"},{"is_enabled":false,"name":"log status remapper","sources":["source"],"type":"status-remapper"},{"is_enabled":false,"name":"service remapper","sources":["source"],"type":"service-remapper"},{"is_enabled":false,"name":"log message remapper","sources":["source"],"type":"message-remapper"},{"is_enabled":false,"name":"log attribute remapper to attribute target type","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_format":"string","target_type":"attribute","type":"attribute-remapper"},{"is_enabled":false,"name":"log attribute remapper to tag target type","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_type":"tag","type":"attribute-remapper"},{"is_enabled":false,"name":"URL parser","normalize_ending_slashes":false,"sources":["source"],"target":"target","type":"url-parser"},{"is_enabled":false,"is_encoded":true,"name":"user agent parser","sources":["source"],"target":"target","type":"user-agent-parser"},{"categories":[{"filter":{"query":"query"},"name":"category"}],"is_enabled":false,"name":"category processor","target":"target","type":"category-processor"},{"expression":"foo + bar","is_enabled":false,"is_replace_missing":true,"name":"arithmetic processor","target":"target","type":"arithmetic-processor"},{"is_enabled":false,"is_replace_missing":true,"name":"string builder processor","target":"target","template":"template","type":"string-builder-processor"},{"is_enabled":false,"name":"geo IP parser","sources":["source"],"target":"target","type":"geo-ip-parser"},{"default_lookup":"default_lookup","is_enabled":false,"lookup_table":["key,value"],"name":"lookup processor","source":"source","target":"target","type":"lookup-processor"},{"is_enabled":false,"name":"trace remapper","sources":["source"],"type":"trace-id-remapper"},{"filter":{"query":"query"},"is_enabled":false,"name":"pipeline processor","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"}],"type":"pipeline"}]}
+      {"filter":{"query":"query"},"is_enabled":true,"name":"Test-TestLogsPipelinesLifecycle-1618221154","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"},{"is_enabled":false,"name":"log status remapper","sources":["source"],"type":"status-remapper"},{"is_enabled":false,"name":"service remapper","sources":["source"],"type":"service-remapper"},{"is_enabled":false,"name":"log message remapper","sources":["source"],"type":"message-remapper"},{"is_enabled":false,"name":"log attribute remapper to attribute target type","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_format":"string","target_type":"attribute","type":"attribute-remapper"},{"is_enabled":false,"name":"log attribute remapper to tag target type","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_type":"tag","type":"attribute-remapper"},{"is_enabled":false,"name":"URL parser","normalize_ending_slashes":false,"sources":["source"],"target":"target","type":"url-parser"},{"is_enabled":false,"is_encoded":true,"name":"user agent parser","sources":["source"],"target":"target","type":"user-agent-parser"},{"categories":[{"filter":{"query":"query"},"name":"category"}],"is_enabled":false,"name":"category processor","target":"target","type":"category-processor"},{"expression":"foo + bar","is_enabled":false,"is_replace_missing":true,"name":"arithmetic processor","target":"target","type":"arithmetic-processor"},{"is_enabled":false,"is_replace_missing":true,"name":"string builder processor","target":"target","template":"template","type":"string-builder-processor"},{"is_enabled":false,"name":"geo IP parser","sources":["source"],"target":"target","type":"geo-ip-parser"},{"default_lookup":"default_lookup","is_enabled":false,"lookup_table":["key,value"],"name":"lookup processor","source":"source","target":"target","type":"lookup-processor"},{"is_enabled":false,"name":"trace remapper","sources":["source"],"type":"trace-id-remapper"},{"filter":{"query":"query"},"is_enabled":false,"name":"pipeline processor","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"}],"type":"pipeline"}]}
     form: {}
     headers:
       Accept:
@@ -13,17 +13,17 @@ interactions:
       Dd-Operation-Id:
       - CreateLogsPipeline
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.9+dev (go go1.14.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "23327794559041724"
+      - "3442652415992387437"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "57360169837411340"
+      - "6194361842836621078"
     url: https://api.datadoghq.com/api/v1/logs/config/pipelines
     method: POST
   response:
-    body: '{"id":"GarzM14SR12w9SPy98Yxlw","type":"pipeline","name":"go-TestLogsPipelinesLifecycle-local-1601978313","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
+    body: '{"id":"qJS2dFbFR5CenvKACN0wwQ","type":"pipeline","name":"Test-TestLogsPipelinesLifecycle-1618221154","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
       parser","is_enabled":false,"source":"src","samples":["sample"],"grok":{"support_rules":"support
       baz","match_rules":"rule1 foo\nrule2 bar"},"type":"grok-parser"},{"name":"log
       date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"},{"name":"log
@@ -54,14 +54,9 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 06 Oct 2020 09:58:33 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:52:34 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=252; Max-Age=604800; Path=/; expires=Tue, 13-Oct-2020 09:58:33 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -69,9 +64,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - LeIXOZ//FAgX4PAg4j6Bsh31EU8EFOlq+rcBJ6/UKozJVG3ekjClEE/+uYnXssRC
+      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
       X-Dd-Version:
-      - "35.3146084"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -79,9 +74,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "91"
+      - "69"
       X-Ratelimit-Reset:
-      - "87"
+      - "446"
     status: 200 OK
     code: 200
     duration: ""
@@ -94,177 +89,188 @@ interactions:
       Dd-Operation-Id:
       - ListLogsPipelines
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.9+dev (go go1.14.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5664628293616728701"
+      - "2156573769225362401"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "57360169837411340"
+      - "6194361842836621078"
     url: https://api.datadoghq.com/api/v1/logs/config/pipelines
     method: GET
   response:
-    body: '[{"id":"jVXBCxBbSHid-7O1TG59Qw","type":"pipeline","name":"Airflow","is_enabled":true,"is_read_only":true,"filter":{"query":"source:airflow"},"processors":[{"name":"Parsing
-      Default formats","is_enabled":true,"source":"message","samples":["[2019-12-26
-      17:33:29,431] {{dag_processing.py:820}} INFO - Processing files using up to
-      1 processes at a time","[2019-12-26 17:34:47,977] {{taskinstance.py:647}} DEBUG
-      - <TaskInstance: hello_world_fail.hello_world_fail_task 2017-03-20T00:00:00+00:00
-      [queued]> dependency ''Previous Dagrun State'' PASSED: True, The task did not
-      have depends_on_past set.","[2019-12-26 17:39:25,646] {{logging_mixin.py:112}}
-      INFO - [2019-12-26 17:39:25,646] {{settings.py:211}} DEBUG - Setting up DB connection
-      pool (PID 711)","[2019-12-26 17:34:48,568] {{base_task_runner.py:115}} INFO
-      - Job 8: Subtask hello_world_fail_task [2019-12-26 17:34:48,568] {{settings.py:211}}
-      DEBUG - Setting up DB connection pool (PID 202)","[2019-12-26 17:34:49,039]
-      {{taskinstance.py:1058}} ERROR - Hello world fail!\nTraceback (most recent call
-      last):\n  File \"/usr/local/lib/python3.7/site-packages/airflow/operators/python_operator.py\",
-      line 118, in execute_callable\n  return self.python_callable(*self.op_args,
-      **self.op_kwargs)\n  File \"/usr/local/airflow/dags/task_fail.py\", line 9,
-      in print_hello\n  raise Exception(''Hello world fail!'')\nException: Hello world
-      fail!\n"],"grok":{"support_rules":"_date %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}\n_file
-      %{notSpace:filename}:%{integer:lineno}\n_base_prefix \\[%{_date}\\]\\s+(\\{\\{%{_file}\\}\\}|\\{%{_file}\\})\\s+%{word:level}\\s+-\n#
-      Some logs have duplicate prefixes, we only collect job_id and subtask name from
-      first prefix if present.\n_prefix (\\[%{date(\"yyyy-MM-dd HH:mm:ss,SSS\")}\\]\\s+\\{\\{%{notSpace}:%{integer}\\}\\}\\s+%{word}\\s+-\\s+)?(Job
-      %{integer:jobid}: Subtask %{word:subtask}\\s+)?%{_base_prefix}\n","match_rules":"airflow_stacktrace
-      %{_prefix}\\s+%{data:message}\\nTraceback \\(most recent call last\\):\\n%{data:error.stack}\n#
-      [2019-12-26 17:33:44,038] {{logging_mixin.py:112}} INFO - [2019-12-26 17:33:44,033]
-      {{dagbag.py:207}} ERROR - Failed to import: /usr/local/airflow/dags/dag_file_error.py\n#      Traceback
-      (most recent call last):\n#        File \"/usr/local/lib/python3.7/site-packages/airflow/models/dagbag.py\",
-      line 204, in process_file\n#          m = imp.load_source(mod_name, filepath)\n#      airflow.exceptions.AirflowException:
-      The key (hello_world invalid DAG name) has to be made of alphanumeric characters,
-      dashes, dots and underscores exclusively\n\nairflow_env_vars %{_prefix}\\s+Exporting
-      the following env vars:(\\n%{data:env_vars:keyvalue(\"=\", \":+\")})?\n# Samples:\n#
-      [2019-12-26 17:34:49,039] {{python_operator.py:105}} INFO - Exporting the following
-      env vars:\n# AIRFLOW_CTX_DAG_ID=hello_world_fail\n# AIRFLOW_CTX_TASK_ID=hello_world_fail_task\n\nairflow_default
-      %{_prefix}\\s+%{data:message}\n# Samples:\n# [2019-12-26 17:33:29,431] {{dag_processing.py:820}}
-      INFO - Processing files using up to 1 processes at a time\n"},"type":"grok-parser"},{"name":"Parsing
-      Stack traces","is_enabled":true,"source":"error.stack","samples":[],"grok":{"support_rules":"","match_rules":"error_rule
-      .*(\\n|\\t)%{notSpace:error.kind}: %{data:error.message}\n"},"type":"grok-parser"},{"name":"Define
+    body: '[{"id":"0mc2Xh9XTOKHDRooX8oU7Q","type":"pipeline","name":"sample pipeline
+      update","is_enabled":true,"is_read_only":false,"filter":{"query":"source:foo"},"processors":[{"name":"sample
+      grok parser","is_enabled":true,"source":"message","samples":["Rule fooo 1.2"],"grok":{"support_rules":"","match_rules":"Rule
+      %{word:my_word2} %{number:my_float2}"},"type":"grok-parser"},{"name":"sample
+      message remapper","is_enabled":true,"sources":["msg"],"type":"message-remapper"}]},{"id":"JW6WRX6zSYO6P27n-R85vw","type":"pipeline","name":"Java","is_enabled":true,"is_read_only":true,"filter":{"query":"source:java"},"processors":[{"name":"Parsing
+      Java Default formats","is_enabled":true,"source":"message","samples":["2000-09-07
+      14:07:41,508 [main] INFO  MyApp - Entering application.","54 [main] INFO MyApp.foo.bar
+      - Entering application.","2000-09-07 14:07:44 INFO org.foo.bar:32 - Entering
+      application.","2000-09-07 14:07:44.452 [main] INFO org.foo.bar - Entering application."],"grok":{"support_rules":"_date
+      %{date(\"yyyy-MM-dd HH:mm:ss\"):timestamp}\n_date_ms %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}\n_date_slf4j
+      %{date(\"yyyy-MM-dd HH:mm:ss.SSS\"):timestamp}\n_duration %{integer:duration}\n_thread_name
+      %{notSpace:logger.thread_name}\n_status %{word:level}\n_logger_name %{notSpace:logger.name}\n_context
+      %{notSpace:logger.context}\n_line %{integer:line}\n","match_rules":"java_default
+      (%{_date_ms}|%{_duration})\\s+\\[%{_thread_name}\\]\\s+%{_status}\\s+%{_logger_name}\\s*(%{_context}\\s*)?-
+      (?>%{word:dd.trace_id} %{word:dd.span_id} - )?%{data:message}((\\n|\\t)%{data:error.stack})?\n\njava_slf4j
+      %{_date_slf4j}\\s+\\[%{_thread_name}\\]\\s+%{_status}\\s+%{_logger_name}\\s*(%{_context}\\s*)?-
+      (?>%{word:dd.trace_id} %{word:dd.span_id} - )?%{data:message}((\\n|\\t)%{data:error.stack})?\n\njava_log4j
+      %{_date} %{_status}\\s+%{_logger_name}:%{_line}\\s+- (?>%{word:dd.trace_id}
+      %{word:dd.span_id} - )?%{data:message}((\\n|\\t)%{data:error.stack})?\n\njava_fallback
+      (%{_date}|%{_date_ms}) %{_status}\\s+(?>%{word:dd.trace_id} %{word:dd.span_id}
+      )?%{data:message}((\\n|\\t)%{data:error.stack})?\n"},"type":"grok-parser"},{"name":"Parsing
+      GC logs","is_enabled":true,"source":"message","samples":["[9237.485s][info   ][gc]
+      GC(835) Pause Young (G1 Evacuation Pause) 4937M->645M(7168M) 17.476ms","2019-03-20T14:36:30.111+0000:
+      41.098: [GC concurrent-mark-end, 0.0272767 secs]","2019-03-20T14:36:30.111+0000:
+      41.071: [GC concurrent-mark-start]","2019-03-20T14:36:30.111+0000: 41.099: [Finalize
+      Marking, 0.0011661 secs]"],"grok":{"support_rules":"_gc_event_phase_duration
+      %{date(\"yyyy-MM-dd''T''HH:mm:ss.SSSZ\"):timestamp}: %{notSpace}\\s\\[GC\\s%{notSpace:gc.action}(\\s%{regex(\"([^,]*)\"):gc.phase},)?(\\s%{number:duration:scale(1000000000)}\\ssecs)?]\n\n_parallel
+      \\[Parallel\\sTime:\\s%{number:parallel_time}\\sms,\\sGC\\sWorkers:\\s%{number:gc_worker.count}]\n\n_gc_worker_start
+      \\[GC\\sWorker\\sStart\\s\\(ms\\):\\sMin:\\s%{number:gc_worker.start.min},\\sAvg:\\s%{number:gc_worker.start.avg},\\sMax:\\s%{number:gc_worker.start.max},\\sDiff:\\s%{number:gc_worker.start.diff}]\n\n_ext_root_scanning
+      \\[Ext\\sRoot\\sScanning\\s\\(ms\\):\\sMin:\\s%{number:exit_root_scanning.min},\\sAvg:\\s%{number:exit_root_scanning.avg},\\sMax:\\s%{number:exit_root_scanning.max},\\sDiff:\\s%{number:exit_root_scanning.diff},\\sSum:\\s%{number:exit_root_scanning.sum}]\n\n_update_rs
+      \\[Update\\sRS\\s\\(ms\\):\\sMin:\\s%{number:update_rs.min},\\sAvg:\\s%{number:update_rs.avg},\\sMax:\\s%{number:update_rs.max},\\sDiff:\\s%{number:update_rs.diff},\\sSum:\\s%{number:update_rs.sum}]\n\n_gcc_event
+      %{date(\"yyyy-MM-dd''T''HH:mm:ss.SSSZ\"):timestamp}:%{notSpace}\\s\\[%{regex(\"([^\\\\]]*)\"):event.type}]\n\n_processed_buffer
+      \\[Processed\\sBuffers:\\sMin:\\s%{number:processed_buffer.min},\\sAvg:\\s%{number:processed_buffer.avg},\\sMax:\\s%{number:processed_buffer.max},\\sDiff:\\s%{number:processed_buffer.diff},\\sSum:\\s%{number:processed_buffer.sum}]\n\n_scan_rs
+      \\[Scan\\sRS\\s\\(ms\\):\\sMin:\\s%{number:scan_rs.min},\\sAvg:\\s%{number:scan_rs.avg},\\sMax:\\s%{number:scan_rs.max},\\sDiff:\\s%{number:scan_rs.diff},\\sSum:\\s%{number:scan_rs.sum}]\n\n_code_root_scan
+      \\[Code\\sRoot\\sScanning\\s\\(ms\\):\\sMin:\\s%{number:code_root.scan.min},\\sAvg:\\s%{number:code_root.scan.avg},\\sMax:\\s%{number:code_root.scan.max},\\sDiff:\\s%{number:code_root.scan.diff},\\sSum:\\s%{number:code_root.scan.sum}]\n\n_object_copy
+      \\[Object\\sCopy\\s\\(ms\\):\\sMin:\\s%{number:object_copy.min},\\sAvg:\\s%{number:object_copy.avg},\\sMax:\\s%{number:object_copy.max},\\sDiff:\\s%{number:object_copy.diff},\\sSum:\\s%{number:object_copy.sum}]\n\n_termination
+      \\[Termination\\s\\(ms\\):\\sMin:\\s%{number:termination.min},\\sAvg:\\s%{number:termination.avg},\\sMax:\\s%{number:termination.max},\\sDiff:\\s%{number:termination.diff},\\sSum:\\s%{number:termination.sum}]\n\n_termination_attempts
+      \\[Termination\\sAttempts:\\sMin:\\s%{number:termination.attempts.min},\\sAvg:\\s%{number:termination.attempts.avg},\\sMax:\\s%{number:termination.attempts.max},\\sDiff:\\s%{number:termination.attempts.diff},\\sSum:\\s%{number:termination.attempts.sum}]\n\n_gc_worker_other
+      \\[GC\\sWorker\\sOther\\s\\(ms\\):\\sMin:\\s%{number:gc_worker.other.min},\\sAvg:\\s%{number:gc_worker.other.avg},\\sMax:\\s%{number:gc_worker.other.max},\\sDiff:\\s%{number:gc_worker.other.diff},\\sSum:\\s%{number:gc_worker.other.sum}]\n\n_gc_worker_total
+      \\[GC\\sWorker\\sTotal\\s\\(ms\\):\\sMin:\\s%{number:gc_worker.total.min},\\sAvg:\\s%{number:gc_worker.total.avg},\\sMax:\\s%{number:gc_worker.total.max},\\sDiff:\\s%{number:gc_worker.total.diff},\\sSum:\\s%{number:gc_worker.total.sum}]\n\n_gc_worker_end
+      \\[GC\\sWorker\\sEnd\\s\\(ms\\):\\sMin:\\s%{number:gc_worker.end.min},\\sAvg:\\s%{number:gc_worker.end.avg},\\sMax:\\s%{number:gc_worker.end.max},\\sDiff:\\s%{number:gc_worker.end.diff}]\n\n_code_root_fixup
+      \\[Code\\sRoot\\sFixup:\\s%{number:code_root.fixup}\\sms]\n\n_code_root_purge
+      \\[Code\\sRoot\\sPurge:\\s%{number:code_root.purge}\\sms]\n\n_clear_ct \\[Clear\\sCT:\\s%{number:clear_ct}\\sms]\n\n_other
+      \\[Other:\\s%{number:other}\\sms]\n\n_choose_cset \\[Choose\\sCSet:\\s%{number:choose_cset}\\sms]\n\n_ref_proc
+      \\[Ref\\sProc:\\s%{number:ref.proc}\\sms]\n\n_ref_enq \\[Ref\\sEnq:\\s%{number:ref.enq}\\sms]\n\n_redirty_cards
+      \\[Redirty\\sCards:\\s%{number:redirty_cards}\\sms]\n\n_humongous_register \\[Humongous\\sRegister:\\s%{number:humongous_register}\\sms]\n\n_humongous_reclaim
+      \\[Humongous\\sReclaim:\\s%{number:humongous_reclaim}\\sms]\n\n_free \\[Free\\sCSet:\\s%{number:free}\\sms]\n\n_memory_usage
+      \\[Eden: (%{number:eden.memory_before}M|%{number:eden.memory_before:scale(1000)}G)\\((%{number:eden.memory_allocated_before}M|%{number:eden.memory_allocated_before:scale(1000)}G)\\)->%{number:eden.memory_after}B\\((%{number:eden.memory_allocated_after}M|%{number:eden.memory_allocated_after:scale(1000)}G)\\)\\sSurvivors:\\s%{number:survivor.memory_before}M->%{number:survivor.memory_after}M\\sHeap:\\s(%{number:heap.memory_before}M|%{number:heap.memory_before:scale(1000)}G)\\((%{number:heap.memory_allocated_before}M|%{number:heap.memory_allocated_before:scale(1000)}G)\\)->%{number:heap.memory_after}M\\((%{number:heap.memory_allocated_after}M|%{number:heap.memory_allocated_after:scale(1000)}G)\\)]\n\n_times
+      \\[Times:\\suser=%{number:times.user}\\ssys=%{number:times.system},\\sreal=%{number:times.real}\\ssecs]\n","match_rules":"\ngc_nonverbose_basic
+      \\[%{notSpace}\\]\\[%{word:level}\\s*\\]\\[%{word:gc.type}\\] GC\\(%{number:gc.iteration}\\)
+      %{data:gc.action} \\(%{data:gc.phase}\\) %{number:heap.memory_before}M\\-\\>%{number:heap.memory_after}M\\(%{number:heap.memory_total}M\\)
+      %{number:duration:scale(1000000)}ms\n\ngc_action_phase_duration %{date(\"yyyy-MM-dd''T''HH:mm:ss.SSSZ\"):timestamp}:
+      %{notSpace}\\s\\[GC\\s%{notSpace:gc.action}(\\s%{regex(\"([^,]*)\"):gc.phase},)?(\\s%{number:duration:scale(1000000000)}\\ssecs)?]\n\nnon_gc_action_duration
+      %{date(\"yyyy-MM-dd''T''HH:mm:ss.SSSZ\"):timestamp}: %{notSpace}\\s\\[%{regex(\"([^,]*)\"):gc.action}(,\\s%{number:duration:scale(1000000000)}\\ssecs)?]\n\ngc_verbose
+      %{_gc_event_phase_duration}(\\r|\\n|\\s)*%{_parallel}(\\r|\\n|\\s)*%{_gc_worker_start}(\\r|\\n|\\s)*%{_ext_root_scanning}(\\r|\\n|\\s)*%{_update_rs}(\\r|\\n|\\s)*%{_processed_buffer}(\\r|\\n|\\s)*%{_scan_rs}(\\r|\\n|\\s)*%{_code_root_scan}(\\r|\\n|\\s)*%{_object_copy}(\\r|\\n|\\s)*%{_termination}(\\r|\\n|\\s)*%{_termination_attempts}(\\r|\\n|\\s)*%{_gc_worker_other}(\\r|\\n|\\s)*%{_gc_worker_total}(\\r|\\n|\\s)*%{_gc_worker_end}(\\r|\\n|\\s)*%{_code_root_fixup}(\\r|\\n|\\s)*%{_code_root_purge}(\\r|\\n|\\s)*%{_clear_ct}(\\r|\\n|\\s)*%{_other}(\\r|\\n|\\s)*%{_choose_cset}(\\r|\\n|\\s)*%{_ref_proc}(\\r|\\n|\\s)*%{_ref_enq}(\\r|\\n|\\s)*%{_redirty_cards}(\\r|\\n|\\s)*%{_humongous_register}(\\r|\\n|\\s)*%{_humongous_reclaim}(\\r|\\n|\\s)*%{_free}(\\r|\\n|\\s)*%{_memory_usage}(\\r|\\n|\\s)*%{_times}\n\n#Parse
+      Java 11 GC logs formats\ngc_new_format \\[%{date(\"yyyy-MM-dd''T''HH:mm:ss.SSSZ\"):timestamp}\\]\\[%{notSpace:status}\\]\\[%{notSpace:gc.type}(\\s)?\\]\\sGC\\(%{number:gc.iteration}\\)\\s%{data:gc.action}(\\s%{number:duration:scale(1000000)}ms)?\n"},"type":"grok-parser"},{"name":"Define
       timestamp as the official timestamp of the log","is_enabled":true,"sources":["timestamp"],"type":"date-remapper"},{"name":"Define
       level as the official status of the log","is_enabled":true,"sources":["level"],"type":"status-remapper"},{"name":"Define
-      message as the official message of the log","is_enabled":true,"sources":["message"],"type":"message-remapper"}]},{"id":"6oHX3LsqQuipHoRbpjw8qA","type":"pipeline","name":"Cassandra","is_enabled":true,"is_read_only":true,"filter":{"query":"source:cassandra"},"processors":[{"name":"Parsing
-      Cassandra logs","is_enabled":true,"source":"message","samples":["WARN  [MemtableFlushWriter:20342]
-      2016-06-29 08:35:35,936  SSTableWriter.java:240 - Compacting large partition
-      limo/read_audit_history:2016-6-29 (115624250 bytes)","INFO  [SlabPoolCleaner]
-      2016-06-28 16:13:14,966  ColumnFamilyStore.java:1211 - Flushing largest CFS(Keyspace=''order_store'',
-      ColumnFamily=''orderdata'') to free up room. Used total: 0.11/0.00, live: 0.11/0.00,
-      flushing: 0.00/0.00, this: 0.10/0.10","INFO  [CompactionExecutor:26] 2016-06-28
-      14:38:40,545  CompactionTask.java:274 - Compacted 2 sstables to [/app/cassandra/datastax/dse-data03/order_store/orderhistory-65765df1fc1f11e5974cd5203249f77a/order_store-orderhistory-ka-139517,].  32,011,749
-      bytes to 29,390,144 (~91% of original) in 1,771ms = 15.826440MB/s.  39,261 total
-      partitions merged to 36,402.  Partition merge counts were {1:33543, 2:2859,
-      }","WARN  [ServiceThread] 2016-06-30 14:42:41,538  GCInspector.java:256 - G1
-      Young Generation GC in 202ms.  G1 Eden Space: 1157627904 -> 0; G1 Old Gen: 6819034128
-      -> 4151661080; G1 Survivor Space: 553648128 -> 218103808;","DEBUG [ScheduledTasks:1]
-      2019-12-30 15:02:59,576 MonitoringTask.java:173 - 2 operations were slow in
-      the last 5002 msecs:\n<SELECT * FROM system_schema.tables>, time 7 msec - slow
-      timeout 2 msec\n<SELECT * FROM system_schema.columns>, time 7 msec - slow timeout
-      2 msec\n"],"grok":{"support_rules":"_level %{word:db.severity}\n_thread_name
-      %{notSpace:logger.thread_name}\n_thread_id %{integer:logger.thread_id}\n_logger_name
-      %{notSpace:logger.name}\n_table %{word:db.table}\n_sstable %{notSpace:cassandra.sstable}\n_bytes
-      %{integer:cassandra.bytes}\n_keyspace %{word:cassandra.keyspace}\n_onheap_total
-      %{number:cassandra.onheap.total}\n_onheap_live %{number:cassandra.onheap.live}\n_onheap_flush
-      %{number:cassandra.onheap.flush}\n_onheap_this %{number:cassandra.onheap.this}\n_onheap_bytes
-      %{integer:cassandra.onheap.bytes}\n_onheap_pct %{integer:cassandra.onheap.percent}\n\n_offheap_total
-      %{number:cassandra.offheap.total}\n_offheap_live %{number:cassandra.offheap.live}\n_offheap_flush
-      %{number:cassandra.offheap.flush}\n_offheap_this %{number:cassandra.offheap.this}\n_offheap_bytes
-      %{integer:cassandra.offheap.bytes}\n_offheap_pct %{integer:cassandra.offheap.percent}\n\n_default_prefix
-      %{_level}\\s+\\[(%{_thread_name}:%{_thread_id}|%{_thread_name})\\]\\s+%{date(\"yyyy-MM-dd
-      HH:mm:ss,SSS\"):db.date}\\s+%{word:filename}.java:%{integer:lineno} -\n_suggested_prefix
-      %{date(\"yyyy-MM-dd HH:mm:ss\"):db.date} \\[(%{_thread_name}:%{_thread_id}|%{_thread_name})\\]
-      %{_level} %{_logger_name}\\s+-\n_prefix (?>%{_default_prefix}|%{_suggested_prefix})\n","match_rules":"cassandra_compaction_key
-      %{_prefix} %{regex(\"Compacting\"):db.operation}.* %{_keyspace}\\/%{_table}:%{data:partition_key}
-      \\(%{_bytes} bytes\\)\n\ncassandra_pool_cleaner %{_prefix} %{regex(\"Flushing\"):db.operation}.*\\(Keyspace=''%{_keyspace}'',
-      ColumnFamily=''%{_table}''\\) %{data}: %{_onheap_total}\\/%{_offheap_total},
-      live: %{_onheap_live}\\/%{_offheap_live}, flushing: %{_onheap_flush}\\/%{_offheap_flush},
-      this: %{_onheap_this}\\/%{_offheap_this}\n\ncassandra_pool_cleaner2 %{_prefix}
-      %{regex(\"Enqueuing\"):db.operation}.* of %{_keyspace}: %{_onheap_bytes}%{data}
-      \\(%{_onheap_pct}%\\) on-heap, %{_offheap_bytes} \\(%{_offheap_pct}%\\).*\n\ncassandra_table_flush
-      %{_prefix} %{regex(\"Writing\"):db.operation}.*-%{_keyspace}%{data}\\(%{number:cassandra.bytes:scale(1000000)}%{data},
-      %{integer:cassandra.ops} ops, %{_onheap_pct}%\\/%{_offheap_pct}.*\n\ncassandra_mem_flush
-      %{_prefix} Completed %{regex(\"flushing\"):db.operation} %{_sstable} \\(%{number:cassandra.bytes_kb}KiB\\)
-      for commitlog %{data:commitlog}\n\ncassandra_compaction %{_prefix}\\s+%{regex(\"Compacted\"):db.operation}.*
-      to \\[%{_sstable}\\].\\s+%{notSpace:cassandra.bytes_in} bytes to %{notSpace:cassandra.bytes_out}
-      \\(\\~%{integer:cassandra.percent_of_orig}% of original\\) in %{notSpace:cassandra.duration_ms}ms
-      = %{number:cassandra.speed_mb}MB/s.\\s+%{notSpace:cassandra.pkeys_in} total
-      partitions merged to %{notSpace:cassandra.pkeys_out}\\.\\s+Partition merge counts
-      were %{data:cassandra.merge_cnt}\n\ncassandra_gc_format %{_prefix} G.* %{integer:duration:scale(1000000)}ms.
-      %{data}: %{integer:cassandra.eden.orig_bytes} -> %{integer:cassandra.eden.new_bytes};
-      %{data}: %{integer:cassandra.oldgen.orig_bytes} -> %{integer:cassandra.oldgen.new_bytes};.*\n\ncassandra_thread_pending
-      %{_prefix} %{word:cassandra.pool}\\s*(?>%{integer:cassandra.cache_used}\\s*%{integer:cassandra.cache_size}\\s*all|%{integer:cassandra.threads.active}\\s*%{integer:cassandra.threads.pending}\\s*%{integer:cassandra.threads.completed}\\s*%{integer:cassandra.threads.blocked}\\s*%{integer:cassandra.threads.all_time_blocked}|%{integer:cassandra.threads.active}\\s*%{integer:cassanadra.threads.pending})\n\ncassandra_slow_statements
-      %{_prefix} %{integer:db.operations} operations were slow in the last %{integer:elapsed_time:scale(1000000)}
-      msecs:\\n%{data:db.slow_statements:array(\"\", \"\\\\n\")}\n\ncassandra_fallback_parser
-      %{_prefix} %{data:msg}\n\n## Extra samples\n\n#Pool cleaner 2\n# INFO  [SlabPoolCleaner]
-      2016-06-28 16:13:14,967  ColumnFamilyStore.java:905 - Enqueuing flush of orderdata:
-      216588472 (10%) on-heap, 0 (0%) off-heap\n\n#Table Flush\n# INFO  [MemtableFlushWriter:320]
-      2016-06-28 16:13:14,969  Memtable.java:347 - Writing Memtable-orderdata@849528272(129.804MiB
-      serialized bytes, 297813 ops, 10%/0% of on/off-heap limit)\n\n#Memory Flush\n#
-      INFO  [MemtableFlushWriter:1] 2016-06-28 16:19:48,627  Memtable.java:382 - Completed
-      flushing /app/cassandra/datastax/dse-data01/system/local-7ad54392bcdd35a684174e047860b377/system-local-tmp-ka-3981-Data.db
-      (0.000KiB) for commitlog position ReplayPosition(segmentId=1467130786324, position=567)\n\n#Thread
-      Pending\n# INFO  [ServiceThread] 2016-06-30 14:42:41,542  StatusLogger.java:99
-      - KeyCache                  365405196               1073741824                      all\n\n#Compaction
-      key, Pool cleaner, Compaction, GC format, Default: in Log Samples\n"},"type":"grok-parser"},{"name":"Define
-      db.date as the official timestamp of the log","is_enabled":true,"sources":["db.date"],"type":"date-remapper"},{"name":"Define
-      db.severity as the official status of the log","is_enabled":true,"sources":["db.severity"],"type":"status-remapper"}]},{"id":"eA0ZQGCXRD6TZX2faHBSng","type":"pipeline","name":"PerimeterX","is_enabled":true,"is_read_only":true,"filter":{"query":"source:perimeterx"},"processors":[{"name":"true_ip
-      to network.client.ip","is_enabled":true,"sources":["true_ip"],"source_type":"attribute","target":"network.client.ip","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"event_type
-      to evt.name","is_enabled":true,"sources":["event_type"],"source_type":"attribute","target":"evt.name","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"true_ip_asn_name
-      to network.client.asn","is_enabled":true,"sources":["true_ip_asn_name"],"source_type":"attribute","target":"network.client.asn","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"","is_enabled":true,"sources":["full_url"],"target":"http.url_details","normalize_ending_slashes":false,"type":"url-parser"},{"name":"","is_enabled":true,"sources":["user_agent"],"target":"http.useragent_details","is_encoded":false,"type":"user-agent-parser"},{"name":"","is_enabled":true,"sources":["network.client.ip"],"target":"network.client.geoip","ip_processing_behavior":"do-nothing","type":"geo-ip-parser"},{"name":"Defining
-      title as %{evt.name} Request From %{network.client.ip}","is_enabled":true,"template":"%{evt.name}
-      Request From %{network.client.ip}","target":"title","is_replace_missing":false,"type":"string-builder-processor"}]},{"id":"ysiXDYRgQhiPIsMbP7FNhA","type":"pipeline","name":"qq","is_enabled":true,"is_read_only":false,"filter":{"query":"source:undefined"},"processors":[{"name":"service
-      extractor","is_enabled":false,"sources":["service.name"],"source_type":"attribute","target":"service","target_type":"attribute","preserve_source":true,"override_on_conflict":true,"type":"attribute-remapper"},{"name":"service
-      remapper","is_enabled":true,"sources":["serviceBis"],"type":"service-remapper"}]},{"id":"ctYb5MskSg2tKYsHWymzDQ","type":"pipeline","name":"Apache","is_enabled":true,"is_read_only":true,"filter":{"query":"source:apache"},"processors":[{"name":"Parsing
-      Apache logs","is_enabled":true,"source":"message","samples":["127.0.0.1 - frank
-      [13/Jul/2016:10:55:36 +0000] \"GET /apache_pb.gif HTTP/1.0\" 200 2326","192.0.2.1
-      - Ultan [07/Mar/2004:16:43:54 -0800] \"GET /unencrypted_password_list?foo=bar
-      HTTP/1.1\" 404 9001 \"http://passwords.hackz0r\" \"Mozilla/4.08 [en] (Win95)\""],"grok":{"support_rules":"_auth
-      %{notSpace:http.auth:nullIf(\"-\")}\n_bytes_written %{integer:network.bytes_written}\n_client_ip
-      %{ipOrHost:network.client.ip}\n_version HTTP\\/%{regex(\"\\\\d+\\\\.\\\\d+\"):http.version}\n_url
-      %{notSpace:http.url}\n_ident %{notSpace:http.ident:nullIf(\"-\")}\n_user_agent
-      %{regex(\"[^\\\\\\\"]*\"):http.useragent}\n_referer %{notSpace:http.referer}\n_status_code
-      %{integer:http.status_code}\n_method %{word:http.method}\n_date_access %{date(\"dd/MMM/yyyy:HH:mm:ss
-      Z\"):date_access}\n","match_rules":"access.common %{_client_ip} %{_ident} %{_auth}
-      \\[%{_date_access}\\] \"(?>%{_method} |)%{_url}(?> %{_version}|)\" %{_status_code}
-      (?>%{_bytes_written}|-)\n\naccess.combined %{access.common} \"%{_referer}\"
-      \"%{_user_agent}\"\n"},"type":"grok-parser"},{"name":"","is_enabled":true,"sources":["http.useragent"],"target":"http.useragent_details","is_encoded":false,"type":"user-agent-parser"},{"name":"","is_enabled":true,"sources":["http.url"],"target":"http.url_details","normalize_ending_slashes":false,"type":"url-parser"},{"name":"Define
-      Date_access as the official timestamp of the log","is_enabled":true,"sources":["date_access"],"type":"date-remapper"},{"name":"Categorise
-      status code","is_enabled":true,"categories":[{"filter":{"query":"@http.status_code:[200
-      TO 299]"},"name":"OK"},{"filter":{"query":"@http.status_code:[300 TO 399]"},"name":"notice"},{"filter":{"query":"@http.status_code:[400
-      TO 499]"},"name":"warning"},{"filter":{"query":"@http.status_code:[500 TO 599]"},"name":"error"}],"target":"http.status_category","type":"category-processor"},{"name":"Set
-      the log status based on the status code value","is_enabled":true,"sources":["http.status_category"],"type":"status-remapper"}]},{"id":"JiF7WwYgSA21iZwIO2zeYg","type":"pipeline","name":"Gitlab
-      Runner","is_enabled":true,"is_read_only":true,"filter":{"query":"source:gitlab-runner"},"processors":[{"name":"Extract
-      prefix","is_enabled":true,"source":"message","samples":["Aug 19 08:47:22 vagrant
-      gitlab-runner[1440]: Running in system-mode.","ERROR: Failed to load config
-      Near line 3 (last key parsed ''log_format''): expected value but found ''json''
-      instead  builds=0"],"grok":{"support_rules":"_date %{date(\"MMM dd HH:mm:ss\"):date}\n","match_rules":"journald_begining
-      (%{_date} %{hostname:syslog.hostname} %{hostname:syslog.appname}\\[\\d+\\]:\\s)?%{data:msg}\n"},"type":"grok-parser"},{"name":"Parsing
-      Gitlab Runner logs","is_enabled":true,"source":"msg","samples":[],"grok":{"support_rules":"_color
-      (\\x1B\\[0;m)?\n","match_rules":"gitlab_runner_job Job\\s%{word:job.outcome}\\s+%{_color}\\s+duration%{_color}=%{number:job.duration}s
-      job%{_color}=%{integer:job.id}\\s+project%{_color}=%{integer:project.id}\\s+runner%{_color}=%{word:job.runner}\ngitlab_runner_check
-      Checking for jobs... %{word:job.outcome}\\s+%{_color}\\s+job%{_color}=%{integer:job.id}
-      repo_url%{_color}=%{notSpace:url} runner%{_color}=%{word:job.runner}\ngitlab_runner_level
-      %{word:level}: %{data:message}\n"},"type":"grok-parser"},{"name":"Parsing JSON
-      Gitlab Runner logs","is_enabled":true,"source":"msg","samples":[],"grok":{"support_rules":null,"match_rules":"gitlab_runner_json
-      %{data:properties:json}\n"},"type":"grok-parser"},{"name":"Define date as the
-      official log timestamp","is_enabled":true,"sources":["date","properties.time"],"type":"date-remapper"},{"name":"Define
-      `level` as the official log status","is_enabled":true,"sources":["level"],"type":"status-remapper"},{"name":"Define
-      `message` as the official log message","is_enabled":true,"sources":["msg","message","properties.msg"],"type":"message-remapper"}]},{"id":"nDTdpcxNRX6zdJ8yaZTUMw","type":"pipeline","name":"dfdf","is_enabled":true,"is_read_only":false,"filter":{"query":""},"processors":[{"name":"multi-sources
-      message remapper","is_enabled":true,"sources":["message1","message2","message3"],"type":"message-remapper"}]},{"id":"QkI_2fcDT_6ETNuLVhQqcg","type":"pipeline","name":"Kubernetes
-      audit","is_enabled":true,"is_read_only":false,"filter":{"query":"source:kubernetes.audit"},"processors":[{"name":"Parsing
-      requestReceivedTimestamp","is_enabled":true,"source":"requestReceivedTimestamp","samples":[],"grok":{"support_rules":"","match_rules":"parsing_date
-      %{date(\"yyyy-MM-dd''T''HH:mm:ss.SSSSSSZ\"):requestReceivedTimestamp_ms}\n"},"type":"grok-parser"},{"name":"Parsing
-      stageTimestamp","is_enabled":true,"source":"stageTimestamp","samples":[],"grok":{"support_rules":"","match_rules":"parsing_date
-      %{date(\"yyyy-MM-dd''T''HH:mm:ss.SSSSSSZ\"):stageTimestamp_ms}\n"},"type":"grok-parser"},{"name":"","is_enabled":true,"sources":["requestURI"],"target":"http.url_details","normalize_ending_slashes":false,"type":"url-parser"},{"name":"","is_enabled":true,"sources":["userAgent"],"target":"http.useragent_details","is_encoded":false,"type":"user-agent-parser"},{"name":"responseStatus.code
-      to http.status_code","is_enabled":true,"sources":["responseStatus.code"],"source_type":"attribute","target":"http.status_code","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"verb
-      to http.method","is_enabled":true,"sources":["verb"],"source_type":"attribute","target":"http.method","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"user
-      to usr","is_enabled":true,"sources":["user"],"source_type":"attribute","target":"usr","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"usr.username
-      to usr.name","is_enabled":true,"sources":["usr.username"],"source_type":"attribute","target":"usr.name","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"","is_enabled":true,"sources":["objectRef.namespace"],"source_type":"attribute","target":"usr","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"objectRef.namespace
-      to kube_namespace","is_enabled":true,"sources":["objectRef.namespace"],"source_type":"attribute","target":"kube_namespace","target_type":"tag","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"Categorise
-      status code","is_enabled":true,"categories":[{"filter":{"query":"@http.status_code:[200
-      TO 299]"},"name":"OK"},{"filter":{"query":"@http.status_code:[300 TO 399]"},"name":"notice"},{"filter":{"query":"@http.status_code:[400
-      TO 499]"},"name":"warning"},{"filter":{"query":"@http.status_code:[500 TO 599]"},"name":"error"}],"target":"http.status_category","type":"category-processor"},{"name":"Calculate
-      request response time","is_enabled":true,"expression":"(stageTimestamp_ms -
-      requestReceivedTimestamp_ms)*1000000","target":"duration","is_replace_missing":false,"type":"arithmetic-processor"},{"name":"Set
-      the log status based on the status code value","is_enabled":true,"sources":["http.status_category"],"type":"status-remapper"},{"name":"Define
-      stageTimestamp_ms as the official timestamp of the log","is_enabled":true,"sources":["stageTimestamp_ms"],"type":"date-remapper"}]},{"id":"GarzM14SR12w9SPy98Yxlw","type":"pipeline","name":"go-TestLogsPipelinesLifecycle-local-1601978313","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
+      dd.trace_id as the official trace id associate to this log","is_enabled":true,"sources":["dd.trace_id"],"type":"trace-id-remapper"},{"name":"stack_trace
+      to error.stack","is_enabled":true,"sources":["stack_trace"],"source_type":"attribute","target":"error.stack","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"logger_name
+      to logger.name","is_enabled":true,"sources":["logger_name","loggerName"],"source_type":"attribute","target":"logger.name","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"thread_name
+      to logger.thread_name","is_enabled":true,"sources":["thread_name"],"source_type":"attribute","target":"logger.thread_name","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"Parsing
+      Java Stack traces","is_enabled":true,"source":"error.stack","samples":[],"grok":{"support_rules":"","match_rules":"error_rule
+      %{notSpace:error.kind}: %{data:error.message}(\\n|\\t).*\n"},"type":"grok-parser"},{"name":"Calculate
+      GC memory freed","is_enabled":true,"expression":"(heap.memory_before - heap.memory_after)","target":"gc.memory_freed","is_replace_missing":false,"type":"arithmetic-processor"},{"name":"Set
+      the datadog environment tag","is_enabled":true,"sources":["dd.env","contextMap.dd.env"],"source_type":"attribute","target":"env","target_type":"tag","preserve_source":false,"override_on_conflict":true,"type":"attribute-remapper"},{"name":"Set
+      the datadog version tag","is_enabled":true,"sources":["dd.version","contextMap.dd.version"],"source_type":"attribute","target":"version","target_type":"tag","preserve_source":false,"override_on_conflict":true,"type":"attribute-remapper"},{"name":"Define
+      app as the official service of the log","is_enabled":true,"sources":["dd.service","contextMap.dd.service"],"type":"service-remapper"}]},{"id":"4I6FNy5GToqi2fKVAqNZJw","type":"pipeline","name":"Datadog
+      Agent","is_enabled":true,"is_read_only":true,"filter":{"query":"source:(agent
+      OR datadog-agent OR datadog-agent-cluster-worker OR datadog-cluster-agent OR
+      process-agent OR security-agent OR system-probe OR trace-agent)"},"processors":[{"name":"Parsing
+      Datadog Agent logs","is_enabled":true,"source":"message","samples":["2020-07-01
+      09:48:14 UTC | CORE | INFO | (pkg/collector/runner/runner.go:327 in work) |
+      check:network,type:core | Done running check","2020-09-15 10:00:07 UTC | CORE
+      | INFO | (pkg/collector/python/datadog_agent.go:120 in LogMessage) | kafka_cluster_status:8ca7b736f0aa43e5
+      | (kafka_cluster_status.py:213) | Checking for out of sync partition replicas","2019-04-08
+      13:53:48 UTC | TRACE | INFO | (pkg/trace/agent/agent.go:145 in loop) | exiting","2019-02-01
+      16:59:41 UTC | INFO | (connection_manager.go:124 in CloseConnection) | Connection
+      closed","2020-11-18 10:31:13 UTC | JMX | INFO  | App | Successfully initialized
+      instance: cassandra-localhost-7199"],"grok":{"support_rules":"","match_rules":"agent_rule         %{date(\"yyyy-MM-dd
+      HH:mm:ss z\"):timestamp} \\| %{notSpace:agent} \\| %{word:level} \\| \\(%{notSpace:filename}:%{number:lineno}
+      in %{word:process}\\) \\|( %{data::keyvalue(\":\")} \\|)?( - \\|)?( \\(%{notSpace:pyFilename}:%{number:pyLineno}\\)
+      \\|)?%{data}\nagent_rule_pre_611 %{date(\"yyyy-MM-dd HH:mm:ss z\"):timestamp}
+      \\| %{word:level} \\| \\(%{notSpace:filename}:%{number:lineno} in %{word:process}\\)%{data}\njmxfetch_rule      %{date(\"yyyy-MM-dd
+      HH:mm:ss z\"):timestamp} \\| %{notSpace:agent} \\| %{word:level}\\s+\\| %{word:class}
+      \\| %{data}\n"},"type":"grok-parser"},{"name":"Define timestamp as the official
+      timestamp of the log","is_enabled":true,"sources":["timestamp"],"type":"date-remapper"},{"name":"Define
+      level as the official log status","is_enabled":true,"sources":["level"],"type":"status-remapper"}]},{"id":"LWIrk9TLT3Kp9hnIbWBs2w","type":"pipeline","name":"Jenkins","is_enabled":false,"is_read_only":false,"filter":{"query":"source:jenkins
+      service:jenkins"},"processors":[{"type":"pipeline","name":"Jenkins Main Logs","is_enabled":true,"filter":{"query":"@tailed_path:\"/var/lib/jenkins/logs/jenkins.log\"
+      source:jenkins service:jenkins"},"processors":[{"name":"parse the log message","is_enabled":false,"source":"message","samples":["2020-09-11
+      18:39:27.168+0000 [id=301]\tWARNING\thudson.model.RunMap#retrieve: could not
+      load /var/lib/jenkins/jobs/process_label/builds/11396","2020-09-11 17:53:17.279+0000
+      [id=1882974]\tINFO\thudson.plugins.ec2.EC2Cloud#log: The instance EC2 (Platform
+      Nodes) - Code Pipeline Dedicated Large (i-00ccbfe7626e67d47) has a blank console.
+      Maybe the console is yet not available. If enough time has passed, consider
+      changing the key verification strategy or the AMI used by one printing out the
+      host key in the instance console","2020-09-11 18:34:55.043+0000 [id=1889960]\tINFO\th.plugins.ec2.EC2OndemandSlave#lambda$terminate$0:
+      Removed EC2 instance from jenkins master: i-00c77ed6825a0283a","2020-09-11 18:11:29.118+0000
+      [id=1885120]\tSEVERE\to.d.j.p.datadog.DatadogUtilities#severe: An unexpected
+      error occurred","2020-09-11 18:35:24.327+0000 [id=1889974]\tINFO\th.p.ec2.EC2RetentionStrategy#taskAccepted:
+      Agent i-09d6bcf24ed8d123f has 9 builds left"],"grok":{"support_rules":"_date
+      %{date(\"yyyy-MM-dd HH:mm:ss.SSS+0000\"):date}\n_id \\[id\\=%{integer:id}\\]\n_level
+      %{word:level}\n_logger (\\w+|\\.)+?%{regex(\"([a-zA-Z0-9]+[.][a-zA-Z0-9]+)\"):logger.name}\\#%{data:logger.label}\n_message
+      %{data:message}\n","match_rules":"rule %{_date}\\s+%{_id}\\s+%{_level}\\s+%{_logger}\\:\\s+%{_message}"},"type":"grok-parser"},{"name":"Parsing
+      Java Default formats","is_enabled":true,"source":"message","samples":["2020-09-11
+      18:39:27.168+0000 [id=301]\tWARNING\thudson.model.RunMap#retrieve: could not
+      load /var/lib/jenkins/jobs/process_label/builds/11396","2020-09-11 17:53:17.279+0000
+      [id=1882974]\tINFO\thudson.plugins.ec2.EC2Cloud#log: The instance EC2 (Platform
+      Nodes) - Code Pipeline Dedicated Large (i-00ccbfe7626e67d47) has a blank console.
+      Maybe the console is yet not available. If enough time has passed, consider
+      changing the key verification strategy or the AMI used by one printing out the
+      host key in the instance console","2020-09-11 18:34:55.043+0000 [id=1889960]\tINFO\th.plugins.ec2.EC2OndemandSlave#lambda$terminate$0:
+      Removed EC2 instance from jenkins master: i-00c77ed6825a0283a","2020-09-11 18:11:29.118+0000
+      [id=1885120]\tSEVERE\to.d.j.p.datadog.DatadogUtilities#severe: An unexpected
+      error occurred","2020-09-11 18:35:24.327+0000 [id=1889974]\tINFO\th.p.ec2.EC2RetentionStrategy#taskAccepted:
+      Agent i-09d6bcf24ed8d123f has 9 builds left"],"grok":{"support_rules":"_date
+      %{date(\"yyyy-MM-dd HH:mm:ss\"):timestamp}\n_date_ms %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}\n_date_slf4j
+      %{date(\"yyyy-MM-dd HH:mm:ss.SSS\"):timestamp}\n_duration %{integer:duration}\n_thread_name
+      %{notSpace:logger.thread_name}\n_status (%{word:level}|\\[%{word:level}\\s*\\])\n_logger_name
+      %{notSpace:logger.name}\n_context %{notSpace:logger.context}\n_line %{integer:line}\n","match_rules":"java_default
+      (%{_date_ms}|%{_duration})\\s+\\[%{_thread_name}\\]\\s+%{_status}\\s+(\\(%{_logger_name}:%{_line}\\)|%{_logger_name})\\s*(%{_context}\\s*)?-
+      (?>%{word:dd.trace_id} %{word:dd.span_id} - )?%{data:message}((\\n|\\t)%{data:error.stack})?\njava_slf4j
+      %{_date_slf4j}\\s+\\[%{_thread_name}\\]\\s+%{_status}\\s+%{_logger_name}\\s*(%{_context}\\s*)?-
+      (?>%{word:dd.trace_id} %{word:dd.span_id} - )?%{data:message}((\\n|\\t)%{data:error.stack})?\njava_log4j
+      %{_date} %{_status}\\s+%{_logger_name}:%{_line}\\s+- (?>%{word:dd.trace_id}
+      %{word:dd.span_id} - )?%{data:message}((\\n|\\t)%{data:error.stack})?\njava_fallback
+      (%{_date}|%{_date_ms}) %{_status}\\s+(?>%{word:dd.trace_id} %{word:dd.span_id}
+      )?%{data:message}((\\n|\\t)%{data:error.stack})?\n\njava_custom_jenkins (%{_date}|%{_date_ms}|%{_date_slf4j})(\\+0000)?\\s+\\[(id=)?%{_thread_name}\\]\\s+%{_status}\\s+%{_logger_name}:\\s+?%{data:message}((\\n|\\t)%{data:error.stack})?\n"},"type":"grok-parser"}]},{"type":"pipeline","name":"Jenkins
+      Job Logs","is_enabled":true,"filter":{"query":"-@tailed_path:\"/var/lib/jenkins/logs/jenkins.log\"
+      source:jenkins service:jenkins"},"processors":[{"name":"parse tailed_path","is_enabled":true,"source":"tailed_path","samples":["/var/lib/jenkins/jobs/pipeline/jobs/admin/jobs/venmo-platform-pr-controller/builds/52228/log","/var/lib/jenkins/jobs/pipeline/jobs/default/jobs/venmo-platform-pr-foundation-swagger-missing-descriptions/builds/5210/log","/var/lib/jenkins/jobs/update_datadog_metrics/builds/49760/log"],"grok":{"support_rules":"_job
+      %{data:jenkins.job}\n_build %{data:jenkins.build}\n","match_rules":"pipeline_job_rule
+      /var/lib/jenkins/jobs/pipeline/jobs/%{data:jenkins.pipeline}/jobs/%{_job}/builds/%{_build}/log\nnon_pipeline_job_rule
+      /var/lib/jenkins/jobs/%{_job}/builds/%{_build}/log\n"},"type":"grok-parser"}]}]},{"id":"rTxbr2MpQsSCEtn66XmwnQ","type":"pipeline","name":"python","is_enabled":true,"is_read_only":true,"filter":{"query":"source:python"},"processors":[{"name":"Parsing
+      python default format","is_enabled":true,"source":"message","samples":["2017-12-19T14:37:58,995
+      INFO  [process.name] [20081] this is my python log","2019-01-07 15:20:15,972
+      DEBUG [flask.app] [app.py:100] [dd.trace_id=5688176451479556031 dd.span_id=4663104081780224235]
+      - Hook: teardown_appcontext","2020-03-20 14:15:07,124 INFO [root] [app.py:78]
+      [dd.service=excelsior dd.env=prod dd.version=abc123 dd.trace_id=9659687005038611690
+      dd.span_id=6632586210846541907] - This is a test of info logs"],"grok":{"support_rules":"_datadog_prefix
+      %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp} %{word:levelname}\\s+\\[%{notSpace:process.name}\\]\\s+\\[%{notSpace:filename}:%{number:lineno}\\]\\s+\\[%{data::keyvalue}dd.trace_id=%{word:dd.trace_id}
+      dd.span_id=%{word:dd.span_id}\\] -\n\n_python_prefix %{date(\"yyyy-MM-dd''T''HH:mm:ss'',''SSS\"):timestamp}\\s+%{word:levelname}\\s+\\[%{notSpace:process.name}\\]\\s+\\[%{integer:process.id}\\]\n","match_rules":"traceback_format
+      (%{_python_prefix}|%{_datadog_prefix})\\s+%{data::keyvalue}Traceback \\(most
+      recent call last\\):(?s)\\s*%{data:error.stack}\n\npython_format (%{_python_prefix}|%{_datadog_prefix})\\s+%{data::keyvalue}\n\npython_fallback
+      %{date(\"yyyy-MM-dd''T''HH:mm:ss'',''SSS\"):timestamp}\\s+%{word:levelname}\\s+%{data::keyvalue}((\\n|\\t)%{data:error.stack})?\n\n#Samples\n#2017-12-19T14:37:58,995
+      INFO  [process.name] [20081] this is my python log\n\n# Datadog format\n#2019-01-07
+      15:20:15,972 DEBUG [flask.app] [app.py:100] [dd.trace_id=5688176451479556031
+      dd.span_id=4663104081780224235] - Hook: teardown_appcontext\n"},"type":"grok-parser"},{"name":"Define
+      timestamp as the official timestamp of the log","is_enabled":true,"sources":["timestamp"],"type":"date-remapper"},{"name":"Define
+      level as the official status of the log","is_enabled":true,"sources":["levelname"],"type":"status-remapper"},{"name":"traceback
+      to error.stack","is_enabled":true,"sources":["traceback"],"source_type":"attribute","target":"error.stack","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"name
+      to logger.name","is_enabled":true,"sources":["name"],"source_type":"attribute","target":"logger.name","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"threadName
+      to logger.thread_name","is_enabled":true,"sources":["threadName"],"source_type":"attribute","target":"logger.thread_name","target_type":"attribute","preserve_source":false,"override_on_conflict":false,"type":"attribute-remapper"},{"name":"Parsing
+      python traceback","is_enabled":true,"source":"error.stack","samples":[],"grok":{"support_rules":"","match_rules":"parsing_traceback
+      File \"%{notSpace:filename}\", line %{integer:lineno}.*\\s+%{regex(\"[a-zA-Z]*Error[a-zA-Z]*\"):error.kind}:
+      %{data:error.message}\n"},"type":"grok-parser"},{"name":"Define dd.trace_id
+      as the official trace id associated to this log","is_enabled":true,"sources":["dd.trace_id"],"type":"trace-id-remapper"},{"name":"Set
+      the datadog environment tag","is_enabled":true,"sources":["dd.env"],"source_type":"attribute","target":"env","target_type":"tag","preserve_source":false,"override_on_conflict":true,"type":"attribute-remapper"},{"name":"Set
+      the datadog version tag","is_enabled":true,"sources":["dd.version"],"source_type":"attribute","target":"version","target_type":"tag","preserve_source":false,"override_on_conflict":true,"type":"attribute-remapper"},{"name":"Define
+      app as the official service of the log","is_enabled":true,"sources":["dd.service"],"type":"service-remapper"}]},{"id":"2QGdoZWESWi6WArjxl4cxg","type":"pipeline","name":"my
+      first pipeline","is_enabled":true,"is_read_only":false,"filter":{"query":"source:redis"},"processors":[{"name":"Define
+      date","is_enabled":true,"sources":["verbose"],"type":"date-remapper"},{"name":"processor
+      from nested pipeline","is_enabled":true,"expression":"(time1-time2)*1000","target":"my_arithmetic","is_replace_missing":false,"type":"arithmetic-processor"},{"name":"Categorise
+      severity level","is_enabled":true,"categories":[{"filter":{"query":"@severity:
+      \"-\""},"name":"verbose"},{"filter":{"query":"@severity: \".\""},"name":"debug"}],"target":"redis.severity","type":"category-processor"},{"name":"Parsing
+      Stack traces","is_enabled":true,"source":"message","samples":[],"grok":{"support_rules":"date_parser
+      %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}","match_rules":"rule %{date(\"yyyy-MM-dd
+      HH:mm:ss,SSS\"):timestamp}"},"type":"grok-parser"},{"type":"pipeline","name":"my
+      nested pipeline","is_enabled":true,"filter":{"query":"source:kafka"},"processors":[{"name":"Define
+      url parser","is_enabled":true,"sources":["http_test"],"target":"http_test.details","normalize_ending_slashes":false,"type":"url-parser"},{"name":"Define
+      user agent parser","is_enabled":true,"sources":["http_agent"],"target":"http_agent.details","is_encoded":false,"type":"user-agent-parser"}]},{"name":"geo
+      ip parse","is_enabled":true,"sources":["ip1"],"target":"ip.address","ip_processing_behavior":"do-nothing","type":"geo-ip-parser"},{"name":"","is_enabled":false,"source":"ip1","target":"ip.address","lookup_table":["key,value"],"type":"lookup-processor"},{"name":"lookup
+      processor with optional fields","is_enabled":true,"source":"ip2","target":"ip.address","lookup_table":["key,value"],"default_lookup":"default","type":"lookup-processor"}]},{"id":"qJS2dFbFR5CenvKACN0wwQ","type":"pipeline","name":"Test-TestLogsPipelinesLifecycle-1618221154","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
       parser","is_enabled":false,"source":"src","samples":["sample"],"grok":{"support_rules":"support
       baz","match_rules":"rule1 foo\nrule2 bar"},"type":"grok-parser"},{"name":"log
       date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"},{"name":"log
@@ -295,14 +301,9 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 06 Oct 2020 09:58:33 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:52:34 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=252; Max-Age=604800; Path=/; expires=Tue, 13-Oct-2020 09:58:33 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -310,9 +311,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - LX0aORViMOQWB8T+VX1PN+m0Q/BWIGM8lAfgs+SVlDy/am6DTkPEsJ9PcP8Pvumm
+      - mNzaoDhdDKO7t4QSrAe5X7pHd0bJND187D+vRbwoluXouE2m1UaQQX0RGCvRpLVE
       X-Dd-Version:
-      - "35.3146084"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -320,9 +321,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "4995"
+      - "4987"
       X-Ratelimit-Reset:
-      - "87"
+      - "446"
     status: 200 OK
     code: 200
     duration: ""
@@ -335,17 +336,17 @@ interactions:
       Dd-Operation-Id:
       - GetLogsPipeline
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.9+dev (go go1.14.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7852197197582701890"
+      - "2532190477152660565"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "57360169837411340"
-    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/GarzM14SR12w9SPy98Yxlw
+      - "6194361842836621078"
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/qJS2dFbFR5CenvKACN0wwQ
     method: GET
   response:
-    body: '{"id":"GarzM14SR12w9SPy98Yxlw","type":"pipeline","name":"go-TestLogsPipelinesLifecycle-local-1601978313","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
+    body: '{"id":"qJS2dFbFR5CenvKACN0wwQ","type":"pipeline","name":"Test-TestLogsPipelinesLifecycle-1618221154","is_enabled":true,"is_read_only":false,"filter":{"query":"query"},"processors":[{"name":"grok
       parser","is_enabled":false,"source":"src","samples":["sample"],"grok":{"support_rules":"support
       baz","match_rules":"rule1 foo\nrule2 bar"},"type":"grok-parser"},{"name":"log
       date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"},{"name":"log
@@ -376,14 +377,9 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 06 Oct 2020 09:58:33 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:52:34 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=252; Max-Age=604800; Path=/; expires=Tue, 13-Oct-2020 09:58:33 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -391,9 +387,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - EQzhJSeNziVWIN4Gtgvm49DBQgA/xSWPBZSORg2i40a13gmPz8gOAFcYwqtQKjIG
+      - l8RQo2maZqJf6GFThBbKNE6dvthz6njusVtau3dPXJWL2RLFoN81H+BLPB/1xgs1
       X-Dd-Version:
-      - "35.3146084"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -401,15 +397,15 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "4994"
+      - "4986"
       X-Ratelimit-Reset:
-      - "87"
+      - "446"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"filter":{"query":"updated query"},"is_enabled":false,"name":"go-TestLogsPipelinesLifecycle-local-1601978313-updated","processors":[{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"},{"is_enabled":false,"name":"log status remapper","sources":["source"],"type":"status-remapper"},{"is_enabled":false,"name":"service remapper","sources":["source"],"type":"service-remapper"},{"is_enabled":false,"name":"log message remapper","sources":["source"],"type":"message-remapper"},{"is_enabled":false,"name":"log attribute remapper to attribute target type","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_format":"string","target_type":"attribute","type":"attribute-remapper"},{"is_enabled":false,"name":"log attribute remapper to tag target type","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_type":"tag","type":"attribute-remapper"},{"is_enabled":false,"name":"URL parser","normalize_ending_slashes":false,"sources":["source"],"target":"target","type":"url-parser"},{"is_enabled":false,"is_encoded":true,"name":"user agent parser","sources":["source"],"target":"target","type":"user-agent-parser"},{"categories":[{"filter":{"query":"query"},"name":"category"}],"is_enabled":false,"name":"category processor","target":"target","type":"category-processor"},{"expression":"foo + bar","is_enabled":false,"is_replace_missing":true,"name":"arithmetic processor","target":"target","type":"arithmetic-processor"},{"is_enabled":false,"is_replace_missing":true,"name":"string builder processor","target":"target","template":"template","type":"string-builder-processor"},{"is_enabled":false,"name":"geo IP parser","sources":["source"],"target":"target","type":"geo-ip-parser"},{"default_lookup":"default_lookup","is_enabled":false,"lookup_table":["key,value"],"name":"lookup processor","source":"source","target":"target","type":"lookup-processor"},{"is_enabled":false,"name":"trace remapper","sources":["source"],"type":"trace-id-remapper"},{"filter":{"query":"query"},"is_enabled":false,"name":"pipeline processor","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"}],"type":"pipeline"},{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"}]}
+      {"filter":{"query":"updated query"},"is_enabled":false,"name":"Test-TestLogsPipelinesLifecycle-1618221154-updated","processors":[{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"},{"is_enabled":false,"name":"log status remapper","sources":["source"],"type":"status-remapper"},{"is_enabled":false,"name":"service remapper","sources":["source"],"type":"service-remapper"},{"is_enabled":false,"name":"log message remapper","sources":["source"],"type":"message-remapper"},{"is_enabled":false,"name":"log attribute remapper to attribute target type","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_format":"string","target_type":"attribute","type":"attribute-remapper"},{"is_enabled":false,"name":"log attribute remapper to tag target type","override_on_conflict":true,"preserve_source":true,"source_type":"tag","sources":["source"],"target":"target","target_type":"tag","type":"attribute-remapper"},{"is_enabled":false,"name":"URL parser","normalize_ending_slashes":false,"sources":["source"],"target":"target","type":"url-parser"},{"is_enabled":false,"is_encoded":true,"name":"user agent parser","sources":["source"],"target":"target","type":"user-agent-parser"},{"categories":[{"filter":{"query":"query"},"name":"category"}],"is_enabled":false,"name":"category processor","target":"target","type":"category-processor"},{"expression":"foo + bar","is_enabled":false,"is_replace_missing":true,"name":"arithmetic processor","target":"target","type":"arithmetic-processor"},{"is_enabled":false,"is_replace_missing":true,"name":"string builder processor","target":"target","template":"template","type":"string-builder-processor"},{"is_enabled":false,"name":"geo IP parser","sources":["source"],"target":"target","type":"geo-ip-parser"},{"default_lookup":"default_lookup","is_enabled":false,"lookup_table":["key,value"],"name":"lookup processor","source":"source","target":"target","type":"lookup-processor"},{"is_enabled":false,"name":"trace remapper","sources":["source"],"type":"trace-id-remapper"},{"filter":{"query":"query"},"is_enabled":false,"name":"pipeline processor","processors":[{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"},{"is_enabled":false,"name":"log date remapper","sources":["source"],"type":"date-remapper"}],"type":"pipeline"},{"grok":{"match_rules":"rule1 foo\nrule2 bar","support_rules":"support baz"},"is_enabled":false,"name":"grok parser","samples":["sample"],"source":"src","type":"grok-parser"}]}
     form: {}
     headers:
       Accept:
@@ -419,17 +415,17 @@ interactions:
       Dd-Operation-Id:
       - UpdateLogsPipeline
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.9+dev (go go1.14.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7292320854631123923"
+      - "7799295561298605293"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "57360169837411340"
-    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/GarzM14SR12w9SPy98Yxlw
+      - "6194361842836621078"
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/qJS2dFbFR5CenvKACN0wwQ
     method: PUT
   response:
-    body: '{"id":"GarzM14SR12w9SPy98Yxlw","type":"pipeline","name":"go-TestLogsPipelinesLifecycle-local-1601978313-updated","is_enabled":false,"is_read_only":false,"filter":{"query":"updated
+    body: '{"id":"qJS2dFbFR5CenvKACN0wwQ","type":"pipeline","name":"Test-TestLogsPipelinesLifecycle-1618221154-updated","is_enabled":false,"is_read_only":false,"filter":{"query":"updated
       query"},"processors":[{"name":"log date remapper","is_enabled":false,"sources":["source"],"type":"date-remapper"},{"name":"log
       status remapper","is_enabled":false,"sources":["source"],"type":"status-remapper"},{"name":"service
       remapper","is_enabled":false,"sources":["source"],"type":"service-remapper"},{"name":"log
@@ -460,14 +456,9 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 06 Oct 2020 09:58:34 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:52:34 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=252; Max-Age=604800; Path=/; expires=Tue, 13-Oct-2020 09:58:34 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -475,9 +466,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bOYRvpIMaDWtEAFc77xh4cYKoSxr/zmllvfW+/1TUFo7Zbru0n5QEX4LCoKiS3Mv
+      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
       X-Dd-Version:
-      - "35.3146084"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -485,9 +476,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "90"
+      - "68"
       X-Ratelimit-Reset:
-      - "86"
+      - "446"
     status: 200 OK
     code: 200
     duration: ""
@@ -500,14 +491,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteLogsPipeline
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.9+dev (go go1.14.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2310899334736362559"
+      - "7865649789753188372"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "57360169837411340"
-    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/GarzM14SR12w9SPy98Yxlw
+      - "6194361842836621078"
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/qJS2dFbFR5CenvKACN0wwQ
     method: DELETE
   response:
     body: '{}'
@@ -523,22 +514,17 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 06 Oct 2020 09:58:34 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:52:35 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=252; Max-Age=604800; Path=/; expires=Tue, 13-Oct-2020 09:58:34 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - iYSQoeIUH6tZkV8oNBADyUh0i8imvOo9jWWOUgywP9QJ7opgBoT0cWGeCUTl7m+0
+      - dCmL/3rURV6BPeaqeP3Rxigq41m5CAb17XjrRE42uZ01zpr07HVhbL5/3TWMkvgu
       X-Dd-Version:
-      - "35.3146084"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -546,9 +532,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "89"
+      - "67"
       X-Ratelimit-Reset:
-      - "86"
+      - "445"
     status: 200 OK
     code: 200
     duration: ""
@@ -561,14 +547,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteLogsPipeline
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.9+dev (go go1.14.4; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "648619153178710129"
+      - "1410913922737852389"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "57360169837411340"
-    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/GarzM14SR12w9SPy98Yxlw
+      - "6194361842836621078"
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/qJS2dFbFR5CenvKACN0wwQ
     method: DELETE
   response:
     body: '{"error":{"code":"InvalidArgument","message":"This pipeline does not exist"}}'
@@ -582,9 +568,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 06 Oct 2020 09:58:34 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:52:35 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -592,7 +576,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.3146084"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -600,9 +584,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "88"
+      - "66"
       X-Ratelimit-Reset:
-      - "86"
+      - "445"
     status: 400 Bad Request
     code: 400
     duration: ""

@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"go-TestDowntimeRecurrence-until_occurences_and_until_date_are_mutually_exclusive-local-1589290249; until occurences and until date are mutually exclusive","recurrence":{"period":1,"type":"weeks","until_date":1591104648,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1589290248,"timezone":"Etc/UTC"}
+      {"message":"Test-TestDowntimeRecurrence_until_occurences_and_until_date_are_mutually_exclusive-1618220936; until occurences and until date are mutually exclusive","recurrence":{"period":1,"type":"weeks","until_date":1620035335,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1618220935,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -13,32 +13,28 @@ interactions:
       Dd-Operation-Id:
       - CreateDowntime
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7903998746103679097"
+      - "1735010436368343589"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2107215364500257571"
+      - "3219329466033950106"
     url: https://api.datadoghq.com/api/v1/downtime
     method: POST
   response:
-    body: '{"errors":["You must provide only provide one of (until_occurrences, until_date)"]}'
+    body: '{"errors": ["You must provide only provide one of (until_occurrences, until_date)"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "83"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      - "84"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:30:50 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:48:56 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -46,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

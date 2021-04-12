@@ -13,14 +13,14 @@ interactions:
       Dd-Operation-Id:
       - RemovePermissionFromRole
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7964038576164577278"
+      - "2973914993475249049"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "41416430718862732"
-    url: https://api.datadoghq.com/api/v2/roles/a83c5244-9454-11ea-93e2-3bb7f5ecdc65/permissions
+      - "3443046315848273948"
+    url: https://api.datadoghq.com/api/v2/roles/5a601f38-9b74-11eb-9d38-da7ad0900002/permissions
     method: DELETE
   response:
     body: '{"errors": ["Invalid permission id: 11111111-dead-beef-dead-ffffffffffff"]}'
@@ -31,14 +31,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "75"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:51 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:49:20 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -46,9 +42,17 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "500"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "456"
+      X-Ratelimit-Reset:
+      - "40"
     status: 400 Bad Request
     code: 400
     duration: ""

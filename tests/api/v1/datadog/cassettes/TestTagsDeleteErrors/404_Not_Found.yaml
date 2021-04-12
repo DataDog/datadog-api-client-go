@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - DeleteHostTags
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6620730881451947260"
+      - "8443737399820441567"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6935324524931336274"
+      - "5525564089638260647"
     url: https://api.datadoghq.com/api/v1/tags/hosts/notahostname1234
     method: DELETE
   response:
@@ -26,14 +26,10 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:34:14 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:54:55 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,7 +39,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

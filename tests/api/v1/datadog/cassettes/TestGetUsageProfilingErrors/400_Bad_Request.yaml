@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - GetUsageProfiling
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "485121842659059064"
+      - "2446120925675646770"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "962710414238983635"
-    url: https://api.datadoghq.com/api/v1/usage/profiling?start_hr=2020-09-17T10%3A20%3A18-04%3A00
+      - "6012970693920334422"
+    url: https://api.datadoghq.com/api/v1/usage/profiling?start_hr=2021-05-12T11%3A55%3A05%2B02%3A00
     method: GET
   response:
     body: '{"errors": ["start_hr cannot be in the future"]}'
@@ -31,9 +31,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 17 Aug 2020 14:20:19 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:55:05 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -41,7 +39,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2888812"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -49,9 +47,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "397"
+      - "198"
       X-Ratelimit-Reset:
-      - "2382"
+      - "295"
     status: 400 Bad Request
     code: 400
     duration: ""

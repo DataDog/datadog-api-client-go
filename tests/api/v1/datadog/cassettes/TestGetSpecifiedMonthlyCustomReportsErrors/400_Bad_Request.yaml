@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - GetSpecifiedMonthlyCustomReports
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5125991719837007185"
+      - "2937581606043051662"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "9219643999643345400"
+      - "695632684540819802"
     url: https://api.datadoghq.com/api/v1/monthly_custom_reports/whatever
     method: GET
   response:
@@ -32,9 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 16 Jul 2020 18:56:44 GMT
-      Dd-Pool:
-      - dogweb_wallace
+      - Mon, 12 Apr 2021 09:55:04 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,7 +40,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2747870"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

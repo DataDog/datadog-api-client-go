@@ -10,55 +10,48 @@ interactions:
       Dd-Operation-Id:
       - GetUsageLogsByIndex
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2150387969004919075"
+      - "987662998017888448"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4079764746974056272"
-    url: https://api.datadoghq.com/api/v1/usage/logs_by_index?end_hr=2020-04-13T00%3A00%3A00Z&start_hr=2020-04-12T00%3A00%3A00Z
+      - "5107593189547245380"
+    url: https://api.datadoghq.com/api/v1/usage/logs_by_index?end_hr=2021-03-13T00%3A00%3A00Z&start_hr=2021-03-12T00%3A00%3A00Z
     method: GET
   response:
-    body: '{"usage":[]}'
+    body: '{"usage":[{"rehydrated_indexed":0,"hour":"2021-03-12T00:00:00+00:00","event_count":90,"org_id":321813,"live_index_indexed":90,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T01:00:00+00:00","event_count":95,"org_id":321813,"live_index_indexed":95,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T02:00:00+00:00","event_count":84,"org_id":321813,"live_index_indexed":84,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T03:00:00+00:00","event_count":102,"org_id":321813,"live_index_indexed":102,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T04:00:00+00:00","event_count":83,"org_id":321813,"live_index_indexed":83,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T05:00:00+00:00","event_count":96,"org_id":321813,"live_index_indexed":96,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T06:00:00+00:00","event_count":90,"org_id":321813,"live_index_indexed":90,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T07:00:00+00:00","event_count":83,"org_id":321813,"live_index_indexed":83,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T08:00:00+00:00","event_count":96,"org_id":321813,"live_index_indexed":96,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T09:00:00+00:00","event_count":90,"org_id":321813,"live_index_indexed":90,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T10:00:00+00:00","event_count":109,"org_id":321813,"live_index_indexed":109,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T11:00:00+00:00","event_count":83,"org_id":321813,"live_index_indexed":83,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T12:00:00+00:00","event_count":102,"org_id":321813,"live_index_indexed":102,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T13:00:00+00:00","event_count":83,"org_id":321813,"live_index_indexed":83,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T14:00:00+00:00","event_count":95,"org_id":321813,"live_index_indexed":95,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T15:00:00+00:00","event_count":50,"org_id":321813,"live_index_indexed":50,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T18:00:00+00:00","event_count":6,"org_id":321813,"live_index_indexed":6,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T19:00:00+00:00","event_count":14,"org_id":321813,"live_index_indexed":14,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15},{"rehydrated_indexed":0,"hour":"2021-03-12T21:00:00+00:00","event_count":6,"org_id":321813,"live_index_indexed":6,"index_name":"main","rate_limited":false,"filtered":false,"index_id":"33715","retention":15}]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "12"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:34:17 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:54:57 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:34:17 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - qA85Kiicwd/s93AfT3MSf+l6IYc5FQ6tEbp4Kft/ri41UOumJ967MPQKmz3gwejd
+      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "200"
+      - "400"
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "162"
+      - "226"
       X-Ratelimit-Reset:
-      - "1543"
+      - "303"
     status: 200 OK
     code: 200
     duration: ""

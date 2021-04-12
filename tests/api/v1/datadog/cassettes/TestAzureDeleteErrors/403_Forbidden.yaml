@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - DeleteAzureIntegration
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.7+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7692479511679473487"
+      - "7628231505656509904"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8888475733876951420"
+      - "4401060238585819286"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: DELETE
   response:
@@ -30,12 +30,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2020 09:25:06 GMT
+      - Mon, 12 Apr 2021 09:48:40 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""
