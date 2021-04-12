@@ -383,6 +383,7 @@ func SetFixtureData(ctx gobdd.Context) {
 	data["unique"] = unique
 	data["unique_lower"] = strings.ToLower(unique)
 	data["unique_alnum"] = string(alnum.ReplaceAll([]byte(unique), []byte("")))
+	data["unique_lower_alnum"] = strings.ToLower(data["unique_alnum"].(string))
 	data["now_ts"] = ClockFromContext(cctx).Now().Unix()
 	data["now_iso"] = ClockFromContext(cctx).Now().Format(time.RFC3339)
 	data["hour_later_ts"] = ClockFromContext(cctx).Now().Add(time.Hour).Unix()

@@ -1,0 +1,56 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteSLO
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.16.3; os linux; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8649165595264717955"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "5907615283249995868"
+    url: https://api.datadoghq.com/api/v1/slo/gofeatureservicelevelobjectivesscenariodeleteansloreturnsnotfoundresponselocal1617788394
+    method: DELETE
+  response:
+    body: '{"errors": ["SLO not found: gofeatureservicelevelobjectivesscenariodeleteansloreturnsnotfoundresponselocal1617788394
+      not found"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 07 Apr 2021 09:39:54 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.4254518"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "3000"
+      X-Ratelimit-Period:
+      - "10"
+      X-Ratelimit-Remaining:
+      - "2999"
+      X-Ratelimit-Reset:
+      - "6"
+    status: 404 Not Found
+    code: 404
+    duration: ""
