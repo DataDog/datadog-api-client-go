@@ -5742,6 +5742,20 @@ paths:
           format: int64
           type: integer
         style: form
+      - description: The SLO target. If `target` is passed in, the response will include
+          the error budget that remains.
+        explode: true
+        in: query
+        name: target
+        required: false
+        schema:
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+          format: double
+          maximum: 100
+          minimum: 0
+          type: number
+        style: form
       responses:
         "200":
           content:
