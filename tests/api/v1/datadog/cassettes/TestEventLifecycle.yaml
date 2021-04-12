@@ -3,22 +3,22 @@ version: 1
 interactions:
 - request:
     body: '{"priority":"normal","source_type_name":"datadog-api-client-go","tags":["test","client:go"],"text":"example
-      text","title":"Test-TestEventLifecycle-1617977630"}'
+      text","title":"Test-TestEventLifecycle-1618220937"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "7707363502742518713"
+      - "7089580165834820172"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7707363502742518713"
+      - "7089580165834820172"
     url: https://api.datadoghq.com/api/v1/events
     method: POST
   response:
-    body: '{"status":"ok","event":{"id":5934349005252473505,"title":"Test-TestEventLifecycle-1617977630","text":"example
-      text","date_happened":1617977630,"handle":null,"priority":"normal","related_event_id":null,"tags":["test","client:go"],"url":"https://app.datadoghq.com/event/event?id=5934349005252473505"}}'
+    body: '{"status":"ok","event":{"id":5938431024928355124,"title":"Test-TestEventLifecycle-1618220937","text":"example
+      text","date_happened":1618220937,"handle":null,"priority":"normal","related_event_id":null,"tags":["test","client:go"],"url":"https://app.datadoghq.com/event/event?id=5938431024928355124"}}'
     headers:
       Connection:
       - keep-alive
@@ -27,7 +27,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:50 GMT
+      - Mon, 12 Apr 2021 09:48:57 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
@@ -48,12 +48,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5717624920941147048"
+      - "6016775418461750394"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7109596227671054643"
-    url: https://api.datadoghq.com/api/v1/events/5934349005252473505
+      - "4469718487808204067"
+    url: https://api.datadoghq.com/api/v1/events/5938431024928355124
     method: GET
   response:
     body: '{"errors": ["No event matches that event_id."]}'
@@ -65,7 +65,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:50 GMT
+      - Mon, 12 Apr 2021 09:48:58 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -75,7 +75,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -85,7 +85,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "11999"
       X-Ratelimit-Reset:
-      - "10"
+      - "3"
     status: 404 Not Found
     code: 404
     duration: ""
@@ -100,12 +100,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2044064348357813346"
+      - "1837769512234839926"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7109596227671054643"
-    url: https://api.datadoghq.com/api/v1/events/5934349005252473505
+      - "4469718487808204067"
+    url: https://api.datadoghq.com/api/v1/events/5938431024928355124
     method: GET
   response:
     body: '{"errors": ["No event matches that event_id."]}'
@@ -117,7 +117,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:56 GMT
+      - Mon, 12 Apr 2021 09:49:03 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -127,7 +127,59 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11999"
+      X-Ratelimit-Reset:
+      - "57"
+    status: 404 Not Found
+    code: 404
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetEvent
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5590873288115596669"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4469718487808204067"
+    url: https://api.datadoghq.com/api/v1/events/5938431024928355124
+    method: GET
+  response:
+    body: '{"errors": ["No event matches that event_id."]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 09:49:09 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -137,7 +189,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "11998"
       X-Ratelimit-Reset:
-      - "5"
+      - "51"
     status: 404 Not Found
     code: 404
     duration: ""
@@ -152,16 +204,16 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5165591858765790162"
+      - "1409438107951363236"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7109596227671054643"
-    url: https://api.datadoghq.com/api/v1/events/5934349005252473505
+      - "4469718487808204067"
+    url: https://api.datadoghq.com/api/v1/events/5938431024928355124
     method: GET
   response:
-    body: '{"event":{"date_happened":1617977630,"alert_type":"info","resource":"/api/v1/events/5934349005252473505","title":"Test-TestEventLifecycle-1617977630","url":"/event/event?id=5934349005252473505","text":"example
-      text","tags":["client:go","test"],"device_name":null,"priority":"normal","host":null,"id":5934349005252473505}}'
+    body: '{"event":{"date_happened":1618220937,"alert_type":"info","resource":"/api/v1/events/5938431024928355124","title":"Test-TestEventLifecycle-1618220937","url":"/event/event?id=5938431024928355124","text":"example
+      text","tags":["client:go","test"],"device_name":null,"priority":"normal","host":null,"id":5938431024928355124}}'
     headers:
       Cache-Control:
       - no-cache
@@ -170,117 +222,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:01 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
-      X-Dd-Version:
-      - "35.4276613"
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "12000"
-      X-Ratelimit-Period:
-      - "60"
-      X-Ratelimit-Remaining:
-      - "11999"
-      X-Ratelimit-Reset:
-      - "59"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - ListEvents
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "5676130945526384766"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "7109596227671054643"
-    url: https://api.datadoghq.com/api/v1/events?end=1617977640&priority=normal&sources=datadog-api-client-go&start=1617977620&tags=test%2Cclient%3Ago&unaggregated=true
-    method: GET
-  response:
-    body: '{"events":[]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "13"
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 09 Apr 2021 14:14:01 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
-      X-Dd-Version:
-      - "35.4276613"
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "600"
-      X-Ratelimit-Period:
-      - "60"
-      X-Ratelimit-Remaining:
-      - "599"
-      X-Ratelimit-Reset:
-      - "59"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - ListEvents
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "3954352213274149514"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "7109596227671054643"
-    url: https://api.datadoghq.com/api/v1/events?end=1617977640&priority=normal&sources=datadog-api-client-go&start=1617977620&tags=test%2Cclient%3Ago&unaggregated=true
-    method: GET
-  response:
-    body: '{"events":[{"date_happened":1617977630,"alert_type":"info","is_aggregate":false,"title":"Test-TestEventLifecycle-1617977630","url":"/event/event?id=5934349005252473505","text":"example
-      text","tags":["client:go","test"],"comments":[],"device_name":null,"priority":"normal","source":"My
-      Apps","host":null,"resource":"/api/v1/events/5934349005252473505","id":5934349005252473505}]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 09 Apr 2021 14:14:06 GMT
+      - Mon, 12 Apr 2021 09:49:14 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -292,7 +234,63 @@ interactions:
       X-Dd-Debug:
       - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11997"
+      X-Ratelimit-Reset:
+      - "46"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListEvents
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1041350255084870345"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4469718487808204067"
+    url: https://api.datadoghq.com/api/v1/events?end=1618220947&priority=normal&sources=datadog-api-client-go&start=1618220927&tags=test%2Cclient%3Ago&unaggregated=true
+    method: GET
+  response:
+    body: '{"events":[{"date_happened":1618220937,"alert_type":"info","is_aggregate":false,"title":"Test-TestEventLifecycle-1618220937","url":"/event/event?id=5938431024928355124","text":"example
+      text","tags":["client:go","test"],"comments":[],"device_name":null,"priority":"normal","source":"My
+      Apps","host":null,"resource":"/api/v1/events/5938431024928355124","id":5938431024928355124}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 09:49:14 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
+      X-Dd-Version:
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -300,9 +298,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "598"
+      - "599"
       X-Ratelimit-Reset:
-      - "54"
+      - "46"
     status: 200 OK
     code: 200
     duration: ""

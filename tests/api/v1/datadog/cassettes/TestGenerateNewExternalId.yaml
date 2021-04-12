@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"Test-TestGenerateNewExternalId-1617977581","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestGenerateNewExternalId-1618220888","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2616797229849511703"
+      - "1594617064584717349"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "9075656438691774672"
+      - "7813080360245491347"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
-    body: '{"external_id":"f8b2ba49da7b425a91500a22b0f323f9"}'
+    body: '{"external_id":"106e9fe33bc345a8b6db5a37f7327615"}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:01 GMT
+      - Mon, 12 Apr 2021 09:48:09 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
+      - tpRCH6w417YjBovRJ8VmtuXmNONVYiRp2c8d2AxjPdGBn8PCtgG4vAztrx3qUZAN
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -52,7 +52,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestGenerateNewExternalId-1617977581","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestGenerateNewExternalId-1618220888","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -64,15 +64,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8698428309781397139"
+      - "5884638481055114495"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "9075656438691774672"
+      - "7813080360245491347"
     url: https://api.datadoghq.com/api/v1/integration/aws/generate_new_external_id
     method: PUT
   response:
-    body: '{"external_id":"2567214665954831aceec507221305bd"}'
+    body: '{"external_id":"ad1188bd1e9747abbf7c69b31e88b917"}'
     headers:
       Cache-Control:
       - no-cache
@@ -81,7 +81,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:02 GMT
+      - Mon, 12 Apr 2021 09:48:10 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -91,9 +91,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
+      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -101,7 +101,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestGenerateNewExternalId-1617977581","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestGenerateNewExternalId-1618220888","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -113,11 +113,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2629353362718090560"
+      - "3568620787882049963"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "9075656438691774672"
+      - "7813080360245491347"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: DELETE
   response:
@@ -132,7 +132,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:03 GMT
+      - Mon, 12 Apr 2021 09:48:10 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -140,9 +140,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - PhosSd3Ch1B6B0DXI71steKUi7XhPDttnPiIP1NdXTw0VJNWpoUnYyBmODS5ne3q
+      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

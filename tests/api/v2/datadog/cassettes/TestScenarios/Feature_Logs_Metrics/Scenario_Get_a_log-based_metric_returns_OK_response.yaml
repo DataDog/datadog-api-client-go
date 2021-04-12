@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"filter":{"query":"source:Test-Get_a_log_based_metric_returns_OK_response-1617977655"}},"id":"Test-Get_a_log_based_metric_returns_OK_response-1617977655","type":"logs_metrics"}}
+      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"filter":{"query":"source:Test-Get_a_log_based_metric_returns_OK_response-1618223143"}},"id":"Test-Get_a_log_based_metric_returns_OK_response-1618223143","type":"logs_metrics"}}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9217425964107495295"
+      - "1169800249179936656"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7830962557991318416"
+      - "5248337739859485666"
     url: https://api.datadoghq.com/api/v2/logs/config/metrics
     method: POST
   response:
-    body: '{"data":{"id":"Test_Get_a_log_based_metric_returns_OK_response_1617977655","attributes":{"filter":{"query":"source:Test-Get_a_log_based_metric_returns_OK_response-1617977655"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}'
+    body: '{"data":{"id":"Test_Get_a_log_based_metric_returns_OK_response_1618223143","attributes":{"filter":{"query":"source:Test-Get_a_log_based_metric_returns_OK_response-1618223143"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:14:16 GMT
+      - Mon, 12 Apr 2021 10:25:43 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,9 +44,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - fIO2C4qGDheGHy4YbS+r3a3CXbh4cbRo7roILOimQyiHGjQdOat0cIpWCkupM1uX
+      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287679"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,9 +54,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "34"
+      - "70"
       X-Ratelimit-Reset:
-      - "2745"
+      - "2057"
     status: 200 OK
     code: 200
     duration: ""
@@ -71,15 +71,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1949896995989847913"
+      - "1697372877367766696"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7830962557991318416"
-    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Get_a_log_based_metric_returns_OK_response_1617977655
+      - "5248337739859485666"
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Get_a_log_based_metric_returns_OK_response_1618223143
     method: GET
   response:
-    body: '{"data":{"id":"Test_Get_a_log_based_metric_returns_OK_response_1617977655","attributes":{"filter":{"query":"source:Test-Get_a_log_based_metric_returns_OK_response-1617977655"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}'
+    body: '{"data":{"id":"Test_Get_a_log_based_metric_returns_OK_response_1618223143","attributes":{"filter":{"query":"source:Test-Get_a_log_based_metric_returns_OK_response-1618223143"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -90,7 +90,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:14:16 GMT
+      - Mon, 12 Apr 2021 10:25:43 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -100,9 +100,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
+      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287679"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -110,9 +110,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "4989"
+      - "4995"
       X-Ratelimit-Reset:
-      - "2744"
+      - "2057"
     status: 200 OK
     code: 200
     duration: ""
@@ -127,12 +127,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4296651941318001578"
+      - "4686474166192680549"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7830962557991318416"
-    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Get_a_log_based_metric_returns_OK_response_1617977655
+      - "5248337739859485666"
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Get_a_log_based_metric_returns_OK_response_1618223143
     method: DELETE
   response:
     body: '{}'
@@ -148,7 +148,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:14:16 GMT
+      - Mon, 12 Apr 2021 10:25:44 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -156,9 +156,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
+      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287679"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -166,9 +166,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "33"
+      - "69"
       X-Ratelimit-Reset:
-      - "2744"
+      - "2056"
     status: 200 OK
     code: 200
     duration: ""

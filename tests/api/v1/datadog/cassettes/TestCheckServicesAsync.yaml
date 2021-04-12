@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"Test-TestCheckServicesAsync-1617977600","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestCheckServicesAsync-1618220907","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6886709979272047515"
+      - "8284609753383274684"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2638385790282347101"
+      - "1622566193172698015"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
-    body: '{"external_id":"2527455c343249dc9bc29ab7cc4987ec"}'
+    body: '{"external_id":"6d5e0a18e7a94a4b9e8447557c49011c"}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:21 GMT
+      - Mon, 12 Apr 2021 09:48:28 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,7 +44,7 @@ interactions:
       X-Dd-Debug:
       - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -52,7 +52,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestCheckServicesAsync-1617977600","services":["s3","elb","elbv2","cloudfront","redshift","lambda"]}
+      {"account_id":"Test-TestCheckServicesAsync-1618220907","services":["s3","elb","elbv2","cloudfront","redshift","lambda"]}
     form: {}
     headers:
       Accept:
@@ -64,15 +64,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3932131122526483255"
+      - "4724612240092772546"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2638385790282347101"
+      - "1622566193172698015"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs/services_async
     method: POST
   response:
-    body: '{"status":"error","errors":[{"message":"AWS account Test-TestCheckServicesAsync-1617977600
+    body: '{"status":"error","errors":[{"message":"AWS account Test-TestCheckServicesAsync-1618220907
       has no lambda config to update","code":"no_such_config"}]}'
     headers:
       Cache-Control:
@@ -82,7 +82,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:21 GMT
+      - Mon, 12 Apr 2021 09:48:28 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -92,9 +92,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
+      - l8RQo2maZqJf6GFThBbKNE6dvthz6njusVtau3dPXJWL2RLFoN81H+BLPB/1xgs1
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -102,7 +102,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestCheckServicesAsync-1617977600","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestCheckServicesAsync-1618220907","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -114,11 +114,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2516826330003626537"
+      - "2024172477593242488"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2638385790282347101"
+      - "1622566193172698015"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: DELETE
   response:
@@ -133,7 +133,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:22 GMT
+      - Mon, 12 Apr 2021 09:48:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -141,9 +141,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
+      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

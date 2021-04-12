@@ -2,18 +2,18 @@
 version: 1
 interactions:
 - request:
-    body: '{"series": [{"host": "Test-TestHosts-1617977651", "metric": "go.client.test.metric",
-      "points": [[1617977651.000000, 0]]}]}'
+    body: '{"series": [{"host": "Test-TestHosts-1618220958", "metric": "go.client.test.metric",
+      "points": [[1618220958.000000, 0]]}]}'
     form: {}
     headers:
       Content-Type:
       - application/json
       X-Datadog-Parent-Id:
-      - "6772828266091007446"
+      - "7059091138369093847"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6772828266091007446"
+      - "7059091138369093847"
     url: https://api.datadoghq.com/api/v1/series
     method: POST
   response:
@@ -26,7 +26,7 @@ interactions:
       Content-Type:
       - text/json
       Date:
-      - Fri, 09 Apr 2021 14:14:11 GMT
+      - Mon, 12 Apr 2021 09:49:18 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
@@ -47,12 +47,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6785075011544095611"
+      - "3475150746812712215"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7845006176385606275"
-    url: https://api.datadoghq.com/api/v1/tags/hosts/Test-TestHosts-1617977651
+      - "7911988242809974022"
+    url: https://api.datadoghq.com/api/v1/tags/hosts/Test-TestHosts-1618220958
     method: GET
   response:
     body: '{"errors": ["No host matches that host_id"]}'
@@ -64,7 +64,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:11 GMT
+      - Mon, 12 Apr 2021 09:49:18 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -74,7 +74,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -91,12 +91,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4128431834538575983"
+      - "148349830145053232"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7845006176385606275"
-    url: https://api.datadoghq.com/api/v1/tags/hosts/Test-TestHosts-1617977651
+      - "7911988242809974022"
+    url: https://api.datadoghq.com/api/v1/tags/hosts/Test-TestHosts-1618220958
     method: GET
   response:
     body: '{"tags":[]}'
@@ -110,7 +110,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:21 GMT
+      - Mon, 12 Apr 2021 09:49:28 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -118,9 +118,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - l8RQo2maZqJf6GFThBbKNE6dvthz6njusVtau3dPXJWL2RLFoN81H+BLPB/1xgs1
+      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -128,7 +128,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"end":1617977711,"message":"muting for test"}
+      {"end":1618221018,"message":"muting for test"}
     form: {}
     headers:
       Accept:
@@ -140,15 +140,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5465198889191085006"
+      - "7129755127456016857"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7845006176385606275"
-    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1617977651/mute
+      - "7911988242809974022"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1618220958/mute
     method: POST
   response:
-    body: '{"action":"Muted","downtime_id":1213944315,"hostname":"Test-TestHosts-1617977651","end":1617977711,"message":"muting
+    body: '{"action":"Muted","downtime_id":1217084953,"hostname":"Test-TestHosts-1618220958","end":1618221018,"message":"muting
       for test"}'
     headers:
       Cache-Control:
@@ -158,7 +158,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:21 GMT
+      - Mon, 12 Apr 2021 09:49:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -168,9 +168,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - SY1h8ScsWq+kYmtbh63ltMLFAZsQjqfrgvdfAoRX+9TzT1sgMBRYaFRwfWWRRe9a
+      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -178,7 +178,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"end":1617977771,"message":"muting for test override"}
+      {"end":1618221078,"message":"muting for test override"}
     form: {}
     headers:
       Accept:
@@ -190,15 +190,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1998495677638864761"
+      - "4007319475250607689"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7845006176385606275"
-    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1617977651/mute
+      - "7911988242809974022"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1618220958/mute
     method: POST
   response:
-    body: '{"errors": ["host:Test-TestHosts-1617977651 is already muted. To mute this
+    body: '{"errors": ["host:Test-TestHosts-1618220958 is already muted. To mute this
       host with a different end timestamp, add ?override=true to your request."]}'
     headers:
       Cache-Control:
@@ -210,7 +210,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:21 GMT
+      - Mon, 12 Apr 2021 09:49:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -218,7 +218,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
@@ -226,7 +226,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"end":1617977771,"message":"muting for test override","override":true}
+      {"end":1618221078,"message":"muting for test override","override":true}
     form: {}
     headers:
       Accept:
@@ -238,15 +238,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3244081916926813294"
+      - "8699338487999460629"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7845006176385606275"
-    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1617977651/mute
+      - "7911988242809974022"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1618220958/mute
     method: POST
   response:
-    body: '{"action":"Muted","downtime_id":1213944316,"hostname":"Test-TestHosts-1617977651","end":1617977771,"message":"muting
+    body: '{"action":"Muted","downtime_id":1217084956,"hostname":"Test-TestHosts-1618220958","end":1618221078,"message":"muting
       for test override"}'
     headers:
       Cache-Control:
@@ -256,7 +256,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:22 GMT
+      - Mon, 12 Apr 2021 09:49:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -266,9 +266,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
+      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -285,15 +285,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6489172879113708369"
+      - "7174799016774909083"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7845006176385606275"
-    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1617977651/unmute
+      - "7911988242809974022"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHosts-1618220958/unmute
     method: POST
   response:
-    body: '{"action":"Unmuted","downtime_id":1213944316,"hostname":"Test-TestHosts-1617977651"}'
+    body: '{"action":"Unmuted","downtime_id":1217084956,"hostname":"Test-TestHosts-1618220958"}'
     headers:
       Cache-Control:
       - no-cache
@@ -302,7 +302,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:23 GMT
+      - Mon, 12 Apr 2021 09:49:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -312,9 +312,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
+      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

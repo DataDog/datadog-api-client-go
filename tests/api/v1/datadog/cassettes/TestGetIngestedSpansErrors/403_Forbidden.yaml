@@ -12,12 +12,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9067750789605422582"
+      - "2808720755426587240"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4838722150132893012"
-    url: https://api.datadoghq.com/api/v1/usage/ingested-spans?start_hr=2021-05-09T16%3A19%3A59%2B02%3A00
+      - "7915453306556501165"
+    url: https://api.datadoghq.com/api/v1/usage/ingested-spans?start_hr=2021-05-12T11%3A55%3A05%2B02%3A00
     method: GET
   response:
     body: |
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:19:59 GMT
+      - Mon, 12 Apr 2021 09:55:05 GMT
       Via:
       - haproxy
     status: 403 Forbidden

@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"access_role":"ro","email":"test-testuserdisableerrors-1617978050@integration-tests-accnt-for-sdk-ci.com","handle":"test-testuserdisableerrors-1617978050@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserDisableErrors-1617978050"}
+      {"access_role":"ro","email":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","handle":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserDisableErrors-1618221313"}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3828248563131496455"
+      - "3973009762602403713"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2456031942838706689"
+      - "4808371038116620956"
     url: https://api.datadoghq.com/api/v1/user
     method: POST
   response:
-    body: '{"user":{"disabled":false,"handle":"test-testuserdisableerrors-1617978050@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserDisableErrors-1617978050","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"test-testuserdisableerrors-1617978050@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/05117db6e5cad9f7ab0bc61d0d8bc2b4?s=48&d=retro"}}'
+    body: '{"user":{"disabled":false,"handle":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserDisableErrors-1618221313","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/5db615d297eb25a64bed518eb2774b7c?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:20:51 GMT
+      - Mon, 12 Apr 2021 09:55:14 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
+      - PhosSd3Ch1B6B0DXI71steKUi7XhPDttnPiIP1NdXTw0VJNWpoUnYyBmODS5ne3q
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -61,15 +61,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3301060838027368139"
+      - "1547764678267726821"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2456031942838706689"
-    url: https://api.datadoghq.com/api/v1/user/test-testuserdisableerrors-1617978050@integration-tests-accnt-for-sdk-ci.com
+      - "4808371038116620956"
+    url: https://api.datadoghq.com/api/v1/user/test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com
     method: DELETE
   response:
-    body: '{"message":"User test-testuserdisableerrors-1617978050@integration-tests-accnt-for-sdk-ci.com
+    body: '{"message":"User test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com
       disabled"}'
     headers:
       Cache-Control:
@@ -79,7 +79,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:20:52 GMT
+      - Mon, 12 Apr 2021 09:55:15 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -89,9 +89,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - mNzaoDhdDKO7t4QSrAe5X7pHd0bJND187D+vRbwoluXouE2m1UaQQX0RGCvRpLVE
+      - PhosSd3Ch1B6B0DXI71steKUi7XhPDttnPiIP1NdXTw0VJNWpoUnYyBmODS5ne3q
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"Test-TestDowntimeRecurrence-invalid_type_hours-1617977628; invalid type hours","recurrence":{"period":1,"type":"hours"},"scope":["*"],"start":1617977627,"timezone":"Etc/UTC"}
+      {"message":"Test-TestDowntimeRecurrence_invalid_type_hours-1618220935; invalid type hours","recurrence":{"period":1,"type":"hours"},"scope":["*"],"start":1618220935,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4891121707145927197"
+      - "4611273381081601348"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8616648158461548480"
+      - "3219329466033950106"
     url: https://api.datadoghq.com/api/v1/downtime
     method: POST
   response:
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:48 GMT
+      - Mon, 12 Apr 2021 09:48:55 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

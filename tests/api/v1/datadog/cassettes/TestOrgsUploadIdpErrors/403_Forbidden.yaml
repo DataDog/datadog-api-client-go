@@ -2,9 +2,9 @@
 version: 1
 interactions:
 - request:
-    body: "--82d8df0547cb808e5856e415a1c17d736cbf8cabde47a32bd3a184853974\r\nContent-Disposition:
+    body: "--cc0c336e63eed4970804cceb92076fdc49166742a010de577818bf89c041\r\nContent-Disposition:
       form-data; name=\"idp_file\"; filename=\"error_415.json\"\r\nContent-Type: application/octet-stream\r\n\r\n{\"errors\":
-      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--82d8df0547cb808e5856e415a1c17d736cbf8cabde47a32bd3a184853974--\r\n"
+      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--cc0c336e63eed4970804cceb92076fdc49166742a010de577818bf89c041--\r\n"
     form: {}
     headers:
       Accept:
@@ -12,18 +12,18 @@ interactions:
       Content-Length:
       - "262"
       Content-Type:
-      - multipart/form-data; boundary=82d8df0547cb808e5856e415a1c17d736cbf8cabde47a32bd3a184853974
+      - multipart/form-data; boundary=cc0c336e63eed4970804cceb92076fdc49166742a010de577818bf89c041
       Dd-Operation-Id:
       - UploadIdPForOrg
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8328418041064760270"
+      - "7984283734026566391"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7113960465993310141"
-    url: https://api.datadoghq.com/api/v1/org/Test-TestOrgsUploadIdpErrors-403_Forbidden-1617977905/idp_metadata
+      - "1207290177630451530"
+    url: https://api.datadoghq.com/api/v1/org/Test-TestOrgsUploadIdpErrors_403_Forbidden-1618221226/idp_metadata
     method: POST
   response:
     body: |
@@ -38,7 +38,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:25 GMT
+      - Mon, 12 Apr 2021 09:53:46 GMT
       Via:
       - haproxy
     status: 403 Forbidden

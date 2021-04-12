@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-TestCreateRoleErrors-1617977625"},"type":"roles"}}
+      {"data":{"attributes":{"name":"Test-TestCreateRoleErrors-1618220953"},"type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8182747123935559305"
+      - "8880271866200521473"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2844168337868617283"
+      - "1247963881261368507"
     url: https://api.datadoghq.com/api/v2/roles
     method: POST
   response:
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:46 GMT
+      - Mon, 12 Apr 2021 09:49:14 GMT
       Via:
       - haproxy
     status: 403 Forbidden

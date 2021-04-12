@@ -12,11 +12,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8551541615075073408"
+      - "8711839033530544932"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8405652591458953372"
+      - "7582896417191059562"
     url: https://api.datadoghq.com/api/v2/roles/00000000-dead-beef-dead-ffffffffffff/users
     method: GET
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:52 GMT
+      - Mon, 12 Apr 2021 09:49:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -40,7 +40,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -50,7 +50,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "451"
       X-Ratelimit-Reset:
-      - "8"
+      - "39"
     status: 404 Not Found
     code: 404
     duration: ""

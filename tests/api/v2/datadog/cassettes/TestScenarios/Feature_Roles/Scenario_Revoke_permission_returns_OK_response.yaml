@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-Revoke_permission_returns_OK_response-1617977674"},"type":"roles"}}
+      {"data":{"attributes":{"name":"Test-Revoke_permission_returns_OK_response-1618221003"},"type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2890698506155717399"
+      - "1872058499554176376"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7998077507109775335"
+      - "6999679401787400677"
     url: https://api.datadoghq.com/api/v2/roles
     method: POST
   response:
-    body: '{"data":{"type":"roles","id":"e92cbe26-993d-11eb-9ceb-da7ad0900002","attributes":{"name":"Test-Revoke_permission_returns_OK_response-1617977674","created_at":"2021-04-09T14:14:34.900790+00:00","modified_at":"2021-04-09T14:14:34.900790+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"}]}}}}'
+    body: '{"data":{"type":"roles","id":"7459d30c-9b74-11eb-9d38-da7ad0900002","attributes":{"name":"Test-Revoke_permission_returns_OK_response-1618221003","created_at":"2021-04-12T09:50:03.548548+00:00","modified_at":"2021-04-12T09:50:03.548548+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"}]}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:34 GMT
+      - Mon, 12 Apr 2021 09:50:03 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - l8RQo2maZqJf6GFThBbKNE6dvthz6njusVtau3dPXJWL2RLFoN81H+BLPB/1xgs1
+      - dCmL/3rURV6BPeaqeP3Rxigq41m5CAb17XjrRE42uZ01zpr07HVhbL5/3TWMkvgu
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -52,9 +52,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "470"
+      - "485"
       X-Ratelimit-Reset:
-      - "26"
+      - "57"
     status: 200 OK
     code: 200
     duration: ""
@@ -69,11 +69,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8744961858466553528"
+      - "4286632824978222918"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7998077507109775335"
+      - "6999679401787400677"
     url: https://api.datadoghq.com/api/v2/permissions
     method: GET
   response:
@@ -224,7 +224,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:35 GMT
+      - Mon, 12 Apr 2021 09:50:03 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -234,9 +234,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - B1nwy/pPNqX+q4pQT22cdp1QCexE35IF8qwSHy0Nf7IW0Y881qtn4tXN1lpmzaKc
+      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -256,12 +256,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7827768489766357578"
+      - "3339619462280680774"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7998077507109775335"
-    url: https://api.datadoghq.com/api/v2/roles/e92cbe26-993d-11eb-9ceb-da7ad0900002/permissions
+      - "6999679401787400677"
+    url: https://api.datadoghq.com/api/v2/roles/7459d30c-9b74-11eb-9d38-da7ad0900002/permissions
     method: POST
   response:
     body: '{"data":[{"type":"permissions","id":"984a2bd4-d3b4-11e8-a1ff-a7f660d43029","attributes":{"name":"admin","display_name":"Privileged
@@ -280,7 +280,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:35 GMT
+      - Mon, 12 Apr 2021 09:50:03 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -290,9 +290,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
+      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -300,9 +300,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "469"
+      - "484"
       X-Ratelimit-Reset:
-      - "25"
+      - "57"
     status: 200 OK
     code: 200
     duration: ""
@@ -320,12 +320,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6784235592695840860"
+      - "991413851311484208"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7998077507109775335"
-    url: https://api.datadoghq.com/api/v2/roles/e92cbe26-993d-11eb-9ceb-da7ad0900002/permissions
+      - "6999679401787400677"
+    url: https://api.datadoghq.com/api/v2/roles/7459d30c-9b74-11eb-9d38-da7ad0900002/permissions
     method: DELETE
   response:
     body: '{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2","attributes":{"name":"dashboards_read","display_name":"Dashboards","description":"The
@@ -340,7 +340,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:35 GMT
+      - Mon, 12 Apr 2021 09:50:04 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -350,9 +350,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
+      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -360,9 +360,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "468"
+      - "483"
       X-Ratelimit-Reset:
-      - "25"
+      - "57"
     status: 200 OK
     code: 200
     duration: ""
@@ -377,12 +377,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6031702420910700406"
+      - "7741493952570074935"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7998077507109775335"
-    url: https://api.datadoghq.com/api/v2/roles/e92cbe26-993d-11eb-9ceb-da7ad0900002
+      - "6999679401787400677"
+    url: https://api.datadoghq.com/api/v2/roles/7459d30c-9b74-11eb-9d38-da7ad0900002
     method: DELETE
   response:
     body: ""
@@ -396,7 +396,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:35 GMT
+      - Mon, 12 Apr 2021 09:50:04 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -404,9 +404,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 2328yjLSqI4XmR1pVqrPRR/SFcQsbafjEpPmZx7/3PfxUK1nJQQsX+wrMelyVyj+
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -414,9 +414,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "467"
+      - "482"
       X-Ratelimit-Reset:
-      - "25"
+      - "56"
     status: 204 No Content
     code: 204
     duration: ""

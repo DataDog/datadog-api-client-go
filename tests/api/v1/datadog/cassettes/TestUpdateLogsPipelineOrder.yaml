@@ -12,15 +12,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1138308829687383244"
+      - "3724004414534624269"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6961288373654677876"
+      - "4986726524557564498"
     url: https://api.datadoghq.com/api/v1/logs/config/pipeline-order
     method: GET
   response:
-    body: '{"pipeline_ids":["4I6FNy5GToqi2fKVAqNZJw","LWIrk9TLT3Kp9hnIbWBs2w","rTxbr2MpQsSCEtn66XmwnQ","2QGdoZWESWi6WArjxl4cxg","0mc2Xh9XTOKHDRooX8oU7Q","sH6qilATSXiwQuFTvZZQsg","JW6WRX6zSYO6P27n-R85vw"]}'
+    body: '{"pipeline_ids":["0mc2Xh9XTOKHDRooX8oU7Q","JW6WRX6zSYO6P27n-R85vw","4I6FNy5GToqi2fKVAqNZJw","LWIrk9TLT3Kp9hnIbWBs2w","rTxbr2MpQsSCEtn66XmwnQ","2QGdoZWESWi6WArjxl4cxg"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -31,7 +31,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:17:08 GMT
+      - Mon, 12 Apr 2021 09:52:35 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -41,9 +41,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
+      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -51,15 +51,15 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "4989"
+      - "4985"
       X-Ratelimit-Reset:
-      - "2572"
+      - "445"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"pipeline_ids":["LWIrk9TLT3Kp9hnIbWBs2w","rTxbr2MpQsSCEtn66XmwnQ","2QGdoZWESWi6WArjxl4cxg","0mc2Xh9XTOKHDRooX8oU7Q","sH6qilATSXiwQuFTvZZQsg","JW6WRX6zSYO6P27n-R85vw","4I6FNy5GToqi2fKVAqNZJw"]}
+      {"pipeline_ids":["JW6WRX6zSYO6P27n-R85vw","4I6FNy5GToqi2fKVAqNZJw","LWIrk9TLT3Kp9hnIbWBs2w","rTxbr2MpQsSCEtn66XmwnQ","2QGdoZWESWi6WArjxl4cxg","0mc2Xh9XTOKHDRooX8oU7Q"]}
     form: {}
     headers:
       Accept:
@@ -71,15 +71,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4481990651719392760"
+      - "1718679003161045897"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6961288373654677876"
+      - "4986726524557564498"
     url: https://api.datadoghq.com/api/v1/logs/config/pipeline-order
     method: PUT
   response:
-    body: '{"pipeline_ids":["LWIrk9TLT3Kp9hnIbWBs2w","rTxbr2MpQsSCEtn66XmwnQ","2QGdoZWESWi6WArjxl4cxg","0mc2Xh9XTOKHDRooX8oU7Q","sH6qilATSXiwQuFTvZZQsg","JW6WRX6zSYO6P27n-R85vw","4I6FNy5GToqi2fKVAqNZJw"]}'
+    body: '{"pipeline_ids":["JW6WRX6zSYO6P27n-R85vw","4I6FNy5GToqi2fKVAqNZJw","LWIrk9TLT3Kp9hnIbWBs2w","rTxbr2MpQsSCEtn66XmwnQ","2QGdoZWESWi6WArjxl4cxg","0mc2Xh9XTOKHDRooX8oU7Q"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -90,7 +90,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:17:09 GMT
+      - Mon, 12 Apr 2021 09:52:35 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -100,9 +100,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
+      - tpRCH6w417YjBovRJ8VmtuXmNONVYiRp2c8d2AxjPdGBn8PCtgG4vAztrx3qUZAN
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -110,9 +110,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "75"
+      - "65"
       X-Ratelimit-Reset:
-      - "2571"
+      - "445"
     status: 200 OK
     code: 200
     duration: ""

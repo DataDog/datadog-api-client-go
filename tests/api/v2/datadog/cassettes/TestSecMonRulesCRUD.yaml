@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1617977690-0","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1617977690-0"}]}
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1618221018-0","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1618221018-0"}]}
     form: {}
     headers:
       Accept:
@@ -15,17 +15,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6490286794545766616"
+      - "6897847141280708554"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
+      - "2986757858576086430"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977690711,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"dph-fyy-0lw","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-0"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1618221019028,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"abb-hwa-tbp","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -36,7 +36,219 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:14:50 GMT
+      - Mon, 12 Apr 2021 09:50:19 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1618221018-1","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1618221018-1"}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5263728346223251532"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
+    method: POST
+  response:
+    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1618221019151,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-1","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"plk-oa0-n5r","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-1"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 12 Apr 2021 09:50:19 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - tpRCH6w417YjBovRJ8VmtuXmNONVYiRp2c8d2AxjPdGBn8PCtgG4vAztrx3qUZAN
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1618221018-2","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1618221018-2"}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3233576957423845188"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
+    method: POST
+  response:
+    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1618221019283,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-2","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"kkz-1wj-dzu","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-2"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 12 Apr 2021 09:50:19 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - nLnnBNvlCFDECRnZvzDb0z4sAO35G+IMidcAs8vrCKyjvsKWE8Yd9S3n6OjZ1qRN
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1618221018-3","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1618221018-3"}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "9017535474899706968"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
+    method: POST
+  response:
+    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1618221019416,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-3","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"crz-bwq-yqv","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-3"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 12 Apr 2021 09:50:19 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1618221018-4","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1618221018-4"}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5835112520457855660"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
+    method: POST
+  response:
+    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1618221019547,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-4","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"v2i-s1u-qwv","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-4"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 12 Apr 2021 09:50:19 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -48,219 +260,7 @@ interactions:
       X-Dd-Debug:
       - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
       X-Dd-Version:
-      - "35.4276613"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1617977690-1","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1617977690-1"}]}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Dd-Operation-Id:
-      - CreateSecurityMonitoringRule
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "8020840354354018999"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
-    method: POST
-  response:
-    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977690843,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-1","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"oci-gax-0j1","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-1"}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Type:
-      - application/json;charset=utf-8
-      Date:
-      - Fri, 09 Apr 2021 14:14:50 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - /L+SFFO+m1pPY+hRCpk5325fvfrNl0KmiquUNJolBN/5hu3HIwflqjZSbJ6NxDFG
-      X-Dd-Version:
-      - "35.4276613"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1617977690-2","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1617977690-2"}]}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Dd-Operation-Id:
-      - CreateSecurityMonitoringRule
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "2420915567155193783"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
-    method: POST
-  response:
-    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977690968,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-2","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"jym-gvt-n9y","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-2"}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Type:
-      - application/json;charset=utf-8
-      Date:
-      - Fri, 09 Apr 2021 14:14:50 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
-      X-Dd-Version:
-      - "35.4276613"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1617977690-3","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1617977690-3"}]}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Dd-Operation-Id:
-      - CreateSecurityMonitoringRule
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "3612501987059913951"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
-    method: POST
-  response:
-    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977691102,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-3","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"jo4-x03-gvh","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-3"}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Type:
-      - application/json;charset=utf-8
-      Date:
-      - Fri, 09 Apr 2021 14:14:51 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - PhosSd3Ch1B6B0DXI71steKUi7XhPDttnPiIP1NdXTw0VJNWpoUnYyBmODS5ne3q
-      X-Dd-Version:
-      - "35.4276613"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","status":"info"}],"filters":[{"action":"require","query":"env:prod"}],"isEnabled":true,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1617977690-4","options":{"evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1617977690-4"}]}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Dd-Operation-Id:
-      - CreateSecurityMonitoringRule
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6855069704019550896"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
-    method: POST
-  response:
-    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977691238,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-4","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"fkr-ooi-fbc","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-4"}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Type:
-      - application/json;charset=utf-8
-      Date:
-      - Fri, 09 Apr 2021 14:14:51 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
-      X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -277,17 +277,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8139314744649195978"
+      - "3313248011029810069"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/dph-fyy-0lw
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/abb-hwa-tbp
     method: GET
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977690711,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"dph-fyy-0lw","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-0"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1618221019028,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"abb-hwa-tbp","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -298,7 +298,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:14:51 GMT
+      - Mon, 12 Apr 2021 09:50:19 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -308,9 +308,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -327,11 +327,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8230733552594331328"
+      - "6629959602320733832"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
+      - "2986757858576086430"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=1
     method: GET
   response:
@@ -361,7 +361,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:14:51 GMT
+      - Mon, 12 Apr 2021 09:50:19 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -371,9 +371,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -390,11 +390,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4501107837191578147"
+      - "3234981245819276924"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
+      - "2986757858576086430"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=124
     method: GET
   response:
@@ -1778,31 +1778,31 @@ interactions:
       on an ECS container:\n\n* `ExecuteCommand`\n\n### Triage & Response\n1. Determine
       if the user should be executing a command on this container\n","options":{"detectionMethod":"new_value","evaluationWindow":0,"maxSignalDuration":0,"newValueOptions":{"learningDuration":1,"forgetAfter":28},"keepAlive":0},"version":5,"createdAt":1615916348842,"filters":[{"action":"suppress","query":"foo"},{"action":"require","query":"bar"}],"queries":[{"distinctFields":[],"name":"","metric":"@usr.account_id","aggregation":"new_value","groupByFields":["@userIdentity.arn"],"query":"source:cloudtrail
       @eventName:ExecuteCommand","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"high","notifications":["@me"],"name":""}],"type":"log_detection","id":"o2p-sbu-rlg","isDefault":true,"name":"Anomalous
-      AWS user executed a command on ECS container"},{"creationAuthorId":2320499,"tags":["datadog-api-client-test-java"],"isEnabled":true,"hasExtendedTitle":false,"message":"Rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":0,"maxSignalDuration":0,"keepAlive":0},"version":1,"createdAt":1617651795561,"filters":[{"action":"suppress","query":"query"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"java-rulesCrudTest-56309-1617651794-2","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"xxv-vcp-um8","isDefault":false,"name":"java-rulesCrudTest-56309-1617651794-2"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617727047245,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1617727047","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"2tk-uhj-wfj","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1617727047"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617727084646,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1617727084","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"gip-tlh-st1","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1617727084"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617729289810,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestSearchSecurityMonitoringSignals-local-1617729289","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"d1i-qj1-17z","isDefault":false,"name":"go-TestSearchSecurityMonitoringSignals-local-1617729289"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617729303413,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"go-TestListSecurityMonitoringSignals-local-1617729303","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"ace-qvi-b87","isDefault":false,"name":"go-TestListSecurityMonitoringSignals-local-1617729303"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      AWS user executed a command on ECS container"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
       message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617971626555,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSearchSecurityMonitoringSignals-1617971626","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
       > 0"}],"type":"log_detection","id":"uf5-sub-gvr","isDefault":false,"name":"Test-TestSearchSecurityMonitoringSignals-1617971626"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
       message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617971644219,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestListSecurityMonitoringSignals-1617971644","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
       > 0"}],"type":"log_detection","id":"5b2-kdc-3do","isDefault":false,"name":"Test-TestListSecurityMonitoringSignals-1617971644"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977690711,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"dph-fyy-0lw","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-0"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977690843,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-1","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"oci-gax-0j1","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-1"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977690968,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-2","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"jym-gvt-n9y","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-2"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977691102,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-3","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"jo4-x03-gvh","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-3"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977691238,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-4","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"fkr-ooi-fbc","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-4"}]}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977693395,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSearchSecurityMonitoringSignals-1617977693","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"pfs-wtb-6x6","isDefault":false,"name":"Test-TestSearchSecurityMonitoringSignals-1617977693"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617977738802,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestListSecurityMonitoringSignals-1617977738","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"eai-snq-4vj","isDefault":false,"name":"Test-TestListSecurityMonitoringSignals-1617977738"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617978059498,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestListSecurityMonitoringSignals-1617978059","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"nvz-hsv-5ql","isDefault":false,"name":"Test-TestListSecurityMonitoringSignals-1617978059"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1617978302186,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestListSecurityMonitoringSignals-1617978301","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"cyp-scn-o3m","isDefault":false,"name":"Test-TestListSecurityMonitoringSignals-1617978301"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
+      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1618083170620,"filters":[],"queries":[{"distinctFields":[],"name":"","metric":"","aggregation":"count","groupByFields":[],"query":"@test:true","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"bno-qku-kqu","isDefault":false,"name":"Test-Create_a_detection_rule_returns_OK_response-1618083170"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1618221019028,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"abb-hwa-tbp","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-0"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1618221019151,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-1","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"plk-oa0-n5r","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-1"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1618221019283,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-2","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"kkz-1wj-dzu","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-2"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1618221019416,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-3","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"crz-bwq-yqv","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-3"},{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"rule
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":1,"createdAt":1618221019547,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-4","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"v2i-s1u-qwv","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-4"}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -1813,83 +1813,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:14:51 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - l8RQo2maZqJf6GFThBbKNE6dvthz6njusVtau3dPXJWL2RLFoN81H+BLPB/1xgs1
-      X-Dd-Version:
-      - "35.4276613"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - ListSecurityMonitoringRules
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "8327934069950739748"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=2
-    method: GET
-  response:
-    body: '{"meta":{"page":{"total_filtered_count":2,"total_count":124}},"data":[{"creationAuthorId":0,"tags":["scope:iam","source:guardduty","technique:T1069-permission-groups-discovery","tactic:TA0007-discovery","security:attack"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
-      Goal\nDetect when an attacker is enumerating IAM principals.\n\n### Strategy\nThis
-      rule lets you leverage GuardDuty to detect when an attacker is enumerating IAM
-      principals. The GuardDuty Findings which trigger this signal:\n\n* [Recon:IAMUser/NetworkPermissions][1]\n*
-      [Recon:IAMUser/ResourcePermissions][2]\n* [Recon:IAMUser/UserPermissions][3]
-      \n\n\n### Triage & Response\n1. Determine which user in your organization owns
-      the API key that made this API call.\n2. Contact the user to see if they intended
-      to make this API call.\n3. If the user did not make the API call:\n * Rotate
-      the credentials.\n * Investigate if the same credentials made other unauthorized
-      API calls.\n\n[1]: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_recon.html#recon7\n[2]:
-      https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_recon.html#recon8\n[3]:
-      https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_recon.html#recon9","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":3,"createdAt":1585870276065,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":["@detail.resource.accessKeyDetails.userName"],"query":"source:guardduty
-      @evt.name:(Recon\\:IAMUser\\/NetworkPermissions OR Recon\\:IAMUser\\/ResourcePermissions
-      OR Recon\\:IAMUser\\/UserPermissions)","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"medium","notifications":[],"name":"","condition":"a
-      > 0"}],"type":"log_detection","id":"u2j-xph-kc7","isDefault":true,"name":"AWS
-      IAM principal enumeration"},{"creationAuthorId":0,"tags":["scope:ec2","source:guardduty","tactic:TA0040-impact","technique:T1496-resource-hijacking","security:attack"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
-      Goal\nDetect when an EC2 instance is communicating with a cryptocurrency server\n\n###
-      Strategy\nThis rule lets you leverage GuardDuty to detect when an EC2 instance
-      has made a DNS request or is communicating with an IP that is associated with
-      cryptocurrency operations. The following GuardDuty Findings trigger this signal:\n\n*
-      [CryptoCurrency:EC2/BitcoinTool.B!DNS][1]\n* [CryptoCurrency:EC2/BitcoinTool.B][2]\n\n\n###
-      Triage & Response\n1. Determine which domain name or IP address triggered the
-      signal. This can be found in the samples. \n2. If the domain or IP address should
-      not have been requested, open a security investigation, and determine which
-      process requested the domain name or IP address.\n\n[1]: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_crypto.html#crypto3\n[2]:
-      https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_crypto.html#crypto4","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":3,"createdAt":1585870276326,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":["instance-id"],"query":"source:guardduty
-      @evt.name:(CryptoCurrency\\:EC2\\/BitcoinTool.B\\!DNS OR CryptoCurrency\\:EC2\\/BitcoinTool.B)","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
-      > 0"}],"type":"log_detection","id":"ky3-ds4-ipb","isDefault":true,"name":"AWS
-      EC2 instance communicating with a cryptocurrency server"}]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Type:
-      - application/json;charset=utf-8
-      Date:
-      - Fri, 09 Apr 2021 14:14:51 GMT
+      - Mon, 12 Apr 2021 09:50:20 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -1901,7 +1825,7 @@ interactions:
       X-Dd-Debug:
       - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -1918,11 +1842,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6275178310178784448"
+      - "5979122969338052755"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
+      - "2986757858576086430"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=2
     method: GET
   response:
@@ -1965,7 +1889,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:14:52 GMT
+      - Mon, 12 Apr 2021 09:50:20 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -1975,9 +1899,85 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - /L+SFFO+m1pPY+hRCpk5325fvfrNl0KmiquUNJolBN/5hu3HIwflqjZSbJ6NxDFG
+      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListSecurityMonitoringRules
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8238172290153978520"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules?page%5Bnumber%5D=0&page%5Bsize%5D=2
+    method: GET
+  response:
+    body: '{"meta":{"page":{"total_filtered_count":2,"total_count":124}},"data":[{"creationAuthorId":0,"tags":["scope:iam","source:guardduty","technique:T1069-permission-groups-discovery","tactic:TA0007-discovery","security:attack"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when an attacker is enumerating IAM principals.\n\n### Strategy\nThis
+      rule lets you leverage GuardDuty to detect when an attacker is enumerating IAM
+      principals. The GuardDuty Findings which trigger this signal:\n\n* [Recon:IAMUser/NetworkPermissions][1]\n*
+      [Recon:IAMUser/ResourcePermissions][2]\n* [Recon:IAMUser/UserPermissions][3]
+      \n\n\n### Triage & Response\n1. Determine which user in your organization owns
+      the API key that made this API call.\n2. Contact the user to see if they intended
+      to make this API call.\n3. If the user did not make the API call:\n * Rotate
+      the credentials.\n * Investigate if the same credentials made other unauthorized
+      API calls.\n\n[1]: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_recon.html#recon7\n[2]:
+      https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_recon.html#recon8\n[3]:
+      https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_recon.html#recon9","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":3,"createdAt":1585870276065,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":["@detail.resource.accessKeyDetails.userName"],"query":"source:guardduty
+      @evt.name:(Recon\\:IAMUser\\/NetworkPermissions OR Recon\\:IAMUser\\/ResourcePermissions
+      OR Recon\\:IAMUser\\/UserPermissions)","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"medium","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"u2j-xph-kc7","isDefault":true,"name":"AWS
+      IAM principal enumeration"},{"creationAuthorId":0,"tags":["scope:ec2","source:guardduty","tactic:TA0040-impact","technique:T1496-resource-hijacking","security:attack"],"isEnabled":true,"hasExtendedTitle":true,"message":"###
+      Goal\nDetect when an EC2 instance is communicating with a cryptocurrency server\n\n###
+      Strategy\nThis rule lets you leverage GuardDuty to detect when an EC2 instance
+      has made a DNS request or is communicating with an IP that is associated with
+      cryptocurrency operations. The following GuardDuty Findings trigger this signal:\n\n*
+      [CryptoCurrency:EC2/BitcoinTool.B!DNS][1]\n* [CryptoCurrency:EC2/BitcoinTool.B][2]\n\n\n###
+      Triage & Response\n1. Determine which domain name or IP address triggered the
+      signal. This can be found in the samples. \n2. If the domain or IP address should
+      not have been requested, open a security investigation, and determine which
+      process requested the domain name or IP address.\n\n[1]: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_crypto.html#crypto3\n[2]:
+      https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_crypto.html#crypto4","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":3600,"keepAlive":3600},"version":3,"createdAt":1585870276326,"filters":[],"queries":[{"distinctFields":[],"name":"","aggregation":"count","groupByFields":["instance-id"],"query":"source:guardduty
+      @evt.name:(CryptoCurrency\\:EC2\\/BitcoinTool.B\\!DNS OR CryptoCurrency\\:EC2\\/BitcoinTool.B)","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"high","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"ky3-ds4-ipb","isDefault":true,"name":"AWS
+      EC2 instance communicating with a cryptocurrency server"}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 12 Apr 2021 09:50:20 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
+      X-Dd-Version:
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -1985,7 +1985,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","notifications":[],"status":"info"}],"isEnabled":false,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1617977690-0","options":{"detectionMethod":"threshold","evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1617977690-0"}],"tags":[]}
+      {"cases":[{"condition":"rule \u003e 0","name":"rule-case","notifications":[],"status":"info"}],"isEnabled":false,"message":"rule message","name":"Test-TestSecMonRulesCRUD-1618221018-0","options":{"detectionMethod":"threshold","evaluationWindow":300,"keepAlive":300,"maxSignalDuration":300},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"name":"rule","query":"Test-TestSecMonRulesCRUD-1618221018-0"}],"tags":[]}
     form: {}
     headers:
       Accept:
@@ -1997,17 +1997,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5959844367206911041"
+      - "4454892262934002497"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/dph-fyy-0lw
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/abb-hwa-tbp
     method: PUT
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":false,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1617977690711,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"dph-fyy-0lw","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-0"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1618221019028,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"abb-hwa-tbp","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -2018,7 +2018,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:14:52 GMT
+      - Mon, 12 Apr 2021 09:50:20 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -2028,9 +2028,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
+      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -2047,17 +2047,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6294765606685162722"
+      - "6808211877156091621"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/dph-fyy-0lw
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/abb-hwa-tbp
     method: GET
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":false,"hasExtendedTitle":false,"message":"rule
-      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1617977690711,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1617977690-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
-      > 0"}],"type":"log_detection","id":"dph-fyy-0lw","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1617977690-0"}'
+      message","options":{"detectionMethod":"threshold","evaluationWindow":300,"maxSignalDuration":300,"keepAlive":300},"version":2,"createdAt":1618221019028,"filters":[{"action":"require","query":"env:prod"}],"queries":[{"distinctFields":[],"name":"rule","aggregation":"count","groupByFields":[],"query":"Test-TestSecMonRulesCRUD-1618221018-0","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"rule-case","condition":"rule
+      > 0"}],"type":"log_detection","id":"abb-hwa-tbp","isDefault":false,"name":"Test-TestSecMonRulesCRUD-1618221018-0"}'
     headers:
       Cache-Control:
       - no-cache
@@ -2068,7 +2068,7 @@ interactions:
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:14:52 GMT
+      - Mon, 12 Apr 2021 09:50:20 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -2078,9 +2078,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
+      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -2097,12 +2097,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8341105826370676416"
+      - "153649906876951282"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/dph-fyy-0lw
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/abb-hwa-tbp
     method: DELETE
   response:
     body: ""
@@ -2116,7 +2116,7 @@ interactions:
       Content-Length:
       - "0"
       Date:
-      - Fri, 09 Apr 2021 14:14:52 GMT
+      - Mon, 12 Apr 2021 09:50:20 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -2124,9 +2124,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
+      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -2143,15 +2143,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2831395587551854494"
+      - "8127793894114740795"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/dph-fyy-0lw
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/abb-hwa-tbp
     method: GET
   response:
-    body: '{"errors":["Threat detection rule not found: dph-fyy-0lw"]}'
+    body: '{"errors":["Threat detection rule not found: abb-hwa-tbp"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -2160,7 +2160,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:52 GMT
+      - Mon, 12 Apr 2021 09:50:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -2170,7 +2170,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -2187,12 +2187,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "238298214735001467"
+      - "9004782941814254456"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/fkr-ooi-fbc
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/v2i-s1u-qwv
     method: DELETE
   response:
     body: ""
@@ -2206,7 +2206,7 @@ interactions:
       Content-Length:
       - "0"
       Date:
-      - Fri, 09 Apr 2021 14:14:52 GMT
+      - Mon, 12 Apr 2021 09:50:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -2214,9 +2214,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - dCmL/3rURV6BPeaqeP3Rxigq41m5CAb17XjrRE42uZ01zpr07HVhbL5/3TWMkvgu
+      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -2233,12 +2233,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2640325797269529417"
+      - "7257787714291626420"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/jo4-x03-gvh
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/crz-bwq-yqv
     method: DELETE
   response:
     body: ""
@@ -2252,7 +2252,7 @@ interactions:
       Content-Length:
       - "0"
       Date:
-      - Fri, 09 Apr 2021 14:14:52 GMT
+      - Mon, 12 Apr 2021 09:50:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -2260,9 +2260,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
+      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -2279,12 +2279,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "401973495410073629"
+      - "5661669480221019157"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/jym-gvt-n9y
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/kkz-1wj-dzu
     method: DELETE
   response:
     body: ""
@@ -2298,7 +2298,7 @@ interactions:
       Content-Length:
       - "0"
       Date:
-      - Fri, 09 Apr 2021 14:14:53 GMT
+      - Mon, 12 Apr 2021 09:50:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -2306,9 +2306,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - /L+SFFO+m1pPY+hRCpk5325fvfrNl0KmiquUNJolBN/5hu3HIwflqjZSbJ6NxDFG
+      - SY1h8ScsWq+kYmtbh63ltMLFAZsQjqfrgvdfAoRX+9TzT1sgMBRYaFRwfWWRRe9a
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -2325,12 +2325,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4730261718306187073"
+      - "329772326545731751"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/oci-gax-0j1
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/plk-oa0-n5r
     method: DELETE
   response:
     body: ""
@@ -2344,7 +2344,7 @@ interactions:
       Content-Length:
       - "0"
       Date:
-      - Fri, 09 Apr 2021 14:14:53 GMT
+      - Mon, 12 Apr 2021 09:50:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -2352,9 +2352,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
+      - 5gfwVh/5HZ+AnGd/Di93w3NEWC6KMHT9KzmHEiRJmNdOjBtAsbOcgVFyqEChw71h
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
@@ -2371,15 +2371,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6506668557668652715"
+      - "6737346747626850305"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3519856365080300290"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/dph-fyy-0lw
+      - "2986757858576086430"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/abb-hwa-tbp
     method: DELETE
   response:
-    body: '{"errors":["Threat detection rule not found: dph-fyy-0lw"]}'
+    body: '{"errors":["Threat detection rule not found: abb-hwa-tbp"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -2388,7 +2388,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:53 GMT
+      - Mon, 12 Apr 2021 09:50:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -2398,7 +2398,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

@@ -329,18 +329,22 @@ func UniqueEntityName(ctx context.Context, t *testing.T) *string {
 // WithUniqueSurrounding will wrap a string that can be used as a title/description/summary/...
 // of an API entity.
 func WithUniqueSurrounding(ctx context.Context, name string) string {
-	// Replace all - with _ in the test name (scenario test names can include -)
-	name = strings.ReplaceAll(name, "-", "_")
-
 	prefix := "Test"
 	if GetRecording() == ModeIgnore {
 		// In ignore mode we add the language prefix to track unremoved data
 		prefix = "Test-Go"
 	}
+	alnum := regexp.MustCompile(`[^A-Za-z0-9]+`)
+
+	name = string(alnum.ReplaceAll([]byte(name), []byte("_")))
+	maxSize := len(name)
+	if maxSize > 100 {
+		maxSize = 100
+	}
 
 	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
 	// so we need to keep this short
-	result := fmt.Sprintf("%s-%s-%d", prefix, SecurePath(name), ClockFromContext(ctx).Now().Unix())
+	result := fmt.Sprintf("%s-%s-%d", prefix, name[:maxSize], ClockFromContext(ctx).Now().Unix())
 	// In case this is used in URL, make sure we replace the slash that is added by subtests
 	result = strings.ReplaceAll(result, "/", "-")
 	return result

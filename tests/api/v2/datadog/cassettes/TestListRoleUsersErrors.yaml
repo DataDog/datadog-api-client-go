@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-TestListRoleUsersErrors-1617977632"},"type":"roles"}}
+      {"data":{"attributes":{"name":"Test-TestListRoleUsersErrors-1618220960"},"type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7569468662763806771"
+      - "5672773554039579932"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8405652591458953372"
+      - "7582896417191059562"
     url: https://api.datadoghq.com/api/v2/roles
     method: POST
   response:
-    body: '{"data":{"type":"roles","id":"cfcdb1b0-993d-11eb-9ceb-da7ad0900002","attributes":{"name":"Test-TestListRoleUsersErrors-1617977632","created_at":"2021-04-09T14:13:52.333710+00:00","modified_at":"2021-04-09T14:13:52.333710+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"}]}}}}'
+    body: '{"data":{"type":"roles","id":"5b07d926-9b74-11eb-9d38-da7ad0900002","attributes":{"name":"Test-TestListRoleUsersErrors-1618220960","created_at":"2021-04-12T09:49:21.067546+00:00","modified_at":"2021-04-12T09:49:21.067546+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"}]}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:52 GMT
+      - Mon, 12 Apr 2021 09:49:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,7 +44,7 @@ interactions:
       X-Dd-Debug:
       - SY1h8ScsWq+kYmtbh63ltMLFAZsQjqfrgvdfAoRX+9TzT1sgMBRYaFRwfWWRRe9a
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,7 +54,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "453"
       X-Ratelimit-Reset:
-      - "8"
+      - "39"
     status: 200 OK
     code: 200
     duration: ""
@@ -69,11 +69,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8308058737663212148"
+      - "6054690297867678507"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8405652591458953372"
+      - "7582896417191059562"
     url: https://api.datadoghq.com/api/v2/roles/00000000-dead-beef-dead-ffffffffffff
     method: GET
   response:
@@ -87,7 +87,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:52 GMT
+      - Mon, 12 Apr 2021 09:49:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -97,7 +97,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -107,7 +107,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "452"
       X-Ratelimit-Reset:
-      - "8"
+      - "39"
     status: 404 Not Found
     code: 404
     duration: ""
@@ -122,12 +122,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2371272178977637594"
+      - "847556026961018141"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8405652591458953372"
-    url: https://api.datadoghq.com/api/v2/roles/cfcdb1b0-993d-11eb-9ceb-da7ad0900002
+      - "7582896417191059562"
+    url: https://api.datadoghq.com/api/v2/roles/5b07d926-9b74-11eb-9d38-da7ad0900002
     method: DELETE
   response:
     body: ""
@@ -141,7 +141,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:52 GMT
+      - Mon, 12 Apr 2021 09:49:21 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -149,9 +149,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - /L+SFFO+m1pPY+hRCpk5325fvfrNl0KmiquUNJolBN/5hu3HIwflqjZSbJ6NxDFG
+      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -161,7 +161,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "450"
       X-Ratelimit-Reset:
-      - "8"
+      - "39"
     status: 204 No Content
     code: 204
     duration: ""

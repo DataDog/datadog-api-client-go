@@ -12,12 +12,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4604086396914085558"
+      - "108894664710846885"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5184756997320737451"
-    url: https://api.datadoghq.com/api/v1/slo/f8602af5baf85a1094065ed57de26566/history?from_ts=123&to_ts=12
+      - "6993440312228467011"
+    url: https://api.datadoghq.com/api/v1/slo/c61ec4bd0ce457c8b9a1cee6791b55d3/history?from_ts=123&to_ts=12
     method: GET
   response:
     body: '{"errors": ["The timeframe is incorrect: invalid from 123 or to 12 timestamp"]}'
@@ -31,7 +31,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:36 GMT
+      - Mon, 12 Apr 2021 09:53:56 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -39,7 +39,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:

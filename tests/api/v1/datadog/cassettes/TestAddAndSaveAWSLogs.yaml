@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"Test-TestAddAndSaveAWSLogs-1617977587","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestAddAndSaveAWSLogs-1618220894","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5088193121644047629"
+      - "3528704738988611158"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5676581255584345166"
+      - "3427146977475670650"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
-    body: '{"external_id":"3967fa8252f8466c85ef196ae6b202f8"}'
+    body: '{"external_id":"b7bbe6923ccc4b1e8200a9fdfcb1a2f5"}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:08 GMT
+      - Mon, 12 Apr 2021 09:48:16 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
+      - SY1h8ScsWq+kYmtbh63ltMLFAZsQjqfrgvdfAoRX+9TzT1sgMBRYaFRwfWWRRe9a
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -52,7 +52,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestAddAndSaveAWSLogs-1617977587","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
+      {"account_id":"Test-TestAddAndSaveAWSLogs-1618220894","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
     form: {}
     headers:
       Accept:
@@ -64,11 +64,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3761926984630294829"
+      - "7709813033269932921"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5676581255584345166"
+      - "3427146977475670650"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs
     method: POST
   response:
@@ -83,7 +83,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:08 GMT
+      - Mon, 12 Apr 2021 09:48:16 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -91,9 +91,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
+      - mNzaoDhdDKO7t4QSrAe5X7pHd0bJND187D+vRbwoluXouE2m1UaQQX0RGCvRpLVE
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -101,7 +101,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestAddAndSaveAWSLogs-1617977587","services":["s3","elb","elbv2","cloudfront","redshift","lambda"]}
+      {"account_id":"Test-TestAddAndSaveAWSLogs-1618220894","services":["s3","elb","elbv2","cloudfront","redshift","lambda"]}
     form: {}
     headers:
       Accept:
@@ -113,11 +113,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5605492513435529904"
+      - "5008183236792863930"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5676581255584345166"
+      - "3427146977475670650"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs/services
     method: POST
   response:
@@ -132,7 +132,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:09 GMT
+      - Mon, 12 Apr 2021 09:48:16 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -140,9 +140,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 25u1gDlL724DHllbjFT4BhOLorBTilh+aah2uWAUEjFC/+rjczJdiyWrV/HwLwe/
+      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -150,7 +150,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestAddAndSaveAWSLogs-1617977587","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestAddAndSaveAWSLogs-1618220894","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -162,11 +162,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6278162754326959126"
+      - "6719025561376975071"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5676581255584345166"
+      - "3427146977475670650"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: DELETE
   response:
@@ -181,7 +181,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:09 GMT
+      - Mon, 12 Apr 2021 09:48:17 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -189,9 +189,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 25u1gDlL724DHllbjFT4BhOLorBTilh+aah2uWAUEjFC/+rjczJdiyWrV/HwLwe/
+      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

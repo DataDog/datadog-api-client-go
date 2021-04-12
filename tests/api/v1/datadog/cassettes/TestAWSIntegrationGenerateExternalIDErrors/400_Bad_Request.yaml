@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7581289726041724565"
+      - "7083714748170293905"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3570292241042454624"
+      - "4739736471590516624"
     url: https://api.datadoghq.com/api/v1/integration/aws/generate_new_external_id
     method: PUT
   response:
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:04 GMT
+      - Mon, 12 Apr 2021 09:48:11 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

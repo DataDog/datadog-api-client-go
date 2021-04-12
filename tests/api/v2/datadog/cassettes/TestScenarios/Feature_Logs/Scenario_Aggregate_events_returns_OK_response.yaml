@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"compute":[{"aggregation":"count","interval":"300","metric":"test.aggregation.Test-Aggregate_events_returns_OK_response-1617977653","type":"timeseries"}],"filter":{"from":"1600348573","indexes":["main"],"query":"datadog-agent","to":"1600348600"}}
+      {"compute":[{"aggregation":"count","interval":"300","metric":"test.aggregation.Test-Aggregate_events_returns_OK_response-1618220981","type":"timeseries"}],"filter":{"from":"1600348573","indexes":["main"],"query":"datadog-agent","to":"1600348600"}}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7373392139333067963"
+      - "8159755654206680706"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8280648449244470070"
+      - "5779054232781504096"
     url: https://api.datadoghq.com/api/v2/logs/analytics/aggregate
     method: POST
   response:
-    body: '{"meta":{"status":"done","request_id":"pddv1ChZlb01rNm1hMFJ3dXV1ejM1QzVFNkdBIiwKHFEgSjnusAdPEgIJN7qjPJXlL9dvcdVoPHhol40SDARtyjXp2jf16O_5_w","elapsed":0},"data":{"buckets":[]}}'
+    body: '{"meta":{"status":"done","request_id":"pddv1ChYwTXp5ZXE3d1RFNmZQYmhrVXM3ekVnIi0KHQjozwg13kHxCgLjgCgyc0QnQujjYVNV68-Liho2Egx9vU83TIvVaE_4lH8","elapsed":0},"data":{"buckets":[]}}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:14 GMT
+      - Mon, 12 Apr 2021 09:49:41 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - dCmL/3rURV6BPeaqeP3Rxigq41m5CAb17XjrRE42uZ01zpr07HVhbL5/3TWMkvgu
+      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,7 +54,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "299"
       X-Ratelimit-Reset:
-      - "47"
+      - "19"
     status: 200 OK
     code: 200
     duration: ""

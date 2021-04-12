@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"service_key":"deadbeef","service_name":"Test-TestPagerDutyLifecycle-1617977905"}
+      {"service_key":"deadbeef","service_name":"Test-TestPagerDutyLifecycle-1618221226"}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8854565651662479398"
+      - "4600220721281816498"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7469609145214310773"
+      - "8564778003158039413"
     url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services
     method: POST
   response:
-    body: '{"service_name":"Test-TestPagerDutyLifecycle-1617977905"}'
+    body: '{"service_name":"Test-TestPagerDutyLifecycle-1618221226"}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:26 GMT
+      - Mon, 12 Apr 2021 09:53:47 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
+      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 201 Created
@@ -61,15 +61,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8079545451541555728"
+      - "8085006844624113941"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7469609145214310773"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1617977905
+      - "8564778003158039413"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1618221226
     method: GET
   response:
-    body: '{"service_name":"Test-TestPagerDutyLifecycle-1617977905"}'
+    body: '{"service_name":"Test-TestPagerDutyLifecycle-1618221226"}'
     headers:
       Cache-Control:
       - no-cache
@@ -78,7 +78,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:26 GMT
+      - Mon, 12 Apr 2021 09:53:47 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -88,9 +88,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
+      - 25u1gDlL724DHllbjFT4BhOLorBTilh+aah2uWAUEjFC/+rjczJdiyWrV/HwLwe/
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -110,15 +110,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4424463136225754384"
+      - "6689338101549404943"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7469609145214310773"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1617977905
+      - "8564778003158039413"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1618221226
     method: PUT
   response:
-    body: '{"service_name":"Test-TestPagerDutyLifecycle-1617977905"}'
+    body: '{"service_name":"Test-TestPagerDutyLifecycle-1618221226"}'
     headers:
       Cache-Control:
       - no-cache
@@ -127,7 +127,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:26 GMT
+      - Mon, 12 Apr 2021 09:53:48 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -137,9 +137,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
+      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -156,12 +156,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3811418951085728951"
+      - "6943954393679429910"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7469609145214310773"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1617977905
+      - "8564778003158039413"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1618221226
     method: DELETE
   response:
     body: "null"
@@ -175,7 +175,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:26 GMT
+      - Mon, 12 Apr 2021 09:53:48 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -183,9 +183,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 2328yjLSqI4XmR1pVqrPRR/SFcQsbafjEpPmZx7/3PfxUK1nJQQsX+wrMelyVyj+
+      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -202,12 +202,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "657863440110643516"
+      - "6040976930195371931"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7469609145214310773"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1617977905
+      - "8564778003158039413"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1618221226
     method: GET
   response:
     body: '{"errors": ["Service not found"]}'
@@ -219,7 +219,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:26 GMT
+      - Mon, 12 Apr 2021 09:53:49 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -229,7 +229,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
@@ -246,12 +246,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1738766803249597147"
+      - "7826933057593724582"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7469609145214310773"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1617977905
+      - "8564778003158039413"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1618221226
     method: DELETE
   response:
     body: '{"errors": ["Service not found"]}'
@@ -263,7 +263,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:27 GMT
+      - Mon, 12 Apr 2021 09:53:49 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -273,7 +273,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"service_key":"deadbeef","service_name":"Test-TestPagerDutyServicesCreateErrors-1617977907"}
+      {"service_key":"deadbeef","service_name":"Test-TestPagerDutyServicesCreateErrors-1618221229"}
     form: {}
     headers:
       Accept:
@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6451616347919158492"
+      - "8369456549085349661"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5029247520783893737"
+      - "7899972489932341460"
     url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services
     method: POST
   response:
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:27 GMT
+      - Mon, 12 Apr 2021 09:53:49 GMT
       Via:
       - haproxy
     status: 403 Forbidden

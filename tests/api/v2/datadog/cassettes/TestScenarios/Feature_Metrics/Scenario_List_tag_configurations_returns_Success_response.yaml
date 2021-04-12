@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","TestListtagconfigurationsreturnsSuccessresponse1617977659"]},"id":"TestListtagconfigurationsreturnsSuccessresponse1617977659","type":"manage_tags"}}
+      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","TestListtagconfigurationsreturnsSuccessresponse1618220985"]},"id":"TestListtagconfigurationsreturnsSuccessresponse1618220985","type":"manage_tags"}}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6858857860783768315"
+      - "5291051229624000413"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2045563889247110030"
-    url: https://api.datadoghq.com/api/v2/metrics/TestListtagconfigurationsreturnsSuccessresponse1617977659/tags
+      - "3518910011555049942"
+    url: https://api.datadoghq.com/api/v2/metrics/TestListtagconfigurationsreturnsSuccessresponse1618220985/tags
     method: POST
   response:
-    body: '{"data":{"type":"manage_tags","id":"TestListtagconfigurationsreturnsSuccessresponse1617977659","attributes":{"tags":["datacenter","app","TestListtagconfigurationsreturnsSuccessresponse1617977659"],"include_percentiles":false,"created_at":"2021-04-09T14:14:20.056336+00:00","updated_at":"2021-04-09T14:14:20.056336+00:00","metric_type":"distribution"}}}'
+    body: '{"data":{"type":"manage_tags","id":"TestListtagconfigurationsreturnsSuccessresponse1618220985","attributes":{"tags":["TestListtagconfigurationsreturnsSuccessresponse1618220985","app","datacenter"],"include_percentiles":false,"created_at":"2021-04-12T09:49:45.273304+00:00","updated_at":"2021-04-12T09:49:45.273304+00:00","metric_type":"distribution"}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:20 GMT
+      - Mon, 12 Apr 2021 09:49:45 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
+      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,7 +54,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "39"
       X-Ratelimit-Reset:
-      - "40"
+      - "15"
     status: 201 Created
     code: 201
     duration: ""
@@ -69,15 +69,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9034435839910530909"
+      - "5440223332319605555"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2045563889247110030"
-    url: https://api.datadoghq.com/api/v2/metrics?filter%5Btags_configured%5D=TestListtagconfigurationsreturnsSuccessresponse1617977659
+      - "3518910011555049942"
+    url: https://api.datadoghq.com/api/v2/metrics?filter%5Btags_configured%5D=TestListtagconfigurationsreturnsSuccessresponse1618220985
     method: GET
   response:
-    body: '{"data":[{"type":"manage_tags","id":"TestListtagconfigurationsreturnsSuccessresponse1617977659","attributes":{"tags":["datacenter","app","TestListtagconfigurationsreturnsSuccessresponse1617977659"],"include_percentiles":false,"created_at":"2021-04-09T14:14:20.056336+00:00","updated_at":"2021-04-09T14:14:20.056336+00:00","metric_type":"distribution"}}]}'
+    body: '{"data":[{"type":"manage_tags","id":"TestListtagconfigurationsreturnsSuccessresponse1618220985","attributes":{"tags":["TestListtagconfigurationsreturnsSuccessresponse1618220985","app","datacenter"],"include_percentiles":false,"created_at":"2021-04-12T09:49:45.273304+00:00","updated_at":"2021-04-12T09:49:45.273304+00:00","metric_type":"distribution"}}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -86,7 +86,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:26 GMT
+      - Mon, 12 Apr 2021 09:49:55 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -96,9 +96,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
+      - /L+SFFO+m1pPY+hRCpk5325fvfrNl0KmiquUNJolBN/5hu3HIwflqjZSbJ6NxDFG
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -108,7 +108,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "38"
       X-Ratelimit-Reset:
-      - "40"
+      - "15"
     status: 200 OK
     code: 200
     duration: ""
@@ -123,12 +123,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5968968006965031368"
+      - "8550017173949970775"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2045563889247110030"
-    url: https://api.datadoghq.com/api/v2/metrics/TestListtagconfigurationsreturnsSuccessresponse1617977659/tags
+      - "3518910011555049942"
+    url: https://api.datadoghq.com/api/v2/metrics/TestListtagconfigurationsreturnsSuccessresponse1618220985/tags
     method: DELETE
   response:
     body: ""
@@ -142,7 +142,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:26 GMT
+      - Mon, 12 Apr 2021 09:49:55 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -150,9 +150,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 25u1gDlL724DHllbjFT4BhOLorBTilh+aah2uWAUEjFC/+rjczJdiyWrV/HwLwe/
+      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -162,7 +162,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "37"
       X-Ratelimit-Reset:
-      - "34"
+      - "5"
     status: 204 No Content
     code: 204
     duration: ""

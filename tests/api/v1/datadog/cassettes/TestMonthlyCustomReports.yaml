@@ -12,11 +12,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5584799947648584071"
+      - "7269390224612047224"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6086117994971272272"
+      - "6033368581788761903"
     url: https://api.datadoghq.com/api/v1/monthly_custom_reports
     method: GET
   response:
@@ -29,7 +29,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:19:53 GMT
+      - Mon, 12 Apr 2021 09:55:00 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -39,9 +39,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - tTVv4aSy24IlFw8jtOOjMmgw7lg3eptV1DhMa2wm3qfQekExFHZoNNDWhCwSvCIX
+      - ZrpK0iZ3z6G9rRQ4Xdad+E2q8ts0/vn3lpkWYLV8Xt3/HusPoRHeJdSO6vBq670u
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

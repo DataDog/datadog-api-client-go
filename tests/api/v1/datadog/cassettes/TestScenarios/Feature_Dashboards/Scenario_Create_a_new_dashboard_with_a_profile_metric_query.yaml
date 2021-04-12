@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_a_profile_metric_query-1617978052 with Profile Metrics Query","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"compute":{"aggregation":"sum","facet":"@prof_core_cpu_cores"},"group_by":[{"facet":"service","limit":10,"sort":{"aggregation":"sum","facet":"@prof_core_cpu_cores","order":"desc"}}],"search":{"query":"runtime:jvm"}}}],"type":"timeseries"}}]}
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_a_profile_metric_query-1618221315 with Profile Metrics Query","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"compute":{"aggregation":"sum","facet":"@prof_core_cpu_cores"},"group_by":[{"facet":"service","limit":10,"sort":{"aggregation":"sum","facet":"@prof_core_cpu_cores","order":"desc"}}],"search":{"query":"runtime:jvm"}}}],"type":"timeseries"}}]}
     form: {}
     headers:
       Accept:
@@ -15,16 +15,16 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7851394333615797390"
+      - "55820012023225533"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8628837954715873038"
+      - "4127653632328904636"
     url: https://api.datadoghq.com/api/v1/dashboard
     method: POST
   response:
-    body: '{"notify_list":null,"description":null,"author_name":null,"template_variables":null,"is_read_only":false,"id":"nyz-udz-z2w","title":"Test-Create_a_new_dashboard_with_a_profile_metric_query-1617978052
-      with Profile Metrics Query","url":"/dashboard/nyz-udz-z2w/test-createanewdashboardwithaprofilemetricquery-1617978052-with-profile-metrics","created_at":"2021-04-09T14:20:53.021669+00:00","modified_at":"2021-04-09T14:20:53.021669+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"search":{"query":"runtime:jvm"},"group_by":[{"facet":"service","sort":{"facet":"@prof_core_cpu_cores","aggregation":"sum","order":"desc"},"limit":10}],"compute":{"facet":"@prof_core_cpu_cores","aggregation":"sum"}}}],"type":"timeseries"},"id":4201327849306502}],"layout_type":"ordered"}'
+    body: '{"notify_list":null,"description":null,"author_name":null,"template_variables":null,"is_read_only":false,"id":"sny-zb6-nf5","title":"Test-Create_a_new_dashboard_with_a_profile_metric_query-1618221315
+      with Profile Metrics Query","url":"/dashboard/sny-zb6-nf5/test-createanewdashboardwithaprofilemetricquery-1618221315-with-profile-metrics","created_at":"2021-04-12T09:55:15.581740+00:00","modified_at":"2021-04-12T09:55:15.581740+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"search":{"query":"runtime:jvm"},"group_by":[{"facet":"service","sort":{"facet":"@prof_core_cpu_cores","aggregation":"sum","order":"desc"},"limit":10}],"compute":{"facet":"@prof_core_cpu_cores","aggregation":"sum"}}}],"type":"timeseries"},"id":7610900340042652}],"layout_type":"ordered"}'
     headers:
       Cache-Control:
       - no-cache
@@ -33,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:20:53 GMT
+      - Mon, 12 Apr 2021 09:55:15 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,9 +43,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - fIO2C4qGDheGHy4YbS+r3a3CXbh4cbRo7roILOimQyiHGjQdOat0cIpWCkupM1uX
+      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -62,15 +62,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8505807855283044778"
+      - "1406136425609484369"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8628837954715873038"
-    url: https://api.datadoghq.com/api/v1/dashboard/nyz-udz-z2w
+      - "4127653632328904636"
+    url: https://api.datadoghq.com/api/v1/dashboard/sny-zb6-nf5
     method: DELETE
   response:
-    body: '{"deleted_dashboard_id":"nyz-udz-z2w"}'
+    body: '{"deleted_dashboard_id":"sny-zb6-nf5"}'
     headers:
       Cache-Control:
       - no-cache
@@ -79,7 +79,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:20:53 GMT
+      - Mon, 12 Apr 2021 09:55:15 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -89,9 +89,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
+      - fIO2C4qGDheGHy4YbS+r3a3CXbh4cbRo7roILOimQyiHGjQdOat0cIpWCkupM1uX
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

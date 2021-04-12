@@ -2,9 +2,9 @@
 version: 1
 interactions:
 - request:
-    body: "--1b576081b92ba0f1061d202d88b9867cad3a460c2fb33aa615e28fd2a92d\r\nContent-Disposition:
+    body: "--a1a19613f5d9afb0dc96c923c789d65708322400bd16f5341f51906e00e0\r\nContent-Disposition:
       form-data; name=\"idp_file\"; filename=\"error_415.json\"\r\nContent-Type: application/octet-stream\r\n\r\n{\"errors\":
-      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--1b576081b92ba0f1061d202d88b9867cad3a460c2fb33aa615e28fd2a92d--\r\n"
+      [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--a1a19613f5d9afb0dc96c923c789d65708322400bd16f5341f51906e00e0--\r\n"
     form: {}
     headers:
       Accept:
@@ -12,18 +12,18 @@ interactions:
       Content-Length:
       - "262"
       Content-Type:
-      - multipart/form-data; boundary=1b576081b92ba0f1061d202d88b9867cad3a460c2fb33aa615e28fd2a92d
+      - multipart/form-data; boundary=a1a19613f5d9afb0dc96c923c789d65708322400bd16f5341f51906e00e0
       Dd-Operation-Id:
       - UploadIdPForOrg
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7809406431270292565"
+      - "2135779211706672752"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7113960465993310141"
-    url: https://api.datadoghq.com/api/v1/org/Test-TestOrgsUploadIdpErrors-400_Bad_Request-1617977905/idp_metadata
+      - "1207290177630451530"
+    url: https://api.datadoghq.com/api/v1/org/Test-TestOrgsUploadIdpErrors_400_Bad_Request-1618221226/idp_metadata
     method: POST
   response:
     body: '{"errors": ["Not allowed to access this organization"]}'
@@ -37,7 +37,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:25 GMT
+      - Mon, 12 Apr 2021 09:53:46 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -45,7 +45,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

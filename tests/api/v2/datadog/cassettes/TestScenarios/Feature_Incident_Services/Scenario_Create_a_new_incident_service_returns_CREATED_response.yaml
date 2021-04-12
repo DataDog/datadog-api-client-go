@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-Create_a_new_incident_service_returns_CREATED_response-1617977643"},"type":"services"}}
+      {"data":{"attributes":{"name":"Test-Create_a_new_incident_service_returns_CREATED_response-1618220972"},"type":"services"}}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2639882583136896469"
+      - "7609807332920079717"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5253885963883916138"
+      - "898093615357219413"
     url: https://api.datadoghq.com/api/v2/services
     method: POST
   response:
-    body: '{"included":[{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0","attributes":{"name":null,"handle":"frog@datadoghq.com","created_at":"2019-10-02T08:15:39.795051+00:00","modified_at":"2020-06-15T12:33:12.884459+00:00","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Active"},"relationships":{"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}],"data":{"type":"services","id":"1fc6b8eb-3e4b-56b2-aac5-1c85621c390f","attributes":{"name":"Test-Create_a_new_incident_service_returns_CREATED_response-1617977643","created":"2021-04-09T14:14:03.408268+00:00","modified":"2021-04-09T14:14:03.408268+00:00"},"relationships":{"last_modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}}}}'
+    body: '{"included":[{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0","attributes":{"name":null,"handle":"frog@datadoghq.com","created_at":"2019-10-02T08:15:39.795051+00:00","modified_at":"2020-06-15T12:33:12.884459+00:00","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Active"},"relationships":{"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}],"data":{"type":"services","id":"123dd7a2-c1db-5b2a-8c2a-79eda6fb3615","attributes":{"name":"Test-Create_a_new_incident_service_returns_CREATED_response-1618220972","created":"2021-04-12T09:49:32.449386+00:00","modified":"2021-04-12T09:49:32.449386+00:00"},"relationships":{"last_modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:03 GMT
+      - Mon, 12 Apr 2021 09:49:32 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -52,7 +52,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "99"
       X-Ratelimit-Reset:
-      - "57"
+      - "28"
     status: 201 Created
     code: 201
     duration: ""
@@ -67,12 +67,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4602068332357250098"
+      - "4712505235128066524"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5253885963883916138"
-    url: https://api.datadoghq.com/api/v2/services/1fc6b8eb-3e4b-56b2-aac5-1c85621c390f
+      - "898093615357219413"
+    url: https://api.datadoghq.com/api/v2/services/123dd7a2-c1db-5b2a-8c2a-79eda6fb3615
     method: DELETE
   response:
     body: ""
@@ -86,7 +86,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:03 GMT
+      - Mon, 12 Apr 2021 09:49:32 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -94,7 +94,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -104,7 +104,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "99"
       X-Ratelimit-Reset:
-      - "57"
+      - "28"
     status: 204 No Content
     code: 204
     duration: ""

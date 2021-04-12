@@ -15,12 +15,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1467048696585638238"
+      - "4510445744782363972"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2179456691921896396"
-    url: https://api.datadoghq.com/api/v1/user/test-testuserupdateerrors-1617978048@integration-tests-accnt-for-sdk-ci.com
+      - "2548566477759609361"
+    url: https://api.datadoghq.com/api/v1/user/test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com
     method: PUT
   response:
     body: '{"errors": ["Format of ''email'' should be email"]}'
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:20:49 GMT
+      - Mon, 12 Apr 2021 09:55:13 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

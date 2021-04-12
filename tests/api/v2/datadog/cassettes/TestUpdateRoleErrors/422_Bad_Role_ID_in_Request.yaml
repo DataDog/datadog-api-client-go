@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-TestUpdateRoleErrors-1617977626-updated"},"id":"00000000-dead-beef-dead-ffffffffffff","type":"roles"}}
+      {"data":{"attributes":{"name":"Test-TestUpdateRoleErrors-1618220954-updated"},"id":"00000000-dead-beef-dead-ffffffffffff","type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -15,12 +15,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "341503035151366560"
+      - "3876080349912538536"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4629624348164973570"
-    url: https://api.datadoghq.com/api/v2/roles/ccaf2324-993d-11eb-9ceb-da7ad0900002
+      - "2124332747927497029"
+    url: https://api.datadoghq.com/api/v2/roles/575c851a-9b74-11eb-9d38-da7ad0900002
     method: PATCH
   response:
     body: '{"errors": ["The id attribute in the request body does not match the role_id
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:47 GMT
+      - Mon, 12 Apr 2021 09:49:15 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,7 +43,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -51,9 +51,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "475"
+      - "474"
       X-Ratelimit-Reset:
-      - "13"
+      - "45"
     status: 422 Unprocessable Entity
     code: 422
     duration: ""

@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-Delete_role_returns_OK_response-1617977669"},"type":"roles"}}
+      {"data":{"attributes":{"name":"Test-Delete_role_returns_OK_response-1618220998"},"type":"roles"}}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5776504913380664164"
+      - "1055087248040232660"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7590986283748514402"
+      - "602964287231423848"
     url: https://api.datadoghq.com/api/v2/roles
     method: POST
   response:
-    body: '{"data":{"type":"roles","id":"e5ee2240-993d-11eb-9ceb-da7ad0900002","attributes":{"name":"Test-Delete_role_returns_OK_response-1617977669","created_at":"2021-04-09T14:14:29.456444+00:00","modified_at":"2021-04-09T14:14:29.456444+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"}]}}}}'
+    body: '{"data":{"type":"roles","id":"7119df5c-9b74-11eb-9d38-da7ad0900002","attributes":{"name":"Test-Delete_role_returns_OK_response-1618220998","created_at":"2021-04-12T09:49:58.095802+00:00","modified_at":"2021-04-12T09:49:58.095802+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"}]}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:29 GMT
+      - Mon, 12 Apr 2021 09:49:58 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
+      - dCmL/3rURV6BPeaqeP3Rxigq41m5CAb17XjrRE42uZ01zpr07HVhbL5/3TWMkvgu
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -52,9 +52,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "494"
+      - "434"
       X-Ratelimit-Reset:
-      - "31"
+      - "2"
     status: 200 OK
     code: 200
     duration: ""
@@ -69,12 +69,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5391368056321160401"
+      - "543619602556003712"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7590986283748514402"
-    url: https://api.datadoghq.com/api/v2/roles/e5ee2240-993d-11eb-9ceb-da7ad0900002
+      - "602964287231423848"
+    url: https://api.datadoghq.com/api/v2/roles/7119df5c-9b74-11eb-9d38-da7ad0900002
     method: DELETE
   response:
     body: ""
@@ -88,7 +88,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:29 GMT
+      - Mon, 12 Apr 2021 09:49:58 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -96,9 +96,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
+      - 25u1gDlL724DHllbjFT4BhOLorBTilh+aah2uWAUEjFC/+rjczJdiyWrV/HwLwe/
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -106,9 +106,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "493"
+      - "433"
       X-Ratelimit-Reset:
-      - "31"
+      - "2"
     status: 204 No Content
     code: 204
     duration: ""
@@ -123,15 +123,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6961274779051807358"
+      - "1154613537562341789"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "7590986283748514402"
-    url: https://api.datadoghq.com/api/v2/roles/e5ee2240-993d-11eb-9ceb-da7ad0900002
+      - "602964287231423848"
+    url: https://api.datadoghq.com/api/v2/roles/7119df5c-9b74-11eb-9d38-da7ad0900002
     method: DELETE
   response:
-    body: '{"errors": ["The role e5ee2240-993d-11eb-9ceb-da7ad0900002 does not exist
+    body: '{"errors": ["The role 7119df5c-9b74-11eb-9d38-da7ad0900002 does not exist
       not found"]}'
     headers:
       Cache-Control:
@@ -141,7 +141,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:29 GMT
+      - Mon, 12 Apr 2021 09:49:58 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -151,7 +151,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -159,9 +159,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "492"
+      - "432"
       X-Ratelimit-Reset:
-      - "31"
+      - "2"
     status: 404 Not Found
     code: 404
     duration: ""

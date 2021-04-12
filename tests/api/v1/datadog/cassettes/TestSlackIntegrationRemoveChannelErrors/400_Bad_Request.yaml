@@ -12,17 +12,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3620791360697758464"
+      - "1036596477678488454"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "297306479924983058"
-    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/Test-TestSlackIntegrationRemoveChannelErrors-400_Bad_Request-1617977938/channels/Test-TestSlackIntegrationRemoveChannelErrors-400_Bad_Request-1617977938
+      - "7253646851522490052"
+    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/Test-TestSlackIntegrationRemoveChannelErrors_400_Bad_Request-1618221239/channels/Test-TestSlackIntegrationRemoveChannelErrors_400_Bad_Request-1618221239
     method: DELETE
   response:
     body: "\n\n\n<!DOCTYPE html>\n<!--\n______  _______ _______ _______ ______   _____
       \  ______\n|     \\ |_____|    |    |_____| |     \\ |     | |  ____\n|_____/
-      |     |    |    |     | |_____/ |_____| |_____|\n\n\n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\n\n\n-->\n<html>\n
+      |     |    |    |     | |_____/ |_____| |_____|\n\n\n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\n\n\n-->\n<html>\n
       \   <head>\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
       \       <style>\n            @viewport {\n                width: device-width;\n
       \               initial-scale: 1;\n            }\n            body { padding:
@@ -32,13 +32,13 @@ interactions:
       \           }\n\n            img.mako_picture_dark {\n                filter:
       brightness(76%);\n            }\n        </style>\n        <title>\n          \n
       \ Error 400 | Datadog\n |\n        Datadog\n        </title>\n        <link
-      crossorigin=\"anonymous\" href=\"https://static.datadoghq.com/static/v/35.4276613/js/react-core.min.css\"
+      crossorigin=\"anonymous\" href=\"https://static.datadoghq.com/static/v/35.4287331/js/react-core.min.css\"
       media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n        \n        \n
       \       \n        \n    </head>\n    <body class=\"\n\">\n        \n\n\n\n<div
       class=\"error_page clearfix\">\n  <div class=\"error_img\">\n    <picture class=\"mako_picture\">\n
-      \     <img alt=\"Sad Datadog Logo\" class=\"mako_picture_light\" src=\"https://static.datadoghq.com/static/v/35.4276613/js/sad-bits.svg\"
+      \     <img alt=\"Sad Datadog Logo\" class=\"mako_picture_light\" src=\"https://static.datadoghq.com/static/v/35.4287331/js/sad-bits.svg\"
       width=\"276\" height=\"295\" />\n      <img alt=\"Sad Datadog Logo\" class=\"mako_picture_dark\"
-      src=\"https://static.datadoghq.com/static/v/35.4276613/js/sad-bits_reversed.svg\"
+      src=\"https://static.datadoghq.com/static/v/35.4287331/js/sad-bits_reversed.svg\"
       width=\"276\" height=\"295\" />\n    </picture>\n  </div>\n  <div class=\"error_msg\">\n
       \   <p class=\"text-contrast-80 text-displayface\" style=\"margin: 0 0 0; font-size:
       96px; font-weight: bold; line-height: 1;\">Arf.</p>\n    <h1 style=\"font-size:
@@ -47,7 +47,7 @@ interactions:
       \     <li><a href=\"https://docs.datadoghq.com/help/\">Datadog Help &rarr;</a></li>\n
       \     <li><a href=\"/account/settings\">Datadog Setup Basics &rarr;</a></li>\n
       \   </ul>\n  </div>\n</div>\n\n<!--page--></div>\n\n\n\n\n\n        <script>\n
-      \           window.DD_version=\"35.4276613\";\n        </script>\n\n        \n\n<!--
+      \           window.DD_version=\"35.4287331\";\n        </script>\n\n        \n\n<!--
       DD JS -->\n\n<div style=\"display: none;\"><input id=\"config-init\" name=\"config-init\"
       type=\"hidden\" value=\"{&#34;browser_email.domain&#34;: &#34;synthetics.dtdg.co&#34;,
       &#34;watchdog.default_shadow_pipeline&#34;: null, &#34;alerting.count_over_count_validation_min_id&#34;:
@@ -224,8 +224,8 @@ interactions:
       &#34;networks_in_apm&#34;, &#34;k9_projections_enabled&#34;, &#34;azure_app_service_environment&#34;,
       &#34;k9_attrs_additional_dashboard_links&#34;, &#34;amazon_kinesis&#34;, &#34;google_cloud_router&#34;,
       &#34;events_explorer_saved_views&#34;, &#34;amazon_ec2_spot&#34;, &#34;customer_extend_trial&#34;,
-      &#34;amazon_cloudtrail&#34;, &#34;azure_liftr_ui&#34;, &#34;log_multi_monitors_release&#34;,
-      &#34;castle_integration_js&#34;, &#34;watchdog_generate_infra_partitions&#34;,
+      &#34;amazon_cloudtrail&#34;, &#34;azure_liftr_ui&#34;, &#34;monitor_slo_alerts&#34;,
+      &#34;log_multi_monitors_release&#34;, &#34;castle_integration_js&#34;, &#34;watchdog_generate_infra_partitions&#34;,
       &#34;k9_rule_aggregation&#34;, &#34;trace_enable_driveline&#34;, &#34;watchdog_generate_s3_insights&#34;,
       &#34;trace_runtime_metrics&#34;, &#34;amazon_mediatailor&#34;, &#34;as_count_validation&#34;,
       &#34;limit_monitor_graph_series&#34;, &#34;google_cloud_storage&#34;, &#34;amazon_firehose&#34;,
@@ -250,8 +250,8 @@ interactions:
       &#34;orchestrator_index_es_retry&#34;, &#34;msl_widget_windowing&#34;, &#34;amazon_ops_works&#34;,
       &#34;query_cache&#34;, &#34;trace_distributions_update_summary_group_bys&#34;,
       &#34;downtime_timezone&#34;, &#34;aws_crawl_times&#34;, &#34;monitor_rbac_read_roles&#34;,
-      &#34;render_hm_in_canvas&#34;, &#34;marlo_custom_zstd_with_trace_id&#34;, &#34;redisdb&#34;,
-      &#34;event_timeline&#34;, &#34;amazon_route53&#34;, &#34;statuswidget&#34;,
+      &#34;render_hm_in_canvas&#34;, &#34;slo_correction&#34;, &#34;marlo_custom_zstd_with_trace_id&#34;,
+      &#34;redisdb&#34;, &#34;event_timeline&#34;, &#34;amazon_route53&#34;, &#34;statuswidget&#34;,
       &#34;alibaba_cloud&#34;, &#34;zendesk_chat&#34;, &#34;azure_app_service_plan&#34;,
       &#34;amazon_codedeploy&#34;, &#34;google_stackdriver_logging&#34;, &#34;k9_suppression_list&#34;,
       &#34;network_saved_views&#34;, &#34;google_app_engine&#34;, &#34;cloud_functions_query_logs_for_logs_ingestion&#34;,
@@ -286,7 +286,7 @@ interactions:
       style=\"display: none;\"><input id=\"castleappid\" name=\"castleAppId\" type=\"hidden\"
       value=\"389912786276918\" /></div>\n<div style=\"display: none;\"><input id=\"castlerequestsignature\"
       name=\"castleRequestSignature\" type=\"hidden\" value=\"c8247eb245c6414c737020afec747d5af4b06c0168ca2fab50ed78f5deaaa84a\"
-      /></div>\n\n    <script crossorigin=\"anonymous\" src=\"https://static.datadoghq.com/static/v/35.4276613/js/react-core.min.js\"
+      /></div>\n\n    <script crossorigin=\"anonymous\" src=\"https://static.datadoghq.com/static/v/35.4287331/js/react-core.min.js\"
       type=\"text/javascript\"></script>\n\n\n    <script>DD.initApp();</script>\n\n
       \       \n\n    </body>\n</html>\n"
     headers:
@@ -295,11 +295,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - "26893"
+      - "27393"
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Fri, 09 Apr 2021 14:18:58 GMT
+      - Mon, 12 Apr 2021 09:53:59 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -307,7 +307,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

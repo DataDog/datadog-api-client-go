@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"client_id":"testc7f6-1234-5678-9101-tt1617977603","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"Test-TestAzureCreate-1617977603"}
+      {"client_id":"testc7f6-1234-5678-9101-tt1618220910","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"Test-TestAzureCreate-1618220910"}
     form: {}
     headers:
       Accept:
@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7078252250758612604"
+      - "6509507780646715050"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4567089527402496566"
+      - "470110964987764006"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: POST
   response:
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:24 GMT
+      - Mon, 12 Apr 2021 09:48:31 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 5gfwVh/5HZ+AnGd/Di93w3NEWC6KMHT9KzmHEiRJmNdOjBtAsbOcgVFyqEChw71h
+      - /L+SFFO+m1pPY+hRCpk5325fvfrNl0KmiquUNJolBN/5hu3HIwflqjZSbJ6NxDFG
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -52,7 +52,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"client_id":"testc7f6-1234-5678-9101-tt1617977603","tenant_name":"Test-TestAzureCreate-1617977603"}
+      {"client_id":"testc7f6-1234-5678-9101-tt1618220910","tenant_name":"Test-TestAzureCreate-1618220910"}
     form: {}
     headers:
       Accept:
@@ -64,11 +64,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2265648893706497662"
+      - "6828367350441633452"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4567089527402496566"
+      - "470110964987764006"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: DELETE
   response:
@@ -83,7 +83,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:13:24 GMT
+      - Mon, 12 Apr 2021 09:48:32 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -91,9 +91,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
+      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

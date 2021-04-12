@@ -12,15 +12,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1443029842241639274"
+      - "1240751129926142784"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1029355915226169120"
-    url: https://api.datadoghq.com/api/v1/host/Test-TestHostsUnmuteErrors-400_Bad_Request-1617977665/unmute
+      - "7612486400322774739"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHostsUnmuteErrors_400_Bad_Request-1618220972/unmute
     method: POST
   response:
-    body: '{"errors": ["host:Test-TestHostsUnmuteErrors-400_Bad_Request-1617977665
+    body: '{"errors": ["host:Test-TestHostsUnmuteErrors_400_Bad_Request-1618220972
       is not muted."]}'
     headers:
       Cache-Control:
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:25 GMT
+      - Mon, 12 Apr 2021 09:49:32 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -40,7 +40,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

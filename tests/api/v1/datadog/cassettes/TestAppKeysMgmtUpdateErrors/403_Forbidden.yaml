@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2183825810219142331"
+      - "5270227962454694028"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6270507779907213116"
+      - "6078429792800182714"
     url: https://api.datadoghq.com/api/v1/application_key/whatever
     method: PUT
   response:
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:17:06 GMT
+      - Mon, 12 Apr 2021 09:52:32 GMT
       Via:
       - haproxy
     status: 403 Forbidden

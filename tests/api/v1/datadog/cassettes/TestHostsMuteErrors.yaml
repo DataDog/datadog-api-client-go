@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4038039115705874700"
+      - "8140234333968291009"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "950467920436759673"
-    url: https://api.datadoghq.com/api/v1/host/Test-TestHostsMuteErrors-1617977664/mute
+      - "4103332164446682344"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHostsMuteErrors-1618220970/mute
     method: POST
   response:
-    body: '{"action":"Muted","downtime_id":1213944326,"hostname":"Test-TestHostsMuteErrors-1617977664"}'
+    body: '{"action":"Muted","downtime_id":1217084957,"hostname":"Test-TestHostsMuteErrors-1618220970"}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:24 GMT
+      - Mon, 12 Apr 2021 09:49:30 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - mNzaoDhdDKO7t4QSrAe5X7pHd0bJND187D+vRbwoluXouE2m1UaQQX0RGCvRpLVE
+      - 25u1gDlL724DHllbjFT4BhOLorBTilh+aah2uWAUEjFC/+rjczJdiyWrV/HwLwe/
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -61,15 +61,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6352418721144535727"
+      - "7971305955890213767"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "950467920436759673"
-    url: https://api.datadoghq.com/api/v1/host/Test-TestHostsMuteErrors-1617977664/unmute
+      - "4103332164446682344"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHostsMuteErrors-1618220970/unmute
     method: POST
   response:
-    body: '{"action":"Unmuted","downtime_id":1213944326,"hostname":"Test-TestHostsMuteErrors-1617977664"}'
+    body: '{"action":"Unmuted","downtime_id":1217084957,"hostname":"Test-TestHostsMuteErrors-1618220970"}'
     headers:
       Cache-Control:
       - no-cache
@@ -78,7 +78,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:14:24 GMT
+      - Mon, 12 Apr 2021 09:49:32 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -88,9 +88,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 2328yjLSqI4XmR1pVqrPRR/SFcQsbafjEpPmZx7/3PfxUK1nJQQsX+wrMelyVyj+
+      - tpRCH6w417YjBovRJ8VmtuXmNONVYiRp2c8d2AxjPdGBn8PCtgG4vAztrx3qUZAN
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

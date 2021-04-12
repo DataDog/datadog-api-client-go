@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"description":"Make sure we don't have too many failed HTTP responses.","name":"Test-TestSLOHistoryGetErrors-1617977916","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"tags":["app:httpd"],"thresholds":[{"target":95,"timeframe":"7d","warning":98}],"type":"metric"}
+      {"description":"Make sure we don't have too many failed HTTP responses.","name":"Test-TestSLOHistoryGetErrors-1618221236","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"tags":["app:httpd"],"thresholds":[{"target":95,"timeframe":"7d","warning":98}],"type":"metric"}
     form: {}
     headers:
       Accept:
@@ -15,16 +15,16 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4481426022983098769"
+      - "6613700978002786312"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5184756997320737451"
+      - "6993440312228467011"
     url: https://api.datadoghq.com/api/v1/slo
     method: POST
   response:
     body: '{"data":[{"description":"Make sure we don''t have too many failed HTTP
-      responses.","monitor_tags":[],"creator":{"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"thresholds":[{"warning":98.0,"warning_display":"98.","target":95.0,"target_display":"95.","timeframe":"7d"}],"type_id":1,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"id":"f8602af5baf85a1094065ed57de26566","name":"Test-TestSLOHistoryGetErrors-1617977916","created_at":1617977916,"tags":["app:httpd"],"modified_at":1617977916,"type":"metric"}],"error":null}'
+      responses.","monitor_tags":[],"creator":{"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"thresholds":[{"warning":98.0,"warning_display":"98.","target":95.0,"target_display":"95.","timeframe":"7d"}],"type_id":1,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"id":"c61ec4bd0ce457c8b9a1cee6791b55d3","name":"Test-TestSLOHistoryGetErrors-1618221236","created_at":1618221236,"tags":["app:httpd"],"modified_at":1618221236,"type":"metric"}],"error":null}'
     headers:
       Cache-Control:
       - no-cache
@@ -33,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:36 GMT
+      - Mon, 12 Apr 2021 09:53:56 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,7 +43,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -53,7 +53,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "494"
       X-Ratelimit-Reset:
-      - "24"
+      - "4"
     status: 200 OK
     code: 200
     duration: ""
@@ -68,15 +68,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4832574209370321240"
+      - "6691715470595264142"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5184756997320737451"
-    url: https://api.datadoghq.com/api/v1/slo/f8602af5baf85a1094065ed57de26566
+      - "6993440312228467011"
+    url: https://api.datadoghq.com/api/v1/slo/c61ec4bd0ce457c8b9a1cee6791b55d3
     method: DELETE
   response:
-    body: '{"data":["f8602af5baf85a1094065ed57de26566"],"error":null}'
+    body: '{"data":["c61ec4bd0ce457c8b9a1cee6791b55d3"],"error":null}'
     headers:
       Cache-Control:
       - no-cache
@@ -85,7 +85,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:55 GMT
+      - Mon, 12 Apr 2021 09:53:57 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -95,7 +95,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -103,9 +103,9 @@ interactions:
       X-Ratelimit-Period:
       - "10"
       X-Ratelimit-Remaining:
-      - "2999"
+      - "2992"
       X-Ratelimit-Reset:
-      - "5"
+      - "4"
     status: 200 OK
     code: 200
     duration: ""

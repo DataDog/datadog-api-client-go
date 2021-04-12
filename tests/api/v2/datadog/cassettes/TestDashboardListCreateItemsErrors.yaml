@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"name":"Test-TestDashboardListCreateItemsErrors-1617977576"}
+      {"name":"Test-TestDashboardListCreateItemsErrors-1618220882"}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1241530816357664547"
+      - "7920923427677124081"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1241530816357664547"
+      - "7920923427677124081"
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual
     method: POST
   response:
-    body: '{"is_favorite":false,"name":"Test-TestDashboardListCreateItemsErrors-1617977576","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2021-04-09T14:12:56.343964+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2021-04-09T14:12:56.343981+00:00","id":191097}'
+    body: '{"is_favorite":false,"name":"Test-TestDashboardListCreateItemsErrors-1618220882","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2021-04-12T09:48:02.892517+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2021-04-12T09:48:02.892534+00:00","id":191749}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:12:56 GMT
+      - Mon, 12 Apr 2021 09:48:02 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 5gfwVh/5HZ+AnGd/Di93w3NEWC6KMHT9KzmHEiRJmNdOjBtAsbOcgVFyqEChw71h
+      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -61,15 +61,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8204406095374152874"
+      - "5661957823241830418"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8204406095374152874"
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/191097
+      - "5661957823241830418"
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/191749
     method: DELETE
   response:
-    body: '{"deleted_dashboard_list_id":191097}'
+    body: '{"deleted_dashboard_list_id":191749}'
     headers:
       Cache-Control:
       - no-cache
@@ -78,7 +78,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:12:56 GMT
+      - Mon, 12 Apr 2021 09:48:03 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -88,9 +88,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
+      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
       X-Dd-Version:
-      - "35.4276543"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

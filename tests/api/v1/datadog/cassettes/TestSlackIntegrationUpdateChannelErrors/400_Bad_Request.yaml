@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3059298122785073145"
+      - "1054084159129992111"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2694313645750735426"
-    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/Test-TestSlackIntegrationUpdateChannelErrors-400_Bad_Request-1617977938/channels/Test-TestSlackIntegrationUpdateChannelErrors-400_Bad_Request-1617977938
+      - "4863911753452182865"
+    url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/Test-TestSlackIntegrationUpdateChannelErrors_400_Bad_Request-1618221239/channels/Test-TestSlackIntegrationUpdateChannelErrors_400_Bad_Request-1618221239
     method: PATCH
   response:
-    body: '{"errors": ["Account is not configured: Test-TestSlackIntegrationUpdateChannelErrors-400_Bad_Request-1617977938"]}'
+    body: '{"errors": ["Account is not configured: Test-TestSlackIntegrationUpdateChannelErrors_400_Bad_Request-1618221239"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:18:58 GMT
+      - Mon, 12 Apr 2021 09:53:59 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

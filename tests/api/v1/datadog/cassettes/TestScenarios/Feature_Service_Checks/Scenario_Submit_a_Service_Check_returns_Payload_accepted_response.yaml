@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      [{"check":"app.ok","host_name":"host","status":0,"tags":["test:TestSubmitaServiceCheckreturnsPayloadacceptedresponse1617978054"]}]
+      [{"check":"app.ok","host_name":"host","status":0,"tags":["test:TestSubmitaServiceCheckreturnsPayloadacceptedresponse1618221317"]}]
     form: {}
     headers:
       Accept:
@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4061835414174632622"
+      - "9120446893942639079"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1643387339868919844"
+      - "5337774800753909960"
     url: https://api.datadoghq.com/api/v1/check_run
     method: POST
   response:
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - text/json
       Date:
-      - Fri, 09 Apr 2021 14:20:54 GMT
+      - Mon, 12 Apr 2021 09:55:17 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:

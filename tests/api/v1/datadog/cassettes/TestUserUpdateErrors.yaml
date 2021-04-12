@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"access_role":"ro","email":"test-testuserupdateerrors-1617978048@integration-tests-accnt-for-sdk-ci.com","handle":"test-testuserupdateerrors-1617978048@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserUpdateErrors-1617978048"}
+      {"access_role":"ro","email":"test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com","handle":"test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserUpdateErrors-1618221311"}
     form: {}
     headers:
       Accept:
@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4667644057312677284"
+      - "4572808800988101792"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2179456691921896396"
+      - "2548566477759609361"
     url: https://api.datadoghq.com/api/v1/user
     method: POST
   response:
-    body: '{"user":{"disabled":false,"handle":"test-testuserupdateerrors-1617978048@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserUpdateErrors-1617978048","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"test-testuserupdateerrors-1617978048@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/7dd6c14940d0fa0b00b0c1566ededb8c?s=48&d=retro"}}'
+    body: '{"user":{"disabled":false,"handle":"test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserUpdateErrors-1618221311","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/830b83ab7ed07d15a8028434db5cc8ed?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:20:49 GMT
+      - Mon, 12 Apr 2021 09:55:12 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - mNzaoDhdDKO7t4QSrAe5X7pHd0bJND187D+vRbwoluXouE2m1UaQQX0RGCvRpLVE
+      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -61,15 +61,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6833004342633868681"
+      - "811937588064523899"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2179456691921896396"
-    url: https://api.datadoghq.com/api/v1/user/test-testuserupdateerrors-1617978048@integration-tests-accnt-for-sdk-ci.com
+      - "2548566477759609361"
+    url: https://api.datadoghq.com/api/v1/user/test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com
     method: DELETE
   response:
-    body: '{"message":"User test-testuserupdateerrors-1617978048@integration-tests-accnt-for-sdk-ci.com
+    body: '{"message":"User test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com
       disabled"}'
     headers:
       Cache-Control:
@@ -79,7 +79,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Apr 2021 14:20:50 GMT
+      - Mon, 12 Apr 2021 09:55:13 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -89,9 +89,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
+      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
       X-Dd-Version:
-      - "35.4276613"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
