@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ## GetSLOHistory
 
-> SLOHistoryResponse GetSLOHistory(ctx, sloId).FromTs(fromTs).ToTs(toTs).Execute()
+> SLOHistoryResponse GetSLOHistory(ctx, sloId).FromTs(fromTs).ToTs(toTs).Target(target).Execute()
 
 Get an SLO's history
 
@@ -407,12 +407,13 @@ func main() {
     sloId := "sloId_example" // string | The ID of the service level objective object.
     fromTs := int64(789) // int64 | The `from` timestamp for the query window in epoch seconds.
     toTs := int64(789) // int64 | The `to` timestamp for the query window in epoch seconds.
+    target := float64(1.2) // float64 | The SLO target. If `target` is passed in, the response will include the error budget that remains. (optional)
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetSLOHistory", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServiceLevelObjectivesApi.GetSLOHistory(ctx, sloId).FromTs(fromTs).ToTs(toTs).Execute()
+    resp, r, err := apiClient.ServiceLevelObjectivesApi.GetSLOHistory(ctx, sloId).FromTs(fromTs).ToTs(toTs).Target(target).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLOHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -441,6 +442,7 @@ Name | Type | Description  | Notes
 
  **fromTs** | **int64** | The &#x60;from&#x60; timestamp for the query window in epoch seconds. | 
  **toTs** | **int64** | The &#x60;to&#x60; timestamp for the query window in epoch seconds. | 
+ **target** | **float64** | The SLO target. If &#x60;target&#x60; is passed in, the response will include the error budget that remains. | 
 
 ### Return type
 

@@ -870,6 +870,7 @@ type ApiGetSLOHistoryRequest struct {
 	sloId      string
 	fromTs     *int64
 	toTs       *int64
+	target     *float64
 }
 
 func (r ApiGetSLOHistoryRequest) FromTs(fromTs int64) ApiGetSLOHistoryRequest {
@@ -878,6 +879,10 @@ func (r ApiGetSLOHistoryRequest) FromTs(fromTs int64) ApiGetSLOHistoryRequest {
 }
 func (r ApiGetSLOHistoryRequest) ToTs(toTs int64) ApiGetSLOHistoryRequest {
 	r.toTs = &toTs
+	return r
+}
+func (r ApiGetSLOHistoryRequest) Target(target float64) ApiGetSLOHistoryRequest {
+	r.target = &target
 	return r
 }
 
@@ -948,6 +953,9 @@ func (a *ServiceLevelObjectivesApiService) GetSLOHistoryExecute(r ApiGetSLOHisto
 
 	localVarQueryParams.Add("from_ts", parameterToString(*r.fromTs, ""))
 	localVarQueryParams.Add("to_ts", parameterToString(*r.toTs, ""))
+	if r.target != nil {
+		localVarQueryParams.Add("target", parameterToString(*r.target, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
