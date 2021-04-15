@@ -72,7 +72,7 @@ func TestMetrics(t *testing.T) {
 	}
 
 	// Test query
-	queryResult, httpresp, err := api.QueryMetrics(ctx, now-100, now-100, testQuery)
+	queryResult, httpresp, err := api.QueryMetrics(ctx, now-100, now+100, testQuery)
 	if err != nil {
 		t.Errorf("Error making query %s: Response %s: %v", testQuery, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
