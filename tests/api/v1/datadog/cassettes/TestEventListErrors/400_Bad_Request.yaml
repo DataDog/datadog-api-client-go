@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - ListEvents
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1223447518507606178"
+      - "311906490816006355"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6828225313764750264"
+      - "6699250664609115845"
     url: https://api.datadoghq.com/api/v1/events?end=123&start=345
     method: GET
   response:
@@ -28,14 +28,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "58"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:09 GMT
-      Dd-Pool:
-      - dogweb_events
+      - Mon, 12 Apr 2021 09:49:14 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,9 +39,17 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "600"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "598"
+      X-Ratelimit-Reset:
+      - "46"
     status: 400 Bad Request
     code: 400
     duration: ""

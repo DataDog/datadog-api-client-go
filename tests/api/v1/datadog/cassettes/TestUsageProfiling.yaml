@@ -10,17 +10,17 @@ interactions:
       Dd-Operation-Id:
       - GetUsageProfiling
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.8+dev (go go1.14.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2022451316936194523"
+      - "8249554605210489347"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5314030705499113747"
-    url: https://api.datadoghq.com/api/v1/usage/profiling?end_hr=2020-07-13T00%3A00%3A00Z&start_hr=2020-07-12T00%3A00%3A00Z
+      - "2621345659150275648"
+    url: https://api.datadoghq.com/api/v1/usage/profiling?end_hr=2021-03-13T00%3A00%3A00Z&start_hr=2021-03-12T00%3A00%3A00Z
     method: GET
   response:
-    body: '{"usage":[{"host_count":null,"hour":"2020-07-12T00:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T01:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T02:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T03:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T04:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T05:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T06:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T07:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T08:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T09:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T10:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T11:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T12:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T13:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T14:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T15:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T16:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T17:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T18:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T19:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T20:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T21:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T22:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2020-07-12T23:00:00+00:00","avg_container_agent_count":null}]}'
+    body: '{"usage":[{"host_count":null,"hour":"2021-03-12T00:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T01:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T02:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T03:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T04:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T05:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T06:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T07:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T08:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T09:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T10:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T11:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T12:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T13:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T14:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T15:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T16:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T17:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T18:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T19:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T20:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T21:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T22:00:00+00:00","avg_container_agent_count":null},{"host_count":null,"hour":"2021-03-12T23:00:00+00:00","avg_container_agent_count":null}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -29,14 +29,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Aug 2020 19:39:18 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:54:58 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Wed, 26-Aug-2020 19:39:18 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -44,9 +39,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 2V6J6bfi8Lp+2UjnPdTvcW5IjbRGxJrhStYZW/ACt/za6xfDiK/Y5IuDyUadsRtA
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
       X-Dd-Version:
-      - "35.2903641"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,9 +49,9 @@ interactions:
       X-Ratelimit-Period:
       - "3600"
       X-Ratelimit-Remaining:
-      - "399"
+      - "219"
       X-Ratelimit-Reset:
-      - "1242"
+      - "302"
     status: 200 OK
     code: 200
     duration: ""

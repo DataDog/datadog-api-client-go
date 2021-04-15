@@ -371,14 +371,14 @@ func SetCtx(ctx gobdd.Context, value context.Context) {
 func SetFixtureData(ctx gobdd.Context) {
 	ct, _ := ctx.Get(gobdd.TestingTKey{})
 	cctx := GetCtx(ctx)
-	testName := strings.Join(strings.Split(ct.(*testing.T).Name(), "/")[1:3], "/")
+	testName := strings.SplitN(strings.Split(ct.(*testing.T).Name(), "/")[2], "_", 2)[1]
 	unique := WithUniqueSurrounding(cctx, testName)
 	alnum := regexp.MustCompile(`[^A-Za-z0-9]+`)
 	data := GetData(ctx)
 	data["unique"] = unique
 	data["unique_lower"] = strings.ToLower(unique)
 	data["unique_alnum"] = string(alnum.ReplaceAll([]byte(unique), []byte("")))
-	data["unique_lower_alnum"] = strings.ToLower(string(alnum.ReplaceAll([]byte(unique), []byte(""))))
+	data["unique_lower_alnum"] = strings.ToLower(data["unique_alnum"].(string))
 	data["now_ts"] = ClockFromContext(cctx).Now().Unix()
 	data["now_iso"] = ClockFromContext(cctx).Now().Format(time.RFC3339)
 	data["hour_later_ts"] = ClockFromContext(cctx).Now().Add(time.Hour).Unix()

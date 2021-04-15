@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - UnmuteHost
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6231691637795681468"
+      - "5122482839431173937"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "6182508693193709036"
-    url: https://api.datadoghq.com/api/v1/host/go-TestHostsUnmuteErrors-403_Forbidden-local-1589290291/unmute
+      - "7612486400322774739"
+    url: https://api.datadoghq.com/api/v1/host/Test-TestHostsUnmuteErrors_403_Forbidden-1618220972/unmute
     method: POST
   response:
     body: |
@@ -27,12 +27,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:31 GMT
+      - Mon, 12 Apr 2021 09:49:32 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

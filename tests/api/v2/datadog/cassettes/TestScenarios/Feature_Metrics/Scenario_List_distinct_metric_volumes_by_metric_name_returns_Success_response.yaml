@@ -1,0 +1,168 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984"]},"id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984","type":"manage_tags"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateTagConfiguration
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "204978568552655418"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2405871883058974433"
+    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984/tags
+    method: POST
+  response:
+    body: '{"data":{"type":"manage_tags","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984","attributes":{"tags":["datacenter","TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984","app"],"include_percentiles":false,"created_at":"2021-04-12T09:49:44.297844+00:00","updated_at":"2021-04-12T09:49:44.297844+00:00","metric_type":"distribution"}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "384"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 09:49:44 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "50"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "44"
+      X-Ratelimit-Reset:
+      - "16"
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListVolumesByMetricName
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "855696743051728361"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2405871883058974433"
+    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984/volumes
+    method: GET
+  response:
+    body: '{"data":{"type":"metric_volumes","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984","attributes":{"indexed_volume":0,"ingested_volume":0}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 09:49:44 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 5gfwVh/5HZ+AnGd/Di93w3NEWC6KMHT9KzmHEiRJmNdOjBtAsbOcgVFyqEChw71h
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "600"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "587"
+      X-Ratelimit-Reset:
+      - "616"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteTagConfiguration
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6840425901347284985"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "2405871883058974433"
+    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984/tags
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 09:49:44 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - nLnnBNvlCFDECRnZvzDb0z4sAO35G+IMidcAs8vrCKyjvsKWE8Yd9S3n6OjZ1qRN
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "50"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "43"
+      X-Ratelimit-Reset:
+      - "16"
+    status: 204 No Content
+    code: 204
+    duration: ""

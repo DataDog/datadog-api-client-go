@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateMetricMetadata
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6128232086445097386"
+      - "6717128327296851441"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8188437642866257725"
+      - "1845702249747177445"
     url: https://api.datadoghq.com/api/v1/metrics/ametric
     method: PUT
   response:
@@ -30,12 +30,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:32:41 GMT
+      - Mon, 12 Apr 2021 09:53:36 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

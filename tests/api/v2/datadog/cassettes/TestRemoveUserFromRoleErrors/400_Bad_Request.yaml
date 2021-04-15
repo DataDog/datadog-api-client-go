@@ -13,14 +13,14 @@ interactions:
       Dd-Operation-Id:
       - RemoveUserFromRole
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.9+dev (go go1.14.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8703097470987595709"
+      - "6334959449492945036"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "319727165239793684"
-    url: https://api.datadoghq.com/api/v2/roles/41f3c9c0-fc16-11ea-aeba-332086f4fa43/users
+      - "2362653610439259779"
+    url: https://api.datadoghq.com/api/v2/roles/5beb9a26-9b74-11eb-9d38-da7ad0900002/users
     method: DELETE
   response:
     body: '{"errors": ["API input validation failed: Invalid type. Expected \"users\"."]}'
@@ -34,9 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 21 Sep 2020 14:25:12 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:49:23 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.3067471"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -52,9 +50,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "497"
+      - "442"
       X-Ratelimit-Reset:
-      - "48"
+      - "37"
     status: 400 Bad Request
     code: 400
     duration: ""

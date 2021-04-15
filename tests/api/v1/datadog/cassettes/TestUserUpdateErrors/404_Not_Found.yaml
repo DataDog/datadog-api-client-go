@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateUser
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.5+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7154961528289439507"
+      - "2229263613154744866"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8309117265434712352"
+      - "2548566477759609361"
     url: https://api.datadoghq.com/api/v1/user/notahandle
     method: PUT
   response:
@@ -32,9 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 12 Jun 2020 09:33:10 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:55:13 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2613383"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

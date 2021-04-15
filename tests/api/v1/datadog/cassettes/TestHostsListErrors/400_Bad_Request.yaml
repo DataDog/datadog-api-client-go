@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - ListHosts
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "769475194147308847"
+      - "2822023245595987201"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3601872465153190254"
+      - "1251099119347346776"
     url: https://api.datadoghq.com/api/v1/hosts?count=-1
     method: GET
   response:
@@ -28,14 +28,10 @@ interactions:
       - keep-alive
       Content-Length:
       - "67"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:28 GMT
-      Dd-Pool:
-      - dogweb_query
+      - Mon, 12 Apr 2021 09:49:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,7 +39,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2492943"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

@@ -208,8 +208,8 @@ func (r ApiDeleteSLOCorrectionRequest) Execute() (*_nethttp.Response, error) {
 }
 
 /*
- * DeleteSLOCorrection Delete an SLO Correction
- * Permanently delete the specified SLO Correction object
+ * DeleteSLOCorrection Delete an SLO correction
+ * Permanently delete the specified SLO correction object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sloCorrectionId The ID of the SLO correction object
  * @return ApiDeleteSLOCorrectionRequest
@@ -361,7 +361,7 @@ func (r ApiGetSLOCorrectionRequest) Execute() (SLOCorrectionResponse, *_nethttp.
 
 /*
  * GetSLOCorrection Get an SLO correction for an SLO
- * Get an SLO Correction
+ * Get an SLO correction
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sloCorrectionId The ID of the SLO correction object
  * @return ApiGetSLOCorrectionRequest
@@ -523,7 +523,7 @@ func (r ApiListSLOCorrectionRequest) Execute() (SLOCorrectionListResponse, *_net
 
 /*
  * ListSLOCorrection Get all SLO corrections
- * Get all Service Level Objective Corrections
+ * Get all Service Level Objective corrections
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiListSLOCorrectionRequest
  */
@@ -678,7 +678,7 @@ func (r ApiUpdateSLOCorrectionRequest) Execute() (SLOCorrectionResponse, *_netht
 }
 
 /*
- * UpdateSLOCorrection Update an SLO Correction
+ * UpdateSLOCorrection Update an SLO correction
  * Update the specified SLO correction object object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sloCorrectionId The ID of the SLO correction object

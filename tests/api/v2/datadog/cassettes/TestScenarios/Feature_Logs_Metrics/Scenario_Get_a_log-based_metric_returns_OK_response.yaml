@@ -1,0 +1,174 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"filter":{"query":"source:Test-Get_a_log_based_metric_returns_OK_response-1618223143"}},"id":"Test-Get_a_log_based_metric_returns_OK_response-1618223143","type":"logs_metrics"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateLogsMetric
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1169800249179936656"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "5248337739859485666"
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics
+    method: POST
+  response:
+    body: '{"data":{"id":"Test_Get_a_log_based_metric_returns_OK_response_1618223143","attributes":{"filter":{"query":"source:Test-Get_a_log_based_metric_returns_OK_response-1618223143"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 12 Apr 2021 10:25:43 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
+      X-Dd-Version:
+      - "35.4287679"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "100"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "70"
+      X-Ratelimit-Reset:
+      - "2057"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - GetLogsMetric
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1697372877367766696"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "5248337739859485666"
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Get_a_log_based_metric_returns_OK_response_1618223143
+    method: GET
+  response:
+    body: '{"data":{"id":"Test_Get_a_log_based_metric_returns_OK_response_1618223143","attributes":{"filter":{"query":"source:Test-Get_a_log_based_metric_returns_OK_response-1618223143"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 12 Apr 2021 10:25:43 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
+      X-Dd-Version:
+      - "35.4287679"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "5000"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "4995"
+      X-Ratelimit-Reset:
+      - "2057"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteLogsMetric
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4686474166192680549"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "5248337739859485666"
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Get_a_log_based_metric_returns_OK_response_1618223143
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - "2"
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 12 Apr 2021 10:25:44 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
+      X-Dd-Version:
+      - "35.4287679"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "100"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "69"
+      X-Ratelimit-Reset:
+      - "2056"
+    status: 200 OK
+    code: 200
+    duration: ""

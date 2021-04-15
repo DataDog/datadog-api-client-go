@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"access_role":"ro","email":"go-testupdateuser-local-1591954310@integration-tests-accnt-for-sdk-ci.com","handle":"go-testupdateuser-local-1591954310@integration-tests-accnt-for-sdk-ci.com","name":"go-TestUpdateUser-local-1591954310"}
+      {"access_role":"ro","email":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","handle":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUpdateUser-1618221308"}
     form: {}
     headers:
       Accept:
@@ -13,17 +13,17 @@ interactions:
       Dd-Operation-Id:
       - CreateUser
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.5+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2330466989396688390"
+      - "8174358851450739011"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1010557644724395335"
+      - "5833156510141275070"
     url: https://api.datadoghq.com/api/v1/user
     method: POST
   response:
-    body: '{"user":{"disabled":false,"handle":"go-testupdateuser-local-1591954310@integration-tests-accnt-for-sdk-ci.com","name":"go-TestUpdateUser-local-1591954310","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"go-testupdateuser-local-1591954310@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/284da4e9b48ced4731a3f1ff1a41f6d2?s=48&d=retro"}}'
+    body: '{"user":{"disabled":false,"handle":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUpdateUser-1618221308","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/b1eb0d52dd414e5205f364ce922ff95a?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,14 +32,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 12 Jun 2020 09:31:51 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:55:09 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 19-Jun-2020 09:31:50 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -47,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - KKdI9UAf8fC5q7osIllxNui0A1CUm45w7mZBz+tu6Vlp/ga+Q6ZXvY0JoJlUBVi+
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
       X-Dd-Version:
-      - "35.2613383"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -57,7 +52,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"access_role":"st","disabled":true,"name":"go-TestUpdateUser-local-1591954310"}
+      {"access_role":"st","disabled":true,"name":"Test-TestUpdateUser-1618221308"}
     form: {}
     headers:
       Accept:
@@ -67,17 +62,17 @@ interactions:
       Dd-Operation-Id:
       - UpdateUser
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.5+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8617319974326285758"
+      - "573757718683632249"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1010557644724395335"
-    url: https://api.datadoghq.com/api/v1/user/go-testupdateuser-local-1591954310@integration-tests-accnt-for-sdk-ci.com
+      - "5833156510141275070"
+    url: https://api.datadoghq.com/api/v1/user/test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com
     method: PUT
   response:
-    body: '{"user":{"disabled":true,"handle":"go-testupdateuser-local-1591954310@integration-tests-accnt-for-sdk-ci.com","name":"go-TestUpdateUser-local-1591954310","title":null,"is_admin":false,"role":null,"access_role":"st","verified":false,"email":"go-testupdateuser-local-1591954310@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/284da4e9b48ced4731a3f1ff1a41f6d2?s=48&d=retro"}}'
+    body: '{"user":{"disabled":true,"handle":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUpdateUser-1618221308","title":null,"is_admin":false,"role":null,"access_role":"st","verified":false,"email":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/b1eb0d52dd414e5205f364ce922ff95a?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -86,14 +81,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 12 Jun 2020 09:31:51 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:55:09 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Fri, 19-Jun-2020 09:31:51 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -101,9 +91,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Jhz2Lh32XBCZ7PVSj7/lof8hXjgbtiexG4VIRWAEYHPFefqyYpXnVaeT62yBncrB
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
       X-Dd-Version:
-      - "35.2613383"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -114,18 +104,18 @@ interactions:
     form: {}
     headers:
       Accept:
-      - applcation/json
+      - application/json
       Dd-Operation-Id:
       - DisableUser
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.5+dev (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3902323357049250230"
+      - "7993688773084595647"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1010557644724395335"
-    url: https://api.datadoghq.com/api/v1/user/go-testupdateuser-local-1591954310@integration-tests-accnt-for-sdk-ci.com
+      - "5833156510141275070"
+    url: https://api.datadoghq.com/api/v1/user/test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com
     method: DELETE
   response:
     body: '{"errors": ["User is already disabled"]}'
@@ -139,9 +129,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 12 Jun 2020 09:31:52 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 12 Apr 2021 09:55:10 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -149,7 +137,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.2613383"
+      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

@@ -1,0 +1,171 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"filter":{"query":"source:Test-Delete_a_log_based_metric_returns_OK_response-1618223142"}},"id":"Test-Delete_a_log_based_metric_returns_OK_response-1618223142","type":"logs_metrics"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateLogsMetric
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "8806142831671821663"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4808507894749788290"
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics
+    method: POST
+  response:
+    body: '{"data":{"id":"Test_Delete_a_log_based_metric_returns_OK_response_1618223142","attributes":{"filter":{"query":"source:Test-Delete_a_log_based_metric_returns_OK_response-1618223142"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 12 Apr 2021 10:25:43 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - dCmL/3rURV6BPeaqeP3Rxigq41m5CAb17XjrRE42uZ01zpr07HVhbL5/3TWMkvgu
+      X-Dd-Version:
+      - "35.4287679"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "100"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "73"
+      X-Ratelimit-Reset:
+      - "2058"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteLogsMetric
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "69399621650144466"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4808507894749788290"
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Delete_a_log_based_metric_returns_OK_response_1618223142
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - "2"
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 12 Apr 2021 10:25:43 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - 2328yjLSqI4XmR1pVqrPRR/SFcQsbafjEpPmZx7/3PfxUK1nJQQsX+wrMelyVyj+
+      X-Dd-Version:
+      - "35.4287679"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "100"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "72"
+      X-Ratelimit-Reset:
+      - "2057"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteLogsMetric
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2845755215712444661"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "4808507894749788290"
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Delete_a_log_based_metric_returns_OK_response_1618223142
+    method: DELETE
+  response:
+    body: '{"errors":["not_found(Metric with name ''Test_Delete_a_log_based_metric_returns_OK_response_1618223142''
+      not found)"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 10:25:43 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.4287679"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "100"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "71"
+      X-Ratelimit-Reset:
+      - "2057"
+    status: 404 Not Found
+    code: 404
+    duration: ""

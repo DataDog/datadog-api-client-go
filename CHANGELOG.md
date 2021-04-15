@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 1.0.0-beta.19 / 2021-04-14
+
+* [Added] Add `reflow_type` property to dashboard object. See [#841](https://github.com/DataDog/datadog-api-client-go/pull/841).
+* [Added] Add security track and formulas and functions support for geomap dashboard widget. See [#837](https://github.com/DataDog/datadog-api-client-go/pull/837).
+* [Added] Generate intake endpoints. See [#834](https://github.com/DataDog/datadog-api-client-go/pull/834).
+* [Added] Add endpoint for listing all downtimes for the specified monitor. See [#828](https://github.com/DataDog/datadog-api-client-go/pull/828).
+* [Added] Add `modified_at` attribute to user response v2 schema. See [#817](https://github.com/DataDog/datadog-api-client-go/pull/817).
+* [Added] Add default environment loading in clients. See [#816](https://github.com/DataDog/datadog-api-client-go/pull/816).
+* [Added] Add `passed`, `noSavingResponseBody`, `noScreenshot`, and `disableCors` fields to Synthetics. See [#815](https://github.com/DataDog/datadog-api-client-go/pull/815).
+* [Added] Add compliance usage endpoint and compliance host statistics. See [#814](https://github.com/DataDog/datadog-api-client-go/pull/814).
+* [Added] Add tag filter options for `/api/v{1,2}/metrics`. See [#813](https://github.com/DataDog/datadog-api-client-go/pull/813).
+* [Added] Add usage fields for Heroku and OpenTelemetry. See [#810](https://github.com/DataDog/datadog-api-client-go/pull/810).
+* [Added] Add `global_time_target` field to SLO widget. See [#808](https://github.com/DataDog/datadog-api-client-go/pull/808).
+* [Added] Add method to export an API test in Synthetics. See [#807](https://github.com/DataDog/datadog-api-client-go/pull/807).
+* [Added] Add metadata to usage top average metrics response. See [#806](https://github.com/DataDog/datadog-api-client-go/pull/806).
+* [Added] Add median as valid aggregator for formulas and functions. See [#800](https://github.com/DataDog/datadog-api-client-go/pull/800).
+* [Fixed] Browser Test message required. See [#803](https://github.com/DataDog/datadog-api-client-go/pull/803).
+* [Changed] Return correct object in `GetBrowserTest` endpoint. See [#827](https://github.com/DataDog/datadog-api-client-go/pull/827).
+* [Changed] Add agent rules in security monitoring rules queries. See [#809](https://github.com/DataDog/datadog-api-client-go/pull/809).
+
 ## 1.0.0-beta.18 / 2021-03-22
 
 * [Added] Add `legend_layout` and `legend_columns` to timeseries widget definition. See [#791](https://github.com/DataDog/datadog-api-client-go/pull/791).

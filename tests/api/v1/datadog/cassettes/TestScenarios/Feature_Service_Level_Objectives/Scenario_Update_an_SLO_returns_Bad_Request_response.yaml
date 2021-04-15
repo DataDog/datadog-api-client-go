@@ -1,0 +1,59 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"name":"","thresholds":null,"type":""}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - UpdateSLO
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7520312628307400212"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "9053637364538536117"
+    url: https://api.datadoghq.com/api/v1/slo/testupdateansloreturnsbadrequestresponse1618226900
+    method: PUT
+  response:
+    body: '{"errors": ["Invalid payload: Minimum length of parameter ''name'' should
+      be 1"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "79"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 11:28:21 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.4288098"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "500"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "499"
+      X-Ratelimit-Reset:
+      - "39"
+    status: 400 Bad Request
+    code: 400
+    duration: ""

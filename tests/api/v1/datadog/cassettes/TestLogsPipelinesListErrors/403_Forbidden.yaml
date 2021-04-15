@@ -10,13 +10,13 @@ interactions:
       Dd-Operation-Id:
       - ListLogsPipelines
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1475882773641264033"
+      - "4930241514800288856"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1959600014725792174"
+      - "7840975626394157062"
     url: https://api.datadoghq.com/api/v1/logs/config/pipelines
     method: GET
   response:
@@ -27,12 +27,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:31:49 GMT
+      - Mon, 12 Apr 2021 09:52:36 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

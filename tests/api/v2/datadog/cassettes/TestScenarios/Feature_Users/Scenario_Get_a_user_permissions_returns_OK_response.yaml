@@ -1,0 +1,145 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"email":"Test-Get_a_user_permissions_returns_OK_response-1618221010@datadoghq.com","title":"user title"},"type":"users"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateUser
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6074973194782236148"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "5469066434565041299"
+    url: https://api.datadoghq.com/api/v2/users
+    method: POST
+  response:
+    body: '{"data":{"type":"users","id":"788f8e26-9b74-11eb-9d38-da7ad0900002","attributes":{"name":null,"handle":"test-get_a_user_permissions_returns_ok_response-1618221010@datadoghq.com","created_at":"2021-04-12T09:50:10.609851+00:00","modified_at":"2021-04-12T09:50:10.646731+00:00","email":"test-get_a_user_permissions_returns_ok_response-1618221010@datadoghq.com","icon":"https://secure.gravatar.com/avatar/5d96272020a50d9d61faa6c84e8c7bf3?s=48&d=retro","title":"user
+      title","verified":false,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "688"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 09:50:10 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - ListUserPermissions
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7282224421638773475"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "5469066434565041299"
+    url: https://api.datadoghq.com/api/v2/users/788f8e26-9b74-11eb-9d38-da7ad0900002/permissions
+    method: GET
+  response:
+    body: '{"data":[]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "11"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 09:50:10 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - HbtaOKlJ6OCrx9tMXO6ivMTrEM+g0c93HDp08trmOmgdHozC5J+vn10F0H4WPjCU
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DisableUser
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2593534775474068449"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "5469066434565041299"
+    url: https://api.datadoghq.com/api/v2/users/788f8e26-9b74-11eb-9d38-da7ad0900002
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 09:50:10 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - SY1h8ScsWq+kYmtbh63ltMLFAZsQjqfrgvdfAoRX+9TzT1sgMBRYaFRwfWWRRe9a
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""

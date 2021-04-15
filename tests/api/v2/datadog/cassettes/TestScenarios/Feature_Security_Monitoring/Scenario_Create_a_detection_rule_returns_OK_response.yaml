@@ -1,0 +1,102 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_returns_OK_response-1618221004","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metric":"","query":"@test:true"}],"tags":[]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "675843862394752431"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3823913329007178595"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
+    method: POST
+  response:
+    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
+      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1618221004923,"filters":[],"queries":[{"distinctFields":[],"name":"","metric":"","aggregation":"count","groupByFields":[],"query":"@test:true","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"ywz-vcn-a7l","isDefault":false,"name":"Test-Create_a_detection_rule_returns_OK_response-1618221004"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 12 Apr 2021 09:50:04 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteSecurityMonitoringRule
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4022288595404226096"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3823913329007178595"
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/ywz-vcn-a7l
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - "0"
+      Date:
+      - Mon, 12 Apr 2021 09:50:05 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""

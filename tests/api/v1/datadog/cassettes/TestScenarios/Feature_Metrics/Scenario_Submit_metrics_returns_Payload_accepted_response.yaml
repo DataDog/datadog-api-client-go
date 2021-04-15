@@ -1,0 +1,44 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"series":[{"metric":"system.load.1","points":[[1600348600,1.1]],"tags":["test:TestSubmitmetricsreturnsPayloadacceptedresponse1618221317"]}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - SubmitMetrics
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7216428167171775045"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "5448458313271725819"
+    url: https://api.datadoghq.com/api/v1/series
+    method: POST
+  response:
+    body: '{"status": "ok"}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "16"
+      Content-Type:
+      - text/json
+      Date:
+      - Mon, 12 Apr 2021 09:55:17 GMT
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 202 Accepted
+    code: 202
+    duration: ""
