@@ -13,7 +13,6 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"reflect"
@@ -114,10 +113,8 @@ func Templated(t gobdd.StepTest, data interface{}, source string) string {
 		case reflect.Bool:
 			return strconv.FormatBool(v.Bool())
 		}
-
 		return v.String()
 	}
-
 	return re.ReplaceAllStringFunc(source, replace)
 }
 
@@ -246,28 +243,12 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 			in[i] = s.Parameters[i-1].Resolve(t, ctx, operation.Type().In(i))
 		}
 
-		// Call builder pattern
-		if operation.Type().IsVariadic() {
-			variadicArgType := operation.Type().In(operation.Type().NumIn()-1).Elem()
-			log.Println("testestest", variadicArgType)
-		}
-		//for _, p := range s.Parameters {
-		//	name := toVarName(p.Name)
-		//	method := request.MethodByName(name)
-		//	if method.IsValid() {
-		//		v := p.Resolve(t, ctx, method.Type().In(0))
-		//		request = method.Call([]reflect.Value{v})[0]
-		//	}
-		//}////// BUILD  THE ARGS HERE //////
-
 		undo, err := GetRequestsUndo(ctx, s.OperationID)
-
 		if err != nil {
 			t.Errorf("missing undo for %s: %v", s.OperationID, err)
 		}
 
 		result := operation.Call(in)
-
 		if result[len(result)-1].Interface() != nil {
 			t.Fatal(result[len(result)-1])
 		}
@@ -275,7 +256,6 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite) {
 		responseJSON, err := toJSON(result[0])
 
 		if undo != nil {
-			log.Println("this  sets it?",  )
 			GetCleanup(ctx)[fmt.Sprintf("00-given-%s", s.Key)] = undo(result)
 		}
 
@@ -353,18 +333,17 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func([]reflect.Valu
 				})
 			}
 
-			// Assemble undo method as follows: Client(cctx).UsersApi.DisableUser(cctx, response.Data.GetId()).Execute()
-			//in := make([]reflect.Value, undoOperation.Type().NumIn()-1)
-			var in []reflect.Value
-			if undoOperation.Type().IsVariadic() {
-				in = make([]reflect.Value, undoOperation.Type().NumIn())
-				optionalParams := reflect.New(undoOperation.Type().In(undoOperation.Type().NumIn()-1).Elem())
-				in[undoOperation.Type().NumIn()-1] =optionalParams.Elem()
-			} else {
-				in = make([]reflect.Value, undoOperation.Type().NumIn())
-			}
+			// Assemble undo method as follows: Client(cctx).UsersApi.DisableUser(cctx, response.Data.GetId())
+			numArgs := undoOperation.Type().NumIn()
+			in := make([]reflect.Value, numArgs)
 			// first argument is always context.Context
 			in[0] = reflect.ValueOf(GetCtx(ctx))
+
+			// Handle undoOperations that accept optional variadic arguments
+			if undoOperation.Type().IsVariadic() {
+				optionalParams := reflect.New(undoOperation.Type().In(numArgs-1).Elem())
+				in[numArgs-1] = optionalParams.Elem()
+			}
 
 			for i := 1; i < undoOperation.Type().NumIn() && i <= len(undo.Undo.Parameters); i++ {
 				object, err :=lookup.LookupStringI(responseJSON, undo.Undo.Parameters[i-1].Source)
@@ -468,7 +447,7 @@ func GetCleanup(ctx gobdd.Context) map[string]func() {
 func RunCleanup(ctx gobdd.Context) {
 	c, _ := ctx.Get(cleanupKey{})
 	cc := c.(map[string]func())
-	keys := []string{}
+	keys := make([]string, 0, len(cc))
 
 	for k := range cc {
 		keys = append(keys, k)
@@ -476,7 +455,6 @@ func RunCleanup(ctx gobdd.Context) {
 	sort.Strings(keys)
 
 	for _, name := range keys {
-		//cc[name]()
 		cc[name]()
 	}
 }
@@ -523,13 +501,6 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error
 			in[i] = object.(reflect.Value)
 		}
 
-		// Append body to args if it exists
-		if val, ok := requestParams["body"]; ok && len(requestArgs) < numArgs - 2 {
-			a := reflect.New(f.Type().In(numArgs - 2))
-			json.Unmarshal([]byte(val.(string)), a.Interface())
-			in[1] = a.Elem()
-		}
-
 		optionalParams := reflect.New(f.Type().In(numArgs-1).Elem())
 		for k, v := range requestParams {
 			paramName := toVarName(k)
@@ -542,6 +513,10 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error
 					json.Unmarshal([]byte(v.(string)), at.Interface())
 				}
 				optionalParams = method.Call([]reflect.Value{at.Elem()})[0]
+			} else if k == "body" {
+				a := reflect.New(f.Type().In(numArgs - 2))
+				json.Unmarshal([]byte(v.(string)), a.Interface())
+				in[numArgs-2] = a.Elem()
 			}
 		}
 
@@ -559,6 +534,7 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error
 			in[numArgs - 1] = a.Elem()
 		}
 	}
+
 	return f, in, nil
 }
 
@@ -586,7 +562,8 @@ func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path str
 
 // This function adds path arguments to the requestArgs key. This shouldn't be used as a step method, but just a helper util
 func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, value string, request reflect.Value) {
-	in := make([]reflect.Value, request.Type().NumIn() - 1)
+	numArgs := request.Type().NumIn()
+	in := make([]reflect.Value, numArgs)
 	in[0] = reflect.ValueOf(GetCtx(ctx))
 	// The order of the path arguments in the scenario definition
 	// must match the order of the arguments in the function signature
@@ -596,9 +573,9 @@ func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string,
 
 	templatedValue := Templated(t, GetData(ctx), value)
 	var varType reflect.Value
-	if request.Type().IsVariadic() && pathCount.(int) > request.Type().NumIn() - 2 {
-		optionalParams := reflect.New(request.Type().In(request.Type().NumIn()-1).Elem())
 
+	if request.Type().IsVariadic() && pathCount.(int) > numArgs - 2 {
+		optionalParams := reflect.New(request.Type().In(numArgs-1).Elem())
 		field := optionalParams.Elem().FieldByName(toVarName(param))
 		if field.IsValid() {
 			varType = reflect.New(field.Type().Elem())
@@ -606,6 +583,7 @@ func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string,
 	} else {
 		varType = reflect.New(request.Type().In(pathCount.(int)))
 	}
+
 	if varType.IsValid() {
 		json.Unmarshal([]byte(templatedValue), varType.Interface())
 		GetRequestParameters(ctx)[param] = varType.Elem()
@@ -623,25 +601,7 @@ func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, va
 		t.Error(err)
 	}
 
-	// If the getRequestBuilder method returns a function, its because we're trying to add a
-	// path param instead of a query param.
-	if request.Kind() == reflect.Func {
-		addPathArgumentWithValue(t, ctx, param, value, request)
-		return
-	}
-
-	name := toVarName(param)
-	// Get the method for setting the current parameter
-	method := request.MethodByName(name)
-
-	templatedValue := Templated(t, GetData(ctx), value)
-
-	if method.IsValid() {
-		at := reflect.New(method.Type().In(0))
-		// Unmarshall the value specified in the step to the proper type and add it to the parameters
-		json.Unmarshal([]byte(templatedValue), at.Interface())
-		GetRequestParameters(ctx)[param] = at.Elem()
-	}
+	addPathArgumentWithValue(t, ctx, param, value, request)
 }
 
 func toJSON(o reflect.Value) (interface{}, error) {
