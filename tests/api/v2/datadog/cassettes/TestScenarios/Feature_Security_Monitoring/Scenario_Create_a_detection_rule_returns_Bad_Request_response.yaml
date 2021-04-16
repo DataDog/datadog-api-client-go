@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"cases":null,"isEnabled":false,"message":"","name":"","options":{},"queries":null}
+      {"cases":[{"status":"info"}],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_returns_Bad_Request_response-1618476752","options":{},"queries":[{"query":""}],"tags":[]}
     form: {}
     headers:
       Accept:
@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - CreateSecurityMonitoringRule
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.20+dev (go go1.16.3; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "337865933744836647"
+      - "1729254004336480347"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3744569006834270178"
+      - "3146328642502187986"
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
     method: POST
   response:
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:50:04 GMT
+      - Thu, 15 Apr 2021 08:52:32 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4287331"
+      - "35.4317157"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
