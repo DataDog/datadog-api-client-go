@@ -5411,7 +5411,6 @@ paths:
             value: |-
               {
                 "data": {
-                  "id": "1",
                   "attributes": {
                     "slo_id": "{{ slo.data[0].id }}",
                     "start": {{ now_ts }},
