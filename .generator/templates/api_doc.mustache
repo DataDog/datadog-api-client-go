@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## {{{operationId}}}
 
-> {{#returnType}}{{{.}}} {{/returnType}}{{{operationId}}}(ctx{{#requiredParams}}, {{paramName}} {{/requiredParams}})
+> {{#returnType}}{{{.}}} {{/returnType}}{{{operationId}}}(ctx{{#requiredParams}}, {{paramName}}{{/requiredParams}}, {{#hasOptionalParams}}{{goImportAlias}}.{{operationIdOriginal}}OptionalParameters{{/hasOptionalParams}}{})
 
 {{{summary}}}{{#notes}}
 
@@ -46,17 +46,13 @@ func main() {
     ctx := context.Background()
     {{/hasAuthMethods}}
 
-    {{#requiredParams}}
+    {{#allParams}}
     {{paramName}} := {{{vendorExtensions.x-go-example}}} // {{{dataType}}} | {{{description}}}{{^required}} (optional){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
-    {{/requiredParams}}
-
+    {{/allParams}}
     {{#hasOptionalParams}}
+    optionalParams := {{goImportAlias}}.{{operationIdOriginal}}OptionalParameters{
     {{#optionalParams}}
-    {{paramName}} := {{{vendorExtensions.x-go-example}}} // {{{dataType}}} | {{{description}}}(optional){{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
-    {{/optionalParams}}
-    optionalParams := {{goImportAlias}}.{{operationIdOriginal}}OptionalParameters {
-    {{#optionalParams}}
-        {{vendorExtensions.x-export-param-name}}: {{^isPathParam}}&{{/isPathParam}}{{{paramName}}}
+        {{vendorExtensions.x-export-param-name}}: {{^isPathParam}}&{{/isPathParam}}{{{paramName}}},
     {{/optionalParams}}
     }
     {{/hasOptionalParams}}
@@ -68,10 +64,10 @@ func main() {
 
     apiClient := {{goImportAlias}}.NewAPIClient(configuration)
     {{#returnType}}
-    resp, r, err := apiClient.{{classname}}.{{operationId}}(ctx{{#requiredParams}}, {{paramName}}{{/requiredParams}} {{#hasOptionalParams}}, optionalParams{{/hasOptionalParams}} )
+    resp, r, err := apiClient.{{classname}}.{{operationId}}(ctx{{#requiredParams}}, {{paramName}}{{/requiredParams}}{{#hasOptionalParams}}, optionalParams{{/hasOptionalParams}})
     {{/returnType}}
     {{^returnType}}
-    r, err := apiClient.{{classname}}.{{operationId}}(ctx{{#requiredParams}}, {{paramName}}{{/requiredParams}})
+    r, err := apiClient.{{classname}}.{{operationId}}(ctx{{#requiredParams}}, {{paramName}}{{/requiredParams}}{{#hasOptionalParams}}, optionalParams{{/hasOptionalParams}})
     {{/returnType}}
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `{{classname}}.{{operationId}}``: %v\n", err)
@@ -85,22 +81,22 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
-{{^allParams}}This endpoint does not need any parameter.{{/allParams}}{{#pathParams}}{{#-last}}
+{{^allParams}}This endpoint does not need any parameter.{{/allParams}}{{#requiredParams}}{{#-last}}
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.{{/-last}}{{/pathParams}}{{#pathParams}}
-**{{paramName}}** | {{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{baseType}}.md){{/isFile}}{{/isPrimitiveType}} | {{description}} | {{#defaultValue}}[default to {{defaultValue}}]{{/defaultValue}}{{/pathParams}}
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.{{/-last}}{{/requiredParams}}{{#requiredParams}}
+**{{paramName}}** | {{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{baseType}}.md){{/isFile}}{{/isPrimitiveType}} | {{description}} | {{#defaultValue}}[default to {{defaultValue}}]{{/defaultValue}}{{/requiredParams}}
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a api{{{nickname}}}Request struct via the builder pattern
-{{#allParams}}{{#-last}}
+Other parameters are passed through a pointer to a {{operationIdOriginal}}OptionalParameters struct
+{{#optionalParams}}{{#-last}}
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------{{/-last}}{{/allParams}}{{#allParams}}
-{{^isPathParam}} **{{paramName}}** | {{#isContainer}}{{#isArray}}{{#items}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**[]{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/items}}{{/isArray}}{{#isMap}}{{#items}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**map[string]{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/items}}{{/isMap}}{{/isContainer}}{{^isContainer}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/isContainer}} | {{description}} | {{#defaultValue}}[default to {{defaultValue}}]{{/defaultValue}}{{/isPathParam}}{{/allParams}}
+------------- | ------------- | ------------- | -------------{{/-last}}{{/optionalParams}}{{#optionalParams}}
+**{{paramName}}** | {{#isContainer}}{{#isArray}}{{#items}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**[]{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/items}}{{/isArray}}{{#isMap}}{{#items}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**map[string]{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/items}}{{/isMap}}{{/isContainer}}{{^isContainer}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/isContainer}} | {{description}} | {{#defaultValue}}[default to {{defaultValue}}]{{/defaultValue}}{{/optionalParams}}
 
 ### Return type
 
