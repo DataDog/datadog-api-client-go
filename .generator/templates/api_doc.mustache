@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## {{{operationId}}}
 
-> {{#returnType}}{{{.}}} {{/returnType}}{{{operationId}}}(ctx{{#pathParams}}, {{paramName}}{{/pathParams}}){{#allParams}}{{^isPathParam}}.{{vendorExtensions.x-export-param-name}}({{paramName}}){{/isPathParam}}{{/allParams}}.Execute()
+> {{#returnType}}{{{.}}} {{/returnType}}{{{operationId}}}(ctx{{#requiredParams}}, {{paramName}} {{/requiredParams}})
 
 {{{summary}}}{{#notes}}
 
@@ -46,9 +46,20 @@ func main() {
     ctx := context.Background()
     {{/hasAuthMethods}}
 
-    {{#allParams}}
+    {{#requiredParams}}
     {{paramName}} := {{{vendorExtensions.x-go-example}}} // {{{dataType}}} | {{{description}}}{{^required}} (optional){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
-    {{/allParams}}
+    {{/requiredParams}}
+
+    {{#hasOptionalParams}}
+    {{#optionalParams}}
+    {{paramName}} := {{{vendorExtensions.x-go-example}}} // {{{dataType}}} | {{{description}}}(optional){{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
+    {{/optionalParams}}
+    optionalParams := {{goImportAlias}}.{{operationIdOriginal}}OptionalParameters {
+    {{#optionalParams}}
+        {{vendorExtensions.x-export-param-name}}: {{^isPathParam}}&{{/isPathParam}}{{{paramName}}}
+    {{/optionalParams}}
+    }
+    {{/hasOptionalParams}}
 
     configuration := {{goImportAlias}}.NewConfiguration()
     {{#vendorExtensions.x-unstable}}
@@ -57,10 +68,10 @@ func main() {
 
     apiClient := {{goImportAlias}}.NewAPIClient(configuration)
     {{#returnType}}
-    resp, r, err := apiClient.{{classname}}.{{operationId}}(ctx{{#pathParams}}, {{paramName}}{{/pathParams}}){{#allParams}}{{^isPathParam}}.{{vendorExtensions.x-export-param-name}}({{paramName}}){{/isPathParam}}{{/allParams}}.Execute()
+    resp, r, err := apiClient.{{classname}}.{{operationId}}(ctx{{#requiredParams}}, {{paramName}}{{/requiredParams}} {{#hasOptionalParams}}, optionalParams{{/hasOptionalParams}} )
     {{/returnType}}
     {{^returnType}}
-    r, err := apiClient.{{classname}}.{{operationId}}(ctx{{#pathParams}}, {{paramName}}{{/pathParams}}){{#allParams}}{{^isPathParam}}.{{vendorExtensions.x-export-param-name}}({{paramName}}){{/isPathParam}}{{/allParams}}.Execute()
+    r, err := apiClient.{{classname}}.{{operationId}}(ctx{{#requiredParams}}, {{paramName}}{{/requiredParams}})
     {{/returnType}}
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `{{classname}}.{{operationId}}``: %v\n", err)
