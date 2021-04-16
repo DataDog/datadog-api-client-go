@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"name":"","thresholds":null,"type":""}
+      {"name":"Test-Create_an_SLO_object_returns_Bad_Request_response-1618476726","thresholds":[{"target":95,"target_display":"95.0","timeframe":"7d","warning":98,"warning_display":"98.0"}],"type":"monitor"}
     form: {}
     headers:
       Accept:
@@ -13,29 +13,28 @@ interactions:
       Dd-Operation-Id:
       - CreateSLO
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.20+dev (go go1.16.3; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "1003738703737608562"
+      - "7633542843697562304"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4608215811664010720"
+      - "8627709677524743360"
     url: https://api.datadoghq.com/api/v1/slo
     method: POST
   response:
-    body: '{"errors": ["Invalid payload: Minimum length of parameter ''name'' should
-      be 1"]}'
+    body: '{"errors": ["Invalid payload: must specify monitor_ids or monitor_search"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "79"
+      - "75"
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 11:28:19 GMT
+      - Thu, 15 Apr 2021 08:52:06 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,7 +42,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4288098"
+      - "35.4317157"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -53,7 +52,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "499"
       X-Ratelimit-Reset:
-      - "41"
+      - "54"
     status: 400 Bad Request
     code: 400
     duration: ""

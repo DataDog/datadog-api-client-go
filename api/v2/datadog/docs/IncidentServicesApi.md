@@ -337,7 +337,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     serviceId := "serviceId_example" // string | The ID of the incident service.
-    body := *datadog.NewIncidentServiceUpdateRequest(*datadog.NewIncidentServiceUpdateData("00000000-0000-0000-0000-000000000000", datadog.IncidentServiceType("services"))) // IncidentServiceUpdateRequest | Incident Service Payload.
+    body := *datadog.NewIncidentServiceUpdateRequest(*datadog.NewIncidentServiceUpdateData(datadog.IncidentServiceType("services"))) // IncidentServiceUpdateRequest | Incident Service Payload.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("UpdateIncidentService", true)

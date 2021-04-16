@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**IncidentServiceUpdateAttributes**](IncidentServiceUpdateAttributes.md) |  | [optional] 
-**Id** | **string** | The incident service&#39;s ID. | 
+**Id** | Pointer to **string** | The incident service&#39;s ID. | [optional] 
 **Relationships** | Pointer to [**IncidentServiceRelationships**](IncidentServiceRelationships.md) |  | [optional] 
 **Type** | [**IncidentServiceType**](IncidentServiceType.md) |  | [default to INCIDENTSERVICETYPE_SERVICES]
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewIncidentServiceUpdateData
 
-`func NewIncidentServiceUpdateData(id string, type_ IncidentServiceType, ) *IncidentServiceUpdateData`
+`func NewIncidentServiceUpdateData(type_ IncidentServiceType, ) *IncidentServiceUpdateData`
 
 NewIncidentServiceUpdateData instantiates a new IncidentServiceUpdateData object
 This constructor will assign default values to properties that have it defined,
@@ -72,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *IncidentServiceUpdateData) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetRelationships
 
