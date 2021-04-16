@@ -22,3 +22,5 @@ require (
 replace gopkg.in/DataDog/dd-trace-go.v1 => github.com/DataDog/dd-trace-go v1.29.0-rc.1.0.20210226170446-a8dc39ec3484
 
 replace github.com/mcuadros/go-lookup => github.com/zippolyte/go-lookup v0.0.0-20210331103309-2b027b989715
+
+replace github.com/go-bdd/gobdd => github.com/jirikuncar/gobdd v1.1.2-0.20210416102811-69c60cee1b0e

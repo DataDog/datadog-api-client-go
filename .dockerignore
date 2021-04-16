@@ -1,0 +1,4 @@
+.azure-pipelines
+.generator
+.github
+Dockerfile*

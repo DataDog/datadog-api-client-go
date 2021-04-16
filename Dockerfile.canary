@@ -1,0 +1,22 @@
+# Compile test binaries
+FROM golang:latest as builder
+COPY go.mod go.sum /datadog-api-client-go/
+WORKDIR /datadog-api-client-go/
+RUN go mod download
+COPY . /datadog-api-client-go
+RUN go list -f {{.Dir}} ./tests/api/... | xargs -I {} go test -o {}/run.test -c {}
+
+# Create a separate image with test binaries and feature files
+FROM ubuntu:latest
+ENV RECORD none
+RUN apt-get update && apt-get install -y ca-certificates
+# Copy v1 test and feature files
+WORKDIR /root/v1/
+COPY --from=builder /datadog-api-client-go/tests/api/v1/datadog/run.test .
+COPY --from=builder /datadog-api-client-go/tests/api/v1/datadog/features ./features/
+# Copy v2 test and feature files
+WORKDIR /root/v2/
+COPY --from=builder /datadog-api-client-go/tests/api/v2/datadog/run.test .
+COPY --from=builder /datadog-api-client-go/tests/api/v2/datadog/features ./features/
+
+WORKDIR /root/
