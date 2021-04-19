@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BackgroundColor** | Pointer to **string** | Background color of the group title. | [optional] 
 **LayoutType** | [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
+**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **Type** | [**GroupWidgetDefinitionType**](GroupWidgetDefinitionType.md) |  | [default to GROUPWIDGETDEFINITIONTYPE_GROUP]
 **Widgets** | [**[]Widget**](Widget.md) | List of widget groups. | 
 
@@ -27,6 +29,31 @@ will change when the set of required properties is changed
 NewGroupWidgetDefinitionWithDefaults instantiates a new GroupWidgetDefinition object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBackgroundColor
+
+`func (o *GroupWidgetDefinition) GetBackgroundColor() string`
+
+GetBackgroundColor returns the BackgroundColor field if non-nil, zero value otherwise.
+
+### GetBackgroundColorOk
+
+`func (o *GroupWidgetDefinition) GetBackgroundColorOk() (*string, bool)`
+
+GetBackgroundColorOk returns a tuple with the BackgroundColor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBackgroundColor
+
+`func (o *GroupWidgetDefinition) SetBackgroundColor(v string)`
+
+SetBackgroundColor sets BackgroundColor field to given value.
+
+### HasBackgroundColor
+
+`func (o *GroupWidgetDefinition) HasBackgroundColor() bool`
+
+HasBackgroundColor returns a boolean if a field has been set.
 
 ### GetLayoutType
 
@@ -72,6 +99,31 @@ SetTitle sets Title field to given value.
 `func (o *GroupWidgetDefinition) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
+
+### GetTitleAlign
+
+`func (o *GroupWidgetDefinition) GetTitleAlign() WidgetTextAlign`
+
+GetTitleAlign returns the TitleAlign field if non-nil, zero value otherwise.
+
+### GetTitleAlignOk
+
+`func (o *GroupWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)`
+
+GetTitleAlignOk returns a tuple with the TitleAlign field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitleAlign
+
+`func (o *GroupWidgetDefinition) SetTitleAlign(v WidgetTextAlign)`
+
+SetTitleAlign sets TitleAlign field to given value.
+
+### HasTitleAlign
+
+`func (o *GroupWidgetDefinition) HasTitleAlign() bool`
+
+HasTitleAlign returns a boolean if a field has been set.
 
 ### GetType
 
