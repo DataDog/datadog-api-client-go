@@ -502,8 +502,14 @@ func (a *DashboardsApiService) GetDashboardExecute(r ApiGetDashboardRequest) (Da
 }
 
 type ApiListDashboardsRequest struct {
-	ctx        _context.Context
-	ApiService *DashboardsApiService
+	ctx          _context.Context
+	ApiService   *DashboardsApiService
+	filterShared *bool
+}
+
+func (r ApiListDashboardsRequest) FilterShared(filterShared bool) ApiListDashboardsRequest {
+	r.filterShared = &filterShared
+	return r
 }
 
 func (r ApiListDashboardsRequest) Execute() (DashboardSummary, *_nethttp.Response, error) {
@@ -551,6 +557,9 @@ func (a *DashboardsApiService) ListDashboardsExecute(r ApiListDashboardsRequest)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.filterShared != nil {
+		localVarQueryParams.Add("filter[shared]", parameterToString(*r.filterShared, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

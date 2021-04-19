@@ -14,10 +14,13 @@ import (
 
 // GroupWidgetDefinition The groups widget allows you to keep similar graphs together on your timeboard. Each group has a custom header, can hold one to many graphs, and is collapsible.
 type GroupWidgetDefinition struct {
-	LayoutType WidgetLayoutType `json:"layout_type"`
+	// Background color of the group title.
+	BackgroundColor *string          `json:"background_color,omitempty"`
+	LayoutType      WidgetLayoutType `json:"layout_type"`
 	// Title of the widget.
-	Title *string                   `json:"title,omitempty"`
-	Type  GroupWidgetDefinitionType `json:"type"`
+	Title      *string                   `json:"title,omitempty"`
+	TitleAlign *WidgetTextAlign          `json:"title_align,omitempty"`
+	Type       GroupWidgetDefinitionType `json:"type"`
 	// List of widget groups.
 	Widgets []Widget `json:"widgets"`
 }
@@ -42,6 +45,38 @@ func NewGroupWidgetDefinitionWithDefaults() *GroupWidgetDefinition {
 	var type_ GroupWidgetDefinitionType = GROUPWIDGETDEFINITIONTYPE_GROUP
 	this.Type = type_
 	return &this
+}
+
+// GetBackgroundColor returns the BackgroundColor field value if set, zero value otherwise.
+func (o *GroupWidgetDefinition) GetBackgroundColor() string {
+	if o == nil || o.BackgroundColor == nil {
+		var ret string
+		return ret
+	}
+	return *o.BackgroundColor
+}
+
+// GetBackgroundColorOk returns a tuple with the BackgroundColor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GroupWidgetDefinition) GetBackgroundColorOk() (*string, bool) {
+	if o == nil || o.BackgroundColor == nil {
+		return nil, false
+	}
+	return o.BackgroundColor, true
+}
+
+// HasBackgroundColor returns a boolean if a field has been set.
+func (o *GroupWidgetDefinition) HasBackgroundColor() bool {
+	if o != nil && o.BackgroundColor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBackgroundColor gets a reference to the given string and assigns it to the BackgroundColor field.
+func (o *GroupWidgetDefinition) SetBackgroundColor(v string) {
+	o.BackgroundColor = &v
 }
 
 // GetLayoutType returns the LayoutType field value
@@ -100,6 +135,38 @@ func (o *GroupWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+// GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
+func (o *GroupWidgetDefinition) GetTitleAlign() WidgetTextAlign {
+	if o == nil || o.TitleAlign == nil {
+		var ret WidgetTextAlign
+		return ret
+	}
+	return *o.TitleAlign
+}
+
+// GetTitleAlignOk returns a tuple with the TitleAlign field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GroupWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
+	if o == nil || o.TitleAlign == nil {
+		return nil, false
+	}
+	return o.TitleAlign, true
+}
+
+// HasTitleAlign returns a boolean if a field has been set.
+func (o *GroupWidgetDefinition) HasTitleAlign() bool {
+	if o != nil && o.TitleAlign != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
+func (o *GroupWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
+	o.TitleAlign = &v
+}
+
 // GetType returns the Type field value
 func (o *GroupWidgetDefinition) GetType() GroupWidgetDefinitionType {
 	if o == nil {
@@ -150,11 +217,17 @@ func (o *GroupWidgetDefinition) SetWidgets(v []Widget) {
 
 func (o GroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.BackgroundColor != nil {
+		toSerialize["background_color"] = o.BackgroundColor
+	}
 	if true {
 		toSerialize["layout_type"] = o.LayoutType
 	}
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
+	}
+	if o.TitleAlign != nil {
+		toSerialize["title_align"] = o.TitleAlign
 	}
 	if true {
 		toSerialize["type"] = o.Type

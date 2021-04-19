@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **Text** | **string** | Text to display. | 
 **Style** | [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinitionStyle.md) |  | 
 **View** | [**GeomapWidgetDefinitionView**](GeomapWidgetDefinitionView.md) |  | 
+**BackgroundColor** | Pointer to **string** | Background color of the note. | [optional] 
 **LayoutType** | [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
 **Widgets** | [**[]Widget**](Widget.md) | List of widget groups. | 
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
@@ -57,7 +58,6 @@ Name | Type | Description | Notes
 **ShowLastTriggered** | Pointer to **bool** | Whether to show the time that has elapsed since the monitor/group triggered. | [optional] 
 **Start** | Pointer to **int64** | The start of the list. Typically 0. | [optional] 
 **SummaryType** | Pointer to [**WidgetSummaryType**](WidgetSummaryType.md) |  | [optional] 
-**BackgroundColor** | Pointer to **string** | Background color of the note. | [optional] 
 **Content** | **string** | Content of the note. | 
 **ShowTick** | Pointer to **bool** | Whether to show a tick or not. | [optional] 
 **TickEdge** | Pointer to [**WidgetTickEdge**](WidgetTickEdge.md) |  | [optional] 
@@ -733,6 +733,31 @@ and a boolean to check if the value has been set.
 SetView sets View field to given value.
 
 
+### GetBackgroundColor
+
+`func (o *WidgetDefinition) GetBackgroundColor() string`
+
+GetBackgroundColor returns the BackgroundColor field if non-nil, zero value otherwise.
+
+### GetBackgroundColorOk
+
+`func (o *WidgetDefinition) GetBackgroundColorOk() (*string, bool)`
+
+GetBackgroundColorOk returns a tuple with the BackgroundColor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBackgroundColor
+
+`func (o *WidgetDefinition) SetBackgroundColor(v string)`
+
+SetBackgroundColor sets BackgroundColor field to given value.
+
+### HasBackgroundColor
+
+`func (o *WidgetDefinition) HasBackgroundColor() bool`
+
+HasBackgroundColor returns a boolean if a field has been set.
+
 ### GetLayoutType
 
 `func (o *WidgetDefinition) GetLayoutType() WidgetLayoutType`
@@ -1367,31 +1392,6 @@ SetSummaryType sets SummaryType field to given value.
 `func (o *WidgetDefinition) HasSummaryType() bool`
 
 HasSummaryType returns a boolean if a field has been set.
-
-### GetBackgroundColor
-
-`func (o *WidgetDefinition) GetBackgroundColor() string`
-
-GetBackgroundColor returns the BackgroundColor field if non-nil, zero value otherwise.
-
-### GetBackgroundColorOk
-
-`func (o *WidgetDefinition) GetBackgroundColorOk() (*string, bool)`
-
-GetBackgroundColorOk returns a tuple with the BackgroundColor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBackgroundColor
-
-`func (o *WidgetDefinition) SetBackgroundColor(v string)`
-
-SetBackgroundColor sets BackgroundColor field to given value.
-
-### HasBackgroundColor
-
-`func (o *WidgetDefinition) HasBackgroundColor() bool`
-
-HasBackgroundColor returns a boolean if a field has been set.
 
 ### GetContent
 
