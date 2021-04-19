@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## {{{operationId}}}
 
-> {{#returnType}}{{{.}}} {{/returnType}}{{{operationId}}}(ctx{{#requiredParams}}, {{paramName}}{{/requiredParams}}, {{#hasOptionalParams}}{{goImportAlias}}.{{operationIdOriginal}}OptionalParameters{{/hasOptionalParams}}{})
+> {{#returnType}}{{{.}}} {{/returnType}}{{{operationId}}}(ctx{{#requiredParams}}, {{paramName}}{{/requiredParams}}{{#hasOptionalParams}}, {{goImportAlias}}.{{operationIdOriginal}}OptionalParameters{}{{/hasOptionalParams}})
 
 {{{summary}}}{{#notes}}
 
@@ -91,12 +91,13 @@ Name | Type | Description  | Notes
 
 ### Optional Parameters
 
+{{#hasOptionalParams}}
 Other parameters are passed through a pointer to a {{operationIdOriginal}}OptionalParameters struct
 {{#optionalParams}}{{#-last}}
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------{{/-last}}{{/optionalParams}}{{#optionalParams}}
-**{{paramName}}** | {{#isContainer}}{{#isArray}}{{#items}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**[]{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/items}}{{/isArray}}{{#isMap}}{{#items}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**map[string]{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/items}}{{/isMap}}{{/isContainer}}{{^isContainer}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/isContainer}} | {{description}} | {{#defaultValue}}[default to {{defaultValue}}]{{/defaultValue}}{{/optionalParams}}
+**{{paramName}}** | {{#isContainer}}{{#isArray}}{{#items}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**[]{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/items}}{{/isArray}}{{#isMap}}{{#items}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**map[string]{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/items}}{{/isMap}}{{/isContainer}}{{^isContainer}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/isContainer}} | {{description}} | {{#defaultValue}}[default to {{defaultValue}}]{{/defaultValue}}{{/optionalParams}}{{/hasOptionalParams}}
 
 ### Return type
 
