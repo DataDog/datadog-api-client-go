@@ -848,6 +848,17 @@ paths:
         **Note**: This query will only return custom created or cloned dashboards.
         This query will not return preset dashboards.
       operationId: ListDashboards
+      parameters:
+      - description: |-
+          When `true`, this query only returns shared custom created
+          or cloned dashboards.
+        explode: true
+        in: query
+        name: filter[shared]
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -901,6 +912,45 @@ paths:
       tags:
       - Dashboards
       x-codegen-request-body-name: body
+      x-given:
+        dashboard:
+          parameters:
+          - name: body
+            value: |-
+              {
+                "layout_type": "ordered",
+                "title": "{{ unique }} with Profile Metrics Query",
+                "widgets": [
+                  {
+                    "definition": {
+                      "type": "timeseries",
+                      "requests": [
+                        {
+                          "profile_metrics_query": {
+                            "compute": {
+                              "aggregation": "sum",
+                              "facet": "@prof_core_cpu_cores"
+                            },
+                            "search": { "query": "runtime:jvm" },
+                            "group_by": [
+                              {
+                                "facet": "service",
+                                "limit": 10,
+                                "sort": {
+                                  "aggregation": "sum",
+                                  "order": "desc",
+                                  "facet": "@prof_core_cpu_cores"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+          step: there is a valid "dashboard" in the system
       x-undo:
         operationId: DeleteDashboard
         parameters:
@@ -11427,11 +11477,16 @@ components:
         your timeboard. Each group has a custom header, can hold one to many graphs,
         and is collapsible.
       properties:
+        background_color:
+          description: Background color of the group title.
+          type: string
         layout_type:
           $ref: '#/components/schemas/WidgetLayoutType'
         title:
           description: Title of the widget.
           type: string
+        title_align:
+          $ref: '#/components/schemas/WidgetTextAlign'
         type:
           $ref: '#/components/schemas/GroupWidgetDefinitionType'
         widgets:
@@ -20207,25 +20262,29 @@ components:
         month: 2000-01-23T04:56:07.000+00:00
         updated_at: updated_at
         values:
-          snmp_usage: 6.438423552598547
-          browser_usage: 2.027123023002322
-          infra_host_usage: 6.84685269835264
           browser_percentage: 3.616076749251911
-          lambda_functions_usage: 1.1730742509559433
-          custom_timeseries_percentage: 1.2315135367772556
-          lambda_usage: 9.369310271410669
-          npm_host_percentage: 6.683562403749608
-          snmp_percentage: 9.018348186070783
+          profiled_hosts_percentage: 3.5571952270680973
           infra_host_percentage: 1.4894159098541704
-          lambda_functions_percentage: 7.457744773683766
           apm_host_usage: 9.301444243932576
           lambda_invocations_usage: 5.025004791520295
-          lambda_invocations_percentage: 4.965218492984954
-          api_percentage: 5.637376656633329
+          profiled_hosts_usage: 6.965117697638846
           apm_host_percentage: 7.061401241503109
-          container_usage: 7.386281948385884
           api_usage: 2.3021358869347655
           custom_timeseries_usage: 1.0246457001441578
+          profiled_containers_percentage: 9.018348186070783
+          snmp_usage: 2.8841621266687802
+          browser_usage: 2.027123023002322
+          infra_host_usage: 6.84685269835264
+          lambda_functions_usage: 1.1730742509559433
+          custom_timeseries_percentage: 1.2315135367772556
+          profiled_containers_usage: 6.438423552598547
+          lambda_usage: 9.369310271410669
+          npm_host_percentage: 6.683562403749608
+          snmp_percentage: 1.284659006116532
+          lambda_functions_percentage: 7.457744773683766
+          lambda_invocations_percentage: 4.965218492984954
+          api_percentage: 5.637376656633329
+          container_usage: 7.386281948385884
           lambda_percentage: 9.965781217890562
           npm_host_usage: 8.762042012749001
           container_percentage: 4.145608029883936
@@ -20337,25 +20396,29 @@ components:
         - month: 2000-01-23T04:56:07.000+00:00
           updated_at: updated_at
           values:
-            snmp_usage: 6.438423552598547
-            browser_usage: 2.027123023002322
-            infra_host_usage: 6.84685269835264
             browser_percentage: 3.616076749251911
-            lambda_functions_usage: 1.1730742509559433
-            custom_timeseries_percentage: 1.2315135367772556
-            lambda_usage: 9.369310271410669
-            npm_host_percentage: 6.683562403749608
-            snmp_percentage: 9.018348186070783
+            profiled_hosts_percentage: 3.5571952270680973
             infra_host_percentage: 1.4894159098541704
-            lambda_functions_percentage: 7.457744773683766
             apm_host_usage: 9.301444243932576
             lambda_invocations_usage: 5.025004791520295
-            lambda_invocations_percentage: 4.965218492984954
-            api_percentage: 5.637376656633329
+            profiled_hosts_usage: 6.965117697638846
             apm_host_percentage: 7.061401241503109
-            container_usage: 7.386281948385884
             api_usage: 2.3021358869347655
             custom_timeseries_usage: 1.0246457001441578
+            profiled_containers_percentage: 9.018348186070783
+            snmp_usage: 2.8841621266687802
+            browser_usage: 2.027123023002322
+            infra_host_usage: 6.84685269835264
+            lambda_functions_usage: 1.1730742509559433
+            custom_timeseries_percentage: 1.2315135367772556
+            profiled_containers_usage: 6.438423552598547
+            lambda_usage: 9.369310271410669
+            npm_host_percentage: 6.683562403749608
+            snmp_percentage: 1.284659006116532
+            lambda_functions_percentage: 7.457744773683766
+            lambda_invocations_percentage: 4.965218492984954
+            api_percentage: 5.637376656633329
+            container_usage: 7.386281948385884
             lambda_percentage: 9.965781217890562
             npm_host_usage: 8.762042012749001
             container_percentage: 4.145608029883936
@@ -20368,25 +20431,29 @@ components:
         - month: 2000-01-23T04:56:07.000+00:00
           updated_at: updated_at
           values:
-            snmp_usage: 6.438423552598547
-            browser_usage: 2.027123023002322
-            infra_host_usage: 6.84685269835264
             browser_percentage: 3.616076749251911
-            lambda_functions_usage: 1.1730742509559433
-            custom_timeseries_percentage: 1.2315135367772556
-            lambda_usage: 9.369310271410669
-            npm_host_percentage: 6.683562403749608
-            snmp_percentage: 9.018348186070783
+            profiled_hosts_percentage: 3.5571952270680973
             infra_host_percentage: 1.4894159098541704
-            lambda_functions_percentage: 7.457744773683766
             apm_host_usage: 9.301444243932576
             lambda_invocations_usage: 5.025004791520295
-            lambda_invocations_percentage: 4.965218492984954
-            api_percentage: 5.637376656633329
+            profiled_hosts_usage: 6.965117697638846
             apm_host_percentage: 7.061401241503109
-            container_usage: 7.386281948385884
             api_usage: 2.3021358869347655
             custom_timeseries_usage: 1.0246457001441578
+            profiled_containers_percentage: 9.018348186070783
+            snmp_usage: 2.8841621266687802
+            browser_usage: 2.027123023002322
+            infra_host_usage: 6.84685269835264
+            lambda_functions_usage: 1.1730742509559433
+            custom_timeseries_percentage: 1.2315135367772556
+            profiled_containers_usage: 6.438423552598547
+            lambda_usage: 9.369310271410669
+            npm_host_percentage: 6.683562403749608
+            snmp_percentage: 1.284659006116532
+            lambda_functions_percentage: 7.457744773683766
+            lambda_invocations_percentage: 4.965218492984954
+            api_percentage: 5.637376656633329
+            container_usage: 7.386281948385884
             lambda_percentage: 9.965781217890562
             npm_host_usage: 8.762042012749001
             container_percentage: 4.145608029883936
@@ -20468,25 +20535,29 @@ components:
     UsageAttributionValues:
       description: Fields in Usage Summary by tag(s).
       example:
-        snmp_usage: 6.438423552598547
-        browser_usage: 2.027123023002322
-        infra_host_usage: 6.84685269835264
         browser_percentage: 3.616076749251911
-        lambda_functions_usage: 1.1730742509559433
-        custom_timeseries_percentage: 1.2315135367772556
-        lambda_usage: 9.369310271410669
-        npm_host_percentage: 6.683562403749608
-        snmp_percentage: 9.018348186070783
+        profiled_hosts_percentage: 3.5571952270680973
         infra_host_percentage: 1.4894159098541704
-        lambda_functions_percentage: 7.457744773683766
         apm_host_usage: 9.301444243932576
         lambda_invocations_usage: 5.025004791520295
-        lambda_invocations_percentage: 4.965218492984954
-        api_percentage: 5.637376656633329
+        profiled_hosts_usage: 6.965117697638846
         apm_host_percentage: 7.061401241503109
-        container_usage: 7.386281948385884
         api_usage: 2.3021358869347655
         custom_timeseries_usage: 1.0246457001441578
+        profiled_containers_percentage: 9.018348186070783
+        snmp_usage: 2.8841621266687802
+        browser_usage: 2.027123023002322
+        infra_host_usage: 6.84685269835264
+        lambda_functions_usage: 1.1730742509559433
+        custom_timeseries_percentage: 1.2315135367772556
+        profiled_containers_usage: 6.438423552598547
+        lambda_usage: 9.369310271410669
+        npm_host_percentage: 6.683562403749608
+        snmp_percentage: 1.284659006116532
+        lambda_functions_percentage: 7.457744773683766
+        lambda_invocations_percentage: 4.965218492984954
+        api_percentage: 5.637376656633329
+        container_usage: 7.386281948385884
         lambda_percentage: 9.965781217890562
         npm_host_usage: 8.762042012749001
         container_percentage: 4.145608029883936
@@ -20575,6 +20646,22 @@ components:
           type: number
         npm_host_usage:
           description: The network host usage by tag(s).
+          format: double
+          type: number
+        profiled_containers_percentage:
+          description: The percentage of profiled containers usage by tag(s).
+          format: double
+          type: number
+        profiled_containers_usage:
+          description: The profiled container usage by tag(s).
+          format: double
+          type: number
+        profiled_hosts_percentage:
+          description: The percentage of profiled hosts usage by tag(s).
+          format: double
+          type: number
+        profiled_hosts_usage:
+          description: The profiled host usage by tag(s).
           format: double
           type: number
         snmp_percentage:

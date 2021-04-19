@@ -24,6 +24,10 @@ Name | Type | Description | Notes
 **LambdaUsage** | Pointer to **float64** | The Lambda function usage by tag(s).  **Note** this field is deprecated. Use lambda_functions_usage instead. | [optional] 
 **NpmHostPercentage** | Pointer to **float64** | The percentage of network host usage by tag(s). | [optional] 
 **NpmHostUsage** | Pointer to **float64** | The network host usage by tag(s). | [optional] 
+**ProfiledContainersPercentage** | Pointer to **float64** | The percentage of profiled containers usage by tag(s). | [optional] 
+**ProfiledContainersUsage** | Pointer to **float64** | The profiled container usage by tag(s). | [optional] 
+**ProfiledHostsPercentage** | Pointer to **float64** | The percentage of profiled hosts usage by tag(s). | [optional] 
+**ProfiledHostsUsage** | Pointer to **float64** | The profiled host usage by tag(s). | [optional] 
 **SnmpPercentage** | Pointer to **float64** | The percentage of network device usage by tag(s). | [optional] 
 **SnmpUsage** | Pointer to **float64** | The network device usage by tag(s). | [optional] 
 
@@ -545,6 +549,106 @@ SetNpmHostUsage sets NpmHostUsage field to given value.
 `func (o *UsageAttributionValues) HasNpmHostUsage() bool`
 
 HasNpmHostUsage returns a boolean if a field has been set.
+
+### GetProfiledContainersPercentage
+
+`func (o *UsageAttributionValues) GetProfiledContainersPercentage() float64`
+
+GetProfiledContainersPercentage returns the ProfiledContainersPercentage field if non-nil, zero value otherwise.
+
+### GetProfiledContainersPercentageOk
+
+`func (o *UsageAttributionValues) GetProfiledContainersPercentageOk() (*float64, bool)`
+
+GetProfiledContainersPercentageOk returns a tuple with the ProfiledContainersPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfiledContainersPercentage
+
+`func (o *UsageAttributionValues) SetProfiledContainersPercentage(v float64)`
+
+SetProfiledContainersPercentage sets ProfiledContainersPercentage field to given value.
+
+### HasProfiledContainersPercentage
+
+`func (o *UsageAttributionValues) HasProfiledContainersPercentage() bool`
+
+HasProfiledContainersPercentage returns a boolean if a field has been set.
+
+### GetProfiledContainersUsage
+
+`func (o *UsageAttributionValues) GetProfiledContainersUsage() float64`
+
+GetProfiledContainersUsage returns the ProfiledContainersUsage field if non-nil, zero value otherwise.
+
+### GetProfiledContainersUsageOk
+
+`func (o *UsageAttributionValues) GetProfiledContainersUsageOk() (*float64, bool)`
+
+GetProfiledContainersUsageOk returns a tuple with the ProfiledContainersUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfiledContainersUsage
+
+`func (o *UsageAttributionValues) SetProfiledContainersUsage(v float64)`
+
+SetProfiledContainersUsage sets ProfiledContainersUsage field to given value.
+
+### HasProfiledContainersUsage
+
+`func (o *UsageAttributionValues) HasProfiledContainersUsage() bool`
+
+HasProfiledContainersUsage returns a boolean if a field has been set.
+
+### GetProfiledHostsPercentage
+
+`func (o *UsageAttributionValues) GetProfiledHostsPercentage() float64`
+
+GetProfiledHostsPercentage returns the ProfiledHostsPercentage field if non-nil, zero value otherwise.
+
+### GetProfiledHostsPercentageOk
+
+`func (o *UsageAttributionValues) GetProfiledHostsPercentageOk() (*float64, bool)`
+
+GetProfiledHostsPercentageOk returns a tuple with the ProfiledHostsPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfiledHostsPercentage
+
+`func (o *UsageAttributionValues) SetProfiledHostsPercentage(v float64)`
+
+SetProfiledHostsPercentage sets ProfiledHostsPercentage field to given value.
+
+### HasProfiledHostsPercentage
+
+`func (o *UsageAttributionValues) HasProfiledHostsPercentage() bool`
+
+HasProfiledHostsPercentage returns a boolean if a field has been set.
+
+### GetProfiledHostsUsage
+
+`func (o *UsageAttributionValues) GetProfiledHostsUsage() float64`
+
+GetProfiledHostsUsage returns the ProfiledHostsUsage field if non-nil, zero value otherwise.
+
+### GetProfiledHostsUsageOk
+
+`func (o *UsageAttributionValues) GetProfiledHostsUsageOk() (*float64, bool)`
+
+GetProfiledHostsUsageOk returns a tuple with the ProfiledHostsUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfiledHostsUsage
+
+`func (o *UsageAttributionValues) SetProfiledHostsUsage(v float64)`
+
+SetProfiledHostsUsage sets ProfiledHostsUsage field to given value.
+
+### HasProfiledHostsUsage
+
+`func (o *UsageAttributionValues) HasProfiledHostsUsage() bool`
+
+HasProfiledHostsUsage returns a boolean if a field has been set.
 
 ### GetSnmpPercentage
 
