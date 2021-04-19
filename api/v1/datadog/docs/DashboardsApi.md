@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## ListDashboards
 
-> DashboardSummary ListDashboards(ctx).Execute()
+> DashboardSummary ListDashboards(ctx).FilterShared(filterShared).Execute()
 
 Get all dashboards
 
@@ -257,11 +257,12 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
+    filterShared := true // bool | When `true`, this query only returns shared custom created or cloned dashboards. (optional)
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardsApi.ListDashboards(ctx).Execute()
+    resp, r, err := apiClient.DashboardsApi.ListDashboards(ctx).FilterShared(filterShared).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.ListDashboards``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -274,12 +275,16 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListDashboardsRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **filterShared** | **bool** | When &#x60;true&#x60;, this query only returns shared custom created or cloned dashboards. | 
 
 ### Return type
 
