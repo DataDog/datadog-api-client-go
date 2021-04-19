@@ -46,9 +46,3 @@ jobs:
         DD_TEST_CLIENT_API_KEY: $(datadogAPIKey)
         DD_TEST_CLIENT_APP_KEY: $(datadogAPPKey)
         RECORD: "none"
-    - script: |
-        bash <(curl -s https://codecov.io/bash) -F integration -v
-
-      displayName: Upload to codecov.io
-      env:
-        CODECOV_TOKEN: $(codecovToken)
