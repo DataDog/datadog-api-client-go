@@ -1,8 +1,9 @@
 cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/DataDog/datadog-go v4.4.0+incompatible h1:R7WqXWP4fIOAqWJtUKmSfuc7eDsBT58k9AY5WSHVosk=
 github.com/DataDog/datadog-go v4.4.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
-github.com/DataDog/dd-trace-go v1.29.0-rc.1.0.20210226170446-a8dc39ec3484 h1:iyK/ZV0RyPdSVdC+Yxv72RRybHO/GLVHJsGaRnBYXSo=
-github.com/DataDog/dd-trace-go v1.29.0-rc.1.0.20210226170446-a8dc39ec3484/go.mod h1:H9vSLD4Qlnl3rH2fUT6jyP9qwq1lDo0ikaDqSJo8t/U=
+github.com/DataDog/dd-trace-go v1.30.0-rc.1.0.20210420124628-f63633f38e8f h1:J+DQ9rANbV/QEnoDumLth4p5mMUDB28J8ej2CKbcvRs=
+github.com/DataDog/dd-trace-go v1.30.0-rc.1.0.20210420124628-f63633f38e8f/go.mod h1:I3nUNop4UZaHSj2C2OBCHezmsQIHczbUps8nHgw/HXs=
+github.com/DataDog/gostackparse v0.5.0/go.mod h1:lTfqcJKqS9KnXQGnyQMCugq3u1FP6UZMfWR0aitKFMM=
 github.com/Microsoft/go-winio v0.4.16 h1:FtSW/jqD+l4ba5iPBj9CODVtgfYAD8w2wS923g/cFDk=
 github.com/Microsoft/go-winio v0.4.16/go.mod h1:XB6nPKklQyQ7GC9LdcBEcBl8PF76WugXOPRXwdLnMv0=
 github.com/aslakhellesoy/gox v1.0.100/go.mod h1:AJl542QsKKG96COVsv0N74HHzVQgDIQPceVUh1aeU2M=
