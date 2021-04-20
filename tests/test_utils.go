@@ -384,8 +384,22 @@ func removeURLSecrets(u *url.URL) string {
 
 // MatchInteraction checks if the request matches a store request in the given cassette.
 func MatchInteraction(r *http.Request, i cassette.Request) bool {
-	// Default matching on method and URL without secrets
-	if !(r.Method == i.Method && removeURLSecrets(r.URL) == i.URL) {
+	// Default matching on method
+	if r.Method != i.Method {
+		return false
+	}
+	cassetteURL, err := url.Parse(i.URL)
+	if err != nil {
+		return false
+	}
+	if cassetteURL.Path != r.URL.Path {
+		return false
+	}
+
+	q := r.URL.Query()
+	q.Del("api_key")
+	q.Del("application_key")
+	if cassetteURL.Query().Encode() != q.Encode() {
 		return false
 	}
 
