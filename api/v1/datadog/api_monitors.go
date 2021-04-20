@@ -246,6 +246,7 @@ The type of monitor chosen from:
 - outlier: `query alert`
 - process: `service check`
 - rum: `rum alert`
+- SLO: `slo alert`
 - watchdog: `event alert`
 - event-v2: `event-v2 alert`
 
@@ -346,6 +347,14 @@ Email notifications can be sent to specific users by using the same '@username' 
 * **`tags`** [*optional*, *default* = **empty list**]: A list of tags to associate with your monitor.
 When getting all monitor details via the API, use the `monitor_tags` argument to filter results by these tags.
 It is only available via the API and isn't visible or editable in the Datadog UI.
+
+**SLO Alert Query**
+
+Example: `error_budget("slo_id").over("time_window") operator #`
+
+- **`slo_id`**: The alphanumeric SLO ID of the SLO you are configuring the alert for.
+- **`time_window`**: The time window of the SLO target you wish to alert on. Valid options: `7d`, `30d`, `90d`.
+- **`operator`**: `>=` or `>`
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiCreateMonitorRequest
 */
