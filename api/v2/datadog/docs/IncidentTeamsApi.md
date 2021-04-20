@@ -337,7 +337,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     teamId := "teamId_example" // string | The ID of the incident team.
-    body := *datadog.NewIncidentTeamUpdateRequest(*datadog.NewIncidentTeamUpdateData("00000000-0000-0000-0000-000000000000", datadog.IncidentTeamType("teams"))) // IncidentTeamUpdateRequest | Incident Team Payload.
+    body := *datadog.NewIncidentTeamUpdateRequest(*datadog.NewIncidentTeamUpdateData(datadog.IncidentTeamType("teams"))) // IncidentTeamUpdateRequest | Incident Team Payload.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("UpdateIncidentTeam", true)
