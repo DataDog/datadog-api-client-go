@@ -250,7 +250,7 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		t.Log(err.Error())
 		tag = "features"
 	}
-	return ddtesting.StartSpanWithFinish(ctx, t, ddtesting.WithSkipFrames(2), ddtesting.WithSpanOptions(
+	ctx, finish := ddtesting.StartSpanWithFinish(ctx, t, ddtesting.WithSkipFrames(2), ddtesting.WithSpanOptions(
 		// We need to make the tag be something that is then searchable in monitors
 		// https://docs.datadoghq.com/tracing/guide/metrics_namespace/#errors
 		// "version" is really the only one we can use here
@@ -258,6 +258,13 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		// if we set it in StartSpanFromContext, it would get overwritten
 		tracer.Tag(ext.Version, tag),
 	))
+
+	return ctx, func() {
+		if r := recover(); r != nil {
+			t.Errorf("test paniced: %v", r)
+		}
+		finish()
+	}
 }
 
 func createWithDir(path string) (*os.File, error) {
