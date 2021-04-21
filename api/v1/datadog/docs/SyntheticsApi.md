@@ -14,17 +14,17 @@ Method | HTTP request | Description
 [**DeleteTests**](SyntheticsApi.md#DeleteTests) | **Post** /api/v1/synthetics/tests/delete | Delete tests
 [**EditGlobalVariable**](SyntheticsApi.md#EditGlobalVariable) | **Put** /api/v1/synthetics/variables/{variable_id} | Edit a global variable
 [**GetAPITest**](SyntheticsApi.md#GetAPITest) | **Get** /api/v1/synthetics/tests/api/{public_id} | Get an API test
-[**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get the test&#39;s latest results summaries (API)
-[**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get a test result (API)
-[**GetBrowserTest**](SyntheticsApi.md#GetBrowserTest) | **Get** /api/v1/synthetics/tests/browser/{public_id} | Get a test configuration (browser)
-[**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get the test&#39;s latest results summaries (browser)
-[**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a test result (browser)
+[**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get an API test&#39;s latest results summaries
+[**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get an API test result
+[**GetBrowserTest**](SyntheticsApi.md#GetBrowserTest) | **Get** /api/v1/synthetics/tests/browser/{public_id} | Get a browser test
+[**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get a browser test&#39;s latest results summaries
+[**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a browser test result
 [**GetGlobalVariable**](SyntheticsApi.md#GetGlobalVariable) | **Get** /api/v1/synthetics/variables/{variable_id} | Get a global variable
 [**GetPrivateLocation**](SyntheticsApi.md#GetPrivateLocation) | **Get** /api/v1/synthetics/private-locations/{location_id} | Get a private location
 [**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration (API)
 [**ListLocations**](SyntheticsApi.md#ListLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 [**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
-[**TriggerCITests**](SyntheticsApi.md#TriggerCITests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger some Synthetics tests for CI
+[**TriggerCITests**](SyntheticsApi.md#TriggerCITests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger tests from CI/CD pipelines
 [**UpdateAPITest**](SyntheticsApi.md#UpdateAPITest) | **Put** /api/v1/synthetics/tests/api/{public_id} | Edit an API test
 [**UpdateBrowserTest**](SyntheticsApi.md#UpdateBrowserTest) | **Put** /api/v1/synthetics/tests/browser/{public_id} | Edit a browser test
 [**UpdatePrivateLocation**](SyntheticsApi.md#UpdatePrivateLocation) | **Put** /api/v1/synthetics/private-locations/{location_id} | Edit a private location
@@ -757,7 +757,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsGetAPITestLatestResultsResponse GetAPITestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
 
-Get the test's latest results summaries (API)
+Get an API test's latest results summaries
 
 
 
@@ -838,7 +838,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsAPITestResultFull GetAPITestResult(ctx, publicId, resultId).Execute()
 
-Get a test result (API)
+Get an API test result
 
 
 
@@ -916,7 +916,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsBrowserTest GetBrowserTest(ctx, publicId).Execute()
 
-Get a test configuration (browser)
+Get a browser test
 
 
 
@@ -991,7 +991,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsGetBrowserTestLatestResultsResponse GetBrowserTestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
 
-Get the test's latest results summaries (browser)
+Get a browser test's latest results summaries
 
 
 
@@ -1072,7 +1072,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsBrowserTestResultFull GetBrowserTestResult(ctx, publicId, resultId).Execute()
 
-Get a test result (browser)
+Get a browser test result
 
 
 
@@ -1507,7 +1507,7 @@ Other parameters are passed through a pointer to a apiListTestsRequest struct vi
 
 > SyntheticsTriggerCITestsResponse TriggerCITests(ctx).Body(body).Execute()
 
-Trigger some Synthetics tests for CI
+Trigger tests from CI/CD pipelines
 
 
 

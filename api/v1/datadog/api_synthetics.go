@@ -1685,7 +1685,7 @@ func (r ApiGetAPITestLatestResultsRequest) Execute() (SyntheticsGetAPITestLatest
 }
 
 /*
- * GetAPITestLatestResults Get the test's latest results summaries (API)
+ * GetAPITestLatestResults Get an API test's latest results summaries
  * Get the last 50 test results summaries for a given Synthetics API test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public ID of the test for which to search results for.
@@ -1859,7 +1859,7 @@ func (r ApiGetAPITestResultRequest) Execute() (SyntheticsAPITestResultFull, *_ne
 }
 
 /*
- * GetAPITestResult Get a test result (API)
+ * GetAPITestResult Get an API test result
  * Get a specific full result from a given (API) Synthetic test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public ID of the API test to which the target result belongs.
@@ -2018,7 +2018,7 @@ func (r ApiGetBrowserTestRequest) Execute() (SyntheticsBrowserTest, *_nethttp.Re
 }
 
 /*
- * GetBrowserTest Get a test configuration (browser)
+ * GetBrowserTest Get a browser test
  * Get the detailed configuration (including steps) associated with
 a Synthetic browser test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -2191,7 +2191,7 @@ func (r ApiGetBrowserTestLatestResultsRequest) Execute() (SyntheticsGetBrowserTe
 }
 
 /*
- * GetBrowserTestLatestResults Get the test's latest results summaries (browser)
+ * GetBrowserTestLatestResults Get a browser test's latest results summaries
  * Get the last 50 test results summaries for a given Synthetics Browser test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public ID of the browser test for which to search results for.
@@ -2365,7 +2365,7 @@ func (r ApiGetBrowserTestResultRequest) Execute() (SyntheticsBrowserTestResultFu
 }
 
 /*
- * GetBrowserTestResult Get a test result (browser)
+ * GetBrowserTestResult Get a browser test result
  * Get a specific full result from a given (browser) Synthetic test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public ID of the browser test to which the target result belongs.
@@ -3273,7 +3273,7 @@ func (r ApiTriggerCITestsRequest) Execute() (SyntheticsTriggerCITestsResponse, *
 }
 
 /*
- * TriggerCITests Trigger some Synthetics tests for CI
+ * TriggerCITests Trigger tests from CI/CD pipelines
  * Trigger a set of Synthetics tests for continuous integration.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiTriggerCITestsRequest
