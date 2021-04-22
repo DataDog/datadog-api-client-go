@@ -816,13 +816,6 @@ func (a *MetricsApiService) ListTagsByMetricNameExecute(r ApiListTagsByMetricNam
 		localVarReturnValue  MetricAllTagsResponse
 	)
 
-	operationId := "ListTagsByMetricName"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagsByMetricName")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
@@ -1002,13 +995,6 @@ func (a *MetricsApiService) ListVolumesByMetricNameExecute(r ApiListVolumesByMet
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricVolumesResponse
 	)
-
-	operationId := "ListVolumesByMetricName"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListVolumesByMetricName")
 	if err != nil {
