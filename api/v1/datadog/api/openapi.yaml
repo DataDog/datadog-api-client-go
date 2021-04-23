@@ -10502,9 +10502,15 @@ components:
         Unlike the heat map, a distribution graph’s x-axis is quantity rather than time.
       properties:
         legend_size:
-          description: Available legend sizes for a widget. Should be one of "0",
-            "2", "4", "8", "16", or "auto".
+          deprecated: true
+          description: (Deprecated) The widget legend was replaced by a tooltip and
+            sidebar.
           type: string
+        markers:
+          description: List of markers.
+          items:
+            $ref: '#/components/schemas/WidgetMarker'
+          type: array
         requests:
           description: |-
             Array of one request object to display in the widget.
@@ -10519,7 +10525,9 @@ components:
           minItems: 1
           type: array
         show_legend:
-          description: Whether or not to display the legend on this widget.
+          deprecated: true
+          description: (Deprecated) The widget legend was replaced by a tooltip and
+            sidebar.
           type: boolean
         time:
           $ref: '#/components/schemas/WidgetTime'
@@ -10533,6 +10541,10 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/DistributionWidgetDefinitionType'
+        xaxis:
+          $ref: '#/components/schemas/DistributionWidgetXAxis'
+        yaxis:
+          $ref: '#/components/schemas/DistributionWidgetYAxis'
       required:
       - requests
       - type
@@ -10570,6 +10582,51 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         style:
           $ref: '#/components/schemas/WidgetStyle'
+      type: object
+    DistributionWidgetXAxis:
+      description: X Axis controls for the distribution widget.
+      properties:
+        include_zero:
+          description: True includes zero.
+          type: boolean
+        max:
+          default: auto
+          description: Specifies maximum value to show on the x-axis. It takes a number,
+            percentile (p90 === 90th percentile), or auto for default behavior.
+          type: string
+        min:
+          default: auto
+          description: Specifies minimum value to show on the x-axis. It takes a number,
+            percentile (p90 === 90th percentile), or auto for default behavior.
+          type: string
+        scale:
+          default: linear
+          description: Specifies the scale type. Possible values are `linear`.
+          type: string
+      type: object
+    DistributionWidgetYAxis:
+      description: Y Axis controls for the distribution widget.
+      properties:
+        include_zero:
+          description: True includes zero.
+          type: boolean
+        label:
+          description: The label of the axis to display on the graph.
+          type: string
+        max:
+          default: auto
+          description: Specifies the maximum value to show on the y-axis. It takes
+            a number, or auto for default behavior.
+          type: string
+        min:
+          default: auto
+          description: Specifies minimum value to show on the y-axis. It takes a number,
+            or auto for default behavior.
+          type: string
+        scale:
+          default: linear
+          description: Specifies the scale type. Possible values are `linear` or `log`.
+          type: string
       type: object
     Downtime:
       description: |-
@@ -24370,6 +24427,7 @@ components:
             Combination of:
               - A severity error, warning, ok, or info
               - A line type: dashed, solid, or bold
+            In this case of a Distribution widget, this can be set to be `x_axis_percentile`.
           example: error dashed
           type: string
         label:
