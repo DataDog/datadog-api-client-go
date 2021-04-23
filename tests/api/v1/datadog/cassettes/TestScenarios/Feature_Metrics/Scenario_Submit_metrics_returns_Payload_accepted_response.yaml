@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"series":[{"metric":"system.load.1","points":[[1600348600,1.1]],"tags":["test:TestSubmitmetricsreturnsPayloadacceptedresponse1618221317"]}]}
+      {"series":[{"metric":"system.load.1","points":[[1600348600,1.1]],"tags":["test:TestSubmitmetricsreturnsPayloadacceptedresponse1619165805"],"type":"gauge"}]}
     form: {}
     headers:
       Accept:
@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - SubmitMetrics
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.20+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7216428167171775045"
+      - "6743331733799954008"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5448458313271725819"
+      - "2055150360869749989"
     url: https://api.datadoghq.com/api/v1/series
     method: POST
   response:
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - text/json
       Date:
-      - Mon, 12 Apr 2021 09:55:17 GMT
+      - Fri, 23 Apr 2021 08:16:46 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
