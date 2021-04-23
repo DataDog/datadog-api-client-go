@@ -100,6 +100,8 @@ docs/DeletedMonitor.md
 docs/DistributionWidgetDefinition.md
 docs/DistributionWidgetDefinitionType.md
 docs/DistributionWidgetRequest.md
+docs/DistributionWidgetXAxis.md
+docs/DistributionWidgetYAxis.md
 docs/Downtime.md
 docs/DowntimeRecurrence.md
 docs/DowntimesApi.md
@@ -637,6 +639,8 @@ model_deleted_monitor.go
 model_distribution_widget_definition.go
 model_distribution_widget_definition_type.go
 model_distribution_widget_request.go
+model_distribution_widget_x_axis.go
+model_distribution_widget_y_axis.go
 model_downtime.go
 model_downtime_recurrence.go
 model_event.go

@@ -14,7 +14,7 @@ import (
 
 // WidgetMarker Markers allow you to add visual conditional formatting for your graphs.
 type WidgetMarker struct {
-	// Combination of:   - A severity error, warning, ok, or info   - A line type: dashed, solid, or bold
+	// Combination of:   - A severity error, warning, ok, or info   - A line type: dashed, solid, or bold In this case of a Distribution widget, this can be set to be `x_axis_percentile`.
 	DisplayType *string `json:"display_type,omitempty"`
 	// Label to display over the marker.
 	Label *string `json:"label,omitempty"`
