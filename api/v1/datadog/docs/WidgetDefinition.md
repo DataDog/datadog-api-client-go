@@ -22,7 +22,10 @@ Name | Type | Description | Notes
 **Grouping** | [**WidgetGrouping**](WidgetGrouping.md) |  | 
 **Tags** | Pointer to **[]string** | List of tags used to filter the groups reporting a cluster check. | [optional] 
 **LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
+**Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
 **ShowLegend** | Pointer to **bool** | (screenboard only) Show the legend for this widget. | [optional] 
+**Xaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
+**Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 **EventSize** | Pointer to [**WidgetEventSize**](WidgetEventSize.md) |  | [optional] 
 **Query** | **string** | Query to filter the monitors with. | 
 **TagsExecution** | Pointer to **string** | The execution method for multi-value filters. Can be either and or or. | [optional] 
@@ -35,7 +38,6 @@ Name | Type | Description | Notes
 **LayoutType** | [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
 **Widgets** | [**[]Widget**](Widget.md) | List of widget groups. | 
 **Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
-**Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 **NoGroupHosts** | Pointer to **bool** | Whether to show the hosts that don’t fit in a group. | [optional] 
 **NoMetricHosts** | Pointer to **bool** | Whether to show the hosts with no metrics. | [optional] 
 **NodeType** | Pointer to [**WidgetNodeType**](WidgetNodeType.md) |  | [optional] 
@@ -65,7 +67,6 @@ Name | Type | Description | Notes
 **Autoscale** | Pointer to **bool** | Whether to use auto-scaling or not. | [optional] 
 **CustomUnit** | Pointer to **string** | Display a unit of your choice on the widget. | [optional] 
 **ColorByGroups** | Pointer to **[]string** | List of groups used for colors. | [optional] 
-**Xaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 **GlobalTimeTarget** | Pointer to **string** | Defined global time target. | [optional] 
 **ShowErrorBudget** | Pointer to **bool** | Defined error budget. | [optional] 
 **SloId** | Pointer to **string** | ID of the SLO displayed. | [optional] 
@@ -86,7 +87,6 @@ Name | Type | Description | Notes
 **HasSearchBar** | Pointer to [**TableWidgetHasSearchBar**](TableWidgetHasSearchBar.md) |  | [optional] 
 **LegendColumns** | Pointer to [**[]TimeseriesWidgetLegendColumn**](TimeseriesWidgetLegendColumn.md) | Columns displayed in the legend. | [optional] 
 **LegendLayout** | Pointer to [**TimeseriesWidgetLegendLayout**](TimeseriesWidgetLegendLayout.md) |  | [optional] 
-**Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
 **RightYaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
 
 ## Methods
@@ -528,6 +528,31 @@ SetLegendSize sets LegendSize field to given value.
 
 HasLegendSize returns a boolean if a field has been set.
 
+### GetMarkers
+
+`func (o *WidgetDefinition) GetMarkers() []WidgetMarker`
+
+GetMarkers returns the Markers field if non-nil, zero value otherwise.
+
+### GetMarkersOk
+
+`func (o *WidgetDefinition) GetMarkersOk() (*[]WidgetMarker, bool)`
+
+GetMarkersOk returns a tuple with the Markers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMarkers
+
+`func (o *WidgetDefinition) SetMarkers(v []WidgetMarker)`
+
+SetMarkers sets Markers field to given value.
+
+### HasMarkers
+
+`func (o *WidgetDefinition) HasMarkers() bool`
+
+HasMarkers returns a boolean if a field has been set.
+
 ### GetShowLegend
 
 `func (o *WidgetDefinition) GetShowLegend() bool`
@@ -552,6 +577,56 @@ SetShowLegend sets ShowLegend field to given value.
 `func (o *WidgetDefinition) HasShowLegend() bool`
 
 HasShowLegend returns a boolean if a field has been set.
+
+### GetXaxis
+
+`func (o *WidgetDefinition) GetXaxis() WidgetAxis`
+
+GetXaxis returns the Xaxis field if non-nil, zero value otherwise.
+
+### GetXaxisOk
+
+`func (o *WidgetDefinition) GetXaxisOk() (*WidgetAxis, bool)`
+
+GetXaxisOk returns a tuple with the Xaxis field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetXaxis
+
+`func (o *WidgetDefinition) SetXaxis(v WidgetAxis)`
+
+SetXaxis sets Xaxis field to given value.
+
+### HasXaxis
+
+`func (o *WidgetDefinition) HasXaxis() bool`
+
+HasXaxis returns a boolean if a field has been set.
+
+### GetYaxis
+
+`func (o *WidgetDefinition) GetYaxis() WidgetAxis`
+
+GetYaxis returns the Yaxis field if non-nil, zero value otherwise.
+
+### GetYaxisOk
+
+`func (o *WidgetDefinition) GetYaxisOk() (*WidgetAxis, bool)`
+
+GetYaxisOk returns a tuple with the Yaxis field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetYaxis
+
+`func (o *WidgetDefinition) SetYaxis(v WidgetAxis)`
+
+SetYaxis sets Yaxis field to given value.
+
+### HasYaxis
+
+`func (o *WidgetDefinition) HasYaxis() bool`
+
+HasYaxis returns a boolean if a field has been set.
 
 ### GetEventSize
 
@@ -822,31 +897,6 @@ SetEvents sets Events field to given value.
 `func (o *WidgetDefinition) HasEvents() bool`
 
 HasEvents returns a boolean if a field has been set.
-
-### GetYaxis
-
-`func (o *WidgetDefinition) GetYaxis() WidgetAxis`
-
-GetYaxis returns the Yaxis field if non-nil, zero value otherwise.
-
-### GetYaxisOk
-
-`func (o *WidgetDefinition) GetYaxisOk() (*WidgetAxis, bool)`
-
-GetYaxisOk returns a tuple with the Yaxis field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetYaxis
-
-`func (o *WidgetDefinition) SetYaxis(v WidgetAxis)`
-
-SetYaxis sets Yaxis field to given value.
-
-### HasYaxis
-
-`func (o *WidgetDefinition) HasYaxis() bool`
-
-HasYaxis returns a boolean if a field has been set.
 
 ### GetNoGroupHosts
 
@@ -1563,31 +1613,6 @@ SetColorByGroups sets ColorByGroups field to given value.
 
 HasColorByGroups returns a boolean if a field has been set.
 
-### GetXaxis
-
-`func (o *WidgetDefinition) GetXaxis() WidgetAxis`
-
-GetXaxis returns the Xaxis field if non-nil, zero value otherwise.
-
-### GetXaxisOk
-
-`func (o *WidgetDefinition) GetXaxisOk() (*WidgetAxis, bool)`
-
-GetXaxisOk returns a tuple with the Xaxis field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetXaxis
-
-`func (o *WidgetDefinition) SetXaxis(v WidgetAxis)`
-
-SetXaxis sets Xaxis field to given value.
-
-### HasXaxis
-
-`func (o *WidgetDefinition) HasXaxis() bool`
-
-HasXaxis returns a boolean if a field has been set.
-
 ### GetGlobalTimeTarget
 
 `func (o *WidgetDefinition) GetGlobalTimeTarget() string`
@@ -2062,31 +2087,6 @@ SetLegendLayout sets LegendLayout field to given value.
 `func (o *WidgetDefinition) HasLegendLayout() bool`
 
 HasLegendLayout returns a boolean if a field has been set.
-
-### GetMarkers
-
-`func (o *WidgetDefinition) GetMarkers() []WidgetMarker`
-
-GetMarkers returns the Markers field if non-nil, zero value otherwise.
-
-### GetMarkersOk
-
-`func (o *WidgetDefinition) GetMarkersOk() (*[]WidgetMarker, bool)`
-
-GetMarkersOk returns a tuple with the Markers field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMarkers
-
-`func (o *WidgetDefinition) SetMarkers(v []WidgetMarker)`
-
-SetMarkers sets Markers field to given value.
-
-### HasMarkers
-
-`func (o *WidgetDefinition) HasMarkers() bool`
-
-HasMarkers returns a boolean if a field has been set.
 
 ### GetRightYaxis
 

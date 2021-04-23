@@ -2826,7 +2826,7 @@ func (r ApiGetTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Response,
 }
 
 /*
- * GetTest Get a test configuration (API)
+ * GetTest Get a test configuration
  * Get the detailed configuration associated with a Synthetics test.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param publicId The public ID of the test to get details from.

@@ -18,7 +18,7 @@ Feature: Metrics
     Given a valid "appKeyAuth" key in the system
     And new "UpdateMetricMetadata" request
     And request contains "metric_name" parameter from "<PATH>"
-    And body {"description": null, "integration": null, "per_unit": "second", "short_name": null, "statsd_interval": null, "type": "count", "unit": "byte"}
+    And body {"description": null, "per_unit": "second", "short_name": null, "statsd_interval": null, "type": "count", "unit": "byte"}
     When the request is sent
     Then the response status is 400 Bad Request
 
@@ -27,7 +27,7 @@ Feature: Metrics
     Given a valid "appKeyAuth" key in the system
     And new "UpdateMetricMetadata" request
     And request contains "metric_name" parameter from "<PATH>"
-    And body {"description": null, "integration": null, "per_unit": "second", "short_name": null, "statsd_interval": null, "type": "count", "unit": "byte"}
+    And body {"description": null, "per_unit": "second", "short_name": null, "statsd_interval": null, "type": "count", "unit": "byte"}
     When the request is sent
     Then the response status is 404 Not Found
 
@@ -36,7 +36,7 @@ Feature: Metrics
     Given a valid "appKeyAuth" key in the system
     And new "UpdateMetricMetadata" request
     And request contains "metric_name" parameter from "<PATH>"
-    And body {"description": null, "integration": null, "per_unit": "second", "short_name": null, "statsd_interval": null, "type": "count", "unit": "byte"}
+    And body {"description": null, "per_unit": "second", "short_name": null, "statsd_interval": null, "type": "count", "unit": "byte"}
     When the request is sent
     Then the response status is 200 OK
 
@@ -107,7 +107,7 @@ Feature: Metrics
 
   Scenario: Submit metrics returns "Payload accepted" response
     Given new "SubmitMetrics" request
-    And body {"series": [{"metric": "system.load.1", "points": [[1600348600, 1.1]], "tags": ["test:{{ unique_alnum }}"]}]}
+    And body {"series": [{"metric": "system.load.1", "type": "gauge", "points": [[1600348600, 1.1]], "tags": ["test:{{ unique_alnum }}"]}]}
     When the request is sent
     Then the response status is 202 Payload accepted
 
