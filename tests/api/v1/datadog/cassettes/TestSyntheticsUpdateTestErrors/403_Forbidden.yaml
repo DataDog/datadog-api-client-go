@@ -11,16 +11,16 @@ interactions:
       Content-Type:
       - application/json
       Dd-Operation-Id:
-      - UpdateTest
+      - UpdateAPITest
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "73818891930300042"
+      - "6359017378854513245"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3499194892229643761"
-    url: https://api.datadoghq.com/api/v1/synthetics/tests/id
+      - "542481561295706186"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/api/id
     method: PUT
   response:
     body: |
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:54:19 GMT
+      - Tue, 13 Apr 2021 18:56:17 GMT
       Via:
       - haproxy
     status: 403 Forbidden
