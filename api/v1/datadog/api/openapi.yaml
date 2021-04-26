@@ -6160,53 +6160,6 @@ paths:
       x-menu-order: 9
       x-undo:
         type: safe
-    post:
-      deprecated: true
-      description: Create a Synthetic test.
-      operationId: CreateTest
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SyntheticsTestDetails'
-        description: Details of the test to create.
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SyntheticsTestDetails'
-          description: OK - Returns the created test details.
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: |-
-            - JSON format is wrong
-            - Creation failed
-        "402":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Test quota is reached
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
-      summary: Create a test
-      tags:
-      - Synthetics
-      x-codegen-request-body-name: body
-      x-menu-order: 26
-      x-undo:
-        operationId: TODO
-        parameters: []
-        type: unsafe
   /api/v1/synthetics/tests/api:
     post:
       description: Create a Synthetic API test.
@@ -6738,63 +6691,6 @@ paths:
       x-menu-order: 24
       x-undo:
         type: safe
-    put:
-      deprecated: true
-      description: Edit the configuration of a Synthetic test.
-      operationId: UpdateTest
-      parameters:
-      - description: The public ID of the test to get details from.
-        explode: false
-        in: path
-        name: public_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SyntheticsTestDetails'
-        description: New test details to be saved.
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SyntheticsTestDetails'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: |-
-            - JSON format is wrong
-            - Updating sub-type is forbidden
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: |-
-            - Synthetic is not activated for the user
-            - Test is not owned by the user
-            - Test can't be found
-      summary: Edit a test
-      tags:
-      - Synthetics
-      x-codegen-request-body-name: body
-      x-menu-order: 25
-      x-undo:
-        type: idempotent
   /api/v1/synthetics/tests/{public_id}/results:
     get:
       description: Get the last 50 test results summaries for a given Synthetics API
@@ -21879,6 +21775,7 @@ components:
         hour: 2000-01-23T04:56:07.000+00:00
         alibaba_host_count: 6
         opentelemetry_host_count: 7
+        vsphere_host_count: 1
         gcp_host_count: 9
       properties:
         agent_host_count:
@@ -21953,6 +21850,12 @@ components:
             for the OpenTelemetry Collector.
           format: int64
           type: integer
+        vsphere_host_count:
+          description: |-
+            Contains the total number of hosts that reported via vSphere integration
+            (and were NOT running the Datadog Agent).
+          format: int64
+          type: integer
       type: object
     UsageHostsResponse:
       description: Host usage response.
@@ -21970,6 +21873,7 @@ components:
           hour: 2000-01-23T04:56:07.000+00:00
           alibaba_host_count: 6
           opentelemetry_host_count: 7
+          vsphere_host_count: 1
           gcp_host_count: 9
         - infra_azure_app_service: 4
           apm_host_count: 5
@@ -21983,6 +21887,7 @@ components:
           hour: 2000-01-23T04:56:07.000+00:00
           alibaba_host_count: 6
           opentelemetry_host_count: 7
+          vsphere_host_count: 1
           gcp_host_count: 9
       properties:
         usage:
@@ -22098,8 +22003,7 @@ components:
           format: date-time
           type: string
         iot_device_count:
-          description: The total number of IoT device hours from the start of the
-            given hour's month until the given hour.
+          description: The total number of IoT devices during a given hour.
           format: int64
           type: integer
       type: object
@@ -22615,44 +22519,46 @@ components:
       description: Response with hourly report of all data billed by Datadog all organizations.
       example:
         date: 2000-01-23T04:56:07.000+00:00
+        iot_device_top99p: 4
         npm_host_top99p: 0
         container_hwm: 6
         billable_ingested_bytes_sum: 3
-        iot_device_top99p_sum: 4
+        vsphere_host_top99p: 4
         fargate_tasks_count_avg: 1
-        rum_session_count_sum: 6
+        iot_device_sum: 5
+        rum_session_count_sum: 9
         ingested_events_bytes_sum: 7
         compliance_host_count_sum: 4
         mobile_rum_session_count_sum: 4
         container_avg: 0
         netflow_indexed_events_count_sum: 3
         aws_lambda_func_count: 3
-        rum_total_session_count_sum: 9
+        rum_total_session_count_sum: 1
         mobile_rum_session_count_ios_sum: 8
         fargate_tasks_count_hwm: 4
-        opentelemetry_host_top99p_sum: 2
-        iot_device_agg_sum: 5
-        profiling_host_top99p: 4
+        opentelemetry_host_top99p: 2
+        profiling_host_top99p: 6
         gcp_host_top99p: 7
         azure_app_service_top99p: 5
         apm_azure_app_service_host_top99p: 8
         mobile_rum_session_count_android_sum: 6
         apm_host_top99p: 7
-        synthetics_check_calls_count_sum: 1
+        synthetics_check_calls_count_sum: 3
         aws_host_top99p: 3
+        heroku_host_top99p: 9
         incident_management_monthly_active_users_hwm: 0
         custom_ts_avg: 4
-        trace_search_indexed_events_count_sum: 3
-        twol_ingested_events_bytes_sum: 5
+        trace_search_indexed_events_count_sum: 5
+        twol_ingested_events_bytes_sum: 1
         agent_host_top99p: 4
         compliance_container_count_sum: ""
         indexed_events_count_sum: 9
         infra_host_top99p: 0
-        heroku_host_top99p_sum: 9
         orgs:
         - npm_host_top99p: 0
           container_hwm: 0
           billable_ingested_bytes_sum: 3
+          vsphere_host_top99p: 4
           iot_device_top99p_sum: 3
           compliance_host_agg_sum: 9
           fargate_tasks_count_avg: 5
@@ -22692,6 +22598,7 @@ components:
         - npm_host_top99p: 0
           container_hwm: 0
           billable_ingested_bytes_sum: 3
+          vsphere_host_top99p: 4
           iot_device_top99p_sum: 3
           compliance_host_agg_sum: 9
           fargate_tasks_count_avg: 5
@@ -22813,7 +22720,7 @@ components:
             the current date for all organizations.
           format: int64
           type: integer
-        heroku_host_top99p_sum:
+        heroku_host_top99p:
           description: Shows the 99th percentile of all Heroku dynos over all hours
             in the current date for all organizations.
           format: int64
@@ -22838,12 +22745,12 @@ components:
             current date for all organizations.
           format: int64
           type: integer
-        iot_device_agg_sum:
+        iot_device_sum:
           description: Shows the sum of all IoT devices over all hours in the current
             date for all organizations.
           format: int64
           type: integer
-        iot_device_top99p_sum:
+        iot_device_top99p:
           description: Shows the 99th percentile of all IoT devices over all hours
             in the current date all organizations.
           format: int64
@@ -22873,7 +22780,7 @@ components:
             all hours in the current date for all organizations.
           format: int64
           type: integer
-        opentelemetry_host_top99p_sum:
+        opentelemetry_host_top99p:
           description: Shows the 99th percentile of all hosts reported by the Datadog
             exporter for the OpenTelemetry Collector over all hours in the current
             date for all organizations.
@@ -22919,6 +22826,11 @@ components:
             over all hours in the current date for all organizations.
           format: int64
           type: integer
+        vsphere_host_top99p:
+          description: Shows the 99th percentile of all vSphere hosts over all hours
+            in the current date for all organizations.
+          format: int64
+          type: integer
       type: object
     UsageSummaryDateOrg:
       description: Global hourly report of all data billed by Datadog for a given
@@ -22927,6 +22839,7 @@ components:
         npm_host_top99p: 0
         container_hwm: 0
         billable_ingested_bytes_sum: 3
+        vsphere_host_top99p: 4
         iot_device_top99p_sum: 3
         compliance_host_agg_sum: 9
         fargate_tasks_count_avg: 5
@@ -23151,6 +23064,11 @@ components:
             over all hours in the current date for the given org.
           format: int64
           type: integer
+        vsphere_host_top99p:
+          description: Shows the 99th percentile of all vSphere hosts over all hours
+            in the current date for the given org.
+          format: int64
+          type: integer
       type: object
     UsageSummaryResponse:
       description: Response with hourly report of all data billed by Datadog all organizations.
@@ -23159,44 +23077,46 @@ components:
         azure_host_top99p_sum: 9
         usage:
         - date: 2000-01-23T04:56:07.000+00:00
+          iot_device_top99p: 4
           npm_host_top99p: 0
           container_hwm: 6
           billable_ingested_bytes_sum: 3
-          iot_device_top99p_sum: 4
+          vsphere_host_top99p: 4
           fargate_tasks_count_avg: 1
-          rum_session_count_sum: 6
+          iot_device_sum: 5
+          rum_session_count_sum: 9
           ingested_events_bytes_sum: 7
           compliance_host_count_sum: 4
           mobile_rum_session_count_sum: 4
           container_avg: 0
           netflow_indexed_events_count_sum: 3
           aws_lambda_func_count: 3
-          rum_total_session_count_sum: 9
+          rum_total_session_count_sum: 1
           mobile_rum_session_count_ios_sum: 8
           fargate_tasks_count_hwm: 4
-          opentelemetry_host_top99p_sum: 2
-          iot_device_agg_sum: 5
-          profiling_host_top99p: 4
+          opentelemetry_host_top99p: 2
+          profiling_host_top99p: 6
           gcp_host_top99p: 7
           azure_app_service_top99p: 5
           apm_azure_app_service_host_top99p: 8
           mobile_rum_session_count_android_sum: 6
           apm_host_top99p: 7
-          synthetics_check_calls_count_sum: 1
+          synthetics_check_calls_count_sum: 3
           aws_host_top99p: 3
+          heroku_host_top99p: 9
           incident_management_monthly_active_users_hwm: 0
           custom_ts_avg: 4
-          trace_search_indexed_events_count_sum: 3
-          twol_ingested_events_bytes_sum: 5
+          trace_search_indexed_events_count_sum: 5
+          twol_ingested_events_bytes_sum: 1
           agent_host_top99p: 4
           compliance_container_count_sum: ""
           indexed_events_count_sum: 9
           infra_host_top99p: 0
-          heroku_host_top99p_sum: 9
           orgs:
           - npm_host_top99p: 0
             container_hwm: 0
             billable_ingested_bytes_sum: 3
+            vsphere_host_top99p: 4
             iot_device_top99p_sum: 3
             compliance_host_agg_sum: 9
             fargate_tasks_count_avg: 5
@@ -23236,6 +23156,7 @@ components:
           - npm_host_top99p: 0
             container_hwm: 0
             billable_ingested_bytes_sum: 3
+            vsphere_host_top99p: 4
             iot_device_top99p_sum: 3
             compliance_host_agg_sum: 9
             fargate_tasks_count_avg: 5
@@ -23275,44 +23196,46 @@ components:
           aws_lambda_invocations_sum: 7
           synthetics_browser_check_calls_count_sum: 1
         - date: 2000-01-23T04:56:07.000+00:00
+          iot_device_top99p: 4
           npm_host_top99p: 0
           container_hwm: 6
           billable_ingested_bytes_sum: 3
-          iot_device_top99p_sum: 4
+          vsphere_host_top99p: 4
           fargate_tasks_count_avg: 1
-          rum_session_count_sum: 6
+          iot_device_sum: 5
+          rum_session_count_sum: 9
           ingested_events_bytes_sum: 7
           compliance_host_count_sum: 4
           mobile_rum_session_count_sum: 4
           container_avg: 0
           netflow_indexed_events_count_sum: 3
           aws_lambda_func_count: 3
-          rum_total_session_count_sum: 9
+          rum_total_session_count_sum: 1
           mobile_rum_session_count_ios_sum: 8
           fargate_tasks_count_hwm: 4
-          opentelemetry_host_top99p_sum: 2
-          iot_device_agg_sum: 5
-          profiling_host_top99p: 4
+          opentelemetry_host_top99p: 2
+          profiling_host_top99p: 6
           gcp_host_top99p: 7
           azure_app_service_top99p: 5
           apm_azure_app_service_host_top99p: 8
           mobile_rum_session_count_android_sum: 6
           apm_host_top99p: 7
-          synthetics_check_calls_count_sum: 1
+          synthetics_check_calls_count_sum: 3
           aws_host_top99p: 3
+          heroku_host_top99p: 9
           incident_management_monthly_active_users_hwm: 0
           custom_ts_avg: 4
-          trace_search_indexed_events_count_sum: 3
-          twol_ingested_events_bytes_sum: 5
+          trace_search_indexed_events_count_sum: 5
+          twol_ingested_events_bytes_sum: 1
           agent_host_top99p: 4
           compliance_container_count_sum: ""
           indexed_events_count_sum: 9
           infra_host_top99p: 0
-          heroku_host_top99p_sum: 9
           orgs:
           - npm_host_top99p: 0
             container_hwm: 0
             billable_ingested_bytes_sum: 3
+            vsphere_host_top99p: 4
             iot_device_top99p_sum: 3
             compliance_host_agg_sum: 9
             fargate_tasks_count_avg: 5
@@ -23352,6 +23275,7 @@ components:
           - npm_host_top99p: 0
             container_hwm: 0
             billable_ingested_bytes_sum: 3
+            vsphere_host_top99p: 4
             iot_device_top99p_sum: 3
             compliance_host_agg_sum: 9
             fargate_tasks_count_avg: 5
@@ -23420,6 +23344,7 @@ components:
         last_updated: 2000-01-23T04:56:07.000+00:00
         indexed_events_count_agg_sum: 4
         rehydrated_indexed_events_agg_sum: 6
+        vsphere_host_top99p_sum: 5
         mobile_rum_session_count_ios_agg_sum: 6
         incident_management_monthly_active_users_hwm_sum: 1
         gcp_host_top99p_sum: 6
@@ -23667,6 +23592,11 @@ components:
           items:
             $ref: '#/components/schemas/UsageSummaryDate'
           type: array
+        vsphere_host_top99p_sum:
+          description: Shows the 99th percentile of all vSphere hosts over all hours
+            in the current months for all organizations.
+          format: int64
+          type: integer
       type: object
     UsageSyntheticsAPIHour:
       description: Number of Synthetics API tests run for each hour for a given organization.

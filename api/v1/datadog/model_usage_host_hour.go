@@ -41,6 +41,8 @@ type UsageHostHour struct {
 	InfraAzureAppService *int64 `json:"infra_azure_app_service,omitempty"`
 	// Contains the total number of hosts reported by Datadog exporter for the OpenTelemetry Collector.
 	OpentelemetryHostCount *int64 `json:"opentelemetry_host_count,omitempty"`
+	// Contains the total number of hosts that reported via vSphere integration (and were NOT running the Datadog Agent).
+	VsphereHostCount *int64 `json:"vsphere_host_count,omitempty"`
 }
 
 // NewUsageHostHour instantiates a new UsageHostHour object
@@ -476,6 +478,38 @@ func (o *UsageHostHour) SetOpentelemetryHostCount(v int64) {
 	o.OpentelemetryHostCount = &v
 }
 
+// GetVsphereHostCount returns the VsphereHostCount field value if set, zero value otherwise.
+func (o *UsageHostHour) GetVsphereHostCount() int64 {
+	if o == nil || o.VsphereHostCount == nil {
+		var ret int64
+		return ret
+	}
+	return *o.VsphereHostCount
+}
+
+// GetVsphereHostCountOk returns a tuple with the VsphereHostCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageHostHour) GetVsphereHostCountOk() (*int64, bool) {
+	if o == nil || o.VsphereHostCount == nil {
+		return nil, false
+	}
+	return o.VsphereHostCount, true
+}
+
+// HasVsphereHostCount returns a boolean if a field has been set.
+func (o *UsageHostHour) HasVsphereHostCount() bool {
+	if o != nil && o.VsphereHostCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVsphereHostCount gets a reference to the given int64 and assigns it to the VsphereHostCount field.
+func (o *UsageHostHour) SetVsphereHostCount(v int64) {
+	o.VsphereHostCount = &v
+}
+
 func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AgentHostCount != nil {
@@ -516,6 +550,9 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.OpentelemetryHostCount != nil {
 		toSerialize["opentelemetry_host_count"] = o.OpentelemetryHostCount
+	}
+	if o.VsphereHostCount != nil {
+		toSerialize["vsphere_host_count"] = o.VsphereHostCount
 	}
 	return json.Marshal(toSerialize)
 }
