@@ -50,7 +50,7 @@ type UsageSummaryDate struct {
 	// Shows the 99th percentile of all GCP hosts over all hours in the current date for all organizations.
 	GcpHostTop99p *int64 `json:"gcp_host_top99p,omitempty"`
 	// Shows the 99th percentile of all Heroku dynos over all hours in the current date for all organizations.
-	HerokuHostTop99pSum *int64 `json:"heroku_host_top99p_sum,omitempty"`
+	HerokuHostTop99p *int64 `json:"heroku_host_top99p,omitempty"`
 	// Shows the high-water mark of incident management monthly active users over all hours in the current date for all organizations.
 	IncidentManagementMonthlyActiveUsersHwm *int64 `json:"incident_management_monthly_active_users_hwm,omitempty"`
 	// Shows the sum of all log events indexed over all hours in the current date for all organizations.
@@ -60,9 +60,9 @@ type UsageSummaryDate struct {
 	// Shows the sum of all log bytes ingested over all hours in the current date for all organizations.
 	IngestedEventsBytesSum *int64 `json:"ingested_events_bytes_sum,omitempty"`
 	// Shows the sum of all IoT devices over all hours in the current date for all organizations.
-	IotDeviceAggSum *int64 `json:"iot_device_agg_sum,omitempty"`
+	IotDeviceSum *int64 `json:"iot_device_sum,omitempty"`
 	// Shows the 99th percentile of all IoT devices over all hours in the current date all organizations.
-	IotDeviceTop99pSum *int64 `json:"iot_device_top99p_sum,omitempty"`
+	IotDeviceTop99p *int64 `json:"iot_device_top99p,omitempty"`
 	// Shows the sum of all mobile RUM Sessions on Android over all hours in the current date for all organizations.
 	MobileRumSessionCountAndroidSum *int64 `json:"mobile_rum_session_count_android_sum,omitempty"`
 	// Shows the sum of all mobile RUM Sessions on iOS over all hours in the current date for all organizations.
@@ -74,7 +74,7 @@ type UsageSummaryDate struct {
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all organizations.
 	NpmHostTop99p *int64 `json:"npm_host_top99p,omitempty"`
 	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for all organizations.
-	OpentelemetryHostTop99pSum *int64 `json:"opentelemetry_host_top99p_sum,omitempty"`
+	OpentelemetryHostTop99p *int64 `json:"opentelemetry_host_top99p,omitempty"`
 	// Organizations associated with a user.
 	Orgs *[]UsageSummaryDateOrg `json:"orgs,omitempty"`
 	// Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations.
@@ -91,6 +91,8 @@ type UsageSummaryDate struct {
 	TraceSearchIndexedEventsCountSum *int64 `json:"trace_search_indexed_events_count_sum,omitempty"`
 	// Shows the sum of all tracing without limits bytes ingested over all hours in the current date for all organizations.
 	TwolIngestedEventsBytesSum *int64 `json:"twol_ingested_events_bytes_sum,omitempty"`
+	// Shows the 99th percentile of all vSphere hosts over all hours in the current date for all organizations.
+	VsphereHostTop99p *int64 `json:"vsphere_host_top99p,omitempty"`
 }
 
 // NewUsageSummaryDate instantiates a new UsageSummaryDate object
@@ -655,36 +657,36 @@ func (o *UsageSummaryDate) SetGcpHostTop99p(v int64) {
 	o.GcpHostTop99p = &v
 }
 
-// GetHerokuHostTop99pSum returns the HerokuHostTop99pSum field value if set, zero value otherwise.
-func (o *UsageSummaryDate) GetHerokuHostTop99pSum() int64 {
-	if o == nil || o.HerokuHostTop99pSum == nil {
+// GetHerokuHostTop99p returns the HerokuHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetHerokuHostTop99p() int64 {
+	if o == nil || o.HerokuHostTop99p == nil {
 		var ret int64
 		return ret
 	}
-	return *o.HerokuHostTop99pSum
+	return *o.HerokuHostTop99p
 }
 
-// GetHerokuHostTop99pSumOk returns a tuple with the HerokuHostTop99pSum field value if set, nil otherwise
+// GetHerokuHostTop99pOk returns a tuple with the HerokuHostTop99p field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryDate) GetHerokuHostTop99pSumOk() (*int64, bool) {
-	if o == nil || o.HerokuHostTop99pSum == nil {
+func (o *UsageSummaryDate) GetHerokuHostTop99pOk() (*int64, bool) {
+	if o == nil || o.HerokuHostTop99p == nil {
 		return nil, false
 	}
-	return o.HerokuHostTop99pSum, true
+	return o.HerokuHostTop99p, true
 }
 
-// HasHerokuHostTop99pSum returns a boolean if a field has been set.
-func (o *UsageSummaryDate) HasHerokuHostTop99pSum() bool {
-	if o != nil && o.HerokuHostTop99pSum != nil {
+// HasHerokuHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasHerokuHostTop99p() bool {
+	if o != nil && o.HerokuHostTop99p != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetHerokuHostTop99pSum gets a reference to the given int64 and assigns it to the HerokuHostTop99pSum field.
-func (o *UsageSummaryDate) SetHerokuHostTop99pSum(v int64) {
-	o.HerokuHostTop99pSum = &v
+// SetHerokuHostTop99p gets a reference to the given int64 and assigns it to the HerokuHostTop99p field.
+func (o *UsageSummaryDate) SetHerokuHostTop99p(v int64) {
+	o.HerokuHostTop99p = &v
 }
 
 // GetIncidentManagementMonthlyActiveUsersHwm returns the IncidentManagementMonthlyActiveUsersHwm field value if set, zero value otherwise.
@@ -815,68 +817,68 @@ func (o *UsageSummaryDate) SetIngestedEventsBytesSum(v int64) {
 	o.IngestedEventsBytesSum = &v
 }
 
-// GetIotDeviceAggSum returns the IotDeviceAggSum field value if set, zero value otherwise.
-func (o *UsageSummaryDate) GetIotDeviceAggSum() int64 {
-	if o == nil || o.IotDeviceAggSum == nil {
+// GetIotDeviceSum returns the IotDeviceSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetIotDeviceSum() int64 {
+	if o == nil || o.IotDeviceSum == nil {
 		var ret int64
 		return ret
 	}
-	return *o.IotDeviceAggSum
+	return *o.IotDeviceSum
 }
 
-// GetIotDeviceAggSumOk returns a tuple with the IotDeviceAggSum field value if set, nil otherwise
+// GetIotDeviceSumOk returns a tuple with the IotDeviceSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryDate) GetIotDeviceAggSumOk() (*int64, bool) {
-	if o == nil || o.IotDeviceAggSum == nil {
+func (o *UsageSummaryDate) GetIotDeviceSumOk() (*int64, bool) {
+	if o == nil || o.IotDeviceSum == nil {
 		return nil, false
 	}
-	return o.IotDeviceAggSum, true
+	return o.IotDeviceSum, true
 }
 
-// HasIotDeviceAggSum returns a boolean if a field has been set.
-func (o *UsageSummaryDate) HasIotDeviceAggSum() bool {
-	if o != nil && o.IotDeviceAggSum != nil {
+// HasIotDeviceSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasIotDeviceSum() bool {
+	if o != nil && o.IotDeviceSum != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetIotDeviceAggSum gets a reference to the given int64 and assigns it to the IotDeviceAggSum field.
-func (o *UsageSummaryDate) SetIotDeviceAggSum(v int64) {
-	o.IotDeviceAggSum = &v
+// SetIotDeviceSum gets a reference to the given int64 and assigns it to the IotDeviceSum field.
+func (o *UsageSummaryDate) SetIotDeviceSum(v int64) {
+	o.IotDeviceSum = &v
 }
 
-// GetIotDeviceTop99pSum returns the IotDeviceTop99pSum field value if set, zero value otherwise.
-func (o *UsageSummaryDate) GetIotDeviceTop99pSum() int64 {
-	if o == nil || o.IotDeviceTop99pSum == nil {
+// GetIotDeviceTop99p returns the IotDeviceTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetIotDeviceTop99p() int64 {
+	if o == nil || o.IotDeviceTop99p == nil {
 		var ret int64
 		return ret
 	}
-	return *o.IotDeviceTop99pSum
+	return *o.IotDeviceTop99p
 }
 
-// GetIotDeviceTop99pSumOk returns a tuple with the IotDeviceTop99pSum field value if set, nil otherwise
+// GetIotDeviceTop99pOk returns a tuple with the IotDeviceTop99p field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryDate) GetIotDeviceTop99pSumOk() (*int64, bool) {
-	if o == nil || o.IotDeviceTop99pSum == nil {
+func (o *UsageSummaryDate) GetIotDeviceTop99pOk() (*int64, bool) {
+	if o == nil || o.IotDeviceTop99p == nil {
 		return nil, false
 	}
-	return o.IotDeviceTop99pSum, true
+	return o.IotDeviceTop99p, true
 }
 
-// HasIotDeviceTop99pSum returns a boolean if a field has been set.
-func (o *UsageSummaryDate) HasIotDeviceTop99pSum() bool {
-	if o != nil && o.IotDeviceTop99pSum != nil {
+// HasIotDeviceTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasIotDeviceTop99p() bool {
+	if o != nil && o.IotDeviceTop99p != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetIotDeviceTop99pSum gets a reference to the given int64 and assigns it to the IotDeviceTop99pSum field.
-func (o *UsageSummaryDate) SetIotDeviceTop99pSum(v int64) {
-	o.IotDeviceTop99pSum = &v
+// SetIotDeviceTop99p gets a reference to the given int64 and assigns it to the IotDeviceTop99p field.
+func (o *UsageSummaryDate) SetIotDeviceTop99p(v int64) {
+	o.IotDeviceTop99p = &v
 }
 
 // GetMobileRumSessionCountAndroidSum returns the MobileRumSessionCountAndroidSum field value if set, zero value otherwise.
@@ -1039,36 +1041,36 @@ func (o *UsageSummaryDate) SetNpmHostTop99p(v int64) {
 	o.NpmHostTop99p = &v
 }
 
-// GetOpentelemetryHostTop99pSum returns the OpentelemetryHostTop99pSum field value if set, zero value otherwise.
-func (o *UsageSummaryDate) GetOpentelemetryHostTop99pSum() int64 {
-	if o == nil || o.OpentelemetryHostTop99pSum == nil {
+// GetOpentelemetryHostTop99p returns the OpentelemetryHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetOpentelemetryHostTop99p() int64 {
+	if o == nil || o.OpentelemetryHostTop99p == nil {
 		var ret int64
 		return ret
 	}
-	return *o.OpentelemetryHostTop99pSum
+	return *o.OpentelemetryHostTop99p
 }
 
-// GetOpentelemetryHostTop99pSumOk returns a tuple with the OpentelemetryHostTop99pSum field value if set, nil otherwise
+// GetOpentelemetryHostTop99pOk returns a tuple with the OpentelemetryHostTop99p field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryDate) GetOpentelemetryHostTop99pSumOk() (*int64, bool) {
-	if o == nil || o.OpentelemetryHostTop99pSum == nil {
+func (o *UsageSummaryDate) GetOpentelemetryHostTop99pOk() (*int64, bool) {
+	if o == nil || o.OpentelemetryHostTop99p == nil {
 		return nil, false
 	}
-	return o.OpentelemetryHostTop99pSum, true
+	return o.OpentelemetryHostTop99p, true
 }
 
-// HasOpentelemetryHostTop99pSum returns a boolean if a field has been set.
-func (o *UsageSummaryDate) HasOpentelemetryHostTop99pSum() bool {
-	if o != nil && o.OpentelemetryHostTop99pSum != nil {
+// HasOpentelemetryHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasOpentelemetryHostTop99p() bool {
+	if o != nil && o.OpentelemetryHostTop99p != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetOpentelemetryHostTop99pSum gets a reference to the given int64 and assigns it to the OpentelemetryHostTop99pSum field.
-func (o *UsageSummaryDate) SetOpentelemetryHostTop99pSum(v int64) {
-	o.OpentelemetryHostTop99pSum = &v
+// SetOpentelemetryHostTop99p gets a reference to the given int64 and assigns it to the OpentelemetryHostTop99p field.
+func (o *UsageSummaryDate) SetOpentelemetryHostTop99p(v int64) {
+	o.OpentelemetryHostTop99p = &v
 }
 
 // GetOrgs returns the Orgs field value if set, zero value otherwise.
@@ -1327,6 +1329,38 @@ func (o *UsageSummaryDate) SetTwolIngestedEventsBytesSum(v int64) {
 	o.TwolIngestedEventsBytesSum = &v
 }
 
+// GetVsphereHostTop99p returns the VsphereHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetVsphereHostTop99p() int64 {
+	if o == nil || o.VsphereHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.VsphereHostTop99p
+}
+
+// GetVsphereHostTop99pOk returns a tuple with the VsphereHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetVsphereHostTop99pOk() (*int64, bool) {
+	if o == nil || o.VsphereHostTop99p == nil {
+		return nil, false
+	}
+	return o.VsphereHostTop99p, true
+}
+
+// HasVsphereHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasVsphereHostTop99p() bool {
+	if o != nil && o.VsphereHostTop99p != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVsphereHostTop99p gets a reference to the given int64 and assigns it to the VsphereHostTop99p field.
+func (o *UsageSummaryDate) SetVsphereHostTop99p(v int64) {
+	o.VsphereHostTop99p = &v
+}
+
 func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AgentHostTop99p != nil {
@@ -1380,8 +1414,8 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.GcpHostTop99p != nil {
 		toSerialize["gcp_host_top99p"] = o.GcpHostTop99p
 	}
-	if o.HerokuHostTop99pSum != nil {
-		toSerialize["heroku_host_top99p_sum"] = o.HerokuHostTop99pSum
+	if o.HerokuHostTop99p != nil {
+		toSerialize["heroku_host_top99p"] = o.HerokuHostTop99p
 	}
 	if o.IncidentManagementMonthlyActiveUsersHwm != nil {
 		toSerialize["incident_management_monthly_active_users_hwm"] = o.IncidentManagementMonthlyActiveUsersHwm
@@ -1395,11 +1429,11 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.IngestedEventsBytesSum != nil {
 		toSerialize["ingested_events_bytes_sum"] = o.IngestedEventsBytesSum
 	}
-	if o.IotDeviceAggSum != nil {
-		toSerialize["iot_device_agg_sum"] = o.IotDeviceAggSum
+	if o.IotDeviceSum != nil {
+		toSerialize["iot_device_sum"] = o.IotDeviceSum
 	}
-	if o.IotDeviceTop99pSum != nil {
-		toSerialize["iot_device_top99p_sum"] = o.IotDeviceTop99pSum
+	if o.IotDeviceTop99p != nil {
+		toSerialize["iot_device_top99p"] = o.IotDeviceTop99p
 	}
 	if o.MobileRumSessionCountAndroidSum != nil {
 		toSerialize["mobile_rum_session_count_android_sum"] = o.MobileRumSessionCountAndroidSum
@@ -1416,8 +1450,8 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.NpmHostTop99p != nil {
 		toSerialize["npm_host_top99p"] = o.NpmHostTop99p
 	}
-	if o.OpentelemetryHostTop99pSum != nil {
-		toSerialize["opentelemetry_host_top99p_sum"] = o.OpentelemetryHostTop99pSum
+	if o.OpentelemetryHostTop99p != nil {
+		toSerialize["opentelemetry_host_top99p"] = o.OpentelemetryHostTop99p
 	}
 	if o.Orgs != nil {
 		toSerialize["orgs"] = o.Orgs
@@ -1442,6 +1476,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	}
 	if o.TwolIngestedEventsBytesSum != nil {
 		toSerialize["twol_ingested_events_bytes_sum"] = o.TwolIngestedEventsBytesSum
+	}
+	if o.VsphereHostTop99p != nil {
+		toSerialize["vsphere_host_top99p"] = o.VsphereHostTop99p
 	}
 	return json.Marshal(toSerialize)
 }
