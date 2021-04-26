@@ -25,39 +25,31 @@ var (
 // LogsPipelinesApiService LogsPipelinesApi service
 type LogsPipelinesApiService service
 
-type ApiCreateLogsPipelineRequest struct {
+type apiCreateLogsPipelineRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
 	body       *LogsPipeline
 }
 
-func (r ApiCreateLogsPipelineRequest) Body(body LogsPipeline) ApiCreateLogsPipelineRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Response, error) {
-	return r.ApiService.CreateLogsPipelineExecute(r)
-}
-
 /*
  * CreateLogsPipeline Create a pipeline
  * Create a pipeline in your organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateLogsPipelineRequest
  */
-func (a *LogsPipelinesApiService) CreateLogsPipeline(ctx _context.Context) ApiCreateLogsPipelineRequest {
-	return ApiCreateLogsPipelineRequest{
+func (a *LogsPipelinesApiService) CreateLogsPipeline(ctx _context.Context, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
+	req := apiCreateLogsPipelineRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createLogsPipelineExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsPipeline
  */
-func (a *LogsPipelinesApiService) CreateLogsPipelineExecute(r ApiCreateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
+func (a *LogsPipelinesApiService) createLogsPipelineExecute(r apiCreateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -188,36 +180,31 @@ func (a *LogsPipelinesApiService) CreateLogsPipelineExecute(r ApiCreateLogsPipel
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteLogsPipelineRequest struct {
+type apiDeleteLogsPipelineRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
 	pipelineId string
-}
-
-func (r ApiDeleteLogsPipelineRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteLogsPipelineExecute(r)
 }
 
 /*
  * DeleteLogsPipeline Delete a pipeline
  * Delete a given pipeline from your organization.
 This endpoint takes no JSON arguments.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param pipelineId ID of the pipeline to delete.
- * @return ApiDeleteLogsPipelineRequest
 */
-func (a *LogsPipelinesApiService) DeleteLogsPipeline(ctx _context.Context, pipelineId string) ApiDeleteLogsPipelineRequest {
-	return ApiDeleteLogsPipelineRequest{
+func (a *LogsPipelinesApiService) DeleteLogsPipeline(ctx _context.Context, pipelineId string) (*_nethttp.Response, error) {
+	req := apiDeleteLogsPipelineRequest{
 		ApiService: a,
 		ctx:        ctx,
 		pipelineId: pipelineId,
 	}
+
+	return req.ApiService.deleteLogsPipelineExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *LogsPipelinesApiService) DeleteLogsPipelineExecute(r ApiDeleteLogsPipelineRequest) (*_nethttp.Response, error) {
+func (a *LogsPipelinesApiService) deleteLogsPipelineExecute(r apiDeleteLogsPipelineRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -334,37 +321,32 @@ func (a *LogsPipelinesApiService) DeleteLogsPipelineExecute(r ApiDeleteLogsPipel
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetLogsPipelineRequest struct {
+type apiGetLogsPipelineRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
 	pipelineId string
-}
-
-func (r ApiGetLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Response, error) {
-	return r.ApiService.GetLogsPipelineExecute(r)
 }
 
 /*
  * GetLogsPipeline Get a pipeline
  * Get a specific pipeline from your organization.
 This endpoint takes no JSON arguments.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param pipelineId ID of the pipeline to get.
- * @return ApiGetLogsPipelineRequest
 */
-func (a *LogsPipelinesApiService) GetLogsPipeline(ctx _context.Context, pipelineId string) ApiGetLogsPipelineRequest {
-	return ApiGetLogsPipelineRequest{
+func (a *LogsPipelinesApiService) GetLogsPipeline(ctx _context.Context, pipelineId string) (LogsPipeline, *_nethttp.Response, error) {
+	req := apiGetLogsPipelineRequest{
 		ApiService: a,
 		ctx:        ctx,
 		pipelineId: pipelineId,
 	}
+
+	return req.ApiService.getLogsPipelineExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsPipeline
  */
-func (a *LogsPipelinesApiService) GetLogsPipelineExecute(r ApiGetLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
+func (a *LogsPipelinesApiService) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -491,34 +473,30 @@ func (a *LogsPipelinesApiService) GetLogsPipelineExecute(r ApiGetLogsPipelineReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetLogsPipelineOrderRequest struct {
+type apiGetLogsPipelineOrderRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
-}
-
-func (r ApiGetLogsPipelineOrderRequest) Execute() (LogsPipelinesOrder, *_nethttp.Response, error) {
-	return r.ApiService.GetLogsPipelineOrderExecute(r)
 }
 
 /*
  * GetLogsPipelineOrder Get pipeline order
  * Get the current order of your pipelines.
 This endpoint takes no JSON arguments.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetLogsPipelineOrderRequest
 */
-func (a *LogsPipelinesApiService) GetLogsPipelineOrder(ctx _context.Context) ApiGetLogsPipelineOrderRequest {
-	return ApiGetLogsPipelineOrderRequest{
+func (a *LogsPipelinesApiService) GetLogsPipelineOrder(ctx _context.Context) (LogsPipelinesOrder, *_nethttp.Response, error) {
+	req := apiGetLogsPipelineOrderRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.getLogsPipelineOrderExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsPipelinesOrder
  */
-func (a *LogsPipelinesApiService) GetLogsPipelineOrderExecute(r ApiGetLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
+func (a *LogsPipelinesApiService) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -634,34 +612,30 @@ func (a *LogsPipelinesApiService) GetLogsPipelineOrderExecute(r ApiGetLogsPipeli
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListLogsPipelinesRequest struct {
+type apiListLogsPipelinesRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
-}
-
-func (r ApiListLogsPipelinesRequest) Execute() ([]LogsPipeline, *_nethttp.Response, error) {
-	return r.ApiService.ListLogsPipelinesExecute(r)
 }
 
 /*
  * ListLogsPipelines Get all pipelines
  * Get all pipelines from your organization.
 This endpoint takes no JSON arguments.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListLogsPipelinesRequest
 */
-func (a *LogsPipelinesApiService) ListLogsPipelines(ctx _context.Context) ApiListLogsPipelinesRequest {
-	return ApiListLogsPipelinesRequest{
+func (a *LogsPipelinesApiService) ListLogsPipelines(ctx _context.Context) ([]LogsPipeline, *_nethttp.Response, error) {
+	req := apiListLogsPipelinesRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.listLogsPipelinesExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return []LogsPipeline
  */
-func (a *LogsPipelinesApiService) ListLogsPipelinesExecute(r ApiListLogsPipelinesRequest) ([]LogsPipeline, *_nethttp.Response, error) {
+func (a *LogsPipelinesApiService) listLogsPipelinesExecute(r apiListLogsPipelinesRequest) ([]LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -777,20 +751,11 @@ func (a *LogsPipelinesApiService) ListLogsPipelinesExecute(r ApiListLogsPipeline
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateLogsPipelineRequest struct {
+type apiUpdateLogsPipelineRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
 	pipelineId string
 	body       *LogsPipeline
-}
-
-func (r ApiUpdateLogsPipelineRequest) Body(body LogsPipeline) ApiUpdateLogsPipelineRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Response, error) {
-	return r.ApiService.UpdateLogsPipelineExecute(r)
 }
 
 /*
@@ -799,23 +764,23 @@ func (r ApiUpdateLogsPipelineRequest) Execute() (LogsPipeline, *_nethttp.Respons
 
 **Note**: Using this method updates your pipeline configuration by **replacing**
 your current configuration with the new one sent to your Datadog organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param pipelineId ID of the pipeline to delete.
- * @return ApiUpdateLogsPipelineRequest
 */
-func (a *LogsPipelinesApiService) UpdateLogsPipeline(ctx _context.Context, pipelineId string) ApiUpdateLogsPipelineRequest {
-	return ApiUpdateLogsPipelineRequest{
+func (a *LogsPipelinesApiService) UpdateLogsPipeline(ctx _context.Context, pipelineId string, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
+	req := apiUpdateLogsPipelineRequest{
 		ApiService: a,
 		ctx:        ctx,
 		pipelineId: pipelineId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateLogsPipelineExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsPipeline
  */
-func (a *LogsPipelinesApiService) UpdateLogsPipelineExecute(r ApiUpdateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
+func (a *LogsPipelinesApiService) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -947,19 +912,10 @@ func (a *LogsPipelinesApiService) UpdateLogsPipelineExecute(r ApiUpdateLogsPipel
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateLogsPipelineOrderRequest struct {
+type apiUpdateLogsPipelineOrderRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
 	body       *LogsPipelinesOrder
-}
-
-func (r ApiUpdateLogsPipelineOrderRequest) Body(body LogsPipelinesOrder) ApiUpdateLogsPipelineOrderRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateLogsPipelineOrderRequest) Execute() (LogsPipelinesOrder, *_nethttp.Response, error) {
-	return r.ApiService.UpdateLogsPipelineOrderExecute(r)
 }
 
 /*
@@ -969,21 +925,22 @@ the structure and content of the data processed by other pipelines and their pro
 
 **Note**: Using the `PUT` method updates your pipeline order by replacing your current order
 with the new one sent to your Datadog organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiUpdateLogsPipelineOrderRequest
 */
-func (a *LogsPipelinesApiService) UpdateLogsPipelineOrder(ctx _context.Context) ApiUpdateLogsPipelineOrderRequest {
-	return ApiUpdateLogsPipelineOrderRequest{
+func (a *LogsPipelinesApiService) UpdateLogsPipelineOrder(ctx _context.Context, body LogsPipelinesOrder) (LogsPipelinesOrder, *_nethttp.Response, error) {
+	req := apiUpdateLogsPipelineOrderRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.updateLogsPipelineOrderExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsPipelinesOrder
  */
-func (a *LogsPipelinesApiService) UpdateLogsPipelineOrderExecute(r ApiUpdateLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
+func (a *LogsPipelinesApiService) updateLogsPipelineOrderExecute(r apiUpdateLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateIncidentTeam
 
-> IncidentTeamResponse CreateIncidentTeam(ctx).Body(body).Execute()
+> IncidentTeamResponse CreateIncidentTeam(ctx, body)
 
 Create a new incident team
 
@@ -42,7 +42,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("CreateIncidentTeam", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentTeamsApi.CreateIncidentTeam(ctx).Body(body).Execute()
+    resp, r, err := apiClient.IncidentTeamsApi.CreateIncidentTeam(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.CreateIncidentTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,18 +53,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateIncidentTeamRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**IncidentTeamCreateRequest**](IncidentTeamCreateRequest.md) | Incident Team Payload. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**IncidentTeamCreateRequest**](IncidentTeamCreateRequest.md) | Incident Team Payload. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## DeleteIncidentTeam
 
-> DeleteIncidentTeam(ctx, teamId).Execute()
+> DeleteIncidentTeam(ctx, teamId)
 
 Delete an existing incident team
 
@@ -113,7 +113,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("DeleteIncidentTeam", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.IncidentTeamsApi.DeleteIncidentTeam(ctx, teamId).Execute()
+    r, err := apiClient.IncidentTeamsApi.DeleteIncidentTeam(ctx, teamId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.DeleteIncidentTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -129,13 +129,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **teamId** | **string** | The ID of the incident team. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteIncidentTeamRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -158,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## GetIncidentTeam
 
-> IncidentTeamResponse GetIncidentTeam(ctx, teamId).Include(include).Execute()
+> IncidentTeamResponse GetIncidentTeam(ctx, teamId, datadog.GetIncidentTeamOptionalParameters{})
 
 Get details of an incident team
 
@@ -182,12 +178,15 @@ func main() {
 
     teamId := "teamId_example" // string | The ID of the incident team.
     include := datadog.IncidentRelatedObject("users") // IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
+    optionalParams := datadog.GetIncidentTeamOptionalParameters{
+        Include: &include,
+    }
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetIncidentTeam", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentTeamsApi.GetIncidentTeam(ctx, teamId).Include(include).Execute()
+    resp, r, err := apiClient.IncidentTeamsApi.GetIncidentTeam(ctx, teamId, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.GetIncidentTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,7 +197,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -206,15 +205,15 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **teamId** | **string** | The ID of the incident team. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetIncidentTeamRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a GetIncidentTeamOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
+**include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
 
 ### Return type
 
@@ -236,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## ListIncidentTeams
 
-> IncidentTeamsResponse ListIncidentTeams(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Filter(filter).Execute()
+> IncidentTeamsResponse ListIncidentTeams(ctx, datadog.ListIncidentTeamsOptionalParameters{})
 
 Get a list of all incident teams
 
@@ -262,12 +261,18 @@ func main() {
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageOffset := int64(789) // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
     filter := "ExampleTeamName" // string | A search query that filters teams by name. (optional)
+    optionalParams := datadog.ListIncidentTeamsOptionalParameters{
+        Include: &include,
+        PageSize: &pageSize,
+        PageOffset: &pageOffset,
+        Filter: &filter,
+    }
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("ListIncidentTeams", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentTeamsApi.ListIncidentTeams(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Filter(filter).Execute()
+    resp, r, err := apiClient.IncidentTeamsApi.ListIncidentTeams(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.ListIncidentTeams``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -278,21 +283,22 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListIncidentTeamsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListIncidentTeamsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
- **pageSize** | **int64** | Size for a given page. | [default to 10]
- **pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
- **filter** | **string** | A search query that filters teams by name. | 
+**include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
+**pageSize** | **int64** | Size for a given page. | [default to 10]
+**pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
+**filter** | **string** | A search query that filters teams by name. | 
 
 ### Return type
 
@@ -314,7 +320,7 @@ Name | Type | Description  | Notes
 
 ## UpdateIncidentTeam
 
-> IncidentTeamResponse UpdateIncidentTeam(ctx, teamId).Body(body).Execute()
+> IncidentTeamResponse UpdateIncidentTeam(ctx, teamId, body)
 
 Update an existing incident team
 
@@ -343,7 +349,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("UpdateIncidentTeam", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentTeamsApi.UpdateIncidentTeam(ctx, teamId).Body(body).Execute()
+    resp, r, err := apiClient.IncidentTeamsApi.UpdateIncidentTeam(ctx, teamId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.UpdateIncidentTeam``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -354,23 +360,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **teamId** | **string** | The ID of the incident team. | 
+**body** | [**IncidentTeamUpdateRequest**](IncidentTeamUpdateRequest.md) | Incident Team Payload. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateIncidentTeamRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**IncidentTeamUpdateRequest**](IncidentTeamUpdateRequest.md) | Incident Team Payload. | 
 
 ### Return type
 

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## GetMetricMetadata
 
-> MetricMetadata GetMetricMetadata(ctx, metricName).Execute()
+> MetricMetadata GetMetricMetadata(ctx, metricName)
 
 Get metric metadata
 
@@ -42,7 +42,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.GetMetricMetadata(ctx, metricName).Execute()
+    resp, r, err := apiClient.MetricsApi.GetMetricMetadata(ctx, metricName)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetMetricMetadata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,7 +53,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -61,13 +61,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **metricName** | **string** | Name of the metric for which to get metadata. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetMetricMetadataRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -90,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## ListActiveMetrics
 
-> MetricsListResponse ListActiveMetrics(ctx).From(from).Host(host).TagFilter(tagFilter).Execute()
+> MetricsListResponse ListActiveMetrics(ctx, from, datadog.ListActiveMetricsOptionalParameters{})
 
 Get active metrics list
 
@@ -115,11 +111,15 @@ func main() {
     from := int64(789) // int64 | Seconds since the Unix epoch.
     host := "host_example" // string | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. (optional)
     tagFilter := "env IN (staging,test) AND service:web" // string | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. (optional)
+    optionalParams := datadog.ListActiveMetricsOptionalParameters{
+        Host: &host,
+        TagFilter: &tagFilter,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.ListActiveMetrics(ctx).From(from).Host(host).TagFilter(tagFilter).Execute()
+    resp, r, err := apiClient.MetricsApi.ListActiveMetrics(ctx, from, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListActiveMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,20 +130,24 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListActiveMetricsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **int64** | Seconds since the Unix epoch. | 
- **host** | **string** | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. | 
- **tagFilter** | **string** | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**from** | **int64** | Seconds since the Unix epoch. | 
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a ListActiveMetricsOptionalParameters struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**host** | **string** | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. | 
+**tagFilter** | **string** | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. | 
 
 ### Return type
 
@@ -165,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## ListMetrics
 
-> MetricSearchResponse ListMetrics(ctx).Q(q).Execute()
+> MetricSearchResponse ListMetrics(ctx, q)
 
 Search metrics
 
@@ -192,7 +196,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.ListMetrics(ctx).Q(q).Execute()
+    resp, r, err := apiClient.MetricsApi.ListMetrics(ctx, q)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -203,18 +207,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListMetricsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **string** | Query string to search metrics upon. Must be prefixed with &#x60;metrics:&#x60;. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**q** | **string** | Query string to search metrics upon. Must be prefixed with &#x60;metrics:&#x60;. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -236,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## QueryMetrics
 
-> MetricsQueryResponse QueryMetrics(ctx).From(from).To(to).Query(query).Execute()
+> MetricsQueryResponse QueryMetrics(ctx, from, to, query)
 
 Query timeseries points
 
@@ -265,7 +269,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.QueryMetrics(ctx).From(from).To(to).Query(query).Execute()
+    resp, r, err := apiClient.MetricsApi.QueryMetrics(ctx, from, to, query)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.QueryMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -276,20 +280,20 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiQueryMetricsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **int64** | Start of the queried time period, seconds since the Unix epoch. | 
- **to** | **int64** | End of the queried time period, seconds since the Unix epoch. | 
- **query** | **string** | Query string. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**from** | **int64** | Start of the queried time period, seconds since the Unix epoch. | 
+**to** | **int64** | End of the queried time period, seconds since the Unix epoch. | 
+**query** | **string** | Query string. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -311,7 +315,7 @@ Name | Type | Description  | Notes
 
 ## SubmitMetrics
 
-> IntakePayloadAccepted SubmitMetrics(ctx).Body(body).Execute()
+> IntakePayloadAccepted SubmitMetrics(ctx, body)
 
 Submit metrics
 
@@ -338,7 +342,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.SubmitMetrics(ctx).Body(body).Execute()
+    resp, r, err := apiClient.MetricsApi.SubmitMetrics(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -349,18 +353,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSubmitMetricsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**MetricsPayload**](MetricsPayload.md) |  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**MetricsPayload**](MetricsPayload.md) |  | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -382,7 +386,7 @@ Name | Type | Description  | Notes
 
 ## UpdateMetricMetadata
 
-> MetricMetadata UpdateMetricMetadata(ctx, metricName).Body(body).Execute()
+> MetricMetadata UpdateMetricMetadata(ctx, metricName, body)
 
 Edit metric metadata
 
@@ -410,7 +414,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.UpdateMetricMetadata(ctx, metricName).Body(body).Execute()
+    resp, r, err := apiClient.MetricsApi.UpdateMetricMetadata(ctx, metricName, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.UpdateMetricMetadata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -421,23 +425,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **metricName** | **string** | Name of the metric for which to edit metadata. | 
+**body** | [**MetricMetadata**](MetricMetadata.md) | New metadata. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateMetricMetadataRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**MetricMetadata**](MetricMetadata.md) | New metadata. | 
 
 ### Return type
 

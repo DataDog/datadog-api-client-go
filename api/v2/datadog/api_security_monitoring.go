@@ -28,39 +28,31 @@ var (
 // SecurityMonitoringApiService SecurityMonitoringApi service
 type SecurityMonitoringApiService service
 
-type ApiCreateSecurityMonitoringRuleRequest struct {
+type apiCreateSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
 	body       *SecurityMonitoringRuleCreatePayload
 }
 
-func (r ApiCreateSecurityMonitoringRuleRequest) Body(body SecurityMonitoringRuleCreatePayload) ApiCreateSecurityMonitoringRuleRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateSecurityMonitoringRuleRequest) Execute() (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	return r.ApiService.CreateSecurityMonitoringRuleExecute(r)
-}
-
 /*
  * CreateSecurityMonitoringRule Create a detection rule
  * Create a detection rule.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateSecurityMonitoringRuleRequest
  */
-func (a *SecurityMonitoringApiService) CreateSecurityMonitoringRule(ctx _context.Context) ApiCreateSecurityMonitoringRuleRequest {
-	return ApiCreateSecurityMonitoringRuleRequest{
+func (a *SecurityMonitoringApiService) CreateSecurityMonitoringRule(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+	req := apiCreateSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createSecurityMonitoringRuleExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SecurityMonitoringRuleResponse
  */
-func (a *SecurityMonitoringApiService) CreateSecurityMonitoringRuleExecute(r ApiCreateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r apiCreateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -191,35 +183,30 @@ func (a *SecurityMonitoringApiService) CreateSecurityMonitoringRuleExecute(r Api
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteSecurityMonitoringRuleRequest struct {
+type apiDeleteSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
 	ruleId     string
 }
 
-func (r ApiDeleteSecurityMonitoringRuleRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteSecurityMonitoringRuleExecute(r)
-}
-
 /*
  * DeleteSecurityMonitoringRule Delete an existing rule
  * Delete an existing rule. Default rules cannot be deleted.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param ruleId The ID of the rule.
- * @return ApiDeleteSecurityMonitoringRuleRequest
  */
-func (a *SecurityMonitoringApiService) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) ApiDeleteSecurityMonitoringRuleRequest {
-	return ApiDeleteSecurityMonitoringRuleRequest{
+func (a *SecurityMonitoringApiService) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
+	req := apiDeleteSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		ruleId:     ruleId,
 	}
+
+	return req.ApiService.deleteSecurityMonitoringRuleExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *SecurityMonitoringApiService) DeleteSecurityMonitoringRuleExecute(r ApiDeleteSecurityMonitoringRuleRequest) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r apiDeleteSecurityMonitoringRuleRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -336,36 +323,31 @@ func (a *SecurityMonitoringApiService) DeleteSecurityMonitoringRuleExecute(r Api
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetSecurityMonitoringRuleRequest struct {
+type apiGetSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
 	ruleId     string
 }
 
-func (r ApiGetSecurityMonitoringRuleRequest) Execute() (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetSecurityMonitoringRuleExecute(r)
-}
-
 /*
  * GetSecurityMonitoringRule Get a rule's details
  * Get a rule's details.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param ruleId The ID of the rule.
- * @return ApiGetSecurityMonitoringRuleRequest
  */
-func (a *SecurityMonitoringApiService) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) ApiGetSecurityMonitoringRuleRequest {
-	return ApiGetSecurityMonitoringRuleRequest{
+func (a *SecurityMonitoringApiService) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+	req := apiGetSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		ruleId:     ruleId,
 	}
+
+	return req.ApiService.getSecurityMonitoringRuleExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SecurityMonitoringRuleResponse
  */
-func (a *SecurityMonitoringApiService) GetSecurityMonitoringRuleExecute(r ApiGetSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGetSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -482,44 +464,59 @@ func (a *SecurityMonitoringApiService) GetSecurityMonitoringRuleExecute(r ApiGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListSecurityMonitoringRulesRequest struct {
+type apiListSecurityMonitoringRulesRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
 	pageSize   *int64
 	pageNumber *int64
 }
 
-func (r ApiListSecurityMonitoringRulesRequest) PageSize(pageSize int64) ApiListSecurityMonitoringRulesRequest {
-	r.pageSize = &pageSize
-	return r
-}
-func (r ApiListSecurityMonitoringRulesRequest) PageNumber(pageNumber int64) ApiListSecurityMonitoringRulesRequest {
-	r.pageNumber = &pageNumber
-	return r
+type ListSecurityMonitoringRulesOptionalParameters struct {
+	PageSize   *int64
+	PageNumber *int64
 }
 
-func (r ApiListSecurityMonitoringRulesRequest) Execute() (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListSecurityMonitoringRulesExecute(r)
+func NewListSecurityMonitoringRulesOptionalParameters() *ListSecurityMonitoringRulesOptionalParameters {
+	this := ListSecurityMonitoringRulesOptionalParameters{}
+	return &this
+}
+func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageSize(pageSize int64) *ListSecurityMonitoringRulesOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumber int64) *ListSecurityMonitoringRulesOptionalParameters {
+	r.PageNumber = &pageNumber
+	return r
 }
 
 /*
  * ListSecurityMonitoringRules List rules
  * List rules.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListSecurityMonitoringRulesRequest
  */
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringRules(ctx _context.Context) ApiListSecurityMonitoringRulesRequest {
-	return ApiListSecurityMonitoringRulesRequest{
+func (a *SecurityMonitoringApiService) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
+	req := apiListSecurityMonitoringRulesRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue SecurityMonitoringListRulesResponse
+		return localVarReturnValue, nil, reportError("only one argument of type ListSecurityMonitoringRulesOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.pageSize = o[0].PageSize
+		req.pageNumber = o[0].PageNumber
+	}
+
+	return req.ApiService.listSecurityMonitoringRulesExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SecurityMonitoringListRulesResponse
  */
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringRulesExecute(r ApiListSecurityMonitoringRulesRequest) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiListSecurityMonitoringRulesRequest) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -641,7 +638,7 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringRulesExecute(r ApiL
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListSecurityMonitoringSignalsRequest struct {
+type apiListSecurityMonitoringSignalsRequest struct {
 	ctx         _context.Context
 	ApiService  *SecurityMonitoringApiService
 	filterQuery *string
@@ -652,33 +649,42 @@ type ApiListSecurityMonitoringSignalsRequest struct {
 	pageLimit   *int32
 }
 
-func (r ApiListSecurityMonitoringSignalsRequest) FilterQuery(filterQuery string) ApiListSecurityMonitoringSignalsRequest {
-	r.filterQuery = &filterQuery
-	return r
-}
-func (r ApiListSecurityMonitoringSignalsRequest) FilterFrom(filterFrom time.Time) ApiListSecurityMonitoringSignalsRequest {
-	r.filterFrom = &filterFrom
-	return r
-}
-func (r ApiListSecurityMonitoringSignalsRequest) FilterTo(filterTo time.Time) ApiListSecurityMonitoringSignalsRequest {
-	r.filterTo = &filterTo
-	return r
-}
-func (r ApiListSecurityMonitoringSignalsRequest) Sort(sort SecurityMonitoringSignalsSort) ApiListSecurityMonitoringSignalsRequest {
-	r.sort = &sort
-	return r
-}
-func (r ApiListSecurityMonitoringSignalsRequest) PageCursor(pageCursor string) ApiListSecurityMonitoringSignalsRequest {
-	r.pageCursor = &pageCursor
-	return r
-}
-func (r ApiListSecurityMonitoringSignalsRequest) PageLimit(pageLimit int32) ApiListSecurityMonitoringSignalsRequest {
-	r.pageLimit = &pageLimit
-	return r
+type ListSecurityMonitoringSignalsOptionalParameters struct {
+	FilterQuery *string
+	FilterFrom  *time.Time
+	FilterTo    *time.Time
+	Sort        *SecurityMonitoringSignalsSort
+	PageCursor  *string
+	PageLimit   *int32
 }
 
-func (r ApiListSecurityMonitoringSignalsRequest) Execute() (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListSecurityMonitoringSignalsExecute(r)
+func NewListSecurityMonitoringSignalsOptionalParameters() *ListSecurityMonitoringSignalsOptionalParameters {
+	this := ListSecurityMonitoringSignalsOptionalParameters{}
+	return &this
+}
+func (r *ListSecurityMonitoringSignalsOptionalParameters) WithFilterQuery(filterQuery string) *ListSecurityMonitoringSignalsOptionalParameters {
+	r.FilterQuery = &filterQuery
+	return r
+}
+func (r *ListSecurityMonitoringSignalsOptionalParameters) WithFilterFrom(filterFrom time.Time) *ListSecurityMonitoringSignalsOptionalParameters {
+	r.FilterFrom = &filterFrom
+	return r
+}
+func (r *ListSecurityMonitoringSignalsOptionalParameters) WithFilterTo(filterTo time.Time) *ListSecurityMonitoringSignalsOptionalParameters {
+	r.FilterTo = &filterTo
+	return r
+}
+func (r *ListSecurityMonitoringSignalsOptionalParameters) WithSort(sort SecurityMonitoringSignalsSort) *ListSecurityMonitoringSignalsOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+func (r *ListSecurityMonitoringSignalsOptionalParameters) WithPageCursor(pageCursor string) *ListSecurityMonitoringSignalsOptionalParameters {
+	r.PageCursor = &pageCursor
+	return r
+}
+func (r *ListSecurityMonitoringSignalsOptionalParameters) WithPageLimit(pageLimit int32) *ListSecurityMonitoringSignalsOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
 }
 
 /*
@@ -686,21 +692,35 @@ func (r ApiListSecurityMonitoringSignalsRequest) Execute() (SecurityMonitoringSi
  * The list endpoint returns security signals that match a search query.
 Both this endpoint and the POST endpoint can be used interchangeably when listing
 security signals.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListSecurityMonitoringSignalsRequest
 */
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _context.Context) ApiListSecurityMonitoringSignalsRequest {
-	return ApiListSecurityMonitoringSignalsRequest{
+func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+	req := apiListSecurityMonitoringSignalsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue SecurityMonitoringSignalsListResponse
+		return localVarReturnValue, nil, reportError("only one argument of type ListSecurityMonitoringSignalsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.filterQuery = o[0].FilterQuery
+		req.filterFrom = o[0].FilterFrom
+		req.filterTo = o[0].FilterTo
+		req.sort = o[0].Sort
+		req.pageCursor = o[0].PageCursor
+		req.pageLimit = o[0].PageLimit
+	}
+
+	return req.ApiService.listSecurityMonitoringSignalsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SecurityMonitoringSignalsListResponse
  */
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsExecute(r ApiListSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r apiListSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -851,19 +871,23 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsExecute(r Ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchSecurityMonitoringSignalsRequest struct {
+type apiSearchSecurityMonitoringSignalsRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
 	body       *SecurityMonitoringSignalListRequest
 }
 
-func (r ApiSearchSecurityMonitoringSignalsRequest) Body(body SecurityMonitoringSignalListRequest) ApiSearchSecurityMonitoringSignalsRequest {
-	r.body = &body
-	return r
+type SearchSecurityMonitoringSignalsOptionalParameters struct {
+	Body *SecurityMonitoringSignalListRequest
 }
 
-func (r ApiSearchSecurityMonitoringSignalsRequest) Execute() (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
-	return r.ApiService.SearchSecurityMonitoringSignalsExecute(r)
+func NewSearchSecurityMonitoringSignalsOptionalParameters() *SearchSecurityMonitoringSignalsOptionalParameters {
+	this := SearchSecurityMonitoringSignalsOptionalParameters{}
+	return &this
+}
+func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body SecurityMonitoringSignalListRequest) *SearchSecurityMonitoringSignalsOptionalParameters {
+	r.Body = &body
+	return r
 }
 
 /*
@@ -871,21 +895,30 @@ func (r ApiSearchSecurityMonitoringSignalsRequest) Execute() (SecurityMonitoring
  * Returns security signals that match a search query.
 Both this endpoint and the GET endpoint can be used interchangeably for listing
 security signals.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiSearchSecurityMonitoringSignalsRequest
 */
-func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _context.Context) ApiSearchSecurityMonitoringSignalsRequest {
-	return ApiSearchSecurityMonitoringSignalsRequest{
+func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+	req := apiSearchSecurityMonitoringSignalsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue SecurityMonitoringSignalsListResponse
+		return localVarReturnValue, nil, reportError("only one argument of type SearchSecurityMonitoringSignalsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.body = o[0].Body
+	}
+
+	return req.ApiService.searchSecurityMonitoringSignalsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SecurityMonitoringSignalsListResponse
  */
-func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsExecute(r ApiSearchSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r apiSearchSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -1020,20 +1053,11 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsExecute(r 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateSecurityMonitoringRuleRequest struct {
+type apiUpdateSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
 	ruleId     string
 	body       *SecurityMonitoringRuleUpdatePayload
-}
-
-func (r ApiUpdateSecurityMonitoringRuleRequest) Body(body SecurityMonitoringRuleUpdatePayload) ApiUpdateSecurityMonitoringRuleRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateSecurityMonitoringRuleRequest) Execute() (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	return r.ApiService.UpdateSecurityMonitoringRuleExecute(r)
 }
 
 /*
@@ -1041,23 +1065,23 @@ func (r ApiUpdateSecurityMonitoringRuleRequest) Execute() (SecurityMonitoringRul
  * Update an existing rule. When updating `cases`, `queries` or `options`, the whole field
 must be included. For example, when modifying a query all queries must be included.
 Default rules can only be updated to be enabled and to change notifications.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param ruleId The ID of the rule.
- * @return ApiUpdateSecurityMonitoringRuleRequest
 */
-func (a *SecurityMonitoringApiService) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string) ApiUpdateSecurityMonitoringRuleRequest {
-	return ApiUpdateSecurityMonitoringRuleRequest{
+func (a *SecurityMonitoringApiService) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+	req := apiUpdateSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		ruleId:     ruleId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateSecurityMonitoringRuleExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SecurityMonitoringRuleResponse
  */
-func (a *SecurityMonitoringApiService) UpdateSecurityMonitoringRuleExecute(r ApiUpdateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r apiUpdateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}

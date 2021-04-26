@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateSlackIntegrationChannel
 
-> SlackIntegrationChannel CreateSlackIntegrationChannel(ctx, accountName).Body(body).Execute()
+> SlackIntegrationChannel CreateSlackIntegrationChannel(ctx, accountName, body)
 
 Create a Slack integration channel
 
@@ -42,7 +42,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SlackIntegrationApi.CreateSlackIntegrationChannel(ctx, accountName).Body(body).Execute()
+    resp, r, err := apiClient.SlackIntegrationApi.CreateSlackIntegrationChannel(ctx, accountName, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SlackIntegrationApi.CreateSlackIntegrationChannel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,23 +53,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **accountName** | **string** | Your Slack account name. | 
+**body** | [**SlackIntegrationChannel**](SlackIntegrationChannel.md) | Payload describing Slack channel to be created | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiCreateSlackIntegrationChannelRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**SlackIntegrationChannel**](SlackIntegrationChannel.md) | Payload describing Slack channel to be created | 
 
 ### Return type
 
@@ -91,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## GetSlackIntegrationChannel
 
-> SlackIntegrationChannel GetSlackIntegrationChannel(ctx, accountName, channelName).Execute()
+> SlackIntegrationChannel GetSlackIntegrationChannel(ctx, accountName, channelName)
 
 Get a Slack integration channel
 
@@ -119,7 +115,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SlackIntegrationApi.GetSlackIntegrationChannel(ctx, accountName, channelName).Execute()
+    resp, r, err := apiClient.SlackIntegrationApi.GetSlackIntegrationChannel(ctx, accountName, channelName)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SlackIntegrationApi.GetSlackIntegrationChannel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,7 +126,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -139,14 +135,9 @@ Name | Type | Description  | Notes
 **accountName** | **string** | Your Slack account name. | 
 **channelName** | **string** | The name of the Slack channel being operated on. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetSlackIntegrationChannelRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -169,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## GetSlackIntegrationChannels
 
-> []SlackIntegrationChannel GetSlackIntegrationChannels(ctx, accountName).Execute()
+> []SlackIntegrationChannel GetSlackIntegrationChannels(ctx, accountName)
 
 Get all channels in a Slack integration
 
@@ -196,7 +187,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SlackIntegrationApi.GetSlackIntegrationChannels(ctx, accountName).Execute()
+    resp, r, err := apiClient.SlackIntegrationApi.GetSlackIntegrationChannels(ctx, accountName)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SlackIntegrationApi.GetSlackIntegrationChannels``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -207,7 +198,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -215,13 +206,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **accountName** | **string** | Your Slack account name. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetSlackIntegrationChannelsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -244,7 +231,7 @@ Name | Type | Description  | Notes
 
 ## RemoveSlackIntegrationChannel
 
-> RemoveSlackIntegrationChannel(ctx, accountName, channelName).Execute()
+> RemoveSlackIntegrationChannel(ctx, accountName, channelName)
 
 Remove a Slack integration channel
 
@@ -271,7 +258,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.SlackIntegrationApi.RemoveSlackIntegrationChannel(ctx, accountName, channelName).Execute()
+    r, err := apiClient.SlackIntegrationApi.RemoveSlackIntegrationChannel(ctx, accountName, channelName)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SlackIntegrationApi.RemoveSlackIntegrationChannel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -279,7 +266,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -288,14 +275,9 @@ Name | Type | Description  | Notes
 **accountName** | **string** | Your Slack account name. | 
 **channelName** | **string** | The name of the Slack channel being operated on. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiRemoveSlackIntegrationChannelRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -318,7 +300,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSlackIntegrationChannel
 
-> SlackIntegrationChannel UpdateSlackIntegrationChannel(ctx, accountName, channelName).Body(body).Execute()
+> SlackIntegrationChannel UpdateSlackIntegrationChannel(ctx, accountName, channelName, body)
 
 Update a Slack integration channel
 
@@ -347,7 +329,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SlackIntegrationApi.UpdateSlackIntegrationChannel(ctx, accountName, channelName).Body(body).Execute()
+    resp, r, err := apiClient.SlackIntegrationApi.UpdateSlackIntegrationChannel(ctx, accountName, channelName, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SlackIntegrationApi.UpdateSlackIntegrationChannel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -358,7 +340,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -366,17 +348,12 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **accountName** | **string** | Your Slack account name. | 
 **channelName** | **string** | The name of the Slack channel being operated on. | 
+**body** | [**SlackIntegrationChannel**](SlackIntegrationChannel.md) | Payload describing fields and values to be updated. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateSlackIntegrationChannelRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **body** | [**SlackIntegrationChannel**](SlackIntegrationChannel.md) | Payload describing fields and values to be updated. | 
 
 ### Return type
 

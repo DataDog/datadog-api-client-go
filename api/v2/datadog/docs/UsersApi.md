@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## CreateUser
 
-> UserResponse CreateUser(ctx).Body(body).Execute()
+> UserResponse CreateUser(ctx, body)
 
 Create a user
 
@@ -45,7 +45,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.CreateUser(ctx).Body(body).Execute()
+    resp, r, err := apiClient.UsersApi.CreateUser(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,18 +56,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateUserRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UserCreateRequest**](UserCreateRequest.md) |  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**UserCreateRequest**](UserCreateRequest.md) |  | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## DisableUser
 
-> DisableUser(ctx, userId).Execute()
+> DisableUser(ctx, userId)
 
 Disable a user
 
@@ -115,7 +115,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.DisableUser(ctx, userId).Execute()
+    r, err := apiClient.UsersApi.DisableUser(ctx, userId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.DisableUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,7 +123,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -131,13 +131,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userId** | **string** | The ID of the user. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDisableUserRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -160,7 +156,7 @@ Name | Type | Description  | Notes
 
 ## GetInvitation
 
-> UserInvitationResponse GetInvitation(ctx, userInvitationUuid).Execute()
+> UserInvitationResponse GetInvitation(ctx, userInvitationUuid)
 
 Get a user invitation
 
@@ -187,7 +183,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.GetInvitation(ctx, userInvitationUuid).Execute()
+    resp, r, err := apiClient.UsersApi.GetInvitation(ctx, userInvitationUuid)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,7 +194,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -206,13 +202,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userInvitationUuid** | **string** | The UUID of the user invitation. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetInvitationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -235,7 +227,7 @@ Name | Type | Description  | Notes
 
 ## GetUser
 
-> UserResponse GetUser(ctx, userId).Execute()
+> UserResponse GetUser(ctx, userId)
 
 Get user details
 
@@ -262,7 +254,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.GetUser(ctx, userId).Execute()
+    resp, r, err := apiClient.UsersApi.GetUser(ctx, userId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -273,7 +265,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -281,13 +273,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userId** | **string** | The ID of the user. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetUserRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -310,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## ListUserOrganizations
 
-> UserResponse ListUserOrganizations(ctx, userId).Execute()
+> UserResponse ListUserOrganizations(ctx, userId)
 
 Get a user organization
 
@@ -337,7 +325,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.ListUserOrganizations(ctx, userId).Execute()
+    resp, r, err := apiClient.UsersApi.ListUserOrganizations(ctx, userId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUserOrganizations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -348,7 +336,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -356,13 +344,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userId** | **string** | The ID of the user. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListUserOrganizationsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -385,7 +369,7 @@ Name | Type | Description  | Notes
 
 ## ListUserPermissions
 
-> PermissionsResponse ListUserPermissions(ctx, userId).Execute()
+> PermissionsResponse ListUserPermissions(ctx, userId)
 
 Get a user permissions
 
@@ -412,7 +396,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.ListUserPermissions(ctx, userId).Execute()
+    resp, r, err := apiClient.UsersApi.ListUserPermissions(ctx, userId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUserPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -423,7 +407,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -431,13 +415,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userId** | **string** | The ID of the user. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListUserPermissionsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -460,7 +440,7 @@ Name | Type | Description  | Notes
 
 ## ListUsers
 
-> UsersResponse ListUsers(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).SortDir(sortDir).Filter(filter).FilterStatus(filterStatus).Execute()
+> UsersResponse ListUsers(ctx, datadog.ListUsersOptionalParameters{})
 
 List all users
 
@@ -488,11 +468,19 @@ func main() {
     sortDir := datadog.QuerySortOrder("asc") // QuerySortOrder | Direction of sort. Options: `asc`, `desc`. (optional) (default to "desc")
     filter := "filter_example" // string | Filter all users by the given string. Defaults to no filtering. (optional)
     filterStatus := "filterStatus_example" // string | Filter on status attribute. Comma separated list, with possible values `Active`, `Pending`, and `Disabled`. Defaults to no filtering. (optional)
+    optionalParams := datadog.ListUsersOptionalParameters{
+        PageSize: &pageSize,
+        PageNumber: &pageNumber,
+        Sort: &sort,
+        SortDir: &sortDir,
+        Filter: &filter,
+        FilterStatus: &filterStatus,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.ListUsers(ctx).PageSize(pageSize).PageNumber(pageNumber).Sort(sort).SortDir(sortDir).Filter(filter).FilterStatus(filterStatus).Execute()
+    resp, r, err := apiClient.UsersApi.ListUsers(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -503,23 +491,24 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListUsersRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListUsersOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int64** | Size for a given page. | [default to 10]
- **pageNumber** | **int64** | Specific page number to return. | [default to 0]
- **sort** | **string** | User attribute to order results by. Sort order is ascending by default. Sort order is descending if the field is prefixed by a negative sign, for example &#x60;sort&#x3D;-name&#x60;. Options: &#x60;name&#x60;, &#x60;modified_at&#x60;, &#x60;user_count&#x60;. | [default to &quot;name&quot;]
- **sortDir** | [**QuerySortOrder**](QuerySortOrder.md) | Direction of sort. Options: &#x60;asc&#x60;, &#x60;desc&#x60;. | [default to &quot;desc&quot;]
- **filter** | **string** | Filter all users by the given string. Defaults to no filtering. | 
- **filterStatus** | **string** | Filter on status attribute. Comma separated list, with possible values &#x60;Active&#x60;, &#x60;Pending&#x60;, and &#x60;Disabled&#x60;. Defaults to no filtering. | 
+**pageSize** | **int64** | Size for a given page. | [default to 10]
+**pageNumber** | **int64** | Specific page number to return. | [default to 0]
+**sort** | **string** | User attribute to order results by. Sort order is ascending by default. Sort order is descending if the field is prefixed by a negative sign, for example &#x60;sort&#x3D;-name&#x60;. Options: &#x60;name&#x60;, &#x60;modified_at&#x60;, &#x60;user_count&#x60;. | [default to &quot;name&quot;]
+**sortDir** | [**QuerySortOrder**](QuerySortOrder.md) | Direction of sort. Options: &#x60;asc&#x60;, &#x60;desc&#x60;. | [default to &quot;desc&quot;]
+**filter** | **string** | Filter all users by the given string. Defaults to no filtering. | 
+**filterStatus** | **string** | Filter on status attribute. Comma separated list, with possible values &#x60;Active&#x60;, &#x60;Pending&#x60;, and &#x60;Disabled&#x60;. Defaults to no filtering. | 
 
 ### Return type
 
@@ -541,7 +530,7 @@ Name | Type | Description  | Notes
 
 ## SendInvitations
 
-> UserInvitationsResponse SendInvitations(ctx).Body(body).Execute()
+> UserInvitationsResponse SendInvitations(ctx, body)
 
 Send invitation emails
 
@@ -568,7 +557,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.SendInvitations(ctx).Body(body).Execute()
+    resp, r, err := apiClient.UsersApi.SendInvitations(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.SendInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -579,18 +568,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSendInvitationsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UserInvitationsRequest**](UserInvitationsRequest.md) |  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**UserInvitationsRequest**](UserInvitationsRequest.md) |  | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -612,7 +601,7 @@ Name | Type | Description  | Notes
 
 ## UpdateUser
 
-> UserResponse UpdateUser(ctx, userId).Body(body).Execute()
+> UserResponse UpdateUser(ctx, userId, body)
 
 Update a user
 
@@ -640,7 +629,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.UpdateUser(ctx, userId).Body(body).Execute()
+    resp, r, err := apiClient.UsersApi.UpdateUser(ctx, userId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -651,23 +640,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userId** | **string** | The ID of the user. | 
+**body** | [**UserUpdateRequest**](UserUpdateRequest.md) |  | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateUserRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**UserUpdateRequest**](UserUpdateRequest.md) |  | 
 
 ### Return type
 

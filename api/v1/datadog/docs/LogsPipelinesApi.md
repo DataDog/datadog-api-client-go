@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateLogsPipeline
 
-> LogsPipeline CreateLogsPipeline(ctx).Body(body).Execute()
+> LogsPipeline CreateLogsPipeline(ctx, body)
 
 Create a pipeline
 
@@ -43,7 +43,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsPipelinesApi.CreateLogsPipeline(ctx).Body(body).Execute()
+    resp, r, err := apiClient.LogsPipelinesApi.CreateLogsPipeline(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.CreateLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -54,18 +54,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateLogsPipelineRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsPipeline**](LogsPipeline.md) | Definition of the new pipeline. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**LogsPipeline**](LogsPipeline.md) | Definition of the new pipeline. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteLogsPipeline
 
-> DeleteLogsPipeline(ctx, pipelineId).Execute()
+> DeleteLogsPipeline(ctx, pipelineId)
 
 Delete a pipeline
 
@@ -113,7 +113,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.LogsPipelinesApi.DeleteLogsPipeline(ctx, pipelineId).Execute()
+    r, err := apiClient.LogsPipelinesApi.DeleteLogsPipeline(ctx, pipelineId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.DeleteLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -129,13 +129,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **pipelineId** | **string** | ID of the pipeline to delete. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteLogsPipelineRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -158,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## GetLogsPipeline
 
-> LogsPipeline GetLogsPipeline(ctx, pipelineId).Execute()
+> LogsPipeline GetLogsPipeline(ctx, pipelineId)
 
 Get a pipeline
 
@@ -185,7 +181,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsPipelinesApi.GetLogsPipeline(ctx, pipelineId).Execute()
+    resp, r, err := apiClient.LogsPipelinesApi.GetLogsPipeline(ctx, pipelineId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.GetLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -196,7 +192,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -204,13 +200,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **pipelineId** | **string** | ID of the pipeline to get. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetLogsPipelineRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -233,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## GetLogsPipelineOrder
 
-> LogsPipelinesOrder GetLogsPipelineOrder(ctx).Execute()
+> LogsPipelinesOrder GetLogsPipelineOrder(ctx)
 
 Get pipeline order
 
@@ -259,7 +251,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsPipelinesApi.GetLogsPipelineOrder(ctx).Execute()
+    resp, r, err := apiClient.LogsPipelinesApi.GetLogsPipelineOrder(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.GetLogsPipelineOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -270,13 +262,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetLogsPipelineOrderRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -299,7 +291,7 @@ Other parameters are passed through a pointer to a apiGetLogsPipelineOrderReques
 
 ## ListLogsPipelines
 
-> []LogsPipeline ListLogsPipelines(ctx).Execute()
+> []LogsPipeline ListLogsPipelines(ctx)
 
 Get all pipelines
 
@@ -325,7 +317,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsPipelinesApi.ListLogsPipelines(ctx).Execute()
+    resp, r, err := apiClient.LogsPipelinesApi.ListLogsPipelines(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.ListLogsPipelines``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -336,13 +328,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListLogsPipelinesRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -365,7 +357,7 @@ Other parameters are passed through a pointer to a apiListLogsPipelinesRequest s
 
 ## UpdateLogsPipeline
 
-> LogsPipeline UpdateLogsPipeline(ctx, pipelineId).Body(body).Execute()
+> LogsPipeline UpdateLogsPipeline(ctx, pipelineId, body)
 
 Update a pipeline
 
@@ -393,7 +385,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsPipelinesApi.UpdateLogsPipeline(ctx, pipelineId).Body(body).Execute()
+    resp, r, err := apiClient.LogsPipelinesApi.UpdateLogsPipeline(ctx, pipelineId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipeline``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -404,23 +396,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **pipelineId** | **string** | ID of the pipeline to delete. | 
+**body** | [**LogsPipeline**](LogsPipeline.md) | New definition of the pipeline. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateLogsPipelineRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**LogsPipeline**](LogsPipeline.md) | New definition of the pipeline. | 
 
 ### Return type
 
@@ -442,7 +430,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLogsPipelineOrder
 
-> LogsPipelinesOrder UpdateLogsPipelineOrder(ctx).Body(body).Execute()
+> LogsPipelinesOrder UpdateLogsPipelineOrder(ctx, body)
 
 Update pipeline order
 
@@ -469,7 +457,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsPipelinesApi.UpdateLogsPipelineOrder(ctx).Body(body).Execute()
+    resp, r, err := apiClient.LogsPipelinesApi.UpdateLogsPipelineOrder(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipelineOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -480,18 +468,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateLogsPipelineOrderRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsPipelinesOrder**](LogsPipelinesOrder.md) | Object containing the new ordered list of pipeline IDs. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**LogsPipelinesOrder**](LogsPipelinesOrder.md) | Object containing the new ordered list of pipeline IDs. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 

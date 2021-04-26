@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateChildOrg
 
-> OrganizationCreateResponse CreateChildOrg(ctx).Body(body).Execute()
+> OrganizationCreateResponse CreateChildOrg(ctx, body)
 
 Create a child organization
 
@@ -41,7 +41,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateChildOrg(ctx).Body(body).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateChildOrg(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateChildOrg``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,18 +52,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateChildOrgRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organization object that needs to be created | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organization object that needs to be created | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## GetOrg
 
-> OrganizationResponse GetOrg(ctx, publicId).Execute()
+> OrganizationResponse GetOrg(ctx, publicId)
 
 Get organization information
 
@@ -112,7 +112,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.GetOrg(ctx, publicId).Execute()
+    resp, r, err := apiClient.OrganizationsApi.GetOrg(ctx, publicId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.GetOrg``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,7 +123,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -131,13 +131,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetOrgRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -160,7 +156,7 @@ Name | Type | Description  | Notes
 
 ## ListOrgs
 
-> OrganizationListResponse ListOrgs(ctx).Execute()
+> OrganizationListResponse ListOrgs(ctx)
 
 List your managed organizations
 
@@ -186,7 +182,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.ListOrgs(ctx).Execute()
+    resp, r, err := apiClient.OrganizationsApi.ListOrgs(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.ListOrgs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -197,13 +193,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListOrgsRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -226,7 +222,7 @@ Other parameters are passed through a pointer to a apiListOrgsRequest struct via
 
 ## UpdateOrg
 
-> OrganizationResponse UpdateOrg(ctx, publicId).Body(body).Execute()
+> OrganizationResponse UpdateOrg(ctx, publicId, body)
 
 Update your organization
 
@@ -254,7 +250,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.UpdateOrg(ctx, publicId).Body(body).Execute()
+    resp, r, err := apiClient.OrganizationsApi.UpdateOrg(ctx, publicId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrg``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -265,23 +261,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. | 
+**body** | [**Organization**](Organization.md) |  | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateOrgRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**Organization**](Organization.md) |  | 
 
 ### Return type
 
@@ -303,7 +295,7 @@ Name | Type | Description  | Notes
 
 ## UploadIdPForOrg
 
-> IdpResponse UploadIdPForOrg(ctx, publicId).IdpFile(idpFile).Execute()
+> IdpResponse UploadIdPForOrg(ctx, publicId, idpFile)
 
 Upload IdP metadata
 
@@ -331,7 +323,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.UploadIdPForOrg(ctx, publicId).IdpFile(idpFile).Execute()
+    resp, r, err := apiClient.OrganizationsApi.UploadIdPForOrg(ctx, publicId, idpFile)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UploadIdPForOrg``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -342,23 +334,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating with | 
+**idpFile** | ***os.File** | The path to the XML metadata file you wish to upload. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUploadIdPForOrgRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **idpFile** | ***os.File** | The path to the XML metadata file you wish to upload. | 
 
 ### Return type
 
