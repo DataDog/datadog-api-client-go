@@ -201,7 +201,6 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**CreatePrivateLocation**](docs/SyntheticsApi.md#createprivatelocation) | **Post** /api/v1/synthetics/private-locations | Create a private location
 *SyntheticsApi* | [**CreateSyntheticsAPITest**](docs/SyntheticsApi.md#createsyntheticsapitest) | **Post** /api/v1/synthetics/tests/api | Create an API test
 *SyntheticsApi* | [**CreateSyntheticsBrowserTest**](docs/SyntheticsApi.md#createsyntheticsbrowsertest) | **Post** /api/v1/synthetics/tests/browser | Create a browser test
-*SyntheticsApi* | [**CreateTest**](docs/SyntheticsApi.md#createtest) | **Post** /api/v1/synthetics/tests | Create a test
 *SyntheticsApi* | [**DeleteGlobalVariable**](docs/SyntheticsApi.md#deleteglobalvariable) | **Delete** /api/v1/synthetics/variables/{variable_id} | Delete a global variable
 *SyntheticsApi* | [**DeletePrivateLocation**](docs/SyntheticsApi.md#deleteprivatelocation) | **Delete** /api/v1/synthetics/private-locations/{location_id} | Delete a private location
 *SyntheticsApi* | [**DeleteTests**](docs/SyntheticsApi.md#deletetests) | **Post** /api/v1/synthetics/tests/delete | Delete tests
@@ -221,7 +220,6 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**UpdateAPITest**](docs/SyntheticsApi.md#updateapitest) | **Put** /api/v1/synthetics/tests/api/{public_id} | Edit an API test
 *SyntheticsApi* | [**UpdateBrowserTest**](docs/SyntheticsApi.md#updatebrowsertest) | **Put** /api/v1/synthetics/tests/browser/{public_id} | Edit a browser test
 *SyntheticsApi* | [**UpdatePrivateLocation**](docs/SyntheticsApi.md#updateprivatelocation) | **Put** /api/v1/synthetics/private-locations/{location_id} | Edit a private location
-*SyntheticsApi* | [**UpdateTest**](docs/SyntheticsApi.md#updatetest) | **Put** /api/v1/synthetics/tests/{public_id} | Edit a test
 *SyntheticsApi* | [**UpdateTestPauseStatus**](docs/SyntheticsApi.md#updatetestpausestatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Pause or start a test
 *TagsApi* | [**CreateHostTags**](docs/TagsApi.md#createhosttags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
 *TagsApi* | [**DeleteHostTags**](docs/TagsApi.md#deletehosttags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove host tags

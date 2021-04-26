@@ -11,16 +11,16 @@ interactions:
       Content-Type:
       - application/json
       Dd-Operation-Id:
-      - CreateTest
+      - CreateSyntheticsAPITest
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3365043366818201439"
+      - "2672703406297991038"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "9011399215093823388"
-    url: https://api.datadoghq.com/api/v1/synthetics/tests
+      - "1511197953692016421"
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/api
     method: POST
   response:
     body: |
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:54:20 GMT
+      - Tue, 13 Apr 2021 18:57:11 GMT
       Via:
       - haproxy
     status: 403 Forbidden
