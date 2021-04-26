@@ -107,6 +107,8 @@ type UsageSummaryResponse struct {
 	TwolIngestedEventsBytesAggSum *int64 `json:"twol_ingested_events_bytes_agg_sum,omitempty"`
 	// An array of objects regarding hourly usage.
 	Usage *[]UsageSummaryDate `json:"usage,omitempty"`
+	// Shows the 99th percentile of all vSphere hosts over all hours in the current months for all organizations.
+	VsphereHostTop99pSum *int64 `json:"vsphere_host_top99p_sum,omitempty"`
 }
 
 // NewUsageSummaryResponse instantiates a new UsageSummaryResponse object
@@ -1599,6 +1601,38 @@ func (o *UsageSummaryResponse) SetUsage(v []UsageSummaryDate) {
 	o.Usage = &v
 }
 
+// GetVsphereHostTop99pSum returns the VsphereHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetVsphereHostTop99pSum() int64 {
+	if o == nil || o.VsphereHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.VsphereHostTop99pSum
+}
+
+// GetVsphereHostTop99pSumOk returns a tuple with the VsphereHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetVsphereHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.VsphereHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.VsphereHostTop99pSum, true
+}
+
+// HasVsphereHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasVsphereHostTop99pSum() bool {
+	if o != nil && o.VsphereHostTop99pSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVsphereHostTop99pSum gets a reference to the given int64 and assigns it to the VsphereHostTop99pSum field.
+func (o *UsageSummaryResponse) SetVsphereHostTop99pSum(v int64) {
+	o.VsphereHostTop99pSum = &v
+}
+
 func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AgentHostTop99pSum != nil {
@@ -1738,6 +1772,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
+	}
+	if o.VsphereHostTop99pSum != nil {
+		toSerialize["vsphere_host_top99p_sum"] = o.VsphereHostTop99pSum
 	}
 	return json.Marshal(toSerialize)
 }
