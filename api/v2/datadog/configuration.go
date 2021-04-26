@@ -178,8 +178,6 @@ func NewConfiguration() *Configuration {
 			"DeleteTagConfiguration":          false,
 			"ListTagConfigurationByName":      false,
 			"ListTagConfigurations":           false,
-			"ListTagsByMetricName":            false,
-			"ListVolumesByMetricName":         false,
 			"UpdateTagConfiguration":          false,
 			"ListSecurityMonitoringSignals":   false,
 			"SearchSecurityMonitoringSignals": false,

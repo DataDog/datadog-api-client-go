@@ -2,6 +2,7 @@ package test
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"reflect"
 	"strings"
@@ -10,6 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/go-bdd/gobdd"
+	ddtesting "gopkg.in/DataDog/dd-trace-go.v1/contrib/testing"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
@@ -30,18 +32,32 @@ func TestScenarios(t *testing.T) {
 		gobdd.WithIgnoredTags(tests.GetIgnoredTags()),
 		gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
 			ct, _ := ctx.Get(gobdd.TestingTKey{})
-			cctx, finish := WithRecorder(
+			tt := ct.(*testing.T)
+			testParts := strings.Split(tt.Name(), "/")
+			cctx, closeSpan := ddtesting.StartSpanWithFinish(
+				NewDefaultContext(context.Background()),
+				tt,
+				ddtesting.WithSpanOptions(
+					tracer.Tag(ext.TestName, testParts[2]),
+					tracer.Tag(ext.TestSuite, fmt.Sprintf("v1/%s", testParts[1])),
+					tracer.Tag(ext.TestFramework, "github.com/go-bdd/gobdd"),
+				),
+			)
+			cctx, closeRecorder := WithRecorder(
 				context.WithValue(
-					NewDefaultContext(context.Background()),
+					cctx,
 					datadog.ContextAPIKeys,
 					map[string]datadog.APIKey{},
 				),
-				ct.(*testing.T),
+				tt,
 			)
 			tests.SetCtx(ctx, cctx)
 			tests.SetRequestsUndo(ctx, requestsUndo)
 			tests.SetData(ctx, make(map[string]interface{}))
-			tests.SetCleanup(ctx, map[string]func(){"99-finish": finish})
+			tests.SetCleanup(ctx, map[string]func(){"99-finish": func() {
+				closeRecorder()
+				closeSpan()
+			}})
 		}), gobdd.WithAfterScenario(func(ctx gobdd.Context) {
 			tests.RunCleanup(ctx)
 		}),

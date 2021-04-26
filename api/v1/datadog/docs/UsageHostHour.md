@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **InfraAzureAppService** | Pointer to **int64** | Contains the total number of hosts that reported via the Azure App Services integration (and were NOT running the Datadog Agent). | [optional] 
 **OpentelemetryHostCount** | Pointer to **int64** | Contains the total number of hosts reported by Datadog exporter for the OpenTelemetry Collector. | [optional] 
+**VsphereHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via vSphere integration (and were NOT running the Datadog Agent). | [optional] 
 
 ## Methods
 
@@ -361,6 +362,31 @@ SetOpentelemetryHostCount sets OpentelemetryHostCount field to given value.
 `func (o *UsageHostHour) HasOpentelemetryHostCount() bool`
 
 HasOpentelemetryHostCount returns a boolean if a field has been set.
+
+### GetVsphereHostCount
+
+`func (o *UsageHostHour) GetVsphereHostCount() int64`
+
+GetVsphereHostCount returns the VsphereHostCount field if non-nil, zero value otherwise.
+
+### GetVsphereHostCountOk
+
+`func (o *UsageHostHour) GetVsphereHostCountOk() (*int64, bool)`
+
+GetVsphereHostCountOk returns a tuple with the VsphereHostCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVsphereHostCount
+
+`func (o *UsageHostHour) SetVsphereHostCount(v int64)`
+
+SetVsphereHostCount sets VsphereHostCount field to given value.
+
+### HasVsphereHostCount
+
+`func (o *UsageHostHour) HasVsphereHostCount() bool`
+
+HasVsphereHostCount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

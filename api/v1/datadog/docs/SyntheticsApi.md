@@ -8,27 +8,25 @@ Method | HTTP request | Description
 [**CreatePrivateLocation**](SyntheticsApi.md#CreatePrivateLocation) | **Post** /api/v1/synthetics/private-locations | Create a private location
 [**CreateSyntheticsAPITest**](SyntheticsApi.md#CreateSyntheticsAPITest) | **Post** /api/v1/synthetics/tests/api | Create an API test
 [**CreateSyntheticsBrowserTest**](SyntheticsApi.md#CreateSyntheticsBrowserTest) | **Post** /api/v1/synthetics/tests/browser | Create a browser test
-[**CreateTest**](SyntheticsApi.md#CreateTest) | **Post** /api/v1/synthetics/tests | Create a test
 [**DeleteGlobalVariable**](SyntheticsApi.md#DeleteGlobalVariable) | **Delete** /api/v1/synthetics/variables/{variable_id} | Delete a global variable
 [**DeletePrivateLocation**](SyntheticsApi.md#DeletePrivateLocation) | **Delete** /api/v1/synthetics/private-locations/{location_id} | Delete a private location
 [**DeleteTests**](SyntheticsApi.md#DeleteTests) | **Post** /api/v1/synthetics/tests/delete | Delete tests
 [**EditGlobalVariable**](SyntheticsApi.md#EditGlobalVariable) | **Put** /api/v1/synthetics/variables/{variable_id} | Edit a global variable
 [**GetAPITest**](SyntheticsApi.md#GetAPITest) | **Get** /api/v1/synthetics/tests/api/{public_id} | Get an API test
-[**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get the test&#39;s latest results summaries (API)
-[**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get a test result (API)
-[**GetBrowserTest**](SyntheticsApi.md#GetBrowserTest) | **Get** /api/v1/synthetics/tests/browser/{public_id} | Get a test configuration (browser)
-[**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get the test&#39;s latest results summaries (browser)
-[**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a test result (browser)
+[**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get an API test&#39;s latest results summaries
+[**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get an API test result
+[**GetBrowserTest**](SyntheticsApi.md#GetBrowserTest) | **Get** /api/v1/synthetics/tests/browser/{public_id} | Get a browser test
+[**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get a browser test&#39;s latest results summaries
+[**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a browser test result
 [**GetGlobalVariable**](SyntheticsApi.md#GetGlobalVariable) | **Get** /api/v1/synthetics/variables/{variable_id} | Get a global variable
 [**GetPrivateLocation**](SyntheticsApi.md#GetPrivateLocation) | **Get** /api/v1/synthetics/private-locations/{location_id} | Get a private location
-[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration (API)
+[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration
 [**ListLocations**](SyntheticsApi.md#ListLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 [**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
-[**TriggerCITests**](SyntheticsApi.md#TriggerCITests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger some Synthetics tests for CI
+[**TriggerCITests**](SyntheticsApi.md#TriggerCITests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger tests from CI/CD pipelines
 [**UpdateAPITest**](SyntheticsApi.md#UpdateAPITest) | **Put** /api/v1/synthetics/tests/api/{public_id} | Edit an API test
 [**UpdateBrowserTest**](SyntheticsApi.md#UpdateBrowserTest) | **Put** /api/v1/synthetics/tests/browser/{public_id} | Edit a browser test
 [**UpdatePrivateLocation**](SyntheticsApi.md#UpdatePrivateLocation) | **Put** /api/v1/synthetics/private-locations/{location_id} | Edit a private location
-[**UpdateTest**](SyntheticsApi.md#UpdateTest) | **Put** /api/v1/synthetics/tests/{public_id} | Edit a test
 [**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Pause or start a test
 
 
@@ -302,77 +300,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SyntheticsBrowserTest**](SyntheticsBrowserTest.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateTest
-
-> SyntheticsTestDetails CreateTest(ctx).Body(body).Execute()
-
-Create a test
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "encoding/json"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := datadog.NewDefaultContext(context.Background())
-
-    body := *datadog.NewSyntheticsTestDetails() // SyntheticsTestDetails | Details of the test to create.
-
-    configuration := datadog.NewConfiguration()
-
-    apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.CreateTest(ctx).Body(body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateTest``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateTest`: SyntheticsTestDetails
-    responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.CreateTest:\n%s\n", responseContent)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateTestRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**SyntheticsTestDetails**](SyntheticsTestDetails.md) | Details of the test to create. | 
-
-### Return type
-
-[**SyntheticsTestDetails**](SyntheticsTestDetails.md)
 
 ### Authorization
 
@@ -757,7 +684,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsGetAPITestLatestResultsResponse GetAPITestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
 
-Get the test's latest results summaries (API)
+Get an API test's latest results summaries
 
 
 
@@ -838,7 +765,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsAPITestResultFull GetAPITestResult(ctx, publicId, resultId).Execute()
 
-Get a test result (API)
+Get an API test result
 
 
 
@@ -916,7 +843,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsBrowserTest GetBrowserTest(ctx, publicId).Execute()
 
-Get a test configuration (browser)
+Get a browser test
 
 
 
@@ -991,7 +918,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsGetBrowserTestLatestResultsResponse GetBrowserTestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
 
-Get the test's latest results summaries (browser)
+Get a browser test's latest results summaries
 
 
 
@@ -1072,7 +999,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsBrowserTestResultFull GetBrowserTestResult(ctx, publicId, resultId).Execute()
 
-Get a test result (browser)
+Get a browser test result
 
 
 
@@ -1300,7 +1227,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsTestDetails GetTest(ctx, publicId).Execute()
 
-Get a test configuration (API)
+Get a test configuration
 
 
 
@@ -1507,7 +1434,7 @@ Other parameters are passed through a pointer to a apiListTestsRequest struct vi
 
 > SyntheticsTriggerCITestsResponse TriggerCITests(ctx).Body(body).Execute()
 
-Trigger some Synthetics tests for CI
+Trigger tests from CI/CD pipelines
 
 
 
@@ -1790,83 +1717,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UpdateTest
-
-> SyntheticsTestDetails UpdateTest(ctx, publicId).Body(body).Execute()
-
-Edit a test
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "encoding/json"
-    "fmt"
-    "os"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := datadog.NewDefaultContext(context.Background())
-
-    publicId := "publicId_example" // string | The public ID of the test to get details from.
-    body := *datadog.NewSyntheticsTestDetails() // SyntheticsTestDetails | New test details to be saved.
-
-    configuration := datadog.NewConfiguration()
-
-    apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.UpdateTest(ctx, publicId).Body(body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTest``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateTest`: SyntheticsTestDetails
-    responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.UpdateTest:\n%s\n", responseContent)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public ID of the test to get details from. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateTestRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**SyntheticsTestDetails**](SyntheticsTestDetails.md) | New test details to be saved. | 
-
-### Return type
-
-[**SyntheticsTestDetails**](SyntheticsTestDetails.md)
 
 ### Authorization
 

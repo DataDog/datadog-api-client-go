@@ -224,8 +224,8 @@ func TestMonitorSyntheticsGet(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create a synthetics API test to retrieve its corresponding monitor via GetMonitor (we're borrowing these from api_synthetics_test.go)
-	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
-	syntheticsTest, _, err := Client(ctx).SyntheticsApi.CreateTest(ctx, testSyntheticsAPI)
+	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	syntheticsTest, _, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", syntheticsTest, err.(datadog.GenericOpenAPIError).Body(), err)
 	}

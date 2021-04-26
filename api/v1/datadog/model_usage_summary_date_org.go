@@ -92,6 +92,8 @@ type UsageSummaryDateOrg struct {
 	TraceSearchIndexedEventsCountSum *int64 `json:"trace_search_indexed_events_count_sum,omitempty"`
 	// Shows the sum of all tracing without limits bytes ingested over all hours in the current date for the given org.
 	TwolIngestedEventsBytesSum *int64 `json:"twol_ingested_events_bytes_sum,omitempty"`
+	// Shows the 99th percentile of all vSphere hosts over all hours in the current date for the given org.
+	VsphereHostTop99p *int64 `json:"vsphere_host_top99p,omitempty"`
 }
 
 // NewUsageSummaryDateOrg instantiates a new UsageSummaryDateOrg object
@@ -1360,6 +1362,38 @@ func (o *UsageSummaryDateOrg) SetTwolIngestedEventsBytesSum(v int64) {
 	o.TwolIngestedEventsBytesSum = &v
 }
 
+// GetVsphereHostTop99p returns the VsphereHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetVsphereHostTop99p() int64 {
+	if o == nil || o.VsphereHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.VsphereHostTop99p
+}
+
+// GetVsphereHostTop99pOk returns a tuple with the VsphereHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetVsphereHostTop99pOk() (*int64, bool) {
+	if o == nil || o.VsphereHostTop99p == nil {
+		return nil, false
+	}
+	return o.VsphereHostTop99p, true
+}
+
+// HasVsphereHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasVsphereHostTop99p() bool {
+	if o != nil && o.VsphereHostTop99p != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVsphereHostTop99p gets a reference to the given int64 and assigns it to the VsphereHostTop99p field.
+func (o *UsageSummaryDateOrg) SetVsphereHostTop99p(v int64) {
+	o.VsphereHostTop99p = &v
+}
+
 func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AgentHostTop99p != nil {
@@ -1478,6 +1512,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	}
 	if o.TwolIngestedEventsBytesSum != nil {
 		toSerialize["twol_ingested_events_bytes_sum"] = o.TwolIngestedEventsBytesSum
+	}
+	if o.VsphereHostTop99p != nil {
+		toSerialize["vsphere_host_top99p"] = o.VsphereHostTop99p
 	}
 	return json.Marshal(toSerialize)
 }

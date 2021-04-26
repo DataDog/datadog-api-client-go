@@ -131,7 +131,6 @@ func TestDashboardLifecycle(t *testing.T) {
 	distributionWidgetDefinition.SetRequests([]datadog.DistributionWidgetRequest{
 		*distributionWidgetRequest,
 	})
-	distributionWidgetDefinition.SetShowLegend(true)
 	distributionWidgetDefinition.SetTitle("Test Distribution Widget")
 	distributionWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	distributionWidgetDefinition.SetTitleSize("16")
