@@ -15,7 +15,7 @@ func testingRoleCreateAttributes(ctx context.Context, t *testing.T) *datadog.Rol
 }
 
 func deleteRole(ctx context.Context, t *testing.T, roleID string) {
-	_, err := Client(ctx).RolesApi.DeleteRole(ctx, roleID).Execute()
+	_, err := Client(ctx).RolesApi.DeleteRole(ctx, roleID)
 	if err == nil {
 		return
 	}
@@ -35,7 +35,7 @@ func TestRoleLifecycle(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -57,7 +57,7 @@ func TestRoleLifecycle(t *testing.T) {
 	rup := datadog.NewRoleUpdateRequestWithDefaults()
 	rup.SetData(*rud)
 
-	urr, httpresp, err := Client(ctx).RolesApi.UpdateRole(ctx, rid).Body(*rup).Execute()
+	urr, httpresp, err := Client(ctx).RolesApi.UpdateRole(ctx, rid, *rup)
 	if err != nil {
 		t.Fatalf("Error updating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -67,7 +67,7 @@ func TestRoleLifecycle(t *testing.T) {
 	assert.Equal(rua.GetName(), urAttributes.GetName())
 
 	// now, test getting it
-	grr, httpresp, err := Client(ctx).RolesApi.GetRole(ctx, rid).Execute()
+	grr, httpresp, err := Client(ctx).RolesApi.GetRole(ctx, rid)
 	if err != nil {
 		t.Fatalf("Error getting Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -77,13 +77,11 @@ func TestRoleLifecycle(t *testing.T) {
 	assert.Equal(updatedRoleName, getAttributes.GetName())
 
 	// now, test filtering for it in the list call
-	rsr, httpresp, err := Client(ctx).RolesApi.
-		ListRoles(ctx).
-		Filter(updatedRoleName).
-		PageSize(1).
-		PageNumber(0).
-		Sort(datadog.ROLESSORT_MODIFIED_AT_DESCENDING).
-		Execute()
+	rsr, httpresp, err := Client(ctx).RolesApi.ListRoles(ctx, *datadog.NewListRolesOptionalParameters().
+		WithFilter(updatedRoleName).
+		WithPageSize(1).
+		WithPageNumber(0).
+		WithSort(datadog.ROLESSORT_MODIFIED_AT_DESCENDING))
 	if err != nil {
 		t.Fatalf("Error listing roles %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -98,7 +96,7 @@ func TestRoleLifecycle(t *testing.T) {
 
 	// now, test deleting it
 	// no response payload
-	httpresp, err = Client(ctx).RolesApi.DeleteRole(ctx, rid).Execute()
+	httpresp, err = Client(ctx).RolesApi.DeleteRole(ctx, rid)
 	if err != nil {
 		t.Fatalf("Error deleting Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -118,7 +116,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -128,7 +126,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	defer deleteRole(ctx, t, rid)
 
 	// find a permission
-	permissions, httpresp, err := Client(ctx).RolesApi.ListPermissions(ctx).Execute()
+	permissions, httpresp, err := Client(ctx).RolesApi.ListPermissions(ctx)
 	if err != nil {
 		t.Fatalf("Error listing permissions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -145,7 +143,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	rtpd.SetId(pid)
 	rtp.SetData(*rtpd)
 
-	crrtps, httpresp, err := Client(ctx).RolesApi.AddPermissionToRole(ctx, rid).Body(*rtp).Execute()
+	crrtps, httpresp, err := Client(ctx).RolesApi.AddPermissionToRole(ctx, rid, *rtp)
 	if err != nil {
 		t.Fatalf("Error creating permission relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -153,7 +151,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	assert.Contains(crrtps.GetData(), permission)
 
 	// get all permissions for the role
-	lrrtps, httpresp, err := Client(ctx).RolesApi.ListRolePermissions(ctx, rid).Execute()
+	lrrtps, httpresp, err := Client(ctx).RolesApi.ListRolePermissions(ctx, rid)
 	if err != nil {
 		t.Fatalf("Error listing permission relations: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -161,7 +159,7 @@ func TestRolePermissionsLifecycle(t *testing.T) {
 	assert.Contains(lrrtps.GetData(), permission)
 
 	// remove the permission from the role
-	drrtps, httpresp, err := Client(ctx).RolesApi.RemovePermissionFromRole(ctx, rid).Body(*rtp).Execute()
+	drrtps, httpresp, err := Client(ctx).RolesApi.RemovePermissionFromRole(ctx, rid, *rtp)
 	if err != nil {
 		t.Fatalf("Error remove permission relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -182,7 +180,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -197,7 +195,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	ucd.SetAttributes(*uca)
 	ucr := datadog.NewUserCreateRequestWithDefaults()
 	ucr.SetData(*ucd)
-	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucr).Execute()
+	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx, *ucr)
 	if err != nil {
 		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error creating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
@@ -213,7 +211,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	rtud.SetId(uid)
 	rtu.SetData(*rtud)
 
-	crrtus, httpresp, err := Client(ctx).RolesApi.AddUserToRole(ctx, rid).Body(*rtu).Execute()
+	crrtus, httpresp, err := Client(ctx).RolesApi.AddUserToRole(ctx, rid, *rtu)
 	if err != nil {
 		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error creating user relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -230,7 +228,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	assert.True(found, "user %s not found in relation to role %s", uid, rid)
 
 	// get all users for the role
-	lrrtus, httpresp, err := Client(ctx).RolesApi.ListRoleUsers(ctx, rid).Execute()
+	lrrtus, httpresp, err := Client(ctx).RolesApi.ListRoleUsers(ctx, rid)
 	if err != nil {
 		t.Fatalf("Error listing permission relations: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -246,7 +244,7 @@ func TestRoleUsersLifecycle(t *testing.T) {
 	assert.True(found, "user %s not found in relation to role %s", uid, rid)
 
 	// remove the permission from the role
-	drrtus, httpresp, err := Client(ctx).RolesApi.RemoveUserFromRole(ctx, rid).Body(*rtu).Execute()
+	drrtus, httpresp, err := Client(ctx).RolesApi.RemoveUserFromRole(ctx, rid, *rtu)
 	if err != nil {
 		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error remove permission relation: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -278,7 +276,7 @@ func TestListRolesErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).RolesApi.ListRoles(ctx).Execute()
+			_, httpresp, err := Client(ctx).RolesApi.ListRoles(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -318,7 +316,7 @@ func TestCreateRoleErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*tc.Body).Execute()
+			rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *tc.Body)
 			// make sure that we clean everything on error
 			if 200 == httpresp.StatusCode {
 				rrData := rr.GetData()
@@ -346,7 +344,7 @@ func TestGetRoleErrors(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -357,7 +355,7 @@ func TestGetRoleErrors(t *testing.T) {
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
-	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404).Execute()
+	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404)
 	assert.Equal(404, httpresp.StatusCode)
 
 	testCases := map[string]struct {
@@ -375,7 +373,7 @@ func TestGetRoleErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).RolesApi.GetRole(ctx, tc.RoleID).Execute()
+			_, httpresp, err := Client(ctx).RolesApi.GetRole(ctx, tc.RoleID)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -397,7 +395,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -418,7 +416,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
-	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404).Execute()
+	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404)
 	assert.Equal(404, httpresp.StatusCode)
 	rud404 := datadog.NewRoleUpdateDataWithDefaults()
 	rud404.SetAttributes(*rua)
@@ -444,7 +442,7 @@ func TestUpdateRoleErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).RolesApi.UpdateRole(ctx, tc.RoleID).Body(*tc.Body).Execute()
+			_, httpresp, err := Client(ctx).RolesApi.UpdateRole(ctx, tc.RoleID, *tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -466,7 +464,7 @@ func TestDeleteRoleErrors(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -477,7 +475,7 @@ func TestDeleteRoleErrors(t *testing.T) {
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
-	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404).Execute()
+	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404)
 	assert.Equal(404, httpresp.StatusCode)
 
 	testCases := map[string]struct {
@@ -495,7 +493,7 @@ func TestDeleteRoleErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			httpresp, err := Client(ctx).RolesApi.DeleteRole(ctx, tc.RoleID).Execute()
+			httpresp, err := Client(ctx).RolesApi.DeleteRole(ctx, tc.RoleID)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -517,7 +515,7 @@ func TestListRolePermissionsErrors(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -528,7 +526,7 @@ func TestListRolePermissionsErrors(t *testing.T) {
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
-	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404).Execute()
+	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404)
 	assert.Equal(404, httpresp.StatusCode)
 
 	testCases := map[string]struct {
@@ -546,7 +544,7 @@ func TestListRolePermissionsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).RolesApi.ListRolePermissions(ctx, tc.RoleID).Execute()
+			_, httpresp, err := Client(ctx).RolesApi.ListRolePermissions(ctx, tc.RoleID)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -568,7 +566,7 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -579,7 +577,7 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
-	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404).Execute()
+	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404)
 	assert.Equal(404, httpresp.StatusCode)
 
 	rtp := datadog.NewRelationshipToPermissionWithDefaults()
@@ -603,7 +601,7 @@ func TestAddPermissionToRoleErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).RolesApi.AddPermissionToRole(ctx, rid).Body(*tc.Body).Execute()
+			_, httpresp, err := Client(ctx).RolesApi.AddPermissionToRole(ctx, rid, *tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -625,7 +623,7 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -636,11 +634,11 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
-	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404).Execute()
+	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404)
 	assert.Equal(404, httpresp.StatusCode)
 
 	// find a permission
-	permissions, httpresp, err := Client(ctx).RolesApi.ListPermissions(ctx).Execute()
+	permissions, httpresp, err := Client(ctx).RolesApi.ListPermissions(ctx)
 	if err != nil {
 		t.Fatalf("Error listing permissions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -680,7 +678,7 @@ func TestRemovePermissionFromRoleErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).RolesApi.RemovePermissionFromRole(ctx, tc.RoleID).Body(*tc.Body).Execute()
+			_, httpresp, err := Client(ctx).RolesApi.RemovePermissionFromRole(ctx, tc.RoleID, *tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -702,7 +700,7 @@ func TestListRoleUsersErrors(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -713,7 +711,7 @@ func TestListRoleUsersErrors(t *testing.T) {
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
-	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404).Execute()
+	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404)
 	assert.Equal(404, httpresp.StatusCode)
 
 	testCases := map[string]struct {
@@ -731,7 +729,7 @@ func TestListRoleUsersErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).RolesApi.ListRoleUsers(ctx, tc.RoleID).Execute()
+			_, httpresp, err := Client(ctx).RolesApi.ListRoleUsers(ctx, tc.RoleID)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -753,7 +751,7 @@ func TestAddUserToRoleErrors(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -764,7 +762,7 @@ func TestAddUserToRoleErrors(t *testing.T) {
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
-	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404).Execute()
+	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404)
 	assert.Equal(404, httpresp.StatusCode)
 
 	rtu := datadog.NewRelationshipToUserWithDefaults()
@@ -788,7 +786,7 @@ func TestAddUserToRoleErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).RolesApi.AddUserToRole(ctx, rid).Body(*tc.Body).Execute()
+			_, httpresp, err := Client(ctx).RolesApi.AddUserToRole(ctx, rid, *tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -810,7 +808,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	rcd.SetAttributes(*rca)
 	rcp := datadog.NewRoleCreateRequestWithDefaults()
 	rcp.SetData(*rcd)
-	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx).Body(*rcp).Execute()
+	rr, httpresp, err := Client(ctx).RolesApi.CreateRole(ctx, *rcp)
 	if err != nil {
 		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error creating Role %s: Response %s: %v", rca.GetName(), err.(datadog.GenericOpenAPIError).Body(), err)
@@ -822,7 +820,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 
 	// bad role ID
 	rid404 := "00000000-dead-beef-dead-ffffffffffff"
-	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404).Execute()
+	_, httpresp, err = Client(ctx).RolesApi.GetRole(ctx, rid404)
 	assert.Equal(404, httpresp.StatusCode)
 
 	// create a user
@@ -831,7 +829,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 	ucd.SetAttributes(*uca)
 	ucr := datadog.NewUserCreateRequestWithDefaults()
 	ucr.SetData(*ucd)
-	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx).Body(*ucr).Execute()
+	ur, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx, *ucr)
 	if err != nil {
 		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error creating User %s: Response %s: %v", uca.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
@@ -863,7 +861,7 @@ func TestRemoveUserFromRoleErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).RolesApi.RemoveUserFromRole(ctx, tc.RoleID).Body(*tc.Body).Execute()
+			_, httpresp, err := Client(ctx).RolesApi.RemoveUserFromRole(ctx, tc.RoleID, *tc.Body)
 			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

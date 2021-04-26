@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CreateEvent
 
-> EventCreateResponse CreateEvent(ctx).Body(body).Execute()
+> EventCreateResponse CreateEvent(ctx, body)
 
 Post an event
 
@@ -39,7 +39,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.CreateEvent(ctx).Body(body).Execute()
+    resp, r, err := apiClient.EventsApi.CreateEvent(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.CreateEvent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,18 +50,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateEventRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**EventCreateRequest**](EventCreateRequest.md) | Event request object | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**EventCreateRequest**](EventCreateRequest.md) | Event request object | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## GetEvent
 
-> EventResponse GetEvent(ctx, eventId).Execute()
+> EventResponse GetEvent(ctx, eventId)
 
 Get an event
 
@@ -110,7 +110,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.GetEvent(ctx, eventId).Execute()
+    resp, r, err := apiClient.EventsApi.GetEvent(ctx, eventId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEvent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -129,13 +129,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **eventId** | **int64** | The ID of the event. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetEventRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -158,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## ListEvents
 
-> EventListResponse ListEvents(ctx).Start(start).End(end).Priority(priority).Sources(sources).Tags(tags).Unaggregated(unaggregated).Execute()
+> EventListResponse ListEvents(ctx, start, end, datadog.ListEventsOptionalParameters{})
 
 Query the event stream
 
@@ -186,11 +182,17 @@ func main() {
     sources := "sources_example" // string | A comma separated string of sources. (optional)
     tags := "host:host0" // string | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. (optional)
     unaggregated := true // bool | Set unaggregated to `true` to return all events within the specified [`start`,`end`] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won't be available in the output. (optional)
+    optionalParams := datadog.ListEventsOptionalParameters{
+        Priority: &priority,
+        Sources: &sources,
+        Tags: &tags,
+        Unaggregated: &unaggregated,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.ListEvents(ctx).Start(start).End(end).Priority(priority).Sources(sources).Tags(tags).Unaggregated(unaggregated).Execute()
+    resp, r, err := apiClient.EventsApi.ListEvents(ctx, start, end, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ListEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -201,23 +203,27 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListEventsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start** | **int64** | POSIX timestamp. | 
- **end** | **int64** | POSIX timestamp. | 
- **priority** | [**EventPriority**](EventPriority.md) | Priority of your events, either &#x60;low&#x60; or &#x60;normal&#x60;. | 
- **sources** | **string** | A comma separated string of sources. | 
- **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. | 
- **unaggregated** | **bool** | Set unaggregated to &#x60;true&#x60; to return all events within the specified [&#x60;start&#x60;,&#x60;end&#x60;] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won&#39;t be available in the output. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**start** | **int64** | POSIX timestamp. | 
+**end** | **int64** | POSIX timestamp. | 
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a ListEventsOptionalParameters struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**priority** | [**EventPriority**](EventPriority.md) | Priority of your events, either &#x60;low&#x60; or &#x60;normal&#x60;. | 
+**sources** | **string** | A comma separated string of sources. | 
+**tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. | 
+**unaggregated** | **bool** | Set unaggregated to &#x60;true&#x60; to return all events within the specified [&#x60;start&#x60;,&#x60;end&#x60;] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won&#39;t be available in the output. | 
 
 ### Return type
 

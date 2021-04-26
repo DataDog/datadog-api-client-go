@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetGraphSnapshot
 
-> GraphSnapshot GetGraphSnapshot(ctx).Start(start).End(end).MetricQuery(metricQuery).EventQuery(eventQuery).GraphDef(graphDef).Title(title).Execute()
+> GraphSnapshot GetGraphSnapshot(ctx, start, end, datadog.GetGraphSnapshotOptionalParameters{})
 
 Take graph snapshots
 
@@ -38,11 +38,17 @@ func main() {
     eventQuery := "eventQuery_example" // string | A query that adds event bands to the graph. (optional)
     graphDef := "graphDef_example" // string | A JSON document defining the graph. `graph_def` can be used instead of `metric_query`. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URL encoded. (optional)
     title := "title_example" // string | A title for the graph. If no title is specified, the graph does not have a title. (optional)
+    optionalParams := datadog.GetGraphSnapshotOptionalParameters{
+        MetricQuery: &metricQuery,
+        EventQuery: &eventQuery,
+        GraphDef: &graphDef,
+        Title: &title,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SnapshotsApi.GetGraphSnapshot(ctx).Start(start).End(end).MetricQuery(metricQuery).EventQuery(eventQuery).GraphDef(graphDef).Title(title).Execute()
+    resp, r, err := apiClient.SnapshotsApi.GetGraphSnapshot(ctx, start, end, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SnapshotsApi.GetGraphSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,23 +59,27 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetGraphSnapshotRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start** | **int64** | The POSIX timestamp of the start of the query. | 
- **end** | **int64** | The POSIX timestamp of the end of the query. | 
- **metricQuery** | **string** | The metric query. | 
- **eventQuery** | **string** | A query that adds event bands to the graph. | 
- **graphDef** | **string** | A JSON document defining the graph. &#x60;graph_def&#x60; can be used instead of &#x60;metric_query&#x60;. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URL encoded. | 
- **title** | **string** | A title for the graph. If no title is specified, the graph does not have a title. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**start** | **int64** | The POSIX timestamp of the start of the query. | 
+**end** | **int64** | The POSIX timestamp of the end of the query. | 
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a GetGraphSnapshotOptionalParameters struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**metricQuery** | **string** | The metric query. | 
+**eventQuery** | **string** | A query that adds event bands to the graph. | 
+**graphDef** | **string** | A JSON document defining the graph. &#x60;graph_def&#x60; can be used instead of &#x60;metric_query&#x60;. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URL encoded. | 
+**title** | **string** | A title for the graph. If no title is specified, the graph does not have a title. | 
 
 ### Return type
 

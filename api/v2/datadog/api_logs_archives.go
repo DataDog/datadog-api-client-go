@@ -25,41 +25,32 @@ var (
 // LogsArchivesApiService LogsArchivesApi service
 type LogsArchivesApiService service
 
-type ApiAddReadRoleToArchiveRequest struct {
+type apiAddReadRoleToArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
 	archiveId  string
 	body       *RelationshipToRole
 }
 
-func (r ApiAddReadRoleToArchiveRequest) Body(body RelationshipToRole) ApiAddReadRoleToArchiveRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiAddReadRoleToArchiveRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.AddReadRoleToArchiveExecute(r)
-}
-
 /*
  * AddReadRoleToArchive Grant role to an archive
  * Adds a read role to an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param archiveId The ID of the archive.
- * @return ApiAddReadRoleToArchiveRequest
  */
-func (a *LogsArchivesApiService) AddReadRoleToArchive(ctx _context.Context, archiveId string) ApiAddReadRoleToArchiveRequest {
-	return ApiAddReadRoleToArchiveRequest{
+func (a *LogsArchivesApiService) AddReadRoleToArchive(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
+	req := apiAddReadRoleToArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
 		archiveId:  archiveId,
+		body:       &body,
 	}
+
+	return req.ApiService.addReadRoleToArchiveExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *LogsArchivesApiService) AddReadRoleToArchiveExecute(r ApiAddReadRoleToArchiveRequest) (*_nethttp.Response, error) {
+func (a *LogsArchivesApiService) addReadRoleToArchiveExecute(r apiAddReadRoleToArchiveRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -191,39 +182,31 @@ func (a *LogsArchivesApiService) AddReadRoleToArchiveExecute(r ApiAddReadRoleToA
 	return localVarHTTPResponse, nil
 }
 
-type ApiCreateLogsArchiveRequest struct {
+type apiCreateLogsArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
 	body       *LogsArchiveCreateRequest
 }
 
-func (r ApiCreateLogsArchiveRequest) Body(body LogsArchiveCreateRequest) ApiCreateLogsArchiveRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateLogsArchiveRequest) Execute() (LogsArchive, *_nethttp.Response, error) {
-	return r.ApiService.CreateLogsArchiveExecute(r)
-}
-
 /*
  * CreateLogsArchive Create an archive
  * Create an archive in your organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateLogsArchiveRequest
  */
-func (a *LogsArchivesApiService) CreateLogsArchive(ctx _context.Context) ApiCreateLogsArchiveRequest {
-	return ApiCreateLogsArchiveRequest{
+func (a *LogsArchivesApiService) CreateLogsArchive(ctx _context.Context, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
+	req := apiCreateLogsArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createLogsArchiveExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsArchive
  */
-func (a *LogsArchivesApiService) CreateLogsArchiveExecute(r ApiCreateLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
+func (a *LogsArchivesApiService) createLogsArchiveExecute(r apiCreateLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -354,35 +337,30 @@ func (a *LogsArchivesApiService) CreateLogsArchiveExecute(r ApiCreateLogsArchive
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteLogsArchiveRequest struct {
+type apiDeleteLogsArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
 	archiveId  string
 }
 
-func (r ApiDeleteLogsArchiveRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteLogsArchiveExecute(r)
-}
-
 /*
  * DeleteLogsArchive Delete an archive
  * Delete a given archive from your organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param archiveId The ID of the archive.
- * @return ApiDeleteLogsArchiveRequest
  */
-func (a *LogsArchivesApiService) DeleteLogsArchive(ctx _context.Context, archiveId string) ApiDeleteLogsArchiveRequest {
-	return ApiDeleteLogsArchiveRequest{
+func (a *LogsArchivesApiService) DeleteLogsArchive(ctx _context.Context, archiveId string) (*_nethttp.Response, error) {
+	req := apiDeleteLogsArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
 		archiveId:  archiveId,
 	}
+
+	return req.ApiService.deleteLogsArchiveExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *LogsArchivesApiService) DeleteLogsArchiveExecute(r ApiDeleteLogsArchiveRequest) (*_nethttp.Response, error) {
+func (a *LogsArchivesApiService) deleteLogsArchiveExecute(r apiDeleteLogsArchiveRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -509,36 +487,31 @@ func (a *LogsArchivesApiService) DeleteLogsArchiveExecute(r ApiDeleteLogsArchive
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetLogsArchiveRequest struct {
+type apiGetLogsArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
 	archiveId  string
 }
 
-func (r ApiGetLogsArchiveRequest) Execute() (LogsArchive, *_nethttp.Response, error) {
-	return r.ApiService.GetLogsArchiveExecute(r)
-}
-
 /*
  * GetLogsArchive Get an archive
  * Get a specific archive from your organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param archiveId The ID of the archive.
- * @return ApiGetLogsArchiveRequest
  */
-func (a *LogsArchivesApiService) GetLogsArchive(ctx _context.Context, archiveId string) ApiGetLogsArchiveRequest {
-	return ApiGetLogsArchiveRequest{
+func (a *LogsArchivesApiService) GetLogsArchive(ctx _context.Context, archiveId string) (LogsArchive, *_nethttp.Response, error) {
+	req := apiGetLogsArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
 		archiveId:  archiveId,
 	}
+
+	return req.ApiService.getLogsArchiveExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsArchive
  */
-func (a *LogsArchivesApiService) GetLogsArchiveExecute(r ApiGetLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
+func (a *LogsArchivesApiService) getLogsArchiveExecute(r apiGetLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -675,34 +648,30 @@ func (a *LogsArchivesApiService) GetLogsArchiveExecute(r ApiGetLogsArchiveReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetLogsArchiveOrderRequest struct {
+type apiGetLogsArchiveOrderRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
-}
-
-func (r ApiGetLogsArchiveOrderRequest) Execute() (LogsArchiveOrder, *_nethttp.Response, error) {
-	return r.ApiService.GetLogsArchiveOrderExecute(r)
 }
 
 /*
  * GetLogsArchiveOrder Get archive order
  * Get the current order of your archives.
 This endpoint takes no JSON arguments.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetLogsArchiveOrderRequest
 */
-func (a *LogsArchivesApiService) GetLogsArchiveOrder(ctx _context.Context) ApiGetLogsArchiveOrderRequest {
-	return ApiGetLogsArchiveOrderRequest{
+func (a *LogsArchivesApiService) GetLogsArchiveOrder(ctx _context.Context) (LogsArchiveOrder, *_nethttp.Response, error) {
+	req := apiGetLogsArchiveOrderRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.getLogsArchiveOrderExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsArchiveOrder
  */
-func (a *LogsArchivesApiService) GetLogsArchiveOrderExecute(r ApiGetLogsArchiveOrderRequest) (LogsArchiveOrder, *_nethttp.Response, error) {
+func (a *LogsArchivesApiService) getLogsArchiveOrderExecute(r apiGetLogsArchiveOrderRequest) (LogsArchiveOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -818,36 +787,31 @@ func (a *LogsArchivesApiService) GetLogsArchiveOrderExecute(r ApiGetLogsArchiveO
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListArchiveReadRolesRequest struct {
+type apiListArchiveReadRolesRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
 	archiveId  string
 }
 
-func (r ApiListArchiveReadRolesRequest) Execute() (RolesResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListArchiveReadRolesExecute(r)
-}
-
 /*
  * ListArchiveReadRoles List read roles for an archive
  * Returns all read roles a given archive is restricted to.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param archiveId The ID of the archive.
- * @return ApiListArchiveReadRolesRequest
  */
-func (a *LogsArchivesApiService) ListArchiveReadRoles(ctx _context.Context, archiveId string) ApiListArchiveReadRolesRequest {
-	return ApiListArchiveReadRolesRequest{
+func (a *LogsArchivesApiService) ListArchiveReadRoles(ctx _context.Context, archiveId string) (RolesResponse, *_nethttp.Response, error) {
+	req := apiListArchiveReadRolesRequest{
 		ApiService: a,
 		ctx:        ctx,
 		archiveId:  archiveId,
 	}
+
+	return req.ApiService.listArchiveReadRolesExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return RolesResponse
  */
-func (a *LogsArchivesApiService) ListArchiveReadRolesExecute(r ApiListArchiveReadRolesRequest) (RolesResponse, *_nethttp.Response, error) {
+func (a *LogsArchivesApiService) listArchiveReadRolesExecute(r apiListArchiveReadRolesRequest) (RolesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -984,33 +948,29 @@ func (a *LogsArchivesApiService) ListArchiveReadRolesExecute(r ApiListArchiveRea
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListLogsArchivesRequest struct {
+type apiListLogsArchivesRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
-}
-
-func (r ApiListLogsArchivesRequest) Execute() (LogsArchives, *_nethttp.Response, error) {
-	return r.ApiService.ListLogsArchivesExecute(r)
 }
 
 /*
  * ListLogsArchives Get all archives
  * Get the list of configured logs archives with their definitions.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListLogsArchivesRequest
  */
-func (a *LogsArchivesApiService) ListLogsArchives(ctx _context.Context) ApiListLogsArchivesRequest {
-	return ApiListLogsArchivesRequest{
+func (a *LogsArchivesApiService) ListLogsArchives(ctx _context.Context) (LogsArchives, *_nethttp.Response, error) {
+	req := apiListLogsArchivesRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.listLogsArchivesExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsArchives
  */
-func (a *LogsArchivesApiService) ListLogsArchivesExecute(r ApiListLogsArchivesRequest) (LogsArchives, *_nethttp.Response, error) {
+func (a *LogsArchivesApiService) listLogsArchivesExecute(r apiListLogsArchivesRequest) (LogsArchives, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1126,41 +1086,32 @@ func (a *LogsArchivesApiService) ListLogsArchivesExecute(r ApiListLogsArchivesRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiRemoveRoleFromArchiveRequest struct {
+type apiRemoveRoleFromArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
 	archiveId  string
 	body       *RelationshipToRole
 }
 
-func (r ApiRemoveRoleFromArchiveRequest) Body(body RelationshipToRole) ApiRemoveRoleFromArchiveRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiRemoveRoleFromArchiveRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.RemoveRoleFromArchiveExecute(r)
-}
-
 /*
  * RemoveRoleFromArchive Revoke role from an archive
  * Removes a role from an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param archiveId The ID of the archive.
- * @return ApiRemoveRoleFromArchiveRequest
  */
-func (a *LogsArchivesApiService) RemoveRoleFromArchive(ctx _context.Context, archiveId string) ApiRemoveRoleFromArchiveRequest {
-	return ApiRemoveRoleFromArchiveRequest{
+func (a *LogsArchivesApiService) RemoveRoleFromArchive(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
+	req := apiRemoveRoleFromArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
 		archiveId:  archiveId,
+		body:       &body,
 	}
+
+	return req.ApiService.removeRoleFromArchiveExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *LogsArchivesApiService) RemoveRoleFromArchiveExecute(r ApiRemoveRoleFromArchiveRequest) (*_nethttp.Response, error) {
+func (a *LogsArchivesApiService) removeRoleFromArchiveExecute(r apiRemoveRoleFromArchiveRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -1292,20 +1243,11 @@ func (a *LogsArchivesApiService) RemoveRoleFromArchiveExecute(r ApiRemoveRoleFro
 	return localVarHTTPResponse, nil
 }
 
-type ApiUpdateLogsArchiveRequest struct {
+type apiUpdateLogsArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
 	archiveId  string
 	body       *LogsArchiveCreateRequest
-}
-
-func (r ApiUpdateLogsArchiveRequest) Body(body LogsArchiveCreateRequest) ApiUpdateLogsArchiveRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateLogsArchiveRequest) Execute() (LogsArchive, *_nethttp.Response, error) {
-	return r.ApiService.UpdateLogsArchiveExecute(r)
 }
 
 /*
@@ -1314,23 +1256,23 @@ func (r ApiUpdateLogsArchiveRequest) Execute() (LogsArchive, *_nethttp.Response,
 
 **Note**: Using this method updates your archive configuration by **replacing**
 your current configuration with the new one sent to your Datadog organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param archiveId The ID of the archive.
- * @return ApiUpdateLogsArchiveRequest
 */
-func (a *LogsArchivesApiService) UpdateLogsArchive(ctx _context.Context, archiveId string) ApiUpdateLogsArchiveRequest {
-	return ApiUpdateLogsArchiveRequest{
+func (a *LogsArchivesApiService) UpdateLogsArchive(ctx _context.Context, archiveId string, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
+	req := apiUpdateLogsArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
 		archiveId:  archiveId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateLogsArchiveExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsArchive
  */
-func (a *LogsArchivesApiService) UpdateLogsArchiveExecute(r ApiUpdateLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
+func (a *LogsArchivesApiService) updateLogsArchiveExecute(r apiUpdateLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -1472,19 +1414,10 @@ func (a *LogsArchivesApiService) UpdateLogsArchiveExecute(r ApiUpdateLogsArchive
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateLogsArchiveOrderRequest struct {
+type apiUpdateLogsArchiveOrderRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
 	body       *LogsArchiveOrder
-}
-
-func (r ApiUpdateLogsArchiveOrderRequest) Body(body LogsArchiveOrder) ApiUpdateLogsArchiveOrderRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateLogsArchiveOrderRequest) Execute() (LogsArchiveOrder, *_nethttp.Response, error) {
-	return r.ApiService.UpdateLogsArchiveOrderExecute(r)
 }
 
 /*
@@ -1494,21 +1427,22 @@ the structure and content of the data processed by other archives.
 
 **Note**: Using the `PUT` method updates your archive's order by replacing the current order
 with the new one.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiUpdateLogsArchiveOrderRequest
 */
-func (a *LogsArchivesApiService) UpdateLogsArchiveOrder(ctx _context.Context) ApiUpdateLogsArchiveOrderRequest {
-	return ApiUpdateLogsArchiveOrderRequest{
+func (a *LogsArchivesApiService) UpdateLogsArchiveOrder(ctx _context.Context, body LogsArchiveOrder) (LogsArchiveOrder, *_nethttp.Response, error) {
+	req := apiUpdateLogsArchiveOrderRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.updateLogsArchiveOrderExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsArchiveOrder
  */
-func (a *LogsArchivesApiService) UpdateLogsArchiveOrderExecute(r ApiUpdateLogsArchiveOrderRequest) (LogsArchiveOrder, *_nethttp.Response, error) {
+func (a *LogsArchivesApiService) updateLogsArchiveOrderExecute(r apiUpdateLogsArchiveOrderRequest) (LogsArchiveOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}

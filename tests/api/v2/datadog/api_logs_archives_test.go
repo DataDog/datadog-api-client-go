@@ -121,7 +121,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 			gock.New(URL).Post("/api/v2/logs/config/archives").MatchType("json").JSON(tc.archive).Reply(200).Type("json").BodyString(outputArchiveStr)
 			defer gock.Off()
 
-			result, httpresp, err := client.LogsArchivesApi.CreateLogsArchive(ctx).Body(tc.archive).Execute()
+			result, httpresp, err := client.LogsArchivesApi.CreateLogsArchive(ctx, tc.archive)
 			assert.NoError(err)
 			assert.Equal(httpresp.StatusCode, 200)
 			assert.Equal(result, *outputArchive.Get())
@@ -166,7 +166,7 @@ func TestLogsArchivesUpdate(t *testing.T) {
 	id := "FOObartotO"
 	gock.New(URL).Put(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).MatchType("json").JSON(inputArchive).Reply(200).Type("json").BodyString(outputArchiveStr)
 	defer gock.Off()
-	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchive(ctx, id).Body(inputArchive).Execute()
+	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchive(ctx, id, inputArchive)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(result, *outputArchive.Get())
 }
@@ -187,7 +187,7 @@ func TestLogsArchivesGetByID(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).Get(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(200).Type("json").BodyString(outputArchiveStr)
 	defer gock.Off()
-	result, httpresp, err := client.LogsArchivesApi.GetLogsArchive(ctx, id).Execute()
+	result, httpresp, err := client.LogsArchivesApi.GetLogsArchive(ctx, id)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(result, *outputArchive.Get())
 }
@@ -203,7 +203,7 @@ func TestLogsArchivesDelete(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).Delete(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(204)
 	defer gock.Off()
-	httpresp, err := client.LogsArchivesApi.DeleteLogsArchive(ctx, id).Execute()
+	httpresp, err := client.LogsArchivesApi.DeleteLogsArchive(ctx, id)
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 204)
 }
@@ -223,7 +223,7 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).Get("/api/v2/logs/config/archives").Reply(200).Type("json").JSON(outputArchivesStr)
 	defer gock.Off()
-	result, httpresp, err := client.LogsArchivesApi.ListLogsArchives(ctx).Execute()
+	result, httpresp, err := client.LogsArchivesApi.ListLogsArchives(ctx)
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.True(len(*result.Data) > 0)
@@ -246,7 +246,7 @@ func TestGetLogsArchiveOrder(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).Get("/api/v2/logs/config/archive-order").Reply(200).Type("json").JSON(outputArchiveOrderStr)
 	defer gock.Off()
-	result, httpresp, err := client.LogsArchivesApi.GetLogsArchiveOrder(ctx).Execute()
+	result, httpresp, err := client.LogsArchivesApi.GetLogsArchiveOrder(ctx)
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(*outputArchiveOrder.Get(), result)
@@ -270,7 +270,7 @@ func TestUpdateLogsArchiveOrder(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).Put("/api/v2/logs/config/archive-order").Reply(200).Type("json").JSON(outputArchiveOrderStr)
 	defer gock.Off()
-	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchiveOrder(ctx).Body(*input).Execute()
+	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchiveOrder(ctx, *input)
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(*outputArchiveOrder.Get(), result)

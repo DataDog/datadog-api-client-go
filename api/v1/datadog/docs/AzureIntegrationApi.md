@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateAzureIntegration
 
-> interface{} CreateAzureIntegration(ctx).Body(body).Execute()
+> interface{} CreateAzureIntegration(ctx, body)
 
 Create an Azure integration
 
@@ -41,7 +41,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AzureIntegrationApi.CreateAzureIntegration(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AzureIntegrationApi.CreateAzureIntegration(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.CreateAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,18 +52,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateAzureIntegrationRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration for your Datadog account request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration for your Datadog account request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAzureIntegration
 
-> interface{} DeleteAzureIntegration(ctx).Body(body).Execute()
+> interface{} DeleteAzureIntegration(ctx, body)
 
 Delete an Azure integration
 
@@ -112,7 +112,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AzureIntegrationApi.DeleteAzureIntegration(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AzureIntegrationApi.DeleteAzureIntegration(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.DeleteAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,18 +123,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteAzureIntegrationRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Delete a given Datadog-Azure integration request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AzureAccount**](AzureAccount.md) | Delete a given Datadog-Azure integration request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 ## ListAzureIntegration
 
-> []AzureAccount ListAzureIntegration(ctx).Execute()
+> []AzureAccount ListAzureIntegration(ctx)
 
 List all Azure integrations
 
@@ -182,7 +182,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AzureIntegrationApi.ListAzureIntegration(ctx).Execute()
+    resp, r, err := apiClient.AzureIntegrationApi.ListAzureIntegration(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.ListAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -193,13 +193,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListAzureIntegrationRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -222,7 +222,7 @@ Other parameters are passed through a pointer to a apiListAzureIntegrationReques
 
 ## UpdateAzureHostFilters
 
-> interface{} UpdateAzureHostFilters(ctx).Body(body).Execute()
+> interface{} UpdateAzureHostFilters(ctx, body)
 
 Update Azure integration host filters
 
@@ -249,7 +249,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AzureIntegrationApi.UpdateAzureHostFilters(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AzureIntegrationApi.UpdateAzureHostFilters(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureHostFilters``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -260,18 +260,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateAzureHostFiltersRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration&#39;s host filters request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration&#39;s host filters request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 
 ## UpdateAzureIntegration
 
-> interface{} UpdateAzureIntegration(ctx).Body(body).Execute()
+> interface{} UpdateAzureIntegration(ctx, body)
 
 Update an Azure integration
 
@@ -320,7 +320,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AzureIntegrationApi.UpdateAzureIntegration(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AzureIntegrationApi.UpdateAzureIntegration(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -331,18 +331,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateAzureIntegrationRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 

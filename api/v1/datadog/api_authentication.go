@@ -24,33 +24,29 @@ var (
 // AuthenticationApiService AuthenticationApi service
 type AuthenticationApiService service
 
-type ApiValidateRequest struct {
+type apiValidateRequest struct {
 	ctx        _context.Context
 	ApiService *AuthenticationApiService
-}
-
-func (r ApiValidateRequest) Execute() (AuthenticationValidationResponse, *_nethttp.Response, error) {
-	return r.ApiService.ValidateExecute(r)
 }
 
 /*
  * Validate Validate API key
  * Check if the API key (not the APP key) is valid. If invalid, a 403 is returned.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiValidateRequest
  */
-func (a *AuthenticationApiService) Validate(ctx _context.Context) ApiValidateRequest {
-	return ApiValidateRequest{
+func (a *AuthenticationApiService) Validate(ctx _context.Context) (AuthenticationValidationResponse, *_nethttp.Response, error) {
+	req := apiValidateRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.validateExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return AuthenticationValidationResponse
  */
-func (a *AuthenticationApiService) ValidateExecute(r ApiValidateRequest) (AuthenticationValidationResponse, *_nethttp.Response, error) {
+func (a *AuthenticationApiService) validateExecute(r apiValidateRequest) (AuthenticationValidationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
