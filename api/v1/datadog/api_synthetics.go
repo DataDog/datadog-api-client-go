@@ -26,39 +26,31 @@ var (
 // SyntheticsApiService SyntheticsApi service
 type SyntheticsApiService service
 
-type ApiCreateGlobalVariableRequest struct {
+type apiCreateGlobalVariableRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	body       *SyntheticsGlobalVariable
 }
 
-func (r ApiCreateGlobalVariableRequest) Body(body SyntheticsGlobalVariable) ApiCreateGlobalVariableRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateGlobalVariableRequest) Execute() (SyntheticsGlobalVariable, *_nethttp.Response, error) {
-	return r.ApiService.CreateGlobalVariableExecute(r)
-}
-
 /*
  * CreateGlobalVariable Create a global variable
  * Create a Synthetics global variable.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateGlobalVariableRequest
  */
-func (a *SyntheticsApiService) CreateGlobalVariable(ctx _context.Context) ApiCreateGlobalVariableRequest {
-	return ApiCreateGlobalVariableRequest{
+func (a *SyntheticsApiService) CreateGlobalVariable(ctx _context.Context, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+	req := apiCreateGlobalVariableRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createGlobalVariableExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsGlobalVariable
  */
-func (a *SyntheticsApiService) CreateGlobalVariableExecute(r ApiCreateGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) createGlobalVariableExecute(r apiCreateGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -189,39 +181,31 @@ func (a *SyntheticsApiService) CreateGlobalVariableExecute(r ApiCreateGlobalVari
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreatePrivateLocationRequest struct {
+type apiCreatePrivateLocationRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	body       *SyntheticsPrivateLocation
 }
 
-func (r ApiCreatePrivateLocationRequest) Body(body SyntheticsPrivateLocation) ApiCreatePrivateLocationRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreatePrivateLocationRequest) Execute() (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
-	return r.ApiService.CreatePrivateLocationExecute(r)
-}
-
 /*
  * CreatePrivateLocation Create a private location
  * Create a new Synthetics private location.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreatePrivateLocationRequest
  */
-func (a *SyntheticsApiService) CreatePrivateLocation(ctx _context.Context) ApiCreatePrivateLocationRequest {
-	return ApiCreatePrivateLocationRequest{
+func (a *SyntheticsApiService) CreatePrivateLocation(ctx _context.Context, body SyntheticsPrivateLocation) (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
+	req := apiCreatePrivateLocationRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createPrivateLocationExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsPrivateLocationCreationResponse
  */
-func (a *SyntheticsApiService) CreatePrivateLocationExecute(r ApiCreatePrivateLocationRequest) (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) createPrivateLocationExecute(r apiCreatePrivateLocationRequest) (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -352,39 +336,31 @@ func (a *SyntheticsApiService) CreatePrivateLocationExecute(r ApiCreatePrivateLo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateSyntheticsAPITestRequest struct {
+type apiCreateSyntheticsAPITestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	body       *SyntheticsAPITest
 }
 
-func (r ApiCreateSyntheticsAPITestRequest) Body(body SyntheticsAPITest) ApiCreateSyntheticsAPITestRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateSyntheticsAPITestRequest) Execute() (SyntheticsAPITest, *_nethttp.Response, error) {
-	return r.ApiService.CreateSyntheticsAPITestExecute(r)
-}
-
 /*
  * CreateSyntheticsAPITest Create an API test
  * Create a Synthetic API test.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateSyntheticsAPITestRequest
  */
-func (a *SyntheticsApiService) CreateSyntheticsAPITest(ctx _context.Context) ApiCreateSyntheticsAPITestRequest {
-	return ApiCreateSyntheticsAPITestRequest{
+func (a *SyntheticsApiService) CreateSyntheticsAPITest(ctx _context.Context, body SyntheticsAPITest) (SyntheticsAPITest, *_nethttp.Response, error) {
+	req := apiCreateSyntheticsAPITestRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createSyntheticsAPITestExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsAPITest
  */
-func (a *SyntheticsApiService) CreateSyntheticsAPITestExecute(r ApiCreateSyntheticsAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) createSyntheticsAPITestExecute(r apiCreateSyntheticsAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -525,39 +501,31 @@ func (a *SyntheticsApiService) CreateSyntheticsAPITestExecute(r ApiCreateSynthet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateSyntheticsBrowserTestRequest struct {
+type apiCreateSyntheticsBrowserTestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	body       *SyntheticsBrowserTest
 }
 
-func (r ApiCreateSyntheticsBrowserTestRequest) Body(body SyntheticsBrowserTest) ApiCreateSyntheticsBrowserTestRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateSyntheticsBrowserTestRequest) Execute() (SyntheticsBrowserTest, *_nethttp.Response, error) {
-	return r.ApiService.CreateSyntheticsBrowserTestExecute(r)
-}
-
 /*
  * CreateSyntheticsBrowserTest Create a browser test
  * Create a Synthetic browser test.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateSyntheticsBrowserTestRequest
  */
-func (a *SyntheticsApiService) CreateSyntheticsBrowserTest(ctx _context.Context) ApiCreateSyntheticsBrowserTestRequest {
-	return ApiCreateSyntheticsBrowserTestRequest{
+func (a *SyntheticsApiService) CreateSyntheticsBrowserTest(ctx _context.Context, body SyntheticsBrowserTest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+	req := apiCreateSyntheticsBrowserTestRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createSyntheticsBrowserTestExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsBrowserTest
  */
-func (a *SyntheticsApiService) CreateSyntheticsBrowserTestExecute(r ApiCreateSyntheticsBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) createSyntheticsBrowserTestExecute(r apiCreateSyntheticsBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -698,35 +666,30 @@ func (a *SyntheticsApiService) CreateSyntheticsBrowserTestExecute(r ApiCreateSyn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteGlobalVariableRequest struct {
+type apiDeleteGlobalVariableRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	variableId string
 }
 
-func (r ApiDeleteGlobalVariableRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteGlobalVariableExecute(r)
-}
-
 /*
  * DeleteGlobalVariable Delete a global variable
  * Delete a Synthetics global variable.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param variableId The ID of the global variable.
- * @return ApiDeleteGlobalVariableRequest
  */
-func (a *SyntheticsApiService) DeleteGlobalVariable(ctx _context.Context, variableId string) ApiDeleteGlobalVariableRequest {
-	return ApiDeleteGlobalVariableRequest{
+func (a *SyntheticsApiService) DeleteGlobalVariable(ctx _context.Context, variableId string) (*_nethttp.Response, error) {
+	req := apiDeleteGlobalVariableRequest{
 		ApiService: a,
 		ctx:        ctx,
 		variableId: variableId,
 	}
+
+	return req.ApiService.deleteGlobalVariableExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *SyntheticsApiService) DeleteGlobalVariableExecute(r ApiDeleteGlobalVariableRequest) (*_nethttp.Response, error) {
+func (a *SyntheticsApiService) deleteGlobalVariableExecute(r apiDeleteGlobalVariableRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -853,35 +816,30 @@ func (a *SyntheticsApiService) DeleteGlobalVariableExecute(r ApiDeleteGlobalVari
 	return localVarHTTPResponse, nil
 }
 
-type ApiDeletePrivateLocationRequest struct {
+type apiDeletePrivateLocationRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	locationId string
 }
 
-func (r ApiDeletePrivateLocationRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeletePrivateLocationExecute(r)
-}
-
 /*
  * DeletePrivateLocation Delete a private location
  * Delete a Synthetics private location.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param locationId The ID of the private location.
- * @return ApiDeletePrivateLocationRequest
  */
-func (a *SyntheticsApiService) DeletePrivateLocation(ctx _context.Context, locationId string) ApiDeletePrivateLocationRequest {
-	return ApiDeletePrivateLocationRequest{
+func (a *SyntheticsApiService) DeletePrivateLocation(ctx _context.Context, locationId string) (*_nethttp.Response, error) {
+	req := apiDeletePrivateLocationRequest{
 		ApiService: a,
 		ctx:        ctx,
 		locationId: locationId,
 	}
+
+	return req.ApiService.deletePrivateLocationExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *SyntheticsApiService) DeletePrivateLocationExecute(r ApiDeletePrivateLocationRequest) (*_nethttp.Response, error) {
+func (a *SyntheticsApiService) deletePrivateLocationExecute(r apiDeletePrivateLocationRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -988,39 +946,31 @@ func (a *SyntheticsApiService) DeletePrivateLocationExecute(r ApiDeletePrivateLo
 	return localVarHTTPResponse, nil
 }
 
-type ApiDeleteTestsRequest struct {
+type apiDeleteTestsRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	body       *SyntheticsDeleteTestsPayload
 }
 
-func (r ApiDeleteTestsRequest) Body(body SyntheticsDeleteTestsPayload) ApiDeleteTestsRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiDeleteTestsRequest) Execute() (SyntheticsDeleteTestsResponse, *_nethttp.Response, error) {
-	return r.ApiService.DeleteTestsExecute(r)
-}
-
 /*
  * DeleteTests Delete tests
  * Delete multiple Synthetic tests by ID.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiDeleteTestsRequest
  */
-func (a *SyntheticsApiService) DeleteTests(ctx _context.Context) ApiDeleteTestsRequest {
-	return ApiDeleteTestsRequest{
+func (a *SyntheticsApiService) DeleteTests(ctx _context.Context, body SyntheticsDeleteTestsPayload) (SyntheticsDeleteTestsResponse, *_nethttp.Response, error) {
+	req := apiDeleteTestsRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.deleteTestsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsDeleteTestsResponse
  */
-func (a *SyntheticsApiService) DeleteTestsExecute(r ApiDeleteTestsRequest) (SyntheticsDeleteTestsResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) deleteTestsExecute(r apiDeleteTestsRequest) (SyntheticsDeleteTestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -1161,42 +1111,33 @@ func (a *SyntheticsApiService) DeleteTestsExecute(r ApiDeleteTestsRequest) (Synt
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEditGlobalVariableRequest struct {
+type apiEditGlobalVariableRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	variableId string
 	body       *SyntheticsGlobalVariable
 }
 
-func (r ApiEditGlobalVariableRequest) Body(body SyntheticsGlobalVariable) ApiEditGlobalVariableRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiEditGlobalVariableRequest) Execute() (SyntheticsGlobalVariable, *_nethttp.Response, error) {
-	return r.ApiService.EditGlobalVariableExecute(r)
-}
-
 /*
  * EditGlobalVariable Edit a global variable
  * Edit a Synthetics global variable.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param variableId The ID of the global variable.
- * @return ApiEditGlobalVariableRequest
  */
-func (a *SyntheticsApiService) EditGlobalVariable(ctx _context.Context, variableId string) ApiEditGlobalVariableRequest {
-	return ApiEditGlobalVariableRequest{
+func (a *SyntheticsApiService) EditGlobalVariable(ctx _context.Context, variableId string, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+	req := apiEditGlobalVariableRequest{
 		ApiService: a,
 		ctx:        ctx,
 		variableId: variableId,
+		body:       &body,
 	}
+
+	return req.ApiService.editGlobalVariableExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsGlobalVariable
  */
-func (a *SyntheticsApiService) EditGlobalVariableExecute(r ApiEditGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) editGlobalVariableExecute(r apiEditGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -1328,37 +1269,32 @@ func (a *SyntheticsApiService) EditGlobalVariableExecute(r ApiEditGlobalVariable
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetAPITestRequest struct {
+type apiGetAPITestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	publicId   string
-}
-
-func (r ApiGetAPITestRequest) Execute() (SyntheticsAPITest, *_nethttp.Response, error) {
-	return r.ApiService.GetAPITestExecute(r)
 }
 
 /*
  * GetAPITest Get an API test
  * Get the detailed configuration associated with
 a Synthetic API test.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public ID of the test to get details from.
- * @return ApiGetAPITestRequest
 */
-func (a *SyntheticsApiService) GetAPITest(ctx _context.Context, publicId string) ApiGetAPITestRequest {
-	return ApiGetAPITestRequest{
+func (a *SyntheticsApiService) GetAPITest(ctx _context.Context, publicId string) (SyntheticsAPITest, *_nethttp.Response, error) {
+	req := apiGetAPITestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 	}
+
+	return req.ApiService.getAPITestExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsAPITest
  */
-func (a *SyntheticsApiService) GetAPITestExecute(r ApiGetAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) getAPITestExecute(r apiGetAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1485,7 +1421,7 @@ func (a *SyntheticsApiService) GetAPITestExecute(r ApiGetAPITestRequest) (Synthe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetAPITestLatestResultsRequest struct {
+type apiGetAPITestLatestResultsRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	publicId   string
@@ -1494,43 +1430,59 @@ type ApiGetAPITestLatestResultsRequest struct {
 	probeDc    *[]string
 }
 
-func (r ApiGetAPITestLatestResultsRequest) FromTs(fromTs int64) ApiGetAPITestLatestResultsRequest {
-	r.fromTs = &fromTs
-	return r
-}
-func (r ApiGetAPITestLatestResultsRequest) ToTs(toTs int64) ApiGetAPITestLatestResultsRequest {
-	r.toTs = &toTs
-	return r
-}
-func (r ApiGetAPITestLatestResultsRequest) ProbeDc(probeDc []string) ApiGetAPITestLatestResultsRequest {
-	r.probeDc = &probeDc
-	return r
+type GetAPITestLatestResultsOptionalParameters struct {
+	FromTs  *int64
+	ToTs    *int64
+	ProbeDc *[]string
 }
 
-func (r ApiGetAPITestLatestResultsRequest) Execute() (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetAPITestLatestResultsExecute(r)
+func NewGetAPITestLatestResultsOptionalParameters() *GetAPITestLatestResultsOptionalParameters {
+	this := GetAPITestLatestResultsOptionalParameters{}
+	return &this
+}
+func (r *GetAPITestLatestResultsOptionalParameters) WithFromTs(fromTs int64) *GetAPITestLatestResultsOptionalParameters {
+	r.FromTs = &fromTs
+	return r
+}
+func (r *GetAPITestLatestResultsOptionalParameters) WithToTs(toTs int64) *GetAPITestLatestResultsOptionalParameters {
+	r.ToTs = &toTs
+	return r
+}
+func (r *GetAPITestLatestResultsOptionalParameters) WithProbeDc(probeDc []string) *GetAPITestLatestResultsOptionalParameters {
+	r.ProbeDc = &probeDc
+	return r
 }
 
 /*
  * GetAPITestLatestResults Get an API test's latest results summaries
  * Get the last 50 test results summaries for a given Synthetics API test.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public ID of the test for which to search results for.
- * @return ApiGetAPITestLatestResultsRequest
  */
-func (a *SyntheticsApiService) GetAPITestLatestResults(ctx _context.Context, publicId string) ApiGetAPITestLatestResultsRequest {
-	return ApiGetAPITestLatestResultsRequest{
+func (a *SyntheticsApiService) GetAPITestLatestResults(ctx _context.Context, publicId string, o ...GetAPITestLatestResultsOptionalParameters) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
+	req := apiGetAPITestLatestResultsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue SyntheticsGetAPITestLatestResultsResponse
+		return localVarReturnValue, nil, reportError("only one argument of type GetAPITestLatestResultsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.fromTs = o[0].FromTs
+		req.toTs = o[0].ToTs
+		req.probeDc = o[0].ProbeDc
+	}
+
+	return req.ApiService.getAPITestLatestResultsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsGetAPITestLatestResultsResponse
  */
-func (a *SyntheticsApiService) GetAPITestLatestResultsExecute(r ApiGetAPITestLatestResultsRequest) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) getAPITestLatestResultsExecute(r apiGetAPITestLatestResultsRequest) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1674,39 +1626,33 @@ func (a *SyntheticsApiService) GetAPITestLatestResultsExecute(r ApiGetAPITestLat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetAPITestResultRequest struct {
+type apiGetAPITestResultRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	publicId   string
 	resultId   string
 }
 
-func (r ApiGetAPITestResultRequest) Execute() (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
-	return r.ApiService.GetAPITestResultExecute(r)
-}
-
 /*
  * GetAPITestResult Get an API test result
  * Get a specific full result from a given (API) Synthetic test.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public ID of the API test to which the target result belongs.
- * @param resultId The ID of the result to get.
- * @return ApiGetAPITestResultRequest
  */
-func (a *SyntheticsApiService) GetAPITestResult(ctx _context.Context, publicId string, resultId string) ApiGetAPITestResultRequest {
-	return ApiGetAPITestResultRequest{
+func (a *SyntheticsApiService) GetAPITestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
+	req := apiGetAPITestResultRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 		resultId:   resultId,
 	}
+
+	return req.ApiService.getAPITestResultExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsAPITestResultFull
  */
-func (a *SyntheticsApiService) GetAPITestResultExecute(r ApiGetAPITestResultRequest) (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) getAPITestResultExecute(r apiGetAPITestResultRequest) (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1834,37 +1780,32 @@ func (a *SyntheticsApiService) GetAPITestResultExecute(r ApiGetAPITestResultRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetBrowserTestRequest struct {
+type apiGetBrowserTestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	publicId   string
-}
-
-func (r ApiGetBrowserTestRequest) Execute() (SyntheticsBrowserTest, *_nethttp.Response, error) {
-	return r.ApiService.GetBrowserTestExecute(r)
 }
 
 /*
  * GetBrowserTest Get a browser test
  * Get the detailed configuration (including steps) associated with
 a Synthetic browser test.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public ID of the test to get details from.
- * @return ApiGetBrowserTestRequest
 */
-func (a *SyntheticsApiService) GetBrowserTest(ctx _context.Context, publicId string) ApiGetBrowserTestRequest {
-	return ApiGetBrowserTestRequest{
+func (a *SyntheticsApiService) GetBrowserTest(ctx _context.Context, publicId string) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+	req := apiGetBrowserTestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 	}
+
+	return req.ApiService.getBrowserTestExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsBrowserTest
  */
-func (a *SyntheticsApiService) GetBrowserTestExecute(r ApiGetBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) getBrowserTestExecute(r apiGetBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1991,7 +1932,7 @@ func (a *SyntheticsApiService) GetBrowserTestExecute(r ApiGetBrowserTestRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetBrowserTestLatestResultsRequest struct {
+type apiGetBrowserTestLatestResultsRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	publicId   string
@@ -2000,43 +1941,59 @@ type ApiGetBrowserTestLatestResultsRequest struct {
 	probeDc    *[]string
 }
 
-func (r ApiGetBrowserTestLatestResultsRequest) FromTs(fromTs int64) ApiGetBrowserTestLatestResultsRequest {
-	r.fromTs = &fromTs
-	return r
-}
-func (r ApiGetBrowserTestLatestResultsRequest) ToTs(toTs int64) ApiGetBrowserTestLatestResultsRequest {
-	r.toTs = &toTs
-	return r
-}
-func (r ApiGetBrowserTestLatestResultsRequest) ProbeDc(probeDc []string) ApiGetBrowserTestLatestResultsRequest {
-	r.probeDc = &probeDc
-	return r
+type GetBrowserTestLatestResultsOptionalParameters struct {
+	FromTs  *int64
+	ToTs    *int64
+	ProbeDc *[]string
 }
 
-func (r ApiGetBrowserTestLatestResultsRequest) Execute() (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetBrowserTestLatestResultsExecute(r)
+func NewGetBrowserTestLatestResultsOptionalParameters() *GetBrowserTestLatestResultsOptionalParameters {
+	this := GetBrowserTestLatestResultsOptionalParameters{}
+	return &this
+}
+func (r *GetBrowserTestLatestResultsOptionalParameters) WithFromTs(fromTs int64) *GetBrowserTestLatestResultsOptionalParameters {
+	r.FromTs = &fromTs
+	return r
+}
+func (r *GetBrowserTestLatestResultsOptionalParameters) WithToTs(toTs int64) *GetBrowserTestLatestResultsOptionalParameters {
+	r.ToTs = &toTs
+	return r
+}
+func (r *GetBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []string) *GetBrowserTestLatestResultsOptionalParameters {
+	r.ProbeDc = &probeDc
+	return r
 }
 
 /*
  * GetBrowserTestLatestResults Get a browser test's latest results summaries
  * Get the last 50 test results summaries for a given Synthetics Browser test.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public ID of the browser test for which to search results for.
- * @return ApiGetBrowserTestLatestResultsRequest
  */
-func (a *SyntheticsApiService) GetBrowserTestLatestResults(ctx _context.Context, publicId string) ApiGetBrowserTestLatestResultsRequest {
-	return ApiGetBrowserTestLatestResultsRequest{
+func (a *SyntheticsApiService) GetBrowserTestLatestResults(ctx _context.Context, publicId string, o ...GetBrowserTestLatestResultsOptionalParameters) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
+	req := apiGetBrowserTestLatestResultsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue SyntheticsGetBrowserTestLatestResultsResponse
+		return localVarReturnValue, nil, reportError("only one argument of type GetBrowserTestLatestResultsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.fromTs = o[0].FromTs
+		req.toTs = o[0].ToTs
+		req.probeDc = o[0].ProbeDc
+	}
+
+	return req.ApiService.getBrowserTestLatestResultsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsGetBrowserTestLatestResultsResponse
  */
-func (a *SyntheticsApiService) GetBrowserTestLatestResultsExecute(r ApiGetBrowserTestLatestResultsRequest) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) getBrowserTestLatestResultsExecute(r apiGetBrowserTestLatestResultsRequest) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -2180,39 +2137,33 @@ func (a *SyntheticsApiService) GetBrowserTestLatestResultsExecute(r ApiGetBrowse
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetBrowserTestResultRequest struct {
+type apiGetBrowserTestResultRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	publicId   string
 	resultId   string
 }
 
-func (r ApiGetBrowserTestResultRequest) Execute() (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
-	return r.ApiService.GetBrowserTestResultExecute(r)
-}
-
 /*
  * GetBrowserTestResult Get a browser test result
  * Get a specific full result from a given (browser) Synthetic test.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public ID of the browser test to which the target result belongs.
- * @param resultId The ID of the result to get.
- * @return ApiGetBrowserTestResultRequest
  */
-func (a *SyntheticsApiService) GetBrowserTestResult(ctx _context.Context, publicId string, resultId string) ApiGetBrowserTestResultRequest {
-	return ApiGetBrowserTestResultRequest{
+func (a *SyntheticsApiService) GetBrowserTestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
+	req := apiGetBrowserTestResultRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 		resultId:   resultId,
 	}
+
+	return req.ApiService.getBrowserTestResultExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsBrowserTestResultFull
  */
-func (a *SyntheticsApiService) GetBrowserTestResultExecute(r ApiGetBrowserTestResultRequest) (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) getBrowserTestResultExecute(r apiGetBrowserTestResultRequest) (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -2340,36 +2291,31 @@ func (a *SyntheticsApiService) GetBrowserTestResultExecute(r ApiGetBrowserTestRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetGlobalVariableRequest struct {
+type apiGetGlobalVariableRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	variableId string
 }
 
-func (r ApiGetGlobalVariableRequest) Execute() (SyntheticsGlobalVariable, *_nethttp.Response, error) {
-	return r.ApiService.GetGlobalVariableExecute(r)
-}
-
 /*
  * GetGlobalVariable Get a global variable
  * Get the detailed configuration of a global variable.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param variableId The ID of the global variable.
- * @return ApiGetGlobalVariableRequest
  */
-func (a *SyntheticsApiService) GetGlobalVariable(ctx _context.Context, variableId string) ApiGetGlobalVariableRequest {
-	return ApiGetGlobalVariableRequest{
+func (a *SyntheticsApiService) GetGlobalVariable(ctx _context.Context, variableId string) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+	req := apiGetGlobalVariableRequest{
 		ApiService: a,
 		ctx:        ctx,
 		variableId: variableId,
 	}
+
+	return req.ApiService.getGlobalVariableExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsGlobalVariable
  */
-func (a *SyntheticsApiService) GetGlobalVariableExecute(r ApiGetGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) getGlobalVariableExecute(r apiGetGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -2496,36 +2442,31 @@ func (a *SyntheticsApiService) GetGlobalVariableExecute(r ApiGetGlobalVariableRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetPrivateLocationRequest struct {
+type apiGetPrivateLocationRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	locationId string
 }
 
-func (r ApiGetPrivateLocationRequest) Execute() (SyntheticsPrivateLocation, *_nethttp.Response, error) {
-	return r.ApiService.GetPrivateLocationExecute(r)
-}
-
 /*
  * GetPrivateLocation Get a private location
  * Get a Synthetics private location.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param locationId The ID of the private location.
- * @return ApiGetPrivateLocationRequest
  */
-func (a *SyntheticsApiService) GetPrivateLocation(ctx _context.Context, locationId string) ApiGetPrivateLocationRequest {
-	return ApiGetPrivateLocationRequest{
+func (a *SyntheticsApiService) GetPrivateLocation(ctx _context.Context, locationId string) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
+	req := apiGetPrivateLocationRequest{
 		ApiService: a,
 		ctx:        ctx,
 		locationId: locationId,
 	}
+
+	return req.ApiService.getPrivateLocationExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsPrivateLocation
  */
-func (a *SyntheticsApiService) GetPrivateLocationExecute(r ApiGetPrivateLocationRequest) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) getPrivateLocationExecute(r apiGetPrivateLocationRequest) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -2642,36 +2583,31 @@ func (a *SyntheticsApiService) GetPrivateLocationExecute(r ApiGetPrivateLocation
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetTestRequest struct {
+type apiGetTestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	publicId   string
 }
 
-func (r ApiGetTestRequest) Execute() (SyntheticsTestDetails, *_nethttp.Response, error) {
-	return r.ApiService.GetTestExecute(r)
-}
-
 /*
  * GetTest Get a test configuration
  * Get the detailed configuration associated with a Synthetics test.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public ID of the test to get details from.
- * @return ApiGetTestRequest
  */
-func (a *SyntheticsApiService) GetTest(ctx _context.Context, publicId string) ApiGetTestRequest {
-	return ApiGetTestRequest{
+func (a *SyntheticsApiService) GetTest(ctx _context.Context, publicId string) (SyntheticsTestDetails, *_nethttp.Response, error) {
+	req := apiGetTestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 	}
+
+	return req.ApiService.getTestExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsTestDetails
  */
-func (a *SyntheticsApiService) GetTestExecute(r ApiGetTestRequest) (SyntheticsTestDetails, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) getTestExecute(r apiGetTestRequest) (SyntheticsTestDetails, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -2798,34 +2734,30 @@ func (a *SyntheticsApiService) GetTestExecute(r ApiGetTestRequest) (SyntheticsTe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListLocationsRequest struct {
+type apiListLocationsRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-}
-
-func (r ApiListLocationsRequest) Execute() (SyntheticsLocations, *_nethttp.Response, error) {
-	return r.ApiService.ListLocationsExecute(r)
 }
 
 /*
  * ListLocations Get all locations (public and private)
  * Get the list of public and private locations available for Synthetic
 tests. No arguments required.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListLocationsRequest
 */
-func (a *SyntheticsApiService) ListLocations(ctx _context.Context) ApiListLocationsRequest {
-	return ApiListLocationsRequest{
+func (a *SyntheticsApiService) ListLocations(ctx _context.Context) (SyntheticsLocations, *_nethttp.Response, error) {
+	req := apiListLocationsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.listLocationsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsLocations
  */
-func (a *SyntheticsApiService) ListLocationsExecute(r ApiListLocationsRequest) (SyntheticsLocations, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) listLocationsExecute(r apiListLocationsRequest) (SyntheticsLocations, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -2932,33 +2864,29 @@ func (a *SyntheticsApiService) ListLocationsExecute(r ApiListLocationsRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListTestsRequest struct {
+type apiListTestsRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-}
-
-func (r ApiListTestsRequest) Execute() (SyntheticsListTestsResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListTestsExecute(r)
 }
 
 /*
  * ListTests Get the list of all tests
  * Get the list of all Synthetic tests.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListTestsRequest
  */
-func (a *SyntheticsApiService) ListTests(ctx _context.Context) ApiListTestsRequest {
-	return ApiListTestsRequest{
+func (a *SyntheticsApiService) ListTests(ctx _context.Context) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
+	req := apiListTestsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.listTestsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsListTestsResponse
  */
-func (a *SyntheticsApiService) ListTestsExecute(r ApiListTestsRequest) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) listTestsExecute(r apiListTestsRequest) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -3084,39 +3012,31 @@ func (a *SyntheticsApiService) ListTestsExecute(r ApiListTestsRequest) (Syntheti
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTriggerCITestsRequest struct {
+type apiTriggerCITestsRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	body       *SyntheticsCITestBody
 }
 
-func (r ApiTriggerCITestsRequest) Body(body SyntheticsCITestBody) ApiTriggerCITestsRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiTriggerCITestsRequest) Execute() (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
-	return r.ApiService.TriggerCITestsExecute(r)
-}
-
 /*
  * TriggerCITests Trigger tests from CI/CD pipelines
  * Trigger a set of Synthetics tests for continuous integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiTriggerCITestsRequest
  */
-func (a *SyntheticsApiService) TriggerCITests(ctx _context.Context) ApiTriggerCITestsRequest {
-	return ApiTriggerCITestsRequest{
+func (a *SyntheticsApiService) TriggerCITests(ctx _context.Context, body SyntheticsCITestBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
+	req := apiTriggerCITestsRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.triggerCITestsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsTriggerCITestsResponse
  */
-func (a *SyntheticsApiService) TriggerCITestsExecute(r ApiTriggerCITestsRequest) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) triggerCITestsExecute(r apiTriggerCITestsRequest) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -3237,42 +3157,33 @@ func (a *SyntheticsApiService) TriggerCITestsExecute(r ApiTriggerCITestsRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateAPITestRequest struct {
+type apiUpdateAPITestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	publicId   string
 	body       *SyntheticsAPITest
 }
 
-func (r ApiUpdateAPITestRequest) Body(body SyntheticsAPITest) ApiUpdateAPITestRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateAPITestRequest) Execute() (SyntheticsAPITest, *_nethttp.Response, error) {
-	return r.ApiService.UpdateAPITestExecute(r)
-}
-
 /*
  * UpdateAPITest Edit an API test
  * Edit the configuration of a Synthetic API test.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public ID of the test to get details from.
- * @return ApiUpdateAPITestRequest
  */
-func (a *SyntheticsApiService) UpdateAPITest(ctx _context.Context, publicId string) ApiUpdateAPITestRequest {
-	return ApiUpdateAPITestRequest{
+func (a *SyntheticsApiService) UpdateAPITest(ctx _context.Context, publicId string, body SyntheticsAPITest) (SyntheticsAPITest, *_nethttp.Response, error) {
+	req := apiUpdateAPITestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateAPITestExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsAPITest
  */
-func (a *SyntheticsApiService) UpdateAPITestExecute(r ApiUpdateAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) updateAPITestExecute(r apiUpdateAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -3414,42 +3325,33 @@ func (a *SyntheticsApiService) UpdateAPITestExecute(r ApiUpdateAPITestRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateBrowserTestRequest struct {
+type apiUpdateBrowserTestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	publicId   string
 	body       *SyntheticsBrowserTest
 }
 
-func (r ApiUpdateBrowserTestRequest) Body(body SyntheticsBrowserTest) ApiUpdateBrowserTestRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateBrowserTestRequest) Execute() (SyntheticsBrowserTest, *_nethttp.Response, error) {
-	return r.ApiService.UpdateBrowserTestExecute(r)
-}
-
 /*
  * UpdateBrowserTest Edit a browser test
  * Edit the configuration of a Synthetic browser test.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public ID of the test to get details from.
- * @return ApiUpdateBrowserTestRequest
  */
-func (a *SyntheticsApiService) UpdateBrowserTest(ctx _context.Context, publicId string) ApiUpdateBrowserTestRequest {
-	return ApiUpdateBrowserTestRequest{
+func (a *SyntheticsApiService) UpdateBrowserTest(ctx _context.Context, publicId string, body SyntheticsBrowserTest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+	req := apiUpdateBrowserTestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateBrowserTestExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsBrowserTest
  */
-func (a *SyntheticsApiService) UpdateBrowserTestExecute(r ApiUpdateBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) updateBrowserTestExecute(r apiUpdateBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -3591,42 +3493,33 @@ func (a *SyntheticsApiService) UpdateBrowserTestExecute(r ApiUpdateBrowserTestRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdatePrivateLocationRequest struct {
+type apiUpdatePrivateLocationRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	locationId string
 	body       *SyntheticsPrivateLocation
 }
 
-func (r ApiUpdatePrivateLocationRequest) Body(body SyntheticsPrivateLocation) ApiUpdatePrivateLocationRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdatePrivateLocationRequest) Execute() (SyntheticsPrivateLocation, *_nethttp.Response, error) {
-	return r.ApiService.UpdatePrivateLocationExecute(r)
-}
-
 /*
  * UpdatePrivateLocation Edit a private location
  * Edit a Synthetics private location.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param locationId The ID of the private location.
- * @return ApiUpdatePrivateLocationRequest
  */
-func (a *SyntheticsApiService) UpdatePrivateLocation(ctx _context.Context, locationId string) ApiUpdatePrivateLocationRequest {
-	return ApiUpdatePrivateLocationRequest{
+func (a *SyntheticsApiService) UpdatePrivateLocation(ctx _context.Context, locationId string, body SyntheticsPrivateLocation) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
+	req := apiUpdatePrivateLocationRequest{
 		ApiService: a,
 		ctx:        ctx,
 		locationId: locationId,
+		body:       &body,
 	}
+
+	return req.ApiService.updatePrivateLocationExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SyntheticsPrivateLocation
  */
-func (a *SyntheticsApiService) UpdatePrivateLocationExecute(r ApiUpdatePrivateLocationRequest) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) updatePrivateLocationExecute(r apiUpdatePrivateLocationRequest) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -3748,42 +3641,33 @@ func (a *SyntheticsApiService) UpdatePrivateLocationExecute(r ApiUpdatePrivateLo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateTestPauseStatusRequest struct {
+type apiUpdateTestPauseStatusRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	publicId   string
 	body       *SyntheticsUpdateTestPauseStatusPayload
 }
 
-func (r ApiUpdateTestPauseStatusRequest) Body(body SyntheticsUpdateTestPauseStatusPayload) ApiUpdateTestPauseStatusRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateTestPauseStatusRequest) Execute() (bool, *_nethttp.Response, error) {
-	return r.ApiService.UpdateTestPauseStatusExecute(r)
-}
-
 /*
  * UpdateTestPauseStatus Pause or start a test
  * Pause or start a Synthetics test by changing the status.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The public ID of the Synthetic test to update.
- * @return ApiUpdateTestPauseStatusRequest
  */
-func (a *SyntheticsApiService) UpdateTestPauseStatus(ctx _context.Context, publicId string) ApiUpdateTestPauseStatusRequest {
-	return ApiUpdateTestPauseStatusRequest{
+func (a *SyntheticsApiService) UpdateTestPauseStatus(ctx _context.Context, publicId string, body SyntheticsUpdateTestPauseStatusPayload) (bool, *_nethttp.Response, error) {
+	req := apiUpdateTestPauseStatusRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateTestPauseStatusExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return bool
  */
-func (a *SyntheticsApiService) UpdateTestPauseStatusExecute(r ApiUpdateTestPauseStatusRequest) (bool, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) updateTestPauseStatusExecute(r apiUpdateTestPauseStatusRequest) (bool, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}

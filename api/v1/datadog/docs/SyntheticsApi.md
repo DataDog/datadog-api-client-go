@@ -33,7 +33,7 @@ Method | HTTP request | Description
 
 ## CreateGlobalVariable
 
-> SyntheticsGlobalVariable CreateGlobalVariable(ctx).Body(body).Execute()
+> SyntheticsGlobalVariable CreateGlobalVariable(ctx, body)
 
 Create a global variable
 
@@ -60,7 +60,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.CreateGlobalVariable(ctx).Body(body).Execute()
+    resp, r, err := apiClient.SyntheticsApi.CreateGlobalVariable(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateGlobalVariable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -71,18 +71,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateGlobalVariableRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Details of the global variable to create. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Details of the global variable to create. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
 
 ## CreatePrivateLocation
 
-> SyntheticsPrivateLocationCreationResponse CreatePrivateLocation(ctx).Body(body).Execute()
+> SyntheticsPrivateLocationCreationResponse CreatePrivateLocation(ctx, body)
 
 Create a private location
 
@@ -131,7 +131,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.CreatePrivateLocation(ctx).Body(body).Execute()
+    resp, r, err := apiClient.SyntheticsApi.CreatePrivateLocation(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreatePrivateLocation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,18 +142,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreatePrivateLocationRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) | Details of the private location to create. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) | Details of the private location to create. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 ## CreateSyntheticsAPITest
 
-> SyntheticsAPITest CreateSyntheticsAPITest(ctx).Body(body).Execute()
+> SyntheticsAPITest CreateSyntheticsAPITest(ctx, body)
 
 Create an API test
 
@@ -202,7 +202,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsAPITest(ctx).Body(body).Execute()
+    resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsAPITest(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsAPITest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -213,18 +213,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateSyntheticsAPITestRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyntheticsAPITest**](SyntheticsAPITest.md) | Details of the test to create. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**SyntheticsAPITest**](SyntheticsAPITest.md) | Details of the test to create. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ## CreateSyntheticsBrowserTest
 
-> SyntheticsBrowserTest CreateSyntheticsBrowserTest(ctx).Body(body).Execute()
+> SyntheticsBrowserTest CreateSyntheticsBrowserTest(ctx, body)
 
 Create a browser test
 
@@ -273,7 +273,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsBrowserTest(ctx).Body(body).Execute()
+    resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsBrowserTest(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsBrowserTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -284,18 +284,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateSyntheticsBrowserTestRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyntheticsBrowserTest**](SyntheticsBrowserTest.md) | Details of the test to create. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**SyntheticsBrowserTest**](SyntheticsBrowserTest.md) | Details of the test to create. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -317,7 +317,7 @@ Name | Type | Description  | Notes
 
 ## DeleteGlobalVariable
 
-> DeleteGlobalVariable(ctx, variableId).Execute()
+> DeleteGlobalVariable(ctx, variableId)
 
 Delete a global variable
 
@@ -343,7 +343,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.SyntheticsApi.DeleteGlobalVariable(ctx, variableId).Execute()
+    r, err := apiClient.SyntheticsApi.DeleteGlobalVariable(ctx, variableId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteGlobalVariable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -351,7 +351,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -359,13 +359,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **variableId** | **string** | The ID of the global variable. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteGlobalVariableRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -388,7 +384,7 @@ Name | Type | Description  | Notes
 
 ## DeletePrivateLocation
 
-> DeletePrivateLocation(ctx, locationId).Execute()
+> DeletePrivateLocation(ctx, locationId)
 
 Delete a private location
 
@@ -414,7 +410,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.SyntheticsApi.DeletePrivateLocation(ctx, locationId).Execute()
+    r, err := apiClient.SyntheticsApi.DeletePrivateLocation(ctx, locationId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeletePrivateLocation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -422,7 +418,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -430,13 +426,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **locationId** | **string** | The ID of the private location. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeletePrivateLocationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -459,7 +451,7 @@ Name | Type | Description  | Notes
 
 ## DeleteTests
 
-> SyntheticsDeleteTestsResponse DeleteTests(ctx).Body(body).Execute()
+> SyntheticsDeleteTestsResponse DeleteTests(ctx, body)
 
 Delete tests
 
@@ -486,7 +478,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.DeleteTests(ctx).Body(body).Execute()
+    resp, r, err := apiClient.SyntheticsApi.DeleteTests(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteTests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -497,18 +489,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteTestsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyntheticsDeleteTestsPayload**](SyntheticsDeleteTestsPayload.md) | Public ID list of the Synthetic tests to be deleted. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**SyntheticsDeleteTestsPayload**](SyntheticsDeleteTestsPayload.md) | Public ID list of the Synthetic tests to be deleted. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -530,7 +522,7 @@ Name | Type | Description  | Notes
 
 ## EditGlobalVariable
 
-> SyntheticsGlobalVariable EditGlobalVariable(ctx, variableId).Body(body).Execute()
+> SyntheticsGlobalVariable EditGlobalVariable(ctx, variableId, body)
 
 Edit a global variable
 
@@ -558,7 +550,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.EditGlobalVariable(ctx, variableId).Body(body).Execute()
+    resp, r, err := apiClient.SyntheticsApi.EditGlobalVariable(ctx, variableId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.EditGlobalVariable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -569,23 +561,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **variableId** | **string** | The ID of the global variable. | 
+**body** | [**SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Details of the global variable to update. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiEditGlobalVariableRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Details of the global variable to update. | 
 
 ### Return type
 
@@ -607,7 +595,7 @@ Name | Type | Description  | Notes
 
 ## GetAPITest
 
-> SyntheticsAPITest GetAPITest(ctx, publicId).Execute()
+> SyntheticsAPITest GetAPITest(ctx, publicId)
 
 Get an API test
 
@@ -634,7 +622,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.GetAPITest(ctx, publicId).Execute()
+    resp, r, err := apiClient.SyntheticsApi.GetAPITest(ctx, publicId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -645,7 +633,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -653,13 +641,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **publicId** | **string** | The public ID of the test to get details from. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetAPITestRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -682,7 +666,7 @@ Name | Type | Description  | Notes
 
 ## GetAPITestLatestResults
 
-> SyntheticsGetAPITestLatestResultsResponse GetAPITestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
+> SyntheticsGetAPITestLatestResultsResponse GetAPITestLatestResults(ctx, publicId, datadog.GetAPITestLatestResultsOptionalParameters{})
 
 Get an API test's latest results summaries
 
@@ -708,11 +692,16 @@ func main() {
     fromTs := int64(789) // int64 | Timestamp from which to start querying results. (optional)
     toTs := int64(789) // int64 | Timestamp up to which to query results. (optional)
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
+    optionalParams := datadog.GetAPITestLatestResultsOptionalParameters{
+        FromTs: &fromTs,
+        ToTs: &toTs,
+        ProbeDc: &probeDc,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.GetAPITestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
+    resp, r, err := apiClient.SyntheticsApi.GetAPITestLatestResults(ctx, publicId, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestLatestResults``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -723,7 +712,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -731,17 +720,17 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **publicId** | **string** | The public ID of the test for which to search results for. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetAPITestLatestResultsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a GetAPITestLatestResultsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **fromTs** | **int64** | Timestamp from which to start querying results. | 
- **toTs** | **int64** | Timestamp up to which to query results. | 
- **probeDc** | **[]string** | Locations for which to query results. | 
+**fromTs** | **int64** | Timestamp from which to start querying results. | 
+**toTs** | **int64** | Timestamp up to which to query results. | 
+**probeDc** | **[]string** | Locations for which to query results. | 
 
 ### Return type
 
@@ -763,7 +752,7 @@ Name | Type | Description  | Notes
 
 ## GetAPITestResult
 
-> SyntheticsAPITestResultFull GetAPITestResult(ctx, publicId, resultId).Execute()
+> SyntheticsAPITestResultFull GetAPITestResult(ctx, publicId, resultId)
 
 Get an API test result
 
@@ -791,7 +780,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.GetAPITestResult(ctx, publicId, resultId).Execute()
+    resp, r, err := apiClient.SyntheticsApi.GetAPITestResult(ctx, publicId, resultId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestResult``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -802,7 +791,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -811,14 +800,9 @@ Name | Type | Description  | Notes
 **publicId** | **string** | The public ID of the API test to which the target result belongs. | 
 **resultId** | **string** | The ID of the result to get. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetAPITestResultRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -841,7 +825,7 @@ Name | Type | Description  | Notes
 
 ## GetBrowserTest
 
-> SyntheticsBrowserTest GetBrowserTest(ctx, publicId).Execute()
+> SyntheticsBrowserTest GetBrowserTest(ctx, publicId)
 
 Get a browser test
 
@@ -868,7 +852,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.GetBrowserTest(ctx, publicId).Execute()
+    resp, r, err := apiClient.SyntheticsApi.GetBrowserTest(ctx, publicId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -879,7 +863,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -887,13 +871,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **publicId** | **string** | The public ID of the test to get details from. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetBrowserTestRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -916,7 +896,7 @@ Name | Type | Description  | Notes
 
 ## GetBrowserTestLatestResults
 
-> SyntheticsGetBrowserTestLatestResultsResponse GetBrowserTestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
+> SyntheticsGetBrowserTestLatestResultsResponse GetBrowserTestLatestResults(ctx, publicId, datadog.GetBrowserTestLatestResultsOptionalParameters{})
 
 Get a browser test's latest results summaries
 
@@ -942,11 +922,16 @@ func main() {
     fromTs := int64(789) // int64 | Timestamp from which to start querying results. (optional)
     toTs := int64(789) // int64 | Timestamp up to which to query results. (optional)
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
+    optionalParams := datadog.GetBrowserTestLatestResultsOptionalParameters{
+        FromTs: &fromTs,
+        ToTs: &toTs,
+        ProbeDc: &probeDc,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.GetBrowserTestLatestResults(ctx, publicId).FromTs(fromTs).ToTs(toTs).ProbeDc(probeDc).Execute()
+    resp, r, err := apiClient.SyntheticsApi.GetBrowserTestLatestResults(ctx, publicId, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestLatestResults``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -957,7 +942,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -965,17 +950,17 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **publicId** | **string** | The public ID of the browser test for which to search results for. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetBrowserTestLatestResultsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a GetBrowserTestLatestResultsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **fromTs** | **int64** | Timestamp from which to start querying results. | 
- **toTs** | **int64** | Timestamp up to which to query results. | 
- **probeDc** | **[]string** | Locations for which to query results. | 
+**fromTs** | **int64** | Timestamp from which to start querying results. | 
+**toTs** | **int64** | Timestamp up to which to query results. | 
+**probeDc** | **[]string** | Locations for which to query results. | 
 
 ### Return type
 
@@ -997,7 +982,7 @@ Name | Type | Description  | Notes
 
 ## GetBrowserTestResult
 
-> SyntheticsBrowserTestResultFull GetBrowserTestResult(ctx, publicId, resultId).Execute()
+> SyntheticsBrowserTestResultFull GetBrowserTestResult(ctx, publicId, resultId)
 
 Get a browser test result
 
@@ -1025,7 +1010,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.GetBrowserTestResult(ctx, publicId, resultId).Execute()
+    resp, r, err := apiClient.SyntheticsApi.GetBrowserTestResult(ctx, publicId, resultId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestResult``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1036,7 +1021,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -1045,14 +1030,9 @@ Name | Type | Description  | Notes
 **publicId** | **string** | The public ID of the browser test to which the target result belongs. | 
 **resultId** | **string** | The ID of the result to get. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetBrowserTestResultRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -1075,7 +1055,7 @@ Name | Type | Description  | Notes
 
 ## GetGlobalVariable
 
-> SyntheticsGlobalVariable GetGlobalVariable(ctx, variableId).Execute()
+> SyntheticsGlobalVariable GetGlobalVariable(ctx, variableId)
 
 Get a global variable
 
@@ -1102,7 +1082,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.GetGlobalVariable(ctx, variableId).Execute()
+    resp, r, err := apiClient.SyntheticsApi.GetGlobalVariable(ctx, variableId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetGlobalVariable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1113,7 +1093,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -1121,13 +1101,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **variableId** | **string** | The ID of the global variable. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetGlobalVariableRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -1150,7 +1126,7 @@ Name | Type | Description  | Notes
 
 ## GetPrivateLocation
 
-> SyntheticsPrivateLocation GetPrivateLocation(ctx, locationId).Execute()
+> SyntheticsPrivateLocation GetPrivateLocation(ctx, locationId)
 
 Get a private location
 
@@ -1177,7 +1153,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.GetPrivateLocation(ctx, locationId).Execute()
+    resp, r, err := apiClient.SyntheticsApi.GetPrivateLocation(ctx, locationId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetPrivateLocation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1188,7 +1164,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -1196,13 +1172,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **locationId** | **string** | The ID of the private location. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetPrivateLocationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -1225,7 +1197,7 @@ Name | Type | Description  | Notes
 
 ## GetTest
 
-> SyntheticsTestDetails GetTest(ctx, publicId).Execute()
+> SyntheticsTestDetails GetTest(ctx, publicId)
 
 Get a test configuration
 
@@ -1252,7 +1224,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.GetTest(ctx, publicId).Execute()
+    resp, r, err := apiClient.SyntheticsApi.GetTest(ctx, publicId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1263,7 +1235,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -1271,13 +1243,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **publicId** | **string** | The public ID of the test to get details from. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetTestRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -1300,7 +1268,7 @@ Name | Type | Description  | Notes
 
 ## ListLocations
 
-> SyntheticsLocations ListLocations(ctx).Execute()
+> SyntheticsLocations ListLocations(ctx)
 
 Get all locations (public and private)
 
@@ -1326,7 +1294,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.ListLocations(ctx).Execute()
+    resp, r, err := apiClient.SyntheticsApi.ListLocations(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListLocations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1337,13 +1305,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListLocationsRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -1366,7 +1334,7 @@ Other parameters are passed through a pointer to a apiListLocationsRequest struc
 
 ## ListTests
 
-> SyntheticsListTestsResponse ListTests(ctx).Execute()
+> SyntheticsListTestsResponse ListTests(ctx)
 
 Get the list of all tests
 
@@ -1392,7 +1360,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.ListTests(ctx).Execute()
+    resp, r, err := apiClient.SyntheticsApi.ListTests(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListTests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1403,13 +1371,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListTestsRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -1432,7 +1400,7 @@ Other parameters are passed through a pointer to a apiListTestsRequest struct vi
 
 ## TriggerCITests
 
-> SyntheticsTriggerCITestsResponse TriggerCITests(ctx).Body(body).Execute()
+> SyntheticsTriggerCITestsResponse TriggerCITests(ctx, body)
 
 Trigger tests from CI/CD pipelines
 
@@ -1459,7 +1427,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.TriggerCITests(ctx).Body(body).Execute()
+    resp, r, err := apiClient.SyntheticsApi.TriggerCITests(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.TriggerCITests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1470,18 +1438,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiTriggerCITestsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyntheticsCITestBody**](SyntheticsCITestBody.md) | Details of the test to trigger. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**SyntheticsCITestBody**](SyntheticsCITestBody.md) | Details of the test to trigger. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -1503,7 +1471,7 @@ Name | Type | Description  | Notes
 
 ## UpdateAPITest
 
-> SyntheticsAPITest UpdateAPITest(ctx, publicId).Body(body).Execute()
+> SyntheticsAPITest UpdateAPITest(ctx, publicId, body)
 
 Edit an API test
 
@@ -1531,7 +1499,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.UpdateAPITest(ctx, publicId).Body(body).Execute()
+    resp, r, err := apiClient.SyntheticsApi.UpdateAPITest(ctx, publicId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateAPITest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1542,23 +1510,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **publicId** | **string** | The public ID of the test to get details from. | 
+**body** | [**SyntheticsAPITest**](SyntheticsAPITest.md) | New test details to be saved. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateAPITestRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**SyntheticsAPITest**](SyntheticsAPITest.md) | New test details to be saved. | 
 
 ### Return type
 
@@ -1580,7 +1544,7 @@ Name | Type | Description  | Notes
 
 ## UpdateBrowserTest
 
-> SyntheticsBrowserTest UpdateBrowserTest(ctx, publicId).Body(body).Execute()
+> SyntheticsBrowserTest UpdateBrowserTest(ctx, publicId, body)
 
 Edit a browser test
 
@@ -1608,7 +1572,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.UpdateBrowserTest(ctx, publicId).Body(body).Execute()
+    resp, r, err := apiClient.SyntheticsApi.UpdateBrowserTest(ctx, publicId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateBrowserTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1619,23 +1583,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **publicId** | **string** | The public ID of the test to get details from. | 
+**body** | [**SyntheticsBrowserTest**](SyntheticsBrowserTest.md) | New test details to be saved. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateBrowserTestRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**SyntheticsBrowserTest**](SyntheticsBrowserTest.md) | New test details to be saved. | 
 
 ### Return type
 
@@ -1657,7 +1617,7 @@ Name | Type | Description  | Notes
 
 ## UpdatePrivateLocation
 
-> SyntheticsPrivateLocation UpdatePrivateLocation(ctx, locationId).Body(body).Execute()
+> SyntheticsPrivateLocation UpdatePrivateLocation(ctx, locationId, body)
 
 Edit a private location
 
@@ -1685,7 +1645,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.UpdatePrivateLocation(ctx, locationId).Body(body).Execute()
+    resp, r, err := apiClient.SyntheticsApi.UpdatePrivateLocation(ctx, locationId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdatePrivateLocation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1696,23 +1656,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **locationId** | **string** | The ID of the private location. | 
+**body** | [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) | Details of the private location to be updated. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdatePrivateLocationRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) | Details of the private location to be updated. | 
 
 ### Return type
 
@@ -1734,7 +1690,7 @@ Name | Type | Description  | Notes
 
 ## UpdateTestPauseStatus
 
-> bool UpdateTestPauseStatus(ctx, publicId).Body(body).Execute()
+> bool UpdateTestPauseStatus(ctx, publicId, body)
 
 Pause or start a test
 
@@ -1762,7 +1718,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SyntheticsApi.UpdateTestPauseStatus(ctx, publicId).Body(body).Execute()
+    resp, r, err := apiClient.SyntheticsApi.UpdateTestPauseStatus(ctx, publicId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTestPauseStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1773,23 +1729,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **publicId** | **string** | The public ID of the Synthetic test to update. | 
+**body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Status to set the given Synthetic test to. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateTestPauseStatusRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Status to set the given Synthetic test to. | 
 
 ### Return type
 

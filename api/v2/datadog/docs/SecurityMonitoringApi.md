@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateSecurityMonitoringRule
 
-> SecurityMonitoringRuleResponse CreateSecurityMonitoringRule(ctx).Body(body).Execute()
+> SecurityMonitoringRuleResponse CreateSecurityMonitoringRule(ctx, body)
 
 Create a detection rule
 
@@ -43,7 +43,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityMonitoringRule(ctx).Body(body).Execute()
+    resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityMonitoringRule(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityMonitoringRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -54,18 +54,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateSecurityMonitoringRuleRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SecurityMonitoringRuleCreatePayload**](SecurityMonitoringRuleCreatePayload.md) |  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**SecurityMonitoringRuleCreatePayload**](SecurityMonitoringRuleCreatePayload.md) |  | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteSecurityMonitoringRule
 
-> DeleteSecurityMonitoringRule(ctx, ruleId).Execute()
+> DeleteSecurityMonitoringRule(ctx, ruleId)
 
 Delete an existing rule
 
@@ -113,7 +113,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.SecurityMonitoringApi.DeleteSecurityMonitoringRule(ctx, ruleId).Execute()
+    r, err := apiClient.SecurityMonitoringApi.DeleteSecurityMonitoringRule(ctx, ruleId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityMonitoringRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -129,13 +129,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **ruleId** | **string** | The ID of the rule. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteSecurityMonitoringRuleRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -158,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## GetSecurityMonitoringRule
 
-> SecurityMonitoringRuleResponse GetSecurityMonitoringRule(ctx, ruleId).Execute()
+> SecurityMonitoringRuleResponse GetSecurityMonitoringRule(ctx, ruleId)
 
 Get a rule's details
 
@@ -185,7 +181,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.GetSecurityMonitoringRule(ctx, ruleId).Execute()
+    resp, r, err := apiClient.SecurityMonitoringApi.GetSecurityMonitoringRule(ctx, ruleId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetSecurityMonitoringRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -196,7 +192,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -204,13 +200,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **ruleId** | **string** | The ID of the rule. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetSecurityMonitoringRuleRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -233,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## ListSecurityMonitoringRules
 
-> SecurityMonitoringListRulesResponse ListSecurityMonitoringRules(ctx).PageSize(pageSize).PageNumber(pageNumber).Execute()
+> SecurityMonitoringListRulesResponse ListSecurityMonitoringRules(ctx, datadog.ListSecurityMonitoringRulesOptionalParameters{})
 
 List rules
 
@@ -257,11 +249,15 @@ func main() {
 
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
+    optionalParams := datadog.ListSecurityMonitoringRulesOptionalParameters{
+        PageSize: &pageSize,
+        PageNumber: &pageNumber,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.ListSecurityMonitoringRules(ctx).PageSize(pageSize).PageNumber(pageNumber).Execute()
+    resp, r, err := apiClient.SecurityMonitoringApi.ListSecurityMonitoringRules(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -272,19 +268,20 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListSecurityMonitoringRulesRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListSecurityMonitoringRulesOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int64** | Size for a given page. | [default to 10]
- **pageNumber** | **int64** | Specific page number to return. | [default to 0]
+**pageSize** | **int64** | Size for a given page. | [default to 10]
+**pageNumber** | **int64** | Specific page number to return. | [default to 0]
 
 ### Return type
 
@@ -306,7 +303,7 @@ Name | Type | Description  | Notes
 
 ## ListSecurityMonitoringSignals
 
-> SecurityMonitoringSignalsListResponse ListSecurityMonitoringSignals(ctx).FilterQuery(filterQuery).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
+> SecurityMonitoringSignalsListResponse ListSecurityMonitoringSignals(ctx, datadog.ListSecurityMonitoringSignalsOptionalParameters{})
 
 Get a quick list of security signals
 
@@ -335,12 +332,20 @@ func main() {
     sort := datadog.SecurityMonitoringSignalsSort("timestamp") // SecurityMonitoringSignalsSort | The order of the security signals in results. (optional)
     pageCursor := "eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==" // string | A list of results using the cursor provided in the previous query. (optional)
     pageLimit := int32(25) // int32 | The maximum number of security signals in the response. (optional) (default to 10)
+    optionalParams := datadog.ListSecurityMonitoringSignalsOptionalParameters{
+        FilterQuery: &filterQuery,
+        FilterFrom: &filterFrom,
+        FilterTo: &filterTo,
+        Sort: &sort,
+        PageCursor: &pageCursor,
+        PageLimit: &pageLimit,
+    }
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("ListSecurityMonitoringSignals", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.ListSecurityMonitoringSignals(ctx).FilterQuery(filterQuery).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
+    resp, r, err := apiClient.SecurityMonitoringApi.ListSecurityMonitoringSignals(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringSignals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -351,23 +356,24 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListSecurityMonitoringSignalsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListSecurityMonitoringSignalsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filterQuery** | **string** | The search query for security signals. | 
- **filterFrom** | **time.Time** | The minimum timestamp for requested security signals. | 
- **filterTo** | **time.Time** | The maximum timestamp for requested security signals. | 
- **sort** | [**SecurityMonitoringSignalsSort**](SecurityMonitoringSignalsSort.md) | The order of the security signals in results. | 
- **pageCursor** | **string** | A list of results using the cursor provided in the previous query. | 
- **pageLimit** | **int32** | The maximum number of security signals in the response. | [default to 10]
+**filterQuery** | **string** | The search query for security signals. | 
+**filterFrom** | **time.Time** | The minimum timestamp for requested security signals. | 
+**filterTo** | **time.Time** | The maximum timestamp for requested security signals. | 
+**sort** | [**SecurityMonitoringSignalsSort**](SecurityMonitoringSignalsSort.md) | The order of the security signals in results. | 
+**pageCursor** | **string** | A list of results using the cursor provided in the previous query. | 
+**pageLimit** | **int32** | The maximum number of security signals in the response. | [default to 10]
 
 ### Return type
 
@@ -389,7 +395,7 @@ Name | Type | Description  | Notes
 
 ## SearchSecurityMonitoringSignals
 
-> SecurityMonitoringSignalsListResponse SearchSecurityMonitoringSignals(ctx).Body(body).Execute()
+> SecurityMonitoringSignalsListResponse SearchSecurityMonitoringSignals(ctx, datadog.SearchSecurityMonitoringSignalsOptionalParameters{})
 
 Get a list of security signals
 
@@ -412,12 +418,15 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewSecurityMonitoringSignalListRequest() // SecurityMonitoringSignalListRequest |  (optional)
+    optionalParams := datadog.SearchSecurityMonitoringSignalsOptionalParameters{
+        Body: &body,
+    }
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("SearchSecurityMonitoringSignals", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.SearchSecurityMonitoringSignals(ctx).Body(body).Execute()
+    resp, r, err := apiClient.SecurityMonitoringApi.SearchSecurityMonitoringSignals(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.SearchSecurityMonitoringSignals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -428,18 +437,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiSearchSecurityMonitoringSignalsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a SearchSecurityMonitoringSignalsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SecurityMonitoringSignalListRequest**](SecurityMonitoringSignalListRequest.md) |  | 
+**body** | [**SecurityMonitoringSignalListRequest**](SecurityMonitoringSignalListRequest.md) |  | 
 
 ### Return type
 
@@ -461,7 +471,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSecurityMonitoringRule
 
-> SecurityMonitoringRuleResponse UpdateSecurityMonitoringRule(ctx, ruleId).Body(body).Execute()
+> SecurityMonitoringRuleResponse UpdateSecurityMonitoringRule(ctx, ruleId, body)
 
 Update an existing rule
 
@@ -489,7 +499,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityMonitoringRule(ctx, ruleId).Body(body).Execute()
+    resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityMonitoringRule(ctx, ruleId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityMonitoringRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -500,23 +510,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **ruleId** | **string** | The ID of the rule. | 
+**body** | [**SecurityMonitoringRuleUpdatePayload**](SecurityMonitoringRuleUpdatePayload.md) |  | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateSecurityMonitoringRuleRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**SecurityMonitoringRuleUpdatePayload**](SecurityMonitoringRuleUpdatePayload.md) |  | 
 
 ### Return type
 

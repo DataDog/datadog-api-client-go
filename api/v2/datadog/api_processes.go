@@ -24,7 +24,7 @@ var (
 // ProcessesApiService ProcessesApi service
 type ProcessesApiService service
 
-type ApiListProcessesRequest struct {
+type apiListProcessesRequest struct {
 	ctx        _context.Context
 	ApiService *ProcessesApiService
 	search     *string
@@ -35,53 +35,76 @@ type ApiListProcessesRequest struct {
 	pageCursor *string
 }
 
-func (r ApiListProcessesRequest) Search(search string) ApiListProcessesRequest {
-	r.search = &search
-	return r
-}
-func (r ApiListProcessesRequest) Tags(tags string) ApiListProcessesRequest {
-	r.tags = &tags
-	return r
-}
-func (r ApiListProcessesRequest) From(from int64) ApiListProcessesRequest {
-	r.from = &from
-	return r
-}
-func (r ApiListProcessesRequest) To(to int64) ApiListProcessesRequest {
-	r.to = &to
-	return r
-}
-func (r ApiListProcessesRequest) PageLimit(pageLimit int32) ApiListProcessesRequest {
-	r.pageLimit = &pageLimit
-	return r
-}
-func (r ApiListProcessesRequest) PageCursor(pageCursor string) ApiListProcessesRequest {
-	r.pageCursor = &pageCursor
-	return r
+type ListProcessesOptionalParameters struct {
+	Search     *string
+	Tags       *string
+	From       *int64
+	To         *int64
+	PageLimit  *int32
+	PageCursor *string
 }
 
-func (r ApiListProcessesRequest) Execute() (ProcessSummariesResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListProcessesExecute(r)
+func NewListProcessesOptionalParameters() *ListProcessesOptionalParameters {
+	this := ListProcessesOptionalParameters{}
+	return &this
+}
+func (r *ListProcessesOptionalParameters) WithSearch(search string) *ListProcessesOptionalParameters {
+	r.Search = &search
+	return r
+}
+func (r *ListProcessesOptionalParameters) WithTags(tags string) *ListProcessesOptionalParameters {
+	r.Tags = &tags
+	return r
+}
+func (r *ListProcessesOptionalParameters) WithFrom(from int64) *ListProcessesOptionalParameters {
+	r.From = &from
+	return r
+}
+func (r *ListProcessesOptionalParameters) WithTo(to int64) *ListProcessesOptionalParameters {
+	r.To = &to
+	return r
+}
+func (r *ListProcessesOptionalParameters) WithPageLimit(pageLimit int32) *ListProcessesOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+func (r *ListProcessesOptionalParameters) WithPageCursor(pageCursor string) *ListProcessesOptionalParameters {
+	r.PageCursor = &pageCursor
+	return r
 }
 
 /*
  * ListProcesses Get all processes
  * Get all processes for your organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListProcessesRequest
  */
-func (a *ProcessesApiService) ListProcesses(ctx _context.Context) ApiListProcessesRequest {
-	return ApiListProcessesRequest{
+func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
+	req := apiListProcessesRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue ProcessSummariesResponse
+		return localVarReturnValue, nil, reportError("only one argument of type ListProcessesOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.search = o[0].Search
+		req.tags = o[0].Tags
+		req.from = o[0].From
+		req.to = o[0].To
+		req.pageLimit = o[0].PageLimit
+		req.pageCursor = o[0].PageCursor
+	}
+
+	return req.ApiService.listProcessesExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return ProcessSummariesResponse
  */
-func (a *ProcessesApiService) ListProcessesExecute(r ApiListProcessesRequest) (ProcessSummariesResponse, *_nethttp.Response, error) {
+func (a *ProcessesApiService) listProcessesExecute(r apiListProcessesRequest) (ProcessSummariesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}

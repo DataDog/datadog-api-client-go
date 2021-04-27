@@ -25,40 +25,53 @@ var (
 // HostsApiService HostsApi service
 type HostsApiService service
 
-type ApiGetHostTotalsRequest struct {
+type apiGetHostTotalsRequest struct {
 	ctx        _context.Context
 	ApiService *HostsApiService
 	from       *int64
 }
 
-func (r ApiGetHostTotalsRequest) From(from int64) ApiGetHostTotalsRequest {
-	r.from = &from
-	return r
+type GetHostTotalsOptionalParameters struct {
+	From *int64
 }
 
-func (r ApiGetHostTotalsRequest) Execute() (HostTotals, *_nethttp.Response, error) {
-	return r.ApiService.GetHostTotalsExecute(r)
+func NewGetHostTotalsOptionalParameters() *GetHostTotalsOptionalParameters {
+	this := GetHostTotalsOptionalParameters{}
+	return &this
+}
+func (r *GetHostTotalsOptionalParameters) WithFrom(from int64) *GetHostTotalsOptionalParameters {
+	r.From = &from
+	return r
 }
 
 /*
  * GetHostTotals Get the total number of active hosts
  * This endpoint returns the total number of active and up hosts in your Datadog account.
 Active means the host has reported in the past hour, and up means it has reported in the past two hours.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHostTotalsRequest
 */
-func (a *HostsApiService) GetHostTotals(ctx _context.Context) ApiGetHostTotalsRequest {
-	return ApiGetHostTotalsRequest{
+func (a *HostsApiService) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (HostTotals, *_nethttp.Response, error) {
+	req := apiGetHostTotalsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue HostTotals
+		return localVarReturnValue, nil, reportError("only one argument of type GetHostTotalsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.from = o[0].From
+	}
+
+	return req.ApiService.getHostTotalsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return HostTotals
  */
-func (a *HostsApiService) GetHostTotalsExecute(r ApiGetHostTotalsRequest) (HostTotals, *_nethttp.Response, error) {
+func (a *HostsApiService) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostTotals, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -187,7 +200,7 @@ func (a *HostsApiService) GetHostTotalsExecute(r ApiGetHostTotalsRequest) (HostT
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListHostsRequest struct {
+type apiListHostsRequest struct {
 	ctx                   _context.Context
 	ApiService            *HostsApiService
 	filter                *string
@@ -200,41 +213,52 @@ type ApiListHostsRequest struct {
 	includeHostsMetadata  *bool
 }
 
-func (r ApiListHostsRequest) Filter(filter string) ApiListHostsRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiListHostsRequest) SortField(sortField string) ApiListHostsRequest {
-	r.sortField = &sortField
-	return r
-}
-func (r ApiListHostsRequest) SortDir(sortDir string) ApiListHostsRequest {
-	r.sortDir = &sortDir
-	return r
-}
-func (r ApiListHostsRequest) Start(start int64) ApiListHostsRequest {
-	r.start = &start
-	return r
-}
-func (r ApiListHostsRequest) Count(count int64) ApiListHostsRequest {
-	r.count = &count
-	return r
-}
-func (r ApiListHostsRequest) From(from int64) ApiListHostsRequest {
-	r.from = &from
-	return r
-}
-func (r ApiListHostsRequest) IncludeMutedHostsData(includeMutedHostsData bool) ApiListHostsRequest {
-	r.includeMutedHostsData = &includeMutedHostsData
-	return r
-}
-func (r ApiListHostsRequest) IncludeHostsMetadata(includeHostsMetadata bool) ApiListHostsRequest {
-	r.includeHostsMetadata = &includeHostsMetadata
-	return r
+type ListHostsOptionalParameters struct {
+	Filter                *string
+	SortField             *string
+	SortDir               *string
+	Start                 *int64
+	Count                 *int64
+	From                  *int64
+	IncludeMutedHostsData *bool
+	IncludeHostsMetadata  *bool
 }
 
-func (r ApiListHostsRequest) Execute() (HostListResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListHostsExecute(r)
+func NewListHostsOptionalParameters() *ListHostsOptionalParameters {
+	this := ListHostsOptionalParameters{}
+	return &this
+}
+func (r *ListHostsOptionalParameters) WithFilter(filter string) *ListHostsOptionalParameters {
+	r.Filter = &filter
+	return r
+}
+func (r *ListHostsOptionalParameters) WithSortField(sortField string) *ListHostsOptionalParameters {
+	r.SortField = &sortField
+	return r
+}
+func (r *ListHostsOptionalParameters) WithSortDir(sortDir string) *ListHostsOptionalParameters {
+	r.SortDir = &sortDir
+	return r
+}
+func (r *ListHostsOptionalParameters) WithStart(start int64) *ListHostsOptionalParameters {
+	r.Start = &start
+	return r
+}
+func (r *ListHostsOptionalParameters) WithCount(count int64) *ListHostsOptionalParameters {
+	r.Count = &count
+	return r
+}
+func (r *ListHostsOptionalParameters) WithFrom(from int64) *ListHostsOptionalParameters {
+	r.From = &from
+	return r
+}
+func (r *ListHostsOptionalParameters) WithIncludeMutedHostsData(includeMutedHostsData bool) *ListHostsOptionalParameters {
+	r.IncludeMutedHostsData = &includeMutedHostsData
+	return r
+}
+func (r *ListHostsOptionalParameters) WithIncludeHostsMetadata(includeHostsMetadata bool) *ListHostsOptionalParameters {
+	r.IncludeHostsMetadata = &includeHostsMetadata
+	return r
 }
 
 /*
@@ -243,21 +267,37 @@ func (r ApiListHostsRequest) Execute() (HostListResponse, *_nethttp.Response, er
 Hosts live within the past 3 hours are included by default.
 Retention is 7 days.
 Results are paginated with a max of 1000 results at a time.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListHostsRequest
 */
-func (a *HostsApiService) ListHosts(ctx _context.Context) ApiListHostsRequest {
-	return ApiListHostsRequest{
+func (a *HostsApiService) ListHosts(ctx _context.Context, o ...ListHostsOptionalParameters) (HostListResponse, *_nethttp.Response, error) {
+	req := apiListHostsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue HostListResponse
+		return localVarReturnValue, nil, reportError("only one argument of type ListHostsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.filter = o[0].Filter
+		req.sortField = o[0].SortField
+		req.sortDir = o[0].SortDir
+		req.start = o[0].Start
+		req.count = o[0].Count
+		req.from = o[0].From
+		req.includeMutedHostsData = o[0].IncludeMutedHostsData
+		req.includeHostsMetadata = o[0].IncludeHostsMetadata
+	}
+
+	return req.ApiService.listHostsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return HostListResponse
  */
-func (a *HostsApiService) ListHostsExecute(r ApiListHostsRequest) (HostListResponse, *_nethttp.Response, error) {
+func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -407,42 +447,33 @@ func (a *HostsApiService) ListHostsExecute(r ApiListHostsRequest) (HostListRespo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiMuteHostRequest struct {
+type apiMuteHostRequest struct {
 	ctx        _context.Context
 	ApiService *HostsApiService
 	hostName   string
 	body       *HostMuteSettings
 }
 
-func (r ApiMuteHostRequest) Body(body HostMuteSettings) ApiMuteHostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiMuteHostRequest) Execute() (HostMuteResponse, *_nethttp.Response, error) {
-	return r.ApiService.MuteHostExecute(r)
-}
-
 /*
  * MuteHost Mute a host
  * Mute a host.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param hostName Name of the host to mute.
- * @return ApiMuteHostRequest
  */
-func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string) ApiMuteHostRequest {
-	return ApiMuteHostRequest{
+func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string, body HostMuteSettings) (HostMuteResponse, *_nethttp.Response, error) {
+	req := apiMuteHostRequest{
 		ApiService: a,
 		ctx:        ctx,
 		hostName:   hostName,
+		body:       &body,
 	}
+
+	return req.ApiService.muteHostExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return HostMuteResponse
  */
-func (a *HostsApiService) MuteHostExecute(r ApiMuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
+func (a *HostsApiService) muteHostExecute(r apiMuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -574,36 +605,31 @@ func (a *HostsApiService) MuteHostExecute(r ApiMuteHostRequest) (HostMuteRespons
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUnmuteHostRequest struct {
+type apiUnmuteHostRequest struct {
 	ctx        _context.Context
 	ApiService *HostsApiService
 	hostName   string
 }
 
-func (r ApiUnmuteHostRequest) Execute() (HostMuteResponse, *_nethttp.Response, error) {
-	return r.ApiService.UnmuteHostExecute(r)
-}
-
 /*
  * UnmuteHost Unmute a host
  * Unmutes a host. This endpoint takes no JSON arguments.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param hostName Name of the host to unmute.
- * @return ApiUnmuteHostRequest
  */
-func (a *HostsApiService) UnmuteHost(ctx _context.Context, hostName string) ApiUnmuteHostRequest {
-	return ApiUnmuteHostRequest{
+func (a *HostsApiService) UnmuteHost(ctx _context.Context, hostName string) (HostMuteResponse, *_nethttp.Response, error) {
+	req := apiUnmuteHostRequest{
 		ApiService: a,
 		ctx:        ctx,
 		hostName:   hostName,
 	}
+
+	return req.ApiService.unmuteHostExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return HostMuteResponse
  */
-func (a *HostsApiService) UnmuteHostExecute(r ApiUnmuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
+func (a *HostsApiService) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}

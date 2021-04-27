@@ -33,7 +33,7 @@ func TestAuthenticationValidate(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			validation, httpresp, err := Client(ctx).AuthenticationApi.Validate(ctx).Execute()
+			validation, httpresp, err := Client(ctx).AuthenticationApi.Validate(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			if err == nil {
 				assert.Equal(tc.Valid, validation.GetValid())

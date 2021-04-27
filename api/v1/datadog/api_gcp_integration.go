@@ -24,39 +24,31 @@ var (
 // GCPIntegrationApiService GCPIntegrationApi service
 type GCPIntegrationApiService service
 
-type ApiCreateGCPIntegrationRequest struct {
+type apiCreateGCPIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *GCPIntegrationApiService
 	body       *GCPAccount
 }
 
-func (r ApiCreateGCPIntegrationRequest) Body(body GCPAccount) ApiCreateGCPIntegrationRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Response, error) {
-	return r.ApiService.CreateGCPIntegrationExecute(r)
-}
-
 /*
  * CreateGCPIntegration Create a GCP integration
  * Create a Datadog-GCP integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateGCPIntegrationRequest
  */
-func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context) ApiCreateGCPIntegrationRequest {
-	return ApiCreateGCPIntegrationRequest{
+func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
+	req := apiCreateGCPIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createGCPIntegrationExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return interface{}
  */
-func (a *GCPIntegrationApiService) CreateGCPIntegrationExecute(r ApiCreateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
+func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -187,39 +179,31 @@ func (a *GCPIntegrationApiService) CreateGCPIntegrationExecute(r ApiCreateGCPInt
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteGCPIntegrationRequest struct {
+type apiDeleteGCPIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *GCPIntegrationApiService
 	body       *GCPAccount
 }
 
-func (r ApiDeleteGCPIntegrationRequest) Body(body GCPAccount) ApiDeleteGCPIntegrationRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiDeleteGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Response, error) {
-	return r.ApiService.DeleteGCPIntegrationExecute(r)
-}
-
 /*
  * DeleteGCPIntegration Delete a GCP integration
  * Delete a given Datadog-GCP integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiDeleteGCPIntegrationRequest
  */
-func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context) ApiDeleteGCPIntegrationRequest {
-	return ApiDeleteGCPIntegrationRequest{
+func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
+	req := apiDeleteGCPIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.deleteGCPIntegrationExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return interface{}
  */
-func (a *GCPIntegrationApiService) DeleteGCPIntegrationExecute(r ApiDeleteGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
+func (a *GCPIntegrationApiService) deleteGCPIntegrationExecute(r apiDeleteGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -350,33 +334,29 @@ func (a *GCPIntegrationApiService) DeleteGCPIntegrationExecute(r ApiDeleteGCPInt
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListGCPIntegrationRequest struct {
+type apiListGCPIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *GCPIntegrationApiService
-}
-
-func (r ApiListGCPIntegrationRequest) Execute() ([]GCPAccount, *_nethttp.Response, error) {
-	return r.ApiService.ListGCPIntegrationExecute(r)
 }
 
 /*
  * ListGCPIntegration List all GCP integrations
  * List all Datadog-GCP integrations configured in your Datadog account.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListGCPIntegrationRequest
  */
-func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) ApiListGCPIntegrationRequest {
-	return ApiListGCPIntegrationRequest{
+func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) ([]GCPAccount, *_nethttp.Response, error) {
+	req := apiListGCPIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.listGCPIntegrationExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return []GCPAccount
  */
-func (a *GCPIntegrationApiService) ListGCPIntegrationExecute(r ApiListGCPIntegrationRequest) ([]GCPAccount, *_nethttp.Response, error) {
+func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegrationRequest) ([]GCPAccount, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -502,19 +482,10 @@ func (a *GCPIntegrationApiService) ListGCPIntegrationExecute(r ApiListGCPIntegra
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateGCPIntegrationRequest struct {
+type apiUpdateGCPIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *GCPIntegrationApiService
 	body       *GCPAccount
-}
-
-func (r ApiUpdateGCPIntegrationRequest) Body(body GCPAccount) ApiUpdateGCPIntegrationRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Response, error) {
-	return r.ApiService.UpdateGCPIntegrationExecute(r)
 }
 
 /*
@@ -523,21 +494,22 @@ func (r ApiUpdateGCPIntegrationRequest) Execute() (interface{}, *_nethttp.Respon
 Requires a `project_id` and `client_email`, however these fields cannot be updated.
 If you need to update these fields, delete and use the create (`POST`) endpoint.
 The unspecified fields will keep their original values.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiUpdateGCPIntegrationRequest
 */
-func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context) ApiUpdateGCPIntegrationRequest {
-	return ApiUpdateGCPIntegrationRequest{
+func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
+	req := apiUpdateGCPIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.updateGCPIntegrationExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return interface{}
  */
-func (a *GCPIntegrationApiService) UpdateGCPIntegrationExecute(r ApiUpdateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
+func (a *GCPIntegrationApiService) updateGCPIntegrationExecute(r apiUpdateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}

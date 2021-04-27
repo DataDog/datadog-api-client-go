@@ -24,7 +24,7 @@ func TestTelemetryHeaders(t *testing.T) {
 		Reply(299)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).DashboardListsApi.GetDashboardListItems(ctx, 1234).Execute()
+	_, httpresp, err := Client(ctx).DashboardListsApi.GetDashboardListItems(ctx, 1234)
 	assert.Nil(err)
 	assert.Equal(299, httpresp.StatusCode)
 }

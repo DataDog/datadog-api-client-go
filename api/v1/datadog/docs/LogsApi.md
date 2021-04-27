@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## ListLogs
 
-> LogsListResponse ListLogs(ctx).Body(body).Execute()
+> LogsListResponse ListLogs(ctx, body)
 
 Search logs
 
@@ -39,7 +39,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.ListLogs(ctx).Body(body).Execute()
+    resp, r, err := apiClient.LogsApi.ListLogs(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,18 +50,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListLogsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsListRequest**](LogsListRequest.md) | Logs filter | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**LogsListRequest**](LogsListRequest.md) | Logs filter | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## SubmitLog
 
-> interface{} SubmitLog(ctx).Body(body).ContentEncoding(contentEncoding).Ddtags(ddtags).Execute()
+> interface{} SubmitLog(ctx, body, datadog.SubmitLogOptionalParameters{})
 
 Send logs
 
@@ -108,11 +108,15 @@ func main() {
     body := []datadog.HTTPLogItem{*datadog.NewHTTPLogItem()} // []HTTPLogItem | Log to send (JSON format).
     contentEncoding := datadog.ContentEncoding("gzip") // ContentEncoding | HTTP header used to compress the media-type. (optional)
     ddtags := "env:prod,user:my-user" // string | Log tags can be passed as query parameters with `text/plain` content type. (optional)
+    optionalParams := datadog.SubmitLogOptionalParameters{
+        ContentEncoding: &contentEncoding,
+        Ddtags: &ddtags,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.SubmitLog(ctx).Body(body).ContentEncoding(contentEncoding).Ddtags(ddtags).Execute()
+    resp, r, err := apiClient.LogsApi.SubmitLog(ctx, body, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.SubmitLog``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,20 +127,24 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSubmitLogRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**[]HTTPLogItem**](HTTPLogItem.md) | Log to send (JSON format). | 
- **contentEncoding** | [**ContentEncoding**](ContentEncoding.md) | HTTP header used to compress the media-type. | 
- **ddtags** | **string** | Log tags can be passed as query parameters with &#x60;text/plain&#x60; content type. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**[]HTTPLogItem**](HTTPLogItem.md) | Log to send (JSON format). | 
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a SubmitLogOptionalParameters struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**contentEncoding** | [**ContentEncoding**](ContentEncoding.md) | HTTP header used to compress the media-type. | 
+**ddtags** | **string** | Log tags can be passed as query parameters with &#x60;text/plain&#x60; content type. | 
 
 ### Return type
 
