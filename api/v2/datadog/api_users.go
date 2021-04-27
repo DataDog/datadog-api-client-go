@@ -25,39 +25,31 @@ var (
 // UsersApiService UsersApi service
 type UsersApiService service
 
-type ApiCreateUserRequest struct {
+type apiCreateUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	body       *UserCreateRequest
 }
 
-func (r ApiCreateUserRequest) Body(body UserCreateRequest) ApiCreateUserRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
-	return r.ApiService.CreateUserExecute(r)
-}
-
 /*
  * CreateUser Create a user
  * Create a user for your organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateUserRequest
  */
-func (a *UsersApiService) CreateUser(ctx _context.Context) ApiCreateUserRequest {
-	return ApiCreateUserRequest{
+func (a *UsersApiService) CreateUser(ctx _context.Context, body UserCreateRequest) (UserResponse, *_nethttp.Response, error) {
+	req := apiCreateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createUserExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UserResponse
  */
-func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -188,36 +180,31 @@ func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (UserRespons
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDisableUserRequest struct {
+type apiDisableUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	userId     string
-}
-
-func (r ApiDisableUserRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DisableUserExecute(r)
 }
 
 /*
  * DisableUser Disable a user
  * Disable a user. Can only be used with an application key belonging
 to an administrator user.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userId The ID of the user.
- * @return ApiDisableUserRequest
 */
-func (a *UsersApiService) DisableUser(ctx _context.Context, userId string) ApiDisableUserRequest {
-	return ApiDisableUserRequest{
+func (a *UsersApiService) DisableUser(ctx _context.Context, userId string) (*_nethttp.Response, error) {
+	req := apiDisableUserRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userId:     userId,
 	}
+
+	return req.ApiService.disableUserExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *UsersApiService) DisableUserExecute(r ApiDisableUserRequest) (*_nethttp.Response, error) {
+func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -334,36 +321,31 @@ func (a *UsersApiService) DisableUserExecute(r ApiDisableUserRequest) (*_nethttp
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetInvitationRequest struct {
+type apiGetInvitationRequest struct {
 	ctx                _context.Context
 	ApiService         *UsersApiService
 	userInvitationUuid string
 }
 
-func (r ApiGetInvitationRequest) Execute() (UserInvitationResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetInvitationExecute(r)
-}
-
 /*
  * GetInvitation Get a user invitation
  * Returns a single user invitation by its UUID.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userInvitationUuid The UUID of the user invitation.
- * @return ApiGetInvitationRequest
  */
-func (a *UsersApiService) GetInvitation(ctx _context.Context, userInvitationUuid string) ApiGetInvitationRequest {
-	return ApiGetInvitationRequest{
+func (a *UsersApiService) GetInvitation(ctx _context.Context, userInvitationUuid string) (UserInvitationResponse, *_nethttp.Response, error) {
+	req := apiGetInvitationRequest{
 		ApiService:         a,
 		ctx:                ctx,
 		userInvitationUuid: userInvitationUuid,
 	}
+
+	return req.ApiService.getInvitationExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UserInvitationResponse
  */
-func (a *UsersApiService) GetInvitationExecute(r ApiGetInvitationRequest) (UserInvitationResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) getInvitationExecute(r apiGetInvitationRequest) (UserInvitationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -490,36 +472,31 @@ func (a *UsersApiService) GetInvitationExecute(r ApiGetInvitationRequest) (UserI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetUserRequest struct {
+type apiGetUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	userId     string
 }
 
-func (r ApiGetUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetUserExecute(r)
-}
-
 /*
  * GetUser Get user details
  * Get a user in the organization specified by the user’s `user_id`.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userId The ID of the user.
- * @return ApiGetUserRequest
  */
-func (a *UsersApiService) GetUser(ctx _context.Context, userId string) ApiGetUserRequest {
-	return ApiGetUserRequest{
+func (a *UsersApiService) GetUser(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
+	req := apiGetUserRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userId:     userId,
 	}
+
+	return req.ApiService.getUserExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UserResponse
  */
-func (a *UsersApiService) GetUserExecute(r ApiGetUserRequest) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -646,37 +623,32 @@ func (a *UsersApiService) GetUserExecute(r ApiGetUserRequest) (UserResponse, *_n
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListUserOrganizationsRequest struct {
+type apiListUserOrganizationsRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	userId     string
-}
-
-func (r ApiListUserOrganizationsRequest) Execute() (UserResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListUserOrganizationsExecute(r)
 }
 
 /*
  * ListUserOrganizations Get a user organization
  * Get a user organization. Returns the user information and all organizations
 joined by this user.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userId The ID of the user.
- * @return ApiListUserOrganizationsRequest
 */
-func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId string) ApiListUserOrganizationsRequest {
-	return ApiListUserOrganizationsRequest{
+func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
+	req := apiListUserOrganizationsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userId:     userId,
 	}
+
+	return req.ApiService.listUserOrganizationsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UserResponse
  */
-func (a *UsersApiService) ListUserOrganizationsExecute(r ApiListUserOrganizationsRequest) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) listUserOrganizationsExecute(r apiListUserOrganizationsRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -803,37 +775,32 @@ func (a *UsersApiService) ListUserOrganizationsExecute(r ApiListUserOrganization
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListUserPermissionsRequest struct {
+type apiListUserPermissionsRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	userId     string
-}
-
-func (r ApiListUserPermissionsRequest) Execute() (PermissionsResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListUserPermissionsExecute(r)
 }
 
 /*
  * ListUserPermissions Get a user permissions
  * Get a user permission set. Returns a list of the user’s permissions
 granted by the associated user's roles.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userId The ID of the user.
- * @return ApiListUserPermissionsRequest
 */
-func (a *UsersApiService) ListUserPermissions(ctx _context.Context, userId string) ApiListUserPermissionsRequest {
-	return ApiListUserPermissionsRequest{
+func (a *UsersApiService) ListUserPermissions(ctx _context.Context, userId string) (PermissionsResponse, *_nethttp.Response, error) {
+	req := apiListUserPermissionsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userId:     userId,
 	}
+
+	return req.ApiService.listUserPermissionsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return PermissionsResponse
  */
-func (a *UsersApiService) ListUserPermissionsExecute(r ApiListUserPermissionsRequest) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) listUserPermissionsExecute(r apiListUserPermissionsRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -960,7 +927,7 @@ func (a *UsersApiService) ListUserPermissionsExecute(r ApiListUserPermissionsReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListUsersRequest struct {
+type apiListUsersRequest struct {
 	ctx          _context.Context
 	ApiService   *UsersApiService
 	pageSize     *int64
@@ -971,54 +938,77 @@ type ApiListUsersRequest struct {
 	filterStatus *string
 }
 
-func (r ApiListUsersRequest) PageSize(pageSize int64) ApiListUsersRequest {
-	r.pageSize = &pageSize
-	return r
-}
-func (r ApiListUsersRequest) PageNumber(pageNumber int64) ApiListUsersRequest {
-	r.pageNumber = &pageNumber
-	return r
-}
-func (r ApiListUsersRequest) Sort(sort string) ApiListUsersRequest {
-	r.sort = &sort
-	return r
-}
-func (r ApiListUsersRequest) SortDir(sortDir QuerySortOrder) ApiListUsersRequest {
-	r.sortDir = &sortDir
-	return r
-}
-func (r ApiListUsersRequest) Filter(filter string) ApiListUsersRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiListUsersRequest) FilterStatus(filterStatus string) ApiListUsersRequest {
-	r.filterStatus = &filterStatus
-	return r
+type ListUsersOptionalParameters struct {
+	PageSize     *int64
+	PageNumber   *int64
+	Sort         *string
+	SortDir      *QuerySortOrder
+	Filter       *string
+	FilterStatus *string
 }
 
-func (r ApiListUsersRequest) Execute() (UsersResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListUsersExecute(r)
+func NewListUsersOptionalParameters() *ListUsersOptionalParameters {
+	this := ListUsersOptionalParameters{}
+	return &this
+}
+func (r *ListUsersOptionalParameters) WithPageSize(pageSize int64) *ListUsersOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+func (r *ListUsersOptionalParameters) WithPageNumber(pageNumber int64) *ListUsersOptionalParameters {
+	r.PageNumber = &pageNumber
+	return r
+}
+func (r *ListUsersOptionalParameters) WithSort(sort string) *ListUsersOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+func (r *ListUsersOptionalParameters) WithSortDir(sortDir QuerySortOrder) *ListUsersOptionalParameters {
+	r.SortDir = &sortDir
+	return r
+}
+func (r *ListUsersOptionalParameters) WithFilter(filter string) *ListUsersOptionalParameters {
+	r.Filter = &filter
+	return r
+}
+func (r *ListUsersOptionalParameters) WithFilterStatus(filterStatus string) *ListUsersOptionalParameters {
+	r.FilterStatus = &filterStatus
+	return r
 }
 
 /*
  * ListUsers List all users
  * Get the list of all users in the organization. This list includes
 all users even if they are deactivated or unverified.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListUsersRequest
 */
-func (a *UsersApiService) ListUsers(ctx _context.Context) ApiListUsersRequest {
-	return ApiListUsersRequest{
+func (a *UsersApiService) ListUsers(ctx _context.Context, o ...ListUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
+	req := apiListUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue UsersResponse
+		return localVarReturnValue, nil, reportError("only one argument of type ListUsersOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.pageSize = o[0].PageSize
+		req.pageNumber = o[0].PageNumber
+		req.sort = o[0].Sort
+		req.sortDir = o[0].SortDir
+		req.filter = o[0].Filter
+		req.filterStatus = o[0].FilterStatus
+	}
+
+	return req.ApiService.listUsersExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UsersResponse
  */
-func (a *UsersApiService) ListUsersExecute(r ApiListUsersRequest) (UsersResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1162,39 +1152,31 @@ func (a *UsersApiService) ListUsersExecute(r ApiListUsersRequest) (UsersResponse
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSendInvitationsRequest struct {
+type apiSendInvitationsRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	body       *UserInvitationsRequest
 }
 
-func (r ApiSendInvitationsRequest) Body(body UserInvitationsRequest) ApiSendInvitationsRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSendInvitationsRequest) Execute() (UserInvitationsResponse, *_nethttp.Response, error) {
-	return r.ApiService.SendInvitationsExecute(r)
-}
-
 /*
  * SendInvitations Send invitation emails
  * Sends emails to one or more users inviting them to join the organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiSendInvitationsRequest
  */
-func (a *UsersApiService) SendInvitations(ctx _context.Context) ApiSendInvitationsRequest {
-	return ApiSendInvitationsRequest{
+func (a *UsersApiService) SendInvitations(ctx _context.Context, body UserInvitationsRequest) (UserInvitationsResponse, *_nethttp.Response, error) {
+	req := apiSendInvitationsRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.sendInvitationsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UserInvitationsResponse
  */
-func (a *UsersApiService) SendInvitationsExecute(r ApiSendInvitationsRequest) (UserInvitationsResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) sendInvitationsExecute(r apiSendInvitationsRequest) (UserInvitationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -1325,43 +1307,34 @@ func (a *UsersApiService) SendInvitationsExecute(r ApiSendInvitationsRequest) (U
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateUserRequest struct {
+type apiUpdateUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	userId     string
 	body       *UserUpdateRequest
 }
 
-func (r ApiUpdateUserRequest) Body(body UserUpdateRequest) ApiUpdateUserRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
-	return r.ApiService.UpdateUserExecute(r)
-}
-
 /*
  * UpdateUser Update a user
  * Edit a user. Can only be used with an application key belonging
 to an administrator user.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userId The ID of the user.
- * @return ApiUpdateUserRequest
 */
-func (a *UsersApiService) UpdateUser(ctx _context.Context, userId string) ApiUpdateUserRequest {
-	return ApiUpdateUserRequest{
+func (a *UsersApiService) UpdateUser(ctx _context.Context, userId string, body UserUpdateRequest) (UserResponse, *_nethttp.Response, error) {
+	req := apiUpdateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userId:     userId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateUserExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UserResponse
  */
-func (a *UsersApiService) UpdateUserExecute(r ApiUpdateUserRequest) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) updateUserExecute(r apiUpdateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}

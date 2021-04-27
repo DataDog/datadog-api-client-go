@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateDashboard
 
-> Dashboard CreateDashboard(ctx).Body(body).Execute()
+> Dashboard CreateDashboard(ctx, body)
 
 Create a new dashboard
 
@@ -41,7 +41,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx).Body(body).Execute()
+    resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,18 +52,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateDashboardRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Dashboard**](Dashboard.md) | Create a dashboard request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**Dashboard**](Dashboard.md) | Create a dashboard request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDashboard
 
-> DashboardDeleteResponse DeleteDashboard(ctx, dashboardId).Execute()
+> DashboardDeleteResponse DeleteDashboard(ctx, dashboardId)
 
 Delete a dashboard
 
@@ -112,7 +112,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardsApi.DeleteDashboard(ctx, dashboardId).Execute()
+    resp, r, err := apiClient.DashboardsApi.DeleteDashboard(ctx, dashboardId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.DeleteDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,7 +123,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -131,13 +131,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **dashboardId** | **string** | The ID of the dashboard. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteDashboardRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -160,7 +156,7 @@ Name | Type | Description  | Notes
 
 ## GetDashboard
 
-> Dashboard GetDashboard(ctx, dashboardId).Execute()
+> Dashboard GetDashboard(ctx, dashboardId)
 
 Get a dashboard
 
@@ -187,7 +183,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardsApi.GetDashboard(ctx, dashboardId).Execute()
+    resp, r, err := apiClient.DashboardsApi.GetDashboard(ctx, dashboardId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.GetDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,7 +194,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -206,13 +202,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **dashboardId** | **string** | The ID of the dashboard. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetDashboardRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -235,7 +227,7 @@ Name | Type | Description  | Notes
 
 ## ListDashboards
 
-> DashboardSummary ListDashboards(ctx).FilterShared(filterShared).Execute()
+> DashboardSummary ListDashboards(ctx, datadog.ListDashboardsOptionalParameters{})
 
 Get all dashboards
 
@@ -258,11 +250,14 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     filterShared := true // bool | When `true`, this query only returns shared custom created or cloned dashboards. (optional)
+    optionalParams := datadog.ListDashboardsOptionalParameters{
+        FilterShared: &filterShared,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardsApi.ListDashboards(ctx).FilterShared(filterShared).Execute()
+    resp, r, err := apiClient.DashboardsApi.ListDashboards(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.ListDashboards``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -273,18 +268,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListDashboardsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListDashboardsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filterShared** | **bool** | When &#x60;true&#x60;, this query only returns shared custom created or cloned dashboards. | 
+**filterShared** | **bool** | When &#x60;true&#x60;, this query only returns shared custom created or cloned dashboards. | 
 
 ### Return type
 
@@ -306,7 +302,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDashboard
 
-> Dashboard UpdateDashboard(ctx, dashboardId).Body(body).Execute()
+> Dashboard UpdateDashboard(ctx, dashboardId, body)
 
 Update a dashboard
 
@@ -334,7 +330,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardsApi.UpdateDashboard(ctx, dashboardId).Body(body).Execute()
+    resp, r, err := apiClient.DashboardsApi.UpdateDashboard(ctx, dashboardId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.UpdateDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -345,23 +341,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **dashboardId** | **string** | The ID of the dashboard. | 
+**body** | [**Dashboard**](Dashboard.md) | Update Dashboard request body. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateDashboardRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**Dashboard**](Dashboard.md) | Update Dashboard request body. | 
 
 ### Return type
 

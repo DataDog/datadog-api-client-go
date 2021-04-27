@@ -27,39 +27,31 @@ var (
 // IncidentTeamsApiService IncidentTeamsApi service
 type IncidentTeamsApiService service
 
-type ApiCreateIncidentTeamRequest struct {
+type apiCreateIncidentTeamRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
 	body       *IncidentTeamCreateRequest
 }
 
-func (r ApiCreateIncidentTeamRequest) Body(body IncidentTeamCreateRequest) ApiCreateIncidentTeamRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateIncidentTeamRequest) Execute() (IncidentTeamResponse, *_nethttp.Response, error) {
-	return r.ApiService.CreateIncidentTeamExecute(r)
-}
-
 /*
  * CreateIncidentTeam Create a new incident team
  * Creates a new incident team.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateIncidentTeamRequest
  */
-func (a *IncidentTeamsApiService) CreateIncidentTeam(ctx _context.Context) ApiCreateIncidentTeamRequest {
-	return ApiCreateIncidentTeamRequest{
+func (a *IncidentTeamsApiService) CreateIncidentTeam(ctx _context.Context, body IncidentTeamCreateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
+	req := apiCreateIncidentTeamRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createIncidentTeamExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IncidentTeamResponse
  */
-func (a *IncidentTeamsApiService) CreateIncidentTeamExecute(r ApiCreateIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
+func (a *IncidentTeamsApiService) createIncidentTeamExecute(r apiCreateIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -217,35 +209,30 @@ func (a *IncidentTeamsApiService) CreateIncidentTeamExecute(r ApiCreateIncidentT
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteIncidentTeamRequest struct {
+type apiDeleteIncidentTeamRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
 	teamId     string
 }
 
-func (r ApiDeleteIncidentTeamRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteIncidentTeamExecute(r)
-}
-
 /*
  * DeleteIncidentTeam Delete an existing incident team
  * Deletes an existing incident team.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param teamId The ID of the incident team.
- * @return ApiDeleteIncidentTeamRequest
  */
-func (a *IncidentTeamsApiService) DeleteIncidentTeam(ctx _context.Context, teamId string) ApiDeleteIncidentTeamRequest {
-	return ApiDeleteIncidentTeamRequest{
+func (a *IncidentTeamsApiService) DeleteIncidentTeam(ctx _context.Context, teamId string) (*_nethttp.Response, error) {
+	req := apiDeleteIncidentTeamRequest{
 		ApiService: a,
 		ctx:        ctx,
 		teamId:     teamId,
 	}
+
+	return req.ApiService.deleteIncidentTeamExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *IncidentTeamsApiService) DeleteIncidentTeamExecute(r ApiDeleteIncidentTeamRequest) (*_nethttp.Response, error) {
+func (a *IncidentTeamsApiService) deleteIncidentTeamExecute(r apiDeleteIncidentTeamRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -389,43 +376,55 @@ func (a *IncidentTeamsApiService) DeleteIncidentTeamExecute(r ApiDeleteIncidentT
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetIncidentTeamRequest struct {
+type apiGetIncidentTeamRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
 	teamId     string
 	include    *IncidentRelatedObject
 }
 
-func (r ApiGetIncidentTeamRequest) Include(include IncidentRelatedObject) ApiGetIncidentTeamRequest {
-	r.include = &include
-	return r
+type GetIncidentTeamOptionalParameters struct {
+	Include *IncidentRelatedObject
 }
 
-func (r ApiGetIncidentTeamRequest) Execute() (IncidentTeamResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetIncidentTeamExecute(r)
+func NewGetIncidentTeamOptionalParameters() *GetIncidentTeamOptionalParameters {
+	this := GetIncidentTeamOptionalParameters{}
+	return &this
+}
+func (r *GetIncidentTeamOptionalParameters) WithInclude(include IncidentRelatedObject) *GetIncidentTeamOptionalParameters {
+	r.Include = &include
+	return r
 }
 
 /*
  * GetIncidentTeam Get details of an incident team
  * Get details of an incident team. If the `include[users]` query parameter is provided,
 the included attribute will contain the users related to these incident teams.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param teamId The ID of the incident team.
- * @return ApiGetIncidentTeamRequest
 */
-func (a *IncidentTeamsApiService) GetIncidentTeam(ctx _context.Context, teamId string) ApiGetIncidentTeamRequest {
-	return ApiGetIncidentTeamRequest{
+func (a *IncidentTeamsApiService) GetIncidentTeam(ctx _context.Context, teamId string, o ...GetIncidentTeamOptionalParameters) (IncidentTeamResponse, *_nethttp.Response, error) {
+	req := apiGetIncidentTeamRequest{
 		ApiService: a,
 		ctx:        ctx,
 		teamId:     teamId,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue IncidentTeamResponse
+		return localVarReturnValue, nil, reportError("only one argument of type GetIncidentTeamOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.include = o[0].Include
+	}
+
+	return req.ApiService.getIncidentTeamExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IncidentTeamResponse
  */
-func (a *IncidentTeamsApiService) GetIncidentTeamExecute(r ApiGetIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
+func (a *IncidentTeamsApiService) getIncidentTeamExecute(r apiGetIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -582,7 +581,7 @@ func (a *IncidentTeamsApiService) GetIncidentTeamExecute(r ApiGetIncidentTeamReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListIncidentTeamsRequest struct {
+type apiListIncidentTeamsRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
 	include    *IncidentRelatedObject
@@ -591,45 +590,64 @@ type ApiListIncidentTeamsRequest struct {
 	filter     *string
 }
 
-func (r ApiListIncidentTeamsRequest) Include(include IncidentRelatedObject) ApiListIncidentTeamsRequest {
-	r.include = &include
-	return r
-}
-func (r ApiListIncidentTeamsRequest) PageSize(pageSize int64) ApiListIncidentTeamsRequest {
-	r.pageSize = &pageSize
-	return r
-}
-func (r ApiListIncidentTeamsRequest) PageOffset(pageOffset int64) ApiListIncidentTeamsRequest {
-	r.pageOffset = &pageOffset
-	return r
-}
-func (r ApiListIncidentTeamsRequest) Filter(filter string) ApiListIncidentTeamsRequest {
-	r.filter = &filter
-	return r
+type ListIncidentTeamsOptionalParameters struct {
+	Include    *IncidentRelatedObject
+	PageSize   *int64
+	PageOffset *int64
+	Filter     *string
 }
 
-func (r ApiListIncidentTeamsRequest) Execute() (IncidentTeamsResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListIncidentTeamsExecute(r)
+func NewListIncidentTeamsOptionalParameters() *ListIncidentTeamsOptionalParameters {
+	this := ListIncidentTeamsOptionalParameters{}
+	return &this
+}
+func (r *ListIncidentTeamsOptionalParameters) WithInclude(include IncidentRelatedObject) *ListIncidentTeamsOptionalParameters {
+	r.Include = &include
+	return r
+}
+func (r *ListIncidentTeamsOptionalParameters) WithPageSize(pageSize int64) *ListIncidentTeamsOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+func (r *ListIncidentTeamsOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentTeamsOptionalParameters {
+	r.PageOffset = &pageOffset
+	return r
+}
+func (r *ListIncidentTeamsOptionalParameters) WithFilter(filter string) *ListIncidentTeamsOptionalParameters {
+	r.Filter = &filter
+	return r
 }
 
 /*
  * ListIncidentTeams Get a list of all incident teams
  * Get all incident teams for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident teams.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListIncidentTeamsRequest
  */
-func (a *IncidentTeamsApiService) ListIncidentTeams(ctx _context.Context) ApiListIncidentTeamsRequest {
-	return ApiListIncidentTeamsRequest{
+func (a *IncidentTeamsApiService) ListIncidentTeams(ctx _context.Context, o ...ListIncidentTeamsOptionalParameters) (IncidentTeamsResponse, *_nethttp.Response, error) {
+	req := apiListIncidentTeamsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue IncidentTeamsResponse
+		return localVarReturnValue, nil, reportError("only one argument of type ListIncidentTeamsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.include = o[0].Include
+		req.pageSize = o[0].PageSize
+		req.pageOffset = o[0].PageOffset
+		req.filter = o[0].Filter
+	}
+
+	return req.ApiService.listIncidentTeamsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IncidentTeamsResponse
  */
-func (a *IncidentTeamsApiService) ListIncidentTeamsExecute(r ApiListIncidentTeamsRequest) (IncidentTeamsResponse, *_nethttp.Response, error) {
+func (a *IncidentTeamsApiService) listIncidentTeamsExecute(r apiListIncidentTeamsRequest) (IncidentTeamsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -794,42 +812,33 @@ func (a *IncidentTeamsApiService) ListIncidentTeamsExecute(r ApiListIncidentTeam
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateIncidentTeamRequest struct {
+type apiUpdateIncidentTeamRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
 	teamId     string
 	body       *IncidentTeamUpdateRequest
 }
 
-func (r ApiUpdateIncidentTeamRequest) Body(body IncidentTeamUpdateRequest) ApiUpdateIncidentTeamRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateIncidentTeamRequest) Execute() (IncidentTeamResponse, *_nethttp.Response, error) {
-	return r.ApiService.UpdateIncidentTeamExecute(r)
-}
-
 /*
  * UpdateIncidentTeam Update an existing incident team
  * Updates an existing incident team. Only provide the attributes which should be updated as this request is a partial update.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param teamId The ID of the incident team.
- * @return ApiUpdateIncidentTeamRequest
  */
-func (a *IncidentTeamsApiService) UpdateIncidentTeam(ctx _context.Context, teamId string) ApiUpdateIncidentTeamRequest {
-	return ApiUpdateIncidentTeamRequest{
+func (a *IncidentTeamsApiService) UpdateIncidentTeam(ctx _context.Context, teamId string, body IncidentTeamUpdateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
+	req := apiUpdateIncidentTeamRequest{
 		ApiService: a,
 		ctx:        ctx,
 		teamId:     teamId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateIncidentTeamExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IncidentTeamResponse
  */
-func (a *IncidentTeamsApiService) UpdateIncidentTeamExecute(r ApiUpdateIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
+func (a *IncidentTeamsApiService) updateIncidentTeamExecute(r apiUpdateIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}

@@ -24,19 +24,10 @@ var (
 // ServiceChecksApiService ServiceChecksApi service
 type ServiceChecksApiService service
 
-type ApiSubmitServiceCheckRequest struct {
+type apiSubmitServiceCheckRequest struct {
 	ctx        _context.Context
 	ApiService *ServiceChecksApiService
 	body       *[]ServiceCheck
-}
-
-func (r ApiSubmitServiceCheckRequest) Body(body []ServiceCheck) ApiSubmitServiceCheckRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSubmitServiceCheckRequest) Execute() (IntakePayloadAccepted, *_nethttp.Response, error) {
-	return r.ApiService.SubmitServiceCheckExecute(r)
 }
 
 /*
@@ -44,21 +35,22 @@ func (r ApiSubmitServiceCheckRequest) Execute() (IntakePayloadAccepted, *_nethtt
  * Submit a list of Service Checks.
 
 **Note**: A valid API key is required.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiSubmitServiceCheckRequest
 */
-func (a *ServiceChecksApiService) SubmitServiceCheck(ctx _context.Context) ApiSubmitServiceCheckRequest {
-	return ApiSubmitServiceCheckRequest{
+func (a *ServiceChecksApiService) SubmitServiceCheck(ctx _context.Context, body []ServiceCheck) (IntakePayloadAccepted, *_nethttp.Response, error) {
+	req := apiSubmitServiceCheckRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.submitServiceCheckExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IntakePayloadAccepted
  */
-func (a *ServiceChecksApiService) SubmitServiceCheckExecute(r ApiSubmitServiceCheckRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *ServiceChecksApiService) submitServiceCheckExecute(r apiSubmitServiceCheckRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}

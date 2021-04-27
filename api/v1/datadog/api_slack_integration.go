@@ -25,42 +25,33 @@ var (
 // SlackIntegrationApiService SlackIntegrationApi service
 type SlackIntegrationApiService service
 
-type ApiCreateSlackIntegrationChannelRequest struct {
+type apiCreateSlackIntegrationChannelRequest struct {
 	ctx         _context.Context
 	ApiService  *SlackIntegrationApiService
 	accountName string
 	body        *SlackIntegrationChannel
 }
 
-func (r ApiCreateSlackIntegrationChannelRequest) Body(body SlackIntegrationChannel) ApiCreateSlackIntegrationChannelRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateSlackIntegrationChannelRequest) Execute() (SlackIntegrationChannel, *_nethttp.Response, error) {
-	return r.ApiService.CreateSlackIntegrationChannelExecute(r)
-}
-
 /*
  * CreateSlackIntegrationChannel Create a Slack integration channel
  * Add a channel to your Datadog-Slack integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountName Your Slack account name.
- * @return ApiCreateSlackIntegrationChannelRequest
  */
-func (a *SlackIntegrationApiService) CreateSlackIntegrationChannel(ctx _context.Context, accountName string) ApiCreateSlackIntegrationChannelRequest {
-	return ApiCreateSlackIntegrationChannelRequest{
+func (a *SlackIntegrationApiService) CreateSlackIntegrationChannel(ctx _context.Context, accountName string, body SlackIntegrationChannel) (SlackIntegrationChannel, *_nethttp.Response, error) {
+	req := apiCreateSlackIntegrationChannelRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		accountName: accountName,
+		body:        &body,
 	}
+
+	return req.ApiService.createSlackIntegrationChannelExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SlackIntegrationChannel
  */
-func (a *SlackIntegrationApiService) CreateSlackIntegrationChannelExecute(r ApiCreateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
+func (a *SlackIntegrationApiService) createSlackIntegrationChannelExecute(r apiCreateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -202,39 +193,33 @@ func (a *SlackIntegrationApiService) CreateSlackIntegrationChannelExecute(r ApiC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSlackIntegrationChannelRequest struct {
+type apiGetSlackIntegrationChannelRequest struct {
 	ctx         _context.Context
 	ApiService  *SlackIntegrationApiService
 	accountName string
 	channelName string
 }
 
-func (r ApiGetSlackIntegrationChannelRequest) Execute() (SlackIntegrationChannel, *_nethttp.Response, error) {
-	return r.ApiService.GetSlackIntegrationChannelExecute(r)
-}
-
 /*
  * GetSlackIntegrationChannel Get a Slack integration channel
  * Get a channel configured for your Datadog-Slack integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountName Your Slack account name.
- * @param channelName The name of the Slack channel being operated on.
- * @return ApiGetSlackIntegrationChannelRequest
  */
-func (a *SlackIntegrationApiService) GetSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string) ApiGetSlackIntegrationChannelRequest {
-	return ApiGetSlackIntegrationChannelRequest{
+func (a *SlackIntegrationApiService) GetSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string) (SlackIntegrationChannel, *_nethttp.Response, error) {
+	req := apiGetSlackIntegrationChannelRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		accountName: accountName,
 		channelName: channelName,
 	}
+
+	return req.ApiService.getSlackIntegrationChannelExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SlackIntegrationChannel
  */
-func (a *SlackIntegrationApiService) GetSlackIntegrationChannelExecute(r ApiGetSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
+func (a *SlackIntegrationApiService) getSlackIntegrationChannelExecute(r apiGetSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -372,36 +357,31 @@ func (a *SlackIntegrationApiService) GetSlackIntegrationChannelExecute(r ApiGetS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSlackIntegrationChannelsRequest struct {
+type apiGetSlackIntegrationChannelsRequest struct {
 	ctx         _context.Context
 	ApiService  *SlackIntegrationApiService
 	accountName string
 }
 
-func (r ApiGetSlackIntegrationChannelsRequest) Execute() ([]SlackIntegrationChannel, *_nethttp.Response, error) {
-	return r.ApiService.GetSlackIntegrationChannelsExecute(r)
-}
-
 /*
  * GetSlackIntegrationChannels Get all channels in a Slack integration
  * Get a list of all channels configured for your Datadog-Slack integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountName Your Slack account name.
- * @return ApiGetSlackIntegrationChannelsRequest
  */
-func (a *SlackIntegrationApiService) GetSlackIntegrationChannels(ctx _context.Context, accountName string) ApiGetSlackIntegrationChannelsRequest {
-	return ApiGetSlackIntegrationChannelsRequest{
+func (a *SlackIntegrationApiService) GetSlackIntegrationChannels(ctx _context.Context, accountName string) ([]SlackIntegrationChannel, *_nethttp.Response, error) {
+	req := apiGetSlackIntegrationChannelsRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		accountName: accountName,
 	}
+
+	return req.ApiService.getSlackIntegrationChannelsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return []SlackIntegrationChannel
  */
-func (a *SlackIntegrationApiService) GetSlackIntegrationChannelsExecute(r ApiGetSlackIntegrationChannelsRequest) ([]SlackIntegrationChannel, *_nethttp.Response, error) {
+func (a *SlackIntegrationApiService) getSlackIntegrationChannelsExecute(r apiGetSlackIntegrationChannelsRequest) ([]SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -538,38 +518,32 @@ func (a *SlackIntegrationApiService) GetSlackIntegrationChannelsExecute(r ApiGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiRemoveSlackIntegrationChannelRequest struct {
+type apiRemoveSlackIntegrationChannelRequest struct {
 	ctx         _context.Context
 	ApiService  *SlackIntegrationApiService
 	accountName string
 	channelName string
 }
 
-func (r ApiRemoveSlackIntegrationChannelRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.RemoveSlackIntegrationChannelExecute(r)
-}
-
 /*
  * RemoveSlackIntegrationChannel Remove a Slack integration channel
  * Remove a channel from your Datadog-Slack integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountName Your Slack account name.
- * @param channelName The name of the Slack channel being operated on.
- * @return ApiRemoveSlackIntegrationChannelRequest
  */
-func (a *SlackIntegrationApiService) RemoveSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string) ApiRemoveSlackIntegrationChannelRequest {
-	return ApiRemoveSlackIntegrationChannelRequest{
+func (a *SlackIntegrationApiService) RemoveSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string) (*_nethttp.Response, error) {
+	req := apiRemoveSlackIntegrationChannelRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		accountName: accountName,
 		channelName: channelName,
 	}
+
+	return req.ApiService.removeSlackIntegrationChannelExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *SlackIntegrationApiService) RemoveSlackIntegrationChannelExecute(r ApiRemoveSlackIntegrationChannelRequest) (*_nethttp.Response, error) {
+func (a *SlackIntegrationApiService) removeSlackIntegrationChannelExecute(r apiRemoveSlackIntegrationChannelRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -697,7 +671,7 @@ func (a *SlackIntegrationApiService) RemoveSlackIntegrationChannelExecute(r ApiR
 	return localVarHTTPResponse, nil
 }
 
-type ApiUpdateSlackIntegrationChannelRequest struct {
+type apiUpdateSlackIntegrationChannelRequest struct {
 	ctx         _context.Context
 	ApiService  *SlackIntegrationApiService
 	accountName string
@@ -705,37 +679,27 @@ type ApiUpdateSlackIntegrationChannelRequest struct {
 	body        *SlackIntegrationChannel
 }
 
-func (r ApiUpdateSlackIntegrationChannelRequest) Body(body SlackIntegrationChannel) ApiUpdateSlackIntegrationChannelRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateSlackIntegrationChannelRequest) Execute() (SlackIntegrationChannel, *_nethttp.Response, error) {
-	return r.ApiService.UpdateSlackIntegrationChannelExecute(r)
-}
-
 /*
  * UpdateSlackIntegrationChannel Update a Slack integration channel
  * Update a channel used in your Datadog-Slack integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountName Your Slack account name.
- * @param channelName The name of the Slack channel being operated on.
- * @return ApiUpdateSlackIntegrationChannelRequest
  */
-func (a *SlackIntegrationApiService) UpdateSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string) ApiUpdateSlackIntegrationChannelRequest {
-	return ApiUpdateSlackIntegrationChannelRequest{
+func (a *SlackIntegrationApiService) UpdateSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string, body SlackIntegrationChannel) (SlackIntegrationChannel, *_nethttp.Response, error) {
+	req := apiUpdateSlackIntegrationChannelRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		accountName: accountName,
 		channelName: channelName,
+		body:        &body,
 	}
+
+	return req.ApiService.updateSlackIntegrationChannelExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SlackIntegrationChannel
  */
-func (a *SlackIntegrationApiService) UpdateSlackIntegrationChannelExecute(r ApiUpdateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
+func (a *SlackIntegrationApiService) updateSlackIntegrationChannelExecute(r apiUpdateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}

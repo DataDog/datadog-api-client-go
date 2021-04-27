@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## AggregateLogs
 
-> LogsAggregateResponse AggregateLogs(ctx).Body(body).Execute()
+> LogsAggregateResponse AggregateLogs(ctx, body)
 
 Aggregate events
 
@@ -39,7 +39,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.AggregateLogs(ctx).Body(body).Execute()
+    resp, r, err := apiClient.LogsApi.AggregateLogs(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.AggregateLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,18 +50,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAggregateLogsRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsAggregateRequest**](LogsAggregateRequest.md) |  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**LogsAggregateRequest**](LogsAggregateRequest.md) |  | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## ListLogs
 
-> LogsListResponse ListLogs(ctx).Body(body).Execute()
+> LogsListResponse ListLogs(ctx, datadog.ListLogsOptionalParameters{})
 
 Search logs
 
@@ -106,11 +106,14 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewLogsListRequest() // LogsListRequest |  (optional)
+    optionalParams := datadog.ListLogsOptionalParameters{
+        Body: &body,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.ListLogs(ctx).Body(body).Execute()
+    resp, r, err := apiClient.LogsApi.ListLogs(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,18 +124,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListLogsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListLogsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsListRequest**](LogsListRequest.md) |  | 
+**body** | [**LogsListRequest**](LogsListRequest.md) |  | 
 
 ### Return type
 
@@ -154,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## ListLogsGet
 
-> LogsListResponse ListLogsGet(ctx).FilterQuery(filterQuery).FilterIndex(filterIndex).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
+> LogsListResponse ListLogsGet(ctx, datadog.ListLogsGetOptionalParameters{})
 
 Get a list of logs
 
@@ -184,11 +188,20 @@ func main() {
     sort := datadog.LogsSort("timestamp") // LogsSort | Order of logs in results. (optional)
     pageCursor := "eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==" // string | List following results with a cursor provided in the previous query. (optional)
     pageLimit := int32(25) // int32 | Maximum number of logs in the response. (optional) (default to 10)
+    optionalParams := datadog.ListLogsGetOptionalParameters{
+        FilterQuery: &filterQuery,
+        FilterIndex: &filterIndex,
+        FilterFrom: &filterFrom,
+        FilterTo: &filterTo,
+        Sort: &sort,
+        PageCursor: &pageCursor,
+        PageLimit: &pageLimit,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.ListLogsGet(ctx).FilterQuery(filterQuery).FilterIndex(filterIndex).FilterFrom(filterFrom).FilterTo(filterTo).Sort(sort).PageCursor(pageCursor).PageLimit(pageLimit).Execute()
+    resp, r, err := apiClient.LogsApi.ListLogsGet(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -199,24 +212,25 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListLogsGetRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListLogsGetOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filterQuery** | **string** | Search query following logs syntax. | 
- **filterIndex** | **string** | For customers with multiple indexes, the indexes to search Defaults to &#39;*&#39; which means all indexes | 
- **filterFrom** | **time.Time** | Minimum timestamp for requested logs. | 
- **filterTo** | **time.Time** | Maximum timestamp for requested logs. | 
- **sort** | [**LogsSort**](LogsSort.md) | Order of logs in results. | 
- **pageCursor** | **string** | List following results with a cursor provided in the previous query. | 
- **pageLimit** | **int32** | Maximum number of logs in the response. | [default to 10]
+**filterQuery** | **string** | Search query following logs syntax. | 
+**filterIndex** | **string** | For customers with multiple indexes, the indexes to search Defaults to &#39;*&#39; which means all indexes | 
+**filterFrom** | **time.Time** | Minimum timestamp for requested logs. | 
+**filterTo** | **time.Time** | Maximum timestamp for requested logs. | 
+**sort** | [**LogsSort**](LogsSort.md) | Order of logs in results. | 
+**pageCursor** | **string** | List following results with a cursor provided in the previous query. | 
+**pageLimit** | **int32** | Maximum number of logs in the response. | [default to 10]
 
 ### Return type
 

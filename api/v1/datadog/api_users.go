@@ -25,19 +25,10 @@ var (
 // UsersApiService UsersApi service
 type UsersApiService service
 
-type ApiCreateUserRequest struct {
+type apiCreateUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	body       *User
-}
-
-func (r ApiCreateUserRequest) Body(body User) ApiCreateUserRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
-	return r.ApiService.CreateUserExecute(r)
 }
 
 /*
@@ -46,21 +37,22 @@ func (r ApiCreateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
 
 **Note**: Users can only be created with the admin access role
 if application keys belong to administrators.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateUserRequest
 */
-func (a *UsersApiService) CreateUser(ctx _context.Context) ApiCreateUserRequest {
-	return ApiCreateUserRequest{
+func (a *UsersApiService) CreateUser(ctx _context.Context, body User) (UserResponse, *_nethttp.Response, error) {
+	req := apiCreateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createUserExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UserResponse
  */
-func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -201,14 +193,10 @@ func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (UserRespons
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDisableUserRequest struct {
+type apiDisableUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
-}
-
-func (r ApiDisableUserRequest) Execute() (UserDisableResponse, *_nethttp.Response, error) {
-	return r.ApiService.DisableUserExecute(r)
 }
 
 /*
@@ -217,23 +205,22 @@ func (r ApiDisableUserRequest) Execute() (UserDisableResponse, *_nethttp.Respons
 
 **Note**: This endpoint can only be used with application keys belonging to
 administrators.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userHandle The handle of the user.
- * @return ApiDisableUserRequest
 */
-func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) ApiDisableUserRequest {
-	return ApiDisableUserRequest{
+func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (UserDisableResponse, *_nethttp.Response, error) {
+	req := apiDisableUserRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userHandle: userHandle,
 	}
+
+	return req.ApiService.disableUserExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UserDisableResponse
  */
-func (a *UsersApiService) DisableUserExecute(r ApiDisableUserRequest) (UserDisableResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (UserDisableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -370,36 +357,31 @@ func (a *UsersApiService) DisableUserExecute(r ApiDisableUserRequest) (UserDisab
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetUserRequest struct {
+type apiGetUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
 }
 
-func (r ApiGetUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetUserExecute(r)
-}
-
 /*
  * GetUser Get user details
  * Get a user's details.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userHandle The ID of the user.
- * @return ApiGetUserRequest
  */
-func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) ApiGetUserRequest {
-	return ApiGetUserRequest{
+func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (UserResponse, *_nethttp.Response, error) {
+	req := apiGetUserRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userHandle: userHandle,
 	}
+
+	return req.ApiService.getUserExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UserResponse
  */
-func (a *UsersApiService) GetUserExecute(r ApiGetUserRequest) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -526,33 +508,29 @@ func (a *UsersApiService) GetUserExecute(r ApiGetUserRequest) (UserResponse, *_n
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListUsersRequest struct {
+type apiListUsersRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
-}
-
-func (r ApiListUsersRequest) Execute() (UserListResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListUsersExecute(r)
 }
 
 /*
  * ListUsers List all users
  * List all users for your organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListUsersRequest
  */
-func (a *UsersApiService) ListUsers(ctx _context.Context) ApiListUsersRequest {
-	return ApiListUsersRequest{
+func (a *UsersApiService) ListUsers(ctx _context.Context) (UserListResponse, *_nethttp.Response, error) {
+	req := apiListUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.listUsersExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UserListResponse
  */
-func (a *UsersApiService) ListUsersExecute(r ApiListUsersRequest) (UserListResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UserListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -668,20 +646,11 @@ func (a *UsersApiService) ListUsersExecute(r ApiListUsersRequest) (UserListRespo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateUserRequest struct {
+type apiUpdateUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
 	body       *User
-}
-
-func (r ApiUpdateUserRequest) Body(body User) ApiUpdateUserRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateUserRequest) Execute() (UserResponse, *_nethttp.Response, error) {
-	return r.ApiService.UpdateUserExecute(r)
 }
 
 /*
@@ -689,23 +658,23 @@ func (r ApiUpdateUserRequest) Execute() (UserResponse, *_nethttp.Response, error
  * Update a user information.
 
 **Note**: It can only be used with application keys belonging to administrators.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userHandle The ID of the user.
- * @return ApiUpdateUserRequest
 */
-func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string) ApiUpdateUserRequest {
-	return ApiUpdateUserRequest{
+func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, body User) (UserResponse, *_nethttp.Response, error) {
+	req := apiUpdateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userHandle: userHandle,
+		body:       &body,
 	}
+
+	return req.ApiService.updateUserExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return UserResponse
  */
-func (a *UsersApiService) UpdateUserExecute(r ApiUpdateUserRequest) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) updateUserExecute(r apiUpdateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}

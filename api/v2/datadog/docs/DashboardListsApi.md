@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateDashboardListItems
 
-> DashboardListAddItemsResponse CreateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
+> DashboardListAddItemsResponse CreateDashboardListItems(ctx, dashboardListId, body)
 
 Add Items to a Dashboard List
 
@@ -41,7 +41,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardListsApi.CreateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
+    resp, r, err := apiClient.DashboardListsApi.CreateDashboardListItems(ctx, dashboardListId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,23 +52,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **dashboardListId** | **int64** | ID of the dashboard list to add items to. | 
+**body** | [**DashboardListAddItemsRequest**](DashboardListAddItemsRequest.md) | Dashboards to add to the dashboard list. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiCreateDashboardListItemsRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**DashboardListAddItemsRequest**](DashboardListAddItemsRequest.md) | Dashboards to add to the dashboard list. | 
 
 ### Return type
 
@@ -90,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDashboardListItems
 
-> DashboardListDeleteItemsResponse DeleteDashboardListItems(ctx, dashboardListId).Body(body).Execute()
+> DashboardListDeleteItemsResponse DeleteDashboardListItems(ctx, dashboardListId, body)
 
 Delete items from a dashboard list
 
@@ -118,7 +114,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardListsApi.DeleteDashboardListItems(ctx, dashboardListId).Body(body).Execute()
+    resp, r, err := apiClient.DashboardListsApi.DeleteDashboardListItems(ctx, dashboardListId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.DeleteDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -129,23 +125,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **dashboardListId** | **int64** | ID of the dashboard list to delete items from. | 
+**body** | [**DashboardListDeleteItemsRequest**](DashboardListDeleteItemsRequest.md) | Dashboards to delete from the dashboard list. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteDashboardListItemsRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**DashboardListDeleteItemsRequest**](DashboardListDeleteItemsRequest.md) | Dashboards to delete from the dashboard list. | 
 
 ### Return type
 
@@ -167,7 +159,7 @@ Name | Type | Description  | Notes
 
 ## GetDashboardListItems
 
-> DashboardListItems GetDashboardListItems(ctx, dashboardListId).Execute()
+> DashboardListItems GetDashboardListItems(ctx, dashboardListId)
 
 Get items of a Dashboard List
 
@@ -194,7 +186,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardListsApi.GetDashboardListItems(ctx, dashboardListId).Execute()
+    resp, r, err := apiClient.DashboardListsApi.GetDashboardListItems(ctx, dashboardListId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.GetDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -205,7 +197,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -213,13 +205,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **dashboardListId** | **int64** | ID of the dashboard list to get items from. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetDashboardListItemsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -242,7 +230,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDashboardListItems
 
-> DashboardListUpdateItemsResponse UpdateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
+> DashboardListUpdateItemsResponse UpdateDashboardListItems(ctx, dashboardListId, body)
 
 Update items of a dashboard list
 
@@ -270,7 +258,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardListsApi.UpdateDashboardListItems(ctx, dashboardListId).Body(body).Execute()
+    resp, r, err := apiClient.DashboardListsApi.UpdateDashboardListItems(ctx, dashboardListId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardListItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,23 +269,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **dashboardListId** | **int64** | ID of the dashboard list to update items from. | 
+**body** | [**DashboardListUpdateItemsRequest**](DashboardListUpdateItemsRequest.md) | New dashboards of the dashboard list. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateDashboardListItemsRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**DashboardListUpdateItemsRequest**](DashboardListUpdateItemsRequest.md) | New dashboards of the dashboard list. | 
 
 ### Return type
 

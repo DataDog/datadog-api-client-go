@@ -25,36 +25,31 @@ var (
 // MetricsApiService MetricsApi service
 type MetricsApiService service
 
-type ApiGetMetricMetadataRequest struct {
+type apiGetMetricMetadataRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	metricName string
 }
 
-func (r ApiGetMetricMetadataRequest) Execute() (MetricMetadata, *_nethttp.Response, error) {
-	return r.ApiService.GetMetricMetadataExecute(r)
-}
-
 /*
  * GetMetricMetadata Get metric metadata
  * Get metadata about a specific metric.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricName Name of the metric for which to get metadata.
- * @return ApiGetMetricMetadataRequest
  */
-func (a *MetricsApiService) GetMetricMetadata(ctx _context.Context, metricName string) ApiGetMetricMetadataRequest {
-	return ApiGetMetricMetadataRequest{
+func (a *MetricsApiService) GetMetricMetadata(ctx _context.Context, metricName string) (MetricMetadata, *_nethttp.Response, error) {
+	req := apiGetMetricMetadataRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
+
+	return req.ApiService.getMetricMetadataExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return MetricMetadata
  */
-func (a *MetricsApiService) GetMetricMetadataExecute(r ApiGetMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
+func (a *MetricsApiService) getMetricMetadataExecute(r apiGetMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -181,7 +176,7 @@ func (a *MetricsApiService) GetMetricMetadataExecute(r ApiGetMetricMetadataReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListActiveMetricsRequest struct {
+type apiListActiveMetricsRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	from       *int64
@@ -189,41 +184,53 @@ type ApiListActiveMetricsRequest struct {
 	tagFilter  *string
 }
 
-func (r ApiListActiveMetricsRequest) From(from int64) ApiListActiveMetricsRequest {
-	r.from = &from
-	return r
-}
-func (r ApiListActiveMetricsRequest) Host(host string) ApiListActiveMetricsRequest {
-	r.host = &host
-	return r
-}
-func (r ApiListActiveMetricsRequest) TagFilter(tagFilter string) ApiListActiveMetricsRequest {
-	r.tagFilter = &tagFilter
-	return r
+type ListActiveMetricsOptionalParameters struct {
+	Host      *string
+	TagFilter *string
 }
 
-func (r ApiListActiveMetricsRequest) Execute() (MetricsListResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListActiveMetricsExecute(r)
+func NewListActiveMetricsOptionalParameters() *ListActiveMetricsOptionalParameters {
+	this := ListActiveMetricsOptionalParameters{}
+	return &this
+}
+func (r *ListActiveMetricsOptionalParameters) WithHost(host string) *ListActiveMetricsOptionalParameters {
+	r.Host = &host
+	return r
+}
+func (r *ListActiveMetricsOptionalParameters) WithTagFilter(tagFilter string) *ListActiveMetricsOptionalParameters {
+	r.TagFilter = &tagFilter
+	return r
 }
 
 /*
  * ListActiveMetrics Get active metrics list
  * Get the list of actively reporting metrics from a given time until now.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListActiveMetricsRequest
  */
-func (a *MetricsApiService) ListActiveMetrics(ctx _context.Context) ApiListActiveMetricsRequest {
-	return ApiListActiveMetricsRequest{
+func (a *MetricsApiService) ListActiveMetrics(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (MetricsListResponse, *_nethttp.Response, error) {
+	req := apiListActiveMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
+		from:       &from,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue MetricsListResponse
+		return localVarReturnValue, nil, reportError("only one argument of type ListActiveMetricsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.host = o[0].Host
+		req.tagFilter = o[0].TagFilter
+	}
+
+	return req.ApiService.listActiveMetricsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return MetricsListResponse
  */
-func (a *MetricsApiService) ListActiveMetricsExecute(r ApiListActiveMetricsRequest) (MetricsListResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) listActiveMetricsExecute(r apiListActiveMetricsRequest) (MetricsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -359,39 +366,31 @@ func (a *MetricsApiService) ListActiveMetricsExecute(r ApiListActiveMetricsReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListMetricsRequest struct {
+type apiListMetricsRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	q          *string
 }
 
-func (r ApiListMetricsRequest) Q(q string) ApiListMetricsRequest {
-	r.q = &q
-	return r
-}
-
-func (r ApiListMetricsRequest) Execute() (MetricSearchResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListMetricsExecute(r)
-}
-
 /*
  * ListMetrics Search metrics
  * Search for metrics from the last 24 hours in Datadog.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListMetricsRequest
  */
-func (a *MetricsApiService) ListMetrics(ctx _context.Context) ApiListMetricsRequest {
-	return ApiListMetricsRequest{
+func (a *MetricsApiService) ListMetrics(ctx _context.Context, q string) (MetricSearchResponse, *_nethttp.Response, error) {
+	req := apiListMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
+		q:          &q,
 	}
+
+	return req.ApiService.listMetricsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return MetricSearchResponse
  */
-func (a *MetricsApiService) ListMetricsExecute(r ApiListMetricsRequest) (MetricSearchResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) listMetricsExecute(r apiListMetricsRequest) (MetricSearchResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -521,7 +520,7 @@ func (a *MetricsApiService) ListMetricsExecute(r ApiListMetricsRequest) (MetricS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiQueryMetricsRequest struct {
+type apiQueryMetricsRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	from       *int64
@@ -529,41 +528,27 @@ type ApiQueryMetricsRequest struct {
 	query      *string
 }
 
-func (r ApiQueryMetricsRequest) From(from int64) ApiQueryMetricsRequest {
-	r.from = &from
-	return r
-}
-func (r ApiQueryMetricsRequest) To(to int64) ApiQueryMetricsRequest {
-	r.to = &to
-	return r
-}
-func (r ApiQueryMetricsRequest) Query(query string) ApiQueryMetricsRequest {
-	r.query = &query
-	return r
-}
-
-func (r ApiQueryMetricsRequest) Execute() (MetricsQueryResponse, *_nethttp.Response, error) {
-	return r.ApiService.QueryMetricsExecute(r)
-}
-
 /*
  * QueryMetrics Query timeseries points
  * Query timeseries points.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiQueryMetricsRequest
  */
-func (a *MetricsApiService) QueryMetrics(ctx _context.Context) ApiQueryMetricsRequest {
-	return ApiQueryMetricsRequest{
+func (a *MetricsApiService) QueryMetrics(ctx _context.Context, from int64, to int64, query string) (MetricsQueryResponse, *_nethttp.Response, error) {
+	req := apiQueryMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
+		from:       &from,
+		to:         &to,
+		query:      &query,
 	}
+
+	return req.ApiService.queryMetricsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return MetricsQueryResponse
  */
-func (a *MetricsApiService) QueryMetricsExecute(r ApiQueryMetricsRequest) (MetricsQueryResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) queryMetricsExecute(r apiQueryMetricsRequest) (MetricsQueryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -701,19 +686,10 @@ func (a *MetricsApiService) QueryMetricsExecute(r ApiQueryMetricsRequest) (Metri
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSubmitMetricsRequest struct {
+type apiSubmitMetricsRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	body       *MetricsPayload
-}
-
-func (r ApiSubmitMetricsRequest) Body(body MetricsPayload) ApiSubmitMetricsRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSubmitMetricsRequest) Execute() (IntakePayloadAccepted, *_nethttp.Response, error) {
-	return r.ApiService.SubmitMetricsExecute(r)
 }
 
 /*
@@ -729,21 +705,22 @@ If you’re submitting metrics directly to the Datadog API without using DogStat
 - 50 bytes for the timeseries
 - The full payload is approximately ~ 100 bytes. However, with the DogStatsD API,
 compression is applied, which reduces the payload size.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiSubmitMetricsRequest
 */
-func (a *MetricsApiService) SubmitMetrics(ctx _context.Context) ApiSubmitMetricsRequest {
-	return ApiSubmitMetricsRequest{
+func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricsPayload) (IntakePayloadAccepted, *_nethttp.Response, error) {
+	req := apiSubmitMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.submitMetricsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IntakePayloadAccepted
  */
-func (a *MetricsApiService) SubmitMetricsExecute(r ApiSubmitMetricsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -880,42 +857,33 @@ func (a *MetricsApiService) SubmitMetricsExecute(r ApiSubmitMetricsRequest) (Int
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateMetricMetadataRequest struct {
+type apiUpdateMetricMetadataRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	metricName string
 	body       *MetricMetadata
 }
 
-func (r ApiUpdateMetricMetadataRequest) Body(body MetricMetadata) ApiUpdateMetricMetadataRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateMetricMetadataRequest) Execute() (MetricMetadata, *_nethttp.Response, error) {
-	return r.ApiService.UpdateMetricMetadataExecute(r)
-}
-
 /*
  * UpdateMetricMetadata Edit metric metadata
  * Edit metadata of a specific metric. Find out more about [supported types](https://docs.datadoghq.com/developers/metrics).
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricName Name of the metric for which to edit metadata.
- * @return ApiUpdateMetricMetadataRequest
  */
-func (a *MetricsApiService) UpdateMetricMetadata(ctx _context.Context, metricName string) ApiUpdateMetricMetadataRequest {
-	return ApiUpdateMetricMetadataRequest{
+func (a *MetricsApiService) UpdateMetricMetadata(ctx _context.Context, metricName string, body MetricMetadata) (MetricMetadata, *_nethttp.Response, error) {
+	req := apiUpdateMetricMetadataRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
+		body:       &body,
 	}
+
+	return req.ApiService.updateMetricMetadataExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return MetricMetadata
  */
-func (a *MetricsApiService) UpdateMetricMetadataExecute(r ApiUpdateMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
+func (a *MetricsApiService) updateMetricMetadataExecute(r apiUpdateMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
