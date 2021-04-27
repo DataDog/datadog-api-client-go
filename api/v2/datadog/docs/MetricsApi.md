@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateTagConfiguration
 
-> MetricTagConfigurationResponse CreateTagConfiguration(ctx, metricName).Body(body).Execute()
+> MetricTagConfigurationResponse CreateTagConfiguration(ctx, metricName, body)
 
 Create a tag configuration
 
@@ -45,7 +45,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("CreateTagConfiguration", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.CreateTagConfiguration(ctx, metricName).Body(body).Execute()
+    resp, r, err := apiClient.MetricsApi.CreateTagConfiguration(ctx, metricName, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.CreateTagConfiguration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,23 +56,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **metricName** | **string** | The name of the metric. | 
+**body** | [**MetricTagConfigurationCreateRequest**](MetricTagConfigurationCreateRequest.md) |  | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiCreateTagConfigurationRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**MetricTagConfigurationCreateRequest**](MetricTagConfigurationCreateRequest.md) |  | 
 
 ### Return type
 
@@ -94,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## DeleteTagConfiguration
 
-> DeleteTagConfiguration(ctx, metricName).Execute()
+> DeleteTagConfiguration(ctx, metricName)
 
 Delete a tag configuration
 
@@ -121,7 +117,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("DeleteTagConfiguration", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.MetricsApi.DeleteTagConfiguration(ctx, metricName).Execute()
+    r, err := apiClient.MetricsApi.DeleteTagConfiguration(ctx, metricName)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.DeleteTagConfiguration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -129,7 +125,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -137,13 +133,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **metricName** | **string** | The name of the metric. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteTagConfigurationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -166,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## ListTagConfigurationByName
 
-> MetricTagConfigurationResponse ListTagConfigurationByName(ctx, metricName).Execute()
+> MetricTagConfigurationResponse ListTagConfigurationByName(ctx, metricName)
 
 List tag configuration by name
 
@@ -194,7 +186,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("ListTagConfigurationByName", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.ListTagConfigurationByName(ctx, metricName).Execute()
+    resp, r, err := apiClient.MetricsApi.ListTagConfigurationByName(ctx, metricName)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurationByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -205,7 +197,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -213,13 +205,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **metricName** | **string** | The name of the metric. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListTagConfigurationByNameRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -242,7 +230,7 @@ Name | Type | Description  | Notes
 
 ## ListTagConfigurations
 
-> MetricsAndMetricTagConfigurationsResponse ListTagConfigurations(ctx).FilterConfigured(filterConfigured).FilterTagsConfigured(filterTagsConfigured).FilterMetricType(filterMetricType).FilterIncludePercentiles(filterIncludePercentiles).FilterTags(filterTags).WindowSeconds(windowSeconds).Execute()
+> MetricsAndMetricTagConfigurationsResponse ListTagConfigurations(ctx, datadog.ListTagConfigurationsOptionalParameters{})
 
 List tag configurations
 
@@ -270,12 +258,20 @@ func main() {
     filterIncludePercentiles := true // bool | Filter distributions with additional percentile aggregations enabled or disabled. (optional)
     filterTags := "env IN (staging,test) AND service:web" // string | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. (optional)
     windowSeconds := int64(3600) // int64 | The number of seconds of look back (from now) to apply to a filter[tag] query. Defaults value is 3600 (1 hour), maximum value is 172,800 (2 days). (optional)
+    optionalParams := datadog.ListTagConfigurationsOptionalParameters{
+        FilterConfigured: &filterConfigured,
+        FilterTagsConfigured: &filterTagsConfigured,
+        FilterMetricType: &filterMetricType,
+        FilterIncludePercentiles: &filterIncludePercentiles,
+        FilterTags: &filterTags,
+        WindowSeconds: &windowSeconds,
+    }
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("ListTagConfigurations", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.ListTagConfigurations(ctx).FilterConfigured(filterConfigured).FilterTagsConfigured(filterTagsConfigured).FilterMetricType(filterMetricType).FilterIncludePercentiles(filterIncludePercentiles).FilterTags(filterTags).WindowSeconds(windowSeconds).Execute()
+    resp, r, err := apiClient.MetricsApi.ListTagConfigurations(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -286,23 +282,24 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListTagConfigurationsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListTagConfigurationsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filterConfigured** | **bool** | Filter metrics that have configured tags. | 
- **filterTagsConfigured** | **string** | Filter tag configurations by configured tags. | 
- **filterMetricType** | [**MetricTagConfigurationMetricTypes**](MetricTagConfigurationMetricTypes.md) | Filter tag configurations by metric type. | [default to &quot;gauge&quot;]
- **filterIncludePercentiles** | **bool** | Filter distributions with additional percentile aggregations enabled or disabled. | 
- **filterTags** | **string** | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. | 
- **windowSeconds** | **int64** | The number of seconds of look back (from now) to apply to a filter[tag] query. Defaults value is 3600 (1 hour), maximum value is 172,800 (2 days). | 
+**filterConfigured** | **bool** | Filter metrics that have configured tags. | 
+**filterTagsConfigured** | **string** | Filter tag configurations by configured tags. | 
+**filterMetricType** | [**MetricTagConfigurationMetricTypes**](MetricTagConfigurationMetricTypes.md) | Filter tag configurations by metric type. | [default to &quot;gauge&quot;]
+**filterIncludePercentiles** | **bool** | Filter distributions with additional percentile aggregations enabled or disabled. | 
+**filterTags** | **string** | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. | 
+**windowSeconds** | **int64** | The number of seconds of look back (from now) to apply to a filter[tag] query. Defaults value is 3600 (1 hour), maximum value is 172,800 (2 days). | 
 
 ### Return type
 
@@ -324,7 +321,7 @@ Name | Type | Description  | Notes
 
 ## ListTagsByMetricName
 
-> MetricAllTagsResponse ListTagsByMetricName(ctx, metricName).Execute()
+> MetricAllTagsResponse ListTagsByMetricName(ctx, metricName)
 
 List tags by metric name
 
@@ -351,7 +348,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.ListTagsByMetricName(ctx, metricName).Execute()
+    resp, r, err := apiClient.MetricsApi.ListTagsByMetricName(ctx, metricName)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagsByMetricName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -362,7 +359,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -370,13 +367,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **metricName** | **string** | The name of the metric. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListTagsByMetricNameRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -399,7 +392,7 @@ Name | Type | Description  | Notes
 
 ## ListVolumesByMetricName
 
-> MetricVolumesResponse ListVolumesByMetricName(ctx, metricName).Execute()
+> MetricVolumesResponse ListVolumesByMetricName(ctx, metricName)
 
 List distinct metric volumes by metric name
 
@@ -426,7 +419,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.ListVolumesByMetricName(ctx, metricName).Execute()
+    resp, r, err := apiClient.MetricsApi.ListVolumesByMetricName(ctx, metricName)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListVolumesByMetricName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -437,7 +430,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -445,13 +438,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **metricName** | **string** | The name of the metric. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListVolumesByMetricNameRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -474,7 +463,7 @@ Name | Type | Description  | Notes
 
 ## UpdateTagConfiguration
 
-> MetricTagConfigurationResponse UpdateTagConfiguration(ctx, metricName).Body(body).Execute()
+> MetricTagConfigurationResponse UpdateTagConfiguration(ctx, metricName, body)
 
 Update a tag configuration
 
@@ -503,7 +492,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("UpdateTagConfiguration", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.UpdateTagConfiguration(ctx, metricName).Body(body).Execute()
+    resp, r, err := apiClient.MetricsApi.UpdateTagConfiguration(ctx, metricName, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.UpdateTagConfiguration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -514,23 +503,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **metricName** | **string** | The name of the metric. | 
+**body** | [**MetricTagConfigurationUpdateRequest**](MetricTagConfigurationUpdateRequest.md) |  | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateTagConfigurationRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**MetricTagConfigurationUpdateRequest**](MetricTagConfigurationUpdateRequest.md) |  | 
 
 ### Return type
 

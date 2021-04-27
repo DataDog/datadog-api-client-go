@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateIncident
 
-> IncidentResponse CreateIncident(ctx).Body(body).Execute()
+> IncidentResponse CreateIncident(ctx, body)
 
 Create an incident
 
@@ -42,7 +42,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("CreateIncident", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentsApi.CreateIncident(ctx).Body(body).Execute()
+    resp, r, err := apiClient.IncidentsApi.CreateIncident(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.CreateIncident``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,18 +53,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateIncidentRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**IncidentCreateRequest**](IncidentCreateRequest.md) | Incident payload. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**IncidentCreateRequest**](IncidentCreateRequest.md) | Incident payload. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## DeleteIncident
 
-> DeleteIncident(ctx, incidentId).Execute()
+> DeleteIncident(ctx, incidentId)
 
 Delete an existing incident
 
@@ -113,7 +113,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("DeleteIncident", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.IncidentsApi.DeleteIncident(ctx, incidentId).Execute()
+    r, err := apiClient.IncidentsApi.DeleteIncident(ctx, incidentId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.DeleteIncident``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -129,13 +129,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **incidentId** | **string** | The UUID the incident. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteIncidentRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -158,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## GetIncident
 
-> IncidentResponse GetIncident(ctx, incidentId).Include(include).Execute()
+> IncidentResponse GetIncident(ctx, incidentId, datadog.GetIncidentOptionalParameters{})
 
 Get the details of an incident
 
@@ -182,12 +178,15 @@ func main() {
 
     incidentId := "incidentId_example" // string | The UUID the incident.
     include := []datadog.IncidentRelatedObject{datadog.IncidentRelatedObject("users")} // []IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
+    optionalParams := datadog.GetIncidentOptionalParameters{
+        Include: &include,
+    }
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetIncident", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentsApi.GetIncident(ctx, incidentId).Include(include).Execute()
+    resp, r, err := apiClient.IncidentsApi.GetIncident(ctx, incidentId, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetIncident``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,7 +197,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -206,15 +205,15 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **incidentId** | **string** | The UUID the incident. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetIncidentRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a GetIncidentOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **include** | [**[]IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
+**include** | [**[]IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
 
 ### Return type
 
@@ -236,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## ListIncidents
 
-> IncidentsResponse ListIncidents(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
+> IncidentsResponse ListIncidents(ctx, datadog.ListIncidentsOptionalParameters{})
 
 Get a list of incidents
 
@@ -261,12 +260,17 @@ func main() {
     include := []datadog.IncidentRelatedObject{datadog.IncidentRelatedObject("users")} // []IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageOffset := int64(789) // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
+    optionalParams := datadog.ListIncidentsOptionalParameters{
+        Include: &include,
+        PageSize: &pageSize,
+        PageOffset: &pageOffset,
+    }
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("ListIncidents", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentsApi.ListIncidents(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Execute()
+    resp, r, err := apiClient.IncidentsApi.ListIncidents(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.ListIncidents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -277,20 +281,21 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListIncidentsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListIncidentsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include** | [**[]IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
- **pageSize** | **int64** | Size for a given page. | [default to 10]
- **pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
+**include** | [**[]IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
+**pageSize** | **int64** | Size for a given page. | [default to 10]
+**pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
 
 ### Return type
 
@@ -312,7 +317,7 @@ Name | Type | Description  | Notes
 
 ## UpdateIncident
 
-> IncidentResponse UpdateIncident(ctx, incidentId).Body(body).Execute()
+> IncidentResponse UpdateIncident(ctx, incidentId, body)
 
 Update an existing incident
 
@@ -341,7 +346,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("UpdateIncident", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentsApi.UpdateIncident(ctx, incidentId).Body(body).Execute()
+    resp, r, err := apiClient.IncidentsApi.UpdateIncident(ctx, incidentId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.UpdateIncident``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -352,23 +357,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **incidentId** | **string** | The UUID the incident. | 
+**body** | [**IncidentUpdateRequest**](IncidentUpdateRequest.md) | Incident Payload. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateIncidentRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**IncidentUpdateRequest**](IncidentUpdateRequest.md) | Incident Payload. | 
 
 ### Return type
 

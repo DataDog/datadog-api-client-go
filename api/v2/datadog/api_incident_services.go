@@ -27,39 +27,31 @@ var (
 // IncidentServicesApiService IncidentServicesApi service
 type IncidentServicesApiService service
 
-type ApiCreateIncidentServiceRequest struct {
+type apiCreateIncidentServiceRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentServicesApiService
 	body       *IncidentServiceCreateRequest
 }
 
-func (r ApiCreateIncidentServiceRequest) Body(body IncidentServiceCreateRequest) ApiCreateIncidentServiceRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateIncidentServiceRequest) Execute() (IncidentServiceResponse, *_nethttp.Response, error) {
-	return r.ApiService.CreateIncidentServiceExecute(r)
-}
-
 /*
  * CreateIncidentService Create a new incident service
  * Creates a new incident service.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateIncidentServiceRequest
  */
-func (a *IncidentServicesApiService) CreateIncidentService(ctx _context.Context) ApiCreateIncidentServiceRequest {
-	return ApiCreateIncidentServiceRequest{
+func (a *IncidentServicesApiService) CreateIncidentService(ctx _context.Context, body IncidentServiceCreateRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
+	req := apiCreateIncidentServiceRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createIncidentServiceExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IncidentServiceResponse
  */
-func (a *IncidentServicesApiService) CreateIncidentServiceExecute(r ApiCreateIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApiService) createIncidentServiceExecute(r apiCreateIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -217,35 +209,30 @@ func (a *IncidentServicesApiService) CreateIncidentServiceExecute(r ApiCreateInc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteIncidentServiceRequest struct {
+type apiDeleteIncidentServiceRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentServicesApiService
 	serviceId  string
 }
 
-func (r ApiDeleteIncidentServiceRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteIncidentServiceExecute(r)
-}
-
 /*
  * DeleteIncidentService Delete an existing incident service
  * Deletes an existing incident service.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param serviceId The ID of the incident service.
- * @return ApiDeleteIncidentServiceRequest
  */
-func (a *IncidentServicesApiService) DeleteIncidentService(ctx _context.Context, serviceId string) ApiDeleteIncidentServiceRequest {
-	return ApiDeleteIncidentServiceRequest{
+func (a *IncidentServicesApiService) DeleteIncidentService(ctx _context.Context, serviceId string) (*_nethttp.Response, error) {
+	req := apiDeleteIncidentServiceRequest{
 		ApiService: a,
 		ctx:        ctx,
 		serviceId:  serviceId,
 	}
+
+	return req.ApiService.deleteIncidentServiceExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *IncidentServicesApiService) DeleteIncidentServiceExecute(r ApiDeleteIncidentServiceRequest) (*_nethttp.Response, error) {
+func (a *IncidentServicesApiService) deleteIncidentServiceExecute(r apiDeleteIncidentServiceRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -389,43 +376,55 @@ func (a *IncidentServicesApiService) DeleteIncidentServiceExecute(r ApiDeleteInc
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetIncidentServiceRequest struct {
+type apiGetIncidentServiceRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentServicesApiService
 	serviceId  string
 	include    *IncidentRelatedObject
 }
 
-func (r ApiGetIncidentServiceRequest) Include(include IncidentRelatedObject) ApiGetIncidentServiceRequest {
-	r.include = &include
-	return r
+type GetIncidentServiceOptionalParameters struct {
+	Include *IncidentRelatedObject
 }
 
-func (r ApiGetIncidentServiceRequest) Execute() (IncidentServiceResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetIncidentServiceExecute(r)
+func NewGetIncidentServiceOptionalParameters() *GetIncidentServiceOptionalParameters {
+	this := GetIncidentServiceOptionalParameters{}
+	return &this
+}
+func (r *GetIncidentServiceOptionalParameters) WithInclude(include IncidentRelatedObject) *GetIncidentServiceOptionalParameters {
+	r.Include = &include
+	return r
 }
 
 /*
  * GetIncidentService Get details of an incident service
  * Get details of an incident service. If the `include[users]` query parameter is provided,
 the included attribute will contain the users related to these incident services.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param serviceId The ID of the incident service.
- * @return ApiGetIncidentServiceRequest
 */
-func (a *IncidentServicesApiService) GetIncidentService(ctx _context.Context, serviceId string) ApiGetIncidentServiceRequest {
-	return ApiGetIncidentServiceRequest{
+func (a *IncidentServicesApiService) GetIncidentService(ctx _context.Context, serviceId string, o ...GetIncidentServiceOptionalParameters) (IncidentServiceResponse, *_nethttp.Response, error) {
+	req := apiGetIncidentServiceRequest{
 		ApiService: a,
 		ctx:        ctx,
 		serviceId:  serviceId,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue IncidentServiceResponse
+		return localVarReturnValue, nil, reportError("only one argument of type GetIncidentServiceOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.include = o[0].Include
+	}
+
+	return req.ApiService.getIncidentServiceExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IncidentServiceResponse
  */
-func (a *IncidentServicesApiService) GetIncidentServiceExecute(r ApiGetIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApiService) getIncidentServiceExecute(r apiGetIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -582,7 +581,7 @@ func (a *IncidentServicesApiService) GetIncidentServiceExecute(r ApiGetIncidentS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListIncidentServicesRequest struct {
+type apiListIncidentServicesRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentServicesApiService
 	include    *IncidentRelatedObject
@@ -591,45 +590,64 @@ type ApiListIncidentServicesRequest struct {
 	filter     *string
 }
 
-func (r ApiListIncidentServicesRequest) Include(include IncidentRelatedObject) ApiListIncidentServicesRequest {
-	r.include = &include
-	return r
-}
-func (r ApiListIncidentServicesRequest) PageSize(pageSize int64) ApiListIncidentServicesRequest {
-	r.pageSize = &pageSize
-	return r
-}
-func (r ApiListIncidentServicesRequest) PageOffset(pageOffset int64) ApiListIncidentServicesRequest {
-	r.pageOffset = &pageOffset
-	return r
-}
-func (r ApiListIncidentServicesRequest) Filter(filter string) ApiListIncidentServicesRequest {
-	r.filter = &filter
-	return r
+type ListIncidentServicesOptionalParameters struct {
+	Include    *IncidentRelatedObject
+	PageSize   *int64
+	PageOffset *int64
+	Filter     *string
 }
 
-func (r ApiListIncidentServicesRequest) Execute() (IncidentServicesResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListIncidentServicesExecute(r)
+func NewListIncidentServicesOptionalParameters() *ListIncidentServicesOptionalParameters {
+	this := ListIncidentServicesOptionalParameters{}
+	return &this
+}
+func (r *ListIncidentServicesOptionalParameters) WithInclude(include IncidentRelatedObject) *ListIncidentServicesOptionalParameters {
+	r.Include = &include
+	return r
+}
+func (r *ListIncidentServicesOptionalParameters) WithPageSize(pageSize int64) *ListIncidentServicesOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+func (r *ListIncidentServicesOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentServicesOptionalParameters {
+	r.PageOffset = &pageOffset
+	return r
+}
+func (r *ListIncidentServicesOptionalParameters) WithFilter(filter string) *ListIncidentServicesOptionalParameters {
+	r.Filter = &filter
+	return r
 }
 
 /*
  * ListIncidentServices Get a list of all incident services
  * Get all incident services uploaded for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident services.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListIncidentServicesRequest
  */
-func (a *IncidentServicesApiService) ListIncidentServices(ctx _context.Context) ApiListIncidentServicesRequest {
-	return ApiListIncidentServicesRequest{
+func (a *IncidentServicesApiService) ListIncidentServices(ctx _context.Context, o ...ListIncidentServicesOptionalParameters) (IncidentServicesResponse, *_nethttp.Response, error) {
+	req := apiListIncidentServicesRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue IncidentServicesResponse
+		return localVarReturnValue, nil, reportError("only one argument of type ListIncidentServicesOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.include = o[0].Include
+		req.pageSize = o[0].PageSize
+		req.pageOffset = o[0].PageOffset
+		req.filter = o[0].Filter
+	}
+
+	return req.ApiService.listIncidentServicesExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IncidentServicesResponse
  */
-func (a *IncidentServicesApiService) ListIncidentServicesExecute(r ApiListIncidentServicesRequest) (IncidentServicesResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApiService) listIncidentServicesExecute(r apiListIncidentServicesRequest) (IncidentServicesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -794,42 +812,33 @@ func (a *IncidentServicesApiService) ListIncidentServicesExecute(r ApiListIncide
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateIncidentServiceRequest struct {
+type apiUpdateIncidentServiceRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentServicesApiService
 	serviceId  string
 	body       *IncidentServiceUpdateRequest
 }
 
-func (r ApiUpdateIncidentServiceRequest) Body(body IncidentServiceUpdateRequest) ApiUpdateIncidentServiceRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateIncidentServiceRequest) Execute() (IncidentServiceResponse, *_nethttp.Response, error) {
-	return r.ApiService.UpdateIncidentServiceExecute(r)
-}
-
 /*
  * UpdateIncidentService Update an existing incident service
  * Updates an existing incident service. Only provide the attributes which should be updated as this request is a partial update.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param serviceId The ID of the incident service.
- * @return ApiUpdateIncidentServiceRequest
  */
-func (a *IncidentServicesApiService) UpdateIncidentService(ctx _context.Context, serviceId string) ApiUpdateIncidentServiceRequest {
-	return ApiUpdateIncidentServiceRequest{
+func (a *IncidentServicesApiService) UpdateIncidentService(ctx _context.Context, serviceId string, body IncidentServiceUpdateRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
+	req := apiUpdateIncidentServiceRequest{
 		ApiService: a,
 		ctx:        ctx,
 		serviceId:  serviceId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateIncidentServiceExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IncidentServiceResponse
  */
-func (a *IncidentServicesApiService) UpdateIncidentServiceExecute(r ApiUpdateIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApiService) updateIncidentServiceExecute(r apiUpdateIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}

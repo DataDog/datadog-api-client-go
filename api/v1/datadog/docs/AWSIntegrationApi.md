@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## CreateAWSAccount
 
-> AWSAccountCreateResponse CreateAWSAccount(ctx).Body(body).Execute()
+> AWSAccountCreateResponse CreateAWSAccount(ctx, body)
 
 Create an AWS integration
 
@@ -45,7 +45,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSIntegrationApi.CreateAWSAccount(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AWSIntegrationApi.CreateAWSAccount(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateAWSAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,18 +56,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateAWSAccountRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccount**](AWSAccount.md) | AWS Request Object | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AWSAccount**](AWSAccount.md) | AWS Request Object | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## CreateAWSTagFilter
 
-> interface{} CreateAWSTagFilter(ctx).Body(body).Execute()
+> interface{} CreateAWSTagFilter(ctx, body)
 
 Set an AWS tag filter
 
@@ -116,7 +116,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSIntegrationApi.CreateAWSTagFilter(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AWSIntegrationApi.CreateAWSTagFilter(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateAWSTagFilter``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,18 +127,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateAWSTagFilterRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSTagFilterCreateRequest**](AWSTagFilterCreateRequest.md) | Set an AWS tag filter using an &#x60;aws_account_identifier&#x60;, &#x60;namespace&#x60;, and filtering string. Namespace options are &#x60;application_elb&#x60;, &#x60;elb&#x60;, &#x60;lambda&#x60;, &#x60;network_elb&#x60;, &#x60;rds&#x60;, &#x60;sqs&#x60;, and &#x60;custom&#x60;. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AWSTagFilterCreateRequest**](AWSTagFilterCreateRequest.md) | Set an AWS tag filter using an &#x60;aws_account_identifier&#x60;, &#x60;namespace&#x60;, and filtering string. Namespace options are &#x60;application_elb&#x60;, &#x60;elb&#x60;, &#x60;lambda&#x60;, &#x60;network_elb&#x60;, &#x60;rds&#x60;, &#x60;sqs&#x60;, and &#x60;custom&#x60;. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## CreateNewAWSExternalID
 
-> AWSAccountCreateResponse CreateNewAWSExternalID(ctx).Body(body).Execute()
+> AWSAccountCreateResponse CreateNewAWSExternalID(ctx, body)
 
 Generate a new external ID
 
@@ -187,7 +187,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSIntegrationApi.CreateNewAWSExternalID(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AWSIntegrationApi.CreateNewAWSExternalID(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateNewAWSExternalID``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,18 +198,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateNewAWSExternalIDRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccount**](AWSAccount.md) | Your Datadog role delegation name. For more information about your AWS account Role name, see the [Datadog AWS integration configuration info](https://github.com/DataDog/documentation/blob/master/integrations/amazon_web_services/#installation). | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AWSAccount**](AWSAccount.md) | Your Datadog role delegation name. For more information about your AWS account Role name, see the [Datadog AWS integration configuration info](https://github.com/DataDog/documentation/blob/master/integrations/amazon_web_services/#installation). | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAWSAccount
 
-> interface{} DeleteAWSAccount(ctx).Body(body).Execute()
+> interface{} DeleteAWSAccount(ctx, body)
 
 Delete an AWS integration
 
@@ -258,7 +258,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSIntegrationApi.DeleteAWSAccount(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AWSIntegrationApi.DeleteAWSAccount(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.DeleteAWSAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -269,18 +269,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteAWSAccountRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -302,7 +302,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAWSTagFilter
 
-> interface{} DeleteAWSTagFilter(ctx).Body(body).Execute()
+> interface{} DeleteAWSTagFilter(ctx, body)
 
 Delete a tag filtering entry
 
@@ -329,7 +329,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSIntegrationApi.DeleteAWSTagFilter(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AWSIntegrationApi.DeleteAWSTagFilter(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.DeleteAWSTagFilter``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -340,18 +340,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteAWSTagFilterRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSTagFilterDeleteRequest**](AWSTagFilterDeleteRequest.md) | Delete a tag filtering entry for a given AWS account and &#x60;dd-aws&#x60; namespace. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AWSTagFilterDeleteRequest**](AWSTagFilterDeleteRequest.md) | Delete a tag filtering entry for a given AWS account and &#x60;dd-aws&#x60; namespace. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -373,7 +373,7 @@ Name | Type | Description  | Notes
 
 ## ListAWSAccounts
 
-> AWSAccountListResponse ListAWSAccounts(ctx).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+> AWSAccountListResponse ListAWSAccounts(ctx, datadog.ListAWSAccountsOptionalParameters{})
 
 List all AWS integrations
 
@@ -398,11 +398,16 @@ func main() {
     accountId := "accountId_example" // string | Only return AWS accounts that matches this `account_id`. (optional)
     roleName := "roleName_example" // string | Only return AWS accounts that matches this role_name. (optional)
     accessKeyId := "accessKeyId_example" // string | Only return AWS accounts that matches this `access_key_id`. (optional)
+    optionalParams := datadog.ListAWSAccountsOptionalParameters{
+        AccountId: &accountId,
+        RoleName: &roleName,
+        AccessKeyId: &accessKeyId,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSIntegrationApi.ListAWSAccounts(ctx).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+    resp, r, err := apiClient.AWSIntegrationApi.ListAWSAccounts(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.ListAWSAccounts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -413,20 +418,21 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListAWSAccountsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListAWSAccountsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;. | 
- **roleName** | **string** | Only return AWS accounts that matches this role_name. | 
- **accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. | 
+**accountId** | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;. | 
+**roleName** | **string** | Only return AWS accounts that matches this role_name. | 
+**accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. | 
 
 ### Return type
 
@@ -448,7 +454,7 @@ Name | Type | Description  | Notes
 
 ## ListAWSTagFilters
 
-> AWSTagFilterListResponse ListAWSTagFilters(ctx).AccountId(accountId).Execute()
+> AWSTagFilterListResponse ListAWSTagFilters(ctx, accountId)
 
 Get all AWS tag filters
 
@@ -475,7 +481,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSIntegrationApi.ListAWSTagFilters(ctx).AccountId(accountId).Execute()
+    resp, r, err := apiClient.AWSIntegrationApi.ListAWSTagFilters(ctx, accountId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.ListAWSTagFilters``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -486,18 +492,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListAWSTagFiltersRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **string** | Only return AWS filters that matches this &#x60;account_id&#x60;. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**accountId** | **string** | Only return AWS filters that matches this &#x60;account_id&#x60;. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -519,7 +525,7 @@ Name | Type | Description  | Notes
 
 ## ListAvailableAWSNamespaces
 
-> []string ListAvailableAWSNamespaces(ctx).Execute()
+> []string ListAvailableAWSNamespaces(ctx)
 
 List namespace rules
 
@@ -545,7 +551,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSIntegrationApi.ListAvailableAWSNamespaces(ctx).Execute()
+    resp, r, err := apiClient.AWSIntegrationApi.ListAvailableAWSNamespaces(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.ListAvailableAWSNamespaces``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -556,13 +562,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListAvailableAWSNamespacesRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -585,7 +591,7 @@ Other parameters are passed through a pointer to a apiListAvailableAWSNamespaces
 
 ## UpdateAWSAccount
 
-> interface{} UpdateAWSAccount(ctx).Body(body).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+> interface{} UpdateAWSAccount(ctx, body, datadog.UpdateAWSAccountOptionalParameters{})
 
 Update an AWS integration
 
@@ -611,11 +617,16 @@ func main() {
     accountId := "accountId_example" // string | Only return AWS accounts that matches this `account_id`. (optional)
     roleName := "roleName_example" // string | Only return AWS accounts that match this `role_name`. Required if `account_id` is specified. (optional)
     accessKeyId := "accessKeyId_example" // string | Only return AWS accounts that matches this `access_key_id`. Required if none of the other two options are specified. (optional)
+    optionalParams := datadog.UpdateAWSAccountOptionalParameters{
+        AccountId: &accountId,
+        RoleName: &roleName,
+        AccessKeyId: &accessKeyId,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSIntegrationApi.UpdateAWSAccount(ctx).Body(body).AccountId(accountId).RoleName(roleName).AccessKeyId(accessKeyId).Execute()
+    resp, r, err := apiClient.AWSIntegrationApi.UpdateAWSAccount(ctx, body, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.UpdateAWSAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -626,21 +637,25 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateAWSAccountRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
- **accountId** | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;. | 
- **roleName** | **string** | Only return AWS accounts that match this &#x60;role_name&#x60;. Required if &#x60;account_id&#x60; is specified. | 
- **accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. Required if none of the other two options are specified. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a UpdateAWSAccountOptionalParameters struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**accountId** | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;. | 
+**roleName** | **string** | Only return AWS accounts that match this &#x60;role_name&#x60;. Required if &#x60;account_id&#x60; is specified. | 
+**accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. Required if none of the other two options are specified. | 
 
 ### Return type
 

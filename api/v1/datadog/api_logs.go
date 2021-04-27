@@ -24,19 +24,10 @@ var (
 // LogsApiService LogsApi service
 type LogsApiService service
 
-type ApiListLogsRequest struct {
+type apiListLogsRequest struct {
 	ctx        _context.Context
 	ApiService *LogsApiService
 	body       *LogsListRequest
-}
-
-func (r ApiListLogsRequest) Body(body LogsListRequest) ApiListLogsRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiListLogsRequest) Execute() (LogsListResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListLogsExecute(r)
 }
 
 /*
@@ -50,21 +41,22 @@ See [Datadog Logs Archive documentation][2].**
 
 [1]: /logs/guide/collect-multiple-logs-with-pagination
 [2]: https://docs.datadoghq.com/logs/archives
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListLogsRequest
 */
-func (a *LogsApiService) ListLogs(ctx _context.Context) ApiListLogsRequest {
-	return ApiListLogsRequest{
+func (a *LogsApiService) ListLogs(ctx _context.Context, body LogsListRequest) (LogsListResponse, *_nethttp.Response, error) {
+	req := apiListLogsRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.listLogsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsListResponse
  */
-func (a *LogsApiService) ListLogsExecute(r ApiListLogsRequest) (LogsListResponse, *_nethttp.Response, error) {
+func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -195,7 +187,7 @@ func (a *LogsApiService) ListLogsExecute(r ApiListLogsRequest) (LogsListResponse
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSubmitLogRequest struct {
+type apiSubmitLogRequest struct {
 	ctx             _context.Context
 	ApiService      *LogsApiService
 	body            *[]HTTPLogItem
@@ -203,21 +195,22 @@ type ApiSubmitLogRequest struct {
 	ddtags          *string
 }
 
-func (r ApiSubmitLogRequest) Body(body []HTTPLogItem) ApiSubmitLogRequest {
-	r.body = &body
-	return r
-}
-func (r ApiSubmitLogRequest) ContentEncoding(contentEncoding ContentEncoding) ApiSubmitLogRequest {
-	r.contentEncoding = &contentEncoding
-	return r
-}
-func (r ApiSubmitLogRequest) Ddtags(ddtags string) ApiSubmitLogRequest {
-	r.ddtags = &ddtags
-	return r
+type SubmitLogOptionalParameters struct {
+	ContentEncoding *ContentEncoding
+	Ddtags          *string
 }
 
-func (r ApiSubmitLogRequest) Execute() (interface{}, *_nethttp.Response, error) {
-	return r.ApiService.SubmitLogExecute(r)
+func NewSubmitLogOptionalParameters() *SubmitLogOptionalParameters {
+	this := SubmitLogOptionalParameters{}
+	return &this
+}
+func (r *SubmitLogOptionalParameters) WithContentEncoding(contentEncoding ContentEncoding) *SubmitLogOptionalParameters {
+	r.ContentEncoding = &contentEncoding
+	return r
+}
+func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOptionalParameters {
+	r.Ddtags = &ddtags
+	return r
 }
 
 /*
@@ -241,21 +234,32 @@ The status codes answered by the HTTP API are:
 - 403: Permission issue (likely using an invalid API Key)
 - 413: Payload too large (batch is above 5MB uncompressed)
 - 5xx: Internal error, request should be retried after some time
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiSubmitLogRequest
 */
-func (a *LogsApiService) SubmitLog(ctx _context.Context) ApiSubmitLogRequest {
-	return ApiSubmitLogRequest{
+func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
+	req := apiSubmitLogRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue interface{}
+		return localVarReturnValue, nil, reportError("only one argument of type SubmitLogOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.contentEncoding = o[0].ContentEncoding
+		req.ddtags = o[0].Ddtags
+	}
+
+	return req.ApiService.submitLogExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return interface{}
  */
-func (a *LogsApiService) SubmitLogExecute(r ApiSubmitLogRequest) (interface{}, *_nethttp.Response, error) {
+func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}

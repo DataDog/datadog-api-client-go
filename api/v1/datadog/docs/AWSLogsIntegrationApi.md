@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CheckAWSLogsLambdaAsync
 
-> AWSLogsAsyncResponse CheckAWSLogsLambdaAsync(ctx).Body(body).Execute()
+> AWSLogsAsyncResponse CheckAWSLogsLambdaAsync(ctx, body)
 
 Check that an AWS Lambda Function exists
 
@@ -43,7 +43,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -54,18 +54,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCheckAWSLogsLambdaAsyncRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | Check AWS Log Lambda Async request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## CheckAWSLogsServicesAsync
 
-> AWSLogsAsyncResponse CheckAWSLogsServicesAsync(ctx).Body(body).Execute()
+> AWSLogsAsyncResponse CheckAWSLogsServicesAsync(ctx, body)
 
 Check permissions for log services
 
@@ -114,7 +114,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CheckAWSLogsServicesAsync``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,18 +125,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCheckAWSLogsServicesAsyncRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | Check AWS Logs Async Services request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | Check AWS Logs Async Services request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## CreateAWSLambdaARN
 
-> interface{} CreateAWSLambdaARN(ctx).Body(body).Execute()
+> interface{} CreateAWSLambdaARN(ctx, body)
 
 Add AWS Log Lambda ARN
 
@@ -185,7 +185,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSLogsIntegrationApi.CreateAWSLambdaARN(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AWSLogsIntegrationApi.CreateAWSLambdaARN(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.CreateAWSLambdaARN``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -196,18 +196,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateAWSLambdaARNRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | AWS Log Lambda Async request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | AWS Log Lambda Async request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAWSLambdaARN
 
-> interface{} DeleteAWSLambdaARN(ctx).Body(body).Execute()
+> interface{} DeleteAWSLambdaARN(ctx, body)
 
 Delete an AWS Logs integration
 
@@ -256,7 +256,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSLogsIntegrationApi.DeleteAWSLambdaARN(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AWSLogsIntegrationApi.DeleteAWSLambdaARN(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.DeleteAWSLambdaARN``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -267,18 +267,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteAWSLambdaARNRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | Delete AWS Lambda ARN request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AWSAccountAndLambdaRequest**](AWSAccountAndLambdaRequest.md) | Delete AWS Lambda ARN request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 ## EnableAWSLogServices
 
-> interface{} EnableAWSLogServices(ctx).Body(body).Execute()
+> interface{} EnableAWSLogServices(ctx, body)
 
 Enable an AWS Logs integration
 
@@ -327,7 +327,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSLogsIntegrationApi.EnableAWSLogServices(ctx).Body(body).Execute()
+    resp, r, err := apiClient.AWSLogsIntegrationApi.EnableAWSLogServices(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.EnableAWSLogServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -338,18 +338,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiEnableAWSLogServicesRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | Enable AWS Log Services request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**AWSLogsServicesRequest**](AWSLogsServicesRequest.md) | Enable AWS Log Services request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -371,7 +371,7 @@ Name | Type | Description  | Notes
 
 ## ListAWSLogsIntegrations
 
-> []AWSLogsListResponse ListAWSLogsIntegrations(ctx).Execute()
+> []AWSLogsListResponse ListAWSLogsIntegrations(ctx)
 
 List all AWS Logs integrations
 
@@ -397,7 +397,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSLogsIntegrationApi.ListAWSLogsIntegrations(ctx).Execute()
+    resp, r, err := apiClient.AWSLogsIntegrationApi.ListAWSLogsIntegrations(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.ListAWSLogsIntegrations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -408,13 +408,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListAWSLogsIntegrationsRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -437,7 +437,7 @@ Other parameters are passed through a pointer to a apiListAWSLogsIntegrationsReq
 
 ## ListAWSLogsServices
 
-> []AWSLogsListServicesResponse ListAWSLogsServices(ctx).Execute()
+> []AWSLogsListServicesResponse ListAWSLogsServices(ctx)
 
 Get list of AWS log ready services
 
@@ -463,7 +463,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.AWSLogsIntegrationApi.ListAWSLogsServices(ctx).Execute()
+    resp, r, err := apiClient.AWSLogsIntegrationApi.ListAWSLogsServices(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.ListAWSLogsServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -474,13 +474,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListAWSLogsServicesRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
