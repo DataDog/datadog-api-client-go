@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 1.0.0-beta.20 / 2021-04-27
+
+* [Added] Add support for ICMP Synthetics tests. See [#887](https://github.com/DataDog/datadog-api-client-go/pull/887).
+* [Added] Add vSphere usage information. See [#880](https://github.com/DataDog/datadog-api-client-go/pull/880).
+* [Added] Update properties for dashboard distribution widget. See [#877](https://github.com/DataDog/datadog-api-client-go/pull/877).
+* [Added] Mark metric volumes and ingested tags endpoints as stable. See [#872](https://github.com/DataDog/datadog-api-client-go/pull/872).
+* [Added] Add `filter[shared]` query parameter for searching dashboards. See [#860](https://github.com/DataDog/datadog-api-client-go/pull/860).
+* [Added] Add profiling product fields in usage metering endpoint. See [#859](https://github.com/DataDog/datadog-api-client-go/pull/859).
+* [Added] Add `title` and `background_color` properties to dashboard group widget. See [#858](https://github.com/DataDog/datadog-api-client-go/pull/858).
+* [Changed] Use new model for Go client API. See [#885](https://github.com/DataDog/datadog-api-client-go/pull/885).
+* [Removed] Remove deprecated Synthetics methods `CreateTest` and `UpdateTest`. See [#881](https://github.com/DataDog/datadog-api-client-go/pull/881).
+
 ## 1.0.0-beta.19 / 2021-04-14
 
 * [Added] Add `reflow_type` property to dashboard object. See [#841](https://github.com/DataDog/datadog-api-client-go/pull/841).
