@@ -27,10 +27,14 @@ type SyntheticsTestRequest struct {
 	Method *HTTPMethod `json:"method,omitempty"`
 	// Determines whether or not to save the response body.
 	NoSavingResponseBody *bool `json:"noSavingResponseBody,omitempty"`
+	// Number of pings to use per test.
+	NumberOfPackets *int32 `json:"numberOfPackets,omitempty"`
 	// Port to use when performing the test.
 	Port *int64 `json:"port,omitempty"`
 	// Query to use for the test.
 	Query *interface{} `json:"query,omitempty"`
+	// Turns on a traceroute probe to discover all gateways along the path to the host destination.
+	ShouldTrackHops *bool `json:"shouldTrackHops,omitempty"`
 	// Timeout in seconds for the test.
 	Timeout *float64 `json:"timeout,omitempty"`
 	// URL to perform the test with.
@@ -310,6 +314,38 @@ func (o *SyntheticsTestRequest) SetNoSavingResponseBody(v bool) {
 	o.NoSavingResponseBody = &v
 }
 
+// GetNumberOfPackets returns the NumberOfPackets field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetNumberOfPackets() int32 {
+	if o == nil || o.NumberOfPackets == nil {
+		var ret int32
+		return ret
+	}
+	return *o.NumberOfPackets
+}
+
+// GetNumberOfPacketsOk returns a tuple with the NumberOfPackets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetNumberOfPacketsOk() (*int32, bool) {
+	if o == nil || o.NumberOfPackets == nil {
+		return nil, false
+	}
+	return o.NumberOfPackets, true
+}
+
+// HasNumberOfPackets returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasNumberOfPackets() bool {
+	if o != nil && o.NumberOfPackets != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNumberOfPackets gets a reference to the given int32 and assigns it to the NumberOfPackets field.
+func (o *SyntheticsTestRequest) SetNumberOfPackets(v int32) {
+	o.NumberOfPackets = &v
+}
+
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetPort() int64 {
 	if o == nil || o.Port == nil {
@@ -372,6 +408,38 @@ func (o *SyntheticsTestRequest) HasQuery() bool {
 // SetQuery gets a reference to the given interface{} and assigns it to the Query field.
 func (o *SyntheticsTestRequest) SetQuery(v interface{}) {
 	o.Query = &v
+}
+
+// GetShouldTrackHops returns the ShouldTrackHops field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetShouldTrackHops() bool {
+	if o == nil || o.ShouldTrackHops == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ShouldTrackHops
+}
+
+// GetShouldTrackHopsOk returns a tuple with the ShouldTrackHops field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetShouldTrackHopsOk() (*bool, bool) {
+	if o == nil || o.ShouldTrackHops == nil {
+		return nil, false
+	}
+	return o.ShouldTrackHops, true
+}
+
+// HasShouldTrackHops returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasShouldTrackHops() bool {
+	if o != nil && o.ShouldTrackHops != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetShouldTrackHops gets a reference to the given bool and assigns it to the ShouldTrackHops field.
+func (o *SyntheticsTestRequest) SetShouldTrackHops(v bool) {
+	o.ShouldTrackHops = &v
 }
 
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
@@ -464,11 +532,17 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.NoSavingResponseBody != nil {
 		toSerialize["noSavingResponseBody"] = o.NoSavingResponseBody
 	}
+	if o.NumberOfPackets != nil {
+		toSerialize["numberOfPackets"] = o.NumberOfPackets
+	}
 	if o.Port != nil {
 		toSerialize["port"] = o.Port
 	}
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
+	}
+	if o.ShouldTrackHops != nil {
+		toSerialize["shouldTrackHops"] = o.ShouldTrackHops
 	}
 	if o.Timeout != nil {
 		toSerialize["timeout"] = o.Timeout

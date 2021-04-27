@@ -18,16 +18,20 @@ type SyntheticsAssertionType string
 
 // List of SyntheticsAssertionType
 const (
-	SYNTHETICSASSERTIONTYPE_BODY            SyntheticsAssertionType = "body"
-	SYNTHETICSASSERTIONTYPE_HEADER          SyntheticsAssertionType = "header"
-	SYNTHETICSASSERTIONTYPE_STATUS_CODE     SyntheticsAssertionType = "statusCode"
-	SYNTHETICSASSERTIONTYPE_CERTIFICATE     SyntheticsAssertionType = "certificate"
-	SYNTHETICSASSERTIONTYPE_RESPONSE_TIME   SyntheticsAssertionType = "responseTime"
-	SYNTHETICSASSERTIONTYPE_PROPERTY        SyntheticsAssertionType = "property"
-	SYNTHETICSASSERTIONTYPE_RECORD_EVERY    SyntheticsAssertionType = "recordEvery"
-	SYNTHETICSASSERTIONTYPE_RECORD_SOME     SyntheticsAssertionType = "recordSome"
-	SYNTHETICSASSERTIONTYPE_TLS_VERSION     SyntheticsAssertionType = "tlsVersion"
-	SYNTHETICSASSERTIONTYPE_MIN_TLS_VERSION SyntheticsAssertionType = "minTlsVersion"
+	SYNTHETICSASSERTIONTYPE_BODY                   SyntheticsAssertionType = "body"
+	SYNTHETICSASSERTIONTYPE_HEADER                 SyntheticsAssertionType = "header"
+	SYNTHETICSASSERTIONTYPE_STATUS_CODE            SyntheticsAssertionType = "statusCode"
+	SYNTHETICSASSERTIONTYPE_CERTIFICATE            SyntheticsAssertionType = "certificate"
+	SYNTHETICSASSERTIONTYPE_RESPONSE_TIME          SyntheticsAssertionType = "responseTime"
+	SYNTHETICSASSERTIONTYPE_PROPERTY               SyntheticsAssertionType = "property"
+	SYNTHETICSASSERTIONTYPE_RECORD_EVERY           SyntheticsAssertionType = "recordEvery"
+	SYNTHETICSASSERTIONTYPE_RECORD_SOME            SyntheticsAssertionType = "recordSome"
+	SYNTHETICSASSERTIONTYPE_TLS_VERSION            SyntheticsAssertionType = "tlsVersion"
+	SYNTHETICSASSERTIONTYPE_MIN_TLS_VERSION        SyntheticsAssertionType = "minTlsVersion"
+	SYNTHETICSASSERTIONTYPE_LATENCY                SyntheticsAssertionType = "latency"
+	SYNTHETICSASSERTIONTYPE_PACKET_LOSS_PERCENTAGE SyntheticsAssertionType = "packetLossPercentage"
+	SYNTHETICSASSERTIONTYPE_PACKETS_RECEIVED       SyntheticsAssertionType = "packetsReceived"
+	SYNTHETICSASSERTIONTYPE_NETWORK_HOP            SyntheticsAssertionType = "networkHop"
 )
 
 var allowedSyntheticsAssertionTypeEnumValues = []SyntheticsAssertionType{
@@ -41,6 +45,10 @@ var allowedSyntheticsAssertionTypeEnumValues = []SyntheticsAssertionType{
 	"recordSome",
 	"tlsVersion",
 	"minTlsVersion",
+	"latency",
+	"packetLossPercentage",
+	"packetsReceived",
+	"networkHop",
 }
 
 func (v *SyntheticsAssertionType) UnmarshalJSON(src []byte) error {
