@@ -367,7 +367,7 @@ func TestUsageLogsByRetention(t *testing.T) {
 
 	startHr, endHr := getStartEndHr(ctx)
 
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetLogsByRetention(ctx).StartHr(startHr).EndHr(endHr).Execute()
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageLogsByRetention(ctx, startHr, *datadog.NewGetUsageLogsByRetentionOptionalParameters().WithEndHr(endHr))
 	if err != nil {
 		t.Errorf("Error getting logs uasge by retention: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
