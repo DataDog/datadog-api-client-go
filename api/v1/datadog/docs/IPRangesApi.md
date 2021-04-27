@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetIPRanges
 
-> IPRanges GetIPRanges(ctx).Execute()
+> IPRanges GetIPRanges(ctx)
 
 List IP Ranges
 
@@ -36,7 +36,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IPRangesApi.GetIPRanges(ctx).Execute()
+    resp, r, err := apiClient.IPRangesApi.GetIPRanges(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPRangesApi.GetIPRanges``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -47,13 +47,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetIPRangesRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type

@@ -17,7 +17,7 @@ import (
 type UsageIoTHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
-	// The total number of IoT device hours from the start of the given hour's month until the given hour.
+	// The total number of IoT devices during a given hour.
 	IotDeviceCount *int64 `json:"iot_device_count,omitempty"`
 }
 

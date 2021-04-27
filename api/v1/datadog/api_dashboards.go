@@ -25,40 +25,32 @@ var (
 // DashboardsApiService DashboardsApi service
 type DashboardsApiService service
 
-type ApiCreateDashboardRequest struct {
+type apiCreateDashboardRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardsApiService
 	body       *Dashboard
-}
-
-func (r ApiCreateDashboardRequest) Body(body Dashboard) ApiCreateDashboardRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateDashboardRequest) Execute() (Dashboard, *_nethttp.Response, error) {
-	return r.ApiService.CreateDashboardExecute(r)
 }
 
 /*
  * CreateDashboard Create a new dashboard
  * Create a dashboard using the specified options. When defining queries in your widgets, take note of which queries should have the `as_count()` or `as_rate()` modifiers appended.
 Refer to the following [documentation](https://docs.datadoghq.com/developers/metrics/type_modifiers/?tab=count#in-application-modifiers) for more information on these modifiers.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateDashboardRequest
 */
-func (a *DashboardsApiService) CreateDashboard(ctx _context.Context) ApiCreateDashboardRequest {
-	return ApiCreateDashboardRequest{
+func (a *DashboardsApiService) CreateDashboard(ctx _context.Context, body Dashboard) (Dashboard, *_nethttp.Response, error) {
+	req := apiCreateDashboardRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createDashboardExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return Dashboard
  */
-func (a *DashboardsApiService) CreateDashboardExecute(r ApiCreateDashboardRequest) (Dashboard, *_nethttp.Response, error) {
+func (a *DashboardsApiService) createDashboardExecute(r apiCreateDashboardRequest) (Dashboard, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -189,36 +181,31 @@ func (a *DashboardsApiService) CreateDashboardExecute(r ApiCreateDashboardReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteDashboardRequest struct {
+type apiDeleteDashboardRequest struct {
 	ctx         _context.Context
 	ApiService  *DashboardsApiService
 	dashboardId string
 }
 
-func (r ApiDeleteDashboardRequest) Execute() (DashboardDeleteResponse, *_nethttp.Response, error) {
-	return r.ApiService.DeleteDashboardExecute(r)
-}
-
 /*
  * DeleteDashboard Delete a dashboard
  * Delete a dashboard using the specified ID.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param dashboardId The ID of the dashboard.
- * @return ApiDeleteDashboardRequest
  */
-func (a *DashboardsApiService) DeleteDashboard(ctx _context.Context, dashboardId string) ApiDeleteDashboardRequest {
-	return ApiDeleteDashboardRequest{
+func (a *DashboardsApiService) DeleteDashboard(ctx _context.Context, dashboardId string) (DashboardDeleteResponse, *_nethttp.Response, error) {
+	req := apiDeleteDashboardRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		dashboardId: dashboardId,
 	}
+
+	return req.ApiService.deleteDashboardExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return DashboardDeleteResponse
  */
-func (a *DashboardsApiService) DeleteDashboardExecute(r ApiDeleteDashboardRequest) (DashboardDeleteResponse, *_nethttp.Response, error) {
+func (a *DashboardsApiService) deleteDashboardExecute(r apiDeleteDashboardRequest) (DashboardDeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -345,36 +332,31 @@ func (a *DashboardsApiService) DeleteDashboardExecute(r ApiDeleteDashboardReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetDashboardRequest struct {
+type apiGetDashboardRequest struct {
 	ctx         _context.Context
 	ApiService  *DashboardsApiService
 	dashboardId string
 }
 
-func (r ApiGetDashboardRequest) Execute() (Dashboard, *_nethttp.Response, error) {
-	return r.ApiService.GetDashboardExecute(r)
-}
-
 /*
  * GetDashboard Get a dashboard
  * Get a dashboard using the specified ID.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param dashboardId The ID of the dashboard.
- * @return ApiGetDashboardRequest
  */
-func (a *DashboardsApiService) GetDashboard(ctx _context.Context, dashboardId string) ApiGetDashboardRequest {
-	return ApiGetDashboardRequest{
+func (a *DashboardsApiService) GetDashboard(ctx _context.Context, dashboardId string) (Dashboard, *_nethttp.Response, error) {
+	req := apiGetDashboardRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		dashboardId: dashboardId,
 	}
+
+	return req.ApiService.getDashboardExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return Dashboard
  */
-func (a *DashboardsApiService) GetDashboardExecute(r ApiGetDashboardRequest) (Dashboard, *_nethttp.Response, error) {
+func (a *DashboardsApiService) getDashboardExecute(r apiGetDashboardRequest) (Dashboard, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -501,19 +483,23 @@ func (a *DashboardsApiService) GetDashboardExecute(r ApiGetDashboardRequest) (Da
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListDashboardsRequest struct {
+type apiListDashboardsRequest struct {
 	ctx          _context.Context
 	ApiService   *DashboardsApiService
 	filterShared *bool
 }
 
-func (r ApiListDashboardsRequest) FilterShared(filterShared bool) ApiListDashboardsRequest {
-	r.filterShared = &filterShared
-	return r
+type ListDashboardsOptionalParameters struct {
+	FilterShared *bool
 }
 
-func (r ApiListDashboardsRequest) Execute() (DashboardSummary, *_nethttp.Response, error) {
-	return r.ApiService.ListDashboardsExecute(r)
+func NewListDashboardsOptionalParameters() *ListDashboardsOptionalParameters {
+	this := ListDashboardsOptionalParameters{}
+	return &this
+}
+func (r *ListDashboardsOptionalParameters) WithFilterShared(filterShared bool) *ListDashboardsOptionalParameters {
+	r.FilterShared = &filterShared
+	return r
 }
 
 /*
@@ -522,21 +508,30 @@ func (r ApiListDashboardsRequest) Execute() (DashboardSummary, *_nethttp.Respons
 
 **Note**: This query will only return custom created or cloned dashboards.
 This query will not return preset dashboards.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListDashboardsRequest
 */
-func (a *DashboardsApiService) ListDashboards(ctx _context.Context) ApiListDashboardsRequest {
-	return ApiListDashboardsRequest{
+func (a *DashboardsApiService) ListDashboards(ctx _context.Context, o ...ListDashboardsOptionalParameters) (DashboardSummary, *_nethttp.Response, error) {
+	req := apiListDashboardsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue DashboardSummary
+		return localVarReturnValue, nil, reportError("only one argument of type ListDashboardsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.filterShared = o[0].FilterShared
+	}
+
+	return req.ApiService.listDashboardsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return DashboardSummary
  */
-func (a *DashboardsApiService) ListDashboardsExecute(r ApiListDashboardsRequest) (DashboardSummary, *_nethttp.Response, error) {
+func (a *DashboardsApiService) listDashboardsExecute(r apiListDashboardsRequest) (DashboardSummary, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -655,42 +650,33 @@ func (a *DashboardsApiService) ListDashboardsExecute(r ApiListDashboardsRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateDashboardRequest struct {
+type apiUpdateDashboardRequest struct {
 	ctx         _context.Context
 	ApiService  *DashboardsApiService
 	dashboardId string
 	body        *Dashboard
 }
 
-func (r ApiUpdateDashboardRequest) Body(body Dashboard) ApiUpdateDashboardRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateDashboardRequest) Execute() (Dashboard, *_nethttp.Response, error) {
-	return r.ApiService.UpdateDashboardExecute(r)
-}
-
 /*
  * UpdateDashboard Update a dashboard
  * Update a dashboard using the specified ID.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param dashboardId The ID of the dashboard.
- * @return ApiUpdateDashboardRequest
  */
-func (a *DashboardsApiService) UpdateDashboard(ctx _context.Context, dashboardId string) ApiUpdateDashboardRequest {
-	return ApiUpdateDashboardRequest{
+func (a *DashboardsApiService) UpdateDashboard(ctx _context.Context, dashboardId string, body Dashboard) (Dashboard, *_nethttp.Response, error) {
+	req := apiUpdateDashboardRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		dashboardId: dashboardId,
+		body:        &body,
 	}
+
+	return req.ApiService.updateDashboardExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return Dashboard
  */
-func (a *DashboardsApiService) UpdateDashboardExecute(r ApiUpdateDashboardRequest) (Dashboard, *_nethttp.Response, error) {
+func (a *DashboardsApiService) updateDashboardExecute(r apiUpdateDashboardRequest) (Dashboard, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}

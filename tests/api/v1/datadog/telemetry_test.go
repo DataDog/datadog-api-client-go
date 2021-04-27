@@ -24,7 +24,7 @@ func TestTelemetryHeaders(t *testing.T) {
 		Reply(299)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).AWSIntegrationApi.ListAWSAccounts(ctx).Execute()
+	_, httpresp, err := Client(ctx).AWSIntegrationApi.ListAWSAccounts(ctx)
 	assert.Nil(err)
 	assert.Equal(299, httpresp.StatusCode)
 }

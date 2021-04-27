@@ -26,78 +26,6 @@ var targetTextHTML interface{} = "text/html"
 var target2000 interface{} = 2000
 var targetValue0 interface{} = "0"
 
-func getLegacyTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
-	assertionTextHTML := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
-	assertionTextHTML.Property = datadog.PtrString("{{ PROPERTY }}")
-	assertionTextHTML.Target = &targetTextHTML
-
-	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
-	assertion2000.Target = &target2000
-
-	targetJSONPath := datadog.NewSyntheticsAssertionJSONPathTarget(datadog.SYNTHETICSASSERTIONJSONPATHOPERATOR_VALIDATES_JSON_PATH, datadog.SYNTHETICSASSERTIONTYPE_BODY)
-	targetJSONPath.SetTarget(
-		datadog.SyntheticsAssertionJSONPathTargetTarget{
-			JsonPath:    datadog.PtrString("topKey"),
-			Operator:    datadog.PtrString("isNot"),
-			TargetValue: &targetValue0,
-		},
-	)
-
-	return datadog.SyntheticsTestDetails{
-		Config: &datadog.SyntheticsTestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
-				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertionTextHTML),
-				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
-				datadog.SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion(targetJSONPath),
-			},
-			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
-				datadog.SyntheticsConfigVariable{
-					Name:    "PROPERTY",
-					Example: "content-type",
-					Pattern: datadog.PtrString("content-type"),
-					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
-				},
-			},
-			Request: datadog.SyntheticsTestRequest{
-				Headers: &map[string]string{"testingGoClient": "true"},
-				Method:  datadog.HTTPMETHOD_GET.Ptr(),
-				Timeout: datadog.PtrFloat64(10),
-				Url:     datadog.PtrString("https://datadoghq.com"),
-				Certificate: &datadog.SyntheticsTestRequestCertificate{
-					Cert: &datadog.SyntheticsTestRequestCertificateItem{
-						Content:   datadog.PtrString("cert-content"),
-						Filename:  datadog.PtrString("cert-filename"),
-						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
-					},
-					Key: &datadog.SyntheticsTestRequestCertificateItem{
-						Content:   datadog.PtrString("key-content"),
-						Filename:  datadog.PtrString("key-filename"),
-						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
-					},
-				},
-			},
-		},
-		Locations: &[]string{"aws:us-east-2"},
-		Message:   datadog.PtrString("Go client testing Synthetics API test - this is message"),
-		Name:      tests.UniqueEntityName(ctx, t),
-		Options: &datadog.SyntheticsTestOptions{
-			AcceptSelfSigned:   datadog.PtrBool(false),
-			AllowInsecure:      datadog.PtrBool(true),
-			FollowRedirects:    datadog.PtrBool(true),
-			MinFailureDuration: datadog.PtrInt64(10),
-			MinLocationFailed:  datadog.PtrInt64(1),
-			Retry: &datadog.SyntheticsTestOptionsRetry{
-				Count:    datadog.PtrInt64(3),
-				Interval: datadog.PtrFloat64(10),
-			},
-			TickEvery: datadog.SYNTHETICSTICKINTERVAL_MINUTE.Ptr(),
-		},
-		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
-		Tags:    &[]string{"testing:api"},
-		Type:    datadog.SYNTHETICSTESTDETAILSTYPE_API.Ptr(),
-	}
-}
-
 func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
 	assertionTextHTML := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
 	assertionTextHTML.Property = datadog.PtrString("{{ PROPERTY }}")
@@ -227,16 +155,16 @@ func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T) datadog.Sy
 	}
 }
 
-func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
+func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
 	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
 	assertion2000.SetTarget(target2000)
 
-	return datadog.SyntheticsTestDetails{
-		Config: &datadog.SyntheticsTestConfig{
+	return datadog.SyntheticsAPITest{
+		Config: &datadog.SyntheticsAPITestConfig{
 			Assertions: []datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
 			},
-			Request: datadog.SyntheticsTestRequest{
+			Request: &datadog.SyntheticsTestRequest{
 				Host: datadog.PtrString("agent-intake.logs.datadoghq.com"),
 				Port: datadog.PtrInt64(443),
 			},
@@ -249,22 +177,22 @@ func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.S
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_TCP.Ptr(),
 		Tags:    &[]string{"testing:api-tcp"},
-		Type:    datadog.SYNTHETICSTESTDETAILSTYPE_API.Ptr(),
+		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
 	}
 }
 
-func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
+func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
 	recordAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_RECORD_SOME)
 	var target interface{} = "0.0.0.0"
 	recordAssertion.SetProperty("A")
 	recordAssertion.SetTarget(target)
 
-	return datadog.SyntheticsTestDetails{
-		Config: &datadog.SyntheticsTestConfig{
+	return datadog.SyntheticsAPITest{
+		Config: &datadog.SyntheticsAPITestConfig{
 			Assertions: []datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(recordAssertion),
 			},
-			Request: datadog.SyntheticsTestRequest{
+			Request: &datadog.SyntheticsTestRequest{
 				Host:      datadog.PtrString("https://www.datadoghq.com"),
 				DnsServer: datadog.PtrString("8.8.8.8"),
 			},
@@ -277,7 +205,7 @@ func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.S
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_DNS.Ptr(),
 		Tags:    &[]string{"testing:api-dns"},
-		Type:    datadog.SYNTHETICSTESTDETAILSTYPE_API.Ptr(),
+		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
 	}
 }
 
@@ -293,8 +221,8 @@ func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(latencyAssertion),
 			},
 			Request: &datadog.SyntheticsTestRequest{
-				Host: datadog.PtrString("www.datadoghq.com"),
-				NumberOfPackets: datadog.PtrInt64(2),
+				Host:            datadog.PtrString("www.datadoghq.com"),
+				NumberOfPackets: datadog.PtrInt32(2),
 			},
 		},
 		Locations: &[]string{"aws:us-east-2"},
@@ -306,36 +234,6 @@ func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_ICMP.Ptr(),
 		Tags:    &[]string{"testing:api-icmp"},
 		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
-	}
-}
-
-func getLegacyTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsTestDetails {
-	return datadog.SyntheticsTestDetails{
-		Config: &datadog.SyntheticsTestConfig{
-			Assertions: []datadog.SyntheticsAssertion{},
-			Request: datadog.SyntheticsTestRequest{
-				Method: datadog.HTTPMETHOD_GET.Ptr(),
-				Url:    datadog.PtrString("https://datadoghq.com"),
-			},
-		},
-		Locations: &[]string{"aws:us-east-2"},
-		Message:   datadog.PtrString("Go client testing Synthetics Browser test - this is message"),
-		Name:      tests.UniqueEntityName(ctx, t),
-		Options: &datadog.SyntheticsTestOptions{
-			AcceptSelfSigned:   datadog.PtrBool(false),
-			AllowInsecure:      datadog.PtrBool(true),
-			DeviceIds:          &[]datadog.SyntheticsDeviceID{datadog.SYNTHETICSDEVICEID_TABLET},
-			FollowRedirects:    datadog.PtrBool(true),
-			MinFailureDuration: datadog.PtrInt64(10),
-			MinLocationFailed:  datadog.PtrInt64(1),
-			Retry: &datadog.SyntheticsTestOptionsRetry{
-				Count:    datadog.PtrInt64(3),
-				Interval: datadog.PtrFloat64(10),
-			},
-			TickEvery: datadog.SYNTHETICSTICKINTERVAL_FIVE_MINUTES.Ptr(),
-		},
-		Tags: &[]string{"testing:browser"},
-		Type: datadog.SYNTHETICSTESTDETAILSTYPE_BROWSER.Ptr(),
 	}
 }
 
@@ -379,10 +277,10 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create API test
-	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
-		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating Synthetics API test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	publicID := synt.GetPublicId()
 	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
@@ -395,22 +293,22 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
 	synt.MonitorId = nil
 	synt.PublicId = nil
-	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateTest(ctx, publicID).Body(synt).Execute()
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID, synt)
 	if err != nil {
-		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error updating Synthetics API test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(updatedName, synt.GetName())
 
 	// Get API test
-	synt, httpresp, err = Client(ctx).SyntheticsApi.GetTest(ctx, publicID).Execute()
+	syntTest, httpresp, err := Client(ctx).SyntheticsApi.GetTest(ctx, publicID)
 	if err != nil {
 		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.Equal(updatedName, synt.GetName())
+	assert.Equal(updatedName, syntTest.GetName())
 
-	config := synt.GetConfig()
+	config := syntTest.GetConfig()
 
 	assert.Equal(3, len(config.GetAssertions()))
 
@@ -442,8 +340,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	// Stop API test
 	var pauseStatus bool
 	newStatus := datadog.SYNTHETICSTESTPAUSESTATUS_PAUSED
-	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID).
-		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID, datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus})
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s paused: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -452,8 +349,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 
 	// Start API test
 	newStatus = datadog.SYNTHETICSTESTPAUSESTATUS_LIVE
-	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID).
-		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID, datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus})
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s live: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -463,11 +359,10 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	// Get the most recent API test results
 	var latestResults datadog.SyntheticsGetAPITestLatestResultsResponse
 	locs := synt.GetLocations()
-	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID).
-		FromTs(0).
-		ToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
-		ProbeDc(locs).
-		Execute()
+	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID, *datadog.NewGetAPITestLatestResultsOptionalParameters().
+		WithFromTs(0).
+		WithToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
+		WithProbeDc(locs))
 	if err != nil {
 		t.Fatalf("Error getting latest results for Synthetics test %s: Response %s: %v",
 			publicID, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -484,8 +379,7 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	}
 
 	// Delete API test
-	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx).
-		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}}).Execute()
+	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}})
 	if err != nil {
 		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -501,7 +395,7 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 
 	// Create API test
 	testSyntheticsAPI := getTestSyntheticsSubtypeTCPAPI(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -516,7 +410,7 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
 	synt.MonitorId = nil
 	synt.PublicId = nil
-	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateTest(ctx, publicID).Body(synt).Execute()
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID, synt)
 	if err != nil {
 		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -524,14 +418,14 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 	assert.Equal(updatedName, synt.GetName())
 
 	// Get API test
-	synt, httpresp, err = Client(ctx).SyntheticsApi.GetTest(ctx, publicID).Execute()
+	syntTest, httpresp, err := Client(ctx).SyntheticsApi.GetTest(ctx, publicID)
 	if err != nil {
 		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.Equal(updatedName, synt.GetName())
+	assert.Equal(updatedName, syntTest.GetName())
 
-	config := synt.GetConfig()
+	config := syntTest.GetConfig()
 
 	assert.Equal(1, len(config.GetAssertions()))
 
@@ -548,8 +442,7 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 	// Stop API test
 	var pauseStatus bool
 	newStatus := datadog.SYNTHETICSTESTPAUSESTATUS_PAUSED
-	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID).
-		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID, datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus})
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s paused: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -558,8 +451,7 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 
 	// Start API test
 	newStatus = datadog.SYNTHETICSTESTPAUSESTATUS_LIVE
-	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID).
-		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID, datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus})
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s live: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -569,11 +461,10 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 	// Get the most recent API test results
 	var latestResults datadog.SyntheticsGetAPITestLatestResultsResponse
 	locs := synt.GetLocations()
-	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID).
-		FromTs(0).
-		ToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
-		ProbeDc(locs).
-		Execute()
+	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID, *datadog.NewGetAPITestLatestResultsOptionalParameters().
+		WithFromTs(0).
+		WithToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
+		WithProbeDc(locs))
 	if err != nil {
 		t.Fatalf("Error getting latest results for Synthetics test %s: Response %s: %v",
 			publicID, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -590,8 +481,7 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 	}
 
 	// Delete API test
-	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx).
-		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}}).Execute()
+	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}})
 	if err != nil {
 		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -607,7 +497,7 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 
 	// Create API test
 	testSyntheticsAPI := getTestSyntheticsSubtypeDNSAPI(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -622,7 +512,7 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
 	synt.MonitorId = nil
 	synt.PublicId = nil
-	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateTest(ctx, publicID).Body(synt).Execute()
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID, synt)
 	if err != nil {
 		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -630,14 +520,14 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 	assert.Equal(updatedName, synt.GetName())
 
 	// Get API test
-	synt, httpresp, err = Client(ctx).SyntheticsApi.GetTest(ctx, publicID).Execute()
+	syntTest, httpresp, err := Client(ctx).SyntheticsApi.GetTest(ctx, publicID)
 	if err != nil {
 		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.Equal(updatedName, synt.GetName())
+	assert.Equal(updatedName, syntTest.GetName())
 
-	config := synt.GetConfig()
+	config := syntTest.GetConfig()
 
 	assert.Equal(1, len(config.GetAssertions()))
 
@@ -654,8 +544,7 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 	// Stop API test
 	var pauseStatus bool
 	newStatus := datadog.SYNTHETICSTESTPAUSESTATUS_PAUSED
-	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID).
-		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID, datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus})
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s paused: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -664,8 +553,7 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 
 	// Start API test
 	newStatus = datadog.SYNTHETICSTESTPAUSESTATUS_LIVE
-	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID).
-		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID, datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus})
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s live: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -675,11 +563,10 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 	// Get the most recent API test results
 	var latestResults datadog.SyntheticsGetAPITestLatestResultsResponse
 	locs := synt.GetLocations()
-	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID).
-		FromTs(0).
-		ToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
-		ProbeDc(locs).
-		Execute()
+	_, httpresp, err = Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, publicID, *datadog.NewGetAPITestLatestResultsOptionalParameters().
+		WithFromTs(0).
+		WithToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
+		WithProbeDc(locs))
 	if err != nil {
 		t.Fatalf("Error getting latest results for Synthetics test %s: Response %s: %v",
 			publicID, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -696,8 +583,7 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 	}
 
 	// Delete API test
-	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx).
-		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}}).Execute()
+	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}})
 	if err != nil {
 		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -713,7 +599,7 @@ func TestSyntheticsSubtypeIcmpAPITestLifecycle(t *testing.T) {
 
 	// Create API test
 	testSyntheticsAPI := getTestSyntheticsSubtypeICMPAPI(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx).Body(testSyntheticsAPI).Execute()
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -728,7 +614,7 @@ func TestSyntheticsSubtypeIcmpAPITestLifecycle(t *testing.T) {
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
 	synt.MonitorId = nil
 	synt.PublicId = nil
-	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID).Body(synt).Execute()
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID, synt)
 	if err != nil {
 		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -736,7 +622,7 @@ func TestSyntheticsSubtypeIcmpAPITestLifecycle(t *testing.T) {
 	assert.Equal(updatedName, synt.GetName())
 
 	// Get API test
-	synt, httpresp, err = Client(ctx).SyntheticsApi.GetAPITest(ctx, publicID).Execute()
+	synt, httpresp, err = Client(ctx).SyntheticsApi.GetAPITest(ctx, publicID)
 	if err != nil {
 		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -758,8 +644,7 @@ func TestSyntheticsSubtypeIcmpAPITestLifecycle(t *testing.T) {
 	}
 
 	// Delete API test
-	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx).
-		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}}).Execute()
+	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}})
 	if err != nil {
 		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -774,8 +659,8 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create Browser test
-	testSyntheticsBrowser := getLegacyTestSyntheticsBrowser(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsBrowser).Execute()
+	testSyntheticsBrowser := getTestSyntheticsBrowser(ctx, t)
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsBrowserTest(ctx, testSyntheticsBrowser)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsBrowser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -790,7 +675,7 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
 	synt.MonitorId = nil
 	synt.PublicId = nil
-	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateTest(ctx, publicID).Body(synt).Execute()
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateBrowserTest(ctx, publicID, synt)
 	if err != nil {
 		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -798,19 +683,18 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	assert.Equal(updatedName, synt.GetName())
 
 	// Get Browser test
-	synt, httpresp, err = Client(ctx).SyntheticsApi.GetTest(ctx, publicID).Execute()
+	syntTest, httpresp, err := Client(ctx).SyntheticsApi.GetTest(ctx, publicID)
 	if err != nil {
 		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.Equal(updatedName, synt.GetName())
+	assert.Equal(updatedName, syntTest.GetName())
 
 	// NOTE: Browser tests are paused by default, so we have to run it first
 	// Start Browser test
 	var pauseStatus bool
 	newStatus := datadog.SYNTHETICSTESTPAUSESTATUS_LIVE
-	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID).
-		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID, datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus})
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s live: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -819,8 +703,7 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 
 	// Stop Browser test
 	newStatus = datadog.SYNTHETICSTESTPAUSESTATUS_PAUSED
-	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID).
-		Body(datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus}).Execute()
+	pauseStatus, httpresp, err = Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, publicID, datadog.SyntheticsUpdateTestPauseStatusPayload{NewStatus: &newStatus})
 	if err != nil {
 		t.Fatalf("Error making Synthetics test %s paused: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -830,11 +713,10 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	// Get the most recent Browser test results
 	var latestResults datadog.SyntheticsGetBrowserTestLatestResultsResponse
 	locs := synt.GetLocations()
-	latestResults, httpresp, err = Client(ctx).SyntheticsApi.GetBrowserTestLatestResults(ctx, publicID).
-		FromTs(0).
-		ToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
-		ProbeDc(locs).
-		Execute()
+	latestResults, httpresp, err = Client(ctx).SyntheticsApi.GetBrowserTestLatestResults(ctx, publicID, *datadog.NewGetBrowserTestLatestResultsOptionalParameters().
+		WithFromTs(0).
+		WithToTs(tests.ClockFromContext(ctx).Now().Unix() * 1000).
+		WithProbeDc(locs))
 	if err != nil {
 		t.Fatalf("Error getting latest results for Synthetics test %s: Response %s: %v",
 			publicID, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -851,8 +733,7 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	}
 
 	// Delete Browser test
-	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx).
-		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}}).Execute()
+	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}})
 	if err != nil {
 		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -883,7 +764,7 @@ func TestSyntheticsGetBrowserTestResult(t *testing.T) {
 	defer gock.Off()
 
 	unitAPI := Client(ctx).SyntheticsApi
-	browserResp, httpresp, err := unitAPI.GetBrowserTestResult(ctx, "test-synthetics-id", "test-result-id").Execute()
+	browserResp, httpresp, err := unitAPI.GetBrowserTestResult(ctx, "test-synthetics-id", "test-result-id")
 	if err != nil {
 		t.Errorf("Failed to get synthetics browser test result: %v", err)
 	}
@@ -918,7 +799,7 @@ func TestSyntheticsGetApiTestResult(t *testing.T) {
 	defer gock.Off()
 
 	unitAPI := Client(ctx).SyntheticsApi
-	apiResp, httpresp, err := unitAPI.GetAPITestResult(ctx, "test-synthetics-id", "test-result-id").Execute()
+	apiResp, httpresp, err := unitAPI.GetAPITestResult(ctx, "test-synthetics-id", "test-result-id")
 	if err != nil {
 		t.Errorf("Failed to get synthetics api test result: %v", err)
 	}
@@ -955,7 +836,7 @@ func TestSyntheticsGetSubtypeTcpApiTestResult(t *testing.T) {
 	defer gock.Off()
 
 	unitAPI := Client(ctx).SyntheticsApi
-	apiResp, httpresp, err := unitAPI.GetAPITestResult(ctx, "test-synthetics-id", "test-result-id").Execute()
+	apiResp, httpresp, err := unitAPI.GetAPITestResult(ctx, "test-synthetics-id", "test-result-id")
 	if err != nil {
 		t.Errorf("Failed to get synthetics api test result: %v", err)
 	}
@@ -992,7 +873,7 @@ func TestSyntheticsGetSubtypeDnsApiTestResult(t *testing.T) {
 	defer gock.Off()
 
 	unitAPI := Client(ctx).SyntheticsApi
-	apiResp, httpresp, err := unitAPI.GetAPITestResult(ctx, "test-synthetics-id", "test-result-id").Execute()
+	apiResp, httpresp, err := unitAPI.GetAPITestResult(ctx, "test-synthetics-id", "test-result-id")
 	if err != nil {
 		t.Errorf("Failed to get synthetics api test result: %v", err)
 	}
@@ -1012,10 +893,11 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	var syntAPI, syntBrowser datadog.SyntheticsTestDetails
+	var syntAPI datadog.SyntheticsAPITest
+	var syntBrowser datadog.SyntheticsBrowserTest
 	// Create API test
-	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
-	syntAPI, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	syntAPI, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1025,8 +907,8 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 	assert.Equal(testSyntheticsAPI.GetName(), syntAPI.GetName())
 
 	// Create Browser test
-	testSyntheticsBrowser := getLegacyTestSyntheticsBrowser(ctx, t)
-	syntBrowser, httpresp, err = Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsBrowser).Execute()
+	testSyntheticsBrowser := getTestSyntheticsBrowser(ctx, t)
+	syntBrowser, httpresp, err = Client(ctx).SyntheticsApi.CreateSyntheticsBrowserTest(ctx, testSyntheticsBrowser)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsBrowser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1037,7 +919,7 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 
 	// Test Getting multiple tests
 	var allTests datadog.SyntheticsListTestsResponse
-	allTests, httpresp, err = Client(ctx).SyntheticsApi.ListTests(ctx).Execute()
+	allTests, httpresp, err = Client(ctx).SyntheticsApi.ListTests(ctx)
 	if err != nil {
 		t.Fatalf("Error getting all Synthetics tests: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1066,7 +948,7 @@ func TestSyntheticsDeleteTestErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).SyntheticsApi.DeleteTests(ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).SyntheticsApi.DeleteTests(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -1091,7 +973,7 @@ func TestSyntheticsDeleteTest404Error(t *testing.T) {
 	gock.New(URL).Post("/api/v1/synthetics/tests/delete").Reply(404).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).SyntheticsApi.DeleteTests(ctx).Body(datadog.SyntheticsDeleteTestsPayload{}).Execute()
+	_, httpresp, err := Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{})
 	assert.Equal(404, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -1106,8 +988,8 @@ func TestSyntheticsUpdateStatusTestErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Create API test
-	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
-	syntAPI, _, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	syntAPI, _, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
 		assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -1131,7 +1013,7 @@ func TestSyntheticsUpdateStatusTestErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, tc.ID).Body(datadog.SyntheticsUpdateTestPauseStatusPayload{}).Execute()
+			_, httpresp, err := Client(ctx).SyntheticsApi.UpdateTestPauseStatus(ctx, tc.ID, datadog.SyntheticsUpdateTestPauseStatusPayload{})
 			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1160,7 +1042,7 @@ func TestSyntheticsBrowserResultsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).SyntheticsApi.GetBrowserTestLatestResults(ctx, tc.ID).Execute()
+			_, httpresp, err := Client(ctx).SyntheticsApi.GetBrowserTestLatestResults(ctx, tc.ID)
 			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1189,7 +1071,7 @@ func TestSyntheticsGetAPIResultsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, tc.ID).Execute()
+			_, httpresp, err := Client(ctx).SyntheticsApi.GetAPITestLatestResults(ctx, tc.ID)
 			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1218,7 +1100,7 @@ func TestSyntheticsBrowserSpecificResultErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).SyntheticsApi.GetBrowserTestResult(ctx, tc.ID, "resultid").Execute()
+			_, httpresp, err := Client(ctx).SyntheticsApi.GetBrowserTestResult(ctx, tc.ID, "resultid")
 			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1247,7 +1129,7 @@ func TestSyntheticsGetAPISpecificResultErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).SyntheticsApi.GetAPITestResult(ctx, tc.ID, "resultid").Execute()
+			_, httpresp, err := Client(ctx).SyntheticsApi.GetAPITestResult(ctx, tc.ID, "resultid")
 			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1276,7 +1158,7 @@ func TestSyntheticsGetTestErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).SyntheticsApi.GetTest(ctx, tc.ID).Execute()
+			_, httpresp, err := Client(ctx).SyntheticsApi.GetTest(ctx, tc.ID)
 			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1294,8 +1176,8 @@ func TestSyntheticsUpdateTestErrors(t *testing.T) {
 	defer finish()
 
 	// Create API test
-	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
-	syntAPI, _, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	syntAPI, _, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1318,7 +1200,7 @@ func TestSyntheticsUpdateTestErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).SyntheticsApi.UpdateTest(ctx, tc.ID).Body(datadog.SyntheticsTestDetails{}).Execute()
+			_, httpresp, err := Client(ctx).SyntheticsApi.UpdateAPITest(ctx, tc.ID, datadog.SyntheticsAPITest{})
 			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1346,7 +1228,7 @@ func TestSyntheticsListTestErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).SyntheticsApi.ListTests(ctx).Execute()
+			_, httpresp, err := Client(ctx).SyntheticsApi.ListTests(ctx)
 			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1372,7 +1254,7 @@ func TestSyntheticsListTest404Error(t *testing.T) {
 	gock.New(URL).Get("/api/v1/synthetics/test").Reply(404).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).SyntheticsApi.ListTests(ctx).Execute()
+	_, httpresp, err := Client(ctx).SyntheticsApi.ListTests(ctx)
 	assert.Equal(404, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -1397,7 +1279,7 @@ func TestSyntheticsCreateTestErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(datadog.SyntheticsTestDetails{}).Execute()
+			_, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, datadog.SyntheticsAPITest{})
 			assert.IsType(datadog.GenericOpenAPIError{}, err, "%v", err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1423,7 +1305,7 @@ func TestSyntheticsCreateTest402Error(t *testing.T) {
 	gock.New(URL).Post("/api/v1/synthetics/test").Reply(402).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(datadog.SyntheticsTestDetails{}).Execute()
+	_, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, datadog.SyntheticsAPITest{})
 	assert.Equal(402, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -1440,8 +1322,7 @@ func isPublicIDPresent(publicID string, syntTests []datadog.SyntheticsTestDetail
 }
 
 func deleteSyntheticsTestIfExists(ctx context.Context, t *testing.T, testID string) {
-	_, httpresp, err := Client(ctx).SyntheticsApi.DeleteTests(ctx).
-		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{testID}}).Execute()
+	_, httpresp, err := Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{testID}})
 	if err != nil && httpresp.StatusCode != 404 {
 		t.Logf("Deleting synthetics test %s failed with %v, Another test may have already deleted this entity: %v",
 			testID, httpresp.StatusCode, err)
@@ -1455,7 +1336,7 @@ func TestSyntheticsListLocations(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	locs, httpresp, err := Client(ctx).SyntheticsApi.ListLocations(ctx).Execute()
+	locs, httpresp, err := Client(ctx).SyntheticsApi.ListLocations(ctx)
 	if err != nil {
 		t.Fatalf("Error getting all Synthetics locations: Response %s: %v", err.Error(), err)
 	}
@@ -1481,7 +1362,7 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 	}
 
 	// Create variable
-	result, httpresp, err := Client(ctx).SyntheticsApi.CreateGlobalVariable(ctx).Body(variable).Execute()
+	result, httpresp, err := Client(ctx).SyntheticsApi.CreateGlobalVariable(ctx, variable)
 
 	if err != nil {
 		t.Fatalf("Error creating Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -1490,7 +1371,7 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 	assert.Equal(result.GetName(), variable.GetName())
 
 	// Get variable
-	result, httpresp, err = Client(ctx).SyntheticsApi.GetGlobalVariable(ctx, result.GetId()).Execute()
+	result, httpresp, err = Client(ctx).SyntheticsApi.GetGlobalVariable(ctx, result.GetId())
 
 	if err != nil {
 		t.Fatalf("Error getting Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -1502,7 +1383,7 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 	updatedName := fmt.Sprintf("%s_UPDATED", variable.GetName())
 	variable.SetName(updatedName)
 
-	result, httpresp, err = Client(ctx).SyntheticsApi.EditGlobalVariable(ctx, result.GetId()).Body(variable).Execute()
+	result, httpresp, err = Client(ctx).SyntheticsApi.EditGlobalVariable(ctx, result.GetId(), variable)
 
 	if err != nil {
 		t.Fatalf("Error editing Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -1511,7 +1392,7 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 	assert.Equal(result.GetName(), updatedName)
 
 	// Delete variable
-	httpresp, err = Client(ctx).SyntheticsApi.DeleteGlobalVariable(ctx, result.GetId()).Execute()
+	httpresp, err = Client(ctx).SyntheticsApi.DeleteGlobalVariable(ctx, result.GetId())
 	if err != nil {
 		t.Fatalf("Error deleting Synthetics global variable %s: Response %s: %v", result.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1526,8 +1407,8 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// create test to use
-	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1553,7 +1434,7 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 	}
 
 	// Create variable
-	result, httpresp, err := Client(ctx).SyntheticsApi.CreateGlobalVariable(ctx).Body(variable).Execute()
+	result, httpresp, err := Client(ctx).SyntheticsApi.CreateGlobalVariable(ctx, variable)
 
 	if err != nil {
 		t.Fatalf("Error creating Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -1562,7 +1443,7 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 	assert.Equal(result.GetName(), variable.GetName())
 
 	// Get variable
-	result, httpresp, err = Client(ctx).SyntheticsApi.GetGlobalVariable(ctx, result.GetId()).Execute()
+	result, httpresp, err = Client(ctx).SyntheticsApi.GetGlobalVariable(ctx, result.GetId())
 
 	if err != nil {
 		t.Fatalf("Error getting Synthetics global variable %v: Response %s: %v", variable, err.(datadog.GenericOpenAPIError).Body(), err)
@@ -1571,7 +1452,7 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 	assert.Equal(result.GetName(), variable.GetName())
 
 	// Delete variable
-	httpresp, err = Client(ctx).SyntheticsApi.DeleteGlobalVariable(ctx, result.GetId()).Execute()
+	httpresp, err = Client(ctx).SyntheticsApi.DeleteGlobalVariable(ctx, result.GetId())
 	if err != nil {
 		t.Fatalf("Error deleting Synthetics global variable %s: Response %s: %v", result.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1586,8 +1467,8 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// create api test to trigger later
-	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
+	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1600,9 +1481,9 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 	}
 	tests := []datadog.SyntheticsCITest{test}
 
-	fullResult, httpresp, err := Client(ctx).SyntheticsApi.TriggerCITests(ctx).Body(datadog.SyntheticsCITestBody{
+	fullResult, httpresp, err := Client(ctx).SyntheticsApi.TriggerCITests(ctx, datadog.SyntheticsCITestBody{
 		Tests: &tests,
-	}).Execute()
+	})
 	if err != nil {
 		t.Fatalf("Error triggering ci tests: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1614,8 +1495,7 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 	assert.Equal(publicID, triggeredCheckIds[0])
 
 	// delete the test
-	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx).
-		Body(datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}}).Execute()
+	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}})
 	if err != nil {
 		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1635,7 +1515,7 @@ func TestSyntheticsPrivateLocationLifecycle(t *testing.T) {
 		Tags:        []string{"testing:private-location"},
 	}
 
-	privateLocationFull, httpresp, err := Client(ctx).SyntheticsApi.CreatePrivateLocation(ctx).Body(privateLocationRequest).Execute()
+	privateLocationFull, httpresp, err := Client(ctx).SyntheticsApi.CreatePrivateLocation(ctx, privateLocationRequest)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics private location %v: Response %s: %v", privateLocationRequest, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1652,7 +1532,7 @@ func TestSyntheticsPrivateLocationLifecycle(t *testing.T) {
 		Tags:        []string{"testing:private-location"},
 	}
 
-	privateLocation, httpresp, err := Client(ctx).SyntheticsApi.UpdatePrivateLocation(ctx, privateLocationID).Body(privateLocationUpdateRequest).Execute()
+	privateLocation, httpresp, err := Client(ctx).SyntheticsApi.UpdatePrivateLocation(ctx, privateLocationID, privateLocationUpdateRequest)
 	if err != nil {
 		t.Fatalf("Error editing Synthetics private location %v: Response %s: %v", privateLocationRequest, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1660,7 +1540,7 @@ func TestSyntheticsPrivateLocationLifecycle(t *testing.T) {
 	assert.Equal(privateLocation.GetName(), privateLocationUpdateRequest.GetName())
 
 	// get private location
-	privateLocationResponse, httpresp, err := Client(ctx).SyntheticsApi.GetPrivateLocation(ctx, privateLocationID).Execute()
+	privateLocationResponse, httpresp, err := Client(ctx).SyntheticsApi.GetPrivateLocation(ctx, privateLocationID)
 	if err != nil {
 		t.Fatalf("Error getting Synthetics private location %s: Response %s: %v", privateLocationID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1668,41 +1548,11 @@ func TestSyntheticsPrivateLocationLifecycle(t *testing.T) {
 	assert.Equal(privateLocationResponse.GetName(), privateLocation.GetName())
 
 	// delete private location
-	httpresp, err = Client(ctx).SyntheticsApi.DeletePrivateLocation(ctx, privateLocationID).Execute()
+	httpresp, err = Client(ctx).SyntheticsApi.DeletePrivateLocation(ctx, privateLocationID)
 	if err != nil {
 		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", privateLocationID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(204, httpresp.StatusCode)
-}
-
-func TestSyntheticsAPITestEndpointLifecycle(t *testing.T) {
-	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
-	defer finish()
-	assert := tests.Assert(ctx, t)
-
-	// Create API test
-	testSyntheticsAPI := getTestSyntheticsAPI(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx).Body(testSyntheticsAPI).Execute()
-	if err != nil {
-		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	publicID := synt.GetPublicId()
-	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
-	assert.Equal(200, httpresp.StatusCode)
-	assert.Equal(testSyntheticsAPI.GetName(), synt.GetName())
-
-	// Update API test
-	updatedName := fmt.Sprintf("%s-updated", testSyntheticsAPI.GetName())
-	synt.SetName(updatedName)
-	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
-	synt.MonitorId = nil
-	synt.PublicId = nil
-	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID).Body(synt).Execute()
-	if err != nil {
-		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	assert.Equal(200, httpresp.StatusCode)
-	assert.Equal(updatedName, synt.GetName())
 }
 
 func TestSyntheticsBrowserTestEndpointLifecycle(t *testing.T) {
@@ -1712,7 +1562,7 @@ func TestSyntheticsBrowserTestEndpointLifecycle(t *testing.T) {
 
 	// Create Browser test
 	testSyntheticsBrowser := getTestSyntheticsBrowser(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsBrowserTest(ctx).Body(testSyntheticsBrowser).Execute()
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsBrowserTest(ctx, testSyntheticsBrowser)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsBrowser, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1727,7 +1577,7 @@ func TestSyntheticsBrowserTestEndpointLifecycle(t *testing.T) {
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
 	synt.MonitorId = nil
 	synt.PublicId = nil
-	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateBrowserTest(ctx, publicID).Body(synt).Execute()
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateBrowserTest(ctx, publicID, synt)
 	if err != nil {
 		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1735,7 +1585,7 @@ func TestSyntheticsBrowserTestEndpointLifecycle(t *testing.T) {
 	assert.Equal(updatedName, synt.GetName())
 
 	// Get Browser test
-	synt, httpresp, err = Client(ctx).SyntheticsApi.GetBrowserTest(ctx, publicID).Execute()
+	synt, httpresp, err = Client(ctx).SyntheticsApi.GetBrowserTest(ctx, publicID)
 	if err != nil {
 		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1750,7 +1600,7 @@ func TestSyntheticsAPIMultistepTestEndpointLifecycle(t *testing.T) {
 
 	// Create API test
 	testSyntheticsAPI := getTestSyntheticsAPIMultistep(ctx, t)
-	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx).Body(testSyntheticsAPI).Execute()
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1765,7 +1615,7 @@ func TestSyntheticsAPIMultistepTestEndpointLifecycle(t *testing.T) {
 	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
 	synt.MonitorId = nil
 	synt.PublicId = nil
-	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID).Body(synt).Execute()
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID, synt)
 	if err != nil {
 		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}

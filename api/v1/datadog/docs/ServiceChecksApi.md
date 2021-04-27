@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## SubmitServiceCheck
 
-> IntakePayloadAccepted SubmitServiceCheck(ctx).Body(body).Execute()
+> IntakePayloadAccepted SubmitServiceCheck(ctx, body)
 
 Submit a Service Check
 
@@ -37,7 +37,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServiceChecksApi.SubmitServiceCheck(ctx).Body(body).Execute()
+    resp, r, err := apiClient.ServiceChecksApi.SubmitServiceCheck(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceChecksApi.SubmitServiceCheck``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -48,18 +48,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSubmitServiceCheckRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**[]ServiceCheck**](ServiceCheck.md) | Service Check request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**[]ServiceCheck**](ServiceCheck.md) | Service Check request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 

@@ -50,6 +50,7 @@ Name | Type | Description | Notes
 **TraceSearchIndexedEventsCountAggSum** | Pointer to **int64** | Shows the sum of all Indexed Spans indexed over all hours in the current months for all organizations. | [optional] 
 **TwolIngestedEventsBytesAggSum** | Pointer to **int64** | Shows the sum of all tracing without limits bytes ingested over all hours in the current months for all organizations. | [optional] 
 **Usage** | Pointer to [**[]UsageSummaryDate**](UsageSummaryDate.md) | An array of objects regarding hourly usage. | [optional] 
+**VsphereHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all vSphere hosts over all hours in the current months for all organizations. | [optional] 
 
 ## Methods
 
@@ -1229,6 +1230,31 @@ SetUsage sets Usage field to given value.
 `func (o *UsageSummaryResponse) HasUsage() bool`
 
 HasUsage returns a boolean if a field has been set.
+
+### GetVsphereHostTop99pSum
+
+`func (o *UsageSummaryResponse) GetVsphereHostTop99pSum() int64`
+
+GetVsphereHostTop99pSum returns the VsphereHostTop99pSum field if non-nil, zero value otherwise.
+
+### GetVsphereHostTop99pSumOk
+
+`func (o *UsageSummaryResponse) GetVsphereHostTop99pSumOk() (*int64, bool)`
+
+GetVsphereHostTop99pSumOk returns a tuple with the VsphereHostTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVsphereHostTop99pSum
+
+`func (o *UsageSummaryResponse) SetVsphereHostTop99pSum(v int64)`
+
+SetVsphereHostTop99pSum sets VsphereHostTop99pSum field to given value.
+
+### HasVsphereHostTop99pSum
+
+`func (o *UsageSummaryResponse) HasVsphereHostTop99pSum() bool`
+
+HasVsphereHostTop99pSum returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

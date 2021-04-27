@@ -47,7 +47,7 @@ type {{classname}} interface {
 type {{classname}}Service service
 {{#operation}}
 
-type {{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request struct {
+type {{#lambda.camelcase}}{{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request{{/lambda.camelcase}} struct {
 	ctx _context.Context{{#generateInterfaces}}
 	ApiService {{classname}}
 {{/generateInterfaces}}{{^generateInterfaces}}
@@ -57,40 +57,64 @@ type {{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request s
 	{{paramName}} {{^isPathParam}}*{{/isPathParam}}{{{dataType}}}
 {{/allParams}}
 }
-{{#allParams}}{{^isPathParam}}
-func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request) {{vendorExtensions.x-export-param-name}}({{paramName}} {{{dataType}}}) {{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request {
-	r.{{paramName}} = &{{paramName}}
-	return r
-}{{/isPathParam}}{{/allParams}}
 
-func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request) Execute() ({{#returnType}}{{{.}}}, {{/returnType}}*_nethttp.Response, error) {
-	return r.ApiService.{{nickname}}Execute(r)
+{{#hasOptionalParams}}
+type {{operationIdOriginal}}OptionalParameters struct {
+    {{#optionalParams}}
+    {{vendorExtensions.x-export-param-name}} {{^isPathParam}}*{{/isPathParam}}{{{dataType}}}
+    {{/optionalParams}}
 }
+
+func New{{operationIdOriginal}}OptionalParameters() *{{operationIdOriginal}}OptionalParameters {
+    this := {{operationIdOriginal}}OptionalParameters{}
+    return &this
+}
+{{#optionalParams}}
+func (r *{{operationIdOriginal}}OptionalParameters) With{{vendorExtensions.x-export-param-name}}({{paramName}} {{{dataType}}}) *{{operationIdOriginal}}OptionalParameters {
+    r.{{vendorExtensions.x-export-param-name}} = &{{paramName}}
+    return r
+}
+{{/optionalParams}}
+{{/hasOptionalParams}}
 
 /*
  * {{operationId}}{{#summary}} {{{.}}}{{/summary}}{{^summary}} Method for {{operationId}}{{/summary}}
 {{#notes}}
  * {{{unescapedNotes}}}
 {{/notes}}
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().{{#pathParams}}
- * @param {{paramName}}{{#description}} {{{.}}}{{/description}}{{/pathParams}}
- * @return {{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request
  */
-func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#pathParams}}, {{paramName}} {{{dataType}}}{{/pathParams}}) {{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request {
-	return {{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request{
+func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#requiredParams}}, {{paramName}} {{{dataType}}}{{/requiredParams}}{{#hasOptionalParams}}, o ...{{operationIdOriginal}}OptionalParameters{{/hasOptionalParams}}) ({{#returnType}}{{{.}}}, {{/returnType}}*_nethttp.Response, error) {
+	req := {{#lambda.camelcase}}{{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request{{/lambda.camelcase}}{
 		ApiService: a,
 		ctx: ctx,
-		{{#pathParams}}
-		{{paramName}}: {{paramName}},
-		{{/pathParams}}
+        {{#requiredParams}}
+		{{paramName}}: {{^isPathParam}}&{{/isPathParam}}{{paramName}},
+        {{/requiredParams}}
 	}
+
+    {{#hasOptionalParams}}
+    if len(o) > 1 {
+        {{#returnType}}
+         var localVarReturnValue {{{.}}}
+        {{/returnType}}
+        return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("only one argument of type {{operationIdOriginal}}OptionalParameters is allowed")
+    }
+
+    if o != nil {
+    {{#optionalParams}}
+        req.{{paramName}} = o[0].{{vendorExtensions.x-export-param-name}}
+    {{/optionalParams}}
+    }
+    {{/hasOptionalParams}}
+
+    return req.ApiService.{{#lambda.camelcase}}{{nickname}}Execute{{/lambda.camelcase}}(req)
 }
 
 /*
  * Execute executes the request{{#returnType}}
  * @return {{{.}}}{{/returnType}}
  */
-func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request) ({{#returnType}}{{{.}}}, {{/returnType}}*_nethttp.Response, error) {
+func (a *{{{classname}}}Service) {{#lambda.camelcase}}{{nickname}}Execute{{/lambda.camelcase}}(r {{#lambda.camelcase}}{{#structPrefix}}{{&classname}}{{/structPrefix}}Api{{operationId}}Request{{/lambda.camelcase}}) ({{#returnType}}{{{.}}}, {{/returnType}}*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.Method{{httpMethod}}
 		localVarPostBody     interface{}

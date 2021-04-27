@@ -26,19 +26,10 @@ var (
 // OrganizationsApiService OrganizationsApi service
 type OrganizationsApiService service
 
-type ApiCreateChildOrgRequest struct {
+type apiCreateChildOrgRequest struct {
 	ctx        _context.Context
 	ApiService *OrganizationsApiService
 	body       *OrganizationCreateBody
-}
-
-func (r ApiCreateChildOrgRequest) Body(body OrganizationCreateBody) ApiCreateChildOrgRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateChildOrgRequest) Execute() (OrganizationCreateResponse, *_nethttp.Response, error) {
-	return r.ApiService.CreateChildOrgExecute(r)
 }
 
 /*
@@ -53,21 +44,22 @@ feature and must be enabled by
 Once a new child organization is created, you can interact with it
 by using the `org.public_id`, `pi_key.key`, and
 `application_key.hash` provided in the response.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateChildOrgRequest
 */
-func (a *OrganizationsApiService) CreateChildOrg(ctx _context.Context) ApiCreateChildOrgRequest {
-	return ApiCreateChildOrgRequest{
+func (a *OrganizationsApiService) CreateChildOrg(ctx _context.Context, body OrganizationCreateBody) (OrganizationCreateResponse, *_nethttp.Response, error) {
+	req := apiCreateChildOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createChildOrgExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return OrganizationCreateResponse
  */
-func (a *OrganizationsApiService) CreateChildOrgExecute(r ApiCreateChildOrgRequest) (OrganizationCreateResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApiService) createChildOrgExecute(r apiCreateChildOrgRequest) (OrganizationCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -198,36 +190,31 @@ func (a *OrganizationsApiService) CreateChildOrgExecute(r ApiCreateChildOrgReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetOrgRequest struct {
+type apiGetOrgRequest struct {
 	ctx        _context.Context
 	ApiService *OrganizationsApiService
 	publicId   string
 }
 
-func (r ApiGetOrgRequest) Execute() (OrganizationResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetOrgExecute(r)
-}
-
 /*
  * GetOrg Get organization information
  * Get organization information.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The `public_id` of the organization you are operating within.
- * @return ApiGetOrgRequest
  */
-func (a *OrganizationsApiService) GetOrg(ctx _context.Context, publicId string) ApiGetOrgRequest {
-	return ApiGetOrgRequest{
+func (a *OrganizationsApiService) GetOrg(ctx _context.Context, publicId string) (OrganizationResponse, *_nethttp.Response, error) {
+	req := apiGetOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 	}
+
+	return req.ApiService.getOrgExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return OrganizationResponse
  */
-func (a *OrganizationsApiService) GetOrgExecute(r ApiGetOrgRequest) (OrganizationResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApiService) getOrgExecute(r apiGetOrgRequest) (OrganizationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -354,33 +341,29 @@ func (a *OrganizationsApiService) GetOrgExecute(r ApiGetOrgRequest) (Organizatio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListOrgsRequest struct {
+type apiListOrgsRequest struct {
 	ctx        _context.Context
 	ApiService *OrganizationsApiService
-}
-
-func (r ApiListOrgsRequest) Execute() (OrganizationListResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListOrgsExecute(r)
 }
 
 /*
  * ListOrgs List your managed organizations
  * List your managed organizations.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListOrgsRequest
  */
-func (a *OrganizationsApiService) ListOrgs(ctx _context.Context) ApiListOrgsRequest {
-	return ApiListOrgsRequest{
+func (a *OrganizationsApiService) ListOrgs(ctx _context.Context) (OrganizationListResponse, *_nethttp.Response, error) {
+	req := apiListOrgsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.listOrgsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return OrganizationListResponse
  */
-func (a *OrganizationsApiService) ListOrgsExecute(r ApiListOrgsRequest) (OrganizationListResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApiService) listOrgsExecute(r apiListOrgsRequest) (OrganizationListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -496,42 +479,33 @@ func (a *OrganizationsApiService) ListOrgsExecute(r ApiListOrgsRequest) (Organiz
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateOrgRequest struct {
+type apiUpdateOrgRequest struct {
 	ctx        _context.Context
 	ApiService *OrganizationsApiService
 	publicId   string
 	body       *Organization
 }
 
-func (r ApiUpdateOrgRequest) Body(body Organization) ApiUpdateOrgRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateOrgRequest) Execute() (OrganizationResponse, *_nethttp.Response, error) {
-	return r.ApiService.UpdateOrgExecute(r)
-}
-
 /*
  * UpdateOrg Update your organization
  * Update your organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The `public_id` of the organization you are operating within.
- * @return ApiUpdateOrgRequest
  */
-func (a *OrganizationsApiService) UpdateOrg(ctx _context.Context, publicId string) ApiUpdateOrgRequest {
-	return ApiUpdateOrgRequest{
+func (a *OrganizationsApiService) UpdateOrg(ctx _context.Context, publicId string, body Organization) (OrganizationResponse, *_nethttp.Response, error) {
+	req := apiUpdateOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateOrgExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return OrganizationResponse
  */
-func (a *OrganizationsApiService) UpdateOrgExecute(r ApiUpdateOrgRequest) (OrganizationResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApiService) updateOrgExecute(r apiUpdateOrgRequest) (OrganizationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -663,20 +637,11 @@ func (a *OrganizationsApiService) UpdateOrgExecute(r ApiUpdateOrgRequest) (Organ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUploadIdPForOrgRequest struct {
+type apiUploadIdPForOrgRequest struct {
 	ctx        _context.Context
 	ApiService *OrganizationsApiService
 	publicId   string
 	idpFile    **os.File
-}
-
-func (r ApiUploadIdPForOrgRequest) IdpFile(idpFile *os.File) ApiUploadIdPForOrgRequest {
-	r.idpFile = &idpFile
-	return r
-}
-
-func (r ApiUploadIdPForOrgRequest) Execute() (IdpResponse, *_nethttp.Response, error) {
-	return r.ApiService.UploadIdPForOrgExecute(r)
 }
 
 /*
@@ -687,23 +652,23 @@ metadata from your SAML IdP.
 * **Multipart Form-Data**: Post the IdP metadata file using a form post.
 
 * **XML Body:** Post the IdP metadata file as the body of the request.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param publicId The `public_id` of the organization you are operating with
- * @return ApiUploadIdPForOrgRequest
 */
-func (a *OrganizationsApiService) UploadIdPForOrg(ctx _context.Context, publicId string) ApiUploadIdPForOrgRequest {
-	return ApiUploadIdPForOrgRequest{
+func (a *OrganizationsApiService) UploadIdPForOrg(ctx _context.Context, publicId string, idpFile *os.File) (IdpResponse, *_nethttp.Response, error) {
+	req := apiUploadIdPForOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
+		idpFile:    &idpFile,
 	}
+
+	return req.ApiService.uploadIdPForOrgExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IdpResponse
  */
-func (a *OrganizationsApiService) UploadIdPForOrgExecute(r ApiUploadIdPForOrgRequest) (IdpResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApiService) uploadIdPForOrgExecute(r apiUploadIdPForOrgRequest) (IdpResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
