@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CheckCanDeleteMonitor
 
-> CheckCanDeleteMonitorResponse CheckCanDeleteMonitor(ctx).MonitorIds(monitorIds).Execute()
+> CheckCanDeleteMonitorResponse CheckCanDeleteMonitor(ctx, monitorIds)
 
 Check if a monitor can be deleted
 
@@ -43,7 +43,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorsApi.CheckCanDeleteMonitor(ctx).MonitorIds(monitorIds).Execute()
+    resp, r, err := apiClient.MonitorsApi.CheckCanDeleteMonitor(ctx, monitorIds)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CheckCanDeleteMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -54,18 +54,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCheckCanDeleteMonitorRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **monitorIds** | **[]int64** | The IDs of the monitor to check. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**monitorIds** | [**[]int64**](int64.md) | The IDs of the monitor to check. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## CreateMonitor
 
-> Monitor CreateMonitor(ctx).Body(body).Execute()
+> Monitor CreateMonitor(ctx, body)
 
 Create a monitor
 
@@ -114,7 +114,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorsApi.CreateMonitor(ctx).Body(body).Execute()
+    resp, r, err := apiClient.MonitorsApi.CreateMonitor(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CreateMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,18 +125,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateMonitorRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Monitor**](Monitor.md) | Create a monitor request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**Monitor**](Monitor.md) | Create a monitor request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## DeleteMonitor
 
-> DeletedMonitor DeleteMonitor(ctx, monitorId).Force(force).Execute()
+> DeletedMonitor DeleteMonitor(ctx, monitorId, datadog.DeleteMonitorOptionalParameters{})
 
 Delete a monitor
 
@@ -182,11 +182,14 @@ func main() {
 
     monitorId := int64(789) // int64 | The ID of the monitor.
     force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
+    optionalParams := datadog.DeleteMonitorOptionalParameters{
+        Force: &force,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorsApi.DeleteMonitor(ctx, monitorId).Force(force).Execute()
+    resp, r, err := apiClient.MonitorsApi.DeleteMonitor(ctx, monitorId, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.DeleteMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -197,7 +200,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -205,15 +208,15 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **monitorId** | **int64** | The ID of the monitor. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteMonitorRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a DeleteMonitorOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (e.g. SLO, composite monitor). | 
+**force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (e.g. SLO, composite monitor). | 
 
 ### Return type
 
@@ -235,7 +238,7 @@ Name | Type | Description  | Notes
 
 ## GetMonitor
 
-> Monitor GetMonitor(ctx, monitorId).GroupStates(groupStates).Execute()
+> Monitor GetMonitor(ctx, monitorId, datadog.GetMonitorOptionalParameters{})
 
 Get a monitor's details
 
@@ -259,11 +262,14 @@ func main() {
 
     monitorId := int64(789) // int64 | The ID of the monitor
     groupStates := "groupStates_example" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
+    optionalParams := datadog.GetMonitorOptionalParameters{
+        GroupStates: &groupStates,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorsApi.GetMonitor(ctx, monitorId).GroupStates(groupStates).Execute()
+    resp, r, err := apiClient.MonitorsApi.GetMonitor(ctx, monitorId, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.GetMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -274,7 +280,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -282,15 +288,15 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **monitorId** | **int64** | The ID of the monitor | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetMonitorRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a GetMonitorOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **groupStates** | **string** | When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
+**groupStates** | **string** | When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
 
 ### Return type
 
@@ -312,7 +318,7 @@ Name | Type | Description  | Notes
 
 ## ListMonitors
 
-> []Monitor ListMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).IdOffset(idOffset).Page(page).PageSize(pageSize).Execute()
+> []Monitor ListMonitors(ctx, datadog.ListMonitorsOptionalParameters{})
 
 Get all monitor details
 
@@ -342,11 +348,21 @@ func main() {
     idOffset := int64(789) // int64 | Monitor ID offset. (optional)
     page := int64(789) // int64 | The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. (optional)
     pageSize := int32(56) // int32 | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a `page_size` limit. However, if page is specified and `page_size` is not, the argument defaults to 100. (optional)
+    optionalParams := datadog.ListMonitorsOptionalParameters{
+        GroupStates: &groupStates,
+        Name: &name,
+        Tags: &tags,
+        MonitorTags: &monitorTags,
+        WithDowntimes: &withDowntimes,
+        IdOffset: &idOffset,
+        Page: &page,
+        PageSize: &pageSize,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorsApi.ListMonitors(ctx).GroupStates(groupStates).Name(name).Tags(tags).MonitorTags(monitorTags).WithDowntimes(withDowntimes).IdOffset(idOffset).Page(page).PageSize(pageSize).Execute()
+    resp, r, err := apiClient.MonitorsApi.ListMonitors(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ListMonitors``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -357,25 +373,26 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListMonitorsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListMonitorsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupStates** | **string** | When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
- **name** | **string** | A string to filter monitors by name. | 
- **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. For example, &#x60;host:host0&#x60;. | 
- **monitorTags** | **string** | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, &#x60;service:my-app&#x60;. | 
- **withDowntimes** | **bool** | If this argument is set to true, then the returned data includes all current downtimes for each monitor. | 
- **idOffset** | **int64** | Monitor ID offset. | 
- **page** | **int64** | The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. | 
- **pageSize** | **int32** | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a &#x60;page_size&#x60; limit. However, if page is specified and &#x60;page_size&#x60; is not, the argument defaults to 100. | 
+**groupStates** | **string** | When specified, shows additional information about the group states. Choose one or more from &#x60;all&#x60;, &#x60;alert&#x60;, &#x60;warn&#x60;, and &#x60;no data&#x60;. | 
+**name** | **string** | A string to filter monitors by name. | 
+**tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. For example, &#x60;host:host0&#x60;. | 
+**monitorTags** | **string** | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, &#x60;service:my-app&#x60;. | 
+**withDowntimes** | **bool** | If this argument is set to true, then the returned data includes all current downtimes for each monitor. | 
+**idOffset** | **int64** | Monitor ID offset. | 
+**page** | **int64** | The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. | 
+**pageSize** | **int32** | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a &#x60;page_size&#x60; limit. However, if page is specified and &#x60;page_size&#x60; is not, the argument defaults to 100. | 
 
 ### Return type
 
@@ -397,7 +414,7 @@ Name | Type | Description  | Notes
 
 ## UpdateMonitor
 
-> Monitor UpdateMonitor(ctx, monitorId).Body(body).Execute()
+> Monitor UpdateMonitor(ctx, monitorId, body)
 
 Edit a monitor
 
@@ -425,7 +442,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorsApi.UpdateMonitor(ctx, monitorId).Body(body).Execute()
+    resp, r, err := apiClient.MonitorsApi.UpdateMonitor(ctx, monitorId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.UpdateMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -436,23 +453,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **monitorId** | **int64** | The ID of the monitor. | 
+**body** | [**MonitorUpdateRequest**](MonitorUpdateRequest.md) | Edit a monitor request body. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateMonitorRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**MonitorUpdateRequest**](MonitorUpdateRequest.md) | Edit a monitor request body. | 
 
 ### Return type
 
@@ -474,7 +487,7 @@ Name | Type | Description  | Notes
 
 ## ValidateMonitor
 
-> Monitor ValidateMonitor(ctx).Body(body).Execute()
+> Monitor ValidateMonitor(ctx, body)
 
 Validate a monitor
 
@@ -501,7 +514,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorsApi.ValidateMonitor(ctx).Body(body).Execute()
+    resp, r, err := apiClient.MonitorsApi.ValidateMonitor(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ValidateMonitor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -512,18 +525,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiValidateMonitorRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Monitor**](Monitor.md) | Monitor request object | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**Monitor**](Monitor.md) | Monitor request object | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 

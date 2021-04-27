@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CancelDowntime
 
-> CancelDowntime(ctx, downtimeId).Execute()
+> CancelDowntime(ctx, downtimeId)
 
 Cancel a downtime
 
@@ -42,7 +42,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.DowntimesApi.CancelDowntime(ctx, downtimeId).Execute()
+    r, err := apiClient.DowntimesApi.CancelDowntime(ctx, downtimeId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,7 +50,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -58,13 +58,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **downtimeId** | **int64** | ID of the downtime to cancel. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiCancelDowntimeRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -87,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## CancelDowntimesByScope
 
-> CanceledDowntimesIds CancelDowntimesByScope(ctx).Body(body).Execute()
+> CanceledDowntimesIds CancelDowntimesByScope(ctx, body)
 
 Cancel downtimes by scope
 
@@ -114,7 +110,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DowntimesApi.CancelDowntimesByScope(ctx).Body(body).Execute()
+    resp, r, err := apiClient.DowntimesApi.CancelDowntimesByScope(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntimesByScope``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,18 +121,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCancelDowntimesByScopeRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CancelDowntimesByScopeRequest**](CancelDowntimesByScopeRequest.md) | Scope to cancel downtimes for. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**CancelDowntimesByScopeRequest**](CancelDowntimesByScopeRequest.md) | Scope to cancel downtimes for. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -158,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## CreateDowntime
 
-> Downtime CreateDowntime(ctx).Body(body).Execute()
+> Downtime CreateDowntime(ctx, body)
 
 Schedule a downtime
 
@@ -185,7 +181,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DowntimesApi.CreateDowntime(ctx).Body(body).Execute()
+    resp, r, err := apiClient.DowntimesApi.CreateDowntime(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CreateDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -196,18 +192,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateDowntimeRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Downtime**](Downtime.md) | Schedule a downtime request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**Downtime**](Downtime.md) | Schedule a downtime request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -229,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## GetDowntime
 
-> Downtime GetDowntime(ctx, downtimeId).Execute()
+> Downtime GetDowntime(ctx, downtimeId)
 
 Get a downtime
 
@@ -256,7 +252,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DowntimesApi.GetDowntime(ctx, downtimeId).Execute()
+    resp, r, err := apiClient.DowntimesApi.GetDowntime(ctx, downtimeId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.GetDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -267,7 +263,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -275,13 +271,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **downtimeId** | **int64** | ID of the downtime to fetch. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetDowntimeRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -304,7 +296,7 @@ Name | Type | Description  | Notes
 
 ## ListDowntimes
 
-> []Downtime ListDowntimes(ctx).CurrentOnly(currentOnly).Execute()
+> []Downtime ListDowntimes(ctx, datadog.ListDowntimesOptionalParameters{})
 
 Get all downtimes
 
@@ -327,11 +319,14 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     currentOnly := true // bool | Only return downtimes that are active when the request is made. (optional)
+    optionalParams := datadog.ListDowntimesOptionalParameters{
+        CurrentOnly: &currentOnly,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DowntimesApi.ListDowntimes(ctx).CurrentOnly(currentOnly).Execute()
+    resp, r, err := apiClient.DowntimesApi.ListDowntimes(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListDowntimes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -342,18 +337,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListDowntimesRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListDowntimesOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currentOnly** | **bool** | Only return downtimes that are active when the request is made. | 
+**currentOnly** | **bool** | Only return downtimes that are active when the request is made. | 
 
 ### Return type
 
@@ -375,7 +371,7 @@ Name | Type | Description  | Notes
 
 ## ListMonitorDowntimes
 
-> []Downtime ListMonitorDowntimes(ctx, monitorId).Execute()
+> []Downtime ListMonitorDowntimes(ctx, monitorId)
 
 Get all downtimes for a monitor
 
@@ -402,7 +398,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DowntimesApi.ListMonitorDowntimes(ctx, monitorId).Execute()
+    resp, r, err := apiClient.DowntimesApi.ListMonitorDowntimes(ctx, monitorId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListMonitorDowntimes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -413,7 +409,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -421,13 +417,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **monitorId** | **int64** | The id of the monitor | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListMonitorDowntimesRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -450,7 +442,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDowntime
 
-> Downtime UpdateDowntime(ctx, downtimeId).Body(body).Execute()
+> Downtime UpdateDowntime(ctx, downtimeId, body)
 
 Update a downtime
 
@@ -478,7 +470,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.DowntimesApi.UpdateDowntime(ctx, downtimeId).Body(body).Execute()
+    resp, r, err := apiClient.DowntimesApi.UpdateDowntime(ctx, downtimeId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.UpdateDowntime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -489,23 +481,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **downtimeId** | **int64** | ID of the downtime to update. | 
+**body** | [**Downtime**](Downtime.md) | Update a downtime request body. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateDowntimeRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**Downtime**](Downtime.md) | Update a downtime request body. | 
 
 ### Return type
 

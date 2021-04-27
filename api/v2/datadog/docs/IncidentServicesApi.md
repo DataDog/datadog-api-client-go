@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateIncidentService
 
-> IncidentServiceResponse CreateIncidentService(ctx).Body(body).Execute()
+> IncidentServiceResponse CreateIncidentService(ctx, body)
 
 Create a new incident service
 
@@ -42,7 +42,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("CreateIncidentService", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentServicesApi.CreateIncidentService(ctx).Body(body).Execute()
+    resp, r, err := apiClient.IncidentServicesApi.CreateIncidentService(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.CreateIncidentService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,18 +53,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateIncidentServiceRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**IncidentServiceCreateRequest**](IncidentServiceCreateRequest.md) | Incident Service Payload. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**IncidentServiceCreateRequest**](IncidentServiceCreateRequest.md) | Incident Service Payload. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## DeleteIncidentService
 
-> DeleteIncidentService(ctx, serviceId).Execute()
+> DeleteIncidentService(ctx, serviceId)
 
 Delete an existing incident service
 
@@ -113,7 +113,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("DeleteIncidentService", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.IncidentServicesApi.DeleteIncidentService(ctx, serviceId).Execute()
+    r, err := apiClient.IncidentServicesApi.DeleteIncidentService(ctx, serviceId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.DeleteIncidentService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -129,13 +129,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **serviceId** | **string** | The ID of the incident service. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteIncidentServiceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -158,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## GetIncidentService
 
-> IncidentServiceResponse GetIncidentService(ctx, serviceId).Include(include).Execute()
+> IncidentServiceResponse GetIncidentService(ctx, serviceId, datadog.GetIncidentServiceOptionalParameters{})
 
 Get details of an incident service
 
@@ -182,12 +178,15 @@ func main() {
 
     serviceId := "serviceId_example" // string | The ID of the incident service.
     include := datadog.IncidentRelatedObject("users") // IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
+    optionalParams := datadog.GetIncidentServiceOptionalParameters{
+        Include: &include,
+    }
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetIncidentService", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentServicesApi.GetIncidentService(ctx, serviceId).Include(include).Execute()
+    resp, r, err := apiClient.IncidentServicesApi.GetIncidentService(ctx, serviceId, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.GetIncidentService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,7 +197,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -206,15 +205,15 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **serviceId** | **string** | The ID of the incident service. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetIncidentServiceRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a GetIncidentServiceOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
+**include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
 
 ### Return type
 
@@ -236,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## ListIncidentServices
 
-> IncidentServicesResponse ListIncidentServices(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Filter(filter).Execute()
+> IncidentServicesResponse ListIncidentServices(ctx, datadog.ListIncidentServicesOptionalParameters{})
 
 Get a list of all incident services
 
@@ -262,12 +261,18 @@ func main() {
     pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
     pageOffset := int64(789) // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
     filter := "ExampleServiceName" // string | A search query that filters services by name. (optional)
+    optionalParams := datadog.ListIncidentServicesOptionalParameters{
+        Include: &include,
+        PageSize: &pageSize,
+        PageOffset: &pageOffset,
+        Filter: &filter,
+    }
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("ListIncidentServices", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentServicesApi.ListIncidentServices(ctx).Include(include).PageSize(pageSize).PageOffset(pageOffset).Filter(filter).Execute()
+    resp, r, err := apiClient.IncidentServicesApi.ListIncidentServices(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.ListIncidentServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -278,21 +283,22 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListIncidentServicesRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListIncidentServicesOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
- **pageSize** | **int64** | Size for a given page. | [default to 10]
- **pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
- **filter** | **string** | A search query that filters services by name. | 
+**include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
+**pageSize** | **int64** | Size for a given page. | [default to 10]
+**pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
+**filter** | **string** | A search query that filters services by name. | 
 
 ### Return type
 
@@ -314,7 +320,7 @@ Name | Type | Description  | Notes
 
 ## UpdateIncidentService
 
-> IncidentServiceResponse UpdateIncidentService(ctx, serviceId).Body(body).Execute()
+> IncidentServiceResponse UpdateIncidentService(ctx, serviceId, body)
 
 Update an existing incident service
 
@@ -343,7 +349,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("UpdateIncidentService", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentServicesApi.UpdateIncidentService(ctx, serviceId).Body(body).Execute()
+    resp, r, err := apiClient.IncidentServicesApi.UpdateIncidentService(ctx, serviceId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.UpdateIncidentService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -354,23 +360,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **serviceId** | **string** | The ID of the incident service. | 
+**body** | [**IncidentServiceUpdateRequest**](IncidentServiceUpdateRequest.md) | Incident Service Payload. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateIncidentServiceRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**IncidentServiceUpdateRequest**](IncidentServiceUpdateRequest.md) | Incident Service Payload. | 
 
 ### Return type
 

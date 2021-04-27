@@ -25,39 +25,31 @@ var (
 // DashboardListsApiService DashboardListsApi service
 type DashboardListsApiService service
 
-type ApiCreateDashboardListRequest struct {
+type apiCreateDashboardListRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardListsApiService
 	body       *DashboardList
 }
 
-func (r ApiCreateDashboardListRequest) Body(body DashboardList) ApiCreateDashboardListRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateDashboardListRequest) Execute() (DashboardList, *_nethttp.Response, error) {
-	return r.ApiService.CreateDashboardListExecute(r)
-}
-
 /*
  * CreateDashboardList Create a dashboard list
  * Create an empty dashboard list.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateDashboardListRequest
  */
-func (a *DashboardListsApiService) CreateDashboardList(ctx _context.Context) ApiCreateDashboardListRequest {
-	return ApiCreateDashboardListRequest{
+func (a *DashboardListsApiService) CreateDashboardList(ctx _context.Context, body DashboardList) (DashboardList, *_nethttp.Response, error) {
+	req := apiCreateDashboardListRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createDashboardListExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return DashboardList
  */
-func (a *DashboardListsApiService) CreateDashboardListExecute(r ApiCreateDashboardListRequest) (DashboardList, *_nethttp.Response, error) {
+func (a *DashboardListsApiService) createDashboardListExecute(r apiCreateDashboardListRequest) (DashboardList, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -188,36 +180,31 @@ func (a *DashboardListsApiService) CreateDashboardListExecute(r ApiCreateDashboa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteDashboardListRequest struct {
+type apiDeleteDashboardListRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardListsApiService
 	listId     int64
 }
 
-func (r ApiDeleteDashboardListRequest) Execute() (DashboardListDeleteResponse, *_nethttp.Response, error) {
-	return r.ApiService.DeleteDashboardListExecute(r)
-}
-
 /*
  * DeleteDashboardList Delete a dashboard list
  * Delete a dashboard list.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId ID of the dashboard list to delete.
- * @return ApiDeleteDashboardListRequest
  */
-func (a *DashboardListsApiService) DeleteDashboardList(ctx _context.Context, listId int64) ApiDeleteDashboardListRequest {
-	return ApiDeleteDashboardListRequest{
+func (a *DashboardListsApiService) DeleteDashboardList(ctx _context.Context, listId int64) (DashboardListDeleteResponse, *_nethttp.Response, error) {
+	req := apiDeleteDashboardListRequest{
 		ApiService: a,
 		ctx:        ctx,
 		listId:     listId,
 	}
+
+	return req.ApiService.deleteDashboardListExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return DashboardListDeleteResponse
  */
-func (a *DashboardListsApiService) DeleteDashboardListExecute(r ApiDeleteDashboardListRequest) (DashboardListDeleteResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApiService) deleteDashboardListExecute(r apiDeleteDashboardListRequest) (DashboardListDeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -344,36 +331,31 @@ func (a *DashboardListsApiService) DeleteDashboardListExecute(r ApiDeleteDashboa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetDashboardListRequest struct {
+type apiGetDashboardListRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardListsApiService
 	listId     int64
 }
 
-func (r ApiGetDashboardListRequest) Execute() (DashboardList, *_nethttp.Response, error) {
-	return r.ApiService.GetDashboardListExecute(r)
-}
-
 /*
  * GetDashboardList Get a dashboard list
  * Fetch an existing dashboard list's definition.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId ID of the dashboard list to fetch.
- * @return ApiGetDashboardListRequest
  */
-func (a *DashboardListsApiService) GetDashboardList(ctx _context.Context, listId int64) ApiGetDashboardListRequest {
-	return ApiGetDashboardListRequest{
+func (a *DashboardListsApiService) GetDashboardList(ctx _context.Context, listId int64) (DashboardList, *_nethttp.Response, error) {
+	req := apiGetDashboardListRequest{
 		ApiService: a,
 		ctx:        ctx,
 		listId:     listId,
 	}
+
+	return req.ApiService.getDashboardListExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return DashboardList
  */
-func (a *DashboardListsApiService) GetDashboardListExecute(r ApiGetDashboardListRequest) (DashboardList, *_nethttp.Response, error) {
+func (a *DashboardListsApiService) getDashboardListExecute(r apiGetDashboardListRequest) (DashboardList, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -500,33 +482,29 @@ func (a *DashboardListsApiService) GetDashboardListExecute(r ApiGetDashboardList
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListDashboardListsRequest struct {
+type apiListDashboardListsRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardListsApiService
-}
-
-func (r ApiListDashboardListsRequest) Execute() (DashboardListListResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListDashboardListsExecute(r)
 }
 
 /*
  * ListDashboardLists Get all dashboard lists
  * Fetch all of your existing dashboard list definitions.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListDashboardListsRequest
  */
-func (a *DashboardListsApiService) ListDashboardLists(ctx _context.Context) ApiListDashboardListsRequest {
-	return ApiListDashboardListsRequest{
+func (a *DashboardListsApiService) ListDashboardLists(ctx _context.Context) (DashboardListListResponse, *_nethttp.Response, error) {
+	req := apiListDashboardListsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.listDashboardListsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return DashboardListListResponse
  */
-func (a *DashboardListsApiService) ListDashboardListsExecute(r ApiListDashboardListsRequest) (DashboardListListResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApiService) listDashboardListsExecute(r apiListDashboardListsRequest) (DashboardListListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -642,42 +620,33 @@ func (a *DashboardListsApiService) ListDashboardListsExecute(r ApiListDashboardL
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateDashboardListRequest struct {
+type apiUpdateDashboardListRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardListsApiService
 	listId     int64
 	body       *DashboardList
 }
 
-func (r ApiUpdateDashboardListRequest) Body(body DashboardList) ApiUpdateDashboardListRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateDashboardListRequest) Execute() (DashboardList, *_nethttp.Response, error) {
-	return r.ApiService.UpdateDashboardListExecute(r)
-}
-
 /*
  * UpdateDashboardList Update a dashboard list
  * Update the name of a dashboard list.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param listId ID of the dashboard list to update.
- * @return ApiUpdateDashboardListRequest
  */
-func (a *DashboardListsApiService) UpdateDashboardList(ctx _context.Context, listId int64) ApiUpdateDashboardListRequest {
-	return ApiUpdateDashboardListRequest{
+func (a *DashboardListsApiService) UpdateDashboardList(ctx _context.Context, listId int64, body DashboardList) (DashboardList, *_nethttp.Response, error) {
+	req := apiUpdateDashboardListRequest{
 		ApiService: a,
 		ctx:        ctx,
 		listId:     listId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateDashboardListExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return DashboardList
  */
-func (a *DashboardListsApiService) UpdateDashboardListExecute(r ApiUpdateDashboardListRequest) (DashboardList, *_nethttp.Response, error) {
+func (a *DashboardListsApiService) updateDashboardListExecute(r apiUpdateDashboardListRequest) (DashboardList, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}

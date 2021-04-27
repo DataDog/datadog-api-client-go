@@ -54,13 +54,13 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 	// Assert AWS Integration Created with proper fields
 	retryCreateAccount(ctx, t, testawsacc)
 
-	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CreateAWSLambdaARN(ctx).Body(testLambdaAcc).Execute()
+	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CreateAWSLambdaARN(ctx, testLambdaAcc)
 	if err != nil {
 		t.Fatalf("Error adding lamda ARN: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
-	_, httpresp, err = Client(ctx).AWSLogsIntegrationApi.EnableAWSLogServices(ctx).Body(testServices).Execute()
+	_, httpresp, err = Client(ctx).AWSLogsIntegrationApi.EnableAWSLogServices(ctx, testServices)
 	if err != nil {
 		t.Fatalf("Error enabling log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -75,7 +75,7 @@ func TestListAWSLogsServices(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	listServicesOutput, httpresp, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsServices(ctx).Execute()
+	listServicesOutput, httpresp, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsServices(ctx)
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -101,21 +101,21 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	retryCreateAccount(ctx, t, testAWSAcc)
 
 	// Add Lambda to Account
-	addOutput, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CreateAWSLambdaARN(ctx).Body(testLambdaAcc).Execute()
+	addOutput, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CreateAWSLambdaARN(ctx, testLambdaAcc)
 	if err != nil {
 		t.Fatalf("Error Adding Lambda %v: Response %s: %v", addOutput, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
 	// Enable services for Lambda
-	_, httpresp, err = Client(ctx).AWSLogsIntegrationApi.EnableAWSLogServices(ctx).Body(testServices).Execute()
+	_, httpresp, err = Client(ctx).AWSLogsIntegrationApi.EnableAWSLogServices(ctx, testServices)
 	if err != nil {
 		t.Fatalf("Error enabling log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
 	// List AWS Logs integrations before deleting
-	listOutput1, _, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsIntegrations(ctx).Execute()
+	listOutput1, _, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsIntegrations(ctx)
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -133,14 +133,14 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	assert.True(accountExists)
 
 	// Delete newly added Lambda
-	deleteOutput, httpresp, err := Client(ctx).AWSLogsIntegrationApi.DeleteAWSLambdaARN(ctx).Body(testLambdaAcc).Execute()
+	deleteOutput, httpresp, err := Client(ctx).AWSLogsIntegrationApi.DeleteAWSLambdaARN(ctx, testLambdaAcc)
 	if err != nil {
 		t.Fatalf("Error deleting Lambda %v: Response %s: %v", deleteOutput, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
 	// List AWS logs integrations after deleting
-	listOutput2, httpresp, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsIntegrations(ctx).Execute()
+	listOutput2, httpresp, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsIntegrations(ctx)
 	if err != nil {
 		t.Fatalf("Error listing log services: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -176,7 +176,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 	// Assert AWS Integration Created with proper fields
 	retryCreateAccount(ctx, t, testAWSAcc)
 
-	status, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(ctx).Body(testLambdaAcc).Execute()
+	status, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(ctx, testLambdaAcc)
 	if err != nil {
 		t.Fatalf("Error checking the AWS Lambda Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -187,7 +187,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 
 	// Give the async call time to finish
 	tests.Retry(time.Duration(5*time.Second), 10, func() bool {
-		status, httpresp, err = Client(ctx).AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(ctx).Body(testLambdaAcc).Execute()
+		status, httpresp, err = Client(ctx).AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(ctx, testLambdaAcc)
 		if err != nil {
 			t.Logf("Error checking the AWS Lambda Response: %s %v", err.(datadog.GenericOpenAPIError).Body(), err)
 			return false
@@ -214,7 +214,7 @@ func TestCheckServicesAsync(t *testing.T) {
 	// Assert AWS Integration Created with proper fields
 	retryCreateAccount(ctx, t, testAWSAcc)
 
-	status, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(ctx).Body(testServices).Execute()
+	status, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(ctx, testServices)
 	if err != nil {
 		t.Fatalf("Error checking the AWS Logs Services Response: %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -242,7 +242,7 @@ func TestAWSLogsList400Error(t *testing.T) {
 	defer gock.Off()
 
 	// 400 Bad Request
-	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsIntegrations(ctx).Execute()
+	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsIntegrations(ctx)
 	assert.Equal(400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -258,7 +258,7 @@ func TestAWSLogsList403Error(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// 403 Forbidden
-	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsIntegrations(context.Background()).Execute()
+	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsIntegrations(context.Background())
 	assert.Equal(403, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -283,7 +283,7 @@ func TestAWSLogsAdd400Error(t *testing.T) {
 	defer gock.Off()
 
 	// 400 Bad Request
-	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CreateAWSLambdaARN(ctx).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
+	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CreateAWSLambdaARN(ctx, datadog.AWSAccountAndLambdaRequest{})
 	assert.Equal(400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -299,7 +299,7 @@ func TestAWSLogsAdd403Error(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// 403 Forbidden
-	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CreateAWSLambdaARN(context.Background()).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
+	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CreateAWSLambdaARN(context.Background(), datadog.AWSAccountAndLambdaRequest{})
 	assert.Equal(403, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -324,7 +324,7 @@ func TestAWSLogsDelete400Error(t *testing.T) {
 	defer gock.Off()
 
 	// 400 Bad Request
-	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.DeleteAWSLambdaARN(ctx).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
+	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.DeleteAWSLambdaARN(ctx, datadog.AWSAccountAndLambdaRequest{})
 	assert.Equal(400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -340,7 +340,7 @@ func TestAWSLogsDelete403Error(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// 403 Forbidden
-	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.DeleteAWSLambdaARN(context.Background()).Body(datadog.AWSAccountAndLambdaRequest{}).Execute()
+	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.DeleteAWSLambdaARN(context.Background(), datadog.AWSAccountAndLambdaRequest{})
 	assert.Equal(403, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -356,7 +356,7 @@ func TestAWSLogsServicesListErrors(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// 403 Forbidden
-	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsServices(context.Background()).Execute()
+	_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.ListAWSLogsServices(context.Background())
 	assert.Equal(403, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -383,7 +383,7 @@ func TestAWSLogsServicesEnableErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.EnableAWSLogServices(ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.EnableAWSLogServices(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -411,7 +411,7 @@ func TestAWSLogsServicesCheckErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CheckAWSLogsServicesAsync(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -437,7 +437,7 @@ func TestAWSLogsLambdaCheckErrors(t *testing.T) {
 
 	//for name, tc := range testCases {
 	//	t.Run(name, func(t *testing.T) {
-	//		_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(ctx).Body(tc.Body).Execute()
+	//		_, httpresp, err := Client(ctx).AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync(ctx, tc.Body)
 	//		assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 	//		apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	//		assert.True(ok)

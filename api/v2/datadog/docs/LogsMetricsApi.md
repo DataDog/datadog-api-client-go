@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateLogsMetric
 
-> LogsMetricResponse CreateLogsMetric(ctx).Body(body).Execute()
+> LogsMetricResponse CreateLogsMetric(ctx, body)
 
 Create a log-based metric
 
@@ -41,7 +41,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsMetricsApi.CreateLogsMetric(ctx).Body(body).Execute()
+    resp, r, err := apiClient.LogsMetricsApi.CreateLogsMetric(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsMetricsApi.CreateLogsMetric``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,18 +52,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateLogsMetricRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsMetricCreateRequest**](LogsMetricCreateRequest.md) | The definition of the new log-based metric. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**LogsMetricCreateRequest**](LogsMetricCreateRequest.md) | The definition of the new log-based metric. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## DeleteLogsMetric
 
-> DeleteLogsMetric(ctx, metricId).Execute()
+> DeleteLogsMetric(ctx, metricId)
 
 Delete a log-based metric
 
@@ -111,7 +111,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.LogsMetricsApi.DeleteLogsMetric(ctx, metricId).Execute()
+    r, err := apiClient.LogsMetricsApi.DeleteLogsMetric(ctx, metricId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsMetricsApi.DeleteLogsMetric``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -119,7 +119,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -127,13 +127,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **metricId** | **string** | The name of the log-based metric. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteLogsMetricRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -156,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## GetLogsMetric
 
-> LogsMetricResponse GetLogsMetric(ctx, metricId).Execute()
+> LogsMetricResponse GetLogsMetric(ctx, metricId)
 
 Get a log-based metric
 
@@ -183,7 +179,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsMetricsApi.GetLogsMetric(ctx, metricId).Execute()
+    resp, r, err := apiClient.LogsMetricsApi.GetLogsMetric(ctx, metricId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsMetricsApi.GetLogsMetric``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -194,7 +190,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -202,13 +198,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **metricId** | **string** | The name of the log-based metric. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetLogsMetricRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -231,7 +223,7 @@ Name | Type | Description  | Notes
 
 ## ListLogsMetrics
 
-> LogsMetricsResponse ListLogsMetrics(ctx).Execute()
+> LogsMetricsResponse ListLogsMetrics(ctx)
 
 Get all log-based metrics
 
@@ -257,7 +249,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsMetricsApi.ListLogsMetrics(ctx).Execute()
+    resp, r, err := apiClient.LogsMetricsApi.ListLogsMetrics(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsMetricsApi.ListLogsMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -268,13 +260,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListLogsMetricsRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -297,7 +289,7 @@ Other parameters are passed through a pointer to a apiListLogsMetricsRequest str
 
 ## UpdateLogsMetric
 
-> LogsMetricResponse UpdateLogsMetric(ctx, metricId).Body(body).Execute()
+> LogsMetricResponse UpdateLogsMetric(ctx, metricId, body)
 
 Update a log-based metric
 
@@ -325,7 +317,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsMetricsApi.UpdateLogsMetric(ctx, metricId).Body(body).Execute()
+    resp, r, err := apiClient.LogsMetricsApi.UpdateLogsMetric(ctx, metricId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsMetricsApi.UpdateLogsMetric``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -336,23 +328,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **metricId** | **string** | The name of the log-based metric. | 
+**body** | [**LogsMetricUpdateRequest**](LogsMetricUpdateRequest.md) | New definition of the log-based metric. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateLogsMetricRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**LogsMetricUpdateRequest**](LogsMetricUpdateRequest.md) | New definition of the log-based metric. | 
 
 ### Return type
 

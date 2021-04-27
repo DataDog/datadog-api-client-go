@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## AddReadRoleToArchive
 
-> AddReadRoleToArchive(ctx, archiveId).Body(body).Execute()
+> AddReadRoleToArchive(ctx, archiveId, body)
 
 Grant role to an archive
 
@@ -46,7 +46,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.LogsArchivesApi.AddReadRoleToArchive(ctx, archiveId).Body(body).Execute()
+    r, err := apiClient.LogsArchivesApi.AddReadRoleToArchive(ctx, archiveId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.AddReadRoleToArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -54,23 +54,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **archiveId** | **string** | The ID of the archive. | 
+**body** | [**RelationshipToRole**](RelationshipToRole.md) |  | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiAddReadRoleToArchiveRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**RelationshipToRole**](RelationshipToRole.md) |  | 
 
 ### Return type
 
@@ -92,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogsArchive
 
-> LogsArchive CreateLogsArchive(ctx).Body(body).Execute()
+> LogsArchive CreateLogsArchive(ctx, body)
 
 Create an archive
 
@@ -119,7 +115,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsArchivesApi.CreateLogsArchive(ctx).Body(body).Execute()
+    resp, r, err := apiClient.LogsArchivesApi.CreateLogsArchive(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.CreateLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,18 +126,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateLogsArchiveRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsArchiveCreateRequest**](LogsArchiveCreateRequest.md) | The definition of the new archive. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**LogsArchiveCreateRequest**](LogsArchiveCreateRequest.md) | The definition of the new archive. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -163,7 +159,7 @@ Name | Type | Description  | Notes
 
 ## DeleteLogsArchive
 
-> DeleteLogsArchive(ctx, archiveId).Execute()
+> DeleteLogsArchive(ctx, archiveId)
 
 Delete an archive
 
@@ -189,7 +185,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.LogsArchivesApi.DeleteLogsArchive(ctx, archiveId).Execute()
+    r, err := apiClient.LogsArchivesApi.DeleteLogsArchive(ctx, archiveId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.DeleteLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -197,7 +193,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -205,13 +201,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **archiveId** | **string** | The ID of the archive. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteLogsArchiveRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -234,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## GetLogsArchive
 
-> LogsArchive GetLogsArchive(ctx, archiveId).Execute()
+> LogsArchive GetLogsArchive(ctx, archiveId)
 
 Get an archive
 
@@ -261,7 +253,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsArchivesApi.GetLogsArchive(ctx, archiveId).Execute()
+    resp, r, err := apiClient.LogsArchivesApi.GetLogsArchive(ctx, archiveId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.GetLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -272,7 +264,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -280,13 +272,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **archiveId** | **string** | The ID of the archive. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetLogsArchiveRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -309,7 +297,7 @@ Name | Type | Description  | Notes
 
 ## GetLogsArchiveOrder
 
-> LogsArchiveOrder GetLogsArchiveOrder(ctx).Execute()
+> LogsArchiveOrder GetLogsArchiveOrder(ctx)
 
 Get archive order
 
@@ -335,7 +323,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsArchivesApi.GetLogsArchiveOrder(ctx).Execute()
+    resp, r, err := apiClient.LogsArchivesApi.GetLogsArchiveOrder(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.GetLogsArchiveOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -346,13 +334,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetLogsArchiveOrderRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -375,7 +363,7 @@ Other parameters are passed through a pointer to a apiGetLogsArchiveOrderRequest
 
 ## ListArchiveReadRoles
 
-> RolesResponse ListArchiveReadRoles(ctx, archiveId).Execute()
+> RolesResponse ListArchiveReadRoles(ctx, archiveId)
 
 List read roles for an archive
 
@@ -402,7 +390,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsArchivesApi.ListArchiveReadRoles(ctx, archiveId).Execute()
+    resp, r, err := apiClient.LogsArchivesApi.ListArchiveReadRoles(ctx, archiveId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.ListArchiveReadRoles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -413,7 +401,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -421,13 +409,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **archiveId** | **string** | The ID of the archive. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListArchiveReadRolesRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -450,7 +434,7 @@ Name | Type | Description  | Notes
 
 ## ListLogsArchives
 
-> LogsArchives ListLogsArchives(ctx).Execute()
+> LogsArchives ListLogsArchives(ctx)
 
 Get all archives
 
@@ -476,7 +460,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsArchivesApi.ListLogsArchives(ctx).Execute()
+    resp, r, err := apiClient.LogsArchivesApi.ListLogsArchives(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.ListLogsArchives``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -487,13 +471,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListLogsArchivesRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -516,7 +500,7 @@ Other parameters are passed through a pointer to a apiListLogsArchivesRequest st
 
 ## RemoveRoleFromArchive
 
-> RemoveRoleFromArchive(ctx, archiveId).Body(body).Execute()
+> RemoveRoleFromArchive(ctx, archiveId, body)
 
 Revoke role from an archive
 
@@ -543,7 +527,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.LogsArchivesApi.RemoveRoleFromArchive(ctx, archiveId).Body(body).Execute()
+    r, err := apiClient.LogsArchivesApi.RemoveRoleFromArchive(ctx, archiveId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.RemoveRoleFromArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -551,23 +535,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **archiveId** | **string** | The ID of the archive. | 
+**body** | [**RelationshipToRole**](RelationshipToRole.md) |  | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiRemoveRoleFromArchiveRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**RelationshipToRole**](RelationshipToRole.md) |  | 
 
 ### Return type
 
@@ -589,7 +569,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLogsArchive
 
-> LogsArchive UpdateLogsArchive(ctx, archiveId).Body(body).Execute()
+> LogsArchive UpdateLogsArchive(ctx, archiveId, body)
 
 Update an archive
 
@@ -617,7 +597,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsArchivesApi.UpdateLogsArchive(ctx, archiveId).Body(body).Execute()
+    resp, r, err := apiClient.LogsArchivesApi.UpdateLogsArchive(ctx, archiveId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -628,23 +608,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **archiveId** | **string** | The ID of the archive. | 
+**body** | [**LogsArchiveCreateRequest**](LogsArchiveCreateRequest.md) | New definition of the archive. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateLogsArchiveRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**LogsArchiveCreateRequest**](LogsArchiveCreateRequest.md) | New definition of the archive. | 
 
 ### Return type
 
@@ -666,7 +642,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLogsArchiveOrder
 
-> LogsArchiveOrder UpdateLogsArchiveOrder(ctx).Body(body).Execute()
+> LogsArchiveOrder UpdateLogsArchiveOrder(ctx, body)
 
 Update archive order
 
@@ -693,7 +669,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsArchivesApi.UpdateLogsArchiveOrder(ctx).Body(body).Execute()
+    resp, r, err := apiClient.LogsArchivesApi.UpdateLogsArchiveOrder(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchiveOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -704,18 +680,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateLogsArchiveOrderRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsArchiveOrder**](LogsArchiveOrder.md) | An object containing the new ordered list of archive IDs. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**LogsArchiveOrder**](LogsArchiveOrder.md) | An object containing the new ordered list of archive IDs. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 

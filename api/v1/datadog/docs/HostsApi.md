@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## GetHostTotals
 
-> HostTotals GetHostTotals(ctx).From(from).Execute()
+> HostTotals GetHostTotals(ctx, datadog.GetHostTotalsOptionalParameters{})
 
 Get the total number of active hosts
 
@@ -36,11 +36,14 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     from := int64(789) // int64 | Number of seconds from which you want to get total number of active hosts. (optional)
+    optionalParams := datadog.GetHostTotalsOptionalParameters{
+        From: &from,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.HostsApi.GetHostTotals(ctx).From(from).Execute()
+    resp, r, err := apiClient.HostsApi.GetHostTotals(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.GetHostTotals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,18 +54,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetHostTotalsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a GetHostTotalsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **int64** | Number of seconds from which you want to get total number of active hosts. | 
+**from** | **int64** | Number of seconds from which you want to get total number of active hosts. | 
 
 ### Return type
 
@@ -84,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## ListHosts
 
-> HostListResponse ListHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).IncludeMutedHostsData(includeMutedHostsData).IncludeHostsMetadata(includeHostsMetadata).Execute()
+> HostListResponse ListHosts(ctx, datadog.ListHostsOptionalParameters{})
 
 Get all hosts for your organization
 
@@ -114,11 +118,21 @@ func main() {
     from := int64(789) // int64 | Number of seconds since UNIX epoch from which you want to search your hosts. (optional)
     includeMutedHostsData := true // bool | Include information on the muted status of hosts and when the mute expires. (optional)
     includeHostsMetadata := true // bool | Include additional metadata about the hosts (agent_version, machine, platform, processor, etc.). (optional)
+    optionalParams := datadog.ListHostsOptionalParameters{
+        Filter: &filter,
+        SortField: &sortField,
+        SortDir: &sortDir,
+        Start: &start,
+        Count: &count,
+        From: &from,
+        IncludeMutedHostsData: &includeMutedHostsData,
+        IncludeHostsMetadata: &includeHostsMetadata,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.HostsApi.ListHosts(ctx).Filter(filter).SortField(sortField).SortDir(sortDir).Start(start).Count(count).From(from).IncludeMutedHostsData(includeMutedHostsData).IncludeHostsMetadata(includeHostsMetadata).Execute()
+    resp, r, err := apiClient.HostsApi.ListHosts(ctx, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.ListHosts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -129,25 +143,26 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListHostsRequest struct via the builder pattern
+
+Other parameters are passed through a pointer to a ListHostsOptionalParameters struct
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | **string** | String to filter search results. | 
- **sortField** | **string** | Sort hosts by this field. | 
- **sortDir** | **string** | Direction of sort. Options include &#x60;asc&#x60; and &#x60;desc&#x60;. | 
- **start** | **int64** | Host result to start search from. | 
- **count** | **int64** | Number of hosts to return. Max 1000. | 
- **from** | **int64** | Number of seconds since UNIX epoch from which you want to search your hosts. | 
- **includeMutedHostsData** | **bool** | Include information on the muted status of hosts and when the mute expires. | 
- **includeHostsMetadata** | **bool** | Include additional metadata about the hosts (agent_version, machine, platform, processor, etc.). | 
+**filter** | **string** | String to filter search results. | 
+**sortField** | **string** | Sort hosts by this field. | 
+**sortDir** | **string** | Direction of sort. Options include &#x60;asc&#x60; and &#x60;desc&#x60;. | 
+**start** | **int64** | Host result to start search from. | 
+**count** | **int64** | Number of hosts to return. Max 1000. | 
+**from** | **int64** | Number of seconds since UNIX epoch from which you want to search your hosts. | 
+**includeMutedHostsData** | **bool** | Include information on the muted status of hosts and when the mute expires. | 
+**includeHostsMetadata** | **bool** | Include additional metadata about the hosts (agent_version, machine, platform, processor, etc.). | 
 
 ### Return type
 
@@ -169,7 +184,7 @@ Name | Type | Description  | Notes
 
 ## MuteHost
 
-> HostMuteResponse MuteHost(ctx, hostName).Body(body).Execute()
+> HostMuteResponse MuteHost(ctx, hostName, body)
 
 Mute a host
 
@@ -197,7 +212,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.HostsApi.MuteHost(ctx, hostName).Body(body).Execute()
+    resp, r, err := apiClient.HostsApi.MuteHost(ctx, hostName, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.MuteHost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -208,23 +223,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **hostName** | **string** | Name of the host to mute. | 
+**body** | [**HostMuteSettings**](HostMuteSettings.md) | Mute a host request body. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiMuteHostRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**HostMuteSettings**](HostMuteSettings.md) | Mute a host request body. | 
 
 ### Return type
 
@@ -246,7 +257,7 @@ Name | Type | Description  | Notes
 
 ## UnmuteHost
 
-> HostMuteResponse UnmuteHost(ctx, hostName).Execute()
+> HostMuteResponse UnmuteHost(ctx, hostName)
 
 Unmute a host
 
@@ -273,7 +284,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.HostsApi.UnmuteHost(ctx, hostName).Execute()
+    resp, r, err := apiClient.HostsApi.UnmuteHost(ctx, hostName)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.UnmuteHost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -284,7 +295,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -292,13 +303,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **hostName** | **string** | Name of the host to unmute. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUnmuteHostRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
