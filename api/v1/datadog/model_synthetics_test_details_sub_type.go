@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// SyntheticsTestDetailsSubType The subtype of the Synthetic API test, `http`, `ssl`, `tcp`, `dns` or `multi`.
+// SyntheticsTestDetailsSubType The subtype of the Synthetic API test, `http`, `ssl`, `tcp`, `dns`, `icmp` or `multi`.
 type SyntheticsTestDetailsSubType string
 
 // List of SyntheticsTestDetailsSubType
@@ -23,6 +23,7 @@ const (
 	SYNTHETICSTESTDETAILSSUBTYPE_TCP   SyntheticsTestDetailsSubType = "tcp"
 	SYNTHETICSTESTDETAILSSUBTYPE_DNS   SyntheticsTestDetailsSubType = "dns"
 	SYNTHETICSTESTDETAILSSUBTYPE_MULTI SyntheticsTestDetailsSubType = "multi"
+	SYNTHETICSTESTDETAILSSUBTYPE_ICMP  SyntheticsTestDetailsSubType = "icmp"
 )
 
 var allowedSyntheticsTestDetailsSubTypeEnumValues = []SyntheticsTestDetailsSubType{
@@ -31,6 +32,7 @@ var allowedSyntheticsTestDetailsSubTypeEnumValues = []SyntheticsTestDetailsSubTy
 	"tcp",
 	"dns",
 	"multi",
+	"icmp",
 }
 
 func (v *SyntheticsTestDetailsSubType) UnmarshalJSON(src []byte) error {
