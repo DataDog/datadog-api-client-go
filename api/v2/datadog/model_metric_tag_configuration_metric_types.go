@@ -20,12 +20,14 @@ type MetricTagConfigurationMetricTypes string
 const (
 	METRICTAGCONFIGURATIONMETRICTYPES_GAUGE        MetricTagConfigurationMetricTypes = "gauge"
 	METRICTAGCONFIGURATIONMETRICTYPES_COUNT        MetricTagConfigurationMetricTypes = "count"
+	METRICTAGCONFIGURATIONMETRICTYPES_RATE         MetricTagConfigurationMetricTypes = "rate"
 	METRICTAGCONFIGURATIONMETRICTYPES_DISTRIBUTION MetricTagConfigurationMetricTypes = "distribution"
 )
 
 var allowedMetricTagConfigurationMetricTypesEnumValues = []MetricTagConfigurationMetricTypes{
 	"gauge",
 	"count",
+	"rate",
 	"distribution",
 }
 

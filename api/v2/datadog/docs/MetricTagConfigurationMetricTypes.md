@@ -7,6 +7,8 @@
 
 * `COUNT` (value: `"count"`)
 
+* `RATE` (value: `"rate"`)
+
 * `DISTRIBUTION` (value: `"distribution"`)
 
 
