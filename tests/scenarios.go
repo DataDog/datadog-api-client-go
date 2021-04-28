@@ -764,7 +764,7 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`request contains "([^"]+)" parameter with value (.+)`:   addParameterWithValue,
 		`the request is sent`:                                    requestIsSent,
 		`the response status is (\d+) (.*)`:                      statusIs,
-		`body from file (.*)`:                                    bodyFromFile,
+		`body from file "(.*)"`:                                  bodyFromFile,
 		`body with value (.*)`:                                   body,
 		`the response "([^"]+)" is equal to (.*)`:                expectEqual,
 		`the response "([^"]+)" has the same value as "([^"]+)"`: expectEqualValue,
