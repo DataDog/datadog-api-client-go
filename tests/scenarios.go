@@ -341,12 +341,12 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func([]reflect.Valu
 
 			// Handle undoOperations that accept optional variadic arguments
 			if undoOperation.Type().IsVariadic() {
-				optionalParams := reflect.New(undoOperation.Type().In(numArgs-1).Elem())
+				optionalParams := reflect.New(undoOperation.Type().In(numArgs - 1).Elem())
 				in[numArgs-1] = optionalParams.Elem()
 			}
 
 			for i := 1; i < undoOperation.Type().NumIn() && i <= len(undo.Undo.Parameters); i++ {
-				object, err :=lookup.LookupStringI(responseJSON, undo.Undo.Parameters[i-1].Source)
+				object, err := lookup.LookupStringI(responseJSON, undo.Undo.Parameters[i-1].Source)
 				if err != nil {
 					t.Fatalf("%v", err)
 				}
@@ -496,15 +496,15 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error
 	numArgs := f.Type().NumIn()
 
 	if f.Type().IsVariadic() {
-		for i := 1; i < numArgs - 1 && i <= len(requestArgs); i++ {
+		for i := 1; i < numArgs-1 && i <= len(requestArgs); i++ {
 			object := requestArgs[i-1]
 			in[i] = object.(reflect.Value)
 		}
 
-		optionalParams := reflect.New(f.Type().In(numArgs-1).Elem())
+		optionalParams := reflect.New(f.Type().In(numArgs - 1).Elem())
 		for k, v := range requestParams {
 			paramName := toVarName(k)
-			if method := optionalParams.MethodByName("With"+paramName); method.IsValid(){
+			if method := optionalParams.MethodByName("With" + paramName); method.IsValid() {
 				at := reflect.New(method.Type().In(0))
 				switch v.(type) {
 				case reflect.Value:
@@ -531,7 +531,7 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error
 		if val, ok := requestParams["body"]; ok {
 			a := reflect.New(f.Type().In(numArgs - 1))
 			json.Unmarshal([]byte(val.(string)), a.Interface())
-			in[numArgs - 1] = a.Elem()
+			in[numArgs-1] = a.Elem()
 		}
 	}
 
@@ -574,8 +574,8 @@ func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string,
 	templatedValue := Templated(t, GetData(ctx), value)
 	var varType reflect.Value
 
-	if request.Type().IsVariadic() && pathCount.(int) > numArgs - 2 {
-		optionalParams := reflect.New(request.Type().In(numArgs-1).Elem())
+	if request.Type().IsVariadic() && pathCount.(int) > numArgs-2 {
+		optionalParams := reflect.New(request.Type().In(numArgs - 1).Elem())
 		field := optionalParams.Elem().FieldByName(toVarName(param))
 		if field.IsValid() {
 			varType = reflect.New(field.Type().Elem())
@@ -660,6 +660,15 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
 	GetRequestParameters(ctx)["body"] = Templated(t, GetData(ctx), body)
+}
+
+func bodyFromFile(t gobdd.StepTest, ctx gobdd.Context, bodyFile string) {
+	body, err := os.ReadFile(fmt.Sprintf("./features/%s", bodyFile))
+	if err != nil {
+		t.Fatalf("Error reading file ./features/%s: %v", bodyFile, err)
+	}
+
+	GetRequestParameters(ctx)["body"] = Templated(t, GetData(ctx), string(body))
 }
 
 func stringToType(s string, t interface{}) (interface{}, error) {
@@ -755,7 +764,8 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`request contains "([^"]+)" parameter with value (.+)`:   addParameterWithValue,
 		`the request is sent`:                                    requestIsSent,
 		`the response status is (\d+) (.*)`:                      statusIs,
-		`body (.*)`:                                              body,
+		`body from file (.*)`:                                    bodyFromFile,
+		`body with value (.*)`:                                   body,
 		`the response "([^"]+)" is equal to (.*)`:                expectEqual,
 		`the response "([^"]+)" has the same value as "([^"]+)"`: expectEqualValue,
 		`the response "([^"]+)" has length ([0-9]+)`:             expectLengthEqual,

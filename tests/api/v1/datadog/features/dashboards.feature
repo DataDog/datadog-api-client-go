@@ -25,7 +25,7 @@ Feature: Dashboards
 
   Scenario: Create a new dashboard with a profile metric query
     Given new "CreateDashboard" request
-    And body {"layout_type": "ordered", "title": "{{ unique }} with Profile Metrics Query","widgets": [{"definition": {"type": "timeseries","requests": [{"profile_metrics_query": {"compute": {"aggregation": "sum","facet": "@prof_core_cpu_cores"},"search": {"query": "runtime:jvm"},"group_by": [{"facet": "service","limit": 10,"sort": {"aggregation": "sum","order": "desc","facet": "@prof_core_cpu_cores"}}]}}]}}]}
+    And body from file dashboard_payload.json
     When the request is sent
     Then the response status is 200 OK
 
