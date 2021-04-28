@@ -66,7 +66,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.CreateUser(ctx).Body(body).Execute()
+    resp, r, err := apiClient.UsersApi.CreateUser(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error creating user: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
