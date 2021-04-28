@@ -212,6 +212,34 @@ func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.S
 	}
 }
 
+func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
+	latencyAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_LATENCY)
+	var target interface{} = 200
+	latencyAssertion.SetProperty("avg")
+	latencyAssertion.SetTarget(target)
+
+	return datadog.SyntheticsAPITest{
+		Config: &datadog.SyntheticsAPITestConfig{
+			Assertions: []datadog.SyntheticsAssertion{
+				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(latencyAssertion),
+			},
+			Request: &datadog.SyntheticsTestRequest{
+				Host:            datadog.PtrString("www.datadoghq.com"),
+				NumberOfPackets: datadog.PtrInt32(2),
+			},
+		},
+		Locations: &[]string{"aws:us-east-2"},
+		Message:   datadog.PtrString("Go client testing Synthetics API test Subtype ICMP - this is message"),
+		Name:      tests.UniqueEntityName(ctx, t),
+		Options: &datadog.SyntheticsTestOptions{
+			TickEvery: datadog.SYNTHETICSTICKINTERVAL_MINUTE.Ptr(),
+		},
+		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_ICMP.Ptr(),
+		Tags:    &[]string{"testing:api-icmp"},
+		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+	}
+}
+
 func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsBrowserTest {
 	return datadog.SyntheticsBrowserTest{
 		Config: &datadog.SyntheticsBrowserTestConfig{
@@ -556,6 +584,67 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 	err = json.Unmarshal(data, &latestResults)
 	if err != nil {
 		t.Fatalf("Failed deserializing Synthetics API test recent response: %v", err)
+	}
+
+	// Delete API test
+	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}})
+	if err != nil {
+		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+}
+
+func TestSyntheticsSubtypeIcmpAPITestLifecycle(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	// Create API test
+	testSyntheticsAPI := getTestSyntheticsSubtypeICMPAPI(ctx, t)
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
+	if err != nil {
+		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	publicID := synt.GetPublicId()
+	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(testSyntheticsAPI.GetName(), synt.GetName())
+
+	// Update API test
+	updatedName := fmt.Sprintf("%s-updated", testSyntheticsAPI.GetName())
+	synt.SetName(updatedName)
+	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
+	synt.MonitorId = nil
+	synt.PublicId = nil
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID, synt)
+	if err != nil {
+		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(updatedName, synt.GetName())
+
+	// Get API test
+	synt, httpresp, err = Client(ctx).SyntheticsApi.GetAPITest(ctx, publicID)
+	if err != nil {
+		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(updatedName, synt.GetName())
+
+	config := synt.GetConfig()
+
+	assert.Equal(1, len(config.GetAssertions()))
+
+	for _, assertion := range config.GetAssertions() {
+		if assertion.SyntheticsAssertionTarget.Type == datadog.SYNTHETICSASSERTIONTYPE_LATENCY {
+			assert.Equal(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, assertion.SyntheticsAssertionTarget.Operator)
+			assert.Equal(float64(200), assertion.SyntheticsAssertionTarget.GetTarget())
+			assert.Equal("avg", assertion.SyntheticsAssertionTarget.GetProperty())
+		} else {
+			assert.Fail("Unexpected type")
+		}
 	}
 
 	// Delete API test

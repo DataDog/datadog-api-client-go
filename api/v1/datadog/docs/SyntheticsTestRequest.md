@@ -12,8 +12,10 @@ Name | Type | Description | Notes
 **Host** | Pointer to **string** | Host name to perform the test with. | [optional] 
 **Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | [optional] 
 **NoSavingResponseBody** | Pointer to **bool** | Determines whether or not to save the response body. | [optional] 
+**NumberOfPackets** | Pointer to **int32** | Number of pings to use per test. | [optional] 
 **Port** | Pointer to **int64** | Port to use when performing the test. | [optional] 
 **Query** | Pointer to **interface{}** | Query to use for the test. | [optional] 
+**ShouldTrackHops** | Pointer to **bool** | Turns on a traceroute probe to discover all gateways along the path to the host destination. | [optional] 
 **Timeout** | Pointer to **float64** | Timeout in seconds for the test. | [optional] 
 **Url** | Pointer to **string** | URL to perform the test with. | [optional] 
 
@@ -236,6 +238,31 @@ SetNoSavingResponseBody sets NoSavingResponseBody field to given value.
 
 HasNoSavingResponseBody returns a boolean if a field has been set.
 
+### GetNumberOfPackets
+
+`func (o *SyntheticsTestRequest) GetNumberOfPackets() int32`
+
+GetNumberOfPackets returns the NumberOfPackets field if non-nil, zero value otherwise.
+
+### GetNumberOfPacketsOk
+
+`func (o *SyntheticsTestRequest) GetNumberOfPacketsOk() (*int32, bool)`
+
+GetNumberOfPacketsOk returns a tuple with the NumberOfPackets field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNumberOfPackets
+
+`func (o *SyntheticsTestRequest) SetNumberOfPackets(v int32)`
+
+SetNumberOfPackets sets NumberOfPackets field to given value.
+
+### HasNumberOfPackets
+
+`func (o *SyntheticsTestRequest) HasNumberOfPackets() bool`
+
+HasNumberOfPackets returns a boolean if a field has been set.
+
 ### GetPort
 
 `func (o *SyntheticsTestRequest) GetPort() int64`
@@ -285,6 +312,31 @@ SetQuery sets Query field to given value.
 `func (o *SyntheticsTestRequest) HasQuery() bool`
 
 HasQuery returns a boolean if a field has been set.
+
+### GetShouldTrackHops
+
+`func (o *SyntheticsTestRequest) GetShouldTrackHops() bool`
+
+GetShouldTrackHops returns the ShouldTrackHops field if non-nil, zero value otherwise.
+
+### GetShouldTrackHopsOk
+
+`func (o *SyntheticsTestRequest) GetShouldTrackHopsOk() (*bool, bool)`
+
+GetShouldTrackHopsOk returns a tuple with the ShouldTrackHops field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShouldTrackHops
+
+`func (o *SyntheticsTestRequest) SetShouldTrackHops(v bool)`
+
+SetShouldTrackHops sets ShouldTrackHops field to given value.
+
+### HasShouldTrackHops
+
+`func (o *SyntheticsTestRequest) HasShouldTrackHops() bool`
+
+HasShouldTrackHops returns a boolean if a field has been set.
 
 ### GetTimeout
 

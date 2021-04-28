@@ -23,6 +23,14 @@
 
 * `MIN_TLS_VERSION` (value: `"minTlsVersion"`)
 
+* `LATENCY` (value: `"latency"`)
+
+* `PACKET_LOSS_PERCENTAGE` (value: `"packetLossPercentage"`)
+
+* `PACKETS_RECEIVED` (value: `"packetsReceived"`)
+
+* `NETWORK_HOP` (value: `"networkHop"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
