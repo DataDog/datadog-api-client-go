@@ -1512,7 +1512,7 @@ paths:
 
         - This endpoint returns a maximum of `1000` most recent results. To return additional results,
         identify the last timestamp of the last result and set that as the `end` query time to
-        paginate the results.
+        paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
       operationId: ListEvents
       parameters:
       - description: POSIX timestamp.
@@ -1562,13 +1562,35 @@ paths:
       - description: |-
           Set unaggregated to `true` to return all events within the specified [`start`,`end`] timeframe.
           Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe,
-          it won't be available in the output.
+          it won't be available in the output. Aggregated events with `is_aggregate=true` in the response will still be returned unless exclude_aggregate is set to `true.`
         explode: true
         in: query
         name: unaggregated
         required: false
         schema:
           type: boolean
+        style: form
+      - description: |-
+          Set `exclude_aggregate` to `true` to only return unaggregated events where `is_aggregate=false` in the response. If the `exclude_aggregate` parameter is set to `true`,
+          then the unaggregated parameter is ignored and will be `true` by default.
+        explode: true
+        in: query
+        name: exclude_aggregate
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: |-
+          By default 1000 results are returned per request. Set page to the number of the page to return with `0` being the first page. The page parameter can only be used
+          when either unaggregated or exclude_aggregate is set to `true.`
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          maximum: 2147483647
+          type: integer
         style: form
       responses:
         "200":

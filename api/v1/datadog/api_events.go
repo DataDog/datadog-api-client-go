@@ -312,21 +312,25 @@ func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse,
 }
 
 type apiListEventsRequest struct {
-	ctx          _context.Context
-	ApiService   *EventsApiService
-	start        *int64
-	end          *int64
-	priority     *EventPriority
-	sources      *string
-	tags         *string
-	unaggregated *bool
+	ctx              _context.Context
+	ApiService       *EventsApiService
+	start            *int64
+	end              *int64
+	priority         *EventPriority
+	sources          *string
+	tags             *string
+	unaggregated     *bool
+	excludeAggregate *bool
+	page             *int32
 }
 
 type ListEventsOptionalParameters struct {
-	Priority     *EventPriority
-	Sources      *string
-	Tags         *string
-	Unaggregated *bool
+	Priority         *EventPriority
+	Sources          *string
+	Tags             *string
+	Unaggregated     *bool
+	ExcludeAggregate *bool
+	Page             *int32
 }
 
 func NewListEventsOptionalParameters() *ListEventsOptionalParameters {
@@ -349,6 +353,14 @@ func (r *ListEventsOptionalParameters) WithUnaggregated(unaggregated bool) *List
 	r.Unaggregated = &unaggregated
 	return r
 }
+func (r *ListEventsOptionalParameters) WithExcludeAggregate(excludeAggregate bool) *ListEventsOptionalParameters {
+	r.ExcludeAggregate = &excludeAggregate
+	return r
+}
+func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalParameters {
+	r.Page = &page
+	return r
+}
 
 /*
  * ListEvents Query the event stream
@@ -360,7 +372,7 @@ you may see characters such as `%`,`\`,`n` in your output.
 
 - This endpoint returns a maximum of `1000` most recent results. To return additional results,
 identify the last timestamp of the last result and set that as the `end` query time to
-paginate the results.
+paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
 */
 func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (EventListResponse, *_nethttp.Response, error) {
 	req := apiListEventsRequest{
@@ -380,6 +392,8 @@ func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int
 		req.sources = o[0].Sources
 		req.tags = o[0].Tags
 		req.unaggregated = o[0].Unaggregated
+		req.excludeAggregate = o[0].ExcludeAggregate
+		req.page = o[0].Page
 	}
 
 	return req.ApiService.listEventsExecute(req)
@@ -429,6 +443,12 @@ func (a *EventsApiService) listEventsExecute(r apiListEventsRequest) (EventListR
 	}
 	if r.unaggregated != nil {
 		localVarQueryParams.Add("unaggregated", parameterToString(*r.unaggregated, ""))
+	}
+	if r.excludeAggregate != nil {
+		localVarQueryParams.Add("exclude_aggregate", parameterToString(*r.excludeAggregate, ""))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
