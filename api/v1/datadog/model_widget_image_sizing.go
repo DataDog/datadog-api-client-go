@@ -13,17 +13,27 @@ import (
 	"fmt"
 )
 
-// WidgetImageSizing How to size the image on the widget.
+// WidgetImageSizing How to size the image on the widget. The values are based on the image `object-fit` CSS properties. **Note**: `zoom`, `fit` and `center` values are deprecated.
 type WidgetImageSizing string
 
 // List of WidgetImageSizing
 const (
-	WIDGETIMAGESIZING_ZOOM   WidgetImageSizing = "zoom"
-	WIDGETIMAGESIZING_FIT    WidgetImageSizing = "fit"
-	WIDGETIMAGESIZING_CENTER WidgetImageSizing = "center"
+	WIDGETIMAGESIZING_FILL      WidgetImageSizing = "fill"
+	WIDGETIMAGESIZING_CONTAIN   WidgetImageSizing = "contain"
+	WIDGETIMAGESIZING_COVER     WidgetImageSizing = "cover"
+	WIDGETIMAGESIZING_NONE      WidgetImageSizing = "none"
+	WIDGETIMAGESIZING_SCALEDOWN WidgetImageSizing = "scale-down"
+	WIDGETIMAGESIZING_ZOOM      WidgetImageSizing = "zoom"
+	WIDGETIMAGESIZING_FIT       WidgetImageSizing = "fit"
+	WIDGETIMAGESIZING_CENTER    WidgetImageSizing = "center"
 )
 
 var allowedWidgetImageSizingEnumValues = []WidgetImageSizing{
+	"fill",
+	"contain",
+	"cover",
+	"none",
+	"scale-down",
 	"zoom",
 	"fit",
 	"center",

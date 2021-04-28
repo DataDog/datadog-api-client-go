@@ -15,8 +15,12 @@ import (
 // GroupWidgetDefinition The groups widget allows you to keep similar graphs together on your timeboard. Each group has a custom header, can hold one to many graphs, and is collapsible.
 type GroupWidgetDefinition struct {
 	// Background color of the group title.
-	BackgroundColor *string          `json:"background_color,omitempty"`
-	LayoutType      WidgetLayoutType `json:"layout_type"`
+	BackgroundColor *string `json:"background_color,omitempty"`
+	// URL of image to display as a banner for the group.
+	BannerImg  *string          `json:"banner_img,omitempty"`
+	LayoutType WidgetLayoutType `json:"layout_type"`
+	// Whether to show the title or not.
+	ShowTitle *bool `json:"show_title,omitempty"`
 	// Title of the widget.
 	Title      *string                   `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign          `json:"title_align,omitempty"`
@@ -32,6 +36,8 @@ type GroupWidgetDefinition struct {
 func NewGroupWidgetDefinition(layoutType WidgetLayoutType, type_ GroupWidgetDefinitionType, widgets []Widget) *GroupWidgetDefinition {
 	this := GroupWidgetDefinition{}
 	this.LayoutType = layoutType
+	var showTitle bool = true
+	this.ShowTitle = &showTitle
 	this.Type = type_
 	this.Widgets = widgets
 	return &this
@@ -42,6 +48,8 @@ func NewGroupWidgetDefinition(layoutType WidgetLayoutType, type_ GroupWidgetDefi
 // but it doesn't guarantee that properties required by API are set
 func NewGroupWidgetDefinitionWithDefaults() *GroupWidgetDefinition {
 	this := GroupWidgetDefinition{}
+	var showTitle bool = true
+	this.ShowTitle = &showTitle
 	var type_ GroupWidgetDefinitionType = GROUPWIDGETDEFINITIONTYPE_GROUP
 	this.Type = type_
 	return &this
@@ -79,6 +87,38 @@ func (o *GroupWidgetDefinition) SetBackgroundColor(v string) {
 	o.BackgroundColor = &v
 }
 
+// GetBannerImg returns the BannerImg field value if set, zero value otherwise.
+func (o *GroupWidgetDefinition) GetBannerImg() string {
+	if o == nil || o.BannerImg == nil {
+		var ret string
+		return ret
+	}
+	return *o.BannerImg
+}
+
+// GetBannerImgOk returns a tuple with the BannerImg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GroupWidgetDefinition) GetBannerImgOk() (*string, bool) {
+	if o == nil || o.BannerImg == nil {
+		return nil, false
+	}
+	return o.BannerImg, true
+}
+
+// HasBannerImg returns a boolean if a field has been set.
+func (o *GroupWidgetDefinition) HasBannerImg() bool {
+	if o != nil && o.BannerImg != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBannerImg gets a reference to the given string and assigns it to the BannerImg field.
+func (o *GroupWidgetDefinition) SetBannerImg(v string) {
+	o.BannerImg = &v
+}
+
 // GetLayoutType returns the LayoutType field value
 func (o *GroupWidgetDefinition) GetLayoutType() WidgetLayoutType {
 	if o == nil {
@@ -101,6 +141,38 @@ func (o *GroupWidgetDefinition) GetLayoutTypeOk() (*WidgetLayoutType, bool) {
 // SetLayoutType sets field value
 func (o *GroupWidgetDefinition) SetLayoutType(v WidgetLayoutType) {
 	o.LayoutType = v
+}
+
+// GetShowTitle returns the ShowTitle field value if set, zero value otherwise.
+func (o *GroupWidgetDefinition) GetShowTitle() bool {
+	if o == nil || o.ShowTitle == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ShowTitle
+}
+
+// GetShowTitleOk returns a tuple with the ShowTitle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GroupWidgetDefinition) GetShowTitleOk() (*bool, bool) {
+	if o == nil || o.ShowTitle == nil {
+		return nil, false
+	}
+	return o.ShowTitle, true
+}
+
+// HasShowTitle returns a boolean if a field has been set.
+func (o *GroupWidgetDefinition) HasShowTitle() bool {
+	if o != nil && o.ShowTitle != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetShowTitle gets a reference to the given bool and assigns it to the ShowTitle field.
+func (o *GroupWidgetDefinition) SetShowTitle(v bool) {
+	o.ShowTitle = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
@@ -220,8 +292,14 @@ func (o GroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.BackgroundColor != nil {
 		toSerialize["background_color"] = o.BackgroundColor
 	}
+	if o.BannerImg != nil {
+		toSerialize["banner_img"] = o.BannerImg
+	}
 	if true {
 		toSerialize["layout_type"] = o.LayoutType
+	}
+	if o.ShowTitle != nil {
+		toSerialize["show_title"] = o.ShowTitle
 	}
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
