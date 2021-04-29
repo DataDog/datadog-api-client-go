@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateLogsIndex
 
-> LogsIndex CreateLogsIndex(ctx).Body(body).Execute()
+> LogsIndex CreateLogsIndex(ctx, body)
 
 Create an index
 
@@ -42,7 +42,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsIndexesApi.CreateLogsIndex(ctx).Body(body).Execute()
+    resp, r, err := apiClient.LogsIndexesApi.CreateLogsIndex(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.CreateLogsIndex``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,18 +53,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateLogsIndexRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsIndex**](LogsIndex.md) | Object containing the new index. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**LogsIndex**](LogsIndex.md) | Object containing the new index. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## GetLogsIndex
 
-> LogsIndex GetLogsIndex(ctx, name).Execute()
+> LogsIndex GetLogsIndex(ctx, name)
 
 Get an index
 
@@ -113,7 +113,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsIndexesApi.GetLogsIndex(ctx, name).Execute()
+    resp, r, err := apiClient.LogsIndexesApi.GetLogsIndex(ctx, name)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndex``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,7 +124,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -132,13 +132,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **name** | **string** | Name of the log index. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetLogsIndexRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -161,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## GetLogsIndexOrder
 
-> LogsIndexesOrder GetLogsIndexOrder(ctx).Execute()
+> LogsIndexesOrder GetLogsIndexOrder(ctx)
 
 Get indexes order
 
@@ -187,7 +183,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsIndexesApi.GetLogsIndexOrder(ctx).Execute()
+    resp, r, err := apiClient.LogsIndexesApi.GetLogsIndexOrder(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndexOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,13 +194,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetLogsIndexOrderRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -227,7 +223,7 @@ Other parameters are passed through a pointer to a apiGetLogsIndexOrderRequest s
 
 ## ListLogIndexes
 
-> LogsIndexListResponse ListLogIndexes(ctx).Execute()
+> LogsIndexListResponse ListLogIndexes(ctx)
 
 Get all indexes
 
@@ -253,7 +249,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsIndexesApi.ListLogIndexes(ctx).Execute()
+    resp, r, err := apiClient.LogsIndexesApi.ListLogIndexes(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.ListLogIndexes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -264,13 +260,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListLogIndexesRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -293,7 +289,7 @@ Other parameters are passed through a pointer to a apiListLogIndexesRequest stru
 
 ## UpdateLogsIndex
 
-> LogsIndex UpdateLogsIndex(ctx, name).Body(body).Execute()
+> LogsIndex UpdateLogsIndex(ctx, name, body)
 
 Update an index
 
@@ -321,7 +317,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsIndexesApi.UpdateLogsIndex(ctx, name).Body(body).Execute()
+    resp, r, err := apiClient.LogsIndexesApi.UpdateLogsIndex(ctx, name, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndex``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -332,23 +328,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **name** | **string** | Name of the log index. | 
+**body** | [**LogsIndexUpdateRequest**](LogsIndexUpdateRequest.md) | Object containing the new &#x60;LogsIndexUpdateRequest&#x60;. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateLogsIndexRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**LogsIndexUpdateRequest**](LogsIndexUpdateRequest.md) | Object containing the new &#x60;LogsIndexUpdateRequest&#x60;. | 
 
 ### Return type
 
@@ -370,7 +362,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLogsIndexOrder
 
-> LogsIndexesOrder UpdateLogsIndexOrder(ctx).Body(body).Execute()
+> LogsIndexesOrder UpdateLogsIndexOrder(ctx, body)
 
 Update indexes order
 
@@ -397,7 +389,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsIndexesApi.UpdateLogsIndexOrder(ctx).Body(body).Execute()
+    resp, r, err := apiClient.LogsIndexesApi.UpdateLogsIndexOrder(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndexOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -408,18 +400,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateLogsIndexOrderRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LogsIndexesOrder**](LogsIndexesOrder.md) | Object containing the new ordered list of index names | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**LogsIndexesOrder**](LogsIndexesOrder.md) | Object containing the new ordered list of index names | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 

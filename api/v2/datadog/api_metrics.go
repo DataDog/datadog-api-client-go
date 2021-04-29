@@ -27,43 +27,34 @@ var (
 // MetricsApiService MetricsApi service
 type MetricsApiService service
 
-type ApiCreateTagConfigurationRequest struct {
+type apiCreateTagConfigurationRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	metricName string
 	body       *MetricTagConfigurationCreateRequest
 }
 
-func (r ApiCreateTagConfigurationRequest) Body(body MetricTagConfigurationCreateRequest) ApiCreateTagConfigurationRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateTagConfigurationRequest) Execute() (MetricTagConfigurationResponse, *_nethttp.Response, error) {
-	return r.ApiService.CreateTagConfigurationExecute(r)
-}
-
 /*
  * CreateTagConfiguration Create a tag configuration
- * Create and define a list of queryable tag keys for a count/gauge/rate/distribution metric. Optionally, include percentile aggregations on any distribution metric.
+ * Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric. Optionally, include percentile aggregations on any distribution metric.
 Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricName The name of the metric.
- * @return ApiCreateTagConfigurationRequest
 */
-func (a *MetricsApiService) CreateTagConfiguration(ctx _context.Context, metricName string) ApiCreateTagConfigurationRequest {
-	return ApiCreateTagConfigurationRequest{
+func (a *MetricsApiService) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+	req := apiCreateTagConfigurationRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
+		body:       &body,
 	}
+
+	return req.ApiService.createTagConfigurationExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return MetricTagConfigurationResponse
  */
-func (a *MetricsApiService) CreateTagConfigurationExecute(r ApiCreateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -222,36 +213,31 @@ func (a *MetricsApiService) CreateTagConfigurationExecute(r ApiCreateTagConfigur
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteTagConfigurationRequest struct {
+type apiDeleteTagConfigurationRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	metricName string
-}
-
-func (r ApiDeleteTagConfigurationRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteTagConfigurationExecute(r)
 }
 
 /*
  * DeleteTagConfiguration Delete a tag configuration
  * Deletes a metric's tag configuration. Can only be used with application
 keys from users with the `Manage Tags for Metrics` permission.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricName The name of the metric.
- * @return ApiDeleteTagConfigurationRequest
 */
-func (a *MetricsApiService) DeleteTagConfiguration(ctx _context.Context, metricName string) ApiDeleteTagConfigurationRequest {
-	return ApiDeleteTagConfigurationRequest{
+func (a *MetricsApiService) DeleteTagConfiguration(ctx _context.Context, metricName string) (*_nethttp.Response, error) {
+	req := apiDeleteTagConfigurationRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
+
+	return req.ApiService.deleteTagConfigurationExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *MetricsApiService) DeleteTagConfigurationExecute(r ApiDeleteTagConfigurationRequest) (*_nethttp.Response, error) {
+func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigurationRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -385,36 +371,31 @@ func (a *MetricsApiService) DeleteTagConfigurationExecute(r ApiDeleteTagConfigur
 	return localVarHTTPResponse, nil
 }
 
-type ApiListTagConfigurationByNameRequest struct {
+type apiListTagConfigurationByNameRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	metricName string
 }
 
-func (r ApiListTagConfigurationByNameRequest) Execute() (MetricTagConfigurationResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListTagConfigurationByNameExecute(r)
-}
-
 /*
  * ListTagConfigurationByName List tag configuration by name
  * Returns the tag configuration for the given metric name.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricName The name of the metric.
- * @return ApiListTagConfigurationByNameRequest
  */
-func (a *MetricsApiService) ListTagConfigurationByName(ctx _context.Context, metricName string) ApiListTagConfigurationByNameRequest {
-	return ApiListTagConfigurationByNameRequest{
+func (a *MetricsApiService) ListTagConfigurationByName(ctx _context.Context, metricName string) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+	req := apiListTagConfigurationByNameRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
+
+	return req.ApiService.listTagConfigurationByNameExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return MetricTagConfigurationResponse
  */
-func (a *MetricsApiService) ListTagConfigurationByNameExecute(r ApiListTagConfigurationByNameRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfigurationByNameRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -558,7 +539,7 @@ func (a *MetricsApiService) ListTagConfigurationByNameExecute(r ApiListTagConfig
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListTagConfigurationsRequest struct {
+type apiListTagConfigurationsRequest struct {
 	ctx                      _context.Context
 	ApiService               *MetricsApiService
 	filterConfigured         *bool
@@ -569,54 +550,77 @@ type ApiListTagConfigurationsRequest struct {
 	windowSeconds            *int64
 }
 
-func (r ApiListTagConfigurationsRequest) FilterConfigured(filterConfigured bool) ApiListTagConfigurationsRequest {
-	r.filterConfigured = &filterConfigured
-	return r
-}
-func (r ApiListTagConfigurationsRequest) FilterTagsConfigured(filterTagsConfigured string) ApiListTagConfigurationsRequest {
-	r.filterTagsConfigured = &filterTagsConfigured
-	return r
-}
-func (r ApiListTagConfigurationsRequest) FilterMetricType(filterMetricType MetricTagConfigurationMetricTypes) ApiListTagConfigurationsRequest {
-	r.filterMetricType = &filterMetricType
-	return r
-}
-func (r ApiListTagConfigurationsRequest) FilterIncludePercentiles(filterIncludePercentiles bool) ApiListTagConfigurationsRequest {
-	r.filterIncludePercentiles = &filterIncludePercentiles
-	return r
-}
-func (r ApiListTagConfigurationsRequest) FilterTags(filterTags string) ApiListTagConfigurationsRequest {
-	r.filterTags = &filterTags
-	return r
-}
-func (r ApiListTagConfigurationsRequest) WindowSeconds(windowSeconds int64) ApiListTagConfigurationsRequest {
-	r.windowSeconds = &windowSeconds
-	return r
+type ListTagConfigurationsOptionalParameters struct {
+	FilterConfigured         *bool
+	FilterTagsConfigured     *string
+	FilterMetricType         *MetricTagConfigurationMetricTypes
+	FilterIncludePercentiles *bool
+	FilterTags               *string
+	WindowSeconds            *int64
 }
 
-func (r ApiListTagConfigurationsRequest) Execute() (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListTagConfigurationsExecute(r)
+func NewListTagConfigurationsOptionalParameters() *ListTagConfigurationsOptionalParameters {
+	this := ListTagConfigurationsOptionalParameters{}
+	return &this
+}
+func (r *ListTagConfigurationsOptionalParameters) WithFilterConfigured(filterConfigured bool) *ListTagConfigurationsOptionalParameters {
+	r.FilterConfigured = &filterConfigured
+	return r
+}
+func (r *ListTagConfigurationsOptionalParameters) WithFilterTagsConfigured(filterTagsConfigured string) *ListTagConfigurationsOptionalParameters {
+	r.FilterTagsConfigured = &filterTagsConfigured
+	return r
+}
+func (r *ListTagConfigurationsOptionalParameters) WithFilterMetricType(filterMetricType MetricTagConfigurationMetricTypes) *ListTagConfigurationsOptionalParameters {
+	r.FilterMetricType = &filterMetricType
+	return r
+}
+func (r *ListTagConfigurationsOptionalParameters) WithFilterIncludePercentiles(filterIncludePercentiles bool) *ListTagConfigurationsOptionalParameters {
+	r.FilterIncludePercentiles = &filterIncludePercentiles
+	return r
+}
+func (r *ListTagConfigurationsOptionalParameters) WithFilterTags(filterTags string) *ListTagConfigurationsOptionalParameters {
+	r.FilterTags = &filterTags
+	return r
+}
+func (r *ListTagConfigurationsOptionalParameters) WithWindowSeconds(windowSeconds int64) *ListTagConfigurationsOptionalParameters {
+	r.WindowSeconds = &windowSeconds
+	return r
 }
 
 /*
  * ListTagConfigurations List tag configurations
  * Returns all configured count/gauge/rate/distribution metric names
 (with additional filters if specified).
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListTagConfigurationsRequest
 */
-func (a *MetricsApiService) ListTagConfigurations(ctx _context.Context) ApiListTagConfigurationsRequest {
-	return ApiListTagConfigurationsRequest{
+func (a *MetricsApiService) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
+	req := apiListTagConfigurationsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue MetricsAndMetricTagConfigurationsResponse
+		return localVarReturnValue, nil, reportError("only one argument of type ListTagConfigurationsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.filterConfigured = o[0].FilterConfigured
+		req.filterTagsConfigured = o[0].FilterTagsConfigured
+		req.filterMetricType = o[0].FilterMetricType
+		req.filterIncludePercentiles = o[0].FilterIncludePercentiles
+		req.filterTags = o[0].FilterTags
+		req.windowSeconds = o[0].WindowSeconds
+	}
+
+	return req.ApiService.listTagConfigurationsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return MetricsAndMetricTagConfigurationsResponse
  */
-func (a *MetricsApiService) ListTagConfigurationsExecute(r ApiListTagConfigurationsRequest) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurationsRequest) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -777,36 +781,31 @@ func (a *MetricsApiService) ListTagConfigurationsExecute(r ApiListTagConfigurati
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListTagsByMetricNameRequest struct {
+type apiListTagsByMetricNameRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	metricName string
 }
 
-func (r ApiListTagsByMetricNameRequest) Execute() (MetricAllTagsResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListTagsByMetricNameExecute(r)
-}
-
 /*
  * ListTagsByMetricName List tags by metric name
  * View indexed tag key-value pairs for a given metric name.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricName The name of the metric.
- * @return ApiListTagsByMetricNameRequest
  */
-func (a *MetricsApiService) ListTagsByMetricName(ctx _context.Context, metricName string) ApiListTagsByMetricNameRequest {
-	return ApiListTagsByMetricNameRequest{
+func (a *MetricsApiService) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
+	req := apiListTagsByMetricNameRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
+
+	return req.ApiService.listTagsByMetricNameExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return MetricAllTagsResponse
  */
-func (a *MetricsApiService) ListTagsByMetricNameExecute(r ApiListTagsByMetricNameRequest) (MetricAllTagsResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNameRequest) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -815,13 +814,6 @@ func (a *MetricsApiService) ListTagsByMetricNameExecute(r ApiListTagsByMetricNam
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricAllTagsResponse
 	)
-
-	operationId := "ListTagsByMetricName"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagsByMetricName")
 	if err != nil {
@@ -960,14 +952,10 @@ func (a *MetricsApiService) ListTagsByMetricNameExecute(r ApiListTagsByMetricNam
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListVolumesByMetricNameRequest struct {
+type apiListVolumesByMetricNameRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	metricName string
-}
-
-func (r ApiListVolumesByMetricNameRequest) Execute() (MetricVolumesResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListVolumesByMetricNameExecute(r)
 }
 
 /*
@@ -977,23 +965,22 @@ func (r ApiListVolumesByMetricNameRequest) Execute() (MetricVolumesResponse, *_n
 Custom distribution metrics will return both ingested and indexed custom metric volumes.
 For Metrics without Limits&trade; beta customers, all metrics will return both ingested/indexed volumes.
 Custom metrics generated in-app from other products will return `null` for ingested volumes.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricName The name of the metric.
- * @return ApiListVolumesByMetricNameRequest
 */
-func (a *MetricsApiService) ListVolumesByMetricName(ctx _context.Context, metricName string) ApiListVolumesByMetricNameRequest {
-	return ApiListVolumesByMetricNameRequest{
+func (a *MetricsApiService) ListVolumesByMetricName(ctx _context.Context, metricName string) (MetricVolumesResponse, *_nethttp.Response, error) {
+	req := apiListVolumesByMetricNameRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
+
+	return req.ApiService.listVolumesByMetricNameExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return MetricVolumesResponse
  */
-func (a *MetricsApiService) ListVolumesByMetricNameExecute(r ApiListVolumesByMetricNameRequest) (MetricVolumesResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMetricNameRequest) (MetricVolumesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1002,13 +989,6 @@ func (a *MetricsApiService) ListVolumesByMetricNameExecute(r ApiListVolumesByMet
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricVolumesResponse
 	)
-
-	operationId := "ListVolumesByMetricName"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListVolumesByMetricName")
 	if err != nil {
@@ -1147,43 +1127,34 @@ func (a *MetricsApiService) ListVolumesByMetricNameExecute(r ApiListVolumesByMet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateTagConfigurationRequest struct {
+type apiUpdateTagConfigurationRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	metricName string
 	body       *MetricTagConfigurationUpdateRequest
 }
 
-func (r ApiUpdateTagConfigurationRequest) Body(body MetricTagConfigurationUpdateRequest) ApiUpdateTagConfigurationRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateTagConfigurationRequest) Execute() (MetricTagConfigurationResponse, *_nethttp.Response, error) {
-	return r.ApiService.UpdateTagConfigurationExecute(r)
-}
-
 /*
  * UpdateTagConfiguration Update a tag configuration
  * Update the tag configuration of a metric or percentile aggregations of a distribution metric. Can only be used with
 application keys from users with the `Manage Tags for Metrics` permission.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricName The name of the metric.
- * @return ApiUpdateTagConfigurationRequest
 */
-func (a *MetricsApiService) UpdateTagConfiguration(ctx _context.Context, metricName string) ApiUpdateTagConfigurationRequest {
-	return ApiUpdateTagConfigurationRequest{
+func (a *MetricsApiService) UpdateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+	req := apiUpdateTagConfigurationRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
+		body:       &body,
 	}
+
+	return req.ApiService.updateTagConfigurationExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return MetricTagConfigurationResponse
  */
-func (a *MetricsApiService) UpdateTagConfigurationExecute(r ApiUpdateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}

@@ -5,7 +5,7 @@
 for f in examples/v*/*/*.go ; do
     df=$(dirname $f)/$(basename $f .go)
     mkdir -p $df
-    cp $f $df/main.go
+    mv $f $df/main.go
 done
 
 ls examples/v*/*/*/main.go | xargs -P $(($(nproc)*2)) -n 1 go build -o /dev/null

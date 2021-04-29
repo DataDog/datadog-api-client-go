@@ -24,33 +24,29 @@ var (
 // IPRangesApiService IPRangesApi service
 type IPRangesApiService service
 
-type ApiGetIPRangesRequest struct {
+type apiGetIPRangesRequest struct {
 	ctx        _context.Context
 	ApiService *IPRangesApiService
-}
-
-func (r ApiGetIPRangesRequest) Execute() (IPRanges, *_nethttp.Response, error) {
-	return r.ApiService.GetIPRangesExecute(r)
 }
 
 /*
  * GetIPRanges List IP Ranges
  * Get information about Datadog IP ranges.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetIPRangesRequest
  */
-func (a *IPRangesApiService) GetIPRanges(ctx _context.Context) ApiGetIPRangesRequest {
-	return ApiGetIPRangesRequest{
+func (a *IPRangesApiService) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Response, error) {
+	req := apiGetIPRangesRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.getIPRangesExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return IPRanges
  */
-func (a *IPRangesApiService) GetIPRangesExecute(r ApiGetIPRangesRequest) (IPRanges, *_nethttp.Response, error) {
+func (a *IPRangesApiService) getIPRangesExecute(r apiGetIPRangesRequest) (IPRanges, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}

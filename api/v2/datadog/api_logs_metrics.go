@@ -25,40 +25,32 @@ var (
 // LogsMetricsApiService LogsMetricsApi service
 type LogsMetricsApiService service
 
-type ApiCreateLogsMetricRequest struct {
+type apiCreateLogsMetricRequest struct {
 	ctx        _context.Context
 	ApiService *LogsMetricsApiService
 	body       *LogsMetricCreateRequest
-}
-
-func (r ApiCreateLogsMetricRequest) Body(body LogsMetricCreateRequest) ApiCreateLogsMetricRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateLogsMetricRequest) Execute() (LogsMetricResponse, *_nethttp.Response, error) {
-	return r.ApiService.CreateLogsMetricExecute(r)
 }
 
 /*
  * CreateLogsMetric Create a log-based metric
  * Create a metric based on your ingested logs in your organization.
 Returns the log-based metric object from the request body when the request is successful.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateLogsMetricRequest
 */
-func (a *LogsMetricsApiService) CreateLogsMetric(ctx _context.Context) ApiCreateLogsMetricRequest {
-	return ApiCreateLogsMetricRequest{
+func (a *LogsMetricsApiService) CreateLogsMetric(ctx _context.Context, body LogsMetricCreateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+	req := apiCreateLogsMetricRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createLogsMetricExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsMetricResponse
  */
-func (a *LogsMetricsApiService) CreateLogsMetricExecute(r ApiCreateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -209,35 +201,30 @@ func (a *LogsMetricsApiService) CreateLogsMetricExecute(r ApiCreateLogsMetricReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteLogsMetricRequest struct {
+type apiDeleteLogsMetricRequest struct {
 	ctx        _context.Context
 	ApiService *LogsMetricsApiService
 	metricId   string
 }
 
-func (r ApiDeleteLogsMetricRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteLogsMetricExecute(r)
-}
-
 /*
  * DeleteLogsMetric Delete a log-based metric
  * Delete a specific log-based metric from your organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricId The name of the log-based metric.
- * @return ApiDeleteLogsMetricRequest
  */
-func (a *LogsMetricsApiService) DeleteLogsMetric(ctx _context.Context, metricId string) ApiDeleteLogsMetricRequest {
-	return ApiDeleteLogsMetricRequest{
+func (a *LogsMetricsApiService) DeleteLogsMetric(ctx _context.Context, metricId string) (*_nethttp.Response, error) {
+	req := apiDeleteLogsMetricRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricId:   metricId,
 	}
+
+	return req.ApiService.deleteLogsMetricExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *LogsMetricsApiService) DeleteLogsMetricExecute(r ApiDeleteLogsMetricRequest) (*_nethttp.Response, error) {
+func (a *LogsMetricsApiService) deleteLogsMetricExecute(r apiDeleteLogsMetricRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -364,36 +351,31 @@ func (a *LogsMetricsApiService) DeleteLogsMetricExecute(r ApiDeleteLogsMetricReq
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetLogsMetricRequest struct {
+type apiGetLogsMetricRequest struct {
 	ctx        _context.Context
 	ApiService *LogsMetricsApiService
 	metricId   string
 }
 
-func (r ApiGetLogsMetricRequest) Execute() (LogsMetricResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetLogsMetricExecute(r)
-}
-
 /*
  * GetLogsMetric Get a log-based metric
  * Get a specific log-based metric from your organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricId The name of the log-based metric.
- * @return ApiGetLogsMetricRequest
  */
-func (a *LogsMetricsApiService) GetLogsMetric(ctx _context.Context, metricId string) ApiGetLogsMetricRequest {
-	return ApiGetLogsMetricRequest{
+func (a *LogsMetricsApiService) GetLogsMetric(ctx _context.Context, metricId string) (LogsMetricResponse, *_nethttp.Response, error) {
+	req := apiGetLogsMetricRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricId:   metricId,
 	}
+
+	return req.ApiService.getLogsMetricExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsMetricResponse
  */
-func (a *LogsMetricsApiService) GetLogsMetricExecute(r ApiGetLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApiService) getLogsMetricExecute(r apiGetLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -530,33 +512,29 @@ func (a *LogsMetricsApiService) GetLogsMetricExecute(r ApiGetLogsMetricRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListLogsMetricsRequest struct {
+type apiListLogsMetricsRequest struct {
 	ctx        _context.Context
 	ApiService *LogsMetricsApiService
-}
-
-func (r ApiListLogsMetricsRequest) Execute() (LogsMetricsResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListLogsMetricsExecute(r)
 }
 
 /*
  * ListLogsMetrics Get all log-based metrics
  * Get the list of configured log-based metrics with their definitions.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListLogsMetricsRequest
  */
-func (a *LogsMetricsApiService) ListLogsMetrics(ctx _context.Context) ApiListLogsMetricsRequest {
-	return ApiListLogsMetricsRequest{
+func (a *LogsMetricsApiService) ListLogsMetrics(ctx _context.Context) (LogsMetricsResponse, *_nethttp.Response, error) {
+	req := apiListLogsMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	return req.ApiService.listLogsMetricsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsMetricsResponse
  */
-func (a *LogsMetricsApiService) ListLogsMetricsExecute(r ApiListLogsMetricsRequest) (LogsMetricsResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsRequest) (LogsMetricsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -682,43 +660,34 @@ func (a *LogsMetricsApiService) ListLogsMetricsExecute(r ApiListLogsMetricsReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateLogsMetricRequest struct {
+type apiUpdateLogsMetricRequest struct {
 	ctx        _context.Context
 	ApiService *LogsMetricsApiService
 	metricId   string
 	body       *LogsMetricUpdateRequest
 }
 
-func (r ApiUpdateLogsMetricRequest) Body(body LogsMetricUpdateRequest) ApiUpdateLogsMetricRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateLogsMetricRequest) Execute() (LogsMetricResponse, *_nethttp.Response, error) {
-	return r.ApiService.UpdateLogsMetricExecute(r)
-}
-
 /*
  * UpdateLogsMetric Update a log-based metric
  * Update a specific log-based metric from your organization.
 Returns the log-based metric object from the request body when the request is successful.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param metricId The name of the log-based metric.
- * @return ApiUpdateLogsMetricRequest
 */
-func (a *LogsMetricsApiService) UpdateLogsMetric(ctx _context.Context, metricId string) ApiUpdateLogsMetricRequest {
-	return ApiUpdateLogsMetricRequest{
+func (a *LogsMetricsApiService) UpdateLogsMetric(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+	req := apiUpdateLogsMetricRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricId:   metricId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateLogsMetricExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return LogsMetricResponse
  */
-func (a *LogsMetricsApiService) UpdateLogsMetricExecute(r ApiUpdateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApiService) updateLogsMetricExecute(r apiUpdateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}

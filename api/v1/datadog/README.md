@@ -201,7 +201,6 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**CreatePrivateLocation**](docs/SyntheticsApi.md#createprivatelocation) | **Post** /api/v1/synthetics/private-locations | Create a private location
 *SyntheticsApi* | [**CreateSyntheticsAPITest**](docs/SyntheticsApi.md#createsyntheticsapitest) | **Post** /api/v1/synthetics/tests/api | Create an API test
 *SyntheticsApi* | [**CreateSyntheticsBrowserTest**](docs/SyntheticsApi.md#createsyntheticsbrowsertest) | **Post** /api/v1/synthetics/tests/browser | Create a browser test
-*SyntheticsApi* | [**CreateTest**](docs/SyntheticsApi.md#createtest) | **Post** /api/v1/synthetics/tests | Create a test
 *SyntheticsApi* | [**DeleteGlobalVariable**](docs/SyntheticsApi.md#deleteglobalvariable) | **Delete** /api/v1/synthetics/variables/{variable_id} | Delete a global variable
 *SyntheticsApi* | [**DeletePrivateLocation**](docs/SyntheticsApi.md#deleteprivatelocation) | **Delete** /api/v1/synthetics/private-locations/{location_id} | Delete a private location
 *SyntheticsApi* | [**DeleteTests**](docs/SyntheticsApi.md#deletetests) | **Post** /api/v1/synthetics/tests/delete | Delete tests
@@ -214,14 +213,13 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**GetBrowserTestResult**](docs/SyntheticsApi.md#getbrowsertestresult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a browser test result
 *SyntheticsApi* | [**GetGlobalVariable**](docs/SyntheticsApi.md#getglobalvariable) | **Get** /api/v1/synthetics/variables/{variable_id} | Get a global variable
 *SyntheticsApi* | [**GetPrivateLocation**](docs/SyntheticsApi.md#getprivatelocation) | **Get** /api/v1/synthetics/private-locations/{location_id} | Get a private location
-*SyntheticsApi* | [**GetTest**](docs/SyntheticsApi.md#gettest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration (API)
+*SyntheticsApi* | [**GetTest**](docs/SyntheticsApi.md#gettest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration
 *SyntheticsApi* | [**ListLocations**](docs/SyntheticsApi.md#listlocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 *SyntheticsApi* | [**ListTests**](docs/SyntheticsApi.md#listtests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
 *SyntheticsApi* | [**TriggerCITests**](docs/SyntheticsApi.md#triggercitests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger tests from CI/CD pipelines
 *SyntheticsApi* | [**UpdateAPITest**](docs/SyntheticsApi.md#updateapitest) | **Put** /api/v1/synthetics/tests/api/{public_id} | Edit an API test
 *SyntheticsApi* | [**UpdateBrowserTest**](docs/SyntheticsApi.md#updatebrowsertest) | **Put** /api/v1/synthetics/tests/browser/{public_id} | Edit a browser test
 *SyntheticsApi* | [**UpdatePrivateLocation**](docs/SyntheticsApi.md#updateprivatelocation) | **Put** /api/v1/synthetics/private-locations/{location_id} | Edit a private location
-*SyntheticsApi* | [**UpdateTest**](docs/SyntheticsApi.md#updatetest) | **Put** /api/v1/synthetics/tests/{public_id} | Edit a test
 *SyntheticsApi* | [**UpdateTestPauseStatus**](docs/SyntheticsApi.md#updatetestpausestatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Pause or start a test
 *TagsApi* | [**CreateHostTags**](docs/TagsApi.md#createhosttags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
 *TagsApi* | [**DeleteHostTags**](docs/TagsApi.md#deletehosttags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove host tags
@@ -328,6 +326,8 @@ Class | Method | HTTP request | Description
  - [DistributionWidgetDefinition](docs/DistributionWidgetDefinition.md)
  - [DistributionWidgetDefinitionType](docs/DistributionWidgetDefinitionType.md)
  - [DistributionWidgetRequest](docs/DistributionWidgetRequest.md)
+ - [DistributionWidgetXAxis](docs/DistributionWidgetXAxis.md)
+ - [DistributionWidgetYAxis](docs/DistributionWidgetYAxis.md)
  - [Downtime](docs/Downtime.md)
  - [DowntimeRecurrence](docs/DowntimeRecurrence.md)
  - [Event](docs/Event.md)
@@ -527,6 +527,8 @@ Class | Method | HTTP request | Description
  - [SLOHistoryResponseError](docs/SLOHistoryResponseError.md)
  - [SLOHistorySLIData](docs/SLOHistorySLIData.md)
  - [SLOListResponse](docs/SLOListResponse.md)
+ - [SLOListResponseMetadata](docs/SLOListResponseMetadata.md)
+ - [SLOListResponseMetadataPage](docs/SLOListResponseMetadataPage.md)
  - [SLOResponse](docs/SLOResponse.md)
  - [SLOThreshold](docs/SLOThreshold.md)
  - [SLOTimeframe](docs/SLOTimeframe.md)
@@ -753,6 +755,7 @@ Class | Method | HTTP request | Description
  - [WidgetFormula](docs/WidgetFormula.md)
  - [WidgetFormulaLimit](docs/WidgetFormulaLimit.md)
  - [WidgetGrouping](docs/WidgetGrouping.md)
+ - [WidgetHorizontalAlign](docs/WidgetHorizontalAlign.md)
  - [WidgetImageSizing](docs/WidgetImageSizing.md)
  - [WidgetLayout](docs/WidgetLayout.md)
  - [WidgetLayoutType](docs/WidgetLayoutType.md)
@@ -777,6 +780,7 @@ Class | Method | HTTP request | Description
  - [WidgetTickEdge](docs/WidgetTickEdge.md)
  - [WidgetTime](docs/WidgetTime.md)
  - [WidgetTimeWindows](docs/WidgetTimeWindows.md)
+ - [WidgetVerticalAlign](docs/WidgetVerticalAlign.md)
  - [WidgetViewMode](docs/WidgetViewMode.md)
  - [WidgetVizType](docs/WidgetVizType.md)
 

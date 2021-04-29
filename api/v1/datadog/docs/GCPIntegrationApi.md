@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateGCPIntegration
 
-> interface{} CreateGCPIntegration(ctx).Body(body).Execute()
+> interface{} CreateGCPIntegration(ctx, body)
 
 Create a GCP integration
 
@@ -40,7 +40,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.GCPIntegrationApi.CreateGCPIntegration(ctx).Body(body).Execute()
+    resp, r, err := apiClient.GCPIntegrationApi.CreateGCPIntegration(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.CreateGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,18 +51,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateGCPIntegrationRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**GCPAccount**](GCPAccount.md) | Create a Datadog-GCP integration. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**GCPAccount**](GCPAccount.md) | Create a Datadog-GCP integration. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## DeleteGCPIntegration
 
-> interface{} DeleteGCPIntegration(ctx).Body(body).Execute()
+> interface{} DeleteGCPIntegration(ctx, body)
 
 Delete a GCP integration
 
@@ -111,7 +111,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.GCPIntegrationApi.DeleteGCPIntegration(ctx).Body(body).Execute()
+    resp, r, err := apiClient.GCPIntegrationApi.DeleteGCPIntegration(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.DeleteGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -122,18 +122,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteGCPIntegrationRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**GCPAccount**](GCPAccount.md) | Delete a given Datadog-GCP integration. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**GCPAccount**](GCPAccount.md) | Delete a given Datadog-GCP integration. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ## ListGCPIntegration
 
-> []GCPAccount ListGCPIntegration(ctx).Execute()
+> []GCPAccount ListGCPIntegration(ctx)
 
 List all GCP integrations
 
@@ -181,7 +181,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.GCPIntegrationApi.ListGCPIntegration(ctx).Execute()
+    resp, r, err := apiClient.GCPIntegrationApi.ListGCPIntegration(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.ListGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -192,13 +192,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListGCPIntegrationRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -221,7 +221,7 @@ Other parameters are passed through a pointer to a apiListGCPIntegrationRequest 
 
 ## UpdateGCPIntegration
 
-> interface{} UpdateGCPIntegration(ctx).Body(body).Execute()
+> interface{} UpdateGCPIntegration(ctx, body)
 
 Update a GCP integration
 
@@ -248,7 +248,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.GCPIntegrationApi.UpdateGCPIntegration(ctx).Body(body).Execute()
+    resp, r, err := apiClient.GCPIntegrationApi.UpdateGCPIntegration(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.UpdateGCPIntegration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -259,18 +259,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateGCPIntegrationRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**GCPAccount**](GCPAccount.md) | Update a Datadog-GCP integration. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**GCPAccount**](GCPAccount.md) | Update a Datadog-GCP integration. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 

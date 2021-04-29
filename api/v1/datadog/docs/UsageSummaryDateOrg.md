@@ -43,6 +43,7 @@ Name | Type | Description | Notes
 **SyntheticsCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current date for the given org. | [optional] 
 **TraceSearchIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Indexed Spans indexed over all hours in the current date for the given org. | [optional] 
 **TwolIngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all tracing without limits bytes ingested over all hours in the current date for the given org. | [optional] 
+**VsphereHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all vSphere hosts over all hours in the current date for the given org. | [optional] 
 
 ## Methods
 
@@ -1047,6 +1048,31 @@ SetTwolIngestedEventsBytesSum sets TwolIngestedEventsBytesSum field to given val
 `func (o *UsageSummaryDateOrg) HasTwolIngestedEventsBytesSum() bool`
 
 HasTwolIngestedEventsBytesSum returns a boolean if a field has been set.
+
+### GetVsphereHostTop99p
+
+`func (o *UsageSummaryDateOrg) GetVsphereHostTop99p() int64`
+
+GetVsphereHostTop99p returns the VsphereHostTop99p field if non-nil, zero value otherwise.
+
+### GetVsphereHostTop99pOk
+
+`func (o *UsageSummaryDateOrg) GetVsphereHostTop99pOk() (*int64, bool)`
+
+GetVsphereHostTop99pOk returns a tuple with the VsphereHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVsphereHostTop99p
+
+`func (o *UsageSummaryDateOrg) SetVsphereHostTop99p(v int64)`
+
+SetVsphereHostTop99p sets VsphereHostTop99p field to given value.
+
+### HasVsphereHostTop99p
+
+`func (o *UsageSummaryDateOrg) HasVsphereHostTop99p() bool`
+
+HasVsphereHostTop99p returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

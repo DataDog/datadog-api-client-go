@@ -25,40 +25,32 @@ var (
 // EventsApiService EventsApi service
 type EventsApiService service
 
-type ApiCreateEventRequest struct {
+type apiCreateEventRequest struct {
 	ctx        _context.Context
 	ApiService *EventsApiService
 	body       *EventCreateRequest
-}
-
-func (r ApiCreateEventRequest) Body(body EventCreateRequest) ApiCreateEventRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateEventRequest) Execute() (EventCreateResponse, *_nethttp.Response, error) {
-	return r.ApiService.CreateEventExecute(r)
 }
 
 /*
  * CreateEvent Post an event
  * This endpoint allows you to post events to the stream.
 Tag them, set priority and event aggregate them with other events.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateEventRequest
 */
-func (a *EventsApiService) CreateEvent(ctx _context.Context) ApiCreateEventRequest {
-	return ApiCreateEventRequest{
+func (a *EventsApiService) CreateEvent(ctx _context.Context, body EventCreateRequest) (EventCreateResponse, *_nethttp.Response, error) {
+	req := apiCreateEventRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createEventExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return EventCreateResponse
  */
-func (a *EventsApiService) CreateEventExecute(r ApiCreateEventRequest) (EventCreateResponse, *_nethttp.Response, error) {
+func (a *EventsApiService) createEventExecute(r apiCreateEventRequest) (EventCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -165,14 +157,10 @@ func (a *EventsApiService) CreateEventExecute(r ApiCreateEventRequest) (EventCre
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetEventRequest struct {
+type apiGetEventRequest struct {
 	ctx        _context.Context
 	ApiService *EventsApiService
 	eventId    int64
-}
-
-func (r ApiGetEventRequest) Execute() (EventResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetEventExecute(r)
 }
 
 /*
@@ -181,23 +169,22 @@ func (r ApiGetEventRequest) Execute() (EventResponse, *_nethttp.Response, error)
 
 **Note**: If the event you’re querying contains markdown formatting of any kind,
 you may see characters such as `%`,`\`,`n` in your output.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param eventId The ID of the event.
- * @return ApiGetEventRequest
 */
-func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) ApiGetEventRequest {
-	return ApiGetEventRequest{
+func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) (EventResponse, *_nethttp.Response, error) {
+	req := apiGetEventRequest{
 		ApiService: a,
 		ctx:        ctx,
 		eventId:    eventId,
 	}
+
+	return req.ApiService.getEventExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return EventResponse
  */
-func (a *EventsApiService) GetEventExecute(r ApiGetEventRequest) (EventResponse, *_nethttp.Response, error) {
+func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -324,44 +311,55 @@ func (a *EventsApiService) GetEventExecute(r ApiGetEventRequest) (EventResponse,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListEventsRequest struct {
-	ctx          _context.Context
-	ApiService   *EventsApiService
-	start        *int64
-	end          *int64
-	priority     *EventPriority
-	sources      *string
-	tags         *string
-	unaggregated *bool
+type apiListEventsRequest struct {
+	ctx              _context.Context
+	ApiService       *EventsApiService
+	start            *int64
+	end              *int64
+	priority         *EventPriority
+	sources          *string
+	tags             *string
+	unaggregated     *bool
+	excludeAggregate *bool
+	page             *int32
 }
 
-func (r ApiListEventsRequest) Start(start int64) ApiListEventsRequest {
-	r.start = &start
-	return r
-}
-func (r ApiListEventsRequest) End(end int64) ApiListEventsRequest {
-	r.end = &end
-	return r
-}
-func (r ApiListEventsRequest) Priority(priority EventPriority) ApiListEventsRequest {
-	r.priority = &priority
-	return r
-}
-func (r ApiListEventsRequest) Sources(sources string) ApiListEventsRequest {
-	r.sources = &sources
-	return r
-}
-func (r ApiListEventsRequest) Tags(tags string) ApiListEventsRequest {
-	r.tags = &tags
-	return r
-}
-func (r ApiListEventsRequest) Unaggregated(unaggregated bool) ApiListEventsRequest {
-	r.unaggregated = &unaggregated
-	return r
+type ListEventsOptionalParameters struct {
+	Priority         *EventPriority
+	Sources          *string
+	Tags             *string
+	Unaggregated     *bool
+	ExcludeAggregate *bool
+	Page             *int32
 }
 
-func (r ApiListEventsRequest) Execute() (EventListResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListEventsExecute(r)
+func NewListEventsOptionalParameters() *ListEventsOptionalParameters {
+	this := ListEventsOptionalParameters{}
+	return &this
+}
+func (r *ListEventsOptionalParameters) WithPriority(priority EventPriority) *ListEventsOptionalParameters {
+	r.Priority = &priority
+	return r
+}
+func (r *ListEventsOptionalParameters) WithSources(sources string) *ListEventsOptionalParameters {
+	r.Sources = &sources
+	return r
+}
+func (r *ListEventsOptionalParameters) WithTags(tags string) *ListEventsOptionalParameters {
+	r.Tags = &tags
+	return r
+}
+func (r *ListEventsOptionalParameters) WithUnaggregated(unaggregated bool) *ListEventsOptionalParameters {
+	r.Unaggregated = &unaggregated
+	return r
+}
+func (r *ListEventsOptionalParameters) WithExcludeAggregate(excludeAggregate bool) *ListEventsOptionalParameters {
+	r.ExcludeAggregate = &excludeAggregate
+	return r
+}
+func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalParameters {
+	r.Page = &page
+	return r
 }
 
 /*
@@ -374,22 +372,38 @@ you may see characters such as `%`,`\`,`n` in your output.
 
 - This endpoint returns a maximum of `1000` most recent results. To return additional results,
 identify the last timestamp of the last result and set that as the `end` query time to
-paginate the results.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListEventsRequest
+paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
 */
-func (a *EventsApiService) ListEvents(ctx _context.Context) ApiListEventsRequest {
-	return ApiListEventsRequest{
+func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (EventListResponse, *_nethttp.Response, error) {
+	req := apiListEventsRequest{
 		ApiService: a,
 		ctx:        ctx,
+		start:      &start,
+		end:        &end,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue EventListResponse
+		return localVarReturnValue, nil, reportError("only one argument of type ListEventsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.priority = o[0].Priority
+		req.sources = o[0].Sources
+		req.tags = o[0].Tags
+		req.unaggregated = o[0].Unaggregated
+		req.excludeAggregate = o[0].ExcludeAggregate
+		req.page = o[0].Page
+	}
+
+	return req.ApiService.listEventsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return EventListResponse
  */
-func (a *EventsApiService) ListEventsExecute(r ApiListEventsRequest) (EventListResponse, *_nethttp.Response, error) {
+func (a *EventsApiService) listEventsExecute(r apiListEventsRequest) (EventListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -429,6 +443,12 @@ func (a *EventsApiService) ListEventsExecute(r ApiListEventsRequest) (EventListR
 	}
 	if r.unaggregated != nil {
 		localVarQueryParams.Add("unaggregated", parameterToString(*r.unaggregated, ""))
+	}
+	if r.excludeAggregate != nil {
+		localVarQueryParams.Add("exclude_aggregate", parameterToString(*r.excludeAggregate, ""))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

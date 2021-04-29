@@ -100,6 +100,8 @@ docs/DeletedMonitor.md
 docs/DistributionWidgetDefinition.md
 docs/DistributionWidgetDefinitionType.md
 docs/DistributionWidgetRequest.md
+docs/DistributionWidgetXAxis.md
+docs/DistributionWidgetYAxis.md
 docs/Downtime.md
 docs/DowntimeRecurrence.md
 docs/DowntimesApi.md
@@ -312,6 +314,8 @@ docs/SLOHistoryResponseData.md
 docs/SLOHistoryResponseError.md
 docs/SLOHistorySLIData.md
 docs/SLOListResponse.md
+docs/SLOListResponseMetadata.md
+docs/SLOListResponseMetadataPage.md
 docs/SLOResponse.md
 docs/SLOThreshold.md
 docs/SLOTimeframe.md
@@ -547,6 +551,7 @@ docs/WidgetFieldSort.md
 docs/WidgetFormula.md
 docs/WidgetFormulaLimit.md
 docs/WidgetGrouping.md
+docs/WidgetHorizontalAlign.md
 docs/WidgetImageSizing.md
 docs/WidgetLayout.md
 docs/WidgetLayoutType.md
@@ -571,6 +576,7 @@ docs/WidgetTextAlign.md
 docs/WidgetTickEdge.md
 docs/WidgetTime.md
 docs/WidgetTimeWindows.md
+docs/WidgetVerticalAlign.md
 docs/WidgetViewMode.md
 docs/WidgetVizType.md
 git_push.sh
@@ -637,6 +643,8 @@ model_deleted_monitor.go
 model_distribution_widget_definition.go
 model_distribution_widget_definition_type.go
 model_distribution_widget_request.go
+model_distribution_widget_x_axis.go
+model_distribution_widget_y_axis.go
 model_downtime.go
 model_downtime_recurrence.go
 model_event.go
@@ -852,6 +860,8 @@ model_slo_history_response_data.go
 model_slo_history_response_error.go
 model_slo_history_sli_data.go
 model_slo_list_response.go
+model_slo_list_response_metadata.go
+model_slo_list_response_metadata_page.go
 model_slo_response.go
 model_slo_threshold.go
 model_slo_timeframe.go
@@ -1062,6 +1072,7 @@ model_widget_field_sort.go
 model_widget_formula.go
 model_widget_formula_limit.go
 model_widget_grouping.go
+model_widget_horizontal_align.go
 model_widget_image_sizing.go
 model_widget_layout.go
 model_widget_layout_type.go
@@ -1086,6 +1097,7 @@ model_widget_text_align.go
 model_widget_tick_edge.go
 model_widget_time.go
 model_widget_time_windows_.go
+model_widget_vertical_align.go
 model_widget_view_mode.go
 model_widget_viz_type.go
 response.go

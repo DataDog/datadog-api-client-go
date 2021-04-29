@@ -15,7 +15,7 @@ func TestPermissionList(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	psr, httpresp, err := Client(ctx).RolesApi.ListPermissions(ctx).Execute()
+	psr, httpresp, err := Client(ctx).RolesApi.ListPermissions(ctx)
 	if err != nil {
 		t.Fatalf("Error listing permissions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

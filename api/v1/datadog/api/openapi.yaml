@@ -302,6 +302,7 @@ paths:
       summary: List IP Ranges
       tags:
       - IP Ranges
+      x-menu-order: 1
       x-undo:
         type: safe
   /api/v1/api_key:
@@ -324,6 +325,7 @@ paths:
       summary: Get all API keys
       tags:
       - Key Management
+      x-menu-order: 1
       x-undo:
         type: safe
     post:
@@ -358,6 +360,7 @@ paths:
       tags:
       - Key Management
       x-codegen-request-body-name: body
+      x-menu-order: 2
       x-undo:
         operationId: DeleteAPIKey
         parameters:
@@ -405,6 +408,7 @@ paths:
       summary: Delete an API key
       tags:
       - Key Management
+      x-menu-order: 5
       x-undo:
         type: idempotent
     get:
@@ -441,6 +445,7 @@ paths:
       summary: Get API key
       tags:
       - Key Management
+      x-menu-order: 3
       x-undo:
         type: safe
     put:
@@ -490,6 +495,7 @@ paths:
       tags:
       - Key Management
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/application_key:
@@ -512,6 +518,7 @@ paths:
       summary: Get all application keys
       tags:
       - Key Management
+      x-menu-order: 6
       x-undo:
         type: safe
     post:
@@ -552,6 +559,7 @@ paths:
       tags:
       - Key Management
       x-codegen-request-body-name: body
+      x-menu-order: 7
       x-undo:
         operationId: DeleteApplicationKey
         parameters:
@@ -593,6 +601,7 @@ paths:
       summary: Delete an application key
       tags:
       - Key Management
+      x-menu-order: 10
       x-undo:
         type: idempotent
     get:
@@ -629,6 +638,7 @@ paths:
       summary: Get an application key
       tags:
       - Key Management
+      x-menu-order: 8
       x-undo:
         type: safe
     put:
@@ -684,6 +694,7 @@ paths:
       tags:
       - Key Management
       x-codegen-request-body-name: body
+      x-menu-order: 9
       x-undo:
         type: idempotent
   /api/v1/check_run:
@@ -737,6 +748,7 @@ paths:
       tags:
       - Service Checks
       x-codegen-request-body-name: body
+      x-menu-order: 1
       x-undo:
         type: safe
   /api/v1/daily_custom_reports:
@@ -795,6 +807,7 @@ paths:
       summary: Get the list of available daily custom reports
       tags:
       - Usage Metering
+      x-menu-order: 20
       x-undo:
         type: safe
       x-unstable: |-
@@ -835,6 +848,7 @@ paths:
       summary: Get specified daily custom reports
       tags:
       - Usage Metering
+      x-menu-order: 21
       x-undo:
         type: safe
       x-unstable: |-
@@ -875,6 +889,7 @@ paths:
       summary: Get all dashboards
       tags:
       - Dashboards
+      x-menu-order: 2
       x-undo:
         type: safe
     post:
@@ -915,42 +930,10 @@ paths:
       x-given:
         dashboard:
           parameters:
-          - name: body
-            value: |-
-              {
-                "layout_type": "ordered",
-                "title": "{{ unique }} with Profile Metrics Query",
-                "widgets": [
-                  {
-                    "definition": {
-                      "type": "timeseries",
-                      "requests": [
-                        {
-                          "profile_metrics_query": {
-                            "compute": {
-                              "aggregation": "sum",
-                              "facet": "@prof_core_cpu_cores"
-                            },
-                            "search": { "query": "runtime:jvm" },
-                            "group_by": [
-                              {
-                                "facet": "service",
-                                "limit": 10,
-                                "sort": {
-                                  "aggregation": "sum",
-                                  "order": "desc",
-                                  "facet": "@prof_core_cpu_cores"
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
+          - file: dashboard_payload.json
+            name: body
           step: there is a valid "dashboard" in the system
+      x-menu-order: 1
       x-undo:
         operationId: DeleteDashboard
         parameters:
@@ -977,6 +960,7 @@ paths:
       summary: Get all dashboard lists
       tags:
       - Dashboard Lists
+      x-menu-order: 1
       x-undo:
         type: safe
     post:
@@ -1012,6 +996,7 @@ paths:
       tags:
       - Dashboard Lists
       x-codegen-request-body-name: body
+      x-menu-order: 2
       x-undo:
         operationId: DeleteDashboardList
         parameters:
@@ -1054,6 +1039,7 @@ paths:
       summary: Delete a dashboard list
       tags:
       - Dashboard Lists
+      x-menu-order: 5
       x-undo:
         type: idempotent
     get:
@@ -1091,6 +1077,7 @@ paths:
       summary: Get a dashboard list
       tags:
       - Dashboard Lists
+      x-menu-order: 3
       x-undo:
         type: safe
     put:
@@ -1142,6 +1129,7 @@ paths:
       tags:
       - Dashboard Lists
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/dashboard/{dashboard_id}:
@@ -1179,6 +1167,7 @@ paths:
       summary: Delete a dashboard
       tags:
       - Dashboards
+      x-menu-order: 3
       x-undo:
         type: idempotent
     get:
@@ -1215,6 +1204,7 @@ paths:
       summary: Get a dashboard
       tags:
       - Dashboards
+      x-menu-order: 5
       x-undo:
         type: safe
     put:
@@ -1265,6 +1255,7 @@ paths:
       tags:
       - Dashboards
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/downtime:
@@ -1298,6 +1289,7 @@ paths:
       summary: Get all downtimes
       tags:
       - Downtimes
+      x-menu-order: 1
       x-undo:
         type: safe
     post:
@@ -1333,6 +1325,7 @@ paths:
       tags:
       - Downtimes
       x-codegen-request-body-name: body
+      x-menu-order: 2
       x-undo:
         operationId: TODO
         parameters: []
@@ -1377,6 +1370,7 @@ paths:
       tags:
       - Downtimes
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         type: idempotent
   /api/v1/downtime/{downtime_id}:
@@ -1412,6 +1406,7 @@ paths:
       summary: Cancel a downtime
       tags:
       - Downtimes
+      x-menu-order: 4
       x-undo:
         type: idempotent
     get:
@@ -1450,6 +1445,7 @@ paths:
       summary: Get a downtime
       tags:
       - Downtimes
+      x-menu-order: 5
       x-undo:
         type: safe
     put:
@@ -1502,6 +1498,7 @@ paths:
       tags:
       - Downtimes
       x-codegen-request-body-name: body
+      x-menu-order: 6
       x-undo:
         type: idempotent
   /api/v1/events:
@@ -1515,7 +1512,7 @@ paths:
 
         - This endpoint returns a maximum of `1000` most recent results. To return additional results,
         identify the last timestamp of the last result and set that as the `end` query time to
-        paginate the results.
+        paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
       operationId: ListEvents
       parameters:
       - description: POSIX timestamp.
@@ -1565,13 +1562,35 @@ paths:
       - description: |-
           Set unaggregated to `true` to return all events within the specified [`start`,`end`] timeframe.
           Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe,
-          it won't be available in the output.
+          it won't be available in the output. Aggregated events with `is_aggregate=true` in the response will still be returned unless exclude_aggregate is set to `true.`
         explode: true
         in: query
         name: unaggregated
         required: false
         schema:
           type: boolean
+        style: form
+      - description: |-
+          Set `exclude_aggregate` to `true` to only return unaggregated events where `is_aggregate=false` in the response. If the `exclude_aggregate` parameter is set to `true`,
+          then the unaggregated parameter is ignored and will be `true` by default.
+        explode: true
+        in: query
+        name: exclude_aggregate
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: |-
+          By default 1000 results are returned per request. Set page to the number of the page to return with `0` being the first page. The page parameter can only be used
+          when either unaggregated or exclude_aggregate is set to `true.`
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          maximum: 2147483647
+          type: integer
         style: form
       responses:
         "200":
@@ -1595,6 +1614,7 @@ paths:
       summary: Query the event stream
       tags:
       - Events
+      x-menu-order: 1
       x-undo:
         type: safe
     post:
@@ -1628,6 +1648,7 @@ paths:
       tags:
       - Events
       x-codegen-request-body-name: body
+      x-menu-order: 1
       x-undo:
         type: safe
   /api/v1/events/{event_id}:
@@ -1670,6 +1691,7 @@ paths:
       summary: Get an event
       tags:
       - Events
+      x-menu-order: 2
       x-undo:
         type: safe
   /api/v1/graph/snapshot:
@@ -1755,6 +1777,7 @@ paths:
       summary: Take graph snapshots
       tags:
       - Snapshots
+      x-menu-order: 1
       x-undo:
         type: safe
   /api/v1/host/{host_name}/mute:
@@ -1800,6 +1823,7 @@ paths:
       tags:
       - Hosts
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         type: safe
   /api/v1/host/{host_name}/unmute:
@@ -1838,6 +1862,7 @@ paths:
       tags:
       - Hosts
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: safe
   /api/v1/hosts:
@@ -1941,6 +1966,7 @@ paths:
       summary: Get all hosts for your organization
       tags:
       - Hosts
+      x-menu-order: 1
       x-undo:
         type: safe
   /api/v1/hosts/totals:
@@ -1982,6 +2008,7 @@ paths:
       summary: Get the total number of active hosts
       tags:
       - Hosts
+      x-menu-order: 2
       x-undo:
         type: safe
   /api/v1/integration/aws:
@@ -2025,6 +2052,7 @@ paths:
       tags:
       - AWS Integration
       x-codegen-request-body-name: body
+      x-menu-order: 7
       x-undo:
         type: idempotent
     get:
@@ -2077,6 +2105,7 @@ paths:
       summary: List all AWS integrations
       tags:
       - AWS Integration
+      x-menu-order: 6
       x-undo:
         type: safe
     post:
@@ -2122,6 +2151,7 @@ paths:
       tags:
       - AWS Integration
       x-codegen-request-body-name: body
+      x-menu-order: 8
       x-undo:
         operationId: DeleteAWSAccount
         parameters: []
@@ -2194,6 +2224,7 @@ paths:
       tags:
       - AWS Integration
       x-codegen-request-body-name: body
+      x-menu-order: 9
       x-undo:
         type: safe
   /api/v1/integration/aws/available_namespace_rules:
@@ -2224,6 +2255,7 @@ paths:
       summary: List namespace rules
       tags:
       - AWS Integration
+      x-menu-order: 5
       x-undo:
         type: safe
   /api/v1/integration/aws/filtering:
@@ -2289,6 +2321,7 @@ paths:
       tags:
       - AWS Integration
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         type: idempotent
     get:
@@ -2352,6 +2385,7 @@ paths:
       summary: Get all AWS tag filters
       tags:
       - AWS Integration
+      x-menu-order: 1
       x-undo:
         type: safe
     post:
@@ -2417,6 +2451,7 @@ paths:
       tags:
       - AWS Integration
       x-codegen-request-body-name: body
+      x-menu-order: 2
       x-undo:
         operationId: DeleteAWSTagFilter
         parameters: []
@@ -2459,6 +2494,7 @@ paths:
       tags:
       - AWS Integration
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/integration/aws/logs:
@@ -2496,6 +2532,7 @@ paths:
       tags:
       - AWS Logs Integration
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         type: idempotent
     get:
@@ -2536,6 +2573,7 @@ paths:
       summary: List all AWS Logs integrations
       tags:
       - AWS Logs Integration
+      x-menu-order: 1
       x-undo:
         type: safe
     post:
@@ -2572,6 +2610,7 @@ paths:
       tags:
       - AWS Logs Integration
       x-codegen-request-body-name: body
+      x-menu-order: 2
       x-undo:
         operationId: DeleteAWSLambdaARN
         parameters: []
@@ -2618,6 +2657,7 @@ paths:
       tags:
       - AWS Logs Integration
       x-codegen-request-body-name: body
+      x-menu-order: 7
       x-undo:
         type: safe
   /api/v1/integration/aws/logs/services:
@@ -2657,6 +2697,7 @@ paths:
       summary: Get list of AWS log ready services
       tags:
       - AWS Logs Integration
+      x-menu-order: 4
       x-undo:
         type: safe
     post:
@@ -2693,6 +2734,7 @@ paths:
       tags:
       - AWS Logs Integration
       x-codegen-request-body-name: body
+      x-menu-order: 5
       x-undo:
         operationId: TODO
         type: unsafe
@@ -2740,6 +2782,7 @@ paths:
       tags:
       - AWS Logs Integration
       x-codegen-request-body-name: body
+      x-menu-order: 6
       x-undo:
         type: safe
   /api/v1/integration/azure:
@@ -2777,6 +2820,7 @@ paths:
       tags:
       - Azure Integration
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         type: idempotent
     get:
@@ -2805,6 +2849,7 @@ paths:
       summary: List all Azure integrations
       tags:
       - Azure Integration
+      x-menu-order: 1
       x-undo:
         type: safe
     post:
@@ -2849,6 +2894,7 @@ paths:
       tags:
       - Azure Integration
       x-codegen-request-body-name: body
+      x-menu-order: 2
       x-undo:
         operationId: DeleteAzureIntegration
         parameters: []
@@ -2890,6 +2936,7 @@ paths:
       tags:
       - Azure Integration
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/integration/azure/host_filters:
@@ -2928,6 +2975,7 @@ paths:
       tags:
       - Azure Integration
       x-codegen-request-body-name: body
+      x-menu-order: 5
       x-undo:
         type: safe
   /api/v1/integration/gcp:
@@ -2965,6 +3013,7 @@ paths:
       tags:
       - GCP Integration
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         type: idempotent
     get:
@@ -2992,6 +3041,7 @@ paths:
       summary: List all GCP integrations
       tags:
       - GCP Integration
+      x-menu-order: 1
       x-undo:
         type: safe
     post:
@@ -3028,6 +3078,7 @@ paths:
       tags:
       - GCP Integration
       x-codegen-request-body-name: body
+      x-menu-order: 2
       x-undo:
         operationId: DeleteGCPIntegration
         parameters: []
@@ -3070,6 +3121,7 @@ paths:
       tags:
       - GCP Integration
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/integration/pagerduty/configuration/services:
@@ -3106,6 +3158,7 @@ paths:
       tags:
       - PagerDuty Integration
       x-codegen-request-body-name: body
+      x-menu-order: 1
       x-undo:
         operationId: DeletePagerDutyIntegrationService
         parameters:
@@ -3143,6 +3196,7 @@ paths:
       summary: Delete a single service object
       tags:
       - PagerDuty Integration
+      x-menu-order: 4
       x-undo:
         type: idempotent
     get:
@@ -3179,6 +3233,7 @@ paths:
       summary: Get a single service object
       tags:
       - PagerDuty Integration
+      x-menu-order: 2
       x-undo:
         type: safe
     put:
@@ -3225,6 +3280,7 @@ paths:
       tags:
       - PagerDuty Integration
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         type: idempotent
   /api/v1/integration/slack/configuration/accounts/{account_name}/channels:
@@ -3268,6 +3324,7 @@ paths:
       summary: Get all channels in a Slack integration
       tags:
       - Slack Integration
+      x-menu-order: 1
       x-undo:
         type: safe
     post:
@@ -3318,6 +3375,7 @@ paths:
       tags:
       - Slack Integration
       x-codegen-request-body-name: body
+      x-menu-order: 2
       x-undo:
         type: unsafe
   /api/v1/integration/slack/configuration/accounts/{account_name}/channels/{channel_name}:
@@ -3365,6 +3423,7 @@ paths:
       summary: Remove a Slack integration channel
       tags:
       - Slack Integration
+      x-menu-order: 5
       x-undo:
         type: idempotent
     get:
@@ -3415,6 +3474,7 @@ paths:
       summary: Get a Slack integration channel
       tags:
       - Slack Integration
+      x-menu-order: 3
       x-undo:
         type: safe
     patch:
@@ -3473,6 +3533,7 @@ paths:
       tags:
       - Slack Integration
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/logs-queries/list:
@@ -3518,6 +3579,7 @@ paths:
       tags:
       - Logs
       x-codegen-request-body-name: body
+      x-menu-order: 1
       x-undo:
         type: safe
   /api/v1/logs/config/index-order:
@@ -3541,6 +3603,7 @@ paths:
       summary: Get indexes order
       tags:
       - Logs Indexes
+      x-menu-order: 5
       x-undo:
         type: safe
     put:
@@ -3578,6 +3641,7 @@ paths:
       tags:
       - Logs Indexes
       x-codegen-request-body-name: body
+      x-menu-order: 6
       x-undo:
         type: idempotent
   /api/v1/logs/config/indexes:
@@ -3602,6 +3666,7 @@ paths:
       summary: Get all indexes
       tags:
       - Logs Indexes
+      x-menu-order: 1
       x-undo:
         type: safe
     post:
@@ -3638,6 +3703,7 @@ paths:
       tags:
       - Logs Indexes
       x-codegen-request-body-name: body
+      x-menu-order: 2
       x-undo:
         operationId: TODO
         parameters: []
@@ -3678,6 +3744,7 @@ paths:
       summary: Get an index
       tags:
       - Logs Indexes
+      x-menu-order: 3
       x-undo:
         type: safe
     put:
@@ -3733,6 +3800,7 @@ paths:
       tags:
       - Logs Indexes
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/logs/config/pipeline-order:
@@ -3757,6 +3825,7 @@ paths:
       summary: Get pipeline order
       tags:
       - Logs Pipelines
+      x-menu-order: 1
       x-undo:
         type: safe
     put:
@@ -3803,6 +3872,7 @@ paths:
       tags:
       - Logs Pipelines
       x-codegen-request-body-name: body
+      x-menu-order: 2
       x-undo:
         type: idempotent
   /api/v1/logs/config/pipelines:
@@ -3827,6 +3897,7 @@ paths:
       summary: Get all pipelines
       tags:
       - Logs Pipelines
+      x-menu-order: 3
       x-undo:
         type: safe
     post:
@@ -3862,6 +3933,7 @@ paths:
       tags:
       - Logs Pipelines
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         operationId: DeleteLogsPipeline
         parameters:
@@ -3901,6 +3973,7 @@ paths:
       summary: Delete a pipeline
       tags:
       - Logs Pipelines
+      x-menu-order: 6
       x-undo:
         type: idempotent
     get:
@@ -3939,6 +4012,7 @@ paths:
       summary: Get a pipeline
       tags:
       - Logs Pipelines
+      x-menu-order: 5
       x-undo:
         type: safe
     put:
@@ -3987,6 +4061,7 @@ paths:
       tags:
       - Logs Pipelines
       x-codegen-request-body-name: body
+      x-menu-order: 7
       x-undo:
         type: idempotent
   /api/v1/metrics:
@@ -4047,6 +4122,7 @@ paths:
       summary: Get active metrics list
       tags:
       - Metrics
+      x-menu-order: 1
       x-undo:
         type: safe
   /api/v1/metrics/{metric_name}:
@@ -4084,6 +4160,7 @@ paths:
       summary: Get metric metadata
       tags:
       - Metrics
+      x-menu-order: 2
       x-undo:
         type: safe
     put:
@@ -4135,6 +4212,7 @@ paths:
       tags:
       - Metrics
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         type: idempotent
   /api/v1/monitor:
@@ -4245,6 +4323,7 @@ paths:
       summary: Get all monitor details
       tags:
       - Monitors
+      x-menu-order: 2
       x-undo:
         type: safe
     post:
@@ -4410,6 +4489,7 @@ paths:
       tags:
       - Monitors
       x-codegen-request-body-name: body
+      x-menu-order: 1
       x-undo:
         operationId: DeleteMonitor
         parameters:
@@ -4460,6 +4540,7 @@ paths:
       summary: Check if a monitor can be deleted
       tags:
       - Monitors
+      x-menu-order: 6
       x-undo:
         type: safe
   /api/v1/monitor/validate:
@@ -4496,6 +4577,7 @@ paths:
       tags:
       - Monitors
       x-codegen-request-body-name: body
+      x-menu-order: 7
       x-undo:
         type: idempotent
   /api/v1/monitor/{monitor_id}:
@@ -4555,6 +4637,7 @@ paths:
       summary: Delete a monitor
       tags:
       - Monitors
+      x-menu-order: 5
       x-undo:
         type: idempotent
     get:
@@ -4607,6 +4690,7 @@ paths:
       summary: Get a monitor's details
       tags:
       - Monitors
+      x-menu-order: 4
       x-undo:
         type: safe
     put:
@@ -4664,6 +4748,7 @@ paths:
       tags:
       - Monitors
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         type: idempotent
   /api/v1/monitor/{monitor_id}/downtimes:
@@ -4705,6 +4790,7 @@ paths:
       tags:
       - Downtimes
       x-codegen-request-body-name: body
+      x-menu-order: 7
       x-undo:
         type: safe
   /api/v1/monthly_custom_reports:
@@ -4763,6 +4849,7 @@ paths:
       summary: Get the list of available monthly custom reports
       tags:
       - Usage Metering
+      x-menu-order: 22
       x-undo:
         type: safe
       x-unstable: |-
@@ -4809,6 +4896,7 @@ paths:
       summary: Get specified monthly custom reports
       tags:
       - Usage Metering
+      x-menu-order: 23
       x-undo:
         type: safe
       x-unstable: |-
@@ -4834,6 +4922,7 @@ paths:
       summary: List your managed organizations
       tags:
       - Organizations
+      x-menu-order: 2
       x-undo:
         type: safe
     post:
@@ -4879,6 +4968,7 @@ paths:
       tags:
       - Organizations
       x-codegen-request-body-name: body
+      x-menu-order: 1
       x-undo:
         operationId: TODO
         parameters: []
@@ -4919,6 +5009,7 @@ paths:
       summary: Get organization information
       tags:
       - Organizations
+      x-menu-order: 3
       x-undo:
         type: safe
     put:
@@ -4963,6 +5054,7 @@ paths:
       tags:
       - Organizations
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/org/{public_id}/idp_metadata:
@@ -5020,6 +5112,7 @@ paths:
       tags:
       - Organizations
       x-codegen-request-body-name: body
+      x-menu-order: 5
       x-undo:
         type: safe
   /api/v1/query:
@@ -5075,6 +5168,7 @@ paths:
       summary: Query timeseries points
       tags:
       - Metrics
+      x-menu-order: 5
       x-undo:
         type: safe
   /api/v1/search:
@@ -5112,6 +5206,7 @@ paths:
       summary: Search metrics
       tags:
       - Metrics
+      x-menu-order: 4
       x-undo:
         type: safe
   /api/v1/series:
@@ -5184,6 +5279,7 @@ paths:
       tags:
       - Metrics
       x-codegen-request-body-name: body
+      x-menu-order: 1
       x-undo:
         type: safe
   /api/v1/slo:
@@ -5257,6 +5353,7 @@ paths:
       summary: Get all SLOs
       tags:
       - Service Level Objectives
+      x-menu-order: 2
       x-undo:
         type: safe
     post:
@@ -5311,6 +5408,7 @@ paths:
                 }
               }
           step: there is a valid "slo" in the system
+      x-menu-order: 1
       x-undo:
         operationId: DeleteSLO
         parameters:
@@ -5356,6 +5454,7 @@ paths:
       tags:
       - Service Level Objectives
       x-codegen-request-body-name: body
+      x-menu-order: 8
       x-undo:
         type: idempotent
   /api/v1/slo/can_delete:
@@ -5403,6 +5502,7 @@ paths:
       summary: Check if SLOs can be safely deleted
       tags:
       - Service Level Objectives
+      x-menu-order: 7
       x-undo:
         type: safe
   /api/v1/slo/correction:
@@ -5425,6 +5525,7 @@ paths:
       summary: Get all SLO corrections
       tags:
       - Service Level Objective Corrections
+      x-menu-order: 2
       x-undo:
         type: safe
       x-unstable: |-
@@ -5482,6 +5583,7 @@ paths:
                 }
               }
           step: there is a valid "correction" for "slo"
+      x-menu-order: 1
       x-undo:
         operationId: DeleteSLOCorrection
         parameters:
@@ -5522,6 +5624,7 @@ paths:
       summary: Delete an SLO correction
       tags:
       - Service Level Objective Corrections
+      x-menu-order: 5
       x-undo:
         type: idempotent
       x-unstable: |-
@@ -5561,6 +5664,7 @@ paths:
       summary: Get an SLO correction for an SLO
       tags:
       - Service Level Objective Corrections
+      x-menu-order: 3
       x-undo:
         type: safe
       x-unstable: |-
@@ -5614,6 +5718,7 @@ paths:
       tags:
       - Service Level Objective Corrections
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
       x-unstable: |-
@@ -5673,6 +5778,7 @@ paths:
       summary: Delete an SLO
       tags:
       - Service Level Objectives
+      x-menu-order: 5
       x-undo:
         type: idempotent
     get:
@@ -5709,6 +5815,7 @@ paths:
       summary: Get an SLO's details
       tags:
       - Service Level Objectives
+      x-menu-order: 4
       x-undo:
         type: safe
     put:
@@ -5759,6 +5866,7 @@ paths:
       tags:
       - Service Level Objectives
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         type: idempotent
   /api/v1/slo/{slo_id}/history:
@@ -5842,6 +5950,7 @@ paths:
       summary: Get an SLO's history
       tags:
       - Service Level Objectives
+      x-menu-order: 6
       x-undo:
         type: safe
       x-unstable: |-
@@ -5863,6 +5972,7 @@ paths:
       summary: Get all locations (public and private)
       tags:
       - Synthetics
+      x-menu-order: 22
       x-undo:
         type: safe
   /api/v1/synthetics/private-locations:
@@ -5899,6 +6009,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 19
       x-undo:
         operationId: DeletePrivateLocation
         parameters:
@@ -5932,6 +6043,7 @@ paths:
       summary: Delete a private location
       tags:
       - Synthetics
+      x-menu-order: 23
       x-undo:
         type: idempotent
     get:
@@ -5964,6 +6076,7 @@ paths:
       summary: Get a private location
       tags:
       - Synthetics
+      x-menu-order: 21
       x-undo:
         type: safe
     put:
@@ -6004,6 +6117,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 20
       x-undo:
         type: idempotent
   /api/v1/synthetics/tests:
@@ -6032,54 +6146,9 @@ paths:
       summary: Get the list of all tests
       tags:
       - Synthetics
+      x-menu-order: 9
       x-undo:
         type: safe
-    post:
-      deprecated: true
-      description: Create a Synthetic test.
-      operationId: CreateTest
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SyntheticsTestDetails'
-        description: Details of the test to create.
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SyntheticsTestDetails'
-          description: OK - Returns the created test details.
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: |-
-            - JSON format is wrong
-            - Creation failed
-        "402":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Test quota is reached
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
-      summary: Create a test
-      tags:
-      - Synthetics
-      x-codegen-request-body-name: body
-      x-undo:
-        operationId: TODO
-        parameters: []
-        type: unsafe
   /api/v1/synthetics/tests/api:
     post:
       description: Create a Synthetic API test.
@@ -6122,6 +6191,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 1
       x-undo:
         operationId: TODO
         parameters: []
@@ -6165,6 +6235,7 @@ paths:
       summary: Get an API test
       tags:
       - Synthetics
+      x-menu-order: 7
       x-undo:
         type: safe
     put:
@@ -6220,6 +6291,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         type: idempotent
   /api/v1/synthetics/tests/browser:
@@ -6264,6 +6336,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 2
       x-undo:
         operationId: TODO
         parameters: []
@@ -6307,6 +6380,7 @@ paths:
       summary: Get a browser test
       tags:
       - Synthetics
+      x-menu-order: 8
       x-undo:
         type: safe
     put:
@@ -6362,6 +6436,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/synthetics/tests/browser/{public_id}/results:
@@ -6433,6 +6508,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 13
       x-undo:
         type: safe
   /api/v1/synthetics/tests/browser/{public_id}/results/{result_id}:
@@ -6482,6 +6558,7 @@ paths:
       summary: Get a browser test result
       tags:
       - Synthetics
+      x-menu-order: 11
       x-undo:
         type: safe
   /api/v1/synthetics/tests/delete:
@@ -6529,6 +6606,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 14
       x-undo:
         type: idempotent
   /api/v1/synthetics/tests/trigger/ci:
@@ -6559,6 +6637,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 6
       x-undo:
         type: idempotent
   /api/v1/synthetics/tests/{public_id}:
@@ -6595,67 +6674,12 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test is not owned by the user
-      summary: Get a test configuration (API)
+      summary: Get a test configuration
       tags:
       - Synthetics
+      x-menu-order: 24
       x-undo:
         type: safe
-    put:
-      deprecated: true
-      description: Edit the configuration of a Synthetic test.
-      operationId: UpdateTest
-      parameters:
-      - description: The public ID of the test to get details from.
-        explode: false
-        in: path
-        name: public_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SyntheticsTestDetails'
-        description: New test details to be saved.
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SyntheticsTestDetails'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: |-
-            - JSON format is wrong
-            - Updating sub-type is forbidden
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: |-
-            - Synthetic is not activated for the user
-            - Test is not owned by the user
-            - Test can't be found
-      summary: Edit a test
-      tags:
-      - Synthetics
-      x-codegen-request-body-name: body
-      x-undo:
-        type: idempotent
   /api/v1/synthetics/tests/{public_id}/results:
     get:
       description: Get the last 50 test results summaries for a given Synthetics API
@@ -6723,6 +6747,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 12
       x-undo:
         type: safe
   /api/v1/synthetics/tests/{public_id}/results/{result_id}:
@@ -6770,6 +6795,7 @@ paths:
       summary: Get an API test result
       tags:
       - Synthetics
+      x-menu-order: 10
       x-undo:
         type: safe
   /api/v1/synthetics/tests/{public_id}/status:
@@ -6823,6 +6849,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 5
       x-undo:
         type: idempotent
   /api/v1/synthetics/variables:
@@ -6859,6 +6886,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 15
       x-undo:
         operationId: DeleteGlobalVariable
         parameters:
@@ -6902,6 +6930,7 @@ paths:
       summary: Delete a global variable
       tags:
       - Synthetics
+      x-menu-order: 18
       x-undo:
         type: idempotent
     get:
@@ -6938,6 +6967,7 @@ paths:
       summary: Get a global variable
       tags:
       - Synthetics
+      x-menu-order: 17
       x-undo:
         type: safe
     put:
@@ -6982,6 +7012,7 @@ paths:
       tags:
       - Synthetics
       x-codegen-request-body-name: body
+      x-menu-order: 16
       x-undo:
         type: idempotent
   /api/v1/tags/hosts:
@@ -7020,6 +7051,7 @@ paths:
       summary: Get Tags
       tags:
       - Tags
+      x-menu-order: 1
       x-undo:
         type: safe
   /api/v1/tags/hosts/{host_name}:
@@ -7066,6 +7098,7 @@ paths:
       summary: Remove host tags
       tags:
       - Tags
+      x-menu-order: 5
       x-undo:
         type: idempotent
     get:
@@ -7111,6 +7144,7 @@ paths:
       summary: Get host tags
       tags:
       - Tags
+      x-menu-order: 2
       x-undo:
         type: safe
     post:
@@ -7169,6 +7203,7 @@ paths:
       tags:
       - Tags
       x-codegen-request-body-name: body
+      x-menu-order: 3
       x-undo:
         operationId: DeleteHostTags
         parameters:
@@ -7232,6 +7267,7 @@ paths:
       tags:
       - Tags
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/usage/analyzed_logs:
@@ -7282,6 +7318,7 @@ paths:
       summary: Get hourly usage for analyzed logs
       tags:
       - Usage Metering
+      x-menu-order: 17
       x-undo:
         type: safe
   /api/v1/usage/attribution:
@@ -7350,6 +7387,7 @@ paths:
       summary: Get Usage Attribution
       tags:
       - Usage Metering
+      x-menu-order: 29
       x-undo:
         type: safe
       x-unstable: |-
@@ -7402,6 +7440,7 @@ paths:
       summary: Get hourly usage for Lambda
       tags:
       - Usage Metering
+      x-menu-order: 12
       x-undo:
         type: safe
   /api/v1/usage/billable-summary:
@@ -7441,6 +7480,7 @@ paths:
       summary: Get billable usage across your account
       tags:
       - Usage Metering
+      x-menu-order: 19
       x-undo:
         type: safe
   /api/v1/usage/compliance-monitoring:
@@ -7491,6 +7531,7 @@ paths:
       summary: Get hourly usage for Compliance Monitoring
       tags:
       - Usage Metering
+      x-menu-order: 30
       x-undo:
         type: safe
   /api/v1/usage/fargate:
@@ -7540,6 +7581,7 @@ paths:
       summary: Get hourly usage for Fargate
       tags:
       - Usage Metering
+      x-menu-order: 11
       x-undo:
         type: safe
   /api/v1/usage/hosts:
@@ -7589,6 +7631,7 @@ paths:
       summary: Get hourly usage for hosts and containers
       tags:
       - Usage Metering
+      x-menu-order: 1
       x-undo:
         type: safe
   /api/v1/usage/incident-management:
@@ -7639,6 +7682,7 @@ paths:
       summary: Get hourly usage for incident management
       tags:
       - Usage Metering
+      x-menu-order: 27
       x-undo:
         type: safe
   /api/v1/usage/indexed-spans:
@@ -7688,6 +7732,7 @@ paths:
       summary: Get hourly usage for indexed spans
       tags:
       - Usage Metering
+      x-menu-order: 7
       x-undo:
         type: safe
   /api/v1/usage/ingested-spans:
@@ -7738,6 +7783,7 @@ paths:
       summary: Get hourly usage for ingested spans
       tags:
       - Usage Metering
+      x-menu-order: 26
       x-undo:
         type: safe
   /api/v1/usage/iot:
@@ -7788,6 +7834,7 @@ paths:
       summary: Get hourly usage for IoT
       tags:
       - Usage Metering
+      x-menu-order: 28
       x-undo:
         type: safe
   /api/v1/usage/logs:
@@ -7837,6 +7884,7 @@ paths:
       summary: Get hourly usage for Logs
       tags:
       - Usage Metering
+      x-menu-order: 2
       x-undo:
         type: safe
   /api/v1/usage/logs_by_index:
@@ -7896,6 +7944,7 @@ paths:
       summary: Get hourly usage for Logs by Index
       tags:
       - Usage Metering
+      x-menu-order: 3
       x-undo:
         type: safe
   /api/v1/usage/network_flows:
@@ -7946,6 +7995,7 @@ paths:
       summary: Get hourly usage for Network Flows
       tags:
       - Usage Metering
+      x-menu-order: 15
       x-undo:
         type: safe
   /api/v1/usage/network_hosts:
@@ -7995,6 +8045,7 @@ paths:
       summary: Get hourly usage for Network Hosts
       tags:
       - Usage Metering
+      x-menu-order: 14
       x-undo:
         type: safe
   /api/v1/usage/profiling:
@@ -8045,6 +8096,7 @@ paths:
       summary: Get hourly usage for profiled hosts
       tags:
       - Usage Metering
+      x-menu-order: 24
       x-undo:
         type: safe
   /api/v1/usage/rum_sessions:
@@ -8103,6 +8155,7 @@ paths:
       summary: Get hourly usage for RUM Sessions
       tags:
       - Usage Metering
+      x-menu-order: 13
       x-undo:
         type: safe
   /api/v1/usage/snmp:
@@ -8153,6 +8206,7 @@ paths:
       summary: Get hourly usage for SNMP devices
       tags:
       - Usage Metering
+      x-menu-order: 18
       x-undo:
         type: safe
   /api/v1/usage/summary:
@@ -8212,6 +8266,7 @@ paths:
       summary: Get usage across your multi-org account
       tags:
       - Usage Metering
+      x-menu-order: 16
       x-undo:
         type: safe
   /api/v1/usage/synthetics:
@@ -8262,6 +8317,7 @@ paths:
       summary: Get hourly usage for Synthetics Checks
       tags:
       - Usage Metering
+      x-menu-order: 8
       x-undo:
         type: safe
   /api/v1/usage/synthetics_api:
@@ -8311,6 +8367,7 @@ paths:
       summary: Get hourly usage for Synthetics API Checks
       tags:
       - Usage Metering
+      x-menu-order: 9
       x-undo:
         type: safe
   /api/v1/usage/synthetics_browser:
@@ -8360,6 +8417,7 @@ paths:
       summary: Get hourly usage for Synthetics Browser Checks
       tags:
       - Usage Metering
+      x-menu-order: 10
       x-undo:
         type: safe
   /api/v1/usage/timeseries:
@@ -8409,6 +8467,7 @@ paths:
       summary: Get hourly usage for custom metrics
       tags:
       - Usage Metering
+      x-menu-order: 4
       x-undo:
         type: safe
   /api/v1/usage/top_avg_metrics:
@@ -8486,6 +8545,7 @@ paths:
       summary: Get top custom metrics by hourly average
       tags:
       - Usage Metering
+      x-menu-order: 5
       x-undo:
         type: safe
   /api/v1/usage/traces:
@@ -8539,6 +8599,7 @@ paths:
       summary: Get hourly usage for Trace Search
       tags:
       - Usage Metering
+      x-menu-order: 6
       x-undo:
         type: safe
   /api/v1/usage/tracing-without-limits:
@@ -8593,6 +8654,7 @@ paths:
       summary: Get hourly usage for tracing without limits
       tags:
       - Usage Metering
+      x-menu-order: 25
       x-undo:
         type: safe
   /api/v1/user:
@@ -8615,6 +8677,7 @@ paths:
       summary: List all users
       tags:
       - Users
+      x-menu-order: 2
       x-undo:
         type: safe
     post:
@@ -8660,6 +8723,7 @@ paths:
       tags:
       - Users
       x-codegen-request-body-name: body
+      x-menu-order: 1
       x-undo:
         operationId: DisableUser
         parameters:
@@ -8713,6 +8777,7 @@ paths:
       summary: Disable a user
       tags:
       - Users
+      x-menu-order: 5
       x-undo:
         type: idempotent
     get:
@@ -8751,6 +8816,7 @@ paths:
       summary: Get user details
       tags:
       - Users
+      x-menu-order: 3
       x-undo:
         type: safe
     put:
@@ -8806,6 +8872,7 @@ paths:
       tags:
       - Users
       x-codegen-request-body-name: body
+      x-menu-order: 4
       x-undo:
         type: idempotent
   /api/v1/validate:
@@ -8831,6 +8898,7 @@ paths:
       summary: Validate API key
       tags:
       - Authentication
+      x-menu-order: 1
       x-undo:
         type: safe
   /v1/input:
@@ -8977,6 +9045,7 @@ paths:
       tags:
       - Logs
       x-codegen-request-body-name: body
+      x-menu-order: 1
       x-undo:
         type: safe
 components:
@@ -10164,8 +10233,8 @@ components:
       type: object
     DashboardReflowType:
       description: |-
-        Reflow type for a multi-size layout dashboard. Set this only when layout type is 'ordered'.
-        If set to 'fixed', the dashboard expect all widgets to have a layout, and if it's set to 'auto',
+        Reflow type for a **new dashboard layout** dashboard. Set this only when layout type is 'ordered'.
+        If set to 'fixed', the dashboard expects all widgets to have a layout, and if it's set to 'auto',
         widgets should not have layouts.
       enum:
       - auto
@@ -10318,9 +10387,15 @@ components:
         Unlike the heat map, a distribution graph’s x-axis is quantity rather than time.
       properties:
         legend_size:
-          description: Available legend sizes for a widget. Should be one of "0",
-            "2", "4", "8", "16", or "auto".
+          deprecated: true
+          description: (Deprecated) The widget legend was replaced by a tooltip and
+            sidebar.
           type: string
+        markers:
+          description: List of markers.
+          items:
+            $ref: '#/components/schemas/WidgetMarker'
+          type: array
         requests:
           description: |-
             Array of one request object to display in the widget.
@@ -10335,7 +10410,9 @@ components:
           minItems: 1
           type: array
         show_legend:
-          description: Whether or not to display the legend on this widget.
+          deprecated: true
+          description: (Deprecated) The widget legend was replaced by a tooltip and
+            sidebar.
           type: boolean
         time:
           $ref: '#/components/schemas/WidgetTime'
@@ -10349,6 +10426,10 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/DistributionWidgetDefinitionType'
+        xaxis:
+          $ref: '#/components/schemas/DistributionWidgetXAxis'
+        yaxis:
+          $ref: '#/components/schemas/DistributionWidgetYAxis'
       required:
       - requests
       - type
@@ -10386,6 +10467,51 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         style:
           $ref: '#/components/schemas/WidgetStyle'
+      type: object
+    DistributionWidgetXAxis:
+      description: X Axis controls for the distribution widget.
+      properties:
+        include_zero:
+          description: True includes zero.
+          type: boolean
+        max:
+          default: auto
+          description: Specifies maximum value to show on the x-axis. It takes a number,
+            percentile (p90 === 90th percentile), or auto for default behavior.
+          type: string
+        min:
+          default: auto
+          description: Specifies minimum value to show on the x-axis. It takes a number,
+            percentile (p90 === 90th percentile), or auto for default behavior.
+          type: string
+        scale:
+          default: linear
+          description: Specifies the scale type. Possible values are `linear`.
+          type: string
+      type: object
+    DistributionWidgetYAxis:
+      description: Y Axis controls for the distribution widget.
+      properties:
+        include_zero:
+          description: True includes zero.
+          type: boolean
+        label:
+          description: The label of the axis to display on the graph.
+          type: string
+        max:
+          default: auto
+          description: Specifies the maximum value to show on the y-axis. It takes
+            a number, or auto for default behavior.
+          type: string
+        min:
+          default: auto
+          description: Specifies minimum value to show on the y-axis. It takes a number,
+            or auto for default behavior.
+          type: string
+        scale:
+          default: linear
+          description: Specifies the scale type. Possible values are `linear` or `log`.
+          type: string
       type: object
     Downtime:
       description: |-
@@ -11489,8 +11615,15 @@ components:
         background_color:
           description: Background color of the group title.
           type: string
+        banner_img:
+          description: URL of image to display as a banner for the group.
+          type: string
         layout_type:
           $ref: '#/components/schemas/WidgetLayoutType'
+        show_title:
+          default: true
+          description: Whether to show the title or not.
+          type: boolean
         title:
           description: Title of the widget.
           type: string
@@ -12363,6 +12496,18 @@ components:
         An image can be a PNG, JPG, or animated GIF. Only available on FREE layout
         dashboards.
       properties:
+        has_background:
+          default: true
+          description: Whether to display a background or not.
+          example: true
+          type: boolean
+        has_border:
+          default: true
+          description: Whether to display a border or not.
+          example: true
+          type: boolean
+        horizontal_align:
+          $ref: '#/components/schemas/WidgetHorizontalAlign'
         margin:
           $ref: '#/components/schemas/WidgetMargin'
         sizing:
@@ -12371,8 +12516,14 @@ components:
           $ref: '#/components/schemas/ImageWidgetDefinitionType'
         url:
           description: URL of the image.
-          example: ""
+          example: https://example.com/image.png
           type: string
+        url_dark_theme:
+          description: URL of the image in dark mode.
+          example: https://example.com/image-dark-mode.png
+          type: string
+        vertical_align:
+          $ref: '#/components/schemas/WidgetVerticalAlign'
       required:
       - type
       - url
@@ -14759,6 +14910,10 @@ components:
         font_size:
           description: Size of the text.
           type: string
+        has_padding:
+          default: true
+          description: Whether to add padding or not.
+          type: boolean
         show_tick:
           description: Whether to show a tick or not.
           type: boolean
@@ -14771,6 +14926,8 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/NoteWidgetDefinitionType'
+        vertical_align:
+          $ref: '#/components/schemas/WidgetVerticalAlign'
       required:
       - content
       - type
@@ -15941,6 +16098,10 @@ components:
     SLOListResponse:
       description: A response with one or more service level objective.
       example:
+        metadata:
+          page:
+            total_count: 5
+            total_filtered_count: 5
         data:
         - creator:
             name: name
@@ -16021,6 +16182,8 @@ components:
             description: The error message.
             type: string
           type: array
+        metadata:
+          $ref: '#/components/schemas/SLOListResponse_metadata'
       type: object
     SLOResponse:
       description: A service level objective response containing a single service
@@ -16801,7 +16964,7 @@ components:
           headers:
             key: headers
           noSavingResponseBody: true
-          port: 0
+          shouldTrackHops: true
           basicAuth:
             password: ""
             username: ""
@@ -16815,11 +16978,13 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
-          host: host
           body: body
-          dnsServer: dnsServer
-          timeout: 6.027456183070403
+          timeout: 1.4658129805029452
           url: url
+          port: 6
+          host: host
+          numberOfPackets: 0
+          dnsServer: dnsServer
         name: name
         assertions: []
       properties:
@@ -16857,9 +17022,9 @@ components:
         monitor_id: 0
         name: name
         options:
-          min_location_failed: 5
+          min_location_failed: 2
           monitor_options:
-            renotify_interval: 331
+            renotify_interval: 1016
           disableCors: true
           min_failure_duration: 5
           allow_insecure: true
@@ -16870,8 +17035,8 @@ components:
           follow_redirects: true
           accept_self_signed: true
           retry:
-            count: 7
-            interval: 9.301444243932576
+            count: 9
+            interval: 3.616076749251911
         locations:
         - locations
         - locations
@@ -16882,7 +17047,7 @@ components:
             headers:
               key: headers
             noSavingResponseBody: true
-            port: 0
+            shouldTrackHops: true
             basicAuth:
               password: ""
               username: ""
@@ -16896,11 +17061,13 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
-            host: host
             body: body
-            dnsServer: dnsServer
-            timeout: 6.027456183070403
+            timeout: 1.4658129805029452
             url: url
+            port: 6
+            host: host
+            numberOfPackets: 0
+            dnsServer: dnsServer
           assertions: []
           steps:
           - extractedValues:
@@ -16918,7 +17085,7 @@ components:
               headers:
                 key: headers
               noSavingResponseBody: true
-              port: 0
+              shouldTrackHops: true
               basicAuth:
                 password: ""
                 username: ""
@@ -16932,11 +17099,13 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
-              host: host
               body: body
-              dnsServer: dnsServer
-              timeout: 6.027456183070403
+              timeout: 1.4658129805029452
               url: url
+              port: 6
+              host: host
+              numberOfPackets: 0
+              dnsServer: dnsServer
             name: name
             assertions: []
           - extractedValues:
@@ -16954,7 +17123,7 @@ components:
               headers:
                 key: headers
               noSavingResponseBody: true
-              port: 0
+              shouldTrackHops: true
               basicAuth:
                 password: ""
                 username: ""
@@ -16968,11 +17137,13 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
-              host: host
               body: body
-              dnsServer: dnsServer
-              timeout: 6.027456183070403
+              timeout: 1.4658129805029452
               url: url
+              port: 6
+              host: host
+              numberOfPackets: 0
+              dnsServer: dnsServer
             name: name
             assertions: []
           configVariables:
@@ -17030,7 +17201,7 @@ components:
           headers:
             key: headers
           noSavingResponseBody: true
-          port: 0
+          shouldTrackHops: true
           basicAuth:
             password: ""
             username: ""
@@ -17044,11 +17215,13 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
-          host: host
           body: body
-          dnsServer: dnsServer
-          timeout: 6.027456183070403
+          timeout: 1.4658129805029452
           url: url
+          port: 6
+          host: host
+          numberOfPackets: 0
+          dnsServer: dnsServer
         assertions: []
         steps:
         - extractedValues:
@@ -17066,7 +17239,7 @@ components:
             headers:
               key: headers
             noSavingResponseBody: true
-            port: 0
+            shouldTrackHops: true
             basicAuth:
               password: ""
               username: ""
@@ -17080,11 +17253,13 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
-            host: host
             body: body
-            dnsServer: dnsServer
-            timeout: 6.027456183070403
+            timeout: 1.4658129805029452
             url: url
+            port: 6
+            host: host
+            numberOfPackets: 0
+            dnsServer: dnsServer
           name: name
           assertions: []
         - extractedValues:
@@ -17102,7 +17277,7 @@ components:
             headers:
               key: headers
             noSavingResponseBody: true
-            port: 0
+            shouldTrackHops: true
             basicAuth:
               password: ""
               username: ""
@@ -17116,11 +17291,13 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
-            host: host
             body: body
-            dnsServer: dnsServer
-            timeout: 6.027456183070403
+            timeout: 1.4658129805029452
             url: url
+            port: 6
+            host: host
+            numberOfPackets: 0
+            dnsServer: dnsServer
           name: name
           assertions: []
         configVariables:
@@ -17297,7 +17474,7 @@ components:
               headers:
                 key: headers
               noSavingResponseBody: true
-              port: 0
+              shouldTrackHops: true
               basicAuth:
                 password: ""
                 username: ""
@@ -17311,11 +17488,13 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
-              host: host
               body: body
-              dnsServer: dnsServer
-              timeout: 6.027456183070403
+              timeout: 1.4658129805029452
               url: url
+              port: 6
+              host: host
+              numberOfPackets: 0
+              dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
               pattern: pattern
@@ -17492,6 +17671,10 @@ components:
       - recordSome
       - tlsVersion
       - minTlsVersion
+      - latency
+      - packetLossPercentage
+      - packetsReceived
+      - networkHop
       type: string
       x-enum-varnames:
       - BODY
@@ -17504,6 +17687,10 @@ components:
       - RECORD_SOME
       - TLS_VERSION
       - MIN_TLS_VERSION
+      - LATENCY
+      - PACKET_LOSS_PERCENTAGE
+      - PACKETS_RECEIVED
+      - NETWORK_HOP
     SyntheticsBasicAuth:
       description: Object to handle basic authentication when performing the test.
       example:
@@ -17563,9 +17750,9 @@ components:
         monitor_id: 0
         name: name
         options:
-          min_location_failed: 5
+          min_location_failed: 2
           monitor_options:
-            renotify_interval: 331
+            renotify_interval: 1016
           disableCors: true
           min_failure_duration: 5
           allow_insecure: true
@@ -17576,8 +17763,8 @@ components:
           follow_redirects: true
           accept_self_signed: true
           retry:
-            count: 7
-            interval: 9.301444243932576
+            count: 9
+            interval: 3.616076749251911
         locations:
         - locations
         - locations
@@ -17588,7 +17775,7 @@ components:
             headers:
               key: headers
             noSavingResponseBody: true
-            port: 0
+            shouldTrackHops: true
             basicAuth:
               password: ""
               username: ""
@@ -17602,11 +17789,13 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
-            host: host
             body: body
-            dnsServer: dnsServer
-            timeout: 6.027456183070403
+            timeout: 1.4658129805029452
             url: url
+            port: 6
+            host: host
+            numberOfPackets: 0
+            dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
             pattern: pattern
@@ -17621,11 +17810,11 @@ components:
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 3
+          timeout: 2
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 3
+          timeout: 2
         public_id: public_id
         tags:
         - tags
@@ -17681,7 +17870,7 @@ components:
           headers:
             key: headers
           noSavingResponseBody: true
-          port: 0
+          shouldTrackHops: true
           basicAuth:
             password: ""
             username: ""
@@ -17695,11 +17884,13 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
-          host: host
           body: body
-          dnsServer: dnsServer
-          timeout: 6.027456183070403
+          timeout: 1.4658129805029452
           url: url
+          port: 6
+          host: host
+          numberOfPackets: 0
+          dnsServer: dnsServer
         variables:
         - name: VARIABLE_NAME
           pattern: pattern
@@ -17936,7 +18127,7 @@ components:
               headers:
                 key: headers
               noSavingResponseBody: true
-              port: 0
+              shouldTrackHops: true
               basicAuth:
                 password: ""
                 username: ""
@@ -17950,11 +18141,13 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
-              host: host
               body: body
-              dnsServer: dnsServer
-              timeout: 6.027456183070403
+              timeout: 1.4658129805029452
               url: url
+              port: 6
+              host: host
+              numberOfPackets: 0
+              dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
               pattern: pattern
@@ -18114,8 +18307,8 @@ components:
         - locations
         - locations
         retry:
-          count: 7
-          interval: 9.301444243932576
+          count: 9
+          interval: 3.616076749251911
       properties:
         allowInsecureCertificates:
           description: Disable certificate checks in API tests.
@@ -18171,6 +18364,7 @@ components:
           type: object
       required:
       - public_id
+      type: object
     SyntheticsCITestBody:
       description: Object describing the synthetics tests to trigger.
       example:
@@ -18203,8 +18397,8 @@ components:
           - locations
           - locations
           retry:
-            count: 7
-            interval: 9.301444243932576
+            count: 9
+            interval: 3.616076749251911
         - bodyType: bodyType
           headers:
             key: headers
@@ -18233,8 +18427,8 @@ components:
           - locations
           - locations
           retry:
-            count: 7
-            interval: 9.301444243932576
+            count: 9
+            interval: 3.616076749251911
       properties:
         tests:
           description: Individual synthetics test.
@@ -18631,16 +18825,17 @@ components:
           type: string
       required:
       - value
+      type: object
     SyntheticsListTestsResponse:
       description: Object containing an array of Synthetic tests configuration.
       example:
         tests:
-        - monitor_id: 1
+        - monitor_id: 5
           name: name
           options:
-            min_location_failed: 5
+            min_location_failed: 2
             monitor_options:
-              renotify_interval: 331
+              renotify_interval: 1016
             disableCors: true
             min_failure_duration: 5
             allow_insecure: true
@@ -18651,8 +18846,8 @@ components:
             follow_redirects: true
             accept_self_signed: true
             retry:
-              count: 7
-              interval: 9.301444243932576
+              count: 9
+              interval: 3.616076749251911
           locations:
           - locations
           - locations
@@ -18662,7 +18857,7 @@ components:
               headers:
                 key: headers
               noSavingResponseBody: true
-              port: 0
+              shouldTrackHops: true
               basicAuth:
                 password: ""
                 username: ""
@@ -18676,11 +18871,13 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
-              host: host
               body: body
-              dnsServer: dnsServer
-              timeout: 6.027456183070403
+              timeout: 1.4658129805029452
               url: url
+              port: 6
+              host: host
+              numberOfPackets: 0
+              dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
               pattern: pattern
@@ -18702,21 +18899,21 @@ components:
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 3
+            timeout: 2
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 3
+            timeout: 2
           public_id: public_id
           tags:
           - tags
           - tags
-        - monitor_id: 1
+        - monitor_id: 5
           name: name
           options:
-            min_location_failed: 5
+            min_location_failed: 2
             monitor_options:
-              renotify_interval: 331
+              renotify_interval: 1016
             disableCors: true
             min_failure_duration: 5
             allow_insecure: true
@@ -18727,8 +18924,8 @@ components:
             follow_redirects: true
             accept_self_signed: true
             retry:
-              count: 7
-              interval: 9.301444243932576
+              count: 9
+              interval: 3.616076749251911
           locations:
           - locations
           - locations
@@ -18738,7 +18935,7 @@ components:
               headers:
                 key: headers
               noSavingResponseBody: true
-              port: 0
+              shouldTrackHops: true
               basicAuth:
                 password: ""
                 username: ""
@@ -18752,11 +18949,13 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
-              host: host
               body: body
-              dnsServer: dnsServer
-              timeout: 6.027456183070403
+              timeout: 1.4658129805029452
               url: url
+              port: 6
+              host: host
+              numberOfPackets: 0
+              dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
               pattern: pattern
@@ -18778,11 +18977,11 @@ components:
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 3
+            timeout: 2
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 3
+            timeout: 2
           public_id: public_id
           tags:
           - tags
@@ -19013,7 +19212,7 @@ components:
         allowFailure: true
         name: name
         params: '{}'
-        timeout: 3
+        timeout: 2
       properties:
         allowFailure:
           description: A boolean set to allow this step to fail.
@@ -19204,7 +19403,7 @@ components:
           headers:
             key: headers
           noSavingResponseBody: true
-          port: 0
+          shouldTrackHops: true
           basicAuth:
             password: ""
             username: ""
@@ -19218,11 +19417,13 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
-          host: host
           body: body
-          dnsServer: dnsServer
-          timeout: 6.027456183070403
+          timeout: 1.4658129805029452
           url: url
+          port: 6
+          host: host
+          numberOfPackets: 0
+          dnsServer: dnsServer
         variables:
         - name: VARIABLE_NAME
           pattern: pattern
@@ -19267,12 +19468,12 @@ components:
     SyntheticsTestDetails:
       description: Object containing details about your Synthetic test.
       example:
-        monitor_id: 1
+        monitor_id: 5
         name: name
         options:
-          min_location_failed: 5
+          min_location_failed: 2
           monitor_options:
-            renotify_interval: 331
+            renotify_interval: 1016
           disableCors: true
           min_failure_duration: 5
           allow_insecure: true
@@ -19283,8 +19484,8 @@ components:
           follow_redirects: true
           accept_self_signed: true
           retry:
-            count: 7
-            interval: 9.301444243932576
+            count: 9
+            interval: 3.616076749251911
         locations:
         - locations
         - locations
@@ -19294,7 +19495,7 @@ components:
             headers:
               key: headers
             noSavingResponseBody: true
-            port: 0
+            shouldTrackHops: true
             basicAuth:
               password: ""
               username: ""
@@ -19308,11 +19509,13 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
-            host: host
             body: body
-            dnsServer: dnsServer
-            timeout: 6.027456183070403
+            timeout: 1.4658129805029452
             url: url
+            port: 6
+            host: host
+            numberOfPackets: 0
+            dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
             pattern: pattern
@@ -19334,11 +19537,11 @@ components:
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 3
+          timeout: 2
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 3
+          timeout: 2
         public_id: public_id
         tags:
         - tags
@@ -19388,13 +19591,14 @@ components:
     SyntheticsTestDetailsSubType:
       description: |-
         The subtype of the Synthetic API test, `http`, `ssl`, `tcp`,
-        `dns` or `multi`.
+        `dns`, `icmp` or `multi`.
       enum:
       - http
       - ssl
       - tcp
       - dns
       - multi
+      - icmp
       type: string
       x-enum-varnames:
       - HTTP
@@ -19402,6 +19606,7 @@ components:
       - TCP
       - DNS
       - MULTI
+      - ICMP
     SyntheticsTestDetailsType:
       description: Type of the Synthetic test, either `api` or `browser`.
       enum:
@@ -19436,9 +19641,9 @@ components:
     SyntheticsTestOptions:
       description: Object describing the extra options for a Synthetic test.
       example:
-        min_location_failed: 5
+        min_location_failed: 2
         monitor_options:
-          renotify_interval: 331
+          renotify_interval: 1016
         disableCors: true
         min_failure_duration: 5
         allow_insecure: true
@@ -19449,8 +19654,8 @@ components:
         follow_redirects: true
         accept_self_signed: true
         retry:
-          count: 7
-          interval: 9.301444243932576
+          count: 9
+          interval: 3.616076749251911
       properties:
         accept_self_signed:
           description: |-
@@ -19496,8 +19701,8 @@ components:
     SyntheticsTestOptionsRetry:
       description: Object describing the retry strategy to apply to a Synthetic test.
       example:
-        count: 7
-        interval: 9.301444243932576
+        count: 9
+        interval: 3.616076749251911
       properties:
         count:
           description: |-
@@ -19544,7 +19749,7 @@ components:
         headers:
           key: headers
         noSavingResponseBody: true
-        port: 0
+        shouldTrackHops: true
         basicAuth:
           password: ""
           username: ""
@@ -19558,11 +19763,13 @@ components:
             filename: filename
             content: content
             updatedAt: updatedAt
-        host: host
         body: body
-        dnsServer: dnsServer
-        timeout: 6.027456183070403
+        timeout: 1.4658129805029452
         url: url
+        port: 6
+        host: host
+        numberOfPackets: 0
+        dnsServer: dnsServer
       properties:
         basicAuth:
           $ref: '#/components/schemas/SyntheticsBasicAuth'
@@ -19588,6 +19795,12 @@ components:
         noSavingResponseBody:
           description: Determines whether or not to save the response body.
           type: boolean
+        numberOfPackets:
+          description: Number of pings to use per test.
+          format: int32
+          maximum: 10
+          minimum: 0
+          type: integer
         port:
           description: Port to use when performing the test.
           format: int64
@@ -19595,6 +19808,10 @@ components:
         query:
           description: Query to use for the test.
           type: object
+        shouldTrackHops:
+          description: Turns on a traceroute probe to discover all gateways along
+            the path to the host destination.
+          type: boolean
         timeout:
           description: Timeout in seconds for the test.
           format: double
@@ -21636,6 +21853,7 @@ components:
         hour: 2000-01-23T04:56:07.000+00:00
         alibaba_host_count: 6
         opentelemetry_host_count: 7
+        vsphere_host_count: 1
         gcp_host_count: 9
       properties:
         agent_host_count:
@@ -21710,6 +21928,12 @@ components:
             for the OpenTelemetry Collector.
           format: int64
           type: integer
+        vsphere_host_count:
+          description: |-
+            Contains the total number of hosts that reported via vSphere integration
+            (and were NOT running the Datadog Agent).
+          format: int64
+          type: integer
       type: object
     UsageHostsResponse:
       description: Host usage response.
@@ -21727,6 +21951,7 @@ components:
           hour: 2000-01-23T04:56:07.000+00:00
           alibaba_host_count: 6
           opentelemetry_host_count: 7
+          vsphere_host_count: 1
           gcp_host_count: 9
         - infra_azure_app_service: 4
           apm_host_count: 5
@@ -21740,6 +21965,7 @@ components:
           hour: 2000-01-23T04:56:07.000+00:00
           alibaba_host_count: 6
           opentelemetry_host_count: 7
+          vsphere_host_count: 1
           gcp_host_count: 9
       properties:
         usage:
@@ -21855,8 +22081,7 @@ components:
           format: date-time
           type: string
         iot_device_count:
-          description: The total number of IoT device hours from the start of the
-            given hour's month until the given hour.
+          description: The total number of IoT devices during a given hour.
           format: int64
           type: integer
       type: object
@@ -22372,44 +22597,46 @@ components:
       description: Response with hourly report of all data billed by Datadog all organizations.
       example:
         date: 2000-01-23T04:56:07.000+00:00
+        iot_device_top99p: 4
         npm_host_top99p: 0
         container_hwm: 6
         billable_ingested_bytes_sum: 3
-        iot_device_top99p_sum: 4
+        vsphere_host_top99p: 4
         fargate_tasks_count_avg: 1
-        rum_session_count_sum: 6
+        iot_device_sum: 5
+        rum_session_count_sum: 9
         ingested_events_bytes_sum: 7
         compliance_host_count_sum: 4
         mobile_rum_session_count_sum: 4
         container_avg: 0
         netflow_indexed_events_count_sum: 3
         aws_lambda_func_count: 3
-        rum_total_session_count_sum: 9
+        rum_total_session_count_sum: 1
         mobile_rum_session_count_ios_sum: 8
         fargate_tasks_count_hwm: 4
-        opentelemetry_host_top99p_sum: 2
-        iot_device_agg_sum: 5
-        profiling_host_top99p: 4
+        opentelemetry_host_top99p: 2
+        profiling_host_top99p: 6
         gcp_host_top99p: 7
         azure_app_service_top99p: 5
         apm_azure_app_service_host_top99p: 8
         mobile_rum_session_count_android_sum: 6
         apm_host_top99p: 7
-        synthetics_check_calls_count_sum: 1
+        synthetics_check_calls_count_sum: 3
         aws_host_top99p: 3
+        heroku_host_top99p: 9
         incident_management_monthly_active_users_hwm: 0
         custom_ts_avg: 4
-        trace_search_indexed_events_count_sum: 3
-        twol_ingested_events_bytes_sum: 5
+        trace_search_indexed_events_count_sum: 5
+        twol_ingested_events_bytes_sum: 1
         agent_host_top99p: 4
         compliance_container_count_sum: ""
         indexed_events_count_sum: 9
         infra_host_top99p: 0
-        heroku_host_top99p_sum: 9
         orgs:
         - npm_host_top99p: 0
           container_hwm: 0
           billable_ingested_bytes_sum: 3
+          vsphere_host_top99p: 4
           iot_device_top99p_sum: 3
           compliance_host_agg_sum: 9
           fargate_tasks_count_avg: 5
@@ -22449,6 +22676,7 @@ components:
         - npm_host_top99p: 0
           container_hwm: 0
           billable_ingested_bytes_sum: 3
+          vsphere_host_top99p: 4
           iot_device_top99p_sum: 3
           compliance_host_agg_sum: 9
           fargate_tasks_count_avg: 5
@@ -22570,7 +22798,7 @@ components:
             the current date for all organizations.
           format: int64
           type: integer
-        heroku_host_top99p_sum:
+        heroku_host_top99p:
           description: Shows the 99th percentile of all Heroku dynos over all hours
             in the current date for all organizations.
           format: int64
@@ -22595,12 +22823,12 @@ components:
             current date for all organizations.
           format: int64
           type: integer
-        iot_device_agg_sum:
+        iot_device_sum:
           description: Shows the sum of all IoT devices over all hours in the current
             date for all organizations.
           format: int64
           type: integer
-        iot_device_top99p_sum:
+        iot_device_top99p:
           description: Shows the 99th percentile of all IoT devices over all hours
             in the current date all organizations.
           format: int64
@@ -22630,7 +22858,7 @@ components:
             all hours in the current date for all organizations.
           format: int64
           type: integer
-        opentelemetry_host_top99p_sum:
+        opentelemetry_host_top99p:
           description: Shows the 99th percentile of all hosts reported by the Datadog
             exporter for the OpenTelemetry Collector over all hours in the current
             date for all organizations.
@@ -22676,6 +22904,11 @@ components:
             over all hours in the current date for all organizations.
           format: int64
           type: integer
+        vsphere_host_top99p:
+          description: Shows the 99th percentile of all vSphere hosts over all hours
+            in the current date for all organizations.
+          format: int64
+          type: integer
       type: object
     UsageSummaryDateOrg:
       description: Global hourly report of all data billed by Datadog for a given
@@ -22684,6 +22917,7 @@ components:
         npm_host_top99p: 0
         container_hwm: 0
         billable_ingested_bytes_sum: 3
+        vsphere_host_top99p: 4
         iot_device_top99p_sum: 3
         compliance_host_agg_sum: 9
         fargate_tasks_count_avg: 5
@@ -22908,6 +23142,11 @@ components:
             over all hours in the current date for the given org.
           format: int64
           type: integer
+        vsphere_host_top99p:
+          description: Shows the 99th percentile of all vSphere hosts over all hours
+            in the current date for the given org.
+          format: int64
+          type: integer
       type: object
     UsageSummaryResponse:
       description: Response with hourly report of all data billed by Datadog all organizations.
@@ -22916,44 +23155,46 @@ components:
         azure_host_top99p_sum: 9
         usage:
         - date: 2000-01-23T04:56:07.000+00:00
+          iot_device_top99p: 4
           npm_host_top99p: 0
           container_hwm: 6
           billable_ingested_bytes_sum: 3
-          iot_device_top99p_sum: 4
+          vsphere_host_top99p: 4
           fargate_tasks_count_avg: 1
-          rum_session_count_sum: 6
+          iot_device_sum: 5
+          rum_session_count_sum: 9
           ingested_events_bytes_sum: 7
           compliance_host_count_sum: 4
           mobile_rum_session_count_sum: 4
           container_avg: 0
           netflow_indexed_events_count_sum: 3
           aws_lambda_func_count: 3
-          rum_total_session_count_sum: 9
+          rum_total_session_count_sum: 1
           mobile_rum_session_count_ios_sum: 8
           fargate_tasks_count_hwm: 4
-          opentelemetry_host_top99p_sum: 2
-          iot_device_agg_sum: 5
-          profiling_host_top99p: 4
+          opentelemetry_host_top99p: 2
+          profiling_host_top99p: 6
           gcp_host_top99p: 7
           azure_app_service_top99p: 5
           apm_azure_app_service_host_top99p: 8
           mobile_rum_session_count_android_sum: 6
           apm_host_top99p: 7
-          synthetics_check_calls_count_sum: 1
+          synthetics_check_calls_count_sum: 3
           aws_host_top99p: 3
+          heroku_host_top99p: 9
           incident_management_monthly_active_users_hwm: 0
           custom_ts_avg: 4
-          trace_search_indexed_events_count_sum: 3
-          twol_ingested_events_bytes_sum: 5
+          trace_search_indexed_events_count_sum: 5
+          twol_ingested_events_bytes_sum: 1
           agent_host_top99p: 4
           compliance_container_count_sum: ""
           indexed_events_count_sum: 9
           infra_host_top99p: 0
-          heroku_host_top99p_sum: 9
           orgs:
           - npm_host_top99p: 0
             container_hwm: 0
             billable_ingested_bytes_sum: 3
+            vsphere_host_top99p: 4
             iot_device_top99p_sum: 3
             compliance_host_agg_sum: 9
             fargate_tasks_count_avg: 5
@@ -22993,6 +23234,7 @@ components:
           - npm_host_top99p: 0
             container_hwm: 0
             billable_ingested_bytes_sum: 3
+            vsphere_host_top99p: 4
             iot_device_top99p_sum: 3
             compliance_host_agg_sum: 9
             fargate_tasks_count_avg: 5
@@ -23032,44 +23274,46 @@ components:
           aws_lambda_invocations_sum: 7
           synthetics_browser_check_calls_count_sum: 1
         - date: 2000-01-23T04:56:07.000+00:00
+          iot_device_top99p: 4
           npm_host_top99p: 0
           container_hwm: 6
           billable_ingested_bytes_sum: 3
-          iot_device_top99p_sum: 4
+          vsphere_host_top99p: 4
           fargate_tasks_count_avg: 1
-          rum_session_count_sum: 6
+          iot_device_sum: 5
+          rum_session_count_sum: 9
           ingested_events_bytes_sum: 7
           compliance_host_count_sum: 4
           mobile_rum_session_count_sum: 4
           container_avg: 0
           netflow_indexed_events_count_sum: 3
           aws_lambda_func_count: 3
-          rum_total_session_count_sum: 9
+          rum_total_session_count_sum: 1
           mobile_rum_session_count_ios_sum: 8
           fargate_tasks_count_hwm: 4
-          opentelemetry_host_top99p_sum: 2
-          iot_device_agg_sum: 5
-          profiling_host_top99p: 4
+          opentelemetry_host_top99p: 2
+          profiling_host_top99p: 6
           gcp_host_top99p: 7
           azure_app_service_top99p: 5
           apm_azure_app_service_host_top99p: 8
           mobile_rum_session_count_android_sum: 6
           apm_host_top99p: 7
-          synthetics_check_calls_count_sum: 1
+          synthetics_check_calls_count_sum: 3
           aws_host_top99p: 3
+          heroku_host_top99p: 9
           incident_management_monthly_active_users_hwm: 0
           custom_ts_avg: 4
-          trace_search_indexed_events_count_sum: 3
-          twol_ingested_events_bytes_sum: 5
+          trace_search_indexed_events_count_sum: 5
+          twol_ingested_events_bytes_sum: 1
           agent_host_top99p: 4
           compliance_container_count_sum: ""
           indexed_events_count_sum: 9
           infra_host_top99p: 0
-          heroku_host_top99p_sum: 9
           orgs:
           - npm_host_top99p: 0
             container_hwm: 0
             billable_ingested_bytes_sum: 3
+            vsphere_host_top99p: 4
             iot_device_top99p_sum: 3
             compliance_host_agg_sum: 9
             fargate_tasks_count_avg: 5
@@ -23109,6 +23353,7 @@ components:
           - npm_host_top99p: 0
             container_hwm: 0
             billable_ingested_bytes_sum: 3
+            vsphere_host_top99p: 4
             iot_device_top99p_sum: 3
             compliance_host_agg_sum: 9
             fargate_tasks_count_avg: 5
@@ -23177,6 +23422,7 @@ components:
         last_updated: 2000-01-23T04:56:07.000+00:00
         indexed_events_count_agg_sum: 4
         rehydrated_indexed_events_agg_sum: 6
+        vsphere_host_top99p_sum: 5
         mobile_rum_session_count_ios_agg_sum: 6
         incident_management_monthly_active_users_hwm_sum: 1
         gcp_host_top99p_sum: 6
@@ -23424,6 +23670,11 @@ components:
           items:
             $ref: '#/components/schemas/UsageSummaryDate'
           type: array
+        vsphere_host_top99p_sum:
+          description: Shows the 99th percentile of all vSphere hosts over all hours
+            in the current months for all organizations.
+          format: int64
+          type: integer
       type: object
     UsageSyntheticsAPIHour:
       description: Number of Synthetics API tests run for each hour for a given organization.
@@ -23796,7 +24047,10 @@ components:
       description: |-
         Information about widget.
 
-        Note: The `layout` property is required for widgets in dashboards with `free` `layout_type` only.
+        **Note**: The `layout` property is required for widgets in dashboards with `free` `layout_type`.
+              For the **new dashboard layout**, the `layout` property depends on the `reflow_type` of the dashboard.
+              - If `reflow_type` is `fixed`, `layout` is required.
+              - If `reflow_type` is `auto`, `layout` should not be set.
       properties:
         definition:
           $ref: '#/components/schemas/WidgetDefinition'
@@ -24052,19 +24306,43 @@ components:
       x-enum-varnames:
       - CHECK
       - CLUSTER
-    WidgetImageSizing:
-      description: How to size the image on the widget.
+    WidgetHorizontalAlign:
+      description: Horizontal alignment.
       enum:
+      - center
+      - left
+      - right
+      type: string
+      x-enum-varnames:
+      - CENTER
+      - LEFT
+      - RIGHT
+    WidgetImageSizing:
+      description: |-
+        How to size the image on the widget. The values are based on the image `object-fit` CSS properties.
+        **Note**: `zoom`, `fit` and `center` values are deprecated.
+      enum:
+      - fill
+      - contain
+      - cover
+      - none
+      - scale-down
       - zoom
       - fit
       - center
       type: string
       x-enum-varnames:
+      - FILL
+      - CONTAIN
+      - COVER
+      - NONE
+      - SCALEDOWN
       - ZOOM
       - FIT
       - CENTER
     WidgetLayout:
-      description: The layout for a widget on a free dashboard.
+      description: The layout for a widget on a `free` or **new dashboard layout**
+        dashboard.
       properties:
         height:
           description: The height of the widget. Should be a non-negative integer.
@@ -24072,6 +24350,12 @@ components:
           format: int64
           minimum: 0
           type: integer
+        is_column_break:
+          default: false
+          description: |-
+            Whether the widget should be the first one on the second column in high density or not.
+            **Note**: Only for the **new dashboard layout** and only one widget in the dashboard should have this property set to `true`.
+          type: boolean
         width:
           description: The width of the widget. Should be a non-negative integer.
           example: 0
@@ -24167,12 +24451,20 @@ components:
       - PAST_ONE_YEAR
       - ALERT
     WidgetMargin:
-      description: Size of the margins around the image.
+      description: |-
+        Size of the margins around the image.
+        **Note**: `small` and `large` values are deprecated.
       enum:
+      - sm
+      - md
+      - lg
       - small
       - large
       type: string
       x-enum-varnames:
+      - SM
+      - MD
+      - LG
       - SMALL
       - LARGE
     WidgetMarker:
@@ -24184,6 +24476,7 @@ components:
             Combination of:
               - A severity error, warning, ok, or info
               - A line type: dashed, solid, or bold
+            In this case of a Distribution widget, this can be set to be `x_axis_percentile`.
           example: error dashed
           type: string
         label:
@@ -24433,6 +24726,17 @@ components:
       - MONTH_TO_DATE
       - PREVIOUS_MONTH
       - GLOBAL_TIME
+    WidgetVerticalAlign:
+      description: Vertical alignment.
+      enum:
+      - center
+      - top
+      - bottom
+      type: string
+      x-enum-varnames:
+      - CENTER
+      - TOP
+      - BOTTOM
     WidgetViewMode:
       description: Define how you want the SLO to be displayed.
       enum:
@@ -25029,6 +25333,36 @@ components:
         type_id:
           $ref: '#/components/schemas/SLOTypeNumeric'
       type: object
+    SLOListResponse_metadata_page:
+      description: The object containing information about the pages of the list of
+        SLOs.
+      example:
+        total_count: 5
+        total_filtered_count: 5
+      properties:
+        total_count:
+          description: The total number of resources that could be retrieved ignoring
+            the parameters and filters in the request.
+          format: int64
+          type: integer
+        total_filtered_count:
+          description: The total number of resources that match the parameters and
+            filters in the request. This attribute can be used by a client to determine
+            the total number of pages.
+          format: int64
+          type: integer
+      type: object
+    SLOListResponse_metadata:
+      description: The metadata object containing additional information about the
+        list of SLOs.
+      example:
+        page:
+          total_count: 5
+          total_filtered_count: 5
+      properties:
+        page:
+          $ref: '#/components/schemas/SLOListResponse_metadata_page'
+      type: object
     ScatterPlotWidgetDefinition_requests:
       description: Widget definition.
       example:
@@ -25078,7 +25412,7 @@ components:
             headers:
               key: headers
             noSavingResponseBody: true
-            port: 0
+            shouldTrackHops: true
             basicAuth:
               password: ""
               username: ""
@@ -25092,11 +25426,13 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
-            host: host
             body: body
-            dnsServer: dnsServer
-            timeout: 6.027456183070403
+            timeout: 1.4658129805029452
             url: url
+            port: 6
+            host: host
+            numberOfPackets: 0
+            dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
             pattern: pattern
@@ -25162,7 +25498,7 @@ components:
             headers:
               key: headers
             noSavingResponseBody: true
-            port: 0
+            shouldTrackHops: true
             basicAuth:
               password: ""
               username: ""
@@ -25176,11 +25512,13 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
-            host: host
             body: body
-            dnsServer: dnsServer
-            timeout: 6.027456183070403
+            timeout: 1.4658129805029452
             url: url
+            port: 6
+            host: host
+            numberOfPackets: 0
+            dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
             pattern: pattern
@@ -25420,7 +25758,7 @@ components:
         Object containing the options for a Synthetic test as a monitor
         (for example, renotification).
       example:
-        renotify_interval: 331
+        renotify_interval: 1016
       properties:
         renotify_interval:
           description: |-

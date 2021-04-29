@@ -24,7 +24,7 @@ func TestIPRanges(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	// Get IP ranges
-	ipRanges, httpresp, err := Client(ctx).IPRangesApi.GetIPRanges(ctx).Execute()
+	ipRanges, httpresp, err := Client(ctx).IPRangesApi.GetIPRanges(ctx)
 	if err != nil {
 		t.Errorf("Error getting IP ranges: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -58,7 +58,7 @@ func TestIPRangesMocked(t *testing.T) {
 		JSON(data)
 
 	// Get IP ranges
-	ipRanges, httpresp, err := Client(ctx).IPRangesApi.GetIPRanges(ctx).Execute()
+	ipRanges, httpresp, err := Client(ctx).IPRangesApi.GetIPRanges(ctx)
 	if err != nil {
 		t.Errorf("Error getting IP ranges: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}

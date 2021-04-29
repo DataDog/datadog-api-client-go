@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateSLOCorrection
 
-> SLOCorrectionResponse CreateSLOCorrection(ctx).Body(body).Execute()
+> SLOCorrectionResponse CreateSLOCorrection(ctx, body)
 
 Create an SLO correction
 
@@ -42,7 +42,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("CreateSLOCorrection", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.CreateSLOCorrection(ctx).Body(body).Execute()
+    resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.CreateSLOCorrection(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.CreateSLOCorrection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,18 +53,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateSLOCorrectionRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SLOCorrectionCreateRequest**](SLOCorrectionCreateRequest.md) | Create an SLO Correction | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**SLOCorrectionCreateRequest**](SLOCorrectionCreateRequest.md) | Create an SLO Correction | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## DeleteSLOCorrection
 
-> DeleteSLOCorrection(ctx, sloCorrectionId).Execute()
+> DeleteSLOCorrection(ctx, sloCorrectionId)
 
 Delete an SLO correction
 
@@ -113,7 +113,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("DeleteSLOCorrection", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection(ctx, sloCorrectionId).Execute()
+    r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection(ctx, sloCorrectionId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -129,13 +129,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **sloCorrectionId** | **string** | The ID of the SLO correction object | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeleteSLOCorrectionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -158,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## GetSLOCorrection
 
-> SLOCorrectionResponse GetSLOCorrection(ctx, sloCorrectionId).Execute()
+> SLOCorrectionResponse GetSLOCorrection(ctx, sloCorrectionId)
 
 Get an SLO correction for an SLO
 
@@ -186,7 +182,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("GetSLOCorrection", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.GetSLOCorrection(ctx, sloCorrectionId).Execute()
+    resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.GetSLOCorrection(ctx, sloCorrectionId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.GetSLOCorrection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -197,7 +193,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -205,13 +201,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **sloCorrectionId** | **string** | The ID of the SLO correction object | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetSLOCorrectionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -234,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## ListSLOCorrection
 
-> SLOCorrectionListResponse ListSLOCorrection(ctx).Execute()
+> SLOCorrectionListResponse ListSLOCorrection(ctx)
 
 Get all SLO corrections
 
@@ -261,7 +253,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("ListSLOCorrection", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection(ctx).Execute()
+    resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection(ctx)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -272,13 +264,13 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 This endpoint does not need any parameter.
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiListSLOCorrectionRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -301,7 +293,7 @@ Other parameters are passed through a pointer to a apiListSLOCorrectionRequest s
 
 ## UpdateSLOCorrection
 
-> SLOCorrectionResponse UpdateSLOCorrection(ctx, sloCorrectionId).Body(body).Execute()
+> SLOCorrectionResponse UpdateSLOCorrection(ctx, sloCorrectionId, body)
 
 Update an SLO correction
 
@@ -330,7 +322,7 @@ func main() {
     configuration.SetUnstableOperationEnabled("UpdateSLOCorrection", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, sloCorrectionId).Body(body).Execute()
+    resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, sloCorrectionId, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -341,23 +333,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **sloCorrectionId** | **string** | The ID of the SLO correction object | 
+**body** | [**SLOCorrectionUpdateRequest**](SLOCorrectionUpdateRequest.md) | The edited SLO correction object. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdateSLOCorrectionRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**SLOCorrectionUpdateRequest**](SLOCorrectionUpdateRequest.md) | The edited SLO correction object. | 
 
 ### Return type
 

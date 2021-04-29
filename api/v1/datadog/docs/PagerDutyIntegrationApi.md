@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreatePagerDutyIntegrationService
 
-> PagerDutyServiceName CreatePagerDutyIntegrationService(ctx).Body(body).Execute()
+> PagerDutyServiceName CreatePagerDutyIntegrationService(ctx, body)
 
 Create a new service object
 
@@ -40,7 +40,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(ctx).Body(body).Execute()
+    resp, r, err := apiClient.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.CreatePagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,18 +51,18 @@ func main() {
 }
 ```
 
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreatePagerDutyIntegrationServiceRequest struct via the builder pattern
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**PagerDutyService**](PagerDutyService.md) | Create a new service object request body. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**PagerDutyService**](PagerDutyService.md) | Create a new service object request body. | 
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
 
 ### Return type
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## DeletePagerDutyIntegrationService
 
-> DeletePagerDutyIntegrationService(ctx, serviceName).Execute()
+> DeletePagerDutyIntegrationService(ctx, serviceName)
 
 Delete a single service object
 
@@ -110,7 +110,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(ctx, serviceName).Execute()
+    r, err := apiClient.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(ctx, serviceName)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.DeletePagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -118,7 +118,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -126,13 +126,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **serviceName** | **string** | The service name | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiDeletePagerDutyIntegrationServiceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -155,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## GetPagerDutyIntegrationService
 
-> PagerDutyServiceName GetPagerDutyIntegrationService(ctx, serviceName).Execute()
+> PagerDutyServiceName GetPagerDutyIntegrationService(ctx, serviceName)
 
 Get a single service object
 
@@ -182,7 +178,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(ctx, serviceName).Execute()
+    resp, r, err := apiClient.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(ctx, serviceName)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.GetPagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -193,7 +189,7 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
@@ -201,13 +197,9 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **serviceName** | **string** | The service name. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiGetPagerDutyIntegrationServiceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+This endpoint does not have optional parameters.
 
 
 ### Return type
@@ -230,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## UpdatePagerDutyIntegrationService
 
-> UpdatePagerDutyIntegrationService(ctx, serviceName).Body(body).Execute()
+> UpdatePagerDutyIntegrationService(ctx, serviceName, body)
 
 Update a single service object
 
@@ -257,7 +249,7 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, serviceName).Body(body).Execute()
+    r, err := apiClient.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, serviceName, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -265,23 +257,19 @@ func main() {
 }
 ```
 
-### Path Parameters
+### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **serviceName** | **string** | The service name | 
+**body** | [**PagerDutyServiceKey**](PagerDutyServiceKey.md) | Update an existing service object request body. | 
 
-### Other Parameters
+### Optional Parameters
 
-Other parameters are passed through a pointer to a apiUpdatePagerDutyIntegrationServiceRequest struct via the builder pattern
+This endpoint does not have optional parameters.
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**PagerDutyServiceKey**](PagerDutyServiceKey.md) | Update an existing service object request body. | 
 
 ### Return type
 

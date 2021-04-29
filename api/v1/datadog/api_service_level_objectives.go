@@ -27,40 +27,32 @@ var (
 // ServiceLevelObjectivesApiService ServiceLevelObjectivesApi service
 type ServiceLevelObjectivesApiService service
 
-type ApiCheckCanDeleteSLORequest struct {
+type apiCheckCanDeleteSLORequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
 	ids        *string
-}
-
-func (r ApiCheckCanDeleteSLORequest) Ids(ids string) ApiCheckCanDeleteSLORequest {
-	r.ids = &ids
-	return r
-}
-
-func (r ApiCheckCanDeleteSLORequest) Execute() (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
-	return r.ApiService.CheckCanDeleteSLOExecute(r)
 }
 
 /*
  * CheckCanDeleteSLO Check if SLOs can be safely deleted
  * Check if an SLO can be safely deleted. For example,
 assure an SLO can be deleted without disrupting a dashboard.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCheckCanDeleteSLORequest
 */
-func (a *ServiceLevelObjectivesApiService) CheckCanDeleteSLO(ctx _context.Context) ApiCheckCanDeleteSLORequest {
-	return ApiCheckCanDeleteSLORequest{
+func (a *ServiceLevelObjectivesApiService) CheckCanDeleteSLO(ctx _context.Context, ids string) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
+	req := apiCheckCanDeleteSLORequest{
 		ApiService: a,
 		ctx:        ctx,
+		ids:        &ids,
 	}
+
+	return req.ApiService.checkCanDeleteSLOExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return CheckCanDeleteSLOResponse
  */
-func (a *ServiceLevelObjectivesApiService) CheckCanDeleteSLOExecute(r ApiCheckCanDeleteSLORequest) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApiService) checkCanDeleteSLOExecute(r apiCheckCanDeleteSLORequest) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -200,39 +192,31 @@ func (a *ServiceLevelObjectivesApiService) CheckCanDeleteSLOExecute(r ApiCheckCa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateSLORequest struct {
+type apiCreateSLORequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
 	body       *ServiceLevelObjectiveRequest
 }
 
-func (r ApiCreateSLORequest) Body(body ServiceLevelObjectiveRequest) ApiCreateSLORequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreateSLORequest) Execute() (SLOListResponse, *_nethttp.Response, error) {
-	return r.ApiService.CreateSLOExecute(r)
-}
-
 /*
  * CreateSLO Create an SLO object
  * Create a service level objective object.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateSLORequest
  */
-func (a *ServiceLevelObjectivesApiService) CreateSLO(ctx _context.Context) ApiCreateSLORequest {
-	return ApiCreateSLORequest{
+func (a *ServiceLevelObjectivesApiService) CreateSLO(ctx _context.Context, body ServiceLevelObjectiveRequest) (SLOListResponse, *_nethttp.Response, error) {
+	req := apiCreateSLORequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createSLOExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SLOListResponse
  */
-func (a *ServiceLevelObjectivesApiService) CreateSLOExecute(r ApiCreateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApiService) createSLOExecute(r apiCreateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -363,20 +347,24 @@ func (a *ServiceLevelObjectivesApiService) CreateSLOExecute(r ApiCreateSLOReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteSLORequest struct {
+type apiDeleteSLORequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
 	sloId      string
 	force      *string
 }
 
-func (r ApiDeleteSLORequest) Force(force string) ApiDeleteSLORequest {
-	r.force = &force
-	return r
+type DeleteSLOOptionalParameters struct {
+	Force *string
 }
 
-func (r ApiDeleteSLORequest) Execute() (SLODeleteResponse, *_nethttp.Response, error) {
-	return r.ApiService.DeleteSLOExecute(r)
+func NewDeleteSLOOptionalParameters() *DeleteSLOOptionalParameters {
+	this := DeleteSLOOptionalParameters{}
+	return &this
+}
+func (r *DeleteSLOOptionalParameters) WithForce(force string) *DeleteSLOOptionalParameters {
+	r.Force = &force
+	return r
 }
 
 /*
@@ -385,23 +373,31 @@ func (r ApiDeleteSLORequest) Execute() (SLODeleteResponse, *_nethttp.Response, e
 
 If an SLO is used in a dashboard, the `DELETE /v1/slo/` endpoint returns
 a 409 conflict error because the SLO is referenced in a dashboard.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param sloId The ID of the service level objective.
- * @return ApiDeleteSLORequest
 */
-func (a *ServiceLevelObjectivesApiService) DeleteSLO(ctx _context.Context, sloId string) ApiDeleteSLORequest {
-	return ApiDeleteSLORequest{
+func (a *ServiceLevelObjectivesApiService) DeleteSLO(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (SLODeleteResponse, *_nethttp.Response, error) {
+	req := apiDeleteSLORequest{
 		ApiService: a,
 		ctx:        ctx,
 		sloId:      sloId,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue SLODeleteResponse
+		return localVarReturnValue, nil, reportError("only one argument of type DeleteSLOOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.force = o[0].Force
+	}
+
+	return req.ApiService.deleteSLOExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SLODeleteResponse
  */
-func (a *ServiceLevelObjectivesApiService) DeleteSLOExecute(r ApiDeleteSLORequest) (SLODeleteResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApiService) deleteSLOExecute(r apiDeleteSLORequest) (SLODeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -541,19 +537,10 @@ func (a *ServiceLevelObjectivesApiService) DeleteSLOExecute(r ApiDeleteSLOReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteSLOTimeframeInBulkRequest struct {
+type apiDeleteSLOTimeframeInBulkRequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
 	body       *map[string][]SLOTimeframe
-}
-
-func (r ApiDeleteSLOTimeframeInBulkRequest) Body(body map[string][]SLOTimeframe) ApiDeleteSLOTimeframeInBulkRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiDeleteSLOTimeframeInBulkRequest) Execute() (SLOBulkDeleteResponse, *_nethttp.Response, error) {
-	return r.ApiService.DeleteSLOTimeframeInBulkExecute(r)
 }
 
 /*
@@ -563,21 +550,22 @@ func (r ApiDeleteSLOTimeframeInBulkRequest) Execute() (SLOBulkDeleteResponse, *_
 This endpoint facilitates deletion of one or more thresholds for one or more
 service level objective objects. If all thresholds are deleted, the service level
 objective object is deleted as well.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiDeleteSLOTimeframeInBulkRequest
 */
-func (a *ServiceLevelObjectivesApiService) DeleteSLOTimeframeInBulk(ctx _context.Context) ApiDeleteSLOTimeframeInBulkRequest {
-	return ApiDeleteSLOTimeframeInBulkRequest{
+func (a *ServiceLevelObjectivesApiService) DeleteSLOTimeframeInBulk(ctx _context.Context, body map[string][]SLOTimeframe) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
+	req := apiDeleteSLOTimeframeInBulkRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.deleteSLOTimeframeInBulkExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SLOBulkDeleteResponse
  */
-func (a *ServiceLevelObjectivesApiService) DeleteSLOTimeframeInBulkExecute(r ApiDeleteSLOTimeframeInBulkRequest) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApiService) deleteSLOTimeframeInBulkExecute(r apiDeleteSLOTimeframeInBulkRequest) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -708,36 +696,31 @@ func (a *ServiceLevelObjectivesApiService) DeleteSLOTimeframeInBulkExecute(r Api
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSLORequest struct {
+type apiGetSLORequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
 	sloId      string
 }
 
-func (r ApiGetSLORequest) Execute() (SLOResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetSLOExecute(r)
-}
-
 /*
  * GetSLO Get an SLO's details
  * Get a service level objective object.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param sloId The ID of the service level objective object.
- * @return ApiGetSLORequest
  */
-func (a *ServiceLevelObjectivesApiService) GetSLO(ctx _context.Context, sloId string) ApiGetSLORequest {
-	return ApiGetSLORequest{
+func (a *ServiceLevelObjectivesApiService) GetSLO(ctx _context.Context, sloId string) (SLOResponse, *_nethttp.Response, error) {
+	req := apiGetSLORequest{
 		ApiService: a,
 		ctx:        ctx,
 		sloId:      sloId,
 	}
+
+	return req.ApiService.getSLOExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SLOResponse
  */
-func (a *ServiceLevelObjectivesApiService) GetSLOExecute(r ApiGetSLORequest) (SLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApiService) getSLOExecute(r apiGetSLORequest) (SLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -864,7 +847,7 @@ func (a *ServiceLevelObjectivesApiService) GetSLOExecute(r ApiGetSLORequest) (SL
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSLOHistoryRequest struct {
+type apiGetSLOHistoryRequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
 	sloId      string
@@ -873,21 +856,17 @@ type ApiGetSLOHistoryRequest struct {
 	target     *float64
 }
 
-func (r ApiGetSLOHistoryRequest) FromTs(fromTs int64) ApiGetSLOHistoryRequest {
-	r.fromTs = &fromTs
-	return r
-}
-func (r ApiGetSLOHistoryRequest) ToTs(toTs int64) ApiGetSLOHistoryRequest {
-	r.toTs = &toTs
-	return r
-}
-func (r ApiGetSLOHistoryRequest) Target(target float64) ApiGetSLOHistoryRequest {
-	r.target = &target
-	return r
+type GetSLOHistoryOptionalParameters struct {
+	Target *float64
 }
 
-func (r ApiGetSLOHistoryRequest) Execute() (SLOHistoryResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetSLOHistoryExecute(r)
+func NewGetSLOHistoryOptionalParameters() *GetSLOHistoryOptionalParameters {
+	this := GetSLOHistoryOptionalParameters{}
+	return &this
+}
+func (r *GetSLOHistoryOptionalParameters) WithTarget(target float64) *GetSLOHistoryOptionalParameters {
+	r.Target = &target
+	return r
 }
 
 /*
@@ -900,23 +879,33 @@ the metric source, and monitor SLO types include the monitor transition history.
 
 **Note:** There are different response formats for event based and time based SLOs.
 Examples of both are shown.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param sloId The ID of the service level objective object.
- * @return ApiGetSLOHistoryRequest
 */
-func (a *ServiceLevelObjectivesApiService) GetSLOHistory(ctx _context.Context, sloId string) ApiGetSLOHistoryRequest {
-	return ApiGetSLOHistoryRequest{
+func (a *ServiceLevelObjectivesApiService) GetSLOHistory(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (SLOHistoryResponse, *_nethttp.Response, error) {
+	req := apiGetSLOHistoryRequest{
 		ApiService: a,
 		ctx:        ctx,
 		sloId:      sloId,
+		fromTs:     &fromTs,
+		toTs:       &toTs,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue SLOHistoryResponse
+		return localVarReturnValue, nil, reportError("only one argument of type GetSLOHistoryOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.target = o[0].Target
+	}
+
+	return req.ApiService.getSLOHistoryExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SLOHistoryResponse
  */
-func (a *ServiceLevelObjectivesApiService) GetSLOHistoryExecute(r ApiGetSLOHistoryRequest) (SLOHistoryResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHistoryRequest) (SLOHistoryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1071,7 +1060,7 @@ func (a *ServiceLevelObjectivesApiService) GetSLOHistoryExecute(r ApiGetSLOHisto
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListSLOsRequest struct {
+type apiListSLOsRequest struct {
 	ctx          _context.Context
 	ApiService   *ServiceLevelObjectivesApiService
 	ids          *string
@@ -1080,45 +1069,64 @@ type ApiListSLOsRequest struct {
 	metricsQuery *string
 }
 
-func (r ApiListSLOsRequest) Ids(ids string) ApiListSLOsRequest {
-	r.ids = &ids
-	return r
-}
-func (r ApiListSLOsRequest) Query(query string) ApiListSLOsRequest {
-	r.query = &query
-	return r
-}
-func (r ApiListSLOsRequest) TagsQuery(tagsQuery string) ApiListSLOsRequest {
-	r.tagsQuery = &tagsQuery
-	return r
-}
-func (r ApiListSLOsRequest) MetricsQuery(metricsQuery string) ApiListSLOsRequest {
-	r.metricsQuery = &metricsQuery
-	return r
+type ListSLOsOptionalParameters struct {
+	Ids          *string
+	Query        *string
+	TagsQuery    *string
+	MetricsQuery *string
 }
 
-func (r ApiListSLOsRequest) Execute() (SLOListResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListSLOsExecute(r)
+func NewListSLOsOptionalParameters() *ListSLOsOptionalParameters {
+	this := ListSLOsOptionalParameters{}
+	return &this
+}
+func (r *ListSLOsOptionalParameters) WithIds(ids string) *ListSLOsOptionalParameters {
+	r.Ids = &ids
+	return r
+}
+func (r *ListSLOsOptionalParameters) WithQuery(query string) *ListSLOsOptionalParameters {
+	r.Query = &query
+	return r
+}
+func (r *ListSLOsOptionalParameters) WithTagsQuery(tagsQuery string) *ListSLOsOptionalParameters {
+	r.TagsQuery = &tagsQuery
+	return r
+}
+func (r *ListSLOsOptionalParameters) WithMetricsQuery(metricsQuery string) *ListSLOsOptionalParameters {
+	r.MetricsQuery = &metricsQuery
+	return r
 }
 
 /*
  * ListSLOs Get all SLOs
  * Get a list of service level objective objects for your organization.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListSLOsRequest
  */
-func (a *ServiceLevelObjectivesApiService) ListSLOs(ctx _context.Context) ApiListSLOsRequest {
-	return ApiListSLOsRequest{
+func (a *ServiceLevelObjectivesApiService) ListSLOs(ctx _context.Context, o ...ListSLOsOptionalParameters) (SLOListResponse, *_nethttp.Response, error) {
+	req := apiListSLOsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
+
+	if len(o) > 1 {
+		var localVarReturnValue SLOListResponse
+		return localVarReturnValue, nil, reportError("only one argument of type ListSLOsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.ids = o[0].Ids
+		req.query = o[0].Query
+		req.tagsQuery = o[0].TagsQuery
+		req.metricsQuery = o[0].MetricsQuery
+	}
+
+	return req.ApiService.listSLOsExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SLOListResponse
  */
-func (a *ServiceLevelObjectivesApiService) ListSLOsExecute(r ApiListSLOsRequest) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApiService) listSLOsExecute(r apiListSLOsRequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1266,42 +1274,33 @@ func (a *ServiceLevelObjectivesApiService) ListSLOsExecute(r ApiListSLOsRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateSLORequest struct {
+type apiUpdateSLORequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
 	sloId      string
 	body       *ServiceLevelObjective
 }
 
-func (r ApiUpdateSLORequest) Body(body ServiceLevelObjective) ApiUpdateSLORequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdateSLORequest) Execute() (SLOListResponse, *_nethttp.Response, error) {
-	return r.ApiService.UpdateSLOExecute(r)
-}
-
 /*
  * UpdateSLO Update an SLO
  * Update the specified service level objective object.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param sloId The ID of the service level objective object.
- * @return ApiUpdateSLORequest
  */
-func (a *ServiceLevelObjectivesApiService) UpdateSLO(ctx _context.Context, sloId string) ApiUpdateSLORequest {
-	return ApiUpdateSLORequest{
+func (a *ServiceLevelObjectivesApiService) UpdateSLO(ctx _context.Context, sloId string, body ServiceLevelObjective) (SLOListResponse, *_nethttp.Response, error) {
+	req := apiUpdateSLORequest{
 		ApiService: a,
 		ctx:        ctx,
 		sloId:      sloId,
+		body:       &body,
 	}
+
+	return req.ApiService.updateSLOExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return SLOListResponse
  */
-func (a *ServiceLevelObjectivesApiService) UpdateSLOExecute(r ApiUpdateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApiService) updateSLOExecute(r apiUpdateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}

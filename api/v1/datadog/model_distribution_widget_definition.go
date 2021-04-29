@@ -14,11 +14,13 @@ import (
 
 // DistributionWidgetDefinition The Distribution visualization is another way of showing metrics aggregated across one or several tags, such as hosts. Unlike the heat map, a distribution graph’s x-axis is quantity rather than time.
 type DistributionWidgetDefinition struct {
-	// Available legend sizes for a widget. Should be one of \"0\", \"2\", \"4\", \"8\", \"16\", or \"auto\".
+	// (Deprecated) The widget legend was replaced by a tooltip and sidebar.
 	LegendSize *string `json:"legend_size,omitempty"`
+	// List of markers.
+	Markers *[]WidgetMarker `json:"markers,omitempty"`
 	// Array of one request object to display in the widget.  See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)  to learn how to build the `REQUEST_SCHEMA`.
 	Requests []DistributionWidgetRequest `json:"requests"`
-	// Whether or not to display the legend on this widget.
+	// (Deprecated) The widget legend was replaced by a tooltip and sidebar.
 	ShowLegend *bool       `json:"show_legend,omitempty"`
 	Time       *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
@@ -27,6 +29,8 @@ type DistributionWidgetDefinition struct {
 	// Size of the title.
 	TitleSize *string                          `json:"title_size,omitempty"`
 	Type      DistributionWidgetDefinitionType `json:"type"`
+	Xaxis     *DistributionWidgetXAxis         `json:"xaxis,omitempty"`
+	Yaxis     *DistributionWidgetYAxis         `json:"yaxis,omitempty"`
 }
 
 // NewDistributionWidgetDefinition instantiates a new DistributionWidgetDefinition object
@@ -80,6 +84,38 @@ func (o *DistributionWidgetDefinition) HasLegendSize() bool {
 // SetLegendSize gets a reference to the given string and assigns it to the LegendSize field.
 func (o *DistributionWidgetDefinition) SetLegendSize(v string) {
 	o.LegendSize = &v
+}
+
+// GetMarkers returns the Markers field value if set, zero value otherwise.
+func (o *DistributionWidgetDefinition) GetMarkers() []WidgetMarker {
+	if o == nil || o.Markers == nil {
+		var ret []WidgetMarker
+		return ret
+	}
+	return *o.Markers
+}
+
+// GetMarkersOk returns a tuple with the Markers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DistributionWidgetDefinition) GetMarkersOk() (*[]WidgetMarker, bool) {
+	if o == nil || o.Markers == nil {
+		return nil, false
+	}
+	return o.Markers, true
+}
+
+// HasMarkers returns a boolean if a field has been set.
+func (o *DistributionWidgetDefinition) HasMarkers() bool {
+	if o != nil && o.Markers != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMarkers gets a reference to the given []WidgetMarker and assigns it to the Markers field.
+func (o *DistributionWidgetDefinition) SetMarkers(v []WidgetMarker) {
+	o.Markers = &v
 }
 
 // GetRequests returns the Requests field value
@@ -290,10 +326,77 @@ func (o *DistributionWidgetDefinition) SetType(v DistributionWidgetDefinitionTyp
 	o.Type = v
 }
 
+// GetXaxis returns the Xaxis field value if set, zero value otherwise.
+func (o *DistributionWidgetDefinition) GetXaxis() DistributionWidgetXAxis {
+	if o == nil || o.Xaxis == nil {
+		var ret DistributionWidgetXAxis
+		return ret
+	}
+	return *o.Xaxis
+}
+
+// GetXaxisOk returns a tuple with the Xaxis field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DistributionWidgetDefinition) GetXaxisOk() (*DistributionWidgetXAxis, bool) {
+	if o == nil || o.Xaxis == nil {
+		return nil, false
+	}
+	return o.Xaxis, true
+}
+
+// HasXaxis returns a boolean if a field has been set.
+func (o *DistributionWidgetDefinition) HasXaxis() bool {
+	if o != nil && o.Xaxis != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetXaxis gets a reference to the given DistributionWidgetXAxis and assigns it to the Xaxis field.
+func (o *DistributionWidgetDefinition) SetXaxis(v DistributionWidgetXAxis) {
+	o.Xaxis = &v
+}
+
+// GetYaxis returns the Yaxis field value if set, zero value otherwise.
+func (o *DistributionWidgetDefinition) GetYaxis() DistributionWidgetYAxis {
+	if o == nil || o.Yaxis == nil {
+		var ret DistributionWidgetYAxis
+		return ret
+	}
+	return *o.Yaxis
+}
+
+// GetYaxisOk returns a tuple with the Yaxis field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DistributionWidgetDefinition) GetYaxisOk() (*DistributionWidgetYAxis, bool) {
+	if o == nil || o.Yaxis == nil {
+		return nil, false
+	}
+	return o.Yaxis, true
+}
+
+// HasYaxis returns a boolean if a field has been set.
+func (o *DistributionWidgetDefinition) HasYaxis() bool {
+	if o != nil && o.Yaxis != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetYaxis gets a reference to the given DistributionWidgetYAxis and assigns it to the Yaxis field.
+func (o *DistributionWidgetDefinition) SetYaxis(v DistributionWidgetYAxis) {
+	o.Yaxis = &v
+}
+
 func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.LegendSize != nil {
 		toSerialize["legend_size"] = o.LegendSize
+	}
+	if o.Markers != nil {
+		toSerialize["markers"] = o.Markers
 	}
 	if true {
 		toSerialize["requests"] = o.Requests
@@ -315,6 +418,12 @@ func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["type"] = o.Type
+	}
+	if o.Xaxis != nil {
+		toSerialize["xaxis"] = o.Xaxis
+	}
+	if o.Yaxis != nil {
+		toSerialize["yaxis"] = o.Yaxis
 	}
 	return json.Marshal(toSerialize)
 }

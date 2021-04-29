@@ -25,39 +25,31 @@ var (
 // PagerDutyIntegrationApiService PagerDutyIntegrationApi service
 type PagerDutyIntegrationApiService service
 
-type ApiCreatePagerDutyIntegrationServiceRequest struct {
+type apiCreatePagerDutyIntegrationServiceRequest struct {
 	ctx        _context.Context
 	ApiService *PagerDutyIntegrationApiService
 	body       *PagerDutyService
 }
 
-func (r ApiCreatePagerDutyIntegrationServiceRequest) Body(body PagerDutyService) ApiCreatePagerDutyIntegrationServiceRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiCreatePagerDutyIntegrationServiceRequest) Execute() (PagerDutyServiceName, *_nethttp.Response, error) {
-	return r.ApiService.CreatePagerDutyIntegrationServiceExecute(r)
-}
-
 /*
  * CreatePagerDutyIntegrationService Create a new service object
  * Create a new service object in the PagerDuty integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreatePagerDutyIntegrationServiceRequest
  */
-func (a *PagerDutyIntegrationApiService) CreatePagerDutyIntegrationService(ctx _context.Context) ApiCreatePagerDutyIntegrationServiceRequest {
-	return ApiCreatePagerDutyIntegrationServiceRequest{
+func (a *PagerDutyIntegrationApiService) CreatePagerDutyIntegrationService(ctx _context.Context, body PagerDutyService) (PagerDutyServiceName, *_nethttp.Response, error) {
+	req := apiCreatePagerDutyIntegrationServiceRequest{
 		ApiService: a,
 		ctx:        ctx,
+		body:       &body,
 	}
+
+	return req.ApiService.createPagerDutyIntegrationServiceExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return PagerDutyServiceName
  */
-func (a *PagerDutyIntegrationApiService) CreatePagerDutyIntegrationServiceExecute(r ApiCreatePagerDutyIntegrationServiceRequest) (PagerDutyServiceName, *_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecute(r apiCreatePagerDutyIntegrationServiceRequest) (PagerDutyServiceName, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -188,35 +180,30 @@ func (a *PagerDutyIntegrationApiService) CreatePagerDutyIntegrationServiceExecut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeletePagerDutyIntegrationServiceRequest struct {
+type apiDeletePagerDutyIntegrationServiceRequest struct {
 	ctx         _context.Context
 	ApiService  *PagerDutyIntegrationApiService
 	serviceName string
 }
 
-func (r ApiDeletePagerDutyIntegrationServiceRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeletePagerDutyIntegrationServiceExecute(r)
-}
-
 /*
  * DeletePagerDutyIntegrationService Delete a single service object
  * Delete a single service object in the Datadog-PagerDuty integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param serviceName The service name
- * @return ApiDeletePagerDutyIntegrationServiceRequest
  */
-func (a *PagerDutyIntegrationApiService) DeletePagerDutyIntegrationService(ctx _context.Context, serviceName string) ApiDeletePagerDutyIntegrationServiceRequest {
-	return ApiDeletePagerDutyIntegrationServiceRequest{
+func (a *PagerDutyIntegrationApiService) DeletePagerDutyIntegrationService(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
+	req := apiDeletePagerDutyIntegrationServiceRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		serviceName: serviceName,
 	}
+
+	return req.ApiService.deletePagerDutyIntegrationServiceExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *PagerDutyIntegrationApiService) DeletePagerDutyIntegrationServiceExecute(r ApiDeletePagerDutyIntegrationServiceRequest) (*_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecute(r apiDeletePagerDutyIntegrationServiceRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -333,36 +320,31 @@ func (a *PagerDutyIntegrationApiService) DeletePagerDutyIntegrationServiceExecut
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetPagerDutyIntegrationServiceRequest struct {
+type apiGetPagerDutyIntegrationServiceRequest struct {
 	ctx         _context.Context
 	ApiService  *PagerDutyIntegrationApiService
 	serviceName string
 }
 
-func (r ApiGetPagerDutyIntegrationServiceRequest) Execute() (PagerDutyServiceName, *_nethttp.Response, error) {
-	return r.ApiService.GetPagerDutyIntegrationServiceExecute(r)
-}
-
 /*
  * GetPagerDutyIntegrationService Get a single service object
  * Get service name in the Datadog-PagerDuty integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param serviceName The service name.
- * @return ApiGetPagerDutyIntegrationServiceRequest
  */
-func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationService(ctx _context.Context, serviceName string) ApiGetPagerDutyIntegrationServiceRequest {
-	return ApiGetPagerDutyIntegrationServiceRequest{
+func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationService(ctx _context.Context, serviceName string) (PagerDutyServiceName, *_nethttp.Response, error) {
+	req := apiGetPagerDutyIntegrationServiceRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		serviceName: serviceName,
 	}
+
+	return req.ApiService.getPagerDutyIntegrationServiceExecute(req)
 }
 
 /*
  * Execute executes the request
  * @return PagerDutyServiceName
  */
-func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationServiceExecute(r ApiGetPagerDutyIntegrationServiceRequest) (PagerDutyServiceName, *_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r apiGetPagerDutyIntegrationServiceRequest) (PagerDutyServiceName, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -489,41 +471,32 @@ func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationServiceExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdatePagerDutyIntegrationServiceRequest struct {
+type apiUpdatePagerDutyIntegrationServiceRequest struct {
 	ctx         _context.Context
 	ApiService  *PagerDutyIntegrationApiService
 	serviceName string
 	body        *PagerDutyServiceKey
 }
 
-func (r ApiUpdatePagerDutyIntegrationServiceRequest) Body(body PagerDutyServiceKey) ApiUpdatePagerDutyIntegrationServiceRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiUpdatePagerDutyIntegrationServiceRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.UpdatePagerDutyIntegrationServiceExecute(r)
-}
-
 /*
  * UpdatePagerDutyIntegrationService Update a single service object
  * Update a single service object in the Datadog-PagerDuty integration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param serviceName The service name
- * @return ApiUpdatePagerDutyIntegrationServiceRequest
  */
-func (a *PagerDutyIntegrationApiService) UpdatePagerDutyIntegrationService(ctx _context.Context, serviceName string) ApiUpdatePagerDutyIntegrationServiceRequest {
-	return ApiUpdatePagerDutyIntegrationServiceRequest{
+func (a *PagerDutyIntegrationApiService) UpdatePagerDutyIntegrationService(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (*_nethttp.Response, error) {
+	req := apiUpdatePagerDutyIntegrationServiceRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		serviceName: serviceName,
+		body:        &body,
 	}
+
+	return req.ApiService.updatePagerDutyIntegrationServiceExecute(req)
 }
 
 /*
  * Execute executes the request
  */
-func (a *PagerDutyIntegrationApiService) UpdatePagerDutyIntegrationServiceExecute(r ApiUpdatePagerDutyIntegrationServiceRequest) (*_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApiService) updatePagerDutyIntegrationServiceExecute(r apiUpdatePagerDutyIntegrationServiceRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}

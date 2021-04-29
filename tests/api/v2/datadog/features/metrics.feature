@@ -19,7 +19,7 @@ Feature: Metrics
     Given operation "CreateTagConfiguration" enabled
     And new "CreateTagConfiguration" request
     And request contains "metric_name" parameter from "<PATH>"
-    And body {"data": {"attributes": {"include_percentiles": false, "metric_type": "distribution", "tags": ["app", "datacenter"]}, "id": "http.endpoint.request", "type": "manage_tags"}}
+    And body with value {"data": {"attributes": {"include_percentiles": false, "metric_type": "distribution", "tags": ["app", "datacenter"]}, "id": "http.endpoint.request", "type": "manage_tags"}}
     When the request is sent
     Then the response status is 400 Bad Request
 
@@ -28,15 +28,16 @@ Feature: Metrics
     Given operation "CreateTagConfiguration" enabled
     And new "CreateTagConfiguration" request
     And request contains "metric_name" parameter from "<PATH>"
-    And body {"data": {"attributes": {"include_percentiles": false, "metric_type": "distribution", "tags": ["app", "datacenter"]}, "id": "http.endpoint.request", "type": "manage_tags"}}
+    And body with value {"data": {"attributes": {"include_percentiles": false, "metric_type": "distribution", "tags": ["app", "datacenter"]}, "id": "http.endpoint.request", "type": "manage_tags"}}
     When the request is sent
     Then the response status is 409 Conflict
 
+  @skip
   Scenario: Create a tag configuration returns "Created" response
     Given operation "CreateTagConfiguration" enabled
     And new "CreateTagConfiguration" request
     And request contains "metric_name" parameter with value "{{ unique_alnum }}"
-    And body {"data": {"type": "manage_tags", "id": "{{ unique_alnum }}", "attributes": {"tags": ["app","datacenter"], "metric_type": "distribution"}}}
+    And body with value {"data": {"type": "manage_tags", "id": "{{ unique_alnum }}", "attributes": {"tags": ["app","datacenter"], "metric_type": "distribution"}}}
     When the request is sent
     Then the response status is 201 Created
 
@@ -45,10 +46,11 @@ Feature: Metrics
     Given operation "CreateTagConfiguration" enabled
     And new "CreateTagConfiguration" request
     And request contains "metric_name" parameter from "<PATH>"
-    And body {"data": {"attributes": {"include_percentiles": false, "metric_type": "distribution", "tags": ["app", "datacenter"]}, "id": "http.endpoint.request", "type": "manage_tags"}}
+    And body with value {"data": {"attributes": {"include_percentiles": false, "metric_type": "distribution", "tags": ["app", "datacenter"]}, "id": "http.endpoint.request", "type": "manage_tags"}}
     When the request is sent
     Then the response status is 429 Too Many Requests
 
+  @skip
   Scenario: Delete a tag configuration returns "No Content" response
     Given there is a valid "metric_tag_configuration" in the system
     And operation "DeleteTagConfiguration" enabled
@@ -75,23 +77,21 @@ Feature: Metrics
 
   @generated @skip
   Scenario: List distinct metric volumes by metric name returns "Bad Request" response
-    Given operation "ListVolumesByMetricName" enabled
-    And new "ListVolumesByMetricName" request
+    Given new "ListVolumesByMetricName" request
     And request contains "metric_name" parameter from "<PATH>"
     When the request is sent
     Then the response status is 400 Bad Request
 
   @generated @skip
   Scenario: List distinct metric volumes by metric name returns "Not Found" response
-    Given operation "ListVolumesByMetricName" enabled
-    And new "ListVolumesByMetricName" request
+    Given new "ListVolumesByMetricName" request
     And request contains "metric_name" parameter from "<PATH>"
     When the request is sent
     Then the response status is 404 Not Found
 
+  @skip
   Scenario: List distinct metric volumes by metric name returns "Success" response
     Given there is a valid "metric_tag_configuration" in the system
-    And operation "ListVolumesByMetricName" enabled
     And new "ListVolumesByMetricName" request
     And request contains "metric_name" parameter from "metric_tag_configuration.data.id"
     When the request is sent
@@ -100,8 +100,7 @@ Feature: Metrics
 
   @generated @skip
   Scenario: List distinct metric volumes by metric name returns "Too Many Requests" response
-    Given operation "ListVolumesByMetricName" enabled
-    And new "ListVolumesByMetricName" request
+    Given new "ListVolumesByMetricName" request
     And request contains "metric_name" parameter from "<PATH>"
     When the request is sent
     Then the response status is 429 Too Many Requests
@@ -114,6 +113,7 @@ Feature: Metrics
     When the request is sent
     Then the response status is 404 Not Found
 
+  @skip
   Scenario: List tag configuration by name returns "Success" response
     Given there is a valid "metric_tag_configuration" in the system
     And operation "ListTagConfigurationByName" enabled
@@ -138,6 +138,7 @@ Feature: Metrics
     When the request is sent
     Then the response status is 400 Bad Request
 
+  @skip
   Scenario: List tag configurations returns "Success" response
     Given there is a valid "metric_tag_configuration" in the system
     And operation "ListTagConfigurations" enabled
@@ -163,23 +164,21 @@ Feature: Metrics
 
   @generated @skip
   Scenario: List tags by metric name returns "Bad Request" response
-    Given operation "ListTagsByMetricName" enabled
-    And new "ListTagsByMetricName" request
+    Given new "ListTagsByMetricName" request
     And request contains "metric_name" parameter from "<PATH>"
     When the request is sent
     Then the response status is 400 Bad Request
 
   @generated @skip
   Scenario: List tags by metric name returns "Not Found" response
-    Given operation "ListTagsByMetricName" enabled
-    And new "ListTagsByMetricName" request
+    Given new "ListTagsByMetricName" request
     And request contains "metric_name" parameter from "<PATH>"
     When the request is sent
     Then the response status is 404 Not Found
 
+  @skip
   Scenario: List tags by metric name returns "Success" response
     Given there is a valid "metric_tag_configuration" in the system
-    And operation "ListTagsByMetricName" enabled
     And new "ListTagsByMetricName" request
     And request contains "metric_name" parameter from "metric_tag_configuration.data.id"
     When the request is sent
@@ -188,8 +187,7 @@ Feature: Metrics
 
   @generated @skip
   Scenario: List tags by metric name returns "Too Many Requests" response
-    Given operation "ListTagsByMetricName" enabled
-    And new "ListTagsByMetricName" request
+    Given new "ListTagsByMetricName" request
     And request contains "metric_name" parameter from "<PATH>"
     When the request is sent
     Then the response status is 429 Too Many Requests
@@ -199,16 +197,17 @@ Feature: Metrics
     Given operation "UpdateTagConfiguration" enabled
     And new "UpdateTagConfiguration" request
     And request contains "metric_name" parameter from "<PATH>"
-    And body {"data": {"attributes": {"group_by": ["app", "datacenter"], "include_percentiles": false}, "id": "http.endpoint.request", "type": "manage_tags"}}
+    And body with value {"data": {"attributes": {"group_by": ["app", "datacenter"], "include_percentiles": false}, "id": "http.endpoint.request", "type": "manage_tags"}}
     When the request is sent
     Then the response status is 400 Bad Request
 
+  @skip
   Scenario: Update a tag configuration returns "OK" response
     Given operation "UpdateTagConfiguration" enabled
     And there is a valid "metric_tag_configuration" in the system
     And new "UpdateTagConfiguration" request
     And request contains "metric_name" parameter from "metric_tag_configuration.data.id"
-    And body {"data": {"type": "manage_tags", "id": "{{ metric_tag_configuration.data.id }}", "attributes": {"tags": ["app"]}}}
+    And body with value {"data": {"type": "manage_tags", "id": "{{ metric_tag_configuration.data.id }}", "attributes": {"tags": ["app"]}}}
     When the request is sent
     Then the response status is 200 OK
     And the response "data.attributes.tags[0]" is equal to "app"
@@ -218,7 +217,7 @@ Feature: Metrics
     Given operation "UpdateTagConfiguration" enabled
     And new "UpdateTagConfiguration" request
     And request contains "metric_name" parameter from "<PATH>"
-    And body {"data": {"attributes": {"group_by": ["app", "datacenter"], "include_percentiles": false}, "id": "http.endpoint.request", "type": "manage_tags"}}
+    And body with value {"data": {"attributes": {"group_by": ["app", "datacenter"], "include_percentiles": false}, "id": "http.endpoint.request", "type": "manage_tags"}}
     When the request is sent
     Then the response status is 429 Too Many Requests
 
@@ -227,6 +226,6 @@ Feature: Metrics
     Given operation "UpdateTagConfiguration" enabled
     And new "UpdateTagConfiguration" request
     And request contains "metric_name" parameter from "<PATH>"
-    And body {"data": {"attributes": {"group_by": ["app", "datacenter"], "include_percentiles": false}, "id": "http.endpoint.request", "type": "manage_tags"}}
+    And body with value {"data": {"attributes": {"group_by": ["app", "datacenter"], "include_percentiles": false}, "id": "http.endpoint.request", "type": "manage_tags"}}
     When the request is sent
     Then the response status is 422 Unprocessable Entity

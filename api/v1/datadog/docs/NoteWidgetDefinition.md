@@ -7,11 +7,13 @@ Name | Type | Description | Notes
 **BackgroundColor** | Pointer to **string** | Background color of the note. | [optional] 
 **Content** | **string** | Content of the note. | 
 **FontSize** | Pointer to **string** | Size of the text. | [optional] 
+**HasPadding** | Pointer to **bool** | Whether to add padding or not. | [optional] [default to true]
 **ShowTick** | Pointer to **bool** | Whether to show a tick or not. | [optional] 
 **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **TickEdge** | Pointer to [**WidgetTickEdge**](WidgetTickEdge.md) |  | [optional] 
 **TickPos** | Pointer to **string** | Where to position the tick on an edge. | [optional] 
 **Type** | [**NoteWidgetDefinitionType**](NoteWidgetDefinitionType.md) |  | [default to NOTEWIDGETDEFINITIONTYPE_NOTE]
+**VerticalAlign** | Pointer to [**WidgetVerticalAlign**](WidgetVerticalAlign.md) |  | [optional] 
 
 ## Methods
 
@@ -101,6 +103,31 @@ SetFontSize sets FontSize field to given value.
 `func (o *NoteWidgetDefinition) HasFontSize() bool`
 
 HasFontSize returns a boolean if a field has been set.
+
+### GetHasPadding
+
+`func (o *NoteWidgetDefinition) GetHasPadding() bool`
+
+GetHasPadding returns the HasPadding field if non-nil, zero value otherwise.
+
+### GetHasPaddingOk
+
+`func (o *NoteWidgetDefinition) GetHasPaddingOk() (*bool, bool)`
+
+GetHasPaddingOk returns a tuple with the HasPadding field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasPadding
+
+`func (o *NoteWidgetDefinition) SetHasPadding(v bool)`
+
+SetHasPadding sets HasPadding field to given value.
+
+### HasHasPadding
+
+`func (o *NoteWidgetDefinition) HasHasPadding() bool`
+
+HasHasPadding returns a boolean if a field has been set.
 
 ### GetShowTick
 
@@ -221,6 +248,31 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+
+### GetVerticalAlign
+
+`func (o *NoteWidgetDefinition) GetVerticalAlign() WidgetVerticalAlign`
+
+GetVerticalAlign returns the VerticalAlign field if non-nil, zero value otherwise.
+
+### GetVerticalAlignOk
+
+`func (o *NoteWidgetDefinition) GetVerticalAlignOk() (*WidgetVerticalAlign, bool)`
+
+GetVerticalAlignOk returns a tuple with the VerticalAlign field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVerticalAlign
+
+`func (o *NoteWidgetDefinition) SetVerticalAlign(v WidgetVerticalAlign)`
+
+SetVerticalAlign sets VerticalAlign field to given value.
+
+### HasVerticalAlign
+
+`func (o *NoteWidgetDefinition) HasVerticalAlign() bool`
+
+HasVerticalAlign returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
