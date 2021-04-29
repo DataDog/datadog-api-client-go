@@ -14,10 +14,14 @@ import (
 
 // SyntheticsAPIStep The steps used in a Synthetics multistep API test.
 type SyntheticsAPIStep struct {
+	// Determines whether or not to continue with test if this step fails.
+	AllowFailure *bool `json:"allowFailure,omitempty"`
 	// Array of assertions used for the test.
 	Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
 	// Array of values to parse and save as variables from the response.
 	ExtractedValues *[]SyntheticsParsingOptions `json:"extractedValues,omitempty"`
+	// Determines whether or not to consider the entire test as failed if this step fails. Can be used only if `allowFailure` is `true`.
+	IsCritical *bool `json:"isCritical,omitempty"`
 	// The name of the step.
 	Name    *string                   `json:"name,omitempty"`
 	Request *SyntheticsTestRequest    `json:"request,omitempty"`
@@ -39,6 +43,38 @@ func NewSyntheticsAPIStep() *SyntheticsAPIStep {
 func NewSyntheticsAPIStepWithDefaults() *SyntheticsAPIStep {
 	this := SyntheticsAPIStep{}
 	return &this
+}
+
+// GetAllowFailure returns the AllowFailure field value if set, zero value otherwise.
+func (o *SyntheticsAPIStep) GetAllowFailure() bool {
+	if o == nil || o.AllowFailure == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AllowFailure
+}
+
+// GetAllowFailureOk returns a tuple with the AllowFailure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsAPIStep) GetAllowFailureOk() (*bool, bool) {
+	if o == nil || o.AllowFailure == nil {
+		return nil, false
+	}
+	return o.AllowFailure, true
+}
+
+// HasAllowFailure returns a boolean if a field has been set.
+func (o *SyntheticsAPIStep) HasAllowFailure() bool {
+	if o != nil && o.AllowFailure != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowFailure gets a reference to the given bool and assigns it to the AllowFailure field.
+func (o *SyntheticsAPIStep) SetAllowFailure(v bool) {
+	o.AllowFailure = &v
 }
 
 // GetAssertions returns the Assertions field value if set, zero value otherwise.
@@ -103,6 +139,38 @@ func (o *SyntheticsAPIStep) HasExtractedValues() bool {
 // SetExtractedValues gets a reference to the given []SyntheticsParsingOptions and assigns it to the ExtractedValues field.
 func (o *SyntheticsAPIStep) SetExtractedValues(v []SyntheticsParsingOptions) {
 	o.ExtractedValues = &v
+}
+
+// GetIsCritical returns the IsCritical field value if set, zero value otherwise.
+func (o *SyntheticsAPIStep) GetIsCritical() bool {
+	if o == nil || o.IsCritical == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsCritical
+}
+
+// GetIsCriticalOk returns a tuple with the IsCritical field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsAPIStep) GetIsCriticalOk() (*bool, bool) {
+	if o == nil || o.IsCritical == nil {
+		return nil, false
+	}
+	return o.IsCritical, true
+}
+
+// HasIsCritical returns a boolean if a field has been set.
+func (o *SyntheticsAPIStep) HasIsCritical() bool {
+	if o != nil && o.IsCritical != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsCritical gets a reference to the given bool and assigns it to the IsCritical field.
+func (o *SyntheticsAPIStep) SetIsCritical(v bool) {
+	o.IsCritical = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -203,11 +271,17 @@ func (o *SyntheticsAPIStep) SetSubtype(v SyntheticsAPIStepSubtype) {
 
 func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AllowFailure != nil {
+		toSerialize["allowFailure"] = o.AllowFailure
+	}
 	if o.Assertions != nil {
 		toSerialize["assertions"] = o.Assertions
 	}
 	if o.ExtractedValues != nil {
 		toSerialize["extractedValues"] = o.ExtractedValues
+	}
+	if o.IsCritical != nil {
+		toSerialize["isCritical"] = o.IsCritical
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
