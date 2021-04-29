@@ -149,7 +149,7 @@ func GetResponse(ctx gobdd.Context) []reflect.Value {
 	return r.([]reflect.Value)
 }
 
-// GetResponse returns request response.
+// GetJSONResponse returns request response.
 func GetJSONResponse(ctx gobdd.Context) interface{} {
 	r, err := ctx.Get(jsonResponseKey{})
 	if err != nil {
@@ -663,7 +663,7 @@ func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
 }
 
 func bodyFromFile(t gobdd.StepTest, ctx gobdd.Context, bodyFile string) {
-	body, err := os.ReadFile(fmt.Sprintf("./features/%s", bodyFile))
+	body, err := ioutil.ReadFile(fmt.Sprintf("./features/%s", bodyFile))
 	if err != nil {
 		t.Fatalf("Error reading file ./features/%s: %v", bodyFile, err)
 	}
