@@ -527,6 +527,8 @@ Class | Method | HTTP request | Description
  - [SLOHistoryResponseError](docs/SLOHistoryResponseError.md)
  - [SLOHistorySLIData](docs/SLOHistorySLIData.md)
  - [SLOListResponse](docs/SLOListResponse.md)
+ - [SLOListResponseMetadata](docs/SLOListResponseMetadata.md)
+ - [SLOListResponseMetadataPage](docs/SLOListResponseMetadataPage.md)
  - [SLOResponse](docs/SLOResponse.md)
  - [SLOThreshold](docs/SLOThreshold.md)
  - [SLOTimeframe](docs/SLOTimeframe.md)
