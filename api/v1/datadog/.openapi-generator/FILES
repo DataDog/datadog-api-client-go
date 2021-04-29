@@ -314,6 +314,8 @@ docs/SLOHistoryResponseData.md
 docs/SLOHistoryResponseError.md
 docs/SLOHistorySLIData.md
 docs/SLOListResponse.md
+docs/SLOListResponseMetadata.md
+docs/SLOListResponseMetadataPage.md
 docs/SLOResponse.md
 docs/SLOThreshold.md
 docs/SLOTimeframe.md
@@ -858,6 +860,8 @@ model_slo_history_response_data.go
 model_slo_history_response_error.go
 model_slo_history_sli_data.go
 model_slo_list_response.go
+model_slo_list_response_metadata.go
+model_slo_list_response_metadata_page.go
 model_slo_response.go
 model_slo_threshold.go
 model_slo_timeframe.go
