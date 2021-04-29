@@ -20,6 +20,8 @@ type SyntheticsTestRequest struct {
 	Certificate *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
 	// DNS server to use for DNS tests.
 	DnsServer *string `json:"dnsServer,omitempty"`
+	// DNS server port to use for DNS tests.
+	DnsServerPort *int32 `json:"dnsServerPort,omitempty"`
 	// Headers to include when performing the test.
 	Headers *map[string]string `json:"headers,omitempty"`
 	// Host name to perform the test with.
@@ -184,6 +186,38 @@ func (o *SyntheticsTestRequest) HasDnsServer() bool {
 // SetDnsServer gets a reference to the given string and assigns it to the DnsServer field.
 func (o *SyntheticsTestRequest) SetDnsServer(v string) {
 	o.DnsServer = &v
+}
+
+// GetDnsServerPort returns the DnsServerPort field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetDnsServerPort() int32 {
+	if o == nil || o.DnsServerPort == nil {
+		var ret int32
+		return ret
+	}
+	return *o.DnsServerPort
+}
+
+// GetDnsServerPortOk returns a tuple with the DnsServerPort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetDnsServerPortOk() (*int32, bool) {
+	if o == nil || o.DnsServerPort == nil {
+		return nil, false
+	}
+	return o.DnsServerPort, true
+}
+
+// HasDnsServerPort returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasDnsServerPort() bool {
+	if o != nil && o.DnsServerPort != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDnsServerPort gets a reference to the given int32 and assigns it to the DnsServerPort field.
+func (o *SyntheticsTestRequest) SetDnsServerPort(v int32) {
+	o.DnsServerPort = &v
 }
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
@@ -519,6 +553,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.DnsServer != nil {
 		toSerialize["dnsServer"] = o.DnsServer
+	}
+	if o.DnsServerPort != nil {
+		toSerialize["dnsServerPort"] = o.DnsServerPort
 	}
 	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers

@@ -17,6 +17,8 @@ type SyntheticsBrowserTestConfig struct {
 	// Array of assertions used for the test.
 	Assertions []SyntheticsAssertion `json:"assertions"`
 	Request    SyntheticsTestRequest `json:"request"`
+	// Cookies to be used for the request, using the [Set-Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie) syntax.
+	SetCookie *string `json:"setCookie,omitempty"`
 	// Array of variables used for the test steps.
 	Variables *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
 }
@@ -88,6 +90,38 @@ func (o *SyntheticsBrowserTestConfig) SetRequest(v SyntheticsTestRequest) {
 	o.Request = v
 }
 
+// GetSetCookie returns the SetCookie field value if set, zero value otherwise.
+func (o *SyntheticsBrowserTestConfig) GetSetCookie() string {
+	if o == nil || o.SetCookie == nil {
+		var ret string
+		return ret
+	}
+	return *o.SetCookie
+}
+
+// GetSetCookieOk returns a tuple with the SetCookie field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsBrowserTestConfig) GetSetCookieOk() (*string, bool) {
+	if o == nil || o.SetCookie == nil {
+		return nil, false
+	}
+	return o.SetCookie, true
+}
+
+// HasSetCookie returns a boolean if a field has been set.
+func (o *SyntheticsBrowserTestConfig) HasSetCookie() bool {
+	if o != nil && o.SetCookie != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSetCookie gets a reference to the given string and assigns it to the SetCookie field.
+func (o *SyntheticsBrowserTestConfig) SetSetCookie(v string) {
+	o.SetCookie = &v
+}
+
 // GetVariables returns the Variables field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestConfig) GetVariables() []SyntheticsBrowserVariable {
 	if o == nil || o.Variables == nil {
@@ -127,6 +161,9 @@ func (o SyntheticsBrowserTestConfig) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["request"] = o.Request
+	}
+	if o.SetCookie != nil {
+		toSerialize["setCookie"] = o.SetCookie
 	}
 	if o.Variables != nil {
 		toSerialize["variables"] = o.Variables
