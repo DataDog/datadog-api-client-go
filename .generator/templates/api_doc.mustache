@@ -1,11 +1,11 @@
-# {{invokerPackage}}\{{classname}}{{#description}}
+# {{classname}}{{#description}}
 
 {{description}}{{/description}}
 
 All URIs are relative to *{{basePath}}*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 {{#operations}}{{#operation}}[**{{operationId}}**]({{classname}}.md#{{operationId}}) | **{{httpMethod}}** {{path}} | {{#summary}}{{summary}}{{/summary}}
 {{/operation}}{{/operations}}
 
@@ -16,9 +16,7 @@ Method | HTTP request | Description
 
 > {{#returnType}}{{{.}}} {{/returnType}}{{{operationId}}}(ctx{{#requiredParams}}, {{paramName}}{{/requiredParams}}{{#hasOptionalParams}}, {{goImportAlias}}.{{operationIdOriginal}}OptionalParameters{}{{/hasOptionalParams}})
 
-{{{summary}}}{{#notes}}
-
-{{{unespacedNotes}}}{{/notes}}
+{{#notes}}{{{unescapedNotes}}}{{/notes}}
 
 ### Example
 
@@ -70,7 +68,7 @@ func main() {
     r, err := apiClient.{{classname}}.{{operationId}}(ctx{{#requiredParams}}, {{paramName}}{{/requiredParams}}{{#hasOptionalParams}}, optionalParams{{/hasOptionalParams}})
     {{/returnType}}
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `{{classname}}.{{operationId}}``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `{{classname}}.{{operationId}}`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     {{#returnType}}
@@ -85,19 +83,19 @@ func main() {
 
 {{^allParams}}This endpoint does not need any parameter.{{/allParams}}{{#requiredParams}}{{#-last}}
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.{{/-last}}{{/requiredParams}}{{#requiredParams}}
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.{{/-last}}{{/requiredParams}}{{#requiredParams}} |
 **{{paramName}}** | {{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{baseType}}.md){{/isFile}}{{/isPrimitiveType}} | {{description}} | {{#defaultValue}}[default to {{defaultValue}}]{{/defaultValue}}{{/requiredParams}}
 
 ### Optional Parameters
 
 {{^hasOptionalParams}}This endpoint does not have optional parameters.{{/hasOptionalParams}}
 {{#hasOptionalParams}}
-Other parameters are passed through a pointer to a {{operationIdOriginal}}OptionalParameters struct
+Other parameters are passed through a pointer to a {{operationIdOriginal}}OptionalParameters struct.
 {{#optionalParams}}{{#-last}}
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------{{/-last}}{{/optionalParams}}{{#optionalParams}}
+---- | ---- | ------------ | ------{{/-last}}{{/optionalParams}}{{#optionalParams}}
 **{{paramName}}** | {{#isContainer}}{{#isArray}}{{#items}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**[]{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/items}}{{/isArray}}{{#isMap}}{{#items}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**map[string]{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/items}}{{/isMap}}{{/isContainer}}{{^isContainer}}{{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{^baseType}}{{dataType}}{{/baseType}}{{baseType}}.md){{/isFile}}{{/isPrimitiveType}}{{/isContainer}} | {{description}} | {{#defaultValue}}[default to {{defaultValue}}]{{/defaultValue}}{{/optionalParams}}{{/hasOptionalParams}}
 
 ### Return type
