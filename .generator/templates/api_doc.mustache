@@ -41,7 +41,7 @@ func main() {
     ctx := {{goImportAlias}}.NewDefaultContext(context.Background())
     {{/hasAuthMethods}}
     {{^hasAuthMethods}}
-    ctx := context.Background()
+    ctx := context.Background() err
     {{/hasAuthMethods}}
 
     {{#allParams}}
