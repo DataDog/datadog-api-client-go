@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AuthorHandle** | Pointer to **string** | Identifier of the dashboard author. | [optional] [readonly] 
 **CreatedAt** | Pointer to **time.Time** | Creation date of the dashboard. | [optional] [readonly] 
 **Description** | Pointer to **NullableString** | Description of the dashboard. | [optional] 

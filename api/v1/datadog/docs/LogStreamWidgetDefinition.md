@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Columns** | Pointer to **[]string** | Which columns to display on the widget. | [optional] 
 **Indexes** | Pointer to **[]string** | An array of index names to query in the stream. Use [] to query all indexes at once. | [optional] 
 **Logset** | Pointer to **string** | ID of the log set to use. | [optional] 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ClientEmail** | **string** | A client email. | 
 **ProjectId** | **string** | A project ID. | 
 

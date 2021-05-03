@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Message** | Pointer to **bool** | Show the main body of the alert event. | [optional] [default to true]
 **Notified** | Pointer to **bool** | Show the list of @-handles in the alert event. | [optional] [default to true]
 **Snapshot** | Pointer to **bool** | Show the alert event&#39;s snapshot image. | [optional] [default to true]

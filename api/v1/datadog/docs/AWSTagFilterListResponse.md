@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Filters** | Pointer to [**[]AWSTagFilter**](AWSTagFilter.md) | An array of tag filters. | [optional] 
 
 ## Methods

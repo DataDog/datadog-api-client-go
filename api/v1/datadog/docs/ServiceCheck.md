@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Check** | **string** | The check. | 
 **HostName** | **string** | The host name correlated with the check. | 
 **Message** | Pointer to **string** | Message containing check status. | [optional] 

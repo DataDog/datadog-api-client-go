@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Description** | **string** | Description of the global variable. | 
 **Id** | Pointer to **string** | Unique identifier of the global variable. | [optional] [readonly] 
 **Name** | **string** | Name of the global variable. | 

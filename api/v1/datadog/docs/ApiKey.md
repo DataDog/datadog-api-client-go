@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Created** | Pointer to **string** | Date of creation of the API key. | [optional] [readonly] 
 **CreatedBy** | Pointer to **string** | Datadog user handle that created the API key. | [optional] [readonly] 
 **Key** | Pointer to **string** | API key. | [optional] [readonly] 

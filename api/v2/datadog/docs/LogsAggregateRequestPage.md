@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Cursor** | Pointer to **string** | The returned paging point to use to get the next results | [optional] 
 
 ## Methods

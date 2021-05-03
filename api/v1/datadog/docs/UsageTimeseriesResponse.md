@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageTimeseriesHour**](UsageTimeseriesHour.md) | An array of objects regarding hourly usage of timeseries. | [optional] 
 
 ## Methods

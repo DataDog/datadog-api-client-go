@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ClientId** | **string** | A client ID. | 
 **TenantId** | **string** | A tenant ID. | 
 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CreatedAt** | Pointer to **time.Time** | Creation time of the organization. | [optional] 
 **Description** | Pointer to **string** | Description of the organization. | [optional] 
 **Disabled** | Pointer to **bool** | Whether or not the organization is disabled. | [optional] 

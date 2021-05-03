@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Example** | **string** | Example for the variable. | 
 **Name** | **string** | Name of the variable. | 
 **Pattern** | Pointer to **string** | Pattern of the variable. | [optional] 

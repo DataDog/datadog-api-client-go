@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **DistinctVolume** | Pointer to **int64** | Distinct volume for the given metric. | [optional] 
 
 ## Methods

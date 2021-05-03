@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ApiKeys** | Pointer to [**[]ApiKey**](ApiKey.md) | Array of API keys. | [optional] 
 
 ## Methods

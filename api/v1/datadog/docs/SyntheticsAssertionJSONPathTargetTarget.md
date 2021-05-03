@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **JsonPath** | Pointer to **string** | The JSON path to assert. | [optional] 
 **Operator** | Pointer to **string** | The specific operator to use on the path. | [optional] 
 **TargetValue** | Pointer to **interface{}** | The path target value to compare to. | [optional] 

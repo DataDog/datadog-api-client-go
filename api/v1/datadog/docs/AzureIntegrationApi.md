@@ -1,9 +1,9 @@
-# \AzureIntegrationApi
+# AzureIntegrationApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateAzureIntegration**](AzureIntegrationApi.md#CreateAzureIntegration) | **Post** /api/v1/integration/azure | Create an Azure integration
 [**DeleteAzureIntegration**](AzureIntegrationApi.md#DeleteAzureIntegration) | **Delete** /api/v1/integration/azure | Delete an Azure integration
 [**ListAzureIntegration**](AzureIntegrationApi.md#ListAzureIntegration) | **Get** /api/v1/integration/azure | List all Azure integrations
@@ -16,9 +16,13 @@ Method | HTTP request | Description
 
 > interface{} CreateAzureIntegration(ctx, body)
 
-Create an Azure integration
+Create a Datadog-Azure integration.
 
+Using the `POST` method updates your integration configuration by adding your new
+configuration to the existing one in your Datadog organization.
 
+Using the `PUT` method updates your integration configuration by replacing your
+current configuration with the new one sent to your Datadog organization.
 
 ### Example
 
@@ -43,7 +47,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.AzureIntegrationApi.CreateAzureIntegration(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.CreateAzureIntegration``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.CreateAzureIntegration`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateAzureIntegration`: interface{}
@@ -56,9 +60,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration for your Datadog account request body. | 
+
 
 ### Optional Parameters
 
@@ -87,9 +92,7 @@ This endpoint does not have optional parameters.
 
 > interface{} DeleteAzureIntegration(ctx, body)
 
-Delete an Azure integration
-
-
+Delete a given Datadog-Azure integration from your Datadog account.
 
 ### Example
 
@@ -114,7 +117,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.AzureIntegrationApi.DeleteAzureIntegration(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.DeleteAzureIntegration``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.DeleteAzureIntegration`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteAzureIntegration`: interface{}
@@ -127,9 +130,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**AzureAccount**](AzureAccount.md) | Delete a given Datadog-Azure integration request body. | 
+
 
 ### Optional Parameters
 
@@ -158,9 +162,7 @@ This endpoint does not have optional parameters.
 
 > []AzureAccount ListAzureIntegration(ctx)
 
-List all Azure integrations
-
-
+List all Datadog-Azure integrations configured in your Datadog account.
 
 ### Example
 
@@ -184,7 +186,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.AzureIntegrationApi.ListAzureIntegration(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.ListAzureIntegration``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.ListAzureIntegration`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListAzureIntegration`: []AzureAccount
@@ -196,6 +198,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -224,9 +227,7 @@ This endpoint does not have optional parameters.
 
 > interface{} UpdateAzureHostFilters(ctx, body)
 
-Update Azure integration host filters
-
-
+Update the defined list of host filters for a given Datadog-Azure integration.
 
 ### Example
 
@@ -251,7 +252,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.AzureIntegrationApi.UpdateAzureHostFilters(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureHostFilters``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureHostFilters`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateAzureHostFilters`: interface{}
@@ -264,9 +265,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration&#39;s host filters request body. | 
+
 
 ### Optional Parameters
 
@@ -295,9 +297,9 @@ This endpoint does not have optional parameters.
 
 > interface{} UpdateAzureIntegration(ctx, body)
 
-Update an Azure integration
-
-
+Update a Datadog-Azure integration. Requires an existing `tenant_name` and `client_id`.
+Any other fields supplied will overwrite existing values. To overwrite `tenant_name` or `client_id`,
+use `new_tenant_name` and `new_client_id`. To leave a field unchanged, do not supply that field in the payload.
 
 ### Example
 
@@ -322,7 +324,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.AzureIntegrationApi.UpdateAzureIntegration(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureIntegration``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureIntegration`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateAzureIntegration`: interface{}
@@ -335,9 +337,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration request body. | 
+
 
 ### Optional Parameters
 

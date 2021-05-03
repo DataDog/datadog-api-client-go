@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Content** | Pointer to **string** | Content of the certificate or key. | [optional] 
 **Filename** | Pointer to **string** | File name for the certificate or key. | [optional] 
 **UpdatedAt** | Pointer to **string** | Date of update of the certificate or key, ISO format. | [optional] 

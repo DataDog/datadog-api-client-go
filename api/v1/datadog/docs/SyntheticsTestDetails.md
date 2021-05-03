@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Config** | Pointer to [**SyntheticsTestConfig**](SyntheticsTestConfig.md) |  | [optional] 
 **Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
 **Message** | Pointer to **string** | Notification message associated with the test. | [optional] 

@@ -1,9 +1,9 @@
-# \LogsIndexesApi
+# LogsIndexesApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateLogsIndex**](LogsIndexesApi.md#CreateLogsIndex) | **Post** /api/v1/logs/config/indexes | Create an index
 [**GetLogsIndex**](LogsIndexesApi.md#GetLogsIndex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
 [**GetLogsIndexOrder**](LogsIndexesApi.md#GetLogsIndexOrder) | **Get** /api/v1/logs/config/index-order | Get indexes order
@@ -17,9 +17,7 @@ Method | HTTP request | Description
 
 > LogsIndex CreateLogsIndex(ctx, body)
 
-Create an index
-
-
+Creates a new index. Returns the Index object passed in the request body when the request is successful.
 
 ### Example
 
@@ -44,7 +42,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsIndexesApi.CreateLogsIndex(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.CreateLogsIndex``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.CreateLogsIndex`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateLogsIndex`: LogsIndex
@@ -57,9 +55,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**LogsIndex**](LogsIndex.md) | Object containing the new index. | 
+
 
 ### Optional Parameters
 
@@ -88,9 +87,7 @@ This endpoint does not have optional parameters.
 
 > LogsIndex GetLogsIndex(ctx, name)
 
-Get an index
-
-
+Get one log index from your organization. This endpoint takes no JSON arguments.
 
 ### Example
 
@@ -115,7 +112,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsIndexesApi.GetLogsIndex(ctx, name)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndex``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndex`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsIndex`: LogsIndex
@@ -128,9 +125,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **name** | **string** | Name of the log index. | 
+
 
 ### Optional Parameters
 
@@ -159,9 +157,7 @@ This endpoint does not have optional parameters.
 
 > LogsIndexesOrder GetLogsIndexOrder(ctx)
 
-Get indexes order
-
-
+Get the current order of your log indexes. This endpoint takes no JSON arguments.
 
 ### Example
 
@@ -185,7 +181,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsIndexesApi.GetLogsIndexOrder(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndexOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.GetLogsIndexOrder`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsIndexOrder`: LogsIndexesOrder
@@ -197,6 +193,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -225,9 +222,8 @@ This endpoint does not have optional parameters.
 
 > LogsIndexListResponse ListLogIndexes(ctx)
 
-Get all indexes
-
-
+The Index object describes the configuration of a log index.
+This endpoint returns an array of the `LogIndex` objects of your organization.
 
 ### Example
 
@@ -251,7 +247,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsIndexesApi.ListLogIndexes(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.ListLogIndexes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.ListLogIndexes`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLogIndexes`: LogsIndexListResponse
@@ -263,6 +259,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -291,9 +288,11 @@ This endpoint does not have optional parameters.
 
 > LogsIndex UpdateLogsIndex(ctx, name, body)
 
-Update an index
+Update an index as identified by its name.
+Returns the Index object passed in the request body when the request is successful.
 
-
+Using the `PUT` method updates your index’s configuration by **replacing**
+your current configuration with the new one sent to your Datadog organization.
 
 ### Example
 
@@ -319,7 +318,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsIndexesApi.UpdateLogsIndex(ctx, name, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndex``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndex`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsIndex`: LogsIndex
@@ -332,10 +331,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** | Name of the log index. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**name** | **string** | Name of the log index. |  |
 **body** | [**LogsIndexUpdateRequest**](LogsIndexUpdateRequest.md) | Object containing the new &#x60;LogsIndexUpdateRequest&#x60;. | 
+
 
 ### Optional Parameters
 
@@ -364,9 +364,8 @@ This endpoint does not have optional parameters.
 
 > LogsIndexesOrder UpdateLogsIndexOrder(ctx, body)
 
-Update indexes order
-
-
+This endpoint updates the index order of your organization.
+It returns the index order object passed in the request body when the request is successful.
 
 ### Example
 
@@ -391,7 +390,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsIndexesApi.UpdateLogsIndexOrder(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndexOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndexOrder`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsIndexOrder`: LogsIndexesOrder
@@ -404,9 +403,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**LogsIndexesOrder**](LogsIndexesOrder.md) | Object containing the new ordered list of index names | 
+
 
 ### Optional Parameters
 

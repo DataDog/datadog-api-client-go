@@ -1,9 +1,9 @@
-# \DowntimesApi
+# DowntimesApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CancelDowntime**](DowntimesApi.md#CancelDowntime) | **Delete** /api/v1/downtime/{downtime_id} | Cancel a downtime
 [**CancelDowntimesByScope**](DowntimesApi.md#CancelDowntimesByScope) | **Post** /api/v1/downtime/cancel/by_scope | Cancel downtimes by scope
 [**CreateDowntime**](DowntimesApi.md#CreateDowntime) | **Post** /api/v1/downtime | Schedule a downtime
@@ -18,9 +18,7 @@ Method | HTTP request | Description
 
 > CancelDowntime(ctx, downtimeId)
 
-Cancel a downtime
-
-
+Cancel a downtime.
 
 ### Example
 
@@ -44,7 +42,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.DowntimesApi.CancelDowntime(ctx, downtimeId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntime``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntime`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -54,9 +52,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **downtimeId** | **int64** | ID of the downtime to cancel. | 
+
 
 ### Optional Parameters
 
@@ -85,9 +84,7 @@ This endpoint does not have optional parameters.
 
 > CanceledDowntimesIds CancelDowntimesByScope(ctx, body)
 
-Cancel downtimes by scope
-
-
+Delete all downtimes that match the scope of `X`.
 
 ### Example
 
@@ -112,7 +109,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DowntimesApi.CancelDowntimesByScope(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntimesByScope``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntimesByScope`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CancelDowntimesByScope`: CanceledDowntimesIds
@@ -125,9 +122,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**CancelDowntimesByScopeRequest**](CancelDowntimesByScopeRequest.md) | Scope to cancel downtimes for. | 
+
 
 ### Optional Parameters
 
@@ -156,9 +154,7 @@ This endpoint does not have optional parameters.
 
 > Downtime CreateDowntime(ctx, body)
 
-Schedule a downtime
-
-
+Schedule a downtime.
 
 ### Example
 
@@ -183,7 +179,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DowntimesApi.CreateDowntime(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CreateDowntime``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CreateDowntime`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateDowntime`: Downtime
@@ -196,9 +192,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**Downtime**](Downtime.md) | Schedule a downtime request body. | 
+
 
 ### Optional Parameters
 
@@ -227,9 +224,7 @@ This endpoint does not have optional parameters.
 
 > Downtime GetDowntime(ctx, downtimeId)
 
-Get a downtime
-
-
+Get downtime detail by `downtime_id`.
 
 ### Example
 
@@ -254,7 +249,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DowntimesApi.GetDowntime(ctx, downtimeId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.GetDowntime``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.GetDowntime`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDowntime`: Downtime
@@ -267,9 +262,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **downtimeId** | **int64** | ID of the downtime to fetch. | 
+
 
 ### Optional Parameters
 
@@ -298,9 +294,7 @@ This endpoint does not have optional parameters.
 
 > []Downtime ListDowntimes(ctx, datadog.ListDowntimesOptionalParameters{})
 
-Get all downtimes
-
-
+Get all scheduled downtimes.
 
 ### Example
 
@@ -328,7 +322,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DowntimesApi.ListDowntimes(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListDowntimes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListDowntimes`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListDowntimes`: []Downtime
@@ -341,14 +335,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListDowntimesOptionalParameters struct
+Other parameters are passed through a pointer to a ListDowntimesOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **currentOnly** | **bool** | Only return downtimes that are active when the request is made. | 
 
 ### Return type
@@ -373,9 +368,7 @@ Name | Type | Description  | Notes
 
 > []Downtime ListMonitorDowntimes(ctx, monitorId)
 
-Get all downtimes for a monitor
-
-
+Get all downtimes for the specified monitor
 
 ### Example
 
@@ -400,7 +393,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DowntimesApi.ListMonitorDowntimes(ctx, monitorId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListMonitorDowntimes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListMonitorDowntimes`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListMonitorDowntimes`: []Downtime
@@ -413,9 +406,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **monitorId** | **int64** | The id of the monitor | 
+
 
 ### Optional Parameters
 
@@ -444,9 +438,7 @@ This endpoint does not have optional parameters.
 
 > Downtime UpdateDowntime(ctx, downtimeId, body)
 
-Update a downtime
-
-
+Update a single downtime by `downtime_id`.
 
 ### Example
 
@@ -472,7 +464,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DowntimesApi.UpdateDowntime(ctx, downtimeId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.UpdateDowntime``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.UpdateDowntime`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateDowntime`: Downtime
@@ -485,10 +477,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**downtimeId** | **int64** | ID of the downtime to update. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**downtimeId** | **int64** | ID of the downtime to update. |  |
 **body** | [**Downtime**](Downtime.md) | Update a downtime request body. | 
+
 
 ### Optional Parameters
 

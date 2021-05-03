@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Aggregation** | Pointer to [**LogsAggregationFunction**](LogsAggregationFunction.md) |  | [optional] 
 **Metric** | Pointer to **string** | The metric to sort by (only used for &#x60;type&#x3D;measure&#x60;) | [optional] 
 **Order** | Pointer to [**LogsSortOrder**](LogsSortOrder.md) |  | [optional] 

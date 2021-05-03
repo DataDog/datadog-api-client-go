@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Name** | Pointer to **string** | The name of the variable. | [optional] 
 **Value** | Pointer to **string** | The value of the template variable within the saved view. | [optional] 
 

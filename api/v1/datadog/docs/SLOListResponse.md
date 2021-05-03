@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]ServiceLevelObjective**](ServiceLevelObjective.md) | An array of service level objective objects. | [optional] 
 **Errors** | Pointer to **[]string** | An array of error messages. Each endpoint documents how/whether this field is used. | [optional] 
 **Metadata** | Pointer to [**SLOListResponseMetadata**](SLOListResponseMetadata.md) |  | [optional] 

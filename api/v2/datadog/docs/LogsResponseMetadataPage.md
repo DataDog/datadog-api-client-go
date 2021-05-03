@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **After** | Pointer to **string** | The cursor to use to get the next results, if any. To make the next request, use the same. parameters with the addition of the &#x60;page[cursor]&#x60;. | [optional] 
 
 ## Methods

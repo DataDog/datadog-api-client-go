@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Aggr** | Pointer to **string** | Aggregation type. | [optional] [readonly] 
 **DisplayName** | Pointer to **string** | Display name of the metric. | [optional] [readonly] 
 **End** | Pointer to **int64** | End of the time window, milliseconds since Unix epoch. | [optional] [readonly] 

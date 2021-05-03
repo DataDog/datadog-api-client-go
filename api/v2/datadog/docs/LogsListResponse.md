@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]Log**](Log.md) | Array of logs matching the request. | [optional] 
 **Links** | Pointer to [**LogsListResponseLinks**](LogsListResponseLinks.md) |  | [optional] 
 **Meta** | Pointer to [**LogsResponseMetadata**](LogsResponseMetadata.md) |  | [optional] 

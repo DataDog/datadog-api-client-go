@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Columns** | Pointer to [**[]ApmStatsQueryColumnType**](ApmStatsQueryColumnType.md) | Column properties used by the front end for display. | [optional] 
 **Env** | **string** | Environment name. | 
 **Name** | **string** | Operation name associated with service. | 

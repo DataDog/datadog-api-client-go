@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Tests** | Pointer to [**[]SyntheticsTestDetails**](SyntheticsTestDetails.md) | Array of Synthetic tests configuration. | [optional] 
 
 ## Methods

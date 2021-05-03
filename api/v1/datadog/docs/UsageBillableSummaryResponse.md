@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageBillableSummaryHour**](UsageBillableSummaryHour.md) | An array of objects regarding usage of billable summary. | [optional] 
 
 ## Methods

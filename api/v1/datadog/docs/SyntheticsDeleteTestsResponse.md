@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **DeletedTests** | Pointer to [**[]SyntheticsDeletedTest**](SyntheticsDeletedTest.md) | Array of objects containing a deleted Synthetic test ID with the associated deletion timestamp. | [optional] 
 
 ## Methods

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | [**LogsArchiveOrderAttributes**](LogsArchiveOrderAttributes.md) |  | 
 **Type** | [**LogsArchiveOrderDefinitionType**](LogsArchiveOrderDefinitionType.md) |  | [default to LOGSARCHIVEORDERDEFINITIONTYPE_ARCHIVE_ORDER]
 

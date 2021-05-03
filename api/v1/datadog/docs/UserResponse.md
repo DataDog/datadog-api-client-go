@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **User** | Pointer to [**User**](User.md) |  | [optional] 
 
 ## Methods

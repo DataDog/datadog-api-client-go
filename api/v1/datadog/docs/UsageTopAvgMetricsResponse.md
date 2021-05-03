@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Metadata** | Pointer to [**UsageTopAvgMetricsMetadata**](UsageTopAvgMetricsMetadata.md) |  | [optional] 
 **Usage** | Pointer to [**[]UsageTopAvgMetricsHour**](UsageTopAvgMetricsHour.md) | Number of hourly recorded custom metrics for a given organization. | [optional] 
 

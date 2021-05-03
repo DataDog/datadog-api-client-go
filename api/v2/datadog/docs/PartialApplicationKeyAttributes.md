@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CreatedAt** | Pointer to **string** | Creation date of the application key. | [optional] [readonly] 
 **Last4** | Pointer to **string** | The last four characters of the application key. | [optional] [readonly] 
 **Name** | Pointer to **string** | Name of the application key. | [optional] 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CreatedAt** | Pointer to **string** | Creation date of the API key. | [optional] [readonly] 
 **Key** | Pointer to **string** | The API key. | [optional] [readonly] 
 **Last4** | Pointer to **string** | The last four characters of the API key. | [optional] [readonly] 

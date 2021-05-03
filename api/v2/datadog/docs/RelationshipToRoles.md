@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]RelationshipToRoleData**](RelationshipToRoleData.md) | An array containing type and ID of a role. | [optional] 
 
 ## Methods

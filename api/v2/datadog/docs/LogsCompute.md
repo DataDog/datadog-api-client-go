@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Aggregation** | [**LogsAggregationFunction**](LogsAggregationFunction.md) |  | 
 **Interval** | Pointer to **string** | The time buckets&#39; size (only used for type&#x3D;timeseries) Defaults to a resolution of 150 points | [optional] 
 **Metric** | Pointer to **string** | The metric to use | [optional] 

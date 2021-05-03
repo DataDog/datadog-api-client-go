@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Ok** | Pointer to **[]int64** | An array of of Monitor IDs that can be safely deleted. | [optional] 
 
 ## Methods

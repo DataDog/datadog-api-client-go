@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Locations** | Pointer to [**[]SyntheticsTriggerCITestLocation**](SyntheticsTriggerCITestLocation.md) | List of Synthetics locations. | [optional] 
 **Results** | Pointer to [**[]SyntheticsTriggerCITestRunResult**](SyntheticsTriggerCITestRunResult.md) | Information about the tests runs. | [optional] 
 **TriggeredCheckIds** | Pointer to **[]string** | The public IDs of the Synthetics test triggered. | [optional] 

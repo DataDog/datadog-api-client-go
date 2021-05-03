@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageSyntheticsAPIHour**](UsageSyntheticsAPIHour.md) | Get hourly usage for Synthetics API tests. | [optional] 
 
 ## Methods

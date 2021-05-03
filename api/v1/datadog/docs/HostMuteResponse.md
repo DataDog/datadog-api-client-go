@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Action** | Pointer to **string** | Action applied to the hosts. | [optional] 
 **End** | Pointer to **int64** | POSIX timestamp in seconds when the host is unmuted. | [optional] 
 **Hostname** | Pointer to **string** | The host name. | [optional] 

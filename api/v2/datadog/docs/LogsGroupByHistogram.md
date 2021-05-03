@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Interval** | **float64** | The bin size of the histogram buckets | 
 **Max** | **float64** | The maximum value for the measure used in the histogram (values greater than this one are filtered out) | 
 **Min** | **float64** | The minimum value for the measure used in the histogram (values smaller than this one are filtered out) | 

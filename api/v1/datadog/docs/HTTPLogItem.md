@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Ddsource** | Pointer to **string** | The integration name associated with your log: the technology from which the log originated. When it matches an integration name, Datadog automatically installs the corresponding parsers and facets. See [reserved attributes](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes). | [optional] 
 **Ddtags** | Pointer to **string** | Tags associated with your logs. | [optional] 
 **Hostname** | Pointer to **string** | The name of the originating host of the log. | [optional] 

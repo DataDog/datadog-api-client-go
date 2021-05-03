@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]SLOCorrection**](SLOCorrection.md) | The list of of SLO corrections objects | [optional] 
 
 ## Methods

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AccountBillableUsage** | Pointer to **int64** | The total account usage. | [optional] 
 **ElapsedUsageHours** | Pointer to **int64** | Elapsed usage hours for some billable product. | [optional] 
 **FirstBillableUsageHour** | Pointer to **time.Time** | The first billable hour for the org. | [optional] 

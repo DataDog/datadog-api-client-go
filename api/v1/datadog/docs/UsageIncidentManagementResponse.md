@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageIncidentManagementHour**](UsageIncidentManagementHour.md) | Get hourly usage for incident management. | [optional] 
 
 ## Methods

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AccountId** | Pointer to **string** | The unique identifier of your AWS account. | [optional] 
 **Namespace** | Pointer to [**AWSNamespace**](AWSNamespace.md) |  | [optional] 
 

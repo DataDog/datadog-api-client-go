@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Author** | Pointer to [**Creator**](Creator.md) |  | [optional] 
 **Created** | Pointer to **time.Time** | Date of creation of the dashboard list. | [optional] [readonly] 
 **DashboardCount** | Pointer to **int64** | The number of dashboards in the list. | [optional] [readonly] 

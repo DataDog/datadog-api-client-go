@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | [**[]RelationshipToOrganizationData**](RelationshipToOrganizationData.md) | Relationships to organization objects. | 
 
 ## Methods

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageLogsByIndexHour**](UsageLogsByIndexHour.md) | An array of objects regarding hourly usage of logs by index response. | [optional] 
 
 ## Methods

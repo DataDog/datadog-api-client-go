@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageIngestedSpansHour**](UsageIngestedSpansHour.md) | Get hourly usage for ingested spans. | [optional] 
 
 ## Methods

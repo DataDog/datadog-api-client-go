@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Target** | **float64** | The target value for the service level indicator within the corresponding timeframe. | 
 **TargetDisplay** | Pointer to **string** | A string representation of the target that indicates its precision. It uses trailing zeros to show significant decimal places (e.g. &#x60;98.00&#x60;).  Always included in service level objective responses. Ignored in create/update requests. | [optional] 
 **Timeframe** | [**SLOTimeframe**](SLOTimeframe.md) |  | 

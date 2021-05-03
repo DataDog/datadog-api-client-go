@@ -1,9 +1,9 @@
-# \SnapshotsApi
+# SnapshotsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**GetGraphSnapshot**](SnapshotsApi.md#GetGraphSnapshot) | **Get** /api/v1/graph/snapshot | Take graph snapshots
 
 
@@ -12,9 +12,8 @@ Method | HTTP request | Description
 
 > GraphSnapshot GetGraphSnapshot(ctx, start, end, datadog.GetGraphSnapshotOptionalParameters{})
 
-Take graph snapshots
-
-
+Take graph snapshots.
+**Note**: When a snapshot is created, there is some delay before it is available.
 
 ### Example
 
@@ -50,7 +49,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SnapshotsApi.GetGraphSnapshot(ctx, start, end, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SnapshotsApi.GetGraphSnapshot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SnapshotsApi.GetGraphSnapshot`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetGraphSnapshot`: GraphSnapshot
@@ -63,19 +62,20 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**start** | **int64** | The POSIX timestamp of the start of the query. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**start** | **int64** | The POSIX timestamp of the start of the query. |  |
 **end** | **int64** | The POSIX timestamp of the end of the query. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetGraphSnapshotOptionalParameters struct
+Other parameters are passed through a pointer to a GetGraphSnapshotOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **metricQuery** | **string** | The metric query. | 
 **eventQuery** | **string** | A query that adds event bands to the graph. | 
 **graphDef** | **string** | A JSON document defining the graph. &#x60;graph_def&#x60; can be used instead of &#x60;metric_query&#x60;. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URL encoded. | 

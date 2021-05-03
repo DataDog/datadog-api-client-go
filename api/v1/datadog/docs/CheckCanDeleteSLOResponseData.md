@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Ok** | Pointer to **[]string** | An array of of SLO IDs that can be safely deleted. | [optional] 
 
 ## Methods

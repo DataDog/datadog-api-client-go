@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Next** | Pointer to **string** | Link for the next set of results. Note that the request can also be made using the POST endpoint. | [optional] 
 
 ## Methods

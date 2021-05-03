@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Aggregation** | **string** | The aggregation method. | 
 **Facet** | Pointer to **string** | Facet name. | [optional] 
 **Interval** | Pointer to **int64** | Define a time interval in seconds. | [optional] 

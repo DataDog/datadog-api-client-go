@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]PartialAPIKey**](PartialAPIKey.md) | Array of API keys. | [optional] 
 **Included** | Pointer to [**[]APIKeyResponseIncludedItem**](APIKeyResponseIncludedItem.md) | Array of objects related to the API key. | [optional] 
 
