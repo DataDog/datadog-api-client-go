@@ -1,9 +1,9 @@
-# \RolesApi
+# RolesApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**AddPermissionToRole**](RolesApi.md#AddPermissionToRole) | **Post** /api/v2/roles/{role_id}/permissions | Grant permission to a role
 [**AddUserToRole**](RolesApi.md#AddUserToRole) | **Post** /api/v2/roles/{role_id}/users | Add a user to a role
 [**CreateRole**](RolesApi.md#CreateRole) | **Post** /api/v2/roles | Create role
@@ -23,9 +23,7 @@ Method | HTTP request | Description
 
 > PermissionsResponse AddPermissionToRole(ctx, roleId, body)
 
-Grant permission to a role
-
-
+Adds a permission to a role.
 
 ### Example
 
@@ -51,7 +49,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.RolesApi.AddPermissionToRole(ctx, roleId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddPermissionToRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddPermissionToRole`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `AddPermissionToRole`: PermissionsResponse
@@ -64,10 +62,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **string** | The ID of the role. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**roleId** | **string** | The ID of the role. |  |
 **body** | [**RelationshipToPermission**](RelationshipToPermission.md) |  | 
+
 
 ### Optional Parameters
 
@@ -96,9 +95,7 @@ This endpoint does not have optional parameters.
 
 > UsersResponse AddUserToRole(ctx, roleId, body)
 
-Add a user to a role
-
-
+Adds a user to a role.
 
 ### Example
 
@@ -124,7 +121,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.RolesApi.AddUserToRole(ctx, roleId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddUserToRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddUserToRole`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `AddUserToRole`: UsersResponse
@@ -137,10 +134,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **string** | The ID of the role. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**roleId** | **string** | The ID of the role. |  |
 **body** | [**RelationshipToUser**](RelationshipToUser.md) |  | 
+
 
 ### Optional Parameters
 
@@ -169,9 +167,7 @@ This endpoint does not have optional parameters.
 
 > RoleCreateResponse CreateRole(ctx, body)
 
-Create role
-
-
+Create a new role for your organization.
 
 ### Example
 
@@ -196,7 +192,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.RolesApi.CreateRole(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.CreateRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.CreateRole`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateRole`: RoleCreateResponse
@@ -209,9 +205,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**RoleCreateRequest**](RoleCreateRequest.md) |  | 
+
 
 ### Optional Parameters
 
@@ -240,9 +237,7 @@ This endpoint does not have optional parameters.
 
 > DeleteRole(ctx, roleId)
 
-Delete role
-
-
+Disables a role.
 
 ### Example
 
@@ -266,7 +261,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.RolesApi.DeleteRole(ctx, roleId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.DeleteRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.DeleteRole`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -276,9 +271,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **roleId** | **string** | The ID of the role. | 
+
 
 ### Optional Parameters
 
@@ -307,9 +303,7 @@ This endpoint does not have optional parameters.
 
 > RoleResponse GetRole(ctx, roleId)
 
-Get a role
-
-
+Get a role in the organization specified by the role’s `role_id`.
 
 ### Example
 
@@ -334,7 +328,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.RolesApi.GetRole(ctx, roleId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.GetRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.GetRole`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetRole`: RoleResponse
@@ -347,9 +341,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **roleId** | **string** | The ID of the role. | 
+
 
 ### Optional Parameters
 
@@ -378,9 +373,7 @@ This endpoint does not have optional parameters.
 
 > PermissionsResponse ListPermissions(ctx)
 
-List permissions
-
-
+Returns a list of all permissions, including name, description, and ID.
 
 ### Example
 
@@ -404,7 +397,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.RolesApi.ListPermissions(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListPermissions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListPermissions`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListPermissions`: PermissionsResponse
@@ -416,6 +409,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -444,9 +438,7 @@ This endpoint does not have optional parameters.
 
 > PermissionsResponse ListRolePermissions(ctx, roleId)
 
-List permissions for a role
-
-
+Returns a list of all permissions for a single role.
 
 ### Example
 
@@ -471,7 +463,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.RolesApi.ListRolePermissions(ctx, roleId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRolePermissions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRolePermissions`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListRolePermissions`: PermissionsResponse
@@ -484,9 +476,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **roleId** | **string** | The ID of the role. | 
+
 
 ### Optional Parameters
 
@@ -515,9 +508,7 @@ This endpoint does not have optional parameters.
 
 > UsersResponse ListRoleUsers(ctx, roleId, datadog.ListRoleUsersOptionalParameters{})
 
-Get all users of a role
-
-
+Gets all users of a role.
 
 ### Example
 
@@ -552,7 +543,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.RolesApi.ListRoleUsers(ctx, roleId, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoleUsers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoleUsers`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListRoleUsers`: UsersResponse
@@ -565,18 +556,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **roleId** | **string** | The ID of the role. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListRoleUsersOptionalParameters struct
+Other parameters are passed through a pointer to a ListRoleUsersOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **pageSize** | **int64** | Size for a given page. | [default to 10]
 **pageNumber** | **int64** | Specific page number to return. | [default to 0]
 **sort** | **string** | User attribute to order results by. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example &#x60;sort&#x3D;-name&#x60;. Options: &#x60;name&#x60;, &#x60;email&#x60;, &#x60;status&#x60;. | [default to &quot;name&quot;]
@@ -604,9 +596,7 @@ Name | Type | Description  | Notes
 
 > RolesResponse ListRoles(ctx, datadog.ListRolesOptionalParameters{})
 
-List roles
-
-
+Returns all roles, including their names and IDs.
 
 ### Example
 
@@ -640,7 +630,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.RolesApi.ListRoles(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoles``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoles`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListRoles`: RolesResponse
@@ -653,14 +643,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListRolesOptionalParameters struct
+Other parameters are passed through a pointer to a ListRolesOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **pageSize** | **int64** | Size for a given page. | [default to 10]
 **pageNumber** | **int64** | Specific page number to return. | [default to 0]
 **sort** | [**RolesSort**](RolesSort.md) | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: &#x60;sort&#x3D;-name&#x60;. | [default to &quot;name&quot;]
@@ -688,9 +679,7 @@ Name | Type | Description  | Notes
 
 > PermissionsResponse RemovePermissionFromRole(ctx, roleId, body)
 
-Revoke permission
-
-
+Removes a permission from a role.
 
 ### Example
 
@@ -716,7 +705,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.RolesApi.RemovePermissionFromRole(ctx, roleId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.RemovePermissionFromRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.RemovePermissionFromRole`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `RemovePermissionFromRole`: PermissionsResponse
@@ -729,10 +718,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **string** | The ID of the role. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**roleId** | **string** | The ID of the role. |  |
 **body** | [**RelationshipToPermission**](RelationshipToPermission.md) |  | 
+
 
 ### Optional Parameters
 
@@ -761,9 +751,7 @@ This endpoint does not have optional parameters.
 
 > UsersResponse RemoveUserFromRole(ctx, roleId, body)
 
-Remove a user from a role
-
-
+Removes a user from a role.
 
 ### Example
 
@@ -789,7 +777,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.RolesApi.RemoveUserFromRole(ctx, roleId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.RemoveUserFromRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.RemoveUserFromRole`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `RemoveUserFromRole`: UsersResponse
@@ -802,10 +790,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **string** | The ID of the role. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**roleId** | **string** | The ID of the role. |  |
 **body** | [**RelationshipToUser**](RelationshipToUser.md) |  | 
+
 
 ### Optional Parameters
 
@@ -834,9 +823,7 @@ This endpoint does not have optional parameters.
 
 > RoleUpdateResponse UpdateRole(ctx, roleId, body)
 
-Update a role
-
-
+Edit a role. Can only be used with application keys belonging to administrators.
 
 ### Example
 
@@ -862,7 +849,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.RolesApi.UpdateRole(ctx, roleId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.UpdateRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.UpdateRole`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateRole`: RoleUpdateResponse
@@ -875,10 +862,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **string** | The ID of the role. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**roleId** | **string** | The ID of the role. |  |
 **body** | [**RoleUpdateRequest**](RoleUpdateRequest.md) |  | 
+
 
 ### Optional Parameters
 

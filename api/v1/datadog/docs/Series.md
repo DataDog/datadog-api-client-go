@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Host** | Pointer to **string** | The name of the host that produced the metric. | [optional] 
 **Interval** | Pointer to **NullableInt64** | If the type of the metric is rate or count, define the corresponding interval. | [optional] 
 **Metric** | **string** | The name of the timeseries. | 

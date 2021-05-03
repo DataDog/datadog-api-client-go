@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Facet** | **string** | Event facet. | 
 **Limit** | Pointer to **int64** | Number of groups to return. | [optional] 
 **Sort** | Pointer to [**FormulaAndFunctionEventQueryGroupBySort**](FormulaAndFunctionEventQueryGroupBySort.md) |  | [optional] 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Org** | Pointer to [**Organization**](Organization.md) |  | [optional] 
 
 ## Methods

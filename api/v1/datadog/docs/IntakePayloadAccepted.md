@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Status** | Pointer to **string** | The status of the intake payload. | [optional] 
 
 ## Methods

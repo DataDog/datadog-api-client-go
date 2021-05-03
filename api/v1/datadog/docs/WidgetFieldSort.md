@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Column** | **string** | Facet path for the column | 
 **Order** | [**WidgetSort**](WidgetSort.md) |  | 
 

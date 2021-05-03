@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Name** | Pointer to **string** | The name of the variable. | [optional] 
 **TemplateVariables** | Pointer to [**[]DashboardTemplateVariablePresetValue**](DashboardTemplateVariablePresetValue.md) | List of variables. | [optional] 
 

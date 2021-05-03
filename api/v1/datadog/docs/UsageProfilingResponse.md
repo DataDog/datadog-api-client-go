@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageProfilingHour**](UsageProfilingHour.md) | Get hourly usage for profiled hosts. | [optional] 
 
 ## Methods

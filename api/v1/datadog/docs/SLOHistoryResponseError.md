@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Error** | Pointer to **string** | Human readable error. | [optional] 
 
 ## Methods

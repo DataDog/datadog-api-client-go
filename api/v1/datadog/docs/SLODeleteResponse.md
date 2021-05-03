@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to **[]string** | An array containing the ID of the deleted service level objective object. | [optional] 
 **Errors** | Pointer to **map[string]string** | An dictionary containing the ID of the SLO as key and a deletion error as value. | [optional] 
 

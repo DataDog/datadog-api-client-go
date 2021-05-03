@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Focus** | **string** | The 2-letter ISO code of a country to focus the map on. Or &#x60;WORLD&#x60;. | 
 
 ## Methods

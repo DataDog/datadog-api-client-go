@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Query** | Pointer to **string** | The filter query. | [optional] 
 
 ## Methods

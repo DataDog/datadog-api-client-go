@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Aggregation** | **string** | The aggregation method. | 
 **Facet** | Pointer to **string** | Facet name. | [optional] 
 **Order** | [**WidgetSort**](WidgetSort.md) |  | 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **User** | [**RelationshipToUser**](RelationshipToUser.md) |  | 
 
 ## Methods

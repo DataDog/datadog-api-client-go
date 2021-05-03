@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Dashboards** | Pointer to [**[]DashboardListItemRequest**](DashboardListItemRequest.md) | List of dashboards to add the dashboard list. | [optional] 
 
 ## Methods

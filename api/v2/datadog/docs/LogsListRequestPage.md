@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Cursor** | Pointer to **string** | List following results with a cursor provided in the previous query. | [optional] 
 **Limit** | Pointer to **int32** | Maximum number of logs in the response. | [optional] [default to 10]
 

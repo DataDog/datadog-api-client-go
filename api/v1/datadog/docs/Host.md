@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Aliases** | Pointer to **[]string** | Host aliases collected by Datadog. | [optional] 
 **Apps** | Pointer to **[]string** | The Datadog integrations reporting metrics for the host. | [optional] 
 **AwsName** | Pointer to **string** | AWS name of your host. | [optional] 

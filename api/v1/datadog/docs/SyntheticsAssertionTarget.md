@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Operator** | [**SyntheticsAssertionOperator**](SyntheticsAssertionOperator.md) |  | 
 **Property** | Pointer to **string** | The associated assertion property. | [optional] 
 **Target** | Pointer to **interface{}** | Value used by the operator. | [optional] 

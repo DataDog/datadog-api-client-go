@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Time** | Pointer to **string** | The time value for this point | [optional] 
 **Value** | Pointer to **float64** | The value for this point | [optional] 
 

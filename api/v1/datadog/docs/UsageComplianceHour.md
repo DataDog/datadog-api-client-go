@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ComplianceContainerCount** | Pointer to **int64** | The total number of compliance container hours from the start of the given hour&#39;s month until the given hour. | [optional] 
 **ComplianceHostCount** | Pointer to **int64** | The total number of compliance hosts hours from the start of the given hour&#39;s month until the given hour. | [optional] 
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 

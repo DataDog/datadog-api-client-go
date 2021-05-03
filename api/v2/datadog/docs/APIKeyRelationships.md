@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CreatedBy** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
 **ModifiedBy** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
 

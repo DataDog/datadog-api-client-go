@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**UsageSpecifiedCustomReportsData**](UsageSpecifiedCustomReportsData.md) |  | [optional] 
 **Meta** | Pointer to [**UsageSpecifiedCustomReportsMeta**](UsageSpecifiedCustomReportsMeta.md) |  | [optional] 
 

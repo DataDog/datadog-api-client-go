@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **TotalCount** | Pointer to **int64** | Total count. | [optional] 
 **TotalFilteredCount** | Pointer to **int64** | Total count of elements matched by the filter. | [optional] 
 

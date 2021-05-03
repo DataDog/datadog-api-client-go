@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Passed** | Pointer to **bool** | Describes if the test run has passed or failed. | [optional] 
 **Timings** | Pointer to [**SyntheticsTiming**](SyntheticsTiming.md) |  | [optional] 
 

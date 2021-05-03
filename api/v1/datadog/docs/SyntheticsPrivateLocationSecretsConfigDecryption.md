@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Key** | Pointer to **string** | Private key for the private location. | [optional] [readonly] 
 
 ## Methods

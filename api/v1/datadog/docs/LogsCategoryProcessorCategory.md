@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Filter** | Pointer to [**LogsFilter**](LogsFilter.md) |  | [optional] 
 **Name** | Pointer to **string** | Value to assign to the target attribute. | [optional] 
 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Authentication** | Pointer to [**SyntheticsPrivateLocationSecretsAuthentication**](SyntheticsPrivateLocationSecretsAuthentication.md) |  | [optional] 
 **ConfigDecryption** | Pointer to [**SyntheticsPrivateLocationSecretsConfigDecryption**](SyntheticsPrivateLocationSecretsConfigDecryption.md) |  | [optional] 
 

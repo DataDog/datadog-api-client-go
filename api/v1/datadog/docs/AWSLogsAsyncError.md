@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Code** | Pointer to **string** | Code properties | [optional] 
 **Message** | Pointer to **string** | Message content. | [optional] 
 

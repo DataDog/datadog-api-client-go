@@ -1,9 +1,9 @@
-# \MetricsApi
+# MetricsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**GetMetricMetadata**](MetricsApi.md#GetMetricMetadata) | **Get** /api/v1/metrics/{metric_name} | Get metric metadata
 [**ListActiveMetrics**](MetricsApi.md#ListActiveMetrics) | **Get** /api/v1/metrics | Get active metrics list
 [**ListMetrics**](MetricsApi.md#ListMetrics) | **Get** /api/v1/search | Search metrics
@@ -17,9 +17,7 @@ Method | HTTP request | Description
 
 > MetricMetadata GetMetricMetadata(ctx, metricName)
 
-Get metric metadata
-
-
+Get metadata about a specific metric.
 
 ### Example
 
@@ -44,7 +42,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.GetMetricMetadata(ctx, metricName)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetMetricMetadata``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetMetricMetadata`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetMetricMetadata`: MetricMetadata
@@ -57,9 +55,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **metricName** | **string** | Name of the metric for which to get metadata. | 
+
 
 ### Optional Parameters
 
@@ -88,9 +87,7 @@ This endpoint does not have optional parameters.
 
 > MetricsListResponse ListActiveMetrics(ctx, from, datadog.ListActiveMetricsOptionalParameters{})
 
-Get active metrics list
-
-
+Get the list of actively reporting metrics from a given time until now.
 
 ### Example
 
@@ -121,7 +118,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.ListActiveMetrics(ctx, from, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListActiveMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListActiveMetrics`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListActiveMetrics`: MetricsListResponse
@@ -134,18 +131,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **from** | **int64** | Seconds since the Unix epoch. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListActiveMetricsOptionalParameters struct
+Other parameters are passed through a pointer to a ListActiveMetricsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **host** | **string** | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. | 
 **tagFilter** | **string** | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. | 
 
@@ -171,9 +169,7 @@ Name | Type | Description  | Notes
 
 > MetricSearchResponse ListMetrics(ctx, q)
 
-Search metrics
-
-
+Search for metrics from the last 24 hours in Datadog.
 
 ### Example
 
@@ -198,7 +194,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.ListMetrics(ctx, q)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListMetrics`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListMetrics`: MetricSearchResponse
@@ -211,9 +207,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **q** | **string** | Query string to search metrics upon. Must be prefixed with &#x60;metrics:&#x60;. | 
+
 
 ### Optional Parameters
 
@@ -242,9 +239,7 @@ This endpoint does not have optional parameters.
 
 > MetricsQueryResponse QueryMetrics(ctx, from, to, query)
 
-Query timeseries points
-
-
+Query timeseries points.
 
 ### Example
 
@@ -271,7 +266,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.QueryMetrics(ctx, from, to, query)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.QueryMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.QueryMetrics`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `QueryMetrics`: MetricsQueryResponse
@@ -284,11 +279,12 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**from** | **int64** | Start of the queried time period, seconds since the Unix epoch. | 
-**to** | **int64** | End of the queried time period, seconds since the Unix epoch. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**from** | **int64** | Start of the queried time period, seconds since the Unix epoch. |  |
+**to** | **int64** | End of the queried time period, seconds since the Unix epoch. |  |
 **query** | **string** | Query string. | 
+
 
 ### Optional Parameters
 
@@ -317,9 +313,17 @@ This endpoint does not have optional parameters.
 
 > IntakePayloadAccepted SubmitMetrics(ctx, body)
 
-Submit metrics
+The metrics end-point allows you to post time-series data that can be graphed on Datadog’s dashboards.
+The maximum payload size is 3.2 megabytes (3200000). Compressed payloads must have a decompressed size of up to 62 megabytes (62914560).
 
+If you’re submitting metrics directly to the Datadog API without using DogStatsD, expect
 
+- 64 bits for the timestamp
+- 32 bits for the value
+- 20 bytes for the metric names
+- 50 bytes for the timeseries
+- The full payload is approximately ~ 100 bytes. However, with the DogStatsD API,
+compression is applied, which reduces the payload size.
 
 ### Example
 
@@ -344,7 +348,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.SubmitMetrics(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitMetrics`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SubmitMetrics`: IntakePayloadAccepted
@@ -357,9 +361,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**MetricsPayload**](MetricsPayload.md) |  | 
+
 
 ### Optional Parameters
 
@@ -388,9 +393,7 @@ This endpoint does not have optional parameters.
 
 > MetricMetadata UpdateMetricMetadata(ctx, metricName, body)
 
-Edit metric metadata
-
-
+Edit metadata of a specific metric. Find out more about [supported types](https://docs.datadoghq.com/developers/metrics).
 
 ### Example
 
@@ -416,7 +419,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.UpdateMetricMetadata(ctx, metricName, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.UpdateMetricMetadata``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.UpdateMetricMetadata`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateMetricMetadata`: MetricMetadata
@@ -429,10 +432,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**metricName** | **string** | Name of the metric for which to edit metadata. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**metricName** | **string** | Name of the metric for which to edit metadata. |  |
 **body** | [**MetricMetadata**](MetricMetadata.md) | New metadata. | 
+
 
 ### Optional Parameters
 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Denominator** | [**SLOHistoryMetricsSeries**](SLOHistoryMetricsSeries.md) |  | 
 **Interval** | **int64** | The aggregated query interval for the series data. It&#39;s implicit based on the query time window. | 
 **Message** | Pointer to **string** | Optional message if there are specific query issues/warnings. | [optional] 

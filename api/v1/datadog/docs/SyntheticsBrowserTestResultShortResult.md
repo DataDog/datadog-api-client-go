@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Device** | Pointer to [**SyntheticsDevice**](SyntheticsDevice.md) |  | [optional] 
 **Duration** | Pointer to **float64** | Length in second of the browser test run. | [optional] 
 **ErrorCount** | Pointer to **int64** | Amount of errors collected for a single browser test run. | [optional] 

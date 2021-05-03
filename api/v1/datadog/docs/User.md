@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] [default to ACCESSROLE_STANDARD]
 **Disabled** | Pointer to **bool** | The new disabled status of the user. | [optional] 
 **Email** | Pointer to **string** | The new email of the user. | [optional] 

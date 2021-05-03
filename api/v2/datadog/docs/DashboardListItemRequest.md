@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Id** | **string** | ID of the dashboard. | 
 **Type** | [**DashboardType**](DashboardType.md) |  | 
 

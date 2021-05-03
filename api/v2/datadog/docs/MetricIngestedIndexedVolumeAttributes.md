@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **IndexedVolume** | Pointer to **int64** | Indexed volume for the given metric. | [optional] 
 **IngestedVolume** | Pointer to **int64** | Ingested volume for the given metric. | [optional] 
 

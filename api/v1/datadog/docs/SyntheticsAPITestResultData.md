@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Cert** | Pointer to [**SyntheticsSSLCertificate**](SyntheticsSSLCertificate.md) |  | [optional] 
 **ErrorCode** | Pointer to [**SyntheticsErrorCode**](SyntheticsErrorCode.md) |  | [optional] 
 **ErrorMessage** | Pointer to **string** | The API test error message. | [optional] 

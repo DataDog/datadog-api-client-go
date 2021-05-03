@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Filter** | Pointer to [**LogsFilter**](LogsFilter.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the pipeline. | [optional] [readonly] 
 **IsEnabled** | Pointer to **bool** | Whether or not the pipeline is enabled. | [optional] 

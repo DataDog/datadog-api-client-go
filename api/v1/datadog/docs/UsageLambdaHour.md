@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **FuncCount** | Pointer to **int64** | Contains the number of different functions for each region and AWS account. | [optional] 
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **InvocationsSum** | Pointer to **int64** | Contains the sum of invocations of all functions. | [optional] 

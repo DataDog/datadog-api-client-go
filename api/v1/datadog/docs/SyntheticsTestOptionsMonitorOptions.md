@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **RenotifyInterval** | Pointer to **int64** | Time interval before renotifying if the test is still failing (in minutes). | [optional] 
 
 ## Methods

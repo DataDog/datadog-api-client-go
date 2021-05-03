@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Disabled** | Pointer to **bool** | If the user is enabled or disabled. | [optional] 
 **Email** | Pointer to **string** | The email of the user. | [optional] 
 **Name** | Pointer to **string** | The name of the user. | [optional] 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**RoleUpdateResponseData**](RoleUpdateResponseData.md) |  | [optional] 
 
 ## Methods

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | [**LogsMetricUpdateData**](LogsMetricUpdateData.md) |  | 
 
 ## Methods

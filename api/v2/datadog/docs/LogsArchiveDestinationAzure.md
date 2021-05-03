@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Container** | **string** | The container where the archive will be stored. | 
 **Integration** | [**LogsArchiveIntegrationAzure**](LogsArchiveIntegrationAzure.md) |  | 
 **Path** | Pointer to **string** | The archive path. | [optional] 

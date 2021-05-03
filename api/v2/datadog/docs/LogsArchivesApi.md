@@ -1,9 +1,9 @@
-# \LogsArchivesApi
+# LogsArchivesApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**AddReadRoleToArchive**](LogsArchivesApi.md#AddReadRoleToArchive) | **Post** /api/v2/logs/config/archives/{archive_id}/readers | Grant role to an archive
 [**CreateLogsArchive**](LogsArchivesApi.md#CreateLogsArchive) | **Post** /api/v2/logs/config/archives | Create an archive
 [**DeleteLogsArchive**](LogsArchivesApi.md#DeleteLogsArchive) | **Delete** /api/v2/logs/config/archives/{archive_id} | Delete an archive
@@ -21,9 +21,7 @@ Method | HTTP request | Description
 
 > AddReadRoleToArchive(ctx, archiveId, body)
 
-Grant role to an archive
-
-
+Adds a read role to an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))
 
 ### Example
 
@@ -48,7 +46,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.LogsArchivesApi.AddReadRoleToArchive(ctx, archiveId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.AddReadRoleToArchive``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.AddReadRoleToArchive`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -58,10 +56,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**archiveId** | **string** | The ID of the archive. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**archiveId** | **string** | The ID of the archive. |  |
 **body** | [**RelationshipToRole**](RelationshipToRole.md) |  | 
+
 
 ### Optional Parameters
 
@@ -90,9 +89,7 @@ This endpoint does not have optional parameters.
 
 > LogsArchive CreateLogsArchive(ctx, body)
 
-Create an archive
-
-
+Create an archive in your organization.
 
 ### Example
 
@@ -117,7 +114,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsArchivesApi.CreateLogsArchive(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.CreateLogsArchive``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.CreateLogsArchive`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateLogsArchive`: LogsArchive
@@ -130,9 +127,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**LogsArchiveCreateRequest**](LogsArchiveCreateRequest.md) | The definition of the new archive. | 
+
 
 ### Optional Parameters
 
@@ -161,9 +159,7 @@ This endpoint does not have optional parameters.
 
 > DeleteLogsArchive(ctx, archiveId)
 
-Delete an archive
-
-
+Delete a given archive from your organization.
 
 ### Example
 
@@ -187,7 +183,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.LogsArchivesApi.DeleteLogsArchive(ctx, archiveId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.DeleteLogsArchive``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.DeleteLogsArchive`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -197,9 +193,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **archiveId** | **string** | The ID of the archive. | 
+
 
 ### Optional Parameters
 
@@ -228,9 +225,7 @@ This endpoint does not have optional parameters.
 
 > LogsArchive GetLogsArchive(ctx, archiveId)
 
-Get an archive
-
-
+Get a specific archive from your organization.
 
 ### Example
 
@@ -255,7 +250,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsArchivesApi.GetLogsArchive(ctx, archiveId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.GetLogsArchive``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.GetLogsArchive`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsArchive`: LogsArchive
@@ -268,9 +263,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **archiveId** | **string** | The ID of the archive. | 
+
 
 ### Optional Parameters
 
@@ -299,9 +295,8 @@ This endpoint does not have optional parameters.
 
 > LogsArchiveOrder GetLogsArchiveOrder(ctx)
 
-Get archive order
-
-
+Get the current order of your archives.
+This endpoint takes no JSON arguments.
 
 ### Example
 
@@ -325,7 +320,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsArchivesApi.GetLogsArchiveOrder(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.GetLogsArchiveOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.GetLogsArchiveOrder`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogsArchiveOrder`: LogsArchiveOrder
@@ -337,6 +332,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -365,9 +361,7 @@ This endpoint does not have optional parameters.
 
 > RolesResponse ListArchiveReadRoles(ctx, archiveId)
 
-List read roles for an archive
-
-
+Returns all read roles a given archive is restricted to.
 
 ### Example
 
@@ -392,7 +386,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsArchivesApi.ListArchiveReadRoles(ctx, archiveId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.ListArchiveReadRoles``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.ListArchiveReadRoles`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListArchiveReadRoles`: RolesResponse
@@ -405,9 +399,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **archiveId** | **string** | The ID of the archive. | 
+
 
 ### Optional Parameters
 
@@ -436,9 +431,7 @@ This endpoint does not have optional parameters.
 
 > LogsArchives ListLogsArchives(ctx)
 
-Get all archives
-
-
+Get the list of configured logs archives with their definitions.
 
 ### Example
 
@@ -462,7 +455,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsArchivesApi.ListLogsArchives(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.ListLogsArchives``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.ListLogsArchives`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLogsArchives`: LogsArchives
@@ -474,6 +467,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -502,9 +496,7 @@ This endpoint does not have optional parameters.
 
 > RemoveRoleFromArchive(ctx, archiveId, body)
 
-Revoke role from an archive
-
-
+Removes a role from an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))
 
 ### Example
 
@@ -529,7 +521,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.LogsArchivesApi.RemoveRoleFromArchive(ctx, archiveId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.RemoveRoleFromArchive``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.RemoveRoleFromArchive`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -539,10 +531,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**archiveId** | **string** | The ID of the archive. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**archiveId** | **string** | The ID of the archive. |  |
 **body** | [**RelationshipToRole**](RelationshipToRole.md) |  | 
+
 
 ### Optional Parameters
 
@@ -571,9 +564,10 @@ This endpoint does not have optional parameters.
 
 > LogsArchive UpdateLogsArchive(ctx, archiveId, body)
 
-Update an archive
+Update a given archive configuration.
 
-
+**Note**: Using this method updates your archive configuration by **replacing**
+your current configuration with the new one sent to your Datadog organization.
 
 ### Example
 
@@ -599,7 +593,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsArchivesApi.UpdateLogsArchive(ctx, archiveId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchive``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchive`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsArchive`: LogsArchive
@@ -612,10 +606,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**archiveId** | **string** | The ID of the archive. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**archiveId** | **string** | The ID of the archive. |  |
 **body** | [**LogsArchiveCreateRequest**](LogsArchiveCreateRequest.md) | New definition of the archive. | 
+
 
 ### Optional Parameters
 
@@ -644,9 +639,11 @@ This endpoint does not have optional parameters.
 
 > LogsArchiveOrder UpdateLogsArchiveOrder(ctx, body)
 
-Update archive order
+Update the order of your archives. Since logs are processed sequentially, reordering an archive may change
+the structure and content of the data processed by other archives.
 
-
+**Note**: Using the `PUT` method updates your archive's order by replacing the current order
+with the new one.
 
 ### Example
 
@@ -671,7 +668,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsArchivesApi.UpdateLogsArchiveOrder(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchiveOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchiveOrder`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLogsArchiveOrder`: LogsArchiveOrder
@@ -684,9 +681,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**LogsArchiveOrder**](LogsArchiveOrder.md) | An object containing the new ordered list of archive IDs. | 
+
 
 ### Optional Parameters
 

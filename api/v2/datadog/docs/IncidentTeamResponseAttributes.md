@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Created** | Pointer to **time.Time** | Timestamp of when the incident team was created. | [optional] [readonly] 
 **Modified** | Pointer to **time.Time** | Timestamp of when the incident team was modified. | [optional] [readonly] 
 **Name** | Pointer to **string** | Name of the incident team. | [optional] 

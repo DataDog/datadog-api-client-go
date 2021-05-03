@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageHostHour**](UsageHostHour.md) | An array of objects related to host usage. | [optional] 
 
 ## Methods

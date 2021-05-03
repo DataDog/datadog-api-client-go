@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Q** | **string** | Query definition. | 
 **TagsExecution** | Pointer to **string** | The execution method for multi-value filters. | [optional] 
 

@@ -1,9 +1,9 @@
-# \SecurityMonitoringApi
+# SecurityMonitoringApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateSecurityMonitoringRule**](SecurityMonitoringApi.md#CreateSecurityMonitoringRule) | **Post** /api/v2/security_monitoring/rules | Create a detection rule
 [**DeleteSecurityMonitoringRule**](SecurityMonitoringApi.md#DeleteSecurityMonitoringRule) | **Delete** /api/v2/security_monitoring/rules/{rule_id} | Delete an existing rule
 [**GetSecurityMonitoringRule**](SecurityMonitoringApi.md#GetSecurityMonitoringRule) | **Get** /api/v2/security_monitoring/rules/{rule_id} | Get a rule&#39;s details
@@ -18,9 +18,7 @@ Method | HTTP request | Description
 
 > SecurityMonitoringRuleResponse CreateSecurityMonitoringRule(ctx, body)
 
-Create a detection rule
-
-
+Create a detection rule.
 
 ### Example
 
@@ -45,7 +43,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityMonitoringRule(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityMonitoringRule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityMonitoringRule`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateSecurityMonitoringRule`: SecurityMonitoringRuleResponse
@@ -58,9 +56,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**SecurityMonitoringRuleCreatePayload**](SecurityMonitoringRuleCreatePayload.md) |  | 
+
 
 ### Optional Parameters
 
@@ -89,9 +88,7 @@ This endpoint does not have optional parameters.
 
 > DeleteSecurityMonitoringRule(ctx, ruleId)
 
-Delete an existing rule
-
-
+Delete an existing rule. Default rules cannot be deleted.
 
 ### Example
 
@@ -115,7 +112,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.SecurityMonitoringApi.DeleteSecurityMonitoringRule(ctx, ruleId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityMonitoringRule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityMonitoringRule`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -125,9 +122,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **ruleId** | **string** | The ID of the rule. | 
+
 
 ### Optional Parameters
 
@@ -156,9 +154,7 @@ This endpoint does not have optional parameters.
 
 > SecurityMonitoringRuleResponse GetSecurityMonitoringRule(ctx, ruleId)
 
-Get a rule's details
-
-
+Get a rule's details.
 
 ### Example
 
@@ -183,7 +179,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SecurityMonitoringApi.GetSecurityMonitoringRule(ctx, ruleId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetSecurityMonitoringRule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetSecurityMonitoringRule`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSecurityMonitoringRule`: SecurityMonitoringRuleResponse
@@ -196,9 +192,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **ruleId** | **string** | The ID of the rule. | 
+
 
 ### Optional Parameters
 
@@ -227,9 +224,7 @@ This endpoint does not have optional parameters.
 
 > SecurityMonitoringListRulesResponse ListSecurityMonitoringRules(ctx, datadog.ListSecurityMonitoringRulesOptionalParameters{})
 
-List rules
-
-
+List rules.
 
 ### Example
 
@@ -259,7 +254,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SecurityMonitoringApi.ListSecurityMonitoringRules(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringRules``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringRules`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListSecurityMonitoringRules`: SecurityMonitoringListRulesResponse
@@ -272,14 +267,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListSecurityMonitoringRulesOptionalParameters struct
+Other parameters are passed through a pointer to a ListSecurityMonitoringRulesOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **pageSize** | **int64** | Size for a given page. | [default to 10]
 **pageNumber** | **int64** | Specific page number to return. | [default to 0]
 
@@ -305,9 +301,9 @@ Name | Type | Description  | Notes
 
 > SecurityMonitoringSignalsListResponse ListSecurityMonitoringSignals(ctx, datadog.ListSecurityMonitoringSignalsOptionalParameters{})
 
-Get a quick list of security signals
-
-
+The list endpoint returns security signals that match a search query.
+Both this endpoint and the POST endpoint can be used interchangeably when listing
+security signals.
 
 ### Example
 
@@ -347,7 +343,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SecurityMonitoringApi.ListSecurityMonitoringSignals(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringSignals``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringSignals`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListSecurityMonitoringSignals`: SecurityMonitoringSignalsListResponse
@@ -360,14 +356,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListSecurityMonitoringSignalsOptionalParameters struct
+Other parameters are passed through a pointer to a ListSecurityMonitoringSignalsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **filterQuery** | **string** | The search query for security signals. | 
 **filterFrom** | **time.Time** | The minimum timestamp for requested security signals. | 
 **filterTo** | **time.Time** | The maximum timestamp for requested security signals. | 
@@ -397,9 +394,9 @@ Name | Type | Description  | Notes
 
 > SecurityMonitoringSignalsListResponse SearchSecurityMonitoringSignals(ctx, datadog.SearchSecurityMonitoringSignalsOptionalParameters{})
 
-Get a list of security signals
-
-
+Returns security signals that match a search query.
+Both this endpoint and the GET endpoint can be used interchangeably for listing
+security signals.
 
 ### Example
 
@@ -428,7 +425,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SecurityMonitoringApi.SearchSecurityMonitoringSignals(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.SearchSecurityMonitoringSignals``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.SearchSecurityMonitoringSignals`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SearchSecurityMonitoringSignals`: SecurityMonitoringSignalsListResponse
@@ -441,14 +438,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a SearchSecurityMonitoringSignalsOptionalParameters struct
+Other parameters are passed through a pointer to a SearchSecurityMonitoringSignalsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **body** | [**SecurityMonitoringSignalListRequest**](SecurityMonitoringSignalListRequest.md) |  | 
 
 ### Return type
@@ -473,9 +471,9 @@ Name | Type | Description  | Notes
 
 > SecurityMonitoringRuleResponse UpdateSecurityMonitoringRule(ctx, ruleId, body)
 
-Update an existing rule
-
-
+Update an existing rule. When updating `cases`, `queries` or `options`, the whole field
+must be included. For example, when modifying a query all queries must be included.
+Default rules can only be updated to be enabled and to change notifications.
 
 ### Example
 
@@ -501,7 +499,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityMonitoringRule(ctx, ruleId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityMonitoringRule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityMonitoringRule`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateSecurityMonitoringRule`: SecurityMonitoringRuleResponse
@@ -514,10 +512,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**ruleId** | **string** | The ID of the rule. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**ruleId** | **string** | The ID of the rule. |  |
 **body** | [**SecurityMonitoringRuleUpdatePayload**](SecurityMonitoringRuleUpdatePayload.md) |  | 
+
 
 ### Optional Parameters
 

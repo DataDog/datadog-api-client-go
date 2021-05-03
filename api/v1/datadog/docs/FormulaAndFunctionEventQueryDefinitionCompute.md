@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Aggregation** | [**FormulaAndFunctionEventAggregation**](FormulaAndFunctionEventAggregation.md) |  | 
 **Interval** | Pointer to **int64** | A time interval in milliseconds. | [optional] 
 **Metric** | Pointer to **string** | Measurable attribute to compute. | [optional] 

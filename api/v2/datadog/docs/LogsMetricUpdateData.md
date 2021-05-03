@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | [**LogsMetricUpdateAttributes**](LogsMetricUpdateAttributes.md) |  | 
 **Type** | [**LogsMetricType**](LogsMetricType.md) |  | [default to LOGSMETRICTYPE_LOGS_METRICS]
 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Pagination** | Pointer to [**IncidentServicesResponseMetaPagination**](IncidentServicesResponseMetaPagination.md) |  | [optional] 
 
 ## Methods

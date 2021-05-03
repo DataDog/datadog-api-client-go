@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]LogsMetricResponseData**](LogsMetricResponseData.md) | A list of log-based metric objects. | [optional] 
 
 ## Methods

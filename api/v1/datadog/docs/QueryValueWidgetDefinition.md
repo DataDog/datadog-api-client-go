@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Autoscale** | Pointer to **bool** | Whether to use auto-scaling or not. | [optional] 
 **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
 **CustomUnit** | Pointer to **string** | Display a unit of your choice on the widget. | [optional] 

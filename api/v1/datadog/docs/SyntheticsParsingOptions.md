@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Field** | Pointer to **string** | When type is &#x60;http_header&#x60;, name of the header to use to extract the value. | [optional] 
 **Name** | Pointer to **string** | Name of the variable to extract. | [optional] 
 **Parser** | Pointer to [**SyntheticsVariableParser**](SyntheticsVariableParser.md) |  | [optional] 

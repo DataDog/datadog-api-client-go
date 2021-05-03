@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **LastTimestampFetched** | Pointer to **int64** | Timestamp of the latest browser test run. | [optional] 
 **Results** | Pointer to [**[]SyntheticsBrowserTestResultShort**](SyntheticsBrowserTestResultShort.md) | Result of the latest browser test run. | [optional] 
 

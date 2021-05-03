@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]UsageCustomReportsData**](UsageCustomReportsData.md) | An array of available custom reports. | [optional] 
 **Meta** | Pointer to [**UsageCustomReportsMeta**](UsageCustomReportsMeta.md) |  | [optional] 
 

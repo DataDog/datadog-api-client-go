@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **PrivateWidgetShare** | Pointer to **bool** | Whether or not the organization users can share widgets outside of Datadog. | [optional] 
 **Saml** | Pointer to [**OrganizationSettingsSaml**](OrganizationSettingsSaml.md) |  | [optional] 
 **SamlAutocreateAccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] [default to ACCESSROLE_STANDARD]

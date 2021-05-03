@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Enabled** | Pointer to **bool** | Whether or not SAML is enabled for this organization. | [optional] 
 
 ## Methods

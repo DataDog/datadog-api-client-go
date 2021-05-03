@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Path** | Pointer to **string** | The path to the value the log-based metric will be aggregated over. | [optional] 
 **TagName** | Pointer to **string** | Eventual name of the tag that gets created. By default, the path attribute is used as the tag name. | [optional] 
 

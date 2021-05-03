@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Users** | Pointer to [**[]User**](User.md) | Array of users. | [optional] 
 
 ## Methods
