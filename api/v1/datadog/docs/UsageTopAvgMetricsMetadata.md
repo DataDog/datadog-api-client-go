@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Day** | Pointer to **interface{}** | The day value from the user request that contains the returned usage data. (If day was used the request) | [optional] 
 **Month** | Pointer to **interface{}** | The month value from the user request that contains the returned usage data. (If month was used the request) | [optional] 
 **Pagination** | Pointer to [**UsageAttributionPagination**](UsageAttributionPagination.md) |  | [optional] 

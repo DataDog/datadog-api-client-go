@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CancelledIds** | Pointer to **[]int64** | ID of downtimes that were canceled. | [optional] 
 
 ## Methods

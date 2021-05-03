@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ClientId** | Pointer to **string** | Your Azure web application ID. | [optional] 
 **ClientSecret** | Pointer to **string** | Your Azure web application secret key. | [optional] 
 **Errors** | Pointer to **[]string** | Errors in your configuration. | [optional] 

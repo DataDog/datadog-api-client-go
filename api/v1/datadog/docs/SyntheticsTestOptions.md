@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AcceptSelfSigned** | Pointer to **bool** | For SSL test, whether or not the test should allow self signed certificates. | [optional] 
 **AllowInsecure** | Pointer to **bool** | Allows loading insecure content for an HTTP request. | [optional] 
 **DeviceIds** | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md) | For browser test, array with the different device IDs used to run the test. | [optional] 

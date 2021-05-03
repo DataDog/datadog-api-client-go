@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageSyntheticsHour**](UsageSyntheticsHour.md) | Array with the number of hourly Synthetics test run for a given organization. | [optional] 
 
 ## Methods

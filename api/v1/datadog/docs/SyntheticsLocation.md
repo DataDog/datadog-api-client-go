@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Id** | Pointer to **string** | Unique identifier of the location. | [optional] 
 **Name** | Pointer to **string** | Name of the location. | [optional] 
 

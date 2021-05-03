@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CreatedAt** | Pointer to **time.Time** | Creation time of the user invitation. | [optional] 
 **ExpiresAt** | Pointer to **time.Time** | Time of invitation expiration. | [optional] 
 **InviteType** | Pointer to **string** | Type of invitation. | [optional] 

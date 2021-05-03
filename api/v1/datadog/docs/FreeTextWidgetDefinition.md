@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Color** | Pointer to **string** | Color of the text. | [optional] 
 **FontSize** | Pointer to **string** | Size of the text. | [optional] 
 **Text** | **string** | Text to display. | 

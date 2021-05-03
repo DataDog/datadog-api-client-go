@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Billing** | Pointer to [**OrganizationBilling**](OrganizationBilling.md) |  | [optional] 
 **Created** | Pointer to **string** | Date of the organization creation. | [optional] [readonly] 
 **Description** | Pointer to **string** | Description of the organization. | [optional] 

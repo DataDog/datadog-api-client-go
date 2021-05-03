@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageIoTHour**](UsageIoTHour.md) | Get hourly usage for IoT. | [optional] 
 
 ## Methods

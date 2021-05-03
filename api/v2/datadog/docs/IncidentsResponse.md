@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | [**[]IncidentResponseData**](IncidentResponseData.md) | An array of incidents. | 
 **Included** | Pointer to [**[]IncidentResponseIncludedItem**](IncidentResponseIncludedItem.md) | Included related resources that the user requested. | [optional] [readonly] 
 **Meta** | Pointer to [**IncidentServicesResponseMeta**](IncidentServicesResponseMeta.md) |  | [optional] 

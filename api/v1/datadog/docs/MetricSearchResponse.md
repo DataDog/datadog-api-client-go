@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Results** | Pointer to [**MetricSearchResponseResults**](MetricSearchResponseResults.md) |  | [optional] 
 
 ## Methods

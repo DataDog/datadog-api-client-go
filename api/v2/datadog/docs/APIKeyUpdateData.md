@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | [**APIKeyUpdateAttributes**](APIKeyUpdateAttributes.md) |  | 
 **Id** | **string** | ID of the API key. | 
 **Type** | [**APIKeysType**](APIKeysType.md) |  | [default to APIKEYSTYPE_API_KEYS]

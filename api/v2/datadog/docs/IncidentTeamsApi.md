@@ -1,9 +1,9 @@
-# \IncidentTeamsApi
+# IncidentTeamsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateIncidentTeam**](IncidentTeamsApi.md#CreateIncidentTeam) | **Post** /api/v2/teams | Create a new incident team
 [**DeleteIncidentTeam**](IncidentTeamsApi.md#DeleteIncidentTeam) | **Delete** /api/v2/teams/{team_id} | Delete an existing incident team
 [**GetIncidentTeam**](IncidentTeamsApi.md#GetIncidentTeam) | **Get** /api/v2/teams/{team_id} | Get details of an incident team
@@ -16,9 +16,7 @@ Method | HTTP request | Description
 
 > IncidentTeamResponse CreateIncidentTeam(ctx, body)
 
-Create a new incident team
-
-
+Creates a new incident team.
 
 ### Example
 
@@ -44,7 +42,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.IncidentTeamsApi.CreateIncidentTeam(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.CreateIncidentTeam``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.CreateIncidentTeam`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateIncidentTeam`: IncidentTeamResponse
@@ -57,9 +55,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**IncidentTeamCreateRequest**](IncidentTeamCreateRequest.md) | Incident Team Payload. | 
+
 
 ### Optional Parameters
 
@@ -88,9 +87,7 @@ This endpoint does not have optional parameters.
 
 > DeleteIncidentTeam(ctx, teamId)
 
-Delete an existing incident team
-
-
+Deletes an existing incident team.
 
 ### Example
 
@@ -115,7 +112,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.IncidentTeamsApi.DeleteIncidentTeam(ctx, teamId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.DeleteIncidentTeam``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.DeleteIncidentTeam`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -125,9 +122,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **teamId** | **string** | The ID of the incident team. | 
+
 
 ### Optional Parameters
 
@@ -156,9 +154,8 @@ This endpoint does not have optional parameters.
 
 > IncidentTeamResponse GetIncidentTeam(ctx, teamId, datadog.GetIncidentTeamOptionalParameters{})
 
-Get details of an incident team
-
-
+Get details of an incident team. If the `include[users]` query parameter is provided,
+the included attribute will contain the users related to these incident teams.
 
 ### Example
 
@@ -188,7 +185,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.IncidentTeamsApi.GetIncidentTeam(ctx, teamId, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.GetIncidentTeam``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.GetIncidentTeam`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIncidentTeam`: IncidentTeamResponse
@@ -201,18 +198,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **teamId** | **string** | The ID of the incident team. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetIncidentTeamOptionalParameters struct
+Other parameters are passed through a pointer to a GetIncidentTeamOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
 
 ### Return type
@@ -237,9 +235,7 @@ Name | Type | Description  | Notes
 
 > IncidentTeamsResponse ListIncidentTeams(ctx, datadog.ListIncidentTeamsOptionalParameters{})
 
-Get a list of all incident teams
-
-
+Get all incident teams for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident teams.
 
 ### Example
 
@@ -274,7 +270,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.IncidentTeamsApi.ListIncidentTeams(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.ListIncidentTeams``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.ListIncidentTeams`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListIncidentTeams`: IncidentTeamsResponse
@@ -287,14 +283,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListIncidentTeamsOptionalParameters struct
+Other parameters are passed through a pointer to a ListIncidentTeamsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
 **pageSize** | **int64** | Size for a given page. | [default to 10]
 **pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
@@ -322,9 +319,7 @@ Name | Type | Description  | Notes
 
 > IncidentTeamResponse UpdateIncidentTeam(ctx, teamId, body)
 
-Update an existing incident team
-
-
+Updates an existing incident team. Only provide the attributes which should be updated as this request is a partial update.
 
 ### Example
 
@@ -351,7 +346,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.IncidentTeamsApi.UpdateIncidentTeam(ctx, teamId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.UpdateIncidentTeam``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.UpdateIncidentTeam`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateIncidentTeam`: IncidentTeamResponse
@@ -364,10 +359,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**teamId** | **string** | The ID of the incident team. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**teamId** | **string** | The ID of the incident team. |  |
 **body** | [**IncidentTeamUpdateRequest**](IncidentTeamUpdateRequest.md) | Incident Team Payload. | 
+
 
 ### Optional Parameters
 

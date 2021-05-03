@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CreatedAt** | Pointer to **time.Time** | Creation time of the role. | [optional] [readonly] 
 **ModifiedAt** | Pointer to **time.Time** | Time of last role modification. | [optional] [readonly] 
 **Name** | **string** | Name of the role. | 

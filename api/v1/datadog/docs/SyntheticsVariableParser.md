@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Type** | [**SyntheticsGlobalVariableParserType**](SyntheticsGlobalVariableParserType.md) |  | 
 **Value** | Pointer to **string** | Regex or JSON path used for the parser. Not used with type &#x60;raw&#x60;. | [optional] 
 

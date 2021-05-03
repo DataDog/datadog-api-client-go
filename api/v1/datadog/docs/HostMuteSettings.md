@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **End** | Pointer to **int64** | POSIX timestamp in seconds when the host is unmuted. If omitted, the host remains muted until explicitly unmuted. | [optional] 
 **Message** | Pointer to **string** | Message to associate with the muting of this host. | [optional] 
 **Override** | Pointer to **bool** | If true and the host is already muted, replaces existing host mute settings. | [optional] 

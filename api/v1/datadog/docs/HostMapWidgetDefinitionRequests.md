@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Fill** | Pointer to [**HostMapRequest**](HostMapRequest.md) |  | [optional] 
 **Size** | Pointer to [**HostMapRequest**](HostMapRequest.md) |  | [optional] 
 

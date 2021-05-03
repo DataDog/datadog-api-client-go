@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Cls** | Pointer to **int64** | Cumulative Layout Shift. | [optional] 
 **Lcp** | Pointer to **int64** | Largest Contentful Paint in milliseconds. | [optional] 
 **Url** | Pointer to **string** | URL attached to the metrics. | [optional] 

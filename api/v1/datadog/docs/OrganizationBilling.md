@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Type** | Pointer to **string** | The type of billing. Only &#x60;parent_billing&#x60; is supported. | [optional] 
 
 ## Methods

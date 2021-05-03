@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AccountId** | Pointer to **string** | Your AWS Account ID without dashes. | [optional] 
 **Namespace** | Pointer to [**AWSNamespace**](AWSNamespace.md) |  | [optional] 
 **TagFilterStr** | Pointer to **string** | The tag filter string. | [optional] 

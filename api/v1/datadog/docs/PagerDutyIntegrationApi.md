@@ -1,9 +1,9 @@
-# \PagerDutyIntegrationApi
+# PagerDutyIntegrationApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreatePagerDutyIntegrationService**](PagerDutyIntegrationApi.md#CreatePagerDutyIntegrationService) | **Post** /api/v1/integration/pagerduty/configuration/services | Create a new service object
 [**DeletePagerDutyIntegrationService**](PagerDutyIntegrationApi.md#DeletePagerDutyIntegrationService) | **Delete** /api/v1/integration/pagerduty/configuration/services/{service_name} | Delete a single service object
 [**GetPagerDutyIntegrationService**](PagerDutyIntegrationApi.md#GetPagerDutyIntegrationService) | **Get** /api/v1/integration/pagerduty/configuration/services/{service_name} | Get a single service object
@@ -15,9 +15,7 @@ Method | HTTP request | Description
 
 > PagerDutyServiceName CreatePagerDutyIntegrationService(ctx, body)
 
-Create a new service object
-
-
+Create a new service object in the PagerDuty integration.
 
 ### Example
 
@@ -42,7 +40,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.CreatePagerDutyIntegrationService``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.CreatePagerDutyIntegrationService`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreatePagerDutyIntegrationService`: PagerDutyServiceName
@@ -55,9 +53,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**PagerDutyService**](PagerDutyService.md) | Create a new service object request body. | 
+
 
 ### Optional Parameters
 
@@ -86,9 +85,7 @@ This endpoint does not have optional parameters.
 
 > DeletePagerDutyIntegrationService(ctx, serviceName)
 
-Delete a single service object
-
-
+Delete a single service object in the Datadog-PagerDuty integration.
 
 ### Example
 
@@ -112,7 +109,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService(ctx, serviceName)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.DeletePagerDutyIntegrationService``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.DeletePagerDutyIntegrationService`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -122,9 +119,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **serviceName** | **string** | The service name | 
+
 
 ### Optional Parameters
 
@@ -153,9 +151,7 @@ This endpoint does not have optional parameters.
 
 > PagerDutyServiceName GetPagerDutyIntegrationService(ctx, serviceName)
 
-Get a single service object
-
-
+Get service name in the Datadog-PagerDuty integration.
 
 ### Example
 
@@ -180,7 +176,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.PagerDutyIntegrationApi.GetPagerDutyIntegrationService(ctx, serviceName)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.GetPagerDutyIntegrationService``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.GetPagerDutyIntegrationService`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetPagerDutyIntegrationService`: PagerDutyServiceName
@@ -193,9 +189,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **serviceName** | **string** | The service name. | 
+
 
 ### Optional Parameters
 
@@ -224,9 +221,7 @@ This endpoint does not have optional parameters.
 
 > UpdatePagerDutyIntegrationService(ctx, serviceName, body)
 
-Update a single service object
-
-
+Update a single service object in the Datadog-PagerDuty integration.
 
 ### Example
 
@@ -251,7 +246,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, serviceName, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -261,10 +256,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serviceName** | **string** | The service name | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**serviceName** | **string** | The service name |  |
 **body** | [**PagerDutyServiceKey**](PagerDutyServiceKey.md) | Update an existing service object request body. | 
+
 
 ### Optional Parameters
 

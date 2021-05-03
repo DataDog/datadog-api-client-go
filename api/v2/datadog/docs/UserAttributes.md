@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CreatedAt** | Pointer to **time.Time** | Creation time of the user. | [optional] 
 **Disabled** | Pointer to **bool** | Whether the user is disabled. | [optional] 
 **Email** | Pointer to **string** | Email of the user. | [optional] 

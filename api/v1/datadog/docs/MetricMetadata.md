@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Description** | Pointer to **string** | Metric description. | [optional] 
 **Integration** | Pointer to **string** | Name of the integration that sent the metric if applicable. | [optional] [readonly] 
 **PerUnit** | Pointer to **string** | Per unit of the metric such as &#x60;second&#x60; in &#x60;bytes per second&#x60;. | [optional] 

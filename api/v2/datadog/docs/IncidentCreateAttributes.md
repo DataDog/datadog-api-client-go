@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CustomerImpacted** | **bool** | A flag indicating whether the incident caused customer impact. | 
 **Fields** | Pointer to [**map[string]IncidentFieldAttributes**](IncidentFieldAttributes.md) | A condensed view of the user-defined fields for which to create initial selections. | [optional] 
 **InitialTimelineCells** | Pointer to [**[]IncidentTimelineCellCreateAttributes**](IncidentTimelineCellCreateAttributes.md) | An array of initial timeline cells to be placed at the beginning of the incident timeline. | [optional] 

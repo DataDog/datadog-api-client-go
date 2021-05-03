@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **BackgroundColor** | Pointer to **string** | Background color of the group title. | [optional] 
 **BannerImg** | Pointer to **string** | URL of image to display as a banner for the group. | [optional] 
 **LayoutType** | [**WidgetLayoutType**](WidgetLayoutType.md) |  | 

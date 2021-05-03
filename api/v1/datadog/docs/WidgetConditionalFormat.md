@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Comparator** | [**WidgetComparator**](WidgetComparator.md) |  | 
 **CustomBgColor** | Pointer to **string** | Color palette to apply to the background, same values available as palette. | [optional] 
 **CustomFgColor** | Pointer to **string** | Color palette to apply to the foreground, same values available as palette. | [optional] 

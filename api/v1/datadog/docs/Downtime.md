@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Active** | Pointer to **bool** | If a scheduled downtime currently exists. | [optional] [readonly] 
 **Canceled** | Pointer to **NullableInt64** | If a scheduled downtime is canceled. | [optional] [readonly] 
 **CreatorId** | Pointer to **int32** | User ID of the downtime creator. | [optional] [readonly] 

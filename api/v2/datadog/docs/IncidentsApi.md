@@ -1,9 +1,9 @@
-# \IncidentsApi
+# IncidentsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateIncident**](IncidentsApi.md#CreateIncident) | **Post** /api/v2/incidents | Create an incident
 [**DeleteIncident**](IncidentsApi.md#DeleteIncident) | **Delete** /api/v2/incidents/{incident_id} | Delete an existing incident
 [**GetIncident**](IncidentsApi.md#GetIncident) | **Get** /api/v2/incidents/{incident_id} | Get the details of an incident
@@ -16,9 +16,7 @@ Method | HTTP request | Description
 
 > IncidentResponse CreateIncident(ctx, body)
 
-Create an incident
-
-
+Create an incident.
 
 ### Example
 
@@ -44,7 +42,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.IncidentsApi.CreateIncident(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.CreateIncident``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.CreateIncident`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateIncident`: IncidentResponse
@@ -57,9 +55,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**IncidentCreateRequest**](IncidentCreateRequest.md) | Incident payload. | 
+
 
 ### Optional Parameters
 
@@ -88,9 +87,7 @@ This endpoint does not have optional parameters.
 
 > DeleteIncident(ctx, incidentId)
 
-Delete an existing incident
-
-
+Deletes an existing incident from the users organization.
 
 ### Example
 
@@ -115,7 +112,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.IncidentsApi.DeleteIncident(ctx, incidentId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.DeleteIncident``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.DeleteIncident`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -125,9 +122,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **incidentId** | **string** | The UUID the incident. | 
+
 
 ### Optional Parameters
 
@@ -156,9 +154,7 @@ This endpoint does not have optional parameters.
 
 > IncidentResponse GetIncident(ctx, incidentId, datadog.GetIncidentOptionalParameters{})
 
-Get the details of an incident
-
-
+Get the details of an incident by `incident_id`.
 
 ### Example
 
@@ -188,7 +184,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.IncidentsApi.GetIncident(ctx, incidentId, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetIncident``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetIncident`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIncident`: IncidentResponse
@@ -201,18 +197,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **incidentId** | **string** | The UUID the incident. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetIncidentOptionalParameters struct
+Other parameters are passed through a pointer to a GetIncidentOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **include** | [**[]IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
 
 ### Return type
@@ -237,9 +234,7 @@ Name | Type | Description  | Notes
 
 > IncidentsResponse ListIncidents(ctx, datadog.ListIncidentsOptionalParameters{})
 
-Get a list of incidents
-
-
+Get all incidents for the user's organization.
 
 ### Example
 
@@ -272,7 +267,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.IncidentsApi.ListIncidents(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.ListIncidents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.ListIncidents`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListIncidents`: IncidentsResponse
@@ -285,14 +280,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListIncidentsOptionalParameters struct
+Other parameters are passed through a pointer to a ListIncidentsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **include** | [**[]IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
 **pageSize** | **int64** | Size for a given page. | [default to 10]
 **pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
@@ -319,9 +315,7 @@ Name | Type | Description  | Notes
 
 > IncidentResponse UpdateIncident(ctx, incidentId, body)
 
-Update an existing incident
-
-
+Updates an incident. Provide only the attributes that should be updated as this request is a partial update.
 
 ### Example
 
@@ -348,7 +342,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.IncidentsApi.UpdateIncident(ctx, incidentId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.UpdateIncident``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.UpdateIncident`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateIncident`: IncidentResponse
@@ -361,10 +355,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**incidentId** | **string** | The UUID the incident. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**incidentId** | **string** | The UUID the incident. |  |
 **body** | [**IncidentUpdateRequest**](IncidentUpdateRequest.md) | Incident Payload. | 
+
 
 ### Optional Parameters
 

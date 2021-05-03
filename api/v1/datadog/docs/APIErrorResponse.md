@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Errors** | **[]string** | Array of errors returned by the API. | 
 
 ## Methods

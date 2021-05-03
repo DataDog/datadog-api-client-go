@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Cert** | Pointer to [**SyntheticsTestRequestCertificateItem**](SyntheticsTestRequestCertificateItem.md) |  | [optional] 
 **Key** | Pointer to [**SyntheticsTestRequestCertificateItem**](SyntheticsTestRequestCertificateItem.md) |  | [optional] 
 

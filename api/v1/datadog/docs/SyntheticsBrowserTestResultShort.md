@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CheckTime** | Pointer to **float64** | Last time the browser test was performed. | [optional] 
 **ProbeDc** | Pointer to **string** | Location from which the Browser test was performed. | [optional] 
 **Result** | Pointer to [**SyntheticsBrowserTestResultShortResult**](SyntheticsBrowserTestResultShortResult.md) |  | [optional] 

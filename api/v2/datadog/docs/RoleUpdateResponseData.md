@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | Pointer to [**RoleUpdateAttributes**](RoleUpdateAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the role. | [optional] 
 **Relationships** | Pointer to [**RoleResponseRelationships**](RoleResponseRelationships.md) |  | [optional] 

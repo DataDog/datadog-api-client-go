@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **By** | Pointer to **map[string]string** | The key, value pairs for each group by | [optional] 
 **Computes** | Pointer to [**map[string]LogsAggregateBucketValue**](LogsAggregateBucketValue.md) | A map of the metric name -&gt; value for regular compute or list of values for a timeseries | [optional] 
 

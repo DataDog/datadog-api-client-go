@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | [**IncidentCreateAttributes**](IncidentCreateAttributes.md) |  | 
 **Relationships** | Pointer to [**IncidentCreateRelationships**](IncidentCreateRelationships.md) |  | [optional] 
 **Type** | [**IncidentType**](IncidentType.md) |  | [default to INCIDENTTYPE_INCIDENTS]

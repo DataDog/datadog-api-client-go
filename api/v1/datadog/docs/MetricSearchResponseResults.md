@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Metrics** | Pointer to **[]string** | List of metrics that match the search query. | [optional] 
 
 ## Methods

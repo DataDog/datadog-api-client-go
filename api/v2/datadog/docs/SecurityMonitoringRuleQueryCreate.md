@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AgentRule** | Pointer to [**SecurityMonitoringRuntimeAgentRule**](SecurityMonitoringRuntimeAgentRule.md) |  | [optional] 
 **Aggregation** | Pointer to [**SecurityMonitoringRuleQueryAggregation**](SecurityMonitoringRuleQueryAggregation.md) |  | [optional] 
 **DistinctFields** | Pointer to **[]string** | Field for which the cardinality is measured. Sent as an array. | [optional] 

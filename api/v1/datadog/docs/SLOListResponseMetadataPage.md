@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **TotalCount** | Pointer to **int64** | The total number of resources that could be retrieved ignoring the parameters and filters in the request. | [optional] 
 **TotalFilteredCount** | Pointer to **int64** | The total number of resources that match the parameters and filters in the request. This attribute can be used by a client to determine the total number of pages. | [optional] 
 

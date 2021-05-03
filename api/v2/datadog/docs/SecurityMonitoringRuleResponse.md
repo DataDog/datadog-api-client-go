@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Cases** | Pointer to [**[]SecurityMonitoringRuleCase**](SecurityMonitoringRuleCase.md) | Cases for generating signals. | [optional] 
 **CreatedAt** | Pointer to **int64** | When the rule was created, timestamp in milliseconds. | [optional] 
 **CreationAuthorId** | Pointer to **int64** | User ID of the user who created the rule. | [optional] 

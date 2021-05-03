@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **FillMax** | Pointer to **string** | Max value to use to color the map. | [optional] 
 **FillMin** | Pointer to **string** | Min value to use to color the map. | [optional] 
 **Palette** | Pointer to **string** | Color palette to apply to the widget. | [optional] 

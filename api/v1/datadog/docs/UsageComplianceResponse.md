@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageComplianceHour**](UsageComplianceHour.md) | Get hourly usage for Compliance Monitoring. | [optional] 
 
 ## Methods

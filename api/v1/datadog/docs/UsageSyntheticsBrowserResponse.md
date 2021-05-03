@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageSyntheticsBrowserHour**](UsageSyntheticsBrowserHour.md) | Get hourly usage for Synthetics Browser tests. | [optional] 
 
 ## Methods

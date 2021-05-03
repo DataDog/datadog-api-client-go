@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Category** | Pointer to [**SLOCorrectionCategory**](SLOCorrectionCategory.md) |  | [optional] 
 **Description** | Pointer to **string** | Description of the correction being made. | [optional] 
 **End** | Pointer to **int64** | Ending time of the correction in epoch seconds | [optional] 

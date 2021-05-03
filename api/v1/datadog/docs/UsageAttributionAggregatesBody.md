@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AggType** | Pointer to **string** | The aggregate type. | [optional] 
 **Field** | Pointer to **string** | The field. | [optional] 
 **Value** | Pointer to **float64** | The value for a given field. | [optional] 

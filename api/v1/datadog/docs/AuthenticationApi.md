@@ -1,9 +1,9 @@
-# \AuthenticationApi
+# AuthenticationApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**Validate**](AuthenticationApi.md#Validate) | **Get** /api/v1/validate | Validate API key
 
 
@@ -12,9 +12,7 @@ Method | HTTP request | Description
 
 > AuthenticationValidationResponse Validate(ctx)
 
-Validate API key
-
-
+Check if the API key (not the APP key) is valid. If invalid, a 403 is returned.
 
 ### Example
 
@@ -38,7 +36,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.AuthenticationApi.Validate(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.Validate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.Validate`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `Validate`: AuthenticationValidationResponse
@@ -50,6 +48,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 

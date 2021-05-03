@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AllowFailure** | Pointer to **bool** | A boolean set to allow this step to fail. | [optional] 
 **Name** | Pointer to **string** | The name of the step. | [optional] 
 **Params** | Pointer to **interface{}** | The parameters of the step. | [optional] 

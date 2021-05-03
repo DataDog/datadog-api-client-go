@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | [**RelationshipToIncidentPostmortemData**](RelationshipToIncidentPostmortemData.md) |  | 
 
 ## Methods

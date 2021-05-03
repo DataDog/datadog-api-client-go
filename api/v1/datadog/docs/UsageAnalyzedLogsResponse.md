@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageAnalyzedLogsHour**](UsageAnalyzedLogsHour.md) | Get hourly usage for analyzed logs. | [optional] 
 
 ## Methods

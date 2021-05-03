@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**RoleCreateResponseData**](RoleCreateResponseData.md) |  | [optional] 
 
 ## Methods

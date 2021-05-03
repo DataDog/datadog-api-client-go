@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Author** | Pointer to [**Creator**](Creator.md) |  | [optional] 
 **Created** | Pointer to **time.Time** | Date of creation of the dashboard. | [optional] [readonly] 
 **Icon** | Pointer to **string** | URL to the icon of the dashboard. | [optional] [readonly] 
