@@ -5,7 +5,7 @@ if [ $# -eq 0 ]; then
     exit 2
 fi
 
-./extract-code-blocks.sh
+./extract-code-blocks.sh examples $1
 
 for f in examples/$1/*/*.go ; do
     df=$(dirname $f)/$(basename $f .go)
