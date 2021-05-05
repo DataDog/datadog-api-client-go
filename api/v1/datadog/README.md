@@ -530,6 +530,7 @@ Class | Method | HTTP request | Description
  - [SLOListResponseMetadata](docs/SLOListResponseMetadata.md)
  - [SLOListResponseMetadataPage](docs/SLOListResponseMetadataPage.md)
  - [SLOResponse](docs/SLOResponse.md)
+ - [SLOResponseData](docs/SLOResponseData.md)
  - [SLOThreshold](docs/SLOThreshold.md)
  - [SLOTimeframe](docs/SLOTimeframe.md)
  - [SLOType](docs/SLOType.md)
