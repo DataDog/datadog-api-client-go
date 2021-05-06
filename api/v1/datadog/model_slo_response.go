@@ -14,7 +14,7 @@ import (
 
 // SLOResponse A service level objective response containing a single service level objective.
 type SLOResponse struct {
-	Data *ServiceLevelObjective `json:"data,omitempty"`
+	Data *SLOResponseData `json:"data,omitempty"`
 	// An array of error messages. Each endpoint documents how/whether this field is used.
 	Errors *[]string `json:"errors,omitempty"`
 }
@@ -37,9 +37,9 @@ func NewSLOResponseWithDefaults() *SLOResponse {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *SLOResponse) GetData() ServiceLevelObjective {
+func (o *SLOResponse) GetData() SLOResponseData {
 	if o == nil || o.Data == nil {
-		var ret ServiceLevelObjective
+		var ret SLOResponseData
 		return ret
 	}
 	return *o.Data
@@ -47,7 +47,7 @@ func (o *SLOResponse) GetData() ServiceLevelObjective {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOResponse) GetDataOk() (*ServiceLevelObjective, bool) {
+func (o *SLOResponse) GetDataOk() (*SLOResponseData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -63,8 +63,8 @@ func (o *SLOResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given ServiceLevelObjective and assigns it to the Data field.
-func (o *SLOResponse) SetData(v ServiceLevelObjective) {
+// SetData gets a reference to the given SLOResponseData and assigns it to the Data field.
+func (o *SLOResponse) SetData(v SLOResponseData) {
 	o.Data = &v
 }
 

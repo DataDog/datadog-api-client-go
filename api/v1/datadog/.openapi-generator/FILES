@@ -317,6 +317,7 @@ docs/SLOListResponse.md
 docs/SLOListResponseMetadata.md
 docs/SLOListResponseMetadataPage.md
 docs/SLOResponse.md
+docs/SLOResponseData.md
 docs/SLOThreshold.md
 docs/SLOTimeframe.md
 docs/SLOType.md
@@ -863,6 +864,7 @@ model_slo_list_response.go
 model_slo_list_response_metadata.go
 model_slo_list_response_metadata_page.go
 model_slo_response.go
+model_slo_response_data.go
 model_slo_threshold.go
 model_slo_timeframe.go
 model_slo_type.go
