@@ -91,13 +91,12 @@ func TestDashboardLifecycle(t *testing.T) {
 	changeWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	changeWidgetDefinition.SetTitleSize("16")
 	changeWidgetDefinition.SetTime(*widgetTime)
-	// label := "Test Custom Link label"
-	customLink := datadog.WidgetCustomLink{}
-	customLink.SetLabel("Test Custom Link label")
-	customLink.SetLink("https://app.datadoghq.com/dashboard/lists")
-	changeWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
-		customLink,
-	})
+	// customLink := datadog.WidgetCustomLink{}
+	// customLink.SetLabel("Test Custom Link label")
+	// customLink.SetLink("https://app.datadoghq.com/dashboard/lists")
+	// changeWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
+	// 	customLink,
+	// })
 	changeWidgetDefinition.SetRequests([]datadog.ChangeWidgetRequest{
 		*changeWidgetRequest,
 	})
