@@ -20,7 +20,7 @@ type SyntheticsTestOptions struct {
 	AllowInsecure *bool `json:"allow_insecure,omitempty"`
 	// For browser test, array with the different device IDs used to run the test.
 	DeviceIds *[]SyntheticsDeviceID `json:"device_ids,omitempty"`
-	// Whether or not to disable CORS mechanism. Currently only available for Chrome.
+	// Whether or not to disable CORS mechanism.
 	DisableCors *bool `json:"disableCors,omitempty"`
 	// For API HTTP test, whether or not the test should follow redirects.
 	FollowRedirects *bool `json:"follow_redirects,omitempty"`

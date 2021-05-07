@@ -314,7 +314,7 @@ This endpoint does not have optional parameters.
 
 ## GetSLO
 
-> SLOResponse GetSLO(ctx, sloId)
+> SLOResponse GetSLO(ctx, sloId, datadog.GetSLOOptionalParameters{})
 
 Get a service level objective object.
 
@@ -335,11 +335,15 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     sloId := "sloId_example" // string | The ID of the service level objective object.
+    withConfiguredAlertIds := true // bool | Get the IDs of SLO monitors that reference this SLO. (optional)
+    optionalParams := datadog.GetSLOOptionalParameters{
+        WithConfiguredAlertIds: &withConfiguredAlertIds,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServiceLevelObjectivesApi.GetSLO(ctx, sloId)
+    resp, r, err := apiClient.ServiceLevelObjectivesApi.GetSLO(ctx, sloId, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLO`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -361,8 +365,13 @@ Name | Type | Description  | Notes
 
 ### Optional Parameters
 
-This endpoint does not have optional parameters.
 
+Other parameters are passed through a pointer to a GetSLOOptionalParameters struct.
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**withConfiguredAlertIds** | **bool** | Get the IDs of SLO monitors that reference this SLO. | 
 
 ### Return type
 
