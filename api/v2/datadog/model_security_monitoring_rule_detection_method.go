@@ -18,13 +18,15 @@ type SecurityMonitoringRuleDetectionMethod string
 
 // List of SecurityMonitoringRuleDetectionMethod
 const (
-	SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD SecurityMonitoringRuleDetectionMethod = "threshold"
-	SECURITYMONITORINGRULEDETECTIONMETHOD_NEW_VALUE SecurityMonitoringRuleDetectionMethod = "new_value"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD         SecurityMonitoringRuleDetectionMethod = "threshold"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_NEW_VALUE         SecurityMonitoringRuleDetectionMethod = "new_value"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_ANOMALY_DETECTION SecurityMonitoringRuleDetectionMethod = "anomaly_detection"
 )
 
 var allowedSecurityMonitoringRuleDetectionMethodEnumValues = []SecurityMonitoringRuleDetectionMethod{
 	"threshold",
 	"new_value",
+	"anomaly_detection",
 }
 
 func (v *SecurityMonitoringRuleDetectionMethod) UnmarshalJSON(src []byte) error {
