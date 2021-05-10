@@ -260,7 +260,7 @@ func (o {{classname}}) MarshalJSON() ([]byte, error) {
 	{{/isNullable}}
 	{{! if argument is not nullable, don't set it if it is nil}}
 	{{^isNullable}}
-	if {{#required}}true{{/required}}{{^required}}o.{{name}} != nil{{/required}} {
+	if {{#required}}{{^isDateTime}}true{{/isDateTime}}{{#isDateTime}}!o.{{name}}.IsZero(){{/isDateTime}}{{/required}}{{^required}}o.{{name}} != nil{{/required}} {
 		toSerialize["{{baseName}}"] = o.{{name}}
 	}
 	{{/isNullable}}
