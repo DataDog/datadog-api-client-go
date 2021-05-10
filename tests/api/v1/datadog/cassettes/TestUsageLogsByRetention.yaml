@@ -1,0 +1,57 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      Dd-Operation-Id:
+      - GetUsageLogsByRetention
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1619689157033124613"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "6700678115962244817"
+    url: https://api.datadoghq.com/api/v1/usage/logs-by-retention?end_hr=2021-04-13T00%3A00%3A00Z&start_hr=2021-04-12T00%3A00%3A00Z
+    method: GET
+  response:
+    body: '{"usage":[{"retention":"15","indexed_events_count":797,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T00:00:00+00:00","live_indexed_events_count":797},{"retention":"15","indexed_events_count":827,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T01:00:00+00:00","live_indexed_events_count":827},{"retention":"15","indexed_events_count":791,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T02:00:00+00:00","live_indexed_events_count":791},{"retention":"15","indexed_events_count":797,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T03:00:00+00:00","live_indexed_events_count":797},{"retention":"15","indexed_events_count":831,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T04:00:00+00:00","live_indexed_events_count":831},{"retention":"15","indexed_events_count":789,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T05:00:00+00:00","live_indexed_events_count":789},{"retention":"15","indexed_events_count":834,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T06:00:00+00:00","live_indexed_events_count":834},{"retention":"15","indexed_events_count":795,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T07:00:00+00:00","live_indexed_events_count":795},{"retention":"15","indexed_events_count":826,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T08:00:00+00:00","live_indexed_events_count":826},{"retention":"15","indexed_events_count":841,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T09:00:00+00:00","live_indexed_events_count":841},{"retention":"15","indexed_events_count":839,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T10:00:00+00:00","live_indexed_events_count":839},{"retention":"15","indexed_events_count":816,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T11:00:00+00:00","live_indexed_events_count":816},{"retention":"15","indexed_events_count":854,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T12:00:00+00:00","live_indexed_events_count":854},{"retention":"15","indexed_events_count":798,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T13:00:00+00:00","live_indexed_events_count":798},{"retention":"15","indexed_events_count":843,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T14:00:00+00:00","live_indexed_events_count":843},{"retention":"15","indexed_events_count":771,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T15:00:00+00:00","live_indexed_events_count":771},{"retention":"15","indexed_events_count":888,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T16:00:00+00:00","live_indexed_events_count":888},{"retention":"15","indexed_events_count":751,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T17:00:00+00:00","live_indexed_events_count":751},{"retention":"15","indexed_events_count":832,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T18:00:00+00:00","live_indexed_events_count":832},{"retention":"15","indexed_events_count":791,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T19:00:00+00:00","live_indexed_events_count":791},{"retention":"15","indexed_events_count":825,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T20:00:00+00:00","live_indexed_events_count":825},{"retention":"15","indexed_events_count":803,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T21:00:00+00:00","live_indexed_events_count":803},{"retention":"15","indexed_events_count":829,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T22:00:00+00:00","live_indexed_events_count":829},{"retention":"15","indexed_events_count":789,"rehydrated_indexed_events_count":0,"hour":"2021-04-12T23:00:00+00:00","live_indexed_events_count":789}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 10 May 2021 13:47:09 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
+      X-Dd-Version:
+      - "35.4495622"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "400"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "339"
+      X-Ratelimit-Reset:
+      - "771"
+    status: 200 OK
+    code: 200
+    duration: ""
