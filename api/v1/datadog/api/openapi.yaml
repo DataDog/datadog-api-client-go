@@ -19716,7 +19716,6 @@ components:
           type: array
       required:
       - assertions
-      - request
       type: object
     SyntheticsTestDetails:
       description: Object containing details about your Synthetic test.
@@ -20117,6 +20116,7 @@ components:
     SyntheticsTickInterval:
       description: The frequency at which to run the Synthetic test (in seconds).
       enum:
+      - 30
       - 60
       - 300
       - 900
@@ -20129,6 +20129,7 @@ components:
       format: int64
       type: integer
       x-enum-varnames:
+      - THIRTY_SECONDS
       - MINUTE
       - FIVE_MINUTES
       - FIFTEEN_MINUTES
