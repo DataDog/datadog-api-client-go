@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **LastNodataTs** | Pointer to **int64** | Latest timestamp the monitor was in NO_DATA state. | [optional] 
 **LastNotifiedTs** | Pointer to **int64** | Latest timestamp of the notification sent for this monitor group. | [optional] 
 **LastResolvedTs** | Pointer to **int64** | Latest timestamp the monitor group was resolved. | [optional] 

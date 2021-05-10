@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Email** | **string** | The email of the user. | 
 **Name** | Pointer to **string** | The name of the user. | [optional] 
 **Title** | Pointer to **string** | The title of the user. | [optional] 

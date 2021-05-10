@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Tests** | Pointer to [**[]SyntheticsCITest**](SyntheticsCITest.md) | Individual synthetics test. | [optional] 
 
 ## Methods

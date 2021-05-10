@@ -17,7 +17,8 @@ type SLOListResponse struct {
 	// An array of service level objective objects.
 	Data *[]ServiceLevelObjective `json:"data,omitempty"`
 	// An array of error messages. Each endpoint documents how/whether this field is used.
-	Errors *[]string `json:"errors,omitempty"`
+	Errors   *[]string                `json:"errors,omitempty"`
+	Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
 }
 
 // NewSLOListResponse instantiates a new SLOListResponse object
@@ -101,6 +102,38 @@ func (o *SLOListResponse) SetErrors(v []string) {
 	o.Errors = &v
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *SLOListResponse) GetMetadata() SLOListResponseMetadata {
+	if o == nil || o.Metadata == nil {
+		var ret SLOListResponseMetadata
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOListResponse) GetMetadataOk() (*SLOListResponseMetadata, bool) {
+	if o == nil || o.Metadata == nil {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *SLOListResponse) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given SLOListResponseMetadata and assigns it to the Metadata field.
+func (o *SLOListResponse) SetMetadata(v SLOListResponseMetadata) {
+	o.Metadata = &v
+}
+
 func (o SLOListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Data != nil {
@@ -108,6 +141,9 @@ func (o SLOListResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
+	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
 	}
 	return json.Marshal(toSerialize)
 }

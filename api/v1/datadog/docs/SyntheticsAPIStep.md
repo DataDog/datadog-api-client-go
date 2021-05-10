@@ -3,9 +3,11 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
+**AllowFailure** | Pointer to **bool** | Determines whether or not to continue with test if this step fails. | [optional] 
 **Assertions** | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [optional] [default to []]
 **ExtractedValues** | Pointer to [**[]SyntheticsParsingOptions**](SyntheticsParsingOptions.md) | Array of values to parse and save as variables from the response. | [optional] 
+**IsCritical** | Pointer to **bool** | Determines whether or not to consider the entire test as failed if this step fails. Can be used only if &#x60;allowFailure&#x60; is &#x60;true&#x60;. | [optional] 
 **Name** | Pointer to **string** | The name of the step. | [optional] 
 **Request** | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | [optional] 
 **Subtype** | Pointer to [**SyntheticsAPIStepSubtype**](SyntheticsAPIStepSubtype.md) |  | [optional] 
@@ -28,6 +30,31 @@ will change when the set of required properties is changed
 NewSyntheticsAPIStepWithDefaults instantiates a new SyntheticsAPIStep object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAllowFailure
+
+`func (o *SyntheticsAPIStep) GetAllowFailure() bool`
+
+GetAllowFailure returns the AllowFailure field if non-nil, zero value otherwise.
+
+### GetAllowFailureOk
+
+`func (o *SyntheticsAPIStep) GetAllowFailureOk() (*bool, bool)`
+
+GetAllowFailureOk returns a tuple with the AllowFailure field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowFailure
+
+`func (o *SyntheticsAPIStep) SetAllowFailure(v bool)`
+
+SetAllowFailure sets AllowFailure field to given value.
+
+### HasAllowFailure
+
+`func (o *SyntheticsAPIStep) HasAllowFailure() bool`
+
+HasAllowFailure returns a boolean if a field has been set.
 
 ### GetAssertions
 
@@ -78,6 +105,31 @@ SetExtractedValues sets ExtractedValues field to given value.
 `func (o *SyntheticsAPIStep) HasExtractedValues() bool`
 
 HasExtractedValues returns a boolean if a field has been set.
+
+### GetIsCritical
+
+`func (o *SyntheticsAPIStep) GetIsCritical() bool`
+
+GetIsCritical returns the IsCritical field if non-nil, zero value otherwise.
+
+### GetIsCriticalOk
+
+`func (o *SyntheticsAPIStep) GetIsCriticalOk() (*bool, bool)`
+
+GetIsCriticalOk returns a tuple with the IsCritical field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsCritical
+
+`func (o *SyntheticsAPIStep) SetIsCritical(v bool)`
+
+SetIsCritical sets IsCritical field to given value.
+
+### HasIsCritical
+
+`func (o *SyntheticsAPIStep) HasIsCritical() bool`
+
+HasIsCritical returns a boolean if a field has been set.
 
 ### GetName
 

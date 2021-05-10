@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **C** | Pointer to **string** | Country Name that issued the certificate. | [optional] 
 **CN** | Pointer to **string** | Common Name that issued certificate. | [optional] 
 **L** | Pointer to **string** | Locality that issued the certificate. | [optional] 

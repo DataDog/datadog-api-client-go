@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **From** | Pointer to **string** | Time when the metrics were active, seconds since the Unix epoch. | [optional] 
 **Metrics** | Pointer to **[]string** | List of metric names. | [optional] 
 

@@ -21,8 +21,8 @@ function slug(value) {
     return tolower(head) tail;
 }
 
-/^# \\.+Api/ {
-    tag = slug(substr($2, 2, length($2)-4));
+/^# .+Api/ {
+    tag = slug(substr($2, 1, length($2)-3));
 }
 /^## / {
     operation_id = $2;

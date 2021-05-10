@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **BillingPlan** | Pointer to **string** | The billing plan. | [optional] 
 **EndDate** | Pointer to **time.Time** | Shows the last date of usage. | [optional] 
 **NumOrgs** | Pointer to **int64** | The number of organizations. | [optional] 

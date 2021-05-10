@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ComputedOn** | Pointer to **string** | The date the specified custom report was computed. | [optional] 
 **EndDate** | Pointer to **string** | The ending date of custom report. | [optional] 
 **Size** | Pointer to **int64** | size | [optional] 

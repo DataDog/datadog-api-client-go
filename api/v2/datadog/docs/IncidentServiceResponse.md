@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | [**IncidentServiceResponseData**](IncidentServiceResponseData.md) |  | 
 **Included** | Pointer to [**[]IncidentServiceIncludedItems**](IncidentServiceIncludedItems.md) | Included objects from relationships. | [optional] [readonly] 
 

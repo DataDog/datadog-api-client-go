@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | Pointer to [**PartialApplicationKeyAttributes**](PartialApplicationKeyAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | ID of the application key. | [optional] 
 **Relationships** | Pointer to [**ApplicationKeyRelationships**](ApplicationKeyRelationships.md) |  | [optional] 

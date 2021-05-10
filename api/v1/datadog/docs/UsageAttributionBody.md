@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Month** | Pointer to **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM]. | [optional] 
 **OrgName** | Pointer to **string** | The name of the organization. | [optional] 
 **PublicId** | Pointer to **string** | The organization public ID. | [optional] 

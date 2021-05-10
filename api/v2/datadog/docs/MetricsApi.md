@@ -1,9 +1,9 @@
-# \MetricsApi
+# MetricsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateTagConfiguration**](MetricsApi.md#CreateTagConfiguration) | **Post** /api/v2/metrics/{metric_name}/tags | Create a tag configuration
 [**DeleteTagConfiguration**](MetricsApi.md#DeleteTagConfiguration) | **Delete** /api/v2/metrics/{metric_name}/tags | Delete a tag configuration
 [**ListTagConfigurationByName**](MetricsApi.md#ListTagConfigurationByName) | **Get** /api/v2/metrics/{metric_name}/tags | List tag configuration by name
@@ -18,9 +18,8 @@ Method | HTTP request | Description
 
 > MetricTagConfigurationResponse CreateTagConfiguration(ctx, metricName, body)
 
-Create a tag configuration
-
-
+Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric. Optionally, include percentile aggregations on any distribution metric.
+Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
 
 ### Example
 
@@ -47,7 +46,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.CreateTagConfiguration(ctx, metricName, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.CreateTagConfiguration``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.CreateTagConfiguration`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateTagConfiguration`: MetricTagConfigurationResponse
@@ -60,10 +59,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**metricName** | **string** | The name of the metric. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**metricName** | **string** | The name of the metric. |  |
 **body** | [**MetricTagConfigurationCreateRequest**](MetricTagConfigurationCreateRequest.md) |  | 
+
 
 ### Optional Parameters
 
@@ -92,9 +92,8 @@ This endpoint does not have optional parameters.
 
 > DeleteTagConfiguration(ctx, metricName)
 
-Delete a tag configuration
-
-
+Deletes a metric's tag configuration. Can only be used with application
+keys from users with the `Manage Tags for Metrics` permission.
 
 ### Example
 
@@ -119,7 +118,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.MetricsApi.DeleteTagConfiguration(ctx, metricName)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.DeleteTagConfiguration``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.DeleteTagConfiguration`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -129,9 +128,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **metricName** | **string** | The name of the metric. | 
+
 
 ### Optional Parameters
 
@@ -160,9 +160,7 @@ This endpoint does not have optional parameters.
 
 > MetricTagConfigurationResponse ListTagConfigurationByName(ctx, metricName)
 
-List tag configuration by name
-
-
+Returns the tag configuration for the given metric name.
 
 ### Example
 
@@ -188,7 +186,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.ListTagConfigurationByName(ctx, metricName)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurationByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurationByName`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListTagConfigurationByName`: MetricTagConfigurationResponse
@@ -201,9 +199,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **metricName** | **string** | The name of the metric. | 
+
 
 ### Optional Parameters
 
@@ -232,9 +231,8 @@ This endpoint does not have optional parameters.
 
 > MetricsAndMetricTagConfigurationsResponse ListTagConfigurations(ctx, datadog.ListTagConfigurationsOptionalParameters{})
 
-List tag configurations
-
-
+Returns all configured count/gauge/rate/distribution metric names
+(with additional filters if specified).
 
 ### Example
 
@@ -273,7 +271,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.ListTagConfigurations(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurations`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListTagConfigurations`: MetricsAndMetricTagConfigurationsResponse
@@ -286,14 +284,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListTagConfigurationsOptionalParameters struct
+Other parameters are passed through a pointer to a ListTagConfigurationsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **filterConfigured** | **bool** | Filter metrics that have configured tags. | 
 **filterTagsConfigured** | **string** | Filter tag configurations by configured tags. | 
 **filterMetricType** | [**MetricTagConfigurationMetricTypes**](MetricTagConfigurationMetricTypes.md) | Filter tag configurations by metric type. | [default to &quot;gauge&quot;]
@@ -323,9 +322,7 @@ Name | Type | Description  | Notes
 
 > MetricAllTagsResponse ListTagsByMetricName(ctx, metricName)
 
-List tags by metric name
-
-
+View indexed tag key-value pairs for a given metric name.
 
 ### Example
 
@@ -350,7 +347,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.ListTagsByMetricName(ctx, metricName)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagsByMetricName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagsByMetricName`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListTagsByMetricName`: MetricAllTagsResponse
@@ -363,9 +360,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **metricName** | **string** | The name of the metric. | 
+
 
 ### Optional Parameters
 
@@ -394,9 +392,11 @@ This endpoint does not have optional parameters.
 
 > MetricVolumesResponse ListVolumesByMetricName(ctx, metricName)
 
-List distinct metric volumes by metric name
+View distinct metrics volumes for the given metric name.
 
-
+Custom distribution metrics will return both ingested and indexed custom metric volumes.
+For Metrics without Limits&trade; beta customers, all metrics will return both ingested/indexed volumes.
+Custom metrics generated in-app from other products will return `null` for ingested volumes.
 
 ### Example
 
@@ -421,7 +421,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.ListVolumesByMetricName(ctx, metricName)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListVolumesByMetricName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListVolumesByMetricName`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListVolumesByMetricName`: MetricVolumesResponse
@@ -434,9 +434,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **metricName** | **string** | The name of the metric. | 
+
 
 ### Optional Parameters
 
@@ -465,9 +466,8 @@ This endpoint does not have optional parameters.
 
 > MetricTagConfigurationResponse UpdateTagConfiguration(ctx, metricName, body)
 
-Update a tag configuration
-
-
+Update the tag configuration of a metric or percentile aggregations of a distribution metric. Can only be used with
+application keys from users with the `Manage Tags for Metrics` permission.
 
 ### Example
 
@@ -494,7 +494,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.MetricsApi.UpdateTagConfiguration(ctx, metricName, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.UpdateTagConfiguration``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.UpdateTagConfiguration`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateTagConfiguration`: MetricTagConfigurationResponse
@@ -507,10 +507,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**metricName** | **string** | The name of the metric. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**metricName** | **string** | The name of the metric. |  |
 **body** | [**MetricTagConfigurationUpdateRequest**](MetricTagConfigurationUpdateRequest.md) |  | 
+
 
 ### Optional Parameters
 

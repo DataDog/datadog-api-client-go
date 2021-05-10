@@ -3,8 +3,8 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**Data** | Pointer to [**ServiceLevelObjective**](ServiceLevelObjective.md) |  | [optional] 
+---- | ---- | ----------- | ------
+**Data** | Pointer to [**SLOResponseData**](SLOResponseData.md) |  | [optional] 
 **Errors** | Pointer to **[]string** | An array of error messages. Each endpoint documents how/whether this field is used. | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *SLOResponse) GetData() ServiceLevelObjective`
+`func (o *SLOResponse) GetData() SLOResponseData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *SLOResponse) GetDataOk() (*ServiceLevelObjective, bool)`
+`func (o *SLOResponse) GetDataOk() (*SLOResponseData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *SLOResponse) SetData(v ServiceLevelObjective)`
+`func (o *SLOResponse) SetData(v SLOResponseData)`
 
 SetData sets Data field to given value.
 

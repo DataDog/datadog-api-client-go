@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ApmHostSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
 **ApmHostTop99p** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
 **ApmTraceSearchSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 

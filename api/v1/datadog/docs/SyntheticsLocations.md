@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Locations** | Pointer to [**[]SyntheticsLocation**](SyntheticsLocation.md) | List of Synthetics locations. | [optional] 
 
 ## Methods

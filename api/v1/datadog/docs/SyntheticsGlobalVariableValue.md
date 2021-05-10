@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Secure** | Pointer to **bool** | Determines if the variable is secure. | [optional] 
 **Value** | **string** | Value of the global variable. When reading a global variable, the value will not be present if the variable is secure. | 
 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **IotDeviceCount** | Pointer to **int64** | The total number of IoT devices during a given hour. | [optional] 
 

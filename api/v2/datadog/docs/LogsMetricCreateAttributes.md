@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Compute** | [**LogsMetricCompute**](LogsMetricCompute.md) |  | 
 **Filter** | Pointer to [**LogsMetricFilter**](LogsMetricFilter.md) |  | [optional] 
 **GroupBy** | Pointer to [**[]LogsMetricGroupBy**](LogsMetricGroupBy.md) | The rules for the group by. | [optional] 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Elapsed** | Pointer to **int64** | The time elapsed in milliseconds | [optional] 
 **Page** | Pointer to [**LogsResponseMetadataPage**](LogsResponseMetadataPage.md) |  | [optional] 
 **RequestId** | Pointer to **string** | The identifier of the request | [optional] 

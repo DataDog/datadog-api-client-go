@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Org** | Pointer to [**RelationshipToOrganization**](RelationshipToOrganization.md) |  | [optional] 
 **OtherOrgs** | Pointer to [**RelationshipToOrganizations**](RelationshipToOrganizations.md) |  | [optional] 
 **OtherUsers** | Pointer to [**RelationshipToUsers**](RelationshipToUsers.md) |  | [optional] 

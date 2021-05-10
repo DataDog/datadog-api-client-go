@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Facet** | **string** | Facet name. | 
 **Limit** | Pointer to **int64** | Maximum number of items in the group. | [optional] 
 **Sort** | Pointer to [**LogQueryDefinitionGroupBySort**](LogQueryDefinitionGroupBySort.md) |  | [optional] 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Filter** | Pointer to [**LogsExclusionFilter**](LogsExclusionFilter.md) |  | [optional] 
 **IsEnabled** | Pointer to **bool** | Whether or not the exclusion filter is active. | [optional] 
 **Name** | **string** | Name of the index exclusion filter. | 

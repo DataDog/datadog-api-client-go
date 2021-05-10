@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Display** | Pointer to [**SlackIntegrationChannelDisplay**](SlackIntegrationChannelDisplay.md) |  | [optional] 
 **Name** | Pointer to **string** | Your channel name. | [optional] 
 

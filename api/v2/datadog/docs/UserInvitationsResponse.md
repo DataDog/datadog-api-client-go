@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]UserInvitationResponseData**](UserInvitationResponseData.md) | Array of user invitations. | [optional] 
 
 ## Methods

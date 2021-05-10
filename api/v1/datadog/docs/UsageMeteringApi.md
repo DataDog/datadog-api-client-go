@@ -1,9 +1,9 @@
-# \UsageMeteringApi
+# UsageMeteringApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**GetDailyCustomReports**](UsageMeteringApi.md#GetDailyCustomReports) | **Get** /api/v1/daily_custom_reports | Get the list of available daily custom reports
 [**GetIncidentManagement**](UsageMeteringApi.md#GetIncidentManagement) | **Get** /api/v1/usage/incident-management | Get hourly usage for incident management
 [**GetIngestedSpans**](UsageMeteringApi.md#GetIngestedSpans) | **Get** /api/v1/usage/ingested-spans | Get hourly usage for ingested spans
@@ -41,9 +41,7 @@ Method | HTTP request | Description
 
 > UsageCustomReportsResponse GetDailyCustomReports(ctx, datadog.GetDailyCustomReportsOptionalParameters{})
 
-Get the list of available daily custom reports
-
-
+Get daily custom reports.
 
 ### Example
 
@@ -78,7 +76,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetDailyCustomReports(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetDailyCustomReports``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetDailyCustomReports`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDailyCustomReports`: UsageCustomReportsResponse
@@ -91,14 +89,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetDailyCustomReportsOptionalParameters struct
+Other parameters are passed through a pointer to a GetDailyCustomReportsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **pageSize** | **int64** | The number of files to return in the response. &#x60;[default&#x3D;60]&#x60;. | 
 **pageNumber** | **int64** | The identifier of the first page to return. This parameter is used for the pagination feature &#x60;[default&#x3D;0]&#x60;. | 
 **sortDir** | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
@@ -126,9 +125,7 @@ Name | Type | Description  | Notes
 
 > UsageIncidentManagementResponse GetIncidentManagement(ctx, startHr, datadog.GetIncidentManagementOptionalParameters{})
 
-Get hourly usage for incident management
-
-
+Get hourly usage for incident management.
 
 ### Example
 
@@ -158,7 +155,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetIncidentManagement(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetIncidentManagement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetIncidentManagement`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIncidentManagement`: UsageIncidentManagementResponse
@@ -171,18 +168,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetIncidentManagementOptionalParameters struct
+Other parameters are passed through a pointer to a GetIncidentManagementOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
 
 ### Return type
@@ -207,9 +205,7 @@ Name | Type | Description  | Notes
 
 > UsageIngestedSpansResponse GetIngestedSpans(ctx, startHr, datadog.GetIngestedSpansOptionalParameters{})
 
-Get hourly usage for ingested spans
-
-
+Get hourly usage for ingested spans.
 
 ### Example
 
@@ -239,7 +235,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetIngestedSpans(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetIngestedSpans``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetIngestedSpans`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIngestedSpans`: UsageIngestedSpansResponse
@@ -252,18 +248,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetIngestedSpansOptionalParameters struct
+Other parameters are passed through a pointer to a GetIngestedSpansOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
 
 ### Return type
@@ -288,9 +285,7 @@ Name | Type | Description  | Notes
 
 > UsageCustomReportsResponse GetMonthlyCustomReports(ctx, datadog.GetMonthlyCustomReportsOptionalParameters{})
 
-Get the list of available monthly custom reports
-
-
+Get monthly custom reports.
 
 ### Example
 
@@ -325,7 +320,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetMonthlyCustomReports(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetMonthlyCustomReports``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetMonthlyCustomReports`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetMonthlyCustomReports`: UsageCustomReportsResponse
@@ -338,14 +333,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetMonthlyCustomReportsOptionalParameters struct
+Other parameters are passed through a pointer to a GetMonthlyCustomReportsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **pageSize** | **int64** | The number of files to return in the response &#x60;[default&#x3D;60].&#x60; | 
 **pageNumber** | **int64** | The identifier of the first page to return. This parameter is used for the pagination feature &#x60;[default&#x3D;0]&#x60;. | 
 **sortDir** | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
@@ -373,9 +369,7 @@ Name | Type | Description  | Notes
 
 > UsageSpecifiedCustomReportsResponse GetSpecifiedDailyCustomReports(ctx, reportId)
 
-Get specified daily custom reports
-
-
+Get specified daily custom reports.
 
 ### Example
 
@@ -401,7 +395,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetSpecifiedDailyCustomReports(ctx, reportId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetSpecifiedDailyCustomReports``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetSpecifiedDailyCustomReports`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSpecifiedDailyCustomReports`: UsageSpecifiedCustomReportsResponse
@@ -414,9 +408,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **reportId** | **string** | The specified ID to search results for. | 
+
 
 ### Optional Parameters
 
@@ -445,9 +440,7 @@ This endpoint does not have optional parameters.
 
 > UsageSpecifiedCustomReportsResponse GetSpecifiedMonthlyCustomReports(ctx, reportId)
 
-Get specified monthly custom reports
-
-
+Get specified monthly custom reports.
 
 ### Example
 
@@ -473,7 +466,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, reportId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetSpecifiedMonthlyCustomReports``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetSpecifiedMonthlyCustomReports`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSpecifiedMonthlyCustomReports`: UsageSpecifiedCustomReportsResponse
@@ -486,9 +479,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **reportId** | **string** | The specified ID to search results for. | 
+
 
 ### Optional Parameters
 
@@ -517,9 +511,9 @@ This endpoint does not have optional parameters.
 
 > UsageTracingWithoutLimitsResponse GetTracingWithoutLimits(ctx, startHr, datadog.GetTracingWithoutLimitsOptionalParameters{})
 
-Get hourly usage for tracing without limits
+Get hourly usage for tracing without limits.
 
-
+**Note** This endpoint has been renamed to `/api/v1/usage/ingested-spans`.
 
 ### Example
 
@@ -549,7 +543,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetTracingWithoutLimits(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetTracingWithoutLimits``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetTracingWithoutLimits`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetTracingWithoutLimits`: UsageTracingWithoutLimitsResponse
@@ -562,18 +556,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetTracingWithoutLimitsOptionalParameters struct
+Other parameters are passed through a pointer to a GetTracingWithoutLimitsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
 
 ### Return type
@@ -598,9 +593,7 @@ Name | Type | Description  | Notes
 
 > UsageAnalyzedLogsResponse GetUsageAnalyzedLogs(ctx, startHr, datadog.GetUsageAnalyzedLogsOptionalParameters{})
 
-Get hourly usage for analyzed logs
-
-
+Get hourly usage for analyzed logs (Security Monitoring).
 
 ### Example
 
@@ -630,7 +623,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageAnalyzedLogs(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageAnalyzedLogs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageAnalyzedLogs`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageAnalyzedLogs`: UsageAnalyzedLogsResponse
@@ -643,18 +636,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageAnalyzedLogsOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageAnalyzedLogsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
 
 ### Return type
@@ -679,9 +673,7 @@ Name | Type | Description  | Notes
 
 > UsageAttributionResponse GetUsageAttribution(ctx, startMonth, fields, datadog.GetUsageAttributionOptionalParameters{})
 
-Get Usage Attribution
-
-
+Get Usage Attribution.
 
 ### Example
 
@@ -717,7 +709,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageAttribution(ctx, startMonth, fields, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageAttribution``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageAttribution`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageAttribution`: UsageAttributionResponse
@@ -730,19 +722,20 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**startMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**startMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. |  |
 **fields** | **string** | The specified field to search results for. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageAttributionOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageAttributionOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month. | 
 **sortDirection** | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
 **sortName** | [**UsageAttributionSort**](UsageAttributionSort.md) | The field to sort by. | [default to &quot;custom_timeseries_usage&quot;]
@@ -769,9 +762,7 @@ Name | Type | Description  | Notes
 
 > UsageBillableSummaryResponse GetUsageBillableSummary(ctx, datadog.GetUsageBillableSummaryOptionalParameters{})
 
-Get billable usage across your account
-
-
+Get billable usage across your account.
 
 ### Example
 
@@ -800,7 +791,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageBillableSummary(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageBillableSummary``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageBillableSummary`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageBillableSummary`: UsageBillableSummaryResponse
@@ -813,14 +804,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageBillableSummaryOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageBillableSummaryOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **month** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage starting this month. | 
 
 ### Return type
@@ -845,9 +837,7 @@ Name | Type | Description  | Notes
 
 > UsageComplianceResponse GetUsageComplianceMonitoring(ctx, startHr, datadog.GetUsageComplianceMonitoringOptionalParameters{})
 
-Get hourly usage for Compliance Monitoring
-
-
+Get hourly usage for Compliance Monitoring.
 
 ### Example
 
@@ -877,7 +867,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageComplianceMonitoring(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageComplianceMonitoring``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageComplianceMonitoring`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageComplianceMonitoring`: UsageComplianceResponse
@@ -890,18 +880,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageComplianceMonitoringOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageComplianceMonitoringOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
 
 ### Return type
@@ -926,9 +917,7 @@ Name | Type | Description  | Notes
 
 > UsageFargateResponse GetUsageFargate(ctx, startHr, datadog.GetUsageFargateOptionalParameters{})
 
-Get hourly usage for Fargate
-
-
+Get hourly usage for [Fargate](https://docs.datadoghq.com/integrations/ecs_fargate/).
 
 ### Example
 
@@ -958,7 +947,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageFargate(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageFargate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageFargate`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageFargate`: UsageFargateResponse
@@ -971,18 +960,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageFargateOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageFargateOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 
 ### Return type
@@ -1007,9 +997,7 @@ Name | Type | Description  | Notes
 
 > UsageHostsResponse GetUsageHosts(ctx, startHr, datadog.GetUsageHostsOptionalParameters{})
 
-Get hourly usage for hosts and containers
-
-
+Get hourly usage for hosts and containers.
 
 ### Example
 
@@ -1039,7 +1027,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageHosts(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageHosts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageHosts`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageHosts`: UsageHostsResponse
@@ -1052,18 +1040,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageHostsOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageHostsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 
 ### Return type
@@ -1088,9 +1077,7 @@ Name | Type | Description  | Notes
 
 > UsageIndexedSpansResponse GetUsageIndexedSpans(ctx, startHr, datadog.GetUsageIndexedSpansOptionalParameters{})
 
-Get hourly usage for indexed spans
-
-
+Get hourly usage for indexed spans.
 
 ### Example
 
@@ -1120,7 +1107,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageIndexedSpans(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageIndexedSpans``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageIndexedSpans`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageIndexedSpans`: UsageIndexedSpansResponse
@@ -1133,18 +1120,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageIndexedSpansOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageIndexedSpansOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
 
 ### Return type
@@ -1169,9 +1157,7 @@ Name | Type | Description  | Notes
 
 > UsageIoTResponse GetUsageInternetOfThings(ctx, startHr, datadog.GetUsageInternetOfThingsOptionalParameters{})
 
-Get hourly usage for IoT
-
-
+Get hourly usage for IoT.
 
 ### Example
 
@@ -1201,7 +1187,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageInternetOfThings(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageInternetOfThings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageInternetOfThings`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageInternetOfThings`: UsageIoTResponse
@@ -1214,18 +1200,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageInternetOfThingsOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageInternetOfThingsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
 
 ### Return type
@@ -1250,9 +1237,7 @@ Name | Type | Description  | Notes
 
 > UsageLambdaResponse GetUsageLambda(ctx, startHr, datadog.GetUsageLambdaOptionalParameters{})
 
-Get hourly usage for Lambda
-
-
+Get hourly usage for lambda.
 
 ### Example
 
@@ -1282,7 +1267,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageLambda(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLambda``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLambda`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageLambda`: UsageLambdaResponse
@@ -1295,18 +1280,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageLambdaOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageLambdaOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 
 ### Return type
@@ -1331,9 +1317,7 @@ Name | Type | Description  | Notes
 
 > UsageLogsResponse GetUsageLogs(ctx, startHr, datadog.GetUsageLogsOptionalParameters{})
 
-Get hourly usage for Logs
-
-
+Get hourly usage for logs.
 
 ### Example
 
@@ -1363,7 +1347,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageLogs(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLogs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLogs`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageLogs`: UsageLogsResponse
@@ -1376,18 +1360,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageLogsOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageLogsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 
 ### Return type
@@ -1412,9 +1397,7 @@ Name | Type | Description  | Notes
 
 > UsageLogsByIndexResponse GetUsageLogsByIndex(ctx, startHr, datadog.GetUsageLogsByIndexOptionalParameters{})
 
-Get hourly usage for Logs by Index
-
-
+Get hourly usage for logs by index.
 
 ### Example
 
@@ -1446,7 +1429,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageLogsByIndex(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLogsByIndex``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLogsByIndex`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageLogsByIndex`: UsageLogsByIndexResponse
@@ -1459,18 +1442,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageLogsByIndexOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageLogsByIndexOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 **indexName** | **[]string** | Comma-separated list of log index names. | 
 
@@ -1496,9 +1480,7 @@ Name | Type | Description  | Notes
 
 > UsageNetworkFlowsResponse GetUsageNetworkFlows(ctx, startHr, datadog.GetUsageNetworkFlowsOptionalParameters{})
 
-Get hourly usage for Network Flows
-
-
+Get hourly usage for network flows.
 
 ### Example
 
@@ -1528,7 +1510,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageNetworkFlows(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageNetworkFlows``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageNetworkFlows`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageNetworkFlows`: UsageNetworkFlowsResponse
@@ -1541,18 +1523,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageNetworkFlowsOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageNetworkFlowsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
 
 ### Return type
@@ -1577,9 +1560,7 @@ Name | Type | Description  | Notes
 
 > UsageNetworkHostsResponse GetUsageNetworkHosts(ctx, startHr, datadog.GetUsageNetworkHostsOptionalParameters{})
 
-Get hourly usage for Network Hosts
-
-
+Get hourly usage for network hosts.
 
 ### Example
 
@@ -1609,7 +1590,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageNetworkHosts(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageNetworkHosts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageNetworkHosts`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageNetworkHosts`: UsageNetworkHostsResponse
@@ -1622,18 +1603,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageNetworkHostsOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageNetworkHostsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 
 ### Return type
@@ -1658,9 +1640,7 @@ Name | Type | Description  | Notes
 
 > UsageProfilingResponse GetUsageProfiling(ctx, startHr, datadog.GetUsageProfilingOptionalParameters{})
 
-Get hourly usage for profiled hosts
-
-
+Get hourly usage for profiled hosts.
 
 ### Example
 
@@ -1690,7 +1670,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageProfiling(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageProfiling``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageProfiling`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageProfiling`: UsageProfilingResponse
@@ -1703,18 +1683,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageProfilingOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageProfilingOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
 
 ### Return type
@@ -1739,9 +1720,7 @@ Name | Type | Description  | Notes
 
 > UsageRumSessionsResponse GetUsageRumSessions(ctx, startHr, datadog.GetUsageRumSessionsOptionalParameters{})
 
-Get hourly usage for RUM Sessions
-
-
+Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Sessions.
 
 ### Example
 
@@ -1773,7 +1752,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageRumSessions(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageRumSessions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageRumSessions`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageRumSessions`: UsageRumSessionsResponse
@@ -1786,18 +1765,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageRumSessionsOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageRumSessionsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 **type_** | **string** | RUM type: &#x60;[browser, mobile]&#x60;. Defaults to &#x60;browser&#x60;. | 
 
@@ -1823,9 +1803,7 @@ Name | Type | Description  | Notes
 
 > UsageSNMPResponse GetUsageSNMP(ctx, startHr, datadog.GetUsageSNMPOptionalParameters{})
 
-Get hourly usage for SNMP devices
-
-
+Get hourly usage for SNMP devices.
 
 ### Example
 
@@ -1855,7 +1833,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageSNMP(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSNMP``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSNMP`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageSNMP`: UsageSNMPResponse
@@ -1868,18 +1846,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageSNMPOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageSNMPOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
 
 ### Return type
@@ -1904,9 +1883,7 @@ Name | Type | Description  | Notes
 
 > UsageSummaryResponse GetUsageSummary(ctx, startMonth, datadog.GetUsageSummaryOptionalParameters{})
 
-Get usage across your multi-org account
-
-
+Get usage across your multi-org account. You must have the multi-org feature enabled.
 
 ### Example
 
@@ -1938,7 +1915,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageSummary(ctx, startMonth, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSummary``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSummary`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageSummary`: UsageSummaryResponse
@@ -1951,18 +1928,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageSummaryOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageSummaryOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month. | 
 **includeOrgDetails** | **bool** | Include usage summaries for each sub-org. | 
 
@@ -1988,9 +1966,7 @@ Name | Type | Description  | Notes
 
 > UsageSyntheticsResponse GetUsageSynthetics(ctx, startHr, datadog.GetUsageSyntheticsOptionalParameters{})
 
-Get hourly usage for Synthetics Checks
-
-
+Get hourly usage for [Synthetics checks](https://docs.datadoghq.com/synthetics/).
 
 ### Example
 
@@ -2020,7 +1996,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageSynthetics(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSynthetics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSynthetics`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageSynthetics`: UsageSyntheticsResponse
@@ -2033,18 +2009,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageSyntheticsOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageSyntheticsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 
 ### Return type
@@ -2069,9 +2046,7 @@ Name | Type | Description  | Notes
 
 > UsageSyntheticsAPIResponse GetUsageSyntheticsAPI(ctx, startHr, datadog.GetUsageSyntheticsAPIOptionalParameters{})
 
-Get hourly usage for Synthetics API Checks
-
-
+Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/synthetics/).
 
 ### Example
 
@@ -2101,7 +2076,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageSyntheticsAPI(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSyntheticsAPI``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSyntheticsAPI`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageSyntheticsAPI`: UsageSyntheticsAPIResponse
@@ -2114,18 +2089,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageSyntheticsAPIOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageSyntheticsAPIOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 
 ### Return type
@@ -2150,9 +2126,7 @@ Name | Type | Description  | Notes
 
 > UsageSyntheticsBrowserResponse GetUsageSyntheticsBrowser(ctx, startHr, datadog.GetUsageSyntheticsBrowserOptionalParameters{})
 
-Get hourly usage for Synthetics Browser Checks
-
-
+Get hourly usage for synthetics browser checks.
 
 ### Example
 
@@ -2182,7 +2156,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageSyntheticsBrowser(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSyntheticsBrowser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSyntheticsBrowser`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageSyntheticsBrowser`: UsageSyntheticsBrowserResponse
@@ -2195,18 +2169,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageSyntheticsBrowserOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageSyntheticsBrowserOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 
 ### Return type
@@ -2231,9 +2206,7 @@ Name | Type | Description  | Notes
 
 > UsageTimeseriesResponse GetUsageTimeseries(ctx, startHr, datadog.GetUsageTimeseriesOptionalParameters{})
 
-Get hourly usage for custom metrics
-
-
+Get hourly usage for [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/).
 
 ### Example
 
@@ -2263,7 +2236,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageTimeseries(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTimeseries``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTimeseries`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageTimeseries`: UsageTimeseriesResponse
@@ -2276,18 +2249,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageTimeseriesOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageTimeseriesOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 
 ### Return type
@@ -2312,9 +2286,7 @@ Name | Type | Description  | Notes
 
 > UsageTopAvgMetricsResponse GetUsageTopAvgMetrics(ctx, datadog.GetUsageTopAvgMetricsOptionalParameters{})
 
-Get top custom metrics by hourly average
-
-
+Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.
 
 ### Example
 
@@ -2349,7 +2321,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageTopAvgMetrics(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTopAvgMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTopAvgMetrics`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageTopAvgMetrics`: UsageTopAvgMetricsResponse
@@ -2362,14 +2334,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageTopAvgMetricsOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageTopAvgMetricsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **month** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour. (Either month or day should be specified, but not both) | 
 **day** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to day: [YYYY-MM-DD] for usage beginning at this hour. (Either month or day should be specified, but not both) | 
 **names** | **[]string** | Comma-separated list of metric names. | 
@@ -2397,9 +2370,9 @@ Name | Type | Description  | Notes
 
 > UsageTraceResponse GetUsageTrace(ctx, startHr, datadog.GetUsageTraceOptionalParameters{})
 
-Get hourly usage for Trace Search
+Get hourly usage for trace search.
 
-
+**Note** This endpoint has been renamed to `/api/v1/usage/indexed-spans`.
 
 ### Example
 
@@ -2429,7 +2402,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.UsageMeteringApi.GetUsageTrace(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTrace``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTrace`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsageTrace`: UsageTraceResponse
@@ -2442,18 +2415,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageTraceOptionalParameters struct
+Other parameters are passed through a pointer to a GetUsageTraceOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
 
 ### Return type

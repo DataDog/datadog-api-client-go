@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | [**UserCreateAttributes**](UserCreateAttributes.md) |  | 
 **Relationships** | Pointer to [**UserRelationships**](UserRelationships.md) |  | [optional] 
 **Type** | [**UsersType**](UsersType.md) |  | [default to USERSTYPE_USERS]

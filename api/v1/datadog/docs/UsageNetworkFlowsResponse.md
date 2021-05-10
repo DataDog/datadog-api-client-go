@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageNetworkFlowsHour**](UsageNetworkFlowsHour.md) | Get hourly usage for Network Flows. | [optional] 
 
 ## Methods

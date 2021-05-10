@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ApplicationKey** | Pointer to [**ApplicationKey**](ApplicationKey.md) |  | [optional] 
 
 ## Methods

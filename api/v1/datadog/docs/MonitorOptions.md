@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Aggregation** | Pointer to [**MonitorOptionsAggregation**](MonitorOptionsAggregation.md) |  | [optional] 
 **DeviceIds** | Pointer to [**[]MonitorDeviceID**](MonitorDeviceID.md) | IDs of the device the Synthetics monitor is running on. | [optional] [readonly] 
 **EnableLogsSample** | Pointer to **bool** | Whether or not to send a log sample when the log monitor triggers. | [optional] 

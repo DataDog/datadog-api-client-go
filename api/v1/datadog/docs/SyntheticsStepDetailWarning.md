@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Message** | **string** | Message for the warning. | 
 **Type** | [**SyntheticsWarningType**](SyntheticsWarningType.md) |  | 
 

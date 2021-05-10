@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Id** | Pointer to **string** | The metric name for this resource. | [optional] 
 **Type** | Pointer to [**MetricTagConfigurationType**](MetricTagConfigurationType.md) |  | [optional] [default to METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS]
 **Attributes** | Pointer to [**MetricTagConfigurationAttributes**](MetricTagConfigurationAttributes.md) |  | [optional] 

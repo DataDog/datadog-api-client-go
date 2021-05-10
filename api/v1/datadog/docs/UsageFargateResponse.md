@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageFargateHour**](UsageFargateHour.md) | Array with the number of hourly Fargate tasks recorded for a given organization. | [optional] 
 
 ## Methods

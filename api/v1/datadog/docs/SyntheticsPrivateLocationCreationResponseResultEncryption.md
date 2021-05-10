@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Id** | Pointer to **string** | Fingerprint for the encryption key. | [optional] 
 **Key** | Pointer to **string** | Public key for result encryption. | [optional] 
 

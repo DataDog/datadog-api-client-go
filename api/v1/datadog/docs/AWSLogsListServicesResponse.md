@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Id** | Pointer to **string** | Key value in returned object. | [optional] 
 **Label** | Pointer to **string** | Name of service available for configuration with Datadog logs. | [optional] 
 

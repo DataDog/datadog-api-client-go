@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Content** | Pointer to [**LogContent**](LogContent.md) |  | [optional] 
 **Id** | Pointer to **string** | Unique ID of the Log. | [optional] 
 

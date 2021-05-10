@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ForgetAfter** | Pointer to [**SecurityMonitoringRuleNewValueOptionsForgetAfter**](SecurityMonitoringRuleNewValueOptionsForgetAfter.md) |  | [optional] 
 **LearningDuration** | Pointer to [**SecurityMonitoringRuleNewValueOptionsLearningDuration**](SecurityMonitoringRuleNewValueOptionsLearningDuration.md) |  | [optional] 
 

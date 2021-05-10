@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AccountId** | **string** | The account ID for the integration. | 
 **RoleName** | **string** | The path of the integration. | 
 

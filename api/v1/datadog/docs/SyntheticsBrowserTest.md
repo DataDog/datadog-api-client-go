@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Config** | Pointer to [**SyntheticsBrowserTestConfig**](SyntheticsBrowserTestConfig.md) |  | [optional] 
 **Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
 **Message** | **string** | Notification message associated with the test. Message can either be text or an empty string. | 

@@ -1,9 +1,9 @@
-# \ServiceLevelObjectiveCorrectionsApi
+# ServiceLevelObjectiveCorrectionsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#CreateSLOCorrection) | **Post** /api/v1/slo/correction | Create an SLO correction
 [**DeleteSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#DeleteSLOCorrection) | **Delete** /api/v1/slo/correction/{slo_correction_id} | Delete an SLO correction
 [**GetSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#GetSLOCorrection) | **Get** /api/v1/slo/correction/{slo_correction_id} | Get an SLO correction for an SLO
@@ -16,9 +16,7 @@ Method | HTTP request | Description
 
 > SLOCorrectionResponse CreateSLOCorrection(ctx, body)
 
-Create an SLO correction
-
-
+Create an SLO Correction
 
 ### Example
 
@@ -44,7 +42,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.CreateSLOCorrection(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.CreateSLOCorrection``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.CreateSLOCorrection`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateSLOCorrection`: SLOCorrectionResponse
@@ -57,9 +55,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**SLOCorrectionCreateRequest**](SLOCorrectionCreateRequest.md) | Create an SLO Correction | 
+
 
 ### Optional Parameters
 
@@ -88,9 +87,7 @@ This endpoint does not have optional parameters.
 
 > DeleteSLOCorrection(ctx, sloCorrectionId)
 
-Delete an SLO correction
-
-
+Permanently delete the specified SLO correction object
 
 ### Example
 
@@ -115,7 +112,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection(ctx, sloCorrectionId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -125,9 +122,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **sloCorrectionId** | **string** | The ID of the SLO correction object | 
+
 
 ### Optional Parameters
 
@@ -156,9 +154,7 @@ This endpoint does not have optional parameters.
 
 > SLOCorrectionResponse GetSLOCorrection(ctx, sloCorrectionId)
 
-Get an SLO correction for an SLO
-
-
+Get an SLO correction
 
 ### Example
 
@@ -184,7 +180,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.GetSLOCorrection(ctx, sloCorrectionId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.GetSLOCorrection``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.GetSLOCorrection`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSLOCorrection`: SLOCorrectionResponse
@@ -197,9 +193,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **sloCorrectionId** | **string** | The ID of the SLO correction object | 
+
 
 ### Optional Parameters
 
@@ -228,9 +225,7 @@ This endpoint does not have optional parameters.
 
 > SLOCorrectionListResponse ListSLOCorrection(ctx)
 
-Get all SLO corrections
-
-
+Get all Service Level Objective corrections
 
 ### Example
 
@@ -255,7 +250,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListSLOCorrection`: SLOCorrectionListResponse
@@ -267,6 +262,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -295,9 +291,7 @@ This endpoint does not have optional parameters.
 
 > SLOCorrectionResponse UpdateSLOCorrection(ctx, sloCorrectionId, body)
 
-Update an SLO correction
-
-
+Update the specified SLO correction object object
 
 ### Example
 
@@ -324,7 +318,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, sloCorrectionId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateSLOCorrection`: SLOCorrectionResponse
@@ -337,10 +331,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sloCorrectionId** | **string** | The ID of the SLO correction object | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**sloCorrectionId** | **string** | The ID of the SLO correction object |  |
 **body** | [**SLOCorrectionUpdateRequest**](SLOCorrectionUpdateRequest.md) | The edited SLO correction object. | 
+
 
 ### Optional Parameters
 

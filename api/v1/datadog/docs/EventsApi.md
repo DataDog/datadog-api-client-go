@@ -1,9 +1,9 @@
-# \EventsApi
+# EventsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateEvent**](EventsApi.md#CreateEvent) | **Post** /api/v1/events | Post an event
 [**GetEvent**](EventsApi.md#GetEvent) | **Get** /api/v1/events/{event_id} | Get an event
 [**ListEvents**](EventsApi.md#ListEvents) | **Get** /api/v1/events | Query the event stream
@@ -14,9 +14,8 @@ Method | HTTP request | Description
 
 > EventCreateResponse CreateEvent(ctx, body)
 
-Post an event
-
-
+This endpoint allows you to post events to the stream.
+Tag them, set priority and event aggregate them with other events.
 
 ### Example
 
@@ -41,7 +40,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.EventsApi.CreateEvent(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.CreateEvent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.CreateEvent`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateEvent`: EventCreateResponse
@@ -54,9 +53,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**EventCreateRequest**](EventCreateRequest.md) | Event request object | 
+
 
 ### Optional Parameters
 
@@ -85,9 +85,10 @@ This endpoint does not have optional parameters.
 
 > EventResponse GetEvent(ctx, eventId)
 
-Get an event
+This endpoint allows you to query for event details.
 
-
+**Note**: If the event you’re querying contains markdown formatting of any kind,
+you may see characters such as `%`,`\`,`n` in your output.
 
 ### Example
 
@@ -112,7 +113,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.EventsApi.GetEvent(ctx, eventId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEvent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEvent`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetEvent`: EventResponse
@@ -125,9 +126,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **eventId** | **int64** | The ID of the event. | 
+
 
 ### Optional Parameters
 
@@ -156,9 +158,15 @@ This endpoint does not have optional parameters.
 
 > EventListResponse ListEvents(ctx, start, end, datadog.ListEventsOptionalParameters{})
 
-Query the event stream
+The event stream can be queried and filtered by time, priority, sources and tags.
 
+**Notes**:
+- If the event you’re querying contains markdown formatting of any kind,
+you may see characters such as `%`,`\`,`n` in your output.
 
+- This endpoint returns a maximum of `1000` most recent results. To return additional results,
+identify the last timestamp of the last result and set that as the `end` query time to
+paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
 
 ### Example
 
@@ -181,12 +189,16 @@ func main() {
     priority := datadog.EventPriority("normal") // EventPriority | Priority of your events, either `low` or `normal`. (optional)
     sources := "sources_example" // string | A comma separated string of sources. (optional)
     tags := "host:host0" // string | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. (optional)
-    unaggregated := true // bool | Set unaggregated to `true` to return all events within the specified [`start`,`end`] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won't be available in the output. (optional)
+    unaggregated := true // bool | Set unaggregated to `true` to return all events within the specified [`start`,`end`] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won't be available in the output. Aggregated events with `is_aggregate=true` in the response will still be returned unless exclude_aggregate is set to `true.` (optional)
+    excludeAggregate := true // bool | Set `exclude_aggregate` to `true` to only return unaggregated events where `is_aggregate=false` in the response. If the `exclude_aggregate` parameter is set to `true`, then the unaggregated parameter is ignored and will be `true` by default. (optional)
+    page := int32(56) // int32 | By default 1000 results are returned per request. Set page to the number of the page to return with `0` being the first page. The page parameter can only be used when either unaggregated or exclude_aggregate is set to `true.` (optional)
     optionalParams := datadog.ListEventsOptionalParameters{
         Priority: &priority,
         Sources: &sources,
         Tags: &tags,
         Unaggregated: &unaggregated,
+        ExcludeAggregate: &excludeAggregate,
+        Page: &page,
     }
 
     configuration := datadog.NewConfiguration()
@@ -194,7 +206,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.EventsApi.ListEvents(ctx, start, end, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ListEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ListEvents`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListEvents`: EventListResponse
@@ -207,23 +219,26 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**start** | **int64** | POSIX timestamp. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**start** | **int64** | POSIX timestamp. |  |
 **end** | **int64** | POSIX timestamp. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListEventsOptionalParameters struct
+Other parameters are passed through a pointer to a ListEventsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **priority** | [**EventPriority**](EventPriority.md) | Priority of your events, either &#x60;low&#x60; or &#x60;normal&#x60;. | 
 **sources** | **string** | A comma separated string of sources. | 
 **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. | 
-**unaggregated** | **bool** | Set unaggregated to &#x60;true&#x60; to return all events within the specified [&#x60;start&#x60;,&#x60;end&#x60;] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won&#39;t be available in the output. | 
+**unaggregated** | **bool** | Set unaggregated to &#x60;true&#x60; to return all events within the specified [&#x60;start&#x60;,&#x60;end&#x60;] timeframe. Otherwise if an event is aggregated to a parent event with a timestamp outside of the timeframe, it won&#39;t be available in the output. Aggregated events with &#x60;is_aggregate&#x3D;true&#x60; in the response will still be returned unless exclude_aggregate is set to &#x60;true.&#x60; | 
+**excludeAggregate** | **bool** | Set &#x60;exclude_aggregate&#x60; to &#x60;true&#x60; to only return unaggregated events where &#x60;is_aggregate&#x3D;false&#x60; in the response. If the &#x60;exclude_aggregate&#x60; parameter is set to &#x60;true&#x60;, then the unaggregated parameter is ignored and will be &#x60;true&#x60; by default. | 
+**page** | **int32** | By default 1000 results are returned per request. Set page to the number of the page to return with &#x60;0&#x60; being the first page. The page parameter can only be used when either unaggregated or exclude_aggregate is set to &#x60;true.&#x60; | 
 
 ### Return type
 

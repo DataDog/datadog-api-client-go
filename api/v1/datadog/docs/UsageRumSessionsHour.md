@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **SessionCount** | Pointer to **int64** | Contains the number of RUM Sessions. | [optional] 
 **SessionCountAndroid** | Pointer to **int64** | Contains the number of mobile RUM Sessions on Android (data available beginning December 1, 2020). | [optional] 

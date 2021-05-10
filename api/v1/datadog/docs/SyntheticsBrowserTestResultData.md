@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **BrowserType** | Pointer to **string** | Type of browser device used for the browser test. | [optional] 
 **BrowserVersion** | Pointer to **string** | Browser version used for the browser test. | [optional] 
 **Device** | Pointer to [**SyntheticsDevice**](SyntheticsDevice.md) |  | [optional] 

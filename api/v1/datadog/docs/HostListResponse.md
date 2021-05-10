@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **HostList** | Pointer to [**[]Host**](Host.md) | Array of hosts. | [optional] 
 **TotalMatching** | Pointer to **int64** | Number of host matching the query. | [optional] 
 **TotalReturned** | Pointer to **int64** | Number of host returned. | [optional] 

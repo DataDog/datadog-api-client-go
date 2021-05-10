@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Action** | Pointer to [**SecurityMonitoringFilterAction**](SecurityMonitoringFilterAction.md) |  | [optional] 
 **Query** | Pointer to **string** | Query for selecting logs to apply the filtering action. | [optional] 
 

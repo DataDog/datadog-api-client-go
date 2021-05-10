@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Limit** | Pointer to **int64** | Maximum amount of records to be returned. | [optional] 
 **Offset** | Pointer to **int64** | Records to be skipped before beginning to return. | [optional] 
 **SortDirection** | Pointer to **string** | Direction to sort by. | [optional] 

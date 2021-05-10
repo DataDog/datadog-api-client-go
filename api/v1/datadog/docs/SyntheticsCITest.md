@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AllowInsecureCertificates** | Pointer to **bool** | Disable certificate checks in API tests. | [optional] 
 **BasicAuth** | Pointer to [**SyntheticsBasicAuth**](SyntheticsBasicAuth.md) |  | [optional] 
 **Body** | Pointer to **string** | Body to include in the test. | [optional] 

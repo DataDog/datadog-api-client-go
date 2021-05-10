@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | Pointer to [**IncidentResponseAttributes**](IncidentResponseAttributes.md) |  | [optional] 
 **Id** | **string** | The incident&#39;s ID. | 
 **Relationships** | Pointer to [**IncidentResponseRelationships**](IncidentResponseRelationships.md) |  | [optional] 

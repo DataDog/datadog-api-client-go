@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | Pointer to [**LogsMetricResponseAttributes**](LogsMetricResponseAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | The name of the log-based metric. | [optional] 
 **Type** | Pointer to [**LogsMetricType**](LogsMetricType.md) |  | [optional] [default to LOGSMETRICTYPE_LOGS_METRICS]

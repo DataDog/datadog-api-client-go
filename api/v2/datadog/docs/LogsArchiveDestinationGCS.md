@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Bucket** | **string** | The bucket where the archive will be stored. | 
 **Integration** | [**LogsArchiveIntegrationGCS**](LogsArchiveIntegrationGCS.md) |  | 
 **Path** | Pointer to **string** | The archive path. | [optional] 

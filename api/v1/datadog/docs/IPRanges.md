@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Agents** | Pointer to [**IPPrefixesAgents**](IPPrefixesAgents.md) |  | [optional] 
 **Api** | Pointer to [**IPPrefixesAPI**](IPPrefixesAPI.md) |  | [optional] 
 **Apm** | Pointer to [**IPPrefixesAPM**](IPPrefixesAPM.md) |  | [optional] 

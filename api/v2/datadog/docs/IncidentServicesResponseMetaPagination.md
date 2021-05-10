@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **NextOffset** | Pointer to **int64** | The index of the first element in the next page of results. Equal to page size added to the current offset. | [optional] 
 **Offset** | Pointer to **int64** | The index of the first element in the results. | [optional] 
 **Size** | Pointer to **int64** | Maximum size of pages to return. | [optional] 

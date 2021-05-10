@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ApiPercentage** | Pointer to **float64** | The percentage of synthetic API test usage by tag(s). | [optional] 
 **ApiUsage** | Pointer to **float64** | The synthetic API test usage by tag(s). | [optional] 
 **ApmHostPercentage** | Pointer to **float64** | The percentage of APM host usage by tag(s). | [optional] 

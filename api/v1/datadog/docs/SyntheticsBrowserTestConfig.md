@@ -3,9 +3,10 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Assertions** | [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [default to []]
 **Request** | [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | 
+**SetCookie** | Pointer to **string** | Cookies to be used for the request, using the [Set-Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie) syntax. | [optional] 
 **Variables** | Pointer to [**[]SyntheticsBrowserVariable**](SyntheticsBrowserVariable.md) | Array of variables used for the test steps. | [optional] 
 
 ## Methods
@@ -66,6 +67,31 @@ and a boolean to check if the value has been set.
 
 SetRequest sets Request field to given value.
 
+
+### GetSetCookie
+
+`func (o *SyntheticsBrowserTestConfig) GetSetCookie() string`
+
+GetSetCookie returns the SetCookie field if non-nil, zero value otherwise.
+
+### GetSetCookieOk
+
+`func (o *SyntheticsBrowserTestConfig) GetSetCookieOk() (*string, bool)`
+
+GetSetCookieOk returns a tuple with the SetCookie field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSetCookie
+
+`func (o *SyntheticsBrowserTestConfig) SetSetCookie(v string)`
+
+SetSetCookie sets SetCookie field to given value.
+
+### HasSetCookie
+
+`func (o *SyntheticsBrowserTestConfig) HasSetCookie() bool`
+
+HasSetCookie returns a boolean if a field has been set.
 
 ### GetVariables
 

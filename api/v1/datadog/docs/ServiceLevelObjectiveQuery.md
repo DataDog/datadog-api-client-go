@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Denominator** | **string** | A Datadog metric query for total (valid) events. | 
 **Numerator** | **string** | A Datadog metric query for good events. | 
 

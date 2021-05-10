@@ -3,9 +3,10 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]ServiceLevelObjective**](ServiceLevelObjective.md) | An array of service level objective objects. | [optional] 
 **Errors** | Pointer to **[]string** | An array of error messages. Each endpoint documents how/whether this field is used. | [optional] 
+**Metadata** | Pointer to [**SLOListResponseMetadata**](SLOListResponseMetadata.md) |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetErrors sets Errors field to given value.
 `func (o *SLOListResponse) HasErrors() bool`
 
 HasErrors returns a boolean if a field has been set.
+
+### GetMetadata
+
+`func (o *SLOListResponse) GetMetadata() SLOListResponseMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *SLOListResponse) GetMetadataOk() (*SLOListResponseMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *SLOListResponse) SetMetadata(v SLOListResponseMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *SLOListResponse) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

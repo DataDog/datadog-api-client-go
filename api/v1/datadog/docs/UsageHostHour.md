@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AgentHostCount** | Pointer to **int64** | Contains the total number of infrastructure hosts reporting during a given hour that were running the Datadog Agent. | [optional] 
 **AlibabaHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Alibaba integration (and were NOT running the Datadog Agent). | [optional] 
 **ApmAzureAppServiceHostCount** | Pointer to **int64** | Contains the total number of Azure App Services hosts using APM. | [optional] 

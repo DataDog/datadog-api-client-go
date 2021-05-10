@@ -3,11 +3,12 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **BasicAuth** | Pointer to [**SyntheticsBasicAuth**](SyntheticsBasicAuth.md) |  | [optional] 
 **Body** | Pointer to **string** | Body to include in the test. | [optional] 
 **Certificate** | Pointer to [**SyntheticsTestRequestCertificate**](SyntheticsTestRequestCertificate.md) |  | [optional] 
 **DnsServer** | Pointer to **string** | DNS server to use for DNS tests. | [optional] 
+**DnsServerPort** | Pointer to **int32** | DNS server port to use for DNS tests. | [optional] 
 **Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
 **Host** | Pointer to **string** | Host name to perform the test with. | [optional] 
 **Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | [optional] 
@@ -137,6 +138,31 @@ SetDnsServer sets DnsServer field to given value.
 `func (o *SyntheticsTestRequest) HasDnsServer() bool`
 
 HasDnsServer returns a boolean if a field has been set.
+
+### GetDnsServerPort
+
+`func (o *SyntheticsTestRequest) GetDnsServerPort() int32`
+
+GetDnsServerPort returns the DnsServerPort field if non-nil, zero value otherwise.
+
+### GetDnsServerPortOk
+
+`func (o *SyntheticsTestRequest) GetDnsServerPortOk() (*int32, bool)`
+
+GetDnsServerPortOk returns a tuple with the DnsServerPort field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsServerPort
+
+`func (o *SyntheticsTestRequest) SetDnsServerPort(v int32)`
+
+SetDnsServerPort sets DnsServerPort field to given value.
+
+### HasDnsServerPort
+
+`func (o *SyntheticsTestRequest) HasDnsServerPort() bool`
+
+HasDnsServerPort returns a boolean if a field has been set.
 
 ### GetHeaders
 

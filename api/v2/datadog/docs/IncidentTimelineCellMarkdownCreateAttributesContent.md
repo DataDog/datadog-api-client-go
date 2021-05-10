@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Content** | Pointer to **string** | The Markdown content of the cell. | [optional] 
 
 ## Methods

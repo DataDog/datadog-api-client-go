@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Count** | Pointer to **int64** | Number of times a test needs to be retried before marking a location as failed. Defaults to 0. | [optional] 
 **Interval** | Pointer to **float64** | Time interval between retries (in milliseconds). Defaults to 300ms. | [optional] 
 

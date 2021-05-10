@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Errors** | Pointer to [**[]AWSLogsAsyncError**](AWSLogsAsyncError.md) | List of errors. | [optional] 
 **Status** | Pointer to **string** | Status of the properties. | [optional] 
 

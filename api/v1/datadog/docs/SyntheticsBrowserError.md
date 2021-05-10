@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Description** | **string** | Description of the error. | 
 **Name** | **string** | Name of the error. | 
 **StatusCode** | Pointer to **int64** | Status Code of the error. | [optional] 

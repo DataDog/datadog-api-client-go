@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Pipeline** | Pointer to **string** | Name of the pipeline. | [optional] 
 **Provider** | Pointer to **string** | Name of the CI provider. | [optional] 
 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Tags** | Pointer to **[]string** | List of indexed tag value pairs. | [optional] 
 
 ## Methods

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Event** | Pointer to [**Event**](Event.md) |  | [optional] 
 **Status** | Pointer to **string** | A status. | [optional] 
 

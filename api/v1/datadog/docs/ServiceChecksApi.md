@@ -1,9 +1,9 @@
-# \ServiceChecksApi
+# ServiceChecksApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**SubmitServiceCheck**](ServiceChecksApi.md#SubmitServiceCheck) | **Post** /api/v1/check_run | Submit a Service Check
 
 
@@ -12,9 +12,9 @@ Method | HTTP request | Description
 
 > IntakePayloadAccepted SubmitServiceCheck(ctx, body)
 
-Submit a Service Check
+Submit a list of Service Checks.
 
-
+**Note**: A valid API key is required.
 
 ### Example
 
@@ -39,7 +39,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.ServiceChecksApi.SubmitServiceCheck(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ServiceChecksApi.SubmitServiceCheck``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceChecksApi.SubmitServiceCheck`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SubmitServiceCheck`: IntakePayloadAccepted
@@ -52,9 +52,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**[]ServiceCheck**](ServiceCheck.md) | Service Check request body. | 
+
 
 ### Optional Parameters
 

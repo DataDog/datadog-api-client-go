@@ -3,8 +3,9 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Height** | **int64** | The height of the widget. Should be a non-negative integer. | 
+**IsColumnBreak** | Pointer to **bool** | Whether the widget should be the first one on the second column in high density or not. **Note**: Only for the **new dashboard layout** and only one widget in the dashboard should have this property set to &#x60;true&#x60;. | [optional] [default to false]
 **Width** | **int64** | The width of the widget. Should be a non-negative integer. | 
 **X** | **int64** | The position of the widget on the x (horizontal) axis. Should be a non-negative integer. | 
 **Y** | **int64** | The position of the widget on the y (vertical) axis. Should be a non-negative integer. | 
@@ -47,6 +48,31 @@ and a boolean to check if the value has been set.
 
 SetHeight sets Height field to given value.
 
+
+### GetIsColumnBreak
+
+`func (o *WidgetLayout) GetIsColumnBreak() bool`
+
+GetIsColumnBreak returns the IsColumnBreak field if non-nil, zero value otherwise.
+
+### GetIsColumnBreakOk
+
+`func (o *WidgetLayout) GetIsColumnBreakOk() (*bool, bool)`
+
+GetIsColumnBreakOk returns a tuple with the IsColumnBreak field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsColumnBreak
+
+`func (o *WidgetLayout) SetIsColumnBreak(v bool)`
+
+SetIsColumnBreak sets IsColumnBreak field to given value.
+
+### HasIsColumnBreak
+
+`func (o *WidgetLayout) HasIsColumnBreak() bool`
+
+HasIsColumnBreak returns a boolean if a field has been set.
 
 ### GetWidth
 

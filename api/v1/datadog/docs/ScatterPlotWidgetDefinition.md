@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ColorByGroups** | Pointer to **[]string** | List of groups used for colors. | [optional] 
 **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
 **Requests** | [**ScatterPlotWidgetDefinitionRequests**](ScatterPlotWidgetDefinitionRequests.md) |  | 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]ProcessSummary**](ProcessSummary.md) | Array of process summary objects. | [optional] 
 **Meta** | Pointer to [**ProcessSummariesMeta**](ProcessSummariesMeta.md) |  | [optional] 
 

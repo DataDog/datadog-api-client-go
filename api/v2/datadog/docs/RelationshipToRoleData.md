@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Id** | Pointer to **string** | ID of the role. | [optional] 
 **Type** | Pointer to [**RolesType**](RolesType.md) |  | [optional] [default to ROLESTYPE_ROLES]
 

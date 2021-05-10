@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Error** | Pointer to [**LogsAPIError**](LogsAPIError.md) |  | [optional] 
 
 ## Methods

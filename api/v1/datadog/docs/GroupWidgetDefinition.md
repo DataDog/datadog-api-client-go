@@ -3,9 +3,11 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **BackgroundColor** | Pointer to **string** | Background color of the group title. | [optional] 
+**BannerImg** | Pointer to **string** | URL of image to display as a banner for the group. | [optional] 
 **LayoutType** | [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
+**ShowTitle** | Pointer to **bool** | Whether to show the title or not. | [optional] [default to true]
 **Title** | Pointer to **string** | Title of the widget. | [optional] 
 **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
 **Type** | [**GroupWidgetDefinitionType**](GroupWidgetDefinitionType.md) |  | [default to GROUPWIDGETDEFINITIONTYPE_GROUP]
@@ -55,6 +57,31 @@ SetBackgroundColor sets BackgroundColor field to given value.
 
 HasBackgroundColor returns a boolean if a field has been set.
 
+### GetBannerImg
+
+`func (o *GroupWidgetDefinition) GetBannerImg() string`
+
+GetBannerImg returns the BannerImg field if non-nil, zero value otherwise.
+
+### GetBannerImgOk
+
+`func (o *GroupWidgetDefinition) GetBannerImgOk() (*string, bool)`
+
+GetBannerImgOk returns a tuple with the BannerImg field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBannerImg
+
+`func (o *GroupWidgetDefinition) SetBannerImg(v string)`
+
+SetBannerImg sets BannerImg field to given value.
+
+### HasBannerImg
+
+`func (o *GroupWidgetDefinition) HasBannerImg() bool`
+
+HasBannerImg returns a boolean if a field has been set.
+
 ### GetLayoutType
 
 `func (o *GroupWidgetDefinition) GetLayoutType() WidgetLayoutType`
@@ -74,6 +101,31 @@ and a boolean to check if the value has been set.
 
 SetLayoutType sets LayoutType field to given value.
 
+
+### GetShowTitle
+
+`func (o *GroupWidgetDefinition) GetShowTitle() bool`
+
+GetShowTitle returns the ShowTitle field if non-nil, zero value otherwise.
+
+### GetShowTitleOk
+
+`func (o *GroupWidgetDefinition) GetShowTitleOk() (*bool, bool)`
+
+GetShowTitleOk returns a tuple with the ShowTitle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShowTitle
+
+`func (o *GroupWidgetDefinition) SetShowTitle(v bool)`
+
+SetShowTitle sets ShowTitle field to given value.
+
+### HasShowTitle
+
+`func (o *GroupWidgetDefinition) HasShowTitle() bool`
+
+HasShowTitle returns a boolean if a field has been set.
 
 ### GetTitle
 

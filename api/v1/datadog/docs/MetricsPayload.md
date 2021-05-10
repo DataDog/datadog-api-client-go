@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Series** | [**[]Series**](Series.md) | A list of time series to submit to Datadog. | 
 
 ## Methods

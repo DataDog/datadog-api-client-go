@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Dns** | Pointer to **float64** | The duration in millisecond of the DNS lookup. | [optional] 
 **Download** | Pointer to **float64** | The time in millisecond to download the response. | [optional] 
 **FirstByte** | Pointer to **float64** | The time in millisecond to first byte. | [optional] 
