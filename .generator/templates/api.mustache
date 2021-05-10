@@ -314,7 +314,9 @@ func (a *{{{classname}}}Service) {{#lambda.camelcase}}{{nickname}}Execute{{/lamb
 {{/formParams}}
 {{#bodyParams}}
 	// body params
-	localVarPostBody = r.{{paramName}}
+    if r.{{paramName}} != nil {
+        localVarPostBody = r.{{paramName}}
+    }
 {{/bodyParams}}
 {{#authMethods}}
 {{#isApiKey}}
