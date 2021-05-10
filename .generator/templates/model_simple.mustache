@@ -260,7 +260,7 @@ func (o {{classname}}) MarshalJSON() ([]byte, error) {
 	{{/isNullable}}
 	{{! if argument is not nullable, don't set it if it is nil}}
 	{{^isNullable}}
-	if {{#required}}{{^isDateTime}}true{{/isDateTime}}{{#isDateTime}}!o.{{name}}.IsZero(){{/isDateTime}}{{/required}}{{^required}}o.{{name}} != nil{{/required}} {
+	if {{#required}}true{{/required}}{{^required}}o.{{name}} != nil{{/required}} {
 		toSerialize["{{baseName}}"] = o.{{name}}
 	}
 	{{/isNullable}}
@@ -388,4 +388,36 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 }
 
 {{/isArray}}
+{{^isArray}}{{#hasRequired}}
+func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+{{#requiredVars}}
+		{{name}} *{{{dataType}}} `json:"{{baseName}}"`
+{{/requiredVars}}
+        }{}
+	all := struct {
+{{#vars}}
+	        {{name}} {{^required}}{{^isNullable}}*{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"}`
+{{/vars}}
+        }{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+{{#requiredVars}}
+	if required.{{name}} == nil {
+		return fmt.Errorf("Required field {{baseName}} missing")
+	}
+{{/requiredVars}}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+{{#vars}}
+	o.{{name}} = all.{{name}}
+{{/vars}}
+	return nil
+}
+
+{{/hasRequired}}{{/isArray}}
 {{>nullable_model}}
