@@ -675,6 +675,7 @@ Class | Method | HTTP request | Description
  - [UsageAttributionPagination](docs/UsageAttributionPagination.md)
  - [UsageAttributionResponse](docs/UsageAttributionResponse.md)
  - [UsageAttributionSort](docs/UsageAttributionSort.md)
+ - [UsageAttributionSupportedMetrics](docs/UsageAttributionSupportedMetrics.md)
  - [UsageAttributionValues](docs/UsageAttributionValues.md)
  - [UsageBillableSummaryBody](docs/UsageBillableSummaryBody.md)
  - [UsageBillableSummaryHour](docs/UsageBillableSummaryHour.md)
