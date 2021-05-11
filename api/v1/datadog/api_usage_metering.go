@@ -1483,7 +1483,7 @@ type apiGetUsageAttributionRequest struct {
 	ctx           _context.Context
 	ApiService    *UsageMeteringApiService
 	startMonth    *time.Time
-	fields        *string
+	fields        *UsageAttributionSupportedMetrics
 	endMonth      *time.Time
 	sortDirection *UsageSortDirection
 	sortName      *UsageAttributionSort
@@ -1516,7 +1516,7 @@ func (r *GetUsageAttributionOptionalParameters) WithSortName(sortName UsageAttri
  * GetUsageAttribution Get Usage Attribution
  * Get Usage Attribution.
  */
-func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields string, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
 	req := apiGetUsageAttributionRequest{
 		ApiService: a,
 		ctx:        ctx,

@@ -694,7 +694,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     startMonth := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage beginning in this month. Maximum of 15 months ago.
-    fields := "fields_example" // string | The specified field to search results for.
+    fields := datadog.UsageAttributionSupportedMetrics("custom_timeseries_usage") // UsageAttributionSupportedMetrics | Comma-separated list of usage types to return, or `*` for all usage types.
     endMonth := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage ending this month. (optional)
     sortDirection := datadog.UsageSortDirection("desc") // UsageSortDirection | The direction to sort by: `[desc, asc]`. (optional) (default to "desc")
     sortName := datadog.UsageAttributionSort("api_percentage") // UsageAttributionSort | The field to sort by. (optional) (default to "custom_timeseries_usage")
@@ -726,7 +726,7 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
 **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **startMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. |  |
-**fields** | **string** | The specified field to search results for. | 
+**fields** | [**UsageAttributionSupportedMetrics**](UsageAttributionSupportedMetrics.md) | Comma-separated list of usage types to return, or &#x60;*&#x60; for all usage types. | 
 
 
 ### Optional Parameters
