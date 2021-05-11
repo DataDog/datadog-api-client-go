@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"cells":[{"attributes":{"definition":{"text":"# Test-Delete_a_notebook_returns_OK_response-1620726075 notebook text","type":"markdown"}},"type":"notebook_cells"}],"name":"Test-Delete_a_notebook_returns_OK_response-1620726075","time":{"live_span":"1h"}},"type":"notebooks"}}
+      {"data":{"attributes":{"cells":[{"attributes":{"definition":{"text":"# Test-Delete_a_notebook_returns_OK_response-1620749295 notebook text","type":"markdown"}},"type":"notebook_cells"}],"name":"Test-Delete_a_notebook_returns_OK_response-1620749295","time":{"live_span":"1h"}},"type":"notebooks"}}
     form: {}
     headers:
       Accept:
@@ -13,19 +13,18 @@ interactions:
       Dd-Operation-Id:
       - CreateNotebook
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.16.4; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "969370268181439032"
+      - "5922086553135763296"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8509743098579537541"
+      - "2273404334234116061"
     url: https://api.datadoghq.com/api/v1/notebooks
     method: POST
   response:
-    body: '{"data":{"type":"notebooks","id":774029,"attributes":{"name":"Test-Delete_a_notebook_returns_OK_response-1620726075","cells":[{"attributes":{"definition":{"text":"#
-      Test-Delete_a_notebook_returns_OK_response-1620726075 notebook text","type":"markdown"}},"type":"notebook_cells","id":"rv34kjhe"}],"time":{"live_span":"1h"},"status":"published","modified":"2021-05-11T09:41:15.571658+00:00","created":"2021-05-11T09:41:15.571658+00:00","author":{"name":"CI
-      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","email":"team-intg-tools-libs-spam@datadoghq.com","icon":"https://secure.gravatar.com/avatar/b7c189b5b4c2c429d7c1e0bc3749330e?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}}}'
+    body: '{"data":{"type":"notebooks","id":776087,"attributes":{"name":"Test-Delete_a_notebook_returns_OK_response-1620749295","cells":[{"attributes":{"definition":{"text":"#
+      Test-Delete_a_notebook_returns_OK_response-1620749295 notebook text","type":"markdown"}},"type":"notebook_cells","id":"5cnbnajj"}],"time":{"live_span":"1h"},"status":"published","modified":"2021-05-11T16:08:15.178530+00:00","created":"2021-05-11T16:08:15.178530+00:00","author":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}}}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 11 May 2021 09:41:15 GMT
+      - Tue, 11 May 2021 16:08:15 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,9 +43,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
+      - tpRCH6w417YjBovRJ8VmtuXmNONVYiRp2c8d2AxjPdGBn8PCtgG4vAztrx3qUZAN
       X-Dd-Version:
-      - "35.4503153"
+      - "35.4507575"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -54,7 +53,7 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "29"
+      - "28"
       X-Ratelimit-Reset:
       - "45"
     status: 200 OK
@@ -69,14 +68,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteNotebook
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.16.4; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "247120799355128099"
+      - "3506057136864896953"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8509743098579537541"
-    url: https://api.datadoghq.com/api/v1/notebooks/774029
+      - "2273404334234116061"
+    url: https://api.datadoghq.com/api/v1/notebooks/776087
     method: DELETE
   response:
     body: ""
@@ -90,7 +89,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 11 May 2021 09:41:15 GMT
+      - Tue, 11 May 2021 16:08:15 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -98,9 +97,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - B1nwy/pPNqX+q4pQT22cdp1QCexE35IF8qwSHy0Nf7IW0Y881qtn4tXN1lpmzaKc
+      - 25u1gDlL724DHllbjFT4BhOLorBTilh+aah2uWAUEjFC/+rjczJdiyWrV/HwLwe/
       X-Dd-Version:
-      - "35.4503153"
+      - "35.4507575"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -108,7 +107,7 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "29"
+      - "27"
       X-Ratelimit-Reset:
       - "45"
     status: 204 No Content
@@ -123,14 +122,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteNotebook
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.16.4; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5163188576652775122"
+      - "5059748309689938016"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8509743098579537541"
-    url: https://api.datadoghq.com/api/v1/notebooks/774029
+      - "2273404334234116061"
+    url: https://api.datadoghq.com/api/v1/notebooks/776087
     method: DELETE
   response:
     body: '{"errors": ["Notebook not found"]}'
@@ -142,7 +141,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 11 May 2021 09:41:15 GMT
+      - Tue, 11 May 2021 16:08:15 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -152,7 +151,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4503153"
+      - "35.4507575"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -160,7 +159,7 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "28"
+      - "26"
       X-Ratelimit-Reset:
       - "45"
     status: 404 Not Found

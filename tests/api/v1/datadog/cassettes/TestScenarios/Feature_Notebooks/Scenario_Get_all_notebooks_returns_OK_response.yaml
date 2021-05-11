@@ -12,11 +12,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4070705075451781032"
+      - "4953646806519552270"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3918366722931682671"
+      - "3226085590079247533"
     url: https://api.datadoghq.com/api/v1/notebooks
     method: GET
   response:
@@ -51,7 +51,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 10 May 2021 07:49:14 GMT
+      - Tue, 11 May 2021 16:08:16 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -61,9 +61,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
+      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
       X-Dd-Version:
-      - "35.4492939"
+      - "35.4507575"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -73,7 +73,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "89"
       X-Ratelimit-Reset:
-      - "46"
+      - "44"
     status: 200 OK
     code: 200
     duration: ""

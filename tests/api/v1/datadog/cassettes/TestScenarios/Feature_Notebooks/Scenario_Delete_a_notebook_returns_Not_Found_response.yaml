@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - DeleteNotebook
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.16.4; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2252581470202529575"
+      - "6035796261025656947"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8028537221497372414"
-    url: https://api.datadoghq.com/api/v1/notebooks/0
+      - "6559854793358706668"
+    url: https://api.datadoghq.com/api/v1/notebooks/123456
     method: DELETE
   response:
     body: '{"errors": ["Notebook not found"]}'
@@ -29,7 +29,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 11 May 2021 11:19:19 GMT
+      - Tue, 11 May 2021 16:08:15 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -39,7 +39,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4504344"
+      - "35.4507575"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -47,9 +47,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "29"
+      - "28"
       X-Ratelimit-Reset:
-      - "41"
+      - "45"
     status: 404 Not Found
     code: 404
     duration: ""
