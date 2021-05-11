@@ -358,6 +358,23 @@ func TestUsageIncidentManagement(t *testing.T) {
 	assert.True(usage.HasUsage())
 }
 
+func TestUsageLogsByRetention(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	startHr, endHr := getStartEndHr(ctx)
+
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageLogsByRetention(ctx, startHr, *datadog.NewGetUsageLogsByRetentionOptionalParameters().WithEndHr(endHr))
+	if err != nil {
+		t.Errorf("Error getting logs uasge by retention: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.True(usage.HasUsage())
+}
+
 func TestUsageBillableSummary(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
