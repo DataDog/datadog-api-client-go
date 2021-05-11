@@ -18,6 +18,7 @@ type SyntheticsTickInterval int64
 
 // List of SyntheticsTickInterval
 const (
+	SYNTHETICSTICKINTERVAL_THIRTY_SECONDS  SyntheticsTickInterval = 30
 	SYNTHETICSTICKINTERVAL_MINUTE          SyntheticsTickInterval = 60
 	SYNTHETICSTICKINTERVAL_FIVE_MINUTES    SyntheticsTickInterval = 300
 	SYNTHETICSTICKINTERVAL_FIFTEEN_MINUTES SyntheticsTickInterval = 900
@@ -30,6 +31,7 @@ const (
 )
 
 var allowedSyntheticsTickIntervalEnumValues = []SyntheticsTickInterval{
+	30,
 	60,
 	300,
 	900,
