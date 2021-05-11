@@ -468,6 +468,7 @@ docs/UsageAttributionMetadata.md
 docs/UsageAttributionPagination.md
 docs/UsageAttributionResponse.md
 docs/UsageAttributionSort.md
+docs/UsageAttributionSupportedMetrics.md
 docs/UsageAttributionValues.md
 docs/UsageBillableSummaryBody.md
 docs/UsageBillableSummaryHour.md
@@ -1000,6 +1001,7 @@ model_usage_attribution_metadata.go
 model_usage_attribution_pagination.go
 model_usage_attribution_response.go
 model_usage_attribution_sort.go
+model_usage_attribution_supported_metrics.go
 model_usage_attribution_values.go
 model_usage_billable_summary_body.go
 model_usage_billable_summary_hour.go
