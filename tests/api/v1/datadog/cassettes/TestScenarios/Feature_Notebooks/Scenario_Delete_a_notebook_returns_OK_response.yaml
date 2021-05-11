@@ -1,0 +1,168 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"cells":[{"attributes":{"definition":{"text":"# Test-Delete_a_notebook_returns_OK_response-1620726075 notebook text","type":"markdown"}},"type":"notebook_cells"}],"name":"Test-Delete_a_notebook_returns_OK_response-1620726075","time":{"live_span":"1h"}},"type":"notebooks"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateNotebook
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.16.4; os linux; arch amd64)
+      X-Datadog-Parent-Id:
+      - "969370268181439032"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8509743098579537541"
+    url: https://api.datadoghq.com/api/v1/notebooks
+    method: POST
+  response:
+    body: '{"data":{"type":"notebooks","id":774029,"attributes":{"name":"Test-Delete_a_notebook_returns_OK_response-1620726075","cells":[{"attributes":{"definition":{"text":"#
+      Test-Delete_a_notebook_returns_OK_response-1620726075 notebook text","type":"markdown"}},"type":"notebook_cells","id":"rv34kjhe"}],"time":{"live_span":"1h"},"status":"published","modified":"2021-05-11T09:41:15.571658+00:00","created":"2021-05-11T09:41:15.571658+00:00","author":{"name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","email":"team-intg-tools-libs-spam@datadoghq.com","icon":"https://secure.gravatar.com/avatar/b7c189b5b4c2c429d7c1e0bc3749330e?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 11 May 2021 09:41:15 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
+      X-Dd-Version:
+      - "35.4503153"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "30"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "29"
+      X-Ratelimit-Reset:
+      - "45"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteNotebook
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.16.4; os linux; arch amd64)
+      X-Datadog-Parent-Id:
+      - "247120799355128099"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8509743098579537541"
+    url: https://api.datadoghq.com/api/v1/notebooks/774029
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 11 May 2021 09:41:15 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - B1nwy/pPNqX+q4pQT22cdp1QCexE35IF8qwSHy0Nf7IW0Y881qtn4tXN1lpmzaKc
+      X-Dd-Version:
+      - "35.4503153"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "30"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "29"
+      X-Ratelimit-Reset:
+      - "45"
+    status: 204 No Content
+    code: 204
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteNotebook
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.16.4; os linux; arch amd64)
+      X-Datadog-Parent-Id:
+      - "5163188576652775122"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8509743098579537541"
+    url: https://api.datadoghq.com/api/v1/notebooks/774029
+    method: DELETE
+  response:
+    body: '{"errors": ["Notebook not found"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 11 May 2021 09:41:15 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.4503153"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "30"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "28"
+      X-Ratelimit-Reset:
+      - "45"
+    status: 404 Not Found
+    code: 404
+    duration: ""
