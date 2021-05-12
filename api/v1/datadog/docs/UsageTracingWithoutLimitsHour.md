@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **IngestedEventsBytes** | Pointer to **int64** | Contains the total number of bytes ingested during a given hour. | [optional] 
 

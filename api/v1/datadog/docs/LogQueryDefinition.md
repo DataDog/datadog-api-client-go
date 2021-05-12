@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Compute** | Pointer to [**LogsQueryCompute**](LogsQueryCompute.md) |  | [optional] 
 **GroupBy** | Pointer to [**[]LogQueryDefinitionGroupBy**](LogQueryDefinitionGroupBy.md) | List of tag prefixes to group by in the case of a cluster check. | [optional] 
 **Index** | Pointer to **string** | A coma separated-list of index names. Use \&quot;*\&quot; query all indexes at once. [Multiple Indexes](https://docs.datadoghq.com/logs/indexes/#multiple-indexes) | [optional] 

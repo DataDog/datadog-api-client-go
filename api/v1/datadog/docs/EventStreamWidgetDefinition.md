@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **EventSize** | Pointer to [**WidgetEventSize**](WidgetEventSize.md) |  | [optional] 
 **Query** | **string** | Query to filter the event stream with. | 
 **TagsExecution** | Pointer to **string** | The execution method for multi-value filters. Can be either and or or. | [optional] 

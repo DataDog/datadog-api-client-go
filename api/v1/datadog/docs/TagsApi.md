@@ -1,9 +1,9 @@
-# \TagsApi
+# TagsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateHostTags**](TagsApi.md#CreateHostTags) | **Post** /api/v1/tags/hosts/{host_name} | Add tags to a host
 [**DeleteHostTags**](TagsApi.md#DeleteHostTags) | **Delete** /api/v1/tags/hosts/{host_name} | Remove host tags
 [**GetHostTags**](TagsApi.md#GetHostTags) | **Get** /api/v1/tags/hosts/{host_name} | Get host tags
@@ -16,9 +16,8 @@ Method | HTTP request | Description
 
 > HostTags CreateHostTags(ctx, hostName, body, datadog.CreateHostTagsOptionalParameters{})
 
-Add tags to a host
-
-
+This endpoint allows you to add new tags to a host,
+optionally specifying where these tags come from.
 
 ### Example
 
@@ -48,7 +47,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.TagsApi.CreateHostTags(ctx, hostName, body, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.CreateHostTags``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.CreateHostTags`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateHostTags`: HostTags
@@ -61,19 +60,20 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**hostName** | **string** | This endpoint allows you to add new tags to a host, optionally specifying where the tags came from. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**hostName** | **string** | This endpoint allows you to add new tags to a host, optionally specifying where the tags came from. |  |
 **body** | [**HostTags**](HostTags.md) | Update host tags request body. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a CreateHostTagsOptionalParameters struct
+Other parameters are passed through a pointer to a CreateHostTagsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **source** | **string** | The source of the tags. [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | 
 
 ### Return type
@@ -98,9 +98,8 @@ Name | Type | Description  | Notes
 
 > DeleteHostTags(ctx, hostName, datadog.DeleteHostTagsOptionalParameters{})
 
-Remove host tags
-
-
+This endpoint allows you to remove all user-assigned tags
+for a single host.
 
 ### Example
 
@@ -128,7 +127,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.TagsApi.DeleteHostTags(ctx, hostName, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.DeleteHostTags``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.DeleteHostTags`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -138,18 +137,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **hostName** | **string** | This endpoint allows you to remove all user-assigned tags for a single host. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a DeleteHostTagsOptionalParameters struct
+Other parameters are passed through a pointer to a DeleteHostTagsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **source** | **string** | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | 
 
 ### Return type
@@ -174,9 +174,7 @@ Name | Type | Description  | Notes
 
 > HostTags GetHostTags(ctx, hostName, datadog.GetHostTagsOptionalParameters{})
 
-Get host tags
-
-
+Return the list of tags that apply to a given host.
 
 ### Example
 
@@ -205,7 +203,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.TagsApi.GetHostTags(ctx, hostName, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.GetHostTags``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.GetHostTags`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetHostTags`: HostTags
@@ -218,18 +216,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **hostName** | **string** | When specified, filters list of tags to those tags with the specified source. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetHostTagsOptionalParameters struct
+Other parameters are passed through a pointer to a GetHostTagsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **source** | **string** | Source to filter. | 
 
 ### Return type
@@ -254,9 +253,7 @@ Name | Type | Description  | Notes
 
 > TagToHosts ListHostTags(ctx, datadog.ListHostTagsOptionalParameters{})
 
-Get Tags
-
-
+Return a mapping of tags to hosts for your whole infrastructure.
 
 ### Example
 
@@ -284,7 +281,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.TagsApi.ListHostTags(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.ListHostTags``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.ListHostTags`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListHostTags`: TagToHosts
@@ -297,14 +294,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListHostTagsOptionalParameters struct
+Other parameters are passed through a pointer to a ListHostTagsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **source** | **string** | When specified, filters host list to those tags with the specified source. | 
 
 ### Return type
@@ -329,9 +327,8 @@ Name | Type | Description  | Notes
 
 > HostTags UpdateHostTags(ctx, hostName, body, datadog.UpdateHostTagsOptionalParameters{})
 
-Update host tags
-
-
+This endpoint allows you to update/replace all tags in
+an integration source with those supplied in the request.
 
 ### Example
 
@@ -361,7 +358,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.TagsApi.UpdateHostTags(ctx, hostName, body, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.UpdateHostTags``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.UpdateHostTags`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateHostTags`: HostTags
@@ -374,19 +371,20 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**hostName** | **string** | This endpoint allows you to update/replace all in an integration source with those supplied in the request. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**hostName** | **string** | This endpoint allows you to update/replace all in an integration source with those supplied in the request. |  |
 **body** | [**HostTags**](HostTags.md) | Add tags to host | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a UpdateHostTagsOptionalParameters struct
+Other parameters are passed through a pointer to a UpdateHostTagsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **source** | **string** | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) | 
 
 ### Return type

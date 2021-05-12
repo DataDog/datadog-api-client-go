@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Aggregates** | Pointer to [**[]UsageAttributionAggregatesBody**](UsageAttributionAggregatesBody.md) | An array of available aggregates. | [optional] 
 **Pagination** | Pointer to [**UsageAttributionPagination**](UsageAttributionPagination.md) |  | [optional] 
 

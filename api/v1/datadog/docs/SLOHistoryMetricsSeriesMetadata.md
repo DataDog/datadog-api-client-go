@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Aggr** | Pointer to **string** | Query aggregator function. | [optional] 
 **Expression** | Pointer to **string** | Query expression. | [optional] 
 **Metric** | Pointer to **string** | Query metric used. | [optional] 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Id** | **string** | The ID of the service level objective object associated with this error. | 
 **Message** | **string** | The error message. | 
 **Timeframe** | [**SLOErrorTimeframe**](SLOErrorTimeframe.md) |  | 

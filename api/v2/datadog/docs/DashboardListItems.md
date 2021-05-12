@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Dashboards** | [**[]DashboardListItem**](DashboardListItem.md) | List of dashboards in the dashboard list. | 
 **Total** | Pointer to **int64** | Number of dashboards in the dashboard list. | [optional] [readonly] 
 

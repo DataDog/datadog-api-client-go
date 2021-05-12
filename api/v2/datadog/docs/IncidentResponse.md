@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | [**IncidentResponseData**](IncidentResponseData.md) |  | 
 **Included** | Pointer to [**[]IncidentResponseIncludedItem**](IncidentResponseIncludedItem.md) | Included related resources that the user requested. | [optional] [readonly] 
 

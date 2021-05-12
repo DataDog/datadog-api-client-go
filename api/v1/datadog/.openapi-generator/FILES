@@ -196,6 +196,10 @@ docs/LogsArithmeticProcessor.md
 docs/LogsArithmeticProcessorType.md
 docs/LogsAttributeRemapper.md
 docs/LogsAttributeRemapperType.md
+docs/LogsByRetention.md
+docs/LogsByRetentionMonthlyUsage.md
+docs/LogsByRetentionOrgUsage.md
+docs/LogsByRetentionOrgs.md
 docs/LogsCategoryProcessor.md
 docs/LogsCategoryProcessorCategory.md
 docs/LogsCategoryProcessorType.md
@@ -228,6 +232,8 @@ docs/LogsPipelinesApi.md
 docs/LogsPipelinesOrder.md
 docs/LogsProcessor.md
 docs/LogsQueryCompute.md
+docs/LogsRetentionAggSumUsage.md
+docs/LogsRetentionSumUsage.md
 docs/LogsServiceRemapper.md
 docs/LogsServiceRemapperType.md
 docs/LogsSort.md
@@ -317,6 +323,7 @@ docs/SLOListResponse.md
 docs/SLOListResponseMetadata.md
 docs/SLOListResponseMetadataPage.md
 docs/SLOResponse.md
+docs/SLOResponseData.md
 docs/SLOThreshold.md
 docs/SLOTimeframe.md
 docs/SLOType.md
@@ -461,6 +468,7 @@ docs/UsageAttributionMetadata.md
 docs/UsageAttributionPagination.md
 docs/UsageAttributionResponse.md
 docs/UsageAttributionSort.md
+docs/UsageAttributionSupportedMetrics.md
 docs/UsageAttributionValues.md
 docs/UsageBillableSummaryBody.md
 docs/UsageBillableSummaryHour.md
@@ -489,6 +497,8 @@ docs/UsageLambdaHour.md
 docs/UsageLambdaResponse.md
 docs/UsageLogsByIndexHour.md
 docs/UsageLogsByIndexResponse.md
+docs/UsageLogsByRetentionHour.md
+docs/UsageLogsByRetentionResponse.md
 docs/UsageLogsHour.md
 docs/UsageLogsResponse.md
 docs/UsageMeteringApi.md
@@ -732,6 +742,10 @@ model_logs_arithmetic_processor.go
 model_logs_arithmetic_processor_type.go
 model_logs_attribute_remapper.go
 model_logs_attribute_remapper_type.go
+model_logs_by_retention.go
+model_logs_by_retention_monthly_usage.go
+model_logs_by_retention_org_usage.go
+model_logs_by_retention_orgs.go
 model_logs_category_processor.go
 model_logs_category_processor_category.go
 model_logs_category_processor_type.go
@@ -762,6 +776,8 @@ model_logs_pipeline_processor_type.go
 model_logs_pipelines_order.go
 model_logs_processor.go
 model_logs_query_compute.go
+model_logs_retention_agg_sum_usage.go
+model_logs_retention_sum_usage.go
 model_logs_service_remapper.go
 model_logs_service_remapper_type.go
 model_logs_sort.go
@@ -863,6 +879,7 @@ model_slo_list_response.go
 model_slo_list_response_metadata.go
 model_slo_list_response_metadata_page.go
 model_slo_response.go
+model_slo_response_data.go
 model_slo_threshold.go
 model_slo_timeframe.go
 model_slo_type.go
@@ -984,6 +1001,7 @@ model_usage_attribution_metadata.go
 model_usage_attribution_pagination.go
 model_usage_attribution_response.go
 model_usage_attribution_sort.go
+model_usage_attribution_supported_metrics.go
 model_usage_attribution_values.go
 model_usage_billable_summary_body.go
 model_usage_billable_summary_hour.go
@@ -1012,6 +1030,8 @@ model_usage_lambda_hour.go
 model_usage_lambda_response.go
 model_usage_logs_by_index_hour.go
 model_usage_logs_by_index_response.go
+model_usage_logs_by_retention_hour.go
+model_usage_logs_by_retention_response.go
 model_usage_logs_hour.go
 model_usage_logs_response.go
 model_usage_metric_category.go

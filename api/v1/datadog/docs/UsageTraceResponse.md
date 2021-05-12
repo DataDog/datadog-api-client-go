@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageTraceHour**](UsageTraceHour.md) | Array with the number of hourly traces indexed for a given organization. | [optional] 
 
 ## Methods

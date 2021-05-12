@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Buckets** | Pointer to [**[]LogsAggregateBucket**](LogsAggregateBucket.md) | The list of matching buckets, one item per bucket | [optional] 
 
 ## Methods

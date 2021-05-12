@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AnalyzedLogs** | Pointer to **int64** | Contains the number of analyzed logs. | [optional] 
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 

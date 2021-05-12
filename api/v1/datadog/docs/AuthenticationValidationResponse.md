@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Valid** | Pointer to **bool** | Return &#x60;true&#x60; if the authentication response is valid. | [optional] [readonly] 
 
 ## Methods

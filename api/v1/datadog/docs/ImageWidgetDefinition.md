@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **HasBackground** | Pointer to **bool** | Whether to display a background or not. | [optional] [default to true]
 **HasBorder** | Pointer to **bool** | Whether to display a border or not. | [optional] [default to true]
 **HorizontalAlign** | Pointer to [**WidgetHorizontalAlign**](WidgetHorizontalAlign.md) |  | [optional] 

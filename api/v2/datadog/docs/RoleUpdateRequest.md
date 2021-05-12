@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | [**RoleUpdateData**](RoleUpdateData.md) |  | 
 
 ## Methods

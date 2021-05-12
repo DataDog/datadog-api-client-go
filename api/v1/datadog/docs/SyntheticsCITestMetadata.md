@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Ci** | Pointer to [**SyntheticsCITestMetadataCi**](SyntheticsCITestMetadataCi.md) |  | [optional] 
 **Git** | Pointer to [**SyntheticsCITestMetadataGit**](SyntheticsCITestMetadataGit.md) |  | [optional] 
 

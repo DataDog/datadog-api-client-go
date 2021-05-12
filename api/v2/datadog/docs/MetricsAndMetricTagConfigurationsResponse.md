@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]MetricsAndMetricTagConfigurations**](MetricsAndMetricTagConfigurations.md) | Array of metrics and metric tag configurations. | [optional] 
 
 ## Methods

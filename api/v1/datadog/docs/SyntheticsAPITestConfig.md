@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Assertions** | [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [default to []]
 **ConfigVariables** | Pointer to [**[]SyntheticsConfigVariable**](SyntheticsConfigVariable.md) | Array of variables used for the test. | [optional] 
 **Request** | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | [optional] 

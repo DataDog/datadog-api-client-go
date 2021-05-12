@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Type** | [**IFrameWidgetDefinitionType**](IFrameWidgetDefinitionType.md) |  | [default to IFRAMEWIDGETDEFINITIONTYPE_IFRAME]
 **Url** | **string** | URL of the iframe. | 
 

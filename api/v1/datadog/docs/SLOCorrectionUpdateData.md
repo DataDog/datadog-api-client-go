@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | Pointer to [**SLOCorrectionUpdateRequestAttributes**](SLOCorrectionUpdateRequestAttributes.md) |  | [optional] 
 **Type** | Pointer to [**SLOCorrectionType**](SLOCorrectionType.md) |  | [optional] [default to SLOCORRECTIONTYPE_CORRECTION]
 

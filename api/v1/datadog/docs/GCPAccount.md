@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AuthProviderX509CertUrl** | Pointer to **string** | Should be &#x60;https://www.googleapis.com/oauth2/v1/certs&#x60;. | [optional] 
 **AuthUri** | Pointer to **string** | Should be &#x60;https://accounts.google.com/o/oauth2/auth&#x60;. | [optional] 
 **Automute** | Pointer to **bool** | Silence monitors for expected GCE instance shutdowns. | [optional] 

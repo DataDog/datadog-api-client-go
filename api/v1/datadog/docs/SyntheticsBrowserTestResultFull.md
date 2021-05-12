@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Check** | Pointer to [**SyntheticsBrowserTestResultFullCheck**](SyntheticsBrowserTestResultFullCheck.md) |  | [optional] 
 **CheckTime** | Pointer to **float64** | When the browser test was conducted. | [optional] 
 **CheckVersion** | Pointer to **int64** | Version of the browser test used. | [optional] 

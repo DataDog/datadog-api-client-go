@@ -1,9 +1,9 @@
-# \DashboardListsApi
+# DashboardListsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateDashboardListItems**](DashboardListsApi.md#CreateDashboardListItems) | **Post** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Add Items to a Dashboard List
 [**DeleteDashboardListItems**](DashboardListsApi.md#DeleteDashboardListItems) | **Delete** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Delete items from a dashboard list
 [**GetDashboardListItems**](DashboardListsApi.md#GetDashboardListItems) | **Get** /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards | Get items of a Dashboard List
@@ -15,9 +15,7 @@ Method | HTTP request | Description
 
 > DashboardListAddItemsResponse CreateDashboardListItems(ctx, dashboardListId, body)
 
-Add Items to a Dashboard List
-
-
+Add dashboards to an existing dashboard list.
 
 ### Example
 
@@ -43,7 +41,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DashboardListsApi.CreateDashboardListItems(ctx, dashboardListId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardListItems``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardListItems`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateDashboardListItems`: DashboardListAddItemsResponse
@@ -56,10 +54,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardListId** | **int64** | ID of the dashboard list to add items to. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**dashboardListId** | **int64** | ID of the dashboard list to add items to. |  |
 **body** | [**DashboardListAddItemsRequest**](DashboardListAddItemsRequest.md) | Dashboards to add to the dashboard list. | 
+
 
 ### Optional Parameters
 
@@ -88,9 +87,7 @@ This endpoint does not have optional parameters.
 
 > DashboardListDeleteItemsResponse DeleteDashboardListItems(ctx, dashboardListId, body)
 
-Delete items from a dashboard list
-
-
+Delete dashboards from an existing dashboard list.
 
 ### Example
 
@@ -116,7 +113,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DashboardListsApi.DeleteDashboardListItems(ctx, dashboardListId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.DeleteDashboardListItems``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.DeleteDashboardListItems`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteDashboardListItems`: DashboardListDeleteItemsResponse
@@ -129,10 +126,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardListId** | **int64** | ID of the dashboard list to delete items from. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**dashboardListId** | **int64** | ID of the dashboard list to delete items from. |  |
 **body** | [**DashboardListDeleteItemsRequest**](DashboardListDeleteItemsRequest.md) | Dashboards to delete from the dashboard list. | 
+
 
 ### Optional Parameters
 
@@ -161,9 +159,7 @@ This endpoint does not have optional parameters.
 
 > DashboardListItems GetDashboardListItems(ctx, dashboardListId)
 
-Get items of a Dashboard List
-
-
+Fetch the dashboard list’s dashboard definitions.
 
 ### Example
 
@@ -188,7 +184,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DashboardListsApi.GetDashboardListItems(ctx, dashboardListId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.GetDashboardListItems``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.GetDashboardListItems`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDashboardListItems`: DashboardListItems
@@ -201,9 +197,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **dashboardListId** | **int64** | ID of the dashboard list to get items from. | 
+
 
 ### Optional Parameters
 
@@ -232,9 +229,7 @@ This endpoint does not have optional parameters.
 
 > DashboardListUpdateItemsResponse UpdateDashboardListItems(ctx, dashboardListId, body)
 
-Update items of a dashboard list
-
-
+Update dashboards of an existing dashboard list.
 
 ### Example
 
@@ -260,7 +255,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DashboardListsApi.UpdateDashboardListItems(ctx, dashboardListId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardListItems``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardListItems`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateDashboardListItems`: DashboardListUpdateItemsResponse
@@ -273,10 +268,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardListId** | **int64** | ID of the dashboard list to update items from. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**dashboardListId** | **int64** | ID of the dashboard list to update items from. |  |
 **body** | [**DashboardListUpdateItemsRequest**](DashboardListUpdateItemsRequest.md) | New dashboards of the dashboard list. | 
+
 
 ### Optional Parameters
 

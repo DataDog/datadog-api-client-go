@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Page** | Pointer to [**UsageSpecifiedCustomReportsPage**](UsageSpecifiedCustomReportsPage.md) |  | [optional] 
 
 ## Methods

@@ -1,9 +1,9 @@
-# \OrganizationsApi
+# OrganizationsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateChildOrg**](OrganizationsApi.md#CreateChildOrg) | **Post** /api/v1/org | Create a child organization
 [**GetOrg**](OrganizationsApi.md#GetOrg) | **Get** /api/v1/org/{public_id} | Get organization information
 [**ListOrgs**](OrganizationsApi.md#ListOrgs) | **Get** /api/v1/org | List your managed organizations
@@ -16,9 +16,16 @@ Method | HTTP request | Description
 
 > OrganizationCreateResponse CreateChildOrg(ctx, body)
 
-Create a child organization
+Create a child organization.
 
+This endpoint requires the
+[multi-organization account](https://docs.datadoghq.com/account_management/multi_organization/)
+feature and must be enabled by
+[contacting support](https://docs.datadoghq.com/help/).
 
+Once a new child organization is created, you can interact with it
+by using the `org.public_id`, `pi_key.key`, and
+`application_key.hash` provided in the response.
 
 ### Example
 
@@ -43,7 +50,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.OrganizationsApi.CreateChildOrg(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateChildOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateChildOrg`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateChildOrg`: OrganizationCreateResponse
@@ -56,9 +63,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organization object that needs to be created | 
+
 
 ### Optional Parameters
 
@@ -87,9 +95,7 @@ This endpoint does not have optional parameters.
 
 > OrganizationResponse GetOrg(ctx, publicId)
 
-Get organization information
-
-
+Get organization information.
 
 ### Example
 
@@ -114,7 +120,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.OrganizationsApi.GetOrg(ctx, publicId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.GetOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.GetOrg`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetOrg`: OrganizationResponse
@@ -127,9 +133,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. | 
+
 
 ### Optional Parameters
 
@@ -158,9 +165,7 @@ This endpoint does not have optional parameters.
 
 > OrganizationListResponse ListOrgs(ctx)
 
-List your managed organizations
-
-
+List your managed organizations.
 
 ### Example
 
@@ -184,7 +189,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.OrganizationsApi.ListOrgs(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.ListOrgs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.ListOrgs`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListOrgs`: OrganizationListResponse
@@ -196,6 +201,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -224,9 +230,7 @@ This endpoint does not have optional parameters.
 
 > OrganizationResponse UpdateOrg(ctx, publicId, body)
 
-Update your organization
-
-
+Update your organization.
 
 ### Example
 
@@ -252,7 +256,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.OrganizationsApi.UpdateOrg(ctx, publicId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrg`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateOrg`: OrganizationResponse
@@ -265,10 +269,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. |  |
 **body** | [**Organization**](Organization.md) |  | 
+
 
 ### Optional Parameters
 
@@ -297,9 +302,12 @@ This endpoint does not have optional parameters.
 
 > IdpResponse UploadIdPForOrg(ctx, publicId, idpFile)
 
-Upload IdP metadata
+There are a couple of options for updating the Identity Provider (IdP)
+metadata from your SAML IdP.
 
+* **Multipart Form-Data**: Post the IdP metadata file using a form post.
 
+* **XML Body:** Post the IdP metadata file as the body of the request.
 
 ### Example
 
@@ -325,7 +333,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.OrganizationsApi.UploadIdPForOrg(ctx, publicId, idpFile)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UploadIdPForOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UploadIdPForOrg`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UploadIdPForOrg`: IdpResponse
@@ -338,10 +346,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating with | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating with |  |
 **idpFile** | ***os.File** | The path to the XML metadata file you wish to upload. | 
+
 
 ### Optional Parameters
 

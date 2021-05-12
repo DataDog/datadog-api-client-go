@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | Pointer to [**IncidentUpdateAttributes**](IncidentUpdateAttributes.md) |  | [optional] 
 **Id** | **string** | The team&#39;s ID. | 
 **Relationships** | Pointer to [**IncidentUpdateRelationships**](IncidentUpdateRelationships.md) |  | [optional] 

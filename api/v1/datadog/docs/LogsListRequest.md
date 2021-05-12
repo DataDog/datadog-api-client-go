@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Index** | Pointer to **string** | The log index on which the request is performed. For multi-index organizations, the default is all live indexes. Historical indexes of rehydrated logs must be specified. | [optional] 
 **Limit** | Pointer to **int32** | Number of logs return in the response. | [optional] 
 **Query** | Pointer to **string** | The search query - following the log search syntax. | [optional] 

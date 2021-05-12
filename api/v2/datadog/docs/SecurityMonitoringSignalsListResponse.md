@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]SecurityMonitoringSignal**](SecurityMonitoringSignal.md) | An array of security signals matching the request. | [optional] 
 **Links** | Pointer to [**SecurityMonitoringSignalsListResponseLinks**](SecurityMonitoringSignalsListResponseLinks.md) |  | [optional] 
 **Meta** | Pointer to [**SecurityMonitoringSignalsListResponseMeta**](SecurityMonitoringSignalsListResponseMeta.md) |  | [optional] 

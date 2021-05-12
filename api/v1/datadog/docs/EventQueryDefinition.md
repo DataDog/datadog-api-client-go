@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Search** | **string** | The query being made on the event. | 
 **TagsExecution** | **string** | The execution method for multi-value filters. Can be either and or or. | 
 

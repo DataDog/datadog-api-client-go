@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **DetectionMethod** | Pointer to [**SecurityMonitoringRuleDetectionMethod**](SecurityMonitoringRuleDetectionMethod.md) |  | [optional] 
 **EvaluationWindow** | Pointer to [**SecurityMonitoringRuleEvaluationWindow**](SecurityMonitoringRuleEvaluationWindow.md) |  | [optional] 
 **KeepAlive** | Pointer to [**SecurityMonitoringRuleKeepAlive**](SecurityMonitoringRuleKeepAlive.md) |  | [optional] 

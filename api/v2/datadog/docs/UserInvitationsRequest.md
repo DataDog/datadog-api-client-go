@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | [**[]UserInvitationData**](UserInvitationData.md) | List of user invitations. | 
 
 ## Methods

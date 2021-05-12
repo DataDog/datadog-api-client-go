@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **DisplayType** | Pointer to **string** | Combination of:   - A severity error, warning, ok, or info   - A line type: dashed, solid, or bold In this case of a Distribution widget, this can be set to be &#x60;x_axis_percentile&#x60;.  | [optional] 
 **Label** | Pointer to **string** | Label to display over the marker. | [optional] 
 **Time** | Pointer to **string** | Timestamp for the widget. | [optional] 

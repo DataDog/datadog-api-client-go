@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **FromTs** | Pointer to **int64** | The &#x60;from&#x60; timestamp in epoch seconds. | [optional] 
 **GroupBy** | Pointer to **[]string** | For &#x60;metric&#x60; based SLOs where the query includes a group-by clause, this represents the list of grouping parameters.  This is not included in responses for &#x60;monitor&#x60; based SLOs. | [optional] 
 **Groups** | Pointer to [**[]SLOHistorySLIData**](SLOHistorySLIData.md) | For grouped SLOs, this represents SLI data for specific groups.  This is not included in the responses for &#x60;metric&#x60; based SLOs. | [optional] 

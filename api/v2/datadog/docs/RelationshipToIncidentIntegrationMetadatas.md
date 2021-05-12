@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | [**[]RelationshipToIncidentIntegrationMetadataData**](RelationshipToIncidentIntegrationMetadataData.md) | The integration metadata relationship array | 
 
 ## Methods

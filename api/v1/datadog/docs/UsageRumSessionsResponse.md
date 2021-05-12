@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageRumSessionsHour**](UsageRumSessionsHour.md) | Get hourly usage for RUM Sessions. | [optional] 
 
 ## Methods

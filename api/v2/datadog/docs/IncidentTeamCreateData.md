@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | Pointer to [**IncidentTeamCreateAttributes**](IncidentTeamCreateAttributes.md) |  | [optional] 
 **Relationships** | Pointer to [**IncidentTeamRelationships**](IncidentTeamRelationships.md) |  | [optional] 
 **Type** | [**IncidentTeamType**](IncidentTeamType.md) |  | [default to INCIDENTTEAMTYPE_TEAMS]

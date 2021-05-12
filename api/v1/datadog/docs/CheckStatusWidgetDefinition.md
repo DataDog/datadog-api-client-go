@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Check** | **string** | Name of the check to use in the widget. | 
 **Group** | Pointer to **string** | Group reporting a single check. | [optional] 
 **GroupBy** | Pointer to **[]string** | List of tag prefixes to group by in the case of a cluster check. | [optional] 

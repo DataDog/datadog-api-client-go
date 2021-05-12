@@ -1,9 +1,9 @@
-# \HostsApi
+# HostsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**GetHostTotals**](HostsApi.md#GetHostTotals) | **Get** /api/v1/hosts/totals | Get the total number of active hosts
 [**ListHosts**](HostsApi.md#ListHosts) | **Get** /api/v1/hosts | Get all hosts for your organization
 [**MuteHost**](HostsApi.md#MuteHost) | **Post** /api/v1/host/{host_name}/mute | Mute a host
@@ -15,9 +15,8 @@ Method | HTTP request | Description
 
 > HostTotals GetHostTotals(ctx, datadog.GetHostTotalsOptionalParameters{})
 
-Get the total number of active hosts
-
-
+This endpoint returns the total number of active and up hosts in your Datadog account.
+Active means the host has reported in the past hour, and up means it has reported in the past two hours.
 
 ### Example
 
@@ -45,7 +44,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.HostsApi.GetHostTotals(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.GetHostTotals``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.GetHostTotals`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetHostTotals`: HostTotals
@@ -58,14 +57,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetHostTotalsOptionalParameters struct
+Other parameters are passed through a pointer to a GetHostTotalsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **from** | **int64** | Number of seconds from which you want to get total number of active hosts. | 
 
 ### Return type
@@ -90,9 +90,10 @@ Name | Type | Description  | Notes
 
 > HostListResponse ListHosts(ctx, datadog.ListHostsOptionalParameters{})
 
-Get all hosts for your organization
-
-
+This endpoint allows searching for hosts by name, alias, or tag.
+Hosts live within the past 3 hours are included by default.
+Retention is 7 days.
+Results are paginated with a max of 1000 results at a time.
 
 ### Example
 
@@ -134,7 +135,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.HostsApi.ListHosts(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.ListHosts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.ListHosts`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListHosts`: HostListResponse
@@ -147,14 +148,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListHostsOptionalParameters struct
+Other parameters are passed through a pointer to a ListHostsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **filter** | **string** | String to filter search results. | 
 **sortField** | **string** | Sort hosts by this field. | 
 **sortDir** | **string** | Direction of sort. Options include &#x60;asc&#x60; and &#x60;desc&#x60;. | 
@@ -186,9 +188,7 @@ Name | Type | Description  | Notes
 
 > HostMuteResponse MuteHost(ctx, hostName, body)
 
-Mute a host
-
-
+Mute a host.
 
 ### Example
 
@@ -214,7 +214,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.HostsApi.MuteHost(ctx, hostName, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.MuteHost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.MuteHost`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `MuteHost`: HostMuteResponse
@@ -227,10 +227,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**hostName** | **string** | Name of the host to mute. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**hostName** | **string** | Name of the host to mute. |  |
 **body** | [**HostMuteSettings**](HostMuteSettings.md) | Mute a host request body. | 
+
 
 ### Optional Parameters
 
@@ -259,9 +260,7 @@ This endpoint does not have optional parameters.
 
 > HostMuteResponse UnmuteHost(ctx, hostName)
 
-Unmute a host
-
-
+Unmutes a host. This endpoint takes no JSON arguments.
 
 ### Example
 
@@ -286,7 +285,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.HostsApi.UnmuteHost(ctx, hostName)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.UnmuteHost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.UnmuteHost`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UnmuteHost`: HostMuteResponse
@@ -299,9 +298,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **hostName** | **string** | Name of the host to unmute. | 
+
 
 ### Optional Parameters
 

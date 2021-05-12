@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Critical** | Pointer to **float64** | The monitor &#x60;CRITICAL&#x60; threshold. | [optional] 
 **CriticalRecovery** | Pointer to **NullableFloat64** | The monitor &#x60;CRITICAL&#x60; recovery threshold. | [optional] 
 **Ok** | Pointer to **NullableFloat64** | The monitor &#x60;OK&#x60; threshold. | [optional] 

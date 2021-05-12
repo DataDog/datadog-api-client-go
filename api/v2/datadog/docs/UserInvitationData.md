@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Relationships** | [**UserInvitationRelationships**](UserInvitationRelationships.md) |  | 
 **Type** | [**UserInvitationsType**](UserInvitationsType.md) |  | [default to USERINVITATIONSTYPE_USER_INVITATIONS]
 

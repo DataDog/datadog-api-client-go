@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | [**IncidentTeamCreateData**](IncidentTeamCreateData.md) |  | 
 
 ## Methods

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **LastTimestampFetched** | Pointer to **int64** | Timestamp of the latest API test run. | [optional] 
 **Results** | Pointer to [**[]SyntheticsAPITestResultShort**](SyntheticsAPITestResultShort.md) | Result of the latest API test run. | [optional] 
 

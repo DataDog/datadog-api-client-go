@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ComputedOn** | Pointer to **string** | The date the specified custom report was computed. | [optional] 
 **EndDate** | Pointer to **string** | The ending date of specified custom report. | [optional] 
 **Location** | Pointer to **string** | A downloadable file for the specified custom reporting file. | [optional] 

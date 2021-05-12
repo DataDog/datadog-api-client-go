@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ErrorBudgetRemaining** | Pointer to **map[string]float64** | A mapping of threshold &#x60;timeframe&#x60; to the remaining error budget. | [optional] 
 **Errors** | Pointer to [**[]SLOHistoryResponseError**](SLOHistoryResponseError.md) | A list of errors while querying the history data for the service level objective. | [optional] 
 **Group** | Pointer to **string** | For groups in a grouped SLO, this is the group name. | [optional] 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **GlobalTimeTarget** | Pointer to **string** | Defined global time target. | [optional] 
 **ShowErrorBudget** | Pointer to **bool** | Defined error budget. | [optional] 
 **SloId** | Pointer to **string** | ID of the SLO displayed. | [optional] 

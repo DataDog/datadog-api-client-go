@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageLambdaHour**](UsageLambdaHour.md) | Get hourly usage for Lambda. | [optional] 
 
 ## Methods

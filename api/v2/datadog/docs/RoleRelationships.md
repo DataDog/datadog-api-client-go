@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Permissions** | Pointer to [**RelationshipToPermissions**](RelationshipToPermissions.md) |  | [optional] 
 **Users** | Pointer to [**RelationshipToUsers**](RelationshipToUsers.md) |  | [optional] 
 

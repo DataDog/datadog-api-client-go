@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Metadata** | Pointer to [**UsageAttributionMetadata**](UsageAttributionMetadata.md) |  | [optional] 
 **Usage** | Pointer to [**[]UsageAttributionBody**](UsageAttributionBody.md) | Get Usage Summary by tag(s). | [optional] 
 

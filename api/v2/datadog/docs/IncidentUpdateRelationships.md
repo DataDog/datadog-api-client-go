@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CommanderUser** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
 **CreatedByUser** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
 **Integrations** | Pointer to [**RelationshipToIncidentIntegrationMetadatas**](RelationshipToIncidentIntegrationMetadatas.md) |  | [optional] 

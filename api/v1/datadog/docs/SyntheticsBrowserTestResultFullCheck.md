@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Config** | [**SyntheticsTestConfig**](SyntheticsTestConfig.md) |  | 
 
 ## Methods

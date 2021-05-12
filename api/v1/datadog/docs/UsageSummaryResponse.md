@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AgentHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all agent hosts over all hours in the current months for all organizations. | [optional] 
 **ApmAzureAppServiceHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure app services using APM over all hours in the current months all organizations. | [optional] 
 **ApmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct APM hosts over all hours in the current months for all organizations. | [optional] 
@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **LastUpdated** | Pointer to **time.Time** | Shows the the most recent hour in the current months for all organizations for which all usages were calculated. | [optional] 
 **LiveIndexedEventsAggSum** | Pointer to **int64** | Shows the sum of all live logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020). | [optional] 
 **LiveIngestedBytesAggSum** | Pointer to **int64** | Shows the sum of all live logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020). | [optional] 
+**LogsByRetention** | Pointer to [**LogsByRetention**](LogsByRetention.md) |  | [optional] 
 **MobileRumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current months for all organizations. | [optional] 
 **MobileRumSessionCountAndroidAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on Android over all hours in the current months for all organizations. | [optional] 
 **MobileRumSessionCountIosAggSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on iOS over all hours in the current months for all organizations. | [optional] 
@@ -780,6 +781,31 @@ SetLiveIngestedBytesAggSum sets LiveIngestedBytesAggSum field to given value.
 `func (o *UsageSummaryResponse) HasLiveIngestedBytesAggSum() bool`
 
 HasLiveIngestedBytesAggSum returns a boolean if a field has been set.
+
+### GetLogsByRetention
+
+`func (o *UsageSummaryResponse) GetLogsByRetention() LogsByRetention`
+
+GetLogsByRetention returns the LogsByRetention field if non-nil, zero value otherwise.
+
+### GetLogsByRetentionOk
+
+`func (o *UsageSummaryResponse) GetLogsByRetentionOk() (*LogsByRetention, bool)`
+
+GetLogsByRetentionOk returns a tuple with the LogsByRetention field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogsByRetention
+
+`func (o *UsageSummaryResponse) SetLogsByRetention(v LogsByRetention)`
+
+SetLogsByRetention sets LogsByRetention field to given value.
+
+### HasLogsByRetention
+
+`func (o *UsageSummaryResponse) HasLogsByRetention() bool`
+
+HasLogsByRetention returns a boolean if a field has been set.
 
 ### GetMobileRumSessionCountAggSum
 

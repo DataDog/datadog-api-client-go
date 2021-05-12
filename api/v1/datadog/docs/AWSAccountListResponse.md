@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Accounts** | Pointer to [**[]AWSAccount**](AWSAccount.md) | List of enabled AWS accounts. | [optional] 
 
 ## Methods

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Height** | **int64** | Screen height of the device. | 
 **Id** | [**SyntheticsDeviceID**](SyntheticsDeviceID.md) |  | 
 **IsMobile** | Pointer to **bool** | Whether or not the device is a mobile. | [optional] 

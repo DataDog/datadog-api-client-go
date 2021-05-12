@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **TotalCount** | Pointer to **int64** | Total page count. | [optional] 
 
 ## Methods

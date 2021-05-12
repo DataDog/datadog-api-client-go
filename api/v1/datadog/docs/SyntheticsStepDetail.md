@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **BrowserErrors** | Pointer to [**[]SyntheticsBrowserError**](SyntheticsBrowserError.md) | Array of errors collected for a browser test. | [optional] 
 **CheckType** | Pointer to [**SyntheticsCheckType**](SyntheticsCheckType.md) |  | [optional] 
 **Description** | Pointer to **string** | Description of the test. | [optional] 

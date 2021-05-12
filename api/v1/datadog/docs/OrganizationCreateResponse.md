@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ApiKey** | Pointer to [**ApiKey**](ApiKey.md) |  | [optional] 
 **ApplicationKey** | Pointer to [**ApplicationKey**](ApplicationKey.md) |  | [optional] 
 **Org** | Pointer to [**Organization**](Organization.md) |  | [optional] 

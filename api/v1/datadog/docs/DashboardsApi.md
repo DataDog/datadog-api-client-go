@@ -1,9 +1,9 @@
-# \DashboardsApi
+# DashboardsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateDashboard**](DashboardsApi.md#CreateDashboard) | **Post** /api/v1/dashboard | Create a new dashboard
 [**DeleteDashboard**](DashboardsApi.md#DeleteDashboard) | **Delete** /api/v1/dashboard/{dashboard_id} | Delete a dashboard
 [**GetDashboard**](DashboardsApi.md#GetDashboard) | **Get** /api/v1/dashboard/{dashboard_id} | Get a dashboard
@@ -16,9 +16,8 @@ Method | HTTP request | Description
 
 > Dashboard CreateDashboard(ctx, body)
 
-Create a new dashboard
-
-
+Create a dashboard using the specified options. When defining queries in your widgets, take note of which queries should have the `as_count()` or `as_rate()` modifiers appended.
+Refer to the following [documentation](https://docs.datadoghq.com/developers/metrics/type_modifiers/?tab=count#in-application-modifiers) for more information on these modifiers.
 
 ### Example
 
@@ -43,7 +42,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateDashboard`: Dashboard
@@ -56,9 +55,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**Dashboard**](Dashboard.md) | Create a dashboard request body. | 
+
 
 ### Optional Parameters
 
@@ -87,9 +87,7 @@ This endpoint does not have optional parameters.
 
 > DashboardDeleteResponse DeleteDashboard(ctx, dashboardId)
 
-Delete a dashboard
-
-
+Delete a dashboard using the specified ID.
 
 ### Example
 
@@ -114,7 +112,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DashboardsApi.DeleteDashboard(ctx, dashboardId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.DeleteDashboard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.DeleteDashboard`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteDashboard`: DashboardDeleteResponse
@@ -127,9 +125,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **dashboardId** | **string** | The ID of the dashboard. | 
+
 
 ### Optional Parameters
 
@@ -158,9 +157,7 @@ This endpoint does not have optional parameters.
 
 > Dashboard GetDashboard(ctx, dashboardId)
 
-Get a dashboard
-
-
+Get a dashboard using the specified ID.
 
 ### Example
 
@@ -185,7 +182,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DashboardsApi.GetDashboard(ctx, dashboardId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.GetDashboard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.GetDashboard`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDashboard`: Dashboard
@@ -198,9 +195,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **dashboardId** | **string** | The ID of the dashboard. | 
+
 
 ### Optional Parameters
 
@@ -229,9 +227,10 @@ This endpoint does not have optional parameters.
 
 > DashboardSummary ListDashboards(ctx, datadog.ListDashboardsOptionalParameters{})
 
-Get all dashboards
+Get all dashboards.
 
-
+**Note**: This query will only return custom created or cloned dashboards.
+This query will not return preset dashboards.
 
 ### Example
 
@@ -259,7 +258,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DashboardsApi.ListDashboards(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.ListDashboards``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.ListDashboards`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListDashboards`: DashboardSummary
@@ -272,14 +271,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListDashboardsOptionalParameters struct
+Other parameters are passed through a pointer to a ListDashboardsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **filterShared** | **bool** | When &#x60;true&#x60;, this query only returns shared custom created or cloned dashboards. | 
 
 ### Return type
@@ -304,9 +304,7 @@ Name | Type | Description  | Notes
 
 > Dashboard UpdateDashboard(ctx, dashboardId, body)
 
-Update a dashboard
-
-
+Update a dashboard using the specified ID.
 
 ### Example
 
@@ -332,7 +330,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.DashboardsApi.UpdateDashboard(ctx, dashboardId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.UpdateDashboard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.UpdateDashboard`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateDashboard`: Dashboard
@@ -345,10 +343,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** | The ID of the dashboard. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**dashboardId** | **string** | The ID of the dashboard. |  |
 **body** | [**Dashboard**](Dashboard.md) | Update Dashboard request body. | 
+
 
 ### Optional Parameters
 

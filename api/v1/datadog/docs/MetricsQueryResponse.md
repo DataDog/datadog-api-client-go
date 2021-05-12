@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Error** | Pointer to **string** | Message indicating the errors if status is not &#x60;ok&#x60;. | [optional] [readonly] 
 **FromDate** | Pointer to **int64** | Start of requested time window, milliseconds since Unix epoch. | [optional] [readonly] 
 **GroupBy** | Pointer to **[]string** | List of tag keys on which to group. | [optional] [readonly] 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ServiceName** | **string** | Your service name associated service key in PagerDuty. | 
 
 ## Methods

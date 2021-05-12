@@ -70,7 +70,8 @@ type UsageSummaryResponse struct {
 	// Shows the sum of all live logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020).
 	LiveIndexedEventsAggSum *int64 `json:"live_indexed_events_agg_sum,omitempty"`
 	// Shows the sum of all live logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020).
-	LiveIngestedBytesAggSum *int64 `json:"live_ingested_bytes_agg_sum,omitempty"`
+	LiveIngestedBytesAggSum *int64           `json:"live_ingested_bytes_agg_sum,omitempty"`
+	LogsByRetention         *LogsByRetention `json:"logs_by_retention,omitempty"`
 	// Shows the sum of all mobile RUM Sessions over all hours in the current months for all organizations.
 	MobileRumSessionCountAggSum *int64 `json:"mobile_rum_session_count_agg_sum,omitempty"`
 	// Shows the sum of all mobile RUM Sessions on Android over all hours in the current months for all organizations.
@@ -1025,6 +1026,38 @@ func (o *UsageSummaryResponse) SetLiveIngestedBytesAggSum(v int64) {
 	o.LiveIngestedBytesAggSum = &v
 }
 
+// GetLogsByRetention returns the LogsByRetention field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetLogsByRetention() LogsByRetention {
+	if o == nil || o.LogsByRetention == nil {
+		var ret LogsByRetention
+		return ret
+	}
+	return *o.LogsByRetention
+}
+
+// GetLogsByRetentionOk returns a tuple with the LogsByRetention field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetLogsByRetentionOk() (*LogsByRetention, bool) {
+	if o == nil || o.LogsByRetention == nil {
+		return nil, false
+	}
+	return o.LogsByRetention, true
+}
+
+// HasLogsByRetention returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasLogsByRetention() bool {
+	if o != nil && o.LogsByRetention != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogsByRetention gets a reference to the given LogsByRetention and assigns it to the LogsByRetention field.
+func (o *UsageSummaryResponse) SetLogsByRetention(v LogsByRetention) {
+	o.LogsByRetention = &v
+}
+
 // GetMobileRumSessionCountAggSum returns the MobileRumSessionCountAggSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetMobileRumSessionCountAggSum() int64 {
 	if o == nil || o.MobileRumSessionCountAggSum == nil {
@@ -1718,6 +1751,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.LiveIngestedBytesAggSum != nil {
 		toSerialize["live_ingested_bytes_agg_sum"] = o.LiveIngestedBytesAggSum
+	}
+	if o.LogsByRetention != nil {
+		toSerialize["logs_by_retention"] = o.LogsByRetention
 	}
 	if o.MobileRumSessionCountAggSum != nil {
 		toSerialize["mobile_rum_session_count_agg_sum"] = o.MobileRumSessionCountAggSum

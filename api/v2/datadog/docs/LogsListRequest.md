@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Filter** | Pointer to [**LogsQueryFilter**](LogsQueryFilter.md) |  | [optional] 
 **Options** | Pointer to [**LogsQueryOptions**](LogsQueryOptions.md) |  | [optional] 
 **Page** | Pointer to [**LogsListRequestPage**](LogsListRequestPage.md) |  | [optional] 

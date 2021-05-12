@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageNetworkHostsHour**](UsageNetworkHostsHour.md) | Get hourly usage for NPM hosts. | [optional] 
 
 ## Methods

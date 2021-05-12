@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Code** | Pointer to **string** | Code identifying the error | [optional] 
 **Details** | Pointer to [**[]LogsAPIError**](LogsAPIError.md) | Additional error details | [optional] 
 **Message** | Pointer to **string** | Error message | [optional] 

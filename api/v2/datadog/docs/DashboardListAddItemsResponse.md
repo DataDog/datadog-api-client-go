@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AddedDashboardsToList** | Pointer to [**[]DashboardListItemResponse**](DashboardListItemResponse.md) | List of dashboards added to the dashboard list. | [optional] 
 
 ## Methods

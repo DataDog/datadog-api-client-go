@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **IncludeZero** | Pointer to **bool** | True includes zero. | [optional] 
 **Max** | Pointer to **string** | Specifies maximum value to show on the x-axis. It takes a number, percentile (p90 &#x3D;&#x3D;&#x3D; 90th percentile), or auto for default behavior. | [optional] [default to "auto"]
 **Min** | Pointer to **string** | Specifies minimum value to show on the x-axis. It takes a number, percentile (p90 &#x3D;&#x3D;&#x3D; 90th percentile), or auto for default behavior. | [optional] [default to "auto"]

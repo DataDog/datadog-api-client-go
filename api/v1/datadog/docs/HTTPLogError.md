@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Code** | **int32** | Error code. | 
 **Message** | **string** | Error message. | 
 
