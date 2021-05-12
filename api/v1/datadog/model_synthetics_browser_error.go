@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsBrowserError Error response object for a browser test.
@@ -162,6 +163,42 @@ func (o SyntheticsBrowserError) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Description *string                     `json:"description"`
+		Name        *string                     `json:"name"`
+		Type        *SyntheticsBrowserErrorType `json:"type"`
+	}{}
+	all := struct {
+		Description string                     `json:"description"}`
+		Name        string                     `json:"name"}`
+		StatusCode  *int64                     `json:"statusCode,omitempty"}`
+		Type        SyntheticsBrowserErrorType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Description == nil {
+		return fmt.Errorf("Required field description missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Description = all.Description
+	o.Name = all.Name
+	o.StatusCode = all.StatusCode
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSyntheticsBrowserError struct {

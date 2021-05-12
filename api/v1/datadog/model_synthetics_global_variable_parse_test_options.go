@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsGlobalVariableParseTestOptions Parser options to use for retrieving a Synthetics global variable from a Synthetics Test. Used in conjunction with `parse_test_public_id`.
@@ -131,6 +132,36 @@ func (o SyntheticsGlobalVariableParseTestOptions) MarshalJSON() ([]byte, error) 
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsGlobalVariableParseTestOptions) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Parser *SyntheticsVariableParser                     `json:"parser"`
+		Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
+	}{}
+	all := struct {
+		Field  *string                                      `json:"field,omitempty"}`
+		Parser SyntheticsVariableParser                     `json:"parser"}`
+		Type   SyntheticsGlobalVariableParseTestOptionsType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Parser == nil {
+		return fmt.Errorf("Required field parser missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Field = all.Field
+	o.Parser = all.Parser
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSyntheticsGlobalVariableParseTestOptions struct {

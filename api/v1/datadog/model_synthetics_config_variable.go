@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsConfigVariable Object defining a variable that can be used in your test configuration.
@@ -162,6 +163,42 @@ func (o SyntheticsConfigVariable) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Example *string                       `json:"example"`
+		Name    *string                       `json:"name"`
+		Type    *SyntheticsConfigVariableType `json:"type"`
+	}{}
+	all := struct {
+		Example string                       `json:"example"}`
+		Name    string                       `json:"name"}`
+		Pattern *string                      `json:"pattern,omitempty"}`
+		Type    SyntheticsConfigVariableType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Example == nil {
+		return fmt.Errorf("Required field example missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Example = all.Example
+	o.Name = all.Name
+	o.Pattern = all.Pattern
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSyntheticsConfigVariable struct {

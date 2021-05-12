@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -465,6 +466,54 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 		toSerialize["url"] = o.Url
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Id   *string        `json:"id"`
+		Type *DashboardType `json:"type"`
+	}{}
+	all := struct {
+		Author     *Creator      `json:"author,omitempty"}`
+		Created    *time.Time    `json:"created,omitempty"}`
+		Icon       *string       `json:"icon,omitempty"}`
+		Id         string        `json:"id"}`
+		IsFavorite *bool         `json:"is_favorite,omitempty"}`
+		IsReadOnly *bool         `json:"is_read_only,omitempty"}`
+		IsShared   *bool         `json:"is_shared,omitempty"}`
+		Modified   *time.Time    `json:"modified,omitempty"}`
+		Popularity *int32        `json:"popularity,omitempty"}`
+		Title      *string       `json:"title,omitempty"}`
+		Type       DashboardType `json:"type"}`
+		Url        *string       `json:"url,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Id == nil {
+		return fmt.Errorf("Required field id missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Author = all.Author
+	o.Created = all.Created
+	o.Icon = all.Icon
+	o.Id = all.Id
+	o.IsFavorite = all.IsFavorite
+	o.IsReadOnly = all.IsReadOnly
+	o.IsShared = all.IsShared
+	o.Modified = all.Modified
+	o.Popularity = all.Popularity
+	o.Title = all.Title
+	o.Type = all.Type
+	o.Url = all.Url
+	return nil
 }
 
 type NullableDashboardListItem struct {

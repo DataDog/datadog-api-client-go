@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // TableWidgetDefinition The table visualization is available on timeboards and screenboards. It displays columns of metrics grouped by tag key.
@@ -316,6 +317,46 @@ func (o TableWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Requests *[]TableWidgetRequest      `json:"requests"`
+		Type     *TableWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		CustomLinks  *[]WidgetCustomLink       `json:"custom_links,omitempty"}`
+		HasSearchBar *TableWidgetHasSearchBar  `json:"has_search_bar,omitempty"}`
+		Requests     []TableWidgetRequest      `json:"requests"}`
+		Time         *WidgetTime               `json:"time,omitempty"}`
+		Title        *string                   `json:"title,omitempty"}`
+		TitleAlign   *WidgetTextAlign          `json:"title_align,omitempty"}`
+		TitleSize    *string                   `json:"title_size,omitempty"}`
+		Type         TableWidgetDefinitionType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Requests == nil {
+		return fmt.Errorf("Required field requests missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.CustomLinks = all.CustomLinks
+	o.HasSearchBar = all.HasSearchBar
+	o.Requests = all.Requests
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	return nil
 }
 
 type NullableTableWidgetDefinition struct {

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsAPITestConfig Configuration object for a Synthetic API test.
@@ -176,6 +177,34 @@ func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
 		toSerialize["steps"] = o.Steps
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsAPITestConfig) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Assertions *[]SyntheticsAssertion `json:"assertions"`
+	}{}
+	all := struct {
+		Assertions      []SyntheticsAssertion       `json:"assertions"}`
+		ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"}`
+		Request         *SyntheticsTestRequest      `json:"request,omitempty"}`
+		Steps           *[]SyntheticsAPIStep        `json:"steps,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Assertions == nil {
+		return fmt.Errorf("Required field assertions missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Assertions = all.Assertions
+	o.ConfigVariables = all.ConfigVariables
+	o.Request = all.Request
+	o.Steps = all.Steps
+	return nil
 }
 
 type NullableSyntheticsAPITestConfig struct {

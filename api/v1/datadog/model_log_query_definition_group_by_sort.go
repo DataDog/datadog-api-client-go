@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogQueryDefinitionGroupBySort Define a sorting method.
@@ -132,6 +133,36 @@ func (o LogQueryDefinitionGroupBySort) MarshalJSON() ([]byte, error) {
 		toSerialize["order"] = o.Order
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogQueryDefinitionGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Aggregation *string     `json:"aggregation"`
+		Order       *WidgetSort `json:"order"`
+	}{}
+	all := struct {
+		Aggregation string     `json:"aggregation"}`
+		Facet       *string    `json:"facet,omitempty"}`
+		Order       WidgetSort `json:"order"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Aggregation == nil {
+		return fmt.Errorf("Required field aggregation missing")
+	}
+	if required.Order == nil {
+		return fmt.Errorf("Required field order missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Aggregation = all.Aggregation
+	o.Facet = all.Facet
+	o.Order = all.Order
+	return nil
 }
 
 type NullableLogQueryDefinitionGroupBySort struct {

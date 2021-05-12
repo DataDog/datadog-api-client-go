@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsArchiveDestinationAzure The Azure archive destination.
@@ -230,6 +231,50 @@ func (o LogsArchiveDestinationAzure) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Container      *string                          `json:"container"`
+		Integration    *LogsArchiveIntegrationAzure     `json:"integration"`
+		StorageAccount *string                          `json:"storage_account"`
+		Type           *LogsArchiveDestinationAzureType `json:"type"`
+	}{}
+	all := struct {
+		Container      string                          `json:"container"}`
+		Integration    LogsArchiveIntegrationAzure     `json:"integration"}`
+		Path           *string                         `json:"path,omitempty"}`
+		Region         *string                         `json:"region,omitempty"}`
+		StorageAccount string                          `json:"storage_account"}`
+		Type           LogsArchiveDestinationAzureType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Container == nil {
+		return fmt.Errorf("Required field container missing")
+	}
+	if required.Integration == nil {
+		return fmt.Errorf("Required field integration missing")
+	}
+	if required.StorageAccount == nil {
+		return fmt.Errorf("Required field storage_account missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Container = all.Container
+	o.Integration = all.Integration
+	o.Path = all.Path
+	o.Region = all.Region
+	o.StorageAccount = all.StorageAccount
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsArchiveDestinationAzure struct {

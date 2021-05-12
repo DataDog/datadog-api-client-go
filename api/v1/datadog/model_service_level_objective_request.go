@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ServiceLevelObjectiveRequest A service level objective object includes a service level indicator, thresholds for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
@@ -320,6 +321,50 @@ func (o ServiceLevelObjectiveRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Name       *string         `json:"name"`
+		Thresholds *[]SLOThreshold `json:"thresholds"`
+		Type       *SLOType        `json:"type"`
+	}{}
+	all := struct {
+		Description NullableString              `json:"description,omitempty"}`
+		Groups      *[]string                   `json:"groups,omitempty"}`
+		MonitorIds  *[]int64                    `json:"monitor_ids,omitempty"}`
+		Name        string                      `json:"name"}`
+		Query       *ServiceLevelObjectiveQuery `json:"query,omitempty"}`
+		Tags        *[]string                   `json:"tags,omitempty"}`
+		Thresholds  []SLOThreshold              `json:"thresholds"}`
+		Type        SLOType                     `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Thresholds == nil {
+		return fmt.Errorf("Required field thresholds missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Description = all.Description
+	o.Groups = all.Groups
+	o.MonitorIds = all.MonitorIds
+	o.Name = all.Name
+	o.Query = all.Query
+	o.Tags = all.Tags
+	o.Thresholds = all.Thresholds
+	o.Type = all.Type
+	return nil
 }
 
 type NullableServiceLevelObjectiveRequest struct {

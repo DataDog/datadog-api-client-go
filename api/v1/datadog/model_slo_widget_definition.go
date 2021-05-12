@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOWidgetDefinition Use the SLO and uptime widget to track your SLOs (Service Level Objectives) and uptime on screenboards and timeboards.
@@ -393,6 +394,50 @@ func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["view_type"] = o.ViewType
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Type     *SLOWidgetDefinitionType `json:"type"`
+		ViewType *string                  `json:"view_type"`
+	}{}
+	all := struct {
+		GlobalTimeTarget *string                 `json:"global_time_target,omitempty"}`
+		ShowErrorBudget  *bool                   `json:"show_error_budget,omitempty"}`
+		SloId            *string                 `json:"slo_id,omitempty"}`
+		TimeWindows      *[]WidgetTimeWindows    `json:"time_windows,omitempty"}`
+		Title            *string                 `json:"title,omitempty"}`
+		TitleAlign       *WidgetTextAlign        `json:"title_align,omitempty"}`
+		TitleSize        *string                 `json:"title_size,omitempty"}`
+		Type             SLOWidgetDefinitionType `json:"type"}`
+		ViewMode         *WidgetViewMode         `json:"view_mode,omitempty"}`
+		ViewType         string                  `json:"view_type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	if required.ViewType == nil {
+		return fmt.Errorf("Required field view_type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.GlobalTimeTarget = all.GlobalTimeTarget
+	o.ShowErrorBudget = all.ShowErrorBudget
+	o.SloId = all.SloId
+	o.TimeWindows = all.TimeWindows
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	o.ViewMode = all.ViewMode
+	o.ViewType = all.ViewType
+	return nil
 }
 
 type NullableSLOWidgetDefinition struct {

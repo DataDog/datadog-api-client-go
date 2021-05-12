@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsServiceRemapper Use this processor if you want to assign one or more attributes as the official service.  **Note:** If multiple service remapper processors can be applied to a given log, only the first one (according to the pipeline order) is taken into account.
@@ -175,6 +176,38 @@ func (o LogsServiceRemapper) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsServiceRemapper) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Sources *[]string                `json:"sources"`
+		Type    *LogsServiceRemapperType `json:"type"`
+	}{}
+	all := struct {
+		IsEnabled *bool                   `json:"is_enabled,omitempty"}`
+		Name      *string                 `json:"name,omitempty"}`
+		Sources   []string                `json:"sources"}`
+		Type      LogsServiceRemapperType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Sources == nil {
+		return fmt.Errorf("Required field sources missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.Sources = all.Sources
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsServiceRemapper struct {

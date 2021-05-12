@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricsPayload The metrics' payload.
@@ -66,6 +67,28 @@ func (o MetricsPayload) MarshalJSON() ([]byte, error) {
 		toSerialize["series"] = o.Series
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricsPayload) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Series *[]Series `json:"series"`
+	}{}
+	all := struct {
+		Series []Series `json:"series"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Series == nil {
+		return fmt.Errorf("Required field series missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Series = all.Series
+	return nil
 }
 
 type NullableMetricsPayload struct {

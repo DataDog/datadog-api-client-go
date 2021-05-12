@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // GeomapWidgetDefinitionView The view of the world that the map should render.
@@ -66,6 +67,28 @@ func (o GeomapWidgetDefinitionView) MarshalJSON() ([]byte, error) {
 		toSerialize["focus"] = o.Focus
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Focus *string `json:"focus"`
+	}{}
+	all := struct {
+		Focus string `json:"focus"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Focus == nil {
+		return fmt.Errorf("Required field focus missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Focus = all.Focus
+	return nil
 }
 
 type NullableGeomapWidgetDefinitionView struct {

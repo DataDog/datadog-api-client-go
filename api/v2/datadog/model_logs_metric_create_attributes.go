@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMetricCreateAttributes The object describing the Datadog log-based metric to create.
@@ -138,6 +139,32 @@ func (o LogsMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["group_by"] = o.GroupBy
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Compute *LogsMetricCompute `json:"compute"`
+	}{}
+	all := struct {
+		Compute LogsMetricCompute    `json:"compute"}`
+		Filter  *LogsMetricFilter    `json:"filter,omitempty"}`
+		GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Compute == nil {
+		return fmt.Errorf("Required field compute missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Compute = all.Compute
+	o.Filter = all.Filter
+	o.GroupBy = all.GroupBy
+	return nil
 }
 
 type NullableLogsMetricCreateAttributes struct {

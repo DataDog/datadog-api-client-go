@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // EventStreamWidgetDefinition The event stream is a widget version of the stream of events on the Event Stream view. Only available on FREE layout dashboards.
@@ -316,6 +317,46 @@ func (o EventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Query *string                          `json:"query"`
+		Type  *EventStreamWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		EventSize     *WidgetEventSize                `json:"event_size,omitempty"}`
+		Query         string                          `json:"query"}`
+		TagsExecution *string                         `json:"tags_execution,omitempty"}`
+		Time          *WidgetTime                     `json:"time,omitempty"}`
+		Title         *string                         `json:"title,omitempty"}`
+		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"}`
+		TitleSize     *string                         `json:"title_size,omitempty"}`
+		Type          EventStreamWidgetDefinitionType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Query == nil {
+		return fmt.Errorf("Required field query missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.EventSize = all.EventSize
+	o.Query = all.Query
+	o.TagsExecution = all.TagsExecution
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	return nil
 }
 
 type NullableEventStreamWidgetDefinition struct {

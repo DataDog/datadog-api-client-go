@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ServiceSummaryWidgetDefinition The service summary displays the graphs of a chosen service in your screenboard. Only available on FREE layout dashboards.
@@ -597,6 +598,70 @@ func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Env      *string                             `json:"env"`
+		Service  *string                             `json:"service"`
+		SpanName *string                             `json:"span_name"`
+		Type     *ServiceSummaryWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		DisplayFormat    *WidgetServiceSummaryDisplayFormat `json:"display_format,omitempty"}`
+		Env              string                             `json:"env"}`
+		Service          string                             `json:"service"}`
+		ShowBreakdown    *bool                              `json:"show_breakdown,omitempty"}`
+		ShowDistribution *bool                              `json:"show_distribution,omitempty"}`
+		ShowErrors       *bool                              `json:"show_errors,omitempty"}`
+		ShowHits         *bool                              `json:"show_hits,omitempty"}`
+		ShowLatency      *bool                              `json:"show_latency,omitempty"}`
+		ShowResourceList *bool                              `json:"show_resource_list,omitempty"}`
+		SizeFormat       *WidgetSizeFormat                  `json:"size_format,omitempty"}`
+		SpanName         string                             `json:"span_name"}`
+		Time             *WidgetTime                        `json:"time,omitempty"}`
+		Title            *string                            `json:"title,omitempty"}`
+		TitleAlign       *WidgetTextAlign                   `json:"title_align,omitempty"}`
+		TitleSize        *string                            `json:"title_size,omitempty"}`
+		Type             ServiceSummaryWidgetDefinitionType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Env == nil {
+		return fmt.Errorf("Required field env missing")
+	}
+	if required.Service == nil {
+		return fmt.Errorf("Required field service missing")
+	}
+	if required.SpanName == nil {
+		return fmt.Errorf("Required field span_name missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.DisplayFormat = all.DisplayFormat
+	o.Env = all.Env
+	o.Service = all.Service
+	o.ShowBreakdown = all.ShowBreakdown
+	o.ShowDistribution = all.ShowDistribution
+	o.ShowErrors = all.ShowErrors
+	o.ShowHits = all.ShowHits
+	o.ShowLatency = all.ShowLatency
+	o.ShowResourceList = all.ShowResourceList
+	o.SizeFormat = all.SizeFormat
+	o.SpanName = all.SpanName
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	return nil
 }
 
 type NullableServiceSummaryWidgetDefinition struct {
