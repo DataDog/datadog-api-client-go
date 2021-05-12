@@ -33,8 +33,6 @@ type WidgetLayout struct {
 func NewWidgetLayout(height int64, width int64, x int64, y int64) *WidgetLayout {
 	this := WidgetLayout{}
 	this.Height = height
-	var isColumnBreak bool = false
-	this.IsColumnBreak = &isColumnBreak
 	this.Width = width
 	this.X = x
 	this.Y = y
@@ -46,8 +44,6 @@ func NewWidgetLayout(height int64, width int64, x int64, y int64) *WidgetLayout 
 // but it doesn't guarantee that properties required by API are set
 func NewWidgetLayoutWithDefaults() *WidgetLayout {
 	this := WidgetLayout{}
-	var isColumnBreak bool = false
-	this.IsColumnBreak = &isColumnBreak
 	return &this
 }
 
