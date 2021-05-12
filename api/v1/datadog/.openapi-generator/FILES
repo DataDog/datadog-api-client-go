@@ -104,6 +104,7 @@ docs/DistributionWidgetRequest.md
 docs/DistributionWidgetXAxis.md
 docs/DistributionWidgetYAxis.md
 docs/Downtime.md
+docs/DowntimeChild.md
 docs/DowntimeRecurrence.md
 docs/DowntimesApi.md
 docs/Event.md
@@ -695,6 +696,7 @@ model_distribution_widget_request.go
 model_distribution_widget_x_axis.go
 model_distribution_widget_y_axis.go
 model_downtime.go
+model_downtime_child.go
 model_downtime_recurrence.go
 model_event.go
 model_event_alert_type.go
