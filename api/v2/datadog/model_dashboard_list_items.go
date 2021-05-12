@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // DashboardListItems Dashboards within a list.
@@ -103,6 +104,30 @@ func (o DashboardListItems) MarshalJSON() ([]byte, error) {
 		toSerialize["total"] = o.Total
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DashboardListItems) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Dashboards *[]DashboardListItem `json:"dashboards"`
+	}{}
+	all := struct {
+		Dashboards []DashboardListItem `json:"dashboards"}`
+		Total      *int64              `json:"total,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Dashboards == nil {
+		return fmt.Errorf("Required field dashboards missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Dashboards = all.Dashboards
+	o.Total = all.Total
+	return nil
 }
 
 type NullableDashboardListItems struct {

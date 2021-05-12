@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsGlobalVariableValue Value of the global variable.
@@ -103,6 +104,30 @@ func (o SyntheticsGlobalVariableValue) MarshalJSON() ([]byte, error) {
 		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsGlobalVariableValue) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Value *string `json:"value"`
+	}{}
+	all := struct {
+		Secure *bool  `json:"secure,omitempty"}`
+		Value  string `json:"value"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Value == nil {
+		return fmt.Errorf("Required field value missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Secure = all.Secure
+	o.Value = all.Value
+	return nil
 }
 
 type NullableSyntheticsGlobalVariableValue struct {

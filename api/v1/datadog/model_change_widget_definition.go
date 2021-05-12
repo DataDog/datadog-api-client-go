@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ChangeWidgetDefinition The Change graph shows you the change in a value over the time period chosen.
@@ -280,6 +281,44 @@ func (o ChangeWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ChangeWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Requests *[]ChangeWidgetRequest      `json:"requests"`
+		Type     *ChangeWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		CustomLinks *[]WidgetCustomLink        `json:"custom_links,omitempty"}`
+		Requests    []ChangeWidgetRequest      `json:"requests"}`
+		Time        *WidgetTime                `json:"time,omitempty"}`
+		Title       *string                    `json:"title,omitempty"}`
+		TitleAlign  *WidgetTextAlign           `json:"title_align,omitempty"}`
+		TitleSize   *string                    `json:"title_size,omitempty"}`
+		Type        ChangeWidgetDefinitionType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Requests == nil {
+		return fmt.Errorf("Required field requests missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.CustomLinks = all.CustomLinks
+	o.Requests = all.Requests
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	return nil
 }
 
 type NullableChangeWidgetDefinition struct {

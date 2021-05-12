@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsArchiveIntegrationAzure The Azure archive's integration destination.
@@ -96,6 +97,34 @@ func (o LogsArchiveIntegrationAzure) MarshalJSON() ([]byte, error) {
 		toSerialize["tenant_id"] = o.TenantId
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		ClientId *string `json:"client_id"`
+		TenantId *string `json:"tenant_id"`
+	}{}
+	all := struct {
+		ClientId string `json:"client_id"}`
+		TenantId string `json:"tenant_id"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.ClientId == nil {
+		return fmt.Errorf("Required field client_id missing")
+	}
+	if required.TenantId == nil {
+		return fmt.Errorf("Required field tenant_id missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.ClientId = all.ClientId
+	o.TenantId = all.TenantId
+	return nil
 }
 
 type NullableLogsArchiveIntegrationAzure struct {

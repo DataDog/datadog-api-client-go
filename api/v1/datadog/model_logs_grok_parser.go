@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsGrokParser Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/processing/parsing/#advanced-settings). For more information, see the [parsing section](https://docs.datadoghq.com/logs/processing/parsing).
@@ -243,6 +244,46 @@ func (o LogsGrokParser) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Grok   *LogsGrokParserRules `json:"grok"`
+		Source *string              `json:"source"`
+		Type   *LogsGrokParserType  `json:"type"`
+	}{}
+	all := struct {
+		Grok      LogsGrokParserRules `json:"grok"}`
+		IsEnabled *bool               `json:"is_enabled,omitempty"}`
+		Name      *string             `json:"name,omitempty"}`
+		Samples   *[]string           `json:"samples,omitempty"}`
+		Source    string              `json:"source"}`
+		Type      LogsGrokParserType  `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Grok == nil {
+		return fmt.Errorf("Required field grok missing")
+	}
+	if required.Source == nil {
+		return fmt.Errorf("Required field source missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Grok = all.Grok
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.Samples = all.Samples
+	o.Source = all.Source
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsGrokParser struct {

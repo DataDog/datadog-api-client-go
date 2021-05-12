@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MonitorSummaryWidgetDefinition The monitor summary widget displays a summary view of all your Datadog monitors, or a subset based on a query. Only available on FREE layout dashboards.
@@ -499,6 +500,56 @@ func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Query *string                             `json:"query"`
+		Type  *MonitorSummaryWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		ColorPreference   *WidgetColorPreference             `json:"color_preference,omitempty"}`
+		Count             *int64                             `json:"count,omitempty"}`
+		DisplayFormat     *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"}`
+		HideZeroCounts    *bool                              `json:"hide_zero_counts,omitempty"}`
+		Query             string                             `json:"query"}`
+		ShowLastTriggered *bool                              `json:"show_last_triggered,omitempty"}`
+		Sort              *WidgetMonitorSummarySort          `json:"sort,omitempty"}`
+		Start             *int64                             `json:"start,omitempty"}`
+		SummaryType       *WidgetSummaryType                 `json:"summary_type,omitempty"}`
+		Title             *string                            `json:"title,omitempty"}`
+		TitleAlign        *WidgetTextAlign                   `json:"title_align,omitempty"}`
+		TitleSize         *string                            `json:"title_size,omitempty"}`
+		Type              MonitorSummaryWidgetDefinitionType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Query == nil {
+		return fmt.Errorf("Required field query missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.ColorPreference = all.ColorPreference
+	o.Count = all.Count
+	o.DisplayFormat = all.DisplayFormat
+	o.HideZeroCounts = all.HideZeroCounts
+	o.Query = all.Query
+	o.ShowLastTriggered = all.ShowLastTriggered
+	o.Sort = all.Sort
+	o.Start = all.Start
+	o.SummaryType = all.SummaryType
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	return nil
 }
 
 type NullableMonitorSummaryWidgetDefinition struct {

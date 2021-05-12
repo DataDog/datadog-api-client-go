@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsPipelinesOrder Object containing the ordered list of pipeline IDs.
@@ -66,6 +67,28 @@ func (o LogsPipelinesOrder) MarshalJSON() ([]byte, error) {
 		toSerialize["pipeline_ids"] = o.PipelineIds
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsPipelinesOrder) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		PipelineIds *[]string `json:"pipeline_ids"`
+	}{}
+	all := struct {
+		PipelineIds []string `json:"pipeline_ids"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.PipelineIds == nil {
+		return fmt.Errorf("Required field pipeline_ids missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.PipelineIds = all.PipelineIds
+	return nil
 }
 
 type NullableLogsPipelinesOrder struct {

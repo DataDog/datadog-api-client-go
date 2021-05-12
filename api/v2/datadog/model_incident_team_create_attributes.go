@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentTeamCreateAttributes The incident team's attributes for a create request.
@@ -66,6 +67,28 @@ func (o IncidentTeamCreateAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentTeamCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Name *string `json:"name"`
+	}{}
+	all := struct {
+		Name string `json:"name"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Name = all.Name
+	return nil
 }
 
 type NullableIncidentTeamCreateAttributes struct {

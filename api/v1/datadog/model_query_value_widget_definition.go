@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // QueryValueWidgetDefinition Query values display the current value of a given metric, APM, or log query.
@@ -427,6 +428,52 @@ func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Requests *[]QueryValueWidgetRequest      `json:"requests"`
+		Type     *QueryValueWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		Autoscale   *bool                          `json:"autoscale,omitempty"}`
+		CustomLinks *[]WidgetCustomLink            `json:"custom_links,omitempty"}`
+		CustomUnit  *string                        `json:"custom_unit,omitempty"}`
+		Precision   *int64                         `json:"precision,omitempty"}`
+		Requests    []QueryValueWidgetRequest      `json:"requests"}`
+		TextAlign   *WidgetTextAlign               `json:"text_align,omitempty"}`
+		Time        *WidgetTime                    `json:"time,omitempty"}`
+		Title       *string                        `json:"title,omitempty"}`
+		TitleAlign  *WidgetTextAlign               `json:"title_align,omitempty"}`
+		TitleSize   *string                        `json:"title_size,omitempty"}`
+		Type        QueryValueWidgetDefinitionType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Requests == nil {
+		return fmt.Errorf("Required field requests missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Autoscale = all.Autoscale
+	o.CustomLinks = all.CustomLinks
+	o.CustomUnit = all.CustomUnit
+	o.Precision = all.Precision
+	o.Requests = all.Requests
+	o.TextAlign = all.TextAlign
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	return nil
 }
 
 type NullableQueryValueWidgetDefinition struct {

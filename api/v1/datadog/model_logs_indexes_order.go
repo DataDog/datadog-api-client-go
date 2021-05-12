@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsIndexesOrder Object containing the ordered list of log index names.
@@ -66,6 +67,28 @@ func (o LogsIndexesOrder) MarshalJSON() ([]byte, error) {
 		toSerialize["index_names"] = o.IndexNames
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsIndexesOrder) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		IndexNames *[]string `json:"index_names"`
+	}{}
+	all := struct {
+		IndexNames []string `json:"index_names"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.IndexNames == nil {
+		return fmt.Errorf("Required field index_names missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IndexNames = all.IndexNames
+	return nil
 }
 
 type NullableLogsIndexesOrder struct {

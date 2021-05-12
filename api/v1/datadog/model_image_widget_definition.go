@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ImageWidgetDefinition The image widget allows you to embed an image on your dashboard. An image can be a PNG, JPG, or animated GIF. Only available on FREE layout dashboards.
@@ -360,6 +361,48 @@ func (o ImageWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["vertical_align"] = o.VerticalAlign
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Type *ImageWidgetDefinitionType `json:"type"`
+		Url  *string                    `json:"url"`
+	}{}
+	all := struct {
+		HasBackground   *bool                     `json:"has_background,omitempty"}`
+		HasBorder       *bool                     `json:"has_border,omitempty"}`
+		HorizontalAlign *WidgetHorizontalAlign    `json:"horizontal_align,omitempty"}`
+		Margin          *WidgetMargin             `json:"margin,omitempty"}`
+		Sizing          *WidgetImageSizing        `json:"sizing,omitempty"}`
+		Type            ImageWidgetDefinitionType `json:"type"}`
+		Url             string                    `json:"url"}`
+		UrlDarkTheme    *string                   `json:"url_dark_theme,omitempty"}`
+		VerticalAlign   *WidgetVerticalAlign      `json:"vertical_align,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	if required.Url == nil {
+		return fmt.Errorf("Required field url missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.HasBackground = all.HasBackground
+	o.HasBorder = all.HasBorder
+	o.HorizontalAlign = all.HorizontalAlign
+	o.Margin = all.Margin
+	o.Sizing = all.Sizing
+	o.Type = all.Type
+	o.Url = all.Url
+	o.UrlDarkTheme = all.UrlDarkTheme
+	o.VerticalAlign = all.VerticalAlign
+	return nil
 }
 
 type NullableImageWidgetDefinition struct {

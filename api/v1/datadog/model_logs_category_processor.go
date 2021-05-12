@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsCategoryProcessor Use the Category Processor to add a new attribute (without spaces or special characters in the new attribute name) to a log matching a provided search query. Use categories to create groups for an analytical view. For example, URL groups, machine groups, environments, and response time buckets.  **Notes**:  - The syntax of the query is the one of Logs Explorer search bar.   The query can be done on any log attribute or tag, whether it is a facet or not.   Wildcards can also be used inside your query. - Once the log has matched one of the Processor queries, it stops.   Make sure they are properly ordered in case a log could match several queries. - The names of the categories must be unique. - Once defined in the Category Processor, you can map categories to log status using the Log Status Remapper.
@@ -205,6 +206,44 @@ func (o LogsCategoryProcessor) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Categories *[]LogsCategoryProcessorCategory `json:"categories"`
+		Target     *string                          `json:"target"`
+		Type       *LogsCategoryProcessorType       `json:"type"`
+	}{}
+	all := struct {
+		Categories []LogsCategoryProcessorCategory `json:"categories"}`
+		IsEnabled  *bool                           `json:"is_enabled,omitempty"}`
+		Name       *string                         `json:"name,omitempty"}`
+		Target     string                          `json:"target"}`
+		Type       LogsCategoryProcessorType       `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Categories == nil {
+		return fmt.Errorf("Required field categories missing")
+	}
+	if required.Target == nil {
+		return fmt.Errorf("Required field target missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Categories = all.Categories
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.Target = all.Target
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsCategoryProcessor struct {

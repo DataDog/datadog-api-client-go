@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // CheckCanDeleteMonitorResponse Response of monitor IDs that can or can't be safely deleted.
@@ -102,6 +103,30 @@ func (o CheckCanDeleteMonitorResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["errors"] = o.Errors
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *CheckCanDeleteMonitorResponse) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Data *CheckCanDeleteMonitorResponseData `json:"data"`
+	}{}
+	all := struct {
+		Data   CheckCanDeleteMonitorResponseData `json:"data"}`
+		Errors *map[string][]string              `json:"errors,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Data == nil {
+		return fmt.Errorf("Required field data missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Data = all.Data
+	o.Errors = all.Errors
+	return nil
 }
 
 type NullableCheckCanDeleteMonitorResponse struct {

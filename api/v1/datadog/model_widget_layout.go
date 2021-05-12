@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetLayout The layout for a widget on a `free` or **new dashboard layout** dashboard.
@@ -33,8 +34,6 @@ type WidgetLayout struct {
 func NewWidgetLayout(height int64, width int64, x int64, y int64) *WidgetLayout {
 	this := WidgetLayout{}
 	this.Height = height
-	var isColumnBreak bool = false
-	this.IsColumnBreak = &isColumnBreak
 	this.Width = width
 	this.X = x
 	this.Y = y
@@ -46,8 +45,6 @@ func NewWidgetLayout(height int64, width int64, x int64, y int64) *WidgetLayout 
 // but it doesn't guarantee that properties required by API are set
 func NewWidgetLayoutWithDefaults() *WidgetLayout {
 	this := WidgetLayout{}
-	var isColumnBreak bool = false
-	this.IsColumnBreak = &isColumnBreak
 	return &this
 }
 
@@ -197,6 +194,48 @@ func (o WidgetLayout) MarshalJSON() ([]byte, error) {
 		toSerialize["y"] = o.Y
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Height *int64 `json:"height"`
+		Width  *int64 `json:"width"`
+		X      *int64 `json:"x"`
+		Y      *int64 `json:"y"`
+	}{}
+	all := struct {
+		Height        int64 `json:"height"}`
+		IsColumnBreak *bool `json:"is_column_break,omitempty"}`
+		Width         int64 `json:"width"}`
+		X             int64 `json:"x"}`
+		Y             int64 `json:"y"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Height == nil {
+		return fmt.Errorf("Required field height missing")
+	}
+	if required.Width == nil {
+		return fmt.Errorf("Required field width missing")
+	}
+	if required.X == nil {
+		return fmt.Errorf("Required field x missing")
+	}
+	if required.Y == nil {
+		return fmt.Errorf("Required field y missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Height = all.Height
+	o.IsColumnBreak = all.IsColumnBreak
+	o.Width = all.Width
+	o.X = all.X
+	o.Y = all.Y
+	return nil
 }
 
 type NullableWidgetLayout struct {
