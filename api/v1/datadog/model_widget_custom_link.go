@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetCustomLink Custom links help you connect a data value to a URL, like a Datadog page or your AWS console.
@@ -96,6 +97,34 @@ func (o WidgetCustomLink) MarshalJSON() ([]byte, error) {
 		toSerialize["link"] = o.Link
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *WidgetCustomLink) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Label *string `json:"label"`
+		Link  *string `json:"link"`
+	}{}
+	all := struct {
+		Label string `json:"label"}`
+		Link  string `json:"link"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Label == nil {
+		return fmt.Errorf("Required field label missing")
+	}
+	if required.Link == nil {
+		return fmt.Errorf("Required field link missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Label = all.Label
+	o.Link = all.Link
+	return nil
 }
 
 type NullableWidgetCustomLink struct {

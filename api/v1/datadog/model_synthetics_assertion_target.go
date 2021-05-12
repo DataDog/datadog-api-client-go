@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsAssertionTarget An assertion which uses a simple target.
@@ -168,6 +169,38 @@ func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Operator *SyntheticsAssertionOperator `json:"operator"`
+		Type     *SyntheticsAssertionType     `json:"type"`
+	}{}
+	all := struct {
+		Operator SyntheticsAssertionOperator `json:"operator"}`
+		Property *string                     `json:"property,omitempty"}`
+		Target   *interface{}                `json:"target,omitempty"}`
+		Type     SyntheticsAssertionType     `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Operator == nil {
+		return fmt.Errorf("Required field operator missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Operator = all.Operator
+	o.Property = all.Property
+	o.Target = all.Target
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSyntheticsAssertionTarget struct {

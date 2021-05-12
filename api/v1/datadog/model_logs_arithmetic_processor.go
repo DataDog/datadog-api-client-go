@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsArithmeticProcessor Use the Arithmetic Processor to add a new attribute (without spaces or special characters in the new attribute name) to a log with the result of the provided formula. This enables you to remap different time attributes with different units into a single attribute, or to compute operations on attributes within the same log.  The formula can use parentheses and the basic arithmetic operators `-`, `+`, `*`, `/`.  By default, the calculation is skipped if an attribute is missing. Select “Replace missing attribute by 0” to automatically populate missing attribute values with 0 to ensure that the calculation is done. An attribute is missing if it is not found in the log attributes, or if it cannot be converted to a number.  *Notes*:  - The operator `-` needs to be space split in the formula as it can also be contained in attribute names. - If the target attribute already exists, it is overwritten by the result of the formula. - Results are rounded up to the 9th decimal. For example, if the result of the formula is `0.1234567891`,   the actual value stored for the attribute is `0.123456789`. - If you need to scale a unit of measure,   see [Scale Filter](https://docs.datadoghq.com/logs/processing/parsing/?tab=filter#matcher-and-filter).
@@ -246,6 +247,46 @@ func (o LogsArithmeticProcessor) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsArithmeticProcessor) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Expression *string                      `json:"expression"`
+		Target     *string                      `json:"target"`
+		Type       *LogsArithmeticProcessorType `json:"type"`
+	}{}
+	all := struct {
+		Expression       string                      `json:"expression"}`
+		IsEnabled        *bool                       `json:"is_enabled,omitempty"}`
+		IsReplaceMissing *bool                       `json:"is_replace_missing,omitempty"}`
+		Name             *string                     `json:"name,omitempty"}`
+		Target           string                      `json:"target"}`
+		Type             LogsArithmeticProcessorType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Expression == nil {
+		return fmt.Errorf("Required field expression missing")
+	}
+	if required.Target == nil {
+		return fmt.Errorf("Required field target missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Expression = all.Expression
+	o.IsEnabled = all.IsEnabled
+	o.IsReplaceMissing = all.IsReplaceMissing
+	o.Name = all.Name
+	o.Target = all.Target
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsArithmeticProcessor struct {

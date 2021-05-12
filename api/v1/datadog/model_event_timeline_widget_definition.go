@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // EventTimelineWidgetDefinition The event timeline is a widget version of the timeline that appears at the top of the Event Stream view. Only available on FREE layout dashboards.
@@ -280,6 +281,44 @@ func (o EventTimelineWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *EventTimelineWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Query *string                            `json:"query"`
+		Type  *EventTimelineWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		Query         string                            `json:"query"}`
+		TagsExecution *string                           `json:"tags_execution,omitempty"}`
+		Time          *WidgetTime                       `json:"time,omitempty"}`
+		Title         *string                           `json:"title,omitempty"}`
+		TitleAlign    *WidgetTextAlign                  `json:"title_align,omitempty"}`
+		TitleSize     *string                           `json:"title_size,omitempty"}`
+		Type          EventTimelineWidgetDefinitionType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Query == nil {
+		return fmt.Errorf("Required field query missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Query = all.Query
+	o.TagsExecution = all.TagsExecution
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	return nil
 }
 
 type NullableEventTimelineWidgetDefinition struct {

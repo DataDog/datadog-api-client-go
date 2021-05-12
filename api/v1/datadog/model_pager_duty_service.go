@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // PagerDutyService The PagerDuty service that is available for integration with Datadog.
@@ -96,6 +97,34 @@ func (o PagerDutyService) MarshalJSON() ([]byte, error) {
 		toSerialize["service_name"] = o.ServiceName
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *PagerDutyService) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		ServiceKey  *string `json:"service_key"`
+		ServiceName *string `json:"service_name"`
+	}{}
+	all := struct {
+		ServiceKey  string `json:"service_key"}`
+		ServiceName string `json:"service_name"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.ServiceKey == nil {
+		return fmt.Errorf("Required field service_key missing")
+	}
+	if required.ServiceName == nil {
+		return fmt.Errorf("Required field service_name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.ServiceKey = all.ServiceKey
+	o.ServiceName = all.ServiceName
+	return nil
 }
 
 type NullablePagerDutyService struct {

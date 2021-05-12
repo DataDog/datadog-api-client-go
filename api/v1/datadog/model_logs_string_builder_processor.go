@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsStringBuilderProcessor Use the string builder processor to add a new attribute (without spaces or special characters) to a log with the result of the provided template. This enables aggregation of different attributes or raw strings into a single attribute.  The template is defined by both raw text and blocks with the syntax `%{attribute_path}`.  **Notes**:  - The processor only accepts attributes with values or an array of values in the blocks. - If an attribute cannot be used (object or array of object),   it is replaced by an empty string or the entire operation is skipped depending on your selection. - If the target attribute already exists, it is overwritten by the result of the template. - Results of the template cannot exceed 256 characters.
@@ -246,6 +247,46 @@ func (o LogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsStringBuilderProcessor) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Target   *string                         `json:"target"`
+		Template *string                         `json:"template"`
+		Type     *LogsStringBuilderProcessorType `json:"type"`
+	}{}
+	all := struct {
+		IsEnabled        *bool                          `json:"is_enabled,omitempty"}`
+		IsReplaceMissing *bool                          `json:"is_replace_missing,omitempty"}`
+		Name             *string                        `json:"name,omitempty"}`
+		Target           string                         `json:"target"}`
+		Template         string                         `json:"template"}`
+		Type             LogsStringBuilderProcessorType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Target == nil {
+		return fmt.Errorf("Required field target missing")
+	}
+	if required.Template == nil {
+		return fmt.Errorf("Required field template missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IsEnabled = all.IsEnabled
+	o.IsReplaceMissing = all.IsReplaceMissing
+	o.Name = all.Name
+	o.Target = all.Target
+	o.Template = all.Template
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsStringBuilderProcessor struct {

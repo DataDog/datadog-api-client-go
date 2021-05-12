@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsBasicAuth Object to handle basic authentication when performing the test.
@@ -96,6 +97,34 @@ func (o SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 		toSerialize["username"] = o.Username
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsBasicAuth) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Password *string `json:"password"`
+		Username *string `json:"username"`
+	}{}
+	all := struct {
+		Password string `json:"password"}`
+		Username string `json:"username"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Password == nil {
+		return fmt.Errorf("Required field password missing")
+	}
+	if required.Username == nil {
+		return fmt.Errorf("Required field username missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Password = all.Password
+	o.Username = all.Username
+	return nil
 }
 
 type NullableSyntheticsBasicAuth struct {

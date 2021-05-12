@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // GroupWidgetDefinition The groups widget allows you to keep similar graphs together on your timeboard. Each group has a custom header, can hold one to many graphs, and is collapsible.
@@ -314,6 +315,50 @@ func (o GroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["widgets"] = o.Widgets
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		LayoutType *WidgetLayoutType          `json:"layout_type"`
+		Type       *GroupWidgetDefinitionType `json:"type"`
+		Widgets    *[]Widget                  `json:"widgets"`
+	}{}
+	all := struct {
+		BackgroundColor *string                   `json:"background_color,omitempty"}`
+		BannerImg       *string                   `json:"banner_img,omitempty"}`
+		LayoutType      WidgetLayoutType          `json:"layout_type"}`
+		ShowTitle       *bool                     `json:"show_title,omitempty"}`
+		Title           *string                   `json:"title,omitempty"}`
+		TitleAlign      *WidgetTextAlign          `json:"title_align,omitempty"}`
+		Type            GroupWidgetDefinitionType `json:"type"}`
+		Widgets         []Widget                  `json:"widgets"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.LayoutType == nil {
+		return fmt.Errorf("Required field layout_type missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	if required.Widgets == nil {
+		return fmt.Errorf("Required field widgets missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.BackgroundColor = all.BackgroundColor
+	o.BannerImg = all.BannerImg
+	o.LayoutType = all.LayoutType
+	o.ShowTitle = all.ShowTitle
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.Type = all.Type
+	o.Widgets = all.Widgets
+	return nil
 }
 
 type NullableGroupWidgetDefinition struct {

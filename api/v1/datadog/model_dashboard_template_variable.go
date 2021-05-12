@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // DashboardTemplateVariable Template variable.
@@ -162,6 +163,32 @@ func (o DashboardTemplateVariable) MarshalJSON() ([]byte, error) {
 		toSerialize["prefix"] = o.Prefix.Get()
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Name *string `json:"name"`
+	}{}
+	all := struct {
+		Default NullableString `json:"default,omitempty"}`
+		Name    string         `json:"name"}`
+		Prefix  NullableString `json:"prefix,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Default = all.Default
+	o.Name = all.Name
+	o.Prefix = all.Prefix
+	return nil
 }
 
 type NullableDashboardTemplateVariable struct {

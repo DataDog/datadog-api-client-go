@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // EventCreateRequest Object representing an event.
@@ -538,6 +539,58 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["url"] = o.Url
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Text  *string `json:"text"`
+		Title *string `json:"title"`
+	}{}
+	all := struct {
+		AggregationKey *string         `json:"aggregation_key,omitempty"}`
+		AlertType      *EventAlertType `json:"alert_type,omitempty"}`
+		DateHappened   *int64          `json:"date_happened,omitempty"}`
+		DeviceName     *string         `json:"device_name,omitempty"}`
+		Host           *string         `json:"host,omitempty"}`
+		Id             *int64          `json:"id,omitempty"}`
+		Payload        *string         `json:"payload,omitempty"}`
+		Priority       *EventPriority  `json:"priority,omitempty"}`
+		RelatedEventId *int64          `json:"related_event_id,omitempty"}`
+		SourceTypeName *string         `json:"source_type_name,omitempty"}`
+		Tags           *[]string       `json:"tags,omitempty"}`
+		Text           string          `json:"text"}`
+		Title          string          `json:"title"}`
+		Url            *string         `json:"url,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Text == nil {
+		return fmt.Errorf("Required field text missing")
+	}
+	if required.Title == nil {
+		return fmt.Errorf("Required field title missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.AggregationKey = all.AggregationKey
+	o.AlertType = all.AlertType
+	o.DateHappened = all.DateHappened
+	o.DeviceName = all.DeviceName
+	o.Host = all.Host
+	o.Id = all.Id
+	o.Payload = all.Payload
+	o.Priority = all.Priority
+	o.RelatedEventId = all.RelatedEventId
+	o.SourceTypeName = all.SourceTypeName
+	o.Tags = all.Tags
+	o.Text = all.Text
+	o.Title = all.Title
+	o.Url = all.Url
+	return nil
 }
 
 type NullableEventCreateRequest struct {
