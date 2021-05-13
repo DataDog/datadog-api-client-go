@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // OrganizationCreateBody Object describing an organization to create.
@@ -138,6 +139,32 @@ func (o OrganizationCreateBody) MarshalJSON() ([]byte, error) {
 		toSerialize["subscription"] = o.Subscription
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *OrganizationCreateBody) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Name *string `json:"name"`
+	}{}
+	all := struct {
+		Billing      *OrganizationBilling      `json:"billing,omitempty"}`
+		Name         string                    `json:"name"}`
+		Subscription *OrganizationSubscription `json:"subscription,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Billing = all.Billing
+	o.Name = all.Name
+	o.Subscription = all.Subscription
+	return nil
 }
 
 type NullableOrganizationCreateBody struct {

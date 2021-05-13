@@ -469,6 +469,10 @@ func reportError(format string, a ...interface{}) error {
 
 // Set request body from an interface{}
 func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err error) {
+	if reflect.ValueOf(body).IsNil() {
+		return nil, nil
+	}
+
 	if bodyBuf == nil {
 		bodyBuf = &bytes.Buffer{}
 	}

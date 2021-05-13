@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -325,6 +326,42 @@ func (o DashboardList) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DashboardList) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Name *string `json:"name"`
+	}{}
+	all := struct {
+		Author         *Creator   `json:"author,omitempty"}`
+		Created        *time.Time `json:"created,omitempty"}`
+		DashboardCount *int64     `json:"dashboard_count,omitempty"}`
+		Id             *int64     `json:"id,omitempty"}`
+		IsFavorite     *bool      `json:"is_favorite,omitempty"}`
+		Modified       *time.Time `json:"modified,omitempty"}`
+		Name           string     `json:"name"}`
+		Type           *string    `json:"type,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Author = all.Author
+	o.Created = all.Created
+	o.DashboardCount = all.DashboardCount
+	o.Id = all.Id
+	o.IsFavorite = all.IsFavorite
+	o.Modified = all.Modified
+	o.Name = all.Name
+	o.Type = all.Type
+	return nil
 }
 
 type NullableDashboardList struct {

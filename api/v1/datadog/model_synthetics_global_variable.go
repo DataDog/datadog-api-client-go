@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsGlobalVariable Synthetics global variable.
@@ -265,6 +266,52 @@ func (o SyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
 		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Description *string                        `json:"description"`
+		Name        *string                        `json:"name"`
+		Tags        *[]string                      `json:"tags"`
+		Value       *SyntheticsGlobalVariableValue `json:"value"`
+	}{}
+	all := struct {
+		Description       string                                    `json:"description"}`
+		Id                *string                                   `json:"id,omitempty"}`
+		Name              string                                    `json:"name"}`
+		ParseTestOptions  *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"}`
+		ParseTestPublicId *string                                   `json:"parse_test_public_id,omitempty"}`
+		Tags              []string                                  `json:"tags"}`
+		Value             SyntheticsGlobalVariableValue             `json:"value"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Description == nil {
+		return fmt.Errorf("Required field description missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Tags == nil {
+		return fmt.Errorf("Required field tags missing")
+	}
+	if required.Value == nil {
+		return fmt.Errorf("Required field value missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Description = all.Description
+	o.Id = all.Id
+	o.Name = all.Name
+	o.ParseTestOptions = all.ParseTestOptions
+	o.ParseTestPublicId = all.ParseTestPublicId
+	o.Tags = all.Tags
+	o.Value = all.Value
+	return nil
 }
 
 type NullableSyntheticsGlobalVariable struct {

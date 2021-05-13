@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Active** | Pointer to **bool** | If a scheduled downtime currently exists. | [optional] [readonly] 
+**ActiveChild** | Pointer to [**NullableDowntimeChild**](DowntimeChild.md) |  | [optional] 
 **Canceled** | Pointer to **NullableInt64** | If a scheduled downtime is canceled. | [optional] [readonly] 
 **CreatorId** | Pointer to **int32** | User ID of the downtime creator. | [optional] [readonly] 
 **Disabled** | Pointer to **bool** | If a downtime has been disabled. | [optional] 
@@ -65,6 +66,41 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
+### GetActiveChild
+
+`func (o *Downtime) GetActiveChild() DowntimeChild`
+
+GetActiveChild returns the ActiveChild field if non-nil, zero value otherwise.
+
+### GetActiveChildOk
+
+`func (o *Downtime) GetActiveChildOk() (*DowntimeChild, bool)`
+
+GetActiveChildOk returns a tuple with the ActiveChild field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActiveChild
+
+`func (o *Downtime) SetActiveChild(v DowntimeChild)`
+
+SetActiveChild sets ActiveChild field to given value.
+
+### HasActiveChild
+
+`func (o *Downtime) HasActiveChild() bool`
+
+HasActiveChild returns a boolean if a field has been set.
+
+### SetActiveChildNil
+
+`func (o *Downtime) SetActiveChildNil(b bool)`
+
+ SetActiveChildNil sets the value for ActiveChild to be an explicit nil
+
+### UnsetActiveChild
+`func (o *Downtime) UnsetActiveChild()`
+
+UnsetActiveChild ensures that no value is present for ActiveChild, not even an explicit nil
 ### GetCanceled
 
 `func (o *Downtime) GetCanceled() int64`

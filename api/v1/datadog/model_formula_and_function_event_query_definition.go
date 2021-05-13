@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // FormulaAndFunctionEventQueryDefinition A formula and functions events query.
@@ -234,6 +235,46 @@ func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["search"] = o.Search
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Compute    *FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+		DataSource *FormulaAndFunctionEventsDataSource            `json:"data_source"`
+		Name       *string                                        `json:"name"`
+	}{}
+	all := struct {
+		Compute    FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"}`
+		DataSource FormulaAndFunctionEventsDataSource            `json:"data_source"}`
+		GroupBy    *[]FormulaAndFunctionEventQueryGroupBy        `json:"group_by,omitempty"}`
+		Indexes    *[]string                                     `json:"indexes,omitempty"}`
+		Name       string                                        `json:"name"}`
+		Search     *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Compute == nil {
+		return fmt.Errorf("Required field compute missing")
+	}
+	if required.DataSource == nil {
+		return fmt.Errorf("Required field data_source missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Compute = all.Compute
+	o.DataSource = all.DataSource
+	o.GroupBy = all.GroupBy
+	o.Indexes = all.Indexes
+	o.Name = all.Name
+	o.Search = all.Search
+	return nil
 }
 
 type NullableFormulaAndFunctionEventQueryDefinition struct {

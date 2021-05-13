@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AlertGraphWidgetDefinition Alert graphs are timeseries graphs showing the current status of any monitor defined on your system.
@@ -272,6 +273,48 @@ func (o AlertGraphWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["viz_type"] = o.VizType
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AlertGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		AlertId *string                         `json:"alert_id"`
+		Type    *AlertGraphWidgetDefinitionType `json:"type"`
+		VizType *WidgetVizType                  `json:"viz_type"`
+	}{}
+	all := struct {
+		AlertId    string                         `json:"alert_id"}`
+		Time       *WidgetTime                    `json:"time,omitempty"}`
+		Title      *string                        `json:"title,omitempty"}`
+		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"}`
+		TitleSize  *string                        `json:"title_size,omitempty"}`
+		Type       AlertGraphWidgetDefinitionType `json:"type"}`
+		VizType    WidgetVizType                  `json:"viz_type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.AlertId == nil {
+		return fmt.Errorf("Required field alert_id missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	if required.VizType == nil {
+		return fmt.Errorf("Required field viz_type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.AlertId = all.AlertId
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	o.VizType = all.VizType
+	return nil
 }
 
 type NullableAlertGraphWidgetDefinition struct {

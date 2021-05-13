@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ServiceLevelObjective A service level objective object includes a service level indicator, thresholds for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
@@ -504,6 +505,60 @@ func (o ServiceLevelObjective) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Name       *string         `json:"name"`
+		Thresholds *[]SLOThreshold `json:"thresholds"`
+		Type       *SLOType        `json:"type"`
+	}{}
+	all := struct {
+		CreatedAt   *int64                      `json:"created_at,omitempty"}`
+		Creator     *Creator                    `json:"creator,omitempty"}`
+		Description NullableString              `json:"description,omitempty"}`
+		Groups      *[]string                   `json:"groups,omitempty"}`
+		Id          *string                     `json:"id,omitempty"}`
+		ModifiedAt  *int64                      `json:"modified_at,omitempty"}`
+		MonitorIds  *[]int64                    `json:"monitor_ids,omitempty"}`
+		MonitorTags *[]string                   `json:"monitor_tags,omitempty"}`
+		Name        string                      `json:"name"}`
+		Query       *ServiceLevelObjectiveQuery `json:"query,omitempty"}`
+		Tags        *[]string                   `json:"tags,omitempty"}`
+		Thresholds  []SLOThreshold              `json:"thresholds"}`
+		Type        SLOType                     `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Thresholds == nil {
+		return fmt.Errorf("Required field thresholds missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.CreatedAt = all.CreatedAt
+	o.Creator = all.Creator
+	o.Description = all.Description
+	o.Groups = all.Groups
+	o.Id = all.Id
+	o.ModifiedAt = all.ModifiedAt
+	o.MonitorIds = all.MonitorIds
+	o.MonitorTags = all.MonitorTags
+	o.Name = all.Name
+	o.Query = all.Query
+	o.Tags = all.Tags
+	o.Thresholds = all.Thresholds
+	o.Type = all.Type
+	return nil
 }
 
 type NullableServiceLevelObjective struct {

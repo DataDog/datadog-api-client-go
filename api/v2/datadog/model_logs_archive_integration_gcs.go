@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsArchiveIntegrationGCS The GCS archive's integration destination.
@@ -96,6 +97,34 @@ func (o LogsArchiveIntegrationGCS) MarshalJSON() ([]byte, error) {
 		toSerialize["project_id"] = o.ProjectId
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsArchiveIntegrationGCS) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		ClientEmail *string `json:"client_email"`
+		ProjectId   *string `json:"project_id"`
+	}{}
+	all := struct {
+		ClientEmail string `json:"client_email"}`
+		ProjectId   string `json:"project_id"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.ClientEmail == nil {
+		return fmt.Errorf("Required field client_email missing")
+	}
+	if required.ProjectId == nil {
+		return fmt.Errorf("Required field project_id missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.ClientEmail = all.ClientEmail
+	o.ProjectId = all.ProjectId
+	return nil
 }
 
 type NullableLogsArchiveIntegrationGCS struct {

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSLogsServicesRequest A list of current AWS services for which Datadog offers automatic log collection.
@@ -96,6 +97,34 @@ func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["services"] = o.Services
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		AccountId *string   `json:"account_id"`
+		Services  *[]string `json:"services"`
+	}{}
+	all := struct {
+		AccountId string   `json:"account_id"}`
+		Services  []string `json:"services"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.AccountId == nil {
+		return fmt.Errorf("Required field account_id missing")
+	}
+	if required.Services == nil {
+		return fmt.Errorf("Required field services missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.AccountId = all.AccountId
+	o.Services = all.Services
+	return nil
 }
 
 type NullableAWSLogsServicesRequest struct {

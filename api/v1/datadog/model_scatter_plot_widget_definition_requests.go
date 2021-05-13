@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ScatterPlotWidgetDefinitionRequests Widget definition.
@@ -94,6 +95,34 @@ func (o ScatterPlotWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 		toSerialize["y"] = o.Y
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ScatterPlotWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		X *ScatterPlotRequest `json:"x"`
+		Y *ScatterPlotRequest `json:"y"`
+	}{}
+	all := struct {
+		X ScatterPlotRequest `json:"x"}`
+		Y ScatterPlotRequest `json:"y"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.X == nil {
+		return fmt.Errorf("Required field x missing")
+	}
+	if required.Y == nil {
+		return fmt.Errorf("Required field y missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.X = all.X
+	o.Y = all.Y
+	return nil
 }
 
 type NullableScatterPlotWidgetDefinitionRequests struct {

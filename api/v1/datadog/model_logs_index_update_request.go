@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsIndexUpdateRequest Object for updating a Datadog Log index.
@@ -213,6 +214,36 @@ func (o LogsIndexUpdateRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["num_retention_days"] = o.NumRetentionDays
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Filter *LogsFilter `json:"filter"`
+	}{}
+	all := struct {
+		DailyLimit        *int64           `json:"daily_limit,omitempty"}`
+		DisableDailyLimit *bool            `json:"disable_daily_limit,omitempty"}`
+		ExclusionFilters  *[]LogsExclusion `json:"exclusion_filters,omitempty"}`
+		Filter            LogsFilter       `json:"filter"}`
+		NumRetentionDays  *int64           `json:"num_retention_days,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Filter == nil {
+		return fmt.Errorf("Required field filter missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.DailyLimit = all.DailyLimit
+	o.DisableDailyLimit = all.DisableDailyLimit
+	o.ExclusionFilters = all.ExclusionFilters
+	o.Filter = all.Filter
+	o.NumRetentionDays = all.NumRetentionDays
+	return nil
 }
 
 type NullableLogsIndexUpdateRequest struct {

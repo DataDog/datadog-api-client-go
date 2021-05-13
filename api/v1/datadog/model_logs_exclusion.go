@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsExclusion Represents the index exclusion filter object from configuration API.
@@ -139,6 +140,32 @@ func (o LogsExclusion) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsExclusion) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Name *string `json:"name"`
+	}{}
+	all := struct {
+		Filter    *LogsExclusionFilter `json:"filter,omitempty"}`
+		IsEnabled *bool                `json:"is_enabled,omitempty"}`
+		Name      string               `json:"name"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Filter = all.Filter
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	return nil
 }
 
 type NullableLogsExclusion struct {

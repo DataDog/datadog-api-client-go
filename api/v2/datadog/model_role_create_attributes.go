@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -141,6 +142,32 @@ func (o RoleCreateAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *RoleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Name *string `json:"name"`
+	}{}
+	all := struct {
+		CreatedAt  *time.Time `json:"created_at,omitempty"}`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"}`
+		Name       string     `json:"name"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.CreatedAt = all.CreatedAt
+	o.ModifiedAt = all.ModifiedAt
+	o.Name = all.Name
+	return nil
 }
 
 type NullableRoleCreateAttributes struct {

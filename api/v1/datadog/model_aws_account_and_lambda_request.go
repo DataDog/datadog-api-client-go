@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSAccountAndLambdaRequest AWS account ID and Lambda ARN.
@@ -96,6 +97,34 @@ func (o AWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["lambda_arn"] = o.LambdaArn
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSAccountAndLambdaRequest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		AccountId *string `json:"account_id"`
+		LambdaArn *string `json:"lambda_arn"`
+	}{}
+	all := struct {
+		AccountId string `json:"account_id"}`
+		LambdaArn string `json:"lambda_arn"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.AccountId == nil {
+		return fmt.Errorf("Required field account_id missing")
+	}
+	if required.LambdaArn == nil {
+		return fmt.Errorf("Required field lambda_arn missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.AccountId = all.AccountId
+	o.LambdaArn = all.LambdaArn
+	return nil
 }
 
 type NullableAWSAccountAndLambdaRequest struct {

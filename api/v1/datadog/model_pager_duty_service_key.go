@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // PagerDutyServiceKey PagerDuty service object key.
@@ -66,6 +67,28 @@ func (o PagerDutyServiceKey) MarshalJSON() ([]byte, error) {
 		toSerialize["service_key"] = o.ServiceKey
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *PagerDutyServiceKey) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		ServiceKey *string `json:"service_key"`
+	}{}
+	all := struct {
+		ServiceKey string `json:"service_key"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.ServiceKey == nil {
+		return fmt.Errorf("Required field service_key missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.ServiceKey = all.ServiceKey
+	return nil
 }
 
 type NullablePagerDutyServiceKey struct {

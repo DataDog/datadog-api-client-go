@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsIndex Object describing a Datadog Log index.
@@ -243,6 +244,42 @@ func (o LogsIndex) MarshalJSON() ([]byte, error) {
 		toSerialize["num_retention_days"] = o.NumRetentionDays
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Filter *LogsFilter `json:"filter"`
+		Name   *string     `json:"name"`
+	}{}
+	all := struct {
+		DailyLimit       *int64           `json:"daily_limit,omitempty"}`
+		ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"}`
+		Filter           LogsFilter       `json:"filter"}`
+		IsRateLimited    *bool            `json:"is_rate_limited,omitempty"}`
+		Name             string           `json:"name"}`
+		NumRetentionDays *int64           `json:"num_retention_days,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Filter == nil {
+		return fmt.Errorf("Required field filter missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.DailyLimit = all.DailyLimit
+	o.ExclusionFilters = all.ExclusionFilters
+	o.Filter = all.Filter
+	o.IsRateLimited = all.IsRateLimited
+	o.Name = all.Name
+	o.NumRetentionDays = all.NumRetentionDays
+	return nil
 }
 
 type NullableLogsIndex struct {

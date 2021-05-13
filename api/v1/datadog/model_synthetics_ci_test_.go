@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsCITest Test configuration for Synthetics CI
@@ -544,6 +545,54 @@ func (o SyntheticsCITest) MarshalJSON() ([]byte, error) {
 		toSerialize["variables"] = o.Variables
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		PublicId *string `json:"public_id"`
+	}{}
+	all := struct {
+		AllowInsecureCertificates *bool                       `json:"allowInsecureCertificates,omitempty"}`
+		BasicAuth                 *SyntheticsBasicAuth        `json:"basicAuth,omitempty"}`
+		Body                      *string                     `json:"body,omitempty"}`
+		BodyType                  *string                     `json:"bodyType,omitempty"}`
+		Cookies                   *string                     `json:"cookies,omitempty"}`
+		DeviceIds                 *[]SyntheticsDeviceID       `json:"deviceIds,omitempty"}`
+		FollowRedirects           *bool                       `json:"followRedirects,omitempty"}`
+		Headers                   *map[string]string          `json:"headers,omitempty"}`
+		Locations                 *[]string                   `json:"locations,omitempty"}`
+		Metadata                  *SyntheticsCITestMetadata   `json:"metadata,omitempty"}`
+		PublicId                  string                      `json:"public_id"}`
+		Retry                     *SyntheticsTestOptionsRetry `json:"retry,omitempty"}`
+		StartUrl                  *string                     `json:"startUrl,omitempty"}`
+		Variables                 *map[string]string          `json:"variables,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.PublicId == nil {
+		return fmt.Errorf("Required field public_id missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.AllowInsecureCertificates = all.AllowInsecureCertificates
+	o.BasicAuth = all.BasicAuth
+	o.Body = all.Body
+	o.BodyType = all.BodyType
+	o.Cookies = all.Cookies
+	o.DeviceIds = all.DeviceIds
+	o.FollowRedirects = all.FollowRedirects
+	o.Headers = all.Headers
+	o.Locations = all.Locations
+	o.Metadata = all.Metadata
+	o.PublicId = all.PublicId
+	o.Retry = all.Retry
+	o.StartUrl = all.StartUrl
+	o.Variables = all.Variables
+	return nil
 }
 
 type NullableSyntheticsCITest struct {

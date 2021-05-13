@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ScatterPlotWidgetDefinition The scatter plot visualization allows you to graph a chosen scope over two different metrics with their respective aggregation.
@@ -388,6 +389,50 @@ func (o ScatterPlotWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["yaxis"] = o.Yaxis
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Requests *ScatterPlotWidgetDefinitionRequests `json:"requests"`
+		Type     *ScatterPlotWidgetDefinitionType     `json:"type"`
+	}{}
+	all := struct {
+		ColorByGroups *[]string                           `json:"color_by_groups,omitempty"}`
+		CustomLinks   *[]WidgetCustomLink                 `json:"custom_links,omitempty"}`
+		Requests      ScatterPlotWidgetDefinitionRequests `json:"requests"}`
+		Time          *WidgetTime                         `json:"time,omitempty"}`
+		Title         *string                             `json:"title,omitempty"}`
+		TitleAlign    *WidgetTextAlign                    `json:"title_align,omitempty"}`
+		TitleSize     *string                             `json:"title_size,omitempty"}`
+		Type          ScatterPlotWidgetDefinitionType     `json:"type"}`
+		Xaxis         *WidgetAxis                         `json:"xaxis,omitempty"}`
+		Yaxis         *WidgetAxis                         `json:"yaxis,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Requests == nil {
+		return fmt.Errorf("Required field requests missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.ColorByGroups = all.ColorByGroups
+	o.CustomLinks = all.CustomLinks
+	o.Requests = all.Requests
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	o.Xaxis = all.Xaxis
+	o.Yaxis = all.Yaxis
+	return nil
 }
 
 type NullableScatterPlotWidgetDefinition struct {

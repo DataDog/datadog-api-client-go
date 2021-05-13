@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ApplicationKeyUpdateData Object used to update an application key.
@@ -126,6 +127,40 @@ func (o ApplicationKeyUpdateData) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ApplicationKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Attributes *ApplicationKeyUpdateAttributes `json:"attributes"`
+		Id         *string                         `json:"id"`
+		Type       *ApplicationKeysType            `json:"type"`
+	}{}
+	all := struct {
+		Attributes ApplicationKeyUpdateAttributes `json:"attributes"}`
+		Id         string                         `json:"id"}`
+		Type       ApplicationKeysType            `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Attributes == nil {
+		return fmt.Errorf("Required field attributes missing")
+	}
+	if required.Id == nil {
+		return fmt.Errorf("Required field id missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Attributes = all.Attributes
+	o.Id = all.Id
+	o.Type = all.Type
+	return nil
 }
 
 type NullableApplicationKeyUpdateData struct {
