@@ -1361,7 +1361,7 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 		Tags:        []string{"synthetics"},
 		Value: datadog.SyntheticsGlobalVariableValue{
 			Secure: datadog.PtrBool(false),
-			Value:  "VARIABLE_VALUE",
+			Value:  datadog.PtrString("VARIABLE_VALUE"),
 		},
 	}
 
@@ -1433,7 +1433,7 @@ func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 		Tags: []string{"synthetics"},
 		Value: datadog.SyntheticsGlobalVariableValue{
 			Secure: datadog.PtrBool(false),
-			Value:  "",
+			Value:  datadog.PtrString(""),
 		},
 	}
 
