@@ -198,11 +198,13 @@ tags:
     - [Read more about Process Check monitors.][2]
     - [Read more about Network Check monitors.][3]
     - [Read more about Custom Check monitors.][4]
+    - [Read more about Service Check and status codes.][5]
 
     [1]: https://docs.datadoghq.com/monitors/monitor_types/host/?tab=checkalert
     [2]: https://docs.datadoghq.com/monitors/monitor_types/process_check/?tab=checkalert
     [3]: https://docs.datadoghq.com/monitors/monitor_types/network/?tab=checkalert
     [4]: https://docs.datadoghq.com/monitors/monitor_types/custom_check/?tab=checkalert
+    [5]: https://docs.datadoghq.com/developers/service_checks/
   name: Service Checks
 - description: |-
     SLO Status Corrections allow you to prevent specific time periods from negatively impacting
@@ -8841,7 +8843,7 @@ paths:
         type: safe
   /api/v1/usage/top_avg_metrics:
     get:
-      description: Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/)
+      description: Get all [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/)
         by hourly average. Use the month parameter to get a month-to-date data resolution
         or use the day parameter to get a daily resolution. One of the two is required,
         and only one of the two is allowed.
@@ -8892,6 +8894,15 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - description: List following results with a next_record_id provided in the
+          previous query.
+        explode: true
+        in: query
+        name: next_record_id
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -8911,7 +8922,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
-      summary: Get top custom metrics by hourly average
+      summary: Get all custom metrics by hourly average
       tags:
       - Usage Metering
       x-menu-order: 5
@@ -22371,32 +22382,32 @@ components:
         month: 2000-01-23T04:56:07.000+00:00
         updated_at: updated_at
         values:
-          browser_percentage: 3.616076749251911
-          profiled_hosts_percentage: 3.5571952270680973
-          infra_host_percentage: 1.4894159098541704
-          apm_host_usage: 9.301444243932576
-          lambda_invocations_usage: 5.025004791520295
-          profiled_hosts_usage: 6.965117697638846
-          apm_host_percentage: 7.061401241503109
-          api_usage: 2.3021358869347655
-          custom_timeseries_usage: 1.0246457001441578
-          profiled_containers_percentage: 9.018348186070783
-          snmp_usage: 2.8841621266687802
-          browser_usage: 2.027123023002322
-          infra_host_usage: 6.84685269835264
-          lambda_functions_usage: 1.1730742509559433
-          custom_timeseries_percentage: 1.2315135367772556
-          profiled_containers_usage: 6.438423552598547
-          lambda_usage: 9.369310271410669
-          npm_host_percentage: 6.683562403749608
-          snmp_percentage: 1.284659006116532
-          lambda_functions_percentage: 7.457744773683766
-          lambda_invocations_percentage: 4.965218492984954
-          api_percentage: 5.637376656633329
-          container_usage: 7.386281948385884
-          lambda_percentage: 9.965781217890562
-          npm_host_usage: 8.762042012749001
-          container_percentage: 4.145608029883936
+          browser_percentage: 9.301444243932576
+          profiled_hosts_percentage: 6.438423552598547
+          infra_host_percentage: 1.0246457001441578
+          apm_host_usage: 7.061401241503109
+          lambda_invocations_usage: 4.965218492984954
+          profiled_hosts_usage: 3.5571952270680973
+          apm_host_percentage: 2.3021358869347655
+          api_usage: 5.637376656633329
+          custom_timeseries_usage: 1.2315135367772556
+          profiled_containers_percentage: 8.762042012749001
+          snmp_usage: 1.284659006116532
+          browser_usage: 3.616076749251911
+          infra_host_usage: 1.4894159098541704
+          lambda_functions_usage: 7.457744773683766
+          custom_timeseries_percentage: 7.386281948385884
+          profiled_containers_usage: 9.018348186070783
+          lambda_usage: 9.965781217890562
+          npm_host_percentage: 9.369310271410669
+          snmp_percentage: 6.965117697638846
+          lambda_functions_percentage: 6.84685269835264
+          lambda_invocations_percentage: 1.1730742509559433
+          api_percentage: 5.962133916683182
+          container_usage: 4.145608029883936
+          lambda_percentage: 5.025004791520295
+          npm_host_usage: 6.683562403749608
+          container_percentage: 2.027123023002322
         org_name: org_name
         public_id: public_id
         tags:
@@ -22435,11 +22446,9 @@ components:
       description: The object containing document metadata.
       example:
         pagination:
-          sort_direction: sort_direction
-          total_number_of_records: 5
-          offset: 1
+          total_number_of_records: 1
+          next_record_id: next_record_id
           limit: 6
-          sort_name: sort_name
         aggregates:
         - agg_type: sum
           field: custom_timeseries_usage
@@ -22457,30 +22466,22 @@ components:
           $ref: '#/components/schemas/UsageAttributionPagination'
       type: object
     UsageAttributionPagination:
-      description: The page count for the current pagination.
+      description: The metadata for the current pagination.
       example:
-        sort_direction: sort_direction
-        total_number_of_records: 5
-        offset: 1
+        total_number_of_records: 1
+        next_record_id: next_record_id
         limit: 6
-        sort_name: sort_name
       properties:
         limit:
           description: Maximum amount of records to be returned.
           format: int64
           type: integer
-        offset:
-          description: Records to be skipped before beginning to return.
-          format: int64
-          type: integer
-        sort_direction:
-          description: Direction to sort by.
-          type: string
-        sort_name:
-          description: Field to sort by.
+        next_record_id:
+          description: The cursor to use to get the next results, if any. To make
+            the next request, use the same parameters with the addition of this next_record_id.
           type: string
         total_number_of_records:
-          description: Total number of records.
+          description: Total number of records. (deprecated after May 1st, 2021)
           format: int64
           type: integer
       type: object
@@ -22489,11 +22490,9 @@ components:
       example:
         metadata:
           pagination:
-            sort_direction: sort_direction
-            total_number_of_records: 5
-            offset: 1
+            total_number_of_records: 1
+            next_record_id: next_record_id
             limit: 6
-            sort_name: sort_name
           aggregates:
           - agg_type: sum
             field: custom_timeseries_usage
@@ -22505,32 +22504,32 @@ components:
         - month: 2000-01-23T04:56:07.000+00:00
           updated_at: updated_at
           values:
-            browser_percentage: 3.616076749251911
-            profiled_hosts_percentage: 3.5571952270680973
-            infra_host_percentage: 1.4894159098541704
-            apm_host_usage: 9.301444243932576
-            lambda_invocations_usage: 5.025004791520295
-            profiled_hosts_usage: 6.965117697638846
-            apm_host_percentage: 7.061401241503109
-            api_usage: 2.3021358869347655
-            custom_timeseries_usage: 1.0246457001441578
-            profiled_containers_percentage: 9.018348186070783
-            snmp_usage: 2.8841621266687802
-            browser_usage: 2.027123023002322
-            infra_host_usage: 6.84685269835264
-            lambda_functions_usage: 1.1730742509559433
-            custom_timeseries_percentage: 1.2315135367772556
-            profiled_containers_usage: 6.438423552598547
-            lambda_usage: 9.369310271410669
-            npm_host_percentage: 6.683562403749608
-            snmp_percentage: 1.284659006116532
-            lambda_functions_percentage: 7.457744773683766
-            lambda_invocations_percentage: 4.965218492984954
-            api_percentage: 5.637376656633329
-            container_usage: 7.386281948385884
-            lambda_percentage: 9.965781217890562
-            npm_host_usage: 8.762042012749001
-            container_percentage: 4.145608029883936
+            browser_percentage: 9.301444243932576
+            profiled_hosts_percentage: 6.438423552598547
+            infra_host_percentage: 1.0246457001441578
+            apm_host_usage: 7.061401241503109
+            lambda_invocations_usage: 4.965218492984954
+            profiled_hosts_usage: 3.5571952270680973
+            apm_host_percentage: 2.3021358869347655
+            api_usage: 5.637376656633329
+            custom_timeseries_usage: 1.2315135367772556
+            profiled_containers_percentage: 8.762042012749001
+            snmp_usage: 1.284659006116532
+            browser_usage: 3.616076749251911
+            infra_host_usage: 1.4894159098541704
+            lambda_functions_usage: 7.457744773683766
+            custom_timeseries_percentage: 7.386281948385884
+            profiled_containers_usage: 9.018348186070783
+            lambda_usage: 9.965781217890562
+            npm_host_percentage: 9.369310271410669
+            snmp_percentage: 6.965117697638846
+            lambda_functions_percentage: 6.84685269835264
+            lambda_invocations_percentage: 1.1730742509559433
+            api_percentage: 5.962133916683182
+            container_usage: 4.145608029883936
+            lambda_percentage: 5.025004791520295
+            npm_host_usage: 6.683562403749608
+            container_percentage: 2.027123023002322
           org_name: org_name
           public_id: public_id
           tags:
@@ -22540,32 +22539,32 @@ components:
         - month: 2000-01-23T04:56:07.000+00:00
           updated_at: updated_at
           values:
-            browser_percentage: 3.616076749251911
-            profiled_hosts_percentage: 3.5571952270680973
-            infra_host_percentage: 1.4894159098541704
-            apm_host_usage: 9.301444243932576
-            lambda_invocations_usage: 5.025004791520295
-            profiled_hosts_usage: 6.965117697638846
-            apm_host_percentage: 7.061401241503109
-            api_usage: 2.3021358869347655
-            custom_timeseries_usage: 1.0246457001441578
-            profiled_containers_percentage: 9.018348186070783
-            snmp_usage: 2.8841621266687802
-            browser_usage: 2.027123023002322
-            infra_host_usage: 6.84685269835264
-            lambda_functions_usage: 1.1730742509559433
-            custom_timeseries_percentage: 1.2315135367772556
-            profiled_containers_usage: 6.438423552598547
-            lambda_usage: 9.369310271410669
-            npm_host_percentage: 6.683562403749608
-            snmp_percentage: 1.284659006116532
-            lambda_functions_percentage: 7.457744773683766
-            lambda_invocations_percentage: 4.965218492984954
-            api_percentage: 5.637376656633329
-            container_usage: 7.386281948385884
-            lambda_percentage: 9.965781217890562
-            npm_host_usage: 8.762042012749001
-            container_percentage: 4.145608029883936
+            browser_percentage: 9.301444243932576
+            profiled_hosts_percentage: 6.438423552598547
+            infra_host_percentage: 1.0246457001441578
+            apm_host_usage: 7.061401241503109
+            lambda_invocations_usage: 4.965218492984954
+            profiled_hosts_usage: 3.5571952270680973
+            apm_host_percentage: 2.3021358869347655
+            api_usage: 5.637376656633329
+            custom_timeseries_usage: 1.2315135367772556
+            profiled_containers_percentage: 8.762042012749001
+            snmp_usage: 1.284659006116532
+            browser_usage: 3.616076749251911
+            infra_host_usage: 1.4894159098541704
+            lambda_functions_usage: 7.457744773683766
+            custom_timeseries_percentage: 7.386281948385884
+            profiled_containers_usage: 9.018348186070783
+            lambda_usage: 9.965781217890562
+            npm_host_percentage: 9.369310271410669
+            snmp_percentage: 6.965117697638846
+            lambda_functions_percentage: 6.84685269835264
+            lambda_invocations_percentage: 1.1730742509559433
+            api_percentage: 5.962133916683182
+            container_usage: 4.145608029883936
+            lambda_percentage: 5.025004791520295
+            npm_host_usage: 6.683562403749608
+            container_percentage: 2.027123023002322
           org_name: org_name
           public_id: public_id
           tags:
@@ -22708,32 +22707,32 @@ components:
     UsageAttributionValues:
       description: Fields in Usage Summary by tag(s).
       example:
-        browser_percentage: 3.616076749251911
-        profiled_hosts_percentage: 3.5571952270680973
-        infra_host_percentage: 1.4894159098541704
-        apm_host_usage: 9.301444243932576
-        lambda_invocations_usage: 5.025004791520295
-        profiled_hosts_usage: 6.965117697638846
-        apm_host_percentage: 7.061401241503109
-        api_usage: 2.3021358869347655
-        custom_timeseries_usage: 1.0246457001441578
-        profiled_containers_percentage: 9.018348186070783
-        snmp_usage: 2.8841621266687802
-        browser_usage: 2.027123023002322
-        infra_host_usage: 6.84685269835264
-        lambda_functions_usage: 1.1730742509559433
-        custom_timeseries_percentage: 1.2315135367772556
-        profiled_containers_usage: 6.438423552598547
-        lambda_usage: 9.369310271410669
-        npm_host_percentage: 6.683562403749608
-        snmp_percentage: 1.284659006116532
-        lambda_functions_percentage: 7.457744773683766
-        lambda_invocations_percentage: 4.965218492984954
-        api_percentage: 5.637376656633329
-        container_usage: 7.386281948385884
-        lambda_percentage: 9.965781217890562
-        npm_host_usage: 8.762042012749001
-        container_percentage: 4.145608029883936
+        browser_percentage: 9.301444243932576
+        profiled_hosts_percentage: 6.438423552598547
+        infra_host_percentage: 1.0246457001441578
+        apm_host_usage: 7.061401241503109
+        lambda_invocations_usage: 4.965218492984954
+        profiled_hosts_usage: 3.5571952270680973
+        apm_host_percentage: 2.3021358869347655
+        api_usage: 5.637376656633329
+        custom_timeseries_usage: 1.2315135367772556
+        profiled_containers_percentage: 8.762042012749001
+        snmp_usage: 1.284659006116532
+        browser_usage: 3.616076749251911
+        infra_host_usage: 1.4894159098541704
+        lambda_functions_usage: 7.457744773683766
+        custom_timeseries_percentage: 7.386281948385884
+        profiled_containers_usage: 9.018348186070783
+        lambda_usage: 9.965781217890562
+        npm_host_percentage: 9.369310271410669
+        snmp_percentage: 6.965117697638846
+        lambda_functions_percentage: 6.84685269835264
+        lambda_invocations_percentage: 1.1730742509559433
+        api_percentage: 5.962133916683182
+        container_usage: 4.145608029883936
+        lambda_percentage: 5.025004791520295
+        npm_host_usage: 6.683562403749608
+        container_percentage: 2.027123023002322
       properties:
         api_percentage:
           description: The percentage of synthetic API test usage by tag(s).
@@ -25881,11 +25880,9 @@ components:
       description: The object containing document metadata.
       example:
         pagination:
-          sort_direction: sort_direction
-          total_number_of_records: 5
-          offset: 1
+          total_number_of_records: 1
+          next_record_id: next_record_id
           limit: 6
-          sort_name: sort_name
         month: ""
         day: ""
       properties:
@@ -25904,11 +25901,9 @@ components:
       example:
         metadata:
           pagination:
-            sort_direction: sort_direction
-            total_number_of_records: 5
-            offset: 1
+            total_number_of_records: 1
+            next_record_id: next_record_id
             limit: 6
-            sort_name: sort_name
           month: ""
           day: ""
         usage:
