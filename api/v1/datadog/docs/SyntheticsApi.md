@@ -53,7 +53,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("example-value")) // SyntheticsGlobalVariable | Details of the global variable to create.
+    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue()) // SyntheticsGlobalVariable | Details of the global variable to create.
 
     configuration := datadog.NewConfiguration()
 
@@ -536,7 +536,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     variableId := "variableId_example" // string | The ID of the global variable.
-    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("example-value")) // SyntheticsGlobalVariable | Details of the global variable to update.
+    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue()) // SyntheticsGlobalVariable | Details of the global variable to update.
 
     configuration := datadog.NewConfiguration()
 
