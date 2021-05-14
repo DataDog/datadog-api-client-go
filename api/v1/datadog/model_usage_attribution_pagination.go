@@ -12,17 +12,13 @@ import (
 	"encoding/json"
 )
 
-// UsageAttributionPagination The page count for the current pagination.
+// UsageAttributionPagination The metadata for the current pagination.
 type UsageAttributionPagination struct {
 	// Maximum amount of records to be returned.
 	Limit *int64 `json:"limit,omitempty"`
-	// Records to be skipped before beginning to return.
-	Offset *int64 `json:"offset,omitempty"`
-	// Direction to sort by.
-	SortDirection *string `json:"sort_direction,omitempty"`
-	// Field to sort by.
-	SortName *string `json:"sort_name,omitempty"`
-	// Total number of records.
+	// The cursor to use to get the next results, if any. To make the next request, use the same parameters with the addition of this next_record_id.
+	NextRecordId *string `json:"next_record_id,omitempty"`
+	// Total number of records. (deprecated after May 1st, 2021)
 	TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
 }
 
@@ -75,100 +71,36 @@ func (o *UsageAttributionPagination) SetLimit(v int64) {
 	o.Limit = &v
 }
 
-// GetOffset returns the Offset field value if set, zero value otherwise.
-func (o *UsageAttributionPagination) GetOffset() int64 {
-	if o == nil || o.Offset == nil {
-		var ret int64
-		return ret
-	}
-	return *o.Offset
-}
-
-// GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UsageAttributionPagination) GetOffsetOk() (*int64, bool) {
-	if o == nil || o.Offset == nil {
-		return nil, false
-	}
-	return o.Offset, true
-}
-
-// HasOffset returns a boolean if a field has been set.
-func (o *UsageAttributionPagination) HasOffset() bool {
-	if o != nil && o.Offset != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOffset gets a reference to the given int64 and assigns it to the Offset field.
-func (o *UsageAttributionPagination) SetOffset(v int64) {
-	o.Offset = &v
-}
-
-// GetSortDirection returns the SortDirection field value if set, zero value otherwise.
-func (o *UsageAttributionPagination) GetSortDirection() string {
-	if o == nil || o.SortDirection == nil {
+// GetNextRecordId returns the NextRecordId field value if set, zero value otherwise.
+func (o *UsageAttributionPagination) GetNextRecordId() string {
+	if o == nil || o.NextRecordId == nil {
 		var ret string
 		return ret
 	}
-	return *o.SortDirection
+	return *o.NextRecordId
 }
 
-// GetSortDirectionOk returns a tuple with the SortDirection field value if set, nil otherwise
+// GetNextRecordIdOk returns a tuple with the NextRecordId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageAttributionPagination) GetSortDirectionOk() (*string, bool) {
-	if o == nil || o.SortDirection == nil {
+func (o *UsageAttributionPagination) GetNextRecordIdOk() (*string, bool) {
+	if o == nil || o.NextRecordId == nil {
 		return nil, false
 	}
-	return o.SortDirection, true
+	return o.NextRecordId, true
 }
 
-// HasSortDirection returns a boolean if a field has been set.
-func (o *UsageAttributionPagination) HasSortDirection() bool {
-	if o != nil && o.SortDirection != nil {
+// HasNextRecordId returns a boolean if a field has been set.
+func (o *UsageAttributionPagination) HasNextRecordId() bool {
+	if o != nil && o.NextRecordId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetSortDirection gets a reference to the given string and assigns it to the SortDirection field.
-func (o *UsageAttributionPagination) SetSortDirection(v string) {
-	o.SortDirection = &v
-}
-
-// GetSortName returns the SortName field value if set, zero value otherwise.
-func (o *UsageAttributionPagination) GetSortName() string {
-	if o == nil || o.SortName == nil {
-		var ret string
-		return ret
-	}
-	return *o.SortName
-}
-
-// GetSortNameOk returns a tuple with the SortName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UsageAttributionPagination) GetSortNameOk() (*string, bool) {
-	if o == nil || o.SortName == nil {
-		return nil, false
-	}
-	return o.SortName, true
-}
-
-// HasSortName returns a boolean if a field has been set.
-func (o *UsageAttributionPagination) HasSortName() bool {
-	if o != nil && o.SortName != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSortName gets a reference to the given string and assigns it to the SortName field.
-func (o *UsageAttributionPagination) SetSortName(v string) {
-	o.SortName = &v
+// SetNextRecordId gets a reference to the given string and assigns it to the NextRecordId field.
+func (o *UsageAttributionPagination) SetNextRecordId(v string) {
+	o.NextRecordId = &v
 }
 
 // GetTotalNumberOfRecords returns the TotalNumberOfRecords field value if set, zero value otherwise.
@@ -208,14 +140,8 @@ func (o UsageAttributionPagination) MarshalJSON() ([]byte, error) {
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
 	}
-	if o.Offset != nil {
-		toSerialize["offset"] = o.Offset
-	}
-	if o.SortDirection != nil {
-		toSerialize["sort_direction"] = o.SortDirection
-	}
-	if o.SortName != nil {
-		toSerialize["sort_name"] = o.SortName
+	if o.NextRecordId != nil {
+		toSerialize["next_record_id"] = o.NextRecordId
 	}
 	if o.TotalNumberOfRecords != nil {
 		toSerialize["total_number_of_records"] = o.TotalNumberOfRecords
