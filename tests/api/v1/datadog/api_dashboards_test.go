@@ -51,6 +51,11 @@ func TestDashboardLifecycle(t *testing.T) {
 	widgetLayout.SetX(0)
 	widgetLayout.SetY(0)
 
+	// Custom Links
+	customLink := datadog.WidgetCustomLink{}
+	customLink.SetLabel("Test Custom Link label")
+	customLink.SetLink("https://app.datadoghq.com/dashboard/lists")
+
 	// Alert Graph Widget
 	alertGraphDefinition := datadog.NewAlertGraphWidgetDefinitionWithDefaults()
 	alertGraphDefinition.SetAlertId("1234")
@@ -91,10 +96,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	changeWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	changeWidgetDefinition.SetTitleSize("16")
 	changeWidgetDefinition.SetTime(*widgetTime)
-	changeWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	changeWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 	changeWidgetDefinition.SetRequests([]datadog.ChangeWidgetRequest{
 		*changeWidgetRequest,
 	})
@@ -281,10 +285,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	heatMapWidgetDefinition.SetTime(*widgetTime)
 	heatMapWidgetDefinition.SetShowLegend(true)
 	heatMapWidgetDefinition.SetLegendSize("4")
-	heatMapWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	heatMapWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 
 	heatMapWidget := datadog.NewWidget(datadog.HeatMapWidgetDefinitionAsWidgetDefinition(heatMapWidgetDefinition))
 
@@ -308,10 +311,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	hostMapWidgetDefinition.SetTitle("Test HostMap Widget")
 	hostMapWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	hostMapWidgetDefinition.SetTitleSize("16")
-	hostMapWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	hostMapWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 
 	hostMapWidget := datadog.NewWidget(datadog.HostMapWidgetDefinitionAsWidgetDefinition(hostMapWidgetDefinition))
 
@@ -401,10 +403,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	queryValueWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	queryValueWidgetDefinition.SetTitleSize("16")
 	queryValueWidgetDefinition.SetTime(*widgetTime)
-	queryValueWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	queryValueWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 
 	queryValueWidget := datadog.NewWidget(datadog.QueryValueWidgetDefinitionAsWidgetDefinition(queryValueWidgetDefinition))
 
@@ -475,10 +476,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	scatterPlotWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	scatterPlotWidgetDefinition.SetTitleSize("16")
 	scatterPlotWidgetDefinition.SetTime(*widgetTime)
-	scatterPlotWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	scatterPlotWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 
 	scatterPlotWidget := datadog.NewWidget(datadog.ScatterPlotWidgetDefinitionAsWidgetDefinition(scatterPlotWidgetDefinition))
 
@@ -504,10 +504,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	serviceMapWidgetDefinition.SetTitle("Test Service Map Widget")
 	serviceMapWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	serviceMapWidgetDefinition.SetTitleSize("16")
-	serviceMapWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	serviceMapWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 
 	serviceMapWidget := datadog.NewWidget(datadog.ServiceMapWidgetDefinitionAsWidgetDefinition(serviceMapWidgetDefinition))
 
@@ -554,10 +553,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	tableWidgetDefinition.SetTitleSize("16")
 	tableWidgetDefinition.SetTime(*widgetTime)
-	tableWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	tableWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 	tableWidgetDefinition.SetHasSearchBar(datadog.TABLEWIDGETHASSEARCHBAR_AUTO)
 
 	tableWidget := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetDefinition))
@@ -580,10 +578,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetApmStatsDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	tableWidgetApmStatsDefinition.SetTitleSize("16")
 	tableWidgetApmStatsDefinition.SetTime(*widgetTime)
-	tableWidgetApmStatsDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	tableWidgetApmStatsDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 
 	tableWidgetApmStats := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetApmStatsDefinition))
 
@@ -632,10 +629,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinition.SetLegendSize("16")
 	timeseriesWidgetDefinition.SetLegendLayout("horizontal")
 	timeseriesWidgetDefinition.SetLegendColumns([]datadog.TimeseriesWidgetLegendColumn{"value", "min", "max"})
-	timeseriesWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	timeseriesWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 
 	timeseriesWidget := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinition))
 
@@ -685,10 +681,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionProcessQuery.SetTime(*widgetTime)
 	timeseriesWidgetDefinitionProcessQuery.SetShowLegend(true)
 	timeseriesWidgetDefinitionProcessQuery.SetLegendSize("16")
-	timeseriesWidgetDefinitionProcessQuery.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	timeseriesWidgetDefinitionProcessQuery.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 
 	timeseriesWidgetProcessQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionProcessQuery))
 
@@ -741,10 +736,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionLogQuery.SetTime(*widgetTime)
 	timeseriesWidgetDefinitionLogQuery.SetShowLegend(true)
 	timeseriesWidgetDefinitionLogQuery.SetLegendSize("16")
-	timeseriesWidgetDefinitionLogQuery.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	timeseriesWidgetDefinitionLogQuery.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 
 	timeseriesWidgetLogQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionLogQuery))
 
@@ -796,10 +790,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionEventQuery.SetTime(*widgetTime)
 	timeseriesWidgetDefinitionEventQuery.SetShowLegend(true)
 	timeseriesWidgetDefinitionEventQuery.SetLegendSize("16")
-	timeseriesWidgetDefinitionEventQuery.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	timeseriesWidgetDefinitionEventQuery.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 
 	timeseriesWidgetEventQuery := datadog.NewWidget(datadog.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionEventQuery))
 
@@ -869,10 +862,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	toplistWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
 	toplistWidgetDefinition.SetTitleSize("16")
 	toplistWidgetDefinition.SetTime(*widgetTime)
-	toplistWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{{
-		Label: "Test Custom Link label",
-		Link:  "https://app.datadoghq.com/dashboard/lists",
-	}})
+	toplistWidgetDefinition.SetCustomLinks([]datadog.WidgetCustomLink{
+		customLink,
+	})
 
 	toplistWidget := datadog.NewWidget(datadog.ToplistWidgetDefinitionAsWidgetDefinition(toplistWidgetDefinition))
 
