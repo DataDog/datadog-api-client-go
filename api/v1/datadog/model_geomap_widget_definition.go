@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // GeomapWidgetDefinition This visualization displays a series of values by country on a world map.
@@ -338,6 +339,56 @@ func (o GeomapWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["view"] = o.View
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Requests *[]GeomapWidgetRequest       `json:"requests"`
+		Style    *GeomapWidgetDefinitionStyle `json:"style"`
+		Type     *GeomapWidgetDefinitionType  `json:"type"`
+		View     *GeomapWidgetDefinitionView  `json:"view"`
+	}{}
+	all := struct {
+		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"}`
+		Requests    []GeomapWidgetRequest       `json:"requests"}`
+		Style       GeomapWidgetDefinitionStyle `json:"style"}`
+		Time        *WidgetTime                 `json:"time,omitempty"}`
+		Title       *string                     `json:"title,omitempty"}`
+		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"}`
+		TitleSize   *string                     `json:"title_size,omitempty"}`
+		Type        GeomapWidgetDefinitionType  `json:"type"}`
+		View        GeomapWidgetDefinitionView  `json:"view"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Requests == nil {
+		return fmt.Errorf("Required field requests missing")
+	}
+	if required.Style == nil {
+		return fmt.Errorf("Required field style missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	if required.View == nil {
+		return fmt.Errorf("Required field view missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.CustomLinks = all.CustomLinks
+	o.Requests = all.Requests
+	o.Style = all.Style
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	o.View = all.View
+	return nil
 }
 
 type NullableGeomapWidgetDefinition struct {

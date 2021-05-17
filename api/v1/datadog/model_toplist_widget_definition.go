@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ToplistWidgetDefinition The top list visualization enables you to display a list of Tag value like hostname or service with the most or least of any metric value, such as highest consumers of CPU, hosts with the least disk space, etc.
@@ -280,6 +281,44 @@ func (o ToplistWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Requests *[]ToplistWidgetRequest      `json:"requests"`
+		Type     *ToplistWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"}`
+		Requests    []ToplistWidgetRequest      `json:"requests"}`
+		Time        *WidgetTime                 `json:"time,omitempty"}`
+		Title       *string                     `json:"title,omitempty"}`
+		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"}`
+		TitleSize   *string                     `json:"title_size,omitempty"}`
+		Type        ToplistWidgetDefinitionType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Requests == nil {
+		return fmt.Errorf("Required field requests missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.CustomLinks = all.CustomLinks
+	o.Requests = all.Requests
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	return nil
 }
 
 type NullableToplistWidgetDefinition struct {

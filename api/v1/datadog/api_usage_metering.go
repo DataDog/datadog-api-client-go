@@ -5315,19 +5315,21 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 }
 
 type apiGetUsageTopAvgMetricsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	month      *time.Time
-	day        *time.Time
-	names      *[]string
-	limit      *int32
+	ctx          _context.Context
+	ApiService   *UsageMeteringApiService
+	month        *time.Time
+	day          *time.Time
+	names        *[]string
+	limit        *int32
+	nextRecordId *string
 }
 
 type GetUsageTopAvgMetricsOptionalParameters struct {
-	Month *time.Time
-	Day   *time.Time
-	Names *[]string
-	Limit *int32
+	Month        *time.Time
+	Day          *time.Time
+	Names        *[]string
+	Limit        *int32
+	NextRecordId *string
 }
 
 func NewGetUsageTopAvgMetricsOptionalParameters() *GetUsageTopAvgMetricsOptionalParameters {
@@ -5350,10 +5352,14 @@ func (r *GetUsageTopAvgMetricsOptionalParameters) WithLimit(limit int32) *GetUsa
 	r.Limit = &limit
 	return r
 }
+func (r *GetUsageTopAvgMetricsOptionalParameters) WithNextRecordId(nextRecordId string) *GetUsageTopAvgMetricsOptionalParameters {
+	r.NextRecordId = &nextRecordId
+	return r
+}
 
 /*
- * GetUsageTopAvgMetrics Get top custom metrics by hourly average
- * Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.
+ * GetUsageTopAvgMetrics Get all custom metrics by hourly average
+ * Get all [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.
  */
 func (a *UsageMeteringApiService) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
 	req := apiGetUsageTopAvgMetricsRequest{
@@ -5371,6 +5377,7 @@ func (a *UsageMeteringApiService) GetUsageTopAvgMetrics(ctx _context.Context, o 
 		req.day = o[0].Day
 		req.names = o[0].Names
 		req.limit = o[0].Limit
+		req.nextRecordId = o[0].NextRecordId
 	}
 
 	return req.ApiService.getUsageTopAvgMetricsExecute(req)
@@ -5420,6 +5427,9 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.nextRecordId != nil {
+		localVarQueryParams.Add("next_record_id", parameterToString(*r.nextRecordId, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

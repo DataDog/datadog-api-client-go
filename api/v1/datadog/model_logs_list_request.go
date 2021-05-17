@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsListRequest Object to send with the request to retrieve a list of logs from your Organization.
@@ -249,6 +250,38 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["time"] = o.Time
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Time *LogsListRequestTime `json:"time"`
+	}{}
+	all := struct {
+		Index   *string             `json:"index,omitempty"}`
+		Limit   *int32              `json:"limit,omitempty"}`
+		Query   *string             `json:"query,omitempty"}`
+		Sort    *LogsSort           `json:"sort,omitempty"}`
+		StartAt *string             `json:"startAt,omitempty"}`
+		Time    LogsListRequestTime `json:"time"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Time == nil {
+		return fmt.Errorf("Required field time missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Index = all.Index
+	o.Limit = all.Limit
+	o.Query = all.Query
+	o.Sort = all.Sort
+	o.StartAt = all.StartAt
+	o.Time = all.Time
+	return nil
 }
 
 type NullableLogsListRequest struct {

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // RelationshipToUsers Relationship to users.
@@ -66,6 +67,28 @@ func (o RelationshipToUsers) MarshalJSON() ([]byte, error) {
 		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *RelationshipToUsers) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Data *[]RelationshipToUserData `json:"data"`
+	}{}
+	all := struct {
+		Data []RelationshipToUserData `json:"data"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Data == nil {
+		return fmt.Errorf("Required field data missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Data = all.Data
+	return nil
 }
 
 type NullableRelationshipToUsers struct {

@@ -17,16 +17,15 @@ type SyntheticsGlobalVariableValue struct {
 	// Determines if the variable is secure.
 	Secure *bool `json:"secure,omitempty"`
 	// Value of the global variable. When reading a global variable, the value will not be present if the variable is secure.
-	Value string `json:"value"`
+	Value *string `json:"value,omitempty"`
 }
 
 // NewSyntheticsGlobalVariableValue instantiates a new SyntheticsGlobalVariableValue object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsGlobalVariableValue(value string) *SyntheticsGlobalVariableValue {
+func NewSyntheticsGlobalVariableValue() *SyntheticsGlobalVariableValue {
 	this := SyntheticsGlobalVariableValue{}
-	this.Value = value
 	return &this
 }
 
@@ -70,28 +69,36 @@ func (o *SyntheticsGlobalVariableValue) SetSecure(v bool) {
 	o.Secure = &v
 }
 
-// GetValue returns the Value field value
+// GetValue returns the Value field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableValue) GetValue() string {
-	if o == nil {
+	if o == nil || o.Value == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Value
+	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SyntheticsGlobalVariableValue) GetValueOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Value == nil {
 		return nil, false
 	}
-	return &o.Value, true
+	return o.Value, true
 }
 
-// SetValue sets field value
+// HasValue returns a boolean if a field has been set.
+func (o *SyntheticsGlobalVariableValue) HasValue() bool {
+	if o != nil && o.Value != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given string and assigns it to the Value field.
 func (o *SyntheticsGlobalVariableValue) SetValue(v string) {
-	o.Value = v
+	o.Value = &v
 }
 
 func (o SyntheticsGlobalVariableValue) MarshalJSON() ([]byte, error) {
@@ -99,7 +106,7 @@ func (o SyntheticsGlobalVariableValue) MarshalJSON() ([]byte, error) {
 	if o.Secure != nil {
 		toSerialize["secure"] = o.Secure
 	}
-	if true {
+	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)

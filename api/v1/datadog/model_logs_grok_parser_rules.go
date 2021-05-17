@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsGrokParserRules Set of rules for the grok parser.
@@ -107,6 +108,30 @@ func (o LogsGrokParserRules) MarshalJSON() ([]byte, error) {
 		toSerialize["support_rules"] = o.SupportRules
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		MatchRules *string `json:"match_rules"`
+	}{}
+	all := struct {
+		MatchRules   string  `json:"match_rules"}`
+		SupportRules *string `json:"support_rules,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.MatchRules == nil {
+		return fmt.Errorf("Required field match_rules missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.MatchRules = all.MatchRules
+	o.SupportRules = all.SupportRules
+	return nil
 }
 
 type NullableLogsGrokParserRules struct {

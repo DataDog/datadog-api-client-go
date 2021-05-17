@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // GeomapWidgetDefinitionStyle The style to apply to the widget.
@@ -96,6 +97,34 @@ func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 		toSerialize["palette_flip"] = o.PaletteFlip
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Palette     *string `json:"palette"`
+		PaletteFlip *bool   `json:"palette_flip"`
+	}{}
+	all := struct {
+		Palette     string `json:"palette"}`
+		PaletteFlip bool   `json:"palette_flip"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Palette == nil {
+		return fmt.Errorf("Required field palette missing")
+	}
+	if required.PaletteFlip == nil {
+		return fmt.Errorf("Required field palette_flip missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Palette = all.Palette
+	o.PaletteFlip = all.PaletteFlip
+	return nil
 }
 
 type NullableGeomapWidgetDefinitionStyle struct {

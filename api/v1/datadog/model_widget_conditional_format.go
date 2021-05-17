@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetConditionalFormat Define a conditional format for the widget.
@@ -346,6 +347,52 @@ func (o WidgetConditionalFormat) MarshalJSON() ([]byte, error) {
 		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Comparator *WidgetComparator `json:"comparator"`
+		Palette    *WidgetPalette    `json:"palette"`
+		Value      *float64          `json:"value"`
+	}{}
+	all := struct {
+		Comparator    WidgetComparator `json:"comparator"}`
+		CustomBgColor *string          `json:"custom_bg_color,omitempty"}`
+		CustomFgColor *string          `json:"custom_fg_color,omitempty"}`
+		HideValue     *bool            `json:"hide_value,omitempty"}`
+		ImageUrl      *string          `json:"image_url,omitempty"}`
+		Metric        *string          `json:"metric,omitempty"}`
+		Palette       WidgetPalette    `json:"palette"}`
+		Timeframe     *string          `json:"timeframe,omitempty"}`
+		Value         float64          `json:"value"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Comparator == nil {
+		return fmt.Errorf("Required field comparator missing")
+	}
+	if required.Palette == nil {
+		return fmt.Errorf("Required field palette missing")
+	}
+	if required.Value == nil {
+		return fmt.Errorf("Required field value missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Comparator = all.Comparator
+	o.CustomBgColor = all.CustomBgColor
+	o.CustomFgColor = all.CustomFgColor
+	o.HideValue = all.HideValue
+	o.ImageUrl = all.ImageUrl
+	o.Metric = all.Metric
+	o.Palette = all.Palette
+	o.Timeframe = all.Timeframe
+	o.Value = all.Value
+	return nil
 }
 
 type NullableWidgetConditionalFormat struct {

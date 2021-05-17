@@ -33,7 +33,7 @@ Method | HTTP request | Description
 [**GetUsageSyntheticsAPI**](UsageMeteringApi.md#GetUsageSyntheticsAPI) | **Get** /api/v1/usage/synthetics_api | Get hourly usage for Synthetics API Checks
 [**GetUsageSyntheticsBrowser**](UsageMeteringApi.md#GetUsageSyntheticsBrowser) | **Get** /api/v1/usage/synthetics_browser | Get hourly usage for Synthetics Browser Checks
 [**GetUsageTimeseries**](UsageMeteringApi.md#GetUsageTimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics
-[**GetUsageTopAvgMetrics**](UsageMeteringApi.md#GetUsageTopAvgMetrics) | **Get** /api/v1/usage/top_avg_metrics | Get top custom metrics by hourly average
+[**GetUsageTopAvgMetrics**](UsageMeteringApi.md#GetUsageTopAvgMetrics) | **Get** /api/v1/usage/top_avg_metrics | Get all custom metrics by hourly average
 [**GetUsageTrace**](UsageMeteringApi.md#GetUsageTrace) | **Get** /api/v1/usage/traces | Get hourly usage for Trace Search
 
 
@@ -2367,7 +2367,7 @@ Name | Type | Description  | Notes
 
 > UsageTopAvgMetricsResponse GetUsageTopAvgMetrics(ctx, datadog.GetUsageTopAvgMetricsOptionalParameters{})
 
-Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.
+Get all [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.
 
 ### Example
 
@@ -2390,11 +2390,13 @@ func main() {
     day := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to day: [YYYY-MM-DD] for usage beginning at this hour. (Either month or day should be specified, but not both) (optional)
     names := []string{"Inner_example"} // []string | Comma-separated list of metric names. (optional)
     limit := int32(56) // int32 | Maximum number of results to return (between 1 and 5000) - defaults to 500 results if limit not specified. (optional) (default to 500)
+    nextRecordId := "nextRecordId_example" // string | List following results with a next_record_id provided in the previous query. (optional)
     optionalParams := datadog.GetUsageTopAvgMetricsOptionalParameters{
         Month: &month,
         Day: &day,
         Names: &names,
         Limit: &limit,
+        NextRecordId: &nextRecordId,
     }
 
     configuration := datadog.NewConfiguration()
@@ -2428,6 +2430,7 @@ Name | Type | Description  | Notes
 **day** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to day: [YYYY-MM-DD] for usage beginning at this hour. (Either month or day should be specified, but not both) | 
 **names** | **[]string** | Comma-separated list of metric names. | 
 **limit** | **int32** | Maximum number of results to return (between 1 and 5000) - defaults to 500 results if limit not specified. | [default to 500]
+**nextRecordId** | **string** | List following results with a next_record_id provided in the previous query. | 
 
 ### Return type
 

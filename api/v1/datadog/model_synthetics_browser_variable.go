@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsBrowserVariable Object defining a variable that can be used in your browser test. Learn more in the [Browser test Actions documentation](https://docs.datadoghq.com/synthetics/browser_tests/actions#variable).
@@ -206,6 +207,40 @@ func (o SyntheticsBrowserVariable) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsBrowserVariable) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Name *string                        `json:"name"`
+		Type *SyntheticsBrowserVariableType `json:"type"`
+	}{}
+	all := struct {
+		Example *string                       `json:"example,omitempty"}`
+		Id      *string                       `json:"id,omitempty"}`
+		Name    string                        `json:"name"}`
+		Pattern *string                       `json:"pattern,omitempty"}`
+		Type    SyntheticsBrowserVariableType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Example = all.Example
+	o.Id = all.Id
+	o.Name = all.Name
+	o.Pattern = all.Pattern
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSyntheticsBrowserVariable struct {
