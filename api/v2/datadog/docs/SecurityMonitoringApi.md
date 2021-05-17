@@ -4,14 +4,89 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------ | ------------ | ------------
+[**CreateSecurityFilter**](SecurityMonitoringApi.md#CreateSecurityFilter) | **Post** /api/v2/security_monitoring/configuration/security_filters | Create a security filter
 [**CreateSecurityMonitoringRule**](SecurityMonitoringApi.md#CreateSecurityMonitoringRule) | **Post** /api/v2/security_monitoring/rules | Create a detection rule
+[**DeleteSecurityFilter**](SecurityMonitoringApi.md#DeleteSecurityFilter) | **Delete** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id} | Delete a security filter
 [**DeleteSecurityMonitoringRule**](SecurityMonitoringApi.md#DeleteSecurityMonitoringRule) | **Delete** /api/v2/security_monitoring/rules/{rule_id} | Delete an existing rule
+[**GetSecurityFilter**](SecurityMonitoringApi.md#GetSecurityFilter) | **Get** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id} | Get a security filter
 [**GetSecurityMonitoringRule**](SecurityMonitoringApi.md#GetSecurityMonitoringRule) | **Get** /api/v2/security_monitoring/rules/{rule_id} | Get a rule&#39;s details
+[**ListSecurityFilters**](SecurityMonitoringApi.md#ListSecurityFilters) | **Get** /api/v2/security_monitoring/configuration/security_filters | Get all security filters
 [**ListSecurityMonitoringRules**](SecurityMonitoringApi.md#ListSecurityMonitoringRules) | **Get** /api/v2/security_monitoring/rules | List rules
 [**ListSecurityMonitoringSignals**](SecurityMonitoringApi.md#ListSecurityMonitoringSignals) | **Get** /api/v2/security_monitoring/signals | Get a quick list of security signals
 [**SearchSecurityMonitoringSignals**](SecurityMonitoringApi.md#SearchSecurityMonitoringSignals) | **Post** /api/v2/security_monitoring/signals/search | Get a list of security signals
+[**UpdateSecurityFilter**](SecurityMonitoringApi.md#UpdateSecurityFilter) | **Patch** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id} | Update a security filter
 [**UpdateSecurityMonitoringRule**](SecurityMonitoringApi.md#UpdateSecurityMonitoringRule) | **Put** /api/v2/security_monitoring/rules/{rule_id} | Update an existing rule
 
+
+
+## CreateSecurityFilter
+
+> SecurityFilterResponse CreateSecurityFilter(ctx, body)
+
+Create a security filter.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    body := *datadog.NewSecurityFilterCreateRequest(*datadog.NewSecurityFilterCreateData(*datadog.NewSecurityFilterCreateAttributes([]datadog.SecurityFilterExclusionFilter{*datadog.NewSecurityFilterExclusionFilter("Exclude staging", "source:staging")}, datadog.SecurityFilterFilteredDataType("logs"), true, "Custom security filter", "service:api"), datadog.SecurityFilterType("security_filters"))) // SecurityFilterCreateRequest | The definition of the new security filter.
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityFilter(ctx, body)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityFilter`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateSecurityFilter`: SecurityFilterResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.CreateSecurityFilter:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**body** | [**SecurityFilterCreateRequest**](SecurityFilterCreateRequest.md) | The definition of the new security filter. | 
+
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
+
+### Return type
+
+[**SecurityFilterResponse**](SecurityFilterResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateSecurityMonitoringRule
@@ -77,6 +152,76 @@ This endpoint does not have optional parameters.
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteSecurityFilter
+
+> SecurityFilterDeleteResponse DeleteSecurityFilter(ctx, securityFilterId)
+
+Delete a specific security filter.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    securityFilterId := "securityFilterId_example" // string | The ID of the security filter.
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityMonitoringApi.DeleteSecurityFilter(ctx, securityFilterId)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityFilter`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteSecurityFilter`: SecurityFilterDeleteResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.DeleteSecurityFilter:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**securityFilterId** | **string** | The ID of the security filter. | 
+
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
+
+### Return type
+
+[**SecurityFilterDeleteResponse**](SecurityFilterDeleteResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -150,6 +295,76 @@ This endpoint does not have optional parameters.
 [[Back to README]](../README.md)
 
 
+## GetSecurityFilter
+
+> SecurityFilterResponse GetSecurityFilter(ctx, securityFilterId)
+
+Get the details of a specific security filter.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    securityFilterId := "securityFilterId_example" // string | The ID of the security filter.
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityMonitoringApi.GetSecurityFilter(ctx, securityFilterId)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetSecurityFilter`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSecurityFilter`: SecurityFilterResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.GetSecurityFilter:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**securityFilterId** | **string** | The ID of the security filter. | 
+
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
+
+### Return type
+
+[**SecurityFilterResponse**](SecurityFilterResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetSecurityMonitoringRule
 
 > SecurityMonitoringRuleResponse GetSecurityMonitoringRule(ctx, ruleId)
@@ -205,6 +420,71 @@ This endpoint does not have optional parameters.
 ### Return type
 
 [**SecurityMonitoringRuleResponse**](SecurityMonitoringRuleResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListSecurityFilters
+
+> SecurityFiltersResponse ListSecurityFilters(ctx)
+
+Get the list of configured security filters with their definitions.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityMonitoringApi.ListSecurityFilters(ctx)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityFilters`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListSecurityFilters`: SecurityFiltersResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.ListSecurityFilters:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
+
+### Return type
+
+[**SecurityFiltersResponse**](SecurityFiltersResponse.md)
 
 ### Authorization
 
@@ -452,6 +732,79 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SecurityMonitoringSignalsListResponse**](SecurityMonitoringSignalsListResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateSecurityFilter
+
+> SecurityFilterResponse UpdateSecurityFilter(ctx, securityFilterId, body)
+
+Update a specific security filter.
+Returns the security filter object when the request is successful.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    securityFilterId := "securityFilterId_example" // string | The ID of the security filter.
+    body := *datadog.NewSecurityFilterUpdateRequest(*datadog.NewSecurityFilterUpdateData(*datadog.NewSecurityFilterUpdateAttributes(), datadog.SecurityFilterType("security_filters"))) // SecurityFilterUpdateRequest | New definition of the security filter.
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityFilter(ctx, securityFilterId, body)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityFilter`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateSecurityFilter`: SecurityFilterResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.UpdateSecurityFilter:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**securityFilterId** | **string** | The ID of the security filter. |  |
+**body** | [**SecurityFilterUpdateRequest**](SecurityFilterUpdateRequest.md) | New definition of the security filter. | 
+
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
+
+### Return type
+
+[**SecurityFilterResponse**](SecurityFilterResponse.md)
 
 ### Authorization
 
