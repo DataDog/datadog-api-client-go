@@ -19,7 +19,7 @@ type MonitorOptions struct {
 	DeviceIds *[]MonitorDeviceID `json:"device_ids,omitempty"`
 	// Whether or not to send a log sample when the log monitor triggers.
 	EnableLogsSample *bool `json:"enable_logs_sample,omitempty"`
-	// A message to include with a re-notification. Supports the `@username` notification we allow elsewhere. Not applicable if `renotify_interval` is `None`.
+	// We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#renotify), block in the original message instead. A message to include with a re-notification. Supports the `@username` notification we allow elsewhere. Not applicable if `renotify_interval` is `None`.
 	EscalationMessage *string `json:"escalation_message,omitempty"`
 	// Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to `300` (5min), the timeframe is set to `last_5m` and the time is 7:00, the monitor evaluates data from 6:50 to 6:55. This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation.
 	EvaluationDelay NullableInt64 `json:"evaluation_delay,omitempty"`
