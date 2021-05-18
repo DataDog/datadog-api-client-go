@@ -254,8 +254,8 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     include := datadog.IncidentRelatedObject("users") // IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
-    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
-    pageOffset := int64(789) // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
+    pageSize := int64(10) // int64 | Size for a given page. (optional) (default to 10)
+    pageOffset := int64(0) // int64 | Specific offset to use as the beginning of the returned page. (optional) (default to 0)
     filter := "ExampleTeamName" // string | A search query that filters teams by name. (optional)
     optionalParams := datadog.ListIncidentTeamsOptionalParameters{
         Include: &include,

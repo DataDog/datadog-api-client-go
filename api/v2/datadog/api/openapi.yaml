@@ -128,6 +128,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -138,6 +139,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -424,6 +426,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -434,6 +437,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -601,6 +605,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -611,6 +616,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -1071,6 +1077,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -1081,6 +1088,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -2799,6 +2807,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -2809,6 +2818,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -3256,6 +3266,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -3266,6 +3277,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -3643,6 +3655,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -3653,6 +3666,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -4028,6 +4042,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -4038,6 +4053,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -4350,6 +4366,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -4360,6 +4377,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -4714,6 +4732,7 @@ paths:
         name: user_invitation_uuid
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       responses:
@@ -4756,6 +4775,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -4766,6 +4786,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -4780,6 +4801,7 @@ paths:
         required: false
         schema:
           default: name
+          example: name
           type: string
         style: form
       - description: 'Direction of sort. Options: `asc`, `desc`.'
@@ -4807,6 +4829,7 @@ paths:
         name: filter[status]
         required: false
         schema:
+          example: Active
           type: string
         style: form
       responses:
@@ -4902,6 +4925,7 @@ paths:
         name: user_id
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       responses:
@@ -4936,6 +4960,7 @@ paths:
         name: user_id
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       responses:
@@ -4976,6 +5001,7 @@ paths:
         name: user_id
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       requestBody:
@@ -5035,6 +5061,7 @@ paths:
         name: user_id
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       responses:
@@ -5076,6 +5103,7 @@ paths:
         name: user_id
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       responses:
@@ -5358,6 +5386,7 @@ components:
       required: false
       schema:
         default: 0
+        example: 0
         format: int64
         type: integer
       style: form
@@ -5369,6 +5398,7 @@ components:
       required: false
       schema:
         default: 0
+        example: 0
         format: int64
         type: integer
       style: form
@@ -5380,6 +5410,7 @@ components:
       required: false
       schema:
         default: 10
+        example: 10
         format: int64
         type: integer
       style: form
@@ -5417,6 +5448,7 @@ components:
       name: user_id
       required: true
       schema:
+        example: 00000000-0000-0000-0000-000000000000
         type: string
       style: simple
   requestBodies: {}
