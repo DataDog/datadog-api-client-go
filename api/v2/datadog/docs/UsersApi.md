@@ -108,7 +108,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userId := "userId_example" // string | The ID of the user.
+    userId := "00000000-0000-0000-0000-000000000000" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
 
@@ -175,7 +175,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userInvitationUuid := "userInvitationUuid_example" // string | The UUID of the user invitation.
+    userInvitationUuid := "00000000-0000-0000-0000-000000000000" // string | The UUID of the user invitation.
 
     configuration := datadog.NewConfiguration()
 
@@ -245,7 +245,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userId := "userId_example" // string | The ID of the user.
+    userId := "00000000-0000-0000-0000-000000000000" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
 
@@ -316,7 +316,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userId := "userId_example" // string | The ID of the user.
+    userId := "00000000-0000-0000-0000-000000000000" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
 
@@ -387,7 +387,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userId := "userId_example" // string | The ID of the user.
+    userId := "00000000-0000-0000-0000-000000000000" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
 
@@ -458,12 +458,12 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
-    pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
-    sort := "sort_example" // string | User attribute to order results by. Sort order is ascending by default. Sort order is descending if the field is prefixed by a negative sign, for example `sort=-name`. Options: `name`, `modified_at`, `user_count`. (optional) (default to "name")
+    pageSize := int64(10) // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := int64(0) // int64 | Specific page number to return. (optional) (default to 0)
+    sort := "name" // string | User attribute to order results by. Sort order is ascending by default. Sort order is descending if the field is prefixed by a negative sign, for example `sort=-name`. Options: `name`, `modified_at`, `user_count`. (optional) (default to "name")
     sortDir := datadog.QuerySortOrder("asc") // QuerySortOrder | Direction of sort. Options: `asc`, `desc`. (optional) (default to "desc")
     filter := "filter_example" // string | Filter all users by the given string. Defaults to no filtering. (optional)
-    filterStatus := "filterStatus_example" // string | Filter on status attribute. Comma separated list, with possible values `Active`, `Pending`, and `Disabled`. Defaults to no filtering. (optional)
+    filterStatus := "Active" // string | Filter on status attribute. Comma separated list, with possible values `Active`, `Pending`, and `Disabled`. Defaults to no filtering. (optional)
     optionalParams := datadog.ListUsersOptionalParameters{
         PageSize: &pageSize,
         PageNumber: &pageNumber,
@@ -618,7 +618,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userId := "userId_example" // string | The ID of the user.
+    userId := "00000000-0000-0000-0000-000000000000" // string | The ID of the user.
     body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // UserUpdateRequest | 
 
     configuration := datadog.NewConfiguration()

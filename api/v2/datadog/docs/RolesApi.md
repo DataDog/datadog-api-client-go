@@ -527,8 +527,8 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     roleId := "roleId_example" // string | The ID of the role.
-    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
-    pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
+    pageSize := int64(10) // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := int64(0) // int64 | Specific page number to return. (optional) (default to 0)
     sort := "sort_example" // string | User attribute to order results by. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example `sort=-name`. Options: `name`, `email`, `status`. (optional) (default to "name")
     filter := "filter_example" // string | Filter all users by the given string. Defaults to no filtering. (optional)
     optionalParams := datadog.ListRoleUsersOptionalParameters{
@@ -614,8 +614,8 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
-    pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
+    pageSize := int64(10) // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := int64(0) // int64 | Specific page number to return. (optional) (default to 0)
     sort := datadog.RolesSort("name") // RolesSort | Sort roles depending on the given field. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example: `sort=-name`. (optional) (default to "name")
     filter := "filter_example" // string | Filter all roles by the given string. (optional)
     optionalParams := datadog.ListRolesOptionalParameters{

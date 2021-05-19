@@ -522,8 +522,8 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
-    pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
+    pageSize := int64(10) // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := int64(0) // int64 | Specific page number to return. (optional) (default to 0)
     optionalParams := datadog.ListSecurityMonitoringRulesOptionalParameters{
         PageSize: &pageSize,
         PageNumber: &pageNumber,

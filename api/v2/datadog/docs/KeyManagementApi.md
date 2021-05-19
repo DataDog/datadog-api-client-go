@@ -529,8 +529,8 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
-    pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
+    pageSize := int64(10) // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := int64(0) // int64 | Specific page number to return. (optional) (default to 0)
     sort := datadog.APIKeysSort("created_at") // APIKeysSort | API key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. (optional) (default to "name")
     filter := "filter_example" // string | Filter API keys by the specified string. (optional)
     filterCreatedAtStart := "2020-11-24T18:46:21+00:00" // string | Only include API keys created on or after the specified date. (optional)
@@ -627,8 +627,8 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
-    pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
+    pageSize := int64(10) // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := int64(0) // int64 | Specific page number to return. (optional) (default to 0)
     sort := datadog.ApplicationKeysSort("created_at") // ApplicationKeysSort | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. (optional) (default to "name")
     filter := "filter_example" // string | Filter application keys by the specified string. (optional)
     filterCreatedAtStart := "2020-11-24T18:46:21+00:00" // string | Only include application keys created on or after the specified date. (optional)
@@ -716,8 +716,8 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    pageSize := int64(789) // int64 | Size for a given page. (optional) (default to 10)
-    pageNumber := int64(789) // int64 | Specific page number to return. (optional) (default to 0)
+    pageSize := int64(10) // int64 | Size for a given page. (optional) (default to 10)
+    pageNumber := int64(0) // int64 | Specific page number to return. (optional) (default to 0)
     sort := datadog.ApplicationKeysSort("created_at") // ApplicationKeysSort | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. (optional) (default to "name")
     filter := "filter_example" // string | Filter application keys by the specified string. (optional)
     filterCreatedAtStart := "2020-11-24T18:46:21+00:00" // string | Only include application keys created on or after the specified date. (optional)
