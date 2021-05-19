@@ -18,11 +18,11 @@ type IncidentIntegrationMetadataType string
 
 // List of IncidentIntegrationMetadataType
 const (
-	INCIDENTINTEGRATIONMETADATATYPE_INCIDENT_INTEGRATION_METADATA IncidentIntegrationMetadataType = "incident_integration_metadata"
+	INCIDENTINTEGRATIONMETADATATYPE_INCIDENT_INTEGRATIONS IncidentIntegrationMetadataType = "incident_integrations"
 )
 
 var allowedIncidentIntegrationMetadataTypeEnumValues = []IncidentIntegrationMetadataType{
-	"incident_integration_metadata",
+	"incident_integrations",
 }
 
 func (v *IncidentIntegrationMetadataType) UnmarshalJSON(src []byte) error {
