@@ -350,7 +350,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func([]reflect.Valu
 				if err != nil {
 					t.Fatalf("%v", err)
 				}
-				in[i] = object
+				in[i] = object.Convert(undoOperation.Type().In(i))
 			}
 
 			result := undoOperation.Call(in)
@@ -524,8 +524,8 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error
 	} else {
 		// Set request args
 		for i := 1; i <= len(requestArgs); i++ {
-			object := requestArgs[i-1]
-			in[i] = object.(reflect.Value)
+			object := requestArgs[i-1].(reflect.Value)
+			in[i] = object.Convert(f.Type().In(i))
 		}
 		// Append body to args if it exists
 		if val, ok := requestParams["body"]; ok {

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **PrefixesIpv4** | Pointer to **[]string** | List of IPv4 prefixes. | [optional] 
 **PrefixesIpv4ByLocation** | Pointer to **map[string][]string** | List of IPv4 prefixes by location. | [optional] 
 **PrefixesIpv6** | Pointer to **[]string** | List of IPv6 prefixes. | [optional] 

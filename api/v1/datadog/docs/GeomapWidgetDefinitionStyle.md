@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Palette** | **string** | The color palette to apply to the widget. | 
 **PaletteFlip** | **bool** | Whether to flip the palette tones. | 
 

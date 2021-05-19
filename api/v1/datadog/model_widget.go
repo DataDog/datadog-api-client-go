@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Widget Information about widget.  **Note**: The `layout` property is required for widgets in dashboards with `free` `layout_type`.       For the **new dashboard layout**, the `layout` property depends on the `reflow_type` of the dashboard.       - If `reflow_type` is `fixed`, `layout` is required.       - If `reflow_type` is `auto`, `layout` should not be set.
@@ -138,6 +139,32 @@ func (o Widget) MarshalJSON() ([]byte, error) {
 		toSerialize["layout"] = o.Layout
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Definition *WidgetDefinition `json:"definition"`
+	}{}
+	all := struct {
+		Definition WidgetDefinition `json:"definition"}`
+		Id         *int64           `json:"id,omitempty"}`
+		Layout     *WidgetLayout    `json:"layout,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Definition == nil {
+		return fmt.Errorf("Required field definition missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Definition = all.Definition
+	o.Id = all.Id
+	o.Layout = all.Layout
+	return nil
 }
 
 type NullableWidget struct {

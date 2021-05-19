@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Code** | Pointer to **string** | A unique code for this type of warning | [optional] 
 **Detail** | Pointer to **string** | A detailed explanation of this specific warning | [optional] 
 **Title** | Pointer to **string** | A short human-readable summary of the warning | [optional] 

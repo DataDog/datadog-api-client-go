@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTestConfig Configuration object for a Synthetic test.
@@ -18,7 +19,7 @@ type SyntheticsTestConfig struct {
 	Assertions []SyntheticsAssertion `json:"assertions"`
 	// API tests only - array of variables used for the test.
 	ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
-	Request         SyntheticsTestRequest       `json:"request"`
+	Request         *SyntheticsTestRequest      `json:"request,omitempty"`
 	// Browser tests only - array of variables used for the test steps.
 	Variables *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
 }
@@ -27,10 +28,9 @@ type SyntheticsTestConfig struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsTestConfig(assertions []SyntheticsAssertion, request SyntheticsTestRequest) *SyntheticsTestConfig {
+func NewSyntheticsTestConfig(assertions []SyntheticsAssertion) *SyntheticsTestConfig {
 	this := SyntheticsTestConfig{}
 	this.Assertions = assertions
-	this.Request = request
 	return &this
 }
 
@@ -98,28 +98,36 @@ func (o *SyntheticsTestConfig) SetConfigVariables(v []SyntheticsConfigVariable) 
 	o.ConfigVariables = &v
 }
 
-// GetRequest returns the Request field value
+// GetRequest returns the Request field value if set, zero value otherwise.
 func (o *SyntheticsTestConfig) GetRequest() SyntheticsTestRequest {
-	if o == nil {
+	if o == nil || o.Request == nil {
 		var ret SyntheticsTestRequest
 		return ret
 	}
-
-	return o.Request
+	return *o.Request
 }
 
-// GetRequestOk returns a tuple with the Request field value
+// GetRequestOk returns a tuple with the Request field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SyntheticsTestConfig) GetRequestOk() (*SyntheticsTestRequest, bool) {
-	if o == nil {
+	if o == nil || o.Request == nil {
 		return nil, false
 	}
-	return &o.Request, true
+	return o.Request, true
 }
 
-// SetRequest sets field value
+// HasRequest returns a boolean if a field has been set.
+func (o *SyntheticsTestConfig) HasRequest() bool {
+	if o != nil && o.Request != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRequest gets a reference to the given SyntheticsTestRequest and assigns it to the Request field.
 func (o *SyntheticsTestConfig) SetRequest(v SyntheticsTestRequest) {
-	o.Request = v
+	o.Request = &v
 }
 
 // GetVariables returns the Variables field value if set, zero value otherwise.
@@ -162,13 +170,41 @@ func (o SyntheticsTestConfig) MarshalJSON() ([]byte, error) {
 	if o.ConfigVariables != nil {
 		toSerialize["configVariables"] = o.ConfigVariables
 	}
-	if true {
+	if o.Request != nil {
 		toSerialize["request"] = o.Request
 	}
 	if o.Variables != nil {
 		toSerialize["variables"] = o.Variables
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTestConfig) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Assertions *[]SyntheticsAssertion `json:"assertions"`
+	}{}
+	all := struct {
+		Assertions      []SyntheticsAssertion        `json:"assertions"}`
+		ConfigVariables *[]SyntheticsConfigVariable  `json:"configVariables,omitempty"}`
+		Request         *SyntheticsTestRequest       `json:"request,omitempty"}`
+		Variables       *[]SyntheticsBrowserVariable `json:"variables,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Assertions == nil {
+		return fmt.Errorf("Required field assertions missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Assertions = all.Assertions
+	o.ConfigVariables = all.ConfigVariables
+	o.Request = all.Request
+	o.Variables = all.Variables
+	return nil
 }
 
 type NullableSyntheticsTestConfig struct {

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **DeletedAt** | Pointer to **time.Time** | Deletion timestamp of the Synthetic test ID. | [optional] 
 **PublicId** | Pointer to **string** | The Synthetic test ID deleted. | [optional] 
 

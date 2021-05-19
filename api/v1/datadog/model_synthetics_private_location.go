@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsPrivateLocation Object containing information about the private location to create.
@@ -199,6 +200,44 @@ func (o SyntheticsPrivateLocation) MarshalJSON() ([]byte, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Description *string   `json:"description"`
+		Name        *string   `json:"name"`
+		Tags        *[]string `json:"tags"`
+	}{}
+	all := struct {
+		Description string                            `json:"description"}`
+		Id          *string                           `json:"id,omitempty"}`
+		Name        string                            `json:"name"}`
+		Secrets     *SyntheticsPrivateLocationSecrets `json:"secrets,omitempty"}`
+		Tags        []string                          `json:"tags"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Description == nil {
+		return fmt.Errorf("Required field description missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Tags == nil {
+		return fmt.Errorf("Required field tags missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Description = all.Description
+	o.Id = all.Id
+	o.Name = all.Name
+	o.Secrets = all.Secrets
+	o.Tags = all.Tags
+	return nil
 }
 
 type NullableSyntheticsPrivateLocation struct {

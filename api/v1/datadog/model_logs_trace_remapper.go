@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsTraceRemapper There are two ways to improve correlation between application traces and logs.    1. Follow the documentation on [how to inject a trace ID in the application logs](https://docs.datadoghq.com/tracing/connect_logs_and_traces)   and by default log integrations take care of all the rest of the setup.    2. Use the Trace remapper processor to define a log attribute as its associated trace ID.
@@ -182,6 +183,34 @@ func (o LogsTraceRemapper) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsTraceRemapper) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Type *LogsTraceRemapperType `json:"type"`
+	}{}
+	all := struct {
+		IsEnabled *bool                 `json:"is_enabled,omitempty"}`
+		Name      *string               `json:"name,omitempty"}`
+		Sources   *[]string             `json:"sources,omitempty"}`
+		Type      LogsTraceRemapperType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.Sources = all.Sources
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsTraceRemapper struct {

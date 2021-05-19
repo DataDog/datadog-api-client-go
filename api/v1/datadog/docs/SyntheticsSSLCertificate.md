@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Cipher** | Pointer to **string** | Cipher used for the connection. | [optional] 
 **Exponent** | Pointer to **float64** | Exponent associated to the certificate. | [optional] 
 **ExtKeyUsage** | Pointer to **[]string** | Array of extensions and details used for the certificate. | [optional] 

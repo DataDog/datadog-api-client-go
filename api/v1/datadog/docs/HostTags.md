@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Host** | Pointer to **string** | Your host name. | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags to apply to the host. | [optional] 
 

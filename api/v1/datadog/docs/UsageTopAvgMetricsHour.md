@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AvgMetricHour** | Pointer to **int64** | Average number of timeseries per hour in which the metric occurs. | [optional] 
 **MaxMetricHour** | Pointer to **int64** | Maximum number of timeseries per hour in which the metric occurs. | [optional] 
 **MetricCategory** | Pointer to [**UsageMetricCategory**](UsageMetricCategory.md) |  | [optional] 

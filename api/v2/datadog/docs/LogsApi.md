@@ -1,9 +1,9 @@
-# \LogsApi
+# LogsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**AggregateLogs**](LogsApi.md#AggregateLogs) | **Post** /api/v2/logs/analytics/aggregate | Aggregate events
 [**ListLogs**](LogsApi.md#ListLogs) | **Post** /api/v2/logs/events/search | Search logs
 [**ListLogsGet**](LogsApi.md#ListLogsGet) | **Get** /api/v2/logs/events | Get a list of logs
@@ -14,9 +14,7 @@ Method | HTTP request | Description
 
 > LogsAggregateResponse AggregateLogs(ctx, body)
 
-Aggregate events
-
-
+The API endpoint to aggregate events into buckets and compute metrics and timeseries.
 
 ### Example
 
@@ -41,7 +39,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsApi.AggregateLogs(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.AggregateLogs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.AggregateLogs`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `AggregateLogs`: LogsAggregateResponse
@@ -54,9 +52,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**LogsAggregateRequest**](LogsAggregateRequest.md) |  | 
+
 
 ### Optional Parameters
 
@@ -85,9 +84,17 @@ This endpoint does not have optional parameters.
 
 > LogsListResponse ListLogs(ctx, datadog.ListLogsOptionalParameters{})
 
-Search logs
+List endpoint returns logs that match a log search query.
+[Results are paginated][1].
 
+Use this endpoint to build complex logs filtering and search.
 
+**If you are considering archiving logs for your organization,
+consider use of the Datadog archive capabilities instead of the log list API.
+See [Datadog Logs Archive documentation][2].**
+
+[1]: /logs/guide/collect-multiple-logs-with-pagination
+[2]: https://docs.datadoghq.com/logs/archives
 
 ### Example
 
@@ -115,7 +122,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsApi.ListLogs(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLogs`: LogsListResponse
@@ -128,14 +135,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListLogsOptionalParameters struct
+Other parameters are passed through a pointer to a ListLogsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **body** | [**LogsListRequest**](LogsListRequest.md) |  | 
 
 ### Return type
@@ -160,9 +168,17 @@ Name | Type | Description  | Notes
 
 > LogsListResponse ListLogsGet(ctx, datadog.ListLogsGetOptionalParameters{})
 
-Get a list of logs
+List endpoint returns logs that match a log search query.
+[Results are paginated][1].
 
+Use this endpoint to see your latest logs.
 
+**If you are considering archiving logs for your organization,
+consider use of the Datadog archive capabilities instead of the log list API.
+See [Datadog Logs Archive documentation][2].**
+
+[1]: /logs/guide/collect-multiple-logs-with-pagination
+[2]: https://docs.datadoghq.com/logs/archives
 
 ### Example
 
@@ -203,7 +219,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.LogsApi.ListLogsGet(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogsGet`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLogsGet`: LogsListResponse
@@ -216,14 +232,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListLogsGetOptionalParameters struct
+Other parameters are passed through a pointer to a ListLogsGetOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **filterQuery** | **string** | Search query following logs syntax. | 
 **filterIndex** | **string** | For customers with multiple indexes, the indexes to search Defaults to &#39;*&#39; which means all indexes | 
 **filterFrom** | **time.Time** | Minimum timestamp for requested logs. | 

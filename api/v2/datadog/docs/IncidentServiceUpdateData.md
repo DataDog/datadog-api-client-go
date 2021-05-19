@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | Pointer to [**IncidentServiceUpdateAttributes**](IncidentServiceUpdateAttributes.md) |  | [optional] 
 **Id** | Pointer to **string** | The incident service&#39;s ID. | [optional] 
 **Relationships** | Pointer to [**IncidentServiceRelationships**](IncidentServiceRelationships.md) |  | [optional] 

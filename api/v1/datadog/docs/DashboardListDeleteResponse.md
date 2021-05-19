@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **DeletedDashboardListId** | Pointer to **int64** | ID of the deleted dashboard list. | [optional] 
 
 ## Methods

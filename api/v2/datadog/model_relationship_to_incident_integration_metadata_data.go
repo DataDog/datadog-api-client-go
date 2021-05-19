@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // RelationshipToIncidentIntegrationMetadataData A relationship reference for an integration metadata object.
@@ -35,7 +36,7 @@ func NewRelationshipToIncidentIntegrationMetadataData(id string, type_ IncidentI
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToIncidentIntegrationMetadataDataWithDefaults() *RelationshipToIncidentIntegrationMetadataData {
 	this := RelationshipToIncidentIntegrationMetadataData{}
-	var type_ IncidentIntegrationMetadataType = INCIDENTINTEGRATIONMETADATATYPE_INCIDENT_INTEGRATION_METADATA
+	var type_ IncidentIntegrationMetadataType = INCIDENTINTEGRATIONMETADATATYPE_INCIDENT_INTEGRATIONS
 	this.Type = type_
 	return &this
 }
@@ -97,6 +98,34 @@ func (o RelationshipToIncidentIntegrationMetadataData) MarshalJSON() ([]byte, er
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *RelationshipToIncidentIntegrationMetadataData) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Id   *string                          `json:"id"`
+		Type *IncidentIntegrationMetadataType `json:"type"`
+	}{}
+	all := struct {
+		Id   string                          `json:"id"}`
+		Type IncidentIntegrationMetadataType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Id == nil {
+		return fmt.Errorf("Required field id missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Id = all.Id
+	o.Type = all.Type
+	return nil
 }
 
 type NullableRelationshipToIncidentIntegrationMetadataData struct {

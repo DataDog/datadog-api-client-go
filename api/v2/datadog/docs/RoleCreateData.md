@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | [**RoleCreateAttributes**](RoleCreateAttributes.md) |  | 
 **Relationships** | Pointer to [**RoleRelationships**](RoleRelationships.md) |  | [optional] 
 **Type** | Pointer to [**RolesType**](RolesType.md) |  | [optional] [default to ROLESTYPE_ROLES]

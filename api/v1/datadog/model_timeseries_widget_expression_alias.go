@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // TimeseriesWidgetExpressionAlias Define an expression alias.
@@ -103,6 +104,30 @@ func (o TimeseriesWidgetExpressionAlias) MarshalJSON() ([]byte, error) {
 		toSerialize["expression"] = o.Expression
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Expression *string `json:"expression"`
+	}{}
+	all := struct {
+		AliasName  *string `json:"alias_name,omitempty"}`
+		Expression string  `json:"expression"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Expression == nil {
+		return fmt.Errorf("Required field expression missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.AliasName = all.AliasName
+	o.Expression = all.Expression
+	return nil
 }
 
 type NullableTimeseriesWidgetExpressionAlias struct {

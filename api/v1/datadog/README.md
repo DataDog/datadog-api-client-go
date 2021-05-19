@@ -168,6 +168,11 @@ Class | Method | HTTP request | Description
 *MonitorsApi* | [**ListMonitors**](docs/MonitorsApi.md#listmonitors) | **Get** /api/v1/monitor | Get all monitor details
 *MonitorsApi* | [**UpdateMonitor**](docs/MonitorsApi.md#updatemonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
 *MonitorsApi* | [**ValidateMonitor**](docs/MonitorsApi.md#validatemonitor) | **Post** /api/v1/monitor/validate | Validate a monitor
+*NotebooksApi* | [**CreateNotebook**](docs/NotebooksApi.md#createnotebook) | **Post** /api/v1/notebooks | Create a notebook
+*NotebooksApi* | [**DeleteNotebook**](docs/NotebooksApi.md#deletenotebook) | **Delete** /api/v1/notebooks/{notebook_id} | Delete a notebook
+*NotebooksApi* | [**GetNotebook**](docs/NotebooksApi.md#getnotebook) | **Get** /api/v1/notebooks/{notebook_id} | Get a notebook
+*NotebooksApi* | [**ListNotebooks**](docs/NotebooksApi.md#listnotebooks) | **Get** /api/v1/notebooks | Get all notebooks
+*NotebooksApi* | [**UpdateNotebook**](docs/NotebooksApi.md#updatenotebook) | **Put** /api/v1/notebooks/{notebook_id} | Update a notebook
 *OrganizationsApi* | [**CreateChildOrg**](docs/OrganizationsApi.md#createchildorg) | **Post** /api/v1/org | Create a child organization
 *OrganizationsApi* | [**GetOrg**](docs/OrganizationsApi.md#getorg) | **Get** /api/v1/org/{public_id} | Get organization information
 *OrganizationsApi* | [**ListOrgs**](docs/OrganizationsApi.md#listorgs) | **Get** /api/v1/org | List your managed organizations
@@ -244,6 +249,7 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetUsageLambda**](docs/UsageMeteringApi.md#getusagelambda) | **Get** /api/v1/usage/aws_lambda | Get hourly usage for Lambda
 *UsageMeteringApi* | [**GetUsageLogs**](docs/UsageMeteringApi.md#getusagelogs) | **Get** /api/v1/usage/logs | Get hourly usage for Logs
 *UsageMeteringApi* | [**GetUsageLogsByIndex**](docs/UsageMeteringApi.md#getusagelogsbyindex) | **Get** /api/v1/usage/logs_by_index | Get hourly usage for Logs by Index
+*UsageMeteringApi* | [**GetUsageLogsByRetention**](docs/UsageMeteringApi.md#getusagelogsbyretention) | **Get** /api/v1/usage/logs-by-retention | Get hourly logs usage by retention
 *UsageMeteringApi* | [**GetUsageNetworkFlows**](docs/UsageMeteringApi.md#getusagenetworkflows) | **Get** /api/v1/usage/network_flows | Get hourly usage for Network Flows
 *UsageMeteringApi* | [**GetUsageNetworkHosts**](docs/UsageMeteringApi.md#getusagenetworkhosts) | **Get** /api/v1/usage/network_hosts | Get hourly usage for Network Hosts
 *UsageMeteringApi* | [**GetUsageProfiling**](docs/UsageMeteringApi.md#getusageprofiling) | **Get** /api/v1/usage/profiling | Get hourly usage for profiled hosts
@@ -254,7 +260,7 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetUsageSyntheticsAPI**](docs/UsageMeteringApi.md#getusagesyntheticsapi) | **Get** /api/v1/usage/synthetics_api | Get hourly usage for Synthetics API Checks
 *UsageMeteringApi* | [**GetUsageSyntheticsBrowser**](docs/UsageMeteringApi.md#getusagesyntheticsbrowser) | **Get** /api/v1/usage/synthetics_browser | Get hourly usage for Synthetics Browser Checks
 *UsageMeteringApi* | [**GetUsageTimeseries**](docs/UsageMeteringApi.md#getusagetimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics
-*UsageMeteringApi* | [**GetUsageTopAvgMetrics**](docs/UsageMeteringApi.md#getusagetopavgmetrics) | **Get** /api/v1/usage/top_avg_metrics | Get top custom metrics by hourly average
+*UsageMeteringApi* | [**GetUsageTopAvgMetrics**](docs/UsageMeteringApi.md#getusagetopavgmetrics) | **Get** /api/v1/usage/top_avg_metrics | Get all custom metrics by hourly average
 *UsageMeteringApi* | [**GetUsageTrace**](docs/UsageMeteringApi.md#getusagetrace) | **Get** /api/v1/usage/traces | Get hourly usage for Trace Search
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v1/user | Create a user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v1/user/{user_handle} | Disable a user
@@ -329,6 +335,7 @@ Class | Method | HTTP request | Description
  - [DistributionWidgetXAxis](docs/DistributionWidgetXAxis.md)
  - [DistributionWidgetYAxis](docs/DistributionWidgetYAxis.md)
  - [Downtime](docs/Downtime.md)
+ - [DowntimeChild](docs/DowntimeChild.md)
  - [DowntimeRecurrence](docs/DowntimeRecurrence.md)
  - [Event](docs/Event.md)
  - [EventAlertType](docs/EventAlertType.md)
@@ -415,6 +422,10 @@ Class | Method | HTTP request | Description
  - [LogsArithmeticProcessorType](docs/LogsArithmeticProcessorType.md)
  - [LogsAttributeRemapper](docs/LogsAttributeRemapper.md)
  - [LogsAttributeRemapperType](docs/LogsAttributeRemapperType.md)
+ - [LogsByRetention](docs/LogsByRetention.md)
+ - [LogsByRetentionMonthlyUsage](docs/LogsByRetentionMonthlyUsage.md)
+ - [LogsByRetentionOrgUsage](docs/LogsByRetentionOrgUsage.md)
+ - [LogsByRetentionOrgs](docs/LogsByRetentionOrgs.md)
  - [LogsCategoryProcessor](docs/LogsCategoryProcessor.md)
  - [LogsCategoryProcessorCategory](docs/LogsCategoryProcessorCategory.md)
  - [LogsCategoryProcessorType](docs/LogsCategoryProcessorType.md)
@@ -445,6 +456,8 @@ Class | Method | HTTP request | Description
  - [LogsPipelinesOrder](docs/LogsPipelinesOrder.md)
  - [LogsProcessor](docs/LogsProcessor.md)
  - [LogsQueryCompute](docs/LogsQueryCompute.md)
+ - [LogsRetentionAggSumUsage](docs/LogsRetentionAggSumUsage.md)
+ - [LogsRetentionSumUsage](docs/LogsRetentionSumUsage.md)
  - [LogsServiceRemapper](docs/LogsServiceRemapper.md)
  - [LogsServiceRemapperType](docs/LogsServiceRemapperType.md)
  - [LogsSort](docs/LogsSort.md)
@@ -481,6 +494,43 @@ Class | Method | HTTP request | Description
  - [MonitorUpdateRequest](docs/MonitorUpdateRequest.md)
  - [NoteWidgetDefinition](docs/NoteWidgetDefinition.md)
  - [NoteWidgetDefinitionType](docs/NoteWidgetDefinitionType.md)
+ - [NotebookAbsoluteTime](docs/NotebookAbsoluteTime.md)
+ - [NotebookAuthor](docs/NotebookAuthor.md)
+ - [NotebookCellCreateRequest](docs/NotebookCellCreateRequest.md)
+ - [NotebookCellCreateRequestAttributes](docs/NotebookCellCreateRequestAttributes.md)
+ - [NotebookCellResourceType](docs/NotebookCellResourceType.md)
+ - [NotebookCellResponse](docs/NotebookCellResponse.md)
+ - [NotebookCellResponseAttributes](docs/NotebookCellResponseAttributes.md)
+ - [NotebookCellTime](docs/NotebookCellTime.md)
+ - [NotebookCellUpdateRequest](docs/NotebookCellUpdateRequest.md)
+ - [NotebookCellUpdateRequestAttributes](docs/NotebookCellUpdateRequestAttributes.md)
+ - [NotebookCreateData](docs/NotebookCreateData.md)
+ - [NotebookCreateDataAttributes](docs/NotebookCreateDataAttributes.md)
+ - [NotebookCreateRequest](docs/NotebookCreateRequest.md)
+ - [NotebookDistributionCellAttributes](docs/NotebookDistributionCellAttributes.md)
+ - [NotebookGlobalTime](docs/NotebookGlobalTime.md)
+ - [NotebookGraphSize](docs/NotebookGraphSize.md)
+ - [NotebookHeatMapCellAttributes](docs/NotebookHeatMapCellAttributes.md)
+ - [NotebookLogStreamCellAttributes](docs/NotebookLogStreamCellAttributes.md)
+ - [NotebookMarkdownCellAttributes](docs/NotebookMarkdownCellAttributes.md)
+ - [NotebookMarkdownCellDefinition](docs/NotebookMarkdownCellDefinition.md)
+ - [NotebookMarkdownCellDefinitionType](docs/NotebookMarkdownCellDefinitionType.md)
+ - [NotebookRelativeTime](docs/NotebookRelativeTime.md)
+ - [NotebookResourceType](docs/NotebookResourceType.md)
+ - [NotebookResponse](docs/NotebookResponse.md)
+ - [NotebookResponseData](docs/NotebookResponseData.md)
+ - [NotebookResponseDataAttributes](docs/NotebookResponseDataAttributes.md)
+ - [NotebookSplitBy](docs/NotebookSplitBy.md)
+ - [NotebookStatus](docs/NotebookStatus.md)
+ - [NotebookTimeseriesCellAttributes](docs/NotebookTimeseriesCellAttributes.md)
+ - [NotebookToplistCellAttributes](docs/NotebookToplistCellAttributes.md)
+ - [NotebookUpdateCell](docs/NotebookUpdateCell.md)
+ - [NotebookUpdateData](docs/NotebookUpdateData.md)
+ - [NotebookUpdateDataAttributes](docs/NotebookUpdateDataAttributes.md)
+ - [NotebookUpdateRequest](docs/NotebookUpdateRequest.md)
+ - [NotebooksResponse](docs/NotebooksResponse.md)
+ - [NotebooksResponseMeta](docs/NotebooksResponseMeta.md)
+ - [NotebooksResponsePage](docs/NotebooksResponsePage.md)
  - [Organization](docs/Organization.md)
  - [OrganizationBilling](docs/OrganizationBilling.md)
  - [OrganizationCreateBody](docs/OrganizationCreateBody.md)
@@ -530,6 +580,7 @@ Class | Method | HTTP request | Description
  - [SLOListResponseMetadata](docs/SLOListResponseMetadata.md)
  - [SLOListResponseMetadataPage](docs/SLOListResponseMetadataPage.md)
  - [SLOResponse](docs/SLOResponse.md)
+ - [SLOResponseData](docs/SLOResponseData.md)
  - [SLOThreshold](docs/SLOThreshold.md)
  - [SLOTimeframe](docs/SLOTimeframe.md)
  - [SLOType](docs/SLOType.md)
@@ -667,6 +718,7 @@ Class | Method | HTTP request | Description
  - [UsageAttributionPagination](docs/UsageAttributionPagination.md)
  - [UsageAttributionResponse](docs/UsageAttributionResponse.md)
  - [UsageAttributionSort](docs/UsageAttributionSort.md)
+ - [UsageAttributionSupportedMetrics](docs/UsageAttributionSupportedMetrics.md)
  - [UsageAttributionValues](docs/UsageAttributionValues.md)
  - [UsageBillableSummaryBody](docs/UsageBillableSummaryBody.md)
  - [UsageBillableSummaryHour](docs/UsageBillableSummaryHour.md)
@@ -695,6 +747,8 @@ Class | Method | HTTP request | Description
  - [UsageLambdaResponse](docs/UsageLambdaResponse.md)
  - [UsageLogsByIndexHour](docs/UsageLogsByIndexHour.md)
  - [UsageLogsByIndexResponse](docs/UsageLogsByIndexResponse.md)
+ - [UsageLogsByRetentionHour](docs/UsageLogsByRetentionHour.md)
+ - [UsageLogsByRetentionResponse](docs/UsageLogsByRetentionResponse.md)
  - [UsageLogsHour](docs/UsageLogsHour.md)
  - [UsageLogsResponse](docs/UsageLogsResponse.md)
  - [UsageMetricCategory](docs/UsageMetricCategory.md)

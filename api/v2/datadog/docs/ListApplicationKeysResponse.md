@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**[]PartialApplicationKey**](PartialApplicationKey.md) | Array of application keys. | [optional] 
 **Included** | Pointer to [**[]ApplicationKeyResponseIncludedItem**](ApplicationKeyResponseIncludedItem.md) | Array of objects related to the application key. | [optional] 
 

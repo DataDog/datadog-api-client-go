@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Palette** | Pointer to **string** | Color palette to apply to the widget. | [optional] 
 
 ## Methods

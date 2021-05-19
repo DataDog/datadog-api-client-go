@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **DeletedDashboardsFromList** | Pointer to [**[]DashboardListItemResponse**](DashboardListItemResponse.md) | List of dashboards deleted from the dashboard list. | [optional] 
 
 ## Methods

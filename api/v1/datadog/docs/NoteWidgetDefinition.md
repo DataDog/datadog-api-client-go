@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **BackgroundColor** | Pointer to **string** | Background color of the note. | [optional] 
 **Content** | **string** | Content of the note. | 
 **FontSize** | Pointer to **string** | Size of the text. | [optional] 

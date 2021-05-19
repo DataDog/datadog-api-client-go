@@ -3,9 +3,9 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Id** | **string** | A unique identifier that represents the integration metadata. | 
-**Type** | [**IncidentIntegrationMetadataType**](IncidentIntegrationMetadataType.md) |  | [default to INCIDENTINTEGRATIONMETADATATYPE_INCIDENT_INTEGRATION_METADATA]
+**Type** | [**IncidentIntegrationMetadataType**](IncidentIntegrationMetadataType.md) |  | [default to INCIDENTINTEGRATIONMETADATATYPE_INCIDENT_INTEGRATIONS]
 
 ## Methods
 

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetFieldSort Which column and order to sort by
@@ -95,6 +96,34 @@ func (o WidgetFieldSort) MarshalJSON() ([]byte, error) {
 		toSerialize["order"] = o.Order
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Column *string     `json:"column"`
+		Order  *WidgetSort `json:"order"`
+	}{}
+	all := struct {
+		Column string     `json:"column"}`
+		Order  WidgetSort `json:"order"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Column == nil {
+		return fmt.Errorf("Required field column missing")
+	}
+	if required.Order == nil {
+		return fmt.Errorf("Required field order missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Column = all.Column
+	o.Order = all.Order
+	return nil
 }
 
 type NullableWidgetFieldSort struct {

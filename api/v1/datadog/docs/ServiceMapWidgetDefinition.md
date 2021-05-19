@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
 **Filters** | **[]string** | Your environment and primary tag (or * if enabled for your account). | 
 **Service** | **string** | The ID of the service you want to map. | 

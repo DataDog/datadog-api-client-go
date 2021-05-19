@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Roles** | Pointer to [**RelationshipToRoles**](RelationshipToRoles.md) |  | [optional] 
 
 ## Methods

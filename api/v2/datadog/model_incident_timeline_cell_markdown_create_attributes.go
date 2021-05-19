@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentTimelineCellMarkdownCreateAttributes Timeline cell data for Markdown timeline cells for a create request.
@@ -137,6 +138,36 @@ func (o IncidentTimelineCellMarkdownCreateAttributes) MarshalJSON() ([]byte, err
 		toSerialize["important"] = o.Important
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		CellType *IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
+		Content  *IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
+	}{}
+	all := struct {
+		CellType  IncidentTimelineCellMarkdownContentType             `json:"cell_type"}`
+		Content   IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"}`
+		Important *bool                                               `json:"important,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.CellType == nil {
+		return fmt.Errorf("Required field cell_type missing")
+	}
+	if required.Content == nil {
+		return fmt.Errorf("Required field content missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.CellType = all.CellType
+	o.Content = all.Content
+	o.Important = all.Important
+	return nil
 }
 
 type NullableIncidentTimelineCellMarkdownCreateAttributes struct {

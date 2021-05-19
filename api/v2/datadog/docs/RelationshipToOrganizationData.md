@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Id** | **string** | ID of the organization. | 
 **Type** | [**OrganizationsType**](OrganizationsType.md) |  | [default to ORGANIZATIONSTYPE_ORGS]
 

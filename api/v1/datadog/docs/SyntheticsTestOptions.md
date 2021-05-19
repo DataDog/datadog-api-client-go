@@ -3,11 +3,11 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AcceptSelfSigned** | Pointer to **bool** | For SSL test, whether or not the test should allow self signed certificates. | [optional] 
 **AllowInsecure** | Pointer to **bool** | Allows loading insecure content for an HTTP request. | [optional] 
 **DeviceIds** | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md) | For browser test, array with the different device IDs used to run the test. | [optional] 
-**DisableCors** | Pointer to **bool** | Whether or not to disable CORS mechanism. Currently only available for Chrome. | [optional] 
+**DisableCors** | Pointer to **bool** | Whether or not to disable CORS mechanism. | [optional] 
 **FollowRedirects** | Pointer to **bool** | For API HTTP test, whether or not the test should follow redirects. | [optional] 
 **MinFailureDuration** | Pointer to **int64** | Minimum amount of time in failure required to trigger an alert. | [optional] 
 **MinLocationFailed** | Pointer to **int64** | Minimum number of locations in failure required to trigger an alert. | [optional] 

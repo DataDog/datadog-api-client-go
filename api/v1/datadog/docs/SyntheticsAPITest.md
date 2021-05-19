@@ -3,14 +3,14 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Config** | Pointer to [**SyntheticsAPITestConfig**](SyntheticsAPITestConfig.md) |  | [optional] 
 **Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
 **Message** | Pointer to **string** | Notification message associated with the test. | [optional] 
-**MonitorId** | Pointer to **int64** | The associated monitor ID. | [optional] 
+**MonitorId** | Pointer to **int64** | The associated monitor ID. | [optional] [readonly] 
 **Name** | Pointer to **string** | Name of the test. | [optional] 
 **Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
-**PublicId** | Pointer to **string** | The public ID for the test. | [optional] 
+**PublicId** | Pointer to **string** | The public ID for the test. | [optional] [readonly] 
 **Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
 **Subtype** | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | Array of tags attached to the test. | [optional] 

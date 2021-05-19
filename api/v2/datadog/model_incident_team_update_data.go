@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentTeamUpdateData Incident Team data for an update request.
@@ -176,6 +177,34 @@ func (o IncidentTeamUpdateData) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentTeamUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Type *IncidentTeamType `json:"type"`
+	}{}
+	all := struct {
+		Attributes    *IncidentTeamUpdateAttributes `json:"attributes,omitempty"}`
+		Id            *string                       `json:"id,omitempty"}`
+		Relationships *IncidentTeamRelationships    `json:"relationships,omitempty"}`
+		Type          IncidentTeamType              `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Attributes = all.Attributes
+	o.Id = all.Id
+	o.Relationships = all.Relationships
+	o.Type = all.Type
+	return nil
 }
 
 type NullableIncidentTeamUpdateData struct {

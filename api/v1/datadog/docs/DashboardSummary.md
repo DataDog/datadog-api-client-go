@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Dashboards** | Pointer to [**[]DashboardSummaryDefinition**](DashboardSummaryDefinition.md) | List of dashboard definitions. | [optional] 
 
 ## Methods

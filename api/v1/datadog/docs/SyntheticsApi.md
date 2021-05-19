@@ -1,9 +1,9 @@
-# \SyntheticsApi
+# SyntheticsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateGlobalVariable**](SyntheticsApi.md#CreateGlobalVariable) | **Post** /api/v1/synthetics/variables | Create a global variable
 [**CreatePrivateLocation**](SyntheticsApi.md#CreatePrivateLocation) | **Post** /api/v1/synthetics/private-locations | Create a private location
 [**CreateSyntheticsAPITest**](SyntheticsApi.md#CreateSyntheticsAPITest) | **Post** /api/v1/synthetics/tests/api | Create an API test
@@ -35,9 +35,7 @@ Method | HTTP request | Description
 
 > SyntheticsGlobalVariable CreateGlobalVariable(ctx, body)
 
-Create a global variable
-
-
+Create a Synthetics global variable.
 
 ### Example
 
@@ -55,14 +53,14 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("example-value")) // SyntheticsGlobalVariable | Details of the global variable to create.
+    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue()) // SyntheticsGlobalVariable | Details of the global variable to create.
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.CreateGlobalVariable(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateGlobalVariable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateGlobalVariable`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateGlobalVariable`: SyntheticsGlobalVariable
@@ -75,9 +73,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Details of the global variable to create. | 
+
 
 ### Optional Parameters
 
@@ -106,9 +105,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsPrivateLocationCreationResponse CreatePrivateLocation(ctx, body)
 
-Create a private location
-
-
+Create a new Synthetics private location.
 
 ### Example
 
@@ -133,7 +130,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.CreatePrivateLocation(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreatePrivateLocation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreatePrivateLocation`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreatePrivateLocation`: SyntheticsPrivateLocationCreationResponse
@@ -146,9 +143,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) | Details of the private location to create. | 
+
 
 ### Optional Parameters
 
@@ -177,9 +175,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsAPITest CreateSyntheticsAPITest(ctx, body)
 
-Create an API test
-
-
+Create a Synthetic API test.
 
 ### Example
 
@@ -204,7 +200,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsAPITest(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsAPITest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsAPITest`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateSyntheticsAPITest`: SyntheticsAPITest
@@ -217,9 +213,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**SyntheticsAPITest**](SyntheticsAPITest.md) | Details of the test to create. | 
+
 
 ### Optional Parameters
 
@@ -248,9 +245,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsBrowserTest CreateSyntheticsBrowserTest(ctx, body)
 
-Create a browser test
-
-
+Create a Synthetic browser test.
 
 ### Example
 
@@ -275,7 +270,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsBrowserTest(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsBrowserTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsBrowserTest`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateSyntheticsBrowserTest`: SyntheticsBrowserTest
@@ -288,9 +283,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**SyntheticsBrowserTest**](SyntheticsBrowserTest.md) | Details of the test to create. | 
+
 
 ### Optional Parameters
 
@@ -319,9 +315,7 @@ This endpoint does not have optional parameters.
 
 > DeleteGlobalVariable(ctx, variableId)
 
-Delete a global variable
-
-
+Delete a Synthetics global variable.
 
 ### Example
 
@@ -345,7 +339,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.SyntheticsApi.DeleteGlobalVariable(ctx, variableId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteGlobalVariable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteGlobalVariable`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -355,9 +349,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **variableId** | **string** | The ID of the global variable. | 
+
 
 ### Optional Parameters
 
@@ -386,9 +381,7 @@ This endpoint does not have optional parameters.
 
 > DeletePrivateLocation(ctx, locationId)
 
-Delete a private location
-
-
+Delete a Synthetics private location.
 
 ### Example
 
@@ -412,7 +405,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     r, err := apiClient.SyntheticsApi.DeletePrivateLocation(ctx, locationId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeletePrivateLocation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeletePrivateLocation`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -422,9 +415,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **locationId** | **string** | The ID of the private location. | 
+
 
 ### Optional Parameters
 
@@ -453,9 +447,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsDeleteTestsResponse DeleteTests(ctx, body)
 
-Delete tests
-
-
+Delete multiple Synthetic tests by ID.
 
 ### Example
 
@@ -480,7 +472,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.DeleteTests(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteTests``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteTests`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteTests`: SyntheticsDeleteTestsResponse
@@ -493,9 +485,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**SyntheticsDeleteTestsPayload**](SyntheticsDeleteTestsPayload.md) | Public ID list of the Synthetic tests to be deleted. | 
+
 
 ### Optional Parameters
 
@@ -524,9 +517,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsGlobalVariable EditGlobalVariable(ctx, variableId, body)
 
-Edit a global variable
-
-
+Edit a Synthetics global variable.
 
 ### Example
 
@@ -545,14 +536,14 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     variableId := "variableId_example" // string | The ID of the global variable.
-    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("example-value")) // SyntheticsGlobalVariable | Details of the global variable to update.
+    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue()) // SyntheticsGlobalVariable | Details of the global variable to update.
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.EditGlobalVariable(ctx, variableId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.EditGlobalVariable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.EditGlobalVariable`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `EditGlobalVariable`: SyntheticsGlobalVariable
@@ -565,10 +556,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**variableId** | **string** | The ID of the global variable. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**variableId** | **string** | The ID of the global variable. |  |
 **body** | [**SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Details of the global variable to update. | 
+
 
 ### Optional Parameters
 
@@ -597,9 +589,8 @@ This endpoint does not have optional parameters.
 
 > SyntheticsAPITest GetAPITest(ctx, publicId)
 
-Get an API test
-
-
+Get the detailed configuration associated with
+a Synthetic API test.
 
 ### Example
 
@@ -624,7 +615,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.GetAPITest(ctx, publicId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITest`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAPITest`: SyntheticsAPITest
@@ -637,9 +628,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **publicId** | **string** | The public ID of the test to get details from. | 
+
 
 ### Optional Parameters
 
@@ -668,9 +660,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsGetAPITestLatestResultsResponse GetAPITestLatestResults(ctx, publicId, datadog.GetAPITestLatestResultsOptionalParameters{})
 
-Get an API test's latest results summaries
-
-
+Get the last 50 test results summaries for a given Synthetics API test.
 
 ### Example
 
@@ -703,7 +693,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.GetAPITestLatestResults(ctx, publicId, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestLatestResults``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestLatestResults`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAPITestLatestResults`: SyntheticsGetAPITestLatestResultsResponse
@@ -716,18 +706,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **publicId** | **string** | The public ID of the test for which to search results for. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetAPITestLatestResultsOptionalParameters struct
+Other parameters are passed through a pointer to a GetAPITestLatestResultsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **fromTs** | **int64** | Timestamp from which to start querying results. | 
 **toTs** | **int64** | Timestamp up to which to query results. | 
 **probeDc** | **[]string** | Locations for which to query results. | 
@@ -754,9 +745,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsAPITestResultFull GetAPITestResult(ctx, publicId, resultId)
 
-Get an API test result
-
-
+Get a specific full result from a given (API) Synthetic test.
 
 ### Example
 
@@ -782,7 +771,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.GetAPITestResult(ctx, publicId, resultId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestResult``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestResult`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAPITestResult`: SyntheticsAPITestResultFull
@@ -795,10 +784,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public ID of the API test to which the target result belongs. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**publicId** | **string** | The public ID of the API test to which the target result belongs. |  |
 **resultId** | **string** | The ID of the result to get. | 
+
 
 ### Optional Parameters
 
@@ -827,9 +817,8 @@ This endpoint does not have optional parameters.
 
 > SyntheticsBrowserTest GetBrowserTest(ctx, publicId)
 
-Get a browser test
-
-
+Get the detailed configuration (including steps) associated with
+a Synthetic browser test.
 
 ### Example
 
@@ -854,7 +843,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.GetBrowserTest(ctx, publicId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTest`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetBrowserTest`: SyntheticsBrowserTest
@@ -867,9 +856,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **publicId** | **string** | The public ID of the test to get details from. | 
+
 
 ### Optional Parameters
 
@@ -898,9 +888,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsGetBrowserTestLatestResultsResponse GetBrowserTestLatestResults(ctx, publicId, datadog.GetBrowserTestLatestResultsOptionalParameters{})
 
-Get a browser test's latest results summaries
-
-
+Get the last 50 test results summaries for a given Synthetics Browser test.
 
 ### Example
 
@@ -933,7 +921,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.GetBrowserTestLatestResults(ctx, publicId, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestLatestResults``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestLatestResults`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetBrowserTestLatestResults`: SyntheticsGetBrowserTestLatestResultsResponse
@@ -946,18 +934,19 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **publicId** | **string** | The public ID of the browser test for which to search results for. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetBrowserTestLatestResultsOptionalParameters struct
+Other parameters are passed through a pointer to a GetBrowserTestLatestResultsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **fromTs** | **int64** | Timestamp from which to start querying results. | 
 **toTs** | **int64** | Timestamp up to which to query results. | 
 **probeDc** | **[]string** | Locations for which to query results. | 
@@ -984,9 +973,7 @@ Name | Type | Description  | Notes
 
 > SyntheticsBrowserTestResultFull GetBrowserTestResult(ctx, publicId, resultId)
 
-Get a browser test result
-
-
+Get a specific full result from a given (browser) Synthetic test.
 
 ### Example
 
@@ -1012,7 +999,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.GetBrowserTestResult(ctx, publicId, resultId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestResult``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestResult`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetBrowserTestResult`: SyntheticsBrowserTestResultFull
@@ -1025,10 +1012,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public ID of the browser test to which the target result belongs. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**publicId** | **string** | The public ID of the browser test to which the target result belongs. |  |
 **resultId** | **string** | The ID of the result to get. | 
+
 
 ### Optional Parameters
 
@@ -1057,9 +1045,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsGlobalVariable GetGlobalVariable(ctx, variableId)
 
-Get a global variable
-
-
+Get the detailed configuration of a global variable.
 
 ### Example
 
@@ -1084,7 +1070,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.GetGlobalVariable(ctx, variableId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetGlobalVariable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetGlobalVariable`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetGlobalVariable`: SyntheticsGlobalVariable
@@ -1097,9 +1083,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **variableId** | **string** | The ID of the global variable. | 
+
 
 ### Optional Parameters
 
@@ -1128,9 +1115,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsPrivateLocation GetPrivateLocation(ctx, locationId)
 
-Get a private location
-
-
+Get a Synthetics private location.
 
 ### Example
 
@@ -1155,7 +1140,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.GetPrivateLocation(ctx, locationId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetPrivateLocation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetPrivateLocation`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetPrivateLocation`: SyntheticsPrivateLocation
@@ -1168,9 +1153,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **locationId** | **string** | The ID of the private location. | 
+
 
 ### Optional Parameters
 
@@ -1199,9 +1185,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsTestDetails GetTest(ctx, publicId)
 
-Get a test configuration
-
-
+Get the detailed configuration associated with a Synthetics test.
 
 ### Example
 
@@ -1226,7 +1210,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.GetTest(ctx, publicId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetTest`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetTest`: SyntheticsTestDetails
@@ -1239,9 +1223,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **publicId** | **string** | The public ID of the test to get details from. | 
+
 
 ### Optional Parameters
 
@@ -1270,9 +1255,8 @@ This endpoint does not have optional parameters.
 
 > SyntheticsLocations ListLocations(ctx)
 
-Get all locations (public and private)
-
-
+Get the list of public and private locations available for Synthetic
+tests. No arguments required.
 
 ### Example
 
@@ -1296,7 +1280,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.ListLocations(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListLocations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListLocations`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListLocations`: SyntheticsLocations
@@ -1308,6 +1292,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -1336,9 +1321,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsListTestsResponse ListTests(ctx)
 
-Get the list of all tests
-
-
+Get the list of all Synthetic tests.
 
 ### Example
 
@@ -1362,7 +1345,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.ListTests(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListTests``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListTests`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListTests`: SyntheticsListTestsResponse
@@ -1374,6 +1357,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -1402,9 +1386,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsTriggerCITestsResponse TriggerCITests(ctx, body)
 
-Trigger tests from CI/CD pipelines
-
-
+Trigger a set of Synthetics tests for continuous integration.
 
 ### Example
 
@@ -1429,7 +1411,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.TriggerCITests(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.TriggerCITests``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.TriggerCITests`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `TriggerCITests`: SyntheticsTriggerCITestsResponse
@@ -1442,9 +1424,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**SyntheticsCITestBody**](SyntheticsCITestBody.md) | Details of the test to trigger. | 
+
 
 ### Optional Parameters
 
@@ -1473,9 +1456,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsAPITest UpdateAPITest(ctx, publicId, body)
 
-Edit an API test
-
-
+Edit the configuration of a Synthetic API test.
 
 ### Example
 
@@ -1501,7 +1482,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.UpdateAPITest(ctx, publicId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateAPITest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateAPITest`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateAPITest`: SyntheticsAPITest
@@ -1514,10 +1495,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public ID of the test to get details from. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**publicId** | **string** | The public ID of the test to get details from. |  |
 **body** | [**SyntheticsAPITest**](SyntheticsAPITest.md) | New test details to be saved. | 
+
 
 ### Optional Parameters
 
@@ -1546,9 +1528,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsBrowserTest UpdateBrowserTest(ctx, publicId, body)
 
-Edit a browser test
-
-
+Edit the configuration of a Synthetic browser test.
 
 ### Example
 
@@ -1574,7 +1554,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.UpdateBrowserTest(ctx, publicId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateBrowserTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateBrowserTest`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateBrowserTest`: SyntheticsBrowserTest
@@ -1587,10 +1567,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public ID of the test to get details from. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**publicId** | **string** | The public ID of the test to get details from. |  |
 **body** | [**SyntheticsBrowserTest**](SyntheticsBrowserTest.md) | New test details to be saved. | 
+
 
 ### Optional Parameters
 
@@ -1619,9 +1600,7 @@ This endpoint does not have optional parameters.
 
 > SyntheticsPrivateLocation UpdatePrivateLocation(ctx, locationId, body)
 
-Edit a private location
-
-
+Edit a Synthetics private location.
 
 ### Example
 
@@ -1647,7 +1626,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.UpdatePrivateLocation(ctx, locationId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdatePrivateLocation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdatePrivateLocation`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdatePrivateLocation`: SyntheticsPrivateLocation
@@ -1660,10 +1639,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**locationId** | **string** | The ID of the private location. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**locationId** | **string** | The ID of the private location. |  |
 **body** | [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) | Details of the private location to be updated. | 
+
 
 ### Optional Parameters
 
@@ -1692,9 +1672,7 @@ This endpoint does not have optional parameters.
 
 > bool UpdateTestPauseStatus(ctx, publicId, body)
 
-Pause or start a test
-
-
+Pause or start a Synthetics test by changing the status.
 
 ### Example
 
@@ -1720,7 +1698,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.SyntheticsApi.UpdateTestPauseStatus(ctx, publicId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTestPauseStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTestPauseStatus`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateTestPauseStatus`: bool
@@ -1733,10 +1711,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**publicId** | **string** | The public ID of the Synthetic test to update. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**publicId** | **string** | The public ID of the Synthetic test to update. |  |
 **body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Status to set the given Synthetic test to. | 
+
 
 ### Optional Parameters
 

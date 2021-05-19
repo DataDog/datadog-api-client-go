@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **EventCount** | Pointer to **int64** | The total number of indexed logs for the queried hour. | [optional] 
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **IndexId** | Pointer to **string** | The index ID for this usage. | [optional] 

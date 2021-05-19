@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsCompute A compute rule to compute metrics or timeseries
@@ -179,6 +180,34 @@ func (o LogsCompute) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Aggregation *LogsAggregationFunction `json:"aggregation"`
+	}{}
+	all := struct {
+		Aggregation LogsAggregationFunction `json:"aggregation"}`
+		Interval    *string                 `json:"interval,omitempty"}`
+		Metric      *string                 `json:"metric,omitempty"}`
+		Type        *LogsComputeType        `json:"type,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Aggregation == nil {
+		return fmt.Errorf("Required field aggregation missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Aggregation = all.Aggregation
+	o.Interval = all.Interval
+	o.Metric = all.Metric
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsCompute struct {

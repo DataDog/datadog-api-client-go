@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **LineType** | Pointer to [**WidgetLineType**](WidgetLineType.md) |  | [optional] 
 **LineWidth** | Pointer to [**WidgetLineWidth**](WidgetLineWidth.md) |  | [optional] 
 **Palette** | Pointer to **string** | Color palette to apply to the widget. | [optional] 

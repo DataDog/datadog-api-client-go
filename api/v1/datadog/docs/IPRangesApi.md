@@ -1,9 +1,9 @@
-# \IPRangesApi
+# IPRangesApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**GetIPRanges**](IPRangesApi.md#GetIPRanges) | **Get** / | List IP Ranges
 
 
@@ -12,9 +12,7 @@ Method | HTTP request | Description
 
 > IPRanges GetIPRanges(ctx)
 
-List IP Ranges
-
-
+Get information about Datadog IP ranges.
 
 ### Example
 
@@ -38,7 +36,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.IPRangesApi.GetIPRanges(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IPRangesApi.GetIPRanges``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IPRangesApi.GetIPRanges`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIPRanges`: IPRanges
@@ -50,6 +48,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 

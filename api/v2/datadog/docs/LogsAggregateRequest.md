@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Compute** | Pointer to [**[]LogsCompute**](LogsCompute.md) | The list of metrics or timeseries to compute for the retrieved buckets. | [optional] 
 **Filter** | Pointer to [**LogsQueryFilter**](LogsQueryFilter.md) |  | [optional] 
 **GroupBy** | Pointer to [**[]LogsGroupBy**](LogsGroupBy.md) | The rules for the group by | [optional] 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **TimeOffset** | Pointer to **int64** | The time offset (in seconds) to apply to the query. | [optional] 
 **Timezone** | Pointer to **string** | The timezone can be specified both as an offset, for example: \&quot;UTC+03:00\&quot;. | [optional] [default to "UTC"]
 

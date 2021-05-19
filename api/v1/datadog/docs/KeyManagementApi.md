@@ -1,9 +1,9 @@
-# \KeyManagementApi
+# KeyManagementApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateAPIKey**](KeyManagementApi.md#CreateAPIKey) | **Post** /api/v1/api_key | Create an API key
 [**CreateApplicationKey**](KeyManagementApi.md#CreateApplicationKey) | **Post** /api/v1/application_key | Create an application key
 [**DeleteAPIKey**](KeyManagementApi.md#DeleteAPIKey) | **Delete** /api/v1/api_key/{key} | Delete an API key
@@ -21,9 +21,7 @@ Method | HTTP request | Description
 
 > ApiKeyResponse CreateAPIKey(ctx, body)
 
-Create an API key
-
-
+Creates an API key with a given name.
 
 ### Example
 
@@ -48,7 +46,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.KeyManagementApi.CreateAPIKey(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateAPIKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateAPIKey`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateAPIKey`: ApiKeyResponse
@@ -61,9 +59,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**ApiKey**](ApiKey.md) |  | 
+
 
 ### Optional Parameters
 
@@ -92,9 +91,7 @@ This endpoint does not have optional parameters.
 
 > ApplicationKeyResponse CreateApplicationKey(ctx, body)
 
-Create an application key
-
-
+Create an application key with a given name.
 
 ### Example
 
@@ -119,7 +116,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.KeyManagementApi.CreateApplicationKey(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateApplicationKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateApplicationKey`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateApplicationKey`: ApplicationKeyResponse
@@ -132,9 +129,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**ApplicationKey**](ApplicationKey.md) |  | 
+
 
 ### Optional Parameters
 
@@ -163,9 +161,7 @@ This endpoint does not have optional parameters.
 
 > ApiKeyResponse DeleteAPIKey(ctx, key)
 
-Delete an API key
-
-
+Delete a given API key.
 
 ### Example
 
@@ -190,7 +186,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.KeyManagementApi.DeleteAPIKey(ctx, key)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteAPIKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteAPIKey`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteAPIKey`: ApiKeyResponse
@@ -203,9 +199,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **key** | **string** | The specific API key you are working with. | 
+
 
 ### Optional Parameters
 
@@ -234,9 +231,7 @@ This endpoint does not have optional parameters.
 
 > ApplicationKeyResponse DeleteApplicationKey(ctx, key)
 
-Delete an application key
-
-
+Delete a given application key.
 
 ### Example
 
@@ -261,7 +256,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.KeyManagementApi.DeleteApplicationKey(ctx, key)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteApplicationKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteApplicationKey`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteApplicationKey`: ApplicationKeyResponse
@@ -274,9 +269,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **key** | **string** | The specific APP key you are working with. | 
+
 
 ### Optional Parameters
 
@@ -305,9 +301,7 @@ This endpoint does not have optional parameters.
 
 > ApiKeyResponse GetAPIKey(ctx, key)
 
-Get API key
-
-
+Get a given API key.
 
 ### Example
 
@@ -332,7 +326,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.KeyManagementApi.GetAPIKey(ctx, key)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetAPIKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetAPIKey`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAPIKey`: ApiKeyResponse
@@ -345,9 +339,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **key** | **string** | The specific API key you are working with. | 
+
 
 ### Optional Parameters
 
@@ -376,9 +371,7 @@ This endpoint does not have optional parameters.
 
 > ApplicationKeyResponse GetApplicationKey(ctx, key)
 
-Get an application key
-
-
+Get a given application key.
 
 ### Example
 
@@ -403,7 +396,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.KeyManagementApi.GetApplicationKey(ctx, key)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetApplicationKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetApplicationKey`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetApplicationKey`: ApplicationKeyResponse
@@ -416,9 +409,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **key** | **string** | The specific APP key you are working with. | 
+
 
 ### Optional Parameters
 
@@ -447,9 +441,7 @@ This endpoint does not have optional parameters.
 
 > ApiKeyListResponse ListAPIKeys(ctx)
 
-Get all API keys
-
-
+Get all API keys available for your account.
 
 ### Example
 
@@ -473,7 +465,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.KeyManagementApi.ListAPIKeys(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListAPIKeys``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListAPIKeys`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListAPIKeys`: ApiKeyListResponse
@@ -485,6 +477,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -513,9 +506,7 @@ This endpoint does not have optional parameters.
 
 > ApplicationKeyListResponse ListApplicationKeys(ctx)
 
-Get all application keys
-
-
+Get all application keys available for your Datadog account.
 
 ### Example
 
@@ -539,7 +530,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.KeyManagementApi.ListApplicationKeys(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListApplicationKeys``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListApplicationKeys`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListApplicationKeys`: ApplicationKeyListResponse
@@ -551,6 +542,7 @@ func main() {
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
 
 ### Optional Parameters
 
@@ -579,9 +571,7 @@ This endpoint does not have optional parameters.
 
 > ApiKeyResponse UpdateAPIKey(ctx, key, body)
 
-Edit an API key
-
-
+Edit an API key name.
 
 ### Example
 
@@ -607,7 +597,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.KeyManagementApi.UpdateAPIKey(ctx, key, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateAPIKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateAPIKey`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateAPIKey`: ApiKeyResponse
@@ -620,10 +610,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific API key you are working with. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**key** | **string** | The specific API key you are working with. |  |
 **body** | [**ApiKey**](ApiKey.md) |  | 
+
 
 ### Optional Parameters
 
@@ -652,9 +643,7 @@ This endpoint does not have optional parameters.
 
 > ApplicationKeyResponse UpdateApplicationKey(ctx, key, body)
 
-Edit an application key
-
-
+Edit an application key name.
 
 ### Example
 
@@ -680,7 +669,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.KeyManagementApi.UpdateApplicationKey(ctx, key, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateApplicationKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateApplicationKey`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateApplicationKey`: ApplicationKeyResponse
@@ -693,10 +682,11 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** | The specific APP key you are working with. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**key** | **string** | The specific APP key you are working with. |  |
 **body** | [**ApplicationKey**](ApplicationKey.md) |  | 
+
 
 ### Optional Parameters
 

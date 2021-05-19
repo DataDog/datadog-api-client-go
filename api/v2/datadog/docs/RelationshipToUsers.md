@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | [**[]RelationshipToUserData**](RelationshipToUserData.md) | Relationships to user objects. | 
 
 ## Methods

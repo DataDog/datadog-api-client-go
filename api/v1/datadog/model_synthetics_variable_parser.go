@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsVariableParser Details of the parser to use for the global variable.
@@ -102,6 +103,30 @@ func (o SyntheticsVariableParser) MarshalJSON() ([]byte, error) {
 		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsVariableParser) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Type *SyntheticsGlobalVariableParserType `json:"type"`
+	}{}
+	all := struct {
+		Type  SyntheticsGlobalVariableParserType `json:"type"}`
+		Value *string                            `json:"value,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Type = all.Type
+	o.Value = all.Value
+	return nil
 }
 
 type NullableSyntheticsVariableParser struct {

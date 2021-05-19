@@ -1,9 +1,9 @@
-# \ProcessesApi
+# ProcessesApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**ListProcesses**](ProcessesApi.md#ListProcesses) | **Get** /api/v2/processes | Get all processes
 
 
@@ -12,9 +12,7 @@ Method | HTTP request | Description
 
 > ProcessSummariesResponse ListProcesses(ctx, datadog.ListProcessesOptionalParameters{})
 
-Get all processes
-
-
+Get all processes for your organization.
 
 ### Example
 
@@ -52,7 +50,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.ProcessesApi.ListProcesses(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProcessesApi.ListProcesses``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProcessesApi.ListProcesses`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListProcesses`: ProcessSummariesResponse
@@ -65,14 +63,15 @@ func main() {
 
 
 
+
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListProcessesOptionalParameters struct
+Other parameters are passed through a pointer to a ListProcessesOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **search** | **string** | String to search processes by. | 
 **tags** | **string** | Comma-separated list of tags to filter processes by. | 
 **from** | **int64** | Unix timestamp (number of seconds since epoch) of the start of the query window. If not provided, the start of the query window will be 15 minutes before the &#x60;to&#x60; timestamp. If neither &#x60;from&#x60; nor &#x60;to&#x60; are provided, the query window will be &#x60;[now - 15m, now]&#x60;. | 

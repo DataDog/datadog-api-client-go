@@ -1,0 +1,59 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - ListLogs
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.11; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "62003376666741878"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8604678728614251734"
+    url: https://api.datadoghq.com/api/v2/logs/events/search
+    method: POST
+  response:
+    body: '{"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWGxnekVwVXY5b2paQUFBQUFCQldHeG5la1Z3VlVGQlFrUk5hVjlEYTBVM1REQm5RVUUifQ"}},"data":[{"attributes":{"status":"info","timestamp":"2021-05-12T13:47:48.599Z","message":"Test-Ruby-Send_logs_returns_Response_from_server_always_200_empty_JSON_response-1620827268","tags":["source:undefined","source:undefined","host:testrubysendlogsreturnsresponsefromserveralways200emptyjsonresponse1620827268","datadog.pipelines:false"]},"type":"log","id":"AQAAAXlg1WX3_JECNAAAAABBWGxnMVdYM0FBQUVRR3kyaTlYWEdBQUE"},{"attributes":{"status":"info","timestamp":"2021-05-12T13:39:52.777Z","message":"Test-Go-Send_logs_returns_Response_from_server_always_200_empty_JSON_response-1620826792","tags":["source:undefined","source:undefined","host:testgosendlogsreturnsresponsefromserveralways200emptyjsonresponse1620826792","datadog.pipelines:false"]},"type":"log","id":"AQAAAXlgziNJ7N3lVgAAAABBWGxnemlOSkFBQzFPQlZjR0tZa3dBQUE"},{"attributes":{"status":"info","timestamp":"2021-05-12T13:38:08.047Z","message":"Test-Python-Send_logs_returns_Response_from_server_always_200_empty_JSON_response-1620826687","tags":["source:undefined","source:undefined","host:testpythonsendlogsreturnsresponsefromserveralways200emptyjsonresponse1620826687","datadog.pipelines:false"]},"type":"log","id":"AQAAAXlgzIov0vpt9gAAAABBWGxneklvdkFBRHdHQlNVRm5YbkJ3QUE"},{"attributes":{"status":"info","tags":["source:go-client-test-1620826686753001982","test","source:go-client-test-1620826686753001982","go","list"],"timestamp":"2021-05-12T13:38:06.000Z","host":"Test-Go-TestLogsList-1620826686","attributes":{"timestamp":1620826686000,"hostname":"Test-Go-TestLogsList-1620826686"},"message":"second-test-log-list-1620826686753001982"},"type":"log","id":"AQAAAXlgzIIwIDvIkAAAAABBWGxneklXakFBQXlsRnBjSjl5eG5BQUE"},{"attributes":{"status":"info","tags":["source:go-client-test-1620826686753001982","test","source:go-client-test-1620826686753001982","go","list"],"timestamp":"2021-05-12T13:38:05.000Z","host":"Test-Go-TestLogsList-1620826686","attributes":{"timestamp":1620826685000,"hostname":"Test-Go-TestLogsList-1620826686"},"message":"test-log-list-1620826686753001982"},"type":"log","id":"AQAAAXlgzH5I3KKMTAAAAABBWGxneklWd0FBQXdKdW1aNzh4MGFBQUE"},{"attributes":{"status":"info","timestamp":"2021-05-12T13:37:51.700Z","message":"Test-Java-Send_logs_returns_Response_from_server_always_200_empty_JSON_response-1620826671","tags":["source:undefined","source:undefined","host:testjavasendlogsreturnsresponsefromserveralways200emptyjsonresponse1620826671","datadog.pipelines:false"]},"type":"log","id":"AQAAAXlgzEpUv9ojZAAAAABBWGxnekVwVUFBQkRNaV9Da0U3TDBnQUE"}],"links":{"next":"https://api.datadoghq.com/api/v2/logs/events?page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWGxnekVwVXY5b2paQUFBQUFCQldHeG5la1Z3VlVGQlFrUk5hVjlEYTBVM1REQm5RVUUifQ"}}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 12 May 2021 13:52:27 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
+      X-Dd-Version:
+      - "35.4515731"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "300"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "249"
+      X-Ratelimit-Reset:
+      - "453"
+    status: 200 OK
+    code: 200
+    duration: ""

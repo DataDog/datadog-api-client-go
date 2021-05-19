@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsUserAgentParser The User-Agent parser takes a User-Agent attribute and extracts the OS, browser, device, and other user data. It recognizes major bots like the Google Bot, Yahoo Slurp, and Bing.
@@ -248,6 +249,46 @@ func (o LogsUserAgentParser) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsUserAgentParser) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Sources *[]string                `json:"sources"`
+		Target  *string                  `json:"target"`
+		Type    *LogsUserAgentParserType `json:"type"`
+	}{}
+	all := struct {
+		IsEnabled *bool                   `json:"is_enabled,omitempty"}`
+		IsEncoded *bool                   `json:"is_encoded,omitempty"}`
+		Name      *string                 `json:"name,omitempty"}`
+		Sources   []string                `json:"sources"}`
+		Target    string                  `json:"target"}`
+		Type      LogsUserAgentParserType `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Sources == nil {
+		return fmt.Errorf("Required field sources missing")
+	}
+	if required.Target == nil {
+		return fmt.Errorf("Required field target missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IsEnabled = all.IsEnabled
+	o.IsEncoded = all.IsEncoded
+	o.Name = all.Name
+	o.Sources = all.Sources
+	o.Target = all.Target
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsUserAgentParser struct {

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsExclusionFilter Exclusion filter is defined by a query, a sampling rule, and a active/inactive toggle.
@@ -103,6 +104,30 @@ func (o LogsExclusionFilter) MarshalJSON() ([]byte, error) {
 		toSerialize["sample_rate"] = o.SampleRate
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		SampleRate *float64 `json:"sample_rate"`
+	}{}
+	all := struct {
+		Query      *string `json:"query,omitempty"}`
+		SampleRate float64 `json:"sample_rate"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.SampleRate == nil {
+		return fmt.Errorf("Required field sample_rate missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Query = all.Query
+	o.SampleRate = all.SampleRate
+	return nil
 }
 
 type NullableLogsExclusionFilter struct {

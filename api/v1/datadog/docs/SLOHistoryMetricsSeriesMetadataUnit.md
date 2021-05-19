@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Family** | Pointer to **string** | The family of metric unit, for example &#x60;bytes&#x60; is the family for &#x60;kibibyte&#x60;, &#x60;byte&#x60;, and &#x60;bit&#x60; units. | [optional] 
 **Id** | Pointer to **int64** | The ID of the metric unit. | [optional] 
 **Name** | Pointer to **string** | The unit of the metric, for instance &#x60;byte&#x60;. | [optional] 

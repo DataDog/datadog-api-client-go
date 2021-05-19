@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Data** | Pointer to [**LogsArchiveDefinition**](LogsArchiveDefinition.md) |  | [optional] 
 
 ## Methods

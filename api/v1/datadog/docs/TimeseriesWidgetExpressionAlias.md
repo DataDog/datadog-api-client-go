@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AliasName** | Pointer to **string** | Expression alias. | [optional] 
 **Expression** | **string** | Expression name. | 
 

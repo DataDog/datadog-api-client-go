@@ -20,6 +20,18 @@ Feature: Usage Metering
     Then the response status is 200 OK
 
   @generated @skip
+  Scenario: Get all custom metrics by hourly average returns "Bad Request" response
+    Given new "GetUsageTopAvgMetrics" request
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip
+  Scenario: Get all custom metrics by hourly average returns "OK" response
+    Given new "GetUsageTopAvgMetrics" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
   Scenario: Get billable usage across your account returns "Bad Request" response
     Given new "GetUsageBillableSummary" request
     When the request is sent
@@ -28,6 +40,18 @@ Feature: Usage Metering
   @generated @skip
   Scenario: Get billable usage across your account returns "OK" response
     Given new "GetUsageBillableSummary" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Get hourly logs usage by retention returns "Bad Request" response
+    Given new "GetUsageLogsByRetention" request
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip
+  Scenario: Get hourly logs usage by retention returns "OK" response
+    Given new "GetUsageLogsByRetention" request
     When the request is sent
     Then the response status is 200 OK
 
@@ -346,18 +370,6 @@ Feature: Usage Metering
   Scenario: Get the list of available monthly custom reports returns "OK" response
     Given operation "GetMonthlyCustomReports" enabled
     And new "GetMonthlyCustomReports" request
-    When the request is sent
-    Then the response status is 200 OK
-
-  @generated @skip
-  Scenario: Get top custom metrics by hourly average returns "Bad Request" response
-    Given new "GetUsageTopAvgMetrics" request
-    When the request is sent
-    Then the response status is 400 Bad Request
-
-  @generated @skip
-  Scenario: Get top custom metrics by hourly average returns "OK" response
-    Given new "GetUsageTopAvgMetrics" request
     When the request is sent
     Then the response status is 200 OK
 

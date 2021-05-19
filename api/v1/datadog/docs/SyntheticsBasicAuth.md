@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Password** | **string** | Password to use for the basic authentication. | 
 **Username** | **string** | Username to use for the basic authentication. | 
 

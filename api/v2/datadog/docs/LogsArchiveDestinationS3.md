@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Bucket** | **string** | The bucket where the archive will be stored. | 
 **Integration** | [**LogsArchiveIntegrationS3**](LogsArchiveIntegrationS3.md) |  | 
 **Path** | Pointer to **string** | The archive path. | [optional] 

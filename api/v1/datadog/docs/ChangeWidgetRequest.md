@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ChangeType** | Pointer to [**WidgetChangeType**](WidgetChangeType.md) |  | [optional] 
 **CompareTo** | Pointer to [**WidgetCompareTo**](WidgetCompareTo.md) |  | [optional] 

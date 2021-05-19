@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Device** | Pointer to [**SyntheticsDeviceID**](SyntheticsDeviceID.md) |  | [optional] 
 **Location** | Pointer to **int64** | The location ID of the test run. | [optional] 
 **PublicId** | Pointer to **string** | The public ID of the Synthetics test. | [optional] 

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Role Role object returned by the API.
@@ -176,6 +177,34 @@ func (o Role) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *Role) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Type *RolesType `json:"type"`
+	}{}
+	all := struct {
+		Attributes    *RoleAttributes            `json:"attributes,omitempty"}`
+		Id            *string                    `json:"id,omitempty"}`
+		Relationships *RoleResponseRelationships `json:"relationships,omitempty"}`
+		Type          RolesType                  `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Attributes = all.Attributes
+	o.Id = all.Id
+	o.Relationships = all.Relationships
+	o.Type = all.Type
+	return nil
 }
 
 type NullableRole struct {

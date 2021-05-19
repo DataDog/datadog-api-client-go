@@ -697,20 +697,43 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOTimeframeInBulkExecute(r api
 }
 
 type apiGetSLORequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	sloId      string
+	ctx                    _context.Context
+	ApiService             *ServiceLevelObjectivesApiService
+	sloId                  string
+	withConfiguredAlertIds *bool
+}
+
+type GetSLOOptionalParameters struct {
+	WithConfiguredAlertIds *bool
+}
+
+func NewGetSLOOptionalParameters() *GetSLOOptionalParameters {
+	this := GetSLOOptionalParameters{}
+	return &this
+}
+func (r *GetSLOOptionalParameters) WithWithConfiguredAlertIds(withConfiguredAlertIds bool) *GetSLOOptionalParameters {
+	r.WithConfiguredAlertIds = &withConfiguredAlertIds
+	return r
 }
 
 /*
  * GetSLO Get an SLO's details
  * Get a service level objective object.
  */
-func (a *ServiceLevelObjectivesApiService) GetSLO(ctx _context.Context, sloId string) (SLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApiService) GetSLO(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (SLOResponse, *_nethttp.Response, error) {
 	req := apiGetSLORequest{
 		ApiService: a,
 		ctx:        ctx,
 		sloId:      sloId,
+	}
+
+	if len(o) > 1 {
+		var localVarReturnValue SLOResponse
+		return localVarReturnValue, nil, reportError("only one argument of type GetSLOOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.withConfiguredAlertIds = o[0].WithConfiguredAlertIds
 	}
 
 	return req.ApiService.getSLOExecute(req)
@@ -742,6 +765,9 @@ func (a *ServiceLevelObjectivesApiService) getSLOExecute(r apiGetSLORequest) (SL
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.withConfiguredAlertIds != nil {
+		localVarQueryParams.Add("with_configured_alert_ids", parameterToString(*r.withConfiguredAlertIds, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

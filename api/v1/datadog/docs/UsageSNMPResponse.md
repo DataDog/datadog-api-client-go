@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageSNMPHour**](UsageSNMPHour.md) | Get hourly usage for SNMP devices. | [optional] 
 
 ## Methods

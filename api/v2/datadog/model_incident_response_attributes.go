@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -751,6 +752,62 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["title"] = o.Title
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Title *string `json:"title"`
+	}{}
+	all := struct {
+		Created                *time.Time                          `json:"created,omitempty"}`
+		CustomerImpactDuration *int64                              `json:"customer_impact_duration,omitempty"}`
+		CustomerImpactEnd      NullableTime                        `json:"customer_impact_end,omitempty"}`
+		CustomerImpactScope    NullableString                      `json:"customer_impact_scope,omitempty"}`
+		CustomerImpactStart    NullableTime                        `json:"customer_impact_start,omitempty"}`
+		CustomerImpacted       *bool                               `json:"customer_impacted,omitempty"}`
+		Detected               NullableTime                        `json:"detected,omitempty"}`
+		Fields                 *map[string]IncidentFieldAttributes `json:"fields,omitempty"}`
+		Modified               *time.Time                          `json:"modified,omitempty"}`
+		NotificationHandles    *[]string                           `json:"notification_handles,omitempty"}`
+		PostmortemId           *string                             `json:"postmortem_id,omitempty"}`
+		PublicId               *int64                              `json:"public_id,omitempty"}`
+		Resolved               NullableTime                        `json:"resolved,omitempty"}`
+		TimeToDetect           *int64                              `json:"time_to_detect,omitempty"}`
+		TimeToInternalResponse *int64                              `json:"time_to_internal_response,omitempty"}`
+		TimeToRepair           *int64                              `json:"time_to_repair,omitempty"}`
+		TimeToResolve          *int64                              `json:"time_to_resolve,omitempty"}`
+		Title                  string                              `json:"title"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Title == nil {
+		return fmt.Errorf("Required field title missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Created = all.Created
+	o.CustomerImpactDuration = all.CustomerImpactDuration
+	o.CustomerImpactEnd = all.CustomerImpactEnd
+	o.CustomerImpactScope = all.CustomerImpactScope
+	o.CustomerImpactStart = all.CustomerImpactStart
+	o.CustomerImpacted = all.CustomerImpacted
+	o.Detected = all.Detected
+	o.Fields = all.Fields
+	o.Modified = all.Modified
+	o.NotificationHandles = all.NotificationHandles
+	o.PostmortemId = all.PostmortemId
+	o.PublicId = all.PublicId
+	o.Resolved = all.Resolved
+	o.TimeToDetect = all.TimeToDetect
+	o.TimeToInternalResponse = all.TimeToInternalResponse
+	o.TimeToRepair = all.TimeToRepair
+	o.TimeToResolve = all.TimeToResolve
+	o.Title = all.Title
+	return nil
 }
 
 type NullableIncidentResponseAttributes struct {

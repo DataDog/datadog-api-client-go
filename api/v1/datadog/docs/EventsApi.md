@@ -1,9 +1,9 @@
-# \EventsApi
+# EventsApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
-------------- | ------------- | -------------
+------ | ------------ | ------------
 [**CreateEvent**](EventsApi.md#CreateEvent) | **Post** /api/v1/events | Post an event
 [**GetEvent**](EventsApi.md#GetEvent) | **Get** /api/v1/events/{event_id} | Get an event
 [**ListEvents**](EventsApi.md#ListEvents) | **Get** /api/v1/events | Query the event stream
@@ -14,9 +14,8 @@ Method | HTTP request | Description
 
 > EventCreateResponse CreateEvent(ctx, body)
 
-Post an event
-
-
+This endpoint allows you to post events to the stream.
+Tag them, set priority and event aggregate them with other events.
 
 ### Example
 
@@ -41,7 +40,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.EventsApi.CreateEvent(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.CreateEvent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.CreateEvent`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateEvent`: EventCreateResponse
@@ -54,9 +53,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**EventCreateRequest**](EventCreateRequest.md) | Event request object | 
+
 
 ### Optional Parameters
 
@@ -85,9 +85,10 @@ This endpoint does not have optional parameters.
 
 > EventResponse GetEvent(ctx, eventId)
 
-Get an event
+This endpoint allows you to query for event details.
 
-
+**Note**: If the event you’re querying contains markdown formatting of any kind,
+you may see characters such as `%`,`\`,`n` in your output.
 
 ### Example
 
@@ -112,7 +113,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.EventsApi.GetEvent(ctx, eventId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEvent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEvent`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetEvent`: EventResponse
@@ -125,9 +126,10 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **eventId** | **int64** | The ID of the event. | 
+
 
 ### Optional Parameters
 
@@ -156,9 +158,15 @@ This endpoint does not have optional parameters.
 
 > EventListResponse ListEvents(ctx, start, end, datadog.ListEventsOptionalParameters{})
 
-Query the event stream
+The event stream can be queried and filtered by time, priority, sources and tags.
 
+**Notes**:
+- If the event you’re querying contains markdown formatting of any kind,
+you may see characters such as `%`,`\`,`n` in your output.
 
+- This endpoint returns a maximum of `1000` most recent results. To return additional results,
+identify the last timestamp of the last result and set that as the `end` query time to
+paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
 
 ### Example
 
@@ -198,7 +206,7 @@ func main() {
     apiClient := datadog.NewAPIClient(configuration)
     resp, r, err := apiClient.EventsApi.ListEvents(ctx, start, end, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ListEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ListEvents`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListEvents`: EventListResponse
@@ -211,19 +219,20 @@ func main() {
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**start** | **int64** | POSIX timestamp. | 
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**start** | **int64** | POSIX timestamp. |  |
 **end** | **int64** | POSIX timestamp. | 
+
 
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a ListEventsOptionalParameters struct
+Other parameters are passed through a pointer to a ListEventsOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+---- | ---- | ------------ | ------
 **priority** | [**EventPriority**](EventPriority.md) | Priority of your events, either &#x60;low&#x60; or &#x60;normal&#x60;. | 
 **sources** | **string** | A comma separated string of sources. | 
 **tags** | **string** | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. | 

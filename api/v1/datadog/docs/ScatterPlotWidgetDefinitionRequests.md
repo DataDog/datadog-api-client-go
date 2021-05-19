@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **X** | [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | 
 **Y** | [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | 
 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AlertType** | Pointer to [**EventAlertType**](EventAlertType.md) |  | [optional] 
 **DateHappened** | Pointer to **int64** | POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 7 days. | [optional] 
 **DeviceName** | Pointer to **string** | A device name. | [optional] 

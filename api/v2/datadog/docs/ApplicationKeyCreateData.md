@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Attributes** | [**ApplicationKeyCreateAttributes**](ApplicationKeyCreateAttributes.md) |  | 
 **Type** | [**ApplicationKeysType**](ApplicationKeysType.md) |  | [default to APPLICATIONKEYSTYPE_APPLICATION_KEYS]
 

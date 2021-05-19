@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **ApiKey** | Pointer to [**ApiKey**](ApiKey.md) |  | [optional] 
 
 ## Methods

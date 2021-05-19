@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **AllowFailure** | Pointer to **bool** | Determines whether or not to continue with test if this step fails. | [optional] 
 **Assertions** | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [optional] [default to []]
 **ExtractedValues** | Pointer to [**[]SyntheticsParsingOptions**](SyntheticsParsingOptions.md) | Array of values to parse and save as variables from the response. | [optional] 

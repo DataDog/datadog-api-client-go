@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringRuleQueryCreate Query for matching rule.
@@ -286,6 +287,40 @@ func (o SecurityMonitoringRuleQueryCreate) MarshalJSON() ([]byte, error) {
 		toSerialize["query"] = o.Query
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringRuleQueryCreate) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Query *string `json:"query"`
+	}{}
+	all := struct {
+		AgentRule      *SecurityMonitoringRuntimeAgentRule     `json:"agentRule,omitempty"}`
+		Aggregation    *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"}`
+		DistinctFields *[]string                               `json:"distinctFields,omitempty"}`
+		GroupByFields  *[]string                               `json:"groupByFields,omitempty"}`
+		Metric         *string                                 `json:"metric,omitempty"}`
+		Name           *string                                 `json:"name,omitempty"}`
+		Query          string                                  `json:"query"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Query == nil {
+		return fmt.Errorf("Required field query missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.AgentRule = all.AgentRule
+	o.Aggregation = all.Aggregation
+	o.DistinctFields = all.DistinctFields
+	o.GroupByFields = all.GroupByFields
+	o.Metric = all.Metric
+	o.Name = all.Name
+	o.Query = all.Query
+	return nil
 }
 
 type NullableSecurityMonitoringRuleQueryCreate struct {

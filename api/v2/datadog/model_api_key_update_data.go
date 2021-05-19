@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // APIKeyUpdateData Object used to update an API key.
@@ -126,6 +127,40 @@ func (o APIKeyUpdateData) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *APIKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Attributes *APIKeyUpdateAttributes `json:"attributes"`
+		Id         *string                 `json:"id"`
+		Type       *APIKeysType            `json:"type"`
+	}{}
+	all := struct {
+		Attributes APIKeyUpdateAttributes `json:"attributes"}`
+		Id         string                 `json:"id"}`
+		Type       APIKeysType            `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Attributes == nil {
+		return fmt.Errorf("Required field attributes missing")
+	}
+	if required.Id == nil {
+		return fmt.Errorf("Required field id missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Attributes = all.Attributes
+	o.Id = all.Id
+	o.Type = all.Type
+	return nil
 }
 
 type NullableAPIKeyUpdateData struct {

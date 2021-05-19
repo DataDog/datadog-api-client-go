@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Cases** | [**[]SecurityMonitoringRuleCaseCreate**](SecurityMonitoringRuleCaseCreate.md) | Cases for generating signals. | 
 **Filters** | Pointer to [**[]SecurityMonitoringFilter**](SecurityMonitoringFilter.md) | Additional queries to filter matched events before they are processed. | [optional] 
 **IsEnabled** | **bool** | Whether the rule is enabled. | 

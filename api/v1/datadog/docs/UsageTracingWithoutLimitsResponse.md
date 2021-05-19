@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Usage** | Pointer to [**[]UsageTracingWithoutLimitsHour**](UsageTracingWithoutLimitsHour.md) | Get hourly usage for tracing without limits. | [optional] 
 
 ## Methods

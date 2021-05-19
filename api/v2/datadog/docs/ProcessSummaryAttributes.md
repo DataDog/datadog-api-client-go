@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Cmdline** | Pointer to **string** | Process command line. | [optional] 
 **Host** | Pointer to **string** | Host running the process. | [optional] 
 **Pid** | Pointer to **int64** | Process ID. | [optional] 

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Series A metric to submit to Datadog. See [Datadog metrics](https://docs.datadoghq.com/developers/metrics/#custom-metrics-properties).
@@ -259,6 +260,42 @@ func (o Series) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *Series) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Metric *string      `json:"metric"`
+		Points *[][]float64 `json:"points"`
+	}{}
+	all := struct {
+		Host     *string       `json:"host,omitempty"}`
+		Interval NullableInt64 `json:"interval,omitempty"}`
+		Metric   string        `json:"metric"}`
+		Points   [][]float64   `json:"points"}`
+		Tags     *[]string     `json:"tags,omitempty"}`
+		Type     *string       `json:"type,omitempty"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Metric == nil {
+		return fmt.Errorf("Required field metric missing")
+	}
+	if required.Points == nil {
+		return fmt.Errorf("Required field points missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Host = all.Host
+	o.Interval = all.Interval
+	o.Metric = all.Metric
+	o.Points = all.Points
+	o.Tags = all.Tags
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSeries struct {

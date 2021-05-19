@@ -3,15 +3,15 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Secure** | Pointer to **bool** | Determines if the variable is secure. | [optional] 
-**Value** | **string** | Value of the global variable. When reading a global variable, the value will not be present if the variable is secure. | 
+**Value** | Pointer to **string** | Value of the global variable. When reading a global variable, the value will not be present if the variable is secure. | [optional] 
 
 ## Methods
 
 ### NewSyntheticsGlobalVariableValue
 
-`func NewSyntheticsGlobalVariableValue(value string, ) *SyntheticsGlobalVariableValue`
+`func NewSyntheticsGlobalVariableValue() *SyntheticsGlobalVariableValue`
 
 NewSyntheticsGlobalVariableValue instantiates a new SyntheticsGlobalVariableValue object
 This constructor will assign default values to properties that have it defined,
@@ -70,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetValue sets Value field to given value.
 
+### HasValue
+
+`func (o *SyntheticsGlobalVariableValue) HasValue() bool`
+
+HasValue returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

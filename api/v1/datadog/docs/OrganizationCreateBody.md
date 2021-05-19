@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Billing** | Pointer to [**OrganizationBilling**](OrganizationBilling.md) |  | [optional] 
 **Name** | **string** | The name of the new child-organization, limited to 32 characters. | 
 **Subscription** | Pointer to [**OrganizationSubscription**](OrganizationSubscription.md) |  | [optional] 

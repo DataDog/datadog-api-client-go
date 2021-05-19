@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 1.0.0-beta.22 / 2021-05-17
+
+* [Added] Add endpoints to configure Security Filters. See [#938](https://github.com/DataDog/datadog-api-client-go/pull/938).
+* [Added] Add `active_child` nested downtime object to `Downtime` component for downtime APIs. See [#930](https://github.com/DataDog/datadog-api-client-go/pull/930).
+* [Changed] Change Dashboard WidgetCustomLink properties. See [#937](https://github.com/DataDog/datadog-api-client-go/pull/937).
+* [Changed] Make various fixes to synthetics models. See [#935](https://github.com/DataDog/datadog-api-client-go/pull/935).
+* [Changed] Update usage attribute endpoint metadata fields. See [#932](https://github.com/DataDog/datadog-api-client-go/pull/932).
+
+## 1.0.0-beta.21 / 2021-05-12
+
+* [Added] Notebooks Public API Documentation. See [#926](https://github.com/DataDog/datadog-api-client-go/pull/926).
+* [Added] Add `logs_by_retention` usage property and `GetUsageLogsByRetention` endpoint. See [#915](https://github.com/DataDog/datadog-api-client-go/pull/915).
+* [Added] Add anomaly detection method to `SecurityMonitoringRuleDetectionMethod` enum. See [#914](https://github.com/DataDog/datadog-api-client-go/pull/914).
+* [Added] Add `with_configured_alert_ids` parameter to get a SLO details endpoint. See [#910](https://github.com/DataDog/datadog-api-client-go/pull/910).
+* [Added] Add `setCookie`, `dnsServerPort`,  `allowFailure ` and `isCritical` fields for Synthetics tests. See [#903](https://github.com/DataDog/datadog-api-client-go/pull/903).
+* [Added] Add `metadata` property with pagination info to `SLOList` endpoint response. See [#899](https://github.com/DataDog/datadog-api-client-go/pull/899).
+* [Added] Add new properties to group widget, note widget and image widget. See [#895](https://github.com/DataDog/datadog-api-client-go/pull/895).
+* [Added] Add support for a `rate` metric type in manage metric tags v2 endpoint. See [#892](https://github.com/DataDog/datadog-api-client-go/pull/892).
+* [Fixed] Handle typed nils for go client. See [#927](https://github.com/DataDog/datadog-api-client-go/pull/927).
+* [Fixed] Remove default value of `is_column_break` layout property of dashboard. See [#925](https://github.com/DataDog/datadog-api-client-go/pull/925).
+* [Changed] Enumerate accepted values for fields parameter in usage attr requests. See [#919](https://github.com/DataDog/datadog-api-client-go/pull/919).
+* [Changed] Add frequency and remove request as required field from synthetics test. See [#916](https://github.com/DataDog/datadog-api-client-go/pull/916).
+
 ## 1.0.0-beta.20 / 2021-04-27
 
 * [Added] Add support for ICMP Synthetics tests. See [#887](https://github.com/DataDog/datadog-api-client-go/pull/887).

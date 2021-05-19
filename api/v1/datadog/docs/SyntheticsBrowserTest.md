@@ -3,14 +3,14 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | ------
 **Config** | Pointer to [**SyntheticsBrowserTestConfig**](SyntheticsBrowserTestConfig.md) |  | [optional] 
 **Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
 **Message** | **string** | Notification message associated with the test. Message can either be text or an empty string. | 
-**MonitorId** | Pointer to **int64** | The associated monitor ID. | [optional] 
+**MonitorId** | Pointer to **int64** | The associated monitor ID. | [optional] [readonly] 
 **Name** | Pointer to **string** | Name of the test. | [optional] 
 **Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
-**PublicId** | Pointer to **string** | The public ID of the test. | [optional] 
+**PublicId** | Pointer to **string** | The public ID of the test. | [optional] [readonly] 
 **Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
 **Steps** | Pointer to [**[]SyntheticsStep**](SyntheticsStep.md) | The steps of the test. | [optional] 
 **Tags** | Pointer to **[]string** | Array of tags attached to the test. | [optional] 
