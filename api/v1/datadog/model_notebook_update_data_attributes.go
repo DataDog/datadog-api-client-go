@@ -17,7 +17,7 @@ import (
 type NotebookUpdateDataAttributes struct {
 	// List of cells to display in the notebook.
 	Cells []NotebookUpdateCell `json:"cells"`
-	// Notebook name.
+	// The name of the notebook.
 	Name   string             `json:"name"`
 	Status *NotebookStatus    `json:"status,omitempty"`
 	Time   NotebookGlobalTime `json:"time"`

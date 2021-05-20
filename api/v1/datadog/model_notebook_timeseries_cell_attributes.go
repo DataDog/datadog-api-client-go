@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// NotebookTimeseriesCellAttributes The attributes of a notebook timeseries cell.
+// NotebookTimeseriesCellAttributes The attributes of a notebook `timeseries` cell.
 type NotebookTimeseriesCellAttributes struct {
 	Definition TimeseriesWidgetDefinition `json:"definition"`
 	GraphSize  *NotebookGraphSize         `json:"graph_size,omitempty"`

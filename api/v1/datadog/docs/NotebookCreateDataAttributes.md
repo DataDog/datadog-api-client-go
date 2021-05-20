@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Cells** | [**[]NotebookCellCreateRequest**](NotebookCellCreateRequest.md) | List of cells to display in the notebook. | 
-**Name** | **string** | Notebook name. | 
+**Name** | **string** | The name of the notebook. | 
 **Status** | Pointer to [**NotebookStatus**](NotebookStatus.md) |  | [optional] [default to NOTEBOOKSTATUS_PUBLISHED]
 **Time** | [**NotebookGlobalTime**](NotebookGlobalTime.md) |  | 
 
