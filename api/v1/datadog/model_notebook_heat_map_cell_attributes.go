@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// NotebookHeatMapCellAttributes The attributes of a notebook heat map cell.
+// NotebookHeatMapCellAttributes The attributes of a notebook `heatmap` cell.
 type NotebookHeatMapCellAttributes struct {
 	Definition HeatMapWidgetDefinition  `json:"definition"`
 	GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"`

@@ -5028,6 +5028,43 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              json-request-body:
+                value:
+                  data:
+                    attributes:
+                      cells:
+                      - attributes:
+                          definition:
+                            text: |-
+                              ## Some test markdown
+
+                              With some example content.
+                            type: markdown
+                        type: notebook_cells
+                      - attributes:
+                          definition:
+                            requests:
+                            - display_type: line
+                              q: avg:system.load.1{*}
+                              style:
+                                line_type: solid
+                                line_width: normal
+                                palette: dog_classic
+                            show_legend: true
+                            type: timeseries
+                            yaxis:
+                              scale: linear
+                          graph_size: m
+                          split_by:
+                            keys: []
+                            tags: []
+                          time: null
+                        type: notebook_cells
+                      name: Example Notebook
+                      time:
+                        live_span: 1h
+                    type: notebooks
             schema:
               $ref: '#/components/schemas/NotebookCreateRequest'
         description: The JSON description of the notebook you want to create.
@@ -5166,6 +5203,44 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              json-request-body:
+                value:
+                  data:
+                    attributes:
+                      cells:
+                      - attributes:
+                          definition:
+                            text: |-
+                              ## Some updated test markdown
+
+                              With some example content.
+                            type: markdown
+                        type: notebook_cells
+                      - attributes:
+                          definition:
+                            requests:
+                            - display_type: bars
+                              q: avg:system.load.1{*}
+                              style:
+                                line_type: solid
+                                line_width: normal
+                                palette: warm
+                            show_legend: true
+                            type: timeseries
+                            yaxis:
+                              scale: linear
+                          graph_size: m
+                          split_by:
+                            keys: []
+                            tags: []
+                          time: null
+                        id: abcd1234
+                        type: notebook_cells
+                      name: Example Notebook
+                      time:
+                        live_span: 1h
+                    type: notebooks
             schema:
               $ref: '#/components/schemas/NotebookUpdateRequest'
         description: Update notebook request body.
@@ -15673,6 +15748,7 @@ components:
       required:
       - end
       - start
+      type: object
     NotebookAuthor:
       description: Attributes of user object returned by the API.
       example:
@@ -15767,6 +15843,9 @@ components:
       - NOTEBOOK_CELLS
     NotebookCellResponse:
       description: The description of a notebook cell response.
+      example:
+        id: abcd1234
+        type: notebook_cells
       properties:
         attributes:
           $ref: '#/components/schemas/NotebookCellResponseAttributes'
@@ -15971,7 +16050,7 @@ components:
             $ref: '#/components/schemas/NotebookCellCreateRequest'
           type: array
         name:
-          description: Notebook name.
+          description: The name of the notebook.
           example: Example Notebook
           maxLength: 80
           minLength: 0
@@ -16032,7 +16111,7 @@ components:
       - data
       type: object
     NotebookDistributionCellAttributes:
-      description: The attributes of a notebook distribution cell.
+      description: The attributes of a notebook `distribution` cell.
       properties:
         definition:
           $ref: '#/components/schemas/DistributionWidgetDefinition'
@@ -16059,6 +16138,7 @@ components:
       - m
       - l
       - xl
+      example: m
       type: string
       x-enum-varnames:
       - EXTRA_SMALL
@@ -16067,7 +16147,7 @@ components:
       - LARGE
       - EXTRA_LARGE
     NotebookHeatMapCellAttributes:
-      description: The attributes of a notebook heat map cell.
+      description: The attributes of a notebook `heatmap` cell.
       properties:
         definition:
           $ref: '#/components/schemas/HeatMapWidgetDefinition'
@@ -16081,7 +16161,7 @@ components:
       - definition
       type: object
     NotebookLogStreamCellAttributes:
-      description: The attributes of a notebook log stream cell.
+      description: The attributes of a notebook `log_stream` cell.
       properties:
         definition:
           $ref: '#/components/schemas/LogStreamWidgetDefinition'
@@ -16093,7 +16173,7 @@ components:
       - definition
       type: object
     NotebookMarkdownCellAttributes:
-      description: The attributes of a notebooks markdown cell.
+      description: The attributes of a notebook `markdown` cell.
       properties:
         definition:
           $ref: '#/components/schemas/NotebookMarkdownCellDefinition'
@@ -16366,19 +16446,19 @@ components:
             $ref: '#/components/schemas/NotebookCellResponse'
           type: array
         created:
-          description: UTC time stamp.
+          description: UTC time stamp for when the notebook was created.
           example: 2021-02-24T23:14:15.173964Z
           format: date-time
           readOnly: true
           type: string
         modified:
-          description: UTC time stamp.
+          description: UTC time stamp for when the notebook was last modified.
           example: 2021-02-24T23:15:23.274966Z
           format: date-time
           readOnly: true
           type: string
         name:
-          description: Notebook name.
+          description: The name of the notebook.
           example: Example Notebook
           maxLength: 80
           minLength: 0
@@ -16395,6 +16475,9 @@ components:
     NotebookSplitBy:
       description: Object describing how to split the graph to display multiple visualizations
         per request.
+      example:
+        keys: []
+        tags: []
       properties:
         keys:
           description: Keys to split on.
@@ -16424,7 +16507,7 @@ components:
       x-enum-varnames:
       - PUBLISHED
     NotebookTimeseriesCellAttributes:
-      description: The attributes of a notebook timeseries cell.
+      description: The attributes of a notebook `timeseries` cell.
       properties:
         definition:
           $ref: '#/components/schemas/TimeseriesWidgetDefinition'
@@ -16438,7 +16521,7 @@ components:
       - definition
       type: object
     NotebookToplistCellAttributes:
-      description: The attributes of a notebook toplist cell.
+      description: The attributes of a notebook `toplist` cell.
       properties:
         definition:
           $ref: '#/components/schemas/ToplistWidgetDefinition'
@@ -16589,7 +16672,7 @@ components:
             $ref: '#/components/schemas/NotebookUpdateCell'
           type: array
         name:
-          description: Notebook name.
+          description: The name of the notebook.
           example: Example Notebook
           maxLength: 80
           minLength: 0
@@ -16657,38 +16740,9 @@ components:
         data:
         - attributes:
             cells:
-            - attributes:
-                definition:
-                  text: |-
-                    ## Some test markdown
-
-                    ```js
-                    var x, y;
-                    x = 5;
-                    y = 6;
-                    ```
-                  type: markdown
-              id: bzbycoya
+            - id: abcd1234
               type: notebook_cells
-            - attributes:
-                definition:
-                  requests:
-                  - display_type: line
-                    q: avg:system.load.1{*}
-                    style:
-                      line_type: solid
-                      line_width: normal
-                      palette: dog_classic
-                  show_legend: true
-                  type: timeseries
-                  yaxis:
-                    scale: linear
-                graph_size: m
-                split_by:
-                  keys: []
-                  tags: []
-                time: null
-              id: 9k6bc6xc
+            - id: abcd1234
               type: notebook_cells
             author:
               icon: icon
@@ -16708,38 +16762,9 @@ components:
           type: notebooks
         - attributes:
             cells:
-            - attributes:
-                definition:
-                  text: |-
-                    ## Some test markdown
-
-                    ```js
-                    var x, y;
-                    x = 5;
-                    y = 6;
-                    ```
-                  type: markdown
-              id: bzbycoya
+            - id: abcd1234
               type: notebook_cells
-            - attributes:
-                definition:
-                  requests:
-                  - display_type: line
-                    q: avg:system.load.1{*}
-                    style:
-                      line_type: solid
-                      line_width: normal
-                      palette: dog_classic
-                  show_legend: true
-                  type: timeseries
-                  yaxis:
-                    scale: linear
-                graph_size: m
-                split_by:
-                  keys: []
-                  tags: []
-                time: null
-              id: 9k6bc6xc
+            - id: abcd1234
               type: notebook_cells
             author:
               icon: icon
@@ -16765,10 +16790,106 @@ components:
         data:
           description: List of notebook definitions.
           items:
-            $ref: '#/components/schemas/NotebookResponseData'
+            $ref: '#/components/schemas/NotebooksResponseData'
           type: array
         meta:
           $ref: '#/components/schemas/NotebooksResponse_meta'
+      type: object
+    NotebooksResponseData:
+      description: The data for a notebook in get all response.
+      example:
+        attributes:
+          cells:
+          - id: abcd1234
+            type: notebook_cells
+          - id: abcd1234
+            type: notebook_cells
+          author:
+            icon: icon
+            name: name
+            verified: true
+            created_at: 2000-01-23T04:56:07.000+00:00
+            disabled: true
+            handle: handle
+            title: title
+            email: email
+            status: status
+          created: 2021-02-24T23:14:15.173964Z
+          name: Example Notebook
+          modified: 2021-02-24T23:15:23.274966Z
+          status: published
+        id: 123456
+        type: notebooks
+      properties:
+        attributes:
+          $ref: '#/components/schemas/NotebooksResponseDataAttributes'
+        id:
+          description: Unique notebook ID, assigned when you create the notebook.
+          example: 123456
+          format: int64
+          readOnly: true
+          type: integer
+        type:
+          $ref: '#/components/schemas/NotebookResourceType'
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+    NotebooksResponseDataAttributes:
+      description: The attributes of a notebook in get all response.
+      example:
+        cells:
+        - id: abcd1234
+          type: notebook_cells
+        - id: abcd1234
+          type: notebook_cells
+        author:
+          icon: icon
+          name: name
+          verified: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          disabled: true
+          handle: handle
+          title: title
+          email: email
+          status: status
+        created: 2021-02-24T23:14:15.173964Z
+        name: Example Notebook
+        modified: 2021-02-24T23:15:23.274966Z
+        status: published
+      properties:
+        author:
+          $ref: '#/components/schemas/NotebookAuthor'
+        cells:
+          description: List of cells to display in the notebook.
+          items:
+            $ref: '#/components/schemas/NotebookCellResponse'
+          type: array
+        created:
+          description: UTC time stamp for when the notebook was created.
+          example: 2021-02-24T23:14:15.173964Z
+          format: date-time
+          readOnly: true
+          type: string
+        modified:
+          description: UTC time stamp for when the notebook was last modified.
+          example: 2021-02-24T23:15:23.274966Z
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: The name of the notebook.
+          example: Example Notebook
+          maxLength: 80
+          minLength: 0
+          type: string
+        status:
+          $ref: '#/components/schemas/NotebookStatus'
+        time:
+          $ref: '#/components/schemas/NotebookGlobalTime'
+      required:
+      - name
       type: object
     NotebooksResponsePage:
       description: Pagination metadata returned by the API.

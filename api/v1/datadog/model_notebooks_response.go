@@ -15,8 +15,8 @@ import (
 // NotebooksResponse Notebooks get all response.
 type NotebooksResponse struct {
 	// List of notebook definitions.
-	Data *[]NotebookResponseData `json:"data,omitempty"`
-	Meta *NotebooksResponseMeta  `json:"meta,omitempty"`
+	Data *[]NotebooksResponseData `json:"data,omitempty"`
+	Meta *NotebooksResponseMeta   `json:"meta,omitempty"`
 }
 
 // NewNotebooksResponse instantiates a new NotebooksResponse object
@@ -37,9 +37,9 @@ func NewNotebooksResponseWithDefaults() *NotebooksResponse {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *NotebooksResponse) GetData() []NotebookResponseData {
+func (o *NotebooksResponse) GetData() []NotebooksResponseData {
 	if o == nil || o.Data == nil {
-		var ret []NotebookResponseData
+		var ret []NotebooksResponseData
 		return ret
 	}
 	return *o.Data
@@ -47,7 +47,7 @@ func (o *NotebooksResponse) GetData() []NotebookResponseData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotebooksResponse) GetDataOk() (*[]NotebookResponseData, bool) {
+func (o *NotebooksResponse) GetDataOk() (*[]NotebooksResponseData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -63,8 +63,8 @@ func (o *NotebooksResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []NotebookResponseData and assigns it to the Data field.
-func (o *NotebooksResponse) SetData(v []NotebookResponseData) {
+// SetData gets a reference to the given []NotebooksResponseData and assigns it to the Data field.
+func (o *NotebooksResponse) SetData(v []NotebooksResponseData) {
 	o.Data = &v
 }
 
