@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// NotebookDistributionCellAttributes The attributes of a notebook distribution cell.
+// NotebookDistributionCellAttributes The attributes of a notebook `distribution` cell.
 type NotebookDistributionCellAttributes struct {
 	Definition DistributionWidgetDefinition `json:"definition"`
 	GraphSize  *NotebookGraphSize           `json:"graph_size,omitempty"`

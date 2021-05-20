@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// NotebookToplistCellAttributes The attributes of a notebook toplist cell.
+// NotebookToplistCellAttributes The attributes of a notebook `toplist` cell.
 type NotebookToplistCellAttributes struct {
 	Definition ToplistWidgetDefinition  `json:"definition"`
 	GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"`

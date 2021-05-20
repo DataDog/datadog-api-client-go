@@ -14,47 +14,45 @@ import (
 	"time"
 )
 
-// NotebookResponseDataAttributes The attributes of a notebook.
-type NotebookResponseDataAttributes struct {
+// NotebooksResponseDataAttributes The attributes of a notebook in get all response.
+type NotebooksResponseDataAttributes struct {
 	Author *NotebookAuthor `json:"author,omitempty"`
 	// List of cells to display in the notebook.
-	Cells []NotebookCellResponse `json:"cells"`
+	Cells *[]NotebookCellResponse `json:"cells,omitempty"`
 	// UTC time stamp for when the notebook was created.
 	Created *time.Time `json:"created,omitempty"`
 	// UTC time stamp for when the notebook was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
 	// The name of the notebook.
-	Name   string             `json:"name"`
-	Status *NotebookStatus    `json:"status,omitempty"`
-	Time   NotebookGlobalTime `json:"time"`
+	Name   string              `json:"name"`
+	Status *NotebookStatus     `json:"status,omitempty"`
+	Time   *NotebookGlobalTime `json:"time,omitempty"`
 }
 
-// NewNotebookResponseDataAttributes instantiates a new NotebookResponseDataAttributes object
+// NewNotebooksResponseDataAttributes instantiates a new NotebooksResponseDataAttributes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNotebookResponseDataAttributes(cells []NotebookCellResponse, name string, time NotebookGlobalTime) *NotebookResponseDataAttributes {
-	this := NotebookResponseDataAttributes{}
-	this.Cells = cells
+func NewNotebooksResponseDataAttributes(name string) *NotebooksResponseDataAttributes {
+	this := NotebooksResponseDataAttributes{}
 	this.Name = name
 	var status NotebookStatus = NOTEBOOKSTATUS_PUBLISHED
 	this.Status = &status
-	this.Time = time
 	return &this
 }
 
-// NewNotebookResponseDataAttributesWithDefaults instantiates a new NotebookResponseDataAttributes object
+// NewNotebooksResponseDataAttributesWithDefaults instantiates a new NotebooksResponseDataAttributes object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewNotebookResponseDataAttributesWithDefaults() *NotebookResponseDataAttributes {
-	this := NotebookResponseDataAttributes{}
+func NewNotebooksResponseDataAttributesWithDefaults() *NotebooksResponseDataAttributes {
+	this := NotebooksResponseDataAttributes{}
 	var status NotebookStatus = NOTEBOOKSTATUS_PUBLISHED
 	this.Status = &status
 	return &this
 }
 
 // GetAuthor returns the Author field value if set, zero value otherwise.
-func (o *NotebookResponseDataAttributes) GetAuthor() NotebookAuthor {
+func (o *NotebooksResponseDataAttributes) GetAuthor() NotebookAuthor {
 	if o == nil || o.Author == nil {
 		var ret NotebookAuthor
 		return ret
@@ -64,7 +62,7 @@ func (o *NotebookResponseDataAttributes) GetAuthor() NotebookAuthor {
 
 // GetAuthorOk returns a tuple with the Author field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotebookResponseDataAttributes) GetAuthorOk() (*NotebookAuthor, bool) {
+func (o *NotebooksResponseDataAttributes) GetAuthorOk() (*NotebookAuthor, bool) {
 	if o == nil || o.Author == nil {
 		return nil, false
 	}
@@ -72,7 +70,7 @@ func (o *NotebookResponseDataAttributes) GetAuthorOk() (*NotebookAuthor, bool) {
 }
 
 // HasAuthor returns a boolean if a field has been set.
-func (o *NotebookResponseDataAttributes) HasAuthor() bool {
+func (o *NotebooksResponseDataAttributes) HasAuthor() bool {
 	if o != nil && o.Author != nil {
 		return true
 	}
@@ -81,36 +79,44 @@ func (o *NotebookResponseDataAttributes) HasAuthor() bool {
 }
 
 // SetAuthor gets a reference to the given NotebookAuthor and assigns it to the Author field.
-func (o *NotebookResponseDataAttributes) SetAuthor(v NotebookAuthor) {
+func (o *NotebooksResponseDataAttributes) SetAuthor(v NotebookAuthor) {
 	o.Author = &v
 }
 
-// GetCells returns the Cells field value
-func (o *NotebookResponseDataAttributes) GetCells() []NotebookCellResponse {
-	if o == nil {
+// GetCells returns the Cells field value if set, zero value otherwise.
+func (o *NotebooksResponseDataAttributes) GetCells() []NotebookCellResponse {
+	if o == nil || o.Cells == nil {
 		var ret []NotebookCellResponse
 		return ret
 	}
-
-	return o.Cells
+	return *o.Cells
 }
 
-// GetCellsOk returns a tuple with the Cells field value
+// GetCellsOk returns a tuple with the Cells field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotebookResponseDataAttributes) GetCellsOk() (*[]NotebookCellResponse, bool) {
-	if o == nil {
+func (o *NotebooksResponseDataAttributes) GetCellsOk() (*[]NotebookCellResponse, bool) {
+	if o == nil || o.Cells == nil {
 		return nil, false
 	}
-	return &o.Cells, true
+	return o.Cells, true
 }
 
-// SetCells sets field value
-func (o *NotebookResponseDataAttributes) SetCells(v []NotebookCellResponse) {
-	o.Cells = v
+// HasCells returns a boolean if a field has been set.
+func (o *NotebooksResponseDataAttributes) HasCells() bool {
+	if o != nil && o.Cells != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCells gets a reference to the given []NotebookCellResponse and assigns it to the Cells field.
+func (o *NotebooksResponseDataAttributes) SetCells(v []NotebookCellResponse) {
+	o.Cells = &v
 }
 
 // GetCreated returns the Created field value if set, zero value otherwise.
-func (o *NotebookResponseDataAttributes) GetCreated() time.Time {
+func (o *NotebooksResponseDataAttributes) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
 		var ret time.Time
 		return ret
@@ -120,7 +126,7 @@ func (o *NotebookResponseDataAttributes) GetCreated() time.Time {
 
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotebookResponseDataAttributes) GetCreatedOk() (*time.Time, bool) {
+func (o *NotebooksResponseDataAttributes) GetCreatedOk() (*time.Time, bool) {
 	if o == nil || o.Created == nil {
 		return nil, false
 	}
@@ -128,7 +134,7 @@ func (o *NotebookResponseDataAttributes) GetCreatedOk() (*time.Time, bool) {
 }
 
 // HasCreated returns a boolean if a field has been set.
-func (o *NotebookResponseDataAttributes) HasCreated() bool {
+func (o *NotebooksResponseDataAttributes) HasCreated() bool {
 	if o != nil && o.Created != nil {
 		return true
 	}
@@ -137,12 +143,12 @@ func (o *NotebookResponseDataAttributes) HasCreated() bool {
 }
 
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
-func (o *NotebookResponseDataAttributes) SetCreated(v time.Time) {
+func (o *NotebooksResponseDataAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
-func (o *NotebookResponseDataAttributes) GetModified() time.Time {
+func (o *NotebooksResponseDataAttributes) GetModified() time.Time {
 	if o == nil || o.Modified == nil {
 		var ret time.Time
 		return ret
@@ -152,7 +158,7 @@ func (o *NotebookResponseDataAttributes) GetModified() time.Time {
 
 // GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotebookResponseDataAttributes) GetModifiedOk() (*time.Time, bool) {
+func (o *NotebooksResponseDataAttributes) GetModifiedOk() (*time.Time, bool) {
 	if o == nil || o.Modified == nil {
 		return nil, false
 	}
@@ -160,7 +166,7 @@ func (o *NotebookResponseDataAttributes) GetModifiedOk() (*time.Time, bool) {
 }
 
 // HasModified returns a boolean if a field has been set.
-func (o *NotebookResponseDataAttributes) HasModified() bool {
+func (o *NotebooksResponseDataAttributes) HasModified() bool {
 	if o != nil && o.Modified != nil {
 		return true
 	}
@@ -169,12 +175,12 @@ func (o *NotebookResponseDataAttributes) HasModified() bool {
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-func (o *NotebookResponseDataAttributes) SetModified(v time.Time) {
+func (o *NotebooksResponseDataAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
 // GetName returns the Name field value
-func (o *NotebookResponseDataAttributes) GetName() string {
+func (o *NotebooksResponseDataAttributes) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -185,7 +191,7 @@ func (o *NotebookResponseDataAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *NotebookResponseDataAttributes) GetNameOk() (*string, bool) {
+func (o *NotebooksResponseDataAttributes) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -193,12 +199,12 @@ func (o *NotebookResponseDataAttributes) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *NotebookResponseDataAttributes) SetName(v string) {
+func (o *NotebooksResponseDataAttributes) SetName(v string) {
 	o.Name = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *NotebookResponseDataAttributes) GetStatus() NotebookStatus {
+func (o *NotebooksResponseDataAttributes) GetStatus() NotebookStatus {
 	if o == nil || o.Status == nil {
 		var ret NotebookStatus
 		return ret
@@ -208,7 +214,7 @@ func (o *NotebookResponseDataAttributes) GetStatus() NotebookStatus {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotebookResponseDataAttributes) GetStatusOk() (*NotebookStatus, bool) {
+func (o *NotebooksResponseDataAttributes) GetStatusOk() (*NotebookStatus, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -216,7 +222,7 @@ func (o *NotebookResponseDataAttributes) GetStatusOk() (*NotebookStatus, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *NotebookResponseDataAttributes) HasStatus() bool {
+func (o *NotebooksResponseDataAttributes) HasStatus() bool {
 	if o != nil && o.Status != nil {
 		return true
 	}
@@ -225,40 +231,48 @@ func (o *NotebookResponseDataAttributes) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given NotebookStatus and assigns it to the Status field.
-func (o *NotebookResponseDataAttributes) SetStatus(v NotebookStatus) {
+func (o *NotebooksResponseDataAttributes) SetStatus(v NotebookStatus) {
 	o.Status = &v
 }
 
-// GetTime returns the Time field value
-func (o *NotebookResponseDataAttributes) GetTime() NotebookGlobalTime {
-	if o == nil {
+// GetTime returns the Time field value if set, zero value otherwise.
+func (o *NotebooksResponseDataAttributes) GetTime() NotebookGlobalTime {
+	if o == nil || o.Time == nil {
 		var ret NotebookGlobalTime
 		return ret
 	}
-
-	return o.Time
+	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotebookResponseDataAttributes) GetTimeOk() (*NotebookGlobalTime, bool) {
-	if o == nil {
+func (o *NotebooksResponseDataAttributes) GetTimeOk() (*NotebookGlobalTime, bool) {
+	if o == nil || o.Time == nil {
 		return nil, false
 	}
-	return &o.Time, true
+	return o.Time, true
 }
 
-// SetTime sets field value
-func (o *NotebookResponseDataAttributes) SetTime(v NotebookGlobalTime) {
-	o.Time = v
+// HasTime returns a boolean if a field has been set.
+func (o *NotebooksResponseDataAttributes) HasTime() bool {
+	if o != nil && o.Time != nil {
+		return true
+	}
+
+	return false
 }
 
-func (o NotebookResponseDataAttributes) MarshalJSON() ([]byte, error) {
+// SetTime gets a reference to the given NotebookGlobalTime and assigns it to the Time field.
+func (o *NotebooksResponseDataAttributes) SetTime(v NotebookGlobalTime) {
+	o.Time = &v
+}
+
+func (o NotebooksResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Author != nil {
 		toSerialize["author"] = o.Author
 	}
-	if true {
+	if o.Cells != nil {
 		toSerialize["cells"] = o.Cells
 	}
 	if o.Created != nil {
@@ -273,39 +287,31 @@ func (o NotebookResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
-	if true {
+	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
 	return json.Marshal(toSerialize)
 }
 
-func (o *NotebookResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	required := struct {
-		Cells *[]NotebookCellResponse `json:"cells"`
-		Name  *string                 `json:"name"`
-		Time  *NotebookGlobalTime     `json:"time"`
+		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Author   *NotebookAuthor        `json:"author,omitempty"}`
-		Cells    []NotebookCellResponse `json:"cells"}`
-		Created  *time.Time             `json:"created,omitempty"}`
-		Modified *time.Time             `json:"modified,omitempty"}`
-		Name     string                 `json:"name"}`
-		Status   *NotebookStatus        `json:"status,omitempty"}`
-		Time     NotebookGlobalTime     `json:"time"}`
+		Author   *NotebookAuthor         `json:"author,omitempty"}`
+		Cells    *[]NotebookCellResponse `json:"cells,omitempty"}`
+		Created  *time.Time              `json:"created,omitempty"}`
+		Modified *time.Time              `json:"modified,omitempty"}`
+		Name     string                  `json:"name"}`
+		Status   *NotebookStatus         `json:"status,omitempty"}`
+		Time     *NotebookGlobalTime     `json:"time,omitempty"}`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
 	}
-	if required.Cells == nil {
-		return fmt.Errorf("Required field cells missing")
-	}
 	if required.Name == nil {
 		return fmt.Errorf("Required field name missing")
-	}
-	if required.Time == nil {
-		return fmt.Errorf("Required field time missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -321,38 +327,38 @@ func (o *NotebookResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error)
 	return nil
 }
 
-type NullableNotebookResponseDataAttributes struct {
-	value *NotebookResponseDataAttributes
+type NullableNotebooksResponseDataAttributes struct {
+	value *NotebooksResponseDataAttributes
 	isSet bool
 }
 
-func (v NullableNotebookResponseDataAttributes) Get() *NotebookResponseDataAttributes {
+func (v NullableNotebooksResponseDataAttributes) Get() *NotebooksResponseDataAttributes {
 	return v.value
 }
 
-func (v *NullableNotebookResponseDataAttributes) Set(val *NotebookResponseDataAttributes) {
+func (v *NullableNotebooksResponseDataAttributes) Set(val *NotebooksResponseDataAttributes) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableNotebookResponseDataAttributes) IsSet() bool {
+func (v NullableNotebooksResponseDataAttributes) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableNotebookResponseDataAttributes) Unset() {
+func (v *NullableNotebooksResponseDataAttributes) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableNotebookResponseDataAttributes(val *NotebookResponseDataAttributes) *NullableNotebookResponseDataAttributes {
-	return &NullableNotebookResponseDataAttributes{value: val, isSet: true}
+func NewNullableNotebooksResponseDataAttributes(val *NotebooksResponseDataAttributes) *NullableNotebooksResponseDataAttributes {
+	return &NullableNotebooksResponseDataAttributes{value: val, isSet: true}
 }
 
-func (v NullableNotebookResponseDataAttributes) MarshalJSON() ([]byte, error) {
+func (v NullableNotebooksResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableNotebookResponseDataAttributes) UnmarshalJSON(src []byte) error {
+func (v *NullableNotebooksResponseDataAttributes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

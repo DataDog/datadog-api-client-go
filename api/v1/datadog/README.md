@@ -529,6 +529,8 @@ Class | Method | HTTP request | Description
  - [NotebookUpdateDataAttributes](docs/NotebookUpdateDataAttributes.md)
  - [NotebookUpdateRequest](docs/NotebookUpdateRequest.md)
  - [NotebooksResponse](docs/NotebooksResponse.md)
+ - [NotebooksResponseData](docs/NotebooksResponseData.md)
+ - [NotebooksResponseDataAttributes](docs/NotebooksResponseDataAttributes.md)
  - [NotebooksResponseMeta](docs/NotebooksResponseMeta.md)
  - [NotebooksResponsePage](docs/NotebooksResponsePage.md)
  - [Organization](docs/Organization.md)
