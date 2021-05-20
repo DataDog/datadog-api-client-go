@@ -7,7 +7,7 @@ on:
     types: ["opened", "reopened", "ready_for_review", "labeled"]
 
 jobs:
-  test:
+  integration_tests:
     runs-on: ubuntu-latest
     if: >
       github.event.pull_request.draft == false &&
