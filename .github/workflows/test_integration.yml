@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - master
-    types: ["opened", "reopened", "ready_for_review", "labeled"]
+    types: ["opened", "reopened", "ready_for_review", "labeled", "synchronize"]
 
 jobs:
   integration_tests:
@@ -14,7 +14,6 @@ jobs:
       !contains(github.event.pull_request.labels.*.name, 'ci/skip') &&
       !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/') &&
       contains(github.event.pull_request.labels.*.name, 'ci/integrations')
-    needs: pre-commit
     services:
       datadog-agent:
         image: datadog/agent:latest
