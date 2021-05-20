@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - master
-    types: ["opened", "reopened", "ready_for_review", "labeled", "synchronize"]
+    types: ["opened", "reopened", "ready_for_review", "synchronize"]
 
 jobs:
   integration_tests:
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Run integration tests
         shell: bash
-        run: ./run-test.sh
+        run: ./run-tests.sh
         env:
           CI: "true"
           DD_AGENT_HOST: datadog-agent
