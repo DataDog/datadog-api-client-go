@@ -45,7 +45,7 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
+			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertionTextHTML),
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
 				datadog.SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion(targetJSONPath),
@@ -101,7 +101,6 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{},
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
 				datadog.SyntheticsConfigVariable{
 					Name:    "PROPERTY",
@@ -163,7 +162,7 @@ func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.S
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
+			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
 			},
 			Request: &datadog.SyntheticsTestRequest{
@@ -191,7 +190,7 @@ func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.S
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
+			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(recordAssertion),
 			},
 			Request: &datadog.SyntheticsTestRequest{
@@ -220,7 +219,7 @@ func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
+			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(latencyAssertion),
 			},
 			Request: &datadog.SyntheticsTestRequest{
