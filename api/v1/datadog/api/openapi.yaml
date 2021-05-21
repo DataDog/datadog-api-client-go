@@ -198,11 +198,13 @@ tags:
     - [Read more about Process Check monitors.][2]
     - [Read more about Network Check monitors.][3]
     - [Read more about Custom Check monitors.][4]
+    - [Read more about Service Check and status codes.][5]
 
     [1]: https://docs.datadoghq.com/monitors/monitor_types/host/?tab=checkalert
     [2]: https://docs.datadoghq.com/monitors/monitor_types/process_check/?tab=checkalert
     [3]: https://docs.datadoghq.com/monitors/monitor_types/network/?tab=checkalert
     [4]: https://docs.datadoghq.com/monitors/monitor_types/custom_check/?tab=checkalert
+    [5]: https://docs.datadoghq.com/developers/service_checks/
   name: Service Checks
 - description: |-
     SLO Status Corrections allow you to prevent specific time periods from negatively impacting
@@ -4236,6 +4238,7 @@ paths:
         name: group_states
         required: false
         schema:
+          example: alert
           type: string
         style: form
       - description: A string to filter monitors by name.
@@ -4254,6 +4257,7 @@ paths:
         name: tags
         required: false
         schema:
+          example: host:host0
           type: string
         style: form
       - description: |-
@@ -4264,6 +4268,7 @@ paths:
         name: monitor_tags
         required: false
         schema:
+          example: service:my-app
           type: string
         style: form
       - description: If this argument is set to true, then the returned data includes
@@ -4291,6 +4296,7 @@ paths:
         name: page
         required: false
         schema:
+          example: 0
           format: int64
           type: integer
         style: form
@@ -4303,6 +4309,7 @@ paths:
         name: page_size
         required: false
         schema:
+          example: 20
           format: int32
           maximum: 1000
           type: integer
@@ -4470,6 +4477,19 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              json-request-body:
+                value:
+                  message: You may need to add web hosts if this is consistently high.
+                  name: Bytes received on host0
+                  options:
+                    no_data_timeframe: 20
+                    notify_no_data: true
+                  query: avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100
+                  tags:
+                  - app:webserver
+                  - frontend
+                  type: metric alert
             schema:
               $ref: '#/components/schemas/Monitor'
         description: Create a monitor request body.
@@ -4567,7 +4587,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Monitor'
+                example: {}
+                type: object
           description: OK
         "400":
           content:
@@ -4609,6 +4630,7 @@ paths:
         name: force
         required: false
         schema:
+          example: "false"
           type: string
         style: form
       responses:
@@ -5026,6 +5048,43 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              json-request-body:
+                value:
+                  data:
+                    attributes:
+                      cells:
+                      - attributes:
+                          definition:
+                            text: |-
+                              ## Some test markdown
+
+                              With some example content.
+                            type: markdown
+                        type: notebook_cells
+                      - attributes:
+                          definition:
+                            requests:
+                            - display_type: line
+                              q: avg:system.load.1{*}
+                              style:
+                                line_type: solid
+                                line_width: normal
+                                palette: dog_classic
+                            show_legend: true
+                            type: timeseries
+                            yaxis:
+                              scale: linear
+                          graph_size: m
+                          split_by:
+                            keys: []
+                            tags: []
+                          time: null
+                        type: notebook_cells
+                      name: Example Notebook
+                      time:
+                        live_span: 1h
+                    type: notebooks
             schema:
               $ref: '#/components/schemas/NotebookCreateRequest'
         description: The JSON description of the notebook you want to create.
@@ -5164,6 +5223,44 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              json-request-body:
+                value:
+                  data:
+                    attributes:
+                      cells:
+                      - attributes:
+                          definition:
+                            text: |-
+                              ## Some updated test markdown
+
+                              With some example content.
+                            type: markdown
+                        type: notebook_cells
+                      - attributes:
+                          definition:
+                            requests:
+                            - display_type: bars
+                              q: avg:system.load.1{*}
+                              style:
+                                line_type: solid
+                                line_width: normal
+                                palette: warm
+                            show_legend: true
+                            type: timeseries
+                            yaxis:
+                              scale: linear
+                          graph_size: m
+                          split_by:
+                            keys: []
+                            tags: []
+                          time: null
+                        id: abcd1234
+                        type: notebook_cells
+                      name: Example Notebook
+                      time:
+                        live_span: 1h
+                    type: notebooks
             schema:
               $ref: '#/components/schemas/NotebookUpdateRequest'
         description: Update notebook request body.
@@ -5516,15 +5613,15 @@ paths:
     post:
       description: |-
         The metrics end-point allows you to post time-series data that can be graphed on Datadog’s dashboards.
-        The maximum payload size is 3.2 megabytes (3200000). Compressed payloads must have a decompressed size of up to 62 megabytes (62914560).
+        The maximum payload size is 3.2 megabytes (3200000 bytes). Compressed payloads must have a decompressed size of less than 62 megabytes (62914560 bytes).
 
-        If you’re submitting metrics directly to the Datadog API without using DogStatsD, expect
+        If you’re submitting metrics directly to the Datadog API without using DogStatsD, expect:
 
         - 64 bits for the timestamp
         - 32 bits for the value
         - 20 bytes for the metric names
         - 50 bytes for the timeseries
-        - The full payload is approximately ~ 100 bytes. However, with the DogStatsD API,
+        - The full payload is approximately 100 bytes. However, with the DogStatsD API,
         compression is applied, which reduces the payload size.
       operationId: SubmitMetrics
       requestBody:
@@ -8841,7 +8938,7 @@ paths:
         type: safe
   /api/v1/usage/top_avg_metrics:
     get:
-      description: Get top [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/)
+      description: Get all [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/)
         by hourly average. Use the month parameter to get a month-to-date data resolution
         or use the day parameter to get a daily resolution. One of the two is required,
         and only one of the two is allowed.
@@ -8892,6 +8989,15 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - description: List following results with a next_record_id provided in the
+          previous query.
+        explode: true
+        in: query
+        name: next_record_id
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -8911,7 +9017,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
-      summary: Get top custom metrics by hourly average
+      summary: Get all custom metrics by hourly average
       tags:
       - Usage Metering
       x-menu-order: 5
@@ -14932,12 +15038,13 @@ components:
           handle: handle
           email: email
         created: 2000-01-23T04:56:07.000+00:00
-        query: query
+        query: avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100
         message: message
         priority: 3
         restricted_roles:
         - restricted_roles
         - restricted_roles
+        type: metric alert
         multi: true
         tags:
         - tags
@@ -15036,6 +15143,7 @@ components:
           type: integer
         query:
           description: The monitor query.
+          example: avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100
           type: string
         restricted_roles:
           description: A list of role identifiers that can be pulled from the Roles
@@ -15054,6 +15162,9 @@ components:
           type: array
         type:
           $ref: '#/components/schemas/MonitorType'
+      required:
+      - query
+      - type
       type: object
     MonitorDeviceID:
       description: ID of the device the Synthetics monitor is running on. Same as
@@ -15133,6 +15244,8 @@ components:
         escalation_message:
           default: none
           description: |-
+            We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#renotify),
+            block in the original message instead.
             A message to include with a re-notification. Supports the `@username` notification we allow elsewhere.
             Not applicable if `renotify_interval` is `None`.
           type: string
@@ -15447,6 +15560,7 @@ components:
       - trace-analytics alert
       - slo alert
       - event-v2 alert
+      example: metric alert
       type: string
       x-enum-varnames:
       - COMPOSITE
@@ -15475,6 +15589,7 @@ components:
         restricted_roles:
         - restricted_roles
         - restricted_roles
+        type: metric alert
         multi: true
         tags:
         - tags
@@ -15660,6 +15775,7 @@ components:
       required:
       - end
       - start
+      type: object
     NotebookAuthor:
       description: Attributes of user object returned by the API.
       example:
@@ -15754,6 +15870,9 @@ components:
       - NOTEBOOK_CELLS
     NotebookCellResponse:
       description: The description of a notebook cell response.
+      example:
+        id: abcd1234
+        type: notebook_cells
       properties:
         attributes:
           $ref: '#/components/schemas/NotebookCellResponseAttributes'
@@ -15958,7 +16077,7 @@ components:
             $ref: '#/components/schemas/NotebookCellCreateRequest'
           type: array
         name:
-          description: Notebook name.
+          description: The name of the notebook.
           example: Example Notebook
           maxLength: 80
           minLength: 0
@@ -16019,7 +16138,7 @@ components:
       - data
       type: object
     NotebookDistributionCellAttributes:
-      description: The attributes of a notebook distribution cell.
+      description: The attributes of a notebook `distribution` cell.
       properties:
         definition:
           $ref: '#/components/schemas/DistributionWidgetDefinition'
@@ -16046,6 +16165,7 @@ components:
       - m
       - l
       - xl
+      example: m
       type: string
       x-enum-varnames:
       - EXTRA_SMALL
@@ -16054,7 +16174,7 @@ components:
       - LARGE
       - EXTRA_LARGE
     NotebookHeatMapCellAttributes:
-      description: The attributes of a notebook heat map cell.
+      description: The attributes of a notebook `heatmap` cell.
       properties:
         definition:
           $ref: '#/components/schemas/HeatMapWidgetDefinition'
@@ -16068,7 +16188,7 @@ components:
       - definition
       type: object
     NotebookLogStreamCellAttributes:
-      description: The attributes of a notebook log stream cell.
+      description: The attributes of a notebook `log_stream` cell.
       properties:
         definition:
           $ref: '#/components/schemas/LogStreamWidgetDefinition'
@@ -16080,7 +16200,7 @@ components:
       - definition
       type: object
     NotebookMarkdownCellAttributes:
-      description: The attributes of a notebooks markdown cell.
+      description: The attributes of a notebook `markdown` cell.
       properties:
         definition:
           $ref: '#/components/schemas/NotebookMarkdownCellDefinition'
@@ -16353,19 +16473,19 @@ components:
             $ref: '#/components/schemas/NotebookCellResponse'
           type: array
         created:
-          description: UTC time stamp.
+          description: UTC time stamp for when the notebook was created.
           example: 2021-02-24T23:14:15.173964Z
           format: date-time
           readOnly: true
           type: string
         modified:
-          description: UTC time stamp.
+          description: UTC time stamp for when the notebook was last modified.
           example: 2021-02-24T23:15:23.274966Z
           format: date-time
           readOnly: true
           type: string
         name:
-          description: Notebook name.
+          description: The name of the notebook.
           example: Example Notebook
           maxLength: 80
           minLength: 0
@@ -16382,6 +16502,9 @@ components:
     NotebookSplitBy:
       description: Object describing how to split the graph to display multiple visualizations
         per request.
+      example:
+        keys: []
+        tags: []
       properties:
         keys:
           description: Keys to split on.
@@ -16411,7 +16534,7 @@ components:
       x-enum-varnames:
       - PUBLISHED
     NotebookTimeseriesCellAttributes:
-      description: The attributes of a notebook timeseries cell.
+      description: The attributes of a notebook `timeseries` cell.
       properties:
         definition:
           $ref: '#/components/schemas/TimeseriesWidgetDefinition'
@@ -16425,7 +16548,7 @@ components:
       - definition
       type: object
     NotebookToplistCellAttributes:
-      description: The attributes of a notebook toplist cell.
+      description: The attributes of a notebook `toplist` cell.
       properties:
         definition:
           $ref: '#/components/schemas/ToplistWidgetDefinition'
@@ -16576,7 +16699,7 @@ components:
             $ref: '#/components/schemas/NotebookUpdateCell'
           type: array
         name:
-          description: Notebook name.
+          description: The name of the notebook.
           example: Example Notebook
           maxLength: 80
           minLength: 0
@@ -16644,38 +16767,9 @@ components:
         data:
         - attributes:
             cells:
-            - attributes:
-                definition:
-                  text: |-
-                    ## Some test markdown
-
-                    ```js
-                    var x, y;
-                    x = 5;
-                    y = 6;
-                    ```
-                  type: markdown
-              id: bzbycoya
+            - id: abcd1234
               type: notebook_cells
-            - attributes:
-                definition:
-                  requests:
-                  - display_type: line
-                    q: avg:system.load.1{*}
-                    style:
-                      line_type: solid
-                      line_width: normal
-                      palette: dog_classic
-                  show_legend: true
-                  type: timeseries
-                  yaxis:
-                    scale: linear
-                graph_size: m
-                split_by:
-                  keys: []
-                  tags: []
-                time: null
-              id: 9k6bc6xc
+            - id: abcd1234
               type: notebook_cells
             author:
               icon: icon
@@ -16695,38 +16789,9 @@ components:
           type: notebooks
         - attributes:
             cells:
-            - attributes:
-                definition:
-                  text: |-
-                    ## Some test markdown
-
-                    ```js
-                    var x, y;
-                    x = 5;
-                    y = 6;
-                    ```
-                  type: markdown
-              id: bzbycoya
+            - id: abcd1234
               type: notebook_cells
-            - attributes:
-                definition:
-                  requests:
-                  - display_type: line
-                    q: avg:system.load.1{*}
-                    style:
-                      line_type: solid
-                      line_width: normal
-                      palette: dog_classic
-                  show_legend: true
-                  type: timeseries
-                  yaxis:
-                    scale: linear
-                graph_size: m
-                split_by:
-                  keys: []
-                  tags: []
-                time: null
-              id: 9k6bc6xc
+            - id: abcd1234
               type: notebook_cells
             author:
               icon: icon
@@ -16752,10 +16817,106 @@ components:
         data:
           description: List of notebook definitions.
           items:
-            $ref: '#/components/schemas/NotebookResponseData'
+            $ref: '#/components/schemas/NotebooksResponseData'
           type: array
         meta:
           $ref: '#/components/schemas/NotebooksResponse_meta'
+      type: object
+    NotebooksResponseData:
+      description: The data for a notebook in get all response.
+      example:
+        attributes:
+          cells:
+          - id: abcd1234
+            type: notebook_cells
+          - id: abcd1234
+            type: notebook_cells
+          author:
+            icon: icon
+            name: name
+            verified: true
+            created_at: 2000-01-23T04:56:07.000+00:00
+            disabled: true
+            handle: handle
+            title: title
+            email: email
+            status: status
+          created: 2021-02-24T23:14:15.173964Z
+          name: Example Notebook
+          modified: 2021-02-24T23:15:23.274966Z
+          status: published
+        id: 123456
+        type: notebooks
+      properties:
+        attributes:
+          $ref: '#/components/schemas/NotebooksResponseDataAttributes'
+        id:
+          description: Unique notebook ID, assigned when you create the notebook.
+          example: 123456
+          format: int64
+          readOnly: true
+          type: integer
+        type:
+          $ref: '#/components/schemas/NotebookResourceType'
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+    NotebooksResponseDataAttributes:
+      description: The attributes of a notebook in get all response.
+      example:
+        cells:
+        - id: abcd1234
+          type: notebook_cells
+        - id: abcd1234
+          type: notebook_cells
+        author:
+          icon: icon
+          name: name
+          verified: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          disabled: true
+          handle: handle
+          title: title
+          email: email
+          status: status
+        created: 2021-02-24T23:14:15.173964Z
+        name: Example Notebook
+        modified: 2021-02-24T23:15:23.274966Z
+        status: published
+      properties:
+        author:
+          $ref: '#/components/schemas/NotebookAuthor'
+        cells:
+          description: List of cells to display in the notebook.
+          items:
+            $ref: '#/components/schemas/NotebookCellResponse'
+          type: array
+        created:
+          description: UTC time stamp for when the notebook was created.
+          example: 2021-02-24T23:14:15.173964Z
+          format: date-time
+          readOnly: true
+          type: string
+        modified:
+          description: UTC time stamp for when the notebook was last modified.
+          example: 2021-02-24T23:15:23.274966Z
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: The name of the notebook.
+          example: Example Notebook
+          maxLength: 80
+          minLength: 0
+          type: string
+        status:
+          $ref: '#/components/schemas/NotebookStatus'
+        time:
+          $ref: '#/components/schemas/NotebookGlobalTime'
+      required:
+      - name
       type: object
     NotebooksResponsePage:
       description: Pagination metadata returned by the API.
@@ -19027,6 +19188,7 @@ components:
         monitor_id:
           description: The associated monitor ID.
           format: int64
+          readOnly: true
           type: integer
         name:
           description: Name of the test.
@@ -19035,6 +19197,7 @@ components:
           $ref: '#/components/schemas/SyntheticsTestOptions'
         public_id:
           description: The public ID for the test.
+          readOnly: true
           type: string
         status:
           $ref: '#/components/schemas/SyntheticsTestPauseStatus'
@@ -19701,6 +19864,7 @@ components:
         monitor_id:
           description: The associated monitor ID.
           format: int64
+          readOnly: true
           type: integer
         name:
           description: Name of the test.
@@ -19709,6 +19873,7 @@ components:
           $ref: '#/components/schemas/SyntheticsTestOptions'
         public_id:
           description: The public ID of the test.
+          readOnly: true
           type: string
         status:
           $ref: '#/components/schemas/SyntheticsTestPauseStatus'
@@ -20695,8 +20860,6 @@ components:
             the value will not be present if the variable is secure.
           example: example-value
           type: string
-      required:
-      - value
       type: object
     SyntheticsListTestsResponse:
       description: Object containing an array of Synthetic tests configuration.
@@ -21436,6 +21599,7 @@ components:
         monitor_id:
           description: The associated monitor ID.
           format: int64
+          readOnly: true
           type: integer
         name:
           description: Name of the test.
@@ -21444,6 +21608,7 @@ components:
           $ref: '#/components/schemas/SyntheticsTestOptions'
         public_id:
           description: The test public ID.
+          readOnly: true
           type: string
         status:
           $ref: '#/components/schemas/SyntheticsTestPauseStatus'
@@ -22371,32 +22536,32 @@ components:
         month: 2000-01-23T04:56:07.000+00:00
         updated_at: updated_at
         values:
-          browser_percentage: 3.616076749251911
-          profiled_hosts_percentage: 3.5571952270680973
-          infra_host_percentage: 1.4894159098541704
-          apm_host_usage: 9.301444243932576
-          lambda_invocations_usage: 5.025004791520295
-          profiled_hosts_usage: 6.965117697638846
-          apm_host_percentage: 7.061401241503109
-          api_usage: 2.3021358869347655
-          custom_timeseries_usage: 1.0246457001441578
-          profiled_containers_percentage: 9.018348186070783
-          snmp_usage: 2.8841621266687802
-          browser_usage: 2.027123023002322
-          infra_host_usage: 6.84685269835264
-          lambda_functions_usage: 1.1730742509559433
-          custom_timeseries_percentage: 1.2315135367772556
-          profiled_containers_usage: 6.438423552598547
-          lambda_usage: 9.369310271410669
-          npm_host_percentage: 6.683562403749608
-          snmp_percentage: 1.284659006116532
-          lambda_functions_percentage: 7.457744773683766
-          lambda_invocations_percentage: 4.965218492984954
-          api_percentage: 5.637376656633329
-          container_usage: 7.386281948385884
-          lambda_percentage: 9.965781217890562
-          npm_host_usage: 8.762042012749001
-          container_percentage: 4.145608029883936
+          browser_percentage: 9.301444243932576
+          profiled_hosts_percentage: 6.438423552598547
+          infra_host_percentage: 1.0246457001441578
+          apm_host_usage: 7.061401241503109
+          lambda_invocations_usage: 4.965218492984954
+          profiled_hosts_usage: 3.5571952270680973
+          apm_host_percentage: 2.3021358869347655
+          api_usage: 5.637376656633329
+          custom_timeseries_usage: 1.2315135367772556
+          profiled_containers_percentage: 8.762042012749001
+          snmp_usage: 1.284659006116532
+          browser_usage: 3.616076749251911
+          infra_host_usage: 1.4894159098541704
+          lambda_functions_usage: 7.457744773683766
+          custom_timeseries_percentage: 7.386281948385884
+          profiled_containers_usage: 9.018348186070783
+          lambda_usage: 9.965781217890562
+          npm_host_percentage: 9.369310271410669
+          snmp_percentage: 6.965117697638846
+          lambda_functions_percentage: 6.84685269835264
+          lambda_invocations_percentage: 1.1730742509559433
+          api_percentage: 5.962133916683182
+          container_usage: 4.145608029883936
+          lambda_percentage: 5.025004791520295
+          npm_host_usage: 6.683562403749608
+          container_percentage: 2.027123023002322
         org_name: org_name
         public_id: public_id
         tags:
@@ -22435,11 +22600,9 @@ components:
       description: The object containing document metadata.
       example:
         pagination:
-          sort_direction: sort_direction
-          total_number_of_records: 5
-          offset: 1
+          total_number_of_records: 1
+          next_record_id: next_record_id
           limit: 6
-          sort_name: sort_name
         aggregates:
         - agg_type: sum
           field: custom_timeseries_usage
@@ -22457,30 +22620,22 @@ components:
           $ref: '#/components/schemas/UsageAttributionPagination'
       type: object
     UsageAttributionPagination:
-      description: The page count for the current pagination.
+      description: The metadata for the current pagination.
       example:
-        sort_direction: sort_direction
-        total_number_of_records: 5
-        offset: 1
+        total_number_of_records: 1
+        next_record_id: next_record_id
         limit: 6
-        sort_name: sort_name
       properties:
         limit:
           description: Maximum amount of records to be returned.
           format: int64
           type: integer
-        offset:
-          description: Records to be skipped before beginning to return.
-          format: int64
-          type: integer
-        sort_direction:
-          description: Direction to sort by.
-          type: string
-        sort_name:
-          description: Field to sort by.
+        next_record_id:
+          description: The cursor to use to get the next results, if any. To make
+            the next request, use the same parameters with the addition of this next_record_id.
           type: string
         total_number_of_records:
-          description: Total number of records.
+          description: Total number of records. (deprecated after May 1st, 2021)
           format: int64
           type: integer
       type: object
@@ -22489,11 +22644,9 @@ components:
       example:
         metadata:
           pagination:
-            sort_direction: sort_direction
-            total_number_of_records: 5
-            offset: 1
+            total_number_of_records: 1
+            next_record_id: next_record_id
             limit: 6
-            sort_name: sort_name
           aggregates:
           - agg_type: sum
             field: custom_timeseries_usage
@@ -22505,32 +22658,32 @@ components:
         - month: 2000-01-23T04:56:07.000+00:00
           updated_at: updated_at
           values:
-            browser_percentage: 3.616076749251911
-            profiled_hosts_percentage: 3.5571952270680973
-            infra_host_percentage: 1.4894159098541704
-            apm_host_usage: 9.301444243932576
-            lambda_invocations_usage: 5.025004791520295
-            profiled_hosts_usage: 6.965117697638846
-            apm_host_percentage: 7.061401241503109
-            api_usage: 2.3021358869347655
-            custom_timeseries_usage: 1.0246457001441578
-            profiled_containers_percentage: 9.018348186070783
-            snmp_usage: 2.8841621266687802
-            browser_usage: 2.027123023002322
-            infra_host_usage: 6.84685269835264
-            lambda_functions_usage: 1.1730742509559433
-            custom_timeseries_percentage: 1.2315135367772556
-            profiled_containers_usage: 6.438423552598547
-            lambda_usage: 9.369310271410669
-            npm_host_percentage: 6.683562403749608
-            snmp_percentage: 1.284659006116532
-            lambda_functions_percentage: 7.457744773683766
-            lambda_invocations_percentage: 4.965218492984954
-            api_percentage: 5.637376656633329
-            container_usage: 7.386281948385884
-            lambda_percentage: 9.965781217890562
-            npm_host_usage: 8.762042012749001
-            container_percentage: 4.145608029883936
+            browser_percentage: 9.301444243932576
+            profiled_hosts_percentage: 6.438423552598547
+            infra_host_percentage: 1.0246457001441578
+            apm_host_usage: 7.061401241503109
+            lambda_invocations_usage: 4.965218492984954
+            profiled_hosts_usage: 3.5571952270680973
+            apm_host_percentage: 2.3021358869347655
+            api_usage: 5.637376656633329
+            custom_timeseries_usage: 1.2315135367772556
+            profiled_containers_percentage: 8.762042012749001
+            snmp_usage: 1.284659006116532
+            browser_usage: 3.616076749251911
+            infra_host_usage: 1.4894159098541704
+            lambda_functions_usage: 7.457744773683766
+            custom_timeseries_percentage: 7.386281948385884
+            profiled_containers_usage: 9.018348186070783
+            lambda_usage: 9.965781217890562
+            npm_host_percentage: 9.369310271410669
+            snmp_percentage: 6.965117697638846
+            lambda_functions_percentage: 6.84685269835264
+            lambda_invocations_percentage: 1.1730742509559433
+            api_percentage: 5.962133916683182
+            container_usage: 4.145608029883936
+            lambda_percentage: 5.025004791520295
+            npm_host_usage: 6.683562403749608
+            container_percentage: 2.027123023002322
           org_name: org_name
           public_id: public_id
           tags:
@@ -22540,32 +22693,32 @@ components:
         - month: 2000-01-23T04:56:07.000+00:00
           updated_at: updated_at
           values:
-            browser_percentage: 3.616076749251911
-            profiled_hosts_percentage: 3.5571952270680973
-            infra_host_percentage: 1.4894159098541704
-            apm_host_usage: 9.301444243932576
-            lambda_invocations_usage: 5.025004791520295
-            profiled_hosts_usage: 6.965117697638846
-            apm_host_percentage: 7.061401241503109
-            api_usage: 2.3021358869347655
-            custom_timeseries_usage: 1.0246457001441578
-            profiled_containers_percentage: 9.018348186070783
-            snmp_usage: 2.8841621266687802
-            browser_usage: 2.027123023002322
-            infra_host_usage: 6.84685269835264
-            lambda_functions_usage: 1.1730742509559433
-            custom_timeseries_percentage: 1.2315135367772556
-            profiled_containers_usage: 6.438423552598547
-            lambda_usage: 9.369310271410669
-            npm_host_percentage: 6.683562403749608
-            snmp_percentage: 1.284659006116532
-            lambda_functions_percentage: 7.457744773683766
-            lambda_invocations_percentage: 4.965218492984954
-            api_percentage: 5.637376656633329
-            container_usage: 7.386281948385884
-            lambda_percentage: 9.965781217890562
-            npm_host_usage: 8.762042012749001
-            container_percentage: 4.145608029883936
+            browser_percentage: 9.301444243932576
+            profiled_hosts_percentage: 6.438423552598547
+            infra_host_percentage: 1.0246457001441578
+            apm_host_usage: 7.061401241503109
+            lambda_invocations_usage: 4.965218492984954
+            profiled_hosts_usage: 3.5571952270680973
+            apm_host_percentage: 2.3021358869347655
+            api_usage: 5.637376656633329
+            custom_timeseries_usage: 1.2315135367772556
+            profiled_containers_percentage: 8.762042012749001
+            snmp_usage: 1.284659006116532
+            browser_usage: 3.616076749251911
+            infra_host_usage: 1.4894159098541704
+            lambda_functions_usage: 7.457744773683766
+            custom_timeseries_percentage: 7.386281948385884
+            profiled_containers_usage: 9.018348186070783
+            lambda_usage: 9.965781217890562
+            npm_host_percentage: 9.369310271410669
+            snmp_percentage: 6.965117697638846
+            lambda_functions_percentage: 6.84685269835264
+            lambda_invocations_percentage: 1.1730742509559433
+            api_percentage: 5.962133916683182
+            container_usage: 4.145608029883936
+            lambda_percentage: 5.025004791520295
+            npm_host_usage: 6.683562403749608
+            container_percentage: 2.027123023002322
           org_name: org_name
           public_id: public_id
           tags:
@@ -22708,32 +22861,32 @@ components:
     UsageAttributionValues:
       description: Fields in Usage Summary by tag(s).
       example:
-        browser_percentage: 3.616076749251911
-        profiled_hosts_percentage: 3.5571952270680973
-        infra_host_percentage: 1.4894159098541704
-        apm_host_usage: 9.301444243932576
-        lambda_invocations_usage: 5.025004791520295
-        profiled_hosts_usage: 6.965117697638846
-        apm_host_percentage: 7.061401241503109
-        api_usage: 2.3021358869347655
-        custom_timeseries_usage: 1.0246457001441578
-        profiled_containers_percentage: 9.018348186070783
-        snmp_usage: 2.8841621266687802
-        browser_usage: 2.027123023002322
-        infra_host_usage: 6.84685269835264
-        lambda_functions_usage: 1.1730742509559433
-        custom_timeseries_percentage: 1.2315135367772556
-        profiled_containers_usage: 6.438423552598547
-        lambda_usage: 9.369310271410669
-        npm_host_percentage: 6.683562403749608
-        snmp_percentage: 1.284659006116532
-        lambda_functions_percentage: 7.457744773683766
-        lambda_invocations_percentage: 4.965218492984954
-        api_percentage: 5.637376656633329
-        container_usage: 7.386281948385884
-        lambda_percentage: 9.965781217890562
-        npm_host_usage: 8.762042012749001
-        container_percentage: 4.145608029883936
+        browser_percentage: 9.301444243932576
+        profiled_hosts_percentage: 6.438423552598547
+        infra_host_percentage: 1.0246457001441578
+        apm_host_usage: 7.061401241503109
+        lambda_invocations_usage: 4.965218492984954
+        profiled_hosts_usage: 3.5571952270680973
+        apm_host_percentage: 2.3021358869347655
+        api_usage: 5.637376656633329
+        custom_timeseries_usage: 1.2315135367772556
+        profiled_containers_percentage: 8.762042012749001
+        snmp_usage: 1.284659006116532
+        browser_usage: 3.616076749251911
+        infra_host_usage: 1.4894159098541704
+        lambda_functions_usage: 7.457744773683766
+        custom_timeseries_percentage: 7.386281948385884
+        profiled_containers_usage: 9.018348186070783
+        lambda_usage: 9.965781217890562
+        npm_host_percentage: 9.369310271410669
+        snmp_percentage: 6.965117697638846
+        lambda_functions_percentage: 6.84685269835264
+        lambda_invocations_percentage: 1.1730742509559433
+        api_percentage: 5.962133916683182
+        container_usage: 4.145608029883936
+        lambda_percentage: 5.025004791520295
+        npm_host_usage: 6.683562403749608
+        container_percentage: 2.027123023002322
       properties:
         api_percentage:
           description: The percentage of synthetic API test usage by tag(s).
@@ -25881,11 +26034,9 @@ components:
       description: The object containing document metadata.
       example:
         pagination:
-          sort_direction: sort_direction
-          total_number_of_records: 5
-          offset: 1
+          total_number_of_records: 1
+          next_record_id: next_record_id
           limit: 6
-          sort_name: sort_name
         month: ""
         day: ""
       properties:
@@ -25904,11 +26055,9 @@ components:
       example:
         metadata:
           pagination:
-            sort_direction: sort_direction
-            total_number_of_records: 5
-            offset: 1
+            total_number_of_records: 1
+            next_record_id: next_record_id
             limit: 6
-            sort_name: sort_name
           month: ""
           day: ""
         usage:
@@ -26228,6 +26377,9 @@ components:
       description: Custom links help you connect a data value to a URL, like a Datadog
         page or your AWS console.
       properties:
+        is_hidden:
+          description: The flag for toggling context menu link visibility.
+          type: boolean
         label:
           description: The label for the custom link URL. Keep the label short and
             descriptive. Use metrics and tags as variables.
@@ -26238,9 +26390,11 @@ components:
             A relative URL must start with `/`.
           example: https://app.datadoghq.com/logs?query={{host}}
           type: string
-      required:
-      - label
-      - link
+        override_label:
+          description: The label ID that refers to a context menu link. Can be `logs`,
+            `hosts`, `traces`, `profiles`, `processes`, `containers`, or `rum`.
+          example: logs
+          type: string
       type: object
     WidgetDefinition:
       description: '[Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).'

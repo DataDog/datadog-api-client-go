@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// NotebookMarkdownCellAttributes The attributes of a notebooks markdown cell.
+// NotebookMarkdownCellAttributes The attributes of a notebook `markdown` cell.
 type NotebookMarkdownCellAttributes struct {
 	Definition NotebookMarkdownCellDefinition `json:"definition"`
 }

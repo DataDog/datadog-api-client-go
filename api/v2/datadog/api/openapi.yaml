@@ -128,6 +128,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -138,6 +139,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -424,6 +426,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -434,6 +437,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -601,6 +605,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -611,6 +616,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -1071,6 +1077,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -1081,6 +1088,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -2799,6 +2807,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -2809,6 +2818,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -3256,6 +3266,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -3266,6 +3277,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -3378,6 +3390,259 @@ paths:
       x-menu-order: 10
       x-undo:
         type: safe
+  /api/v2/security_monitoring/configuration/security_filters:
+    get:
+      description: Get the list of configured security filters with their definitions.
+      operationId: ListSecurityFilters
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityFiltersResponse'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Authorized
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Too many requests
+      summary: Get all security filters
+      tags:
+      - Security Monitoring
+      x-undo:
+        type: safe
+    post:
+      description: Create a security filter.
+      operationId: CreateSecurityFilter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityFilterCreateRequest'
+        description: The definition of the new security filter.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityFilterResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Authorized
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Too many requests
+      summary: Create a security filter
+      tags:
+      - Security Monitoring
+      x-codegen-request-body-name: body
+      x-given:
+        security_filter:
+          parameters:
+          - name: body
+            value: |-
+              {
+                "data": {
+                  "type": "security_filters",
+                  "attributes": {
+                    "name": "{{ unique }}",
+                    "query": "service:{{ unique_alnum }}",
+                    "exclusion_filters":[
+                      {
+                        "name": "Exclude logs from staging",
+                        "query": "source:staging"
+                      }
+                   ],
+                    "filtered_data_type":"logs",
+                    "is_enabled": true
+                   }
+                }
+              }
+          step: there is a valid "security_filter" in the system
+      x-undo:
+        operationId: DeleteSecurityFilter
+        parameters:
+        - name: security_filter_id
+          source: data.id
+        type: unsafe
+  /api/v2/security_monitoring/configuration/security_filters/{security_filter_id}:
+    delete:
+      description: Delete a specific security filter.
+      operationId: DeleteSecurityFilter
+      parameters:
+      - description: The ID of the security filter.
+        explode: false
+        in: path
+        name: security_filter_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityFilterDeleteResponse'
+          description: OK
+        "204":
+          description: No Content
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Authorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Too many requests
+      summary: Delete a security filter
+      tags:
+      - Security Monitoring
+      x-undo:
+        type: idempotent
+    get:
+      description: Get the details of a specific security filter.
+      operationId: GetSecurityFilter
+      parameters:
+      - description: The ID of the security filter.
+        explode: false
+        in: path
+        name: security_filter_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityFilterResponse'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Authorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Too many requests
+      summary: Get a security filter
+      tags:
+      - Security Monitoring
+      x-undo:
+        type: safe
+    patch:
+      description: |-
+        Update a specific security filter.
+        Returns the security filter object when the request is successful.
+      operationId: UpdateSecurityFilter
+      parameters:
+      - description: The ID of the security filter.
+        explode: false
+        in: path
+        name: security_filter_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityFilterUpdateRequest'
+        description: New definition of the security filter.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityFilterResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Authorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Concurrent Modification
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Too many requests
+      summary: Update a security filter
+      tags:
+      - Security Monitoring
+      x-codegen-request-body-name: body
+      x-undo:
+        type: idempotent
   /api/v2/security_monitoring/rules:
     get:
       description: List rules.
@@ -3390,6 +3655,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -3400,6 +3666,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -3775,6 +4042,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -3785,6 +4053,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -4097,6 +4366,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -4107,6 +4377,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -4461,6 +4732,7 @@ paths:
         name: user_invitation_uuid
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       responses:
@@ -4503,6 +4775,7 @@ paths:
         required: false
         schema:
           default: 10
+          example: 10
           format: int64
           type: integer
         style: form
@@ -4513,6 +4786,7 @@ paths:
         required: false
         schema:
           default: 0
+          example: 0
           format: int64
           type: integer
         style: form
@@ -4527,6 +4801,7 @@ paths:
         required: false
         schema:
           default: name
+          example: name
           type: string
         style: form
       - description: 'Direction of sort. Options: `asc`, `desc`.'
@@ -4554,6 +4829,7 @@ paths:
         name: filter[status]
         required: false
         schema:
+          example: Active
           type: string
         style: form
       responses:
@@ -4649,6 +4925,7 @@ paths:
         name: user_id
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       responses:
@@ -4683,6 +4960,7 @@ paths:
         name: user_id
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       responses:
@@ -4723,6 +5001,7 @@ paths:
         name: user_id
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       requestBody:
@@ -4782,6 +5061,7 @@ paths:
         name: user_id
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       responses:
@@ -4823,6 +5103,7 @@ paths:
         name: user_id
         required: true
         schema:
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         style: simple
       responses:
@@ -5105,6 +5386,7 @@ components:
       required: false
       schema:
         default: 0
+        example: 0
         format: int64
         type: integer
       style: form
@@ -5116,6 +5398,7 @@ components:
       required: false
       schema:
         default: 0
+        example: 0
         format: int64
         type: integer
       style: form
@@ -5127,6 +5410,7 @@ components:
       required: false
       schema:
         default: 10
+        example: 10
         format: int64
         type: integer
       style: form
@@ -5135,6 +5419,15 @@ components:
       explode: false
       in: path
       name: role_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    SecurityFilterID:
+      description: The ID of the security filter.
+      explode: false
+      in: path
+      name: security_filter_id
       required: true
       schema:
         type: string
@@ -5155,6 +5448,7 @@ components:
       name: user_id
       required: true
       schema:
+        example: 00000000-0000-0000-0000-000000000000
         type: string
       style: simple
   requestBodies: {}
@@ -6142,14 +6436,14 @@ components:
       - METRICTAG
       - AUTOCOMPLETE
     IncidentIntegrationMetadataType:
-      default: incident_integration_metadata
+      default: incident_integrations
       description: Integration metadata resource type.
       enum:
-      - incident_integration_metadata
-      example: incident_integration_metadata
+      - incident_integrations
+      example: incident_integrations
       type: string
       x-enum-varnames:
-      - INCIDENT_INTEGRATION_METADATA
+      - INCIDENT_INTEGRATIONS
     IncidentPostmortemType:
       default: incident_postmortems
       description: Incident postmortem resource type.
@@ -6186,9 +6480,9 @@ components:
             integrations:
               data:
               - id: 00000000-0000-0000-0000-000000000000
-                type: incident_integration_metadata
+                type: incident_integrations
               - id: 00000000-0000-0000-0000-000000000000
-                type: incident_integration_metadata
+                type: incident_integrations
             created_by_user:
               data:
                 id: 00000000-0000-0000-0000-000000000000
@@ -6386,9 +6680,9 @@ components:
           integrations:
             data:
             - id: 00000000-0000-0000-0000-000000000000
-              type: incident_integration_metadata
+              type: incident_integrations
             - id: 00000000-0000-0000-0000-000000000000
-              type: incident_integration_metadata
+              type: incident_integrations
           created_by_user:
             data:
               id: 00000000-0000-0000-0000-000000000000
@@ -6457,9 +6751,9 @@ components:
         integrations:
           data:
           - id: 00000000-0000-0000-0000-000000000000
-            type: incident_integration_metadata
+            type: incident_integrations
           - id: 00000000-0000-0000-0000-000000000000
-            type: incident_integration_metadata
+            type: incident_integrations
         created_by_user:
           data:
             id: 00000000-0000-0000-0000-000000000000
@@ -7166,9 +7460,9 @@ components:
           integrations:
             data:
             - id: 00000000-0000-0000-0000-000000000000
-              type: incident_integration_metadata
+              type: incident_integrations
             - id: 00000000-0000-0000-0000-000000000000
-              type: incident_integration_metadata
+              type: incident_integrations
           created_by_user:
             data:
               id: 00000000-0000-0000-0000-000000000000
@@ -7223,9 +7517,9 @@ components:
         integrations:
           data:
           - id: 00000000-0000-0000-0000-000000000000
-            type: incident_integration_metadata
+            type: incident_integrations
           - id: 00000000-0000-0000-0000-000000000000
-            type: incident_integration_metadata
+            type: incident_integrations
         created_by_user:
           data:
             id: 00000000-0000-0000-0000-000000000000
@@ -7262,9 +7556,9 @@ components:
             integrations:
               data:
               - id: 00000000-0000-0000-0000-000000000000
-                type: incident_integration_metadata
+                type: incident_integrations
               - id: 00000000-0000-0000-0000-000000000000
-                type: incident_integration_metadata
+                type: incident_integrations
             created_by_user:
               data:
                 id: 00000000-0000-0000-0000-000000000000
@@ -7328,9 +7622,9 @@ components:
             integrations:
               data:
               - id: 00000000-0000-0000-0000-000000000000
-                type: incident_integration_metadata
+                type: incident_integrations
               - id: 00000000-0000-0000-0000-000000000000
-                type: incident_integration_metadata
+                type: incident_integrations
             last_modified_by_user:
               data:
                 id: 00000000-0000-0000-0000-000000000000
@@ -7372,9 +7666,9 @@ components:
             integrations:
               data:
               - id: 00000000-0000-0000-0000-000000000000
-                type: incident_integration_metadata
+                type: incident_integrations
               - id: 00000000-0000-0000-0000-000000000000
-                type: incident_integration_metadata
+                type: incident_integrations
             last_modified_by_user:
               data:
                 id: 00000000-0000-0000-0000-000000000000
@@ -7428,9 +7722,9 @@ components:
               integrations:
                 data:
                 - id: 00000000-0000-0000-0000-000000000000
-                  type: incident_integration_metadata
+                  type: incident_integrations
                 - id: 00000000-0000-0000-0000-000000000000
-                  type: incident_integration_metadata
+                  type: incident_integrations
               last_modified_by_user:
                 data:
                   id: 00000000-0000-0000-0000-000000000000
@@ -7472,9 +7766,9 @@ components:
               integrations:
                 data:
                 - id: 00000000-0000-0000-0000-000000000000
-                  type: incident_integration_metadata
+                  type: incident_integrations
                 - id: 00000000-0000-0000-0000-000000000000
-                  type: incident_integration_metadata
+                  type: incident_integrations
               last_modified_by_user:
                 data:
                   id: 00000000-0000-0000-0000-000000000000
@@ -9750,7 +10044,7 @@ components:
       description: A relationship reference for an integration metadata object.
       example:
         id: 00000000-0000-0000-0000-000000000000
-        type: incident_integration_metadata
+        type: incident_integrations
       properties:
         id:
           description: A unique identifier that represents the integration metadata.
@@ -9767,17 +10061,17 @@ components:
       example:
         data:
         - id: 00000000-0000-0000-0000-000000000000
-          type: incident_integration_metadata
+          type: incident_integrations
         - id: 00000000-0000-0000-0000-000000000000
-          type: incident_integration_metadata
+          type: incident_integrations
       properties:
         data:
           description: The integration metadata relationship array
           example:
           - id: 00000000-0000-0000-0000-000000000000
-            type: incident_integration_metadata
+            type: incident_integrations
           - id: 00000000-0000-0000-0000-000000000000
-            type: incident_integration_metadata
+            type: incident_integrations
           items:
             $ref: '#/components/schemas/RelationshipToIncidentIntegrationMetadataData'
           type: array
@@ -10339,6 +10633,383 @@ components:
       type: string
       x-enum-varnames:
       - ROLES
+    SecurityFilter:
+      description: The security filter's properties.
+      example:
+        attributes:
+          is_enabled: false
+          exclusion_filters:
+          - query: source:staging
+            name: Exclude staging
+          - query: source:staging
+            name: Exclude staging
+          query: service:api
+          filtered_data_type: logs
+          name: Custom security filter
+          version: 1
+          is_builtin: false
+        id: 3dd-0uc-h1s
+        type: security_filters
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SecurityFilterAttributes'
+        id:
+          description: The ID of the security filter.
+          example: 3dd-0uc-h1s
+          type: string
+        type:
+          $ref: '#/components/schemas/SecurityFilterType'
+      type: object
+    SecurityFilterAttributes:
+      description: The object describing a security filter.
+      example:
+        is_enabled: false
+        exclusion_filters:
+        - query: source:staging
+          name: Exclude staging
+        - query: source:staging
+          name: Exclude staging
+        query: service:api
+        filtered_data_type: logs
+        name: Custom security filter
+        version: 1
+        is_builtin: false
+      properties:
+        exclusion_filters:
+          description: The list of exclusion filters applied in this security filter.
+          items:
+            $ref: '#/components/schemas/SecurityFilterExclusionFilterResponse'
+          type: array
+        filtered_data_type:
+          $ref: '#/components/schemas/SecurityFilterFilteredDataType'
+        is_builtin:
+          description: Whether the security filter is the built-in filter.
+          example: false
+          type: boolean
+        is_enabled:
+          description: Whether the security filter is enabled.
+          example: false
+          type: boolean
+        name:
+          description: The security filter name.
+          example: Custom security filter
+          type: string
+        query:
+          description: The security filter query. Logs accepted by this query will
+            be accepted by this filter.
+          example: service:api
+          type: string
+        version:
+          description: The version of the security filter.
+          example: 1
+          format: int32
+          maximum: 2147483647
+          type: integer
+      type: object
+    SecurityFilterCreateAttributes:
+      description: Object containing the attributes of the security filter to be created.
+      example:
+        is_enabled: true
+        exclusion_filters:
+        - name: Exclude staging
+          query: source:staging
+        query: service:api
+        filtered_data_type: logs
+        name: Custom security filter
+      properties:
+        exclusion_filters:
+          description: Exclusion filters to exclude some logs from the security filter.
+          example:
+          - name: Exclude staging
+            query: source:staging
+          items:
+            $ref: '#/components/schemas/SecurityFilterExclusionFilter'
+          type: array
+        filtered_data_type:
+          $ref: '#/components/schemas/SecurityFilterFilteredDataType'
+        is_enabled:
+          description: Whether the security filter is enabled.
+          example: true
+          type: boolean
+        name:
+          description: The name of the security filter.
+          example: Custom security filter
+          type: string
+        query:
+          description: The query of the security filter.
+          example: service:api
+          type: string
+      required:
+      - exclusion_filters
+      - filtered_data_type
+      - is_enabled
+      - name
+      - query
+      type: object
+    SecurityFilterCreateData:
+      description: Object for a single security filter.
+      example:
+        attributes:
+          is_enabled: true
+          exclusion_filters:
+          - name: Exclude staging
+            query: source:staging
+          query: service:api
+          filtered_data_type: logs
+          name: Custom security filter
+        type: security_filters
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SecurityFilterCreateAttributes'
+        type:
+          $ref: '#/components/schemas/SecurityFilterType'
+      required:
+      - attributes
+      - type
+      type: object
+    SecurityFilterCreateRequest:
+      description: Request object that includes the security filter that you would
+        like to create.
+      example:
+        data:
+          attributes:
+            is_enabled: true
+            exclusion_filters:
+            - name: Exclude staging
+              query: source:staging
+            query: service:api
+            filtered_data_type: logs
+            name: Custom security filter
+          type: security_filters
+      properties:
+        data:
+          $ref: '#/components/schemas/SecurityFilterCreateData'
+      required:
+      - data
+      type: object
+    SecurityFilterDeleteResponse:
+      description: Response object which only includes the metadata.
+      example:
+        meta:
+          warning: All the security filters are disabled. As a result, no logs are
+            being analyzed.
+      properties:
+        meta:
+          $ref: '#/components/schemas/SecurityFilterMeta'
+      type: object
+    SecurityFilterExclusionFilter:
+      description: Exclusion filter for the security filter.
+      example:
+        name: Exclude staging
+        query: source:staging
+      properties:
+        name:
+          description: Exclusion filter name.
+          example: Exclude staging
+          type: string
+        query:
+          description: Exclusion filter query. Logs that match this query are excluded
+            from the security filter.
+          example: source:staging
+          type: string
+      required:
+      - name
+      - query
+      type: object
+    SecurityFilterExclusionFilterResponse:
+      description: A single exclusion filter.
+      example:
+        query: source:staging
+        name: Exclude staging
+      properties:
+        name:
+          description: The exclusion filter name.
+          example: Exclude staging
+          type: string
+        query:
+          description: The exclusion filter query.
+          example: source:staging
+          type: string
+      type: object
+    SecurityFilterFilteredDataType:
+      description: The filtered data type.
+      enum:
+      - logs
+      example: logs
+      type: string
+      x-enum-varnames:
+      - LOGS
+    SecurityFilterID:
+      description: The ID of the security filter.
+      example: 3dd-0uc-h1s
+      type: string
+    SecurityFilterMeta:
+      description: Optional metadata associated to the response.
+      example:
+        warning: All the security filters are disabled. As a result, no logs are being
+          analyzed.
+      properties:
+        warning:
+          description: A warning message.
+          example: All the security filters are disabled. As a result, no logs are
+            being analyzed.
+          type: string
+      type: object
+    SecurityFilterResponse:
+      description: Response object which includes a single security filter.
+      example:
+        data:
+          attributes:
+            is_enabled: false
+            exclusion_filters:
+            - query: source:staging
+              name: Exclude staging
+            - query: source:staging
+              name: Exclude staging
+            query: service:api
+            filtered_data_type: logs
+            name: Custom security filter
+            version: 1
+            is_builtin: false
+          id: 3dd-0uc-h1s
+          type: security_filters
+        meta:
+          warning: All the security filters are disabled. As a result, no logs are
+            being analyzed.
+      properties:
+        data:
+          $ref: '#/components/schemas/SecurityFilter'
+        meta:
+          $ref: '#/components/schemas/SecurityFilterMeta'
+      type: object
+    SecurityFilterType:
+      default: security_filters
+      description: The type of the resource. The value should always be `security_filters`.
+      enum:
+      - security_filters
+      example: security_filters
+      type: string
+      x-enum-varnames:
+      - SECURITY_FILTERS
+    SecurityFilterUpdateAttributes:
+      description: The security filters properties to be updated.
+      example:
+        is_enabled: true
+        exclusion_filters: []
+        query: service:api
+        filtered_data_type: logs
+        name: Custom security filter
+        version: 1
+      properties:
+        exclusion_filters:
+          description: Exclusion filters to exclude some logs from the security filter.
+          example: []
+          items:
+            $ref: '#/components/schemas/SecurityFilterExclusionFilter'
+          type: array
+        filtered_data_type:
+          $ref: '#/components/schemas/SecurityFilterFilteredDataType'
+        is_enabled:
+          description: Whether the security filter is enabled.
+          example: true
+          type: boolean
+        name:
+          description: The name of the security filter.
+          example: Custom security filter
+          type: string
+        query:
+          description: The query of the security filter.
+          example: service:api
+          type: string
+        version:
+          description: The version of the security filter to update.
+          example: 1
+          format: int32
+          maximum: 2147483647
+          type: integer
+      type: object
+    SecurityFilterUpdateData:
+      description: The new security filter properties.
+      example:
+        attributes:
+          is_enabled: true
+          exclusion_filters: []
+          query: service:api
+          filtered_data_type: logs
+          name: Custom security filter
+          version: 1
+        type: security_filters
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SecurityFilterUpdateAttributes'
+        type:
+          $ref: '#/components/schemas/SecurityFilterType'
+      required:
+      - attributes
+      - type
+      type: object
+    SecurityFilterUpdateRequest:
+      description: The new security filter body.
+      example:
+        data:
+          attributes:
+            is_enabled: true
+            exclusion_filters: []
+            query: service:api
+            filtered_data_type: logs
+            name: Custom security filter
+            version: 1
+          type: security_filters
+      properties:
+        data:
+          $ref: '#/components/schemas/SecurityFilterUpdateData'
+      required:
+      - data
+      type: object
+    SecurityFiltersResponse:
+      description: All the available security filters objects.
+      example:
+        data:
+        - attributes:
+            is_enabled: false
+            exclusion_filters:
+            - query: source:staging
+              name: Exclude staging
+            - query: source:staging
+              name: Exclude staging
+            query: service:api
+            filtered_data_type: logs
+            name: Custom security filter
+            version: 1
+            is_builtin: false
+          id: 3dd-0uc-h1s
+          type: security_filters
+        - attributes:
+            is_enabled: false
+            exclusion_filters:
+            - query: source:staging
+              name: Exclude staging
+            - query: source:staging
+              name: Exclude staging
+            query: service:api
+            filtered_data_type: logs
+            name: Custom security filter
+            version: 1
+            is_builtin: false
+          id: 3dd-0uc-h1s
+          type: security_filters
+        meta:
+          warning: All the security filters are disabled. As a result, no logs are
+            being analyzed.
+      properties:
+        data:
+          description: A list of security filters objects.
+          items:
+            $ref: '#/components/schemas/SecurityFilter'
+          type: array
+        meta:
+          $ref: '#/components/schemas/SecurityFilterMeta'
+      type: object
     SecurityMonitoringFilter:
       description: The rule's suppression filter.
       example:

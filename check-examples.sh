@@ -13,7 +13,7 @@ for f in examples/$1/*/*.go ; do
     mv $f $df/main.go
 done
 
-ls examples/$1/*/*/main.go | xargs -P $(($(nproc)*2)) -n 1 go build -o /dev/null
+ls -d ./examples/$1/*/* | xargs go build -o /dev/null -ldflags "-s -w"
 if [ $? -ne 0 ]; then
     echo -e "Failed to build examples"
     exit 1

@@ -260,7 +260,7 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetUsageSyntheticsAPI**](docs/UsageMeteringApi.md#getusagesyntheticsapi) | **Get** /api/v1/usage/synthetics_api | Get hourly usage for Synthetics API Checks
 *UsageMeteringApi* | [**GetUsageSyntheticsBrowser**](docs/UsageMeteringApi.md#getusagesyntheticsbrowser) | **Get** /api/v1/usage/synthetics_browser | Get hourly usage for Synthetics Browser Checks
 *UsageMeteringApi* | [**GetUsageTimeseries**](docs/UsageMeteringApi.md#getusagetimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics
-*UsageMeteringApi* | [**GetUsageTopAvgMetrics**](docs/UsageMeteringApi.md#getusagetopavgmetrics) | **Get** /api/v1/usage/top_avg_metrics | Get top custom metrics by hourly average
+*UsageMeteringApi* | [**GetUsageTopAvgMetrics**](docs/UsageMeteringApi.md#getusagetopavgmetrics) | **Get** /api/v1/usage/top_avg_metrics | Get all custom metrics by hourly average
 *UsageMeteringApi* | [**GetUsageTrace**](docs/UsageMeteringApi.md#getusagetrace) | **Get** /api/v1/usage/traces | Get hourly usage for Trace Search
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v1/user | Create a user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v1/user/{user_handle} | Disable a user
@@ -529,6 +529,8 @@ Class | Method | HTTP request | Description
  - [NotebookUpdateDataAttributes](docs/NotebookUpdateDataAttributes.md)
  - [NotebookUpdateRequest](docs/NotebookUpdateRequest.md)
  - [NotebooksResponse](docs/NotebooksResponse.md)
+ - [NotebooksResponseData](docs/NotebooksResponseData.md)
+ - [NotebooksResponseDataAttributes](docs/NotebooksResponseDataAttributes.md)
  - [NotebooksResponseMeta](docs/NotebooksResponseMeta.md)
  - [NotebooksResponsePage](docs/NotebooksResponsePage.md)
  - [Organization](docs/Organization.md)

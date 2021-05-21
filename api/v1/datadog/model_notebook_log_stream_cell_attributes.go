@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// NotebookLogStreamCellAttributes The attributes of a notebook log stream cell.
+// NotebookLogStreamCellAttributes The attributes of a notebook `log_stream` cell.
 type NotebookLogStreamCellAttributes struct {
 	Definition LogStreamWidgetDefinition `json:"definition"`
 	GraphSize  *NotebookGraphSize        `json:"graph_size,omitempty"`

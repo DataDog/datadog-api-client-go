@@ -19,11 +19,11 @@ type NotebookResponseDataAttributes struct {
 	Author *NotebookAuthor `json:"author,omitempty"`
 	// List of cells to display in the notebook.
 	Cells []NotebookCellResponse `json:"cells"`
-	// UTC time stamp.
+	// UTC time stamp for when the notebook was created.
 	Created *time.Time `json:"created,omitempty"`
-	// UTC time stamp.
+	// UTC time stamp for when the notebook was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
-	// Notebook name.
+	// The name of the notebook.
 	Name   string             `json:"name"`
 	Status *NotebookStatus    `json:"status,omitempty"`
 	Time   NotebookGlobalTime `json:"time"`

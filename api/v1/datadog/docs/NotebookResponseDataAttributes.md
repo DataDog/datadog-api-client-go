@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Author** | Pointer to [**NotebookAuthor**](NotebookAuthor.md) |  | [optional] 
 **Cells** | [**[]NotebookCellResponse**](NotebookCellResponse.md) | List of cells to display in the notebook. | 
-**Created** | Pointer to **time.Time** | UTC time stamp. | [optional] [readonly] 
-**Modified** | Pointer to **time.Time** | UTC time stamp. | [optional] [readonly] 
-**Name** | **string** | Notebook name. | 
+**Created** | Pointer to **time.Time** | UTC time stamp for when the notebook was created. | [optional] [readonly] 
+**Modified** | Pointer to **time.Time** | UTC time stamp for when the notebook was last modified. | [optional] [readonly] 
+**Name** | **string** | The name of the notebook. | 
 **Status** | Pointer to [**NotebookStatus**](NotebookStatus.md) |  | [optional] [default to NOTEBOOKSTATUS_PUBLISHED]
 **Time** | [**NotebookGlobalTime**](NotebookGlobalTime.md) |  | 
 

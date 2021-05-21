@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Data** | Pointer to [**[]NotebookResponseData**](NotebookResponseData.md) | List of notebook definitions. | [optional] 
+**Data** | Pointer to [**[]NotebooksResponseData**](NotebooksResponseData.md) | List of notebook definitions. | [optional] 
 **Meta** | Pointer to [**NotebooksResponseMeta**](NotebooksResponseMeta.md) |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *NotebooksResponse) GetData() []NotebookResponseData`
+`func (o *NotebooksResponse) GetData() []NotebooksResponseData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *NotebooksResponse) GetDataOk() (*[]NotebookResponseData, bool)`
+`func (o *NotebooksResponse) GetDataOk() (*[]NotebooksResponseData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *NotebooksResponse) SetData(v []NotebookResponseData)`
+`func (o *NotebooksResponse) SetData(v []NotebooksResponseData)`
 
 SetData sets Data field to given value.
 

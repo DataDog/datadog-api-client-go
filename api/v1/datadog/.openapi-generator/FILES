@@ -310,6 +310,8 @@ docs/NotebookUpdateDataAttributes.md
 docs/NotebookUpdateRequest.md
 docs/NotebooksApi.md
 docs/NotebooksResponse.md
+docs/NotebooksResponseData.md
+docs/NotebooksResponseDataAttributes.md
 docs/NotebooksResponseMeta.md
 docs/NotebooksResponsePage.md
 docs/Organization.md
@@ -890,6 +892,8 @@ model_notebook_update_data.go
 model_notebook_update_data_attributes.go
 model_notebook_update_request.go
 model_notebooks_response.go
+model_notebooks_response_data.go
+model_notebooks_response_data_attributes.go
 model_notebooks_response_meta.go
 model_notebooks_response_page.go
 model_organization.go

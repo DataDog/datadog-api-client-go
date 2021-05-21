@@ -235,7 +235,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewMonitor() // Monitor | Create a monitor request body.
+    body := *datadog.NewMonitor("avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100", datadog.MonitorType("composite")) // Monitor | Create a monitor request body.
 
     configuration := datadog.NewConfiguration()
 
@@ -306,7 +306,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     monitorId := int64(789) // int64 | The ID of the monitor.
-    force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
+    force := "false" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
     optionalParams := datadog.DeleteMonitorOptionalParameters{
         Force: &force,
     }
@@ -463,14 +463,14 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    groupStates := "groupStates_example" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
+    groupStates := "alert" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
     name := "name_example" // string | A string to filter monitors by name. (optional)
-    tags := "tags_example" // string | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. For example, `host:host0`. (optional)
-    monitorTags := "monitorTags_example" // string | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, `service:my-app`. (optional)
+    tags := "host:host0" // string | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. For example, `host:host0`. (optional)
+    monitorTags := "service:my-app" // string | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, `service:my-app`. (optional)
     withDowntimes := true // bool | If this argument is set to true, then the returned data includes all current downtimes for each monitor. (optional)
     idOffset := int64(789) // int64 | Monitor ID offset. (optional)
-    page := int64(789) // int64 | The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. (optional)
-    pageSize := int32(56) // int32 | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a `page_size` limit. However, if page is specified and `page_size` is not, the argument defaults to 100. (optional)
+    page := int64(0) // int64 | The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. (optional)
+    pageSize := int32(20) // int32 | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a `page_size` limit. However, if page is specified and `page_size` is not, the argument defaults to 100. (optional)
     optionalParams := datadog.ListMonitorsOptionalParameters{
         GroupStates: &groupStates,
         Name: &name,
@@ -610,7 +610,7 @@ This endpoint does not have optional parameters.
 
 ## ValidateMonitor
 
-> Monitor ValidateMonitor(ctx, body)
+> interface{} ValidateMonitor(ctx, body)
 
 Validate the monitor provided in the request.
 
@@ -630,7 +630,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewMonitor() // Monitor | Monitor request object
+    body := *datadog.NewMonitor("avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100", datadog.MonitorType("composite")) // Monitor | Monitor request object
 
     configuration := datadog.NewConfiguration()
 
@@ -640,7 +640,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ValidateMonitor`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ValidateMonitor`: Monitor
+    // response from `ValidateMonitor`: interface{}
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
     fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ValidateMonitor:\n%s\n", responseContent)
 }
@@ -662,7 +662,7 @@ This endpoint does not have optional parameters.
 
 ### Return type
 
-[**Monitor**](Monitor.md)
+**interface{}**
 
 ### Authorization
 
