@@ -1300,7 +1300,7 @@ type apiValidateMonitorRequest struct {
  * ValidateMonitor Validate a monitor
  * Validate the monitor provided in the request.
  */
-func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, body Monitor) (Monitor, *_nethttp.Response, error) {
+func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, body Monitor) (interface{}, *_nethttp.Response, error) {
 	req := apiValidateMonitorRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1312,16 +1312,16 @@ func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, body Monitor)
 
 /*
  * Execute executes the request
- * @return Monitor
+ * @return interface{}
  */
-func (a *MonitorsApiService) validateMonitorExecute(r apiValidateMonitorRequest) (Monitor, *_nethttp.Response, error) {
+func (a *MonitorsApiService) validateMonitorExecute(r apiValidateMonitorRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Monitor
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.ValidateMonitor")

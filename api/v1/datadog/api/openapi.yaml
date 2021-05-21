@@ -4238,6 +4238,7 @@ paths:
         name: group_states
         required: false
         schema:
+          example: alert
           type: string
         style: form
       - description: A string to filter monitors by name.
@@ -4256,6 +4257,7 @@ paths:
         name: tags
         required: false
         schema:
+          example: host:host0
           type: string
         style: form
       - description: |-
@@ -4266,6 +4268,7 @@ paths:
         name: monitor_tags
         required: false
         schema:
+          example: service:my-app
           type: string
         style: form
       - description: If this argument is set to true, then the returned data includes
@@ -4293,6 +4296,7 @@ paths:
         name: page
         required: false
         schema:
+          example: 0
           format: int64
           type: integer
         style: form
@@ -4305,6 +4309,7 @@ paths:
         name: page_size
         required: false
         schema:
+          example: 20
           format: int32
           maximum: 1000
           type: integer
@@ -4472,6 +4477,19 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              json-request-body:
+                value:
+                  message: You may need to add web hosts if this is consistently high.
+                  name: Bytes received on host0
+                  options:
+                    no_data_timeframe: 20
+                    notify_no_data: true
+                  query: avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100
+                  tags:
+                  - app:webserver
+                  - frontend
+                  type: metric alert
             schema:
               $ref: '#/components/schemas/Monitor'
         description: Create a monitor request body.
@@ -4569,7 +4587,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Monitor'
+                example: {}
+                type: object
           description: OK
         "400":
           content:
@@ -4611,6 +4630,7 @@ paths:
         name: force
         required: false
         schema:
+          example: "false"
           type: string
         style: form
       responses:
@@ -15018,12 +15038,13 @@ components:
           handle: handle
           email: email
         created: 2000-01-23T04:56:07.000+00:00
-        query: query
+        query: avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100
         message: message
         priority: 3
         restricted_roles:
         - restricted_roles
         - restricted_roles
+        type: metric alert
         multi: true
         tags:
         - tags
@@ -15122,6 +15143,7 @@ components:
           type: integer
         query:
           description: The monitor query.
+          example: avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100
           type: string
         restricted_roles:
           description: A list of role identifiers that can be pulled from the Roles
@@ -15140,6 +15162,9 @@ components:
           type: array
         type:
           $ref: '#/components/schemas/MonitorType'
+      required:
+      - query
+      - type
       type: object
     MonitorDeviceID:
       description: ID of the device the Synthetics monitor is running on. Same as
@@ -15535,6 +15560,7 @@ components:
       - trace-analytics alert
       - slo alert
       - event-v2 alert
+      example: metric alert
       type: string
       x-enum-varnames:
       - COMPOSITE
@@ -15563,6 +15589,7 @@ components:
         restricted_roles:
         - restricted_roles
         - restricted_roles
+        type: metric alert
         multi: true
         tags:
         - tags

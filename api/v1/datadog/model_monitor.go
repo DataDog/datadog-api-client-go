@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -35,21 +36,23 @@ type Monitor struct {
 	// Integer from 1 (high) to 5 (low) indicating alert severity.
 	Priority *int64 `json:"priority,omitempty"`
 	// The monitor query.
-	Query *string `json:"query,omitempty"`
+	Query string `json:"query"`
 	// A list of role identifiers that can be pulled from the Roles API. Cannot be used with `locked` option.
 	RestrictedRoles *[]string     `json:"restricted_roles,omitempty"`
 	State           *MonitorState `json:"state,omitempty"`
 	// Tags associated to your monitor.
-	Tags *[]string    `json:"tags,omitempty"`
-	Type *MonitorType `json:"type,omitempty"`
+	Tags *[]string   `json:"tags,omitempty"`
+	Type MonitorType `json:"type"`
 }
 
 // NewMonitor instantiates a new Monitor object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMonitor() *Monitor {
+func NewMonitor(query string, type_ MonitorType) *Monitor {
 	this := Monitor{}
+	this.Query = query
+	this.Type = type_
 	return &this
 }
 
@@ -424,36 +427,28 @@ func (o *Monitor) SetPriority(v int64) {
 	o.Priority = &v
 }
 
-// GetQuery returns the Query field value if set, zero value otherwise.
+// GetQuery returns the Query field value
 func (o *Monitor) GetQuery() string {
-	if o == nil || o.Query == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Query
+
+	return o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetQueryOk() (*string, bool) {
-	if o == nil || o.Query == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Query, true
+	return &o.Query, true
 }
 
-// HasQuery returns a boolean if a field has been set.
-func (o *Monitor) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetQuery gets a reference to the given string and assigns it to the Query field.
+// SetQuery sets field value
 func (o *Monitor) SetQuery(v string) {
-	o.Query = &v
+	o.Query = v
 }
 
 // GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
@@ -552,36 +547,28 @@ func (o *Monitor) SetTags(v []string) {
 	o.Tags = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *Monitor) GetType() MonitorType {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret MonitorType
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetTypeOk() (*MonitorType, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *Monitor) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given MonitorType and assigns it to the Type field.
+// SetType sets field value
 func (o *Monitor) SetType(v MonitorType) {
-	o.Type = &v
+	o.Type = v
 }
 
 func (o Monitor) MarshalJSON() ([]byte, error) {
@@ -619,7 +606,7 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 	if o.Priority != nil {
 		toSerialize["priority"] = o.Priority
 	}
-	if o.Query != nil {
+	if true {
 		toSerialize["query"] = o.Query
 	}
 	if o.RestrictedRoles != nil {
@@ -631,10 +618,66 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
-	if o.Type != nil {
+	if true {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Query *string      `json:"query"`
+		Type  *MonitorType `json:"type"`
+	}{}
+	all := struct {
+		Created         *time.Time            `json:"created,omitempty"}`
+		Creator         *Creator              `json:"creator,omitempty"}`
+		Deleted         NullableTime          `json:"deleted,omitempty"}`
+		Id              *int64                `json:"id,omitempty"}`
+		Message         *string               `json:"message,omitempty"}`
+		Modified        *time.Time            `json:"modified,omitempty"}`
+		Multi           *bool                 `json:"multi,omitempty"}`
+		Name            *string               `json:"name,omitempty"}`
+		Options         *MonitorOptions       `json:"options,omitempty"}`
+		OverallState    *MonitorOverallStates `json:"overall_state,omitempty"}`
+		Priority        *int64                `json:"priority,omitempty"}`
+		Query           string                `json:"query"}`
+		RestrictedRoles *[]string             `json:"restricted_roles,omitempty"}`
+		State           *MonitorState         `json:"state,omitempty"}`
+		Tags            *[]string             `json:"tags,omitempty"}`
+		Type            MonitorType           `json:"type"}`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Query == nil {
+		return fmt.Errorf("Required field query missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Created = all.Created
+	o.Creator = all.Creator
+	o.Deleted = all.Deleted
+	o.Id = all.Id
+	o.Message = all.Message
+	o.Modified = all.Modified
+	o.Multi = all.Multi
+	o.Name = all.Name
+	o.Options = all.Options
+	o.OverallState = all.OverallState
+	o.Priority = all.Priority
+	o.Query = all.Query
+	o.RestrictedRoles = all.RestrictedRoles
+	o.State = all.State
+	o.Tags = all.Tags
+	o.Type = all.Type
+	return nil
 }
 
 type NullableMonitor struct {

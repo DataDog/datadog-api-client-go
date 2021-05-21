@@ -20,8 +20,8 @@ import (
 func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 	return datadog.Monitor{
 		Name:    tests.UniqueEntityName(ctx, t),
-		Type:    datadog.MONITORTYPE_LOG_ALERT.Ptr(),
-		Query:   datadog.PtrString("logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") > 2"),
+		Type:    datadog.MONITORTYPE_LOG_ALERT,
+		Query:   "logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") > 2",
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: &[]string{
 			"test",
@@ -79,7 +79,7 @@ func TestMonitorValidation(t *testing.T) {
 		Monitor            datadog.Monitor
 		ExpectedStatusCode int
 	}{
-		"empty monitor":   {datadog.Monitor{}, 400},
+		"empty monitor":   {datadog.Monitor{Type: datadog.MONITORTYPE_LOG_ALERT, Query: "query"}, 400},
 		"example monitor": {testMonitor(ctx, t), 200},
 	}
 
@@ -250,8 +250,8 @@ func TestMonitorsCreateErrors(t *testing.T) {
 		Body               datadog.Monitor
 		ExpectedStatusCode int
 	}{
-		"400 Bad Request": {WithTestAuth, datadog.Monitor{}, 400},
-		"403 Forbidden":   {WithFakeAuth, datadog.Monitor{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.Monitor{Type: datadog.MONITORTYPE_LOG_ALERT, Query: "query"}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.Monitor{Type: datadog.MONITORTYPE_LOG_ALERT, Query: "query"}, 403},
 	}
 
 	for name, tc := range testCases {
