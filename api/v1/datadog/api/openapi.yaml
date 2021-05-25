@@ -22562,6 +22562,7 @@ components:
           lambda_percentage: 5.025004791520295
           npm_host_usage: 6.683562403749608
           container_percentage: 2.027123023002322
+        tag_config_source: tag_config_source
         org_name: org_name
         public_id: public_id
         tags:
@@ -22578,6 +22579,11 @@ components:
           type: string
         public_id:
           description: The organization public ID.
+          type: string
+        tag_config_source:
+          description: The source of the usage attribution tag configuration and the
+            selected tags in the format `<source_org_name>:<selected tag 1>-<selected
+            tag 2>-<selected tag 3>`.
           type: string
         tags:
           additionalProperties:
@@ -22684,6 +22690,7 @@ components:
             lambda_percentage: 5.025004791520295
             npm_host_usage: 6.683562403749608
             container_percentage: 2.027123023002322
+          tag_config_source: tag_config_source
           org_name: org_name
           public_id: public_id
           tags:
@@ -22719,6 +22726,7 @@ components:
             lambda_percentage: 5.025004791520295
             npm_host_usage: 6.683562403749608
             container_percentage: 2.027123023002322
+          tag_config_source: tag_config_source
           org_name: org_name
           public_id: public_id
           tags:
