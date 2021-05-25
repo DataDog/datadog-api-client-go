@@ -5,6 +5,8 @@ on:
     branches:
       - master
     types: ["opened", "reopened", "ready_for_review", "synchronize"]
+  schedule:
+    - cron: "0 */3 * * *"
 
 concurrency:
   group: integration-${{ github.head_ref }}
