@@ -7,7 +7,7 @@ on:
     types: ["opened", "reopened", "ready_for_review", "synchronize"]
 
 concurrency:
-  group: ${{ github.head_ref }}
+  group: integration-${{ github.head_ref }}
   cancel-in-progress: true
 
 jobs:
