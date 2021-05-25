@@ -6,6 +6,10 @@ on:
       - master
     types: ["opened", "reopened", "ready_for_review", "synchronize"]
 
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
 jobs:
   integration_tests:
     runs-on: ubuntu-latest
