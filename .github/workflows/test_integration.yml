@@ -6,7 +6,7 @@ on:
       - master
     types: ["opened", "reopened", "ready_for_review", "synchronize"]
   schedule:
-    - cron: "0 */3 * * *"
+    - cron: "0 0 * * *"
 
 concurrency:
   group: integration-${{ github.head_ref }}
