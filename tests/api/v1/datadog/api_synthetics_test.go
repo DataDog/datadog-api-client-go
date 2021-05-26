@@ -929,8 +929,8 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	td := allTests.GetTests()
-	assert.NoError(isPublicIDPresent(publicIDAPI, td))
-	assert.NoError(isPublicIDPresent(publicIDBrowser, td))
+	assert.NoError(isTestPublicIDPresent(publicIDAPI, td))
+	assert.NoError(isTestPublicIDPresent(publicIDBrowser, td))
 }
 
 func TestSyntheticsDeleteTestErrors(t *testing.T) {
@@ -938,6 +938,8 @@ func TestSyntheticsDeleteTestErrors(t *testing.T) {
 	defer finish()
 
 	testCases := map[string]struct {
+
+
 		Ctx                func(context.Context) context.Context
 		Body               datadog.SyntheticsDeleteTestsPayload
 		ExpectedStatusCode int
@@ -1316,13 +1318,22 @@ func TestSyntheticsCreateTest402Error(t *testing.T) {
 	assert.NotEmpty(apiError.GetErrors())
 }
 
-func isPublicIDPresent(publicID string, syntTests []datadog.SyntheticsTestDetails) error {
+func isTestPublicIDPresent(publicID string, syntTests []datadog.SyntheticsTestDetails) error {
 	for _, st := range syntTests {
 		if st.GetPublicId() == publicID {
 			return nil
 		}
 	}
 	return fmt.Errorf("Synthetics tests %s expected but not found", publicID)
+}
+
+func isGlobalVariableIdPresent(id string, syntGlobalVariables []datadog.SyntheticsGlobalVariable) error {
+	for _, st := range syntGlobalVariables {
+		if st.GetId() == id {
+			return nil
+		}
+	}
+	return fmt.Errorf("Synthetics global variable %s expected but not found", id)
 }
 
 func deleteSyntheticsTestIfExists(ctx context.Context, t *testing.T, testID string) {
@@ -1382,6 +1393,16 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(result.GetName(), variable.GetName())
+
+	var allVariables datadog.SyntheticsListGlobalVariablesResponse
+	allVariables, httpresp, err = Client(ctx).SyntheticsApi.ListGlobalVariables(ctx)
+
+	if err != nil {
+		t.Fatalf("Error getting all Synthetics global variable: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	variables := allVariables.GetVariables()
+	assert.NoError(isGlobalVariableIdPresent(result.GetId(), variables))
 
 	// Edit variable
 	updatedName := fmt.Sprintf("%s_UPDATED", variable.GetName())
