@@ -45,7 +45,7 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
+			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertionTextHTML),
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
 				datadog.SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion(targetJSONPath),
@@ -53,7 +53,7 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
 				datadog.SyntheticsConfigVariable{
 					Name:    "PROPERTY",
-					Example: "content-type",
+					Example: datadog.PtrString("content-type"),
 					Pattern: datadog.PtrString("content-type"),
 					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
@@ -98,16 +98,20 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 	}
 }
 
-func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
+func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T, globalVariable datadog.SyntheticsGlobalVariable) datadog.SyntheticsAPITest {
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{},
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
 				datadog.SyntheticsConfigVariable{
 					Name:    "PROPERTY",
-					Example: "content-type",
+					Example: datadog.PtrString("content-type"),
 					Pattern: datadog.PtrString("content-type"),
 					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+				},
+				datadog.SyntheticsConfigVariable{
+					Name: "VARIABLE_NAME",
+					Id:   datadog.PtrString(globalVariable.GetId()),
+					Type: datadog.SYNTHETICSCONFIGVARIABLETYPE_GLOBAL,
 				},
 			},
 			Steps: &[]datadog.SyntheticsAPIStep{
@@ -163,7 +167,7 @@ func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.S
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
+			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
 			},
 			Request: &datadog.SyntheticsTestRequest{
@@ -191,7 +195,7 @@ func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.S
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
+			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(recordAssertion),
 			},
 			Request: &datadog.SyntheticsTestRequest{
@@ -220,7 +224,7 @@ func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
+			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(latencyAssertion),
 			},
 			Request: &datadog.SyntheticsTestRequest{
@@ -1602,8 +1606,22 @@ func TestSyntheticsAPIMultistepTestEndpointLifecycle(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
+	// Create global variable for test config
+	variable := datadog.SyntheticsGlobalVariable{
+		Name:        strings.Replace(strings.ToUpper(*tests.UniqueEntityName(ctx, t)), "-", "_", -1),
+		Description: "variable description",
+		Tags:        []string{"synthetics"},
+		Value: datadog.SyntheticsGlobalVariableValue{
+			Secure: datadog.PtrBool(false),
+			Value:  datadog.PtrString("VARIABLE_VALUE"),
+		},
+	}
+
+	// Create variable
+	globalVariable, httpresp, err := Client(ctx).SyntheticsApi.CreateGlobalVariable(ctx, variable)
+
 	// Create API test
-	testSyntheticsAPI := getTestSyntheticsAPIMultistep(ctx, t)
+	testSyntheticsAPI := getTestSyntheticsAPIMultistep(ctx, t, globalVariable)
 	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
 		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
