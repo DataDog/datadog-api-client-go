@@ -16,12 +16,12 @@ jobs:
   integration_tests:
     runs-on: ubuntu-latest
     if: >
-      (github.event_name == "pull_request" &&
+      (github.event_name == 'pull_request' &&
       github.event.pull_request.draft == false &&
       !contains(github.event.pull_request.labels.*.name, 'ci/skip') &&
       !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/') &&
       contains(github.event.pull_request.labels.*.name, 'ci/integrations')) ||
-      github.event_name == "schedule"
+      github.event_name == 'schedule'
     services:
       datadog-agent:
         image: datadog/agent:latest
