@@ -166,6 +166,8 @@ Class | Method | HTTP request | Description
 *MonitorsApi* | [**DeleteMonitor**](docs/MonitorsApi.md#deletemonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete a monitor
 *MonitorsApi* | [**GetMonitor**](docs/MonitorsApi.md#getmonitor) | **Get** /api/v1/monitor/{monitor_id} | Get a monitor&#39;s details
 *MonitorsApi* | [**ListMonitors**](docs/MonitorsApi.md#listmonitors) | **Get** /api/v1/monitor | Get all monitor details
+*MonitorsApi* | [**SearchMonitorGroups**](docs/MonitorsApi.md#searchmonitorgroups) | **Get** /api/v1/monitor/groups/search | Monitors group search
+*MonitorsApi* | [**SearchMonitors**](docs/MonitorsApi.md#searchmonitors) | **Get** /api/v1/monitor/search | Monitors search
 *MonitorsApi* | [**UpdateMonitor**](docs/MonitorsApi.md#updatemonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
 *MonitorsApi* | [**ValidateMonitor**](docs/MonitorsApi.md#validatemonitor) | **Post** /api/v1/monitor/validate | Validate a monitor
 *NotebooksApi* | [**CreateNotebook**](docs/NotebooksApi.md#createnotebook) | **Post** /api/v1/notebooks | Create a notebook
@@ -481,9 +483,17 @@ Class | Method | HTTP request | Description
  - [MetricsQueryUnit](docs/MetricsQueryUnit.md)
  - [Monitor](docs/Monitor.md)
  - [MonitorDeviceID](docs/MonitorDeviceID.md)
+ - [MonitorGroupSearchResponse](docs/MonitorGroupSearchResponse.md)
+ - [MonitorGroupSearchResponseCounts](docs/MonitorGroupSearchResponseCounts.md)
+ - [MonitorGroupSearchResult](docs/MonitorGroupSearchResult.md)
  - [MonitorOptions](docs/MonitorOptions.md)
  - [MonitorOptionsAggregation](docs/MonitorOptionsAggregation.md)
  - [MonitorOverallStates](docs/MonitorOverallStates.md)
+ - [MonitorSearchResponse](docs/MonitorSearchResponse.md)
+ - [MonitorSearchResponseCounts](docs/MonitorSearchResponseCounts.md)
+ - [MonitorSearchResponseMetadata](docs/MonitorSearchResponseMetadata.md)
+ - [MonitorSearchResult](docs/MonitorSearchResult.md)
+ - [MonitorSearchResultNotification](docs/MonitorSearchResultNotification.md)
  - [MonitorState](docs/MonitorState.md)
  - [MonitorStateGroup](docs/MonitorStateGroup.md)
  - [MonitorSummaryWidgetDefinition](docs/MonitorSummaryWidgetDefinition.md)
