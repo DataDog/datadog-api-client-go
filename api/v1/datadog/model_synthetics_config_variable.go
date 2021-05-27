@@ -16,7 +16,9 @@ import (
 // SyntheticsConfigVariable Object defining a variable that can be used in your test configuration.
 type SyntheticsConfigVariable struct {
 	// Example for the variable.
-	Example string `json:"example"`
+	Example *string `json:"example,omitempty"`
+	// ID of the variable for global variables.
+	Id *string `json:"id,omitempty"`
 	// Name of the variable.
 	Name string `json:"name"`
 	// Pattern of the variable.
@@ -28,9 +30,8 @@ type SyntheticsConfigVariable struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsConfigVariable(example string, name string, type_ SyntheticsConfigVariableType) *SyntheticsConfigVariable {
+func NewSyntheticsConfigVariable(name string, type_ SyntheticsConfigVariableType) *SyntheticsConfigVariable {
 	this := SyntheticsConfigVariable{}
-	this.Example = example
 	this.Name = name
 	this.Type = type_
 	return &this
@@ -44,28 +45,68 @@ func NewSyntheticsConfigVariableWithDefaults() *SyntheticsConfigVariable {
 	return &this
 }
 
-// GetExample returns the Example field value
+// GetExample returns the Example field value if set, zero value otherwise.
 func (o *SyntheticsConfigVariable) GetExample() string {
-	if o == nil {
+	if o == nil || o.Example == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Example
+	return *o.Example
 }
 
-// GetExampleOk returns a tuple with the Example field value
+// GetExampleOk returns a tuple with the Example field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SyntheticsConfigVariable) GetExampleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Example == nil {
 		return nil, false
 	}
-	return &o.Example, true
+	return o.Example, true
 }
 
-// SetExample sets field value
+// HasExample returns a boolean if a field has been set.
+func (o *SyntheticsConfigVariable) HasExample() bool {
+	if o != nil && o.Example != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExample gets a reference to the given string and assigns it to the Example field.
 func (o *SyntheticsConfigVariable) SetExample(v string) {
-	o.Example = v
+	o.Example = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *SyntheticsConfigVariable) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsConfigVariable) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *SyntheticsConfigVariable) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *SyntheticsConfigVariable) SetId(v string) {
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -150,8 +191,11 @@ func (o *SyntheticsConfigVariable) SetType(v SyntheticsConfigVariableType) {
 
 func (o SyntheticsConfigVariable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Example != nil {
 		toSerialize["example"] = o.Example
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if true {
 		toSerialize["name"] = o.Name
@@ -167,12 +211,12 @@ func (o SyntheticsConfigVariable) MarshalJSON() ([]byte, error) {
 
 func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
 	required := struct {
-		Example *string                       `json:"example"`
-		Name    *string                       `json:"name"`
-		Type    *SyntheticsConfigVariableType `json:"type"`
+		Name *string                       `json:"name"`
+		Type *SyntheticsConfigVariableType `json:"type"`
 	}{}
 	all := struct {
-		Example string                       `json:"example"}`
+		Example *string                      `json:"example,omitempty"}`
+		Id      *string                      `json:"id,omitempty"}`
 		Name    string                       `json:"name"}`
 		Pattern *string                      `json:"pattern,omitempty"}`
 		Type    SyntheticsConfigVariableType `json:"type"}`
@@ -180,9 +224,6 @@ func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
-	}
-	if required.Example == nil {
-		return fmt.Errorf("Required field example missing")
 	}
 	if required.Name == nil {
 		return fmt.Errorf("Required field name missing")
@@ -195,6 +236,7 @@ func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Example = all.Example
+	o.Id = all.Id
 	o.Name = all.Name
 	o.Pattern = all.Pattern
 	o.Type = all.Type
