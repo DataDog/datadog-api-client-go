@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Assertions** | [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [default to []]
+**Assertions** | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [optional] [default to []]
 **ConfigVariables** | Pointer to [**[]SyntheticsConfigVariable**](SyntheticsConfigVariable.md) | Array of variables used for the test. | [optional] 
 **Request** | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | [optional] 
 **Steps** | Pointer to [**[]SyntheticsAPIStep**](SyntheticsAPIStep.md) | When the test subtype is &#x60;multi&#x60;, the steps of the test. | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewSyntheticsAPITestConfig
 
-`func NewSyntheticsAPITestConfig(assertions []SyntheticsAssertion, ) *SyntheticsAPITestConfig`
+`func NewSyntheticsAPITestConfig() *SyntheticsAPITestConfig`
 
 NewSyntheticsAPITestConfig instantiates a new SyntheticsAPITestConfig object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetAssertions sets Assertions field to given value.
 
+### HasAssertions
+
+`func (o *SyntheticsAPITestConfig) HasAssertions() bool`
+
+HasAssertions returns a boolean if a field has been set.
 
 ### GetConfigVariables
 
