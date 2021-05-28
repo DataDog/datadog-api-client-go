@@ -221,6 +221,7 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**GetGlobalVariable**](docs/SyntheticsApi.md#getglobalvariable) | **Get** /api/v1/synthetics/variables/{variable_id} | Get a global variable
 *SyntheticsApi* | [**GetPrivateLocation**](docs/SyntheticsApi.md#getprivatelocation) | **Get** /api/v1/synthetics/private-locations/{location_id} | Get a private location
 *SyntheticsApi* | [**GetTest**](docs/SyntheticsApi.md#gettest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration
+*SyntheticsApi* | [**ListGlobalVariables**](docs/SyntheticsApi.md#listglobalvariables) | **Get** /api/v1/synthetics/variables | Get all global variables
 *SyntheticsApi* | [**ListLocations**](docs/SyntheticsApi.md#listlocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 *SyntheticsApi* | [**ListTests**](docs/SyntheticsApi.md#listtests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
 *SyntheticsApi* | [**TriggerCITests**](docs/SyntheticsApi.md#triggercitests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger tests from CI/CD pipelines
@@ -667,6 +668,7 @@ Class | Method | HTTP request | Description
  - [SyntheticsGlobalVariableParseTestOptionsType](docs/SyntheticsGlobalVariableParseTestOptionsType.md)
  - [SyntheticsGlobalVariableParserType](docs/SyntheticsGlobalVariableParserType.md)
  - [SyntheticsGlobalVariableValue](docs/SyntheticsGlobalVariableValue.md)
+ - [SyntheticsListGlobalVariablesResponse](docs/SyntheticsListGlobalVariablesResponse.md)
  - [SyntheticsListTestsResponse](docs/SyntheticsListTestsResponse.md)
  - [SyntheticsLocation](docs/SyntheticsLocation.md)
  - [SyntheticsLocations](docs/SyntheticsLocations.md)
