@@ -31,9 +31,6 @@ jobs:
           DD_API_KEY: ${{ secrets.DD_API_KEY }}
           DD_HOSTNAME: "none"
           DD_INSIDE_CI: "true"
-    env:
-      APIGENTOOLS_LANG: go
-      APIGENTOOLS_VERBOSE: true
     steps:
       - name: Install Go
         uses: actions/setup-go@v2
