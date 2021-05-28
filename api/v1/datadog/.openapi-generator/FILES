@@ -454,6 +454,7 @@ docs/SyntheticsGlobalVariableParseTestOptions.md
 docs/SyntheticsGlobalVariableParseTestOptionsType.md
 docs/SyntheticsGlobalVariableParserType.md
 docs/SyntheticsGlobalVariableValue.md
+docs/SyntheticsListGlobalVariablesResponse.md
 docs/SyntheticsListTestsResponse.md
 docs/SyntheticsLocation.md
 docs/SyntheticsLocations.md
@@ -1036,6 +1037,7 @@ model_synthetics_global_variable_parse_test_options.go
 model_synthetics_global_variable_parse_test_options_type.go
 model_synthetics_global_variable_parser_type.go
 model_synthetics_global_variable_value.go
+model_synthetics_list_global_variables_response.go
 model_synthetics_list_tests_response.go
 model_synthetics_location.go
 model_synthetics_locations.go

@@ -942,8 +942,6 @@ func TestSyntheticsDeleteTestErrors(t *testing.T) {
 	defer finish()
 
 	testCases := map[string]struct {
-
-
 		Ctx                func(context.Context) context.Context
 		Body               datadog.SyntheticsDeleteTestsPayload
 		ExpectedStatusCode int
