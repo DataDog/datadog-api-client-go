@@ -243,8 +243,10 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetTracingWithoutLimits**](docs/UsageMeteringApi.md#gettracingwithoutlimits) | **Get** /api/v1/usage/tracing-without-limits | Get hourly usage for tracing without limits
 *UsageMeteringApi* | [**GetUsageAnalyzedLogs**](docs/UsageMeteringApi.md#getusageanalyzedlogs) | **Get** /api/v1/usage/analyzed_logs | Get hourly usage for analyzed logs
 *UsageMeteringApi* | [**GetUsageAttribution**](docs/UsageMeteringApi.md#getusageattribution) | **Get** /api/v1/usage/attribution | Get Usage Attribution
+*UsageMeteringApi* | [**GetUsageAuditLogs**](docs/UsageMeteringApi.md#getusageauditlogs) | **Get** /api/v1/usage/audit_logs | Get hourly usage for audit logs
 *UsageMeteringApi* | [**GetUsageBillableSummary**](docs/UsageMeteringApi.md#getusagebillablesummary) | **Get** /api/v1/usage/billable-summary | Get billable usage across your account
-*UsageMeteringApi* | [**GetUsageComplianceMonitoring**](docs/UsageMeteringApi.md#getusagecompliancemonitoring) | **Get** /api/v1/usage/compliance-monitoring | Get hourly usage for Compliance Monitoring
+*UsageMeteringApi* | [**GetUsageCWS**](docs/UsageMeteringApi.md#getusagecws) | **Get** /api/v1/usage/cws | Get hourly usage for Cloud Workload Security
+*UsageMeteringApi* | [**GetUsageCloudSecurityPostureManagement**](docs/UsageMeteringApi.md#getusagecloudsecurityposturemanagement) | **Get** /api/v1/usage/cspm | Get hourly usage for CSPM
 *UsageMeteringApi* | [**GetUsageFargate**](docs/UsageMeteringApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
 *UsageMeteringApi* | [**GetUsageHosts**](docs/UsageMeteringApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
 *UsageMeteringApi* | [**GetUsageIndexedSpans**](docs/UsageMeteringApi.md#getusageindexedspans) | **Get** /api/v1/usage/indexed-spans | Get hourly usage for indexed spans
@@ -734,12 +736,16 @@ Class | Method | HTTP request | Description
  - [UsageAttributionSort](docs/UsageAttributionSort.md)
  - [UsageAttributionSupportedMetrics](docs/UsageAttributionSupportedMetrics.md)
  - [UsageAttributionValues](docs/UsageAttributionValues.md)
+ - [UsageAuditLogsHour](docs/UsageAuditLogsHour.md)
+ - [UsageAuditLogsResponse](docs/UsageAuditLogsResponse.md)
  - [UsageBillableSummaryBody](docs/UsageBillableSummaryBody.md)
  - [UsageBillableSummaryHour](docs/UsageBillableSummaryHour.md)
  - [UsageBillableSummaryKeys](docs/UsageBillableSummaryKeys.md)
  - [UsageBillableSummaryResponse](docs/UsageBillableSummaryResponse.md)
- - [UsageComplianceHour](docs/UsageComplianceHour.md)
- - [UsageComplianceResponse](docs/UsageComplianceResponse.md)
+ - [UsageCWSHour](docs/UsageCWSHour.md)
+ - [UsageCWSResponse](docs/UsageCWSResponse.md)
+ - [UsageCloudSecurityPostureManagementHour](docs/UsageCloudSecurityPostureManagementHour.md)
+ - [UsageCloudSecurityPostureManagementResponse](docs/UsageCloudSecurityPostureManagementResponse.md)
  - [UsageCustomReportsAttributes](docs/UsageCustomReportsAttributes.md)
  - [UsageCustomReportsData](docs/UsageCustomReportsData.md)
  - [UsageCustomReportsMeta](docs/UsageCustomReportsMeta.md)
