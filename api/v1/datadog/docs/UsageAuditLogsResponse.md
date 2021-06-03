@@ -1,52 +1,52 @@
-# UsageComplianceResponse
+# UsageAuditLogsResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Usage** | Pointer to [**[]UsageComplianceHour**](UsageComplianceHour.md) | Get hourly usage for Compliance Monitoring. | [optional] 
+**Usage** | Pointer to [**[]UsageAuditLogsHour**](UsageAuditLogsHour.md) | Get hourly usage for audit logs. | [optional] 
 
 ## Methods
 
-### NewUsageComplianceResponse
+### NewUsageAuditLogsResponse
 
-`func NewUsageComplianceResponse() *UsageComplianceResponse`
+`func NewUsageAuditLogsResponse() *UsageAuditLogsResponse`
 
-NewUsageComplianceResponse instantiates a new UsageComplianceResponse object
+NewUsageAuditLogsResponse instantiates a new UsageAuditLogsResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUsageComplianceResponseWithDefaults
+### NewUsageAuditLogsResponseWithDefaults
 
-`func NewUsageComplianceResponseWithDefaults() *UsageComplianceResponse`
+`func NewUsageAuditLogsResponseWithDefaults() *UsageAuditLogsResponse`
 
-NewUsageComplianceResponseWithDefaults instantiates a new UsageComplianceResponse object
+NewUsageAuditLogsResponseWithDefaults instantiates a new UsageAuditLogsResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetUsage
 
-`func (o *UsageComplianceResponse) GetUsage() []UsageComplianceHour`
+`func (o *UsageAuditLogsResponse) GetUsage() []UsageAuditLogsHour`
 
 GetUsage returns the Usage field if non-nil, zero value otherwise.
 
 ### GetUsageOk
 
-`func (o *UsageComplianceResponse) GetUsageOk() (*[]UsageComplianceHour, bool)`
+`func (o *UsageAuditLogsResponse) GetUsageOk() (*[]UsageAuditLogsHour, bool)`
 
 GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsage
 
-`func (o *UsageComplianceResponse) SetUsage(v []UsageComplianceHour)`
+`func (o *UsageAuditLogsResponse) SetUsage(v []UsageAuditLogsHour)`
 
 SetUsage sets Usage field to given value.
 
 ### HasUsage
 
-`func (o *UsageComplianceResponse) HasUsage() bool`
+`func (o *UsageAuditLogsResponse) HasUsage() bool`
 
 HasUsage returns a boolean if a field has been set.
 
