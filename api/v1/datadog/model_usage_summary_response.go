@@ -47,6 +47,10 @@ type UsageSummaryResponse struct {
 	CspmHostTop99pSum *int64 `json:"cspm_host_top99p_sum,omitempty"`
 	// Shows the average number of distinct custom metrics over all hours in the current months for all organizations.
 	CustomTsSum *int64 `json:"custom_ts_sum,omitempty"`
+	// Shows the average of all distinct Cloud Workload Security containers over all hours in the current months for all organizations.
+	CwsContainersAvgSum *int64 `json:"cws_containers_avg_sum,omitempty"`
+	// Shows the 99th percentile of all Cloud Workload Security hosts over all hours in the current months for all organizations.
+	CwsHostTop99pSum *int64 `json:"cws_host_top99p_sum,omitempty"`
 	// Shows the last date of usage in the current months for all organizations.
 	EndDate *time.Time `json:"end_date,omitempty"`
 	// Shows the average of all Fargate tasks over all hours in the current months for all organizations.
@@ -643,6 +647,70 @@ func (o *UsageSummaryResponse) HasCustomTsSum() bool {
 // SetCustomTsSum gets a reference to the given int64 and assigns it to the CustomTsSum field.
 func (o *UsageSummaryResponse) SetCustomTsSum(v int64) {
 	o.CustomTsSum = &v
+}
+
+// GetCwsContainersAvgSum returns the CwsContainersAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetCwsContainersAvgSum() int64 {
+	if o == nil || o.CwsContainersAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CwsContainersAvgSum
+}
+
+// GetCwsContainersAvgSumOk returns a tuple with the CwsContainersAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetCwsContainersAvgSumOk() (*int64, bool) {
+	if o == nil || o.CwsContainersAvgSum == nil {
+		return nil, false
+	}
+	return o.CwsContainersAvgSum, true
+}
+
+// HasCwsContainersAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasCwsContainersAvgSum() bool {
+	if o != nil && o.CwsContainersAvgSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCwsContainersAvgSum gets a reference to the given int64 and assigns it to the CwsContainersAvgSum field.
+func (o *UsageSummaryResponse) SetCwsContainersAvgSum(v int64) {
+	o.CwsContainersAvgSum = &v
+}
+
+// GetCwsHostTop99pSum returns the CwsHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetCwsHostTop99pSum() int64 {
+	if o == nil || o.CwsHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CwsHostTop99pSum
+}
+
+// GetCwsHostTop99pSumOk returns a tuple with the CwsHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetCwsHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.CwsHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.CwsHostTop99pSum, true
+}
+
+// HasCwsHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasCwsHostTop99pSum() bool {
+	if o != nil && o.CwsHostTop99pSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCwsHostTop99pSum gets a reference to the given int64 and assigns it to the CwsHostTop99pSum field.
+func (o *UsageSummaryResponse) SetCwsHostTop99pSum(v int64) {
+	o.CwsHostTop99pSum = &v
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
@@ -1782,6 +1850,12 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.CustomTsSum != nil {
 		toSerialize["custom_ts_sum"] = o.CustomTsSum
+	}
+	if o.CwsContainersAvgSum != nil {
+		toSerialize["cws_containers_avg_sum"] = o.CwsContainersAvgSum
+	}
+	if o.CwsHostTop99pSum != nil {
+		toSerialize["cws_host_top99p_sum"] = o.CwsHostTop99pSum
 	}
 	if o.EndDate != nil {
 		toSerialize["end_date"] = o.EndDate

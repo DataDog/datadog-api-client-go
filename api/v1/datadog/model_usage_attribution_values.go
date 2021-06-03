@@ -34,6 +34,14 @@ type UsageAttributionValues struct {
 	CustomTimeseriesPercentage *float64 `json:"custom_timeseries_percentage,omitempty"`
 	// The custom metrics usage by tag(s).
 	CustomTimeseriesUsage *float64 `json:"custom_timeseries_usage,omitempty"`
+	// The percentage of Cloud Workload Security container usage by tag(s)
+	CwsContainerPercentage *float64 `json:"cws_container_percentage,omitempty"`
+	// The Cloud Workload Security container usage by tag(s)
+	CwsContainerUsage *float64 `json:"cws_container_usage,omitempty"`
+	// The percentage of Cloud Workload Security host usage by tag(s)
+	CwsHostPercentage *float64 `json:"cws_host_percentage,omitempty"`
+	// The Cloud Workload Security host usage by tag(s)
+	CwsHostUsage *float64 `json:"cws_host_usage,omitempty"`
 	// The percentage of infrastructure host usage by tag(s).
 	InfraHostPercentage *float64 `json:"infra_host_percentage,omitempty"`
 	// The infrastructure host usage by tag(s).
@@ -403,6 +411,134 @@ func (o *UsageAttributionValues) HasCustomTimeseriesUsage() bool {
 // SetCustomTimeseriesUsage gets a reference to the given float64 and assigns it to the CustomTimeseriesUsage field.
 func (o *UsageAttributionValues) SetCustomTimeseriesUsage(v float64) {
 	o.CustomTimeseriesUsage = &v
+}
+
+// GetCwsContainerPercentage returns the CwsContainerPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetCwsContainerPercentage() float64 {
+	if o == nil || o.CwsContainerPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.CwsContainerPercentage
+}
+
+// GetCwsContainerPercentageOk returns a tuple with the CwsContainerPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetCwsContainerPercentageOk() (*float64, bool) {
+	if o == nil || o.CwsContainerPercentage == nil {
+		return nil, false
+	}
+	return o.CwsContainerPercentage, true
+}
+
+// HasCwsContainerPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasCwsContainerPercentage() bool {
+	if o != nil && o.CwsContainerPercentage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCwsContainerPercentage gets a reference to the given float64 and assigns it to the CwsContainerPercentage field.
+func (o *UsageAttributionValues) SetCwsContainerPercentage(v float64) {
+	o.CwsContainerPercentage = &v
+}
+
+// GetCwsContainerUsage returns the CwsContainerUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetCwsContainerUsage() float64 {
+	if o == nil || o.CwsContainerUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.CwsContainerUsage
+}
+
+// GetCwsContainerUsageOk returns a tuple with the CwsContainerUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetCwsContainerUsageOk() (*float64, bool) {
+	if o == nil || o.CwsContainerUsage == nil {
+		return nil, false
+	}
+	return o.CwsContainerUsage, true
+}
+
+// HasCwsContainerUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasCwsContainerUsage() bool {
+	if o != nil && o.CwsContainerUsage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCwsContainerUsage gets a reference to the given float64 and assigns it to the CwsContainerUsage field.
+func (o *UsageAttributionValues) SetCwsContainerUsage(v float64) {
+	o.CwsContainerUsage = &v
+}
+
+// GetCwsHostPercentage returns the CwsHostPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetCwsHostPercentage() float64 {
+	if o == nil || o.CwsHostPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.CwsHostPercentage
+}
+
+// GetCwsHostPercentageOk returns a tuple with the CwsHostPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetCwsHostPercentageOk() (*float64, bool) {
+	if o == nil || o.CwsHostPercentage == nil {
+		return nil, false
+	}
+	return o.CwsHostPercentage, true
+}
+
+// HasCwsHostPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasCwsHostPercentage() bool {
+	if o != nil && o.CwsHostPercentage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCwsHostPercentage gets a reference to the given float64 and assigns it to the CwsHostPercentage field.
+func (o *UsageAttributionValues) SetCwsHostPercentage(v float64) {
+	o.CwsHostPercentage = &v
+}
+
+// GetCwsHostUsage returns the CwsHostUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetCwsHostUsage() float64 {
+	if o == nil || o.CwsHostUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.CwsHostUsage
+}
+
+// GetCwsHostUsageOk returns a tuple with the CwsHostUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetCwsHostUsageOk() (*float64, bool) {
+	if o == nil || o.CwsHostUsage == nil {
+		return nil, false
+	}
+	return o.CwsHostUsage, true
+}
+
+// HasCwsHostUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasCwsHostUsage() bool {
+	if o != nil && o.CwsHostUsage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCwsHostUsage gets a reference to the given float64 and assigns it to the CwsHostUsage field.
+func (o *UsageAttributionValues) SetCwsHostUsage(v float64) {
+	o.CwsHostUsage = &v
 }
 
 // GetInfraHostPercentage returns the InfraHostPercentage field value if set, zero value otherwise.
@@ -948,6 +1084,18 @@ func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	}
 	if o.CustomTimeseriesUsage != nil {
 		toSerialize["custom_timeseries_usage"] = o.CustomTimeseriesUsage
+	}
+	if o.CwsContainerPercentage != nil {
+		toSerialize["cws_container_percentage"] = o.CwsContainerPercentage
+	}
+	if o.CwsContainerUsage != nil {
+		toSerialize["cws_container_usage"] = o.CwsContainerUsage
+	}
+	if o.CwsHostPercentage != nil {
+		toSerialize["cws_host_percentage"] = o.CwsHostPercentage
+	}
+	if o.CwsHostUsage != nil {
+		toSerialize["cws_host_usage"] = o.CwsHostUsage
 	}
 	if o.InfraHostPercentage != nil {
 		toSerialize["infra_host_percentage"] = o.InfraHostPercentage

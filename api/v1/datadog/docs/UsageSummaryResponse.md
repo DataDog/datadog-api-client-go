@@ -20,6 +20,8 @@ Name | Type | Description | Notes
 **CspmContainerHwmSum** | Pointer to **int64** | Shows the sum of the the high-water marks of Cloud Security Posture Management containers over all hours in the current months for all organizations. | [optional] 
 **CspmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Cloud Security Posture Management hosts over all hours in the current months for all organizations. | [optional] 
 **CustomTsSum** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current months for all organizations. | [optional] 
+**CwsContainersAvgSum** | Pointer to **int64** | Shows the average of all distinct Cloud Workload Security containers over all hours in the current months for all organizations. | [optional] 
+**CwsHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Cloud Workload Security hosts over all hours in the current months for all organizations. | [optional] 
 **EndDate** | Pointer to **time.Time** | Shows the last date of usage in the current months for all organizations. | [optional] 
 **FargateTasksCountAvgSum** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current months for all organizations. | [optional] 
 **FargateTasksCountHwmSum** | Pointer to **int64** | Shows the sum of the high-water marks of all Fargate tasks over all hours in the current months for all organizations. | [optional] 
@@ -473,6 +475,56 @@ SetCustomTsSum sets CustomTsSum field to given value.
 `func (o *UsageSummaryResponse) HasCustomTsSum() bool`
 
 HasCustomTsSum returns a boolean if a field has been set.
+
+### GetCwsContainersAvgSum
+
+`func (o *UsageSummaryResponse) GetCwsContainersAvgSum() int64`
+
+GetCwsContainersAvgSum returns the CwsContainersAvgSum field if non-nil, zero value otherwise.
+
+### GetCwsContainersAvgSumOk
+
+`func (o *UsageSummaryResponse) GetCwsContainersAvgSumOk() (*int64, bool)`
+
+GetCwsContainersAvgSumOk returns a tuple with the CwsContainersAvgSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCwsContainersAvgSum
+
+`func (o *UsageSummaryResponse) SetCwsContainersAvgSum(v int64)`
+
+SetCwsContainersAvgSum sets CwsContainersAvgSum field to given value.
+
+### HasCwsContainersAvgSum
+
+`func (o *UsageSummaryResponse) HasCwsContainersAvgSum() bool`
+
+HasCwsContainersAvgSum returns a boolean if a field has been set.
+
+### GetCwsHostTop99pSum
+
+`func (o *UsageSummaryResponse) GetCwsHostTop99pSum() int64`
+
+GetCwsHostTop99pSum returns the CwsHostTop99pSum field if non-nil, zero value otherwise.
+
+### GetCwsHostTop99pSumOk
+
+`func (o *UsageSummaryResponse) GetCwsHostTop99pSumOk() (*int64, bool)`
+
+GetCwsHostTop99pSumOk returns a tuple with the CwsHostTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCwsHostTop99pSum
+
+`func (o *UsageSummaryResponse) SetCwsHostTop99pSum(v int64)`
+
+SetCwsHostTop99pSum sets CwsHostTop99pSum field to given value.
+
+### HasCwsHostTop99pSum
+
+`func (o *UsageSummaryResponse) HasCwsHostTop99pSum() bool`
+
+HasCwsHostTop99pSum returns a boolean if a field has been set.
 
 ### GetEndDate
 

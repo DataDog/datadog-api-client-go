@@ -8181,6 +8181,57 @@ paths:
       x-menu-order: 30
       x-undo:
         type: safe
+  /api/v1/usage/cws:
+    get:
+      description: Get hourly usage for Cloud Workload Security.
+      operationId: GetUsageCWS
+      parameters:
+      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
+          for usage beginning at this hour.'
+        explode: true
+        in: query
+        name: start_hr
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending
+          **before** this hour.
+        explode: true
+        in: query
+        name: end_hr
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/UsageCWSResponse'
+          description: OK
+        "400":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json;datetime-format=rfc3339:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden - User is not authorized
+      summary: Get hourly usage for Cloud Workload Security
+      tags:
+      - Usage Metering
+      x-menu-order: 31
+      x-undo:
+        type: safe
   /api/v1/usage/fargate:
     get:
       description: Get hourly usage for [Fargate](https://docs.datadoghq.com/integrations/ecs_fargate/).
@@ -13703,43 +13754,43 @@ components:
       example:
         usage:
         - logs_indexed_logs_usage_agg_sum: 6
-          logs_rehydrated_indexed_logs_usage_agg_sum: 6
+          logs_rehydrated_indexed_logs_usage_agg_sum: 3
           retention: retention
-          logs_live_indexed_logs_usage_agg_sum: 5
+          logs_live_indexed_logs_usage_agg_sum: 3
         - logs_indexed_logs_usage_agg_sum: 6
-          logs_rehydrated_indexed_logs_usage_agg_sum: 6
+          logs_rehydrated_indexed_logs_usage_agg_sum: 3
           retention: retention
-          logs_live_indexed_logs_usage_agg_sum: 5
+          logs_live_indexed_logs_usage_agg_sum: 3
         usage_by_month:
           date: date
           usage:
-          - logs_indexed_logs_usage_sum: 1
-            logs_live_indexed_logs_usage_sum: 2
-            logs_rehydrated_indexed_logs_usage_sum: 6
+          - logs_indexed_logs_usage_sum: 6
+            logs_live_indexed_logs_usage_sum: 6
+            logs_rehydrated_indexed_logs_usage_sum: 5
             retention: retention
-          - logs_indexed_logs_usage_sum: 1
-            logs_live_indexed_logs_usage_sum: 2
-            logs_rehydrated_indexed_logs_usage_sum: 6
+          - logs_indexed_logs_usage_sum: 6
+            logs_live_indexed_logs_usage_sum: 6
+            logs_rehydrated_indexed_logs_usage_sum: 5
             retention: retention
         orgs:
           usage:
           - usage:
-            - logs_indexed_logs_usage_sum: 1
-              logs_live_indexed_logs_usage_sum: 2
-              logs_rehydrated_indexed_logs_usage_sum: 6
+            - logs_indexed_logs_usage_sum: 6
+              logs_live_indexed_logs_usage_sum: 6
+              logs_rehydrated_indexed_logs_usage_sum: 5
               retention: retention
-            - logs_indexed_logs_usage_sum: 1
-              logs_live_indexed_logs_usage_sum: 2
-              logs_rehydrated_indexed_logs_usage_sum: 6
+            - logs_indexed_logs_usage_sum: 6
+              logs_live_indexed_logs_usage_sum: 6
+              logs_rehydrated_indexed_logs_usage_sum: 5
               retention: retention
           - usage:
-            - logs_indexed_logs_usage_sum: 1
-              logs_live_indexed_logs_usage_sum: 2
-              logs_rehydrated_indexed_logs_usage_sum: 6
+            - logs_indexed_logs_usage_sum: 6
+              logs_live_indexed_logs_usage_sum: 6
+              logs_rehydrated_indexed_logs_usage_sum: 5
               retention: retention
-            - logs_indexed_logs_usage_sum: 1
-              logs_live_indexed_logs_usage_sum: 2
-              logs_rehydrated_indexed_logs_usage_sum: 6
+            - logs_indexed_logs_usage_sum: 6
+              logs_live_indexed_logs_usage_sum: 6
+              logs_rehydrated_indexed_logs_usage_sum: 5
               retention: retention
       properties:
         orgs:
@@ -13759,13 +13810,13 @@ components:
       example:
         date: date
         usage:
-        - logs_indexed_logs_usage_sum: 1
-          logs_live_indexed_logs_usage_sum: 2
-          logs_rehydrated_indexed_logs_usage_sum: 6
+        - logs_indexed_logs_usage_sum: 6
+          logs_live_indexed_logs_usage_sum: 6
+          logs_rehydrated_indexed_logs_usage_sum: 5
           retention: retention
-        - logs_indexed_logs_usage_sum: 1
-          logs_live_indexed_logs_usage_sum: 2
-          logs_rehydrated_indexed_logs_usage_sum: 6
+        - logs_indexed_logs_usage_sum: 6
+          logs_live_indexed_logs_usage_sum: 6
+          logs_rehydrated_indexed_logs_usage_sum: 5
           retention: retention
       properties:
         date:
@@ -13782,13 +13833,13 @@ components:
       description: Indexed logs usage by retention for a single organization.
       example:
         usage:
-        - logs_indexed_logs_usage_sum: 1
-          logs_live_indexed_logs_usage_sum: 2
-          logs_rehydrated_indexed_logs_usage_sum: 6
+        - logs_indexed_logs_usage_sum: 6
+          logs_live_indexed_logs_usage_sum: 6
+          logs_rehydrated_indexed_logs_usage_sum: 5
           retention: retention
-        - logs_indexed_logs_usage_sum: 1
-          logs_live_indexed_logs_usage_sum: 2
-          logs_rehydrated_indexed_logs_usage_sum: 6
+        - logs_indexed_logs_usage_sum: 6
+          logs_live_indexed_logs_usage_sum: 6
+          logs_rehydrated_indexed_logs_usage_sum: 5
           retention: retention
       properties:
         usage:
@@ -14596,9 +14647,9 @@ components:
         and months for a retention period.
       example:
         logs_indexed_logs_usage_agg_sum: 6
-        logs_rehydrated_indexed_logs_usage_agg_sum: 6
+        logs_rehydrated_indexed_logs_usage_agg_sum: 3
         retention: retention
-        logs_live_indexed_logs_usage_agg_sum: 5
+        logs_live_indexed_logs_usage_agg_sum: 3
       properties:
         logs_indexed_logs_usage_agg_sum:
           description: Total indexed logs for this retention period.
@@ -14621,9 +14672,9 @@ components:
       description: Object containing indexed logs usage grouped by retention period
         and summed.
       example:
-        logs_indexed_logs_usage_sum: 1
-        logs_live_indexed_logs_usage_sum: 2
-        logs_rehydrated_indexed_logs_usage_sum: 6
+        logs_indexed_logs_usage_sum: 6
+        logs_live_indexed_logs_usage_sum: 6
+        logs_rehydrated_indexed_logs_usage_sum: 5
         retention: retention
       properties:
         logs_indexed_logs_usage_sum:
@@ -23088,30 +23139,34 @@ components:
         updated_at: updated_at
         values:
           browser_percentage: 9.301444243932576
-          profiled_hosts_percentage: 6.438423552598547
-          infra_host_percentage: 1.0246457001441578
+          profiled_hosts_percentage: 2.8841621266687802
+          infra_host_percentage: 1.1730742509559433
           apm_host_usage: 7.061401241503109
-          lambda_invocations_usage: 4.965218492984954
-          profiled_hosts_usage: 3.5571952270680973
+          lambda_invocations_usage: 6.683562403749608
+          profiled_hosts_usage: 6.778324963048013
           apm_host_percentage: 2.3021358869347655
+          cws_host_usage: 7.457744773683766
           api_usage: 5.637376656633329
           custom_timeseries_usage: 1.2315135367772556
-          profiled_containers_percentage: 8.762042012749001
-          snmp_usage: 1.284659006116532
+          profiled_containers_percentage: 6.965117697638846
+          cws_container_usage: 1.4894159098541704
+          snmp_usage: 5.944895607614016
           browser_usage: 3.616076749251911
-          infra_host_usage: 1.4894159098541704
-          lambda_functions_usage: 7.457744773683766
+          infra_host_usage: 4.965218492984954
+          lambda_functions_usage: 9.965781217890562
           custom_timeseries_percentage: 7.386281948385884
-          profiled_containers_usage: 9.018348186070783
-          lambda_usage: 9.965781217890562
-          npm_host_percentage: 9.369310271410669
-          snmp_percentage: 6.965117697638846
-          lambda_functions_percentage: 6.84685269835264
-          lambda_invocations_percentage: 1.1730742509559433
+          cws_host_percentage: 6.84685269835264
+          profiled_containers_usage: 1.284659006116532
+          lambda_usage: 9.018348186070783
+          npm_host_percentage: 6.438423552598547
+          snmp_percentage: 6.878052220127876
+          lambda_functions_percentage: 5.025004791520295
+          lambda_invocations_percentage: 9.369310271410669
           api_percentage: 5.962133916683182
           container_usage: 4.145608029883936
-          lambda_percentage: 5.025004791520295
-          npm_host_usage: 6.683562403749608
+          cws_container_percentage: 1.0246457001441578
+          lambda_percentage: 8.762042012749001
+          npm_host_usage: 3.5571952270680973
           container_percentage: 2.027123023002322
         tag_config_source: tag_config_source
         org_name: org_name
@@ -23216,30 +23271,34 @@ components:
           updated_at: updated_at
           values:
             browser_percentage: 9.301444243932576
-            profiled_hosts_percentage: 6.438423552598547
-            infra_host_percentage: 1.0246457001441578
+            profiled_hosts_percentage: 2.8841621266687802
+            infra_host_percentage: 1.1730742509559433
             apm_host_usage: 7.061401241503109
-            lambda_invocations_usage: 4.965218492984954
-            profiled_hosts_usage: 3.5571952270680973
+            lambda_invocations_usage: 6.683562403749608
+            profiled_hosts_usage: 6.778324963048013
             apm_host_percentage: 2.3021358869347655
+            cws_host_usage: 7.457744773683766
             api_usage: 5.637376656633329
             custom_timeseries_usage: 1.2315135367772556
-            profiled_containers_percentage: 8.762042012749001
-            snmp_usage: 1.284659006116532
+            profiled_containers_percentage: 6.965117697638846
+            cws_container_usage: 1.4894159098541704
+            snmp_usage: 5.944895607614016
             browser_usage: 3.616076749251911
-            infra_host_usage: 1.4894159098541704
-            lambda_functions_usage: 7.457744773683766
+            infra_host_usage: 4.965218492984954
+            lambda_functions_usage: 9.965781217890562
             custom_timeseries_percentage: 7.386281948385884
-            profiled_containers_usage: 9.018348186070783
-            lambda_usage: 9.965781217890562
-            npm_host_percentage: 9.369310271410669
-            snmp_percentage: 6.965117697638846
-            lambda_functions_percentage: 6.84685269835264
-            lambda_invocations_percentage: 1.1730742509559433
+            cws_host_percentage: 6.84685269835264
+            profiled_containers_usage: 1.284659006116532
+            lambda_usage: 9.018348186070783
+            npm_host_percentage: 6.438423552598547
+            snmp_percentage: 6.878052220127876
+            lambda_functions_percentage: 5.025004791520295
+            lambda_invocations_percentage: 9.369310271410669
             api_percentage: 5.962133916683182
             container_usage: 4.145608029883936
-            lambda_percentage: 5.025004791520295
-            npm_host_usage: 6.683562403749608
+            cws_container_percentage: 1.0246457001441578
+            lambda_percentage: 8.762042012749001
+            npm_host_usage: 3.5571952270680973
             container_percentage: 2.027123023002322
           tag_config_source: tag_config_source
           org_name: org_name
@@ -23252,30 +23311,34 @@ components:
           updated_at: updated_at
           values:
             browser_percentage: 9.301444243932576
-            profiled_hosts_percentage: 6.438423552598547
-            infra_host_percentage: 1.0246457001441578
+            profiled_hosts_percentage: 2.8841621266687802
+            infra_host_percentage: 1.1730742509559433
             apm_host_usage: 7.061401241503109
-            lambda_invocations_usage: 4.965218492984954
-            profiled_hosts_usage: 3.5571952270680973
+            lambda_invocations_usage: 6.683562403749608
+            profiled_hosts_usage: 6.778324963048013
             apm_host_percentage: 2.3021358869347655
+            cws_host_usage: 7.457744773683766
             api_usage: 5.637376656633329
             custom_timeseries_usage: 1.2315135367772556
-            profiled_containers_percentage: 8.762042012749001
-            snmp_usage: 1.284659006116532
+            profiled_containers_percentage: 6.965117697638846
+            cws_container_usage: 1.4894159098541704
+            snmp_usage: 5.944895607614016
             browser_usage: 3.616076749251911
-            infra_host_usage: 1.4894159098541704
-            lambda_functions_usage: 7.457744773683766
+            infra_host_usage: 4.965218492984954
+            lambda_functions_usage: 9.965781217890562
             custom_timeseries_percentage: 7.386281948385884
-            profiled_containers_usage: 9.018348186070783
-            lambda_usage: 9.965781217890562
-            npm_host_percentage: 9.369310271410669
-            snmp_percentage: 6.965117697638846
-            lambda_functions_percentage: 6.84685269835264
-            lambda_invocations_percentage: 1.1730742509559433
+            cws_host_percentage: 6.84685269835264
+            profiled_containers_usage: 1.284659006116532
+            lambda_usage: 9.018348186070783
+            npm_host_percentage: 6.438423552598547
+            snmp_percentage: 6.878052220127876
+            lambda_functions_percentage: 5.025004791520295
+            lambda_invocations_percentage: 9.369310271410669
             api_percentage: 5.962133916683182
             container_usage: 4.145608029883936
-            lambda_percentage: 5.025004791520295
-            npm_host_usage: 6.683562403749608
+            cws_container_percentage: 1.0246457001441578
+            lambda_percentage: 8.762042012749001
+            npm_host_usage: 3.5571952270680973
             container_percentage: 2.027123023002322
           tag_config_source: tag_config_source
           org_name: org_name
@@ -23421,30 +23484,34 @@ components:
       description: Fields in Usage Summary by tag(s).
       example:
         browser_percentage: 9.301444243932576
-        profiled_hosts_percentage: 6.438423552598547
-        infra_host_percentage: 1.0246457001441578
+        profiled_hosts_percentage: 2.8841621266687802
+        infra_host_percentage: 1.1730742509559433
         apm_host_usage: 7.061401241503109
-        lambda_invocations_usage: 4.965218492984954
-        profiled_hosts_usage: 3.5571952270680973
+        lambda_invocations_usage: 6.683562403749608
+        profiled_hosts_usage: 6.778324963048013
         apm_host_percentage: 2.3021358869347655
+        cws_host_usage: 7.457744773683766
         api_usage: 5.637376656633329
         custom_timeseries_usage: 1.2315135367772556
-        profiled_containers_percentage: 8.762042012749001
-        snmp_usage: 1.284659006116532
+        profiled_containers_percentage: 6.965117697638846
+        cws_container_usage: 1.4894159098541704
+        snmp_usage: 5.944895607614016
         browser_usage: 3.616076749251911
-        infra_host_usage: 1.4894159098541704
-        lambda_functions_usage: 7.457744773683766
+        infra_host_usage: 4.965218492984954
+        lambda_functions_usage: 9.965781217890562
         custom_timeseries_percentage: 7.386281948385884
-        profiled_containers_usage: 9.018348186070783
-        lambda_usage: 9.965781217890562
-        npm_host_percentage: 9.369310271410669
-        snmp_percentage: 6.965117697638846
-        lambda_functions_percentage: 6.84685269835264
-        lambda_invocations_percentage: 1.1730742509559433
+        cws_host_percentage: 6.84685269835264
+        profiled_containers_usage: 1.284659006116532
+        lambda_usage: 9.018348186070783
+        npm_host_percentage: 6.438423552598547
+        snmp_percentage: 6.878052220127876
+        lambda_functions_percentage: 5.025004791520295
+        lambda_invocations_percentage: 9.369310271410669
         api_percentage: 5.962133916683182
         container_usage: 4.145608029883936
-        lambda_percentage: 5.025004791520295
-        npm_host_usage: 6.683562403749608
+        cws_container_percentage: 1.0246457001441578
+        lambda_percentage: 8.762042012749001
+        npm_host_usage: 3.5571952270680973
         container_percentage: 2.027123023002322
       properties:
         api_percentage:
@@ -23485,6 +23552,23 @@ components:
           type: number
         custom_timeseries_usage:
           description: The custom metrics usage by tag(s).
+          format: double
+          type: number
+        cws_container_percentage:
+          description: The percentage of Cloud Workload Security container usage by
+            tag(s)
+          format: double
+          type: number
+        cws_container_usage:
+          description: The Cloud Workload Security container usage by tag(s)
+          format: double
+          type: number
+        cws_host_percentage:
+          description: The percentage of Cloud Workload Security host usage by tag(s)
+          format: double
+          type: number
+        cws_host_usage:
+          description: The Cloud Workload Security host usage by tag(s)
           format: double
           type: number
         infra_host_percentage:
@@ -24345,6 +24429,47 @@ components:
           description: An array of objects regarding usage of billable summary.
           items:
             $ref: '#/components/schemas/UsageBillableSummaryHour'
+          type: array
+      type: object
+    UsageCWSHour:
+      description: Cloud Workload Security usage for a given organization for a given
+        hour.
+      example:
+        cws_host_count: 6
+        cws_container_count: 0
+        hour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        cws_container_count:
+          description: The total number of Cloud Workload Security container hours
+            from the start of the given hour’s month until the given hour.
+          format: int64
+          type: integer
+        cws_host_count:
+          description: The total number of Cloud Workload Security host hours from
+            the start of the given hour’s month until the given hour.
+          format: int64
+          type: integer
+        hour:
+          description: The hour for the usage.
+          format: date-time
+          type: string
+      type: object
+    UsageCWSResponse:
+      description: Response containing the Cloud Workload Security usage for each
+        hour for a given organization.
+      example:
+        usage:
+        - cws_host_count: 6
+          cws_container_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+        - cws_host_count: 6
+          cws_container_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        usage:
+          description: Get hourly usage for Cloud Workload Security.
+          items:
+            $ref: '#/components/schemas/UsageCWSHour'
           type: array
       type: object
     UsageCloudSecurityPostureManagementHour:
@@ -25337,130 +25462,136 @@ components:
       description: Response with hourly report of all data billed by Datadog all organizations.
       example:
         date: 2000-01-23T04:56:07.000+00:00
-        iot_device_top99p: 9
-        npm_host_top99p: 0
-        container_hwm: 7
-        cspm_container_avg: 5
-        billable_ingested_bytes_sum: 9
-        vsphere_host_top99p: 2
-        fargate_tasks_count_avg: 4
-        iot_device_sum: 8
-        rum_session_count_sum: 7
-        ingested_events_bytes_sum: 4
-        mobile_rum_session_count_sum: 9
-        container_avg: 0
-        audit_logs_lines_indexed_sum: 1
+        iot_device_top99p: 8
+        npm_host_top99p: 7
+        container_hwm: 4
+        cspm_container_avg: 6
+        billable_ingested_bytes_sum: 7
+        vsphere_host_top99p: 8
+        fargate_tasks_count_avg: 1
+        iot_device_sum: 9
+        rum_session_count_sum: 2
+        ingested_events_bytes_sum: 3
+        mobile_rum_session_count_sum: 5
+        container_avg: 5
+        audit_logs_lines_indexed_sum: 7
         netflow_indexed_events_count_sum: 8
-        aws_lambda_func_count: 7
+        aws_lambda_func_count: 0
         rum_total_session_count_sum: 9
-        mobile_rum_session_count_ios_sum: 3
-        fargate_tasks_count_hwm: 3
-        opentelemetry_host_top99p: 5
-        profiling_host_top99p: 7
-        gcp_host_top99p: 0
+        mobile_rum_session_count_ios_sum: 5
+        fargate_tasks_count_hwm: 8
+        cws_container_count_avg: 0
+        opentelemetry_host_top99p: 3
+        profiling_host_top99p: 8
+        gcp_host_top99p: 6
         azure_app_service_top99p: 0
-        apm_azure_app_service_host_top99p: 6
-        cspm_container_hwm: 4
-        mobile_rum_session_count_android_sum: 1
+        cws_host_top99p: 2
+        apm_azure_app_service_host_top99p: 1
+        cspm_container_hwm: 8
+        mobile_rum_session_count_android_sum: 0
         apm_host_top99p: 4
-        synthetics_check_calls_count_sum: 4
-        aws_host_top99p: 4
-        heroku_host_top99p: 2
-        incident_management_monthly_active_users_hwm: 1
-        custom_ts_avg: 8
-        cspm_host_top99p: 6
-        trace_search_indexed_events_count_sum: 3
-        twol_ingested_events_bytes_sum: 8
-        agent_host_top99p: 0
-        indexed_events_count_sum: 8
-        infra_host_top99p: 6
+        synthetics_check_calls_count_sum: 8
+        aws_host_top99p: 9
+        heroku_host_top99p: 4
+        incident_management_monthly_active_users_hwm: 8
+        custom_ts_avg: 3
+        cspm_host_top99p: 4
+        trace_search_indexed_events_count_sum: 6
+        twol_ingested_events_bytes_sum: 4
+        agent_host_top99p: 4
+        indexed_events_count_sum: 9
+        infra_host_top99p: 1
         orgs:
-        - npm_host_top99p: 5
-          container_hwm: 2
-          cspm_container_avg: 3
-          billable_ingested_bytes_sum: 0
-          vsphere_host_top99p: 7
-          iot_device_top99p_sum: 6
-          fargate_tasks_count_avg: 0
-          rum_session_count_sum: 5
-          ingested_events_bytes_sum: 6
+        - npm_host_top99p: 1
+          container_hwm: 0
+          cspm_container_avg: 0
+          billable_ingested_bytes_sum: 8
+          vsphere_host_top99p: 3
+          iot_device_top99p_sum: 1
+          fargate_tasks_count_avg: 2
+          rum_session_count_sum: 7
+          ingested_events_bytes_sum: 3
           public_id: public_id
-          mobile_rum_session_count_sum: 1
-          container_avg: 3
-          audit_logs_lines_indexed_sum: 3
+          mobile_rum_session_count_sum: 5
+          container_avg: 4
+          audit_logs_lines_indexed_sum: 7
           netflow_indexed_events_count_sum: 3
-          aws_lambda_func_count: 9
-          rum_total_session_count_sum: 5
+          aws_lambda_func_count: 3
+          rum_total_session_count_sum: 7
           id: id
-          mobile_rum_session_count_ios_sum: 1
-          fargate_tasks_count_hwm: 7
-          iot_device_agg_sum: 4
-          opentelemetry_host_top99p: 1
-          profiling_host_top99p: 4
+          mobile_rum_session_count_ios_sum: 5
+          fargate_tasks_count_hwm: 6
+          cws_container_count_avg: 9
+          iot_device_agg_sum: 5
+          opentelemetry_host_top99p: 3
+          profiling_host_top99p: 9
           gcp_host_top99p: 4
-          azure_app_service_top99p: 7
-          apm_azure_app_service_host_top99p: 8
-          cspm_container_hwm: 8
-          mobile_rum_session_count_android_sum: 9
-          apm_host_top99p: 7
-          synthetics_check_calls_count_sum: 1
-          aws_host_top99p: 3
-          heroku_host_top99p: 2
+          azure_app_service_top99p: 3
+          cws_host_top99p: 0
+          apm_azure_app_service_host_top99p: 9
+          cspm_container_hwm: 7
+          mobile_rum_session_count_android_sum: 4
+          apm_host_top99p: 5
+          synthetics_check_calls_count_sum: 9
+          aws_host_top99p: 0
+          heroku_host_top99p: 6
           incident_management_monthly_active_users_hwm: 9
-          custom_ts_avg: 0
+          custom_ts_avg: 2
           cspm_host_top99p: 4
-          trace_search_indexed_events_count_sum: 3
-          twol_ingested_events_bytes_sum: 9
-          agent_host_top99p: 5
-          indexed_events_count_sum: 0
-          infra_host_top99p: 2
+          trace_search_indexed_events_count_sum: 1
+          twol_ingested_events_bytes_sum: 4
+          agent_host_top99p: 3
+          indexed_events_count_sum: 1
+          infra_host_top99p: 1
           name: name
-          aws_lambda_invocations_sum: 5
-          synthetics_browser_check_calls_count_sum: 3
-        - npm_host_top99p: 5
-          container_hwm: 2
-          cspm_container_avg: 3
-          billable_ingested_bytes_sum: 0
-          vsphere_host_top99p: 7
-          iot_device_top99p_sum: 6
-          fargate_tasks_count_avg: 0
-          rum_session_count_sum: 5
-          ingested_events_bytes_sum: 6
+          aws_lambda_invocations_sum: 2
+          synthetics_browser_check_calls_count_sum: 7
+        - npm_host_top99p: 1
+          container_hwm: 0
+          cspm_container_avg: 0
+          billable_ingested_bytes_sum: 8
+          vsphere_host_top99p: 3
+          iot_device_top99p_sum: 1
+          fargate_tasks_count_avg: 2
+          rum_session_count_sum: 7
+          ingested_events_bytes_sum: 3
           public_id: public_id
-          mobile_rum_session_count_sum: 1
-          container_avg: 3
-          audit_logs_lines_indexed_sum: 3
+          mobile_rum_session_count_sum: 5
+          container_avg: 4
+          audit_logs_lines_indexed_sum: 7
           netflow_indexed_events_count_sum: 3
-          aws_lambda_func_count: 9
-          rum_total_session_count_sum: 5
+          aws_lambda_func_count: 3
+          rum_total_session_count_sum: 7
           id: id
-          mobile_rum_session_count_ios_sum: 1
-          fargate_tasks_count_hwm: 7
-          iot_device_agg_sum: 4
-          opentelemetry_host_top99p: 1
-          profiling_host_top99p: 4
+          mobile_rum_session_count_ios_sum: 5
+          fargate_tasks_count_hwm: 6
+          cws_container_count_avg: 9
+          iot_device_agg_sum: 5
+          opentelemetry_host_top99p: 3
+          profiling_host_top99p: 9
           gcp_host_top99p: 4
-          azure_app_service_top99p: 7
-          apm_azure_app_service_host_top99p: 8
-          cspm_container_hwm: 8
-          mobile_rum_session_count_android_sum: 9
-          apm_host_top99p: 7
-          synthetics_check_calls_count_sum: 1
-          aws_host_top99p: 3
-          heroku_host_top99p: 2
+          azure_app_service_top99p: 3
+          cws_host_top99p: 0
+          apm_azure_app_service_host_top99p: 9
+          cspm_container_hwm: 7
+          mobile_rum_session_count_android_sum: 4
+          apm_host_top99p: 5
+          synthetics_check_calls_count_sum: 9
+          aws_host_top99p: 0
+          heroku_host_top99p: 6
           incident_management_monthly_active_users_hwm: 9
-          custom_ts_avg: 0
+          custom_ts_avg: 2
           cspm_host_top99p: 4
-          trace_search_indexed_events_count_sum: 3
-          twol_ingested_events_bytes_sum: 9
-          agent_host_top99p: 5
-          indexed_events_count_sum: 0
-          infra_host_top99p: 2
+          trace_search_indexed_events_count_sum: 1
+          twol_ingested_events_bytes_sum: 4
+          agent_host_top99p: 3
+          indexed_events_count_sum: 1
+          infra_host_top99p: 1
           name: name
-          aws_lambda_invocations_sum: 5
-          synthetics_browser_check_calls_count_sum: 3
+          aws_lambda_invocations_sum: 2
+          synthetics_browser_check_calls_count_sum: 7
         aws_lambda_invocations_sum: 9
-        synthetics_browser_check_calls_count_sum: 1
+        synthetics_browser_check_calls_count_sum: 4
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -25535,6 +25666,16 @@ components:
         custom_ts_avg:
           description: Shows the average number of distinct custom metrics over all
             hours in the current date for all organizations.
+          format: int64
+          type: integer
+        cws_container_count_avg:
+          description: Shows the average of all distinct Cloud Workload Security containers
+            over all hours in the current date for all organizations.
+          format: int64
+          type: integer
+        cws_host_top99p:
+          description: Shows the 99th percentile of all Cloud Workload Security hosts
+            over all hours in the current date for all organizations.
           format: int64
           type: integer
         date:
@@ -25672,48 +25813,50 @@ components:
       description: Global hourly report of all data billed by Datadog for a given
         organization.
       example:
-        npm_host_top99p: 5
-        container_hwm: 2
-        cspm_container_avg: 3
-        billable_ingested_bytes_sum: 0
-        vsphere_host_top99p: 7
-        iot_device_top99p_sum: 6
-        fargate_tasks_count_avg: 0
-        rum_session_count_sum: 5
-        ingested_events_bytes_sum: 6
+        npm_host_top99p: 1
+        container_hwm: 0
+        cspm_container_avg: 0
+        billable_ingested_bytes_sum: 8
+        vsphere_host_top99p: 3
+        iot_device_top99p_sum: 1
+        fargate_tasks_count_avg: 2
+        rum_session_count_sum: 7
+        ingested_events_bytes_sum: 3
         public_id: public_id
-        mobile_rum_session_count_sum: 1
-        container_avg: 3
-        audit_logs_lines_indexed_sum: 3
+        mobile_rum_session_count_sum: 5
+        container_avg: 4
+        audit_logs_lines_indexed_sum: 7
         netflow_indexed_events_count_sum: 3
-        aws_lambda_func_count: 9
-        rum_total_session_count_sum: 5
+        aws_lambda_func_count: 3
+        rum_total_session_count_sum: 7
         id: id
-        mobile_rum_session_count_ios_sum: 1
-        fargate_tasks_count_hwm: 7
-        iot_device_agg_sum: 4
-        opentelemetry_host_top99p: 1
-        profiling_host_top99p: 4
+        mobile_rum_session_count_ios_sum: 5
+        fargate_tasks_count_hwm: 6
+        cws_container_count_avg: 9
+        iot_device_agg_sum: 5
+        opentelemetry_host_top99p: 3
+        profiling_host_top99p: 9
         gcp_host_top99p: 4
-        azure_app_service_top99p: 7
-        apm_azure_app_service_host_top99p: 8
-        cspm_container_hwm: 8
-        mobile_rum_session_count_android_sum: 9
-        apm_host_top99p: 7
-        synthetics_check_calls_count_sum: 1
-        aws_host_top99p: 3
-        heroku_host_top99p: 2
+        azure_app_service_top99p: 3
+        cws_host_top99p: 0
+        apm_azure_app_service_host_top99p: 9
+        cspm_container_hwm: 7
+        mobile_rum_session_count_android_sum: 4
+        apm_host_top99p: 5
+        synthetics_check_calls_count_sum: 9
+        aws_host_top99p: 0
+        heroku_host_top99p: 6
         incident_management_monthly_active_users_hwm: 9
-        custom_ts_avg: 0
+        custom_ts_avg: 2
         cspm_host_top99p: 4
-        trace_search_indexed_events_count_sum: 3
-        twol_ingested_events_bytes_sum: 9
-        agent_host_top99p: 5
-        indexed_events_count_sum: 0
-        infra_host_top99p: 2
+        trace_search_indexed_events_count_sum: 1
+        twol_ingested_events_bytes_sum: 4
+        agent_host_top99p: 3
+        indexed_events_count_sum: 1
+        infra_host_top99p: 1
         name: name
-        aws_lambda_invocations_sum: 5
-        synthetics_browser_check_calls_count_sum: 3
+        aws_lambda_invocations_sum: 2
+        synthetics_browser_check_calls_count_sum: 7
       properties:
         agent_host_top99p:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -25788,6 +25931,16 @@ components:
         custom_ts_avg:
           description: Shows the average number of distinct custom metrics over all
             hours in the current date for the given org.
+          format: int64
+          type: integer
+        cws_container_count_avg:
+          description: Shows the average of all distinct Cloud Workload Security containers
+            over all hours in the current date for the given org.
+          format: int64
+          type: integer
+        cws_host_top99p:
+          description: Shows the 99th percentile of all Cloud Workload Security hosts
+            over all hours in the current date for the given org.
           format: int64
           type: integer
         fargate_tasks_count_avg:
@@ -25926,343 +26079,357 @@ components:
         audit_logs_lines_indexed_agg_sum: 5
         usage:
         - date: 2000-01-23T04:56:07.000+00:00
-          iot_device_top99p: 9
-          npm_host_top99p: 0
-          container_hwm: 7
-          cspm_container_avg: 5
-          billable_ingested_bytes_sum: 9
-          vsphere_host_top99p: 2
-          fargate_tasks_count_avg: 4
-          iot_device_sum: 8
-          rum_session_count_sum: 7
-          ingested_events_bytes_sum: 4
-          mobile_rum_session_count_sum: 9
-          container_avg: 0
-          audit_logs_lines_indexed_sum: 1
+          iot_device_top99p: 8
+          npm_host_top99p: 7
+          container_hwm: 4
+          cspm_container_avg: 6
+          billable_ingested_bytes_sum: 7
+          vsphere_host_top99p: 8
+          fargate_tasks_count_avg: 1
+          iot_device_sum: 9
+          rum_session_count_sum: 2
+          ingested_events_bytes_sum: 3
+          mobile_rum_session_count_sum: 5
+          container_avg: 5
+          audit_logs_lines_indexed_sum: 7
           netflow_indexed_events_count_sum: 8
-          aws_lambda_func_count: 7
+          aws_lambda_func_count: 0
           rum_total_session_count_sum: 9
-          mobile_rum_session_count_ios_sum: 3
-          fargate_tasks_count_hwm: 3
-          opentelemetry_host_top99p: 5
-          profiling_host_top99p: 7
-          gcp_host_top99p: 0
+          mobile_rum_session_count_ios_sum: 5
+          fargate_tasks_count_hwm: 8
+          cws_container_count_avg: 0
+          opentelemetry_host_top99p: 3
+          profiling_host_top99p: 8
+          gcp_host_top99p: 6
           azure_app_service_top99p: 0
-          apm_azure_app_service_host_top99p: 6
-          cspm_container_hwm: 4
-          mobile_rum_session_count_android_sum: 1
+          cws_host_top99p: 2
+          apm_azure_app_service_host_top99p: 1
+          cspm_container_hwm: 8
+          mobile_rum_session_count_android_sum: 0
           apm_host_top99p: 4
-          synthetics_check_calls_count_sum: 4
-          aws_host_top99p: 4
-          heroku_host_top99p: 2
-          incident_management_monthly_active_users_hwm: 1
-          custom_ts_avg: 8
-          cspm_host_top99p: 6
-          trace_search_indexed_events_count_sum: 3
-          twol_ingested_events_bytes_sum: 8
-          agent_host_top99p: 0
-          indexed_events_count_sum: 8
-          infra_host_top99p: 6
+          synthetics_check_calls_count_sum: 8
+          aws_host_top99p: 9
+          heroku_host_top99p: 4
+          incident_management_monthly_active_users_hwm: 8
+          custom_ts_avg: 3
+          cspm_host_top99p: 4
+          trace_search_indexed_events_count_sum: 6
+          twol_ingested_events_bytes_sum: 4
+          agent_host_top99p: 4
+          indexed_events_count_sum: 9
+          infra_host_top99p: 1
           orgs:
-          - npm_host_top99p: 5
-            container_hwm: 2
-            cspm_container_avg: 3
-            billable_ingested_bytes_sum: 0
-            vsphere_host_top99p: 7
-            iot_device_top99p_sum: 6
-            fargate_tasks_count_avg: 0
-            rum_session_count_sum: 5
-            ingested_events_bytes_sum: 6
+          - npm_host_top99p: 1
+            container_hwm: 0
+            cspm_container_avg: 0
+            billable_ingested_bytes_sum: 8
+            vsphere_host_top99p: 3
+            iot_device_top99p_sum: 1
+            fargate_tasks_count_avg: 2
+            rum_session_count_sum: 7
+            ingested_events_bytes_sum: 3
             public_id: public_id
-            mobile_rum_session_count_sum: 1
-            container_avg: 3
-            audit_logs_lines_indexed_sum: 3
+            mobile_rum_session_count_sum: 5
+            container_avg: 4
+            audit_logs_lines_indexed_sum: 7
             netflow_indexed_events_count_sum: 3
-            aws_lambda_func_count: 9
-            rum_total_session_count_sum: 5
+            aws_lambda_func_count: 3
+            rum_total_session_count_sum: 7
             id: id
-            mobile_rum_session_count_ios_sum: 1
-            fargate_tasks_count_hwm: 7
-            iot_device_agg_sum: 4
-            opentelemetry_host_top99p: 1
-            profiling_host_top99p: 4
+            mobile_rum_session_count_ios_sum: 5
+            fargate_tasks_count_hwm: 6
+            cws_container_count_avg: 9
+            iot_device_agg_sum: 5
+            opentelemetry_host_top99p: 3
+            profiling_host_top99p: 9
             gcp_host_top99p: 4
-            azure_app_service_top99p: 7
-            apm_azure_app_service_host_top99p: 8
-            cspm_container_hwm: 8
-            mobile_rum_session_count_android_sum: 9
-            apm_host_top99p: 7
-            synthetics_check_calls_count_sum: 1
-            aws_host_top99p: 3
-            heroku_host_top99p: 2
+            azure_app_service_top99p: 3
+            cws_host_top99p: 0
+            apm_azure_app_service_host_top99p: 9
+            cspm_container_hwm: 7
+            mobile_rum_session_count_android_sum: 4
+            apm_host_top99p: 5
+            synthetics_check_calls_count_sum: 9
+            aws_host_top99p: 0
+            heroku_host_top99p: 6
             incident_management_monthly_active_users_hwm: 9
-            custom_ts_avg: 0
+            custom_ts_avg: 2
             cspm_host_top99p: 4
-            trace_search_indexed_events_count_sum: 3
-            twol_ingested_events_bytes_sum: 9
-            agent_host_top99p: 5
-            indexed_events_count_sum: 0
-            infra_host_top99p: 2
+            trace_search_indexed_events_count_sum: 1
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 3
+            indexed_events_count_sum: 1
+            infra_host_top99p: 1
             name: name
-            aws_lambda_invocations_sum: 5
-            synthetics_browser_check_calls_count_sum: 3
-          - npm_host_top99p: 5
-            container_hwm: 2
-            cspm_container_avg: 3
-            billable_ingested_bytes_sum: 0
-            vsphere_host_top99p: 7
-            iot_device_top99p_sum: 6
-            fargate_tasks_count_avg: 0
-            rum_session_count_sum: 5
-            ingested_events_bytes_sum: 6
+            aws_lambda_invocations_sum: 2
+            synthetics_browser_check_calls_count_sum: 7
+          - npm_host_top99p: 1
+            container_hwm: 0
+            cspm_container_avg: 0
+            billable_ingested_bytes_sum: 8
+            vsphere_host_top99p: 3
+            iot_device_top99p_sum: 1
+            fargate_tasks_count_avg: 2
+            rum_session_count_sum: 7
+            ingested_events_bytes_sum: 3
             public_id: public_id
-            mobile_rum_session_count_sum: 1
-            container_avg: 3
-            audit_logs_lines_indexed_sum: 3
+            mobile_rum_session_count_sum: 5
+            container_avg: 4
+            audit_logs_lines_indexed_sum: 7
             netflow_indexed_events_count_sum: 3
-            aws_lambda_func_count: 9
-            rum_total_session_count_sum: 5
+            aws_lambda_func_count: 3
+            rum_total_session_count_sum: 7
             id: id
-            mobile_rum_session_count_ios_sum: 1
-            fargate_tasks_count_hwm: 7
-            iot_device_agg_sum: 4
-            opentelemetry_host_top99p: 1
-            profiling_host_top99p: 4
+            mobile_rum_session_count_ios_sum: 5
+            fargate_tasks_count_hwm: 6
+            cws_container_count_avg: 9
+            iot_device_agg_sum: 5
+            opentelemetry_host_top99p: 3
+            profiling_host_top99p: 9
             gcp_host_top99p: 4
-            azure_app_service_top99p: 7
-            apm_azure_app_service_host_top99p: 8
-            cspm_container_hwm: 8
-            mobile_rum_session_count_android_sum: 9
-            apm_host_top99p: 7
-            synthetics_check_calls_count_sum: 1
-            aws_host_top99p: 3
-            heroku_host_top99p: 2
+            azure_app_service_top99p: 3
+            cws_host_top99p: 0
+            apm_azure_app_service_host_top99p: 9
+            cspm_container_hwm: 7
+            mobile_rum_session_count_android_sum: 4
+            apm_host_top99p: 5
+            synthetics_check_calls_count_sum: 9
+            aws_host_top99p: 0
+            heroku_host_top99p: 6
             incident_management_monthly_active_users_hwm: 9
-            custom_ts_avg: 0
+            custom_ts_avg: 2
             cspm_host_top99p: 4
-            trace_search_indexed_events_count_sum: 3
-            twol_ingested_events_bytes_sum: 9
-            agent_host_top99p: 5
-            indexed_events_count_sum: 0
-            infra_host_top99p: 2
+            trace_search_indexed_events_count_sum: 1
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 3
+            indexed_events_count_sum: 1
+            infra_host_top99p: 1
             name: name
-            aws_lambda_invocations_sum: 5
-            synthetics_browser_check_calls_count_sum: 3
+            aws_lambda_invocations_sum: 2
+            synthetics_browser_check_calls_count_sum: 7
           aws_lambda_invocations_sum: 9
-          synthetics_browser_check_calls_count_sum: 1
+          synthetics_browser_check_calls_count_sum: 4
         - date: 2000-01-23T04:56:07.000+00:00
-          iot_device_top99p: 9
-          npm_host_top99p: 0
-          container_hwm: 7
-          cspm_container_avg: 5
-          billable_ingested_bytes_sum: 9
-          vsphere_host_top99p: 2
-          fargate_tasks_count_avg: 4
-          iot_device_sum: 8
-          rum_session_count_sum: 7
-          ingested_events_bytes_sum: 4
-          mobile_rum_session_count_sum: 9
-          container_avg: 0
-          audit_logs_lines_indexed_sum: 1
+          iot_device_top99p: 8
+          npm_host_top99p: 7
+          container_hwm: 4
+          cspm_container_avg: 6
+          billable_ingested_bytes_sum: 7
+          vsphere_host_top99p: 8
+          fargate_tasks_count_avg: 1
+          iot_device_sum: 9
+          rum_session_count_sum: 2
+          ingested_events_bytes_sum: 3
+          mobile_rum_session_count_sum: 5
+          container_avg: 5
+          audit_logs_lines_indexed_sum: 7
           netflow_indexed_events_count_sum: 8
-          aws_lambda_func_count: 7
+          aws_lambda_func_count: 0
           rum_total_session_count_sum: 9
-          mobile_rum_session_count_ios_sum: 3
-          fargate_tasks_count_hwm: 3
-          opentelemetry_host_top99p: 5
-          profiling_host_top99p: 7
-          gcp_host_top99p: 0
+          mobile_rum_session_count_ios_sum: 5
+          fargate_tasks_count_hwm: 8
+          cws_container_count_avg: 0
+          opentelemetry_host_top99p: 3
+          profiling_host_top99p: 8
+          gcp_host_top99p: 6
           azure_app_service_top99p: 0
-          apm_azure_app_service_host_top99p: 6
-          cspm_container_hwm: 4
-          mobile_rum_session_count_android_sum: 1
+          cws_host_top99p: 2
+          apm_azure_app_service_host_top99p: 1
+          cspm_container_hwm: 8
+          mobile_rum_session_count_android_sum: 0
           apm_host_top99p: 4
-          synthetics_check_calls_count_sum: 4
-          aws_host_top99p: 4
-          heroku_host_top99p: 2
-          incident_management_monthly_active_users_hwm: 1
-          custom_ts_avg: 8
-          cspm_host_top99p: 6
-          trace_search_indexed_events_count_sum: 3
-          twol_ingested_events_bytes_sum: 8
-          agent_host_top99p: 0
-          indexed_events_count_sum: 8
-          infra_host_top99p: 6
+          synthetics_check_calls_count_sum: 8
+          aws_host_top99p: 9
+          heroku_host_top99p: 4
+          incident_management_monthly_active_users_hwm: 8
+          custom_ts_avg: 3
+          cspm_host_top99p: 4
+          trace_search_indexed_events_count_sum: 6
+          twol_ingested_events_bytes_sum: 4
+          agent_host_top99p: 4
+          indexed_events_count_sum: 9
+          infra_host_top99p: 1
           orgs:
-          - npm_host_top99p: 5
-            container_hwm: 2
-            cspm_container_avg: 3
-            billable_ingested_bytes_sum: 0
-            vsphere_host_top99p: 7
-            iot_device_top99p_sum: 6
-            fargate_tasks_count_avg: 0
-            rum_session_count_sum: 5
-            ingested_events_bytes_sum: 6
+          - npm_host_top99p: 1
+            container_hwm: 0
+            cspm_container_avg: 0
+            billable_ingested_bytes_sum: 8
+            vsphere_host_top99p: 3
+            iot_device_top99p_sum: 1
+            fargate_tasks_count_avg: 2
+            rum_session_count_sum: 7
+            ingested_events_bytes_sum: 3
             public_id: public_id
-            mobile_rum_session_count_sum: 1
-            container_avg: 3
-            audit_logs_lines_indexed_sum: 3
+            mobile_rum_session_count_sum: 5
+            container_avg: 4
+            audit_logs_lines_indexed_sum: 7
             netflow_indexed_events_count_sum: 3
-            aws_lambda_func_count: 9
-            rum_total_session_count_sum: 5
+            aws_lambda_func_count: 3
+            rum_total_session_count_sum: 7
             id: id
-            mobile_rum_session_count_ios_sum: 1
-            fargate_tasks_count_hwm: 7
-            iot_device_agg_sum: 4
-            opentelemetry_host_top99p: 1
-            profiling_host_top99p: 4
+            mobile_rum_session_count_ios_sum: 5
+            fargate_tasks_count_hwm: 6
+            cws_container_count_avg: 9
+            iot_device_agg_sum: 5
+            opentelemetry_host_top99p: 3
+            profiling_host_top99p: 9
             gcp_host_top99p: 4
-            azure_app_service_top99p: 7
-            apm_azure_app_service_host_top99p: 8
-            cspm_container_hwm: 8
-            mobile_rum_session_count_android_sum: 9
-            apm_host_top99p: 7
-            synthetics_check_calls_count_sum: 1
-            aws_host_top99p: 3
-            heroku_host_top99p: 2
+            azure_app_service_top99p: 3
+            cws_host_top99p: 0
+            apm_azure_app_service_host_top99p: 9
+            cspm_container_hwm: 7
+            mobile_rum_session_count_android_sum: 4
+            apm_host_top99p: 5
+            synthetics_check_calls_count_sum: 9
+            aws_host_top99p: 0
+            heroku_host_top99p: 6
             incident_management_monthly_active_users_hwm: 9
-            custom_ts_avg: 0
+            custom_ts_avg: 2
             cspm_host_top99p: 4
-            trace_search_indexed_events_count_sum: 3
-            twol_ingested_events_bytes_sum: 9
-            agent_host_top99p: 5
-            indexed_events_count_sum: 0
-            infra_host_top99p: 2
+            trace_search_indexed_events_count_sum: 1
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 3
+            indexed_events_count_sum: 1
+            infra_host_top99p: 1
             name: name
-            aws_lambda_invocations_sum: 5
-            synthetics_browser_check_calls_count_sum: 3
-          - npm_host_top99p: 5
-            container_hwm: 2
-            cspm_container_avg: 3
-            billable_ingested_bytes_sum: 0
-            vsphere_host_top99p: 7
-            iot_device_top99p_sum: 6
-            fargate_tasks_count_avg: 0
-            rum_session_count_sum: 5
-            ingested_events_bytes_sum: 6
+            aws_lambda_invocations_sum: 2
+            synthetics_browser_check_calls_count_sum: 7
+          - npm_host_top99p: 1
+            container_hwm: 0
+            cspm_container_avg: 0
+            billable_ingested_bytes_sum: 8
+            vsphere_host_top99p: 3
+            iot_device_top99p_sum: 1
+            fargate_tasks_count_avg: 2
+            rum_session_count_sum: 7
+            ingested_events_bytes_sum: 3
             public_id: public_id
-            mobile_rum_session_count_sum: 1
-            container_avg: 3
-            audit_logs_lines_indexed_sum: 3
+            mobile_rum_session_count_sum: 5
+            container_avg: 4
+            audit_logs_lines_indexed_sum: 7
             netflow_indexed_events_count_sum: 3
-            aws_lambda_func_count: 9
-            rum_total_session_count_sum: 5
+            aws_lambda_func_count: 3
+            rum_total_session_count_sum: 7
             id: id
-            mobile_rum_session_count_ios_sum: 1
-            fargate_tasks_count_hwm: 7
-            iot_device_agg_sum: 4
-            opentelemetry_host_top99p: 1
-            profiling_host_top99p: 4
+            mobile_rum_session_count_ios_sum: 5
+            fargate_tasks_count_hwm: 6
+            cws_container_count_avg: 9
+            iot_device_agg_sum: 5
+            opentelemetry_host_top99p: 3
+            profiling_host_top99p: 9
             gcp_host_top99p: 4
-            azure_app_service_top99p: 7
-            apm_azure_app_service_host_top99p: 8
-            cspm_container_hwm: 8
-            mobile_rum_session_count_android_sum: 9
-            apm_host_top99p: 7
-            synthetics_check_calls_count_sum: 1
-            aws_host_top99p: 3
-            heroku_host_top99p: 2
+            azure_app_service_top99p: 3
+            cws_host_top99p: 0
+            apm_azure_app_service_host_top99p: 9
+            cspm_container_hwm: 7
+            mobile_rum_session_count_android_sum: 4
+            apm_host_top99p: 5
+            synthetics_check_calls_count_sum: 9
+            aws_host_top99p: 0
+            heroku_host_top99p: 6
             incident_management_monthly_active_users_hwm: 9
-            custom_ts_avg: 0
+            custom_ts_avg: 2
             cspm_host_top99p: 4
-            trace_search_indexed_events_count_sum: 3
-            twol_ingested_events_bytes_sum: 9
-            agent_host_top99p: 5
-            indexed_events_count_sum: 0
-            infra_host_top99p: 2
+            trace_search_indexed_events_count_sum: 1
+            twol_ingested_events_bytes_sum: 4
+            agent_host_top99p: 3
+            indexed_events_count_sum: 1
+            infra_host_top99p: 1
             name: name
-            aws_lambda_invocations_sum: 5
-            synthetics_browser_check_calls_count_sum: 3
+            aws_lambda_invocations_sum: 2
+            synthetics_browser_check_calls_count_sum: 7
           aws_lambda_invocations_sum: 9
-          synthetics_browser_check_calls_count_sum: 1
+          synthetics_browser_check_calls_count_sum: 4
         cspm_container_hwm_sum: 1
         apm_host_top99p_sum: 1
-        mobile_rum_session_count_android_agg_sum: 3
-        infra_host_top99p_sum: 6
+        mobile_rum_session_count_android_agg_sum: 0
+        infra_host_top99p_sum: 9
         cspm_container_avg_sum: 1
-        synthetics_check_calls_count_agg_sum: 5
+        synthetics_check_calls_count_agg_sum: 4
         aws_lambda_func_count: 2
-        netflow_indexed_events_count_agg_sum: 0
-        fargate_tasks_count_avg_sum: 7
-        fargate_tasks_count_hwm_sum: 1
-        iot_device_agg_sum: 9
+        netflow_indexed_events_count_agg_sum: 6
+        fargate_tasks_count_avg_sum: 4
+        fargate_tasks_count_hwm_sum: 5
+        cws_host_top99p_sum: 1
+        iot_device_agg_sum: 3
         last_updated: 2000-01-23T04:56:07.000+00:00
-        indexed_events_count_agg_sum: 9
-        rehydrated_indexed_events_agg_sum: 8
-        vsphere_host_top99p_sum: 9
-        incident_management_monthly_active_users_hwm_sum: 9
-        live_indexed_events_agg_sum: 3
-        rum_session_count_agg_sum: 3
+        indexed_events_count_agg_sum: 8
+        rehydrated_indexed_events_agg_sum: 3
+        vsphere_host_top99p_sum: 2
+        incident_management_monthly_active_users_hwm_sum: 6
+        live_indexed_events_agg_sum: 1
+        rum_session_count_agg_sum: 7
         aws_host_top99p_sum: 5
-        profiling_container_agent_count_avg: 0
-        heroku_host_top99p_sum: 5
+        profiling_container_agent_count_avg: 8
+        heroku_host_top99p_sum: 9
         aws_lambda_invocations_sum: 7
-        trace_search_indexed_events_count_agg_sum: 3
+        trace_search_indexed_events_count_agg_sum: 0
         end_date: 2000-01-23T04:56:07.000+00:00
         azure_host_top99p_sum: 3
+        cws_containers_avg_sum: 7
         cspm_host_top99p_sum: 1
         iot_device_top99p_sum: 6
-        live_ingested_bytes_agg_sum: 6
-        rehydrated_ingested_bytes_agg_sum: 7
+        live_ingested_bytes_agg_sum: 2
+        rehydrated_ingested_bytes_agg_sum: 3
         container_hwm_sum: 7
-        synthetics_browser_check_calls_count_agg_sum: 7
+        synthetics_browser_check_calls_count_agg_sum: 3
         logs_by_retention:
           usage:
           - logs_indexed_logs_usage_agg_sum: 6
-            logs_rehydrated_indexed_logs_usage_agg_sum: 6
+            logs_rehydrated_indexed_logs_usage_agg_sum: 3
             retention: retention
-            logs_live_indexed_logs_usage_agg_sum: 5
+            logs_live_indexed_logs_usage_agg_sum: 3
           - logs_indexed_logs_usage_agg_sum: 6
-            logs_rehydrated_indexed_logs_usage_agg_sum: 6
+            logs_rehydrated_indexed_logs_usage_agg_sum: 3
             retention: retention
-            logs_live_indexed_logs_usage_agg_sum: 5
+            logs_live_indexed_logs_usage_agg_sum: 3
           usage_by_month:
             date: date
             usage:
-            - logs_indexed_logs_usage_sum: 1
-              logs_live_indexed_logs_usage_sum: 2
-              logs_rehydrated_indexed_logs_usage_sum: 6
+            - logs_indexed_logs_usage_sum: 6
+              logs_live_indexed_logs_usage_sum: 6
+              logs_rehydrated_indexed_logs_usage_sum: 5
               retention: retention
-            - logs_indexed_logs_usage_sum: 1
-              logs_live_indexed_logs_usage_sum: 2
-              logs_rehydrated_indexed_logs_usage_sum: 6
+            - logs_indexed_logs_usage_sum: 6
+              logs_live_indexed_logs_usage_sum: 6
+              logs_rehydrated_indexed_logs_usage_sum: 5
               retention: retention
           orgs:
             usage:
             - usage:
-              - logs_indexed_logs_usage_sum: 1
-                logs_live_indexed_logs_usage_sum: 2
-                logs_rehydrated_indexed_logs_usage_sum: 6
+              - logs_indexed_logs_usage_sum: 6
+                logs_live_indexed_logs_usage_sum: 6
+                logs_rehydrated_indexed_logs_usage_sum: 5
                 retention: retention
-              - logs_indexed_logs_usage_sum: 1
-                logs_live_indexed_logs_usage_sum: 2
-                logs_rehydrated_indexed_logs_usage_sum: 6
+              - logs_indexed_logs_usage_sum: 6
+                logs_live_indexed_logs_usage_sum: 6
+                logs_rehydrated_indexed_logs_usage_sum: 5
                 retention: retention
             - usage:
-              - logs_indexed_logs_usage_sum: 1
-                logs_live_indexed_logs_usage_sum: 2
-                logs_rehydrated_indexed_logs_usage_sum: 6
+              - logs_indexed_logs_usage_sum: 6
+                logs_live_indexed_logs_usage_sum: 6
+                logs_rehydrated_indexed_logs_usage_sum: 5
                 retention: retention
-              - logs_indexed_logs_usage_sum: 1
-                logs_live_indexed_logs_usage_sum: 2
-                logs_rehydrated_indexed_logs_usage_sum: 6
+              - logs_indexed_logs_usage_sum: 6
+                logs_live_indexed_logs_usage_sum: 6
+                logs_rehydrated_indexed_logs_usage_sum: 5
                 retention: retention
-        npm_host_top99p_sum: 7
+        npm_host_top99p_sum: 0
         container_avg_sum: 4
-        mobile_rum_session_count_agg_sum: 3
+        mobile_rum_session_count_agg_sum: 7
         agent_host_top99p_sum: 0
         custom_ts_sum: 6
         apm_azure_app_service_host_top99p_sum: 6
         azure_app_service_top99p_sum: 9
-        opentelemetry_host_top99p_sum: 6
+        opentelemetry_host_top99p_sum: 4
         start_date: 2000-01-23T04:56:07.000+00:00
         billable_ingested_bytes_agg_sum: 2
-        ingested_events_bytes_agg_sum: 8
-        twol_ingested_events_bytes_agg_sum: 4
+        ingested_events_bytes_agg_sum: 6
+        twol_ingested_events_bytes_agg_sum: 6
         mobile_rum_session_count_ios_agg_sum: 7
-        gcp_host_top99p_sum: 4
-        profiling_host_count_top99p_sum: 4
-        rum_total_session_count_agg_sum: 3
+        gcp_host_top99p_sum: 9
+        profiling_host_count_top99p_sum: 7
+        rum_total_session_count_agg_sum: 5
       properties:
         agent_host_top99p_sum:
           description: Shows the 99th percentile of all agent hosts over all hours
@@ -26343,6 +26510,16 @@ components:
         custom_ts_sum:
           description: Shows the average number of distinct custom metrics over all
             hours in the current months for all organizations.
+          format: int64
+          type: integer
+        cws_containers_avg_sum:
+          description: Shows the average of all distinct Cloud Workload Security containers
+            over all hours in the current months for all organizations.
+          format: int64
+          type: integer
+        cws_host_top99p_sum:
+          description: Shows the 99th percentile of all Cloud Workload Security hosts
+            over all hours in the current months for all organizations.
           format: int64
           type: integer
         end_date:
@@ -27847,22 +28024,22 @@ components:
       example:
         usage:
         - usage:
-          - logs_indexed_logs_usage_sum: 1
-            logs_live_indexed_logs_usage_sum: 2
-            logs_rehydrated_indexed_logs_usage_sum: 6
+          - logs_indexed_logs_usage_sum: 6
+            logs_live_indexed_logs_usage_sum: 6
+            logs_rehydrated_indexed_logs_usage_sum: 5
             retention: retention
-          - logs_indexed_logs_usage_sum: 1
-            logs_live_indexed_logs_usage_sum: 2
-            logs_rehydrated_indexed_logs_usage_sum: 6
+          - logs_indexed_logs_usage_sum: 6
+            logs_live_indexed_logs_usage_sum: 6
+            logs_rehydrated_indexed_logs_usage_sum: 5
             retention: retention
         - usage:
-          - logs_indexed_logs_usage_sum: 1
-            logs_live_indexed_logs_usage_sum: 2
-            logs_rehydrated_indexed_logs_usage_sum: 6
+          - logs_indexed_logs_usage_sum: 6
+            logs_live_indexed_logs_usage_sum: 6
+            logs_rehydrated_indexed_logs_usage_sum: 5
             retention: retention
-          - logs_indexed_logs_usage_sum: 1
-            logs_live_indexed_logs_usage_sum: 2
-            logs_rehydrated_indexed_logs_usage_sum: 6
+          - logs_indexed_logs_usage_sum: 6
+            logs_live_indexed_logs_usage_sum: 6
+            logs_rehydrated_indexed_logs_usage_sum: 5
             retention: retention
       properties:
         usage:

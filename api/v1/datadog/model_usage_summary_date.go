@@ -45,6 +45,10 @@ type UsageSummaryDate struct {
 	CspmHostTop99p *int64 `json:"cspm_host_top99p,omitempty"`
 	// Shows the average number of distinct custom metrics over all hours in the current date for all organizations.
 	CustomTsAvg *int64 `json:"custom_ts_avg,omitempty"`
+	// Shows the average of all distinct Cloud Workload Security containers over all hours in the current date for all organizations.
+	CwsContainerCountAvg *int64 `json:"cws_container_count_avg,omitempty"`
+	// Shows the 99th percentile of all Cloud Workload Security hosts over all hours in the current date for all organizations.
+	CwsHostTop99p *int64 `json:"cws_host_top99p,omitempty"`
 	// The date for the usage.
 	Date *time.Time `json:"date,omitempty"`
 	// Shows the high-watermark of all Fargate tasks over all hours in the current date for all organizations.
@@ -594,6 +598,70 @@ func (o *UsageSummaryDate) HasCustomTsAvg() bool {
 // SetCustomTsAvg gets a reference to the given int64 and assigns it to the CustomTsAvg field.
 func (o *UsageSummaryDate) SetCustomTsAvg(v int64) {
 	o.CustomTsAvg = &v
+}
+
+// GetCwsContainerCountAvg returns the CwsContainerCountAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetCwsContainerCountAvg() int64 {
+	if o == nil || o.CwsContainerCountAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CwsContainerCountAvg
+}
+
+// GetCwsContainerCountAvgOk returns a tuple with the CwsContainerCountAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetCwsContainerCountAvgOk() (*int64, bool) {
+	if o == nil || o.CwsContainerCountAvg == nil {
+		return nil, false
+	}
+	return o.CwsContainerCountAvg, true
+}
+
+// HasCwsContainerCountAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasCwsContainerCountAvg() bool {
+	if o != nil && o.CwsContainerCountAvg != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCwsContainerCountAvg gets a reference to the given int64 and assigns it to the CwsContainerCountAvg field.
+func (o *UsageSummaryDate) SetCwsContainerCountAvg(v int64) {
+	o.CwsContainerCountAvg = &v
+}
+
+// GetCwsHostTop99p returns the CwsHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetCwsHostTop99p() int64 {
+	if o == nil || o.CwsHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CwsHostTop99p
+}
+
+// GetCwsHostTop99pOk returns a tuple with the CwsHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetCwsHostTop99pOk() (*int64, bool) {
+	if o == nil || o.CwsHostTop99p == nil {
+		return nil, false
+	}
+	return o.CwsHostTop99p, true
+}
+
+// HasCwsHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasCwsHostTop99p() bool {
+	if o != nil && o.CwsHostTop99p != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCwsHostTop99p gets a reference to the given int64 and assigns it to the CwsHostTop99p field.
+func (o *UsageSummaryDate) SetCwsHostTop99p(v int64) {
+	o.CwsHostTop99p = &v
 }
 
 // GetDate returns the Date field value if set, zero value otherwise.
@@ -1474,6 +1542,12 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	}
 	if o.CustomTsAvg != nil {
 		toSerialize["custom_ts_avg"] = o.CustomTsAvg
+	}
+	if o.CwsContainerCountAvg != nil {
+		toSerialize["cws_container_count_avg"] = o.CwsContainerCountAvg
+	}
+	if o.CwsHostTop99p != nil {
+		toSerialize["cws_host_top99p"] = o.CwsHostTop99p
 	}
 	if o.Date != nil {
 		toSerialize["date"] = o.Date
