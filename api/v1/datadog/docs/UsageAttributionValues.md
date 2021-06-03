@@ -14,6 +14,10 @@ Name | Type | Description | Notes
 **ContainerUsage** | Pointer to **float64** | The container usage by tag(s). | [optional] 
 **CustomTimeseriesPercentage** | Pointer to **float64** | The percentage of custom metrics usage by tag(s). | [optional] 
 **CustomTimeseriesUsage** | Pointer to **float64** | The custom metrics usage by tag(s). | [optional] 
+**CwsContainerPercentage** | Pointer to **float64** | The percentage of Cloud Workload Security container usage by tag(s) | [optional] 
+**CwsContainerUsage** | Pointer to **float64** | The Cloud Workload Security container usage by tag(s) | [optional] 
+**CwsHostPercentage** | Pointer to **float64** | The percentage of Cloud Workload Security host usage by tag(s) | [optional] 
+**CwsHostUsage** | Pointer to **float64** | The Cloud Workload Security host usage by tag(s) | [optional] 
 **InfraHostPercentage** | Pointer to **float64** | The percentage of infrastructure host usage by tag(s). | [optional] 
 **InfraHostUsage** | Pointer to **float64** | The infrastructure host usage by tag(s). | [optional] 
 **LambdaFunctionsPercentage** | Pointer to **float64** | The percentage of Lambda function usage by tag(s). | [optional] 
@@ -299,6 +303,106 @@ SetCustomTimeseriesUsage sets CustomTimeseriesUsage field to given value.
 `func (o *UsageAttributionValues) HasCustomTimeseriesUsage() bool`
 
 HasCustomTimeseriesUsage returns a boolean if a field has been set.
+
+### GetCwsContainerPercentage
+
+`func (o *UsageAttributionValues) GetCwsContainerPercentage() float64`
+
+GetCwsContainerPercentage returns the CwsContainerPercentage field if non-nil, zero value otherwise.
+
+### GetCwsContainerPercentageOk
+
+`func (o *UsageAttributionValues) GetCwsContainerPercentageOk() (*float64, bool)`
+
+GetCwsContainerPercentageOk returns a tuple with the CwsContainerPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCwsContainerPercentage
+
+`func (o *UsageAttributionValues) SetCwsContainerPercentage(v float64)`
+
+SetCwsContainerPercentage sets CwsContainerPercentage field to given value.
+
+### HasCwsContainerPercentage
+
+`func (o *UsageAttributionValues) HasCwsContainerPercentage() bool`
+
+HasCwsContainerPercentage returns a boolean if a field has been set.
+
+### GetCwsContainerUsage
+
+`func (o *UsageAttributionValues) GetCwsContainerUsage() float64`
+
+GetCwsContainerUsage returns the CwsContainerUsage field if non-nil, zero value otherwise.
+
+### GetCwsContainerUsageOk
+
+`func (o *UsageAttributionValues) GetCwsContainerUsageOk() (*float64, bool)`
+
+GetCwsContainerUsageOk returns a tuple with the CwsContainerUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCwsContainerUsage
+
+`func (o *UsageAttributionValues) SetCwsContainerUsage(v float64)`
+
+SetCwsContainerUsage sets CwsContainerUsage field to given value.
+
+### HasCwsContainerUsage
+
+`func (o *UsageAttributionValues) HasCwsContainerUsage() bool`
+
+HasCwsContainerUsage returns a boolean if a field has been set.
+
+### GetCwsHostPercentage
+
+`func (o *UsageAttributionValues) GetCwsHostPercentage() float64`
+
+GetCwsHostPercentage returns the CwsHostPercentage field if non-nil, zero value otherwise.
+
+### GetCwsHostPercentageOk
+
+`func (o *UsageAttributionValues) GetCwsHostPercentageOk() (*float64, bool)`
+
+GetCwsHostPercentageOk returns a tuple with the CwsHostPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCwsHostPercentage
+
+`func (o *UsageAttributionValues) SetCwsHostPercentage(v float64)`
+
+SetCwsHostPercentage sets CwsHostPercentage field to given value.
+
+### HasCwsHostPercentage
+
+`func (o *UsageAttributionValues) HasCwsHostPercentage() bool`
+
+HasCwsHostPercentage returns a boolean if a field has been set.
+
+### GetCwsHostUsage
+
+`func (o *UsageAttributionValues) GetCwsHostUsage() float64`
+
+GetCwsHostUsage returns the CwsHostUsage field if non-nil, zero value otherwise.
+
+### GetCwsHostUsageOk
+
+`func (o *UsageAttributionValues) GetCwsHostUsageOk() (*float64, bool)`
+
+GetCwsHostUsageOk returns a tuple with the CwsHostUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCwsHostUsage
+
+`func (o *UsageAttributionValues) SetCwsHostUsage(v float64)`
+
+SetCwsHostUsage sets CwsHostUsage field to given value.
+
+### HasCwsHostUsage
+
+`func (o *UsageAttributionValues) HasCwsHostUsage() bool`
+
+HasCwsHostUsage returns a boolean if a field has been set.
 
 ### GetInfraHostPercentage
 

@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **CspmContainerHwm** | Pointer to **int64** | Shows the high-water mark of Cloud Security Posture Management containers over all hours in the current date for all organizations. | [optional] 
 **CspmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Cloud Security Posture Management hosts over all hours in the current date for all organizations. | [optional] 
 **CustomTsAvg** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current date for all organizations. | [optional] 
+**CwsContainerCountAvg** | Pointer to **int64** | Shows the average of all distinct Cloud Workload Security containers over all hours in the current date for all organizations. | [optional] 
+**CwsHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Cloud Workload Security hosts over all hours in the current date for all organizations. | [optional] 
 **Date** | Pointer to **time.Time** | The date for the usage. | [optional] 
 **FargateTasksCountAvg** | Pointer to **int64** | Shows the high-watermark of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
 **FargateTasksCountHwm** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
@@ -439,6 +441,56 @@ SetCustomTsAvg sets CustomTsAvg field to given value.
 `func (o *UsageSummaryDate) HasCustomTsAvg() bool`
 
 HasCustomTsAvg returns a boolean if a field has been set.
+
+### GetCwsContainerCountAvg
+
+`func (o *UsageSummaryDate) GetCwsContainerCountAvg() int64`
+
+GetCwsContainerCountAvg returns the CwsContainerCountAvg field if non-nil, zero value otherwise.
+
+### GetCwsContainerCountAvgOk
+
+`func (o *UsageSummaryDate) GetCwsContainerCountAvgOk() (*int64, bool)`
+
+GetCwsContainerCountAvgOk returns a tuple with the CwsContainerCountAvg field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCwsContainerCountAvg
+
+`func (o *UsageSummaryDate) SetCwsContainerCountAvg(v int64)`
+
+SetCwsContainerCountAvg sets CwsContainerCountAvg field to given value.
+
+### HasCwsContainerCountAvg
+
+`func (o *UsageSummaryDate) HasCwsContainerCountAvg() bool`
+
+HasCwsContainerCountAvg returns a boolean if a field has been set.
+
+### GetCwsHostTop99p
+
+`func (o *UsageSummaryDate) GetCwsHostTop99p() int64`
+
+GetCwsHostTop99p returns the CwsHostTop99p field if non-nil, zero value otherwise.
+
+### GetCwsHostTop99pOk
+
+`func (o *UsageSummaryDate) GetCwsHostTop99pOk() (*int64, bool)`
+
+GetCwsHostTop99pOk returns a tuple with the CwsHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCwsHostTop99p
+
+`func (o *UsageSummaryDate) SetCwsHostTop99p(v int64)`
+
+SetCwsHostTop99p sets CwsHostTop99p field to given value.
+
+### HasCwsHostTop99p
+
+`func (o *UsageSummaryDate) HasCwsHostTop99p() bool`
+
+HasCwsHostTop99p returns a boolean if a field has been set.
 
 ### GetDate
 
