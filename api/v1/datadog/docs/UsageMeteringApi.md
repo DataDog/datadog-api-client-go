@@ -13,8 +13,10 @@ Method | HTTP request | Description
 [**GetTracingWithoutLimits**](UsageMeteringApi.md#GetTracingWithoutLimits) | **Get** /api/v1/usage/tracing-without-limits | Get hourly usage for tracing without limits
 [**GetUsageAnalyzedLogs**](UsageMeteringApi.md#GetUsageAnalyzedLogs) | **Get** /api/v1/usage/analyzed_logs | Get hourly usage for analyzed logs
 [**GetUsageAttribution**](UsageMeteringApi.md#GetUsageAttribution) | **Get** /api/v1/usage/attribution | Get Usage Attribution
+[**GetUsageAuditLogs**](UsageMeteringApi.md#GetUsageAuditLogs) | **Get** /api/v1/usage/audit_logs | Get hourly usage for audit logs
 [**GetUsageBillableSummary**](UsageMeteringApi.md#GetUsageBillableSummary) | **Get** /api/v1/usage/billable-summary | Get billable usage across your account
-[**GetUsageComplianceMonitoring**](UsageMeteringApi.md#GetUsageComplianceMonitoring) | **Get** /api/v1/usage/compliance-monitoring | Get hourly usage for Compliance Monitoring
+[**GetUsageCWS**](UsageMeteringApi.md#GetUsageCWS) | **Get** /api/v1/usage/cws | Get hourly usage for Cloud Workload Security
+[**GetUsageCloudSecurityPostureManagement**](UsageMeteringApi.md#GetUsageCloudSecurityPostureManagement) | **Get** /api/v1/usage/cspm | Get hourly usage for CSPM
 [**GetUsageFargate**](UsageMeteringApi.md#GetUsageFargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
 [**GetUsageHosts**](UsageMeteringApi.md#GetUsageHosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
 [**GetUsageIndexedSpans**](UsageMeteringApi.md#GetUsageIndexedSpans) | **Get** /api/v1/usage/indexed-spans | Get hourly usage for indexed spans
@@ -759,6 +761,86 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetUsageAuditLogs
+
+> UsageAuditLogsResponse GetUsageAuditLogs(ctx, startHr, datadog.GetUsageAuditLogsOptionalParameters{})
+
+Get hourly usage for audit logs.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    "time"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    startHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage beginning at this hour.
+    endHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending **before** this hour. (optional)
+    optionalParams := datadog.GetUsageAuditLogsOptionalParameters{
+        EndHr: &endHr,
+    }
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsageMeteringApi.GetUsageAuditLogs(ctx, startHr, optionalParams)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageAuditLogs`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageAuditLogs`: UsageAuditLogsResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageAuditLogs:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a GetUsageAuditLogsOptionalParameters struct.
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+
+### Return type
+
+[**UsageAuditLogsResponse**](UsageAuditLogsResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json;datetime-format=rfc3339
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetUsageBillableSummary
 
 > UsageBillableSummaryResponse GetUsageBillableSummary(ctx, datadog.GetUsageBillableSummaryOptionalParameters{})
@@ -834,11 +916,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetUsageComplianceMonitoring
+## GetUsageCWS
 
-> UsageComplianceResponse GetUsageComplianceMonitoring(ctx, startHr, datadog.GetUsageComplianceMonitoringOptionalParameters{})
+> UsageCWSResponse GetUsageCWS(ctx, startHr, datadog.GetUsageCWSOptionalParameters{})
 
-Get hourly usage for Compliance Monitoring.
+Get hourly usage for Cloud Workload Security.
 
 ### Example
 
@@ -859,21 +941,21 @@ func main() {
 
     startHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage beginning at this hour.
     endHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending **before** this hour. (optional)
-    optionalParams := datadog.GetUsageComplianceMonitoringOptionalParameters{
+    optionalParams := datadog.GetUsageCWSOptionalParameters{
         EndHr: &endHr,
     }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsageMeteringApi.GetUsageComplianceMonitoring(ctx, startHr, optionalParams)
+    resp, r, err := apiClient.UsageMeteringApi.GetUsageCWS(ctx, startHr, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageComplianceMonitoring`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageCWS`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetUsageComplianceMonitoring`: UsageComplianceResponse
+    // response from `GetUsageCWS`: UsageCWSResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageComplianceMonitoring:\n%s\n", responseContent)
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageCWS:\n%s\n", responseContent)
 }
 ```
 
@@ -889,7 +971,7 @@ Name | Type | Description  | Notes
 ### Optional Parameters
 
 
-Other parameters are passed through a pointer to a GetUsageComplianceMonitoringOptionalParameters struct.
+Other parameters are passed through a pointer to a GetUsageCWSOptionalParameters struct.
 
 
 Name | Type | Description  | Notes
@@ -898,7 +980,87 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UsageComplianceResponse**](UsageComplianceResponse.md)
+[**UsageCWSResponse**](UsageCWSResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json;datetime-format=rfc3339
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUsageCloudSecurityPostureManagement
+
+> UsageCloudSecurityPostureManagementResponse GetUsageCloudSecurityPostureManagement(ctx, startHr, datadog.GetUsageCloudSecurityPostureManagementOptionalParameters{})
+
+Get hourly usage for Cloud Security Posture Management (CSPM).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    "time"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    startHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage beginning at this hour.
+    endHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending **before** this hour. (optional)
+    optionalParams := datadog.GetUsageCloudSecurityPostureManagementOptionalParameters{
+        EndHr: &endHr,
+    }
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsageMeteringApi.GetUsageCloudSecurityPostureManagement(ctx, startHr, optionalParams)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageCloudSecurityPostureManagement`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageCloudSecurityPostureManagement`: UsageCloudSecurityPostureManagementResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageCloudSecurityPostureManagement:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a GetUsageCloudSecurityPostureManagementOptionalParameters struct.
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+
+### Return type
+
+[**UsageCloudSecurityPostureManagementResponse**](UsageCloudSecurityPostureManagementResponse.md)
 
 ### Authorization
 

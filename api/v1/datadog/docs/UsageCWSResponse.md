@@ -1,52 +1,52 @@
-# UsageComplianceResponse
+# UsageCWSResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Usage** | Pointer to [**[]UsageComplianceHour**](UsageComplianceHour.md) | Get hourly usage for Compliance Monitoring. | [optional] 
+**Usage** | Pointer to [**[]UsageCWSHour**](UsageCWSHour.md) | Get hourly usage for Cloud Workload Security. | [optional] 
 
 ## Methods
 
-### NewUsageComplianceResponse
+### NewUsageCWSResponse
 
-`func NewUsageComplianceResponse() *UsageComplianceResponse`
+`func NewUsageCWSResponse() *UsageCWSResponse`
 
-NewUsageComplianceResponse instantiates a new UsageComplianceResponse object
+NewUsageCWSResponse instantiates a new UsageCWSResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUsageComplianceResponseWithDefaults
+### NewUsageCWSResponseWithDefaults
 
-`func NewUsageComplianceResponseWithDefaults() *UsageComplianceResponse`
+`func NewUsageCWSResponseWithDefaults() *UsageCWSResponse`
 
-NewUsageComplianceResponseWithDefaults instantiates a new UsageComplianceResponse object
+NewUsageCWSResponseWithDefaults instantiates a new UsageCWSResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetUsage
 
-`func (o *UsageComplianceResponse) GetUsage() []UsageComplianceHour`
+`func (o *UsageCWSResponse) GetUsage() []UsageCWSHour`
 
 GetUsage returns the Usage field if non-nil, zero value otherwise.
 
 ### GetUsageOk
 
-`func (o *UsageComplianceResponse) GetUsageOk() (*[]UsageComplianceHour, bool)`
+`func (o *UsageCWSResponse) GetUsageOk() (*[]UsageCWSHour, bool)`
 
 GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsage
 
-`func (o *UsageComplianceResponse) SetUsage(v []UsageComplianceHour)`
+`func (o *UsageCWSResponse) SetUsage(v []UsageCWSHour)`
 
 SetUsage sets Usage field to given value.
 
 ### HasUsage
 
-`func (o *UsageComplianceResponse) HasUsage() bool`
+`func (o *UsageCWSResponse) HasUsage() bool`
 
 HasUsage returns a boolean if a field has been set.
 
