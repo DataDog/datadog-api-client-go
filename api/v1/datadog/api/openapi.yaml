@@ -26866,15 +26866,19 @@ components:
           total_number_of_records: 1
           next_record_id: next_record_id
           limit: 6
-        month: ""
-        day: ""
+        month: 2000-01-23T04:56:07.000+00:00
+        day: 2000-01-23T04:56:07.000+00:00
       properties:
         day:
           description: The day value from the user request that contains the returned
             usage data. (If day was used the request)
+          format: date-time
+          type: string
         month:
           description: The month value from the user request that contains the returned
             usage data. (If month was used the request)
+          format: date-time
+          type: string
         pagination:
           $ref: '#/components/schemas/UsageAttributionPagination'
       type: object
@@ -26887,8 +26891,8 @@ components:
             total_number_of_records: 1
             next_record_id: next_record_id
             limit: 6
-          month: ""
-          day: ""
+          month: 2000-01-23T04:56:07.000+00:00
+          day: 2000-01-23T04:56:07.000+00:00
         usage:
         - max_metric_hour: 6
           metric_name: metric_name
