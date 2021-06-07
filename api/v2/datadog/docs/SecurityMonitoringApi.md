@@ -25,6 +25,9 @@ Method | HTTP request | Description
 
 Create a security filter.
 
+See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
+for more examples.
+
 ### Example
 
 ```go
@@ -300,6 +303,9 @@ This endpoint does not have optional parameters.
 > SecurityFilterResponse GetSecurityFilter(ctx, securityFilterId)
 
 Get the details of a specific security filter.
+
+See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
+for more examples.
 
 ### Example
 

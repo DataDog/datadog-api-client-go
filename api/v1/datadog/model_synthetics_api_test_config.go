@@ -10,13 +10,12 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // SyntheticsAPITestConfig Configuration object for a Synthetic API test.
 type SyntheticsAPITestConfig struct {
 	// Array of assertions used for the test.
-	Assertions []SyntheticsAssertion `json:"assertions"`
+	Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
 	// Array of variables used for the test.
 	ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
 	Request         *SyntheticsTestRequest      `json:"request,omitempty"`
@@ -28,9 +27,8 @@ type SyntheticsAPITestConfig struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsAPITestConfig(assertions []SyntheticsAssertion) *SyntheticsAPITestConfig {
+func NewSyntheticsAPITestConfig() *SyntheticsAPITestConfig {
 	this := SyntheticsAPITestConfig{}
-	this.Assertions = assertions
 	return &this
 }
 
@@ -42,28 +40,36 @@ func NewSyntheticsAPITestConfigWithDefaults() *SyntheticsAPITestConfig {
 	return &this
 }
 
-// GetAssertions returns the Assertions field value
+// GetAssertions returns the Assertions field value if set, zero value otherwise.
 func (o *SyntheticsAPITestConfig) GetAssertions() []SyntheticsAssertion {
-	if o == nil {
+	if o == nil || o.Assertions == nil {
 		var ret []SyntheticsAssertion
 		return ret
 	}
-
-	return o.Assertions
+	return *o.Assertions
 }
 
-// GetAssertionsOk returns a tuple with the Assertions field value
+// GetAssertionsOk returns a tuple with the Assertions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITestConfig) GetAssertionsOk() (*[]SyntheticsAssertion, bool) {
-	if o == nil {
+	if o == nil || o.Assertions == nil {
 		return nil, false
 	}
-	return &o.Assertions, true
+	return o.Assertions, true
 }
 
-// SetAssertions sets field value
+// HasAssertions returns a boolean if a field has been set.
+func (o *SyntheticsAPITestConfig) HasAssertions() bool {
+	if o != nil && o.Assertions != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAssertions gets a reference to the given []SyntheticsAssertion and assigns it to the Assertions field.
 func (o *SyntheticsAPITestConfig) SetAssertions(v []SyntheticsAssertion) {
-	o.Assertions = v
+	o.Assertions = &v
 }
 
 // GetConfigVariables returns the ConfigVariables field value if set, zero value otherwise.
@@ -164,7 +170,7 @@ func (o *SyntheticsAPITestConfig) SetSteps(v []SyntheticsAPIStep) {
 
 func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Assertions != nil {
 		toSerialize["assertions"] = o.Assertions
 	}
 	if o.ConfigVariables != nil {
@@ -177,34 +183,6 @@ func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
 		toSerialize["steps"] = o.Steps
 	}
 	return json.Marshal(toSerialize)
-}
-
-func (o *SyntheticsAPITestConfig) UnmarshalJSON(bytes []byte) (err error) {
-	required := struct {
-		Assertions *[]SyntheticsAssertion `json:"assertions"`
-	}{}
-	all := struct {
-		Assertions      []SyntheticsAssertion       `json:"assertions"}`
-		ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"}`
-		Request         *SyntheticsTestRequest      `json:"request,omitempty"}`
-		Steps           *[]SyntheticsAPIStep        `json:"steps,omitempty"}`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Assertions == nil {
-		return fmt.Errorf("Required field assertions missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
-		return err
-	}
-	o.Assertions = all.Assertions
-	o.ConfigVariables = all.ConfigVariables
-	o.Request = all.Request
-	o.Steps = all.Steps
-	return nil
 }
 
 type NullableSyntheticsAPITestConfig struct {

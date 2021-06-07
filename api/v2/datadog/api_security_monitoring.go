@@ -37,7 +37,10 @@ type apiCreateSecurityFilterRequest struct {
 /*
  * CreateSecurityFilter Create a security filter
  * Create a security filter.
- */
+
+See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
+for more examples.
+*/
 func (a *SecurityMonitoringApiService) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req := apiCreateSecurityFilterRequest{
 		ApiService: a,
@@ -668,7 +671,10 @@ type apiGetSecurityFilterRequest struct {
 /*
  * GetSecurityFilter Get a security filter
  * Get the details of a specific security filter.
- */
+
+See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
+for more examples.
+*/
 func (a *SecurityMonitoringApiService) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req := apiGetSecurityFilterRequest{
 		ApiService:       a,
