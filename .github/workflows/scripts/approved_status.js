@@ -9,9 +9,24 @@ module.exports.post_approved_pr_status_check = async (github, context) => {
     });
     let status = "pending"
     if (context.eventName === "pull_request_review" && context.payload.action === "submitted") {
-        if (context.payload.review.state === "APPROVED") {
+        if (context.payload.review.state === "approved") {
             status = "success"
-        } else {
+        } else if (context.payload.review.state === "changes_requested") {
+            status = "failure"
+        }
+    } else {
+        const pr_id = context.payload.pull_request.node_id
+        const query = `{
+            node(id: "${pr_id}") {
+                ... on PullRequest {
+                    reviewDecision
+                }
+            }
+        }`
+        const { node: { reviewDecision: review } } = await github.graphql(query, {})
+        if (review === "APPROVED") {
+            status = "success"
+        } else if (review === "CHANGES_REQUESTED") {
             status = "failure"
         }
     }

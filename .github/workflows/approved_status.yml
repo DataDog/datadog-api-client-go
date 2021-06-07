@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - master
-    types: ["review_requested"]
+    types: ["review_requested", "synchronize", "opened", "reopened"]
   pull_request_review:
     types:
       - submitted
@@ -19,7 +19,6 @@ jobs:
       !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')
     steps:
       - name: Get GitHub App token
-        if: github.event_name == 'pull_request'
         id: get_token
         uses: tibdex/github-app-token@v1.3.0
         with:
@@ -34,4 +33,4 @@ jobs:
           github-token: ${{ steps.get_token.outputs.token }}
           script: |
             const script = require('.github/workflows/scripts/approved_status.js')
-            await script.post_approved_pr_status_check(github, context, "pending")
+            await script.post_approved_pr_status_check(github, context)
