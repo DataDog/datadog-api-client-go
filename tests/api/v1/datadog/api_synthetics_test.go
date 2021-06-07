@@ -91,6 +91,8 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 				Interval: datadog.PtrFloat64(10),
 			},
 			TickEvery: datadog.SYNTHETICSTICKINTERVAL_MINUTE.Ptr(),
+			MonitorName: tests.UniqueEntityName(ctx, t),
+			MonitorPriority: datadog.PtrInt32(5),
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
 		Tags:    &[]string{"testing:api"},
