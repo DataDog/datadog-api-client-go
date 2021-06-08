@@ -11,7 +11,9 @@ Name | Type | Description | Notes
 **FollowRedirects** | Pointer to **bool** | For API HTTP test, whether or not the test should follow redirects. | [optional] 
 **MinFailureDuration** | Pointer to **int64** | Minimum amount of time in failure required to trigger an alert. | [optional] 
 **MinLocationFailed** | Pointer to **int64** | Minimum number of locations in failure required to trigger an alert. | [optional] 
+**MonitorName** | Pointer to **string** | The monitor name is used for the alert title as well as for all monitor dashboard widgets and SLOs. | [optional] 
 **MonitorOptions** | Pointer to [**SyntheticsTestOptionsMonitorOptions**](SyntheticsTestOptionsMonitorOptions.md) |  | [optional] 
+**MonitorPriority** | Pointer to **int32** | Integer from 1 (high) to 5 (low) indicating alert severity. | [optional] 
 **NoScreenshot** | Pointer to **bool** | Prevents saving screenshots of the steps. | [optional] 
 **Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |  | [optional] 
 **TickEvery** | Pointer to [**SyntheticsTickInterval**](SyntheticsTickInterval.md) |  | [optional] 
@@ -210,6 +212,31 @@ SetMinLocationFailed sets MinLocationFailed field to given value.
 
 HasMinLocationFailed returns a boolean if a field has been set.
 
+### GetMonitorName
+
+`func (o *SyntheticsTestOptions) GetMonitorName() string`
+
+GetMonitorName returns the MonitorName field if non-nil, zero value otherwise.
+
+### GetMonitorNameOk
+
+`func (o *SyntheticsTestOptions) GetMonitorNameOk() (*string, bool)`
+
+GetMonitorNameOk returns a tuple with the MonitorName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMonitorName
+
+`func (o *SyntheticsTestOptions) SetMonitorName(v string)`
+
+SetMonitorName sets MonitorName field to given value.
+
+### HasMonitorName
+
+`func (o *SyntheticsTestOptions) HasMonitorName() bool`
+
+HasMonitorName returns a boolean if a field has been set.
+
 ### GetMonitorOptions
 
 `func (o *SyntheticsTestOptions) GetMonitorOptions() SyntheticsTestOptionsMonitorOptions`
@@ -234,6 +261,31 @@ SetMonitorOptions sets MonitorOptions field to given value.
 `func (o *SyntheticsTestOptions) HasMonitorOptions() bool`
 
 HasMonitorOptions returns a boolean if a field has been set.
+
+### GetMonitorPriority
+
+`func (o *SyntheticsTestOptions) GetMonitorPriority() int32`
+
+GetMonitorPriority returns the MonitorPriority field if non-nil, zero value otherwise.
+
+### GetMonitorPriorityOk
+
+`func (o *SyntheticsTestOptions) GetMonitorPriorityOk() (*int32, bool)`
+
+GetMonitorPriorityOk returns a tuple with the MonitorPriority field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMonitorPriority
+
+`func (o *SyntheticsTestOptions) SetMonitorPriority(v int32)`
+
+SetMonitorPriority sets MonitorPriority field to given value.
+
+### HasMonitorPriority
+
+`func (o *SyntheticsTestOptions) HasMonitorPriority() bool`
+
+HasMonitorPriority returns a boolean if a field has been set.
 
 ### GetNoScreenshot
 

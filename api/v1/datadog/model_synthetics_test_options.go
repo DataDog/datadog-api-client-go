@@ -27,8 +27,12 @@ type SyntheticsTestOptions struct {
 	// Minimum amount of time in failure required to trigger an alert.
 	MinFailureDuration *int64 `json:"min_failure_duration,omitempty"`
 	// Minimum number of locations in failure required to trigger an alert.
-	MinLocationFailed *int64                               `json:"min_location_failed,omitempty"`
-	MonitorOptions    *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
+	MinLocationFailed *int64 `json:"min_location_failed,omitempty"`
+	// The monitor name is used for the alert title as well as for all monitor dashboard widgets and SLOs.
+	MonitorName    *string                              `json:"monitor_name,omitempty"`
+	MonitorOptions *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
+	// Integer from 1 (high) to 5 (low) indicating alert severity.
+	MonitorPriority *int32 `json:"monitor_priority,omitempty"`
 	// Prevents saving screenshots of the steps.
 	NoScreenshot *bool                       `json:"noScreenshot,omitempty"`
 	Retry        *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
@@ -276,6 +280,38 @@ func (o *SyntheticsTestOptions) SetMinLocationFailed(v int64) {
 	o.MinLocationFailed = &v
 }
 
+// GetMonitorName returns the MonitorName field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetMonitorName() string {
+	if o == nil || o.MonitorName == nil {
+		var ret string
+		return ret
+	}
+	return *o.MonitorName
+}
+
+// GetMonitorNameOk returns a tuple with the MonitorName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetMonitorNameOk() (*string, bool) {
+	if o == nil || o.MonitorName == nil {
+		return nil, false
+	}
+	return o.MonitorName, true
+}
+
+// HasMonitorName returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasMonitorName() bool {
+	if o != nil && o.MonitorName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitorName gets a reference to the given string and assigns it to the MonitorName field.
+func (o *SyntheticsTestOptions) SetMonitorName(v string) {
+	o.MonitorName = &v
+}
+
 // GetMonitorOptions returns the MonitorOptions field value if set, zero value otherwise.
 func (o *SyntheticsTestOptions) GetMonitorOptions() SyntheticsTestOptionsMonitorOptions {
 	if o == nil || o.MonitorOptions == nil {
@@ -306,6 +342,38 @@ func (o *SyntheticsTestOptions) HasMonitorOptions() bool {
 // SetMonitorOptions gets a reference to the given SyntheticsTestOptionsMonitorOptions and assigns it to the MonitorOptions field.
 func (o *SyntheticsTestOptions) SetMonitorOptions(v SyntheticsTestOptionsMonitorOptions) {
 	o.MonitorOptions = &v
+}
+
+// GetMonitorPriority returns the MonitorPriority field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetMonitorPriority() int32 {
+	if o == nil || o.MonitorPriority == nil {
+		var ret int32
+		return ret
+	}
+	return *o.MonitorPriority
+}
+
+// GetMonitorPriorityOk returns a tuple with the MonitorPriority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetMonitorPriorityOk() (*int32, bool) {
+	if o == nil || o.MonitorPriority == nil {
+		return nil, false
+	}
+	return o.MonitorPriority, true
+}
+
+// HasMonitorPriority returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasMonitorPriority() bool {
+	if o != nil && o.MonitorPriority != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitorPriority gets a reference to the given int32 and assigns it to the MonitorPriority field.
+func (o *SyntheticsTestOptions) SetMonitorPriority(v int32) {
+	o.MonitorPriority = &v
 }
 
 // GetNoScreenshot returns the NoScreenshot field value if set, zero value otherwise.
@@ -427,8 +495,14 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.MinLocationFailed != nil {
 		toSerialize["min_location_failed"] = o.MinLocationFailed
 	}
+	if o.MonitorName != nil {
+		toSerialize["monitor_name"] = o.MonitorName
+	}
 	if o.MonitorOptions != nil {
 		toSerialize["monitor_options"] = o.MonitorOptions
+	}
+	if o.MonitorPriority != nil {
+		toSerialize["monitor_priority"] = o.MonitorPriority
 	}
 	if o.NoScreenshot != nil {
 		toSerialize["noScreenshot"] = o.NoScreenshot
