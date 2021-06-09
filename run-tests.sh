@@ -29,4 +29,11 @@ cd -
 golint ./...
 go mod tidy
 go clean -testcache
+
+# Run the same in tests submodule
+cd tests
+golint ./...
+go mod tidy
+go clean -testcache
+cd ..
 gotestsum --format short-verbose --rerun-fails --rerun-fails-max-failures=20000 --raw-command -- ./run-go-tests.sh
