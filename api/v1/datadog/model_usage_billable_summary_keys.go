@@ -14,25 +14,38 @@ import (
 
 // UsageBillableSummaryKeys Response with aggregated usage types.
 type UsageBillableSummaryKeys struct {
-	ApmHostSum                 *UsageBillableSummaryBody `json:"apm_host_sum,omitempty"`
-	ApmHostTop99p              *UsageBillableSummaryBody `json:"apm_host_top99p,omitempty"`
-	ApmTraceSearchSum          *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
-	FargateContainerAverage    *UsageBillableSummaryBody `json:"fargate_container_average,omitempty"`
-	InfraContainerSum          *UsageBillableSummaryBody `json:"infra_container_sum,omitempty"`
-	InfraHostSum               *UsageBillableSummaryBody `json:"infra_host_sum,omitempty"`
-	InfraHostTop99p            *UsageBillableSummaryBody `json:"infra_host_top99p,omitempty"`
-	IotTop99p                  *UsageBillableSummaryBody `json:"iot_top99p,omitempty"`
-	LambdaFunctionAverage      *UsageBillableSummaryBody `json:"lambda_function_average,omitempty"`
-	LogsIndexedSum             *UsageBillableSummaryBody `json:"logs_indexed_sum,omitempty"`
-	LogsIngestedSum            *UsageBillableSummaryBody `json:"logs_ingested_sum,omitempty"`
-	NpmFlowSum                 *UsageBillableSummaryBody `json:"npm_flow_sum,omitempty"`
-	NpmHostTop99p              *UsageBillableSummaryBody `json:"npm_host_top99p,omitempty"`
-	RumSum                     *UsageBillableSummaryBody `json:"rum_sum,omitempty"`
-	ServerlessInvocationSum    *UsageBillableSummaryBody `json:"serverless_invocation_sum,omitempty"`
-	SiemSum                    *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
-	SyntheticsApiTestsSum      *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
-	SyntheticsBrowserChecksSum *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
-	TimeseriesAverage          *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
+	ApmHostSum                    *UsageBillableSummaryBody `json:"apm_host_sum,omitempty"`
+	ApmHostTop99p                 *UsageBillableSummaryBody `json:"apm_host_top99p,omitempty"`
+	ApmTraceSearchSum             *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
+	FargateContainerAverage       *UsageBillableSummaryBody `json:"fargate_container_average,omitempty"`
+	InfraContainerSum             *UsageBillableSummaryBody `json:"infra_container_sum,omitempty"`
+	InfraHostSum                  *UsageBillableSummaryBody `json:"infra_host_sum,omitempty"`
+	InfraHostTop99p               *UsageBillableSummaryBody `json:"infra_host_top99p,omitempty"`
+	IotTop99p                     *UsageBillableSummaryBody `json:"iot_top99p,omitempty"`
+	LambdaFunctionAverage         *UsageBillableSummaryBody `json:"lambda_function_average,omitempty"`
+	LogsIndexed15daySum           *UsageBillableSummaryBody `json:"logs_indexed_15day_sum,omitempty"`
+	LogsIndexed180daySum          *UsageBillableSummaryBody `json:"logs_indexed_180day_sum,omitempty"`
+	LogsIndexed30daySum           *UsageBillableSummaryBody `json:"logs_indexed_30day_sum,omitempty"`
+	LogsIndexed3daySum            *UsageBillableSummaryBody `json:"logs_indexed_3day_sum,omitempty"`
+	LogsIndexed45daySum           *UsageBillableSummaryBody `json:"logs_indexed_45day_sum,omitempty"`
+	LogsIndexed60daySum           *UsageBillableSummaryBody `json:"logs_indexed_60day_sum,omitempty"`
+	LogsIndexed7daySum            *UsageBillableSummaryBody `json:"logs_indexed_7day_sum,omitempty"`
+	LogsIndexed90daySum           *UsageBillableSummaryBody `json:"logs_indexed_90day_sum,omitempty"`
+	LogsIndexedCustomRetentionSum *UsageBillableSummaryBody `json:"logs_indexed_custom_retention_sum,omitempty"`
+	LogsIndexedSum                *UsageBillableSummaryBody `json:"logs_indexed_sum,omitempty"`
+	LogsIngestedSum               *UsageBillableSummaryBody `json:"logs_ingested_sum,omitempty"`
+	NetworkDeviceTop99p           *UsageBillableSummaryBody `json:"network_device_top99p,omitempty"`
+	NpmFlowSum                    *UsageBillableSummaryBody `json:"npm_flow_sum,omitempty"`
+	NpmHostSum                    *UsageBillableSummaryBody `json:"npm_host_sum,omitempty"`
+	NpmHostTop99p                 *UsageBillableSummaryBody `json:"npm_host_top99p,omitempty"`
+	ProfContainerSum              *UsageBillableSummaryBody `json:"prof_container_sum,omitempty"`
+	ProfHostTop99p                *UsageBillableSummaryBody `json:"prof_host_top99p,omitempty"`
+	RumSum                        *UsageBillableSummaryBody `json:"rum_sum,omitempty"`
+	ServerlessInvocationSum       *UsageBillableSummaryBody `json:"serverless_invocation_sum,omitempty"`
+	SiemSum                       *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
+	SyntheticsApiTestsSum         *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
+	SyntheticsBrowserChecksSum    *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
+	TimeseriesAverage             *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
 }
 
 // NewUsageBillableSummaryKeys instantiates a new UsageBillableSummaryKeys object
@@ -340,6 +353,294 @@ func (o *UsageBillableSummaryKeys) SetLambdaFunctionAverage(v UsageBillableSumma
 	o.LambdaFunctionAverage = &v
 }
 
+// GetLogsIndexed15daySum returns the LogsIndexed15daySum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed15daySum() UsageBillableSummaryBody {
+	if o == nil || o.LogsIndexed15daySum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.LogsIndexed15daySum
+}
+
+// GetLogsIndexed15daySumOk returns a tuple with the LogsIndexed15daySum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed15daySumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.LogsIndexed15daySum == nil {
+		return nil, false
+	}
+	return o.LogsIndexed15daySum, true
+}
+
+// HasLogsIndexed15daySum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasLogsIndexed15daySum() bool {
+	if o != nil && o.LogsIndexed15daySum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogsIndexed15daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed15daySum field.
+func (o *UsageBillableSummaryKeys) SetLogsIndexed15daySum(v UsageBillableSummaryBody) {
+	o.LogsIndexed15daySum = &v
+}
+
+// GetLogsIndexed180daySum returns the LogsIndexed180daySum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed180daySum() UsageBillableSummaryBody {
+	if o == nil || o.LogsIndexed180daySum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.LogsIndexed180daySum
+}
+
+// GetLogsIndexed180daySumOk returns a tuple with the LogsIndexed180daySum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed180daySumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.LogsIndexed180daySum == nil {
+		return nil, false
+	}
+	return o.LogsIndexed180daySum, true
+}
+
+// HasLogsIndexed180daySum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasLogsIndexed180daySum() bool {
+	if o != nil && o.LogsIndexed180daySum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogsIndexed180daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed180daySum field.
+func (o *UsageBillableSummaryKeys) SetLogsIndexed180daySum(v UsageBillableSummaryBody) {
+	o.LogsIndexed180daySum = &v
+}
+
+// GetLogsIndexed30daySum returns the LogsIndexed30daySum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed30daySum() UsageBillableSummaryBody {
+	if o == nil || o.LogsIndexed30daySum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.LogsIndexed30daySum
+}
+
+// GetLogsIndexed30daySumOk returns a tuple with the LogsIndexed30daySum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed30daySumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.LogsIndexed30daySum == nil {
+		return nil, false
+	}
+	return o.LogsIndexed30daySum, true
+}
+
+// HasLogsIndexed30daySum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasLogsIndexed30daySum() bool {
+	if o != nil && o.LogsIndexed30daySum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogsIndexed30daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed30daySum field.
+func (o *UsageBillableSummaryKeys) SetLogsIndexed30daySum(v UsageBillableSummaryBody) {
+	o.LogsIndexed30daySum = &v
+}
+
+// GetLogsIndexed3daySum returns the LogsIndexed3daySum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed3daySum() UsageBillableSummaryBody {
+	if o == nil || o.LogsIndexed3daySum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.LogsIndexed3daySum
+}
+
+// GetLogsIndexed3daySumOk returns a tuple with the LogsIndexed3daySum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed3daySumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.LogsIndexed3daySum == nil {
+		return nil, false
+	}
+	return o.LogsIndexed3daySum, true
+}
+
+// HasLogsIndexed3daySum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasLogsIndexed3daySum() bool {
+	if o != nil && o.LogsIndexed3daySum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogsIndexed3daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed3daySum field.
+func (o *UsageBillableSummaryKeys) SetLogsIndexed3daySum(v UsageBillableSummaryBody) {
+	o.LogsIndexed3daySum = &v
+}
+
+// GetLogsIndexed45daySum returns the LogsIndexed45daySum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed45daySum() UsageBillableSummaryBody {
+	if o == nil || o.LogsIndexed45daySum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.LogsIndexed45daySum
+}
+
+// GetLogsIndexed45daySumOk returns a tuple with the LogsIndexed45daySum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed45daySumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.LogsIndexed45daySum == nil {
+		return nil, false
+	}
+	return o.LogsIndexed45daySum, true
+}
+
+// HasLogsIndexed45daySum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasLogsIndexed45daySum() bool {
+	if o != nil && o.LogsIndexed45daySum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogsIndexed45daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed45daySum field.
+func (o *UsageBillableSummaryKeys) SetLogsIndexed45daySum(v UsageBillableSummaryBody) {
+	o.LogsIndexed45daySum = &v
+}
+
+// GetLogsIndexed60daySum returns the LogsIndexed60daySum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed60daySum() UsageBillableSummaryBody {
+	if o == nil || o.LogsIndexed60daySum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.LogsIndexed60daySum
+}
+
+// GetLogsIndexed60daySumOk returns a tuple with the LogsIndexed60daySum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed60daySumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.LogsIndexed60daySum == nil {
+		return nil, false
+	}
+	return o.LogsIndexed60daySum, true
+}
+
+// HasLogsIndexed60daySum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasLogsIndexed60daySum() bool {
+	if o != nil && o.LogsIndexed60daySum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogsIndexed60daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed60daySum field.
+func (o *UsageBillableSummaryKeys) SetLogsIndexed60daySum(v UsageBillableSummaryBody) {
+	o.LogsIndexed60daySum = &v
+}
+
+// GetLogsIndexed7daySum returns the LogsIndexed7daySum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed7daySum() UsageBillableSummaryBody {
+	if o == nil || o.LogsIndexed7daySum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.LogsIndexed7daySum
+}
+
+// GetLogsIndexed7daySumOk returns a tuple with the LogsIndexed7daySum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed7daySumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.LogsIndexed7daySum == nil {
+		return nil, false
+	}
+	return o.LogsIndexed7daySum, true
+}
+
+// HasLogsIndexed7daySum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasLogsIndexed7daySum() bool {
+	if o != nil && o.LogsIndexed7daySum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogsIndexed7daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed7daySum field.
+func (o *UsageBillableSummaryKeys) SetLogsIndexed7daySum(v UsageBillableSummaryBody) {
+	o.LogsIndexed7daySum = &v
+}
+
+// GetLogsIndexed90daySum returns the LogsIndexed90daySum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed90daySum() UsageBillableSummaryBody {
+	if o == nil || o.LogsIndexed90daySum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.LogsIndexed90daySum
+}
+
+// GetLogsIndexed90daySumOk returns a tuple with the LogsIndexed90daySum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetLogsIndexed90daySumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.LogsIndexed90daySum == nil {
+		return nil, false
+	}
+	return o.LogsIndexed90daySum, true
+}
+
+// HasLogsIndexed90daySum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasLogsIndexed90daySum() bool {
+	if o != nil && o.LogsIndexed90daySum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogsIndexed90daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed90daySum field.
+func (o *UsageBillableSummaryKeys) SetLogsIndexed90daySum(v UsageBillableSummaryBody) {
+	o.LogsIndexed90daySum = &v
+}
+
+// GetLogsIndexedCustomRetentionSum returns the LogsIndexedCustomRetentionSum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetLogsIndexedCustomRetentionSum() UsageBillableSummaryBody {
+	if o == nil || o.LogsIndexedCustomRetentionSum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.LogsIndexedCustomRetentionSum
+}
+
+// GetLogsIndexedCustomRetentionSumOk returns a tuple with the LogsIndexedCustomRetentionSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetLogsIndexedCustomRetentionSumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.LogsIndexedCustomRetentionSum == nil {
+		return nil, false
+	}
+	return o.LogsIndexedCustomRetentionSum, true
+}
+
+// HasLogsIndexedCustomRetentionSum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasLogsIndexedCustomRetentionSum() bool {
+	if o != nil && o.LogsIndexedCustomRetentionSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogsIndexedCustomRetentionSum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexedCustomRetentionSum field.
+func (o *UsageBillableSummaryKeys) SetLogsIndexedCustomRetentionSum(v UsageBillableSummaryBody) {
+	o.LogsIndexedCustomRetentionSum = &v
+}
+
 // GetLogsIndexedSum returns the LogsIndexedSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexedSum() UsageBillableSummaryBody {
 	if o == nil || o.LogsIndexedSum == nil {
@@ -404,6 +705,38 @@ func (o *UsageBillableSummaryKeys) SetLogsIngestedSum(v UsageBillableSummaryBody
 	o.LogsIngestedSum = &v
 }
 
+// GetNetworkDeviceTop99p returns the NetworkDeviceTop99p field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetNetworkDeviceTop99p() UsageBillableSummaryBody {
+	if o == nil || o.NetworkDeviceTop99p == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.NetworkDeviceTop99p
+}
+
+// GetNetworkDeviceTop99pOk returns a tuple with the NetworkDeviceTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetNetworkDeviceTop99pOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.NetworkDeviceTop99p == nil {
+		return nil, false
+	}
+	return o.NetworkDeviceTop99p, true
+}
+
+// HasNetworkDeviceTop99p returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasNetworkDeviceTop99p() bool {
+	if o != nil && o.NetworkDeviceTop99p != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the NetworkDeviceTop99p field.
+func (o *UsageBillableSummaryKeys) SetNetworkDeviceTop99p(v UsageBillableSummaryBody) {
+	o.NetworkDeviceTop99p = &v
+}
+
 // GetNpmFlowSum returns the NpmFlowSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetNpmFlowSum() UsageBillableSummaryBody {
 	if o == nil || o.NpmFlowSum == nil {
@@ -436,6 +769,38 @@ func (o *UsageBillableSummaryKeys) SetNpmFlowSum(v UsageBillableSummaryBody) {
 	o.NpmFlowSum = &v
 }
 
+// GetNpmHostSum returns the NpmHostSum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetNpmHostSum() UsageBillableSummaryBody {
+	if o == nil || o.NpmHostSum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.NpmHostSum
+}
+
+// GetNpmHostSumOk returns a tuple with the NpmHostSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetNpmHostSumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.NpmHostSum == nil {
+		return nil, false
+	}
+	return o.NpmHostSum, true
+}
+
+// HasNpmHostSum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasNpmHostSum() bool {
+	if o != nil && o.NpmHostSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNpmHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the NpmHostSum field.
+func (o *UsageBillableSummaryKeys) SetNpmHostSum(v UsageBillableSummaryBody) {
+	o.NpmHostSum = &v
+}
+
 // GetNpmHostTop99p returns the NpmHostTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetNpmHostTop99p() UsageBillableSummaryBody {
 	if o == nil || o.NpmHostTop99p == nil {
@@ -466,6 +831,70 @@ func (o *UsageBillableSummaryKeys) HasNpmHostTop99p() bool {
 // SetNpmHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the NpmHostTop99p field.
 func (o *UsageBillableSummaryKeys) SetNpmHostTop99p(v UsageBillableSummaryBody) {
 	o.NpmHostTop99p = &v
+}
+
+// GetProfContainerSum returns the ProfContainerSum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetProfContainerSum() UsageBillableSummaryBody {
+	if o == nil || o.ProfContainerSum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.ProfContainerSum
+}
+
+// GetProfContainerSumOk returns a tuple with the ProfContainerSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetProfContainerSumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.ProfContainerSum == nil {
+		return nil, false
+	}
+	return o.ProfContainerSum, true
+}
+
+// HasProfContainerSum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasProfContainerSum() bool {
+	if o != nil && o.ProfContainerSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProfContainerSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ProfContainerSum field.
+func (o *UsageBillableSummaryKeys) SetProfContainerSum(v UsageBillableSummaryBody) {
+	o.ProfContainerSum = &v
+}
+
+// GetProfHostTop99p returns the ProfHostTop99p field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetProfHostTop99p() UsageBillableSummaryBody {
+	if o == nil || o.ProfHostTop99p == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.ProfHostTop99p
+}
+
+// GetProfHostTop99pOk returns a tuple with the ProfHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetProfHostTop99pOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.ProfHostTop99p == nil {
+		return nil, false
+	}
+	return o.ProfHostTop99p, true
+}
+
+// HasProfHostTop99p returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasProfHostTop99p() bool {
+	if o != nil && o.ProfHostTop99p != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProfHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the ProfHostTop99p field.
+func (o *UsageBillableSummaryKeys) SetProfHostTop99p(v UsageBillableSummaryBody) {
+	o.ProfHostTop99p = &v
 }
 
 // GetRumSum returns the RumSum field value if set, zero value otherwise.
@@ -689,17 +1118,56 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 	if o.LambdaFunctionAverage != nil {
 		toSerialize["lambda_function_average"] = o.LambdaFunctionAverage
 	}
+	if o.LogsIndexed15daySum != nil {
+		toSerialize["logs_indexed_15day_sum"] = o.LogsIndexed15daySum
+	}
+	if o.LogsIndexed180daySum != nil {
+		toSerialize["logs_indexed_180day_sum"] = o.LogsIndexed180daySum
+	}
+	if o.LogsIndexed30daySum != nil {
+		toSerialize["logs_indexed_30day_sum"] = o.LogsIndexed30daySum
+	}
+	if o.LogsIndexed3daySum != nil {
+		toSerialize["logs_indexed_3day_sum"] = o.LogsIndexed3daySum
+	}
+	if o.LogsIndexed45daySum != nil {
+		toSerialize["logs_indexed_45day_sum"] = o.LogsIndexed45daySum
+	}
+	if o.LogsIndexed60daySum != nil {
+		toSerialize["logs_indexed_60day_sum"] = o.LogsIndexed60daySum
+	}
+	if o.LogsIndexed7daySum != nil {
+		toSerialize["logs_indexed_7day_sum"] = o.LogsIndexed7daySum
+	}
+	if o.LogsIndexed90daySum != nil {
+		toSerialize["logs_indexed_90day_sum"] = o.LogsIndexed90daySum
+	}
+	if o.LogsIndexedCustomRetentionSum != nil {
+		toSerialize["logs_indexed_custom_retention_sum"] = o.LogsIndexedCustomRetentionSum
+	}
 	if o.LogsIndexedSum != nil {
 		toSerialize["logs_indexed_sum"] = o.LogsIndexedSum
 	}
 	if o.LogsIngestedSum != nil {
 		toSerialize["logs_ingested_sum"] = o.LogsIngestedSum
 	}
+	if o.NetworkDeviceTop99p != nil {
+		toSerialize["network_device_top99p"] = o.NetworkDeviceTop99p
+	}
 	if o.NpmFlowSum != nil {
 		toSerialize["npm_flow_sum"] = o.NpmFlowSum
 	}
+	if o.NpmHostSum != nil {
+		toSerialize["npm_host_sum"] = o.NpmHostSum
+	}
 	if o.NpmHostTop99p != nil {
 		toSerialize["npm_host_top99p"] = o.NpmHostTop99p
+	}
+	if o.ProfContainerSum != nil {
+		toSerialize["prof_container_sum"] = o.ProfContainerSum
+	}
+	if o.ProfHostTop99p != nil {
+		toSerialize["prof_host_top99p"] = o.ProfHostTop99p
 	}
 	if o.RumSum != nil {
 		toSerialize["rum_sum"] = o.RumSum
