@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 1.0.0 / 2021-06-10
+
+* [Added] Add missing fields in usage billable summary keys. See [#987](https://github.com/DataDog/datadog-api-client-go/pull/987).
+* [Added] Add monitor name and priority options. See [#984](https://github.com/DataDog/datadog-api-client-go/pull/984).
+* [Added] Add endpoint to list Synthetics global variables. See [#965](https://github.com/DataDog/datadog-api-client-go/pull/965).
+* [Added] Add monitors search endpoints. See [#959](https://github.com/DataDog/datadog-api-client-go/pull/959).
+* [Added] Add CWS to usage metering endpoint. See [#964](https://github.com/DataDog/datadog-api-client-go/pull/964).
+* [Added] Add `tag_config_source` to usage attribution response. See [#952](https://github.com/DataDog/datadog-api-client-go/pull/952).
+* [Added] Add audit logs to usage endpoints. See [#978](https://github.com/DataDog/datadog-api-client-go/pull/978).
+* [Fixed] Make `assertions` field optional for multistep synthetics tests, and add `global` config variable type. See [#961](https://github.com/DataDog/datadog-api-client-go/pull/961).
+* [Fixed] Fix type of day/month response attribute in custom metrics usage. See [#981](https://github.com/DataDog/datadog-api-client-go/pull/981).
+* [Fixed] Properly mark monitor required fields. See [#950](https://github.com/DataDog/datadog-api-client-go/pull/950).
+* [Changed] Rename `compliance` to `CSPM` in usage endpoint. See [#978](https://github.com/DataDog/datadog-api-client-go/pull/978).
+* [Changed] Rename `incident_integration_metadata` to `incident_integrations` to match API. See [#944](https://github.com/DataDog/datadog-api-client-go/pull/944).
+
 ## 1.0.0-beta.22 / 2021-05-17
 
 * [Added] Add endpoints to configure Security Filters. See [#938](https://github.com/DataDog/datadog-api-client-go/pull/938).
