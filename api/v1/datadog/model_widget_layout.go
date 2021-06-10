@@ -204,11 +204,11 @@ func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 		Y      *int64 `json:"y"`
 	}{}
 	all := struct {
-		Height        int64 `json:"height"}`
-		IsColumnBreak *bool `json:"is_column_break,omitempty"}`
-		Width         int64 `json:"width"}`
-		X             int64 `json:"x"}`
-		Y             int64 `json:"y"}`
+		Height        int64 `json:"height"`
+		IsColumnBreak *bool `json:"is_column_break,omitempty"`
+		Width         int64 `json:"width"`
+		X             int64 `json:"x"`
+		Y             int64 `json:"y"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

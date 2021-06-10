@@ -73,7 +73,7 @@ func (o *UserCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Data *UserCreateData `json:"data"`
 	}{}
 	all := struct {
-		Data UserCreateData `json:"data"}`
+		Data UserCreateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -240,12 +240,12 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 		Tags     *[]string           `json:"tags"`
 	}{}
 	all := struct {
-		Check     string             `json:"check"}`
-		HostName  string             `json:"host_name"}`
-		Message   *string            `json:"message,omitempty"}`
-		Status    ServiceCheckStatus `json:"status"}`
-		Tags      []string           `json:"tags"}`
-		Timestamp *int64             `json:"timestamp,omitempty"}`
+		Check     string             `json:"check"`
+		HostName  string             `json:"host_name"`
+		Message   *string            `json:"message,omitempty"`
+		Status    ServiceCheckStatus `json:"status"`
+		Tags      []string           `json:"tags"`
+		Timestamp *int64             `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

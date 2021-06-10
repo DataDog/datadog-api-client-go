@@ -136,9 +136,9 @@ func (o *NotebooksResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *NotebookResourceType            `json:"type"`
 	}{}
 	all := struct {
-		Attributes NotebooksResponseDataAttributes `json:"attributes"}`
-		Id         int64                           `json:"id"}`
-		Type       NotebookResourceType            `json:"type"}`
+		Attributes NotebooksResponseDataAttributes `json:"attributes"`
+		Id         int64                           `json:"id"`
+		Type       NotebookResourceType            `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -74,7 +74,7 @@ func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		ArchiveIds *[]string `json:"archive_ids"`
 	}{}
 	all := struct {
-		ArchiveIds []string `json:"archive_ids"}`
+		ArchiveIds []string `json:"archive_ids"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -166,10 +166,10 @@ func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 		Values   *[]float64                       `json:"values"`
 	}{}
 	all := struct {
-		Count    int64                           `json:"count"}`
-		Metadata SLOHistoryMetricsSeriesMetadata `json:"metadata"}`
-		Sum      float64                         `json:"sum"}`
-		Values   []float64                       `json:"values"}`
+		Count    int64                           `json:"count"`
+		Metadata SLOHistoryMetricsSeriesMetadata `json:"metadata"`
+		Sum      float64                         `json:"sum"`
+		Values   []float64                       `json:"values"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

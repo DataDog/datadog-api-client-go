@@ -397,16 +397,16 @@ func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *ScatterPlotWidgetDefinitionType     `json:"type"`
 	}{}
 	all := struct {
-		ColorByGroups *[]string                           `json:"color_by_groups,omitempty"}`
-		CustomLinks   *[]WidgetCustomLink                 `json:"custom_links,omitempty"}`
-		Requests      ScatterPlotWidgetDefinitionRequests `json:"requests"}`
-		Time          *WidgetTime                         `json:"time,omitempty"}`
-		Title         *string                             `json:"title,omitempty"}`
-		TitleAlign    *WidgetTextAlign                    `json:"title_align,omitempty"}`
-		TitleSize     *string                             `json:"title_size,omitempty"}`
-		Type          ScatterPlotWidgetDefinitionType     `json:"type"}`
-		Xaxis         *WidgetAxis                         `json:"xaxis,omitempty"}`
-		Yaxis         *WidgetAxis                         `json:"yaxis,omitempty"}`
+		ColorByGroups *[]string                           `json:"color_by_groups,omitempty"`
+		CustomLinks   *[]WidgetCustomLink                 `json:"custom_links,omitempty"`
+		Requests      ScatterPlotWidgetDefinitionRequests `json:"requests"`
+		Time          *WidgetTime                         `json:"time,omitempty"`
+		Title         *string                             `json:"title,omitempty"`
+		TitleAlign    *WidgetTextAlign                    `json:"title_align,omitempty"`
+		TitleSize     *string                             `json:"title_size,omitempty"`
+		Type          ScatterPlotWidgetDefinitionType     `json:"type"`
+		Xaxis         *WidgetAxis                         `json:"xaxis,omitempty"`
+		Yaxis         *WidgetAxis                         `json:"yaxis,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

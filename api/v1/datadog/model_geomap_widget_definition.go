@@ -349,15 +349,15 @@ func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		View     *GeomapWidgetDefinitionView  `json:"view"`
 	}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"}`
-		Requests    []GeomapWidgetRequest       `json:"requests"}`
-		Style       GeomapWidgetDefinitionStyle `json:"style"}`
-		Time        *WidgetTime                 `json:"time,omitempty"}`
-		Title       *string                     `json:"title,omitempty"}`
-		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"}`
-		TitleSize   *string                     `json:"title_size,omitempty"}`
-		Type        GeomapWidgetDefinitionType  `json:"type"}`
-		View        GeomapWidgetDefinitionView  `json:"view"}`
+		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"`
+		Requests    []GeomapWidgetRequest       `json:"requests"`
+		Style       GeomapWidgetDefinitionStyle `json:"style"`
+		Time        *WidgetTime                 `json:"time,omitempty"`
+		Title       *string                     `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"`
+		TitleSize   *string                     `json:"title_size,omitempty"`
+		Type        GeomapWidgetDefinitionType  `json:"type"`
+		View        GeomapWidgetDefinitionView  `json:"view"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

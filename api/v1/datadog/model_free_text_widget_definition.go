@@ -216,11 +216,11 @@ func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type *FreeTextWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Color     *string                      `json:"color,omitempty"}`
-		FontSize  *string                      `json:"font_size,omitempty"}`
-		Text      string                       `json:"text"}`
-		TextAlign *WidgetTextAlign             `json:"text_align,omitempty"}`
-		Type      FreeTextWidgetDefinitionType `json:"type"}`
+		Color     *string                      `json:"color,omitempty"`
+		FontSize  *string                      `json:"font_size,omitempty"`
+		Text      string                       `json:"text"`
+		TextAlign *WidgetTextAlign             `json:"text_align,omitempty"`
+		Type      FreeTextWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -175,10 +175,10 @@ func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Time  *NotebookGlobalTime          `json:"time"`
 	}{}
 	all := struct {
-		Cells  []NotebookCellCreateRequest `json:"cells"}`
-		Name   string                      `json:"name"}`
-		Status *NotebookStatus             `json:"status,omitempty"}`
-		Time   NotebookGlobalTime          `json:"time"}`
+		Cells  []NotebookCellCreateRequest `json:"cells"`
+		Name   string                      `json:"name"`
+		Status *NotebookStatus             `json:"status,omitempty"`
+		Time   NotebookGlobalTime          `json:"time"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -282,13 +282,13 @@ func (o *AlertGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		VizType *WidgetVizType                  `json:"viz_type"`
 	}{}
 	all := struct {
-		AlertId    string                         `json:"alert_id"}`
-		Time       *WidgetTime                    `json:"time,omitempty"}`
-		Title      *string                        `json:"title,omitempty"}`
-		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"}`
-		TitleSize  *string                        `json:"title_size,omitempty"}`
-		Type       AlertGraphWidgetDefinitionType `json:"type"}`
-		VizType    WidgetVizType                  `json:"viz_type"}`
+		AlertId    string                         `json:"alert_id"`
+		Time       *WidgetTime                    `json:"time,omitempty"`
+		Title      *string                        `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"`
+		TitleSize  *string                        `json:"title_size,omitempty"`
+		Type       AlertGraphWidgetDefinitionType `json:"type"`
+		VizType    WidgetVizType                  `json:"viz_type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

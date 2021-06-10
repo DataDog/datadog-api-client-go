@@ -106,8 +106,8 @@ func (o *RelationshipToIncidentIntegrationMetadataData) UnmarshalJSON(bytes []by
 		Type *IncidentIntegrationMetadataType `json:"type"`
 	}{}
 	all := struct {
-		Id   string                          `json:"id"}`
-		Type IncidentIntegrationMetadataType `json:"type"}`
+		Id   string                          `json:"id"`
+		Type IncidentIntegrationMetadataType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

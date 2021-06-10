@@ -295,13 +295,13 @@ func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Filter     *LogsFilter      `json:"filter,omitempty"}`
-		Id         *string          `json:"id,omitempty"}`
-		IsEnabled  *bool            `json:"is_enabled,omitempty"}`
-		IsReadOnly *bool            `json:"is_read_only,omitempty"}`
-		Name       string           `json:"name"}`
-		Processors *[]LogsProcessor `json:"processors,omitempty"}`
-		Type       *string          `json:"type,omitempty"}`
+		Filter     *LogsFilter      `json:"filter,omitempty"`
+		Id         *string          `json:"id,omitempty"`
+		IsEnabled  *bool            `json:"is_enabled,omitempty"`
+		IsReadOnly *bool            `json:"is_read_only,omitempty"`
+		Name       string           `json:"name"`
+		Processors *[]LogsProcessor `json:"processors,omitempty"`
+		Type       *string          `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

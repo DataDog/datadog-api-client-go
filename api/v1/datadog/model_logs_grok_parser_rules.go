@@ -115,8 +115,8 @@ func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 		MatchRules *string `json:"match_rules"`
 	}{}
 	all := struct {
-		MatchRules   string  `json:"match_rules"}`
-		SupportRules *string `json:"support_rules,omitempty"}`
+		MatchRules   string  `json:"match_rules"`
+		SupportRules *string `json:"support_rules,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

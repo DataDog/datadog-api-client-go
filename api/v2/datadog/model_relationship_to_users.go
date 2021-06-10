@@ -74,7 +74,7 @@ func (o *RelationshipToUsers) UnmarshalJSON(bytes []byte) (err error) {
 		Data *[]RelationshipToUserData `json:"data"`
 	}{}
 	all := struct {
-		Data []RelationshipToUserData `json:"data"}`
+		Data []RelationshipToUserData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

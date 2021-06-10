@@ -149,9 +149,9 @@ func (o *RoleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		CreatedAt  *time.Time `json:"created_at,omitempty"}`
-		ModifiedAt *time.Time `json:"modified_at,omitempty"}`
-		Name       string     `json:"name"}`
+		CreatedAt  *time.Time `json:"created_at,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		Name       string     `json:"name"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

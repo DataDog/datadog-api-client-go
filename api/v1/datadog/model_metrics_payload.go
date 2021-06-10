@@ -74,7 +74,7 @@ func (o *MetricsPayload) UnmarshalJSON(bytes []byte) (err error) {
 		Series *[]Series `json:"series"`
 	}{}
 	all := struct {
-		Series []Series `json:"series"}`
+		Series []Series `json:"series"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

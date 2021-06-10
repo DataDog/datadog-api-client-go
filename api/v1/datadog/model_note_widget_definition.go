@@ -403,16 +403,16 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type    *NoteWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		BackgroundColor *string                  `json:"background_color,omitempty"}`
-		Content         string                   `json:"content"}`
-		FontSize        *string                  `json:"font_size,omitempty"}`
-		HasPadding      *bool                    `json:"has_padding,omitempty"}`
-		ShowTick        *bool                    `json:"show_tick,omitempty"}`
-		TextAlign       *WidgetTextAlign         `json:"text_align,omitempty"}`
-		TickEdge        *WidgetTickEdge          `json:"tick_edge,omitempty"}`
-		TickPos         *string                  `json:"tick_pos,omitempty"}`
-		Type            NoteWidgetDefinitionType `json:"type"}`
-		VerticalAlign   *WidgetVerticalAlign     `json:"vertical_align,omitempty"}`
+		BackgroundColor *string                  `json:"background_color,omitempty"`
+		Content         string                   `json:"content"`
+		FontSize        *string                  `json:"font_size,omitempty"`
+		HasPadding      *bool                    `json:"has_padding,omitempty"`
+		ShowTick        *bool                    `json:"show_tick,omitempty"`
+		TextAlign       *WidgetTextAlign         `json:"text_align,omitempty"`
+		TickEdge        *WidgetTickEdge          `json:"tick_edge,omitempty"`
+		TickPos         *string                  `json:"tick_pos,omitempty"`
+		Type            NoteWidgetDefinitionType `json:"type"`
+		VerticalAlign   *WidgetVerticalAlign     `json:"vertical_align,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

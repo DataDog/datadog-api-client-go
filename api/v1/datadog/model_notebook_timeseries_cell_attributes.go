@@ -192,10 +192,10 @@ func (o *NotebookTimeseriesCellAttributes) UnmarshalJSON(bytes []byte) (err erro
 		Definition *TimeseriesWidgetDefinition `json:"definition"`
 	}{}
 	all := struct {
-		Definition TimeseriesWidgetDefinition `json:"definition"}`
-		GraphSize  *NotebookGraphSize         `json:"graph_size,omitempty"}`
-		SplitBy    *NotebookSplitBy           `json:"split_by,omitempty"}`
-		Time       NullableNotebookCellTime   `json:"time,omitempty"}`
+		Definition TimeseriesWidgetDefinition `json:"definition"`
+		GraphSize  *NotebookGraphSize         `json:"graph_size,omitempty"`
+		SplitBy    *NotebookSplitBy           `json:"split_by,omitempty"`
+		Time       NullableNotebookCellTime   `json:"time,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -183,10 +183,10 @@ func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Alias           *string                     `json:"alias,omitempty"}`
-		CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"}`
-		Name            string                      `json:"name"}`
-		Order           *WidgetSort                 `json:"order,omitempty"}`
+		Alias           *string                     `json:"alias,omitempty"`
+		CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
+		Name            string                      `json:"name"`
+		Order           *WidgetSort                 `json:"order,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

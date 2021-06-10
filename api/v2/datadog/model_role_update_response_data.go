@@ -184,10 +184,10 @@ func (o *RoleUpdateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		Type *RolesType `json:"type"`
 	}{}
 	all := struct {
-		Attributes    *RoleUpdateAttributes      `json:"attributes,omitempty"}`
-		Id            *string                    `json:"id,omitempty"}`
-		Relationships *RoleResponseRelationships `json:"relationships,omitempty"}`
-		Type          RolesType                  `json:"type"}`
+		Attributes    *RoleUpdateAttributes      `json:"attributes,omitempty"`
+		Id            *string                    `json:"id,omitempty"`
+		Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
+		Type          RolesType                  `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

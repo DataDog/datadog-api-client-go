@@ -203,11 +203,11 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 		Width  *int64              `json:"width"`
 	}{}
 	all := struct {
-		Height   int64              `json:"height"}`
-		Id       SyntheticsDeviceID `json:"id"}`
-		IsMobile *bool              `json:"isMobile,omitempty"}`
-		Name     string             `json:"name"}`
-		Width    int64              `json:"width"}`
+		Height   int64              `json:"height"`
+		Id       SyntheticsDeviceID `json:"id"`
+		IsMobile *bool              `json:"isMobile,omitempty"`
+		Name     string             `json:"name"`
+		Width    int64              `json:"width"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

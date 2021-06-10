@@ -514,19 +514,19 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *SLOType        `json:"type"`
 	}{}
 	all := struct {
-		CreatedAt   *int64                      `json:"created_at,omitempty"}`
-		Creator     *Creator                    `json:"creator,omitempty"}`
-		Description NullableString              `json:"description,omitempty"}`
-		Groups      *[]string                   `json:"groups,omitempty"}`
-		Id          *string                     `json:"id,omitempty"}`
-		ModifiedAt  *int64                      `json:"modified_at,omitempty"}`
-		MonitorIds  *[]int64                    `json:"monitor_ids,omitempty"}`
-		MonitorTags *[]string                   `json:"monitor_tags,omitempty"}`
-		Name        string                      `json:"name"}`
-		Query       *ServiceLevelObjectiveQuery `json:"query,omitempty"}`
-		Tags        *[]string                   `json:"tags,omitempty"}`
-		Thresholds  []SLOThreshold              `json:"thresholds"}`
-		Type        SLOType                     `json:"type"}`
+		CreatedAt   *int64                      `json:"created_at,omitempty"`
+		Creator     *Creator                    `json:"creator,omitempty"`
+		Description NullableString              `json:"description,omitempty"`
+		Groups      *[]string                   `json:"groups,omitempty"`
+		Id          *string                     `json:"id,omitempty"`
+		ModifiedAt  *int64                      `json:"modified_at,omitempty"`
+		MonitorIds  *[]int64                    `json:"monitor_ids,omitempty"`
+		MonitorTags *[]string                   `json:"monitor_tags,omitempty"`
+		Name        string                      `json:"name"`
+		Query       *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+		Tags        *[]string                   `json:"tags,omitempty"`
+		Thresholds  []SLOThreshold              `json:"thresholds"`
+		Type        SLOType                     `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -184,10 +184,10 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 		Status *SecurityMonitoringRuleSeverity `json:"status"`
 	}{}
 	all := struct {
-		Condition     *string                        `json:"condition,omitempty"}`
-		Name          *string                        `json:"name,omitempty"}`
-		Notifications *[]string                      `json:"notifications,omitempty"}`
-		Status        SecurityMonitoringRuleSeverity `json:"status"}`
+		Condition     *string                        `json:"condition,omitempty"`
+		Name          *string                        `json:"name,omitempty"`
+		Notifications *[]string                      `json:"notifications,omitempty"`
+		Status        SecurityMonitoringRuleSeverity `json:"status"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

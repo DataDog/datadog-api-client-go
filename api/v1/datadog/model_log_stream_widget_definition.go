@@ -515,19 +515,19 @@ func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type *LogStreamWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Columns           *[]string                     `json:"columns,omitempty"}`
-		Indexes           *[]string                     `json:"indexes,omitempty"}`
-		Logset            *string                       `json:"logset,omitempty"}`
-		MessageDisplay    *WidgetMessageDisplay         `json:"message_display,omitempty"}`
-		Query             *string                       `json:"query,omitempty"}`
-		ShowDateColumn    *bool                         `json:"show_date_column,omitempty"}`
-		ShowMessageColumn *bool                         `json:"show_message_column,omitempty"}`
-		Sort              *WidgetFieldSort              `json:"sort,omitempty"}`
-		Time              *WidgetTime                   `json:"time,omitempty"}`
-		Title             *string                       `json:"title,omitempty"}`
-		TitleAlign        *WidgetTextAlign              `json:"title_align,omitempty"}`
-		TitleSize         *string                       `json:"title_size,omitempty"}`
-		Type              LogStreamWidgetDefinitionType `json:"type"}`
+		Columns           *[]string                     `json:"columns,omitempty"`
+		Indexes           *[]string                     `json:"indexes,omitempty"`
+		Logset            *string                       `json:"logset,omitempty"`
+		MessageDisplay    *WidgetMessageDisplay         `json:"message_display,omitempty"`
+		Query             *string                       `json:"query,omitempty"`
+		ShowDateColumn    *bool                         `json:"show_date_column,omitempty"`
+		ShowMessageColumn *bool                         `json:"show_message_column,omitempty"`
+		Sort              *WidgetFieldSort              `json:"sort,omitempty"`
+		Time              *WidgetTime                   `json:"time,omitempty"`
+		Title             *string                       `json:"title,omitempty"`
+		TitleAlign        *WidgetTextAlign              `json:"title_align,omitempty"`
+		TitleSize         *string                       `json:"title_size,omitempty"`
+		Type              LogStreamWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

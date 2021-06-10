@@ -73,7 +73,7 @@ func (o *MetricTagConfigurationCreateRequest) UnmarshalJSON(bytes []byte) (err e
 		Data *MetricTagConfigurationCreateData `json:"data"`
 	}{}
 	all := struct {
-		Data MetricTagConfigurationCreateData `json:"data"}`
+		Data MetricTagConfigurationCreateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

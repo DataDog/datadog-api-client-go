@@ -111,8 +111,8 @@ func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 		SampleRate *float64 `json:"sample_rate"`
 	}{}
 	all := struct {
-		Query      *string `json:"query,omitempty"}`
-		SampleRate float64 `json:"sample_rate"}`
+		Query      *string `json:"query,omitempty"`
+		SampleRate float64 `json:"sample_rate"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

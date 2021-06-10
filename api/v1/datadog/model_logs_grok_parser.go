@@ -253,12 +253,12 @@ func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 		Type   *LogsGrokParserType  `json:"type"`
 	}{}
 	all := struct {
-		Grok      LogsGrokParserRules `json:"grok"}`
-		IsEnabled *bool               `json:"is_enabled,omitempty"}`
-		Name      *string             `json:"name,omitempty"}`
-		Samples   *[]string           `json:"samples,omitempty"}`
-		Source    string              `json:"source"}`
-		Type      LogsGrokParserType  `json:"type"}`
+		Grok      LogsGrokParserRules `json:"grok"`
+		IsEnabled *bool               `json:"is_enabled,omitempty"`
+		Name      *string             `json:"name,omitempty"`
+		Samples   *[]string           `json:"samples,omitempty"`
+		Source    string              `json:"source"`
+		Type      LogsGrokParserType  `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

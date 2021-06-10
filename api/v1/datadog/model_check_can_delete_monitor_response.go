@@ -110,8 +110,8 @@ func (o *CheckCanDeleteMonitorResponse) UnmarshalJSON(bytes []byte) (err error) 
 		Data *CheckCanDeleteMonitorResponseData `json:"data"`
 	}{}
 	all := struct {
-		Data   CheckCanDeleteMonitorResponseData `json:"data"}`
-		Errors *map[string][]string              `json:"errors,omitempty"}`
+		Data   CheckCanDeleteMonitorResponseData `json:"data"`
+		Errors *map[string][]string              `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

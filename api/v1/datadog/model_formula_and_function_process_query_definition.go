@@ -359,15 +359,15 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 		Name       *string                                   `json:"name"`
 	}{}
 	all := struct {
-		Aggregator      *FormulaAndFunctionMetricAggregation     `json:"aggregator,omitempty"}`
-		DataSource      FormulaAndFunctionProcessQueryDataSource `json:"data_source"}`
-		IsNormalizedCpu *bool                                    `json:"is_normalized_cpu,omitempty"}`
-		Limit           *int64                                   `json:"limit,omitempty"}`
-		Metric          string                                   `json:"metric"}`
-		Name            string                                   `json:"name"}`
-		Sort            *QuerySortOrder                          `json:"sort,omitempty"}`
-		TagFilters      *[]string                                `json:"tag_filters,omitempty"}`
-		TextFilter      *string                                  `json:"text_filter,omitempty"}`
+		Aggregator      *FormulaAndFunctionMetricAggregation     `json:"aggregator,omitempty"`
+		DataSource      FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
+		IsNormalizedCpu *bool                                    `json:"is_normalized_cpu,omitempty"`
+		Limit           *int64                                   `json:"limit,omitempty"`
+		Metric          string                                   `json:"metric"`
+		Name            string                                   `json:"name"`
+		Sort            *QuerySortOrder                          `json:"sort,omitempty"`
+		TagFilters      *[]string                                `json:"tag_filters,omitempty"`
+		TextFilter      *string                                  `json:"text_filter,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

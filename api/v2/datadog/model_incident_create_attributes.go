@@ -216,11 +216,11 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Title            *string `json:"title"`
 	}{}
 	all := struct {
-		CustomerImpacted     bool                                    `json:"customer_impacted"}`
-		Fields               *map[string]IncidentFieldAttributes     `json:"fields,omitempty"}`
-		InitialTimelineCells *[]IncidentTimelineCellCreateAttributes `json:"initial_timeline_cells,omitempty"}`
-		NotificationHandles  *[]string                               `json:"notification_handles,omitempty"}`
-		Title                string                                  `json:"title"}`
+		CustomerImpacted     bool                                    `json:"customer_impacted"`
+		Fields               *map[string]IncidentFieldAttributes     `json:"fields,omitempty"`
+		InitialTimelineCells *[]IncidentTimelineCellCreateAttributes `json:"initial_timeline_cells,omitempty"`
+		NotificationHandles  *[]string                               `json:"notification_handles,omitempty"`
+		Title                string                                  `json:"title"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

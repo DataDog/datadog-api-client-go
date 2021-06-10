@@ -330,14 +330,14 @@ func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *SLOType        `json:"type"`
 	}{}
 	all := struct {
-		Description NullableString              `json:"description,omitempty"}`
-		Groups      *[]string                   `json:"groups,omitempty"}`
-		MonitorIds  *[]int64                    `json:"monitor_ids,omitempty"}`
-		Name        string                      `json:"name"}`
-		Query       *ServiceLevelObjectiveQuery `json:"query,omitempty"}`
-		Tags        *[]string                   `json:"tags,omitempty"}`
-		Thresholds  []SLOThreshold              `json:"thresholds"}`
-		Type        SLOType                     `json:"type"}`
+		Description NullableString              `json:"description,omitempty"`
+		Groups      *[]string                   `json:"groups,omitempty"`
+		MonitorIds  *[]int64                    `json:"monitor_ids,omitempty"`
+		Name        string                      `json:"name"`
+		Query       *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+		Tags        *[]string                   `json:"tags,omitempty"`
+		Thresholds  []SLOThreshold              `json:"thresholds"`
+		Type        SLOType                     `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -369,15 +369,15 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Url  *string                    `json:"url"`
 	}{}
 	all := struct {
-		HasBackground   *bool                     `json:"has_background,omitempty"}`
-		HasBorder       *bool                     `json:"has_border,omitempty"}`
-		HorizontalAlign *WidgetHorizontalAlign    `json:"horizontal_align,omitempty"}`
-		Margin          *WidgetMargin             `json:"margin,omitempty"}`
-		Sizing          *WidgetImageSizing        `json:"sizing,omitempty"}`
-		Type            ImageWidgetDefinitionType `json:"type"}`
-		Url             string                    `json:"url"}`
-		UrlDarkTheme    *string                   `json:"url_dark_theme,omitempty"}`
-		VerticalAlign   *WidgetVerticalAlign      `json:"vertical_align,omitempty"}`
+		HasBackground   *bool                     `json:"has_background,omitempty"`
+		HasBorder       *bool                     `json:"has_border,omitempty"`
+		HorizontalAlign *WidgetHorizontalAlign    `json:"horizontal_align,omitempty"`
+		Margin          *WidgetMargin             `json:"margin,omitempty"`
+		Sizing          *WidgetImageSizing        `json:"sizing,omitempty"`
+		Type            ImageWidgetDefinitionType `json:"type"`
+		Url             string                    `json:"url"`
+		UrlDarkTheme    *string                   `json:"url_dark_theme,omitempty"`
+		VerticalAlign   *WidgetVerticalAlign      `json:"vertical_align,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

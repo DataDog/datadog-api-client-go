@@ -105,8 +105,8 @@ func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 		PaletteFlip *bool   `json:"palette_flip"`
 	}{}
 	all := struct {
-		Palette     string `json:"palette"}`
-		PaletteFlip bool   `json:"palette_flip"}`
+		Palette     string `json:"palette"`
+		PaletteFlip bool   `json:"palette_flip"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

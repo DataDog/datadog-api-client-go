@@ -474,18 +474,18 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 		Type *DashboardType `json:"type"`
 	}{}
 	all := struct {
-		Author     *Creator      `json:"author,omitempty"}`
-		Created    *time.Time    `json:"created,omitempty"}`
-		Icon       *string       `json:"icon,omitempty"}`
-		Id         string        `json:"id"}`
-		IsFavorite *bool         `json:"is_favorite,omitempty"}`
-		IsReadOnly *bool         `json:"is_read_only,omitempty"}`
-		IsShared   *bool         `json:"is_shared,omitempty"}`
-		Modified   *time.Time    `json:"modified,omitempty"}`
-		Popularity *int32        `json:"popularity,omitempty"}`
-		Title      *string       `json:"title,omitempty"}`
-		Type       DashboardType `json:"type"}`
-		Url        *string       `json:"url,omitempty"}`
+		Author     *Creator      `json:"author,omitempty"`
+		Created    *time.Time    `json:"created,omitempty"`
+		Icon       *string       `json:"icon,omitempty"`
+		Id         string        `json:"id"`
+		IsFavorite *bool         `json:"is_favorite,omitempty"`
+		IsReadOnly *bool         `json:"is_read_only,omitempty"`
+		IsShared   *bool         `json:"is_shared,omitempty"`
+		Modified   *time.Time    `json:"modified,omitempty"`
+		Popularity *int32        `json:"popularity,omitempty"`
+		Title      *string       `json:"title,omitempty"`
+		Type       DashboardType `json:"type"`
+		Url        *string       `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

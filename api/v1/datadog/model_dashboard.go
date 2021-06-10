@@ -560,20 +560,20 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 		Widgets    *[]Widget            `json:"widgets"`
 	}{}
 	all := struct {
-		AuthorHandle            *string                           `json:"author_handle,omitempty"}`
-		CreatedAt               *time.Time                        `json:"created_at,omitempty"}`
-		Description             NullableString                    `json:"description,omitempty"}`
-		Id                      *string                           `json:"id,omitempty"}`
-		IsReadOnly              *bool                             `json:"is_read_only,omitempty"}`
-		LayoutType              DashboardLayoutType               `json:"layout_type"}`
-		ModifiedAt              *time.Time                        `json:"modified_at,omitempty"}`
-		NotifyList              []string                          `json:"notify_list,omitempty"}`
-		ReflowType              *DashboardReflowType              `json:"reflow_type,omitempty"}`
-		TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"}`
-		TemplateVariables       []DashboardTemplateVariable       `json:"template_variables,omitempty"}`
-		Title                   string                            `json:"title"}`
-		Url                     *string                           `json:"url,omitempty"}`
-		Widgets                 []Widget                          `json:"widgets"}`
+		AuthorHandle            *string                           `json:"author_handle,omitempty"`
+		CreatedAt               *time.Time                        `json:"created_at,omitempty"`
+		Description             NullableString                    `json:"description,omitempty"`
+		Id                      *string                           `json:"id,omitempty"`
+		IsReadOnly              *bool                             `json:"is_read_only,omitempty"`
+		LayoutType              DashboardLayoutType               `json:"layout_type"`
+		ModifiedAt              *time.Time                        `json:"modified_at,omitempty"`
+		NotifyList              []string                          `json:"notify_list,omitempty"`
+		ReflowType              *DashboardReflowType              `json:"reflow_type,omitempty"`
+		TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
+		TemplateVariables       []DashboardTemplateVariable       `json:"template_variables,omitempty"`
+		Title                   string                            `json:"title"`
+		Url                     *string                           `json:"url,omitempty"`
+		Widgets                 []Widget                          `json:"widgets"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

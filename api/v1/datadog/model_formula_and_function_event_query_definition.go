@@ -244,12 +244,12 @@ func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (er
 		Name       *string                                        `json:"name"`
 	}{}
 	all := struct {
-		Compute    FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"}`
-		DataSource FormulaAndFunctionEventsDataSource            `json:"data_source"}`
-		GroupBy    *[]FormulaAndFunctionEventQueryGroupBy        `json:"group_by,omitempty"}`
-		Indexes    *[]string                                     `json:"indexes,omitempty"}`
-		Name       string                                        `json:"name"}`
-		Search     *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"}`
+		Compute    FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+		DataSource FormulaAndFunctionEventsDataSource            `json:"data_source"`
+		GroupBy    *[]FormulaAndFunctionEventQueryGroupBy        `json:"group_by,omitempty"`
+		Indexes    *[]string                                     `json:"indexes,omitempty"`
+		Name       string                                        `json:"name"`
+		Search     *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -106,8 +106,8 @@ func (o *RelationshipToOrganizationData) UnmarshalJSON(bytes []byte) (err error)
 		Type *OrganizationsType `json:"type"`
 	}{}
 	all := struct {
-		Id   string            `json:"id"}`
-		Type OrganizationsType `json:"type"}`
+		Id   string            `json:"id"`
+		Type OrganizationsType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

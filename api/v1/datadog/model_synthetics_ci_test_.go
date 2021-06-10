@@ -552,20 +552,20 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 		PublicId *string `json:"public_id"`
 	}{}
 	all := struct {
-		AllowInsecureCertificates *bool                       `json:"allowInsecureCertificates,omitempty"}`
-		BasicAuth                 *SyntheticsBasicAuth        `json:"basicAuth,omitempty"}`
-		Body                      *string                     `json:"body,omitempty"}`
-		BodyType                  *string                     `json:"bodyType,omitempty"}`
-		Cookies                   *string                     `json:"cookies,omitempty"}`
-		DeviceIds                 *[]SyntheticsDeviceID       `json:"deviceIds,omitempty"}`
-		FollowRedirects           *bool                       `json:"followRedirects,omitempty"}`
-		Headers                   *map[string]string          `json:"headers,omitempty"}`
-		Locations                 *[]string                   `json:"locations,omitempty"}`
-		Metadata                  *SyntheticsCITestMetadata   `json:"metadata,omitempty"}`
-		PublicId                  string                      `json:"public_id"}`
-		Retry                     *SyntheticsTestOptionsRetry `json:"retry,omitempty"}`
-		StartUrl                  *string                     `json:"startUrl,omitempty"}`
-		Variables                 *map[string]string          `json:"variables,omitempty"}`
+		AllowInsecureCertificates *bool                       `json:"allowInsecureCertificates,omitempty"`
+		BasicAuth                 *SyntheticsBasicAuth        `json:"basicAuth,omitempty"`
+		Body                      *string                     `json:"body,omitempty"`
+		BodyType                  *string                     `json:"bodyType,omitempty"`
+		Cookies                   *string                     `json:"cookies,omitempty"`
+		DeviceIds                 *[]SyntheticsDeviceID       `json:"deviceIds,omitempty"`
+		FollowRedirects           *bool                       `json:"followRedirects,omitempty"`
+		Headers                   *map[string]string          `json:"headers,omitempty"`
+		Locations                 *[]string                   `json:"locations,omitempty"`
+		Metadata                  *SyntheticsCITestMetadata   `json:"metadata,omitempty"`
+		PublicId                  string                      `json:"public_id"`
+		Retry                     *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+		StartUrl                  *string                     `json:"startUrl,omitempty"`
+		Variables                 *map[string]string          `json:"variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

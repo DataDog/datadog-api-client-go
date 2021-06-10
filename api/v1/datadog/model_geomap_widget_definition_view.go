@@ -74,7 +74,7 @@ func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
 		Focus *string `json:"focus"`
 	}{}
 	all := struct {
-		Focus string `json:"focus"}`
+		Focus string `json:"focus"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

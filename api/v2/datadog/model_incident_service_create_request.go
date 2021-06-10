@@ -73,7 +73,7 @@ func (o *IncidentServiceCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Data *IncidentServiceCreateData `json:"data"`
 	}{}
 	all := struct {
-		Data IncidentServiceCreateData `json:"data"}`
+		Data IncidentServiceCreateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

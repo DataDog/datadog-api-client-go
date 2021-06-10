@@ -110,8 +110,8 @@ func (o *SyntheticsVariableParser) UnmarshalJSON(bytes []byte) (err error) {
 		Type *SyntheticsGlobalVariableParserType `json:"type"`
 	}{}
 	all := struct {
-		Type  SyntheticsGlobalVariableParserType `json:"type"}`
-		Value *string                            `json:"value,omitempty"}`
+		Type  SyntheticsGlobalVariableParserType `json:"type"`
+		Value *string                            `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

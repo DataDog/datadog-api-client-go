@@ -213,11 +213,11 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 		Query       *string                              `json:"query"`
 	}{}
 	all := struct {
-		Destination     LogsArchiveCreateRequestDestination `json:"destination"}`
-		IncludeTags     *bool                               `json:"include_tags,omitempty"}`
-		Name            string                              `json:"name"}`
-		Query           string                              `json:"query"}`
-		RehydrationTags *[]string                           `json:"rehydration_tags,omitempty"}`
+		Destination     LogsArchiveCreateRequestDestination `json:"destination"`
+		IncludeTags     *bool                               `json:"include_tags,omitempty"`
+		Name            string                              `json:"name"`
+		Query           string                              `json:"query"`
+		RehydrationTags *[]string                           `json:"rehydration_tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

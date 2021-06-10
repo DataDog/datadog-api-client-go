@@ -630,22 +630,22 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 		Type  *MonitorType `json:"type"`
 	}{}
 	all := struct {
-		Created         *time.Time            `json:"created,omitempty"}`
-		Creator         *Creator              `json:"creator,omitempty"}`
-		Deleted         NullableTime          `json:"deleted,omitempty"}`
-		Id              *int64                `json:"id,omitempty"}`
-		Message         *string               `json:"message,omitempty"}`
-		Modified        *time.Time            `json:"modified,omitempty"}`
-		Multi           *bool                 `json:"multi,omitempty"}`
-		Name            *string               `json:"name,omitempty"}`
-		Options         *MonitorOptions       `json:"options,omitempty"}`
-		OverallState    *MonitorOverallStates `json:"overall_state,omitempty"}`
-		Priority        *int64                `json:"priority,omitempty"}`
-		Query           string                `json:"query"}`
-		RestrictedRoles *[]string             `json:"restricted_roles,omitempty"}`
-		State           *MonitorState         `json:"state,omitempty"}`
-		Tags            *[]string             `json:"tags,omitempty"}`
-		Type            MonitorType           `json:"type"}`
+		Created         *time.Time            `json:"created,omitempty"`
+		Creator         *Creator              `json:"creator,omitempty"`
+		Deleted         NullableTime          `json:"deleted,omitempty"`
+		Id              *int64                `json:"id,omitempty"`
+		Message         *string               `json:"message,omitempty"`
+		Modified        *time.Time            `json:"modified,omitempty"`
+		Multi           *bool                 `json:"multi,omitempty"`
+		Name            *string               `json:"name,omitempty"`
+		Options         *MonitorOptions       `json:"options,omitempty"`
+		OverallState    *MonitorOverallStates `json:"overall_state,omitempty"`
+		Priority        *int64                `json:"priority,omitempty"`
+		Query           string                `json:"query"`
+		RestrictedRoles *[]string             `json:"restricted_roles,omitempty"`
+		State           *MonitorState         `json:"state,omitempty"`
+		Tags            *[]string             `json:"tags,omitempty"`
+		Type            MonitorType           `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

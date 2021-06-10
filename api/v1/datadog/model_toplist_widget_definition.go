@@ -289,13 +289,13 @@ func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *ToplistWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"}`
-		Requests    []ToplistWidgetRequest      `json:"requests"}`
-		Time        *WidgetTime                 `json:"time,omitempty"}`
-		Title       *string                     `json:"title,omitempty"}`
-		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"}`
-		TitleSize   *string                     `json:"title_size,omitempty"}`
-		Type        ToplistWidgetDefinitionType `json:"type"}`
+		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"`
+		Requests    []ToplistWidgetRequest      `json:"requests"`
+		Time        *WidgetTime                 `json:"time,omitempty"`
+		Title       *string                     `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"`
+		TitleSize   *string                     `json:"title_size,omitempty"`
+		Type        ToplistWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

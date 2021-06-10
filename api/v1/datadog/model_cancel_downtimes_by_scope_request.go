@@ -74,7 +74,7 @@ func (o *CancelDowntimesByScopeRequest) UnmarshalJSON(bytes []byte) (err error) 
 		Scope *string `json:"scope"`
 	}{}
 	all := struct {
-		Scope string `json:"scope"}`
+		Scope string `json:"scope"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

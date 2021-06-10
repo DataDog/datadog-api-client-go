@@ -105,8 +105,8 @@ func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 		Tags *[]string `json:"tags"`
 	}{}
 	all := struct {
-		Keys []string `json:"keys"}`
-		Tags []string `json:"tags"}`
+		Keys []string `json:"keys"`
+		Tags []string `json:"tags"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

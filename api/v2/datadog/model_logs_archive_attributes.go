@@ -251,12 +251,12 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Query       *string                         `json:"query"`
 	}{}
 	all := struct {
-		Destination     NullableLogsArchiveDestination `json:"destination"}`
-		IncludeTags     *bool                          `json:"include_tags,omitempty"}`
-		Name            string                         `json:"name"}`
-		Query           string                         `json:"query"}`
-		RehydrationTags *[]string                      `json:"rehydration_tags,omitempty"}`
-		State           *LogsArchiveState              `json:"state,omitempty"}`
+		Destination     NullableLogsArchiveDestination `json:"destination"`
+		IncludeTags     *bool                          `json:"include_tags,omitempty"`
+		Name            string                         `json:"name"`
+		Query           string                         `json:"query"`
+		RehydrationTags *[]string                      `json:"rehydration_tags,omitempty"`
+		State           *LogsArchiveState              `json:"state,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

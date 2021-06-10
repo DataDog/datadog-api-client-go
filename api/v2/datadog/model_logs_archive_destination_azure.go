@@ -241,12 +241,12 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		Type           *LogsArchiveDestinationAzureType `json:"type"`
 	}{}
 	all := struct {
-		Container      string                          `json:"container"}`
-		Integration    LogsArchiveIntegrationAzure     `json:"integration"}`
-		Path           *string                         `json:"path,omitempty"}`
-		Region         *string                         `json:"region,omitempty"}`
-		StorageAccount string                          `json:"storage_account"}`
-		Type           LogsArchiveDestinationAzureType `json:"type"}`
+		Container      string                          `json:"container"`
+		Integration    LogsArchiveIntegrationAzure     `json:"integration"`
+		Path           *string                         `json:"path,omitempty"`
+		Region         *string                         `json:"region,omitempty"`
+		StorageAccount string                          `json:"storage_account"`
+		Type           LogsArchiveDestinationAzureType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

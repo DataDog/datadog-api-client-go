@@ -104,8 +104,8 @@ func (o *DashboardListItemResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Type *DashboardType `json:"type"`
 	}{}
 	all := struct {
-		Id   string        `json:"id"}`
-		Type DashboardType `json:"type"}`
+		Id   string        `json:"id"`
+		Type DashboardType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

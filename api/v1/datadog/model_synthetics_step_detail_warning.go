@@ -104,8 +104,8 @@ func (o *SyntheticsStepDetailWarning) UnmarshalJSON(bytes []byte) (err error) {
 		Type    *SyntheticsWarningType `json:"type"`
 	}{}
 	all := struct {
-		Message string                `json:"message"}`
-		Type    SyntheticsWarningType `json:"type"}`
+		Message string                `json:"message"`
+		Type    SyntheticsWarningType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

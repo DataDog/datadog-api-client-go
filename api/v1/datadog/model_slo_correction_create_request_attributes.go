@@ -240,12 +240,12 @@ func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 		Start    *int64                 `json:"start"`
 	}{}
 	all := struct {
-		Category    SLOCorrectionCategory `json:"category"}`
-		Description *string               `json:"description,omitempty"}`
-		End         int64                 `json:"end"}`
-		SloId       string                `json:"slo_id"}`
-		Start       int64                 `json:"start"}`
-		Timezone    *string               `json:"timezone,omitempty"}`
+		Category    SLOCorrectionCategory `json:"category"`
+		Description *string               `json:"description,omitempty"`
+		End         int64                 `json:"end"`
+		SloId       string                `json:"slo_id"`
+		Start       int64                 `json:"start"`
+		Timezone    *string               `json:"timezone,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

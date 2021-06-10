@@ -73,7 +73,7 @@ func (o *RoleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Data *RoleUpdateData `json:"data"`
 	}{}
 	all := struct {
-		Data RoleUpdateData `json:"data"}`
+		Data RoleUpdateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

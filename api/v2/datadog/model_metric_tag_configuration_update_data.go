@@ -142,9 +142,9 @@ func (o *MetricTagConfigurationUpdateData) UnmarshalJSON(bytes []byte) (err erro
 		Type *MetricTagConfigurationType `json:"type"`
 	}{}
 	all := struct {
-		Attributes *MetricTagConfigurationUpdateAttributes `json:"attributes,omitempty"}`
-		Id         string                                  `json:"id"}`
-		Type       MetricTagConfigurationType              `json:"type"}`
+		Attributes *MetricTagConfigurationUpdateAttributes `json:"attributes,omitempty"`
+		Id         string                                  `json:"id"`
+		Type       MetricTagConfigurationType              `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

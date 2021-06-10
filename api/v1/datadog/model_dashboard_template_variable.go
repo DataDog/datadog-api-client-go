@@ -170,9 +170,9 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Default NullableString `json:"default,omitempty"}`
-		Name    string         `json:"name"}`
-		Prefix  NullableString `json:"prefix,omitempty"}`
+		Default NullableString `json:"default,omitempty"`
+		Name    string         `json:"name"`
+		Prefix  NullableString `json:"prefix,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

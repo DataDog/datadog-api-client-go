@@ -73,7 +73,7 @@ func (o *NotebookMarkdownCellAttributes) UnmarshalJSON(bytes []byte) (err error)
 		Definition *NotebookMarkdownCellDefinition `json:"definition"`
 	}{}
 	all := struct {
-		Definition NotebookMarkdownCellDefinition `json:"definition"}`
+		Definition NotebookMarkdownCellDefinition `json:"definition"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

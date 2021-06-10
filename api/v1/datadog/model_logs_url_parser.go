@@ -269,12 +269,12 @@ func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 		Type    *LogsURLParserType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled              *bool             `json:"is_enabled,omitempty"}`
-		Name                   *string           `json:"name,omitempty"}`
-		NormalizeEndingSlashes NullableBool      `json:"normalize_ending_slashes,omitempty"}`
-		Sources                []string          `json:"sources"}`
-		Target                 string            `json:"target"}`
-		Type                   LogsURLParserType `json:"type"}`
+		IsEnabled              *bool             `json:"is_enabled,omitempty"`
+		Name                   *string           `json:"name,omitempty"`
+		NormalizeEndingSlashes NullableBool      `json:"normalize_ending_slashes,omitempty"`
+		Sources                []string          `json:"sources"`
+		Target                 string            `json:"target"`
+		Type                   LogsURLParserType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

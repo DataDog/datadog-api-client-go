@@ -172,10 +172,10 @@ func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
 		Type        *SyntheticsBrowserErrorType `json:"type"`
 	}{}
 	all := struct {
-		Description string                     `json:"description"}`
-		Name        string                     `json:"name"}`
-		StatusCode  *int64                     `json:"statusCode,omitempty"}`
-		Type        SyntheticsBrowserErrorType `json:"type"}`
+		Description string                     `json:"description"`
+		Name        string                     `json:"name"`
+		StatusCode  *int64                     `json:"statusCode,omitempty"`
+		Type        SyntheticsBrowserErrorType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

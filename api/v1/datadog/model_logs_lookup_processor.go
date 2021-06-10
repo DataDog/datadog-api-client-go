@@ -283,13 +283,13 @@ func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		Type        *LogsLookupProcessorType `json:"type"`
 	}{}
 	all := struct {
-		DefaultLookup *string                 `json:"default_lookup,omitempty"}`
-		IsEnabled     *bool                   `json:"is_enabled,omitempty"}`
-		LookupTable   []string                `json:"lookup_table"}`
-		Name          *string                 `json:"name,omitempty"}`
-		Source        string                  `json:"source"}`
-		Target        string                  `json:"target"}`
-		Type          LogsLookupProcessorType `json:"type"}`
+		DefaultLookup *string                 `json:"default_lookup,omitempty"`
+		IsEnabled     *bool                   `json:"is_enabled,omitempty"`
+		LookupTable   []string                `json:"lookup_table"`
+		Name          *string                 `json:"name,omitempty"`
+		Source        string                  `json:"source"`
+		Target        string                  `json:"target"`
+		Type          LogsLookupProcessorType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

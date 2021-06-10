@@ -105,8 +105,8 @@ func (o *LogsMetricUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *LogsMetricType             `json:"type"`
 	}{}
 	all := struct {
-		Attributes LogsMetricUpdateAttributes `json:"attributes"}`
-		Type       LogsMetricType             `json:"type"}`
+		Attributes LogsMetricUpdateAttributes `json:"attributes"`
+		Type       LogsMetricType             `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

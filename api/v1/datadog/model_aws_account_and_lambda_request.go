@@ -105,8 +105,8 @@ func (o *AWSAccountAndLambdaRequest) UnmarshalJSON(bytes []byte) (err error) {
 		LambdaArn *string `json:"lambda_arn"`
 	}{}
 	all := struct {
-		AccountId string `json:"account_id"}`
-		LambdaArn string `json:"lambda_arn"}`
+		AccountId string `json:"account_id"`
+		LambdaArn string `json:"lambda_arn"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

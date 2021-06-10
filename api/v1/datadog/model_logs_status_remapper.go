@@ -184,10 +184,10 @@ func (o *LogsStatusRemapper) UnmarshalJSON(bytes []byte) (err error) {
 		Type    *LogsStatusRemapperType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled *bool                  `json:"is_enabled,omitempty"}`
-		Name      *string                `json:"name,omitempty"}`
-		Sources   []string               `json:"sources"}`
-		Type      LogsStatusRemapperType `json:"type"}`
+		IsEnabled *bool                  `json:"is_enabled,omitempty"`
+		Name      *string                `json:"name,omitempty"`
+		Sources   []string               `json:"sources"`
+		Type      LogsStatusRemapperType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

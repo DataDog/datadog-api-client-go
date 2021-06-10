@@ -73,7 +73,7 @@ func (o *IncidentTeamUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Data *IncidentTeamUpdateData `json:"data"`
 	}{}
 	all := struct {
-		Data IncidentTeamUpdateData `json:"data"}`
+		Data IncidentTeamUpdateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

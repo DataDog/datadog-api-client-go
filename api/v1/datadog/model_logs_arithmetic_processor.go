@@ -256,12 +256,12 @@ func (o *LogsArithmeticProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *LogsArithmeticProcessorType `json:"type"`
 	}{}
 	all := struct {
-		Expression       string                      `json:"expression"}`
-		IsEnabled        *bool                       `json:"is_enabled,omitempty"}`
-		IsReplaceMissing *bool                       `json:"is_replace_missing,omitempty"}`
-		Name             *string                     `json:"name,omitempty"}`
-		Target           string                      `json:"target"}`
-		Type             LogsArithmeticProcessorType `json:"type"}`
+		Expression       string                      `json:"expression"`
+		IsEnabled        *bool                       `json:"is_enabled,omitempty"`
+		IsReplaceMissing *bool                       `json:"is_replace_missing,omitempty"`
+		Name             *string                     `json:"name,omitempty"`
+		Target           string                      `json:"target"`
+		Type             LogsArithmeticProcessorType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

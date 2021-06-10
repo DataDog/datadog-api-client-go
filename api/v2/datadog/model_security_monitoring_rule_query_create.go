@@ -294,13 +294,13 @@ func (o *SecurityMonitoringRuleQueryCreate) UnmarshalJSON(bytes []byte) (err err
 		Query *string `json:"query"`
 	}{}
 	all := struct {
-		AgentRule      *SecurityMonitoringRuntimeAgentRule     `json:"agentRule,omitempty"}`
-		Aggregation    *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"}`
-		DistinctFields *[]string                               `json:"distinctFields,omitempty"}`
-		GroupByFields  *[]string                               `json:"groupByFields,omitempty"}`
-		Metric         *string                                 `json:"metric,omitempty"}`
-		Name           *string                                 `json:"name,omitempty"}`
-		Query          string                                  `json:"query"}`
+		AgentRule      *SecurityMonitoringRuntimeAgentRule     `json:"agentRule,omitempty"`
+		Aggregation    *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+		DistinctFields *[]string                               `json:"distinctFields,omitempty"`
+		GroupByFields  *[]string                               `json:"groupByFields,omitempty"`
+		Metric         *string                                 `json:"metric,omitempty"`
+		Name           *string                                 `json:"name,omitempty"`
+		Query          string                                  `json:"query"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

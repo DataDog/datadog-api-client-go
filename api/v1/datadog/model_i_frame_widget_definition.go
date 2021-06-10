@@ -106,8 +106,8 @@ func (o *IFrameWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Url  *string                     `json:"url"`
 	}{}
 	all := struct {
-		Type IFrameWidgetDefinitionType `json:"type"}`
-		Url  string                     `json:"url"}`
+		Type IFrameWidgetDefinitionType `json:"type"`
+		Url  string                     `json:"url"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -103,8 +103,8 @@ func (o *ScatterPlotWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err e
 		Y *ScatterPlotRequest `json:"y"`
 	}{}
 	all := struct {
-		X ScatterPlotRequest `json:"x"}`
-		Y ScatterPlotRequest `json:"y"}`
+		X ScatterPlotRequest `json:"x"`
+		Y ScatterPlotRequest `json:"y"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -173,10 +173,10 @@ func (o *LogsArchiveDestinationGCS) UnmarshalJSON(bytes []byte) (err error) {
 		Type        *LogsArchiveDestinationGCSType `json:"type"`
 	}{}
 	all := struct {
-		Bucket      string                        `json:"bucket"}`
-		Integration LogsArchiveIntegrationGCS     `json:"integration"}`
-		Path        *string                       `json:"path,omitempty"}`
-		Type        LogsArchiveDestinationGCSType `json:"type"}`
+		Bucket      string                        `json:"bucket"`
+		Integration LogsArchiveIntegrationGCS     `json:"integration"`
+		Path        *string                       `json:"path,omitempty"`
+		Type        LogsArchiveDestinationGCSType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

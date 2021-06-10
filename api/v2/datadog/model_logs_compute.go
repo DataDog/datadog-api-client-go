@@ -187,10 +187,10 @@ func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
 		Aggregation *LogsAggregationFunction `json:"aggregation"`
 	}{}
 	all := struct {
-		Aggregation LogsAggregationFunction `json:"aggregation"}`
-		Interval    *string                 `json:"interval,omitempty"}`
-		Metric      *string                 `json:"metric,omitempty"}`
-		Type        *LogsComputeType        `json:"type,omitempty"}`
+		Aggregation LogsAggregationFunction `json:"aggregation"`
+		Interval    *string                 `json:"interval,omitempty"`
+		Metric      *string                 `json:"metric,omitempty"`
+		Type        *LogsComputeType        `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

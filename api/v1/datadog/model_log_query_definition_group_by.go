@@ -147,9 +147,9 @@ func (o *LogQueryDefinitionGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		Facet *string `json:"facet"`
 	}{}
 	all := struct {
-		Facet string                         `json:"facet"}`
-		Limit *int64                         `json:"limit,omitempty"}`
-		Sort  *LogQueryDefinitionGroupBySort `json:"sort,omitempty"}`
+		Facet string                         `json:"facet"`
+		Limit *int64                         `json:"limit,omitempty"`
+		Sort  *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

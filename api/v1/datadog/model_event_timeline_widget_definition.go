@@ -289,13 +289,13 @@ func (o *EventTimelineWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) 
 		Type  *EventTimelineWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Query         string                            `json:"query"}`
-		TagsExecution *string                           `json:"tags_execution,omitempty"}`
-		Time          *WidgetTime                       `json:"time,omitempty"}`
-		Title         *string                           `json:"title,omitempty"}`
-		TitleAlign    *WidgetTextAlign                  `json:"title_align,omitempty"}`
-		TitleSize     *string                           `json:"title_size,omitempty"}`
-		Type          EventTimelineWidgetDefinitionType `json:"type"}`
+		Query         string                            `json:"query"`
+		TagsExecution *string                           `json:"tags_execution,omitempty"`
+		Time          *WidgetTime                       `json:"time,omitempty"`
+		Title         *string                           `json:"title,omitempty"`
+		TitleAlign    *WidgetTextAlign                  `json:"title_align,omitempty"`
+		TitleSize     *string                           `json:"title_size,omitempty"`
+		Type          EventTimelineWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

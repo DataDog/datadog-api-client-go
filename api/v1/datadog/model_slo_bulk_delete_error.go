@@ -135,9 +135,9 @@ func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 		Timeframe *SLOErrorTimeframe `json:"timeframe"`
 	}{}
 	all := struct {
-		Id        string            `json:"id"}`
-		Message   string            `json:"message"}`
-		Timeframe SLOErrorTimeframe `json:"timeframe"}`
+		Id        string            `json:"id"`
+		Message   string            `json:"message"`
+		Timeframe SLOErrorTimeframe `json:"timeframe"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

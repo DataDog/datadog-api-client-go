@@ -147,9 +147,9 @@ func (o *IncidentServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Data *[]IncidentServiceResponseData `json:"data"`
 	}{}
 	all := struct {
-		Data     []IncidentServiceResponseData   `json:"data"}`
-		Included *[]IncidentServiceIncludedItems `json:"included,omitempty"}`
-		Meta     *IncidentServicesResponseMeta   `json:"meta,omitempty"}`
+		Data     []IncidentServiceResponseData   `json:"data"`
+		Included *[]IncidentServiceIncludedItems `json:"included,omitempty"`
+		Meta     *IncidentServicesResponseMeta   `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

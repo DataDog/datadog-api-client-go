@@ -436,17 +436,17 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *QueryValueWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Autoscale   *bool                          `json:"autoscale,omitempty"}`
-		CustomLinks *[]WidgetCustomLink            `json:"custom_links,omitempty"}`
-		CustomUnit  *string                        `json:"custom_unit,omitempty"}`
-		Precision   *int64                         `json:"precision,omitempty"}`
-		Requests    []QueryValueWidgetRequest      `json:"requests"}`
-		TextAlign   *WidgetTextAlign               `json:"text_align,omitempty"}`
-		Time        *WidgetTime                    `json:"time,omitempty"}`
-		Title       *string                        `json:"title,omitempty"}`
-		TitleAlign  *WidgetTextAlign               `json:"title_align,omitempty"}`
-		TitleSize   *string                        `json:"title_size,omitempty"}`
-		Type        QueryValueWidgetDefinitionType `json:"type"}`
+		Autoscale   *bool                          `json:"autoscale,omitempty"`
+		CustomLinks *[]WidgetCustomLink            `json:"custom_links,omitempty"`
+		CustomUnit  *string                        `json:"custom_unit,omitempty"`
+		Precision   *int64                         `json:"precision,omitempty"`
+		Requests    []QueryValueWidgetRequest      `json:"requests"`
+		TextAlign   *WidgetTextAlign               `json:"text_align,omitempty"`
+		Time        *WidgetTime                    `json:"time,omitempty"`
+		Title       *string                        `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign               `json:"title_align,omitempty"`
+		TitleSize   *string                        `json:"title_size,omitempty"`
+		Type        QueryValueWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

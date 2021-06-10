@@ -608,22 +608,22 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		Type     *ServiceSummaryWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		DisplayFormat    *WidgetServiceSummaryDisplayFormat `json:"display_format,omitempty"}`
-		Env              string                             `json:"env"}`
-		Service          string                             `json:"service"}`
-		ShowBreakdown    *bool                              `json:"show_breakdown,omitempty"}`
-		ShowDistribution *bool                              `json:"show_distribution,omitempty"}`
-		ShowErrors       *bool                              `json:"show_errors,omitempty"}`
-		ShowHits         *bool                              `json:"show_hits,omitempty"}`
-		ShowLatency      *bool                              `json:"show_latency,omitempty"}`
-		ShowResourceList *bool                              `json:"show_resource_list,omitempty"}`
-		SizeFormat       *WidgetSizeFormat                  `json:"size_format,omitempty"}`
-		SpanName         string                             `json:"span_name"}`
-		Time             *WidgetTime                        `json:"time,omitempty"}`
-		Title            *string                            `json:"title,omitempty"}`
-		TitleAlign       *WidgetTextAlign                   `json:"title_align,omitempty"}`
-		TitleSize        *string                            `json:"title_size,omitempty"}`
-		Type             ServiceSummaryWidgetDefinitionType `json:"type"}`
+		DisplayFormat    *WidgetServiceSummaryDisplayFormat `json:"display_format,omitempty"`
+		Env              string                             `json:"env"`
+		Service          string                             `json:"service"`
+		ShowBreakdown    *bool                              `json:"show_breakdown,omitempty"`
+		ShowDistribution *bool                              `json:"show_distribution,omitempty"`
+		ShowErrors       *bool                              `json:"show_errors,omitempty"`
+		ShowHits         *bool                              `json:"show_hits,omitempty"`
+		ShowLatency      *bool                              `json:"show_latency,omitempty"`
+		ShowResourceList *bool                              `json:"show_resource_list,omitempty"`
+		SizeFormat       *WidgetSizeFormat                  `json:"size_format,omitempty"`
+		SpanName         string                             `json:"span_name"`
+		Time             *WidgetTime                        `json:"time,omitempty"`
+		Title            *string                            `json:"title,omitempty"`
+		TitleAlign       *WidgetTextAlign                   `json:"title_align,omitempty"`
+		TitleSize        *string                            `json:"title_size,omitempty"`
+		Type             ServiceSummaryWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

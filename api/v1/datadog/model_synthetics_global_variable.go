@@ -276,13 +276,13 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 		Value       *SyntheticsGlobalVariableValue `json:"value"`
 	}{}
 	all := struct {
-		Description       string                                    `json:"description"}`
-		Id                *string                                   `json:"id,omitempty"}`
-		Name              string                                    `json:"name"}`
-		ParseTestOptions  *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"}`
-		ParseTestPublicId *string                                   `json:"parse_test_public_id,omitempty"}`
-		Tags              []string                                  `json:"tags"}`
-		Value             SyntheticsGlobalVariableValue             `json:"value"}`
+		Description       string                                    `json:"description"`
+		Id                *string                                   `json:"id,omitempty"`
+		Name              string                                    `json:"name"`
+		ParseTestOptions  *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
+		ParseTestPublicId *string                                   `json:"parse_test_public_id,omitempty"`
+		Tags              []string                                  `json:"tags"`
+		Value             SyntheticsGlobalVariableValue             `json:"value"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

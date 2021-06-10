@@ -435,17 +435,17 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *DistributionWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		LegendSize *string                          `json:"legend_size,omitempty"}`
-		Markers    *[]WidgetMarker                  `json:"markers,omitempty"}`
-		Requests   []DistributionWidgetRequest      `json:"requests"}`
-		ShowLegend *bool                            `json:"show_legend,omitempty"}`
-		Time       *WidgetTime                      `json:"time,omitempty"}`
-		Title      *string                          `json:"title,omitempty"}`
-		TitleAlign *WidgetTextAlign                 `json:"title_align,omitempty"}`
-		TitleSize  *string                          `json:"title_size,omitempty"}`
-		Type       DistributionWidgetDefinitionType `json:"type"}`
-		Xaxis      *DistributionWidgetXAxis         `json:"xaxis,omitempty"}`
-		Yaxis      *DistributionWidgetYAxis         `json:"yaxis,omitempty"}`
+		LegendSize *string                          `json:"legend_size,omitempty"`
+		Markers    *[]WidgetMarker                  `json:"markers,omitempty"`
+		Requests   []DistributionWidgetRequest      `json:"requests"`
+		ShowLegend *bool                            `json:"show_legend,omitempty"`
+		Time       *WidgetTime                      `json:"time,omitempty"`
+		Title      *string                          `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign                 `json:"title_align,omitempty"`
+		TitleSize  *string                          `json:"title_size,omitempty"`
+		Type       DistributionWidgetDefinitionType `json:"type"`
+		Xaxis      *DistributionWidgetXAxis         `json:"xaxis,omitempty"`
+		Yaxis      *DistributionWidgetYAxis         `json:"yaxis,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -146,9 +146,9 @@ func (o *OrganizationCreateBody) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Billing      *OrganizationBilling      `json:"billing,omitempty"}`
-		Name         string                    `json:"name"}`
-		Subscription *OrganizationSubscription `json:"subscription,omitempty"}`
+		Billing      *OrganizationBilling      `json:"billing,omitempty"`
+		Name         string                    `json:"name"`
+		Subscription *OrganizationSubscription `json:"subscription,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

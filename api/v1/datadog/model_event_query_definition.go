@@ -105,8 +105,8 @@ func (o *EventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		TagsExecution *string `json:"tags_execution"`
 	}{}
 	all := struct {
-		Search        string `json:"search"}`
-		TagsExecution string `json:"tags_execution"}`
+		Search        string `json:"search"`
+		TagsExecution string `json:"tags_execution"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

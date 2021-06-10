@@ -215,11 +215,11 @@ func (o *SLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 		Timeframe *SLOTimeframe `json:"timeframe"`
 	}{}
 	all := struct {
-		Target         float64      `json:"target"}`
-		TargetDisplay  *string      `json:"target_display,omitempty"}`
-		Timeframe      SLOTimeframe `json:"timeframe"}`
-		Warning        *float64     `json:"warning,omitempty"}`
-		WarningDisplay *string      `json:"warning_display,omitempty"}`
+		Target         float64      `json:"target"`
+		TargetDisplay  *string      `json:"target_display,omitempty"`
+		Timeframe      SLOTimeframe `json:"timeframe"`
+		Warning        *float64     `json:"warning,omitempty"`
+		WarningDisplay *string      `json:"warning_display,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

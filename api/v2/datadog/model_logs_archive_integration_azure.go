@@ -105,8 +105,8 @@ func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		TenantId *string `json:"tenant_id"`
 	}{}
 	all := struct {
-		ClientId string `json:"client_id"}`
-		TenantId string `json:"tenant_id"}`
+		ClientId string `json:"client_id"`
+		TenantId string `json:"tenant_id"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

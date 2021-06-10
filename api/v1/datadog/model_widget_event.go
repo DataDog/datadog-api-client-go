@@ -111,8 +111,8 @@ func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 		Q *string `json:"q"`
 	}{}
 	all := struct {
-		Q             string  `json:"q"}`
-		TagsExecution *string `json:"tags_execution,omitempty"}`
+		Q             string  `json:"q"`
+		TagsExecution *string `json:"tags_execution,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

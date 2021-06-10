@@ -111,8 +111,8 @@ func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error
 		Expression *string `json:"expression"`
 	}{}
 	all := struct {
-		AliasName  *string `json:"alias_name,omitempty"}`
-		Expression string  `json:"expression"}`
+		AliasName  *string `json:"alias_name,omitempty"`
+		Expression string  `json:"expression"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -192,10 +192,10 @@ func (o *NotebookToplistCellAttributes) UnmarshalJSON(bytes []byte) (err error) 
 		Definition *ToplistWidgetDefinition `json:"definition"`
 	}{}
 	all := struct {
-		Definition ToplistWidgetDefinition  `json:"definition"}`
-		GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"}`
-		SplitBy    *NotebookSplitBy         `json:"split_by,omitempty"}`
-		Time       NullableNotebookCellTime `json:"time,omitempty"}`
+		Definition ToplistWidgetDefinition  `json:"definition"`
+		GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"`
+		SplitBy    *NotebookSplitBy         `json:"split_by,omitempty"`
+		Time       NullableNotebookCellTime `json:"time,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

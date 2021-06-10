@@ -105,8 +105,8 @@ func (o *SyntheticsBasicAuth) UnmarshalJSON(bytes []byte) (err error) {
 		Username *string `json:"username"`
 	}{}
 	all := struct {
-		Password string `json:"password"}`
-		Username string `json:"username"}`
+		Password string `json:"password"`
+		Username string `json:"username"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

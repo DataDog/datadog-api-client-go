@@ -356,15 +356,15 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 		Value      *float64          `json:"value"`
 	}{}
 	all := struct {
-		Comparator    WidgetComparator `json:"comparator"}`
-		CustomBgColor *string          `json:"custom_bg_color,omitempty"}`
-		CustomFgColor *string          `json:"custom_fg_color,omitempty"}`
-		HideValue     *bool            `json:"hide_value,omitempty"}`
-		ImageUrl      *string          `json:"image_url,omitempty"}`
-		Metric        *string          `json:"metric,omitempty"}`
-		Palette       WidgetPalette    `json:"palette"}`
-		Timeframe     *string          `json:"timeframe,omitempty"}`
-		Value         float64          `json:"value"}`
+		Comparator    WidgetComparator `json:"comparator"`
+		CustomBgColor *string          `json:"custom_bg_color,omitempty"`
+		CustomFgColor *string          `json:"custom_fg_color,omitempty"`
+		HideValue     *bool            `json:"hide_value,omitempty"`
+		ImageUrl      *string          `json:"image_url,omitempty"`
+		Metric        *string          `json:"metric,omitempty"`
+		Palette       WidgetPalette    `json:"palette"`
+		Timeframe     *string          `json:"timeframe,omitempty"`
+		Value         float64          `json:"value"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

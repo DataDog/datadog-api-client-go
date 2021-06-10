@@ -105,8 +105,8 @@ func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Services  *[]string `json:"services"`
 	}{}
 	all := struct {
-		AccountId string   `json:"account_id"}`
-		Services  []string `json:"services"}`
+		AccountId string   `json:"account_id"`
+		Services  []string `json:"services"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -74,7 +74,7 @@ func (o *RelationshipToIncidentIntegrationMetadatas) UnmarshalJSON(bytes []byte)
 		Data *[]RelationshipToIncidentIntegrationMetadataData `json:"data"`
 	}{}
 	all := struct {
-		Data []RelationshipToIncidentIntegrationMetadataData `json:"data"}`
+		Data []RelationshipToIncidentIntegrationMetadataData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

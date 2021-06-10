@@ -547,20 +547,20 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Title *string `json:"title"`
 	}{}
 	all := struct {
-		AggregationKey *string         `json:"aggregation_key,omitempty"}`
-		AlertType      *EventAlertType `json:"alert_type,omitempty"}`
-		DateHappened   *int64          `json:"date_happened,omitempty"}`
-		DeviceName     *string         `json:"device_name,omitempty"}`
-		Host           *string         `json:"host,omitempty"}`
-		Id             *int64          `json:"id,omitempty"}`
-		Payload        *string         `json:"payload,omitempty"}`
-		Priority       *EventPriority  `json:"priority,omitempty"}`
-		RelatedEventId *int64          `json:"related_event_id,omitempty"}`
-		SourceTypeName *string         `json:"source_type_name,omitempty"}`
-		Tags           *[]string       `json:"tags,omitempty"}`
-		Text           string          `json:"text"}`
-		Title          string          `json:"title"}`
-		Url            *string         `json:"url,omitempty"}`
+		AggregationKey *string         `json:"aggregation_key,omitempty"`
+		AlertType      *EventAlertType `json:"alert_type,omitempty"`
+		DateHappened   *int64          `json:"date_happened,omitempty"`
+		DeviceName     *string         `json:"device_name,omitempty"`
+		Host           *string         `json:"host,omitempty"`
+		Id             *int64          `json:"id,omitempty"`
+		Payload        *string         `json:"payload,omitempty"`
+		Priority       *EventPriority  `json:"priority,omitempty"`
+		RelatedEventId *int64          `json:"related_event_id,omitempty"`
+		SourceTypeName *string         `json:"source_type_name,omitempty"`
+		Tags           *[]string       `json:"tags,omitempty"`
+		Text           string          `json:"text"`
+		Title          string          `json:"title"`
+		Url            *string         `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

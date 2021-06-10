@@ -136,9 +136,9 @@ func (o *LogsGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 		Min      *float64 `json:"min"`
 	}{}
 	all := struct {
-		Interval float64 `json:"interval"}`
-		Max      float64 `json:"max"}`
-		Min      float64 `json:"min"}`
+		Interval float64 `json:"interval"`
+		Max      float64 `json:"max"`
+		Min      float64 `json:"min"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

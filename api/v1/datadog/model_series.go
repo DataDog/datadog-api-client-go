@@ -268,12 +268,12 @@ func (o *Series) UnmarshalJSON(bytes []byte) (err error) {
 		Points *[][]float64 `json:"points"`
 	}{}
 	all := struct {
-		Host     *string       `json:"host,omitempty"}`
-		Interval NullableInt64 `json:"interval,omitempty"}`
-		Metric   string        `json:"metric"}`
-		Points   [][]float64   `json:"points"}`
-		Tags     *[]string     `json:"tags,omitempty"}`
-		Type     *string       `json:"type,omitempty"}`
+		Host     *string       `json:"host,omitempty"`
+		Interval NullableInt64 `json:"interval,omitempty"`
+		Metric   string        `json:"metric"`
+		Points   [][]float64   `json:"points"`
+		Tags     *[]string     `json:"tags,omitempty"`
+		Type     *string       `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

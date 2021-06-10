@@ -73,7 +73,7 @@ func (o *IncidentCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		Commander *RelationshipToUser `json:"commander"`
 	}{}
 	all := struct {
-		Commander RelationshipToUser `json:"commander"}`
+		Commander RelationshipToUser `json:"commander"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

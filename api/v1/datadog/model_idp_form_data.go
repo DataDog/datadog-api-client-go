@@ -75,7 +75,7 @@ func (o *IdpFormData) UnmarshalJSON(bytes []byte) (err error) {
 		IdpFile **os.File `json:"idp_file"`
 	}{}
 	all := struct {
-		IdpFile *os.File `json:"idp_file"}`
+		IdpFile *os.File `json:"idp_file"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
