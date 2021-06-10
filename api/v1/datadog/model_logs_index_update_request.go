@@ -221,11 +221,11 @@ func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Filter *LogsFilter `json:"filter"`
 	}{}
 	all := struct {
-		DailyLimit        *int64           `json:"daily_limit,omitempty"}`
-		DisableDailyLimit *bool            `json:"disable_daily_limit,omitempty"}`
-		ExclusionFilters  *[]LogsExclusion `json:"exclusion_filters,omitempty"}`
-		Filter            LogsFilter       `json:"filter"}`
-		NumRetentionDays  *int64           `json:"num_retention_days,omitempty"}`
+		DailyLimit        *int64           `json:"daily_limit,omitempty"`
+		DisableDailyLimit *bool            `json:"disable_daily_limit,omitempty"`
+		ExclusionFilters  *[]LogsExclusion `json:"exclusion_filters,omitempty"`
+		Filter            LogsFilter       `json:"filter"`
+		NumRetentionDays  *int64           `json:"num_retention_days,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -185,10 +185,10 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Metric *string `json:"metric"`
 	}{}
 	all := struct {
-		FilterBy *[]string `json:"filter_by,omitempty"}`
-		Limit    *int64    `json:"limit,omitempty"}`
-		Metric   string    `json:"metric"}`
-		SearchBy *string   `json:"search_by,omitempty"}`
+		FilterBy *[]string `json:"filter_by,omitempty"`
+		Limit    *int64    `json:"limit,omitempty"`
+		Metric   string    `json:"metric"`
+		SearchBy *string   `json:"search_by,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

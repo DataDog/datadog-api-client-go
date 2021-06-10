@@ -259,12 +259,12 @@ func (o *LogsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		Facet *string `json:"facet"`
 	}{}
 	all := struct {
-		Facet     string                `json:"facet"}`
-		Histogram *LogsGroupByHistogram `json:"histogram,omitempty"}`
-		Limit     *int64                `json:"limit,omitempty"}`
-		Missing   *LogsGroupByMissing   `json:"missing,omitempty"}`
-		Sort      *LogsAggregateSort    `json:"sort,omitempty"}`
-		Total     *LogsGroupByTotal     `json:"total,omitempty"}`
+		Facet     string                `json:"facet"`
+		Histogram *LogsGroupByHistogram `json:"histogram,omitempty"`
+		Limit     *int64                `json:"limit,omitempty"`
+		Missing   *LogsGroupByMissing   `json:"missing,omitempty"`
+		Sort      *LogsAggregateSort    `json:"sort,omitempty"`
+		Total     *LogsGroupByTotal     `json:"total,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

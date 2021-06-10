@@ -74,7 +74,7 @@ func (o *IncidentServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Name string `json:"name"}`
+		Name string `json:"name"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

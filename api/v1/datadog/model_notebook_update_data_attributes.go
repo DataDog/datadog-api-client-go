@@ -175,10 +175,10 @@ func (o *NotebookUpdateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Time  *NotebookGlobalTime   `json:"time"`
 	}{}
 	all := struct {
-		Cells  []NotebookUpdateCell `json:"cells"}`
-		Name   string               `json:"name"}`
-		Status *NotebookStatus      `json:"status,omitempty"}`
-		Time   NotebookGlobalTime   `json:"time"}`
+		Cells  []NotebookUpdateCell `json:"cells"`
+		Name   string               `json:"name"`
+		Status *NotebookStatus      `json:"status,omitempty"`
+		Time   NotebookGlobalTime   `json:"time"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

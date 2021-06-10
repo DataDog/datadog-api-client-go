@@ -295,14 +295,14 @@ func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 		Times       *[]float64               `json:"times"`
 	}{}
 	all := struct {
-		Denominator SLOHistoryMetricsSeries `json:"denominator"}`
-		Interval    int64                   `json:"interval"}`
-		Message     *string                 `json:"message,omitempty"}`
-		Numerator   SLOHistoryMetricsSeries `json:"numerator"}`
-		Query       string                  `json:"query"}`
-		ResType     string                  `json:"res_type"}`
-		RespVersion int64                   `json:"resp_version"}`
-		Times       []float64               `json:"times"}`
+		Denominator SLOHistoryMetricsSeries `json:"denominator"`
+		Interval    int64                   `json:"interval"`
+		Message     *string                 `json:"message,omitempty"`
+		Numerator   SLOHistoryMetricsSeries `json:"numerator"`
+		Query       string                  `json:"query"`
+		ResType     string                  `json:"res_type"`
+		RespVersion int64                   `json:"resp_version"`
+		Times       []float64               `json:"times"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

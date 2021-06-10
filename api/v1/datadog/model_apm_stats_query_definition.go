@@ -271,13 +271,13 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Service    *string               `json:"service"`
 	}{}
 	all := struct {
-		Columns    *[]ApmStatsQueryColumnType `json:"columns,omitempty"}`
-		Env        string                     `json:"env"}`
-		Name       string                     `json:"name"}`
-		PrimaryTag string                     `json:"primary_tag"}`
-		Resource   *string                    `json:"resource,omitempty"}`
-		RowType    ApmStatsQueryRowType       `json:"row_type"}`
-		Service    string                     `json:"service"}`
+		Columns    *[]ApmStatsQueryColumnType `json:"columns,omitempty"`
+		Env        string                     `json:"env"`
+		Name       string                     `json:"name"`
+		PrimaryTag string                     `json:"primary_tag"`
+		Resource   *string                    `json:"resource,omitempty"`
+		RowType    ApmStatsQueryRowType       `json:"row_type"`
+		Service    string                     `json:"service"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

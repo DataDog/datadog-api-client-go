@@ -147,9 +147,9 @@ func (o *IncidentServiceCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		Type *IncidentServiceType `json:"type"`
 	}{}
 	all := struct {
-		Attributes    *IncidentServiceCreateAttributes `json:"attributes,omitempty"}`
-		Relationships *IncidentServiceRelationships    `json:"relationships,omitempty"}`
-		Type          IncidentServiceType              `json:"type"}`
+		Attributes    *IncidentServiceCreateAttributes `json:"attributes,omitempty"`
+		Relationships *IncidentServiceRelationships    `json:"relationships,omitempty"`
+		Type          IncidentServiceType              `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

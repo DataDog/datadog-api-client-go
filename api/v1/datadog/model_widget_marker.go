@@ -185,10 +185,10 @@ func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 		Value *string `json:"value"`
 	}{}
 	all := struct {
-		DisplayType *string `json:"display_type,omitempty"}`
-		Label       *string `json:"label,omitempty"}`
-		Time        *string `json:"time,omitempty"}`
-		Value       string  `json:"value"}`
+		DisplayType *string `json:"display_type,omitempty"`
+		Label       *string `json:"label,omitempty"`
+		Time        *string `json:"time,omitempty"`
+		Value       string  `json:"value"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

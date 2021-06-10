@@ -110,8 +110,8 @@ func (o *LogsMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 		AggregationType *LogsMetricComputeAggregationType `json:"aggregation_type"`
 	}{}
 	all := struct {
-		AggregationType LogsMetricComputeAggregationType `json:"aggregation_type"}`
-		Path            *string                          `json:"path,omitempty"}`
+		AggregationType LogsMetricComputeAggregationType `json:"aggregation_type"`
+		Path            *string                          `json:"path,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

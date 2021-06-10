@@ -104,8 +104,8 @@ func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
 		Order  *WidgetSort `json:"order"`
 	}{}
 	all := struct {
-		Column string     `json:"column"}`
-		Order  WidgetSort `json:"order"}`
+		Column string     `json:"column"`
+		Order  WidgetSort `json:"order"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

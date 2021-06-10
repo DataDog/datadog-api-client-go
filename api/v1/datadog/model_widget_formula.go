@@ -147,9 +147,9 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		Formula *string `json:"formula"`
 	}{}
 	all := struct {
-		Alias   *string             `json:"alias,omitempty"}`
-		Formula string              `json:"formula"}`
-		Limit   *WidgetFormulaLimit `json:"limit,omitempty"}`
+		Alias   *string             `json:"alias,omitempty"`
+		Formula string              `json:"formula"`
+		Limit   *WidgetFormulaLimit `json:"limit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

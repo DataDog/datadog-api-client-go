@@ -105,8 +105,8 @@ func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 		Numerator   *string `json:"numerator"`
 	}{}
 	all := struct {
-		Denominator string `json:"denominator"}`
-		Numerator   string `json:"numerator"}`
+		Denominator string `json:"denominator"`
+		Numerator   string `json:"numerator"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -73,7 +73,7 @@ func (o *MetricTagConfigurationUpdateRequest) UnmarshalJSON(bytes []byte) (err e
 		Data *MetricTagConfigurationUpdateData `json:"data"`
 	}{}
 	all := struct {
-		Data MetricTagConfigurationUpdateData `json:"data"}`
+		Data MetricTagConfigurationUpdateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

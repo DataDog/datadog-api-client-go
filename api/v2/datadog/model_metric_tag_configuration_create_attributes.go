@@ -147,9 +147,9 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 		Tags       *[]string                          `json:"tags"`
 	}{}
 	all := struct {
-		IncludePercentiles *bool                             `json:"include_percentiles,omitempty"}`
-		MetricType         MetricTagConfigurationMetricTypes `json:"metric_type"}`
-		Tags               []string                          `json:"tags"}`
+		IncludePercentiles *bool                             `json:"include_percentiles,omitempty"`
+		MetricType         MetricTagConfigurationMetricTypes `json:"metric_type"`
+		Tags               []string                          `json:"tags"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

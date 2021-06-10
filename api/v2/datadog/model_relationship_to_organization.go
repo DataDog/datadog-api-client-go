@@ -73,7 +73,7 @@ func (o *RelationshipToOrganization) UnmarshalJSON(bytes []byte) (err error) {
 		Data *RelationshipToOrganizationData `json:"data"`
 	}{}
 	all := struct {
-		Data RelationshipToOrganizationData `json:"data"}`
+		Data RelationshipToOrganizationData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

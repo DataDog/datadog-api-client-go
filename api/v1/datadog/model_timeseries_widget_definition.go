@@ -582,21 +582,21 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *TimeseriesWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks   *[]WidgetCustomLink             `json:"custom_links,omitempty"}`
-		Events        *[]WidgetEvent                  `json:"events,omitempty"}`
-		LegendColumns *[]TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"}`
-		LegendLayout  *TimeseriesWidgetLegendLayout   `json:"legend_layout,omitempty"}`
-		LegendSize    *string                         `json:"legend_size,omitempty"}`
-		Markers       *[]WidgetMarker                 `json:"markers,omitempty"}`
-		Requests      []TimeseriesWidgetRequest       `json:"requests"}`
-		RightYaxis    *WidgetAxis                     `json:"right_yaxis,omitempty"}`
-		ShowLegend    *bool                           `json:"show_legend,omitempty"}`
-		Time          *WidgetTime                     `json:"time,omitempty"}`
-		Title         *string                         `json:"title,omitempty"}`
-		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"}`
-		TitleSize     *string                         `json:"title_size,omitempty"}`
-		Type          TimeseriesWidgetDefinitionType  `json:"type"}`
-		Yaxis         *WidgetAxis                     `json:"yaxis,omitempty"}`
+		CustomLinks   *[]WidgetCustomLink             `json:"custom_links,omitempty"`
+		Events        *[]WidgetEvent                  `json:"events,omitempty"`
+		LegendColumns *[]TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
+		LegendLayout  *TimeseriesWidgetLegendLayout   `json:"legend_layout,omitempty"`
+		LegendSize    *string                         `json:"legend_size,omitempty"`
+		Markers       *[]WidgetMarker                 `json:"markers,omitempty"`
+		Requests      []TimeseriesWidgetRequest       `json:"requests"`
+		RightYaxis    *WidgetAxis                     `json:"right_yaxis,omitempty"`
+		ShowLegend    *bool                           `json:"show_legend,omitempty"`
+		Time          *WidgetTime                     `json:"time,omitempty"`
+		Title         *string                         `json:"title,omitempty"`
+		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`
+		TitleSize     *string                         `json:"title_size,omitempty"`
+		Type          TimeseriesWidgetDefinitionType  `json:"type"`
+		Yaxis         *WidgetAxis                     `json:"yaxis,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -215,11 +215,11 @@ func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
 		Type *SyntheticsConfigVariableType `json:"type"`
 	}{}
 	all := struct {
-		Example *string                      `json:"example,omitempty"}`
-		Id      *string                      `json:"id,omitempty"}`
-		Name    string                       `json:"name"}`
-		Pattern *string                      `json:"pattern,omitempty"}`
-		Type    SyntheticsConfigVariableType `json:"type"}`
+		Example *string                      `json:"example,omitempty"`
+		Id      *string                      `json:"id,omitempty"`
+		Name    string                       `json:"name"`
+		Pattern *string                      `json:"pattern,omitempty"`
+		Type    SyntheticsConfigVariableType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -192,10 +192,10 @@ func (o *NotebookHeatMapCellAttributes) UnmarshalJSON(bytes []byte) (err error) 
 		Definition *HeatMapWidgetDefinition `json:"definition"`
 	}{}
 	all := struct {
-		Definition HeatMapWidgetDefinition  `json:"definition"}`
-		GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"}`
-		SplitBy    *NotebookSplitBy         `json:"split_by,omitempty"}`
-		Time       NullableNotebookCellTime `json:"time,omitempty"}`
+		Definition HeatMapWidgetDefinition  `json:"definition"`
+		GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"`
+		SplitBy    *NotebookSplitBy         `json:"split_by,omitempty"`
+		Time       NullableNotebookCellTime `json:"time,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

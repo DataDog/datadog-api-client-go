@@ -105,8 +105,8 @@ func (o *LogsArchiveIntegrationS3) UnmarshalJSON(bytes []byte) (err error) {
 		RoleName  *string `json:"role_name"`
 	}{}
 	all := struct {
-		AccountId string `json:"account_id"}`
-		RoleName  string `json:"role_name"}`
+		AccountId string `json:"account_id"`
+		RoleName  string `json:"role_name"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -156,9 +156,9 @@ func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error
 		Definition *LogStreamWidgetDefinition `json:"definition"`
 	}{}
 	all := struct {
-		Definition LogStreamWidgetDefinition `json:"definition"}`
-		GraphSize  *NotebookGraphSize        `json:"graph_size,omitempty"}`
-		Time       NullableNotebookCellTime  `json:"time,omitempty"}`
+		Definition LogStreamWidgetDefinition `json:"definition"`
+		GraphSize  *NotebookGraphSize        `json:"graph_size,omitempty"`
+		Time       NullableNotebookCellTime  `json:"time,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

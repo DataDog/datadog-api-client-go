@@ -146,9 +146,9 @@ func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 		Definition *WidgetDefinition `json:"definition"`
 	}{}
 	all := struct {
-		Definition WidgetDefinition `json:"definition"}`
-		Id         *int64           `json:"id,omitempty"}`
-		Layout     *WidgetLayout    `json:"layout,omitempty"}`
+		Definition WidgetDefinition `json:"definition"`
+		Id         *int64           `json:"id,omitempty"`
+		Layout     *WidgetLayout    `json:"layout,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

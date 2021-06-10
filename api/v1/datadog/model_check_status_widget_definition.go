@@ -393,16 +393,16 @@ func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *CheckStatusWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Check      string                          `json:"check"}`
-		Group      *string                         `json:"group,omitempty"}`
-		GroupBy    *[]string                       `json:"group_by,omitempty"}`
-		Grouping   WidgetGrouping                  `json:"grouping"}`
-		Tags       *[]string                       `json:"tags,omitempty"}`
-		Time       *WidgetTime                     `json:"time,omitempty"}`
-		Title      *string                         `json:"title,omitempty"}`
-		TitleAlign *WidgetTextAlign                `json:"title_align,omitempty"}`
-		TitleSize  *string                         `json:"title_size,omitempty"}`
-		Type       CheckStatusWidgetDefinitionType `json:"type"}`
+		Check      string                          `json:"check"`
+		Group      *string                         `json:"group,omitempty"`
+		GroupBy    *[]string                       `json:"group_by,omitempty"`
+		Grouping   WidgetGrouping                  `json:"grouping"`
+		Tags       *[]string                       `json:"tags,omitempty"`
+		Time       *WidgetTime                     `json:"time,omitempty"`
+		Title      *string                         `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign                `json:"title_align,omitempty"`
+		TitleSize  *string                         `json:"title_size,omitempty"`
+		Type       CheckStatusWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -326,14 +326,14 @@ func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type    *AlertValueWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		AlertId    string                         `json:"alert_id"}`
-		Precision  *int64                         `json:"precision,omitempty"}`
-		TextAlign  *WidgetTextAlign               `json:"text_align,omitempty"}`
-		Title      *string                        `json:"title,omitempty"}`
-		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"}`
-		TitleSize  *string                        `json:"title_size,omitempty"}`
-		Type       AlertValueWidgetDefinitionType `json:"type"}`
-		Unit       *string                        `json:"unit,omitempty"}`
+		AlertId    string                         `json:"alert_id"`
+		Precision  *int64                         `json:"precision,omitempty"`
+		TextAlign  *WidgetTextAlign               `json:"text_align,omitempty"`
+		Title      *string                        `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"`
+		TitleSize  *string                        `json:"title_size,omitempty"`
+		Type       AlertValueWidgetDefinitionType `json:"type"`
+		Unit       *string                        `json:"unit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

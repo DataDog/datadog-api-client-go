@@ -147,9 +147,9 @@ func (o *FormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte) (err e
 		Facet *string `json:"facet"`
 	}{}
 	all := struct {
-		Facet string                                   `json:"facet"}`
-		Limit *int64                                   `json:"limit,omitempty"}`
-		Sort  *FormulaAndFunctionEventQueryGroupBySort `json:"sort,omitempty"}`
+		Facet string                                   `json:"facet"`
+		Limit *int64                                   `json:"limit,omitempty"`
+		Sort  *FormulaAndFunctionEventQueryGroupBySort `json:"sort,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

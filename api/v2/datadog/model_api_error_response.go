@@ -74,7 +74,7 @@ func (o *APIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Errors *[]string `json:"errors"`
 	}{}
 	all := struct {
-		Errors []string `json:"errors"}`
+		Errors []string `json:"errors"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -74,7 +74,7 @@ func (o *LogsIndexesOrder) UnmarshalJSON(bytes []byte) (err error) {
 		IndexNames *[]string `json:"index_names"`
 	}{}
 	all := struct {
-		IndexNames []string `json:"index_names"}`
+		IndexNames []string `json:"index_names"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

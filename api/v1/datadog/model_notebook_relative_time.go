@@ -73,7 +73,7 @@ func (o *NotebookRelativeTime) UnmarshalJSON(bytes []byte) (err error) {
 		LiveSpan *WidgetLiveSpan `json:"live_span"`
 	}{}
 	all := struct {
-		LiveSpan WidgetLiveSpan `json:"live_span"}`
+		LiveSpan WidgetLiveSpan `json:"live_span"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

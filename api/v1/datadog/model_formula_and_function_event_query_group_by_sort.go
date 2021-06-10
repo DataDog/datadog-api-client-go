@@ -150,9 +150,9 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []byte) (e
 		Aggregation *FormulaAndFunctionEventAggregation `json:"aggregation"`
 	}{}
 	all := struct {
-		Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"}`
-		Metric      *string                            `json:"metric,omitempty"}`
-		Order       *QuerySortOrder                    `json:"order,omitempty"}`
+		Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"`
+		Metric      *string                            `json:"metric,omitempty"`
+		Order       *QuerySortOrder                    `json:"order,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

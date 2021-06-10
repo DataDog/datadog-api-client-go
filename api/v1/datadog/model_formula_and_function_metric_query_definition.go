@@ -171,10 +171,10 @@ func (o *FormulaAndFunctionMetricQueryDefinition) UnmarshalJSON(bytes []byte) (e
 		Query      *string                             `json:"query"`
 	}{}
 	all := struct {
-		Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"}`
-		DataSource FormulaAndFunctionMetricDataSource   `json:"data_source"}`
-		Name       string                               `json:"name"}`
-		Query      string                               `json:"query"}`
+		Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
+		DataSource FormulaAndFunctionMetricDataSource   `json:"data_source"`
+		Name       string                               `json:"name"`
+		Query      string                               `json:"query"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

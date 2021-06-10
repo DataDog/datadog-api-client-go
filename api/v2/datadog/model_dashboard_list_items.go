@@ -111,8 +111,8 @@ func (o *DashboardListItems) UnmarshalJSON(bytes []byte) (err error) {
 		Dashboards *[]DashboardListItem `json:"dashboards"`
 	}{}
 	all := struct {
-		Dashboards []DashboardListItem `json:"dashboards"}`
-		Total      *int64              `json:"total,omitempty"}`
+		Dashboards []DashboardListItem `json:"dashboards"`
+		Total      *int64              `json:"total,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

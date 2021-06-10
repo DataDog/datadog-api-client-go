@@ -105,8 +105,8 @@ func (o *SecurityFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *SecurityFilterType             `json:"type"`
 	}{}
 	all := struct {
-		Attributes SecurityFilterCreateAttributes `json:"attributes"}`
-		Type       SecurityFilterType             `json:"type"}`
+		Attributes SecurityFilterCreateAttributes `json:"attributes"`
+		Type       SecurityFilterType             `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

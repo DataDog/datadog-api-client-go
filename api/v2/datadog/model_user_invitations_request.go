@@ -74,7 +74,7 @@ func (o *UserInvitationsRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Data *[]UserInvitationData `json:"data"`
 	}{}
 	all := struct {
-		Data []UserInvitationData `json:"data"}`
+		Data []UserInvitationData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

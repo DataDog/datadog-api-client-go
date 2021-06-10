@@ -289,13 +289,13 @@ func (o *ChangeWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *ChangeWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink        `json:"custom_links,omitempty"}`
-		Requests    []ChangeWidgetRequest      `json:"requests"}`
-		Time        *WidgetTime                `json:"time,omitempty"}`
-		Title       *string                    `json:"title,omitempty"}`
-		TitleAlign  *WidgetTextAlign           `json:"title_align,omitempty"}`
-		TitleSize   *string                    `json:"title_size,omitempty"}`
-		Type        ChangeWidgetDefinitionType `json:"type"}`
+		CustomLinks *[]WidgetCustomLink        `json:"custom_links,omitempty"`
+		Requests    []ChangeWidgetRequest      `json:"requests"`
+		Time        *WidgetTime                `json:"time,omitempty"`
+		Title       *string                    `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign           `json:"title_align,omitempty"`
+		TitleSize   *string                    `json:"title_size,omitempty"`
+		Type        ChangeWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

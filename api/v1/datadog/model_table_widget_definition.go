@@ -325,14 +325,14 @@ func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *TableWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks  *[]WidgetCustomLink       `json:"custom_links,omitempty"}`
-		HasSearchBar *TableWidgetHasSearchBar  `json:"has_search_bar,omitempty"}`
-		Requests     []TableWidgetRequest      `json:"requests"}`
-		Time         *WidgetTime               `json:"time,omitempty"}`
-		Title        *string                   `json:"title,omitempty"}`
-		TitleAlign   *WidgetTextAlign          `json:"title_align,omitempty"}`
-		TitleSize    *string                   `json:"title_size,omitempty"}`
-		Type         TableWidgetDefinitionType `json:"type"}`
+		CustomLinks  *[]WidgetCustomLink       `json:"custom_links,omitempty"`
+		HasSearchBar *TableWidgetHasSearchBar  `json:"has_search_bar,omitempty"`
+		Requests     []TableWidgetRequest      `json:"requests"`
+		Time         *WidgetTime               `json:"time,omitempty"`
+		Title        *string                   `json:"title,omitempty"`
+		TitleAlign   *WidgetTextAlign          `json:"title_align,omitempty"`
+		TitleSize    *string                   `json:"title_size,omitempty"`
+		Type         TableWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

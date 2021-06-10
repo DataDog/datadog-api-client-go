@@ -302,14 +302,14 @@ func (o *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 		Queries   *[]SecurityMonitoringRuleQueryCreate `json:"queries"`
 	}{}
 	all := struct {
-		Cases     []SecurityMonitoringRuleCaseCreate  `json:"cases"}`
-		Filters   *[]SecurityMonitoringFilter         `json:"filters,omitempty"}`
-		IsEnabled bool                                `json:"isEnabled"}`
-		Message   string                              `json:"message"}`
-		Name      string                              `json:"name"}`
-		Options   SecurityMonitoringRuleOptions       `json:"options"}`
-		Queries   []SecurityMonitoringRuleQueryCreate `json:"queries"}`
-		Tags      *[]string                           `json:"tags,omitempty"}`
+		Cases     []SecurityMonitoringRuleCaseCreate  `json:"cases"`
+		Filters   *[]SecurityMonitoringFilter         `json:"filters,omitempty"`
+		IsEnabled bool                                `json:"isEnabled"`
+		Message   string                              `json:"message"`
+		Name      string                              `json:"name"`
+		Options   SecurityMonitoringRuleOptions       `json:"options"`
+		Queries   []SecurityMonitoringRuleQueryCreate `json:"queries"`
+		Tags      *[]string                           `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

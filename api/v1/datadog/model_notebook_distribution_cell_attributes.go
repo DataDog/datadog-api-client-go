@@ -192,10 +192,10 @@ func (o *NotebookDistributionCellAttributes) UnmarshalJSON(bytes []byte) (err er
 		Definition *DistributionWidgetDefinition `json:"definition"`
 	}{}
 	all := struct {
-		Definition DistributionWidgetDefinition `json:"definition"}`
-		GraphSize  *NotebookGraphSize           `json:"graph_size,omitempty"}`
-		SplitBy    *NotebookSplitBy             `json:"split_by,omitempty"}`
-		Time       NullableNotebookCellTime     `json:"time,omitempty"}`
+		Definition DistributionWidgetDefinition `json:"definition"`
+		GraphSize  *NotebookGraphSize           `json:"graph_size,omitempty"`
+		SplitBy    *NotebookSplitBy             `json:"split_by,omitempty"`
+		Time       NullableNotebookCellTime     `json:"time,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

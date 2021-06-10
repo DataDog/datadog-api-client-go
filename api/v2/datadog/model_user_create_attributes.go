@@ -148,9 +148,9 @@ func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Email *string `json:"email"`
 	}{}
 	all := struct {
-		Email string  `json:"email"}`
-		Name  *string `json:"name,omitempty"}`
-		Title *string `json:"title,omitempty"}`
+		Email string  `json:"email"`
+		Name  *string `json:"name,omitempty"`
+		Title *string `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

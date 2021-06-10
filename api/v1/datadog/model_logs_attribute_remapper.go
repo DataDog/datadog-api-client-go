@@ -415,16 +415,16 @@ func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 		Type    *LogsAttributeRemapperType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled          *bool                     `json:"is_enabled,omitempty"}`
-		Name               *string                   `json:"name,omitempty"}`
-		OverrideOnConflict *bool                     `json:"override_on_conflict,omitempty"}`
-		PreserveSource     *bool                     `json:"preserve_source,omitempty"}`
-		SourceType         *string                   `json:"source_type,omitempty"}`
-		Sources            []string                  `json:"sources"}`
-		Target             string                    `json:"target"}`
-		TargetFormat       *TargetFormatType         `json:"target_format,omitempty"}`
-		TargetType         *string                   `json:"target_type,omitempty"}`
-		Type               LogsAttributeRemapperType `json:"type"}`
+		IsEnabled          *bool                     `json:"is_enabled,omitempty"`
+		Name               *string                   `json:"name,omitempty"`
+		OverrideOnConflict *bool                     `json:"override_on_conflict,omitempty"`
+		PreserveSource     *bool                     `json:"preserve_source,omitempty"`
+		SourceType         *string                   `json:"source_type,omitempty"`
+		Sources            []string                  `json:"sources"`
+		Target             string                    `json:"target"`
+		TargetFormat       *TargetFormatType         `json:"target_format,omitempty"`
+		TargetType         *string                   `json:"target_type,omitempty"`
+		Type               LogsAttributeRemapperType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

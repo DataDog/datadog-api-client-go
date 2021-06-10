@@ -444,17 +444,17 @@ func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
 		Message *string `json:"message"`
 	}{}
 	all := struct {
-		Config    *SyntheticsBrowserTestConfig `json:"config,omitempty"}`
-		Locations *[]string                    `json:"locations,omitempty"}`
-		Message   string                       `json:"message"}`
-		MonitorId *int64                       `json:"monitor_id,omitempty"}`
-		Name      *string                      `json:"name,omitempty"}`
-		Options   *SyntheticsTestOptions       `json:"options,omitempty"}`
-		PublicId  *string                      `json:"public_id,omitempty"}`
-		Status    *SyntheticsTestPauseStatus   `json:"status,omitempty"}`
-		Steps     *[]SyntheticsStep            `json:"steps,omitempty"}`
-		Tags      *[]string                    `json:"tags,omitempty"}`
-		Type      *SyntheticsBrowserTestType   `json:"type,omitempty"}`
+		Config    *SyntheticsBrowserTestConfig `json:"config,omitempty"`
+		Locations *[]string                    `json:"locations,omitempty"`
+		Message   string                       `json:"message"`
+		MonitorId *int64                       `json:"monitor_id,omitempty"`
+		Name      *string                      `json:"name,omitempty"`
+		Options   *SyntheticsTestOptions       `json:"options,omitempty"`
+		PublicId  *string                      `json:"public_id,omitempty"`
+		Status    *SyntheticsTestPauseStatus   `json:"status,omitempty"`
+		Steps     *[]SyntheticsStep            `json:"steps,omitempty"`
+		Tags      *[]string                    `json:"tags,omitempty"`
+		Type      *SyntheticsBrowserTestType   `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

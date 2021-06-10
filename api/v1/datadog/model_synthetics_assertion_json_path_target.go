@@ -176,10 +176,10 @@ func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err err
 		Type     *SyntheticsAssertionType             `json:"type"`
 	}{}
 	all := struct {
-		Operator SyntheticsAssertionJSONPathOperator      `json:"operator"}`
-		Property *string                                  `json:"property,omitempty"}`
-		Target   *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"}`
-		Type     SyntheticsAssertionType                  `json:"type"}`
+		Operator SyntheticsAssertionJSONPathOperator      `json:"operator"`
+		Property *string                                  `json:"property,omitempty"`
+		Target   *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
+		Type     SyntheticsAssertionType                  `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

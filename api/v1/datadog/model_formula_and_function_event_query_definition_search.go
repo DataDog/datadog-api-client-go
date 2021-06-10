@@ -74,7 +74,7 @@ func (o *FormulaAndFunctionEventQueryDefinitionSearch) UnmarshalJSON(bytes []byt
 		Query *string `json:"query"`
 	}{}
 	all := struct {
-		Query string `json:"query"}`
+		Query string `json:"query"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

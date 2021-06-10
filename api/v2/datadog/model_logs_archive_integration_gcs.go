@@ -105,8 +105,8 @@ func (o *LogsArchiveIntegrationGCS) UnmarshalJSON(bytes []byte) (err error) {
 		ProjectId   *string `json:"project_id"`
 	}{}
 	all := struct {
-		ClientEmail string `json:"client_email"}`
-		ProjectId   string `json:"project_id"}`
+		ClientEmail string `json:"client_email"`
+		ProjectId   string `json:"project_id"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

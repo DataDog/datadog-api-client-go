@@ -136,9 +136,9 @@ func (o *ApplicationKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *ApplicationKeysType            `json:"type"`
 	}{}
 	all := struct {
-		Attributes ApplicationKeyUpdateAttributes `json:"attributes"}`
-		Id         string                         `json:"id"}`
-		Type       ApplicationKeysType            `json:"type"}`
+		Attributes ApplicationKeyUpdateAttributes `json:"attributes"`
+		Id         string                         `json:"id"`
+		Type       ApplicationKeysType            `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

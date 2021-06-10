@@ -73,7 +73,7 @@ func (o *SyntheticsAPITestResultFullCheck) UnmarshalJSON(bytes []byte) (err erro
 		Config *SyntheticsTestConfig `json:"config"`
 	}{}
 	all := struct {
-		Config SyntheticsTestConfig `json:"config"}`
+		Config SyntheticsTestConfig `json:"config"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -148,9 +148,9 @@ func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 		Aggregation *string `json:"aggregation"`
 	}{}
 	all := struct {
-		Aggregation string  `json:"aggregation"}`
-		Facet       *string `json:"facet,omitempty"}`
-		Interval    *int64  `json:"interval,omitempty"}`
+		Aggregation string  `json:"aggregation"`
+		Facet       *string `json:"facet,omitempty"`
+		Interval    *int64  `json:"interval,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

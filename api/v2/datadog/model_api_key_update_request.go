@@ -73,7 +73,7 @@ func (o *APIKeyUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Data *APIKeyUpdateData `json:"data"`
 	}{}
 	all := struct {
-		Data APIKeyUpdateData `json:"data"}`
+		Data APIKeyUpdateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

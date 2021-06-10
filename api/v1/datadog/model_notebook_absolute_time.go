@@ -143,9 +143,9 @@ func (o *NotebookAbsoluteTime) UnmarshalJSON(bytes []byte) (err error) {
 		Start *time.Time `json:"start"`
 	}{}
 	all := struct {
-		End   time.Time `json:"end"}`
-		Live  *bool     `json:"live,omitempty"}`
-		Start time.Time `json:"start"}`
+		End   time.Time `json:"end"`
+		Live  *bool     `json:"live,omitempty"`
+		Start time.Time `json:"start"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

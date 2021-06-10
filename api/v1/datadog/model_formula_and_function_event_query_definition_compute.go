@@ -147,9 +147,9 @@ func (o *FormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []by
 		Aggregation *FormulaAndFunctionEventAggregation `json:"aggregation"`
 	}{}
 	all := struct {
-		Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"}`
-		Interval    *int64                             `json:"interval,omitempty"}`
-		Metric      *string                            `json:"metric,omitempty"}`
+		Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"`
+		Interval    *int64                             `json:"interval,omitempty"`
+		Metric      *string                            `json:"metric,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

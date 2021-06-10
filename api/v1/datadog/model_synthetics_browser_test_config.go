@@ -178,10 +178,10 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 		Request    *SyntheticsTestRequest `json:"request"`
 	}{}
 	all := struct {
-		Assertions []SyntheticsAssertion        `json:"assertions"}`
-		Request    SyntheticsTestRequest        `json:"request"}`
-		SetCookie  *string                      `json:"setCookie,omitempty"}`
-		Variables  *[]SyntheticsBrowserVariable `json:"variables,omitempty"}`
+		Assertions []SyntheticsAssertion        `json:"assertions"`
+		Request    SyntheticsTestRequest        `json:"request"`
+		SetCookie  *string                      `json:"setCookie,omitempty"`
+		Variables  *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

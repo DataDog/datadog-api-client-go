@@ -402,16 +402,16 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		ViewType *string                  `json:"view_type"`
 	}{}
 	all := struct {
-		GlobalTimeTarget *string                 `json:"global_time_target,omitempty"}`
-		ShowErrorBudget  *bool                   `json:"show_error_budget,omitempty"}`
-		SloId            *string                 `json:"slo_id,omitempty"}`
-		TimeWindows      *[]WidgetTimeWindows    `json:"time_windows,omitempty"}`
-		Title            *string                 `json:"title,omitempty"}`
-		TitleAlign       *WidgetTextAlign        `json:"title_align,omitempty"}`
-		TitleSize        *string                 `json:"title_size,omitempty"}`
-		Type             SLOWidgetDefinitionType `json:"type"}`
-		ViewMode         *WidgetViewMode         `json:"view_mode,omitempty"}`
-		ViewType         string                  `json:"view_type"}`
+		GlobalTimeTarget *string                 `json:"global_time_target,omitempty"`
+		ShowErrorBudget  *bool                   `json:"show_error_budget,omitempty"`
+		SloId            *string                 `json:"slo_id,omitempty"`
+		TimeWindows      *[]WidgetTimeWindows    `json:"time_windows,omitempty"`
+		Title            *string                 `json:"title,omitempty"`
+		TitleAlign       *WidgetTextAlign        `json:"title_align,omitempty"`
+		TitleSize        *string                 `json:"title_size,omitempty"`
+		Type             SLOWidgetDefinitionType `json:"type"`
+		ViewMode         *WidgetViewMode         `json:"view_mode,omitempty"`
+		ViewType         string                  `json:"view_type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

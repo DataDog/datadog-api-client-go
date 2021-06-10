@@ -112,8 +112,8 @@ func (o *LogsArchiveCreateRequestDefinition) UnmarshalJSON(bytes []byte) (err er
 		Type *string `json:"type"`
 	}{}
 	all := struct {
-		Attributes *LogsArchiveCreateRequestAttributes `json:"attributes,omitempty"}`
-		Type       string                              `json:"type"}`
+		Attributes *LogsArchiveCreateRequestAttributes `json:"attributes,omitempty"`
+		Type       string                              `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

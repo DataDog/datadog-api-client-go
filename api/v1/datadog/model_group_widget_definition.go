@@ -324,14 +324,14 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Widgets    *[]Widget                  `json:"widgets"`
 	}{}
 	all := struct {
-		BackgroundColor *string                   `json:"background_color,omitempty"}`
-		BannerImg       *string                   `json:"banner_img,omitempty"}`
-		LayoutType      WidgetLayoutType          `json:"layout_type"}`
-		ShowTitle       *bool                     `json:"show_title,omitempty"}`
-		Title           *string                   `json:"title,omitempty"}`
-		TitleAlign      *WidgetTextAlign          `json:"title_align,omitempty"}`
-		Type            GroupWidgetDefinitionType `json:"type"}`
-		Widgets         []Widget                  `json:"widgets"}`
+		BackgroundColor *string                   `json:"background_color,omitempty"`
+		BannerImg       *string                   `json:"banner_img,omitempty"`
+		LayoutType      WidgetLayoutType          `json:"layout_type"`
+		ShowTitle       *bool                     `json:"show_title,omitempty"`
+		Title           *string                   `json:"title,omitempty"`
+		TitleAlign      *WidgetTextAlign          `json:"title_align,omitempty"`
+		Type            GroupWidgetDefinitionType `json:"type"`
+		Widgets         []Widget                  `json:"widgets"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

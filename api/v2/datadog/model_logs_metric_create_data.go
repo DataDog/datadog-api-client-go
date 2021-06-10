@@ -136,9 +136,9 @@ func (o *LogsMetricCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *LogsMetricType             `json:"type"`
 	}{}
 	all := struct {
-		Attributes LogsMetricCreateAttributes `json:"attributes"}`
-		Id         string                     `json:"id"}`
-		Type       LogsMetricType             `json:"type"}`
+		Attributes LogsMetricCreateAttributes `json:"attributes"`
+		Id         string                     `json:"id"`
+		Type       LogsMetricType             `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

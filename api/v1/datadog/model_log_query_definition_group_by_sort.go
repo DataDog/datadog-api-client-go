@@ -141,9 +141,9 @@ func (o *LogQueryDefinitionGroupBySort) UnmarshalJSON(bytes []byte) (err error) 
 		Order       *WidgetSort `json:"order"`
 	}{}
 	all := struct {
-		Aggregation string     `json:"aggregation"}`
-		Facet       *string    `json:"facet,omitempty"}`
-		Order       WidgetSort `json:"order"}`
+		Aggregation string     `json:"aggregation"`
+		Facet       *string    `json:"facet,omitempty"`
+		Order       WidgetSort `json:"order"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

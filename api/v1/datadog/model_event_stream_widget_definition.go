@@ -325,14 +325,14 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type  *EventStreamWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		EventSize     *WidgetEventSize                `json:"event_size,omitempty"}`
-		Query         string                          `json:"query"}`
-		TagsExecution *string                         `json:"tags_execution,omitempty"}`
-		Time          *WidgetTime                     `json:"time,omitempty"}`
-		Title         *string                         `json:"title,omitempty"}`
-		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"}`
-		TitleSize     *string                         `json:"title_size,omitempty"}`
-		Type          EventStreamWidgetDefinitionType `json:"type"}`
+		EventSize     *WidgetEventSize                `json:"event_size,omitempty"`
+		Query         string                          `json:"query"`
+		TagsExecution *string                         `json:"tags_execution,omitempty"`
+		Time          *WidgetTime                     `json:"time,omitempty"`
+		Title         *string                         `json:"title,omitempty"`
+		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`
+		TitleSize     *string                         `json:"title_size,omitempty"`
+		Type          EventStreamWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

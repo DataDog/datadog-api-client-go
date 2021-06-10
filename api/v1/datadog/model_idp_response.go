@@ -74,7 +74,7 @@ func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Message *string `json:"message"`
 	}{}
 	all := struct {
-		Message string `json:"message"}`
+		Message string `json:"message"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

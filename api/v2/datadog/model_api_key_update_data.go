@@ -136,9 +136,9 @@ func (o *APIKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *APIKeysType            `json:"type"`
 	}{}
 	all := struct {
-		Attributes APIKeyUpdateAttributes `json:"attributes"}`
-		Id         string                 `json:"id"}`
-		Type       APIKeysType            `json:"type"}`
+		Attributes APIKeyUpdateAttributes `json:"attributes"`
+		Id         string                 `json:"id"`
+		Type       APIKeysType            `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

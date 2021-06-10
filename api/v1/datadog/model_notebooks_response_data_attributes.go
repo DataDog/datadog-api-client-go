@@ -298,13 +298,13 @@ func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Author   *NotebookAuthor         `json:"author,omitempty"}`
-		Cells    *[]NotebookCellResponse `json:"cells,omitempty"}`
-		Created  *time.Time              `json:"created,omitempty"}`
-		Modified *time.Time              `json:"modified,omitempty"}`
-		Name     string                  `json:"name"}`
-		Status   *NotebookStatus         `json:"status,omitempty"}`
-		Time     *NotebookGlobalTime     `json:"time,omitempty"}`
+		Author   *NotebookAuthor         `json:"author,omitempty"`
+		Cells    *[]NotebookCellResponse `json:"cells,omitempty"`
+		Created  *time.Time              `json:"created,omitempty"`
+		Modified *time.Time              `json:"modified,omitempty"`
+		Name     string                  `json:"name"`
+		Status   *NotebookStatus         `json:"status,omitempty"`
+		Time     *NotebookGlobalTime     `json:"time,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

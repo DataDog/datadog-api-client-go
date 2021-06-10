@@ -74,7 +74,7 @@ func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
 		ServiceName *string `json:"service_name"`
 	}{}
 	all := struct {
-		ServiceName string `json:"service_name"}`
+		ServiceName string `json:"service_name"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -105,8 +105,8 @@ func (o *SecurityFilterExclusionFilter) UnmarshalJSON(bytes []byte) (err error) 
 		Query *string `json:"query"`
 	}{}
 	all := struct {
-		Name  string `json:"name"}`
-		Query string `json:"query"}`
+		Name  string `json:"name"`
+		Query string `json:"query"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

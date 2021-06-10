@@ -197,11 +197,11 @@ func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		Query            *string                          `json:"query"`
 	}{}
 	all := struct {
-		ExclusionFilters []SecurityFilterExclusionFilter `json:"exclusion_filters"}`
-		FilteredDataType SecurityFilterFilteredDataType  `json:"filtered_data_type"}`
-		IsEnabled        bool                            `json:"is_enabled"}`
-		Name             string                          `json:"name"}`
-		Query            string                          `json:"query"}`
+		ExclusionFilters []SecurityFilterExclusionFilter `json:"exclusion_filters"`
+		FilteredDataType SecurityFilterFilteredDataType  `json:"filtered_data_type"`
+		IsEnabled        bool                            `json:"is_enabled"`
+		Name             string                          `json:"name"`
+		Query            string                          `json:"query"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

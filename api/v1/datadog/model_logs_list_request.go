@@ -257,12 +257,12 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Time *LogsListRequestTime `json:"time"`
 	}{}
 	all := struct {
-		Index   *string             `json:"index,omitempty"}`
-		Limit   *int32              `json:"limit,omitempty"}`
-		Query   *string             `json:"query,omitempty"}`
-		Sort    *LogsSort           `json:"sort,omitempty"}`
-		StartAt *string             `json:"startAt,omitempty"}`
-		Time    LogsListRequestTime `json:"time"}`
+		Index   *string             `json:"index,omitempty"`
+		Limit   *int32              `json:"limit,omitempty"`
+		Query   *string             `json:"query,omitempty"`
+		Sort    *LogsSort           `json:"sort,omitempty"`
+		StartAt *string             `json:"startAt,omitempty"`
+		Time    LogsListRequestTime `json:"time"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

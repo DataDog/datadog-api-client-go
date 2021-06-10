@@ -105,8 +105,8 @@ func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 		Message *string `json:"message"`
 	}{}
 	all := struct {
-		Code    int32  `json:"code"}`
-		Message string `json:"message"}`
+		Code    int32  `json:"code"`
+		Message string `json:"message"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

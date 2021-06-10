@@ -215,11 +215,11 @@ func (o *SyntheticsBrowserVariable) UnmarshalJSON(bytes []byte) (err error) {
 		Type *SyntheticsBrowserVariableType `json:"type"`
 	}{}
 	all := struct {
-		Example *string                       `json:"example,omitempty"}`
-		Id      *string                       `json:"id,omitempty"}`
-		Name    string                        `json:"name"}`
-		Pattern *string                       `json:"pattern,omitempty"}`
-		Type    SyntheticsBrowserVariableType `json:"type"}`
+		Example *string                       `json:"example,omitempty"`
+		Id      *string                       `json:"id,omitempty"`
+		Name    string                        `json:"name"`
+		Pattern *string                       `json:"pattern,omitempty"`
+		Type    SyntheticsBrowserVariableType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

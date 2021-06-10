@@ -73,7 +73,7 @@ func (o *ApplicationKeyCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Data *ApplicationKeyCreateData `json:"data"`
 	}{}
 	all := struct {
-		Data ApplicationKeyCreateData `json:"data"}`
+		Data ApplicationKeyCreateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

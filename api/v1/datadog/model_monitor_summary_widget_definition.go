@@ -508,19 +508,19 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		Type  *MonitorSummaryWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		ColorPreference   *WidgetColorPreference             `json:"color_preference,omitempty"}`
-		Count             *int64                             `json:"count,omitempty"}`
-		DisplayFormat     *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"}`
-		HideZeroCounts    *bool                              `json:"hide_zero_counts,omitempty"}`
-		Query             string                             `json:"query"}`
-		ShowLastTriggered *bool                              `json:"show_last_triggered,omitempty"}`
-		Sort              *WidgetMonitorSummarySort          `json:"sort,omitempty"}`
-		Start             *int64                             `json:"start,omitempty"}`
-		SummaryType       *WidgetSummaryType                 `json:"summary_type,omitempty"}`
-		Title             *string                            `json:"title,omitempty"}`
-		TitleAlign        *WidgetTextAlign                   `json:"title_align,omitempty"}`
-		TitleSize         *string                            `json:"title_size,omitempty"}`
-		Type              MonitorSummaryWidgetDefinitionType `json:"type"}`
+		ColorPreference   *WidgetColorPreference             `json:"color_preference,omitempty"`
+		Count             *int64                             `json:"count,omitempty"`
+		DisplayFormat     *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"`
+		HideZeroCounts    *bool                              `json:"hide_zero_counts,omitempty"`
+		Query             string                             `json:"query"`
+		ShowLastTriggered *bool                              `json:"show_last_triggered,omitempty"`
+		Sort              *WidgetMonitorSummarySort          `json:"sort,omitempty"`
+		Start             *int64                             `json:"start,omitempty"`
+		SummaryType       *WidgetSummaryType                 `json:"summary_type,omitempty"`
+		Title             *string                            `json:"title,omitempty"`
+		TitleAlign        *WidgetTextAlign                   `json:"title_align,omitempty"`
+		TitleSize         *string                            `json:"title_size,omitempty"`
+		Type              MonitorSummaryWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

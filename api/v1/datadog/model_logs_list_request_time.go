@@ -143,9 +143,9 @@ func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
 		To   *time.Time `json:"to"`
 	}{}
 	all := struct {
-		From     time.Time `json:"from"}`
-		Timezone *string   `json:"timezone,omitempty"}`
-		To       time.Time `json:"to"}`
+		From     time.Time `json:"from"`
+		Timezone *string   `json:"timezone,omitempty"`
+		To       time.Time `json:"to"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

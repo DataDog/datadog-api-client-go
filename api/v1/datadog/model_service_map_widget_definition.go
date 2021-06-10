@@ -284,13 +284,13 @@ func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type    *ServiceMapWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink            `json:"custom_links,omitempty"}`
-		Filters     []string                       `json:"filters"}`
-		Service     string                         `json:"service"}`
-		Title       *string                        `json:"title,omitempty"}`
-		TitleAlign  *WidgetTextAlign               `json:"title_align,omitempty"}`
-		TitleSize   *string                        `json:"title_size,omitempty"}`
-		Type        ServiceMapWidgetDefinitionType `json:"type"}`
+		CustomLinks *[]WidgetCustomLink            `json:"custom_links,omitempty"`
+		Filters     []string                       `json:"filters"`
+		Service     string                         `json:"service"`
+		Title       *string                        `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign               `json:"title_align,omitempty"`
+		TitleSize   *string                        `json:"title_size,omitempty"`
+		Type        ServiceMapWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

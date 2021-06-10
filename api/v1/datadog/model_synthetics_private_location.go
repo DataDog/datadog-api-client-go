@@ -209,11 +209,11 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 		Tags        *[]string `json:"tags"`
 	}{}
 	all := struct {
-		Description string                            `json:"description"}`
-		Id          *string                           `json:"id,omitempty"}`
-		Name        string                            `json:"name"}`
-		Secrets     *SyntheticsPrivateLocationSecrets `json:"secrets,omitempty"}`
-		Tags        []string                          `json:"tags"}`
+		Description string                            `json:"description"`
+		Id          *string                           `json:"id,omitempty"`
+		Name        string                            `json:"name"`
+		Secrets     *SyntheticsPrivateLocationSecrets `json:"secrets,omitempty"`
+		Tags        []string                          `json:"tags"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

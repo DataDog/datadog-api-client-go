@@ -111,8 +111,8 @@ func (o *LogsMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		Path *string `json:"path"`
 	}{}
 	all := struct {
-		Path    string  `json:"path"}`
-		TagName *string `json:"tag_name,omitempty"}`
+		Path    string  `json:"path"`
+		TagName *string `json:"tag_name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

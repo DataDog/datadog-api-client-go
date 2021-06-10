@@ -73,7 +73,7 @@ func (o *LogsMetricCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Data *LogsMetricCreateData `json:"data"`
 	}{}
 	all := struct {
-		Data LogsMetricCreateData `json:"data"}`
+		Data LogsMetricCreateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

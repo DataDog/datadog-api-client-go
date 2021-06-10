@@ -73,7 +73,7 @@ func (o *SecurityFilterUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Data *SecurityFilterUpdateData `json:"data"`
 	}{}
 	all := struct {
-		Data SecurityFilterUpdateData `json:"data"}`
+		Data SecurityFilterUpdateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

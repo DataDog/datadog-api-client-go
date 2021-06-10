@@ -146,9 +146,9 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 		Content  *IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
 	}{}
 	all := struct {
-		CellType  IncidentTimelineCellMarkdownContentType             `json:"cell_type"}`
-		Content   IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"}`
-		Important *bool                                               `json:"important,omitempty"}`
+		CellType  IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
+		Content   IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
+		Important *bool                                               `json:"important,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

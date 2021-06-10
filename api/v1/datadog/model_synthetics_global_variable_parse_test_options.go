@@ -140,9 +140,9 @@ func (o *SyntheticsGlobalVariableParseTestOptions) UnmarshalJSON(bytes []byte) (
 		Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	}{}
 	all := struct {
-		Field  *string                                      `json:"field,omitempty"}`
-		Parser SyntheticsVariableParser                     `json:"parser"}`
-		Type   SyntheticsGlobalVariableParseTestOptionsType `json:"type"}`
+		Field  *string                                      `json:"field,omitempty"`
+		Parser SyntheticsVariableParser                     `json:"parser"`
+		Type   SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

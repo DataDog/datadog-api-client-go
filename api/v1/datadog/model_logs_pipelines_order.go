@@ -74,7 +74,7 @@ func (o *LogsPipelinesOrder) UnmarshalJSON(bytes []byte) (err error) {
 		PipelineIds *[]string `json:"pipeline_ids"`
 	}{}
 	all := struct {
-		PipelineIds []string `json:"pipeline_ids"}`
+		PipelineIds []string `json:"pipeline_ids"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -73,7 +73,7 @@ func (o *ApplicationKeyUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Data *ApplicationKeyUpdateData `json:"data"`
 	}{}
 	all := struct {
-		Data ApplicationKeyUpdateData `json:"data"}`
+		Data ApplicationKeyUpdateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

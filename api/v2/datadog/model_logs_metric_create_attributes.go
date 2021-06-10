@@ -146,9 +146,9 @@ func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Compute *LogsMetricCompute `json:"compute"`
 	}{}
 	all := struct {
-		Compute LogsMetricCompute    `json:"compute"}`
-		Filter  *LogsMetricFilter    `json:"filter,omitempty"}`
-		GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"}`
+		Compute LogsMetricCompute    `json:"compute"`
+		Filter  *LogsMetricFilter    `json:"filter,omitempty"`
+		GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

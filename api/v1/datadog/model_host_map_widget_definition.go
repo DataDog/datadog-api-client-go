@@ -509,19 +509,19 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *HostMapWidgetDefinitionType     `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks   *[]WidgetCustomLink             `json:"custom_links,omitempty"}`
-		Group         *[]string                       `json:"group,omitempty"}`
-		NoGroupHosts  *bool                           `json:"no_group_hosts,omitempty"}`
-		NoMetricHosts *bool                           `json:"no_metric_hosts,omitempty"}`
-		NodeType      *WidgetNodeType                 `json:"node_type,omitempty"}`
-		Notes         *string                         `json:"notes,omitempty"}`
-		Requests      HostMapWidgetDefinitionRequests `json:"requests"}`
-		Scope         *[]string                       `json:"scope,omitempty"}`
-		Style         *HostMapWidgetDefinitionStyle   `json:"style,omitempty"}`
-		Title         *string                         `json:"title,omitempty"}`
-		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"}`
-		TitleSize     *string                         `json:"title_size,omitempty"}`
-		Type          HostMapWidgetDefinitionType     `json:"type"}`
+		CustomLinks   *[]WidgetCustomLink             `json:"custom_links,omitempty"`
+		Group         *[]string                       `json:"group,omitempty"`
+		NoGroupHosts  *bool                           `json:"no_group_hosts,omitempty"`
+		NoMetricHosts *bool                           `json:"no_metric_hosts,omitempty"`
+		NodeType      *WidgetNodeType                 `json:"node_type,omitempty"`
+		Notes         *string                         `json:"notes,omitempty"`
+		Requests      HostMapWidgetDefinitionRequests `json:"requests"`
+		Scope         *[]string                       `json:"scope,omitempty"`
+		Style         *HostMapWidgetDefinitionStyle   `json:"style,omitempty"`
+		Title         *string                         `json:"title,omitempty"`
+		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`
+		TitleSize     *string                         `json:"title_size,omitempty"`
+		Type          HostMapWidgetDefinitionType     `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

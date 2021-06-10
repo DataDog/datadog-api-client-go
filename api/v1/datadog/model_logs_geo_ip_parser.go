@@ -217,11 +217,11 @@ func (o *LogsGeoIPParser) UnmarshalJSON(bytes []byte) (err error) {
 		Type    *LogsGeoIPParserType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled *bool               `json:"is_enabled,omitempty"}`
-		Name      *string             `json:"name,omitempty"}`
-		Sources   []string            `json:"sources"}`
-		Target    string              `json:"target"}`
-		Type      LogsGeoIPParserType `json:"type"}`
+		IsEnabled *bool               `json:"is_enabled,omitempty"`
+		Name      *string             `json:"name,omitempty"`
+		Sources   []string            `json:"sources"`
+		Target    string              `json:"target"`
+		Type      LogsGeoIPParserType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

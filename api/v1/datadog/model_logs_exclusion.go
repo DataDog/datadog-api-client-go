@@ -147,9 +147,9 @@ func (o *LogsExclusion) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Filter    *LogsExclusionFilter `json:"filter,omitempty"}`
-		IsEnabled *bool                `json:"is_enabled,omitempty"}`
-		Name      string               `json:"name"}`
+		Filter    *LogsExclusionFilter `json:"filter,omitempty"`
+		IsEnabled *bool                `json:"is_enabled,omitempty"`
+		Name      string               `json:"name"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
