@@ -45,6 +45,10 @@ var allowedLogsAggregationFunctionEnumValues = []LogsAggregationFunction{
 	"avg",
 }
 
+func (w *LogsAggregationFunction) GetAllowedValues() []LogsAggregationFunction {
+	return allowedLogsAggregationFunctionEnumValues
+}
+
 func (v *LogsAggregationFunction) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

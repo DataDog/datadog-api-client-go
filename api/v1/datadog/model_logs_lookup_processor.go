@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsLookupProcessor Use the Lookup Processor to define a mapping between a log attribute and a human readable value saved in the processors mapping table. For example, you can use the Lookup Processor to map an internal service ID into a human readable service name. Alternatively, you could also use it to check if the MAC address that just attempted to connect to the production environment belongs to your list of stolen machines.
@@ -272,6 +273,52 @@ func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		LookupTable *[]string                `json:"lookup_table"`
+		Source      *string                  `json:"source"`
+		Target      *string                  `json:"target"`
+		Type        *LogsLookupProcessorType `json:"type"`
+	}{}
+	all := struct {
+		DefaultLookup *string                 `json:"default_lookup,omitempty"`
+		IsEnabled     *bool                   `json:"is_enabled,omitempty"`
+		LookupTable   []string                `json:"lookup_table"`
+		Name          *string                 `json:"name,omitempty"`
+		Source        string                  `json:"source"`
+		Target        string                  `json:"target"`
+		Type          LogsLookupProcessorType `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.LookupTable == nil {
+		return fmt.Errorf("Required field lookup_table missing")
+	}
+	if required.Source == nil {
+		return fmt.Errorf("Required field source missing")
+	}
+	if required.Target == nil {
+		return fmt.Errorf("Required field target missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.DefaultLookup = all.DefaultLookup
+	o.IsEnabled = all.IsEnabled
+	o.LookupTable = all.LookupTable
+	o.Name = all.Name
+	o.Source = all.Source
+	o.Target = all.Target
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsLookupProcessor struct {

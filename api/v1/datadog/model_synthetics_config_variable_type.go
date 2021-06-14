@@ -18,11 +18,17 @@ type SyntheticsConfigVariableType string
 
 // List of SyntheticsConfigVariableType
 const (
-	SYNTHETICSCONFIGVARIABLETYPE_TEXT SyntheticsConfigVariableType = "text"
+	SYNTHETICSCONFIGVARIABLETYPE_GLOBAL SyntheticsConfigVariableType = "global"
+	SYNTHETICSCONFIGVARIABLETYPE_TEXT   SyntheticsConfigVariableType = "text"
 )
 
 var allowedSyntheticsConfigVariableTypeEnumValues = []SyntheticsConfigVariableType{
+	"global",
 	"text",
+}
+
+func (w *SyntheticsConfigVariableType) GetAllowedValues() []SyntheticsConfigVariableType {
+	return allowedSyntheticsConfigVariableTypeEnumValues
 }
 
 func (v *SyntheticsConfigVariableType) UnmarshalJSON(src []byte) error {

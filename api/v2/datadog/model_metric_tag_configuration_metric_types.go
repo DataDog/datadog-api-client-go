@@ -31,6 +31,10 @@ var allowedMetricTagConfigurationMetricTypesEnumValues = []MetricTagConfiguratio
 	"distribution",
 }
 
+func (w *MetricTagConfigurationMetricTypes) GetAllowedValues() []MetricTagConfigurationMetricTypes {
+	return allowedMetricTagConfigurationMetricTypesEnumValues
+}
+
 func (v *MetricTagConfigurationMetricTypes) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

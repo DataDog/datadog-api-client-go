@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // APIErrorResponse API error response.
@@ -66,6 +67,28 @@ func (o APIErrorResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["errors"] = o.Errors
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *APIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Errors *[]string `json:"errors"`
+	}{}
+	all := struct {
+		Errors []string `json:"errors"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Errors == nil {
+		return fmt.Errorf("Required field errors missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Errors = all.Errors
+	return nil
 }
 
 type NullableAPIErrorResponse struct {

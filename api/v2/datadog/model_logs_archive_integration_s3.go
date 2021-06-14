@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsArchiveIntegrationS3 The S3 Archive's integration destination.
@@ -96,6 +97,34 @@ func (o LogsArchiveIntegrationS3) MarshalJSON() ([]byte, error) {
 		toSerialize["role_name"] = o.RoleName
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsArchiveIntegrationS3) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		AccountId *string `json:"account_id"`
+		RoleName  *string `json:"role_name"`
+	}{}
+	all := struct {
+		AccountId string `json:"account_id"`
+		RoleName  string `json:"role_name"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.AccountId == nil {
+		return fmt.Errorf("Required field account_id missing")
+	}
+	if required.RoleName == nil {
+		return fmt.Errorf("Required field role_name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.AccountId = all.AccountId
+	o.RoleName = all.RoleName
+	return nil
 }
 
 type NullableLogsArchiveIntegrationS3 struct {

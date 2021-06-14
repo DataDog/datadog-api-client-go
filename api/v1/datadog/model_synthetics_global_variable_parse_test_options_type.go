@@ -27,6 +27,10 @@ var allowedSyntheticsGlobalVariableParseTestOptionsTypeEnumValues = []Synthetics
 	"http_header",
 }
 
+func (w *SyntheticsGlobalVariableParseTestOptionsType) GetAllowedValues() []SyntheticsGlobalVariableParseTestOptionsType {
+	return allowedSyntheticsGlobalVariableParseTestOptionsTypeEnumValues
+}
+
 func (v *SyntheticsGlobalVariableParseTestOptionsType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

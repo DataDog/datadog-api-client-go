@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringRuleCreatePayload Create a new rule.
@@ -289,6 +290,62 @@ func (o SecurityMonitoringRuleCreatePayload) MarshalJSON() ([]byte, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Cases     *[]SecurityMonitoringRuleCaseCreate  `json:"cases"`
+		IsEnabled *bool                                `json:"isEnabled"`
+		Message   *string                              `json:"message"`
+		Name      *string                              `json:"name"`
+		Options   *SecurityMonitoringRuleOptions       `json:"options"`
+		Queries   *[]SecurityMonitoringRuleQueryCreate `json:"queries"`
+	}{}
+	all := struct {
+		Cases     []SecurityMonitoringRuleCaseCreate  `json:"cases"`
+		Filters   *[]SecurityMonitoringFilter         `json:"filters,omitempty"`
+		IsEnabled bool                                `json:"isEnabled"`
+		Message   string                              `json:"message"`
+		Name      string                              `json:"name"`
+		Options   SecurityMonitoringRuleOptions       `json:"options"`
+		Queries   []SecurityMonitoringRuleQueryCreate `json:"queries"`
+		Tags      *[]string                           `json:"tags,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Cases == nil {
+		return fmt.Errorf("Required field cases missing")
+	}
+	if required.IsEnabled == nil {
+		return fmt.Errorf("Required field isEnabled missing")
+	}
+	if required.Message == nil {
+		return fmt.Errorf("Required field message missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Options == nil {
+		return fmt.Errorf("Required field options missing")
+	}
+	if required.Queries == nil {
+		return fmt.Errorf("Required field queries missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Cases = all.Cases
+	o.Filters = all.Filters
+	o.IsEnabled = all.IsEnabled
+	o.Message = all.Message
+	o.Name = all.Name
+	o.Options = all.Options
+	o.Queries = all.Queries
+	o.Tags = all.Tags
+	return nil
 }
 
 type NullableSecurityMonitoringRuleCreatePayload struct {

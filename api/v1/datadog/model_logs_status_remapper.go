@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsStatusRemapper Use this Processor if you want to assign some attributes as the official status.  Each incoming status value is mapped as follows.    - Integers from 0 to 7 map to the Syslog severity standards   - Strings beginning with `emerg` or f (case-insensitive) map to `emerg` (0)   - Strings beginning with `a` (case-insensitive) map to `alert` (1)   - Strings beginning with `c` (case-insensitive) map to `critical` (2)   - Strings beginning with `err` (case-insensitive) map to `error` (3)   - Strings beginning with `w` (case-insensitive) map to `warning` (4)   - Strings beginning with `n` (case-insensitive) map to `notice` (5)   - Strings beginning with `i` (case-insensitive) map to `info` (6)   - Strings beginning with `d`, `trace` or `verbose` (case-insensitive) map to `debug` (7)   - Strings beginning with `o` or matching `OK` or `Success` (case-insensitive) map to OK   - All others map to `info` (6)    **Note:** If multiple log status remapper processors can be applied to a given log,   only the first one (according to the pipelines order) is taken into account.
@@ -175,6 +176,38 @@ func (o LogsStatusRemapper) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsStatusRemapper) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Sources *[]string               `json:"sources"`
+		Type    *LogsStatusRemapperType `json:"type"`
+	}{}
+	all := struct {
+		IsEnabled *bool                  `json:"is_enabled,omitempty"`
+		Name      *string                `json:"name,omitempty"`
+		Sources   []string               `json:"sources"`
+		Type      LogsStatusRemapperType `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Sources == nil {
+		return fmt.Errorf("Required field sources missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.Sources = all.Sources
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsStatusRemapper struct {

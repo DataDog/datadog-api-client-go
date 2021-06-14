@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogQueryDefinitionGroupBy Defined items in the group.
@@ -139,6 +140,32 @@ func (o LogQueryDefinitionGroupBy) MarshalJSON() ([]byte, error) {
 		toSerialize["sort"] = o.Sort
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogQueryDefinitionGroupBy) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Facet *string `json:"facet"`
+	}{}
+	all := struct {
+		Facet string                         `json:"facet"`
+		Limit *int64                         `json:"limit,omitempty"`
+		Sort  *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Facet == nil {
+		return fmt.Errorf("Required field facet missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Facet = all.Facet
+	o.Limit = all.Limit
+	o.Sort = all.Sort
+	return nil
 }
 
 type NullableLogQueryDefinitionGroupBy struct {

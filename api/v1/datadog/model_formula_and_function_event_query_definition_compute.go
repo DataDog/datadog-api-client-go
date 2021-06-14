@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // FormulaAndFunctionEventQueryDefinitionCompute Compute options.
@@ -139,6 +140,32 @@ func (o FormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]byte, er
 		toSerialize["metric"] = o.Metric
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *FormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Aggregation *FormulaAndFunctionEventAggregation `json:"aggregation"`
+	}{}
+	all := struct {
+		Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"`
+		Interval    *int64                             `json:"interval,omitempty"`
+		Metric      *string                            `json:"metric,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Aggregation == nil {
+		return fmt.Errorf("Required field aggregation missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Aggregation = all.Aggregation
+	o.Interval = all.Interval
+	o.Metric = all.Metric
+	return nil
 }
 
 type NullableFormulaAndFunctionEventQueryDefinitionCompute struct {

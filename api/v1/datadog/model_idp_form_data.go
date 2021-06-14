@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 )
 
@@ -67,6 +68,28 @@ func (o IdpFormData) MarshalJSON() ([]byte, error) {
 		toSerialize["idp_file"] = o.IdpFile
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdpFormData) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		IdpFile **os.File `json:"idp_file"`
+	}{}
+	all := struct {
+		IdpFile *os.File `json:"idp_file"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.IdpFile == nil {
+		return fmt.Errorf("Required field idp_file missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IdpFile = all.IdpFile
+	return nil
 }
 
 type NullableIdpFormData struct {

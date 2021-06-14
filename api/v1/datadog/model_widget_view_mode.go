@@ -29,6 +29,10 @@ var allowedWidgetViewModeEnumValues = []WidgetViewMode{
 	"both",
 }
 
+func (w *WidgetViewMode) GetAllowedValues() []WidgetViewMode {
+	return allowedWidgetViewModeEnumValues
+}
+
 func (v *WidgetViewMode) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

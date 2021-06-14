@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsArchiveOrderAttributes The attributes associated with the archive order.
@@ -66,6 +67,28 @@ func (o LogsArchiveOrderAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["archive_ids"] = o.ArchiveIds
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		ArchiveIds *[]string `json:"archive_ids"`
+	}{}
+	all := struct {
+		ArchiveIds []string `json:"archive_ids"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.ArchiveIds == nil {
+		return fmt.Errorf("Required field archive_ids missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.ArchiveIds = all.ArchiveIds
+	return nil
 }
 
 type NullableLogsArchiveOrderAttributes struct {

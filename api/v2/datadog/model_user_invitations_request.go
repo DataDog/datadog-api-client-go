@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserInvitationsRequest Object to invite users to join the organization.
@@ -66,6 +67,28 @@ func (o UserInvitationsRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserInvitationsRequest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Data *[]UserInvitationData `json:"data"`
+	}{}
+	all := struct {
+		Data []UserInvitationData `json:"data"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Data == nil {
+		return fmt.Errorf("Required field data missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Data = all.Data
+	return nil
 }
 
 type NullableUserInvitationsRequest struct {

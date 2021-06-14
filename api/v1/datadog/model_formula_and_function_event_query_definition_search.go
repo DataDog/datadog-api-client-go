@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // FormulaAndFunctionEventQueryDefinitionSearch Search options.
@@ -66,6 +67,28 @@ func (o FormulaAndFunctionEventQueryDefinitionSearch) MarshalJSON() ([]byte, err
 		toSerialize["query"] = o.Query
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *FormulaAndFunctionEventQueryDefinitionSearch) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Query *string `json:"query"`
+	}{}
+	all := struct {
+		Query string `json:"query"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Query == nil {
+		return fmt.Errorf("Required field query missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Query = all.Query
+	return nil
 }
 
 type NullableFormulaAndFunctionEventQueryDefinitionSearch struct {

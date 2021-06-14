@@ -29,6 +29,10 @@ var allowedSecurityMonitoringRuleDetectionMethodEnumValues = []SecurityMonitorin
 	"anomaly_detection",
 }
 
+func (w *SecurityMonitoringRuleDetectionMethod) GetAllowedValues() []SecurityMonitoringRuleDetectionMethod {
+	return allowedSecurityMonitoringRuleDetectionMethodEnumValues
+}
+
 func (v *SecurityMonitoringRuleDetectionMethod) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

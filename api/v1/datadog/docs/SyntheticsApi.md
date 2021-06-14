@@ -21,6 +21,7 @@ Method | HTTP request | Description
 [**GetGlobalVariable**](SyntheticsApi.md#GetGlobalVariable) | **Get** /api/v1/synthetics/variables/{variable_id} | Get a global variable
 [**GetPrivateLocation**](SyntheticsApi.md#GetPrivateLocation) | **Get** /api/v1/synthetics/private-locations/{location_id} | Get a private location
 [**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration
+[**ListGlobalVariables**](SyntheticsApi.md#ListGlobalVariables) | **Get** /api/v1/synthetics/variables | Get all global variables
 [**ListLocations**](SyntheticsApi.md#ListLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 [**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
 [**TriggerCITests**](SyntheticsApi.md#TriggerCITests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger tests from CI/CD pipelines
@@ -53,7 +54,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("example-value")) // SyntheticsGlobalVariable | Details of the global variable to create.
+    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue()) // SyntheticsGlobalVariable | Details of the global variable to create.
 
     configuration := datadog.NewConfiguration()
 
@@ -536,7 +537,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     variableId := "variableId_example" // string | The ID of the global variable.
-    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue("example-value")) // SyntheticsGlobalVariable | Details of the global variable to update.
+    body := *datadog.NewSyntheticsGlobalVariable("Example description", "MY_VARIABLE", []string{"Tags_example"}, *datadog.NewSyntheticsGlobalVariableValue()) // SyntheticsGlobalVariable | Details of the global variable to update.
 
     configuration := datadog.NewConfiguration()
 
@@ -1236,6 +1237,71 @@ This endpoint does not have optional parameters.
 ### Return type
 
 [**SyntheticsTestDetails**](SyntheticsTestDetails.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListGlobalVariables
+
+> SyntheticsListGlobalVariablesResponse ListGlobalVariables(ctx)
+
+Get the list of all Synthetics global variables.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.SyntheticsApi.ListGlobalVariables(ctx)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListGlobalVariables`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListGlobalVariables`: SyntheticsListGlobalVariablesResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.ListGlobalVariables:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
+
+### Return type
+
+[**SyntheticsListGlobalVariablesResponse**](SyntheticsListGlobalVariablesResponse.md)
 
 ### Authorization
 

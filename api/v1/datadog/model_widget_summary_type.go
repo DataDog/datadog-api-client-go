@@ -29,6 +29,10 @@ var allowedWidgetSummaryTypeEnumValues = []WidgetSummaryType{
 	"combined",
 }
 
+func (w *WidgetSummaryType) GetAllowedValues() []WidgetSummaryType {
+	return allowedWidgetSummaryTypeEnumValues
+}
+
 func (v *WidgetSummaryType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

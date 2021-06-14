@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOThreshold SLO thresholds (target and optionally warning) for a single time window.
@@ -206,6 +207,40 @@ func (o SLOThreshold) MarshalJSON() ([]byte, error) {
 		toSerialize["warning_display"] = o.WarningDisplay
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Target    *float64      `json:"target"`
+		Timeframe *SLOTimeframe `json:"timeframe"`
+	}{}
+	all := struct {
+		Target         float64      `json:"target"`
+		TargetDisplay  *string      `json:"target_display,omitempty"`
+		Timeframe      SLOTimeframe `json:"timeframe"`
+		Warning        *float64     `json:"warning,omitempty"`
+		WarningDisplay *string      `json:"warning_display,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Target == nil {
+		return fmt.Errorf("Required field target missing")
+	}
+	if required.Timeframe == nil {
+		return fmt.Errorf("Required field timeframe missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Target = all.Target
+	o.TargetDisplay = all.TargetDisplay
+	o.Timeframe = all.Timeframe
+	o.Warning = all.Warning
+	o.WarningDisplay = all.WarningDisplay
+	return nil
 }
 
 type NullableSLOThreshold struct {

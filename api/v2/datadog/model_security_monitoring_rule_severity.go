@@ -33,6 +33,10 @@ var allowedSecurityMonitoringRuleSeverityEnumValues = []SecurityMonitoringRuleSe
 	"critical",
 }
 
+func (w *SecurityMonitoringRuleSeverity) GetAllowedValues() []SecurityMonitoringRuleSeverity {
+	return allowedSecurityMonitoringRuleSeverityEnumValues
+}
+
 func (v *SecurityMonitoringRuleSeverity) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

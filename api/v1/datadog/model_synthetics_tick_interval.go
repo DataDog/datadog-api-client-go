@@ -43,6 +43,10 @@ var allowedSyntheticsTickIntervalEnumValues = []SyntheticsTickInterval{
 	604800,
 }
 
+func (w *SyntheticsTickInterval) GetAllowedValues() []SyntheticsTickInterval {
+	return allowedSyntheticsTickIntervalEnumValues
+}
+
 func (v *SyntheticsTickInterval) UnmarshalJSON(src []byte) error {
 	var value int64
 	err := json.Unmarshal(src, &value)

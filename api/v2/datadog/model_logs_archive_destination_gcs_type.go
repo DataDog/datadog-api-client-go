@@ -25,6 +25,10 @@ var allowedLogsArchiveDestinationGCSTypeEnumValues = []LogsArchiveDestinationGCS
 	"gcs",
 }
 
+func (w *LogsArchiveDestinationGCSType) GetAllowedValues() []LogsArchiveDestinationGCSType {
+	return allowedLogsArchiveDestinationGCSTypeEnumValues
+}
+
 func (v *LogsArchiveDestinationGCSType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

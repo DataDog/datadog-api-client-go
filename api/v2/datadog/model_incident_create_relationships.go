@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentCreateRelationships The relationships the incident will have with other resources once created.
@@ -65,6 +66,28 @@ func (o IncidentCreateRelationships) MarshalJSON() ([]byte, error) {
 		toSerialize["commander"] = o.Commander
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Commander *RelationshipToUser `json:"commander"`
+	}{}
+	all := struct {
+		Commander RelationshipToUser `json:"commander"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Commander == nil {
+		return fmt.Errorf("Required field commander missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Commander = all.Commander
+	return nil
 }
 
 type NullableIncidentCreateRelationships struct {

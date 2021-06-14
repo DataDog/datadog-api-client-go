@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // FormulaAndFunctionProcessQueryDefinition Process query using formulas and functions.
@@ -349,6 +350,52 @@ func (o FormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) 
 		toSerialize["text_filter"] = o.TextFilter
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		DataSource *FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
+		Metric     *string                                   `json:"metric"`
+		Name       *string                                   `json:"name"`
+	}{}
+	all := struct {
+		Aggregator      *FormulaAndFunctionMetricAggregation     `json:"aggregator,omitempty"`
+		DataSource      FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
+		IsNormalizedCpu *bool                                    `json:"is_normalized_cpu,omitempty"`
+		Limit           *int64                                   `json:"limit,omitempty"`
+		Metric          string                                   `json:"metric"`
+		Name            string                                   `json:"name"`
+		Sort            *QuerySortOrder                          `json:"sort,omitempty"`
+		TagFilters      *[]string                                `json:"tag_filters,omitempty"`
+		TextFilter      *string                                  `json:"text_filter,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.DataSource == nil {
+		return fmt.Errorf("Required field data_source missing")
+	}
+	if required.Metric == nil {
+		return fmt.Errorf("Required field metric missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Aggregator = all.Aggregator
+	o.DataSource = all.DataSource
+	o.IsNormalizedCpu = all.IsNormalizedCpu
+	o.Limit = all.Limit
+	o.Metric = all.Metric
+	o.Name = all.Name
+	o.Sort = all.Sort
+	o.TagFilters = all.TagFilters
+	o.TextFilter = all.TextFilter
+	return nil
 }
 
 type NullableFormulaAndFunctionProcessQueryDefinition struct {

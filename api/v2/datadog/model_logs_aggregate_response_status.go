@@ -27,6 +27,10 @@ var allowedLogsAggregateResponseStatusEnumValues = []LogsAggregateResponseStatus
 	"timeout",
 }
 
+func (w *LogsAggregateResponseStatus) GetAllowedValues() []LogsAggregateResponseStatus {
+	return allowedLogsAggregateResponseStatusEnumValues
+}
+
 func (v *LogsAggregateResponseStatus) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {}
+      {"query":"query","type":"log alert"}
     form: {}
     headers:
       Accept:
@@ -13,28 +13,29 @@ interactions:
       Dd-Operation-Id:
       - CreateMonitor
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "221815972993782276"
+      - "6289784557798820789"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "207401982960333329"
+      - "3336577315275890306"
     url: https://api.datadoghq.com/api/v1/monitor
     method: POST
   response:
-    body: '{"errors": ["The parameter ''type'' is required"]}'
+    body: '{"errors": ["The value provided for parameter ''query'' is invalid: invalid
+      operator specified: "]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "48"
+      - "97"
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:41 GMT
+      - Wed, 19 May 2021 14:54:26 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,7 +43,7 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4287331"
+      - "35.4563132"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -52,7 +53,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "499"
       X-Ratelimit-Reset:
-      - "9"
+      - "4"
     status: 400 Bad Request
     code: 400
     duration: ""

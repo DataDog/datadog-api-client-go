@@ -29,6 +29,10 @@ var allowedWidgetServiceSummaryDisplayFormatEnumValues = []WidgetServiceSummaryD
 	"three_column",
 }
 
+func (w *WidgetServiceSummaryDisplayFormat) GetAllowedValues() []WidgetServiceSummaryDisplayFormat {
+	return allowedWidgetServiceSummaryDisplayFormatEnumValues
+}
+
 func (v *WidgetServiceSummaryDisplayFormat) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

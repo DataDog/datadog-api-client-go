@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ProcessQueryDefinition The process query to use in the widget.
@@ -177,6 +178,34 @@ func (o ProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["search_by"] = o.SearchBy
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Metric *string `json:"metric"`
+	}{}
+	all := struct {
+		FilterBy *[]string `json:"filter_by,omitempty"`
+		Limit    *int64    `json:"limit,omitempty"`
+		Metric   string    `json:"metric"`
+		SearchBy *string   `json:"search_by,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Metric == nil {
+		return fmt.Errorf("Required field metric missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.FilterBy = all.FilterBy
+	o.Limit = all.Limit
+	o.Metric = all.Metric
+	o.SearchBy = all.SearchBy
+	return nil
 }
 
 type NullableProcessQueryDefinition struct {

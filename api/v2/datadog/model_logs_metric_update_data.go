@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMetricUpdateData The new log-based metric properties.
@@ -96,6 +97,34 @@ func (o LogsMetricUpdateData) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsMetricUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Attributes *LogsMetricUpdateAttributes `json:"attributes"`
+		Type       *LogsMetricType             `json:"type"`
+	}{}
+	all := struct {
+		Attributes LogsMetricUpdateAttributes `json:"attributes"`
+		Type       LogsMetricType             `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Attributes == nil {
+		return fmt.Errorf("Required field attributes missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Attributes = all.Attributes
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsMetricUpdateData struct {

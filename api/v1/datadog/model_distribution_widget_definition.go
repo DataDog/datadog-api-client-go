@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // DistributionWidgetDefinition The Distribution visualization is another way of showing metrics aggregated across one or several tags, such as hosts. Unlike the heat map, a distribution graph’s x-axis is quantity rather than time.
@@ -426,6 +427,52 @@ func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["yaxis"] = o.Yaxis
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Requests *[]DistributionWidgetRequest      `json:"requests"`
+		Type     *DistributionWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		LegendSize *string                          `json:"legend_size,omitempty"`
+		Markers    *[]WidgetMarker                  `json:"markers,omitempty"`
+		Requests   []DistributionWidgetRequest      `json:"requests"`
+		ShowLegend *bool                            `json:"show_legend,omitempty"`
+		Time       *WidgetTime                      `json:"time,omitempty"`
+		Title      *string                          `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign                 `json:"title_align,omitempty"`
+		TitleSize  *string                          `json:"title_size,omitempty"`
+		Type       DistributionWidgetDefinitionType `json:"type"`
+		Xaxis      *DistributionWidgetXAxis         `json:"xaxis,omitempty"`
+		Yaxis      *DistributionWidgetYAxis         `json:"yaxis,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Requests == nil {
+		return fmt.Errorf("Required field requests missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.LegendSize = all.LegendSize
+	o.Markers = all.Markers
+	o.Requests = all.Requests
+	o.ShowLegend = all.ShowLegend
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	o.Xaxis = all.Xaxis
+	o.Yaxis = all.Yaxis
+	return nil
 }
 
 type NullableDistributionWidgetDefinition struct {

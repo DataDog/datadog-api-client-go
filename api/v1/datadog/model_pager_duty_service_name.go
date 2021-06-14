@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // PagerDutyServiceName PagerDuty service object name.
@@ -66,6 +67,28 @@ func (o PagerDutyServiceName) MarshalJSON() ([]byte, error) {
 		toSerialize["service_name"] = o.ServiceName
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		ServiceName *string `json:"service_name"`
+	}{}
+	all := struct {
+		ServiceName string `json:"service_name"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.ServiceName == nil {
+		return fmt.Errorf("Required field service_name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.ServiceName = all.ServiceName
+	return nil
 }
 
 type NullablePagerDutyServiceName struct {

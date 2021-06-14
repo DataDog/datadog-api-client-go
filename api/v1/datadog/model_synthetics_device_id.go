@@ -41,6 +41,10 @@ var allowedSyntheticsDeviceIDEnumValues = []SyntheticsDeviceID{
 	"firefox.mobile_small",
 }
 
+func (w *SyntheticsDeviceID) GetAllowedValues() []SyntheticsDeviceID {
+	return allowedSyntheticsDeviceIDEnumValues
+}
+
 func (v *SyntheticsDeviceID) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

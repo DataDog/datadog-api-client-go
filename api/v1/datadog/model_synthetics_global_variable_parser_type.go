@@ -29,6 +29,10 @@ var allowedSyntheticsGlobalVariableParserTypeEnumValues = []SyntheticsGlobalVari
 	"regex",
 }
 
+func (w *SyntheticsGlobalVariableParserType) GetAllowedValues() []SyntheticsGlobalVariableParserType {
+	return allowedSyntheticsGlobalVariableParserTypeEnumValues
+}
+
 func (v *SyntheticsGlobalVariableParserType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

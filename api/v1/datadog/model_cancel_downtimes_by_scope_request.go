@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // CancelDowntimesByScopeRequest Cancel downtimes according to scope.
@@ -66,6 +67,28 @@ func (o CancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["scope"] = o.Scope
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *CancelDowntimesByScopeRequest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Scope *string `json:"scope"`
+	}{}
+	all := struct {
+		Scope string `json:"scope"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Scope == nil {
+		return fmt.Errorf("Required field scope missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Scope = all.Scope
+	return nil
 }
 
 type NullableCancelDowntimesByScopeRequest struct {

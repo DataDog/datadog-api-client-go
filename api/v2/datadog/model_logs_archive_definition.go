@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsArchiveDefinition The definition of an archive.
@@ -141,6 +142,32 @@ func (o LogsArchiveDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsArchiveDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Type *string `json:"type"`
+	}{}
+	all := struct {
+		Attributes *LogsArchiveAttributes `json:"attributes,omitempty"`
+		Id         *string                `json:"id,omitempty"`
+		Type       string                 `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Attributes = all.Attributes
+	o.Id = all.Id
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsArchiveDefinition struct {

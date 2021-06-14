@@ -31,6 +31,10 @@ var allowedSLOErrorTimeframeEnumValues = []SLOErrorTimeframe{
 	"all",
 }
 
+func (w *SLOErrorTimeframe) GetAllowedValues() []SLOErrorTimeframe {
+	return allowedSLOErrorTimeframeEnumValues
+}
+
 func (v *SLOErrorTimeframe) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

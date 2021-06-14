@@ -37,6 +37,10 @@ var allowedMonitorOverallStatesEnumValues = []MonitorOverallStates{
 	"Warn",
 }
 
+func (w *MonitorOverallStates) GetAllowedValues() []MonitorOverallStates {
+	return allowedMonitorOverallStatesEnumValues
+}
+
 func (v *MonitorOverallStates) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

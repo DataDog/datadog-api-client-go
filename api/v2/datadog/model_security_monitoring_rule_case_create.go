@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringRuleCaseCreate Case when signal is generated.
@@ -176,6 +177,34 @@ func (o SecurityMonitoringRuleCaseCreate) MarshalJSON() ([]byte, error) {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Status *SecurityMonitoringRuleSeverity `json:"status"`
+	}{}
+	all := struct {
+		Condition     *string                        `json:"condition,omitempty"`
+		Name          *string                        `json:"name,omitempty"`
+		Notifications *[]string                      `json:"notifications,omitempty"`
+		Status        SecurityMonitoringRuleSeverity `json:"status"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Status == nil {
+		return fmt.Errorf("Required field status missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Condition = all.Condition
+	o.Name = all.Name
+	o.Notifications = all.Notifications
+	o.Status = all.Status
+	return nil
 }
 
 type NullableSecurityMonitoringRuleCaseCreate struct {

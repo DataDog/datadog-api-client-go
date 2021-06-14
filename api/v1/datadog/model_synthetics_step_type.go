@@ -73,6 +73,10 @@ var allowedSyntheticsStepTypeEnumValues = []SyntheticsStepType{
 	"wait",
 }
 
+func (w *SyntheticsStepType) GetAllowedValues() []SyntheticsStepType {
+	return allowedSyntheticsStepTypeEnumValues
+}
+
 func (v *SyntheticsStepType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"compute":[{"aggregation":"count","interval":"300","metric":"test.aggregation.Test-Aggregate_events_returns_OK_response-1618220981","type":"timeseries"}],"filter":{"from":"1600348573","indexes":["main"],"query":"datadog-agent","to":"1600348600"}}
+      {"filter":{"from":"now-15m","indexes":["main"],"query":"*","to":"now"}}
     form: {}
     headers:
       Accept:
@@ -13,17 +13,17 @@ interactions:
       Dd-Operation-Id:
       - AggregateLogs
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8159755654206680706"
+      - "8770546909925623828"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5779054232781504096"
+      - "5248417716097151422"
     url: https://api.datadoghq.com/api/v2/logs/analytics/aggregate
     method: POST
   response:
-    body: '{"meta":{"status":"done","request_id":"pddv1ChYwTXp5ZXE3d1RFNmZQYmhrVXM3ekVnIi0KHQjozwg13kHxCgLjgCgyc0QnQujjYVNV68-Liho2Egx9vU83TIvVaE_4lH8","elapsed":0},"data":{"buckets":[]}}'
+    body: '{"meta":{"status":"done","request_id":"pddv1ChZiN0dib3Rfb1FVLWlxYUV2MFNyMlhnIi0KHWuGyW5tAzHxm9A4TFLDnoLJjIC-_y7TewDd3uoNEgyNWCHejXBcRWRX1Nw","elapsed":2},"data":{"buckets":[{"computes":{"c0":3},"by":{}}]}}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:49:41 GMT
+      - Wed, 02 Jun 2021 12:14:31 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
+      - PhosSd3Ch1B6B0DXI71steKUi7XhPDttnPiIP1NdXTw0VJNWpoUnYyBmODS5ne3q
       X-Dd-Version:
-      - "35.4287331"
+      - "35.4656900"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -52,9 +52,9 @@ interactions:
       X-Ratelimit-Period:
       - "300"
       X-Ratelimit-Remaining:
-      - "299"
+      - "296"
       X-Ratelimit-Reset:
-      - "19"
+      - "29"
     status: 200 OK
     code: 200
     duration: ""

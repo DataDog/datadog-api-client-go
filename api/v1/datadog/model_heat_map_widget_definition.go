@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HeatMapWidgetDefinition The heat map visualization shows metrics aggregated across many tags, such as hosts. The more hosts that have a particular value, the darker that square is.
@@ -427,6 +428,52 @@ func (o HeatMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["yaxis"] = o.Yaxis
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *HeatMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Requests *[]HeatMapWidgetRequest      `json:"requests"`
+		Type     *HeatMapWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"`
+		Events      *[]WidgetEvent              `json:"events,omitempty"`
+		LegendSize  *string                     `json:"legend_size,omitempty"`
+		Requests    []HeatMapWidgetRequest      `json:"requests"`
+		ShowLegend  *bool                       `json:"show_legend,omitempty"`
+		Time        *WidgetTime                 `json:"time,omitempty"`
+		Title       *string                     `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"`
+		TitleSize   *string                     `json:"title_size,omitempty"`
+		Type        HeatMapWidgetDefinitionType `json:"type"`
+		Yaxis       *WidgetAxis                 `json:"yaxis,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Requests == nil {
+		return fmt.Errorf("Required field requests missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.CustomLinks = all.CustomLinks
+	o.Events = all.Events
+	o.LegendSize = all.LegendSize
+	o.Requests = all.Requests
+	o.ShowLegend = all.ShowLegend
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	o.Yaxis = all.Yaxis
+	return nil
 }
 
 type NullableHeatMapWidgetDefinition struct {

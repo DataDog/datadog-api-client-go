@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ServiceCheck An object containing service check and status.
@@ -229,6 +230,50 @@ func (o ServiceCheck) MarshalJSON() ([]byte, error) {
 		toSerialize["timestamp"] = o.Timestamp
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Check    *string             `json:"check"`
+		HostName *string             `json:"host_name"`
+		Status   *ServiceCheckStatus `json:"status"`
+		Tags     *[]string           `json:"tags"`
+	}{}
+	all := struct {
+		Check     string             `json:"check"`
+		HostName  string             `json:"host_name"`
+		Message   *string            `json:"message,omitempty"`
+		Status    ServiceCheckStatus `json:"status"`
+		Tags      []string           `json:"tags"`
+		Timestamp *int64             `json:"timestamp,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Check == nil {
+		return fmt.Errorf("Required field check missing")
+	}
+	if required.HostName == nil {
+		return fmt.Errorf("Required field host_name missing")
+	}
+	if required.Status == nil {
+		return fmt.Errorf("Required field status missing")
+	}
+	if required.Tags == nil {
+		return fmt.Errorf("Required field tags missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Check = all.Check
+	o.HostName = all.HostName
+	o.Message = all.Message
+	o.Status = all.Status
+	o.Tags = all.Tags
+	o.Timestamp = all.Timestamp
+	return nil
 }
 
 type NullableServiceCheck struct {

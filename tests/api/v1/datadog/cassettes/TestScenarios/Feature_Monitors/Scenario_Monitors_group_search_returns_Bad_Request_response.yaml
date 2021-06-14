@@ -1,0 +1,56 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - SearchMonitorGroups
+      User-Agent:
+      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.16.3; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3256425318199509664"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3328641022690107449"
+    url: https://api.datadoghq.com/api/v1/monitor/groups/search?query=status%3Anotastatus
+    method: GET
+  response:
+    body: '{"errors": ["Query parsing error: ''notastatus'' is not a valid monitor
+      status"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "79"
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 25 May 2021 10:07:54 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Version:
+      - "35.4600133"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "120"
+      X-Ratelimit-Period:
+      - "10"
+      X-Ratelimit-Remaining:
+      - "119"
+      X-Ratelimit-Reset:
+      - "6"
+    status: 400 Bad Request
+    code: 400
+    duration: ""

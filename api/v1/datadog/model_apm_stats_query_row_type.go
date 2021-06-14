@@ -29,6 +29,10 @@ var allowedApmStatsQueryRowTypeEnumValues = []ApmStatsQueryRowType{
 	"span",
 }
 
+func (w *ApmStatsQueryRowType) GetAllowedValues() []ApmStatsQueryRowType {
+	return allowedApmStatsQueryRowTypeEnumValues
+}
+
 func (v *ApmStatsQueryRowType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

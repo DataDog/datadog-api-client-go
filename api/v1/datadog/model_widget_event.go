@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetEvent Event overlay control options.  See the dedicated [Events JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/widget_json/#events-schema) to learn how to build the `<EVENTS_SCHEMA>`.
@@ -103,6 +104,30 @@ func (o WidgetEvent) MarshalJSON() ([]byte, error) {
 		toSerialize["tags_execution"] = o.TagsExecution
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Q *string `json:"q"`
+	}{}
+	all := struct {
+		Q             string  `json:"q"`
+		TagsExecution *string `json:"tags_execution,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Q == nil {
+		return fmt.Errorf("Required field q missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Q = all.Q
+	o.TagsExecution = all.TagsExecution
+	return nil
 }
 
 type NullableWidgetEvent struct {

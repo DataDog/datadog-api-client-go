@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Example** | **string** | Example for the variable. | 
+**Example** | Pointer to **string** | Example for the variable. | [optional] 
+**Id** | Pointer to **string** | ID of the variable for global variables. | [optional] 
 **Name** | **string** | Name of the variable. | 
 **Pattern** | Pointer to **string** | Pattern of the variable. | [optional] 
 **Type** | [**SyntheticsConfigVariableType**](SyntheticsConfigVariableType.md) |  | 
@@ -13,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewSyntheticsConfigVariable
 
-`func NewSyntheticsConfigVariable(example string, name string, type_ SyntheticsConfigVariableType, ) *SyntheticsConfigVariable`
+`func NewSyntheticsConfigVariable(name string, type_ SyntheticsConfigVariableType, ) *SyntheticsConfigVariable`
 
 NewSyntheticsConfigVariable instantiates a new SyntheticsConfigVariable object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +48,36 @@ and a boolean to check if the value has been set.
 
 SetExample sets Example field to given value.
 
+### HasExample
+
+`func (o *SyntheticsConfigVariable) HasExample() bool`
+
+HasExample returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *SyntheticsConfigVariable) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *SyntheticsConfigVariable) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *SyntheticsConfigVariable) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *SyntheticsConfigVariable) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 

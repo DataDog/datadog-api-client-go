@@ -25,6 +25,10 @@ var allowedAlertGraphWidgetDefinitionTypeEnumValues = []AlertGraphWidgetDefiniti
 	"alert_graph",
 }
 
+func (w *AlertGraphWidgetDefinitionType) GetAllowedValues() []AlertGraphWidgetDefinitionType {
+	return allowedAlertGraphWidgetDefinitionTypeEnumValues
+}
+
 func (v *AlertGraphWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

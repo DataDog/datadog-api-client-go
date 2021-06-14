@@ -81,6 +81,10 @@ var allowedUsageAttributionSupportedMetricsEnumValues = []UsageAttributionSuppor
 	"*",
 }
 
+func (w *UsageAttributionSupportedMetrics) GetAllowedValues() []UsageAttributionSupportedMetrics {
+	return allowedUsageAttributionSupportedMetricsEnumValues
+}
+
 func (v *UsageAttributionSupportedMetrics) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

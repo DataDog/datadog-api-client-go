@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsAttributeRemapper The remapper processor remaps any source attribute(s) or tag to another target attribute or tag. Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice). Some additional constraints are applied as `:` or `,` are not allowed in the target tag/attribute name.
@@ -405,6 +406,54 @@ func (o LogsAttributeRemapper) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Sources *[]string                  `json:"sources"`
+		Target  *string                    `json:"target"`
+		Type    *LogsAttributeRemapperType `json:"type"`
+	}{}
+	all := struct {
+		IsEnabled          *bool                     `json:"is_enabled,omitempty"`
+		Name               *string                   `json:"name,omitempty"`
+		OverrideOnConflict *bool                     `json:"override_on_conflict,omitempty"`
+		PreserveSource     *bool                     `json:"preserve_source,omitempty"`
+		SourceType         *string                   `json:"source_type,omitempty"`
+		Sources            []string                  `json:"sources"`
+		Target             string                    `json:"target"`
+		TargetFormat       *TargetFormatType         `json:"target_format,omitempty"`
+		TargetType         *string                   `json:"target_type,omitempty"`
+		Type               LogsAttributeRemapperType `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Sources == nil {
+		return fmt.Errorf("Required field sources missing")
+	}
+	if required.Target == nil {
+		return fmt.Errorf("Required field target missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.OverrideOnConflict = all.OverrideOnConflict
+	o.PreserveSource = all.PreserveSource
+	o.SourceType = all.SourceType
+	o.Sources = all.Sources
+	o.Target = all.Target
+	o.TargetFormat = all.TargetFormat
+	o.TargetType = all.TargetType
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsAttributeRemapper struct {

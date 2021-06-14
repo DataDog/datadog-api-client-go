@@ -35,6 +35,10 @@ var allowedRolesSortEnumValues = []RolesSort{
 	"-user_count",
 }
 
+func (w *RolesSort) GetAllowedValues() []RolesSort {
+	return allowedRolesSortEnumValues
+}
+
 func (v *RolesSort) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

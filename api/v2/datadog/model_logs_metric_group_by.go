@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMetricGroupBy A group by rule.
@@ -103,6 +104,30 @@ func (o LogsMetricGroupBy) MarshalJSON() ([]byte, error) {
 		toSerialize["tag_name"] = o.TagName
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Path *string `json:"path"`
+	}{}
+	all := struct {
+		Path    string  `json:"path"`
+		TagName *string `json:"tag_name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Path == nil {
+		return fmt.Errorf("Required field path missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Path = all.Path
+	o.TagName = all.TagName
+	return nil
 }
 
 type NullableLogsMetricGroupBy struct {

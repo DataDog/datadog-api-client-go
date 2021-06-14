@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsAPITestResultFullCheck Object describing the API test configuration.
@@ -65,6 +66,28 @@ func (o SyntheticsAPITestResultFullCheck) MarshalJSON() ([]byte, error) {
 		toSerialize["config"] = o.Config
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsAPITestResultFullCheck) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Config *SyntheticsTestConfig `json:"config"`
+	}{}
+	all := struct {
+		Config SyntheticsTestConfig `json:"config"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Config == nil {
+		return fmt.Errorf("Required field config missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Config = all.Config
+	return nil
 }
 
 type NullableSyntheticsAPITestResultFullCheck struct {

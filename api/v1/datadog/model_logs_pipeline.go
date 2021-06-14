@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsPipeline Pipelines and processors operate on incoming logs, parsing and transforming them into structured attributes for easier querying.  **Note**: These endpoints are only available for admin users. Make sure to use an application key created by an admin.
@@ -287,6 +288,40 @@ func (o LogsPipeline) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Name *string `json:"name"`
+	}{}
+	all := struct {
+		Filter     *LogsFilter      `json:"filter,omitempty"`
+		Id         *string          `json:"id,omitempty"`
+		IsEnabled  *bool            `json:"is_enabled,omitempty"`
+		IsReadOnly *bool            `json:"is_read_only,omitempty"`
+		Name       string           `json:"name"`
+		Processors *[]LogsProcessor `json:"processors,omitempty"`
+		Type       *string          `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Filter = all.Filter
+	o.Id = all.Id
+	o.IsEnabled = all.IsEnabled
+	o.IsReadOnly = all.IsReadOnly
+	o.Name = all.Name
+	o.Processors = all.Processors
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsPipeline struct {

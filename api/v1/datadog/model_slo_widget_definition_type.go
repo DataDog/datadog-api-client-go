@@ -25,6 +25,10 @@ var allowedSLOWidgetDefinitionTypeEnumValues = []SLOWidgetDefinitionType{
 	"slo",
 }
 
+func (w *SLOWidgetDefinitionType) GetAllowedValues() []SLOWidgetDefinitionType {
+	return allowedSLOWidgetDefinitionTypeEnumValues
+}
+
 func (v *SLOWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

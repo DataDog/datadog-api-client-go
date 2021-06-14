@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsDateRemapper As Datadog receives logs, it timestamps them using the value(s) from any of these default attributes.    - `timestamp`   - `date`   - `_timestamp`   - `Timestamp`   - `eventTime`   - `published_date`    If your logs put their dates in an attribute not in this list,   use the log date Remapper Processor to define their date attribute as the official log timestamp.   The recognized date formats are ISO8601, UNIX (the milliseconds EPOCH format), and RFC3164.    **Note:** If your logs don’t contain any of the default attributes   and you haven’t defined your own date attribute, Datadog timestamps   the logs with the date it received them.    If multiple log date remapper processors can be applied to a given log,   only the first one (according to the pipelines order) is taken into account.
@@ -175,6 +176,38 @@ func (o LogsDateRemapper) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsDateRemapper) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Sources *[]string             `json:"sources"`
+		Type    *LogsDateRemapperType `json:"type"`
+	}{}
+	all := struct {
+		IsEnabled *bool                `json:"is_enabled,omitempty"`
+		Name      *string              `json:"name,omitempty"`
+		Sources   []string             `json:"sources"`
+		Type      LogsDateRemapperType `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Sources == nil {
+		return fmt.Errorf("Required field sources missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.Sources = all.Sources
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsDateRemapper struct {

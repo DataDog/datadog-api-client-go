@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserUpdateData Object to update a user.
@@ -126,6 +127,40 @@ func (o UserUpdateData) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Attributes *UserUpdateAttributes `json:"attributes"`
+		Id         *string               `json:"id"`
+		Type       *UsersType            `json:"type"`
+	}{}
+	all := struct {
+		Attributes UserUpdateAttributes `json:"attributes"`
+		Id         string               `json:"id"`
+		Type       UsersType            `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Attributes == nil {
+		return fmt.Errorf("Required field attributes missing")
+	}
+	if required.Id == nil {
+		return fmt.Errorf("Required field id missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Attributes = all.Attributes
+	o.Id = all.Id
+	o.Type = all.Type
+	return nil
 }
 
 type NullableUserUpdateData struct {

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AlertValueWidgetDefinition Alert values are query values showing the current value of the metric in any monitor defined on your system.
@@ -317,6 +318,46 @@ func (o AlertValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["unit"] = o.Unit
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		AlertId *string                         `json:"alert_id"`
+		Type    *AlertValueWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		AlertId    string                         `json:"alert_id"`
+		Precision  *int64                         `json:"precision,omitempty"`
+		TextAlign  *WidgetTextAlign               `json:"text_align,omitempty"`
+		Title      *string                        `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"`
+		TitleSize  *string                        `json:"title_size,omitempty"`
+		Type       AlertValueWidgetDefinitionType `json:"type"`
+		Unit       *string                        `json:"unit,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.AlertId == nil {
+		return fmt.Errorf("Required field alert_id missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.AlertId = all.AlertId
+	o.Precision = all.Precision
+	o.TextAlign = all.TextAlign
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	o.Unit = all.Unit
+	return nil
 }
 
 type NullableAlertValueWidgetDefinition struct {

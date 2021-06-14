@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -134,6 +135,36 @@ func (o LogsListRequestTime) MarshalJSON() ([]byte, error) {
 		toSerialize["to"] = o.To
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		From *time.Time `json:"from"`
+		To   *time.Time `json:"to"`
+	}{}
+	all := struct {
+		From     time.Time `json:"from"`
+		Timezone *string   `json:"timezone,omitempty"`
+		To       time.Time `json:"to"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.From == nil {
+		return fmt.Errorf("Required field from missing")
+	}
+	if required.To == nil {
+		return fmt.Errorf("Required field to missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.From = all.From
+	o.Timezone = all.Timezone
+	o.To = all.To
+	return nil
 }
 
 type NullableLogsListRequestTime struct {

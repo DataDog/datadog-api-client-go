@@ -27,6 +27,10 @@ var allowedWidgetChangeTypeEnumValues = []WidgetChangeType{
 	"relative",
 }
 
+func (w *WidgetChangeType) GetAllowedValues() []WidgetChangeType {
+	return allowedWidgetChangeTypeEnumValues
+}
+
 func (v *WidgetChangeType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

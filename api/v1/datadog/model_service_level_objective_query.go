@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ServiceLevelObjectiveQuery A metric SLI query. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator to be used because this will sum up all request counts instead of averaging them, or taking the max or min of all of those requests.
@@ -96,6 +97,34 @@ func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
 		toSerialize["numerator"] = o.Numerator
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Denominator *string `json:"denominator"`
+		Numerator   *string `json:"numerator"`
+	}{}
+	all := struct {
+		Denominator string `json:"denominator"`
+		Numerator   string `json:"numerator"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Denominator == nil {
+		return fmt.Errorf("Required field denominator missing")
+	}
+	if required.Numerator == nil {
+		return fmt.Errorf("Required field numerator missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Denominator = all.Denominator
+	o.Numerator = all.Numerator
+	return nil
 }
 
 type NullableServiceLevelObjectiveQuery struct {

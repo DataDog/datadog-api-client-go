@@ -27,6 +27,10 @@ var allowedDashboardLayoutTypeEnumValues = []DashboardLayoutType{
 	"free",
 }
 
+func (w *DashboardLayoutType) GetAllowedValues() []DashboardLayoutType {
+	return allowedDashboardLayoutTypeEnumValues
+}
+
 func (v *DashboardLayoutType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

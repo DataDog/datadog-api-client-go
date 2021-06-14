@@ -25,6 +25,10 @@ var allowedAPIKeysTypeEnumValues = []APIKeysType{
 	"api_keys",
 }
 
+func (w *APIKeysType) GetAllowedValues() []APIKeysType {
+	return allowedAPIKeysTypeEnumValues
+}
+
 func (v *APIKeysType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

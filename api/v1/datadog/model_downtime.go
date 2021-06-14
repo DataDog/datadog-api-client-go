@@ -15,7 +15,8 @@ import (
 // Downtime Downtiming gives you greater control over monitor notifications by allowing you to globally exclude scopes from alerting. Downtime settings, which can be scheduled with start and end times, prevent all alerting related to specified Datadog tags.
 type Downtime struct {
 	// If a scheduled downtime currently exists.
-	Active *bool `json:"active,omitempty"`
+	Active      *bool                 `json:"active,omitempty"`
+	ActiveChild NullableDowntimeChild `json:"active_child,omitempty"`
 	// If a scheduled downtime is canceled.
 	Canceled NullableInt64 `json:"canceled,omitempty"`
 	// User ID of the downtime creator.
@@ -94,6 +95,49 @@ func (o *Downtime) HasActive() bool {
 // SetActive gets a reference to the given bool and assigns it to the Active field.
 func (o *Downtime) SetActive(v bool) {
 	o.Active = &v
+}
+
+// GetActiveChild returns the ActiveChild field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Downtime) GetActiveChild() DowntimeChild {
+	if o == nil || o.ActiveChild.Get() == nil {
+		var ret DowntimeChild
+		return ret
+	}
+	return *o.ActiveChild.Get()
+}
+
+// GetActiveChildOk returns a tuple with the ActiveChild field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Downtime) GetActiveChildOk() (*DowntimeChild, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ActiveChild.Get(), o.ActiveChild.IsSet()
+}
+
+// HasActiveChild returns a boolean if a field has been set.
+func (o *Downtime) HasActiveChild() bool {
+	if o != nil && o.ActiveChild.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetActiveChild gets a reference to the given NullableDowntimeChild and assigns it to the ActiveChild field.
+func (o *Downtime) SetActiveChild(v DowntimeChild) {
+	o.ActiveChild.Set(&v)
+}
+
+// SetActiveChildNil sets the value for ActiveChild to be an explicit nil
+func (o *Downtime) SetActiveChildNil() {
+	o.ActiveChild.Set(nil)
+}
+
+// UnsetActiveChild ensures that no value is present for ActiveChild, not even an explicit nil
+func (o *Downtime) UnsetActiveChild() {
+	o.ActiveChild.Unset()
 }
 
 // GetCanceled returns the Canceled field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -646,6 +690,9 @@ func (o Downtime) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Active != nil {
 		toSerialize["active"] = o.Active
+	}
+	if o.ActiveChild.IsSet() {
+		toSerialize["active_child"] = o.ActiveChild.Get()
 	}
 	if o.Canceled.IsSet() {
 		toSerialize["canceled"] = o.Canceled.Get()

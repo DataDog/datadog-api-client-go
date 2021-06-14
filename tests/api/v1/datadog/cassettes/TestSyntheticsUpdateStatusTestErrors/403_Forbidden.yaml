@@ -13,13 +13,13 @@ interactions:
       Dd-Operation-Id:
       - UpdateTestPauseStatus
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.15.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6664122054110531975"
+      - "5034476305285829250"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1517097474708625863"
+      - "3610271481788181737"
     url: https://api.datadoghq.com/api/v1/synthetics/tests/id/status
     method: PUT
   response:
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 13 Apr 2021 18:57:32 GMT
+      - Mon, 07 Jun 2021 14:39:50 GMT
       Via:
       - haproxy
     status: 403 Forbidden

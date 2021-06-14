@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsArchiveAttributes The attributes associated with the archive.
@@ -241,6 +242,46 @@ func (o LogsArchiveAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["state"] = o.State
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Destination *NullableLogsArchiveDestination `json:"destination"`
+		Name        *string                         `json:"name"`
+		Query       *string                         `json:"query"`
+	}{}
+	all := struct {
+		Destination     NullableLogsArchiveDestination `json:"destination"`
+		IncludeTags     *bool                          `json:"include_tags,omitempty"`
+		Name            string                         `json:"name"`
+		Query           string                         `json:"query"`
+		RehydrationTags *[]string                      `json:"rehydration_tags,omitempty"`
+		State           *LogsArchiveState              `json:"state,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Destination == nil {
+		return fmt.Errorf("Required field destination missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Query == nil {
+		return fmt.Errorf("Required field query missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Destination = all.Destination
+	o.IncludeTags = all.IncludeTags
+	o.Name = all.Name
+	o.Query = all.Query
+	o.RehydrationTags = all.RehydrationTags
+	o.State = all.State
+	return nil
 }
 
 type NullableLogsArchiveAttributes struct {

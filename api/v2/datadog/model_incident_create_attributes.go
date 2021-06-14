@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentCreateAttributes The incident's attributes for a create request.
@@ -207,6 +208,40 @@ func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["title"] = o.Title
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		CustomerImpacted *bool   `json:"customer_impacted"`
+		Title            *string `json:"title"`
+	}{}
+	all := struct {
+		CustomerImpacted     bool                                    `json:"customer_impacted"`
+		Fields               *map[string]IncidentFieldAttributes     `json:"fields,omitempty"`
+		InitialTimelineCells *[]IncidentTimelineCellCreateAttributes `json:"initial_timeline_cells,omitempty"`
+		NotificationHandles  *[]string                               `json:"notification_handles,omitempty"`
+		Title                string                                  `json:"title"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.CustomerImpacted == nil {
+		return fmt.Errorf("Required field customer_impacted missing")
+	}
+	if required.Title == nil {
+		return fmt.Errorf("Required field title missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.CustomerImpacted = all.CustomerImpacted
+	o.Fields = all.Fields
+	o.InitialTimelineCells = all.InitialTimelineCells
+	o.NotificationHandles = all.NotificationHandles
+	o.Title = all.Title
+	return nil
 }
 
 type NullableIncidentCreateAttributes struct {

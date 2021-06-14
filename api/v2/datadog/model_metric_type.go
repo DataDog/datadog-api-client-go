@@ -25,6 +25,10 @@ var allowedMetricTypeEnumValues = []MetricType{
 	"metrics",
 }
 
+func (w *MetricType) GetAllowedValues() []MetricType {
+	return allowedMetricTypeEnumValues
+}
+
 func (v *MetricType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

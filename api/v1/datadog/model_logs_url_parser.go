@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsURLParser This processor extracts query parameters and other important parameters from a URL.
@@ -259,6 +260,46 @@ func (o LogsURLParser) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Sources *[]string          `json:"sources"`
+		Target  *string            `json:"target"`
+		Type    *LogsURLParserType `json:"type"`
+	}{}
+	all := struct {
+		IsEnabled              *bool             `json:"is_enabled,omitempty"`
+		Name                   *string           `json:"name,omitempty"`
+		NormalizeEndingSlashes NullableBool      `json:"normalize_ending_slashes,omitempty"`
+		Sources                []string          `json:"sources"`
+		Target                 string            `json:"target"`
+		Type                   LogsURLParserType `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Sources == nil {
+		return fmt.Errorf("Required field sources missing")
+	}
+	if required.Target == nil {
+		return fmt.Errorf("Required field target missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.NormalizeEndingSlashes = all.NormalizeEndingSlashes
+	o.Sources = all.Sources
+	o.Target = all.Target
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsURLParser struct {

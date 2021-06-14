@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsDevice Object describing the device used to perform the Synthetic test.
@@ -192,6 +193,48 @@ func (o SyntheticsDevice) MarshalJSON() ([]byte, error) {
 		toSerialize["width"] = o.Width
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Height *int64              `json:"height"`
+		Id     *SyntheticsDeviceID `json:"id"`
+		Name   *string             `json:"name"`
+		Width  *int64              `json:"width"`
+	}{}
+	all := struct {
+		Height   int64              `json:"height"`
+		Id       SyntheticsDeviceID `json:"id"`
+		IsMobile *bool              `json:"isMobile,omitempty"`
+		Name     string             `json:"name"`
+		Width    int64              `json:"width"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Height == nil {
+		return fmt.Errorf("Required field height missing")
+	}
+	if required.Id == nil {
+		return fmt.Errorf("Required field id missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Width == nil {
+		return fmt.Errorf("Required field width missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Height = all.Height
+	o.Id = all.Id
+	o.IsMobile = all.IsMobile
+	o.Name = all.Name
+	o.Width = all.Width
+	return nil
 }
 
 type NullableSyntheticsDevice struct {

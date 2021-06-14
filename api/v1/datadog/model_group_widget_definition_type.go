@@ -25,6 +25,10 @@ var allowedGroupWidgetDefinitionTypeEnumValues = []GroupWidgetDefinitionType{
 	"group",
 }
 
+func (w *GroupWidgetDefinitionType) GetAllowedValues() []GroupWidgetDefinitionType {
+	return allowedGroupWidgetDefinitionTypeEnumValues
+}
+
 func (v *GroupWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

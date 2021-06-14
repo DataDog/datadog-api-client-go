@@ -33,6 +33,10 @@ var allowedSyntheticsBrowserVariableTypeEnumValues = []SyntheticsBrowserVariable
 	"text",
 }
 
+func (w *SyntheticsBrowserVariableType) GetAllowedValues() []SyntheticsBrowserVariableType {
+	return allowedSyntheticsBrowserVariableTypeEnumValues
+}
+
 func (v *SyntheticsBrowserVariableType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

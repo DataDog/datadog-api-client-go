@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserCreateAttributes Attributes of the created user.
@@ -140,6 +141,32 @@ func (o UserCreateAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["title"] = o.Title
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Email *string `json:"email"`
+	}{}
+	all := struct {
+		Email string  `json:"email"`
+		Name  *string `json:"name,omitempty"`
+		Title *string `json:"title,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Email == nil {
+		return fmt.Errorf("Required field email missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Email = all.Email
+	o.Name = all.Name
+	o.Title = all.Title
+	return nil
 }
 
 type NullableUserCreateAttributes struct {

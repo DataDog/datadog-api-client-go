@@ -31,6 +31,10 @@ var allowedWidgetTickEdgeEnumValues = []WidgetTickEdge{
 	"top",
 }
 
+func (w *WidgetTickEdge) GetAllowedValues() []WidgetTickEdge {
+	return allowedWidgetTickEdgeEnumValues
+}
+
 func (v *WidgetTickEdge) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

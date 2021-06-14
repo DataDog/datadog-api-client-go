@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ApmStatsQueryColumnType Column properties.
@@ -175,6 +176,34 @@ func (o ApmStatsQueryColumnType) MarshalJSON() ([]byte, error) {
 		toSerialize["order"] = o.Order
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Name *string `json:"name"`
+	}{}
+	all := struct {
+		Alias           *string                     `json:"alias,omitempty"`
+		CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
+		Name            string                      `json:"name"`
+		Order           *WidgetSort                 `json:"order,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Alias = all.Alias
+	o.CellDisplayMode = all.CellDisplayMode
+	o.Name = all.Name
+	o.Order = all.Order
+	return nil
 }
 
 type NullableApmStatsQueryColumnType struct {

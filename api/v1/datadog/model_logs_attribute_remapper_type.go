@@ -25,6 +25,10 @@ var allowedLogsAttributeRemapperTypeEnumValues = []LogsAttributeRemapperType{
 	"attribute-remapper",
 }
 
+func (w *LogsAttributeRemapperType) GetAllowedValues() []LogsAttributeRemapperType {
+	return allowedLogsAttributeRemapperTypeEnumValues
+}
+
 func (v *LogsAttributeRemapperType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

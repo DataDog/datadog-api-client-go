@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentServiceUpdateRequest Update request with an incident service payload.
@@ -65,6 +66,28 @@ func (o IncidentServiceUpdateRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentServiceUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Data *IncidentServiceUpdateData `json:"data"`
+	}{}
+	all := struct {
+		Data IncidentServiceUpdateData `json:"data"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Data == nil {
+		return fmt.Errorf("Required field data missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Data = all.Data
+	return nil
 }
 
 type NullableIncidentServiceUpdateRequest struct {

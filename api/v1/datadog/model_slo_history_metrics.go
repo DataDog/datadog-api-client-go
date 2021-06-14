@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOHistoryMetrics A `metric` based SLO history response.  This is not included in responses for `monitor` based SLOs.
@@ -281,6 +282,66 @@ func (o SLOHistoryMetrics) MarshalJSON() ([]byte, error) {
 		toSerialize["times"] = o.Times
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Denominator *SLOHistoryMetricsSeries `json:"denominator"`
+		Interval    *int64                   `json:"interval"`
+		Numerator   *SLOHistoryMetricsSeries `json:"numerator"`
+		Query       *string                  `json:"query"`
+		ResType     *string                  `json:"res_type"`
+		RespVersion *int64                   `json:"resp_version"`
+		Times       *[]float64               `json:"times"`
+	}{}
+	all := struct {
+		Denominator SLOHistoryMetricsSeries `json:"denominator"`
+		Interval    int64                   `json:"interval"`
+		Message     *string                 `json:"message,omitempty"`
+		Numerator   SLOHistoryMetricsSeries `json:"numerator"`
+		Query       string                  `json:"query"`
+		ResType     string                  `json:"res_type"`
+		RespVersion int64                   `json:"resp_version"`
+		Times       []float64               `json:"times"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Denominator == nil {
+		return fmt.Errorf("Required field denominator missing")
+	}
+	if required.Interval == nil {
+		return fmt.Errorf("Required field interval missing")
+	}
+	if required.Numerator == nil {
+		return fmt.Errorf("Required field numerator missing")
+	}
+	if required.Query == nil {
+		return fmt.Errorf("Required field query missing")
+	}
+	if required.ResType == nil {
+		return fmt.Errorf("Required field res_type missing")
+	}
+	if required.RespVersion == nil {
+		return fmt.Errorf("Required field resp_version missing")
+	}
+	if required.Times == nil {
+		return fmt.Errorf("Required field times missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Denominator = all.Denominator
+	o.Interval = all.Interval
+	o.Message = all.Message
+	o.Numerator = all.Numerator
+	o.Query = all.Query
+	o.ResType = all.ResType
+	o.RespVersion = all.RespVersion
+	o.Times = all.Times
+	return nil
 }
 
 type NullableSLOHistoryMetrics struct {

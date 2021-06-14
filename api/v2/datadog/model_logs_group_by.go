@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsGroupBy A group by rule
@@ -251,6 +252,38 @@ func (o LogsGroupBy) MarshalJSON() ([]byte, error) {
 		toSerialize["total"] = o.Total
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Facet *string `json:"facet"`
+	}{}
+	all := struct {
+		Facet     string                `json:"facet"`
+		Histogram *LogsGroupByHistogram `json:"histogram,omitempty"`
+		Limit     *int64                `json:"limit,omitempty"`
+		Missing   *LogsGroupByMissing   `json:"missing,omitempty"`
+		Sort      *LogsAggregateSort    `json:"sort,omitempty"`
+		Total     *LogsGroupByTotal     `json:"total,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Facet == nil {
+		return fmt.Errorf("Required field facet missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Facet = all.Facet
+	o.Histogram = all.Histogram
+	o.Limit = all.Limit
+	o.Missing = all.Missing
+	o.Sort = all.Sort
+	o.Total = all.Total
+	return nil
 }
 
 type NullableLogsGroupBy struct {

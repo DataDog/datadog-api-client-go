@@ -25,6 +25,10 @@ var allowedIncidentServiceTypeEnumValues = []IncidentServiceType{
 	"services",
 }
 
+func (w *IncidentServiceType) GetAllowedValues() []IncidentServiceType {
+	return allowedIncidentServiceTypeEnumValues
+}
+
 func (v *IncidentServiceType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

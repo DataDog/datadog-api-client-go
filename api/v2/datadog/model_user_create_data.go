@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserCreateData Object to create a user.
@@ -132,6 +133,36 @@ func (o UserCreateData) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserCreateData) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Attributes *UserCreateAttributes `json:"attributes"`
+		Type       *UsersType            `json:"type"`
+	}{}
+	all := struct {
+		Attributes    UserCreateAttributes `json:"attributes"`
+		Relationships *UserRelationships   `json:"relationships,omitempty"`
+		Type          UsersType            `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Attributes == nil {
+		return fmt.Errorf("Required field attributes missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Attributes = all.Attributes
+	o.Relationships = all.Relationships
+	o.Type = all.Type
+	return nil
 }
 
 type NullableUserCreateData struct {

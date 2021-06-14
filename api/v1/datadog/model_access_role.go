@@ -31,6 +31,10 @@ var allowedAccessRoleEnumValues = []AccessRole{
 	"ERROR",
 }
 
+func (w *AccessRole) GetAllowedValues() []AccessRole {
+	return allowedAccessRoleEnumValues
+}
+
 func (v *AccessRole) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

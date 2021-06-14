@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOBulkDeleteError Object describing the error.
@@ -125,6 +126,40 @@ func (o SLOBulkDeleteError) MarshalJSON() ([]byte, error) {
 		toSerialize["timeframe"] = o.Timeframe
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Id        *string            `json:"id"`
+		Message   *string            `json:"message"`
+		Timeframe *SLOErrorTimeframe `json:"timeframe"`
+	}{}
+	all := struct {
+		Id        string            `json:"id"`
+		Message   string            `json:"message"`
+		Timeframe SLOErrorTimeframe `json:"timeframe"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Id == nil {
+		return fmt.Errorf("Required field id missing")
+	}
+	if required.Message == nil {
+		return fmt.Errorf("Required field message missing")
+	}
+	if required.Timeframe == nil {
+		return fmt.Errorf("Required field timeframe missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Id = all.Id
+	o.Message = all.Message
+	o.Timeframe = all.Timeframe
+	return nil
 }
 
 type NullableSLOBulkDeleteError struct {

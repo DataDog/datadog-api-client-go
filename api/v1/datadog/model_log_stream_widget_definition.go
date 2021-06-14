@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogStreamWidgetDefinition The Log Stream displays a log flow matching the defined query. Only available on FREE layout dashboards.
@@ -507,6 +508,52 @@ func (o LogStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Type *LogStreamWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		Columns           *[]string                     `json:"columns,omitempty"`
+		Indexes           *[]string                     `json:"indexes,omitempty"`
+		Logset            *string                       `json:"logset,omitempty"`
+		MessageDisplay    *WidgetMessageDisplay         `json:"message_display,omitempty"`
+		Query             *string                       `json:"query,omitempty"`
+		ShowDateColumn    *bool                         `json:"show_date_column,omitempty"`
+		ShowMessageColumn *bool                         `json:"show_message_column,omitempty"`
+		Sort              *WidgetFieldSort              `json:"sort,omitempty"`
+		Time              *WidgetTime                   `json:"time,omitempty"`
+		Title             *string                       `json:"title,omitempty"`
+		TitleAlign        *WidgetTextAlign              `json:"title_align,omitempty"`
+		TitleSize         *string                       `json:"title_size,omitempty"`
+		Type              LogStreamWidgetDefinitionType `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Columns = all.Columns
+	o.Indexes = all.Indexes
+	o.Logset = all.Logset
+	o.MessageDisplay = all.MessageDisplay
+	o.Query = all.Query
+	o.ShowDateColumn = all.ShowDateColumn
+	o.ShowMessageColumn = all.ShowMessageColumn
+	o.Sort = all.Sort
+	o.Time = all.Time
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogStreamWidgetDefinition struct {

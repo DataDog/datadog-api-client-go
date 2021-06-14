@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOCorrectionCreateRequestAttributes The attribute object associated with the SLO correction to be created
@@ -229,6 +230,50 @@ func (o SLOCorrectionCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["timezone"] = o.Timezone
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Category *SLOCorrectionCategory `json:"category"`
+		End      *int64                 `json:"end"`
+		SloId    *string                `json:"slo_id"`
+		Start    *int64                 `json:"start"`
+	}{}
+	all := struct {
+		Category    SLOCorrectionCategory `json:"category"`
+		Description *string               `json:"description,omitempty"`
+		End         int64                 `json:"end"`
+		SloId       string                `json:"slo_id"`
+		Start       int64                 `json:"start"`
+		Timezone    *string               `json:"timezone,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Category == nil {
+		return fmt.Errorf("Required field category missing")
+	}
+	if required.End == nil {
+		return fmt.Errorf("Required field end missing")
+	}
+	if required.SloId == nil {
+		return fmt.Errorf("Required field slo_id missing")
+	}
+	if required.Start == nil {
+		return fmt.Errorf("Required field start missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Category = all.Category
+	o.Description = all.Description
+	o.End = all.End
+	o.SloId = all.SloId
+	o.Start = all.Start
+	o.Timezone = all.Timezone
+	return nil
 }
 
 type NullableSLOCorrectionCreateRequestAttributes struct {

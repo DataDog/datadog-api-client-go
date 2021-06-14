@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMetricCompute The compute rule to compute the log-based metric.
@@ -102,6 +103,30 @@ func (o LogsMetricCompute) MarshalJSON() ([]byte, error) {
 		toSerialize["path"] = o.Path
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		AggregationType *LogsMetricComputeAggregationType `json:"aggregation_type"`
+	}{}
+	all := struct {
+		AggregationType LogsMetricComputeAggregationType `json:"aggregation_type"`
+		Path            *string                          `json:"path,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.AggregationType == nil {
+		return fmt.Errorf("Required field aggregation_type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.AggregationType = all.AggregationType
+	o.Path = all.Path
+	return nil
 }
 
 type NullableLogsMetricCompute struct {

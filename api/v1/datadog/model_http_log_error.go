@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HTTPLogError Invalid query performed.
@@ -96,6 +97,34 @@ func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 		toSerialize["message"] = o.Message
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Code    *int32  `json:"code"`
+		Message *string `json:"message"`
+	}{}
+	all := struct {
+		Code    int32  `json:"code"`
+		Message string `json:"message"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Code == nil {
+		return fmt.Errorf("Required field code missing")
+	}
+	if required.Message == nil {
+		return fmt.Errorf("Required field message missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Code = all.Code
+	o.Message = all.Message
+	return nil
 }
 
 type NullableHTTPLogError struct {

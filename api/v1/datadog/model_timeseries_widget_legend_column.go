@@ -33,6 +33,10 @@ var allowedTimeseriesWidgetLegendColumnEnumValues = []TimeseriesWidgetLegendColu
 	"max",
 }
 
+func (w *TimeseriesWidgetLegendColumn) GetAllowedValues() []TimeseriesWidgetLegendColumn {
+	return allowedTimeseriesWidgetLegendColumnEnumValues
+}
+
 func (v *TimeseriesWidgetLegendColumn) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

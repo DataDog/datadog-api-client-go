@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -550,6 +551,62 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 		toSerialize["widgets"] = o.Widgets
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		LayoutType *DashboardLayoutType `json:"layout_type"`
+		Title      *string              `json:"title"`
+		Widgets    *[]Widget            `json:"widgets"`
+	}{}
+	all := struct {
+		AuthorHandle            *string                           `json:"author_handle,omitempty"`
+		CreatedAt               *time.Time                        `json:"created_at,omitempty"`
+		Description             NullableString                    `json:"description,omitempty"`
+		Id                      *string                           `json:"id,omitempty"`
+		IsReadOnly              *bool                             `json:"is_read_only,omitempty"`
+		LayoutType              DashboardLayoutType               `json:"layout_type"`
+		ModifiedAt              *time.Time                        `json:"modified_at,omitempty"`
+		NotifyList              []string                          `json:"notify_list,omitempty"`
+		ReflowType              *DashboardReflowType              `json:"reflow_type,omitempty"`
+		TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
+		TemplateVariables       []DashboardTemplateVariable       `json:"template_variables,omitempty"`
+		Title                   string                            `json:"title"`
+		Url                     *string                           `json:"url,omitempty"`
+		Widgets                 []Widget                          `json:"widgets"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.LayoutType == nil {
+		return fmt.Errorf("Required field layout_type missing")
+	}
+	if required.Title == nil {
+		return fmt.Errorf("Required field title missing")
+	}
+	if required.Widgets == nil {
+		return fmt.Errorf("Required field widgets missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.AuthorHandle = all.AuthorHandle
+	o.CreatedAt = all.CreatedAt
+	o.Description = all.Description
+	o.Id = all.Id
+	o.IsReadOnly = all.IsReadOnly
+	o.LayoutType = all.LayoutType
+	o.ModifiedAt = all.ModifiedAt
+	o.NotifyList = all.NotifyList
+	o.ReflowType = all.ReflowType
+	o.TemplateVariablePresets = all.TemplateVariablePresets
+	o.TemplateVariables = all.TemplateVariables
+	o.Title = all.Title
+	o.Url = all.Url
+	o.Widgets = all.Widgets
+	return nil
 }
 
 type NullableDashboard struct {

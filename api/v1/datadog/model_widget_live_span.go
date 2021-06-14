@@ -53,6 +53,10 @@ var allowedWidgetLiveSpanEnumValues = []WidgetLiveSpan{
 	"alert",
 }
 
+func (w *WidgetLiveSpan) GetAllowedValues() []WidgetLiveSpan {
+	return allowedWidgetLiveSpanEnumValues
+}
+
 func (v *WidgetLiveSpan) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

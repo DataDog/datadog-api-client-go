@@ -25,6 +25,10 @@ var allowedUsersTypeEnumValues = []UsersType{
 	"users",
 }
 
+func (w *UsersType) GetAllowedValues() []UsersType {
+	return allowedUsersTypeEnumValues
+}
+
 func (v *UsersType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

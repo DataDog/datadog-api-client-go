@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // FreeTextWidgetDefinition Free text is a widget that allows you to add headings to your screenboard. Commonly used to state the overall purpose of the dashboard. Only available on FREE layout dashboards.
@@ -207,6 +208,40 @@ func (o FreeTextWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Text *string                       `json:"text"`
+		Type *FreeTextWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		Color     *string                      `json:"color,omitempty"`
+		FontSize  *string                      `json:"font_size,omitempty"`
+		Text      string                       `json:"text"`
+		TextAlign *WidgetTextAlign             `json:"text_align,omitempty"`
+		Type      FreeTextWidgetDefinitionType `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Text == nil {
+		return fmt.Errorf("Required field text missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Color = all.Color
+	o.FontSize = all.FontSize
+	o.Text = all.Text
+	o.TextAlign = all.TextAlign
+	o.Type = all.Type
+	return nil
 }
 
 type NullableFreeTextWidgetDefinition struct {

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMessageRemapper The message is a key attribute in Datadog. It is displayed in the message column of the Log Explorer and you can do full string search on it. Use this Processor to define one or more attributes as the official log message.  **Note:** If multiple log message remapper processors can be applied to a given log, only the first one (according to the pipeline order) is taken into account.
@@ -175,6 +176,38 @@ func (o LogsMessageRemapper) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsMessageRemapper) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Sources *[]string                `json:"sources"`
+		Type    *LogsMessageRemapperType `json:"type"`
+	}{}
+	all := struct {
+		IsEnabled *bool                   `json:"is_enabled,omitempty"`
+		Name      *string                 `json:"name,omitempty"`
+		Sources   []string                `json:"sources"`
+		Type      LogsMessageRemapperType `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Sources == nil {
+		return fmt.Errorf("Required field sources missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.Sources = all.Sources
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsMessageRemapper struct {

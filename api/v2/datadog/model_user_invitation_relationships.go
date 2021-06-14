@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserInvitationRelationships Relationships data for user invitation.
@@ -65,6 +66,28 @@ func (o UserInvitationRelationships) MarshalJSON() ([]byte, error) {
 		toSerialize["user"] = o.User
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserInvitationRelationships) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		User *RelationshipToUser `json:"user"`
+	}{}
+	all := struct {
+		User RelationshipToUser `json:"user"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.User == nil {
+		return fmt.Errorf("Required field user missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.User = all.User
+	return nil
 }
 
 type NullableUserInvitationRelationships struct {

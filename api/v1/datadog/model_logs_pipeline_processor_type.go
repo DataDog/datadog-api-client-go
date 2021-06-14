@@ -25,6 +25,10 @@ var allowedLogsPipelineProcessorTypeEnumValues = []LogsPipelineProcessorType{
 	"pipeline",
 }
 
+func (w *LogsPipelineProcessorType) GetAllowedValues() []LogsPipelineProcessorType {
+	return allowedLogsPipelineProcessorTypeEnumValues
+}
+
 func (v *LogsPipelineProcessorType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentTeamsResponse Response with a list of incident team payloads.
@@ -139,6 +140,32 @@ func (o IncidentTeamsResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["meta"] = o.Meta
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentTeamsResponse) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Data *[]IncidentTeamResponseData `json:"data"`
+	}{}
+	all := struct {
+		Data     []IncidentTeamResponseData    `json:"data"`
+		Included *[]IncidentTeamIncludedItems  `json:"included,omitempty"`
+		Meta     *IncidentServicesResponseMeta `json:"meta,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Data == nil {
+		return fmt.Errorf("Required field data missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Data = all.Data
+	o.Included = all.Included
+	o.Meta = all.Meta
+	return nil
 }
 
 type NullableIncidentTeamsResponse struct {

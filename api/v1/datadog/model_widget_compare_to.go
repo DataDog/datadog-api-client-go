@@ -31,6 +31,10 @@ var allowedWidgetCompareToEnumValues = []WidgetCompareTo{
 	"month_before",
 }
 
+func (w *WidgetCompareTo) GetAllowedValues() []WidgetCompareTo {
+	return allowedWidgetCompareToEnumValues
+}
+
 func (v *WidgetCompareTo) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

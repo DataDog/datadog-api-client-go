@@ -37,6 +37,10 @@ var allowedEventAlertTypeEnumValues = []EventAlertType{
 	"snapshot",
 }
 
+func (w *EventAlertType) GetAllowedValues() []EventAlertType {
+	return allowedEventAlertTypeEnumValues
+}
+
 func (v *EventAlertType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

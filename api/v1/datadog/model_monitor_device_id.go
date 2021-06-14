@@ -41,6 +41,10 @@ var allowedMonitorDeviceIDEnumValues = []MonitorDeviceID{
 	"firefox.mobile_small",
 }
 
+func (w *MonitorDeviceID) GetAllowedValues() []MonitorDeviceID {
+	return allowedMonitorDeviceIDEnumValues
+}
+
 func (v *MonitorDeviceID) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

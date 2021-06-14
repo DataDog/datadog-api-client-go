@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOHistoryMetricsSeries A representation of `metric` based SLO time series for the provided queries. This is the same response type from `batch_query` endpoint.
@@ -155,6 +156,46 @@ func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 		toSerialize["values"] = o.Values
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Count    *int64                           `json:"count"`
+		Metadata *SLOHistoryMetricsSeriesMetadata `json:"metadata"`
+		Sum      *float64                         `json:"sum"`
+		Values   *[]float64                       `json:"values"`
+	}{}
+	all := struct {
+		Count    int64                           `json:"count"`
+		Metadata SLOHistoryMetricsSeriesMetadata `json:"metadata"`
+		Sum      float64                         `json:"sum"`
+		Values   []float64                       `json:"values"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Count == nil {
+		return fmt.Errorf("Required field count missing")
+	}
+	if required.Metadata == nil {
+		return fmt.Errorf("Required field metadata missing")
+	}
+	if required.Sum == nil {
+		return fmt.Errorf("Required field sum missing")
+	}
+	if required.Values == nil {
+		return fmt.Errorf("Required field values missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Count = all.Count
+	o.Metadata = all.Metadata
+	o.Sum = all.Sum
+	o.Values = all.Values
+	return nil
 }
 
 type NullableSLOHistoryMetricsSeries struct {

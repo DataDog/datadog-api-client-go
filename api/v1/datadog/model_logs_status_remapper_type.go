@@ -25,6 +25,10 @@ var allowedLogsStatusRemapperTypeEnumValues = []LogsStatusRemapperType{
 	"status-remapper",
 }
 
+func (w *LogsStatusRemapperType) GetAllowedValues() []LogsStatusRemapperType {
+	return allowedLogsStatusRemapperTypeEnumValues
+}
+
 func (v *LogsStatusRemapperType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

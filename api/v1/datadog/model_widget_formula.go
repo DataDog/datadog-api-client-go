@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetFormula Formula to be used in a widget query.
@@ -139,6 +140,32 @@ func (o WidgetFormula) MarshalJSON() ([]byte, error) {
 		toSerialize["limit"] = o.Limit
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Formula *string `json:"formula"`
+	}{}
+	all := struct {
+		Alias   *string             `json:"alias,omitempty"`
+		Formula string              `json:"formula"`
+		Limit   *WidgetFormulaLimit `json:"limit,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Formula == nil {
+		return fmt.Errorf("Required field formula missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Alias = all.Alias
+	o.Formula = all.Formula
+	o.Limit = all.Limit
+	return nil
 }
 
 type NullableWidgetFormula struct {

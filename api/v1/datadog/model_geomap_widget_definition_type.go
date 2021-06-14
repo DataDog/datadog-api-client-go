@@ -25,6 +25,10 @@ var allowedGeomapWidgetDefinitionTypeEnumValues = []GeomapWidgetDefinitionType{
 	"geomap",
 }
 
+func (w *GeomapWidgetDefinitionType) GetAllowedValues() []GeomapWidgetDefinitionType {
+	return allowedGeomapWidgetDefinitionTypeEnumValues
+}
+
 func (v *GeomapWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

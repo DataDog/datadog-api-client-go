@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsGroupByHistogram Used to perform a histogram computation (only for measure facets). Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
@@ -126,6 +127,40 @@ func (o LogsGroupByHistogram) MarshalJSON() ([]byte, error) {
 		toSerialize["min"] = o.Min
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Interval *float64 `json:"interval"`
+		Max      *float64 `json:"max"`
+		Min      *float64 `json:"min"`
+	}{}
+	all := struct {
+		Interval float64 `json:"interval"`
+		Max      float64 `json:"max"`
+		Min      float64 `json:"min"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Interval == nil {
+		return fmt.Errorf("Required field interval missing")
+	}
+	if required.Max == nil {
+		return fmt.Errorf("Required field max missing")
+	}
+	if required.Min == nil {
+		return fmt.Errorf("Required field min missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Interval = all.Interval
+	o.Max = all.Max
+	o.Min = all.Min
+	return nil
 }
 
 type NullableLogsGroupByHistogram struct {

@@ -80,6 +80,8 @@ type APIClient struct {
 
 	MonitorsApi *MonitorsApiService
 
+	NotebooksApi *NotebooksApiService
+
 	OrganizationsApi *OrganizationsApiService
 
 	PagerDutyIntegrationApi *PagerDutyIntegrationApiService
@@ -136,6 +138,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LogsPipelinesApi = (*LogsPipelinesApiService)(&c.common)
 	c.MetricsApi = (*MetricsApiService)(&c.common)
 	c.MonitorsApi = (*MonitorsApiService)(&c.common)
+	c.NotebooksApi = (*NotebooksApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
 	c.PagerDutyIntegrationApi = (*PagerDutyIntegrationApiService)(&c.common)
 	c.ServiceChecksApi = (*ServiceChecksApiService)(&c.common)
@@ -493,6 +496,10 @@ func reportError(format string, a ...interface{}) error {
 
 // Set request body from an interface{}
 func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err error) {
+	if reflect.ValueOf(body).IsNil() {
+		return nil, nil
+	}
+
 	if bodyBuf == nil {
 		bodyBuf = &bytes.Buffer{}
 	}

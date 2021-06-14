@@ -31,6 +31,10 @@ var allowedTargetFormatTypeEnumValues = []TargetFormatType{
 	"double",
 }
 
+func (w *TargetFormatType) GetAllowedValues() []TargetFormatType {
+	return allowedTargetFormatTypeEnumValues
+}
+
 func (v *TargetFormatType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

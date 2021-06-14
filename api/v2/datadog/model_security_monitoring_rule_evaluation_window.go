@@ -39,6 +39,10 @@ var allowedSecurityMonitoringRuleEvaluationWindowEnumValues = []SecurityMonitori
 	7200,
 }
 
+func (w *SecurityMonitoringRuleEvaluationWindow) GetAllowedValues() []SecurityMonitoringRuleEvaluationWindow {
+	return allowedSecurityMonitoringRuleEvaluationWindowEnumValues
+}
+
 func (v *SecurityMonitoringRuleEvaluationWindow) UnmarshalJSON(src []byte) error {
 	var value int32
 	err := json.Unmarshal(src, &value)

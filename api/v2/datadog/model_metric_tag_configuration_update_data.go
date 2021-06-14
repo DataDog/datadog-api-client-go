@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricTagConfigurationUpdateData Object for a single tag configuration to be edited.
@@ -133,6 +134,36 @@ func (o MetricTagConfigurationUpdateData) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricTagConfigurationUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Id   *string                     `json:"id"`
+		Type *MetricTagConfigurationType `json:"type"`
+	}{}
+	all := struct {
+		Attributes *MetricTagConfigurationUpdateAttributes `json:"attributes,omitempty"`
+		Id         string                                  `json:"id"`
+		Type       MetricTagConfigurationType              `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Id == nil {
+		return fmt.Errorf("Required field id missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Attributes = all.Attributes
+	o.Id = all.Id
+	o.Type = all.Type
+	return nil
 }
 
 type NullableMetricTagConfigurationUpdateData struct {

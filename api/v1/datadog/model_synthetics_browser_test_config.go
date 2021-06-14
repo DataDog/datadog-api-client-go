@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsBrowserTestConfig Configuration object for a Synthetic browser test.
@@ -169,6 +170,38 @@ func (o SyntheticsBrowserTestConfig) MarshalJSON() ([]byte, error) {
 		toSerialize["variables"] = o.Variables
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Assertions *[]SyntheticsAssertion `json:"assertions"`
+		Request    *SyntheticsTestRequest `json:"request"`
+	}{}
+	all := struct {
+		Assertions []SyntheticsAssertion        `json:"assertions"`
+		Request    SyntheticsTestRequest        `json:"request"`
+		SetCookie  *string                      `json:"setCookie,omitempty"`
+		Variables  *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Assertions == nil {
+		return fmt.Errorf("Required field assertions missing")
+	}
+	if required.Request == nil {
+		return fmt.Errorf("Required field request missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Assertions = all.Assertions
+	o.Request = all.Request
+	o.SetCookie = all.SetCookie
+	o.Variables = all.Variables
+	return nil
 }
 
 type NullableSyntheticsBrowserTestConfig struct {

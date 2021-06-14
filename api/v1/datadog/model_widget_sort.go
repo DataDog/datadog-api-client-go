@@ -27,6 +27,10 @@ var allowedWidgetSortEnumValues = []WidgetSort{
 	"desc",
 }
 
+func (w *WidgetSort) GetAllowedValues() []WidgetSort {
+	return allowedWidgetSortEnumValues
+}
+
 func (v *WidgetSort) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

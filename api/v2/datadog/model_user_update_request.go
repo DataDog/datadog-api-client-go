@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserUpdateRequest Update a user.
@@ -65,6 +66,28 @@ func (o UserUpdateRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Data *UserUpdateData `json:"data"`
+	}{}
+	all := struct {
+		Data UserUpdateData `json:"data"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Data == nil {
+		return fmt.Errorf("Required field data missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Data = all.Data
+	return nil
 }
 
 type NullableUserUpdateRequest struct {

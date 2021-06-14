@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsStepDetailWarning Object collecting warnings for a given step.
@@ -95,6 +96,34 @@ func (o SyntheticsStepDetailWarning) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsStepDetailWarning) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Message *string                `json:"message"`
+		Type    *SyntheticsWarningType `json:"type"`
+	}{}
+	all := struct {
+		Message string                `json:"message"`
+		Type    SyntheticsWarningType `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Message == nil {
+		return fmt.Errorf("Required field message missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Message = all.Message
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSyntheticsStepDetailWarning struct {

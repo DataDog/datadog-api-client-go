@@ -5,10 +5,10 @@ set -e
 RE_TEST='\^TestScenarios\$.*'
 # Only match scenarios and not individual features or steps
 RE_SCENARIO='\^TestScenarios\$/\^Feature_[^/]+/Scenario_[^/]+\$'
-COVERAGE_OPTIONS="-coverpkg=$(go list ./... | grep -v /test | paste -sd ',' -) -coverprofile=coverage.txt -covermode=atomic"
+COVERAGE_OPTIONS="-coverpkg=$(go list ./... | grep -v examples | grep -v /test | paste -sd ',' -) -coverprofile=coverage.txt -covermode=atomic"
 
+cd tests
 CMD=( go test $(go list ./...) -json -v )
-
 if [ "$#" -ne 2 ]; then
 	# Run only BDD tests if we specify BDD_TAGS to run
 	if [ -z $BDD_TAGS ]; then
@@ -29,3 +29,4 @@ else
 		fi
 	fi
 fi
+cd ..

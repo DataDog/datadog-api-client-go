@@ -25,6 +25,10 @@ var allowedCheckStatusWidgetDefinitionTypeEnumValues = []CheckStatusWidgetDefini
 	"check_status",
 }
 
+func (w *CheckStatusWidgetDefinitionType) GetAllowedValues() []CheckStatusWidgetDefinitionType {
+	return allowedCheckStatusWidgetDefinitionTypeEnumValues
+}
+
 func (v *CheckStatusWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

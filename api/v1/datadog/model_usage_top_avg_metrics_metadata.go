@@ -10,14 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // UsageTopAvgMetricsMetadata The object containing document metadata.
 type UsageTopAvgMetricsMetadata struct {
 	// The day value from the user request that contains the returned usage data. (If day was used the request)
-	Day interface{} `json:"day,omitempty"`
+	Day *time.Time `json:"day,omitempty"`
 	// The month value from the user request that contains the returned usage data. (If month was used the request)
-	Month      interface{}                 `json:"month,omitempty"`
+	Month      *time.Time                  `json:"month,omitempty"`
 	Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
 }
 
@@ -38,23 +39,22 @@ func NewUsageTopAvgMetricsMetadataWithDefaults() *UsageTopAvgMetricsMetadata {
 	return &this
 }
 
-// GetDay returns the Day field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UsageTopAvgMetricsMetadata) GetDay() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetDay returns the Day field value if set, zero value otherwise.
+func (o *UsageTopAvgMetricsMetadata) GetDay() time.Time {
+	if o == nil || o.Day == nil {
+		var ret time.Time
 		return ret
 	}
-	return o.Day
+	return *o.Day
 }
 
 // GetDayOk returns a tuple with the Day field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UsageTopAvgMetricsMetadata) GetDayOk() (*interface{}, bool) {
+func (o *UsageTopAvgMetricsMetadata) GetDayOk() (*time.Time, bool) {
 	if o == nil || o.Day == nil {
 		return nil, false
 	}
-	return &o.Day, true
+	return o.Day, true
 }
 
 // HasDay returns a boolean if a field has been set.
@@ -66,28 +66,27 @@ func (o *UsageTopAvgMetricsMetadata) HasDay() bool {
 	return false
 }
 
-// SetDay gets a reference to the given interface{} and assigns it to the Day field.
-func (o *UsageTopAvgMetricsMetadata) SetDay(v interface{}) {
-	o.Day = v
+// SetDay gets a reference to the given time.Time and assigns it to the Day field.
+func (o *UsageTopAvgMetricsMetadata) SetDay(v time.Time) {
+	o.Day = &v
 }
 
-// GetMonth returns the Month field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UsageTopAvgMetricsMetadata) GetMonth() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetMonth returns the Month field value if set, zero value otherwise.
+func (o *UsageTopAvgMetricsMetadata) GetMonth() time.Time {
+	if o == nil || o.Month == nil {
+		var ret time.Time
 		return ret
 	}
-	return o.Month
+	return *o.Month
 }
 
 // GetMonthOk returns a tuple with the Month field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UsageTopAvgMetricsMetadata) GetMonthOk() (*interface{}, bool) {
+func (o *UsageTopAvgMetricsMetadata) GetMonthOk() (*time.Time, bool) {
 	if o == nil || o.Month == nil {
 		return nil, false
 	}
-	return &o.Month, true
+	return o.Month, true
 }
 
 // HasMonth returns a boolean if a field has been set.
@@ -99,9 +98,9 @@ func (o *UsageTopAvgMetricsMetadata) HasMonth() bool {
 	return false
 }
 
-// SetMonth gets a reference to the given interface{} and assigns it to the Month field.
-func (o *UsageTopAvgMetricsMetadata) SetMonth(v interface{}) {
-	o.Month = v
+// SetMonth gets a reference to the given time.Time and assigns it to the Month field.
+func (o *UsageTopAvgMetricsMetadata) SetMonth(v time.Time) {
+	o.Month = &v
 }
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.

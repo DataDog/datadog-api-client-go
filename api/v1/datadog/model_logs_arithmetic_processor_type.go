@@ -25,6 +25,10 @@ var allowedLogsArithmeticProcessorTypeEnumValues = []LogsArithmeticProcessorType
 	"arithmetic-processor",
 }
 
+func (w *LogsArithmeticProcessorType) GetAllowedValues() []LogsArithmeticProcessorType {
+	return allowedLogsArithmeticProcessorTypeEnumValues
+}
+
 func (v *LogsArithmeticProcessorType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HostMapWidgetDefinition The host map widget graphs any metric across your hosts using the same visualization available from the main Host Map page.
@@ -500,6 +501,56 @@ func (o HostMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Requests *HostMapWidgetDefinitionRequests `json:"requests"`
+		Type     *HostMapWidgetDefinitionType     `json:"type"`
+	}{}
+	all := struct {
+		CustomLinks   *[]WidgetCustomLink             `json:"custom_links,omitempty"`
+		Group         *[]string                       `json:"group,omitempty"`
+		NoGroupHosts  *bool                           `json:"no_group_hosts,omitempty"`
+		NoMetricHosts *bool                           `json:"no_metric_hosts,omitempty"`
+		NodeType      *WidgetNodeType                 `json:"node_type,omitempty"`
+		Notes         *string                         `json:"notes,omitempty"`
+		Requests      HostMapWidgetDefinitionRequests `json:"requests"`
+		Scope         *[]string                       `json:"scope,omitempty"`
+		Style         *HostMapWidgetDefinitionStyle   `json:"style,omitempty"`
+		Title         *string                         `json:"title,omitempty"`
+		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`
+		TitleSize     *string                         `json:"title_size,omitempty"`
+		Type          HostMapWidgetDefinitionType     `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Requests == nil {
+		return fmt.Errorf("Required field requests missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.CustomLinks = all.CustomLinks
+	o.Group = all.Group
+	o.NoGroupHosts = all.NoGroupHosts
+	o.NoMetricHosts = all.NoMetricHosts
+	o.NodeType = all.NodeType
+	o.Notes = all.Notes
+	o.Requests = all.Requests
+	o.Scope = all.Scope
+	o.Style = all.Style
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	return nil
 }
 
 type NullableHostMapWidgetDefinition struct {

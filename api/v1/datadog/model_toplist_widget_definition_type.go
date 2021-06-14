@@ -25,6 +25,10 @@ var allowedToplistWidgetDefinitionTypeEnumValues = []ToplistWidgetDefinitionType
 	"toplist",
 }
 
+func (w *ToplistWidgetDefinitionType) GetAllowedValues() []ToplistWidgetDefinitionType {
+	return allowedToplistWidgetDefinitionTypeEnumValues
+}
+
 func (v *ToplistWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -35,6 +35,10 @@ var allowedFormulaAndFunctionEventsDataSourceEnumValues = []FormulaAndFunctionEv
 	"profiles",
 }
 
+func (w *FormulaAndFunctionEventsDataSource) GetAllowedValues() []FormulaAndFunctionEventsDataSource {
+	return allowedFormulaAndFunctionEventsDataSourceEnumValues
+}
+
 func (v *FormulaAndFunctionEventsDataSource) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

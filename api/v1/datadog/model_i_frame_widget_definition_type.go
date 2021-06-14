@@ -25,6 +25,10 @@ var allowedIFrameWidgetDefinitionTypeEnumValues = []IFrameWidgetDefinitionType{
 	"iframe",
 }
 
+func (w *IFrameWidgetDefinitionType) GetAllowedValues() []IFrameWidgetDefinitionType {
+	return allowedIFrameWidgetDefinitionTypeEnumValues
+}
+
 func (v *IFrameWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

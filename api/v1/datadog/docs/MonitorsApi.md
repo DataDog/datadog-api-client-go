@@ -9,6 +9,8 @@ Method | HTTP request | Description
 [**DeleteMonitor**](MonitorsApi.md#DeleteMonitor) | **Delete** /api/v1/monitor/{monitor_id} | Delete a monitor
 [**GetMonitor**](MonitorsApi.md#GetMonitor) | **Get** /api/v1/monitor/{monitor_id} | Get a monitor&#39;s details
 [**ListMonitors**](MonitorsApi.md#ListMonitors) | **Get** /api/v1/monitor | Get all monitor details
+[**SearchMonitorGroups**](MonitorsApi.md#SearchMonitorGroups) | **Get** /api/v1/monitor/groups/search | Monitors group search
+[**SearchMonitors**](MonitorsApi.md#SearchMonitors) | **Get** /api/v1/monitor/search | Monitors search
 [**UpdateMonitor**](MonitorsApi.md#UpdateMonitor) | **Put** /api/v1/monitor/{monitor_id} | Edit a monitor
 [**ValidateMonitor**](MonitorsApi.md#ValidateMonitor) | **Post** /api/v1/monitor/validate | Validate a monitor
 
@@ -140,12 +142,14 @@ Use this to create an outlier monitor using the following query:
 
 **Service Check Query**
 
-Example: `"check".over(tags).last(count).count_by_status()`
+Example: `"check".over(tags).last(count).by(group).count_by_status()`
 
 - **`check`** name of the check, e.g. `datadog.agent.up`
-- **`tags`** one or more quoted tags (comma-separated), or "*". e.g.: `.over("env:prod", "role:db")`
+- **`tags`** one or more quoted tags (comma-separated), or "*". e.g.: `.over("env:prod", "role:db")`; **`over`** cannot be blank.
 - **`count`** must be at greater than or equal to your max threshold (defined in the `options`). It is limited to 100.
-For example, if you've specified to notify on 1 critical, 3 ok, and 2 warn statuses, `count` should be 3.
+For example, if you've specified to notify on 1 critical, 3 ok, and 2 warn statuses, `count` should be at least 3.
+- **`group`** must be specified for check monitors. Per-check grouping is already explicitly known for some service checks.
+For example, Postgres integration monitors are tagged by `db`, `host`, and `port`, and Network monitors by `host`, `instance`, and `url`. See [Service Checks](https://docs.datadoghq.com/api/latest/service-checks/) documentation for more information.
 
 **Event Alert Query**
 
@@ -235,7 +239,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewMonitor() // Monitor | Create a monitor request body.
+    body := *datadog.NewMonitor("avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100", datadog.MonitorType("composite")) // Monitor | Create a monitor request body.
 
     configuration := datadog.NewConfiguration()
 
@@ -306,7 +310,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     monitorId := int64(789) // int64 | The ID of the monitor.
-    force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
+    force := "false" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
     optionalParams := datadog.DeleteMonitorOptionalParameters{
         Force: &force,
     }
@@ -463,14 +467,14 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    groupStates := "groupStates_example" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
+    groupStates := "alert" // string | When specified, shows additional information about the group states. Choose one or more from `all`, `alert`, `warn`, and `no data`. (optional)
     name := "name_example" // string | A string to filter monitors by name. (optional)
-    tags := "tags_example" // string | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. For example, `host:host0`. (optional)
-    monitorTags := "monitorTags_example" // string | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, `service:my-app`. (optional)
+    tags := "host:host0" // string | A comma separated list indicating what tags, if any, should be used to filter the list of monitors by scope. For example, `host:host0`. (optional)
+    monitorTags := "service:my-app" // string | A comma separated list indicating what service and/or custom tags, if any, should be used to filter the list of monitors. Tags created in the Datadog UI automatically have the service key prepended. For example, `service:my-app`. (optional)
     withDowntimes := true // bool | If this argument is set to true, then the returned data includes all current downtimes for each monitor. (optional)
     idOffset := int64(789) // int64 | Monitor ID offset. (optional)
-    page := int64(789) // int64 | The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. (optional)
-    pageSize := int32(56) // int32 | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a `page_size` limit. However, if page is specified and `page_size` is not, the argument defaults to 100. (optional)
+    page := int64(0) // int64 | The page to start paginating from. If this argument is not specified, the request returns all monitors without pagination. (optional)
+    pageSize := int32(20) // int32 | The number of monitors to return per page. If the page argument is not specified, the default behavior returns all monitors without a `page_size` limit. However, if page is specified and `page_size` is not, the argument defaults to 100. (optional)
     optionalParams := datadog.ListMonitorsOptionalParameters{
         GroupStates: &groupStates,
         Name: &name,
@@ -521,6 +525,172 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]Monitor**](Monitor.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SearchMonitorGroups
+
+> MonitorGroupSearchResponse SearchMonitorGroups(ctx, datadog.SearchMonitorGroupsOptionalParameters{})
+
+Search and filter your monitor groups details.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    query := "query_example" // string | After entering a search query in your [Manage Monitor page][1] use the query parameter value in the URL of the page as value for this parameter. Consult the dedicated [manage monitor documentation][2] page to learn more.  The query can contain any number of space-separated monitor attributes, for instance `query=\"type:metric status:alert\"`.  [1]: https://app.datadoghq.com/monitors/manage [2]: /monitors/manage_monitor/#find-the-monitors (optional)
+    page := int64(789) // int64 | Page to start paginating from. (optional) (default to 0)
+    perPage := int64(789) // int64 | Number of monitors to return per page. (optional) (default to 30)
+    sort := "sort_example" // string | String for sort order, composed of field and sort order separate by a comma, e.g. `name,asc`. Supported sort directions: `asc`, `desc`. Supported fields:  * `name` * `status` * `tags` (optional)
+    optionalParams := datadog.SearchMonitorGroupsOptionalParameters{
+        Query: &query,
+        Page: &page,
+        PerPage: &perPage,
+        Sort: &sort,
+    }
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorsApi.SearchMonitorGroups(ctx, optionalParams)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.SearchMonitorGroups`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SearchMonitorGroups`: MonitorGroupSearchResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.SearchMonitorGroups:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a SearchMonitorGroupsOptionalParameters struct.
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**query** | **string** | After entering a search query in your [Manage Monitor page][1] use the query parameter value in the URL of the page as value for this parameter. Consult the dedicated [manage monitor documentation][2] page to learn more.  The query can contain any number of space-separated monitor attributes, for instance &#x60;query&#x3D;\&quot;type:metric status:alert\&quot;&#x60;.  [1]: https://app.datadoghq.com/monitors/manage [2]: /monitors/manage_monitor/#find-the-monitors | 
+**page** | **int64** | Page to start paginating from. | [default to 0]
+**perPage** | **int64** | Number of monitors to return per page. | [default to 30]
+**sort** | **string** | String for sort order, composed of field and sort order separate by a comma, e.g. &#x60;name,asc&#x60;. Supported sort directions: &#x60;asc&#x60;, &#x60;desc&#x60;. Supported fields:  * &#x60;name&#x60; * &#x60;status&#x60; * &#x60;tags&#x60; | 
+
+### Return type
+
+[**MonitorGroupSearchResponse**](MonitorGroupSearchResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SearchMonitors
+
+> MonitorSearchResponse SearchMonitors(ctx, datadog.SearchMonitorsOptionalParameters{})
+
+Search and filter your monitors details.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    query := "query_example" // string | After entering a search query in your [Manage Monitor page][1] use the query parameter value in the URL of the page as value for this parameter. Consult the dedicated [manage monitor documentation][2] page to learn more.  The query can contain any number of space-separated monitor attributes, for instance `query=\"type:metric status:alert\"`.  [1]: https://app.datadoghq.com/monitors/manage [2]: /monitors/manage_monitor/#find-the-monitors (optional)
+    page := int64(789) // int64 | Page to start paginating from. (optional) (default to 0)
+    perPage := int64(789) // int64 | Number of monitors to return per page. (optional) (default to 30)
+    sort := "sort_example" // string | String for sort order, composed of field and sort order separate by a comma, e.g. `name,asc`. Supported sort directions: `asc`, `desc`. Supported fields:  * `name` * `status` * `tags` (optional)
+    optionalParams := datadog.SearchMonitorsOptionalParameters{
+        Query: &query,
+        Page: &page,
+        PerPage: &perPage,
+        Sort: &sort,
+    }
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorsApi.SearchMonitors(ctx, optionalParams)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.SearchMonitors`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SearchMonitors`: MonitorSearchResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from MonitorsApi.SearchMonitors:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a SearchMonitorsOptionalParameters struct.
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**query** | **string** | After entering a search query in your [Manage Monitor page][1] use the query parameter value in the URL of the page as value for this parameter. Consult the dedicated [manage monitor documentation][2] page to learn more.  The query can contain any number of space-separated monitor attributes, for instance &#x60;query&#x3D;\&quot;type:metric status:alert\&quot;&#x60;.  [1]: https://app.datadoghq.com/monitors/manage [2]: /monitors/manage_monitor/#find-the-monitors | 
+**page** | **int64** | Page to start paginating from. | [default to 0]
+**perPage** | **int64** | Number of monitors to return per page. | [default to 30]
+**sort** | **string** | String for sort order, composed of field and sort order separate by a comma, e.g. &#x60;name,asc&#x60;. Supported sort directions: &#x60;asc&#x60;, &#x60;desc&#x60;. Supported fields:  * &#x60;name&#x60; * &#x60;status&#x60; * &#x60;tags&#x60; | 
+
+### Return type
+
+[**MonitorSearchResponse**](MonitorSearchResponse.md)
 
 ### Authorization
 
@@ -610,7 +780,7 @@ This endpoint does not have optional parameters.
 
 ## ValidateMonitor
 
-> Monitor ValidateMonitor(ctx, body)
+> interface{} ValidateMonitor(ctx, body)
 
 Validate the monitor provided in the request.
 
@@ -630,7 +800,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewMonitor() // Monitor | Monitor request object
+    body := *datadog.NewMonitor("avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100", datadog.MonitorType("composite")) // Monitor | Monitor request object
 
     configuration := datadog.NewConfiguration()
 
@@ -640,7 +810,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ValidateMonitor`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ValidateMonitor`: Monitor
+    // response from `ValidateMonitor`: interface{}
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
     fmt.Fprintf(os.Stdout, "Response from MonitorsApi.ValidateMonitor:\n%s\n", responseContent)
 }
@@ -662,7 +832,7 @@ This endpoint does not have optional parameters.
 
 ### Return type
 
-[**Monitor**](Monitor.md)
+**interface{}**
 
 ### Authorization
 

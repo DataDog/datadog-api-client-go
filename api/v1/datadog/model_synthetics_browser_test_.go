@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsBrowserTest Object containing details about a Synthetic browser test.
@@ -436,6 +437,48 @@ func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Message *string `json:"message"`
+	}{}
+	all := struct {
+		Config    *SyntheticsBrowserTestConfig `json:"config,omitempty"`
+		Locations *[]string                    `json:"locations,omitempty"`
+		Message   string                       `json:"message"`
+		MonitorId *int64                       `json:"monitor_id,omitempty"`
+		Name      *string                      `json:"name,omitempty"`
+		Options   *SyntheticsTestOptions       `json:"options,omitempty"`
+		PublicId  *string                      `json:"public_id,omitempty"`
+		Status    *SyntheticsTestPauseStatus   `json:"status,omitempty"`
+		Steps     *[]SyntheticsStep            `json:"steps,omitempty"`
+		Tags      *[]string                    `json:"tags,omitempty"`
+		Type      *SyntheticsBrowserTestType   `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Message == nil {
+		return fmt.Errorf("Required field message missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Config = all.Config
+	o.Locations = all.Locations
+	o.Message = all.Message
+	o.MonitorId = all.MonitorId
+	o.Name = all.Name
+	o.Options = all.Options
+	o.PublicId = all.PublicId
+	o.Status = all.Status
+	o.Steps = all.Steps
+	o.Tags = all.Tags
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSyntheticsBrowserTest struct {

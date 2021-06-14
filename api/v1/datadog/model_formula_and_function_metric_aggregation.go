@@ -37,6 +37,10 @@ var allowedFormulaAndFunctionMetricAggregationEnumValues = []FormulaAndFunctionM
 	"l2norm",
 }
 
+func (w *FormulaAndFunctionMetricAggregation) GetAllowedValues() []FormulaAndFunctionMetricAggregation {
+	return allowedFormulaAndFunctionMetricAggregationEnumValues
+}
+
 func (v *FormulaAndFunctionMetricAggregation) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

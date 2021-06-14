@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IdpResponse The IdP response object.
@@ -66,6 +67,28 @@ func (o IdpResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["message"] = o.Message
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Message *string `json:"message"`
+	}{}
+	all := struct {
+		Message string `json:"message"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Message == nil {
+		return fmt.Errorf("Required field message missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Message = all.Message
+	return nil
 }
 
 type NullableIdpResponse struct {

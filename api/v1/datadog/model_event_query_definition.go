@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // EventQueryDefinition The event query.
@@ -96,6 +97,34 @@ func (o EventQueryDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["tags_execution"] = o.TagsExecution
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *EventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Search        *string `json:"search"`
+		TagsExecution *string `json:"tags_execution"`
+	}{}
+	all := struct {
+		Search        string `json:"search"`
+		TagsExecution string `json:"tags_execution"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Search == nil {
+		return fmt.Errorf("Required field search missing")
+	}
+	if required.TagsExecution == nil {
+		return fmt.Errorf("Required field tags_execution missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Search = all.Search
+	o.TagsExecution = all.TagsExecution
+	return nil
 }
 
 type NullableEventQueryDefinition struct {

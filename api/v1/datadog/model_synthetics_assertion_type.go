@@ -51,6 +51,10 @@ var allowedSyntheticsAssertionTypeEnumValues = []SyntheticsAssertionType{
 	"networkHop",
 }
 
+func (w *SyntheticsAssertionType) GetAllowedValues() []SyntheticsAssertionType {
+	return allowedSyntheticsAssertionTypeEnumValues
+}
+
 func (v *SyntheticsAssertionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

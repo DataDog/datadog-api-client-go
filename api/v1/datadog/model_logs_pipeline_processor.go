@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsPipelineProcessor Nested Pipelines are pipelines within a pipeline. Use Nested Pipelines to split the processing into two steps. For example, first use a high-level filtering such as team and then a second level of filtering based on the integration, service, or any other tag or attribute.  A pipeline can contain Nested Pipelines and Processors whereas a Nested Pipeline can only contain Processors.
@@ -218,6 +219,36 @@ func (o LogsPipelineProcessor) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsPipelineProcessor) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Type *LogsPipelineProcessorType `json:"type"`
+	}{}
+	all := struct {
+		Filter     *LogsFilter               `json:"filter,omitempty"`
+		IsEnabled  *bool                     `json:"is_enabled,omitempty"`
+		Name       *string                   `json:"name,omitempty"`
+		Processors *[]LogsProcessor          `json:"processors,omitempty"`
+		Type       LogsPipelineProcessorType `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Filter = all.Filter
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.Processors = all.Processors
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsPipelineProcessor struct {

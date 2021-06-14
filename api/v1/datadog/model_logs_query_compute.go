@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsQueryCompute Define computation for a log query.
@@ -140,6 +141,32 @@ func (o LogsQueryCompute) MarshalJSON() ([]byte, error) {
 		toSerialize["interval"] = o.Interval
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Aggregation *string `json:"aggregation"`
+	}{}
+	all := struct {
+		Aggregation string  `json:"aggregation"`
+		Facet       *string `json:"facet,omitempty"`
+		Interval    *int64  `json:"interval,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Aggregation == nil {
+		return fmt.Errorf("Required field aggregation missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Aggregation = all.Aggregation
+	o.Facet = all.Facet
+	o.Interval = all.Interval
+	return nil
 }
 
 type NullableLogsQueryCompute struct {

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsArchiveDestinationS3 The S3 archive destination.
@@ -163,6 +164,42 @@ func (o LogsArchiveDestinationS3) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Bucket      *string                       `json:"bucket"`
+		Integration *LogsArchiveIntegrationS3     `json:"integration"`
+		Type        *LogsArchiveDestinationS3Type `json:"type"`
+	}{}
+	all := struct {
+		Bucket      string                       `json:"bucket"`
+		Integration LogsArchiveIntegrationS3     `json:"integration"`
+		Path        *string                      `json:"path,omitempty"`
+		Type        LogsArchiveDestinationS3Type `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Bucket == nil {
+		return fmt.Errorf("Required field bucket missing")
+	}
+	if required.Integration == nil {
+		return fmt.Errorf("Required field integration missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Bucket = all.Bucket
+	o.Integration = all.Integration
+	o.Path = all.Path
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsArchiveDestinationS3 struct {

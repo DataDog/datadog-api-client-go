@@ -27,6 +27,10 @@ var allowedSyntheticsBrowserErrorTypeEnumValues = []SyntheticsBrowserErrorType{
 	"js",
 }
 
+func (w *SyntheticsBrowserErrorType) GetAllowedValues() []SyntheticsBrowserErrorType {
+	return allowedSyntheticsBrowserErrorTypeEnumValues
+}
+
 func (v *SyntheticsBrowserErrorType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

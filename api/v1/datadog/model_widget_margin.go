@@ -33,6 +33,10 @@ var allowedWidgetMarginEnumValues = []WidgetMargin{
 	"large",
 }
 
+func (w *WidgetMargin) GetAllowedValues() []WidgetMargin {
+	return allowedWidgetMarginEnumValues
+}
+
 func (v *WidgetMargin) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

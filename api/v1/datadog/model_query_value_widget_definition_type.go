@@ -25,6 +25,10 @@ var allowedQueryValueWidgetDefinitionTypeEnumValues = []QueryValueWidgetDefiniti
 	"query_value",
 }
 
+func (w *QueryValueWidgetDefinitionType) GetAllowedValues() []QueryValueWidgetDefinitionType {
+	return allowedQueryValueWidgetDefinitionTypeEnumValues
+}
+
 func (v *QueryValueWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

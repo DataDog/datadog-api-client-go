@@ -31,6 +31,10 @@ var allowedWidgetOrderByEnumValues = []WidgetOrderBy{
 	"past",
 }
 
+func (w *WidgetOrderBy) GetAllowedValues() []WidgetOrderBy {
+	return allowedWidgetOrderByEnumValues
+}
+
 func (v *WidgetOrderBy) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

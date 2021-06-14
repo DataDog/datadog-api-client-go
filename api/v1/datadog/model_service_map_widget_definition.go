@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ServiceMapWidgetDefinition This widget displays a map of a service to all of the services that call it, and all of the services that it calls.
@@ -274,6 +275,48 @@ func (o ServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Filters *[]string                       `json:"filters"`
+		Service *string                         `json:"service"`
+		Type    *ServiceMapWidgetDefinitionType `json:"type"`
+	}{}
+	all := struct {
+		CustomLinks *[]WidgetCustomLink            `json:"custom_links,omitempty"`
+		Filters     []string                       `json:"filters"`
+		Service     string                         `json:"service"`
+		Title       *string                        `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign               `json:"title_align,omitempty"`
+		TitleSize   *string                        `json:"title_size,omitempty"`
+		Type        ServiceMapWidgetDefinitionType `json:"type"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Filters == nil {
+		return fmt.Errorf("Required field filters missing")
+	}
+	if required.Service == nil {
+		return fmt.Errorf("Required field service missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.CustomLinks = all.CustomLinks
+	o.Filters = all.Filters
+	o.Service = all.Service
+	o.Title = all.Title
+	o.TitleAlign = all.TitleAlign
+	o.TitleSize = all.TitleSize
+	o.Type = all.Type
+	return nil
 }
 
 type NullableServiceMapWidgetDefinition struct {

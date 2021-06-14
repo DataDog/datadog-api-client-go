@@ -25,6 +25,10 @@ var allowedServiceSummaryWidgetDefinitionTypeEnumValues = []ServiceSummaryWidget
 	"trace_service",
 }
 
+func (w *ServiceSummaryWidgetDefinitionType) GetAllowedValues() []ServiceSummaryWidgetDefinitionType {
+	return allowedServiceSummaryWidgetDefinitionTypeEnumValues
+}
+
 func (v *ServiceSummaryWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

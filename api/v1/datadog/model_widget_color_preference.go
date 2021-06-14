@@ -27,6 +27,10 @@ var allowedWidgetColorPreferenceEnumValues = []WidgetColorPreference{
 	"text",
 }
 
+func (w *WidgetColorPreference) GetAllowedValues() []WidgetColorPreference {
+	return allowedWidgetColorPreferenceEnumValues
+}
+
 func (v *WidgetColorPreference) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

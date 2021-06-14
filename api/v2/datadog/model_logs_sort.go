@@ -27,6 +27,10 @@ var allowedLogsSortEnumValues = []LogsSort{
 	"-timestamp",
 }
 
+func (w *LogsSort) GetAllowedValues() []LogsSort {
+	return allowedLogsSortEnumValues
+}
+
 func (v *LogsSort) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

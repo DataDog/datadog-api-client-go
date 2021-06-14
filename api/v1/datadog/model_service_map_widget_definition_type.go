@@ -25,6 +25,10 @@ var allowedServiceMapWidgetDefinitionTypeEnumValues = []ServiceMapWidgetDefiniti
 	"servicemap",
 }
 
+func (w *ServiceMapWidgetDefinitionType) GetAllowedValues() []ServiceMapWidgetDefinitionType {
+	return allowedServiceMapWidgetDefinitionTypeEnumValues
+}
+
 func (v *ServiceMapWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

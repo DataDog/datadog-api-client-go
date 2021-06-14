@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricTagConfigurationCreateAttributes Object containing the definition of a metric tag configuration to be created.
@@ -138,6 +139,36 @@ func (o MetricTagConfigurationCreateAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		MetricType *MetricTagConfigurationMetricTypes `json:"metric_type"`
+		Tags       *[]string                          `json:"tags"`
+	}{}
+	all := struct {
+		IncludePercentiles *bool                             `json:"include_percentiles,omitempty"`
+		MetricType         MetricTagConfigurationMetricTypes `json:"metric_type"`
+		Tags               []string                          `json:"tags"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.MetricType == nil {
+		return fmt.Errorf("Required field metric_type missing")
+	}
+	if required.Tags == nil {
+		return fmt.Errorf("Required field tags missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.IncludePercentiles = all.IncludePercentiles
+	o.MetricType = all.MetricType
+	o.Tags = all.Tags
+	return nil
 }
 
 type NullableMetricTagConfigurationCreateAttributes struct {

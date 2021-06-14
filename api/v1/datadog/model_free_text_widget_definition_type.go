@@ -25,6 +25,10 @@ var allowedFreeTextWidgetDefinitionTypeEnumValues = []FreeTextWidgetDefinitionTy
 	"free_text",
 }
 
+func (w *FreeTextWidgetDefinitionType) GetAllowedValues() []FreeTextWidgetDefinitionType {
+	return allowedFreeTextWidgetDefinitionTypeEnumValues
+}
+
 func (v *FreeTextWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

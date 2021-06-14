@@ -33,6 +33,10 @@ var allowedDashboardTypeEnumValues = []DashboardType{
 	"host_timeboard",
 }
 
+func (w *DashboardType) GetAllowedValues() []DashboardType {
+	return allowedDashboardTypeEnumValues
+}
+
 func (v *DashboardType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

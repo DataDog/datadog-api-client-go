@@ -39,6 +39,10 @@ var allowedWidgetTimeWindowsEnumValues = []WidgetTimeWindows{
 	"global_time",
 }
 
+func (w *WidgetTimeWindows) GetAllowedValues() []WidgetTimeWindows {
+	return allowedWidgetTimeWindowsEnumValues
+}
+
 func (v *WidgetTimeWindows) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

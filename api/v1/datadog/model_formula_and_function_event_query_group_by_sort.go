@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // FormulaAndFunctionEventQueryGroupBySort Options for sorting group by results.
@@ -142,6 +143,32 @@ func (o FormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, error) {
 		toSerialize["order"] = o.Order
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *FormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Aggregation *FormulaAndFunctionEventAggregation `json:"aggregation"`
+	}{}
+	all := struct {
+		Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"`
+		Metric      *string                            `json:"metric,omitempty"`
+		Order       *QuerySortOrder                    `json:"order,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Aggregation == nil {
+		return fmt.Errorf("Required field aggregation missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Aggregation = all.Aggregation
+	o.Metric = all.Metric
+	o.Order = all.Order
+	return nil
 }
 
 type NullableFormulaAndFunctionEventQueryGroupBySort struct {

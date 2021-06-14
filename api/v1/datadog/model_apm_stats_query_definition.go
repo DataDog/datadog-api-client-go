@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ApmStatsQueryDefinition The APM stats query for table and distributions widgets.
@@ -259,6 +260,56 @@ func (o ApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["service"] = o.Service
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	required := struct {
+		Env        *string               `json:"env"`
+		Name       *string               `json:"name"`
+		PrimaryTag *string               `json:"primary_tag"`
+		RowType    *ApmStatsQueryRowType `json:"row_type"`
+		Service    *string               `json:"service"`
+	}{}
+	all := struct {
+		Columns    *[]ApmStatsQueryColumnType `json:"columns,omitempty"`
+		Env        string                     `json:"env"`
+		Name       string                     `json:"name"`
+		PrimaryTag string                     `json:"primary_tag"`
+		Resource   *string                    `json:"resource,omitempty"`
+		RowType    ApmStatsQueryRowType       `json:"row_type"`
+		Service    string                     `json:"service"`
+	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Env == nil {
+		return fmt.Errorf("Required field env missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.PrimaryTag == nil {
+		return fmt.Errorf("Required field primary_tag missing")
+	}
+	if required.RowType == nil {
+		return fmt.Errorf("Required field row_type missing")
+	}
+	if required.Service == nil {
+		return fmt.Errorf("Required field service missing")
+	}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		return err
+	}
+	o.Columns = all.Columns
+	o.Env = all.Env
+	o.Name = all.Name
+	o.PrimaryTag = all.PrimaryTag
+	o.Resource = all.Resource
+	o.RowType = all.RowType
+	o.Service = all.Service
+	return nil
 }
 
 type NullableApmStatsQueryDefinition struct {

@@ -1,4 +1,4 @@
-@endpoint(usage-metering)
+@endpoint(usage-metering) @endpoint(usage-metering-v1)
 Feature: Usage Metering
   The usage metering API allows you to get hourly, daily, and monthly usage
   across multiple facets of Datadog. This API is available to all Pro and
@@ -16,6 +16,18 @@ Feature: Usage Metering
   Scenario: Get Usage Attribution returns "OK" response
     Given operation "GetUsageAttribution" enabled
     And new "GetUsageAttribution" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Get all custom metrics by hourly average returns "Bad Request" response
+    Given new "GetUsageTopAvgMetrics" request
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip
+  Scenario: Get all custom metrics by hourly average returns "OK" response
+    Given new "GetUsageTopAvgMetrics" request
     When the request is sent
     Then the response status is 200 OK
 
@@ -44,14 +56,26 @@ Feature: Usage Metering
     Then the response status is 200 OK
 
   @generated @skip
-  Scenario: Get hourly usage for Compliance Monitoring returns "Bad Request" response
-    Given new "GetUsageComplianceMonitoring" request
+  Scenario: Get hourly usage for CSPM returns "Bad Request" response
+    Given new "GetUsageCloudSecurityPostureManagement" request
     When the request is sent
     Then the response status is 400 Bad Request
 
   @generated @skip
-  Scenario: Get hourly usage for Compliance Monitoring returns "OK" response
-    Given new "GetUsageComplianceMonitoring" request
+  Scenario: Get hourly usage for CSPM returns "OK" response
+    Given new "GetUsageCloudSecurityPostureManagement" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
+  Scenario: Get hourly usage for Cloud Workload Security returns "Bad Request" response
+    Given new "GetUsageCWS" request
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip
+  Scenario: Get hourly usage for Cloud Workload Security returns "OK" response
+    Given new "GetUsageCWS" request
     When the request is sent
     Then the response status is 200 OK
 
@@ -224,6 +248,18 @@ Feature: Usage Metering
     Then the response status is 200 OK
 
   @generated @skip
+  Scenario: Get hourly usage for audit logs returns "Bad Request" response
+    Given new "GetUsageAuditLogs" request
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip
+  Scenario: Get hourly usage for audit logs returns "OK" response
+    Given new "GetUsageAuditLogs" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip
   Scenario: Get hourly usage for custom metrics returns "Bad Request" response
     Given new "GetUsageTimeseries" request
     When the request is sent
@@ -358,18 +394,6 @@ Feature: Usage Metering
   Scenario: Get the list of available monthly custom reports returns "OK" response
     Given operation "GetMonthlyCustomReports" enabled
     And new "GetMonthlyCustomReports" request
-    When the request is sent
-    Then the response status is 200 OK
-
-  @generated @skip
-  Scenario: Get top custom metrics by hourly average returns "Bad Request" response
-    Given new "GetUsageTopAvgMetrics" request
-    When the request is sent
-    Then the response status is 400 Bad Request
-
-  @generated @skip
-  Scenario: Get top custom metrics by hourly average returns "OK" response
-    Given new "GetUsageTopAvgMetrics" request
     When the request is sent
     Then the response status is 200 OK
 

@@ -25,6 +25,10 @@ var allowedIncidentRelatedObjectEnumValues = []IncidentRelatedObject{
 	"users",
 }
 
+func (w *IncidentRelatedObject) GetAllowedValues() []IncidentRelatedObject {
+	return allowedIncidentRelatedObjectEnumValues
+}
+
 func (v *IncidentRelatedObject) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
