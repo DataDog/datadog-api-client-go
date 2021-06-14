@@ -1093,6 +1093,8 @@ type apiListSLOsRequest struct {
 	query        *string
 	tagsQuery    *string
 	metricsQuery *string
+	limit        *int64
+	offset       *int64
 }
 
 type ListSLOsOptionalParameters struct {
@@ -1100,6 +1102,8 @@ type ListSLOsOptionalParameters struct {
 	Query        *string
 	TagsQuery    *string
 	MetricsQuery *string
+	Limit        *int64
+	Offset       *int64
 }
 
 func NewListSLOsOptionalParameters() *ListSLOsOptionalParameters {
@@ -1120,6 +1124,14 @@ func (r *ListSLOsOptionalParameters) WithTagsQuery(tagsQuery string) *ListSLOsOp
 }
 func (r *ListSLOsOptionalParameters) WithMetricsQuery(metricsQuery string) *ListSLOsOptionalParameters {
 	r.MetricsQuery = &metricsQuery
+	return r
+}
+func (r *ListSLOsOptionalParameters) WithLimit(limit int64) *ListSLOsOptionalParameters {
+	r.Limit = &limit
+	return r
+}
+func (r *ListSLOsOptionalParameters) WithOffset(offset int64) *ListSLOsOptionalParameters {
+	r.Offset = &offset
 	return r
 }
 
@@ -1143,6 +1155,8 @@ func (a *ServiceLevelObjectivesApiService) ListSLOs(ctx _context.Context, o ...L
 		req.query = o[0].Query
 		req.tagsQuery = o[0].TagsQuery
 		req.metricsQuery = o[0].MetricsQuery
+		req.limit = o[0].Limit
+		req.offset = o[0].Offset
 	}
 
 	return req.ApiService.listSLOsExecute(req)
@@ -1184,6 +1198,12 @@ func (a *ServiceLevelObjectivesApiService) listSLOsExecute(r apiListSLOsRequest)
 	}
 	if r.metricsQuery != nil {
 		localVarQueryParams.Add("metrics_query", parameterToString(*r.metricsQuery, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
