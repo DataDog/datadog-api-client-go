@@ -29,6 +29,10 @@ var allowedTimeseriesWidgetLegendLayoutEnumValues = []TimeseriesWidgetLegendLayo
 	"vertical",
 }
 
+func (w *TimeseriesWidgetLegendLayout) GetAllowedValues() []TimeseriesWidgetLegendLayout {
+	return allowedTimeseriesWidgetLegendLayoutEnumValues
+}
+
 func (v *TimeseriesWidgetLegendLayout) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

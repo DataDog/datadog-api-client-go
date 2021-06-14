@@ -27,6 +27,10 @@ var allowedEventPriorityEnumValues = []EventPriority{
 	"low",
 }
 
+func (w *EventPriority) GetAllowedValues() []EventPriority {
+	return allowedEventPriorityEnumValues
+}
+
 func (v *EventPriority) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

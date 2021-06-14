@@ -27,6 +27,10 @@ var allowedWidgetVizTypeEnumValues = []WidgetVizType{
 	"toplist",
 }
 
+func (w *WidgetVizType) GetAllowedValues() []WidgetVizType {
+	return allowedWidgetVizTypeEnumValues
+}
+
 func (v *WidgetVizType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

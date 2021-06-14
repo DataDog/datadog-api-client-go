@@ -25,6 +25,10 @@ var allowedEventStreamWidgetDefinitionTypeEnumValues = []EventStreamWidgetDefini
 	"event_stream",
 }
 
+func (w *EventStreamWidgetDefinitionType) GetAllowedValues() []EventStreamWidgetDefinitionType {
+	return allowedEventStreamWidgetDefinitionTypeEnumValues
+}
+
 func (v *EventStreamWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -27,6 +27,10 @@ var allowedSLOTypeEnumValues = []SLOType{
 	"monitor",
 }
 
+func (w *SLOType) GetAllowedValues() []SLOType {
+	return allowedSLOTypeEnumValues
+}
+
 func (v *SLOType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

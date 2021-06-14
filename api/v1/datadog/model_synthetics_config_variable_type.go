@@ -27,6 +27,10 @@ var allowedSyntheticsConfigVariableTypeEnumValues = []SyntheticsConfigVariableTy
 	"text",
 }
 
+func (w *SyntheticsConfigVariableType) GetAllowedValues() []SyntheticsConfigVariableType {
+	return allowedSyntheticsConfigVariableTypeEnumValues
+}
+
 func (v *SyntheticsConfigVariableType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

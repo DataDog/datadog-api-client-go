@@ -29,6 +29,10 @@ var allowedWidgetHorizontalAlignEnumValues = []WidgetHorizontalAlign{
 	"right",
 }
 
+func (w *WidgetHorizontalAlign) GetAllowedValues() []WidgetHorizontalAlign {
+	return allowedWidgetHorizontalAlignEnumValues
+}
+
 func (v *WidgetHorizontalAlign) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

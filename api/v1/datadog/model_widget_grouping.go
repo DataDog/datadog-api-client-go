@@ -27,6 +27,10 @@ var allowedWidgetGroupingEnumValues = []WidgetGrouping{
 	"cluster",
 }
 
+func (w *WidgetGrouping) GetAllowedValues() []WidgetGrouping {
+	return allowedWidgetGroupingEnumValues
+}
+
 func (v *WidgetGrouping) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

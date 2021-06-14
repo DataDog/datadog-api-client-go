@@ -25,6 +25,10 @@ var allowedProcessSummaryTypeEnumValues = []ProcessSummaryType{
 	"process",
 }
 
+func (w *ProcessSummaryType) GetAllowedValues() []ProcessSummaryType {
+	return allowedProcessSummaryTypeEnumValues
+}
+
 func (v *ProcessSummaryType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

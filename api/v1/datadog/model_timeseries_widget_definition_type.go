@@ -25,6 +25,10 @@ var allowedTimeseriesWidgetDefinitionTypeEnumValues = []TimeseriesWidgetDefiniti
 	"timeseries",
 }
 
+func (w *TimeseriesWidgetDefinitionType) GetAllowedValues() []TimeseriesWidgetDefinitionType {
+	return allowedTimeseriesWidgetDefinitionTypeEnumValues
+}
+
 func (v *TimeseriesWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

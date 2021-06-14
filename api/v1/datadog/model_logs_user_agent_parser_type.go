@@ -25,6 +25,10 @@ var allowedLogsUserAgentParserTypeEnumValues = []LogsUserAgentParserType{
 	"user-agent-parser",
 }
 
+func (w *LogsUserAgentParserType) GetAllowedValues() []LogsUserAgentParserType {
+	return allowedLogsUserAgentParserTypeEnumValues
+}
+
 func (v *LogsUserAgentParserType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

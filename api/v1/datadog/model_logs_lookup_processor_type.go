@@ -25,6 +25,10 @@ var allowedLogsLookupProcessorTypeEnumValues = []LogsLookupProcessorType{
 	"lookup-processor",
 }
 
+func (w *LogsLookupProcessorType) GetAllowedValues() []LogsLookupProcessorType {
+	return allowedLogsLookupProcessorTypeEnumValues
+}
+
 func (v *LogsLookupProcessorType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -25,6 +25,10 @@ var allowedChangeWidgetDefinitionTypeEnumValues = []ChangeWidgetDefinitionType{
 	"change",
 }
 
+func (w *ChangeWidgetDefinitionType) GetAllowedValues() []ChangeWidgetDefinitionType {
+	return allowedChangeWidgetDefinitionTypeEnumValues
+}
+
 func (v *ChangeWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

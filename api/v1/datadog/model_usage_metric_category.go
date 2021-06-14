@@ -27,6 +27,10 @@ var allowedUsageMetricCategoryEnumValues = []UsageMetricCategory{
 	"custom",
 }
 
+func (w *UsageMetricCategory) GetAllowedValues() []UsageMetricCategory {
+	return allowedUsageMetricCategoryEnumValues
+}
+
 func (v *UsageMetricCategory) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

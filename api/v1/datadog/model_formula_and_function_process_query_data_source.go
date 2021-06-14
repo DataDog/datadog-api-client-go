@@ -27,6 +27,10 @@ var allowedFormulaAndFunctionProcessQueryDataSourceEnumValues = []FormulaAndFunc
 	"container",
 }
 
+func (w *FormulaAndFunctionProcessQueryDataSource) GetAllowedValues() []FormulaAndFunctionProcessQueryDataSource {
+	return allowedFormulaAndFunctionProcessQueryDataSourceEnumValues
+}
+
 func (v *FormulaAndFunctionProcessQueryDataSource) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

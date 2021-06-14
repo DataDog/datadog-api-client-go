@@ -27,6 +27,10 @@ var allowedLogsAggregateSortTypeEnumValues = []LogsAggregateSortType{
 	"measure",
 }
 
+func (w *LogsAggregateSortType) GetAllowedValues() []LogsAggregateSortType {
+	return allowedLogsAggregateSortTypeEnumValues
+}
+
 func (v *LogsAggregateSortType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

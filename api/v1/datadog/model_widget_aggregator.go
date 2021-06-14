@@ -33,6 +33,10 @@ var allowedWidgetAggregatorEnumValues = []WidgetAggregator{
 	"sum",
 }
 
+func (w *WidgetAggregator) GetAllowedValues() []WidgetAggregator {
+	return allowedWidgetAggregatorEnumValues
+}
+
 func (v *WidgetAggregator) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

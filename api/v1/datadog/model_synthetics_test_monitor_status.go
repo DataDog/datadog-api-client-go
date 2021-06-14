@@ -29,6 +29,10 @@ var allowedSyntheticsTestMonitorStatusEnumValues = []SyntheticsTestMonitorStatus
 	2,
 }
 
+func (w *SyntheticsTestMonitorStatus) GetAllowedValues() []SyntheticsTestMonitorStatus {
+	return allowedSyntheticsTestMonitorStatusEnumValues
+}
+
 func (v *SyntheticsTestMonitorStatus) UnmarshalJSON(src []byte) error {
 	var value int64
 	err := json.Unmarshal(src, &value)

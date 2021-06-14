@@ -49,6 +49,10 @@ var allowedSyntheticsAssertionOperatorEnumValues = []SyntheticsAssertionOperator
 	"isInLessThan",
 }
 
+func (w *SyntheticsAssertionOperator) GetAllowedValues() []SyntheticsAssertionOperator {
+	return allowedSyntheticsAssertionOperatorEnumValues
+}
+
 func (v *SyntheticsAssertionOperator) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

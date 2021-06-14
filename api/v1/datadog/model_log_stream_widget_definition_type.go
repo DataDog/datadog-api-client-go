@@ -25,6 +25,10 @@ var allowedLogStreamWidgetDefinitionTypeEnumValues = []LogStreamWidgetDefinition
 	"log_stream",
 }
 
+func (w *LogStreamWidgetDefinitionType) GetAllowedValues() []LogStreamWidgetDefinitionType {
+	return allowedLogStreamWidgetDefinitionTypeEnumValues
+}
+
 func (v *LogStreamWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

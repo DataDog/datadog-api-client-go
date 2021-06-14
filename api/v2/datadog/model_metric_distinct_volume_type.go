@@ -25,6 +25,10 @@ var allowedMetricDistinctVolumeTypeEnumValues = []MetricDistinctVolumeType{
 	"distinct_metric_volumes",
 }
 
+func (w *MetricDistinctVolumeType) GetAllowedValues() []MetricDistinctVolumeType {
+	return allowedMetricDistinctVolumeTypeEnumValues
+}
+
 func (v *MetricDistinctVolumeType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

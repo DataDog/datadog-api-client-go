@@ -43,6 +43,10 @@ var allowedSecurityMonitoringRuleKeepAliveEnumValues = []SecurityMonitoringRuleK
 	21600,
 }
 
+func (w *SecurityMonitoringRuleKeepAlive) GetAllowedValues() []SecurityMonitoringRuleKeepAlive {
+	return allowedSecurityMonitoringRuleKeepAliveEnumValues
+}
+
 func (v *SecurityMonitoringRuleKeepAlive) UnmarshalJSON(src []byte) error {
 	var value int32
 	err := json.Unmarshal(src, &value)

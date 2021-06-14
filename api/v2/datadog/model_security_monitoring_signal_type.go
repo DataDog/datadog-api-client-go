@@ -25,6 +25,10 @@ var allowedSecurityMonitoringSignalTypeEnumValues = []SecurityMonitoringSignalTy
 	"signal",
 }
 
+func (w *SecurityMonitoringSignalType) GetAllowedValues() []SecurityMonitoringSignalType {
+	return allowedSecurityMonitoringSignalTypeEnumValues
+}
+
 func (v *SecurityMonitoringSignalType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

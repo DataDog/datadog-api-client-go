@@ -37,6 +37,10 @@ var allowedAWSNamespaceEnumValues = []AWSNamespace{
 	"lambda",
 }
 
+func (w *AWSNamespace) GetAllowedValues() []AWSNamespace {
+	return allowedAWSNamespaceEnumValues
+}
+
 func (v *AWSNamespace) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

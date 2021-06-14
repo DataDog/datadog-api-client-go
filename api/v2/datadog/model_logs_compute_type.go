@@ -27,6 +27,10 @@ var allowedLogsComputeTypeEnumValues = []LogsComputeType{
 	"total",
 }
 
+func (w *LogsComputeType) GetAllowedValues() []LogsComputeType {
+	return allowedLogsComputeTypeEnumValues
+}
+
 func (v *LogsComputeType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -29,6 +29,10 @@ var allowedWidgetTextAlignEnumValues = []WidgetTextAlign{
 	"right",
 }
 
+func (w *WidgetTextAlign) GetAllowedValues() []WidgetTextAlign {
+	return allowedWidgetTextAlignEnumValues
+}
+
 func (v *WidgetTextAlign) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

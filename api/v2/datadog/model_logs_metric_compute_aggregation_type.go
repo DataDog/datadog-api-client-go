@@ -27,6 +27,10 @@ var allowedLogsMetricComputeAggregationTypeEnumValues = []LogsMetricComputeAggre
 	"distribution",
 }
 
+func (w *LogsMetricComputeAggregationType) GetAllowedValues() []LogsMetricComputeAggregationType {
+	return allowedLogsMetricComputeAggregationTypeEnumValues
+}
+
 func (v *LogsMetricComputeAggregationType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -29,6 +29,10 @@ var allowedTableWidgetHasSearchBarEnumValues = []TableWidgetHasSearchBar{
 	"auto",
 }
 
+func (w *TableWidgetHasSearchBar) GetAllowedValues() []TableWidgetHasSearchBar {
+	return allowedTableWidgetHasSearchBarEnumValues
+}
+
 func (v *TableWidgetHasSearchBar) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

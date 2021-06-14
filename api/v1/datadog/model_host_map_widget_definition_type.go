@@ -25,6 +25,10 @@ var allowedHostMapWidgetDefinitionTypeEnumValues = []HostMapWidgetDefinitionType
 	"hostmap",
 }
 
+func (w *HostMapWidgetDefinitionType) GetAllowedValues() []HostMapWidgetDefinitionType {
+	return allowedHostMapWidgetDefinitionTypeEnumValues
+}
+
 func (v *HostMapWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

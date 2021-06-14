@@ -27,6 +27,10 @@ var allowedWidgetEventSizeEnumValues = []WidgetEventSize{
 	"l",
 }
 
+func (w *WidgetEventSize) GetAllowedValues() []WidgetEventSize {
+	return allowedWidgetEventSizeEnumValues
+}
+
 func (v *WidgetEventSize) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

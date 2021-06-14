@@ -25,6 +25,10 @@ var allowedIncidentIntegrationMetadataTypeEnumValues = []IncidentIntegrationMeta
 	"incident_integrations",
 }
 
+func (w *IncidentIntegrationMetadataType) GetAllowedValues() []IncidentIntegrationMetadataType {
+	return allowedIncidentIntegrationMetadataTypeEnumValues
+}
+
 func (v *IncidentIntegrationMetadataType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

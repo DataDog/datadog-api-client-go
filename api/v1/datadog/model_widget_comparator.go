@@ -31,6 +31,10 @@ var allowedWidgetComparatorEnumValues = []WidgetComparator{
 	"<=",
 }
 
+func (w *WidgetComparator) GetAllowedValues() []WidgetComparator {
+	return allowedWidgetComparatorEnumValues
+}
+
 func (v *WidgetComparator) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

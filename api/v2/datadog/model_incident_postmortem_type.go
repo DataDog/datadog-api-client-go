@@ -25,6 +25,10 @@ var allowedIncidentPostmortemTypeEnumValues = []IncidentPostmortemType{
 	"incident_postmortems",
 }
 
+func (w *IncidentPostmortemType) GetAllowedValues() []IncidentPostmortemType {
+	return allowedIncidentPostmortemTypeEnumValues
+}
+
 func (v *IncidentPostmortemType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

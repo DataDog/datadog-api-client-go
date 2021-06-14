@@ -51,6 +51,10 @@ var allowedSyntheticsCheckTypeEnumValues = []SyntheticsCheckType{
 	"notIsEmpty",
 }
 
+func (w *SyntheticsCheckType) GetAllowedValues() []SyntheticsCheckType {
+	return allowedSyntheticsCheckTypeEnumValues
+}
+
 func (v *SyntheticsCheckType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

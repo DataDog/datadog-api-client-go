@@ -25,6 +25,10 @@ var allowedNotebookCellResourceTypeEnumValues = []NotebookCellResourceType{
 	"notebook_cells",
 }
 
+func (w *NotebookCellResourceType) GetAllowedValues() []NotebookCellResourceType {
+	return allowedNotebookCellResourceTypeEnumValues
+}
+
 func (v *NotebookCellResourceType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

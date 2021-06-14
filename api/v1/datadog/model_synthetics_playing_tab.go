@@ -33,6 +33,10 @@ var allowedSyntheticsPlayingTabEnumValues = []SyntheticsPlayingTab{
 	3,
 }
 
+func (w *SyntheticsPlayingTab) GetAllowedValues() []SyntheticsPlayingTab {
+	return allowedSyntheticsPlayingTabEnumValues
+}
+
 func (v *SyntheticsPlayingTab) UnmarshalJSON(src []byte) error {
 	var value int64
 	err := json.Unmarshal(src, &value)

@@ -25,6 +25,10 @@ var allowedLogsGrokParserTypeEnumValues = []LogsGrokParserType{
 	"grok-parser",
 }
 
+func (w *LogsGrokParserType) GetAllowedValues() []LogsGrokParserType {
+	return allowedLogsGrokParserTypeEnumValues
+}
+
 func (v *LogsGrokParserType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

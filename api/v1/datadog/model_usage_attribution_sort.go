@@ -67,6 +67,10 @@ var allowedUsageAttributionSortEnumValues = []UsageAttributionSort{
 	"lambda_percentage",
 }
 
+func (w *UsageAttributionSort) GetAllowedValues() []UsageAttributionSort {
+	return allowedUsageAttributionSortEnumValues
+}
+
 func (v *UsageAttributionSort) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

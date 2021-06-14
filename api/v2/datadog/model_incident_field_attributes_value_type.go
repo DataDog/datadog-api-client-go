@@ -31,6 +31,10 @@ var allowedIncidentFieldAttributesValueTypeEnumValues = []IncidentFieldAttribute
 	"autocomplete",
 }
 
+func (w *IncidentFieldAttributesValueType) GetAllowedValues() []IncidentFieldAttributesValueType {
+	return allowedIncidentFieldAttributesValueTypeEnumValues
+}
+
 func (v *IncidentFieldAttributesValueType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

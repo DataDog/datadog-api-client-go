@@ -25,6 +25,10 @@ var allowedAlertValueWidgetDefinitionTypeEnumValues = []AlertValueWidgetDefiniti
 	"alert_value",
 }
 
+func (w *AlertValueWidgetDefinitionType) GetAllowedValues() []AlertValueWidgetDefinitionType {
+	return allowedAlertValueWidgetDefinitionTypeEnumValues
+}
+
 func (v *AlertValueWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

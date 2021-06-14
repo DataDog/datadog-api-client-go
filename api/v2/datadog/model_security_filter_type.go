@@ -25,6 +25,10 @@ var allowedSecurityFilterTypeEnumValues = []SecurityFilterType{
 	"security_filters",
 }
 
+func (w *SecurityFilterType) GetAllowedValues() []SecurityFilterType {
+	return allowedSecurityFilterTypeEnumValues
+}
+
 func (v *SecurityFilterType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

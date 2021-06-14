@@ -39,6 +39,10 @@ var allowedWidgetImageSizingEnumValues = []WidgetImageSizing{
 	"center",
 }
 
+func (w *WidgetImageSizing) GetAllowedValues() []WidgetImageSizing {
+	return allowedWidgetImageSizingEnumValues
+}
+
 func (v *WidgetImageSizing) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

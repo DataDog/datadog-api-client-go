@@ -25,6 +25,10 @@ var allowedHeatMapWidgetDefinitionTypeEnumValues = []HeatMapWidgetDefinitionType
 	"heatmap",
 }
 
+func (w *HeatMapWidgetDefinitionType) GetAllowedValues() []HeatMapWidgetDefinitionType {
+	return allowedHeatMapWidgetDefinitionTypeEnumValues
+}
+
 func (v *HeatMapWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

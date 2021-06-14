@@ -35,6 +35,10 @@ var allowedSyntheticsTestDetailsSubTypeEnumValues = []SyntheticsTestDetailsSubTy
 	"icmp",
 }
 
+func (w *SyntheticsTestDetailsSubType) GetAllowedValues() []SyntheticsTestDetailsSubType {
+	return allowedSyntheticsTestDetailsSubTypeEnumValues
+}
+
 func (v *SyntheticsTestDetailsSubType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

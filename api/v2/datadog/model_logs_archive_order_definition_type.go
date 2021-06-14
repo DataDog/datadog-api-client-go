@@ -25,6 +25,10 @@ var allowedLogsArchiveOrderDefinitionTypeEnumValues = []LogsArchiveOrderDefiniti
 	"archive_order",
 }
 
+func (w *LogsArchiveOrderDefinitionType) GetAllowedValues() []LogsArchiveOrderDefinitionType {
+	return allowedLogsArchiveOrderDefinitionTypeEnumValues
+}
+
 func (v *LogsArchiveOrderDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

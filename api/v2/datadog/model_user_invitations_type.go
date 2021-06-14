@@ -25,6 +25,10 @@ var allowedUserInvitationsTypeEnumValues = []UserInvitationsType{
 	"user_invitations",
 }
 
+func (w *UserInvitationsType) GetAllowedValues() []UserInvitationsType {
+	return allowedUserInvitationsTypeEnumValues
+}
+
 func (v *UserInvitationsType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

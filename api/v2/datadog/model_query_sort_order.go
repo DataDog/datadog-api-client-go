@@ -27,6 +27,10 @@ var allowedQuerySortOrderEnumValues = []QuerySortOrder{
 	"desc",
 }
 
+func (w *QuerySortOrder) GetAllowedValues() []QuerySortOrder {
+	return allowedQuerySortOrderEnumValues
+}
+
 func (v *QuerySortOrder) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

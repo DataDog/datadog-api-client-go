@@ -31,6 +31,10 @@ var allowedUsageSortEnumValues = []UsageSort{
 	"end_date",
 }
 
+func (w *UsageSort) GetAllowedValues() []UsageSort {
+	return allowedUsageSortEnumValues
+}
+
 func (v *UsageSort) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

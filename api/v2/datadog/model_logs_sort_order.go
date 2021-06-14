@@ -27,6 +27,10 @@ var allowedLogsSortOrderEnumValues = []LogsSortOrder{
 	"desc",
 }
 
+func (w *LogsSortOrder) GetAllowedValues() []LogsSortOrder {
+	return allowedLogsSortOrderEnumValues
+}
+
 func (v *LogsSortOrder) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

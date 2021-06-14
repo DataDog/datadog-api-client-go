@@ -37,6 +37,10 @@ var allowedHTTPMethodEnumValues = []HTTPMethod{
 	"OPTIONS",
 }
 
+func (w *HTTPMethod) GetAllowedValues() []HTTPMethod {
+	return allowedHTTPMethodEnumValues
+}
+
 func (v *HTTPMethod) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

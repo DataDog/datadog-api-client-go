@@ -25,6 +25,10 @@ var allowedLogsDateRemapperTypeEnumValues = []LogsDateRemapperType{
 	"date-remapper",
 }
 
+func (w *LogsDateRemapperType) GetAllowedValues() []LogsDateRemapperType {
+	return allowedLogsDateRemapperTypeEnumValues
+}
+
 func (v *LogsDateRemapperType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

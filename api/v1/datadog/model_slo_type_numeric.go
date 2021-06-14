@@ -27,6 +27,10 @@ var allowedSLOTypeNumericEnumValues = []SLOTypeNumeric{
 	1,
 }
 
+func (w *SLOTypeNumeric) GetAllowedValues() []SLOTypeNumeric {
+	return allowedSLOTypeNumericEnumValues
+}
+
 func (v *SLOTypeNumeric) UnmarshalJSON(src []byte) error {
 	var value int32
 	err := json.Unmarshal(src, &value)

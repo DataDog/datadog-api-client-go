@@ -27,6 +27,10 @@ var allowedFormulaAndFunctionResponseFormatEnumValues = []FormulaAndFunctionResp
 	"scalar",
 }
 
+func (w *FormulaAndFunctionResponseFormat) GetAllowedValues() []FormulaAndFunctionResponseFormat {
+	return allowedFormulaAndFunctionResponseFormatEnumValues
+}
+
 func (v *FormulaAndFunctionResponseFormat) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -25,6 +25,10 @@ var allowedEventTimelineWidgetDefinitionTypeEnumValues = []EventTimelineWidgetDe
 	"event_timeline",
 }
 
+func (w *EventTimelineWidgetDefinitionType) GetAllowedValues() []EventTimelineWidgetDefinitionType {
+	return allowedEventTimelineWidgetDefinitionTypeEnumValues
+}
+
 func (v *EventTimelineWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

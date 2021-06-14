@@ -27,6 +27,10 @@ var allowedSyntheticsTestPauseStatusEnumValues = []SyntheticsTestPauseStatus{
 	"paused",
 }
 
+func (w *SyntheticsTestPauseStatus) GetAllowedValues() []SyntheticsTestPauseStatus {
+	return allowedSyntheticsTestPauseStatusEnumValues
+}
+
 func (v *SyntheticsTestPauseStatus) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -27,6 +27,10 @@ var allowedContentEncodingEnumValues = []ContentEncoding{
 	"deflate",
 }
 
+func (w *ContentEncoding) GetAllowedValues() []ContentEncoding {
+	return allowedContentEncodingEnumValues
+}
+
 func (v *ContentEncoding) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

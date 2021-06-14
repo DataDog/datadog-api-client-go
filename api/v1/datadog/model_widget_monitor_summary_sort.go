@@ -53,6 +53,10 @@ var allowedWidgetMonitorSummarySortEnumValues = []WidgetMonitorSummarySort{
 	"triggered,desc",
 }
 
+func (w *WidgetMonitorSummarySort) GetAllowedValues() []WidgetMonitorSummarySort {
+	return allowedWidgetMonitorSummarySortEnumValues
+}
+
 func (v *WidgetMonitorSummarySort) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

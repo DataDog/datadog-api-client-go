@@ -25,6 +25,10 @@ var allowedLogsURLParserTypeEnumValues = []LogsURLParserType{
 	"url-parser",
 }
 
+func (w *LogsURLParserType) GetAllowedValues() []LogsURLParserType {
+	return allowedLogsURLParserTypeEnumValues
+}
+
 func (v *LogsURLParserType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

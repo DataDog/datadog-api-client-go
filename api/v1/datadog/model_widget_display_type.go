@@ -29,6 +29,10 @@ var allowedWidgetDisplayTypeEnumValues = []WidgetDisplayType{
 	"line",
 }
 
+func (w *WidgetDisplayType) GetAllowedValues() []WidgetDisplayType {
+	return allowedWidgetDisplayTypeEnumValues
+}
+
 func (v *WidgetDisplayType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

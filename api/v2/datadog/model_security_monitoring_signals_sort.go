@@ -27,6 +27,10 @@ var allowedSecurityMonitoringSignalsSortEnumValues = []SecurityMonitoringSignals
 	"-timestamp",
 }
 
+func (w *SecurityMonitoringSignalsSort) GetAllowedValues() []SecurityMonitoringSignalsSort {
+	return allowedSecurityMonitoringSignalsSortEnumValues
+}
+
 func (v *SecurityMonitoringSignalsSort) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

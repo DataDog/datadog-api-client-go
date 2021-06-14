@@ -31,6 +31,10 @@ var allowedServiceCheckStatusEnumValues = []ServiceCheckStatus{
 	3,
 }
 
+func (w *ServiceCheckStatus) GetAllowedValues() []ServiceCheckStatus {
+	return allowedServiceCheckStatusEnumValues
+}
+
 func (v *ServiceCheckStatus) UnmarshalJSON(src []byte) error {
 	var value int32
 	err := json.Unmarshal(src, &value)

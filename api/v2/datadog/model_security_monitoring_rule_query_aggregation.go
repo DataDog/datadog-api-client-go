@@ -33,6 +33,10 @@ var allowedSecurityMonitoringRuleQueryAggregationEnumValues = []SecurityMonitori
 	"new_value",
 }
 
+func (w *SecurityMonitoringRuleQueryAggregation) GetAllowedValues() []SecurityMonitoringRuleQueryAggregation {
+	return allowedSecurityMonitoringRuleQueryAggregationEnumValues
+}
+
 func (v *SecurityMonitoringRuleQueryAggregation) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

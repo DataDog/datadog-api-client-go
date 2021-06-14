@@ -27,6 +27,10 @@ var allowedWidgetNodeTypeEnumValues = []WidgetNodeType{
 	"container",
 }
 
+func (w *WidgetNodeType) GetAllowedValues() []WidgetNodeType {
+	return allowedWidgetNodeTypeEnumValues
+}
+
 func (v *WidgetNodeType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

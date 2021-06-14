@@ -25,6 +25,10 @@ var allowedDistributionWidgetDefinitionTypeEnumValues = []DistributionWidgetDefi
 	"distribution",
 }
 
+func (w *DistributionWidgetDefinitionType) GetAllowedValues() []DistributionWidgetDefinitionType {
+	return allowedDistributionWidgetDefinitionTypeEnumValues
+}
+
 func (v *DistributionWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -25,6 +25,10 @@ var allowedLogsArchiveDestinationAzureTypeEnumValues = []LogsArchiveDestinationA
 	"azure",
 }
 
+func (w *LogsArchiveDestinationAzureType) GetAllowedValues() []LogsArchiveDestinationAzureType {
+	return allowedLogsArchiveDestinationAzureTypeEnumValues
+}
+
 func (v *LogsArchiveDestinationAzureType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

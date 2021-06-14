@@ -25,6 +25,10 @@ var allowedOrganizationsTypeEnumValues = []OrganizationsType{
 	"orgs",
 }
 
+func (w *OrganizationsType) GetAllowedValues() []OrganizationsType {
+	return allowedOrganizationsTypeEnumValues
+}
+
 func (v *OrganizationsType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

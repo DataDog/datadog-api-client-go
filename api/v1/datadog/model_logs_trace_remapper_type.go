@@ -25,6 +25,10 @@ var allowedLogsTraceRemapperTypeEnumValues = []LogsTraceRemapperType{
 	"trace-id-remapper",
 }
 
+func (w *LogsTraceRemapperType) GetAllowedValues() []LogsTraceRemapperType {
+	return allowedLogsTraceRemapperTypeEnumValues
+}
+
 func (v *LogsTraceRemapperType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

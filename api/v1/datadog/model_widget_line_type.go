@@ -29,6 +29,10 @@ var allowedWidgetLineTypeEnumValues = []WidgetLineType{
 	"solid",
 }
 
+func (w *WidgetLineType) GetAllowedValues() []WidgetLineType {
+	return allowedWidgetLineTypeEnumValues
+}
+
 func (v *WidgetLineType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

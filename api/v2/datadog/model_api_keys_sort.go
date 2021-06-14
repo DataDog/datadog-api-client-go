@@ -39,6 +39,10 @@ var allowedAPIKeysSortEnumValues = []APIKeysSort{
 	"-name",
 }
 
+func (w *APIKeysSort) GetAllowedValues() []APIKeysSort {
+	return allowedAPIKeysSortEnumValues
+}
+
 func (v *APIKeysSort) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

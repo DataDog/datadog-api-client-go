@@ -25,6 +25,10 @@ var allowedNoteWidgetDefinitionTypeEnumValues = []NoteWidgetDefinitionType{
 	"note",
 }
 
+func (w *NoteWidgetDefinitionType) GetAllowedValues() []NoteWidgetDefinitionType {
+	return allowedNoteWidgetDefinitionTypeEnumValues
+}
+
 func (v *NoteWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
