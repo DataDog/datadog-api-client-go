@@ -25,6 +25,10 @@ var allowedFormulaAndFunctionMetricDataSourceEnumValues = []FormulaAndFunctionMe
 	"metrics",
 }
 
+func (w *FormulaAndFunctionMetricDataSource) GetAllowedValues() []FormulaAndFunctionMetricDataSource {
+	return allowedFormulaAndFunctionMetricDataSourceEnumValues
+}
+
 func (v *FormulaAndFunctionMetricDataSource) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

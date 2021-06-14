@@ -25,6 +25,10 @@ var allowedScatterPlotWidgetDefinitionTypeEnumValues = []ScatterPlotWidgetDefini
 	"scatterplot",
 }
 
+func (w *ScatterPlotWidgetDefinitionType) GetAllowedValues() []ScatterPlotWidgetDefinitionType {
+	return allowedScatterPlotWidgetDefinitionTypeEnumValues
+}
+
 func (v *ScatterPlotWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

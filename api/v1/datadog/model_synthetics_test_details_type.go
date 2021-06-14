@@ -27,6 +27,10 @@ var allowedSyntheticsTestDetailsTypeEnumValues = []SyntheticsTestDetailsType{
 	"browser",
 }
 
+func (w *SyntheticsTestDetailsType) GetAllowedValues() []SyntheticsTestDetailsType {
+	return allowedSyntheticsTestDetailsTypeEnumValues
+}
+
 func (v *SyntheticsTestDetailsType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

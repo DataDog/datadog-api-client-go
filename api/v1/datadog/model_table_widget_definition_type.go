@@ -25,6 +25,10 @@ var allowedTableWidgetDefinitionTypeEnumValues = []TableWidgetDefinitionType{
 	"query_table",
 }
 
+func (w *TableWidgetDefinitionType) GetAllowedValues() []TableWidgetDefinitionType {
+	return allowedTableWidgetDefinitionTypeEnumValues
+}
+
 func (v *TableWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

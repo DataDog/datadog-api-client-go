@@ -25,6 +25,10 @@ var allowedSyntheticsAPIStepSubtypeEnumValues = []SyntheticsAPIStepSubtype{
 	"http",
 }
 
+func (w *SyntheticsAPIStepSubtype) GetAllowedValues() []SyntheticsAPIStepSubtype {
+	return allowedSyntheticsAPIStepSubtypeEnumValues
+}
+
 func (v *SyntheticsAPIStepSubtype) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

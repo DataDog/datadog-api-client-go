@@ -29,6 +29,10 @@ var allowedSecurityMonitoringRuleNewValueOptionsLearningDurationEnumValues = []S
 	7,
 }
 
+func (w *SecurityMonitoringRuleNewValueOptionsLearningDuration) GetAllowedValues() []SecurityMonitoringRuleNewValueOptionsLearningDuration {
+	return allowedSecurityMonitoringRuleNewValueOptionsLearningDurationEnumValues
+}
+
 func (v *SecurityMonitoringRuleNewValueOptionsLearningDuration) UnmarshalJSON(src []byte) error {
 	var value int32
 	err := json.Unmarshal(src, &value)

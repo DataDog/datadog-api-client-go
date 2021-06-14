@@ -61,6 +61,10 @@ var allowedWidgetPaletteEnumValues = []WidgetPalette{
 	"black_on_light_red",
 }
 
+func (w *WidgetPalette) GetAllowedValues() []WidgetPalette {
+	return allowedWidgetPaletteEnumValues
+}
+
 func (v *WidgetPalette) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

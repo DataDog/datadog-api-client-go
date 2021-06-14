@@ -25,6 +25,10 @@ var allowedSyntheticsAPITestTypeEnumValues = []SyntheticsAPITestType{
 	"api",
 }
 
+func (w *SyntheticsAPITestType) GetAllowedValues() []SyntheticsAPITestType {
+	return allowedSyntheticsAPITestTypeEnumValues
+}
+
 func (v *SyntheticsAPITestType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

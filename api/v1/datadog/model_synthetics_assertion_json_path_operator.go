@@ -25,6 +25,10 @@ var allowedSyntheticsAssertionJSONPathOperatorEnumValues = []SyntheticsAssertion
 	"validatesJSONPath",
 }
 
+func (w *SyntheticsAssertionJSONPathOperator) GetAllowedValues() []SyntheticsAssertionJSONPathOperator {
+	return allowedSyntheticsAssertionJSONPathOperatorEnumValues
+}
+
 func (v *SyntheticsAssertionJSONPathOperator) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -25,6 +25,10 @@ var allowedNotebookMarkdownCellDefinitionTypeEnumValues = []NotebookMarkdownCell
 	"markdown",
 }
 
+func (w *NotebookMarkdownCellDefinitionType) GetAllowedValues() []NotebookMarkdownCellDefinitionType {
+	return allowedNotebookMarkdownCellDefinitionTypeEnumValues
+}
+
 func (v *NotebookMarkdownCellDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

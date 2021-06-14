@@ -25,6 +25,10 @@ var allowedLogsStringBuilderProcessorTypeEnumValues = []LogsStringBuilderProcess
 	"string-builder-processor",
 }
 
+func (w *LogsStringBuilderProcessorType) GetAllowedValues() []LogsStringBuilderProcessorType {
+	return allowedLogsStringBuilderProcessorTypeEnumValues
+}
+
 func (v *LogsStringBuilderProcessorType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

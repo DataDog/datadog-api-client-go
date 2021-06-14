@@ -25,6 +25,10 @@ var allowedIncidentTimelineCellMarkdownContentTypeEnumValues = []IncidentTimelin
 	"markdown",
 }
 
+func (w *IncidentTimelineCellMarkdownContentType) GetAllowedValues() []IncidentTimelineCellMarkdownContentType {
+	return allowedIncidentTimelineCellMarkdownContentTypeEnumValues
+}
+
 func (v *IncidentTimelineCellMarkdownContentType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -25,6 +25,10 @@ var allowedPermissionsTypeEnumValues = []PermissionsType{
 	"permissions",
 }
 
+func (w *PermissionsType) GetAllowedValues() []PermissionsType {
+	return allowedPermissionsTypeEnumValues
+}
+
 func (v *PermissionsType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

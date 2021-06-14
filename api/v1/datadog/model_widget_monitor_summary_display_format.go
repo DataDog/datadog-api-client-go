@@ -29,6 +29,10 @@ var allowedWidgetMonitorSummaryDisplayFormatEnumValues = []WidgetMonitorSummaryD
 	"list",
 }
 
+func (w *WidgetMonitorSummaryDisplayFormat) GetAllowedValues() []WidgetMonitorSummaryDisplayFormat {
+	return allowedWidgetMonitorSummaryDisplayFormatEnumValues
+}
+
 func (v *WidgetMonitorSummaryDisplayFormat) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

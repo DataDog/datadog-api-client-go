@@ -25,6 +25,10 @@ var allowedWidgetLayoutTypeEnumValues = []WidgetLayoutType{
 	"ordered",
 }
 
+func (w *WidgetLayoutType) GetAllowedValues() []WidgetLayoutType {
+	return allowedWidgetLayoutTypeEnumValues
+}
+
 func (v *WidgetLayoutType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

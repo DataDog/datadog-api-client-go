@@ -27,6 +27,10 @@ var allowedDashboardReflowTypeEnumValues = []DashboardReflowType{
 	"fixed",
 }
 
+func (w *DashboardReflowType) GetAllowedValues() []DashboardReflowType {
+	return allowedDashboardReflowTypeEnumValues
+}
+
 func (v *DashboardReflowType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

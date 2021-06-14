@@ -25,6 +25,10 @@ var allowedSLOCorrectionTypeEnumValues = []SLOCorrectionType{
 	"correction",
 }
 
+func (w *SLOCorrectionType) GetAllowedValues() []SLOCorrectionType {
+	return allowedSLOCorrectionTypeEnumValues
+}
+
 func (v *SLOCorrectionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

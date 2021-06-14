@@ -33,6 +33,10 @@ var allowedNotebookGraphSizeEnumValues = []NotebookGraphSize{
 	"xl",
 }
 
+func (w *NotebookGraphSize) GetAllowedValues() []NotebookGraphSize {
+	return allowedNotebookGraphSizeEnumValues
+}
+
 func (v *NotebookGraphSize) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

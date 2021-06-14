@@ -27,6 +27,10 @@ var allowedIncidentFieldAttributesSingleValueTypeEnumValues = []IncidentFieldAtt
 	"textbox",
 }
 
+func (w *IncidentFieldAttributesSingleValueType) GetAllowedValues() []IncidentFieldAttributesSingleValueType {
+	return allowedIncidentFieldAttributesSingleValueTypeEnumValues
+}
+
 func (v *IncidentFieldAttributesSingleValueType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

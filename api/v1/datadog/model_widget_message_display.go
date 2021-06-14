@@ -29,6 +29,10 @@ var allowedWidgetMessageDisplayEnumValues = []WidgetMessageDisplay{
 	"expanded-lg",
 }
 
+func (w *WidgetMessageDisplay) GetAllowedValues() []WidgetMessageDisplay {
+	return allowedWidgetMessageDisplayEnumValues
+}
+
 func (v *WidgetMessageDisplay) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

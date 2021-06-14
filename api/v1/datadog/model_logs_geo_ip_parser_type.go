@@ -25,6 +25,10 @@ var allowedLogsGeoIPParserTypeEnumValues = []LogsGeoIPParserType{
 	"geo-ip-parser",
 }
 
+func (w *LogsGeoIPParserType) GetAllowedValues() []LogsGeoIPParserType {
+	return allowedLogsGeoIPParserTypeEnumValues
+}
+
 func (v *LogsGeoIPParserType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -29,6 +29,10 @@ var allowedWidgetLineWidthEnumValues = []WidgetLineWidth{
 	"thin",
 }
 
+func (w *WidgetLineWidth) GetAllowedValues() []WidgetLineWidth {
+	return allowedWidgetLineWidthEnumValues
+}
+
 func (v *WidgetLineWidth) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

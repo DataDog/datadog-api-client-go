@@ -47,6 +47,10 @@ var allowedSecurityMonitoringRuleMaxSignalDurationEnumValues = []SecurityMonitor
 	86400,
 }
 
+func (w *SecurityMonitoringRuleMaxSignalDuration) GetAllowedValues() []SecurityMonitoringRuleMaxSignalDuration {
+	return allowedSecurityMonitoringRuleMaxSignalDurationEnumValues
+}
+
 func (v *SecurityMonitoringRuleMaxSignalDuration) UnmarshalJSON(src []byte) error {
 	var value int32
 	err := json.Unmarshal(src, &value)

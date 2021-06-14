@@ -27,6 +27,10 @@ var allowedUsageSortDirectionEnumValues = []UsageSortDirection{
 	"asc",
 }
 
+func (w *UsageSortDirection) GetAllowedValues() []UsageSortDirection {
+	return allowedUsageSortDirectionEnumValues
+}
+
 func (v *UsageSortDirection) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

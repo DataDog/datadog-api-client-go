@@ -25,6 +25,10 @@ var allowedLogsCategoryProcessorTypeEnumValues = []LogsCategoryProcessorType{
 	"category-processor",
 }
 
+func (w *LogsCategoryProcessorType) GetAllowedValues() []LogsCategoryProcessorType {
+	return allowedLogsCategoryProcessorTypeEnumValues
+}
+
 func (v *LogsCategoryProcessorType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

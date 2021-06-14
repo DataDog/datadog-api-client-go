@@ -35,6 +35,10 @@ var allowedSecurityMonitoringRuleNewValueOptionsForgetAfterEnumValues = []Securi
 	28,
 }
 
+func (w *SecurityMonitoringRuleNewValueOptionsForgetAfter) GetAllowedValues() []SecurityMonitoringRuleNewValueOptionsForgetAfter {
+	return allowedSecurityMonitoringRuleNewValueOptionsForgetAfterEnumValues
+}
+
 func (v *SecurityMonitoringRuleNewValueOptionsForgetAfter) UnmarshalJSON(src []byte) error {
 	var value int32
 	err := json.Unmarshal(src, &value)

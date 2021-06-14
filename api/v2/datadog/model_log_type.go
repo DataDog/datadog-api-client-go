@@ -25,6 +25,10 @@ var allowedLogTypeEnumValues = []LogType{
 	"log",
 }
 
+func (w *LogType) GetAllowedValues() []LogType {
+	return allowedLogTypeEnumValues
+}
+
 func (v *LogType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -47,6 +47,10 @@ var allowedFormulaAndFunctionEventAggregationEnumValues = []FormulaAndFunctionEv
 	"avg",
 }
 
+func (w *FormulaAndFunctionEventAggregation) GetAllowedValues() []FormulaAndFunctionEventAggregation {
+	return allowedFormulaAndFunctionEventAggregationEnumValues
+}
+
 func (v *FormulaAndFunctionEventAggregation) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

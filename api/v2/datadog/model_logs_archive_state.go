@@ -31,6 +31,10 @@ var allowedLogsArchiveStateEnumValues = []LogsArchiveState{
 	"WORKING_AUTH_LEGACY",
 }
 
+func (w *LogsArchiveState) GetAllowedValues() []LogsArchiveState {
+	return allowedLogsArchiveStateEnumValues
+}
+
 func (v *LogsArchiveState) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

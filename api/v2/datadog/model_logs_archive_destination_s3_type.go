@@ -25,6 +25,10 @@ var allowedLogsArchiveDestinationS3TypeEnumValues = []LogsArchiveDestinationS3Ty
 	"s3",
 }
 
+func (w *LogsArchiveDestinationS3Type) GetAllowedValues() []LogsArchiveDestinationS3Type {
+	return allowedLogsArchiveDestinationS3TypeEnumValues
+}
+
 func (v *LogsArchiveDestinationS3Type) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -25,6 +25,10 @@ var allowedNotebookStatusEnumValues = []NotebookStatus{
 	"published",
 }
 
+func (w *NotebookStatus) GetAllowedValues() []NotebookStatus {
+	return allowedNotebookStatusEnumValues
+}
+
 func (v *NotebookStatus) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

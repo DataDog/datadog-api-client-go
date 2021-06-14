@@ -29,6 +29,10 @@ var allowedWidgetSizeFormatEnumValues = []WidgetSizeFormat{
 	"large",
 }
 
+func (w *WidgetSizeFormat) GetAllowedValues() []WidgetSizeFormat {
+	return allowedWidgetSizeFormatEnumValues
+}
+
 func (v *WidgetSizeFormat) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

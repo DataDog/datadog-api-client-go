@@ -33,6 +33,10 @@ var allowedSyntheticsTestProcessStatusEnumValues = []SyntheticsTestProcessStatus
 	"finished_with_error",
 }
 
+func (w *SyntheticsTestProcessStatus) GetAllowedValues() []SyntheticsTestProcessStatus {
+	return allowedSyntheticsTestProcessStatusEnumValues
+}
+
 func (v *SyntheticsTestProcessStatus) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

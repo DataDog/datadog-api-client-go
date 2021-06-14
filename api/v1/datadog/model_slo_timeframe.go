@@ -29,6 +29,10 @@ var allowedSLOTimeframeEnumValues = []SLOTimeframe{
 	"90d",
 }
 
+func (w *SLOTimeframe) GetAllowedValues() []SLOTimeframe {
+	return allowedSLOTimeframeEnumValues
+}
+
 func (v *SLOTimeframe) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

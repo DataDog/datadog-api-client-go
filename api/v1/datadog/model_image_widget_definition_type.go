@@ -25,6 +25,10 @@ var allowedImageWidgetDefinitionTypeEnumValues = []ImageWidgetDefinitionType{
 	"image",
 }
 
+func (w *ImageWidgetDefinitionType) GetAllowedValues() []ImageWidgetDefinitionType {
+	return allowedImageWidgetDefinitionTypeEnumValues
+}
+
 func (v *ImageWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

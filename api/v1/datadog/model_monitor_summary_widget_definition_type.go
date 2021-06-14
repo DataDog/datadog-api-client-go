@@ -25,6 +25,10 @@ var allowedMonitorSummaryWidgetDefinitionTypeEnumValues = []MonitorSummaryWidget
 	"manage_status",
 }
 
+func (w *MonitorSummaryWidgetDefinitionType) GetAllowedValues() []MonitorSummaryWidgetDefinitionType {
+	return allowedMonitorSummaryWidgetDefinitionTypeEnumValues
+}
+
 func (v *MonitorSummaryWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

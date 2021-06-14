@@ -35,6 +35,10 @@ var allowedApplicationKeysSortEnumValues = []ApplicationKeysSort{
 	"-name",
 }
 
+func (w *ApplicationKeysSort) GetAllowedValues() []ApplicationKeysSort {
+	return allowedApplicationKeysSortEnumValues
+}
+
 func (v *ApplicationKeysSort) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -29,6 +29,10 @@ var allowedWidgetVerticalAlignEnumValues = []WidgetVerticalAlign{
 	"bottom",
 }
 
+func (w *WidgetVerticalAlign) GetAllowedValues() []WidgetVerticalAlign {
+	return allowedWidgetVerticalAlignEnumValues
+}
+
 func (v *WidgetVerticalAlign) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

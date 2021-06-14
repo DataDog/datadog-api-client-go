@@ -37,6 +37,10 @@ var allowedSyntheticsErrorCodeEnumValues = []SyntheticsErrorCode{
 	"INCORRECT_ASSERTION",
 }
 
+func (w *SyntheticsErrorCode) GetAllowedValues() []SyntheticsErrorCode {
+	return allowedSyntheticsErrorCodeEnumValues
+}
+
 func (v *SyntheticsErrorCode) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

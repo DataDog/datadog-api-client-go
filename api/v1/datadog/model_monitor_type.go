@@ -47,6 +47,10 @@ var allowedMonitorTypeEnumValues = []MonitorType{
 	"event-v2 alert",
 }
 
+func (w *MonitorType) GetAllowedValues() []MonitorType {
+	return allowedMonitorTypeEnumValues
+}
+
 func (v *MonitorType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -27,6 +27,10 @@ var allowedSecurityMonitoringFilterActionEnumValues = []SecurityMonitoringFilter
 	"suppress",
 }
 
+func (w *SecurityMonitoringFilterAction) GetAllowedValues() []SecurityMonitoringFilterAction {
+	return allowedSecurityMonitoringFilterActionEnumValues
+}
+
 func (v *SecurityMonitoringFilterAction) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

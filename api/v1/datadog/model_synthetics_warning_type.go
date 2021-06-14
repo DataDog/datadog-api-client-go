@@ -25,6 +25,10 @@ var allowedSyntheticsWarningTypeEnumValues = []SyntheticsWarningType{
 	"user_locator",
 }
 
+func (w *SyntheticsWarningType) GetAllowedValues() []SyntheticsWarningType {
+	return allowedSyntheticsWarningTypeEnumValues
+}
+
 func (v *SyntheticsWarningType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

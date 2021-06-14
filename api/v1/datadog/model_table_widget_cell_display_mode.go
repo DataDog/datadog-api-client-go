@@ -27,6 +27,10 @@ var allowedTableWidgetCellDisplayModeEnumValues = []TableWidgetCellDisplayMode{
 	"bar",
 }
 
+func (w *TableWidgetCellDisplayMode) GetAllowedValues() []TableWidgetCellDisplayMode {
+	return allowedTableWidgetCellDisplayModeEnumValues
+}
+
 func (v *TableWidgetCellDisplayMode) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

@@ -25,6 +25,10 @@ var allowedApplicationKeysTypeEnumValues = []ApplicationKeysType{
 	"application_keys",
 }
 
+func (w *ApplicationKeysType) GetAllowedValues() []ApplicationKeysType {
+	return allowedApplicationKeysTypeEnumValues
+}
+
 func (v *ApplicationKeysType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)

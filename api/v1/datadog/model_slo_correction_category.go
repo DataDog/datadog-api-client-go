@@ -31,6 +31,10 @@ var allowedSLOCorrectionCategoryEnumValues = []SLOCorrectionCategory{
 	"Other",
 }
 
+func (w *SLOCorrectionCategory) GetAllowedValues() []SLOCorrectionCategory {
+	return allowedSLOCorrectionCategoryEnumValues
+}
+
 func (v *SLOCorrectionCategory) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
