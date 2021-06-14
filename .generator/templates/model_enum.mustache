@@ -20,6 +20,10 @@ var allowed{{{classname}}}EnumValues = []{{{classname}}}{
 	{{/allowableValues}}
 }
 
+func (w *{{{classname}}}) GetAllowedValues() []{{{classname}}} {
+	return allowed{{{classname}}}EnumValues
+}
+
 func (v *{{{classname}}}) UnmarshalJSON(src []byte) error {
 	var value {{^format}}{{dataType}}{{/format}}{{#format}}{{{format}}}{{/format}}
 	err := json.Unmarshal(src, &value)
