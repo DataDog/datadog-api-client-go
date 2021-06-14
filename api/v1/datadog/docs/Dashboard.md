@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **ModifiedAt** | Pointer to **time.Time** | Modification date of the dashboard. | [optional] [readonly] 
 **NotifyList** | Pointer to **[]string** | List of handles of users to notify when changes are made to this dashboard. | [optional] 
 **ReflowType** | Pointer to [**DashboardReflowType**](DashboardReflowType.md) |  | [optional] 
+**RestrictedRoles** | Pointer to **[]string** | A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard. Overrides the &#x60;is_read_only&#x60; property if both are present. **This feature is currently in beta.** | [optional] 
 **TemplateVariablePresets** | Pointer to [**[]DashboardTemplateVariablePreset**](DashboardTemplateVariablePreset.md) | Array of template variables saved views. | [optional] 
 **TemplateVariables** | Pointer to [**[]DashboardTemplateVariable**](DashboardTemplateVariable.md) | List of template variables for this dashboard. | [optional] 
 **Title** | **string** | Title of the dashboard. | 
@@ -277,6 +278,31 @@ SetReflowType sets ReflowType field to given value.
 `func (o *Dashboard) HasReflowType() bool`
 
 HasReflowType returns a boolean if a field has been set.
+
+### GetRestrictedRoles
+
+`func (o *Dashboard) GetRestrictedRoles() []string`
+
+GetRestrictedRoles returns the RestrictedRoles field if non-nil, zero value otherwise.
+
+### GetRestrictedRolesOk
+
+`func (o *Dashboard) GetRestrictedRolesOk() (*[]string, bool)`
+
+GetRestrictedRolesOk returns a tuple with the RestrictedRoles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRestrictedRoles
+
+`func (o *Dashboard) SetRestrictedRoles(v []string)`
+
+SetRestrictedRoles sets RestrictedRoles field to given value.
+
+### HasRestrictedRoles
+
+`func (o *Dashboard) HasRestrictedRoles() bool`
+
+HasRestrictedRoles returns a boolean if a field has been set.
 
 ### GetTemplateVariablePresets
 
