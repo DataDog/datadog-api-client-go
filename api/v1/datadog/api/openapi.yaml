@@ -5885,6 +5885,24 @@ paths:
         schema:
           type: string
         style: form
+      - description: The number of SLOs to return in the response.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: The specific offset to use as the beginning of the returned response.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
       responses:
         "200":
           content:

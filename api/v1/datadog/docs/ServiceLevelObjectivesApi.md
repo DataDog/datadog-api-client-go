@@ -508,11 +508,15 @@ func main() {
     query := "monitor" // string | The query string to filter results based on SLO names. (optional)
     tagsQuery := "env:prod" // string | The query string to filter results based on a single SLO tag. (optional)
     metricsQuery := "aws.elb.request_count" // string | The query string to filter results based on SLO numerator and denominator. (optional)
+    limit := int64(789) // int64 | The number of SLOs to return in the response. (optional)
+    offset := int64(789) // int64 | The specific offset to use as the beginning of the returned response. (optional)
     optionalParams := datadog.ListSLOsOptionalParameters{
         Ids: &ids,
         Query: &query,
         TagsQuery: &tagsQuery,
         MetricsQuery: &metricsQuery,
+        Limit: &limit,
+        Offset: &offset,
     }
 
     configuration := datadog.NewConfiguration()
@@ -546,6 +550,8 @@ Name | Type | Description  | Notes
 **query** | **string** | The query string to filter results based on SLO names. | 
 **tagsQuery** | **string** | The query string to filter results based on a single SLO tag. | 
 **metricsQuery** | **string** | The query string to filter results based on SLO numerator and denominator. | 
+**limit** | **int64** | The number of SLOs to return in the response. | 
+**offset** | **int64** | The specific offset to use as the beginning of the returned response. | 
 
 ### Return type
 
