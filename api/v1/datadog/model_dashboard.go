@@ -32,6 +32,8 @@ type Dashboard struct {
 	// List of handles of users to notify when changes are made to this dashboard.
 	NotifyList []string             `json:"notify_list,omitempty"`
 	ReflowType *DashboardReflowType `json:"reflow_type,omitempty"`
+	// A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard. Overrides the `is_read_only` property if both are present. **This feature is currently in beta.**
+	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
 	// Array of template variables saved views.
 	TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
 	// List of template variables for this dashboard.
@@ -360,6 +362,38 @@ func (o *Dashboard) SetReflowType(v DashboardReflowType) {
 	o.ReflowType = &v
 }
 
+// GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
+func (o *Dashboard) GetRestrictedRoles() []string {
+	if o == nil || o.RestrictedRoles == nil {
+		var ret []string
+		return ret
+	}
+	return *o.RestrictedRoles
+}
+
+// GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Dashboard) GetRestrictedRolesOk() (*[]string, bool) {
+	if o == nil || o.RestrictedRoles == nil {
+		return nil, false
+	}
+	return o.RestrictedRoles, true
+}
+
+// HasRestrictedRoles returns a boolean if a field has been set.
+func (o *Dashboard) HasRestrictedRoles() bool {
+	if o != nil && o.RestrictedRoles != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
+func (o *Dashboard) SetRestrictedRoles(v []string) {
+	o.RestrictedRoles = &v
+}
+
 // GetTemplateVariablePresets returns the TemplateVariablePresets field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetTemplateVariablePresets() []DashboardTemplateVariablePreset {
 	if o == nil {
@@ -535,6 +569,9 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 	if o.ReflowType != nil {
 		toSerialize["reflow_type"] = o.ReflowType
 	}
+	if o.RestrictedRoles != nil {
+		toSerialize["restricted_roles"] = o.RestrictedRoles
+	}
 	if o.TemplateVariablePresets != nil {
 		toSerialize["template_variable_presets"] = o.TemplateVariablePresets
 	}
@@ -569,6 +606,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 		ModifiedAt              *time.Time                        `json:"modified_at,omitempty"`
 		NotifyList              []string                          `json:"notify_list,omitempty"`
 		ReflowType              *DashboardReflowType              `json:"reflow_type,omitempty"`
+		RestrictedRoles         *[]string                         `json:"restricted_roles,omitempty"`
 		TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
 		TemplateVariables       []DashboardTemplateVariable       `json:"template_variables,omitempty"`
 		Title                   string                            `json:"title"`
@@ -601,6 +639,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	o.ModifiedAt = all.ModifiedAt
 	o.NotifyList = all.NotifyList
 	o.ReflowType = all.ReflowType
+	o.RestrictedRoles = all.RestrictedRoles
 	o.TemplateVariablePresets = all.TemplateVariablePresets
 	o.TemplateVariables = all.TemplateVariables
 	o.Title = all.Title
