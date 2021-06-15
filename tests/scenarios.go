@@ -45,35 +45,17 @@ func relativeTime(iso bool) func(map[string]interface{}, string) string {
 		if res := timeRE.FindSubmatch([]byte(arg)); res != nil {
 			if string(res[1]) != "" {
 				// Add or substract a duration from now
-				sign := string(res[2])
-				num, _ := strconv.ParseInt(string(res[3]), 10, 64)
+				num, _ := strconv.ParseInt(string(res[2])+string(res[3]), 10, 64)
 				unit := string(res[4])
 				switch unit {
 				case "s", "m", "h":
-					dur := unitToDur[unit] * time.Duration(num)
-					if sign == "-" {
-						ret = ret.Add(-dur)
-					} else {
-						ret = ret.Add(dur)
-					}
+					ret = ret.Add(unitToDur[unit] * time.Duration(num))
 				case "d":
-					if sign == "-" {
-						ret = ret.AddDate(0, 0, -int(num))
-					} else {
-						ret = ret.AddDate(0, 0, int(num))
-					}
+					ret = ret.AddDate(0, 0, int(num))
 				case "M":
-					if sign == "-" {
-						ret = ret.AddDate(0, -int(num), 0)
-					} else {
-						ret = ret.AddDate(0, int(num), 0)
-					}
+					ret = ret.AddDate(0, int(num), 0)
 				case "y":
-					if sign == "-" {
-						ret = ret.AddDate(-int(num), 0, 0)
-					} else {
-						ret = ret.AddDate(int(num), 0, 0)
-					}
+					ret = ret.AddDate(int(num), 0, 0)
 				}
 			}
 			if iso {
