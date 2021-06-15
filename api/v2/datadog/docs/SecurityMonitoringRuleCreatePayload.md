@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Cases** | [**[]SecurityMonitoringRuleCaseCreate**](SecurityMonitoringRuleCaseCreate.md) | Cases for generating signals. | 
 **Filters** | Pointer to [**[]SecurityMonitoringFilter**](SecurityMonitoringFilter.md) | Additional queries to filter matched events before they are processed. | [optional] 
+**HasExtendedTitle** | Pointer to **bool** | Whether the notifications include the triggering group-by values in their title. | [optional] 
 **IsEnabled** | **bool** | Whether the rule is enabled. | 
 **Message** | **string** | Message for generated signals. | 
 **Name** | **string** | The name of the rule. | 
@@ -76,6 +77,31 @@ SetFilters sets Filters field to given value.
 `func (o *SecurityMonitoringRuleCreatePayload) HasFilters() bool`
 
 HasFilters returns a boolean if a field has been set.
+
+### GetHasExtendedTitle
+
+`func (o *SecurityMonitoringRuleCreatePayload) GetHasExtendedTitle() bool`
+
+GetHasExtendedTitle returns the HasExtendedTitle field if non-nil, zero value otherwise.
+
+### GetHasExtendedTitleOk
+
+`func (o *SecurityMonitoringRuleCreatePayload) GetHasExtendedTitleOk() (*bool, bool)`
+
+GetHasExtendedTitleOk returns a tuple with the HasExtendedTitle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasExtendedTitle
+
+`func (o *SecurityMonitoringRuleCreatePayload) SetHasExtendedTitle(v bool)`
+
+SetHasExtendedTitle sets HasExtendedTitle field to given value.
+
+### HasHasExtendedTitle
+
+`func (o *SecurityMonitoringRuleCreatePayload) HasHasExtendedTitle() bool`
+
+HasHasExtendedTitle returns a boolean if a field has been set.
 
 ### GetIsEnabled
 

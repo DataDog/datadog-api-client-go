@@ -14,7 +14,7 @@ import (
 
 // SecurityMonitoringListRulesResponse List of rules.
 type SecurityMonitoringListRulesResponse struct {
-	// TODO.
+	// Array containing the list of rules.
 	Data *[]SecurityMonitoringRuleResponse `json:"data,omitempty"`
 	Meta *ResponseMetaAttributes           `json:"meta,omitempty"`
 }
