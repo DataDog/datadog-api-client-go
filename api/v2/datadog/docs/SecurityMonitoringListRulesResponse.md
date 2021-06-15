@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Data** | Pointer to [**[]SecurityMonitoringRuleResponse**](SecurityMonitoringRuleResponse.md) | TODO. | [optional] 
+**Data** | Pointer to [**[]SecurityMonitoringRuleResponse**](SecurityMonitoringRuleResponse.md) | Array containing the list of rules. | [optional] 
 **Meta** | Pointer to [**ResponseMetaAttributes**](ResponseMetaAttributes.md) |  | [optional] 
 
 ## Methods
