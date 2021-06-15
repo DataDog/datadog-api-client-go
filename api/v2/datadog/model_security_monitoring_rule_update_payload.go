@@ -18,6 +18,8 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	Cases *[]SecurityMonitoringRuleCase `json:"cases,omitempty"`
 	// Additional queries to filter matched events before they are processed.
 	Filters *[]SecurityMonitoringFilter `json:"filters,omitempty"`
+	// Whether the notifications include the triggering group-by values in their title.
+	HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
 	// Whether the rule is enabled.
 	IsEnabled *bool `json:"isEnabled,omitempty"`
 	// Message for generated signals.
@@ -29,6 +31,8 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	Queries *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
 	// Tags for generated signals.
 	Tags *[]string `json:"tags,omitempty"`
+	// The version of the rule being updated.
+	Version *int32 `json:"version,omitempty"`
 }
 
 // NewSecurityMonitoringRuleUpdatePayload instantiates a new SecurityMonitoringRuleUpdatePayload object
@@ -110,6 +114,38 @@ func (o *SecurityMonitoringRuleUpdatePayload) HasFilters() bool {
 // SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.
 func (o *SecurityMonitoringRuleUpdatePayload) SetFilters(v []SecurityMonitoringFilter) {
 	o.Filters = &v
+}
+
+// GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleUpdatePayload) GetHasExtendedTitle() bool {
+	if o == nil || o.HasExtendedTitle == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HasExtendedTitle
+}
+
+// GetHasExtendedTitleOk returns a tuple with the HasExtendedTitle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleUpdatePayload) GetHasExtendedTitleOk() (*bool, bool) {
+	if o == nil || o.HasExtendedTitle == nil {
+		return nil, false
+	}
+	return o.HasExtendedTitle, true
+}
+
+// HasHasExtendedTitle returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleUpdatePayload) HasHasExtendedTitle() bool {
+	if o != nil && o.HasExtendedTitle != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasExtendedTitle gets a reference to the given bool and assigns it to the HasExtendedTitle field.
+func (o *SecurityMonitoringRuleUpdatePayload) SetHasExtendedTitle(v bool) {
+	o.HasExtendedTitle = &v
 }
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
@@ -304,6 +340,38 @@ func (o *SecurityMonitoringRuleUpdatePayload) SetTags(v []string) {
 	o.Tags = &v
 }
 
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleUpdatePayload) GetVersion() int32 {
+	if o == nil || o.Version == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleUpdatePayload) GetVersionOk() (*int32, bool) {
+	if o == nil || o.Version == nil {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleUpdatePayload) HasVersion() bool {
+	if o != nil && o.Version != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given int32 and assigns it to the Version field.
+func (o *SecurityMonitoringRuleUpdatePayload) SetVersion(v int32) {
+	o.Version = &v
+}
+
 func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Cases != nil {
@@ -311,6 +379,9 @@ func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 	}
 	if o.Filters != nil {
 		toSerialize["filters"] = o.Filters
+	}
+	if o.HasExtendedTitle != nil {
+		toSerialize["hasExtendedTitle"] = o.HasExtendedTitle
 	}
 	if o.IsEnabled != nil {
 		toSerialize["isEnabled"] = o.IsEnabled
@@ -329,6 +400,9 @@ func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
+	}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
 	}
 	return json.Marshal(toSerialize)
 }

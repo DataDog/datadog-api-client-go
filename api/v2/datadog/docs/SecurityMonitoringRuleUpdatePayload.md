@@ -6,12 +6,14 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Cases** | Pointer to [**[]SecurityMonitoringRuleCase**](SecurityMonitoringRuleCase.md) | Cases for generating signals. | [optional] 
 **Filters** | Pointer to [**[]SecurityMonitoringFilter**](SecurityMonitoringFilter.md) | Additional queries to filter matched events before they are processed. | [optional] 
+**HasExtendedTitle** | Pointer to **bool** | Whether the notifications include the triggering group-by values in their title. | [optional] 
 **IsEnabled** | Pointer to **bool** | Whether the rule is enabled. | [optional] 
 **Message** | Pointer to **string** | Message for generated signals. | [optional] 
 **Name** | Pointer to **string** | Name of the rule. | [optional] 
 **Options** | Pointer to [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md) |  | [optional] 
 **Queries** | Pointer to [**[]SecurityMonitoringRuleQuery**](SecurityMonitoringRuleQuery.md) | Queries for selecting logs which are part of the rule. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for generated signals. | [optional] 
+**Version** | Pointer to **int32** | The version of the rule being updated. | [optional] 
 
 ## Methods
 
@@ -81,6 +83,31 @@ SetFilters sets Filters field to given value.
 `func (o *SecurityMonitoringRuleUpdatePayload) HasFilters() bool`
 
 HasFilters returns a boolean if a field has been set.
+
+### GetHasExtendedTitle
+
+`func (o *SecurityMonitoringRuleUpdatePayload) GetHasExtendedTitle() bool`
+
+GetHasExtendedTitle returns the HasExtendedTitle field if non-nil, zero value otherwise.
+
+### GetHasExtendedTitleOk
+
+`func (o *SecurityMonitoringRuleUpdatePayload) GetHasExtendedTitleOk() (*bool, bool)`
+
+GetHasExtendedTitleOk returns a tuple with the HasExtendedTitle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasExtendedTitle
+
+`func (o *SecurityMonitoringRuleUpdatePayload) SetHasExtendedTitle(v bool)`
+
+SetHasExtendedTitle sets HasExtendedTitle field to given value.
+
+### HasHasExtendedTitle
+
+`func (o *SecurityMonitoringRuleUpdatePayload) HasHasExtendedTitle() bool`
+
+HasHasExtendedTitle returns a boolean if a field has been set.
 
 ### GetIsEnabled
 
@@ -231,6 +258,31 @@ SetTags sets Tags field to given value.
 `func (o *SecurityMonitoringRuleUpdatePayload) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetVersion
+
+`func (o *SecurityMonitoringRuleUpdatePayload) GetVersion() int32`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *SecurityMonitoringRuleUpdatePayload) GetVersionOk() (*int32, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *SecurityMonitoringRuleUpdatePayload) SetVersion(v int32)`
+
+SetVersion sets Version field to given value.
+
+### HasVersion
+
+`func (o *SecurityMonitoringRuleUpdatePayload) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

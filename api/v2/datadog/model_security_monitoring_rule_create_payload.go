@@ -19,6 +19,8 @@ type SecurityMonitoringRuleCreatePayload struct {
 	Cases []SecurityMonitoringRuleCaseCreate `json:"cases"`
 	// Additional queries to filter matched events before they are processed.
 	Filters *[]SecurityMonitoringFilter `json:"filters,omitempty"`
+	// Whether the notifications include the triggering group-by values in their title.
+	HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
 	// Whether the rule is enabled.
 	IsEnabled bool `json:"isEnabled"`
 	// Message for generated signals.
@@ -109,6 +111,38 @@ func (o *SecurityMonitoringRuleCreatePayload) HasFilters() bool {
 // SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.
 func (o *SecurityMonitoringRuleCreatePayload) SetFilters(v []SecurityMonitoringFilter) {
 	o.Filters = &v
+}
+
+// GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleCreatePayload) GetHasExtendedTitle() bool {
+	if o == nil || o.HasExtendedTitle == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HasExtendedTitle
+}
+
+// GetHasExtendedTitleOk returns a tuple with the HasExtendedTitle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleCreatePayload) GetHasExtendedTitleOk() (*bool, bool) {
+	if o == nil || o.HasExtendedTitle == nil {
+		return nil, false
+	}
+	return o.HasExtendedTitle, true
+}
+
+// HasHasExtendedTitle returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleCreatePayload) HasHasExtendedTitle() bool {
+	if o != nil && o.HasExtendedTitle != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasExtendedTitle gets a reference to the given bool and assigns it to the HasExtendedTitle field.
+func (o *SecurityMonitoringRuleCreatePayload) SetHasExtendedTitle(v bool) {
+	o.HasExtendedTitle = &v
 }
 
 // GetIsEnabled returns the IsEnabled field value
@@ -271,6 +305,9 @@ func (o SecurityMonitoringRuleCreatePayload) MarshalJSON() ([]byte, error) {
 	if o.Filters != nil {
 		toSerialize["filters"] = o.Filters
 	}
+	if o.HasExtendedTitle != nil {
+		toSerialize["hasExtendedTitle"] = o.HasExtendedTitle
+	}
 	if true {
 		toSerialize["isEnabled"] = o.IsEnabled
 	}
@@ -302,14 +339,15 @@ func (o *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 		Queries   *[]SecurityMonitoringRuleQueryCreate `json:"queries"`
 	}{}
 	all := struct {
-		Cases     []SecurityMonitoringRuleCaseCreate  `json:"cases"`
-		Filters   *[]SecurityMonitoringFilter         `json:"filters,omitempty"`
-		IsEnabled bool                                `json:"isEnabled"`
-		Message   string                              `json:"message"`
-		Name      string                              `json:"name"`
-		Options   SecurityMonitoringRuleOptions       `json:"options"`
-		Queries   []SecurityMonitoringRuleQueryCreate `json:"queries"`
-		Tags      *[]string                           `json:"tags,omitempty"`
+		Cases            []SecurityMonitoringRuleCaseCreate  `json:"cases"`
+		Filters          *[]SecurityMonitoringFilter         `json:"filters,omitempty"`
+		HasExtendedTitle *bool                               `json:"hasExtendedTitle,omitempty"`
+		IsEnabled        bool                                `json:"isEnabled"`
+		Message          string                              `json:"message"`
+		Name             string                              `json:"name"`
+		Options          SecurityMonitoringRuleOptions       `json:"options"`
+		Queries          []SecurityMonitoringRuleQueryCreate `json:"queries"`
+		Tags             *[]string                           `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -339,6 +377,7 @@ func (o *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 	}
 	o.Cases = all.Cases
 	o.Filters = all.Filters
+	o.HasExtendedTitle = all.HasExtendedTitle
 	o.IsEnabled = all.IsEnabled
 	o.Message = all.Message
 	o.Name = all.Name
