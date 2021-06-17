@@ -6157,8 +6157,8 @@ paths:
                 "data": {
                   "attributes": {
                     "slo_id": "{{ slo.data[0].id }}",
-                    "start": {{ now_ts }},
-                    "end": {{ hour_later_ts }},
+                    "start": {{ timestamp("now") }},
+                    "end": {{ timestamp("now + 1h") }},
                     "category": "Other",
                     "timezone": "UTC",
                     "description": "Test Correction"
