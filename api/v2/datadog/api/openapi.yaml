@@ -3510,14 +3510,8 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SecurityFilterDeleteResponse'
-          description: OK
         "204":
-          description: No Content
+          description: OK
         "403":
           content:
             application/json:
@@ -10794,16 +10788,6 @@ components:
           $ref: '#/components/schemas/SecurityFilterCreateData'
       required:
       - data
-      type: object
-    SecurityFilterDeleteResponse:
-      description: Response object which only includes the metadata.
-      example:
-        meta:
-          warning: All the security filters are disabled. As a result, no logs are
-            being analyzed.
-      properties:
-        meta:
-          $ref: '#/components/schemas/SecurityFilterMeta'
       type: object
     SecurityFilterExclusionFilter:
       description: Exclusion filter for the security filter.

@@ -284,7 +284,6 @@ docs/SecurityFilterAttributes.md
 docs/SecurityFilterCreateAttributes.md
 docs/SecurityFilterCreateData.md
 docs/SecurityFilterCreateRequest.md
-docs/SecurityFilterDeleteResponse.md
 docs/SecurityFilterExclusionFilter.md
 docs/SecurityFilterExclusionFilterResponse.md
 docs/SecurityFilterFilteredDataType.md
@@ -609,7 +608,6 @@ model_security_filter_attributes.go
 model_security_filter_create_attributes.go
 model_security_filter_create_data.go
 model_security_filter_create_request.go
-model_security_filter_delete_response.go
 model_security_filter_exclusion_filter.go
 model_security_filter_exclusion_filter_response.go
 model_security_filter_filtered_data_type.go
