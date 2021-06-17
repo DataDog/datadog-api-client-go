@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.1.0 / 2021-06-16
+
+* [Added] Add missing fields `hasExtendedTitle`, `type`, `version` and `updateAuthorId` for Security Monitoring Rule endpoints. See [#998](https://github.com/DataDog/datadog-api-client-go/pull/998).
+* [Added] Dashboard RBAC role support. See [#993](https://github.com/DataDog/datadog-api-client-go/pull/993).
+* [Fixed] Fix go JSON struct. See [#992](https://github.com/DataDog/datadog-api-client-go/pull/992).
+
 ## 1.0.0 / 2021-06-10
 
 * [Added] Add missing fields in usage billable summary keys. See [#987](https://github.com/DataDog/datadog-api-client-go/pull/987).

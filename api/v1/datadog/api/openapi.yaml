@@ -6157,8 +6157,8 @@ paths:
                 "data": {
                   "attributes": {
                     "slo_id": "{{ slo.data[0].id }}",
-                    "start": {{ now_ts }},
-                    "end": {{ hour_later_ts }},
+                    "start": {{ timestamp("now") }},
+                    "end": {{ timestamp("now + 1h") }},
                     "category": "Other",
                     "timezone": "UTC",
                     "description": "Test Correction"
@@ -15105,6 +15105,19 @@ components:
       description: Object containing all metric names returned and their associated
         metadata.
       example:
+        expression: system.cpu.idle{host:foo,env:test}
+        pointlist:
+        - - 1575317847
+          - 0.5
+        - - 1575317847
+          - 0.5
+        length: 5
+        start: 2
+        query_index: 5
+        display_name: system.cpu.idle
+        tag_set:
+        - tag_set
+        - tag_set
         unit:
         - plural: minutes
           name: minute
@@ -15116,20 +15129,11 @@ components:
           short_name: min
           family: time
           scale_factor: 60.0
-        expression: system.cpu.idle{host:foo,env:test}
         metric: system.cpu.idle
-        pointlist:
-        - - 1575317847
-          - 0.5
-        - - 1575317847
-          - 0.5
         scope: host:foo,env:test
-        length: 5
-        start: 5
         end: 6
         interval: 1
         aggr: avg
-        display_name: system.cpu.idle
       properties:
         aggr:
           description: Aggregation type.
@@ -15172,6 +15176,11 @@ components:
             $ref: '#/components/schemas/Point'
           readOnly: true
           type: array
+        query_index:
+          description: The index of the series' query within the request.
+          format: int64
+          readOnly: true
+          type: integer
         scope:
           description: Metric scope, comma separated list of tags.
           example: host:foo,env:test
@@ -15182,6 +15191,13 @@ components:
           format: int64
           readOnly: true
           type: integer
+        tag_set:
+          description: Unique tags identifying this series.
+          items:
+            description: Unique tags identifying this series.
+            type: string
+          readOnly: true
+          type: array
         unit:
           description: |-
             Detailed information about the metric unit.
@@ -15200,58 +15216,66 @@ components:
       example:
         res_type: time_series
         from_date: 0
-        to_date: 2
+        to_date: 7
         series:
-        - unit:
-          - plural: minutes
-            name: minute
-            short_name: min
-            family: time
-            scale_factor: 60.0
-          - plural: minutes
-            name: minute
-            short_name: min
-            family: time
-            scale_factor: 60.0
-          expression: system.cpu.idle{host:foo,env:test}
-          metric: system.cpu.idle
+        - expression: system.cpu.idle{host:foo,env:test}
           pointlist:
           - - 1575317847
             - 0.5
           - - 1575317847
             - 0.5
-          scope: host:foo,env:test
           length: 5
-          start: 5
+          start: 2
+          query_index: 5
+          display_name: system.cpu.idle
+          tag_set:
+          - tag_set
+          - tag_set
+          unit:
+          - plural: minutes
+            name: minute
+            short_name: min
+            family: time
+            scale_factor: 60.0
+          - plural: minutes
+            name: minute
+            short_name: min
+            family: time
+            scale_factor: 60.0
+          metric: system.cpu.idle
+          scope: host:foo,env:test
           end: 6
           interval: 1
           aggr: avg
-          display_name: system.cpu.idle
-        - unit:
-          - plural: minutes
-            name: minute
-            short_name: min
-            family: time
-            scale_factor: 60.0
-          - plural: minutes
-            name: minute
-            short_name: min
-            family: time
-            scale_factor: 60.0
-          expression: system.cpu.idle{host:foo,env:test}
-          metric: system.cpu.idle
+        - expression: system.cpu.idle{host:foo,env:test}
           pointlist:
           - - 1575317847
             - 0.5
           - - 1575317847
             - 0.5
-          scope: host:foo,env:test
           length: 5
-          start: 5
+          start: 2
+          query_index: 5
+          display_name: system.cpu.idle
+          tag_set:
+          - tag_set
+          - tag_set
+          unit:
+          - plural: minutes
+            name: minute
+            short_name: min
+            family: time
+            scale_factor: 60.0
+          - plural: minutes
+            name: minute
+            short_name: min
+            family: time
+            scale_factor: 60.0
+          metric: system.cpu.idle
+          scope: host:foo,env:test
           end: 6
           interval: 1
           aggr: avg
-          display_name: system.cpu.idle
         query: query
         group_by:
         - group_by

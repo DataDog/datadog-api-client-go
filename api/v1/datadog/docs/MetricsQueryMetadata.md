@@ -12,8 +12,10 @@ Name | Type | Description | Notes
 **Length** | Pointer to **int64** | Number of data samples. | [optional] [readonly] 
 **Metric** | Pointer to **string** | Metric name. | [optional] [readonly] 
 **Pointlist** | Pointer to **[][]float64** | List of points of the time series. | [optional] [readonly] 
+**QueryIndex** | Pointer to **int64** | The index of the series&#39; query within the request. | [optional] [readonly] 
 **Scope** | Pointer to **string** | Metric scope, comma separated list of tags. | [optional] [readonly] 
 **Start** | Pointer to **int64** | Start of the time window, milliseconds since Unix epoch. | [optional] [readonly] 
+**TagSet** | Pointer to **[]string** | Unique tags identifying this series. | [optional] [readonly] 
 **Unit** | Pointer to [**[]MetricsQueryUnit**](MetricsQueryUnit.md) | Detailed information about the metric unit. First element describes the \&quot;primary unit\&quot; (for example, &#x60;bytes&#x60; in &#x60;bytes per second&#x60;), second describes the \&quot;per unit\&quot; (for example, &#x60;second&#x60; in &#x60;bytes per second&#x60;). | [optional] [readonly] 
 
 ## Methods
@@ -235,6 +237,31 @@ SetPointlist sets Pointlist field to given value.
 
 HasPointlist returns a boolean if a field has been set.
 
+### GetQueryIndex
+
+`func (o *MetricsQueryMetadata) GetQueryIndex() int64`
+
+GetQueryIndex returns the QueryIndex field if non-nil, zero value otherwise.
+
+### GetQueryIndexOk
+
+`func (o *MetricsQueryMetadata) GetQueryIndexOk() (*int64, bool)`
+
+GetQueryIndexOk returns a tuple with the QueryIndex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQueryIndex
+
+`func (o *MetricsQueryMetadata) SetQueryIndex(v int64)`
+
+SetQueryIndex sets QueryIndex field to given value.
+
+### HasQueryIndex
+
+`func (o *MetricsQueryMetadata) HasQueryIndex() bool`
+
+HasQueryIndex returns a boolean if a field has been set.
+
 ### GetScope
 
 `func (o *MetricsQueryMetadata) GetScope() string`
@@ -284,6 +311,31 @@ SetStart sets Start field to given value.
 `func (o *MetricsQueryMetadata) HasStart() bool`
 
 HasStart returns a boolean if a field has been set.
+
+### GetTagSet
+
+`func (o *MetricsQueryMetadata) GetTagSet() []string`
+
+GetTagSet returns the TagSet field if non-nil, zero value otherwise.
+
+### GetTagSetOk
+
+`func (o *MetricsQueryMetadata) GetTagSetOk() (*[]string, bool)`
+
+GetTagSetOk returns a tuple with the TagSet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTagSet
+
+`func (o *MetricsQueryMetadata) SetTagSet(v []string)`
+
+SetTagSet sets TagSet field to given value.
+
+### HasTagSet
+
+`func (o *MetricsQueryMetadata) HasTagSet() bool`
+
+HasTagSet returns a boolean if a field has been set.
 
 ### GetUnit
 
