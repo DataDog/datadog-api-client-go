@@ -15339,6 +15339,7 @@ components:
         short_name: min
         family: time
         scale_factor: 60.0
+      nullable: true
       properties:
         family:
           description: Unit family, allows for conversion between units of the same
