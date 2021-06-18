@@ -28,6 +28,46 @@ import (
 	is "gotest.tools/assert/cmp"
 )
 
+var templateFunctions = map[string]func(map[string]interface{}, string) string{
+	"timeISO":   relativeTime(true),
+	"timestamp": relativeTime(false),
+}
+
+func relativeTime(iso bool) func(map[string]interface{}, string) string {
+	timeRE := regexp.MustCompile(`now( *([+-]) *(\d+)([smhdMy]))?`)
+	unitToDur := map[string]time.Duration{
+		"s": time.Second,
+		"m": time.Minute,
+		"h": time.Hour,
+	}
+	return func(data map[string]interface{}, arg string) string {
+		ret := data["now"].(time.Time)
+		if res := timeRE.FindSubmatch([]byte(arg)); res != nil {
+			if string(res[1]) != "" {
+				// Add or substract a duration from now
+				num, _ := strconv.ParseInt(string(res[2])+string(res[3]), 10, 64)
+				unit := string(res[4])
+				switch unit {
+				case "s", "m", "h":
+					ret = ret.Add(unitToDur[unit] * time.Duration(num))
+				case "d":
+					ret = ret.AddDate(0, 0, int(num))
+				case "M":
+					ret = ret.AddDate(0, int(num), 0)
+				case "y":
+					ret = ret.AddDate(int(num), 0, 0)
+				}
+			}
+			if iso {
+				return ret.Format(time.RFC3339)
+			} else {
+				return strconv.FormatInt(ret.Unix(), 10)
+			}
+		}
+		return ""
+	}
+}
+
 // UndoAction describes undo action.
 type UndoAction struct {
 	Tag  string `json:"tag"`
@@ -96,11 +136,18 @@ func GetIgnoredTags() []string {
 	return tags
 }
 
-// Templated replaces {{ path }} in source with value from data[path].
-func Templated(t gobdd.StepTest, data interface{}, source string) string {
+// Templated replaces {{ path }} in source with value from data[path]. If path contains `(`, `)`, then it's a function to call, with the args between brackets.
+func Templated(t gobdd.StepTest, data map[string]interface{}, source string) string {
 	re := regexp.MustCompile(`{{ ?([^}])+ ?}}`)
+	functionRE := regexp.MustCompile(`^(.+)\((.*)\)$`)
 	replace := func(source string) string {
 		path := strings.Trim(source, "{ }")
+		if res := functionRE.FindSubmatch([]byte(path)); res != nil {
+			functionName := string(res[1])
+			arg := string(res[2])
+			res := templateFunctions[functionName](data, arg)
+			return res
+		}
 		v, err := lookup.LookupStringI(data, path)
 		if err != nil {
 			t.Fatalf("problem with replacement of %s: %v", source, err)
@@ -379,12 +426,7 @@ func SetFixtureData(ctx gobdd.Context) {
 	data["unique_lower"] = strings.ToLower(unique)
 	data["unique_alnum"] = string(alnum.ReplaceAll([]byte(unique), []byte("")))
 	data["unique_lower_alnum"] = strings.ToLower(data["unique_alnum"].(string))
-	data["now_ts"] = ClockFromContext(cctx).Now().Unix()
-	data["now_iso"] = ClockFromContext(cctx).Now().Format(time.RFC3339)
-	data["hour_later_ts"] = ClockFromContext(cctx).Now().Add(time.Hour).Unix()
-	data["hour_later_iso"] = ClockFromContext(cctx).Now().Add(time.Hour).Format(time.RFC3339)
-	data["hour_ago_ts"] = ClockFromContext(cctx).Now().Add(-time.Hour).Unix()
-	data["hour_ago_iso"] = ClockFromContext(cctx).Now().Add(-time.Hour).Format(time.RFC3339)
+	data["now"] = ClockFromContext(cctx).Now()
 }
 
 // SetClient sets client reflection.

@@ -429,7 +429,6 @@ Class | Method | HTTP request | Description
  - [SecurityFilterCreateAttributes](docs/SecurityFilterCreateAttributes.md)
  - [SecurityFilterCreateData](docs/SecurityFilterCreateData.md)
  - [SecurityFilterCreateRequest](docs/SecurityFilterCreateRequest.md)
- - [SecurityFilterDeleteResponse](docs/SecurityFilterDeleteResponse.md)
  - [SecurityFilterExclusionFilter](docs/SecurityFilterExclusionFilter.md)
  - [SecurityFilterExclusionFilterResponse](docs/SecurityFilterExclusionFilterResponse.md)
  - [SecurityFilterFilteredDataType](docs/SecurityFilterFilteredDataType.md)

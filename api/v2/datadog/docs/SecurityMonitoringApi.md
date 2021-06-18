@@ -164,7 +164,7 @@ This endpoint does not have optional parameters.
 
 ## DeleteSecurityFilter
 
-> SecurityFilterDeleteResponse DeleteSecurityFilter(ctx, securityFilterId)
+> DeleteSecurityFilter(ctx, securityFilterId)
 
 Delete a specific security filter.
 
@@ -175,7 +175,6 @@ package main
 
 import (
     "context"
-    "encoding/json"
     "fmt"
     "os"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -189,14 +188,11 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.DeleteSecurityFilter(ctx, securityFilterId)
+    r, err := apiClient.SecurityMonitoringApi.DeleteSecurityFilter(ctx, securityFilterId)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityFilter`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteSecurityFilter`: SecurityFilterDeleteResponse
-    responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.DeleteSecurityFilter:\n%s\n", responseContent)
 }
 ```
 
@@ -216,7 +212,7 @@ This endpoint does not have optional parameters.
 
 ### Return type
 
-[**SecurityFilterDeleteResponse**](SecurityFilterDeleteResponse.md)
+ (empty response body)
 
 ### Authorization
 

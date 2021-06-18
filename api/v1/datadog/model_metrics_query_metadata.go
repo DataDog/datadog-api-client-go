@@ -30,10 +30,14 @@ type MetricsQueryMetadata struct {
 	Metric *string `json:"metric,omitempty"`
 	// List of points of the time series.
 	Pointlist *[][]float64 `json:"pointlist,omitempty"`
+	// The index of the series' query within the request.
+	QueryIndex *int64 `json:"query_index,omitempty"`
 	// Metric scope, comma separated list of tags.
 	Scope *string `json:"scope,omitempty"`
 	// Start of the time window, milliseconds since Unix epoch.
 	Start *int64 `json:"start,omitempty"`
+	// Unique tags identifying this series.
+	TagSet *[]string `json:"tag_set,omitempty"`
 	// Detailed information about the metric unit. First element describes the \"primary unit\" (for example, `bytes` in `bytes per second`), second describes the \"per unit\" (for example, `second` in `bytes per second`).
 	Unit *[]MetricsQueryUnit `json:"unit,omitempty"`
 }
@@ -311,6 +315,38 @@ func (o *MetricsQueryMetadata) SetPointlist(v [][]float64) {
 	o.Pointlist = &v
 }
 
+// GetQueryIndex returns the QueryIndex field value if set, zero value otherwise.
+func (o *MetricsQueryMetadata) GetQueryIndex() int64 {
+	if o == nil || o.QueryIndex == nil {
+		var ret int64
+		return ret
+	}
+	return *o.QueryIndex
+}
+
+// GetQueryIndexOk returns a tuple with the QueryIndex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsQueryMetadata) GetQueryIndexOk() (*int64, bool) {
+	if o == nil || o.QueryIndex == nil {
+		return nil, false
+	}
+	return o.QueryIndex, true
+}
+
+// HasQueryIndex returns a boolean if a field has been set.
+func (o *MetricsQueryMetadata) HasQueryIndex() bool {
+	if o != nil && o.QueryIndex != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQueryIndex gets a reference to the given int64 and assigns it to the QueryIndex field.
+func (o *MetricsQueryMetadata) SetQueryIndex(v int64) {
+	o.QueryIndex = &v
+}
+
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetScope() string {
 	if o == nil || o.Scope == nil {
@@ -375,6 +411,38 @@ func (o *MetricsQueryMetadata) SetStart(v int64) {
 	o.Start = &v
 }
 
+// GetTagSet returns the TagSet field value if set, zero value otherwise.
+func (o *MetricsQueryMetadata) GetTagSet() []string {
+	if o == nil || o.TagSet == nil {
+		var ret []string
+		return ret
+	}
+	return *o.TagSet
+}
+
+// GetTagSetOk returns a tuple with the TagSet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsQueryMetadata) GetTagSetOk() (*[]string, bool) {
+	if o == nil || o.TagSet == nil {
+		return nil, false
+	}
+	return o.TagSet, true
+}
+
+// HasTagSet returns a boolean if a field has been set.
+func (o *MetricsQueryMetadata) HasTagSet() bool {
+	if o != nil && o.TagSet != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTagSet gets a reference to the given []string and assigns it to the TagSet field.
+func (o *MetricsQueryMetadata) SetTagSet(v []string) {
+	o.TagSet = &v
+}
+
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetUnit() []MetricsQueryUnit {
 	if o == nil || o.Unit == nil {
@@ -433,11 +501,17 @@ func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
 	if o.Pointlist != nil {
 		toSerialize["pointlist"] = o.Pointlist
 	}
+	if o.QueryIndex != nil {
+		toSerialize["query_index"] = o.QueryIndex
+	}
 	if o.Scope != nil {
 		toSerialize["scope"] = o.Scope
 	}
 	if o.Start != nil {
 		toSerialize["start"] = o.Start
+	}
+	if o.TagSet != nil {
+		toSerialize["tag_set"] = o.TagSet
 	}
 	if o.Unit != nil {
 		toSerialize["unit"] = o.Unit
