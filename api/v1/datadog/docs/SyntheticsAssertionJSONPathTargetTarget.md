@@ -102,6 +102,16 @@ SetTargetValue sets TargetValue field to given value.
 
 HasTargetValue returns a boolean if a field has been set.
 
+### SetTargetValueNil
+
+`func (o *SyntheticsAssertionJSONPathTargetTarget) SetTargetValueNil(b bool)`
+
+ SetTargetValueNil sets the value for TargetValue to be an explicit nil
+
+### UnsetTargetValue
+`func (o *SyntheticsAssertionJSONPathTargetTarget) UnsetTargetValue()`
+
+UnsetTargetValue ensures that no value is present for TargetValue, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -19,7 +19,7 @@ type SyntheticsAssertionJSONPathTargetTarget struct {
 	// The specific operator to use on the path.
 	Operator *string `json:"operator,omitempty"`
 	// The path target value to compare to.
-	TargetValue *interface{} `json:"targetValue,omitempty"`
+	TargetValue interface{} `json:"targetValue,omitempty"`
 }
 
 // NewSyntheticsAssertionJSONPathTargetTarget instantiates a new SyntheticsAssertionJSONPathTargetTarget object
@@ -103,22 +103,23 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) SetOperator(v string) {
 	o.Operator = &v
 }
 
-// GetTargetValue returns the TargetValue field value if set, zero value otherwise.
+// GetTargetValue returns the TargetValue field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValue() interface{} {
-	if o == nil || o.TargetValue == nil {
+	if o == nil {
 		var ret interface{}
 		return ret
 	}
-	return *o.TargetValue
+	return o.TargetValue
 }
 
 // GetTargetValueOk returns a tuple with the TargetValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValueOk() (*interface{}, bool) {
 	if o == nil || o.TargetValue == nil {
 		return nil, false
 	}
-	return o.TargetValue, true
+	return &o.TargetValue, true
 }
 
 // HasTargetValue returns a boolean if a field has been set.
@@ -132,7 +133,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) HasTargetValue() bool {
 
 // SetTargetValue gets a reference to the given interface{} and assigns it to the TargetValue field.
 func (o *SyntheticsAssertionJSONPathTargetTarget) SetTargetValue(v interface{}) {
-	o.TargetValue = &v
+	o.TargetValue = v
 }
 
 func (o SyntheticsAssertionJSONPathTargetTarget) MarshalJSON() ([]byte, error) {
