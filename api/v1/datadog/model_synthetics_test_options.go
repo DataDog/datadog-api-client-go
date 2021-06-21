@@ -36,7 +36,8 @@ type SyntheticsTestOptions struct {
 	// Prevents saving screenshots of the steps.
 	NoScreenshot *bool                       `json:"noScreenshot,omitempty"`
 	Retry        *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
-	TickEvery    *SyntheticsTickInterval     `json:"tick_every,omitempty"`
+	// The frequency at which to run the Synthetic test (in seconds).
+	TickEvery *int64 `json:"tick_every,omitempty"`
 }
 
 // NewSyntheticsTestOptions instantiates a new SyntheticsTestOptions object
@@ -441,9 +442,9 @@ func (o *SyntheticsTestOptions) SetRetry(v SyntheticsTestOptionsRetry) {
 }
 
 // GetTickEvery returns the TickEvery field value if set, zero value otherwise.
-func (o *SyntheticsTestOptions) GetTickEvery() SyntheticsTickInterval {
+func (o *SyntheticsTestOptions) GetTickEvery() int64 {
 	if o == nil || o.TickEvery == nil {
-		var ret SyntheticsTickInterval
+		var ret int64
 		return ret
 	}
 	return *o.TickEvery
@@ -451,7 +452,7 @@ func (o *SyntheticsTestOptions) GetTickEvery() SyntheticsTickInterval {
 
 // GetTickEveryOk returns a tuple with the TickEvery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptions) GetTickEveryOk() (*SyntheticsTickInterval, bool) {
+func (o *SyntheticsTestOptions) GetTickEveryOk() (*int64, bool) {
 	if o == nil || o.TickEvery == nil {
 		return nil, false
 	}
@@ -467,8 +468,8 @@ func (o *SyntheticsTestOptions) HasTickEvery() bool {
 	return false
 }
 
-// SetTickEvery gets a reference to the given SyntheticsTickInterval and assigns it to the TickEvery field.
-func (o *SyntheticsTestOptions) SetTickEvery(v SyntheticsTickInterval) {
+// SetTickEvery gets a reference to the given int64 and assigns it to the TickEvery field.
+func (o *SyntheticsTestOptions) SetTickEvery(v int64) {
 	o.TickEvery = &v
 }
 

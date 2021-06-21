@@ -702,7 +702,6 @@ Class | Method | HTTP request | Description
  - [SyntheticsTestRequest](docs/SyntheticsTestRequest.md)
  - [SyntheticsTestRequestCertificate](docs/SyntheticsTestRequestCertificate.md)
  - [SyntheticsTestRequestCertificateItem](docs/SyntheticsTestRequestCertificateItem.md)
- - [SyntheticsTickInterval](docs/SyntheticsTickInterval.md)
  - [SyntheticsTiming](docs/SyntheticsTiming.md)
  - [SyntheticsTriggerCITestLocation](docs/SyntheticsTriggerCITestLocation.md)
  - [SyntheticsTriggerCITestRunResult](docs/SyntheticsTriggerCITestRunResult.md)

@@ -19640,6 +19640,7 @@ components:
           min_location_failed: 7
           monitor_options:
             renotify_interval: 1339
+          tick_every: 446730
           disableCors: true
           min_failure_duration: 2
           monitor_priority: 2
@@ -20391,6 +20392,7 @@ components:
           min_location_failed: 7
           monitor_options:
             renotify_interval: 1339
+          tick_every: 446730
           disableCors: true
           min_failure_duration: 2
           monitor_priority: 2
@@ -20449,11 +20451,11 @@ components:
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 7
+          timeout: 1
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 7
+          timeout: 1
         public_id: public_id
         tags:
         - tags
@@ -21533,6 +21535,7 @@ components:
             min_location_failed: 7
             monitor_options:
               renotify_interval: 1339
+            tick_every: 446730
             disableCors: true
             min_failure_duration: 2
             monitor_priority: 2
@@ -21598,11 +21601,11 @@ components:
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 7
+            timeout: 1
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 7
+            timeout: 1
           public_id: public_id
           tags:
           - tags
@@ -21616,6 +21619,7 @@ components:
             min_location_failed: 7
             monitor_options:
               renotify_interval: 1339
+            tick_every: 446730
             disableCors: true
             min_failure_duration: 2
             monitor_priority: 2
@@ -21681,11 +21685,11 @@ components:
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 7
+            timeout: 1
           - allowFailure: true
             name: name
             params: '{}'
-            timeout: 7
+            timeout: 1
           public_id: public_id
           tags:
           - tags
@@ -21916,7 +21920,7 @@ components:
         allowFailure: true
         name: name
         params: '{}'
-        timeout: 7
+        timeout: 1
       properties:
         allowFailure:
           description: A boolean set to allow this step to fail.
@@ -22181,6 +22185,7 @@ components:
           min_location_failed: 7
           monitor_options:
             renotify_interval: 1339
+          tick_every: 446730
           disableCors: true
           min_failure_duration: 2
           monitor_priority: 2
@@ -22246,11 +22251,11 @@ components:
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 7
+          timeout: 1
         - allowFailure: true
           name: name
           params: '{}'
-          timeout: 7
+          timeout: 1
         public_id: public_id
         tags:
         - tags
@@ -22358,6 +22363,7 @@ components:
         min_location_failed: 7
         monitor_options:
           renotify_interval: 1339
+        tick_every: 446730
         disableCors: true
         min_failure_duration: 2
         monitor_priority: 2
@@ -22418,7 +22424,11 @@ components:
         retry:
           $ref: '#/components/schemas/SyntheticsTestOptionsRetry'
         tick_every:
-          $ref: '#/components/schemas/SyntheticsTickInterval'
+          description: The frequency at which to run the Synthetic test (in seconds).
+          format: int64
+          maximum: 604800
+          minimum: 30
+          type: integer
       type: object
     SyntheticsTestOptionsRetry:
       description: Object describing the retry strategy to apply to a Synthetic test.
@@ -22583,32 +22593,6 @@ components:
           description: Date of update of the certificate or key, ISO format.
           type: string
       type: object
-    SyntheticsTickInterval:
-      description: The frequency at which to run the Synthetic test (in seconds).
-      enum:
-      - 30
-      - 60
-      - 300
-      - 900
-      - 1800
-      - 3600
-      - 21600
-      - 43200
-      - 86400
-      - 604800
-      format: int64
-      type: integer
-      x-enum-varnames:
-      - THIRTY_SECONDS
-      - MINUTE
-      - FIVE_MINUTES
-      - FIFTEEN_MINUTES
-      - THIRTY_MINUTES
-      - HOUR
-      - SIX_HOURS
-      - TWELVE_HOURS
-      - DAY
-      - WEEK
     SyntheticsTiming:
       description: |-
         Object containing all metrics and their values collected for a Synthetic API test.
