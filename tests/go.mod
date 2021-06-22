@@ -7,6 +7,7 @@ require (
 	github.com/Microsoft/go-winio v0.4.16 // indirect
 	github.com/dnaeon/go-vcr v1.0.1
 	github.com/go-bdd/gobdd v1.1.3
+	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/google/go-cmp v0.4.0 // indirect
 	github.com/jonboulle/clockwork v0.1.0
 	github.com/mcuadros/go-lookup v0.0.0-20200831155250-80f87a4fa5ee

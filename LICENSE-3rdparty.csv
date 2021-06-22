@@ -60,3 +60,6 @@ go.sum,github.com/sirupsen/logrus,MIT,2014 Simon Eskildsen
 go.sum,github.com/zippolyte/go-lookup,MIT,2015 Máximo Cuadros
 go.sum,github.com/DataDog/gostackparse,Apache-2.0 OR BSD-3-Clause,"2021 Datadog, Inc."
 go.sum,golang.org/x/term,BSD-3-Clause,2009 The Go Authors
+go.sum,github.com/yuin/goldmark,MIT,2019 Yusuke Inuzuka
+go.sum,golang.org/x/crypto,BSD-3-Clause,2009 The Go Authors
+go.sum,golang.org/x/mod,BSD-3-Clause,2009 The Go Authors
