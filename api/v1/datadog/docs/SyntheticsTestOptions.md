@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **MonitorPriority** | Pointer to **int32** | Integer from 1 (high) to 5 (low) indicating alert severity. | [optional] 
 **NoScreenshot** | Pointer to **bool** | Prevents saving screenshots of the steps. | [optional] 
 **Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |  | [optional] 
-**TickEvery** | Pointer to [**SyntheticsTickInterval**](SyntheticsTickInterval.md) |  | [optional] 
+**TickEvery** | Pointer to **int64** | The frequency at which to run the Synthetic test (in seconds). | [optional] 
 
 ## Methods
 
@@ -339,20 +339,20 @@ HasRetry returns a boolean if a field has been set.
 
 ### GetTickEvery
 
-`func (o *SyntheticsTestOptions) GetTickEvery() SyntheticsTickInterval`
+`func (o *SyntheticsTestOptions) GetTickEvery() int64`
 
 GetTickEvery returns the TickEvery field if non-nil, zero value otherwise.
 
 ### GetTickEveryOk
 
-`func (o *SyntheticsTestOptions) GetTickEveryOk() (*SyntheticsTickInterval, bool)`
+`func (o *SyntheticsTestOptions) GetTickEveryOk() (*int64, bool)`
 
 GetTickEveryOk returns a tuple with the TickEvery field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTickEvery
 
-`func (o *SyntheticsTestOptions) SetTickEvery(v SyntheticsTickInterval)`
+`func (o *SyntheticsTestOptions) SetTickEvery(v int64)`
 
 SetTickEvery sets TickEvery field to given value.
 
