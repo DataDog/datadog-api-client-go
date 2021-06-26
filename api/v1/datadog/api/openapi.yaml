@@ -162,9 +162,10 @@ tags:
     a user who has the `Manage Tags for Metrics` permission.
   name: Metrics
 - description: |-
-    [Monitors](https://docs.datadoghq.com/monitors) allow you to watch a metric or check that you care about,
-    notifying your team when some defined threshold is exceeded.
-    Refer to the Creating Monitors page for more information on creating monitors.
+    [Monitors](https://docs.datadoghq.com/monitors) allow you to watch a metric or check that you care about and
+    notifies your team when a defined threshold has exceeded.
+
+    For more information, see [Creating Monitors](https://docs.datadoghq.com/monitors/monitor_types/).
   externalDocs:
     description: Find out more at
     url: https://docs.datadoghq.com/monitors/monitor_types/
@@ -2398,7 +2399,7 @@ paths:
         description: |-
           Your Datadog role delegation name.
           For more information about your AWS account Role name,
-          see the [Datadog AWS integration configuration info](https://github.com/DataDog/documentation/blob/master/integrations/amazon_web_services/#installation).
+          see the [Datadog AWS integration configuration info](https://docs.datadoghq.com/integrations/amazon_web_services/#setup).
         required: true
       responses:
         "200":
@@ -4347,7 +4348,7 @@ paths:
         - **`query`** The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).
         - **`rollup_method`** The stats roll-up method - supports `count`, `avg` and `cardinality`.
         - **`measure`** For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.
-        - **`time_window`** #m (5, 10, 15, or 30), #h (1, 2, or 4, 24).
+        - **`time_window`** #m (between 1 and 2880), #h (between 1 and 48).
         - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
         - **`#`** an integer or decimal number used to set the threshold.
 
@@ -4372,7 +4373,7 @@ paths:
         - **`index_name`** For multi-index organizations, the log index in which the request is performed.
         - **`rollup_method`** The stats roll-up method - supports `count`, `avg` and `cardinality`.
         - **`measure`** For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.
-        - **`time_window`** #m (between 1 and 2880), #h (between 1 and 48)
+        - **`time_window`** #m (between 1 and 2880), #h (between 1 and 48).
         - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
         - **`#`** an integer or decimal number used to set the threshold.
 
