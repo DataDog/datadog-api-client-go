@@ -510,6 +510,12 @@ docs/TimeseriesWidgetRequest.md
 docs/ToplistWidgetDefinition.md
 docs/ToplistWidgetDefinitionType.md
 docs/ToplistWidgetRequest.md
+docs/TreeMapColorBy.md
+docs/TreeMapGroupBy.md
+docs/TreeMapSizeBy.md
+docs/TreeMapWidgetDefinition.md
+docs/TreeMapWidgetDefinitionType.md
+docs/TreeMapWidgetRequest.md
 docs/UsageAnalyzedLogsHour.md
 docs/UsageAnalyzedLogsResponse.md
 docs/UsageAttributionAggregatesBody.md
@@ -1095,6 +1101,12 @@ model_timeseries_widget_request.go
 model_toplist_widget_definition.go
 model_toplist_widget_definition_type.go
 model_toplist_widget_request.go
+model_tree_map_color_by.go
+model_tree_map_group_by.go
+model_tree_map_size_by.go
+model_tree_map_widget_definition.go
+model_tree_map_widget_definition_type.go
+model_tree_map_widget_request.go
 model_usage_analyzed_logs_hour.go
 model_usage_analyzed_logs_response.go
 model_usage_attribution_aggregates_body.go
