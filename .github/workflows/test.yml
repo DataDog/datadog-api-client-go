@@ -46,7 +46,7 @@ jobs:
 
   report:
     runs-on: ubuntu-latest
-    if: always() && && github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/')
+    if: always() && github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/')
     needs: test
     steps:
       - name: Get GitHub App token
