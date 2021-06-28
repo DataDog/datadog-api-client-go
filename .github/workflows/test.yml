@@ -57,6 +57,8 @@ jobs:
           app_id: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
           private_key: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
           repository: DataDog/datadog-api-spec
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Post failure status check
         if: failure()
         uses: actions/github-script@v4.0.2
