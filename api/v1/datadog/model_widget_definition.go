@@ -40,6 +40,7 @@ type WidgetDefinition struct {
 	TableWidgetDefinition          *TableWidgetDefinition
 	TimeseriesWidgetDefinition     *TimeseriesWidgetDefinition
 	ToplistWidgetDefinition        *ToplistWidgetDefinition
+	TreeMapWidgetDefinition        *TreeMapWidgetDefinition
 }
 
 // AlertGraphWidgetDefinitionAsWidgetDefinition is a convenience function that returns AlertGraphWidgetDefinition wrapped in WidgetDefinition
@@ -165,6 +166,11 @@ func TimeseriesWidgetDefinitionAsWidgetDefinition(v *TimeseriesWidgetDefinition)
 // ToplistWidgetDefinitionAsWidgetDefinition is a convenience function that returns ToplistWidgetDefinition wrapped in WidgetDefinition
 func ToplistWidgetDefinitionAsWidgetDefinition(v *ToplistWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{ToplistWidgetDefinition: v}
+}
+
+// TreeMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns TreeMapWidgetDefinition wrapped in WidgetDefinition
+func TreeMapWidgetDefinitionAsWidgetDefinition(v *TreeMapWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{TreeMapWidgetDefinition: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
@@ -496,6 +502,19 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.ToplistWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into TreeMapWidgetDefinition
+	err = json.Unmarshal(data, &dst.TreeMapWidgetDefinition)
+	if err == nil {
+		jsonTreeMapWidgetDefinition, _ := json.Marshal(dst.TreeMapWidgetDefinition)
+		if string(jsonTreeMapWidgetDefinition) == "{}" { // empty struct
+			dst.TreeMapWidgetDefinition = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.TreeMapWidgetDefinition = nil
+	}
+
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.AlertGraphWidgetDefinition = nil
@@ -523,6 +542,7 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.TableWidgetDefinition = nil
 		dst.TimeseriesWidgetDefinition = nil
 		dst.ToplistWidgetDefinition = nil
+		dst.TreeMapWidgetDefinition = nil
 
 		return fmt.Errorf("Data matches more than one schema in oneOf(WidgetDefinition)")
 	} else if match == 1 {
@@ -634,6 +654,10 @@ func (src WidgetDefinition) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ToplistWidgetDefinition)
 	}
 
+	if src.TreeMapWidgetDefinition != nil {
+		return json.Marshal(&src.TreeMapWidgetDefinition)
+	}
+
 	return nil, nil // no data in oneOf schemas
 }
 
@@ -737,6 +761,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.ToplistWidgetDefinition != nil {
 		return obj.ToplistWidgetDefinition
+	}
+
+	if obj.TreeMapWidgetDefinition != nil {
+		return obj.TreeMapWidgetDefinition
 	}
 
 	// all schemas are nil
