@@ -18,20 +18,20 @@ Name | Type | Description | Notes
 
 ### New{{classname}}
 
-`func New{{classname}}({{#vars}}{{#required}}{{nameInCamelCase}} {{dataType}}, {{/required}}{{/vars}}) *{{classname}}`
+`func New{{classname}}({{#requiredVars}}{{nameInCamelCase}} {{dataType}}{{^-last}}, {{/-last}}{{/requiredVars}}) *{{classname}}`
 
-New{{classname}} instantiates a new {{classname}} object
+New{{classname}} instantiates a new {{classname}} object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### New{{classname}}WithDefaults
 
 `func New{{classname}}WithDefaults() *{{classname}}`
 
-New{{classname}}WithDefaults instantiates a new {{classname}} object
+New{{classname}}WithDefaults instantiates a new {{classname}} object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 {{#vars}}
 ### Get{{name}}
