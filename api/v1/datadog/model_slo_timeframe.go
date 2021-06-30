@@ -21,12 +21,14 @@ const (
 	SLOTIMEFRAME_SEVEN_DAYS  SLOTimeframe = "7d"
 	SLOTIMEFRAME_THIRTY_DAYS SLOTimeframe = "30d"
 	SLOTIMEFRAME_NINETY_DAYS SLOTimeframe = "90d"
+	SLOTIMEFRAME_CUSTOM      SLOTimeframe = "custom"
 )
 
 var allowedSLOTimeframeEnumValues = []SLOTimeframe{
 	"7d",
 	"30d",
 	"90d",
+	"custom",
 }
 
 func (w *SLOTimeframe) GetAllowedValues() []SLOTimeframe {

@@ -6422,7 +6422,7 @@ paths:
           type: integer
         style: form
       - description: The SLO target. If `target` is passed in, the response will include
-          the error budget that remains.
+          the remaining error budget and a timeframe value of `custom`.
         explode: true
         in: query
         name: target
@@ -18802,11 +18802,13 @@ components:
       - 7d
       - 30d
       - 90d
+      - custom
       type: string
       x-enum-varnames:
       - SEVEN_DAYS
       - THIRTY_DAYS
       - NINETY_DAYS
+      - CUSTOM
     SLOType:
       description: The type of the service level objective.
       enum:

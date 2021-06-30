@@ -423,7 +423,7 @@ func main() {
     sloId := "sloId_example" // string | The ID of the service level objective object.
     fromTs := int64(789) // int64 | The `from` timestamp for the query window in epoch seconds.
     toTs := int64(789) // int64 | The `to` timestamp for the query window in epoch seconds.
-    target := float64(1.2) // float64 | The SLO target. If `target` is passed in, the response will include the error budget that remains. (optional)
+    target := float64(1.2) // float64 | The SLO target. If `target` is passed in, the response will include the remaining error budget and a timeframe value of `custom`. (optional)
     optionalParams := datadog.GetSLOHistoryOptionalParameters{
         Target: &target,
     }
@@ -462,7 +462,7 @@ Other parameters are passed through a pointer to a GetSLOHistoryOptionalParamete
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
-**target** | **float64** | The SLO target. If &#x60;target&#x60; is passed in, the response will include the error budget that remains. | 
+**target** | **float64** | The SLO target. If &#x60;target&#x60; is passed in, the response will include the remaining error budget and a timeframe value of &#x60;custom&#x60;. | 
 
 ### Return type
 
