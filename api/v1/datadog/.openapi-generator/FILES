@@ -339,11 +339,13 @@ docs/PagerDutyIntegrationApi.md
 docs/PagerDutyService.md
 docs/PagerDutyServiceKey.md
 docs/PagerDutyServiceName.md
+docs/Pagination.md
 docs/ProcessQueryDefinition.md
 docs/QuerySortOrder.md
 docs/QueryValueWidgetDefinition.md
 docs/QueryValueWidgetDefinitionType.md
 docs/QueryValueWidgetRequest.md
+docs/ResponseMetaAttributes.md
 docs/SLOBulkDeleteError.md
 docs/SLOBulkDeleteResponse.md
 docs/SLOBulkDeleteResponseData.md
@@ -937,11 +939,13 @@ model_organization_subscription.go
 model_pager_duty_service.go
 model_pager_duty_service_key.go
 model_pager_duty_service_name.go
+model_pagination.go
 model_process_query_definition.go
 model_query_sort_order.go
 model_query_value_widget_definition.go
 model_query_value_widget_definition_type.go
 model_query_value_widget_request.go
+model_response_meta_attributes.go
 model_scatter_plot_request.go
 model_scatter_plot_widget_definition.go
 model_scatter_plot_widget_definition_requests.go
