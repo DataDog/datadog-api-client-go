@@ -1,24 +1,22 @@
----
-version: 1
 interactions:
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - ListNotebooks
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "4953646806519552270"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '471840153606093221'
       X-Datadog-Trace-Id:
-      - "3226085590079247533"
-    url: https://api.datadoghq.com/api/v1/notebooks
+      - '471840153606093221'
     method: GET
+    url: https://api.datadoghq.com/api/v1/notebooks
   response:
     body: '{"meta":{"page":{"total_filtered_count":22,"total_count":22}},"data":[{"type":"notebooks","id":765486,"attributes":{"name":"Test-Create_a_notebook_returns_OK_response-1620398705","cells":[{"attributes":{"definition":{"text":"##
       Some test markdown\n\n```js\nvar x, y;\nx = 5;\ny = 6;\n```","type":"markdown"}},"type":"notebook_cells","id":"g8qokan9"},{"attributes":{"definition":{"requests":[{"q":"avg:system.load.1{*}","style":{"line_width":"normal","palette":"dog_classic","line_type":"solid"},"display_type":"line"}],"type":"timeseries","show_legend":true,"yaxis":{"scale":"linear"}},"graph_size":"m","split_by":{"keys":[],"tags":[]},"time":null},"type":"notebook_cells","id":"eabz2v5p"}],"time":{"live_span":"1h"},"status":"published","modified":"2021-05-07T14:45:06.347963+00:00","created":"2021-05-07T14:45:06.347963+00:00","author":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}},{"type":"notebooks","id":765472,"attributes":{"name":"Test-Create_a_notebook_returns_OK_response-1620398662","cells":[{"attributes":{"definition":{"text":"##
@@ -43,15 +41,21 @@ interactions:
       Some test markdown\n\n```js\nvar x, y;\nx = 5;\ny = 6;\n```","type":"markdown"}},"type":"notebook_cells","id":"xkfenula"},{"attributes":{"definition":{"requests":[{"q":"avg:system.load.1{*}","style":{"line_width":"normal","palette":"dog_classic","line_type":"solid"},"display_type":"line"}],"type":"timeseries","show_legend":true,"yaxis":{"scale":"linear"}},"graph_size":"m","split_by":{"keys":[],"tags":[]},"time":null},"type":"notebook_cells","id":"bhyuews4"}],"time":{"live_span":"1h"},"status":"published","modified":"2021-05-07T12:57:02.084451+00:00","created":"2021-05-07T12:57:02.084451+00:00","author":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}},{"type":"notebooks","id":764704,"attributes":{"name":"Test-Create_a_notebook_returns_OK_response-1620392179","cells":[{"attributes":{"definition":{"text":"##
       Some test markdown\n\n```js\nvar x, y;\nx = 5;\ny = 6;\n```","type":"markdown"}},"type":"notebook_cells","id":"168nafa7"},{"attributes":{"definition":{"requests":[{"q":"avg:system.load.1{*}","style":{"line_width":"normal","palette":"dog_classic","line_type":"solid"},"display_type":"line"}],"type":"timeseries","show_legend":true,"yaxis":{"scale":"linear"}},"graph_size":"m","split_by":{"keys":[],"tags":[]},"time":null},"type":"notebook_cells","id":"gh86cffg"}],"time":{"live_span":"1h"},"status":"published","modified":"2021-05-07T12:56:19.955519+00:00","created":"2021-05-07T12:56:19.955519+00:00","author":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}},{"type":"notebooks","id":764686,"attributes":{"name":"Test-Create_a_notebook_returns_OK_response-1620392105","cells":[{"attributes":{"definition":{"text":"##
       Some test markdown\n\n```js\nvar x, y;\nx = 5;\ny = 6;\n```","type":"markdown"}},"type":"notebook_cells","id":"fcq2yw9s"},{"attributes":{"definition":{"requests":[{"q":"avg:system.load.1{*}","style":{"line_width":"normal","palette":"dog_classic","line_type":"solid"},"display_type":"line"}],"type":"timeseries","show_legend":true,"yaxis":{"scale":"linear"}},"graph_size":"m","split_by":{"keys":[],"tags":[]},"time":null},"type":"notebook_cells","id":"209l7n3f"}],"time":{"live_span":"1h"},"status":"published","modified":"2021-05-07T12:55:06.155381+00:00","created":"2021-05-07T12:55:06.155381+00:00","author":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}}]}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '22005'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 11 May 2021 16:08:16 GMT
+      - Tue, 11 May 2021 09:42:56 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -61,19 +65,18 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
+      - fIO2C4qGDheGHy4YbS+r3a3CXbh4cbRo7roILOimQyiHGjQdOat0cIpWCkupM1uX
       X-Dd-Version:
-      - "35.4507575"
+      - '35.4503153'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "90"
+      - '90'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "89"
+      - '89'
       X-Ratelimit-Reset:
-      - "44"
+      - '4'
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1

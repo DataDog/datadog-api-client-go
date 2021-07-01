@@ -1,39 +1,43 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"tags":["test:TestPostaneventreturnsOKresponse1618221316"],"text":"A text message.","title":"Test-Post_an_event_returns_OK_response-1618221316"}
+      {"tags":["test:TestPostaneventreturnsOKresponse1618491668"],"text":"A text message.","title":"Test-Post_an_event_returns_OK_response-1618491668"}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '145'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateEvent
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "4714379996453871731"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "4824859696343800558"
-    url: https://api.datadoghq.com/api/v1/events
+      - '5095942047695828255'
     method: POST
+    url: https://api.datadoghq.com/api/v1/events
   response:
-    body: '{"status":"ok","event":{"id":5938437374431181378,"title":"Test-Post_an_event_returns_OK_response-1618221316","text":"A
-      text message.","date_happened":1618221316,"handle":null,"priority":null,"related_event_id":null,"tags":["test:TestPostaneventreturnsOKresponse1618221316"],"url":"https://app.datadoghq.com/event/event?id=5938437374431181378"}}'
+    body: '{"status":"ok","event":{"id":5942973138276091518,"title":"Test-Post_an_event_returns_OK_response-1618491668","text":"A
+      text message.","date_happened":1618491668,"handle":null,"priority":null,"related_event_id":null,"tags":["test:TestPostaneventreturnsOKresponse1618491668"],"url":"https://app.datadoghq.com/event/event?id=5942973138276091518"}}'
+    code: 202
+    duration: ''
     headers:
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "344"
+      - '344'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:55:16 GMT
+      - Thu, 15 Apr 2021 13:01:08 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
@@ -41,5 +45,4 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 202 Accepted
-    code: 202
-    duration: ""
+version: 1

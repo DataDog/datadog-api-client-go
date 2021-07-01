@@ -1,38 +1,40 @@
----
-version: 1
 interactions:
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - SearchMonitors
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "814157095979352268"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '7060831856093393156'
       X-Datadog-Trace-Id:
-      - "3784469763824855403"
-    url: https://api.datadoghq.com/api/v1/monitor/search?query=status%3Anotastatus
+      - '7060831856093393156'
     method: GET
+    url: https://api.datadoghq.com/api/v1/monitor/search?query=status%3Anotastatus
   response:
     body: '{"errors": ["Query parsing error: ''notastatus'' is not a valid monitor
       status"]}'
+    code: 400
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "79"
+      - '79'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 May 2021 10:07:54 GMT
+      - Tue, 25 May 2021 10:23:22 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -40,17 +42,16 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4600133"
+      - '35.4600248'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "120"
+      - '120'
       X-Ratelimit-Period:
-      - "10"
+      - '10'
       X-Ratelimit-Remaining:
-      - "117"
+      - '117'
       X-Ratelimit-Reset:
-      - "6"
+      - '8'
     status: 400 Bad Request
-    code: 400
-    duration: ""
+version: 1

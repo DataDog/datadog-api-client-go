@@ -1,98 +1,106 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"filter":{"query":"source:Test-Delete_a_log_based_metric_returns_OK_response-1618223142"}},"id":"Test-Delete_a_log_based_metric_returns_OK_response-1618223142","type":"logs_metrics"}}
+      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"filter":{"query":"source:Test-Delete_a_log_based_metric_returns_OK_response-1618491719"}},"id":"Test-Delete_a_log_based_metric_returns_OK_response-1618491719","type":"logs_metrics"}}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '245'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateLogsMetric
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "8806142831671821663"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "4808507894749788290"
-    url: https://api.datadoghq.com/api/v2/logs/config/metrics
+      - '5095942047695828255'
     method: POST
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics
   response:
-    body: '{"data":{"id":"Test_Delete_a_log_based_metric_returns_OK_response_1618223142","attributes":{"filter":{"query":"source:Test-Delete_a_log_based_metric_returns_OK_response-1618223142"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Type:
-      - application/json;charset=utf-8
-      Date:
-      - Mon, 12 Apr 2021 10:25:43 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - dCmL/3rURV6BPeaqeP3Rxigq41m5CAb17XjrRE42uZ01zpr07HVhbL5/3TWMkvgu
-      X-Dd-Version:
-      - "35.4287679"
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "100"
-      X-Ratelimit-Period:
-      - "3600"
-      X-Ratelimit-Remaining:
-      - "73"
-      X-Ratelimit-Reset:
-      - "2058"
-    status: 200 OK
+    body: '{"data":{"id":"Test_Delete_a_log_based_metric_returns_OK_response_1618491719","attributes":{"filter":{"query":"source:Test-Delete_a_log_based_metric_returns_OK_response-1618491719"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}'
     code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteLogsMetric
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "69399621650144466"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "4808507894749788290"
-    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Delete_a_log_based_metric_returns_OK_response_1618223142
-    method: DELETE
-  response:
-    body: '{}'
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Disposition:
       - inline
       Content-Length:
-      - "2"
+      - '259'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 12 Apr 2021 10:25:43 GMT
+      - Thu, 15 Apr 2021 13:02:00 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - nLnnBNvlCFDECRnZvzDb0z4sAO35G+IMidcAs8vrCKyjvsKWE8Yd9S3n6OjZ1qRN
+      X-Dd-Version:
+      - '35.4318655'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '100'
+      X-Ratelimit-Period:
+      - '3600'
+      X-Ratelimit-Remaining:
+      - '97'
+      X-Ratelimit-Reset:
+      - '3480'
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
+      X-Datadog-Parent-Id:
+      - '5095942047695828255'
+      X-Datadog-Trace-Id:
+      - '5095942047695828255'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Delete_a_log_based_metric_returns_OK_response_1618491719
+  response:
+    body: '{}'
+    code: 200
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - '2'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Thu, 15 Apr 2021 13:02:00 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -100,52 +108,56 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 2328yjLSqI4XmR1pVqrPRR/SFcQsbafjEpPmZx7/3PfxUK1nJQQsX+wrMelyVyj+
+      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
       X-Dd-Version:
-      - "35.4287679"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "100"
+      - '100'
       X-Ratelimit-Period:
-      - "3600"
+      - '3600'
       X-Ratelimit-Remaining:
-      - "72"
+      - '96'
       X-Ratelimit-Reset:
-      - "2057"
+      - '3480'
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteLogsMetric
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "2845755215712444661"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "4808507894749788290"
-    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Delete_a_log_based_metric_returns_OK_response_1618223142
+      - '5095942047695828255'
     method: DELETE
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Delete_a_log_based_metric_returns_OK_response_1618491719
   response:
-    body: '{"errors":["not_found(Metric with name ''Test_Delete_a_log_based_metric_returns_OK_response_1618223142''
+    body: '{"errors":["not_found(Metric with name ''Test_Delete_a_log_based_metric_returns_OK_response_1618491719''
       not found)"]}'
+    code: 404
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '116'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 10:25:43 GMT
+      - Thu, 15 Apr 2021 13:02:01 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -155,17 +167,16 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4287679"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "100"
+      - '100'
       X-Ratelimit-Period:
-      - "3600"
+      - '3600'
       X-Ratelimit-Remaining:
-      - "71"
+      - '95'
       X-Ratelimit-Reset:
-      - "2057"
+      - '3479'
     status: 404 Not Found
-    code: 404
-    duration: ""
+version: 1

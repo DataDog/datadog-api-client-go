@@ -1,133 +1,145 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"exclusion_filters":[{"name":"Exclude logs from staging","query":"source:staging"}],"filtered_data_type":"logs","is_enabled":true,"name":"Test-Delete_a_security_filter_returns_No_Content_response-1620806229","query":"service:TestDeleteasecurityfilterreturnsNoContentresponse1620806229"},"type":"security_filters"}}
+      {"data":{"attributes":{"exclusion_filters":[{"name":"Exclude logs from staging","query":"source:staging"}],"filtered_data_type":"logs","is_enabled":true,"name":"Test-Delete_a_security_filter_returns_No_Content_response-1620751632","query":"service:TestDeleteasecurityfilterreturnsNoContentresponse1620751632"},"type":"security_filters"}}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '337'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateSecurityFilter
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.16.4; os linux; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - "7859253029588476243"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '4541457145544045469'
       X-Datadog-Trace-Id:
-      - "3985133252568957840"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters
+      - '5615542645610755717'
     method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters
   response:
-    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Delete_a_security_filter_returns_No_Content_response-1620806229","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
-      logs from staging"}],"version":1,"query":"service:TestDeleteasecurityfilterreturnsNoContentresponse1620806229","is_builtin":false},"type":"security_filters","id":"rhf-qjr-uso"}}'
+    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Delete_a_security_filter_returns_No_Content_response-1620751632","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
+      logs from staging"}],"version":1,"query":"service:TestDeleteasecurityfilterreturnsNoContentresponse1620751632","is_builtin":false},"type":"security_filters","id":"sqg-5rq-5qc"}}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Disposition:
       - inline
+      Content-Length:
+      - '387'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Wed, 12 May 2021 07:57:09 GMT
+      - Wed, 12 May 2021 07:50:04 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
       - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - l8RQo2maZqJf6GFThBbKNE6dvthz6njusVtau3dPXJWL2RLFoN81H+BLPB/1xgs1
+      X-Dd-Version:
+      - '35.4512853'
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '8462887404662965022'
+      X-Datadog-Trace-Id:
+      - '5615542645610755717'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/sqg-5rq-5qc
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - '0'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Date:
+      - Wed, 12 May 2021 07:50:04 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
       - PhosSd3Ch1B6B0DXI71steKUi7XhPDttnPiIP1NdXTw0VJNWpoUnYyBmODS5ne3q
       X-Dd-Version:
-      - "35.4512853"
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteSecurityFilter
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.16.4; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6404844773625898704"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "3985133252568957840"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/rhf-qjr-uso
-    method: DELETE
-  response:
-    body: ""
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Length:
-      - "0"
-      Date:
-      - Wed, 12 May 2021 07:57:09 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
-      X-Dd-Version:
-      - "35.4512853"
+      - '35.4512853'
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
-    code: 204
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteSecurityFilter
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.16.4; os linux; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - "8741955712917070075"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '4032555497644175209'
       X-Datadog-Trace-Id:
-      - "3985133252568957840"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/rhf-qjr-uso
+      - '5615542645610755717'
     method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/sqg-5rq-5qc
   response:
-    body: '{"errors":["not_found(Security filter with id ''rhf-qjr-uso'' not found)"]}'
+    body: '{"errors":["not_found(Security filter with id ''sqg-5rq-5qc'' not found)"]}'
+    code: 404
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '73'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Wed, 12 May 2021 07:57:10 GMT
+      - Wed, 12 May 2021 07:50:04 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -137,9 +149,8 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4512853"
+      - '35.4512853'
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
-    code: 404
-    duration: ""
+version: 1

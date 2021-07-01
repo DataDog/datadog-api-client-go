@@ -1,40 +1,44 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","TestListtagsbymetricnamereturnsSuccessresponse1618220995"]},"id":"TestListtagsbymetricnamereturnsSuccessresponse1618220995","type":"manage_tags"}}
+      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","TestListtagsbymetricnamereturnsSuccessresponse1618491744"]},"id":"TestListtagsbymetricnamereturnsSuccessresponse1618491744","type":"manage_tags"}}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '226'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateTagConfiguration
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "6240600776509010819"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "4877097521549951820"
-    url: https://api.datadoghq.com/api/v2/metrics/TestListtagsbymetricnamereturnsSuccessresponse1618220995/tags
+      - '5095942047695828255'
     method: POST
+    url: https://api.datadoghq.com/api/v2/metrics/TestListtagsbymetricnamereturnsSuccessresponse1618491744/tags
   response:
-    body: '{"data":{"type":"manage_tags","id":"TestListtagsbymetricnamereturnsSuccessresponse1618220995","attributes":{"tags":["datacenter","app","TestListtagsbymetricnamereturnsSuccessresponse1618220995"],"include_percentiles":false,"created_at":"2021-04-12T09:49:55.680079+00:00","updated_at":"2021-04-12T09:49:55.680079+00:00","metric_type":"distribution"}}}'
+    body: '{"data":{"type":"manage_tags","id":"TestListtagsbymetricnamereturnsSuccessresponse1618491744","attributes":{"tags":["TestListtagsbymetricnamereturnsSuccessresponse1618491744","app","datacenter"],"include_percentiles":false,"created_at":"2021-04-15T13:02:25.592352+00:00","updated_at":"2021-04-15T13:02:25.592352+00:00","metric_type":"distribution"}}}'
+    code: 201
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "350"
+      - '350'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:49:55 GMT
+      - Thu, 15 Apr 2021 13:02:25 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,51 +46,55 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
+      - PhosSd3Ch1B6B0DXI71steKUi7XhPDttnPiIP1NdXTw0VJNWpoUnYyBmODS5ne3q
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "50"
+      - '50'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "35"
+      - '35'
       X-Ratelimit-Reset:
-      - "5"
+      - '35'
     status: 201 Created
-    code: 201
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - ListTagsByMetricName
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "1892714316225812109"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "4877097521549951820"
-    url: https://api.datadoghq.com/api/v2/metrics/TestListtagsbymetricnamereturnsSuccessresponse1618220995/all-tags
+      - '5095942047695828255'
     method: GET
+    url: https://api.datadoghq.com/api/v2/metrics/TestListtagsbymetricnamereturnsSuccessresponse1618491744/all-tags
   response:
-    body: '{"data":{"type":"metrics","id":"TestListtagsbymetricnamereturnsSuccessresponse1618220995","attributes":{"tags":[]}}}'
+    body: '{"data":{"type":"metrics","id":"TestListtagsbymetricnamereturnsSuccessresponse1618491744","attributes":{"tags":[]}}}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '116'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:49:55 GMT
+      - Thu, 15 Apr 2021 13:02:26 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -96,53 +104,55 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
+      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "600"
+      - '600'
       X-Ratelimit-Period:
-      - "3600"
+      - '3600'
       X-Ratelimit-Remaining:
-      - "586"
+      - '598'
       X-Ratelimit-Reset:
-      - "605"
+      - '3455'
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteTagConfiguration
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "2746275634020589294"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "4877097521549951820"
-    url: https://api.datadoghq.com/api/v2/metrics/TestListtagsbymetricnamereturnsSuccessresponse1618220995/tags
+      - '5095942047695828255'
     method: DELETE
+    url: https://api.datadoghq.com/api/v2/metrics/TestListtagsbymetricnamereturnsSuccessresponse1618491744/tags
   response:
-    body: ""
+    body: ''
+    code: 204
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "0"
+      - '0'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:49:55 GMT
+      - Thu, 15 Apr 2021 13:02:26 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -150,19 +160,18 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - SY1h8ScsWq+kYmtbh63ltMLFAZsQjqfrgvdfAoRX+9TzT1sgMBRYaFRwfWWRRe9a
+      - nLnnBNvlCFDECRnZvzDb0z4sAO35G+IMidcAs8vrCKyjvsKWE8Yd9S3n6OjZ1qRN
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "50"
+      - '50'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "34"
+      - '34'
       X-Ratelimit-Reset:
-      - "5"
+      - '34'
     status: 204 No Content
-    code: 204
-    duration: ""
+version: 1
