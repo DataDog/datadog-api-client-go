@@ -1,38 +1,42 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"series":[{"metric":"system.load.1","points":[[1623932866,1.1]],"tags":["test:TestSubmitmetricsreturnsPayloadacceptedresponse1623932866"],"type":"gauge"}]}
+      {"series":[{"metric":"system.load.1","points":[[1623932501,1.1]],"tags":["test:TestSubmitmetricsreturnsPayloadacceptedresponse1623932501"],"type":"gauge"}]}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '156'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - SubmitMetrics
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.1.1+dev (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 16.2.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "1025793910686143346"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '2525539895392963703'
       X-Datadog-Trace-Id:
-      - "2498108722818836755"
-    url: https://api.datadoghq.com/api/v1/series
+      - '2525539895392963703'
     method: POST
+    url: https://api.datadoghq.com/api/v1/series
   response:
     body: '{"status": "ok"}'
+    code: 202
+    duration: ''
     headers:
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "16"
+      - '16'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - text/json
       Date:
-      - Thu, 17 Jun 2021 12:27:46 GMT
+      - Thu, 17 Jun 2021 12:21:42 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
@@ -40,5 +44,4 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 202 Accepted
-    code: 202
-    duration: ""
+version: 1

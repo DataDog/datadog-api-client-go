@@ -1,154 +1,166 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"filter":{"query":"source:Test-Get_all_log_based_metrics_returns_OK_response-1618223144"}},"id":"Test-Get_all_log_based_metrics_returns_OK_response-1618223144","type":"logs_metrics"}}
+      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"filter":{"query":"source:Test-Get_all_log_based_metrics_returns_OK_response-1618491725"}},"id":"Test-Get_all_log_based_metrics_returns_OK_response-1618491725","type":"logs_metrics"}}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '245'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateLogsMetric
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "6133900893159705754"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "2918180570153906893"
-    url: https://api.datadoghq.com/api/v2/logs/config/metrics
+      - '5095942047695828255'
     method: POST
-  response:
-    body: '{"data":{"id":"Test_Get_all_log_based_metrics_returns_OK_response_1618223144","attributes":{"filter":{"query":"source:Test-Get_all_log_based_metrics_returns_OK_response-1618223144"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Type:
-      - application/json;charset=utf-8
-      Date:
-      - Mon, 12 Apr 2021 10:25:44 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - bgHykj7A9bfZx0Y5ZO3swhhp5tGUSNJHqFWR868+qg087CYrDOd5hQslC+noiEtH
-      X-Dd-Version:
-      - "35.4287679"
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "100"
-      X-Ratelimit-Period:
-      - "3600"
-      X-Ratelimit-Remaining:
-      - "68"
-      X-Ratelimit-Reset:
-      - "2056"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - ListLogsMetrics
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "5361971900658955393"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "2918180570153906893"
     url: https://api.datadoghq.com/api/v2/logs/config/metrics
-    method: GET
   response:
-    body: '{"data":[{"id":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1607014407.161855","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"go_Feature_Logs_Metrics_Scenario_Get_all_log_based_metrics_returns_OK_response_37807_1608735831","attributes":{"filter":{"query":"source:go-Feature_Logs_Metrics-Scenario_Get_all_log_based_metrics_returns__OK__response-37807-1608735831"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"mlb.to.delete.5","attributes":{"filter":{"query":"service:test"},"group_by":[{"path":"@status","tag_name":"status"}],"compute":{"aggregation_type":"distribution","path":"@duration"}},"type":"logs_metrics"},{"id":"mlb.to.delete.7","attributes":{"filter":{"query":"service:test"},"group_by":[{"path":"@status","tag_name":"status"}],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"tf_TestAccDatadogLogsMetric_import_local_1612175492","attributes":{"filter":{"query":"service:test"},"group_by":[{"path":"@my.status","tag_name":"status"},{"path":"service","tag_name":"service"}],"compute":{"aggregation_type":"distribution","path":"@duration"}},"type":"logs_metrics"},{"id":"Typescript_Create_a_log_based_metric_returns_OK_response_1613674902.961","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_a_log_based_metric_returns_OK_response_1613674904.843","attributes":{"filter":{"query":"source:Typescript-Get_a_log_based_metric_returns_OK_response-1613674904.843"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_all_log_based_metrics_returns_OK_response_1613674905.893","attributes":{"filter":{"query":"source:Typescript-Get_all_log_based_metrics_returns_OK_response-1613674905.893"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Update_a_log_based_metric_returns_OK_response_1613674907.023","attributes":{"filter":{"query":"source:Typescript-Update_a_log_based_metric_returns_OK_response-1613674907.023-updated"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Create_a_log_based_metric_returns_OK_response_1613675381.562","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_a_log_based_metric_returns_OK_response_1613675383.575","attributes":{"filter":{"query":"source:Typescript-Get_a_log_based_metric_returns_OK_response-1613675383.575"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_all_log_based_metrics_returns_OK_response_1613675384.642","attributes":{"filter":{"query":"source:Typescript-Get_all_log_based_metrics_returns_OK_response-1613675384.642"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Update_a_log_based_metric_returns_OK_response_1613675386.161","attributes":{"filter":{"query":"source:Typescript-Update_a_log_based_metric_returns_OK_response-1613675386.161-updated"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Create_a_log_based_metric_returns_OK_response_1614072176.745","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Delete_a_log_based_metric_returns_OK_response_1614072181.786","attributes":{"filter":{"query":"source:Typescript-Delete_a_log_based_metric_returns_OK_response-1614072181.786"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_all_log_based_metrics_returns_OK_response_1614072193.929","attributes":{"filter":{"query":"source:Typescript-Get_all_log_based_metrics_returns_OK_response-1614072193.929"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_all_log_based_metrics_returns_OK_response_1614073795.81","attributes":{"filter":{"query":"source:Typescript-Get_all_log_based_metrics_returns_OK_response-1614073795.81"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"ruby_Update_a_log_based_metric_returns_OK_response_1614194424","attributes":{"filter":{"query":"source:ruby-Update_a_log_based_metric_returns_OK_response-1614194424-updated"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1608595661.620162","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_delete_a_logbased_metric_returns_ok_response_1608595670.983057","attributes":{"filter":{"query":"source:datadog-api-client-python-test_delete_a_logbased_metric_returns_ok_response-1608595670.983057"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_get_a_logbased_metric_returns_ok_response_1608595669.067374","attributes":{"filter":{"query":"source:datadog-api-client-python-test_get_a_logbased_metric_returns_ok_response-1608595669.067374"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_get_all_logbased_metrics_returns_ok_response_1608595675.324394","attributes":{"filter":{"query":"source:datadog-api-client-python-test_get_all_logbased_metrics_returns_ok_response-1608595675.324394"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Create_a_log_based_metric_returns_OK_response_1614896593.355","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_update_a_logbased_metric_returns_ok_response_1608595673.013269","attributes":{"filter":{"query":"source:datadog-api-client-python-test_update_a_logbased_metric_returns_ok_response-1608595673.013269"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Create_a_log_based_metric_returns_OK_response_1616149774.73","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"go_Feature_Logs_Metrics_Scenario_Get_all_log_based_metrics_returns_OK_response_54239_1616717117","attributes":{"filter":{"query":"source:go-Feature_Logs_Metrics-Scenario_Get_all_log_based_metrics_returns__OK__response-54239-1616717117"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617014547.984513","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617189622.037749","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617190464.536072","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_all_log_based_metrics_returns_OK_response_1617197330.21","attributes":{"filter":{"query":"source:Typescript-Get_all_log_based_metrics_returns_OK_response-1617197330.21"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"go_Feature_Logs_Metrics_Scenario_Get_all_log_based_metrics_returns_OK_response_57310_1617968823","attributes":{"filter":{"query":"source:go-Feature_Logs_Metrics-Scenario_Get_all_log_based_metrics_returns__OK__response-57310-1617968823"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"ruby_Create_a_log_based_metric_returns_OK_response_1617976084","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"ruby_Get_a_log_based_metric_returns_OK_response_1617980078","attributes":{"filter":{"query":"source:ruby-Get_a_log_based_metric_returns_OK_response-1617980078"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Test_Delete_a_log_based_metric_returns_OK_response_1618220982","attributes":{"filter":{"query":"source:Test-Delete_a_log_based_metric_returns_OK_response-1618220982"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Test_Get_all_log_based_metrics_returns_OK_response_1618223144","attributes":{"filter":{"query":"source:Test-Get_all_log_based_metrics_returns_OK_response-1618223144"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Disposition:
-      - inline
-      Content-Type:
-      - application/json;charset=utf-8
-      Date:
-      - Mon, 12 Apr 2021 10:25:44 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
-      X-Dd-Version:
-      - "35.4287679"
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "5000"
-      X-Ratelimit-Period:
-      - "3600"
-      X-Ratelimit-Remaining:
-      - "4994"
-      X-Ratelimit-Reset:
-      - "2056"
-    status: 200 OK
+    body: '{"data":{"id":"Test_Get_all_log_based_metrics_returns_OK_response_1618491725","attributes":{"filter":{"query":"source:Test-Get_all_log_based_metrics_returns_OK_response-1618491725"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}'
     code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteLogsMetric
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "7423651352051234644"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "2918180570153906893"
-    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Get_all_log_based_metrics_returns_OK_response_1618223144
-    method: DELETE
-  response:
-    body: '{}'
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Disposition:
       - inline
       Content-Length:
-      - "2"
+      - '259'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Mon, 12 Apr 2021 10:25:44 GMT
+      - Thu, 15 Apr 2021 13:02:06 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - mNzaoDhdDKO7t4QSrAe5X7pHd0bJND187D+vRbwoluXouE2m1UaQQX0RGCvRpLVE
+      X-Dd-Version:
+      - '35.4318655'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '100'
+      X-Ratelimit-Period:
+      - '3600'
+      X-Ratelimit-Remaining:
+      - '92'
+      X-Ratelimit-Reset:
+      - '3475'
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
+      X-Datadog-Parent-Id:
+      - '5095942047695828255'
+      X-Datadog-Trace-Id:
+      - '5095942047695828255'
+    method: GET
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics
+  response:
+    body: '{"data":[{"id":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1607014407.161855","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"go_Feature_Logs_Metrics_Scenario_Get_all_log_based_metrics_returns_OK_response_37807_1608735831","attributes":{"filter":{"query":"source:go-Feature_Logs_Metrics-Scenario_Get_all_log_based_metrics_returns__OK__response-37807-1608735831"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"mlb.to.delete.5","attributes":{"filter":{"query":"service:test"},"group_by":[{"path":"@status","tag_name":"status"}],"compute":{"aggregation_type":"distribution","path":"@duration"}},"type":"logs_metrics"},{"id":"mlb.to.delete.7","attributes":{"filter":{"query":"service:test"},"group_by":[{"path":"@status","tag_name":"status"}],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"tf_TestAccDatadogLogsMetric_import_local_1612175492","attributes":{"filter":{"query":"service:test"},"group_by":[{"path":"@my.status","tag_name":"status"},{"path":"service","tag_name":"service"}],"compute":{"aggregation_type":"distribution","path":"@duration"}},"type":"logs_metrics"},{"id":"Typescript_Create_a_log_based_metric_returns_OK_response_1613674902.961","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_a_log_based_metric_returns_OK_response_1613674904.843","attributes":{"filter":{"query":"source:Typescript-Get_a_log_based_metric_returns_OK_response-1613674904.843"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_all_log_based_metrics_returns_OK_response_1613674905.893","attributes":{"filter":{"query":"source:Typescript-Get_all_log_based_metrics_returns_OK_response-1613674905.893"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Update_a_log_based_metric_returns_OK_response_1613674907.023","attributes":{"filter":{"query":"source:Typescript-Update_a_log_based_metric_returns_OK_response-1613674907.023-updated"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Create_a_log_based_metric_returns_OK_response_1613675381.562","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_a_log_based_metric_returns_OK_response_1613675383.575","attributes":{"filter":{"query":"source:Typescript-Get_a_log_based_metric_returns_OK_response-1613675383.575"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_all_log_based_metrics_returns_OK_response_1613675384.642","attributes":{"filter":{"query":"source:Typescript-Get_all_log_based_metrics_returns_OK_response-1613675384.642"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Update_a_log_based_metric_returns_OK_response_1613675386.161","attributes":{"filter":{"query":"source:Typescript-Update_a_log_based_metric_returns_OK_response-1613675386.161-updated"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Create_a_log_based_metric_returns_OK_response_1614072176.745","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Delete_a_log_based_metric_returns_OK_response_1614072181.786","attributes":{"filter":{"query":"source:Typescript-Delete_a_log_based_metric_returns_OK_response-1614072181.786"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_all_log_based_metrics_returns_OK_response_1614072193.929","attributes":{"filter":{"query":"source:Typescript-Get_all_log_based_metrics_returns_OK_response-1614072193.929"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_all_log_based_metrics_returns_OK_response_1614073795.81","attributes":{"filter":{"query":"source:Typescript-Get_all_log_based_metrics_returns_OK_response-1614073795.81"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"ruby_Update_a_log_based_metric_returns_OK_response_1614194424","attributes":{"filter":{"query":"source:ruby-Update_a_log_based_metric_returns_OK_response-1614194424-updated"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1608595661.620162","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_delete_a_logbased_metric_returns_ok_response_1608595670.983057","attributes":{"filter":{"query":"source:datadog-api-client-python-test_delete_a_logbased_metric_returns_ok_response-1608595670.983057"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_get_a_logbased_metric_returns_ok_response_1608595669.067374","attributes":{"filter":{"query":"source:datadog-api-client-python-test_get_a_logbased_metric_returns_ok_response-1608595669.067374"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_get_all_logbased_metrics_returns_ok_response_1608595675.324394","attributes":{"filter":{"query":"source:datadog-api-client-python-test_get_all_logbased_metrics_returns_ok_response-1608595675.324394"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Create_a_log_based_metric_returns_OK_response_1614896593.355","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_update_a_logbased_metric_returns_ok_response_1608595673.013269","attributes":{"filter":{"query":"source:datadog-api-client-python-test_update_a_logbased_metric_returns_ok_response-1608595673.013269"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Create_a_log_based_metric_returns_OK_response_1616149774.73","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"go_Feature_Logs_Metrics_Scenario_Get_all_log_based_metrics_returns_OK_response_54239_1616717117","attributes":{"filter":{"query":"source:go-Feature_Logs_Metrics-Scenario_Get_all_log_based_metrics_returns__OK__response-54239-1616717117"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617014547.984513","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617189622.037749","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617190464.536072","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Typescript_Get_all_log_based_metrics_returns_OK_response_1617197330.21","attributes":{"filter":{"query":"source:Typescript-Get_all_log_based_metrics_returns_OK_response-1617197330.21"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"go_Feature_Logs_Metrics_Scenario_Get_all_log_based_metrics_returns_OK_response_57310_1617968823","attributes":{"filter":{"query":"source:go-Feature_Logs_Metrics-Scenario_Get_all_log_based_metrics_returns__OK__response-57310-1617968823"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"ruby_Create_a_log_based_metric_returns_OK_response_1617976084","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"ruby_Get_a_log_based_metric_returns_OK_response_1617980078","attributes":{"filter":{"query":"source:ruby-Get_a_log_based_metric_returns_OK_response-1617980078"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Test_Delete_a_log_based_metric_returns_OK_response_1618220982","attributes":{"filter":{"query":"source:Test-Delete_a_log_based_metric_returns_OK_response-1618220982"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"datadog_api_client_python_test_get_all_logbased_metrics_returns_ok_response_1618226967.951386","attributes":{"filter":{"query":"source:datadog-api-client-python-test_get_all_logbased_metrics_returns_ok_response-1618226967.951386"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Test_Typescript_Get_all_log_based_metrics_returns_OK_response_1618245179","attributes":{"filter":{"query":"source:Test-Typescript-Get_all_log_based_metrics_returns_OK_response-1618245179"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Test_Java_Create_a_log_based_metric_returns_OK_response_1618407299","attributes":{"filter":{"query":"*"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Test_Java_Get_a_log_based_metric_returns_OK_response_1618418141","attributes":{"filter":{"query":"source:Test-Java-Get_a_log_based_metric_returns_OK_response-1618418141"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"},{"id":"Test_Get_all_log_based_metrics_returns_OK_response_1618491725","attributes":{"filter":{"query":"source:Test-Get_all_log_based_metrics_returns_OK_response-1618491725"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}]}'
+    code: 200
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - '9900'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Thu, 15 Apr 2021 13:02:06 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
+      X-Dd-Version:
+      - '35.4318655'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Period:
+      - '3600'
+      X-Ratelimit-Remaining:
+      - '4998'
+      X-Ratelimit-Reset:
+      - '3474'
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
+      X-Datadog-Parent-Id:
+      - '5095942047695828255'
+      X-Datadog-Trace-Id:
+      - '5095942047695828255'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Get_all_log_based_metrics_returns_OK_response_1618491725
+  response:
+    body: '{}'
+    code: 200
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - '2'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Thu, 15 Apr 2021 13:02:06 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -156,19 +168,18 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
+      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
       X-Dd-Version:
-      - "35.4287679"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "100"
+      - '100'
       X-Ratelimit-Period:
-      - "3600"
+      - '3600'
       X-Ratelimit-Remaining:
-      - "67"
+      - '91'
       X-Ratelimit-Reset:
-      - "2056"
+      - '3474'
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1

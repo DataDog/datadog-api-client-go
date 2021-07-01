@@ -1,40 +1,44 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984"]},"id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984","type":"manage_tags"}}
+      {"data":{"attributes":{"metric_type":"distribution","tags":["app","datacenter","TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618491733"]},"id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618491733","type":"manage_tags"}}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '260'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateTagConfiguration
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "204978568552655418"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "2405871883058974433"
-    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984/tags
+      - '5095942047695828255'
     method: POST
+    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618491733/tags
   response:
-    body: '{"data":{"type":"manage_tags","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984","attributes":{"tags":["datacenter","TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984","app"],"include_percentiles":false,"created_at":"2021-04-12T09:49:44.297844+00:00","updated_at":"2021-04-12T09:49:44.297844+00:00","metric_type":"distribution"}}}'
+    body: '{"data":{"type":"manage_tags","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618491733","attributes":{"tags":["datacenter","app","TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618491733"],"include_percentiles":false,"created_at":"2021-04-15T13:02:14.013167+00:00","updated_at":"2021-04-15T13:02:14.013167+00:00","metric_type":"distribution"}}}'
+    code: 201
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "384"
+      - '384'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:49:44 GMT
+      - Thu, 15 Apr 2021 13:02:14 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,51 +46,55 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
+      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "50"
+      - '50'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "44"
+      - '44'
       X-Ratelimit-Reset:
-      - "16"
+      - '47'
     status: 201 Created
-    code: 201
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - ListVolumesByMetricName
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "855696743051728361"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "2405871883058974433"
-    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984/volumes
+      - '5095942047695828255'
     method: GET
+    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618491733/volumes
   response:
-    body: '{"data":{"type":"metric_volumes","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984","attributes":{"indexed_volume":0,"ingested_volume":0}}}'
+    body: '{"data":{"type":"metric_volumes","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618491733","attributes":{"indexed_volume":0,"ingested_volume":0}}}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '169'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:49:44 GMT
+      - Thu, 15 Apr 2021 13:02:14 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -96,53 +104,55 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - 5gfwVh/5HZ+AnGd/Di93w3NEWC6KMHT9KzmHEiRJmNdOjBtAsbOcgVFyqEChw71h
+      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "600"
+      - '600'
       X-Ratelimit-Period:
-      - "3600"
+      - '3600'
       X-Ratelimit-Remaining:
-      - "587"
+      - '599'
       X-Ratelimit-Reset:
-      - "616"
+      - '3466'
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteTagConfiguration
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "6840425901347284985"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "2405871883058974433"
-    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618220984/tags
+      - '5095942047695828255'
     method: DELETE
+    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1618491733/tags
   response:
-    body: ""
+    body: ''
+    code: 204
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "0"
+      - '0'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:49:44 GMT
+      - Thu, 15 Apr 2021 13:02:14 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -150,19 +160,18 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - nLnnBNvlCFDECRnZvzDb0z4sAO35G+IMidcAs8vrCKyjvsKWE8Yd9S3n6OjZ1qRN
+      - tpRCH6w417YjBovRJ8VmtuXmNONVYiRp2c8d2AxjPdGBn8PCtgG4vAztrx3qUZAN
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "50"
+      - '50'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "43"
+      - '43'
       X-Ratelimit-Reset:
-      - "16"
+      - '46'
     status: 204 No Content
-    code: 204
-    duration: ""
+version: 1

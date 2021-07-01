@@ -1,24 +1,22 @@
----
-version: 1
 interactions:
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - ListPermissions
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "2763250515023148758"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "7442975427556911407"
-    url: https://api.datadoghq.com/api/v2/permissions
+      - '5095942047695828255'
     method: GET
+    url: https://api.datadoghq.com/api/v2/permissions
   response:
     body: '{"data":[{"type":"permissions","id":"984a2bd4-d3b4-11e8-a1ff-a7f660d43029","attributes":{"name":"admin","display_name":"Privileged
       Access","description":"This permission gives you the ability to view and edit
@@ -159,15 +157,21 @@ interactions:
       Management","display_type":"read","restricted":false}},{"type":"permissions","id":"bf0dcf7d-90af-11eb-9b82-da7ad0900002","attributes":{"name":"data_scanner_write","display_name":"Data
       Scanner","description":"Edit data scanner configuration.","created":"2021-03-29T16:56:46.398584+00:00","group_name":"Access
       Management","display_type":"write","restricted":false}}]}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '21271'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:50:01 GMT
+      - Thu, 15 Apr 2021 13:02:41 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -177,11 +181,10 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - l8RQo2maZqJf6GFThBbKNE6dvthz6njusVtau3dPXJWL2RLFoN81H+BLPB/1xgs1
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1

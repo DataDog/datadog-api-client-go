@@ -1,37 +1,39 @@
----
-version: 1
 interactions:
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - ListLogsGet
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "5211150352041310284"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "8844854201328708122"
-    url: https://api.datadoghq.com/api/v2/logs/events?filter%5Bfrom%5D=2020-09-17T11%3A48%3A36%2B01%3A00&filter%5Bindex%5D=main&filter%5Bquery%5D=datadog-agent&filter%5Bto%5D=2020-09-17T12%3A48%3A36%2B01%3A00&page%5Blimit%5D=5
+      - '5095942047695828255'
     method: GET
+    url: https://api.datadoghq.com/api/v2/logs/events?filter%5Bquery%5D=datadog-agent&filter%5Bindex%5D=main&filter%5Bfrom%5D=2020-09-17T11%3A48%3A36%2B01%3A00&filter%5Bto%5D=2020-09-17T12%3A48%3A36%2B01%3A00&page%5Blimit%5D=5
   response:
     body: '{"data":[]}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "11"
+      - '11'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:49:41 GMT
+      - Thu, 15 Apr 2021 13:02:10 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -39,19 +41,18 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
+      - 25u1gDlL724DHllbjFT4BhOLorBTilh+aah2uWAUEjFC/+rjczJdiyWrV/HwLwe/
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "300"
+      - '300'
       X-Ratelimit-Period:
-      - "3600"
+      - '3600'
       X-Ratelimit-Remaining:
-      - "202"
+      - '298'
       X-Ratelimit-Reset:
-      - "619"
+      - '3470'
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1

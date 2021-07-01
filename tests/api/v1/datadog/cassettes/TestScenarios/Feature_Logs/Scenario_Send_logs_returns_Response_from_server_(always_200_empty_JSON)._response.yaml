@@ -1,36 +1,39 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      [{"ddtags":"host:TestSendlogsreturnsResponsefromserveralways200emptyJSONresponse1618578827","message":"Test-Send_logs_returns_Response_from_server_always_200_empty_JSON_response-1618578827"}]
+      [{"ddtags":"host:TestSendlogsreturnsResponsefromserveralways200emptyJSONresponse1618413148","message":"Test-Send_logs_returns_Response_from_server_always_200_empty_JSON_response-1618413148"}]
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '191'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - SubmitLog
+      Host:
+      - http-intake.logs.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.20+dev (go go1.16; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.12.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "8620489186310435104"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '184200789673602245'
       X-Datadog-Trace-Id:
-      - "6425558157109796744"
-    url: https://http-intake.logs.datadoghq.com/v1/input
+      - '184200789673602245'
     method: POST
+    url: https://http-intake.logs.datadoghq.com/v1/input
   response:
     body: '{}'
+    code: 200
+    duration: ''
     headers:
+      Connection:
+      - close
       Content-Length:
-      - "2"
+      - '2'
       Content-Type:
       - application/json
       Date:
-      - Fri, 16 Apr 2021 13:13:47 GMT
+      - Wed, 14 Apr 2021 15:12:29 GMT
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1

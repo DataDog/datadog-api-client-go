@@ -1,40 +1,44 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"cases":[{"status":"info"}],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_returns_Bad_Request_response-1618476752","options":{},"queries":[{"query":""}],"tags":[]}
+      {"cases":[{"status":"info"}],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_returns_Bad_Request_response-1618473262","options":{},"queries":[{"query":""}],"tags":[]}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '194'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateSecurityMonitoringRule
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.20+dev (go go1.16.3; os linux; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.12.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "1729254004336480347"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '2007628655085055880'
       X-Datadog-Trace-Id:
-      - "3146328642502187986"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
+      - '2007628655085055880'
     method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
   response:
     body: '{"errors":["Internal error"]}'
+    code: 400
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "29"
+      - '29'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Apr 2021 08:52:32 GMT
+      - Thu, 15 Apr 2021 07:54:22 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,9 +46,8 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4317157"
+      - '35.4316747'
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
-    code: 400
-    duration: ""
+version: 1

@@ -1,37 +1,41 @@
----
-version: 1
 interactions:
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - ListSecurityFilters
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.16.4; os linux; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - "7872824018473356434"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '9006914830130196790'
       X-Datadog-Trace-Id:
-      - "4685242797570467585"
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters
+      - '8850104610609194120'
     method: GET
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters
   response:
     body: '{"data":[{"attributes":{"is_enabled":true,"name":"all ingested logs","filtered_data_type":"logs","exclusion_filters":[],"version":1,"query":"*","is_builtin":true},"type":"security_filters","id":"bc0-fow-e4j"}]}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Disposition:
       - inline
+      Content-Length:
+      - '210'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Tue, 11 May 2021 16:54:10 GMT
+      - Tue, 11 May 2021 16:46:31 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -41,11 +45,10 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
+      - PhosSd3Ch1B6B0DXI71steKUi7XhPDttnPiIP1NdXTw0VJNWpoUnYyBmODS5ne3q
       X-Dd-Version:
-      - "35.4508212"
+      - '35.4508212'
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1
