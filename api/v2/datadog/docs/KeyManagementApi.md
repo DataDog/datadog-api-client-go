@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**DeleteApplicationKey**](KeyManagementApi.md#DeleteApplicationKey) | **Delete** /api/v2/application_keys/{app_key_id} | Delete an application key
 [**DeleteCurrentUserApplicationKey**](KeyManagementApi.md#DeleteCurrentUserApplicationKey) | **Delete** /api/v2/current_user/application_keys/{app_key_id} | Delete an application key owned by current user
 [**GetAPIKey**](KeyManagementApi.md#GetAPIKey) | **Get** /api/v2/api_keys/{api_key_id} | Get API key
+[**GetApplicationKey**](KeyManagementApi.md#GetApplicationKey) | **Get** /api/v2/application_keys/{app_key_id} | Get an application key
 [**GetCurrentUserApplicationKey**](KeyManagementApi.md#GetCurrentUserApplicationKey) | **Get** /api/v2/current_user/application_keys/{app_key_id} | Get one application key owned by current user
 [**ListAPIKeys**](KeyManagementApi.md#ListAPIKeys) | **Get** /api/v2/api_keys | Get all API keys
 [**ListApplicationKeys**](KeyManagementApi.md#ListApplicationKeys) | **Get** /api/v2/application_keys | Get all application keys
@@ -422,6 +423,85 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**APIKeyResponse**](APIKeyResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetApplicationKey
+
+> ApplicationKeyResponse GetApplicationKey(ctx, appKeyId, datadog.GetApplicationKeyOptionalParameters{})
+
+Get an application key for your org.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    appKeyId := "appKeyId_example" // string | The ID of the application key.
+    include := "owned_by" // string | Resource path for related resources to include in the response. Only `owned_by` is supported. (optional)
+    optionalParams := datadog.GetApplicationKeyOptionalParameters{
+        Include: &include,
+    }
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.KeyManagementApi.GetApplicationKey(ctx, appKeyId, optionalParams)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetApplicationKey`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetApplicationKey`: ApplicationKeyResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from KeyManagementApi.GetApplicationKey:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**appKeyId** | **string** | The ID of the application key. | 
+
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a GetApplicationKeyOptionalParameters struct.
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**include** | **string** | Resource path for related resources to include in the response. Only &#x60;owned_by&#x60; is supported. | 
+
+### Return type
+
+[**ApplicationKeyResponse**](ApplicationKeyResponse.md)
 
 ### Authorization
 

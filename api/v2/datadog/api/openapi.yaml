@@ -544,6 +544,58 @@ paths:
       x-codegen-request-body-name: body
       x-undo:
         type: idempotent
+    get:
+      description: Get an application key for your org.
+      operationId: GetApplicationKey
+      parameters:
+      - description: The ID of the application key.
+        explode: false
+        in: path
+        name: app_key_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Resource path for related resources to include in the response.
+          Only `owned_by` is supported.
+        explode: true
+        in: query
+        name: include
+        required: false
+        schema:
+          example: owned_by
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationKeyResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Get an application key
+      tags:
+      - Key Management
+      x-undo:
+        type: safe
     patch:
       description: Edit an application key
       operationId: UpdateApplicationKey
@@ -5261,6 +5313,17 @@ components:
       schema:
         type: string
       style: simple
+    ApplicationKeyIncludeParameter:
+      description: Resource path for related resources to include in the response.
+        Only `owned_by` is supported.
+      explode: true
+      in: query
+      name: include
+      required: false
+      schema:
+        example: owned_by
+        type: string
+      style: form
     ApplicationKeysSortParameter:
       description: |-
         Application key attribute used to sort results. Sort order is ascending

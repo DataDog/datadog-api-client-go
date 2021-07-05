@@ -104,6 +104,7 @@ Class | Method | HTTP request | Description
 *KeyManagementApi* | [**DeleteApplicationKey**](docs/KeyManagementApi.md#deleteapplicationkey) | **Delete** /api/v2/application_keys/{app_key_id} | Delete an application key
 *KeyManagementApi* | [**DeleteCurrentUserApplicationKey**](docs/KeyManagementApi.md#deletecurrentuserapplicationkey) | **Delete** /api/v2/current_user/application_keys/{app_key_id} | Delete an application key owned by current user
 *KeyManagementApi* | [**GetAPIKey**](docs/KeyManagementApi.md#getapikey) | **Get** /api/v2/api_keys/{api_key_id} | Get API key
+*KeyManagementApi* | [**GetApplicationKey**](docs/KeyManagementApi.md#getapplicationkey) | **Get** /api/v2/application_keys/{app_key_id} | Get an application key
 *KeyManagementApi* | [**GetCurrentUserApplicationKey**](docs/KeyManagementApi.md#getcurrentuserapplicationkey) | **Get** /api/v2/current_user/application_keys/{app_key_id} | Get one application key owned by current user
 *KeyManagementApi* | [**ListAPIKeys**](docs/KeyManagementApi.md#listapikeys) | **Get** /api/v2/api_keys | Get all API keys
 *KeyManagementApi* | [**ListApplicationKeys**](docs/KeyManagementApi.md#listapplicationkeys) | **Get** /api/v2/application_keys | Get all application keys
