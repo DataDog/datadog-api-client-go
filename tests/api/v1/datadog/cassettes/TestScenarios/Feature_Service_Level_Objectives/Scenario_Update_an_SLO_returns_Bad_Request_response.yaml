@@ -1,39 +1,45 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"name":"Test-Update_an_SLO_returns_Bad_Request_response-1618476733","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"thresholds":[{"target":95,"timeframe":"7d","warning":98}],"type":"metric"}
+      {"name":"Test-Update_an_SLO_returns_Bad_Request_response-1618572732","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"thresholds":[{"target":95,"timeframe":"7d","warning":98}],"type":"metric"}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '269'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateSLO
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.20+dev (go go1.16.3; os linux; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - "7712563961818667321"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '7220881248335507240'
       X-Datadog-Trace-Id:
-      - "7340662070559042097"
-    url: https://api.datadoghq.com/api/v1/slo
+      - '2284581674428869261'
     method: POST
+    url: https://api.datadoghq.com/api/v1/slo
   response:
     body: '{"data":[{"description":"","monitor_tags":[],"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
-      Account","email":"team-intg-tools-libs@datadoghq.com"},"thresholds":[{"warning":98.0,"warning_display":"98.","target":95.0,"target_display":"95.","timeframe":"7d"}],"type_id":1,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"id":"28f268e77354523b8fd5d360172bd73c","name":"Test-Update_an_SLO_returns_Bad_Request_response-1618476733","created_at":1618476733,"tags":[],"modified_at":1618476733,"type":"metric"}],"error":null}'
+      Account","email":"team-intg-tools-libs@datadoghq.com"},"thresholds":[{"warning":98.0,"warning_display":"98.","target":95.0,"target_display":"95.","timeframe":"7d"}],"type_id":1,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"id":"90eaa3b4c11751b884a783c81485ed31","name":"Test-Update_an_SLO_returns_Bad_Request_response-1618572732","created_at":1618572732,"tags":[],"modified_at":1618572732,"type":"metric"}],"error":null}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '615'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Apr 2021 08:52:13 GMT
+      - Fri, 16 Apr 2021 11:32:12 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,54 +49,58 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4317157"
+      - '35.4327367'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "500"
+      - '500'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "497"
+      - '498'
       X-Ratelimit-Reset:
-      - "47"
+      - '48'
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
     body: |
-      {"name":"Test-Update_an_SLO_returns_Bad_Request_response-1618476733","thresholds":[{"target":95,"target_display":"95.0","timeframe":"7d","warning":98,"warning_display":"98.0"}],"type":"monitor"}
+      {"name":"Test-Update_an_SLO_returns_Bad_Request_response-1618572732","thresholds":[{"target":95,"target_display":"95.0","timeframe":"7d","warning":98,"warning_display":"98.0"}],"type":"monitor"}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '194'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - UpdateSLO
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.20+dev (go go1.16.3; os linux; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - "8198577356244687480"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '7926138249301727753'
       X-Datadog-Trace-Id:
-      - "7340662070559042097"
-    url: https://api.datadoghq.com/api/v1/slo/28f268e77354523b8fd5d360172bd73c
+      - '2284581674428869261'
     method: PUT
+    url: https://api.datadoghq.com/api/v1/slo/90eaa3b4c11751b884a783c81485ed31
   response:
     body: '{"errors": ["Invalid payload: must specify the query for count types"]}'
+    code: 400
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "71"
+      - '71'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Apr 2021 08:52:13 GMT
+      - Fri, 16 Apr 2021 11:32:12 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -98,49 +108,53 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4317157"
+      - '35.4327367'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "500"
+      - '500'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "498"
+      - '499'
       X-Ratelimit-Reset:
-      - "47"
+      - '48'
     status: 400 Bad Request
-    code: 400
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteSLO
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.20+dev (go go1.16.3; os linux; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - "5650261970740007688"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '6088856158171423318'
       X-Datadog-Trace-Id:
-      - "7340662070559042097"
-    url: https://api.datadoghq.com/api/v1/slo/28f268e77354523b8fd5d360172bd73c
+      - '2284581674428869261'
     method: DELETE
+    url: https://api.datadoghq.com/api/v1/slo/90eaa3b4c11751b884a783c81485ed31
   response:
-    body: '{"data":["28f268e77354523b8fd5d360172bd73c"],"error":null}'
+    body: '{"data":["90eaa3b4c11751b884a783c81485ed31"],"error":null}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '58'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Apr 2021 08:52:13 GMT
+      - Fri, 16 Apr 2021 11:32:13 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -150,17 +164,16 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4317157"
+      - '35.4327367'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "3000"
+      - '3000'
       X-Ratelimit-Period:
-      - "10"
+      - '10'
       X-Ratelimit-Remaining:
-      - "2998"
+      - '2998'
       X-Ratelimit-Reset:
-      - "7"
+      - '8'
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1

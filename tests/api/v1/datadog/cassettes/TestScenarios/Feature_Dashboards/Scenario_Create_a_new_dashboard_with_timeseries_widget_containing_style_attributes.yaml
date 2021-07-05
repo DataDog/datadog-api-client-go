@@ -1,40 +1,46 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes-1618221315 with timeseries widget","widgets":[{"definition":{"requests":[{"display_type":"bars","on_right_yaxis":false,"q":"sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()","style":{"line_type":"solid","line_width":"normal","palette":"warm"}}],"type":"timeseries"}}]}
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes-1618572731 with timeseries widget","widgets":[{"definition":{"requests":[{"display_type":"bars","on_right_yaxis":false,"q":"sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()","style":{"line_type":"solid","line_width":"normal","palette":"warm"}}],"type":"timeseries"}}]}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '419'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateDashboard
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - "2839100904289923245"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '6513831381695070861'
       X-Datadog-Trace-Id:
-      - "4333842537276260869"
-    url: https://api.datadoghq.com/api/v1/dashboard
+      - '6520343188750172941'
     method: POST
+    url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"notify_list":null,"description":null,"author_name":null,"template_variables":null,"is_read_only":false,"id":"pgc-anh-rw4","title":"Test-Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes-1618221315
-      with timeseries widget","url":"/dashboard/pgc-anh-rw4/test-createanewdashboardwithtimeserieswidgetcontainingstyleattributes-1618221315","created_at":"2021-04-12T09:55:15.941683+00:00","modified_at":"2021-04-12T09:55:15.941683+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"q":"sum:trace.test.errors{env:prod,service:datadog-api-spec}
-      by {resource_name}.as_count()","on_right_yaxis":false,"style":{"line_width":"normal","palette":"warm","line_type":"solid"},"display_type":"bars"}],"type":"timeseries"},"id":8845872358878985}],"layout_type":"ordered"}'
+    body: '{"notify_list":null,"description":null,"author_name":"CI Account","template_variables":null,"is_read_only":false,"id":"edw-vay-96u","title":"Test-Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes-1618572731
+      with timeseries widget","url":"/dashboard/edw-vay-96u/test-createanewdashboardwithtimeserieswidgetcontainingstyleattributes-1618572731","created_at":"2021-04-16T11:32:11.338701+00:00","modified_at":"2021-04-16T11:32:11.338701+00:00","author_handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","widgets":[{"definition":{"requests":[{"q":"sum:trace.test.errors{env:prod,service:datadog-api-spec}
+      by {resource_name}.as_count()","on_right_yaxis":false,"style":{"line_width":"normal","palette":"warm","line_type":"solid"},"display_type":"bars"}],"type":"timeseries"},"id":1125815002687389}],"layout_type":"ordered"}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '836'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:55:15 GMT
+      - Fri, 16 Apr 2021 11:32:11 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,43 +50,47 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
+      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4327367'
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteDashboard
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - "8556409989228811242"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '7704306972974471993'
       X-Datadog-Trace-Id:
-      - "4333842537276260869"
-    url: https://api.datadoghq.com/api/v1/dashboard/pgc-anh-rw4
+      - '6520343188750172941'
     method: DELETE
+    url: https://api.datadoghq.com/api/v1/dashboard/edw-vay-96u
   response:
-    body: '{"deleted_dashboard_id":"pgc-anh-rw4"}'
+    body: '{"deleted_dashboard_id":"edw-vay-96u"}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '38'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:55:16 GMT
+      - Fri, 16 Apr 2021 11:32:11 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -90,11 +100,10 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - /L+SFFO+m1pPY+hRCpk5325fvfrNl0KmiquUNJolBN/5hu3HIwflqjZSbJ6NxDFG
+      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4327367'
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1

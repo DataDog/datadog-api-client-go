@@ -1,35 +1,39 @@
----
-version: 1
 interactions:
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - ListProcesses
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "5790398060500192387"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "7027657057950321294"
-    url: https://api.datadoghq.com/api/v2/processes?page%5Blimit%5D=2&search=process-agent&tags=testing%3Atrue
+      - '5095942047695828255'
     method: GET
+    url: https://api.datadoghq.com/api/v2/processes?search=process-agent&tags=testing%3Atrue&page%5Blimit%5D=2
   response:
     body: '{"meta":{"page":{"after":"","size":0}},"data":[]}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '49'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:49:56 GMT
+      - Thu, 15 Apr 2021 13:02:28 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -39,19 +43,18 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - FCcG2z5GRhjFqYyc9iVglZEWK/dv6PHRNX0KBI6t25YFeuatUWL92fIIdoYEmN1c
+      - +L3cOfomyGGuXv+NlljFgOXDhA8u+DdhktfMTq5dNwRAQOJlilnIrPxwleX76+2G
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "100"
+      - '100'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "99"
+      - '99'
       X-Ratelimit-Reset:
-      - "4"
+      - '32'
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1

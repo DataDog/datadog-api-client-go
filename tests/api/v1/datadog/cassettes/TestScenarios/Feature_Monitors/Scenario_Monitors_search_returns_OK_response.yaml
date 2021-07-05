@@ -1,24 +1,22 @@
----
-version: 1
 interactions:
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - SearchMonitors
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "7123542786712672098"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '7060831856093393156'
       X-Datadog-Trace-Id:
-      - "1332665782497229712"
-    url: https://api.datadoghq.com/api/v1/monitor/search
+      - '7060831856093393156'
     method: GET
+    url: https://api.datadoghq.com/api/v1/monitor/search
   response:
     body: '{"counts":{"status":[{"count":65,"name":"No Data"},{"count":24,"name":"OK"},{"count":10,"name":"Alert"}],"muted":[{"count":71,"name":true},{"count":28,"name":false}],"tag":[{"count":33,"name":"probe_dc:aws:us-east-2"},{"count":29,"name":"client:go"},{"count":29,"name":"test"},{"count":28,"name":"check_status:live"},{"count":21,"name":"check_type:api"},{"count":19,"name":"testing:api"},{"count":10,"name":"check_status:paused"},{"count":8,"name":"check_type:browser"},{"count":8,"name":"testing:browser"},{"count":7,"name":"foo:bar"},{"count":5,"name":"environment:test"},{"count":5,"name":"generator:slops"},{"count":5,"name":"release:e6a2686"},{"count":5,"name":"systemid:splunk"},{"count":5,"name":"team:developer_insights"},{"count":4,"name":"baz"},{"count":4,"name":"probe_dc:aws:eu-central-1"},{"count":4,"name":"sli:latency"},{"count":4,"name":"slotype:alb"},{"count":3,"name":"app:webserver"},{"count":3,"name":"check_type:api-tcp"},{"count":3,"name":"env:test"},{"count":3,"name":"foo"},{"count":3,"name":"frontend"},{"count":3,"name":"testing:api-tcp"},{"count":2,"name":"check_type:api-icmp"},{"count":2,"name":"check_type:api-multi"},{"count":2,"name":"testing:api-icmp"},{"count":1,"name":"check_type:api-dns"},{"count":1,"name":"check_type:api-ssl"},{"count":1,"name":"probe_dc:aws:ap-northeast-1"},{"count":1,"name":"sli:availability"},{"count":1,"name":"slotype:elb"},{"count":1,"name":"tags_example"},{"count":1,"name":"testing:api-dns"}],"type":[{"count":38,"name":"synthetics"},{"count":23,"name":"log"},{"count":16,"name":"metric"},{"count":11,"name":"integration"},{"count":9,"name":"custom"},{"count":1,"name":"composite"},{"count":1,"name":"slo"}]},"monitors":[{"status":"No
       Data","scopes":["host:foo","environment:foo"],"classification":"integration","creator":{"handle":"slavek.kabrda@datadoghq.com","id":1379826,"name":"Slavek
@@ -118,15 +116,21 @@ interactions:
       Muesch"},"metrics":[],"notifications":[],"muted_until_ts":null,"query":"no_query","id":20314950,"last_triggered_ts":null,"name":"[Synthetics]
       java-testSyntheticsMultipleTestsOperations-20175-1595364791-api","tags":["testing:api","check_type:api","probe_dc:aws:us-east-2","check_status:live"],"org_id":321813,"priority":null,"overall_state_modified":null,"restricted_roles":[],"type":"synthetics
       alert"}],"metadata":{"total_count":99,"page_count":30,"page":0,"per_page":30}}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '19166'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 May 2021 10:07:54 GMT
+      - Tue, 25 May 2021 10:23:22 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -136,17 +140,16 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4600133"
+      - '35.4600248'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "120"
+      - '120'
       X-Ratelimit-Period:
-      - "10"
+      - '10'
       X-Ratelimit-Remaining:
-      - "116"
+      - '116'
       X-Ratelimit-Reset:
-      - "6"
+      - '8'
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1

@@ -1,40 +1,44 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"name":"Test-Create_an_SLO_object_returns_Bad_Request_response-1618476726","thresholds":[{"target":95,"target_display":"95.0","timeframe":"7d","warning":98,"warning_display":"98.0"}],"type":"monitor"}
+      {"name":"Test-Create_an_SLO_object_returns_Bad_Request_response-1618413154","thresholds":[{"target":95,"target_display":"95.0","timeframe":"7d","warning":98,"warning_display":"98.0"}],"type":"monitor"}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '201'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateSLO
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.20+dev (go go1.16.3; os linux; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.12.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "7633542843697562304"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '184200789673602245'
       X-Datadog-Trace-Id:
-      - "8627709677524743360"
-    url: https://api.datadoghq.com/api/v1/slo
+      - '184200789673602245'
     method: POST
+    url: https://api.datadoghq.com/api/v1/slo
   response:
     body: '{"errors": ["Invalid payload: must specify monitor_ids or monitor_search"]}'
+    code: 400
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "75"
+      - '75'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Apr 2021 08:52:06 GMT
+      - Wed, 14 Apr 2021 15:12:34 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,17 +46,16 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4317157"
+      - '35.4310591'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "500"
+      - '500'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "499"
+      - '498'
       X-Ratelimit-Reset:
-      - "54"
+      - '26'
     status: 400 Bad Request
-    code: 400
-    duration: ""
+version: 1

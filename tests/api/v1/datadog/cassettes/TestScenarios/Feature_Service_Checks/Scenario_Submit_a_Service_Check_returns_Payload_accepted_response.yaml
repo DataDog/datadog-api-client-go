@@ -1,38 +1,42 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      [{"check":"app.ok","host_name":"host","status":0,"tags":["test:TestSubmitaServiceCheckreturnsPayloadacceptedresponse1618221317"]}]
+      [{"check":"app.ok","host_name":"host","status":0,"tags":["test:TestSubmitaServiceCheckreturnsPayloadacceptedresponse1618491676"]}]
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '130'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - SubmitServiceCheck
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "9120446893942639079"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "5337774800753909960"
-    url: https://api.datadoghq.com/api/v1/check_run
+      - '5095942047695828255'
     method: POST
+    url: https://api.datadoghq.com/api/v1/check_run
   response:
     body: '{"status": "ok"}'
+    code: 202
+    duration: ''
     headers:
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "16"
+      - '16'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - text/json
       Date:
-      - Mon, 12 Apr 2021 09:55:17 GMT
+      - Thu, 15 Apr 2021 13:01:16 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
@@ -40,5 +44,4 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 202 Accepted
-    code: 202
-    duration: ""
+version: 1

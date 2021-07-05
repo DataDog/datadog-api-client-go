@@ -1,35 +1,39 @@
----
-version: 1
 interactions:
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - GetMonitor
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "3450326186877560391"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '5095942047695828255'
       X-Datadog-Trace-Id:
-      - "5678654340453829056"
-    url: https://api.datadoghq.com/api/v1/monitor/12345
+      - '5095942047695828255'
     method: GET
+    url: https://api.datadoghq.com/api/v1/monitor/12345
   response:
     body: '{"errors": ["Monitor not found"]}'
+    code: 404
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '33'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:55:17 GMT
+      - Thu, 15 Apr 2021 13:01:15 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -39,17 +43,16 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Version:
-      - "35.4287331"
+      - '35.4318655'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "3000"
+      - '3000'
       X-Ratelimit-Period:
-      - "10"
+      - '10'
       X-Ratelimit-Remaining:
-      - "2999"
+      - '2999'
       X-Ratelimit-Reset:
-      - "3"
+      - '5'
     status: 404 Not Found
-    code: 404
-    duration: ""
+version: 1

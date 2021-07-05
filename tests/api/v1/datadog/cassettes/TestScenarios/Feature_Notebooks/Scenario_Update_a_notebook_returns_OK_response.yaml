@@ -1,39 +1,45 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"cells":[{"attributes":{"definition":{"text":"# Test-Update_a_notebook_returns_OK_response-1620749296 notebook text","type":"markdown"}},"type":"notebook_cells"}],"name":"Test-Update_a_notebook_returns_OK_response-1620749296","time":{"live_span":"1h"}},"type":"notebooks"}}
+      {"data":{"attributes":{"cells":[{"attributes":{"definition":{"text":"# Test-Update_a_notebook_returns_OK_response-1620731122 notebook text","type":"markdown"}},"type":"notebook_cells"}],"name":"Test-Update_a_notebook_returns_OK_response-1620731122","time":{"live_span":"1h"}},"type":"notebooks"}}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '296'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateNotebook
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "3027754273214548352"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '6155795697454066766'
       X-Datadog-Trace-Id:
-      - "5189029534201660331"
-    url: https://api.datadoghq.com/api/v1/notebooks
+      - '6155795697454066766'
     method: POST
+    url: https://api.datadoghq.com/api/v1/notebooks
   response:
-    body: '{"data":{"type":"notebooks","id":776089,"attributes":{"name":"Test-Update_a_notebook_returns_OK_response-1620749296","cells":[{"attributes":{"definition":{"text":"#
-      Test-Update_a_notebook_returns_OK_response-1620749296 notebook text","type":"markdown"}},"type":"notebook_cells","id":"tafrs5ie"}],"time":{"live_span":"1h"},"status":"published","modified":"2021-05-11T16:08:16.253312+00:00","created":"2021-05-11T16:08:16.253312+00:00","author":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}}}'
+    body: '{"data":{"type":"notebooks","id":774485,"attributes":{"name":"Test-Update_a_notebook_returns_OK_response-1620731122","cells":[{"attributes":{"definition":{"text":"#
+      Test-Update_a_notebook_returns_OK_response-1620731122 notebook text","type":"markdown"}},"type":"notebook_cells","id":"fba7ha9z"}],"time":{"live_span":"1h"},"status":"published","modified":"2021-05-11T11:05:22.614667+00:00","created":"2021-05-11T11:05:22.614667+00:00","author":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}}}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '672'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 11 May 2021 16:08:16 GMT
+      - Tue, 11 May 2021 11:05:22 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,55 +49,61 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - SY1h8ScsWq+kYmtbh63ltMLFAZsQjqfrgvdfAoRX+9TzT1sgMBRYaFRwfWWRRe9a
+      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
       X-Dd-Version:
-      - "35.4507575"
+      - '35.4504344'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "30"
+      - '30'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "26"
+      - '29'
       X-Ratelimit-Reset:
-      - "44"
+      - '38'
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
     body: |
-      {"data":{"attributes":{"cells":[{"attributes":{"definition":{"text":"## Some test markdown\n\n```js\nvar x, y;\nx = 5;\ny = 6;\n```","type":"markdown"}},"type":"notebook_cells"},{"attributes":{"definition":{"requests":[{"display_type":"line","q":"avg:system.load.1{*}","style":{"line_type":"solid","line_width":"normal","palette":"dog_classic"}}],"show_legend":true,"type":"timeseries","yaxis":{"scale":"linear"}},"graph_size":"m","split_by":{"keys":[],"tags":[]},"time":null},"type":"notebook_cells"}],"name":"Test-Update_a_notebook_returns_OK_response-1620749296-updated","status":"published","time":{"live_span":"1h"}},"type":"notebooks"}}
+      {"data":{"attributes":{"cells":[{"attributes":{"definition":{"text":"## Some test markdown\n\n```js\nvar x, y;\nx = 5;\ny = 6;\n```","type":"markdown"}},"type":"notebook_cells"},{"attributes":{"definition":{"requests":[{"display_type":"line","q":"avg:system.load.1{*}","style":{"line_type":"solid","line_width":"normal","palette":"dog_classic"}}],"show_legend":true,"type":"timeseries","yaxis":{"scale":"linear"}},"graph_size":"m","split_by":{"keys":[],"tags":[]},"time":null},"type":"notebook_cells"}],"name":"Test-Update_a_notebook_returns_OK_response-1620731122-updated","status":"published","time":{"live_span":"1h"}},"type":"notebooks"}}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '642'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - UpdateNotebook
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "4039653800273447519"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '6155795697454066766'
       X-Datadog-Trace-Id:
-      - "5189029534201660331"
-    url: https://api.datadoghq.com/api/v1/notebooks/776089
+      - '6155795697454066766'
     method: PUT
+    url: https://api.datadoghq.com/api/v1/notebooks/774485
   response:
-    body: '{"data":{"type":"notebooks","id":776089,"attributes":{"name":"Test-Update_a_notebook_returns_OK_response-1620749296-updated","cells":[{"attributes":{"definition":{"text":"##
-      Some test markdown\n\n```js\nvar x, y;\nx = 5;\ny = 6;\n```","type":"markdown"}},"type":"notebook_cells","id":"lrkuqn5a"},{"attributes":{"definition":{"requests":[{"q":"avg:system.load.1{*}","style":{"line_width":"normal","palette":"dog_classic","line_type":"solid"},"display_type":"line"}],"type":"timeseries","show_legend":true,"yaxis":{"scale":"linear"}},"graph_size":"m","split_by":{"keys":[],"tags":[]},"time":null},"type":"notebook_cells","id":"mfsdr1ao"}],"time":{"live_span":"1h"},"status":"published","modified":"2021-05-11T16:08:16.444015+00:00","created":"2021-05-11T16:08:16.253312+00:00","author":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}}}'
+    body: '{"data":{"type":"notebooks","id":774485,"attributes":{"name":"Test-Update_a_notebook_returns_OK_response-1620731122-updated","cells":[{"attributes":{"definition":{"text":"##
+      Some test markdown\n\n```js\nvar x, y;\nx = 5;\ny = 6;\n```","type":"markdown"}},"type":"notebook_cells","id":"j5oy1chn"},{"attributes":{"definition":{"requests":[{"q":"avg:system.load.1{*}","style":{"line_width":"normal","palette":"dog_classic","line_type":"solid"},"display_type":"line"}],"type":"timeseries","show_legend":true,"yaxis":{"scale":"linear"}},"graph_size":"m","split_by":{"keys":[],"tags":[]},"time":null},"type":"notebook_cells","id":"8s9f0zci"}],"time":{"live_span":"1h"},"status":"published","modified":"2021-05-11T11:05:23.057423+00:00","created":"2021-05-11T11:05:22.614667+00:00","author":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}}}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '1013'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 11 May 2021 16:08:16 GMT
+      - Tue, 11 May 2021 11:05:23 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -101,53 +113,55 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
+      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
       X-Dd-Version:
-      - "35.4507575"
+      - '35.4504344'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "30"
+      - '30'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "29"
+      - '29'
       X-Ratelimit-Reset:
-      - "44"
+      - '37'
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteNotebook
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "2124972473522682567"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '6155795697454066766'
       X-Datadog-Trace-Id:
-      - "5189029534201660331"
-    url: https://api.datadoghq.com/api/v1/notebooks/776089
+      - '6155795697454066766'
     method: DELETE
+    url: https://api.datadoghq.com/api/v1/notebooks/774485
   response:
-    body: ""
+    body: ''
+    code: 204
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "0"
+      - '0'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 11 May 2021 16:08:16 GMT
+      - Tue, 11 May 2021 11:05:23 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -155,19 +169,18 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - mNzaoDhdDKO7t4QSrAe5X7pHd0bJND187D+vRbwoluXouE2m1UaQQX0RGCvRpLVE
+      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
       X-Dd-Version:
-      - "35.4507575"
+      - '35.4504344'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "30"
+      - '30'
       X-Ratelimit-Period:
-      - "60"
+      - '60'
       X-Ratelimit-Remaining:
-      - "24"
+      - '29'
       X-Ratelimit-Reset:
-      - "44"
+      - '37'
     status: 204 No Content
-    code: 204
-    duration: ""
+version: 1

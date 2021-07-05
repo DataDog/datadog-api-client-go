@@ -1,5 +1,3 @@
----
-version: 1
 interactions:
 - request:
     body: |
@@ -7,32 +5,40 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '143'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - AggregateLogs
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
       X-Datadog-Parent-Id:
-      - "855984324867079988"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '2282340330001095403'
       X-Datadog-Trace-Id:
-      - "2275875735325077926"
-    url: https://api.datadoghq.com/api/v2/logs/analytics/aggregate
+      - '2282340330001095403'
     method: POST
+    url: https://api.datadoghq.com/api/v2/logs/analytics/aggregate
   response:
-    body: '{"meta":{"status":"done","request_id":"pddv1ChZRbndYRjdIN1JZNlYxOGNidGdtZ3BnIi0KHWpwy2h-x4TUhVQA6i1frFHEo6kBm_uhOYYL6WhrEgzCRyAkAIlrOcEh1wQ","elapsed":3},"data":{"buckets":[{"computes":{"c0":[{"value":3,"time":"2021-06-02T12:10:00.000Z"}]},"by":{}}]}}'
+    body: '{"meta":{"status":"done","request_id":"pddv1ChZocmNxWUhOUlM2YVlldlFVVE4weWpnIi0KHZuyJ0Izc6WTvx6409xTlRS_iRRFg3jYVKiLIjbAEgzPt5RlpUdFAOXBR30","elapsed":3},"data":{"buckets":[{"computes":{"c0":[{"value":1,"time":"2021-06-02T10:00:00.000Z"},{"value":6,"time":"2021-06-02T10:05:00.000Z"}]},"by":{}}]}}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '297'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Wed, 02 Jun 2021 12:14:31 GMT
+      - Wed, 02 Jun 2021 10:09:20 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,19 +48,18 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Dd-Debug:
-      - l8RQo2maZqJf6GFThBbKNE6dvthz6njusVtau3dPXJWL2RLFoN81H+BLPB/1xgs1
+      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
       X-Dd-Version:
-      - "35.4656900"
+      - '35.4656181'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "300"
+      - '300'
       X-Ratelimit-Period:
-      - "300"
+      - '300'
       X-Ratelimit-Remaining:
-      - "297"
+      - '296'
       X-Ratelimit-Reset:
-      - "29"
+      - '40'
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1
