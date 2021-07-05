@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewAPIKeyCreateData
 
-`func NewAPIKeyCreateData(attributes APIKeyCreateAttributes, type_ APIKeysType, ) *APIKeyCreateData`
+`func NewAPIKeyCreateData(attributes APIKeyCreateAttributes, type_ APIKeysType) *APIKeyCreateData`
 
-NewAPIKeyCreateData instantiates a new APIKeyCreateData object
+NewAPIKeyCreateData instantiates a new APIKeyCreateData object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewAPIKeyCreateDataWithDefaults
 
 `func NewAPIKeyCreateDataWithDefaults() *APIKeyCreateData`
 
-NewAPIKeyCreateDataWithDefaults instantiates a new APIKeyCreateData object
+NewAPIKeyCreateDataWithDefaults instantiates a new APIKeyCreateData object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

@@ -15,20 +15,20 @@ Name | Type | Description | Notes
 
 ### NewLogsListRequest
 
-`func NewLogsListRequest(time LogsListRequestTime, ) *LogsListRequest`
+`func NewLogsListRequest(time LogsListRequestTime) *LogsListRequest`
 
-NewLogsListRequest instantiates a new LogsListRequest object
+NewLogsListRequest instantiates a new LogsListRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsListRequestWithDefaults
 
 `func NewLogsListRequestWithDefaults() *LogsListRequest`
 
-NewLogsListRequestWithDefaults instantiates a new LogsListRequest object
+NewLogsListRequestWithDefaults instantiates a new LogsListRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetIndex
 

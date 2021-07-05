@@ -15,18 +15,18 @@ Name | Type | Description | Notes
 
 `func NewSyntheticsAPITestConfig() *SyntheticsAPITestConfig`
 
-NewSyntheticsAPITestConfig instantiates a new SyntheticsAPITestConfig object
+NewSyntheticsAPITestConfig instantiates a new SyntheticsAPITestConfig object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSyntheticsAPITestConfigWithDefaults
 
 `func NewSyntheticsAPITestConfigWithDefaults() *SyntheticsAPITestConfig`
 
-NewSyntheticsAPITestConfigWithDefaults instantiates a new SyntheticsAPITestConfig object
+NewSyntheticsAPITestConfigWithDefaults instantiates a new SyntheticsAPITestConfig object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAssertions
 

@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewNotebookCellCreateRequest
 
-`func NewNotebookCellCreateRequest(attributes NotebookCellCreateRequestAttributes, type_ NotebookCellResourceType, ) *NotebookCellCreateRequest`
+`func NewNotebookCellCreateRequest(attributes NotebookCellCreateRequestAttributes, type_ NotebookCellResourceType) *NotebookCellCreateRequest`
 
-NewNotebookCellCreateRequest instantiates a new NotebookCellCreateRequest object
+NewNotebookCellCreateRequest instantiates a new NotebookCellCreateRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewNotebookCellCreateRequestWithDefaults
 
 `func NewNotebookCellCreateRequestWithDefaults() *NotebookCellCreateRequest`
 
-NewNotebookCellCreateRequestWithDefaults instantiates a new NotebookCellCreateRequest object
+NewNotebookCellCreateRequestWithDefaults instantiates a new NotebookCellCreateRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

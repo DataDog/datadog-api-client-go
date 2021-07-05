@@ -12,18 +12,18 @@ Name | Type | Description | Notes
 
 `func NewLogsAPIErrorResponse() *LogsAPIErrorResponse`
 
-NewLogsAPIErrorResponse instantiates a new LogsAPIErrorResponse object
+NewLogsAPIErrorResponse instantiates a new LogsAPIErrorResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsAPIErrorResponseWithDefaults
 
 `func NewLogsAPIErrorResponseWithDefaults() *LogsAPIErrorResponse`
 
-NewLogsAPIErrorResponseWithDefaults instantiates a new LogsAPIErrorResponse object
+NewLogsAPIErrorResponseWithDefaults instantiates a new LogsAPIErrorResponse object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetError
 

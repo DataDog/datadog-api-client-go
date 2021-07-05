@@ -15,18 +15,18 @@ Name | Type | Description | Notes
 
 `func NewPartialAPIKey() *PartialAPIKey`
 
-NewPartialAPIKey instantiates a new PartialAPIKey object
+NewPartialAPIKey instantiates a new PartialAPIKey object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewPartialAPIKeyWithDefaults
 
 `func NewPartialAPIKeyWithDefaults() *PartialAPIKey`
 
-NewPartialAPIKeyWithDefaults instantiates a new PartialAPIKey object
+NewPartialAPIKeyWithDefaults instantiates a new PartialAPIKey object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

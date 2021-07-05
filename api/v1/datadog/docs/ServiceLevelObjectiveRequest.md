@@ -17,20 +17,20 @@ Name | Type | Description | Notes
 
 ### NewServiceLevelObjectiveRequest
 
-`func NewServiceLevelObjectiveRequest(name string, thresholds []SLOThreshold, type_ SLOType, ) *ServiceLevelObjectiveRequest`
+`func NewServiceLevelObjectiveRequest(name string, thresholds []SLOThreshold, type_ SLOType) *ServiceLevelObjectiveRequest`
 
-NewServiceLevelObjectiveRequest instantiates a new ServiceLevelObjectiveRequest object
+NewServiceLevelObjectiveRequest instantiates a new ServiceLevelObjectiveRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewServiceLevelObjectiveRequestWithDefaults
 
 `func NewServiceLevelObjectiveRequestWithDefaults() *ServiceLevelObjectiveRequest`
 
-NewServiceLevelObjectiveRequestWithDefaults instantiates a new ServiceLevelObjectiveRequest object
+NewServiceLevelObjectiveRequestWithDefaults instantiates a new ServiceLevelObjectiveRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDescription
 

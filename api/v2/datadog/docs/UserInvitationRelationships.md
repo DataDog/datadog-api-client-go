@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewUserInvitationRelationships
 
-`func NewUserInvitationRelationships(user RelationshipToUser, ) *UserInvitationRelationships`
+`func NewUserInvitationRelationships(user RelationshipToUser) *UserInvitationRelationships`
 
-NewUserInvitationRelationships instantiates a new UserInvitationRelationships object
+NewUserInvitationRelationships instantiates a new UserInvitationRelationships object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewUserInvitationRelationshipsWithDefaults
 
 `func NewUserInvitationRelationshipsWithDefaults() *UserInvitationRelationships`
 
-NewUserInvitationRelationshipsWithDefaults instantiates a new UserInvitationRelationships object
+NewUserInvitationRelationshipsWithDefaults instantiates a new UserInvitationRelationships object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetUser
 

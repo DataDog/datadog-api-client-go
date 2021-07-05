@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewLogsArchiveDefinition
 
-`func NewLogsArchiveDefinition(type_ string, ) *LogsArchiveDefinition`
+`func NewLogsArchiveDefinition(type_ string) *LogsArchiveDefinition`
 
-NewLogsArchiveDefinition instantiates a new LogsArchiveDefinition object
+NewLogsArchiveDefinition instantiates a new LogsArchiveDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsArchiveDefinitionWithDefaults
 
 `func NewLogsArchiveDefinitionWithDefaults() *LogsArchiveDefinition`
 
-NewLogsArchiveDefinitionWithDefaults instantiates a new LogsArchiveDefinition object
+NewLogsArchiveDefinitionWithDefaults instantiates a new LogsArchiveDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

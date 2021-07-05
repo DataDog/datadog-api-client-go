@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewSLOHistoryMetricsSeries
 
-`func NewSLOHistoryMetricsSeries(count int64, metadata SLOHistoryMetricsSeriesMetadata, sum float64, values []float64, ) *SLOHistoryMetricsSeries`
+`func NewSLOHistoryMetricsSeries(count int64, metadata SLOHistoryMetricsSeriesMetadata, sum float64, values []float64) *SLOHistoryMetricsSeries`
 
-NewSLOHistoryMetricsSeries instantiates a new SLOHistoryMetricsSeries object
+NewSLOHistoryMetricsSeries instantiates a new SLOHistoryMetricsSeries object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSLOHistoryMetricsSeriesWithDefaults
 
 `func NewSLOHistoryMetricsSeriesWithDefaults() *SLOHistoryMetricsSeries`
 
-NewSLOHistoryMetricsSeriesWithDefaults instantiates a new SLOHistoryMetricsSeries object
+NewSLOHistoryMetricsSeriesWithDefaults instantiates a new SLOHistoryMetricsSeries object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCount
 

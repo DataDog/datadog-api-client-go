@@ -18,18 +18,18 @@ Name | Type | Description | Notes
 
 `func NewUsageAttributionBody() *UsageAttributionBody`
 
-NewUsageAttributionBody instantiates a new UsageAttributionBody object
+NewUsageAttributionBody instantiates a new UsageAttributionBody object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewUsageAttributionBodyWithDefaults
 
 `func NewUsageAttributionBodyWithDefaults() *UsageAttributionBody`
 
-NewUsageAttributionBodyWithDefaults instantiates a new UsageAttributionBody object
+NewUsageAttributionBodyWithDefaults instantiates a new UsageAttributionBody object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetMonth
 

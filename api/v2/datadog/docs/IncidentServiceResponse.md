@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewIncidentServiceResponse
 
-`func NewIncidentServiceResponse(data IncidentServiceResponseData, ) *IncidentServiceResponse`
+`func NewIncidentServiceResponse(data IncidentServiceResponseData) *IncidentServiceResponse`
 
-NewIncidentServiceResponse instantiates a new IncidentServiceResponse object
+NewIncidentServiceResponse instantiates a new IncidentServiceResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewIncidentServiceResponseWithDefaults
 
 `func NewIncidentServiceResponseWithDefaults() *IncidentServiceResponse`
 
-NewIncidentServiceResponseWithDefaults instantiates a new IncidentServiceResponse object
+NewIncidentServiceResponseWithDefaults instantiates a new IncidentServiceResponse object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

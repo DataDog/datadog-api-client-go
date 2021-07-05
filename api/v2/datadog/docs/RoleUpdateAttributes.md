@@ -14,18 +14,18 @@ Name | Type | Description | Notes
 
 `func NewRoleUpdateAttributes() *RoleUpdateAttributes`
 
-NewRoleUpdateAttributes instantiates a new RoleUpdateAttributes object
+NewRoleUpdateAttributes instantiates a new RoleUpdateAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewRoleUpdateAttributesWithDefaults
 
 `func NewRoleUpdateAttributesWithDefaults() *RoleUpdateAttributes`
 
-NewRoleUpdateAttributesWithDefaults instantiates a new RoleUpdateAttributes object
+NewRoleUpdateAttributesWithDefaults instantiates a new RoleUpdateAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCreatedAt
 

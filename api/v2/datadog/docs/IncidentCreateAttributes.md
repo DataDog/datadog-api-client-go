@@ -14,20 +14,20 @@ Name | Type | Description | Notes
 
 ### NewIncidentCreateAttributes
 
-`func NewIncidentCreateAttributes(customerImpacted bool, title string, ) *IncidentCreateAttributes`
+`func NewIncidentCreateAttributes(customerImpacted bool, title string) *IncidentCreateAttributes`
 
-NewIncidentCreateAttributes instantiates a new IncidentCreateAttributes object
+NewIncidentCreateAttributes instantiates a new IncidentCreateAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewIncidentCreateAttributesWithDefaults
 
 `func NewIncidentCreateAttributesWithDefaults() *IncidentCreateAttributes`
 
-NewIncidentCreateAttributesWithDefaults instantiates a new IncidentCreateAttributes object
+NewIncidentCreateAttributesWithDefaults instantiates a new IncidentCreateAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCustomerImpacted
 

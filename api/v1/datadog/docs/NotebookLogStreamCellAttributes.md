@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewNotebookLogStreamCellAttributes
 
-`func NewNotebookLogStreamCellAttributes(definition LogStreamWidgetDefinition, ) *NotebookLogStreamCellAttributes`
+`func NewNotebookLogStreamCellAttributes(definition LogStreamWidgetDefinition) *NotebookLogStreamCellAttributes`
 
-NewNotebookLogStreamCellAttributes instantiates a new NotebookLogStreamCellAttributes object
+NewNotebookLogStreamCellAttributes instantiates a new NotebookLogStreamCellAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewNotebookLogStreamCellAttributesWithDefaults
 
 `func NewNotebookLogStreamCellAttributesWithDefaults() *NotebookLogStreamCellAttributes`
 
-NewNotebookLogStreamCellAttributesWithDefaults instantiates a new NotebookLogStreamCellAttributes object
+NewNotebookLogStreamCellAttributesWithDefaults instantiates a new NotebookLogStreamCellAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDefinition
 

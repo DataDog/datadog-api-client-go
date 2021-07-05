@@ -14,18 +14,18 @@ Name | Type | Description | Notes
 
 `func NewUsersResponse() *UsersResponse`
 
-NewUsersResponse instantiates a new UsersResponse object
+NewUsersResponse instantiates a new UsersResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewUsersResponseWithDefaults
 
 `func NewUsersResponseWithDefaults() *UsersResponse`
 
-NewUsersResponseWithDefaults instantiates a new UsersResponse object
+NewUsersResponseWithDefaults instantiates a new UsersResponse object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

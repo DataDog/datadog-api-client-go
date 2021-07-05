@@ -13,18 +13,18 @@ Name | Type | Description | Notes
 
 `func NewAPIKeyRelationships() *APIKeyRelationships`
 
-NewAPIKeyRelationships instantiates a new APIKeyRelationships object
+NewAPIKeyRelationships instantiates a new APIKeyRelationships object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewAPIKeyRelationshipsWithDefaults
 
 `func NewAPIKeyRelationshipsWithDefaults() *APIKeyRelationships`
 
-NewAPIKeyRelationshipsWithDefaults instantiates a new APIKeyRelationships object
+NewAPIKeyRelationshipsWithDefaults instantiates a new APIKeyRelationships object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCreatedBy
 

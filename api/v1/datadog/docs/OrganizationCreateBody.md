@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewOrganizationCreateBody
 
-`func NewOrganizationCreateBody(name string, ) *OrganizationCreateBody`
+`func NewOrganizationCreateBody(name string) *OrganizationCreateBody`
 
-NewOrganizationCreateBody instantiates a new OrganizationCreateBody object
+NewOrganizationCreateBody instantiates a new OrganizationCreateBody object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewOrganizationCreateBodyWithDefaults
 
 `func NewOrganizationCreateBodyWithDefaults() *OrganizationCreateBody`
 
-NewOrganizationCreateBodyWithDefaults instantiates a new OrganizationCreateBody object
+NewOrganizationCreateBodyWithDefaults instantiates a new OrganizationCreateBody object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetBilling
 

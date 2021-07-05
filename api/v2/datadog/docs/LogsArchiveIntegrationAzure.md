@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewLogsArchiveIntegrationAzure
 
-`func NewLogsArchiveIntegrationAzure(clientId string, tenantId string, ) *LogsArchiveIntegrationAzure`
+`func NewLogsArchiveIntegrationAzure(clientId string, tenantId string) *LogsArchiveIntegrationAzure`
 
-NewLogsArchiveIntegrationAzure instantiates a new LogsArchiveIntegrationAzure object
+NewLogsArchiveIntegrationAzure instantiates a new LogsArchiveIntegrationAzure object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsArchiveIntegrationAzureWithDefaults
 
 `func NewLogsArchiveIntegrationAzureWithDefaults() *LogsArchiveIntegrationAzure`
 
-NewLogsArchiveIntegrationAzureWithDefaults instantiates a new LogsArchiveIntegrationAzure object
+NewLogsArchiveIntegrationAzureWithDefaults instantiates a new LogsArchiveIntegrationAzure object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetClientId
 

@@ -18,18 +18,18 @@ Name | Type | Description | Notes
 
 `func NewAzureAccount() *AzureAccount`
 
-NewAzureAccount instantiates a new AzureAccount object
+NewAzureAccount instantiates a new AzureAccount object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewAzureAccountWithDefaults
 
 `func NewAzureAccountWithDefaults() *AzureAccount`
 
-NewAzureAccountWithDefaults instantiates a new AzureAccount object
+NewAzureAccountWithDefaults instantiates a new AzureAccount object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetClientId
 

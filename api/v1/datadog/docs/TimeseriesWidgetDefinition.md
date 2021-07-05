@@ -24,20 +24,20 @@ Name | Type | Description | Notes
 
 ### NewTimeseriesWidgetDefinition
 
-`func NewTimeseriesWidgetDefinition(requests []TimeseriesWidgetRequest, type_ TimeseriesWidgetDefinitionType, ) *TimeseriesWidgetDefinition`
+`func NewTimeseriesWidgetDefinition(requests []TimeseriesWidgetRequest, type_ TimeseriesWidgetDefinitionType) *TimeseriesWidgetDefinition`
 
-NewTimeseriesWidgetDefinition instantiates a new TimeseriesWidgetDefinition object
+NewTimeseriesWidgetDefinition instantiates a new TimeseriesWidgetDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewTimeseriesWidgetDefinitionWithDefaults
 
 `func NewTimeseriesWidgetDefinitionWithDefaults() *TimeseriesWidgetDefinition`
 
-NewTimeseriesWidgetDefinitionWithDefaults instantiates a new TimeseriesWidgetDefinition object
+NewTimeseriesWidgetDefinitionWithDefaults instantiates a new TimeseriesWidgetDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCustomLinks
 

@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewApplicationKeyUpdateRequest
 
-`func NewApplicationKeyUpdateRequest(data ApplicationKeyUpdateData, ) *ApplicationKeyUpdateRequest`
+`func NewApplicationKeyUpdateRequest(data ApplicationKeyUpdateData) *ApplicationKeyUpdateRequest`
 
-NewApplicationKeyUpdateRequest instantiates a new ApplicationKeyUpdateRequest object
+NewApplicationKeyUpdateRequest instantiates a new ApplicationKeyUpdateRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewApplicationKeyUpdateRequestWithDefaults
 
 `func NewApplicationKeyUpdateRequestWithDefaults() *ApplicationKeyUpdateRequest`
 
-NewApplicationKeyUpdateRequestWithDefaults instantiates a new ApplicationKeyUpdateRequest object
+NewApplicationKeyUpdateRequestWithDefaults instantiates a new ApplicationKeyUpdateRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

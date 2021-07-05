@@ -14,18 +14,18 @@ Name | Type | Description | Notes
 
 `func NewLog() *Log`
 
-NewLog instantiates a new Log object
+NewLog instantiates a new Log object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogWithDefaults
 
 `func NewLogWithDefaults() *Log`
 
-NewLogWithDefaults instantiates a new Log object
+NewLogWithDefaults instantiates a new Log object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

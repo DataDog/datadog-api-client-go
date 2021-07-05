@@ -12,18 +12,18 @@ Name | Type | Description | Notes
 
 `func NewOrganizationListResponse() *OrganizationListResponse`
 
-NewOrganizationListResponse instantiates a new OrganizationListResponse object
+NewOrganizationListResponse instantiates a new OrganizationListResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewOrganizationListResponseWithDefaults
 
 `func NewOrganizationListResponseWithDefaults() *OrganizationListResponse`
 
-NewOrganizationListResponseWithDefaults instantiates a new OrganizationListResponse object
+NewOrganizationListResponseWithDefaults instantiates a new OrganizationListResponse object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetOrgs
 

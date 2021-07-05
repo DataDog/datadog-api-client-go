@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewLogQueryDefinitionGroupBy
 
-`func NewLogQueryDefinitionGroupBy(facet string, ) *LogQueryDefinitionGroupBy`
+`func NewLogQueryDefinitionGroupBy(facet string) *LogQueryDefinitionGroupBy`
 
-NewLogQueryDefinitionGroupBy instantiates a new LogQueryDefinitionGroupBy object
+NewLogQueryDefinitionGroupBy instantiates a new LogQueryDefinitionGroupBy object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogQueryDefinitionGroupByWithDefaults
 
 `func NewLogQueryDefinitionGroupByWithDefaults() *LogQueryDefinitionGroupBy`
 
-NewLogQueryDefinitionGroupByWithDefaults instantiates a new LogQueryDefinitionGroupBy object
+NewLogQueryDefinitionGroupByWithDefaults instantiates a new LogQueryDefinitionGroupBy object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetFacet
 

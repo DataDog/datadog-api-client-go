@@ -17,18 +17,18 @@ Name | Type | Description | Notes
 
 `func NewSLOHistoryMetricsSeriesMetadataUnit() *SLOHistoryMetricsSeriesMetadataUnit`
 
-NewSLOHistoryMetricsSeriesMetadataUnit instantiates a new SLOHistoryMetricsSeriesMetadataUnit object
+NewSLOHistoryMetricsSeriesMetadataUnit instantiates a new SLOHistoryMetricsSeriesMetadataUnit object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSLOHistoryMetricsSeriesMetadataUnitWithDefaults
 
 `func NewSLOHistoryMetricsSeriesMetadataUnitWithDefaults() *SLOHistoryMetricsSeriesMetadataUnit`
 
-NewSLOHistoryMetricsSeriesMetadataUnitWithDefaults instantiates a new SLOHistoryMetricsSeriesMetadataUnit object
+NewSLOHistoryMetricsSeriesMetadataUnitWithDefaults instantiates a new SLOHistoryMetricsSeriesMetadataUnit object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetFamily
 

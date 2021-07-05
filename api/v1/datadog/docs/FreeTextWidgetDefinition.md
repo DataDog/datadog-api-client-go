@@ -14,20 +14,20 @@ Name | Type | Description | Notes
 
 ### NewFreeTextWidgetDefinition
 
-`func NewFreeTextWidgetDefinition(text string, type_ FreeTextWidgetDefinitionType, ) *FreeTextWidgetDefinition`
+`func NewFreeTextWidgetDefinition(text string, type_ FreeTextWidgetDefinitionType) *FreeTextWidgetDefinition`
 
-NewFreeTextWidgetDefinition instantiates a new FreeTextWidgetDefinition object
+NewFreeTextWidgetDefinition instantiates a new FreeTextWidgetDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewFreeTextWidgetDefinitionWithDefaults
 
 `func NewFreeTextWidgetDefinitionWithDefaults() *FreeTextWidgetDefinition`
 
-NewFreeTextWidgetDefinitionWithDefaults instantiates a new FreeTextWidgetDefinition object
+NewFreeTextWidgetDefinitionWithDefaults instantiates a new FreeTextWidgetDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetColor
 

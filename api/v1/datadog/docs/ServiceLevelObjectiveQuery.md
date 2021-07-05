@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewServiceLevelObjectiveQuery
 
-`func NewServiceLevelObjectiveQuery(denominator string, numerator string, ) *ServiceLevelObjectiveQuery`
+`func NewServiceLevelObjectiveQuery(denominator string, numerator string) *ServiceLevelObjectiveQuery`
 
-NewServiceLevelObjectiveQuery instantiates a new ServiceLevelObjectiveQuery object
+NewServiceLevelObjectiveQuery instantiates a new ServiceLevelObjectiveQuery object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewServiceLevelObjectiveQueryWithDefaults
 
 `func NewServiceLevelObjectiveQueryWithDefaults() *ServiceLevelObjectiveQuery`
 
-NewServiceLevelObjectiveQueryWithDefaults instantiates a new ServiceLevelObjectiveQuery object
+NewServiceLevelObjectiveQueryWithDefaults instantiates a new ServiceLevelObjectiveQuery object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDenominator
 

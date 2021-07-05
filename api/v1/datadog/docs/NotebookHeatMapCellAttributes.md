@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewNotebookHeatMapCellAttributes
 
-`func NewNotebookHeatMapCellAttributes(definition HeatMapWidgetDefinition, ) *NotebookHeatMapCellAttributes`
+`func NewNotebookHeatMapCellAttributes(definition HeatMapWidgetDefinition) *NotebookHeatMapCellAttributes`
 
-NewNotebookHeatMapCellAttributes instantiates a new NotebookHeatMapCellAttributes object
+NewNotebookHeatMapCellAttributes instantiates a new NotebookHeatMapCellAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewNotebookHeatMapCellAttributesWithDefaults
 
 `func NewNotebookHeatMapCellAttributesWithDefaults() *NotebookHeatMapCellAttributes`
 
-NewNotebookHeatMapCellAttributesWithDefaults instantiates a new NotebookHeatMapCellAttributes object
+NewNotebookHeatMapCellAttributesWithDefaults instantiates a new NotebookHeatMapCellAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDefinition
 

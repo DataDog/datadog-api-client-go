@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewProcessQueryDefinition
 
-`func NewProcessQueryDefinition(metric string, ) *ProcessQueryDefinition`
+`func NewProcessQueryDefinition(metric string) *ProcessQueryDefinition`
 
-NewProcessQueryDefinition instantiates a new ProcessQueryDefinition object
+NewProcessQueryDefinition instantiates a new ProcessQueryDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewProcessQueryDefinitionWithDefaults
 
 `func NewProcessQueryDefinitionWithDefaults() *ProcessQueryDefinition`
 
-NewProcessQueryDefinitionWithDefaults instantiates a new ProcessQueryDefinition object
+NewProcessQueryDefinitionWithDefaults instantiates a new ProcessQueryDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetFilterBy
 

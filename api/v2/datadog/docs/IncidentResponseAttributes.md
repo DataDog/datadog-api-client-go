@@ -27,20 +27,20 @@ Name | Type | Description | Notes
 
 ### NewIncidentResponseAttributes
 
-`func NewIncidentResponseAttributes(title string, ) *IncidentResponseAttributes`
+`func NewIncidentResponseAttributes(title string) *IncidentResponseAttributes`
 
-NewIncidentResponseAttributes instantiates a new IncidentResponseAttributes object
+NewIncidentResponseAttributes instantiates a new IncidentResponseAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewIncidentResponseAttributesWithDefaults
 
 `func NewIncidentResponseAttributesWithDefaults() *IncidentResponseAttributes`
 
-NewIncidentResponseAttributesWithDefaults instantiates a new IncidentResponseAttributes object
+NewIncidentResponseAttributesWithDefaults instantiates a new IncidentResponseAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCreated
 

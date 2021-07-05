@@ -32,18 +32,18 @@ Name | Type | Description | Notes
 
 `func NewMonitorOptions() *MonitorOptions`
 
-NewMonitorOptions instantiates a new MonitorOptions object
+NewMonitorOptions instantiates a new MonitorOptions object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewMonitorOptionsWithDefaults
 
 `func NewMonitorOptionsWithDefaults() *MonitorOptions`
 
-NewMonitorOptionsWithDefaults instantiates a new MonitorOptions object
+NewMonitorOptionsWithDefaults instantiates a new MonitorOptions object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAggregation
 

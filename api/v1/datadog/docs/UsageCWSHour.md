@@ -14,18 +14,18 @@ Name | Type | Description | Notes
 
 `func NewUsageCWSHour() *UsageCWSHour`
 
-NewUsageCWSHour instantiates a new UsageCWSHour object
+NewUsageCWSHour instantiates a new UsageCWSHour object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewUsageCWSHourWithDefaults
 
 `func NewUsageCWSHourWithDefaults() *UsageCWSHour`
 
-NewUsageCWSHourWithDefaults instantiates a new UsageCWSHour object
+NewUsageCWSHourWithDefaults instantiates a new UsageCWSHour object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCwsContainerCount
 

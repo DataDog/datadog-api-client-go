@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewNotebookToplistCellAttributes
 
-`func NewNotebookToplistCellAttributes(definition ToplistWidgetDefinition, ) *NotebookToplistCellAttributes`
+`func NewNotebookToplistCellAttributes(definition ToplistWidgetDefinition) *NotebookToplistCellAttributes`
 
-NewNotebookToplistCellAttributes instantiates a new NotebookToplistCellAttributes object
+NewNotebookToplistCellAttributes instantiates a new NotebookToplistCellAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewNotebookToplistCellAttributesWithDefaults
 
 `func NewNotebookToplistCellAttributesWithDefaults() *NotebookToplistCellAttributes`
 
-NewNotebookToplistCellAttributesWithDefaults instantiates a new NotebookToplistCellAttributes object
+NewNotebookToplistCellAttributesWithDefaults instantiates a new NotebookToplistCellAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDefinition
 

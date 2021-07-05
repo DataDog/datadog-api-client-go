@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewNotebookRelativeTime
 
-`func NewNotebookRelativeTime(liveSpan WidgetLiveSpan, ) *NotebookRelativeTime`
+`func NewNotebookRelativeTime(liveSpan WidgetLiveSpan) *NotebookRelativeTime`
 
-NewNotebookRelativeTime instantiates a new NotebookRelativeTime object
+NewNotebookRelativeTime instantiates a new NotebookRelativeTime object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewNotebookRelativeTimeWithDefaults
 
 `func NewNotebookRelativeTimeWithDefaults() *NotebookRelativeTime`
 
-NewNotebookRelativeTimeWithDefaults instantiates a new NotebookRelativeTime object
+NewNotebookRelativeTimeWithDefaults instantiates a new NotebookRelativeTime object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetLiveSpan
 

@@ -20,18 +20,18 @@ Name | Type | Description | Notes
 
 `func NewSyntheticsTiming() *SyntheticsTiming`
 
-NewSyntheticsTiming instantiates a new SyntheticsTiming object
+NewSyntheticsTiming instantiates a new SyntheticsTiming object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSyntheticsTimingWithDefaults
 
 `func NewSyntheticsTimingWithDefaults() *SyntheticsTiming`
 
-NewSyntheticsTimingWithDefaults instantiates a new SyntheticsTiming object
+NewSyntheticsTimingWithDefaults instantiates a new SyntheticsTiming object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDns
 

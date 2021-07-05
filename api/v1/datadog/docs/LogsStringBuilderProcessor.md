@@ -15,20 +15,20 @@ Name | Type | Description | Notes
 
 ### NewLogsStringBuilderProcessor
 
-`func NewLogsStringBuilderProcessor(target string, template string, type_ LogsStringBuilderProcessorType, ) *LogsStringBuilderProcessor`
+`func NewLogsStringBuilderProcessor(target string, template string, type_ LogsStringBuilderProcessorType) *LogsStringBuilderProcessor`
 
-NewLogsStringBuilderProcessor instantiates a new LogsStringBuilderProcessor object
+NewLogsStringBuilderProcessor instantiates a new LogsStringBuilderProcessor object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsStringBuilderProcessorWithDefaults
 
 `func NewLogsStringBuilderProcessorWithDefaults() *LogsStringBuilderProcessor`
 
-NewLogsStringBuilderProcessorWithDefaults instantiates a new LogsStringBuilderProcessor object
+NewLogsStringBuilderProcessorWithDefaults instantiates a new LogsStringBuilderProcessor object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetIsEnabled
 

@@ -12,18 +12,18 @@ Name | Type | Description | Notes
 
 `func NewUsageSpecifiedCustomReportsMeta() *UsageSpecifiedCustomReportsMeta`
 
-NewUsageSpecifiedCustomReportsMeta instantiates a new UsageSpecifiedCustomReportsMeta object
+NewUsageSpecifiedCustomReportsMeta instantiates a new UsageSpecifiedCustomReportsMeta object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewUsageSpecifiedCustomReportsMetaWithDefaults
 
 `func NewUsageSpecifiedCustomReportsMetaWithDefaults() *UsageSpecifiedCustomReportsMeta`
 
-NewUsageSpecifiedCustomReportsMetaWithDefaults instantiates a new UsageSpecifiedCustomReportsMeta object
+NewUsageSpecifiedCustomReportsMetaWithDefaults instantiates a new UsageSpecifiedCustomReportsMeta object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetPage
 

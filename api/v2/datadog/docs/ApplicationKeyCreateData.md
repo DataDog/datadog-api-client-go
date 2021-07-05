@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewApplicationKeyCreateData
 
-`func NewApplicationKeyCreateData(attributes ApplicationKeyCreateAttributes, type_ ApplicationKeysType, ) *ApplicationKeyCreateData`
+`func NewApplicationKeyCreateData(attributes ApplicationKeyCreateAttributes, type_ ApplicationKeysType) *ApplicationKeyCreateData`
 
-NewApplicationKeyCreateData instantiates a new ApplicationKeyCreateData object
+NewApplicationKeyCreateData instantiates a new ApplicationKeyCreateData object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewApplicationKeyCreateDataWithDefaults
 
 `func NewApplicationKeyCreateDataWithDefaults() *ApplicationKeyCreateData`
 
-NewApplicationKeyCreateDataWithDefaults instantiates a new ApplicationKeyCreateData object
+NewApplicationKeyCreateDataWithDefaults instantiates a new ApplicationKeyCreateData object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

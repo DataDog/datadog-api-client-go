@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewTimeseriesWidgetExpressionAlias
 
-`func NewTimeseriesWidgetExpressionAlias(expression string, ) *TimeseriesWidgetExpressionAlias`
+`func NewTimeseriesWidgetExpressionAlias(expression string) *TimeseriesWidgetExpressionAlias`
 
-NewTimeseriesWidgetExpressionAlias instantiates a new TimeseriesWidgetExpressionAlias object
+NewTimeseriesWidgetExpressionAlias instantiates a new TimeseriesWidgetExpressionAlias object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewTimeseriesWidgetExpressionAliasWithDefaults
 
 `func NewTimeseriesWidgetExpressionAliasWithDefaults() *TimeseriesWidgetExpressionAlias`
 
-NewTimeseriesWidgetExpressionAliasWithDefaults instantiates a new TimeseriesWidgetExpressionAlias object
+NewTimeseriesWidgetExpressionAliasWithDefaults instantiates a new TimeseriesWidgetExpressionAlias object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAliasName
 

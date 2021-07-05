@@ -14,18 +14,18 @@ Name | Type | Description | Notes
 
 `func NewMonitorSearchResponse() *MonitorSearchResponse`
 
-NewMonitorSearchResponse instantiates a new MonitorSearchResponse object
+NewMonitorSearchResponse instantiates a new MonitorSearchResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewMonitorSearchResponseWithDefaults
 
 `func NewMonitorSearchResponseWithDefaults() *MonitorSearchResponse`
 
-NewMonitorSearchResponseWithDefaults instantiates a new MonitorSearchResponse object
+NewMonitorSearchResponseWithDefaults instantiates a new MonitorSearchResponse object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCounts
 

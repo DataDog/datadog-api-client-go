@@ -14,20 +14,20 @@ Name | Type | Description | Notes
 
 ### NewLogsCategoryProcessor
 
-`func NewLogsCategoryProcessor(categories []LogsCategoryProcessorCategory, target string, type_ LogsCategoryProcessorType, ) *LogsCategoryProcessor`
+`func NewLogsCategoryProcessor(categories []LogsCategoryProcessorCategory, target string, type_ LogsCategoryProcessorType) *LogsCategoryProcessor`
 
-NewLogsCategoryProcessor instantiates a new LogsCategoryProcessor object
+NewLogsCategoryProcessor instantiates a new LogsCategoryProcessor object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsCategoryProcessorWithDefaults
 
 `func NewLogsCategoryProcessorWithDefaults() *LogsCategoryProcessor`
 
-NewLogsCategoryProcessorWithDefaults instantiates a new LogsCategoryProcessor object
+NewLogsCategoryProcessorWithDefaults instantiates a new LogsCategoryProcessor object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCategories
 

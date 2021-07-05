@@ -21,18 +21,18 @@ Name | Type | Description | Notes
 
 `func NewSLOHistoryResponseData() *SLOHistoryResponseData`
 
-NewSLOHistoryResponseData instantiates a new SLOHistoryResponseData object
+NewSLOHistoryResponseData instantiates a new SLOHistoryResponseData object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSLOHistoryResponseDataWithDefaults
 
 `func NewSLOHistoryResponseDataWithDefaults() *SLOHistoryResponseData`
 
-NewSLOHistoryResponseDataWithDefaults instantiates a new SLOHistoryResponseData object
+NewSLOHistoryResponseDataWithDefaults instantiates a new SLOHistoryResponseData object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetFromTs
 

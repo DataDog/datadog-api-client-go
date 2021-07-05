@@ -16,20 +16,20 @@ Name | Type | Description | Notes
 
 ### NewApmStatsQueryDefinition
 
-`func NewApmStatsQueryDefinition(env string, name string, primaryTag string, rowType ApmStatsQueryRowType, service string, ) *ApmStatsQueryDefinition`
+`func NewApmStatsQueryDefinition(env string, name string, primaryTag string, rowType ApmStatsQueryRowType, service string) *ApmStatsQueryDefinition`
 
-NewApmStatsQueryDefinition instantiates a new ApmStatsQueryDefinition object
+NewApmStatsQueryDefinition instantiates a new ApmStatsQueryDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewApmStatsQueryDefinitionWithDefaults
 
 `func NewApmStatsQueryDefinitionWithDefaults() *ApmStatsQueryDefinition`
 
-NewApmStatsQueryDefinitionWithDefaults instantiates a new ApmStatsQueryDefinition object
+NewApmStatsQueryDefinitionWithDefaults instantiates a new ApmStatsQueryDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetColumns
 

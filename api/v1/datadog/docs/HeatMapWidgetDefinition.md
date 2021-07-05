@@ -20,20 +20,20 @@ Name | Type | Description | Notes
 
 ### NewHeatMapWidgetDefinition
 
-`func NewHeatMapWidgetDefinition(requests []HeatMapWidgetRequest, type_ HeatMapWidgetDefinitionType, ) *HeatMapWidgetDefinition`
+`func NewHeatMapWidgetDefinition(requests []HeatMapWidgetRequest, type_ HeatMapWidgetDefinitionType) *HeatMapWidgetDefinition`
 
-NewHeatMapWidgetDefinition instantiates a new HeatMapWidgetDefinition object
+NewHeatMapWidgetDefinition instantiates a new HeatMapWidgetDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewHeatMapWidgetDefinitionWithDefaults
 
 `func NewHeatMapWidgetDefinitionWithDefaults() *HeatMapWidgetDefinition`
 
-NewHeatMapWidgetDefinitionWithDefaults instantiates a new HeatMapWidgetDefinition object
+NewHeatMapWidgetDefinitionWithDefaults instantiates a new HeatMapWidgetDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCustomLinks
 

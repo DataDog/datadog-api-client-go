@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewAWSAccountAndLambdaRequest
 
-`func NewAWSAccountAndLambdaRequest(accountId string, lambdaArn string, ) *AWSAccountAndLambdaRequest`
+`func NewAWSAccountAndLambdaRequest(accountId string, lambdaArn string) *AWSAccountAndLambdaRequest`
 
-NewAWSAccountAndLambdaRequest instantiates a new AWSAccountAndLambdaRequest object
+NewAWSAccountAndLambdaRequest instantiates a new AWSAccountAndLambdaRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewAWSAccountAndLambdaRequestWithDefaults
 
 `func NewAWSAccountAndLambdaRequestWithDefaults() *AWSAccountAndLambdaRequest`
 
-NewAWSAccountAndLambdaRequestWithDefaults instantiates a new AWSAccountAndLambdaRequest object
+NewAWSAccountAndLambdaRequestWithDefaults instantiates a new AWSAccountAndLambdaRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAccountId
 

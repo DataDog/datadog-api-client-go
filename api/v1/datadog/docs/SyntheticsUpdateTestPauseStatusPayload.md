@@ -12,18 +12,18 @@ Name | Type | Description | Notes
 
 `func NewSyntheticsUpdateTestPauseStatusPayload() *SyntheticsUpdateTestPauseStatusPayload`
 
-NewSyntheticsUpdateTestPauseStatusPayload instantiates a new SyntheticsUpdateTestPauseStatusPayload object
+NewSyntheticsUpdateTestPauseStatusPayload instantiates a new SyntheticsUpdateTestPauseStatusPayload object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSyntheticsUpdateTestPauseStatusPayloadWithDefaults
 
 `func NewSyntheticsUpdateTestPauseStatusPayloadWithDefaults() *SyntheticsUpdateTestPauseStatusPayload`
 
-NewSyntheticsUpdateTestPauseStatusPayloadWithDefaults instantiates a new SyntheticsUpdateTestPauseStatusPayload object
+NewSyntheticsUpdateTestPauseStatusPayloadWithDefaults instantiates a new SyntheticsUpdateTestPauseStatusPayload object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetNewStatus
 

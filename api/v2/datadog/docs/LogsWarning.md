@@ -14,18 +14,18 @@ Name | Type | Description | Notes
 
 `func NewLogsWarning() *LogsWarning`
 
-NewLogsWarning instantiates a new LogsWarning object
+NewLogsWarning instantiates a new LogsWarning object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsWarningWithDefaults
 
 `func NewLogsWarningWithDefaults() *LogsWarning`
 
-NewLogsWarningWithDefaults instantiates a new LogsWarning object
+NewLogsWarningWithDefaults instantiates a new LogsWarning object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCode
 

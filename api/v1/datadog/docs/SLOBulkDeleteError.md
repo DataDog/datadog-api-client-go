@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewSLOBulkDeleteError
 
-`func NewSLOBulkDeleteError(id string, message string, timeframe SLOErrorTimeframe, ) *SLOBulkDeleteError`
+`func NewSLOBulkDeleteError(id string, message string, timeframe SLOErrorTimeframe) *SLOBulkDeleteError`
 
-NewSLOBulkDeleteError instantiates a new SLOBulkDeleteError object
+NewSLOBulkDeleteError instantiates a new SLOBulkDeleteError object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSLOBulkDeleteErrorWithDefaults
 
 `func NewSLOBulkDeleteErrorWithDefaults() *SLOBulkDeleteError`
 
-NewSLOBulkDeleteErrorWithDefaults instantiates a new SLOBulkDeleteError object
+NewSLOBulkDeleteErrorWithDefaults instantiates a new SLOBulkDeleteError object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetId
 

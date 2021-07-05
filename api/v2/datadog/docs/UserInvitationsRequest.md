@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewUserInvitationsRequest
 
-`func NewUserInvitationsRequest(data []UserInvitationData, ) *UserInvitationsRequest`
+`func NewUserInvitationsRequest(data []UserInvitationData) *UserInvitationsRequest`
 
-NewUserInvitationsRequest instantiates a new UserInvitationsRequest object
+NewUserInvitationsRequest instantiates a new UserInvitationsRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewUserInvitationsRequestWithDefaults
 
 `func NewUserInvitationsRequestWithDefaults() *UserInvitationsRequest`
 
-NewUserInvitationsRequestWithDefaults instantiates a new UserInvitationsRequest object
+NewUserInvitationsRequestWithDefaults instantiates a new UserInvitationsRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

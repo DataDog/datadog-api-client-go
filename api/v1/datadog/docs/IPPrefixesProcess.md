@@ -13,18 +13,18 @@ Name | Type | Description | Notes
 
 `func NewIPPrefixesProcess() *IPPrefixesProcess`
 
-NewIPPrefixesProcess instantiates a new IPPrefixesProcess object
+NewIPPrefixesProcess instantiates a new IPPrefixesProcess object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewIPPrefixesProcessWithDefaults
 
 `func NewIPPrefixesProcessWithDefaults() *IPPrefixesProcess`
 
-NewIPPrefixesProcessWithDefaults instantiates a new IPPrefixesProcess object
+NewIPPrefixesProcessWithDefaults instantiates a new IPPrefixesProcess object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetPrefixesIpv4
 

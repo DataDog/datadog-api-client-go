@@ -19,20 +19,20 @@ Name | Type | Description | Notes
 
 ### NewScatterPlotWidgetDefinition
 
-`func NewScatterPlotWidgetDefinition(requests ScatterPlotWidgetDefinitionRequests, type_ ScatterPlotWidgetDefinitionType, ) *ScatterPlotWidgetDefinition`
+`func NewScatterPlotWidgetDefinition(requests ScatterPlotWidgetDefinitionRequests, type_ ScatterPlotWidgetDefinitionType) *ScatterPlotWidgetDefinition`
 
-NewScatterPlotWidgetDefinition instantiates a new ScatterPlotWidgetDefinition object
+NewScatterPlotWidgetDefinition instantiates a new ScatterPlotWidgetDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewScatterPlotWidgetDefinitionWithDefaults
 
 `func NewScatterPlotWidgetDefinitionWithDefaults() *ScatterPlotWidgetDefinition`
 
-NewScatterPlotWidgetDefinitionWithDefaults instantiates a new ScatterPlotWidgetDefinition object
+NewScatterPlotWidgetDefinitionWithDefaults instantiates a new ScatterPlotWidgetDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetColorByGroups
 

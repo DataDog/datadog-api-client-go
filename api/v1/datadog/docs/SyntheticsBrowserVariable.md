@@ -14,20 +14,20 @@ Name | Type | Description | Notes
 
 ### NewSyntheticsBrowserVariable
 
-`func NewSyntheticsBrowserVariable(name string, type_ SyntheticsBrowserVariableType, ) *SyntheticsBrowserVariable`
+`func NewSyntheticsBrowserVariable(name string, type_ SyntheticsBrowserVariableType) *SyntheticsBrowserVariable`
 
-NewSyntheticsBrowserVariable instantiates a new SyntheticsBrowserVariable object
+NewSyntheticsBrowserVariable instantiates a new SyntheticsBrowserVariable object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSyntheticsBrowserVariableWithDefaults
 
 `func NewSyntheticsBrowserVariableWithDefaults() *SyntheticsBrowserVariable`
 
-NewSyntheticsBrowserVariableWithDefaults instantiates a new SyntheticsBrowserVariable object
+NewSyntheticsBrowserVariableWithDefaults instantiates a new SyntheticsBrowserVariable object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetExample
 

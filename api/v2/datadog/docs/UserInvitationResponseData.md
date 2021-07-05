@@ -14,18 +14,18 @@ Name | Type | Description | Notes
 
 `func NewUserInvitationResponseData() *UserInvitationResponseData`
 
-NewUserInvitationResponseData instantiates a new UserInvitationResponseData object
+NewUserInvitationResponseData instantiates a new UserInvitationResponseData object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewUserInvitationResponseDataWithDefaults
 
 `func NewUserInvitationResponseDataWithDefaults() *UserInvitationResponseData`
 
-NewUserInvitationResponseDataWithDefaults instantiates a new UserInvitationResponseData object
+NewUserInvitationResponseDataWithDefaults instantiates a new UserInvitationResponseData object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

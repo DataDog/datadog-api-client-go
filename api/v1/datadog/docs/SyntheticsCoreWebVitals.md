@@ -14,18 +14,18 @@ Name | Type | Description | Notes
 
 `func NewSyntheticsCoreWebVitals() *SyntheticsCoreWebVitals`
 
-NewSyntheticsCoreWebVitals instantiates a new SyntheticsCoreWebVitals object
+NewSyntheticsCoreWebVitals instantiates a new SyntheticsCoreWebVitals object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSyntheticsCoreWebVitalsWithDefaults
 
 `func NewSyntheticsCoreWebVitalsWithDefaults() *SyntheticsCoreWebVitals`
 
-NewSyntheticsCoreWebVitalsWithDefaults instantiates a new SyntheticsCoreWebVitals object
+NewSyntheticsCoreWebVitalsWithDefaults instantiates a new SyntheticsCoreWebVitals object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCls
 

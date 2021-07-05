@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewIncidentTimelineCellMarkdownCreateAttributes
 
-`func NewIncidentTimelineCellMarkdownCreateAttributes(cellType IncidentTimelineCellMarkdownContentType, content IncidentTimelineCellMarkdownCreateAttributesContent, ) *IncidentTimelineCellMarkdownCreateAttributes`
+`func NewIncidentTimelineCellMarkdownCreateAttributes(cellType IncidentTimelineCellMarkdownContentType, content IncidentTimelineCellMarkdownCreateAttributesContent) *IncidentTimelineCellMarkdownCreateAttributes`
 
-NewIncidentTimelineCellMarkdownCreateAttributes instantiates a new IncidentTimelineCellMarkdownCreateAttributes object
+NewIncidentTimelineCellMarkdownCreateAttributes instantiates a new IncidentTimelineCellMarkdownCreateAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewIncidentTimelineCellMarkdownCreateAttributesWithDefaults
 
 `func NewIncidentTimelineCellMarkdownCreateAttributesWithDefaults() *IncidentTimelineCellMarkdownCreateAttributes`
 
-NewIncidentTimelineCellMarkdownCreateAttributesWithDefaults instantiates a new IncidentTimelineCellMarkdownCreateAttributes object
+NewIncidentTimelineCellMarkdownCreateAttributesWithDefaults instantiates a new IncidentTimelineCellMarkdownCreateAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCellType
 

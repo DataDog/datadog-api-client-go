@@ -14,20 +14,20 @@ Name | Type | Description | Notes
 
 ### NewWidgetLayout
 
-`func NewWidgetLayout(height int64, width int64, x int64, y int64, ) *WidgetLayout`
+`func NewWidgetLayout(height int64, width int64, x int64, y int64) *WidgetLayout`
 
-NewWidgetLayout instantiates a new WidgetLayout object
+NewWidgetLayout instantiates a new WidgetLayout object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewWidgetLayoutWithDefaults
 
 `func NewWidgetLayoutWithDefaults() *WidgetLayout`
 
-NewWidgetLayoutWithDefaults instantiates a new WidgetLayout object
+NewWidgetLayoutWithDefaults instantiates a new WidgetLayout object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetHeight
 

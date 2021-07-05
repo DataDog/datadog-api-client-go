@@ -19,20 +19,20 @@ Name | Type | Description | Notes
 
 ### NewSLOWidgetDefinition
 
-`func NewSLOWidgetDefinition(type_ SLOWidgetDefinitionType, viewType string, ) *SLOWidgetDefinition`
+`func NewSLOWidgetDefinition(type_ SLOWidgetDefinitionType, viewType string) *SLOWidgetDefinition`
 
-NewSLOWidgetDefinition instantiates a new SLOWidgetDefinition object
+NewSLOWidgetDefinition instantiates a new SLOWidgetDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSLOWidgetDefinitionWithDefaults
 
 `func NewSLOWidgetDefinitionWithDefaults() *SLOWidgetDefinition`
 
-NewSLOWidgetDefinitionWithDefaults instantiates a new SLOWidgetDefinition object
+NewSLOWidgetDefinitionWithDefaults instantiates a new SLOWidgetDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetGlobalTimeTarget
 

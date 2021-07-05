@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewPagerDutyServiceKey
 
-`func NewPagerDutyServiceKey(serviceKey string, ) *PagerDutyServiceKey`
+`func NewPagerDutyServiceKey(serviceKey string) *PagerDutyServiceKey`
 
-NewPagerDutyServiceKey instantiates a new PagerDutyServiceKey object
+NewPagerDutyServiceKey instantiates a new PagerDutyServiceKey object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewPagerDutyServiceKeyWithDefaults
 
 `func NewPagerDutyServiceKeyWithDefaults() *PagerDutyServiceKey`
 
-NewPagerDutyServiceKeyWithDefaults instantiates a new PagerDutyServiceKey object
+NewPagerDutyServiceKeyWithDefaults instantiates a new PagerDutyServiceKey object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetServiceKey
 

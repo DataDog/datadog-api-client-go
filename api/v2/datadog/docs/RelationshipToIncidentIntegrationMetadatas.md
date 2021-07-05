@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewRelationshipToIncidentIntegrationMetadatas
 
-`func NewRelationshipToIncidentIntegrationMetadatas(data []RelationshipToIncidentIntegrationMetadataData, ) *RelationshipToIncidentIntegrationMetadatas`
+`func NewRelationshipToIncidentIntegrationMetadatas(data []RelationshipToIncidentIntegrationMetadataData) *RelationshipToIncidentIntegrationMetadatas`
 
-NewRelationshipToIncidentIntegrationMetadatas instantiates a new RelationshipToIncidentIntegrationMetadatas object
+NewRelationshipToIncidentIntegrationMetadatas instantiates a new RelationshipToIncidentIntegrationMetadatas object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewRelationshipToIncidentIntegrationMetadatasWithDefaults
 
 `func NewRelationshipToIncidentIntegrationMetadatasWithDefaults() *RelationshipToIncidentIntegrationMetadatas`
 
-NewRelationshipToIncidentIntegrationMetadatasWithDefaults instantiates a new RelationshipToIncidentIntegrationMetadatas object
+NewRelationshipToIncidentIntegrationMetadatasWithDefaults instantiates a new RelationshipToIncidentIntegrationMetadatas object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

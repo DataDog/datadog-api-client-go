@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewSyntheticsAssertionJSONPathTarget
 
-`func NewSyntheticsAssertionJSONPathTarget(operator SyntheticsAssertionJSONPathOperator, type_ SyntheticsAssertionType, ) *SyntheticsAssertionJSONPathTarget`
+`func NewSyntheticsAssertionJSONPathTarget(operator SyntheticsAssertionJSONPathOperator, type_ SyntheticsAssertionType) *SyntheticsAssertionJSONPathTarget`
 
-NewSyntheticsAssertionJSONPathTarget instantiates a new SyntheticsAssertionJSONPathTarget object
+NewSyntheticsAssertionJSONPathTarget instantiates a new SyntheticsAssertionJSONPathTarget object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSyntheticsAssertionJSONPathTargetWithDefaults
 
 `func NewSyntheticsAssertionJSONPathTargetWithDefaults() *SyntheticsAssertionJSONPathTarget`
 
-NewSyntheticsAssertionJSONPathTargetWithDefaults instantiates a new SyntheticsAssertionJSONPathTarget object
+NewSyntheticsAssertionJSONPathTargetWithDefaults instantiates a new SyntheticsAssertionJSONPathTarget object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetOperator
 

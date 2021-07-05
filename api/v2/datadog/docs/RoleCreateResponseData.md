@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewRoleCreateResponseData
 
-`func NewRoleCreateResponseData(type_ RolesType, ) *RoleCreateResponseData`
+`func NewRoleCreateResponseData(type_ RolesType) *RoleCreateResponseData`
 
-NewRoleCreateResponseData instantiates a new RoleCreateResponseData object
+NewRoleCreateResponseData instantiates a new RoleCreateResponseData object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewRoleCreateResponseDataWithDefaults
 
 `func NewRoleCreateResponseDataWithDefaults() *RoleCreateResponseData`
 
-NewRoleCreateResponseDataWithDefaults instantiates a new RoleCreateResponseData object
+NewRoleCreateResponseDataWithDefaults instantiates a new RoleCreateResponseData object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewLogsServiceRemapper
 
-`func NewLogsServiceRemapper(sources []string, type_ LogsServiceRemapperType, ) *LogsServiceRemapper`
+`func NewLogsServiceRemapper(sources []string, type_ LogsServiceRemapperType) *LogsServiceRemapper`
 
-NewLogsServiceRemapper instantiates a new LogsServiceRemapper object
+NewLogsServiceRemapper instantiates a new LogsServiceRemapper object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsServiceRemapperWithDefaults
 
 `func NewLogsServiceRemapperWithDefaults() *LogsServiceRemapper`
 
-NewLogsServiceRemapperWithDefaults instantiates a new LogsServiceRemapper object
+NewLogsServiceRemapperWithDefaults instantiates a new LogsServiceRemapper object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetIsEnabled
 

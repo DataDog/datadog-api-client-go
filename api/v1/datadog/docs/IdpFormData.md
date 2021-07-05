@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewIdpFormData
 
-`func NewIdpFormData(idpFile *os.File, ) *IdpFormData`
+`func NewIdpFormData(idpFile *os.File) *IdpFormData`
 
-NewIdpFormData instantiates a new IdpFormData object
+NewIdpFormData instantiates a new IdpFormData object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewIdpFormDataWithDefaults
 
 `func NewIdpFormDataWithDefaults() *IdpFormData`
 
-NewIdpFormDataWithDefaults instantiates a new IdpFormData object
+NewIdpFormDataWithDefaults instantiates a new IdpFormData object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetIdpFile
 
