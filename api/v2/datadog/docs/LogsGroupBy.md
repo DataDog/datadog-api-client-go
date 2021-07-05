@@ -15,20 +15,20 @@ Name | Type | Description | Notes
 
 ### NewLogsGroupBy
 
-`func NewLogsGroupBy(facet string, ) *LogsGroupBy`
+`func NewLogsGroupBy(facet string) *LogsGroupBy`
 
-NewLogsGroupBy instantiates a new LogsGroupBy object
+NewLogsGroupBy instantiates a new LogsGroupBy object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsGroupByWithDefaults
 
 `func NewLogsGroupByWithDefaults() *LogsGroupBy`
 
-NewLogsGroupByWithDefaults instantiates a new LogsGroupBy object
+NewLogsGroupByWithDefaults instantiates a new LogsGroupBy object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetFacet
 

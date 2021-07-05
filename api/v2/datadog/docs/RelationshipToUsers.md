@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewRelationshipToUsers
 
-`func NewRelationshipToUsers(data []RelationshipToUserData, ) *RelationshipToUsers`
+`func NewRelationshipToUsers(data []RelationshipToUserData) *RelationshipToUsers`
 
-NewRelationshipToUsers instantiates a new RelationshipToUsers object
+NewRelationshipToUsers instantiates a new RelationshipToUsers object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewRelationshipToUsersWithDefaults
 
 `func NewRelationshipToUsersWithDefaults() *RelationshipToUsers`
 
-NewRelationshipToUsersWithDefaults instantiates a new RelationshipToUsers object
+NewRelationshipToUsersWithDefaults instantiates a new RelationshipToUsers object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

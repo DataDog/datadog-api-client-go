@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewIncidentCreateData
 
-`func NewIncidentCreateData(attributes IncidentCreateAttributes, type_ IncidentType, ) *IncidentCreateData`
+`func NewIncidentCreateData(attributes IncidentCreateAttributes, type_ IncidentType) *IncidentCreateData`
 
-NewIncidentCreateData instantiates a new IncidentCreateData object
+NewIncidentCreateData instantiates a new IncidentCreateData object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewIncidentCreateDataWithDefaults
 
 `func NewIncidentCreateDataWithDefaults() *IncidentCreateData`
 
-NewIncidentCreateDataWithDefaults instantiates a new IncidentCreateData object
+NewIncidentCreateDataWithDefaults instantiates a new IncidentCreateData object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

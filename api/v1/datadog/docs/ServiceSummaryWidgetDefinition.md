@@ -25,20 +25,20 @@ Name | Type | Description | Notes
 
 ### NewServiceSummaryWidgetDefinition
 
-`func NewServiceSummaryWidgetDefinition(env string, service string, spanName string, type_ ServiceSummaryWidgetDefinitionType, ) *ServiceSummaryWidgetDefinition`
+`func NewServiceSummaryWidgetDefinition(env string, service string, spanName string, type_ ServiceSummaryWidgetDefinitionType) *ServiceSummaryWidgetDefinition`
 
-NewServiceSummaryWidgetDefinition instantiates a new ServiceSummaryWidgetDefinition object
+NewServiceSummaryWidgetDefinition instantiates a new ServiceSummaryWidgetDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewServiceSummaryWidgetDefinitionWithDefaults
 
 `func NewServiceSummaryWidgetDefinitionWithDefaults() *ServiceSummaryWidgetDefinition`
 
-NewServiceSummaryWidgetDefinitionWithDefaults instantiates a new ServiceSummaryWidgetDefinition object
+NewServiceSummaryWidgetDefinitionWithDefaults instantiates a new ServiceSummaryWidgetDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDisplayFormat
 

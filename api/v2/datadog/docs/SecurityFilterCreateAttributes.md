@@ -14,20 +14,20 @@ Name | Type | Description | Notes
 
 ### NewSecurityFilterCreateAttributes
 
-`func NewSecurityFilterCreateAttributes(exclusionFilters []SecurityFilterExclusionFilter, filteredDataType SecurityFilterFilteredDataType, isEnabled bool, name string, query string, ) *SecurityFilterCreateAttributes`
+`func NewSecurityFilterCreateAttributes(exclusionFilters []SecurityFilterExclusionFilter, filteredDataType SecurityFilterFilteredDataType, isEnabled bool, name string, query string) *SecurityFilterCreateAttributes`
 
-NewSecurityFilterCreateAttributes instantiates a new SecurityFilterCreateAttributes object
+NewSecurityFilterCreateAttributes instantiates a new SecurityFilterCreateAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSecurityFilterCreateAttributesWithDefaults
 
 `func NewSecurityFilterCreateAttributesWithDefaults() *SecurityFilterCreateAttributes`
 
-NewSecurityFilterCreateAttributesWithDefaults instantiates a new SecurityFilterCreateAttributes object
+NewSecurityFilterCreateAttributesWithDefaults instantiates a new SecurityFilterCreateAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetExclusionFilters
 

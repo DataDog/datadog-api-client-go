@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewUserUpdateData
 
-`func NewUserUpdateData(attributes UserUpdateAttributes, id string, type_ UsersType, ) *UserUpdateData`
+`func NewUserUpdateData(attributes UserUpdateAttributes, id string, type_ UsersType) *UserUpdateData`
 
-NewUserUpdateData instantiates a new UserUpdateData object
+NewUserUpdateData instantiates a new UserUpdateData object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewUserUpdateDataWithDefaults
 
 `func NewUserUpdateDataWithDefaults() *UserUpdateData`
 
-NewUserUpdateDataWithDefaults instantiates a new UserUpdateData object
+NewUserUpdateDataWithDefaults instantiates a new UserUpdateData object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

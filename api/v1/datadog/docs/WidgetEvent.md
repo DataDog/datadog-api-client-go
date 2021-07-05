@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewWidgetEvent
 
-`func NewWidgetEvent(q string, ) *WidgetEvent`
+`func NewWidgetEvent(q string) *WidgetEvent`
 
-NewWidgetEvent instantiates a new WidgetEvent object
+NewWidgetEvent instantiates a new WidgetEvent object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewWidgetEventWithDefaults
 
 `func NewWidgetEventWithDefaults() *WidgetEvent`
 
-NewWidgetEventWithDefaults instantiates a new WidgetEvent object
+NewWidgetEventWithDefaults instantiates a new WidgetEvent object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetQ
 

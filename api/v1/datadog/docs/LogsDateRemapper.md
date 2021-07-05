@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewLogsDateRemapper
 
-`func NewLogsDateRemapper(sources []string, type_ LogsDateRemapperType, ) *LogsDateRemapper`
+`func NewLogsDateRemapper(sources []string, type_ LogsDateRemapperType) *LogsDateRemapper`
 
-NewLogsDateRemapper instantiates a new LogsDateRemapper object
+NewLogsDateRemapper instantiates a new LogsDateRemapper object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsDateRemapperWithDefaults
 
 `func NewLogsDateRemapperWithDefaults() *LogsDateRemapper`
 
-NewLogsDateRemapperWithDefaults instantiates a new LogsDateRemapper object
+NewLogsDateRemapperWithDefaults instantiates a new LogsDateRemapper object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetIsEnabled
 

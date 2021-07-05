@@ -22,20 +22,20 @@ Name | Type | Description | Notes
 
 ### NewMonitorSummaryWidgetDefinition
 
-`func NewMonitorSummaryWidgetDefinition(query string, type_ MonitorSummaryWidgetDefinitionType, ) *MonitorSummaryWidgetDefinition`
+`func NewMonitorSummaryWidgetDefinition(query string, type_ MonitorSummaryWidgetDefinitionType) *MonitorSummaryWidgetDefinition`
 
-NewMonitorSummaryWidgetDefinition instantiates a new MonitorSummaryWidgetDefinition object
+NewMonitorSummaryWidgetDefinition instantiates a new MonitorSummaryWidgetDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewMonitorSummaryWidgetDefinitionWithDefaults
 
 `func NewMonitorSummaryWidgetDefinitionWithDefaults() *MonitorSummaryWidgetDefinition`
 
-NewMonitorSummaryWidgetDefinitionWithDefaults instantiates a new MonitorSummaryWidgetDefinition object
+NewMonitorSummaryWidgetDefinitionWithDefaults instantiates a new MonitorSummaryWidgetDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetColorPreference
 

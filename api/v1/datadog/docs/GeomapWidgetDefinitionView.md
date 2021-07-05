@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewGeomapWidgetDefinitionView
 
-`func NewGeomapWidgetDefinitionView(focus string, ) *GeomapWidgetDefinitionView`
+`func NewGeomapWidgetDefinitionView(focus string) *GeomapWidgetDefinitionView`
 
-NewGeomapWidgetDefinitionView instantiates a new GeomapWidgetDefinitionView object
+NewGeomapWidgetDefinitionView instantiates a new GeomapWidgetDefinitionView object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewGeomapWidgetDefinitionViewWithDefaults
 
 `func NewGeomapWidgetDefinitionViewWithDefaults() *GeomapWidgetDefinitionView`
 
-NewGeomapWidgetDefinitionViewWithDefaults instantiates a new GeomapWidgetDefinitionView object
+NewGeomapWidgetDefinitionViewWithDefaults instantiates a new GeomapWidgetDefinitionView object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetFocus
 

@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewAPIKeyUpdateAttributes
 
-`func NewAPIKeyUpdateAttributes(name string, ) *APIKeyUpdateAttributes`
+`func NewAPIKeyUpdateAttributes(name string) *APIKeyUpdateAttributes`
 
-NewAPIKeyUpdateAttributes instantiates a new APIKeyUpdateAttributes object
+NewAPIKeyUpdateAttributes instantiates a new APIKeyUpdateAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewAPIKeyUpdateAttributesWithDefaults
 
 `func NewAPIKeyUpdateAttributesWithDefaults() *APIKeyUpdateAttributes`
 
-NewAPIKeyUpdateAttributesWithDefaults instantiates a new APIKeyUpdateAttributes object
+NewAPIKeyUpdateAttributesWithDefaults instantiates a new APIKeyUpdateAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetName
 

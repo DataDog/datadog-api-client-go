@@ -12,18 +12,18 @@ Name | Type | Description | Notes
 
 `func NewDashboardListDeleteItemsResponse() *DashboardListDeleteItemsResponse`
 
-NewDashboardListDeleteItemsResponse instantiates a new DashboardListDeleteItemsResponse object
+NewDashboardListDeleteItemsResponse instantiates a new DashboardListDeleteItemsResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewDashboardListDeleteItemsResponseWithDefaults
 
 `func NewDashboardListDeleteItemsResponseWithDefaults() *DashboardListDeleteItemsResponse`
 
-NewDashboardListDeleteItemsResponseWithDefaults instantiates a new DashboardListDeleteItemsResponse object
+NewDashboardListDeleteItemsResponseWithDefaults instantiates a new DashboardListDeleteItemsResponse object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDeletedDashboardsFromList
 

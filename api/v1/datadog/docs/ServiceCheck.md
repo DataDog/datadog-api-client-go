@@ -15,20 +15,20 @@ Name | Type | Description | Notes
 
 ### NewServiceCheck
 
-`func NewServiceCheck(check string, hostName string, status ServiceCheckStatus, tags []string, ) *ServiceCheck`
+`func NewServiceCheck(check string, hostName string, status ServiceCheckStatus, tags []string) *ServiceCheck`
 
-NewServiceCheck instantiates a new ServiceCheck object
+NewServiceCheck instantiates a new ServiceCheck object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewServiceCheckWithDefaults
 
 `func NewServiceCheckWithDefaults() *ServiceCheck`
 
-NewServiceCheckWithDefaults instantiates a new ServiceCheck object
+NewServiceCheckWithDefaults instantiates a new ServiceCheck object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCheck
 

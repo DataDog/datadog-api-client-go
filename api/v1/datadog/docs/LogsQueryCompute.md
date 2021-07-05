@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewLogsQueryCompute
 
-`func NewLogsQueryCompute(aggregation string, ) *LogsQueryCompute`
+`func NewLogsQueryCompute(aggregation string) *LogsQueryCompute`
 
-NewLogsQueryCompute instantiates a new LogsQueryCompute object
+NewLogsQueryCompute instantiates a new LogsQueryCompute object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsQueryComputeWithDefaults
 
 `func NewLogsQueryComputeWithDefaults() *LogsQueryCompute`
 
-NewLogsQueryComputeWithDefaults instantiates a new LogsQueryCompute object
+NewLogsQueryComputeWithDefaults instantiates a new LogsQueryCompute object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAggregation
 

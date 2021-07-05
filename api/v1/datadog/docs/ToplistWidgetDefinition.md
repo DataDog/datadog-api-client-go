@@ -16,20 +16,20 @@ Name | Type | Description | Notes
 
 ### NewToplistWidgetDefinition
 
-`func NewToplistWidgetDefinition(requests []ToplistWidgetRequest, type_ ToplistWidgetDefinitionType, ) *ToplistWidgetDefinition`
+`func NewToplistWidgetDefinition(requests []ToplistWidgetRequest, type_ ToplistWidgetDefinitionType) *ToplistWidgetDefinition`
 
-NewToplistWidgetDefinition instantiates a new ToplistWidgetDefinition object
+NewToplistWidgetDefinition instantiates a new ToplistWidgetDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewToplistWidgetDefinitionWithDefaults
 
 `func NewToplistWidgetDefinitionWithDefaults() *ToplistWidgetDefinition`
 
-NewToplistWidgetDefinitionWithDefaults instantiates a new ToplistWidgetDefinition object
+NewToplistWidgetDefinitionWithDefaults instantiates a new ToplistWidgetDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCustomLinks
 

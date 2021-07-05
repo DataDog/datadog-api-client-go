@@ -12,18 +12,18 @@ Name | Type | Description | Notes
 
 `func NewRoleUpdateResponse() *RoleUpdateResponse`
 
-NewRoleUpdateResponse instantiates a new RoleUpdateResponse object
+NewRoleUpdateResponse instantiates a new RoleUpdateResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewRoleUpdateResponseWithDefaults
 
 `func NewRoleUpdateResponseWithDefaults() *RoleUpdateResponse`
 
-NewRoleUpdateResponseWithDefaults instantiates a new RoleUpdateResponse object
+NewRoleUpdateResponseWithDefaults instantiates a new RoleUpdateResponse object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewLogsMetricCreateAttributes
 
-`func NewLogsMetricCreateAttributes(compute LogsMetricCompute, ) *LogsMetricCreateAttributes`
+`func NewLogsMetricCreateAttributes(compute LogsMetricCompute) *LogsMetricCreateAttributes`
 
-NewLogsMetricCreateAttributes instantiates a new LogsMetricCreateAttributes object
+NewLogsMetricCreateAttributes instantiates a new LogsMetricCreateAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsMetricCreateAttributesWithDefaults
 
 `func NewLogsMetricCreateAttributesWithDefaults() *LogsMetricCreateAttributes`
 
-NewLogsMetricCreateAttributesWithDefaults instantiates a new LogsMetricCreateAttributes object
+NewLogsMetricCreateAttributesWithDefaults instantiates a new LogsMetricCreateAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCompute
 

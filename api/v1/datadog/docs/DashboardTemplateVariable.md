@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewDashboardTemplateVariable
 
-`func NewDashboardTemplateVariable(name string, ) *DashboardTemplateVariable`
+`func NewDashboardTemplateVariable(name string) *DashboardTemplateVariable`
 
-NewDashboardTemplateVariable instantiates a new DashboardTemplateVariable object
+NewDashboardTemplateVariable instantiates a new DashboardTemplateVariable object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewDashboardTemplateVariableWithDefaults
 
 `func NewDashboardTemplateVariableWithDefaults() *DashboardTemplateVariable`
 
-NewDashboardTemplateVariableWithDefaults instantiates a new DashboardTemplateVariable object
+NewDashboardTemplateVariableWithDefaults instantiates a new DashboardTemplateVariable object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDefault
 

@@ -12,18 +12,18 @@ Name | Type | Description | Notes
 
 `func NewTreeMapWidgetRequest() *TreeMapWidgetRequest`
 
-NewTreeMapWidgetRequest instantiates a new TreeMapWidgetRequest object
+NewTreeMapWidgetRequest instantiates a new TreeMapWidgetRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewTreeMapWidgetRequestWithDefaults
 
 `func NewTreeMapWidgetRequestWithDefaults() *TreeMapWidgetRequest`
 
-NewTreeMapWidgetRequestWithDefaults instantiates a new TreeMapWidgetRequest object
+NewTreeMapWidgetRequestWithDefaults instantiates a new TreeMapWidgetRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetQ
 

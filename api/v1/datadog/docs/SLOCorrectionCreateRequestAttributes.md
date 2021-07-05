@@ -15,20 +15,20 @@ Name | Type | Description | Notes
 
 ### NewSLOCorrectionCreateRequestAttributes
 
-`func NewSLOCorrectionCreateRequestAttributes(category SLOCorrectionCategory, end int64, sloId string, start int64, ) *SLOCorrectionCreateRequestAttributes`
+`func NewSLOCorrectionCreateRequestAttributes(category SLOCorrectionCategory, end int64, sloId string, start int64) *SLOCorrectionCreateRequestAttributes`
 
-NewSLOCorrectionCreateRequestAttributes instantiates a new SLOCorrectionCreateRequestAttributes object
+NewSLOCorrectionCreateRequestAttributes instantiates a new SLOCorrectionCreateRequestAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSLOCorrectionCreateRequestAttributesWithDefaults
 
 `func NewSLOCorrectionCreateRequestAttributesWithDefaults() *SLOCorrectionCreateRequestAttributes`
 
-NewSLOCorrectionCreateRequestAttributesWithDefaults instantiates a new SLOCorrectionCreateRequestAttributes object
+NewSLOCorrectionCreateRequestAttributesWithDefaults instantiates a new SLOCorrectionCreateRequestAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCategory
 

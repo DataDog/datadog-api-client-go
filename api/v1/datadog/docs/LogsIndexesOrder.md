@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewLogsIndexesOrder
 
-`func NewLogsIndexesOrder(indexNames []string, ) *LogsIndexesOrder`
+`func NewLogsIndexesOrder(indexNames []string) *LogsIndexesOrder`
 
-NewLogsIndexesOrder instantiates a new LogsIndexesOrder object
+NewLogsIndexesOrder instantiates a new LogsIndexesOrder object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsIndexesOrderWithDefaults
 
 `func NewLogsIndexesOrderWithDefaults() *LogsIndexesOrder`
 
-NewLogsIndexesOrderWithDefaults instantiates a new LogsIndexesOrder object
+NewLogsIndexesOrderWithDefaults instantiates a new LogsIndexesOrder object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetIndexNames
 

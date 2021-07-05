@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewNotebookTimeseriesCellAttributes
 
-`func NewNotebookTimeseriesCellAttributes(definition TimeseriesWidgetDefinition, ) *NotebookTimeseriesCellAttributes`
+`func NewNotebookTimeseriesCellAttributes(definition TimeseriesWidgetDefinition) *NotebookTimeseriesCellAttributes`
 
-NewNotebookTimeseriesCellAttributes instantiates a new NotebookTimeseriesCellAttributes object
+NewNotebookTimeseriesCellAttributes instantiates a new NotebookTimeseriesCellAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewNotebookTimeseriesCellAttributesWithDefaults
 
 `func NewNotebookTimeseriesCellAttributesWithDefaults() *NotebookTimeseriesCellAttributes`
 
-NewNotebookTimeseriesCellAttributesWithDefaults instantiates a new NotebookTimeseriesCellAttributes object
+NewNotebookTimeseriesCellAttributesWithDefaults instantiates a new NotebookTimeseriesCellAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDefinition
 

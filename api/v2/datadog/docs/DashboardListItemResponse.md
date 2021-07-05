@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewDashboardListItemResponse
 
-`func NewDashboardListItemResponse(id string, type_ DashboardType, ) *DashboardListItemResponse`
+`func NewDashboardListItemResponse(id string, type_ DashboardType) *DashboardListItemResponse`
 
-NewDashboardListItemResponse instantiates a new DashboardListItemResponse object
+NewDashboardListItemResponse instantiates a new DashboardListItemResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewDashboardListItemResponseWithDefaults
 
 `func NewDashboardListItemResponseWithDefaults() *DashboardListItemResponse`
 
-NewDashboardListItemResponseWithDefaults instantiates a new DashboardListItemResponse object
+NewDashboardListItemResponseWithDefaults instantiates a new DashboardListItemResponse object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetId
 

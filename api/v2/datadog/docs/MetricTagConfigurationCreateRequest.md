@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewMetricTagConfigurationCreateRequest
 
-`func NewMetricTagConfigurationCreateRequest(data MetricTagConfigurationCreateData, ) *MetricTagConfigurationCreateRequest`
+`func NewMetricTagConfigurationCreateRequest(data MetricTagConfigurationCreateData) *MetricTagConfigurationCreateRequest`
 
-NewMetricTagConfigurationCreateRequest instantiates a new MetricTagConfigurationCreateRequest object
+NewMetricTagConfigurationCreateRequest instantiates a new MetricTagConfigurationCreateRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewMetricTagConfigurationCreateRequestWithDefaults
 
 `func NewMetricTagConfigurationCreateRequestWithDefaults() *MetricTagConfigurationCreateRequest`
 
-NewMetricTagConfigurationCreateRequestWithDefaults instantiates a new MetricTagConfigurationCreateRequest object
+NewMetricTagConfigurationCreateRequestWithDefaults instantiates a new MetricTagConfigurationCreateRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

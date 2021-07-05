@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewSecurityFilterCreateRequest
 
-`func NewSecurityFilterCreateRequest(data SecurityFilterCreateData, ) *SecurityFilterCreateRequest`
+`func NewSecurityFilterCreateRequest(data SecurityFilterCreateData) *SecurityFilterCreateRequest`
 
-NewSecurityFilterCreateRequest instantiates a new SecurityFilterCreateRequest object
+NewSecurityFilterCreateRequest instantiates a new SecurityFilterCreateRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSecurityFilterCreateRequestWithDefaults
 
 `func NewSecurityFilterCreateRequestWithDefaults() *SecurityFilterCreateRequest`
 
-NewSecurityFilterCreateRequestWithDefaults instantiates a new SecurityFilterCreateRequest object
+NewSecurityFilterCreateRequestWithDefaults instantiates a new SecurityFilterCreateRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

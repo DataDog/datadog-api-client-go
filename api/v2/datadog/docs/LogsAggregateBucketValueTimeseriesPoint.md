@@ -13,18 +13,18 @@ Name | Type | Description | Notes
 
 `func NewLogsAggregateBucketValueTimeseriesPoint() *LogsAggregateBucketValueTimeseriesPoint`
 
-NewLogsAggregateBucketValueTimeseriesPoint instantiates a new LogsAggregateBucketValueTimeseriesPoint object
+NewLogsAggregateBucketValueTimeseriesPoint instantiates a new LogsAggregateBucketValueTimeseriesPoint object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsAggregateBucketValueTimeseriesPointWithDefaults
 
 `func NewLogsAggregateBucketValueTimeseriesPointWithDefaults() *LogsAggregateBucketValueTimeseriesPoint`
 
-NewLogsAggregateBucketValueTimeseriesPointWithDefaults instantiates a new LogsAggregateBucketValueTimeseriesPoint object
+NewLogsAggregateBucketValueTimeseriesPointWithDefaults instantiates a new LogsAggregateBucketValueTimeseriesPoint object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetTime
 

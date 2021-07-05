@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewIncidentCreateRequest
 
-`func NewIncidentCreateRequest(data IncidentCreateData, ) *IncidentCreateRequest`
+`func NewIncidentCreateRequest(data IncidentCreateData) *IncidentCreateRequest`
 
-NewIncidentCreateRequest instantiates a new IncidentCreateRequest object
+NewIncidentCreateRequest instantiates a new IncidentCreateRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewIncidentCreateRequestWithDefaults
 
 `func NewIncidentCreateRequestWithDefaults() *IncidentCreateRequest`
 
-NewIncidentCreateRequestWithDefaults instantiates a new IncidentCreateRequest object
+NewIncidentCreateRequestWithDefaults instantiates a new IncidentCreateRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

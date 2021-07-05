@@ -18,20 +18,20 @@ Name | Type | Description | Notes
 
 ### NewGeomapWidgetDefinition
 
-`func NewGeomapWidgetDefinition(requests []GeomapWidgetRequest, style GeomapWidgetDefinitionStyle, type_ GeomapWidgetDefinitionType, view GeomapWidgetDefinitionView, ) *GeomapWidgetDefinition`
+`func NewGeomapWidgetDefinition(requests []GeomapWidgetRequest, style GeomapWidgetDefinitionStyle, type_ GeomapWidgetDefinitionType, view GeomapWidgetDefinitionView) *GeomapWidgetDefinition`
 
-NewGeomapWidgetDefinition instantiates a new GeomapWidgetDefinition object
+NewGeomapWidgetDefinition instantiates a new GeomapWidgetDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewGeomapWidgetDefinitionWithDefaults
 
 `func NewGeomapWidgetDefinitionWithDefaults() *GeomapWidgetDefinition`
 
-NewGeomapWidgetDefinitionWithDefaults instantiates a new GeomapWidgetDefinition object
+NewGeomapWidgetDefinitionWithDefaults instantiates a new GeomapWidgetDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCustomLinks
 

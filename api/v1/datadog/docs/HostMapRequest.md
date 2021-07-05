@@ -20,18 +20,18 @@ Name | Type | Description | Notes
 
 `func NewHostMapRequest() *HostMapRequest`
 
-NewHostMapRequest instantiates a new HostMapRequest object
+NewHostMapRequest instantiates a new HostMapRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewHostMapRequestWithDefaults
 
 `func NewHostMapRequestWithDefaults() *HostMapRequest`
 
-NewHostMapRequestWithDefaults instantiates a new HostMapRequest object
+NewHostMapRequestWithDefaults instantiates a new HostMapRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetApmQuery
 

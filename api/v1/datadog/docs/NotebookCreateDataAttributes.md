@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewNotebookCreateDataAttributes
 
-`func NewNotebookCreateDataAttributes(cells []NotebookCellCreateRequest, name string, time NotebookGlobalTime, ) *NotebookCreateDataAttributes`
+`func NewNotebookCreateDataAttributes(cells []NotebookCellCreateRequest, name string, time NotebookGlobalTime) *NotebookCreateDataAttributes`
 
-NewNotebookCreateDataAttributes instantiates a new NotebookCreateDataAttributes object
+NewNotebookCreateDataAttributes instantiates a new NotebookCreateDataAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewNotebookCreateDataAttributesWithDefaults
 
 `func NewNotebookCreateDataAttributesWithDefaults() *NotebookCreateDataAttributes`
 
-NewNotebookCreateDataAttributesWithDefaults instantiates a new NotebookCreateDataAttributes object
+NewNotebookCreateDataAttributesWithDefaults instantiates a new NotebookCreateDataAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCells
 

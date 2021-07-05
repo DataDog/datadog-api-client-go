@@ -23,20 +23,20 @@ Name | Type | Description | Notes
 
 ### NewEventCreateRequest
 
-`func NewEventCreateRequest(text string, title string, ) *EventCreateRequest`
+`func NewEventCreateRequest(text string, title string) *EventCreateRequest`
 
-NewEventCreateRequest instantiates a new EventCreateRequest object
+NewEventCreateRequest instantiates a new EventCreateRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewEventCreateRequestWithDefaults
 
 `func NewEventCreateRequestWithDefaults() *EventCreateRequest`
 
-NewEventCreateRequestWithDefaults instantiates a new EventCreateRequest object
+NewEventCreateRequestWithDefaults instantiates a new EventCreateRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAggregationKey
 

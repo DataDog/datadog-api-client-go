@@ -14,20 +14,20 @@ Name | Type | Description | Notes
 
 ### NewLogsArchiveCreateRequestAttributes
 
-`func NewLogsArchiveCreateRequestAttributes(destination LogsArchiveCreateRequestDestination, name string, query string, ) *LogsArchiveCreateRequestAttributes`
+`func NewLogsArchiveCreateRequestAttributes(destination LogsArchiveCreateRequestDestination, name string, query string) *LogsArchiveCreateRequestAttributes`
 
-NewLogsArchiveCreateRequestAttributes instantiates a new LogsArchiveCreateRequestAttributes object
+NewLogsArchiveCreateRequestAttributes instantiates a new LogsArchiveCreateRequestAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsArchiveCreateRequestAttributesWithDefaults
 
 `func NewLogsArchiveCreateRequestAttributesWithDefaults() *LogsArchiveCreateRequestAttributes`
 
-NewLogsArchiveCreateRequestAttributesWithDefaults instantiates a new LogsArchiveCreateRequestAttributes object
+NewLogsArchiveCreateRequestAttributesWithDefaults instantiates a new LogsArchiveCreateRequestAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDestination
 

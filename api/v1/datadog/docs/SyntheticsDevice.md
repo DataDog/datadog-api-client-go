@@ -14,20 +14,20 @@ Name | Type | Description | Notes
 
 ### NewSyntheticsDevice
 
-`func NewSyntheticsDevice(height int64, id SyntheticsDeviceID, name string, width int64, ) *SyntheticsDevice`
+`func NewSyntheticsDevice(height int64, id SyntheticsDeviceID, name string, width int64) *SyntheticsDevice`
 
-NewSyntheticsDevice instantiates a new SyntheticsDevice object
+NewSyntheticsDevice instantiates a new SyntheticsDevice object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSyntheticsDeviceWithDefaults
 
 `func NewSyntheticsDeviceWithDefaults() *SyntheticsDevice`
 
-NewSyntheticsDeviceWithDefaults instantiates a new SyntheticsDevice object
+NewSyntheticsDeviceWithDefaults instantiates a new SyntheticsDevice object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetHeight
 

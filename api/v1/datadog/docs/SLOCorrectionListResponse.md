@@ -13,18 +13,18 @@ Name | Type | Description | Notes
 
 `func NewSLOCorrectionListResponse() *SLOCorrectionListResponse`
 
-NewSLOCorrectionListResponse instantiates a new SLOCorrectionListResponse object
+NewSLOCorrectionListResponse instantiates a new SLOCorrectionListResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSLOCorrectionListResponseWithDefaults
 
 `func NewSLOCorrectionListResponseWithDefaults() *SLOCorrectionListResponse`
 
-NewSLOCorrectionListResponseWithDefaults instantiates a new SLOCorrectionListResponse object
+NewSLOCorrectionListResponseWithDefaults instantiates a new SLOCorrectionListResponse object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

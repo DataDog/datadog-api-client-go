@@ -18,20 +18,20 @@ Name | Type | Description | Notes
 
 ### NewSecurityMonitoringRuleCreatePayload
 
-`func NewSecurityMonitoringRuleCreatePayload(cases []SecurityMonitoringRuleCaseCreate, isEnabled bool, message string, name string, options SecurityMonitoringRuleOptions, queries []SecurityMonitoringRuleQueryCreate, ) *SecurityMonitoringRuleCreatePayload`
+`func NewSecurityMonitoringRuleCreatePayload(cases []SecurityMonitoringRuleCaseCreate, isEnabled bool, message string, name string, options SecurityMonitoringRuleOptions, queries []SecurityMonitoringRuleQueryCreate) *SecurityMonitoringRuleCreatePayload`
 
-NewSecurityMonitoringRuleCreatePayload instantiates a new SecurityMonitoringRuleCreatePayload object
+NewSecurityMonitoringRuleCreatePayload instantiates a new SecurityMonitoringRuleCreatePayload object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSecurityMonitoringRuleCreatePayloadWithDefaults
 
 `func NewSecurityMonitoringRuleCreatePayloadWithDefaults() *SecurityMonitoringRuleCreatePayload`
 
-NewSecurityMonitoringRuleCreatePayloadWithDefaults instantiates a new SecurityMonitoringRuleCreatePayload object
+NewSecurityMonitoringRuleCreatePayloadWithDefaults instantiates a new SecurityMonitoringRuleCreatePayload object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCases
 

@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewSecurityFilterExclusionFilter
 
-`func NewSecurityFilterExclusionFilter(name string, query string, ) *SecurityFilterExclusionFilter`
+`func NewSecurityFilterExclusionFilter(name string, query string) *SecurityFilterExclusionFilter`
 
-NewSecurityFilterExclusionFilter instantiates a new SecurityFilterExclusionFilter object
+NewSecurityFilterExclusionFilter instantiates a new SecurityFilterExclusionFilter object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSecurityFilterExclusionFilterWithDefaults
 
 `func NewSecurityFilterExclusionFilterWithDefaults() *SecurityFilterExclusionFilter`
 
-NewSecurityFilterExclusionFilterWithDefaults instantiates a new SecurityFilterExclusionFilter object
+NewSecurityFilterExclusionFilterWithDefaults instantiates a new SecurityFilterExclusionFilter object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetName
 

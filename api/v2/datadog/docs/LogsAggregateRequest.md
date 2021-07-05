@@ -16,18 +16,18 @@ Name | Type | Description | Notes
 
 `func NewLogsAggregateRequest() *LogsAggregateRequest`
 
-NewLogsAggregateRequest instantiates a new LogsAggregateRequest object
+NewLogsAggregateRequest instantiates a new LogsAggregateRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsAggregateRequestWithDefaults
 
 `func NewLogsAggregateRequestWithDefaults() *LogsAggregateRequest`
 
-NewLogsAggregateRequestWithDefaults instantiates a new LogsAggregateRequest object
+NewLogsAggregateRequestWithDefaults instantiates a new LogsAggregateRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCompute
 

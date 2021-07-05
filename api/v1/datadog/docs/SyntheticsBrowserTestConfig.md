@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewSyntheticsBrowserTestConfig
 
-`func NewSyntheticsBrowserTestConfig(assertions []SyntheticsAssertion, request SyntheticsTestRequest, ) *SyntheticsBrowserTestConfig`
+`func NewSyntheticsBrowserTestConfig(assertions []SyntheticsAssertion, request SyntheticsTestRequest) *SyntheticsBrowserTestConfig`
 
-NewSyntheticsBrowserTestConfig instantiates a new SyntheticsBrowserTestConfig object
+NewSyntheticsBrowserTestConfig instantiates a new SyntheticsBrowserTestConfig object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSyntheticsBrowserTestConfigWithDefaults
 
 `func NewSyntheticsBrowserTestConfigWithDefaults() *SyntheticsBrowserTestConfig`
 
-NewSyntheticsBrowserTestConfigWithDefaults instantiates a new SyntheticsBrowserTestConfig object
+NewSyntheticsBrowserTestConfigWithDefaults instantiates a new SyntheticsBrowserTestConfig object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAssertions
 

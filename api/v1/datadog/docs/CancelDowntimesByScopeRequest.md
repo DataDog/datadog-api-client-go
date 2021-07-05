@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewCancelDowntimesByScopeRequest
 
-`func NewCancelDowntimesByScopeRequest(scope string, ) *CancelDowntimesByScopeRequest`
+`func NewCancelDowntimesByScopeRequest(scope string) *CancelDowntimesByScopeRequest`
 
-NewCancelDowntimesByScopeRequest instantiates a new CancelDowntimesByScopeRequest object
+NewCancelDowntimesByScopeRequest instantiates a new CancelDowntimesByScopeRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewCancelDowntimesByScopeRequestWithDefaults
 
 `func NewCancelDowntimesByScopeRequestWithDefaults() *CancelDowntimesByScopeRequest`
 
-NewCancelDowntimesByScopeRequestWithDefaults instantiates a new CancelDowntimesByScopeRequest object
+NewCancelDowntimesByScopeRequestWithDefaults instantiates a new CancelDowntimesByScopeRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetScope
 

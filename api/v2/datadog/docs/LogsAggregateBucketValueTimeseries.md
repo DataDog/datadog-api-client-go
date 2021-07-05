@@ -11,18 +11,18 @@ Name | Type | Description | Notes
 
 `func NewLogsAggregateBucketValueTimeseries() *LogsAggregateBucketValueTimeseries`
 
-NewLogsAggregateBucketValueTimeseries instantiates a new LogsAggregateBucketValueTimeseries object
+NewLogsAggregateBucketValueTimeseries instantiates a new LogsAggregateBucketValueTimeseries object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsAggregateBucketValueTimeseriesWithDefaults
 
 `func NewLogsAggregateBucketValueTimeseriesWithDefaults() *LogsAggregateBucketValueTimeseries`
 
-NewLogsAggregateBucketValueTimeseriesWithDefaults instantiates a new LogsAggregateBucketValueTimeseries object
+NewLogsAggregateBucketValueTimeseriesWithDefaults instantiates a new LogsAggregateBucketValueTimeseries object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

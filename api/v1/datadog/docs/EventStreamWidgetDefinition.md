@@ -17,20 +17,20 @@ Name | Type | Description | Notes
 
 ### NewEventStreamWidgetDefinition
 
-`func NewEventStreamWidgetDefinition(query string, type_ EventStreamWidgetDefinitionType, ) *EventStreamWidgetDefinition`
+`func NewEventStreamWidgetDefinition(query string, type_ EventStreamWidgetDefinitionType) *EventStreamWidgetDefinition`
 
-NewEventStreamWidgetDefinition instantiates a new EventStreamWidgetDefinition object
+NewEventStreamWidgetDefinition instantiates a new EventStreamWidgetDefinition object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewEventStreamWidgetDefinitionWithDefaults
 
 `func NewEventStreamWidgetDefinitionWithDefaults() *EventStreamWidgetDefinition`
 
-NewEventStreamWidgetDefinitionWithDefaults instantiates a new EventStreamWidgetDefinition object
+NewEventStreamWidgetDefinitionWithDefaults instantiates a new EventStreamWidgetDefinition object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetEventSize
 

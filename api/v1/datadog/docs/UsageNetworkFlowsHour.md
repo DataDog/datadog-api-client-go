@@ -13,18 +13,18 @@ Name | Type | Description | Notes
 
 `func NewUsageNetworkFlowsHour() *UsageNetworkFlowsHour`
 
-NewUsageNetworkFlowsHour instantiates a new UsageNetworkFlowsHour object
+NewUsageNetworkFlowsHour instantiates a new UsageNetworkFlowsHour object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewUsageNetworkFlowsHourWithDefaults
 
 `func NewUsageNetworkFlowsHourWithDefaults() *UsageNetworkFlowsHour`
 
-NewUsageNetworkFlowsHourWithDefaults instantiates a new UsageNetworkFlowsHour object
+NewUsageNetworkFlowsHourWithDefaults instantiates a new UsageNetworkFlowsHour object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetHour
 

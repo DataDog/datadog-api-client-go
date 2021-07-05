@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewLogQueryDefinitionSearch
 
-`func NewLogQueryDefinitionSearch(query string, ) *LogQueryDefinitionSearch`
+`func NewLogQueryDefinitionSearch(query string) *LogQueryDefinitionSearch`
 
-NewLogQueryDefinitionSearch instantiates a new LogQueryDefinitionSearch object
+NewLogQueryDefinitionSearch instantiates a new LogQueryDefinitionSearch object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogQueryDefinitionSearchWithDefaults
 
 `func NewLogQueryDefinitionSearchWithDefaults() *LogQueryDefinitionSearch`
 
-NewLogQueryDefinitionSearchWithDefaults instantiates a new LogQueryDefinitionSearch object
+NewLogQueryDefinitionSearchWithDefaults instantiates a new LogQueryDefinitionSearch object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetQuery
 

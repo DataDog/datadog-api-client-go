@@ -13,18 +13,18 @@ Name | Type | Description | Notes
 
 `func NewWidgetFormulaLimit() *WidgetFormulaLimit`
 
-NewWidgetFormulaLimit instantiates a new WidgetFormulaLimit object
+NewWidgetFormulaLimit instantiates a new WidgetFormulaLimit object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewWidgetFormulaLimitWithDefaults
 
 `func NewWidgetFormulaLimitWithDefaults() *WidgetFormulaLimit`
 
-NewWidgetFormulaLimitWithDefaults instantiates a new WidgetFormulaLimit object
+NewWidgetFormulaLimitWithDefaults instantiates a new WidgetFormulaLimit object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCount
 

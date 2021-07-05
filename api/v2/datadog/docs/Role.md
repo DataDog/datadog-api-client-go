@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewRole
 
-`func NewRole(type_ RolesType, ) *Role`
+`func NewRole(type_ RolesType) *Role`
 
-NewRole instantiates a new Role object
+NewRole instantiates a new Role object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewRoleWithDefaults
 
 `func NewRoleWithDefaults() *Role`
 
-NewRoleWithDefaults instantiates a new Role object
+NewRoleWithDefaults instantiates a new Role object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

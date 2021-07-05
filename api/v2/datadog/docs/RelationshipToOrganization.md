@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 
 ### NewRelationshipToOrganization
 
-`func NewRelationshipToOrganization(data RelationshipToOrganizationData, ) *RelationshipToOrganization`
+`func NewRelationshipToOrganization(data RelationshipToOrganizationData) *RelationshipToOrganization`
 
-NewRelationshipToOrganization instantiates a new RelationshipToOrganization object
+NewRelationshipToOrganization instantiates a new RelationshipToOrganization object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewRelationshipToOrganizationWithDefaults
 
 `func NewRelationshipToOrganizationWithDefaults() *RelationshipToOrganization`
 
-NewRelationshipToOrganizationWithDefaults instantiates a new RelationshipToOrganization object
+NewRelationshipToOrganizationWithDefaults instantiates a new RelationshipToOrganization object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 

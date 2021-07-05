@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewSecurityMonitoringRuleCaseCreate
 
-`func NewSecurityMonitoringRuleCaseCreate(status SecurityMonitoringRuleSeverity, ) *SecurityMonitoringRuleCaseCreate`
+`func NewSecurityMonitoringRuleCaseCreate(status SecurityMonitoringRuleSeverity) *SecurityMonitoringRuleCaseCreate`
 
-NewSecurityMonitoringRuleCaseCreate instantiates a new SecurityMonitoringRuleCaseCreate object
+NewSecurityMonitoringRuleCaseCreate instantiates a new SecurityMonitoringRuleCaseCreate object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSecurityMonitoringRuleCaseCreateWithDefaults
 
 `func NewSecurityMonitoringRuleCaseCreateWithDefaults() *SecurityMonitoringRuleCaseCreate`
 
-NewSecurityMonitoringRuleCaseCreateWithDefaults instantiates a new SecurityMonitoringRuleCaseCreate object
+NewSecurityMonitoringRuleCaseCreateWithDefaults instantiates a new SecurityMonitoringRuleCaseCreate object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCondition
 

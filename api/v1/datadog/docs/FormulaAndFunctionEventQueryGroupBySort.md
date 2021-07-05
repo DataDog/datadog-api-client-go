@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewFormulaAndFunctionEventQueryGroupBySort
 
-`func NewFormulaAndFunctionEventQueryGroupBySort(aggregation FormulaAndFunctionEventAggregation, ) *FormulaAndFunctionEventQueryGroupBySort`
+`func NewFormulaAndFunctionEventQueryGroupBySort(aggregation FormulaAndFunctionEventAggregation) *FormulaAndFunctionEventQueryGroupBySort`
 
-NewFormulaAndFunctionEventQueryGroupBySort instantiates a new FormulaAndFunctionEventQueryGroupBySort object
+NewFormulaAndFunctionEventQueryGroupBySort instantiates a new FormulaAndFunctionEventQueryGroupBySort object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewFormulaAndFunctionEventQueryGroupBySortWithDefaults
 
 `func NewFormulaAndFunctionEventQueryGroupBySortWithDefaults() *FormulaAndFunctionEventQueryGroupBySort`
 
-NewFormulaAndFunctionEventQueryGroupBySortWithDefaults instantiates a new FormulaAndFunctionEventQueryGroupBySort object
+NewFormulaAndFunctionEventQueryGroupBySortWithDefaults instantiates a new FormulaAndFunctionEventQueryGroupBySort object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAggregation
 

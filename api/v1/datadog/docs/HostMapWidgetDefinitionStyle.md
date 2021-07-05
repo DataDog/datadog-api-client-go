@@ -15,18 +15,18 @@ Name | Type | Description | Notes
 
 `func NewHostMapWidgetDefinitionStyle() *HostMapWidgetDefinitionStyle`
 
-NewHostMapWidgetDefinitionStyle instantiates a new HostMapWidgetDefinitionStyle object
+NewHostMapWidgetDefinitionStyle instantiates a new HostMapWidgetDefinitionStyle object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewHostMapWidgetDefinitionStyleWithDefaults
 
 `func NewHostMapWidgetDefinitionStyleWithDefaults() *HostMapWidgetDefinitionStyle`
 
-NewHostMapWidgetDefinitionStyleWithDefaults instantiates a new HostMapWidgetDefinitionStyle object
+NewHostMapWidgetDefinitionStyleWithDefaults instantiates a new HostMapWidgetDefinitionStyle object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetFillMax
 

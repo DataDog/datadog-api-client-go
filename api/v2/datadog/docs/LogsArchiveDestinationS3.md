@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ### NewLogsArchiveDestinationS3
 
-`func NewLogsArchiveDestinationS3(bucket string, integration LogsArchiveIntegrationS3, type_ LogsArchiveDestinationS3Type, ) *LogsArchiveDestinationS3`
+`func NewLogsArchiveDestinationS3(bucket string, integration LogsArchiveIntegrationS3, type_ LogsArchiveDestinationS3Type) *LogsArchiveDestinationS3`
 
-NewLogsArchiveDestinationS3 instantiates a new LogsArchiveDestinationS3 object
+NewLogsArchiveDestinationS3 instantiates a new LogsArchiveDestinationS3 object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogsArchiveDestinationS3WithDefaults
 
 `func NewLogsArchiveDestinationS3WithDefaults() *LogsArchiveDestinationS3`
 
-NewLogsArchiveDestinationS3WithDefaults instantiates a new LogsArchiveDestinationS3 object
+NewLogsArchiveDestinationS3WithDefaults instantiates a new LogsArchiveDestinationS3 object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetBucket
 

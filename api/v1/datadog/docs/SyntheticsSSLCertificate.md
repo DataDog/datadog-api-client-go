@@ -23,18 +23,18 @@ Name | Type | Description | Notes
 
 `func NewSyntheticsSSLCertificate() *SyntheticsSSLCertificate`
 
-NewSyntheticsSSLCertificate instantiates a new SyntheticsSSLCertificate object
+NewSyntheticsSSLCertificate instantiates a new SyntheticsSSLCertificate object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSyntheticsSSLCertificateWithDefaults
 
 `func NewSyntheticsSSLCertificateWithDefaults() *SyntheticsSSLCertificate`
 
-NewSyntheticsSSLCertificateWithDefaults instantiates a new SyntheticsSSLCertificate object
+NewSyntheticsSSLCertificateWithDefaults instantiates a new SyntheticsSSLCertificate object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCipher
 

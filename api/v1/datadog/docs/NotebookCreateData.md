@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewNotebookCreateData
 
-`func NewNotebookCreateData(attributes NotebookCreateDataAttributes, type_ NotebookResourceType, ) *NotebookCreateData`
+`func NewNotebookCreateData(attributes NotebookCreateDataAttributes, type_ NotebookResourceType) *NotebookCreateData`
 
-NewNotebookCreateData instantiates a new NotebookCreateData object
+NewNotebookCreateData instantiates a new NotebookCreateData object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewNotebookCreateDataWithDefaults
 
 `func NewNotebookCreateDataWithDefaults() *NotebookCreateData`
 
-NewNotebookCreateDataWithDefaults instantiates a new NotebookCreateData object
+NewNotebookCreateDataWithDefaults instantiates a new NotebookCreateData object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 

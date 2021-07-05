@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewLogQueryDefinitionGroupBySort
 
-`func NewLogQueryDefinitionGroupBySort(aggregation string, order WidgetSort, ) *LogQueryDefinitionGroupBySort`
+`func NewLogQueryDefinitionGroupBySort(aggregation string, order WidgetSort) *LogQueryDefinitionGroupBySort`
 
-NewLogQueryDefinitionGroupBySort instantiates a new LogQueryDefinitionGroupBySort object
+NewLogQueryDefinitionGroupBySort instantiates a new LogQueryDefinitionGroupBySort object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewLogQueryDefinitionGroupBySortWithDefaults
 
 `func NewLogQueryDefinitionGroupBySortWithDefaults() *LogQueryDefinitionGroupBySort`
 
-NewLogQueryDefinitionGroupBySortWithDefaults instantiates a new LogQueryDefinitionGroupBySort object
+NewLogQueryDefinitionGroupBySortWithDefaults instantiates a new LogQueryDefinitionGroupBySort object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAggregation
 

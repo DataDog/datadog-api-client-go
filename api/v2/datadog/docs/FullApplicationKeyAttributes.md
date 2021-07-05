@@ -15,18 +15,18 @@ Name | Type | Description | Notes
 
 `func NewFullApplicationKeyAttributes() *FullApplicationKeyAttributes`
 
-NewFullApplicationKeyAttributes instantiates a new FullApplicationKeyAttributes object
+NewFullApplicationKeyAttributes instantiates a new FullApplicationKeyAttributes object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewFullApplicationKeyAttributesWithDefaults
 
 `func NewFullApplicationKeyAttributesWithDefaults() *FullApplicationKeyAttributes`
 
-NewFullApplicationKeyAttributesWithDefaults instantiates a new FullApplicationKeyAttributes object
+NewFullApplicationKeyAttributesWithDefaults instantiates a new FullApplicationKeyAttributes object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCreatedAt
 

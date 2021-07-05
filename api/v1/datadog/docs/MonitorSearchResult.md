@@ -23,18 +23,18 @@ Name | Type | Description | Notes
 
 `func NewMonitorSearchResult() *MonitorSearchResult`
 
-NewMonitorSearchResult instantiates a new MonitorSearchResult object
+NewMonitorSearchResult instantiates a new MonitorSearchResult object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewMonitorSearchResultWithDefaults
 
 `func NewMonitorSearchResultWithDefaults() *MonitorSearchResult`
 
-NewMonitorSearchResultWithDefaults instantiates a new MonitorSearchResult object
+NewMonitorSearchResultWithDefaults instantiates a new MonitorSearchResult object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetClassification
 

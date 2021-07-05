@@ -4,25 +4,9 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-
-## Methods
-
-### NewLogsGroupByTotal
-
-`func NewLogsGroupByTotal() *LogsGroupByTotal`
-
-NewLogsGroupByTotal instantiates a new LogsGroupByTotal object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
-
-### NewLogsGroupByTotalWithDefaults
-
-`func NewLogsGroupByTotalWithDefaults() *LogsGroupByTotal`
-
-NewLogsGroupByTotalWithDefaults instantiates a new LogsGroupByTotal object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+**bool** | Pointer to [**bool**](bool.md) | A pointer to the appropriate element. |
+**float64** | Pointer to [**float64**](float64.md) | A pointer to the appropriate element. |
+**string** | Pointer to [**string**](string.md) | A pointer to the appropriate element. |
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

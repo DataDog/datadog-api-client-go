@@ -26,18 +26,18 @@ Name | Type | Description | Notes
 
 `func NewSyntheticsTestRequest() *SyntheticsTestRequest`
 
-NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object
+NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewSyntheticsTestRequestWithDefaults
 
 `func NewSyntheticsTestRequestWithDefaults() *SyntheticsTestRequest`
 
-NewSyntheticsTestRequestWithDefaults instantiates a new SyntheticsTestRequest object
+NewSyntheticsTestRequestWithDefaults instantiates a new SyntheticsTestRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetBasicAuth
 

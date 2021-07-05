@@ -17,18 +17,18 @@ Name | Type | Description | Notes
 
 `func NewMonitorStateGroup() *MonitorStateGroup`
 
-NewMonitorStateGroup instantiates a new MonitorStateGroup object
+NewMonitorStateGroup instantiates a new MonitorStateGroup object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewMonitorStateGroupWithDefaults
 
 `func NewMonitorStateGroupWithDefaults() *MonitorStateGroup`
 
-NewMonitorStateGroupWithDefaults instantiates a new MonitorStateGroup object
+NewMonitorStateGroupWithDefaults instantiates a new MonitorStateGroup object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetLastNodataTs
 

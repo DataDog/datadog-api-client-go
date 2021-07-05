@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 
 ### NewHTTPLogError
 
-`func NewHTTPLogError(code int32, message string, ) *HTTPLogError`
+`func NewHTTPLogError(code int32, message string) *HTTPLogError`
 
-NewHTTPLogError instantiates a new HTTPLogError object
+NewHTTPLogError instantiates a new HTTPLogError object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewHTTPLogErrorWithDefaults
 
 `func NewHTTPLogErrorWithDefaults() *HTTPLogError`
 
-NewHTTPLogErrorWithDefaults instantiates a new HTTPLogError object
+NewHTTPLogErrorWithDefaults instantiates a new HTTPLogError object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCode
 

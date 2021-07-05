@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 
 ### NewNotebookCellUpdateRequest
 
-`func NewNotebookCellUpdateRequest(attributes NotebookCellUpdateRequestAttributes, id string, type_ NotebookCellResourceType, ) *NotebookCellUpdateRequest`
+`func NewNotebookCellUpdateRequest(attributes NotebookCellUpdateRequestAttributes, id string, type_ NotebookCellResourceType) *NotebookCellUpdateRequest`
 
-NewNotebookCellUpdateRequest instantiates a new NotebookCellUpdateRequest object
+NewNotebookCellUpdateRequest instantiates a new NotebookCellUpdateRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewNotebookCellUpdateRequestWithDefaults
 
 `func NewNotebookCellUpdateRequestWithDefaults() *NotebookCellUpdateRequest`
 
-NewNotebookCellUpdateRequestWithDefaults instantiates a new NotebookCellUpdateRequest object
+NewNotebookCellUpdateRequestWithDefaults instantiates a new NotebookCellUpdateRequest object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAttributes
 
