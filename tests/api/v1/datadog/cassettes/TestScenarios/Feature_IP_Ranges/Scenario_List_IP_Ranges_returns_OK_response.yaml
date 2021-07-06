@@ -10,12 +10,12 @@ interactions:
       Host:
       - ip-ranges.datadoghq.com
       User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.4.0; os Darwin; arch
+      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 14.17.1; os Linux; arch
         x64)
       X-Datadog-Parent-Id:
-      - '4796764346314277967'
+      - '7040256429667386158'
       X-Datadog-Trace-Id:
-      - '4796764346314277967'
+      - '7406540036055883853'
     method: GET
     url: https://ip-ranges.datadoghq.com/
   response:
@@ -198,7 +198,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 01 Jul 2021 10:54:16 GMT
+      - Tue, 06 Jul 2021 10:09:48 GMT
       Etag:
       - '"ecb4ed42838b56fe91b86d372e2f1b0e"'
       Last-Modified:
@@ -208,11 +208,11 @@ interactions:
       Vary:
       - Accept-Encoding
       Via:
-      - 1.1 d7f531af10bfff5400817f213f0b7761.cloudfront.net (CloudFront)
+      - 1.1 40adc3dc2f5b304254d63ab3859fedd2.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - IuzXMPVk_FAwRkhWBEFdbbfQygkH1FQLUnQATyJM99KjQxSOzumpRg==
+      - f78CjN_czPWSTEdMgtXeukIyTg6Q-fKmZZ6cXxlUN6ddblnecFQmQg==
       X-Amz-Cf-Pop:
-      - MAD51-C1
+      - IAD89-C2
       X-Cache:
       - RefreshHit from cloudfront
     status: 200 OK
