@@ -8,6 +8,7 @@ type {{classname}} struct {
 {{/isMap}}
 {{#isArray}}
 	Items {{{parent}}}
+    UnparsedObject []interface{} `json:-`
 {{/isArray}}
 {{/parent}}
 {{#vars}}
@@ -18,6 +19,7 @@ type {{classname}} struct {
 {{/description}}
 	{{name}} {{^required}}{{^isNullable}}*{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 {{/vars}}
+    UnparsedObject map[string]interface{} `json:-`
 {{#isAdditionalPropertiesTrue}}
 	AdditionalProperties map[string]interface{}
 {{/isAdditionalPropertiesTrue}}
@@ -384,12 +386,15 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 {{/isAdditionalPropertiesTrue}}
 {{#isArray}}
 func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
-	return json.Unmarshal(bytes, &o.Items)
+	if err := json.Unmarshal(bytes, &o.Items); err != nil {
+        return json.Unmarshal(bytes, &o.UnparsedObject)
+    }
 }
 
 {{/isArray}}
-{{^isArray}}{{#hasRequired}}
+{{^isArray}}
 func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
+    raw := map[string]interface{}{}
 	required := struct {
 {{#requiredVars}}
 		{{name}} *{{{dataType}}} `json:"{{baseName}}"`
@@ -400,24 +405,51 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 	        {{name}} {{^required}}{{^isNullable}}*{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"`
 {{/vars}}
         }{}
+    err = json.Unmarshal(bytes, &raw)
+    if err != nil {
+        return err
+    }
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
-		return err
+        o.UnparsedObject = raw
 	}
 {{#requiredVars}}
-	if required.{{name}} == nil {
+	if _, ok := o.UnparsedObject["{{baseName}}"]; required.{{name}} == nil && !ok {
 		return fmt.Errorf("Required field {{baseName}} missing")
 	}
 {{/requiredVars}}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+        o.UnparsedObject = raw
+        return nil
 	}
 {{#vars}}
-	o.{{name}} = all.{{name}}
+{{#allowableValues}}
+    if v := all.{{name}}; {{^required}}v != nil && {{/required}}!v.IsValid() {
+        o.UnparsedObject = raw
+        return nil
+    }
+{{/allowableValues}}
+{{#isModel}}
+{{^isNullable}}
+    if v := all.{{name}}; {{^required}}v != nil && {{/required}}v.UnparsedObject != nil {
+        o.UnparsedObject = raw
+        return nil
+    }
+{{/isNullable}}
+{{#isNullable}}
+    if v := all.{{name}}.Get(); v != nil && v.UnparsedObject != nil {
+        o.UnparsedObject = raw
+        return nil
+    }
+{{/isNullable}}
+{{/isModel}}
+{{/vars}}
+{{#vars}}
+    o.{{name}} = all.{{name}}
 {{/vars}}
 	return nil
 }
 
-{{/hasRequired}}{{/isArray}}
+{{/isArray}}
 {{>nullable_model}}
