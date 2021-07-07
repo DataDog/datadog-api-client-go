@@ -242,11 +242,17 @@ func (o {{classname}}) MarshalJSON() ([]byte, error) {
 	{{/isArray}}
 	{{/isMap}}
 	{{#isArray}}
+    if o.UnparsedObject != nil {
+        return json.Marshal(o.UnparsedObject)
+    }
 	for i, item := range o.Items {
 		toSerialize[i] = item
 	}
 	{{/isArray}}
 	{{/parent}}
+    if o.UnparsedObject != nil {
+        return json.Marshal(o.UnparsedObject)
+    }
 	{{#vars}}
 	{{! if argument is nullable, only serialize it if it is set}}
 	{{#isNullable}}
