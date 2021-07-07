@@ -19,7 +19,9 @@ type {{classname}} struct {
 {{/description}}
 	{{name}} {{^required}}{{^isNullable}}*{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 {{/vars}}
+{{^isArray}}
     UnparsedObject map[string]interface{} `json:-`
+{{/isArray}}
 {{#isAdditionalPropertiesTrue}}
 	AdditionalProperties map[string]interface{}
 {{/isAdditionalPropertiesTrue}}
@@ -386,9 +388,7 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 {{/isAdditionalPropertiesTrue}}
 {{#isArray}}
 func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
-	if err := json.Unmarshal(bytes, &o.Items); err != nil {
-        return json.Unmarshal(bytes, &o.UnparsedObject)
-    }
+	return json.Unmarshal(bytes, &o.Items)
 }
 
 {{/isArray}}

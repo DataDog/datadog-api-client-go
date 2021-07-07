@@ -55,25 +55,25 @@ func (dst *{{classname}}) UnmarshalJSON(data []byte) error {
 	{{/useOneOfDiscriminatorLookup}}
 	{{^useOneOfDiscriminatorLookup}}
 	match := 0
-	{{#oneOf}}
-	// try to unmarshal data into {{{.}}}
-	err = json.Unmarshal(data, &dst.{{{.}}})
+	{{#vendorExtensions.x-oneOf-as-properties}}
+	// try to unmarshal data into {{{baseName}}}
+	err = json.Unmarshal(data, &dst.{{{baseName}}})
 	if err == nil {
-        if dst.{{{.}}} != nil && dst.{{{.}}}.UnparsedObject == nil {
-            json{{{.}}}, _ := json.Marshal(dst.{{{.}}})
-            if string(json{{{.}}}) == "{}" { // empty struct
-                dst.{{{.}}} = nil
+        if dst.{{{baseName}}} != nil {{#isModel}}&& dst.{{{baseName}}}.UnparsedObject == nil {{/isModel}}{
+            json{{{baseName}}}, _ := json.Marshal(dst.{{{baseName}}})
+            if string(json{{{baseName}}}) == "{}" { // empty struct
+                dst.{{{baseName}}} = nil
             } else {
                 match++
             }
         } else {
-            dst.{{{.}}} = nil
+            dst.{{{baseName}}} = nil
         }
 	} else {
-		dst.{{{.}}} = nil
+		dst.{{{baseName}}} = nil
 	}
 
-	{{/oneOf}}
+	{{/vendorExtensions.x-oneOf-as-properties}}
 	if match != 1 { // more than 1 match
 		// reset to nil
 		{{#oneOf}}
