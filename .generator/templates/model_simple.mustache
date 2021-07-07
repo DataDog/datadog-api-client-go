@@ -395,11 +395,13 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 {{^isArray}}
 func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
+{{#hasRequired}}
 	required := struct {
 {{#requiredVars}}
 		{{name}} *{{{dataType}}} `json:"{{baseName}}"`
 {{/requiredVars}}
 		}{}
+{{/hasRequired}}
 	all := struct {
 {{#vars}}
 			{{name}} {{^required}}{{^isNullable}}*{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"`
@@ -409,6 +411,7 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 	if err != nil {
 		return err
 	}
+{{#hasRequired}}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		o.UnparsedObject = raw
@@ -418,6 +421,7 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("Required field {{baseName}} missing")
 	}
 {{/requiredVars}}
+{{/hasRequired}}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		o.UnparsedObject = raw
