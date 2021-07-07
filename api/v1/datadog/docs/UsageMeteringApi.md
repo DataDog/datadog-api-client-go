@@ -390,7 +390,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    reportId := "reportId_example" // string | The specified ID to search results for.
+    reportId := "reportId_example" // string | Date of the report in the format `YYYY-MM-DD`.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
@@ -413,7 +413,7 @@ func main() {
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
 **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**reportId** | **string** | The specified ID to search results for. | 
+**reportId** | **string** | Date of the report in the format &#x60;YYYY-MM-DD&#x60;. | 
 
 
 ### Optional Parameters
@@ -461,7 +461,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    reportId := "reportId_example" // string | The specified ID to search results for.
+    reportId := "reportId_example" // string | Date of the report in the format `YYYY-MM-DD`.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
@@ -484,7 +484,7 @@ func main() {
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
 **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**reportId** | **string** | The specified ID to search results for. | 
+**reportId** | **string** | Date of the report in the format &#x60;YYYY-MM-DD&#x60;. | 
 
 
 ### Optional Parameters
