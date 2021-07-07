@@ -430,20 +430,6 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 {{/allowableValues}}
-{{#isModel}}
-{{^isNullable}}
-	if v := all.{{name}}; {{^required}}v != nil && {{/required}}v.UnparsedObject != nil {
-		o.UnparsedObject = raw
-		return nil
-	}
-{{/isNullable}}
-{{#isNullable}}
-	if v := all.{{name}}.Get(); v != nil && v.UnparsedObject != nil {
-		o.UnparsedObject = raw
-		return nil
-	}
-{{/isNullable}}
-{{/isModel}}
 {{/vars}}
 {{#vars}}
 	o.{{name}} = all.{{name}}
