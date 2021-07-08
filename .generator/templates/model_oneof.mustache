@@ -94,6 +94,9 @@ func (src {{classname}}) MarshalJSON() ([]byte, error) {
 	}
 
 {{/oneOf}}
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 
