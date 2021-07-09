@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 1.2.0 / 2021-07-09
+
+* [Added] Add support for `GET /api/v2/application_keys/{app_key_id}`. See [#1021](https://github.com/DataDog/datadog-api-client-go/pull/1021).
+* [Added] Add `meta` property with pagination info to SLOCorrectionList endpoint response. See [#1018](https://github.com/DataDog/datadog-api-client-go/pull/1018).
+* [Added] Add support for treemap widget. See [#1013](https://github.com/DataDog/datadog-api-client-go/pull/1013).
+* [Added] Add missing properties `query_index` and `tag_set` to `MetricsQueryMetadata`. See [#979](https://github.com/DataDog/datadog-api-client-go/pull/979).
+* [Fixed] Remove US only constraint for AWS tag filtering. See [#1007](https://github.com/DataDog/datadog-api-client-go/pull/1007).
+* [Fixed] Add BDD tests to synthetics. See [#1006](https://github.com/DataDog/datadog-api-client-go/pull/1006).
+* [Fixed] Fix Python type checking. See [#1002](https://github.com/DataDog/datadog-api-client-go/pull/1002).
+* [Fixed] Handle null in query metrics unit. See [#1001](https://github.com/DataDog/datadog-api-client-go/pull/1001).
+* [Changed] Remove Synthetics tick interval enum. See [#1005](https://github.com/DataDog/datadog-api-client-go/pull/1005).
+
 ## 1.1.0 / 2021-06-16
 
 * [Added] Add missing fields `hasExtendedTitle`, `type`, `version` and `updateAuthorId` for Security Monitoring Rule endpoints. See [#998](https://github.com/DataDog/datadog-api-client-go/pull/998).
