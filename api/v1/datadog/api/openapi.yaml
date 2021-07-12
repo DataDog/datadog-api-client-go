@@ -5709,7 +5709,8 @@ paths:
           application/json:
             examples:
               dynamic-points:
-                description: TODO.
+                description: Post time-series data that can be graphed on Datadog’s
+                  dashboards.
                 summary: Dynamic Points
                 value:
                   series:
