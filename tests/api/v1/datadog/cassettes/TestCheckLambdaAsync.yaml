@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"Test-TestCheckLambdaAsync-1618220900","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestCheckLambdaAsync-1626196268","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -13,17 +13,17 @@ interactions:
       Dd-Operation-Id:
       - CreateAWSAccount
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4230584382563063420"
+      - "7880139113922267440"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4095290917537617595"
+      - "4969809670545372500"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
-    body: '{"external_id":"7a9d108a47d9437aa952dbe34d546f7c"}'
+    body: '{"external_id":"dcd8bb4d804043ee8f46843a0967fa8a"}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:21 GMT
+      - Tue, 13 Jul 2021 17:11:10 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -41,10 +41,6 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -52,7 +48,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestCheckLambdaAsync-1618220900","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
+      {"account_id":"Test-TestCheckLambdaAsync-1626196268","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
     form: {}
     headers:
       Accept:
@@ -62,13 +58,13 @@ interactions:
       Dd-Operation-Id:
       - CheckAWSLogsLambdaAsync
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5740455739009573360"
+      - "3112273380122345735"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4095290917537617595"
+      - "4969809670545372500"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs/check_async
     method: POST
   response:
@@ -81,7 +77,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:21 GMT
+      - Tue, 13 Jul 2021 17:11:10 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -90,10 +86,6 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - B1nwy/pPNqX+q4pQT22cdp1QCexE35IF8qwSHy0Nf7IW0Y881qtn4tXN1lpmzaKc
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -101,7 +93,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestCheckLambdaAsync-1618220900","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
+      {"account_id":"Test-TestCheckLambdaAsync-1626196268","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
     form: {}
     headers:
       Accept:
@@ -111,13 +103,13 @@ interactions:
       Dd-Operation-Id:
       - CheckAWSLogsLambdaAsync
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "257256515283932583"
+      - "8083422854139184608"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4095290917537617595"
+      - "4969809670545372500"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs/check_async
     method: POST
   response:
@@ -130,7 +122,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:22 GMT
+      - Tue, 13 Jul 2021 17:11:10 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -139,10 +131,6 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - dPySkcOzIZtKyMKDAAzuysY3gNGGj6RtYogGuSb76E8mPvoqzREyRp6lPYm91hQU
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -150,7 +138,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestCheckLambdaAsync-1618220900","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
+      {"account_id":"Test-TestCheckLambdaAsync-1626196268","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
     form: {}
     headers:
       Accept:
@@ -160,18 +148,18 @@ interactions:
       Dd-Operation-Id:
       - CheckAWSLogsLambdaAsync
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4176201989949175404"
+      - "5581124384721332487"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4095290917537617595"
+      - "4969809670545372500"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs/check_async
     method: POST
   response:
     body: '{"status":"error","errors":[{"message":"Missing permissions to list lambda
-      functions on account Test-TestCheckLambdaAsync-1618220900","code":"lambda_permission_error","permission":"lambda:listfunctions"}]}'
+      functions on account Test-TestCheckLambdaAsync-1626196268","code":"lambda_permission_error","permission":"lambda:listfunctions"}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -180,7 +168,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:27 GMT
+      - Tue, 13 Jul 2021 17:11:16 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -189,10 +177,6 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -200,7 +184,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestCheckLambdaAsync-1618220900","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestCheckLambdaAsync-1626196268","role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -210,13 +194,13 @@ interactions:
       Dd-Operation-Id:
       - DeleteAWSAccount
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9174806318009878550"
+      - "5949772553843732643"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4095290917537617595"
+      - "4969809670545372500"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: DELETE
   response:
@@ -231,17 +215,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:27 GMT
+      - Tue, 13 Jul 2021 17:11:16 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
