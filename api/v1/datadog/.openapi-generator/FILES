@@ -597,10 +597,6 @@ docs/UsageTimeseriesResponse.md
 docs/UsageTopAvgMetricsHour.md
 docs/UsageTopAvgMetricsMetadata.md
 docs/UsageTopAvgMetricsResponse.md
-docs/UsageTraceHour.md
-docs/UsageTraceResponse.md
-docs/UsageTracingWithoutLimitsHour.md
-docs/UsageTracingWithoutLimitsResponse.md
 docs/User.md
 docs/UserDisableResponse.md
 docs/UserListResponse.md
@@ -1189,10 +1185,6 @@ model_usage_timeseries_response.go
 model_usage_top_avg_metrics_hour.go
 model_usage_top_avg_metrics_metadata.go
 model_usage_top_avg_metrics_response.go
-model_usage_trace_hour.go
-model_usage_trace_response.go
-model_usage_tracing_without_limits_hour.go
-model_usage_tracing_without_limits_response.go
 model_user.go
 model_user_disable_response.go
 model_user_list_response.go
