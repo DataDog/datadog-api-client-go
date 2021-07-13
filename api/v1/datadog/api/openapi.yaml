@@ -19423,6 +19423,7 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
+          allow_insecure: true
           body: body
           timeout: 5.962133916683182
           url: url
@@ -19521,6 +19522,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -19560,6 +19562,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -19601,6 +19604,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -19686,6 +19690,7 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
+          allow_insecure: true
           body: body
           timeout: 5.962133916683182
           url: url
@@ -19725,6 +19730,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -19766,6 +19772,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -19966,6 +19973,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -20273,6 +20281,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -20372,6 +20381,7 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
+          allow_insecure: true
           body: body
           timeout: 5.962133916683182
           url: url
@@ -20635,6 +20645,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -21415,6 +21426,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -21499,6 +21511,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -21970,6 +21983,7 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
+          allow_insecure: true
           body: body
           timeout: 5.962133916683182
           url: url
@@ -22065,6 +22079,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -22340,6 +22355,7 @@ components:
             filename: filename
             content: content
             updatedAt: updatedAt
+        allow_insecure: true
         body: body
         timeout: 5.962133916683182
         url: url
@@ -22349,6 +22365,10 @@ components:
         numberOfPackets: 6
         dnsServer: dnsServer
       properties:
+        allow_insecure:
+          description: Allows loading insecure content for an HTTP request in a multistep
+            test step.
+          type: boolean
         basicAuth:
           $ref: '#/components/schemas/SyntheticsBasicAuth'
         body:
@@ -29122,6 +29142,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -29210,6 +29231,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
