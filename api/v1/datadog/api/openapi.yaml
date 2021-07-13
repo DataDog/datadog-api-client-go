@@ -20203,7 +20203,7 @@ components:
       example:
         name: ""
         description: ""
-        statusCode: 5
+        status: 5
       properties:
         description:
           description: Description of the error.
@@ -20213,7 +20213,7 @@ components:
           description: Name of the error.
           example: ""
           type: string
-        statusCode:
+        status:
           description: Status Code of the error.
           format: int64
           type: integer
@@ -20463,10 +20463,10 @@ components:
           browserErrors:
           - name: ""
             description: ""
-            statusCode: 5
+            status: 5
           - name: ""
             description: ""
-            statusCode: 5
+            status: 5
           subTestStepDetails:
           - null
           - null
@@ -20493,10 +20493,10 @@ components:
           browserErrors:
           - name: ""
             description: ""
-            statusCode: 5
+            status: 5
           - name: ""
             description: ""
-            statusCode: 5
+            status: 5
           subTestStepDetails:
           - null
           - null
@@ -20583,10 +20583,10 @@ components:
             browserErrors:
             - name: ""
               description: ""
-              statusCode: 5
+              status: 5
             - name: ""
               description: ""
-              statusCode: 5
+              status: 5
             subTestStepDetails:
             - null
             - null
@@ -20613,10 +20613,10 @@ components:
             browserErrors:
             - name: ""
               description: ""
-              statusCode: 5
+              status: 5
             - name: ""
               description: ""
-              statusCode: 5
+              status: 5
             subTestStepDetails:
             - null
             - null
@@ -21821,10 +21821,10 @@ components:
         browserErrors:
         - name: ""
           description: ""
-          statusCode: 5
+          status: 5
         - name: ""
           description: ""
-          statusCode: 5
+          status: 5
         subTestStepDetails:
         - null
         - null
