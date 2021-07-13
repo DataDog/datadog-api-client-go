@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
+**AllowInsecure** | Pointer to **bool** | Allows loading insecure content for an HTTP request in a multistep test step. | [optional] 
 **BasicAuth** | Pointer to [**SyntheticsBasicAuth**](SyntheticsBasicAuth.md) |  | [optional] 
 **Body** | Pointer to **string** | Body to include in the test. | [optional] 
 **Certificate** | Pointer to [**SyntheticsTestRequestCertificate**](SyntheticsTestRequestCertificate.md) |  | [optional] 
@@ -38,6 +39,31 @@ will change when the set of required properties is changed.
 NewSyntheticsTestRequestWithDefaults instantiates a new SyntheticsTestRequest object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetAllowInsecure
+
+`func (o *SyntheticsTestRequest) GetAllowInsecure() bool`
+
+GetAllowInsecure returns the AllowInsecure field if non-nil, zero value otherwise.
+
+### GetAllowInsecureOk
+
+`func (o *SyntheticsTestRequest) GetAllowInsecureOk() (*bool, bool)`
+
+GetAllowInsecureOk returns a tuple with the AllowInsecure field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowInsecure
+
+`func (o *SyntheticsTestRequest) SetAllowInsecure(v bool)`
+
+SetAllowInsecure sets AllowInsecure field to given value.
+
+### HasAllowInsecure
+
+`func (o *SyntheticsTestRequest) HasAllowInsecure() bool`
+
+HasAllowInsecure returns a boolean if a field has been set.
 
 ### GetBasicAuth
 
