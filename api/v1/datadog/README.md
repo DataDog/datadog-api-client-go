@@ -278,6 +278,7 @@ Class | Method | HTTP request | Description
  - [AWSAccount](docs/AWSAccount.md)
  - [AWSAccountAndLambdaRequest](docs/AWSAccountAndLambdaRequest.md)
  - [AWSAccountCreateResponse](docs/AWSAccountCreateResponse.md)
+ - [AWSAccountDeleteRequest](docs/AWSAccountDeleteRequest.md)
  - [AWSAccountListResponse](docs/AWSAccountListResponse.md)
  - [AWSLogsAsyncError](docs/AWSLogsAsyncError.md)
  - [AWSLogsAsyncResponse](docs/AWSLogsAsyncResponse.md)

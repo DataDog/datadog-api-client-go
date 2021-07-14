@@ -251,7 +251,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewAWSAccount() // AWSAccount | AWS request object
+    body := *datadog.NewAWSAccountDeleteRequest() // AWSAccountDeleteRequest | AWS request object
 
     configuration := datadog.NewConfiguration()
 
@@ -273,7 +273,7 @@ func main() {
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
 **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
+**body** | [**AWSAccountDeleteRequest**](AWSAccountDeleteRequest.md) | AWS request object | 
 
 
 ### Optional Parameters
