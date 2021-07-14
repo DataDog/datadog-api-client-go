@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"Test-TestUpdateAWSAccount-1618220883","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestUpdateAWSAccount-1626196210","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -13,17 +13,17 @@ interactions:
       Dd-Operation-Id:
       - CreateAWSAccount
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2791289938393155783"
+      - "257798462326286432"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5985021925961380289"
+      - "7710085476433290510"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
-    body: '{"external_id":"49051224dcff45d98db44ee853e4ebf4"}'
+    body: '{"external_id":"290343bf0d5f4c2b8e8bcbc7f27e61f6"}'
     headers:
       Cache-Control:
       - no-cache
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:04 GMT
+      - Tue, 13 Jul 2021 17:10:10 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -41,10 +41,6 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -62,14 +58,14 @@ interactions:
       Dd-Operation-Id:
       - UpdateAWSAccount
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1472612171280889521"
+      - "8646043152042072657"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5985021925961380289"
-    url: https://api.datadoghq.com/api/v1/integration/aws?account_id=Test-TestUpdateAWSAccount-1618220883&role_name=DatadogAWSIntegrationRole
+      - "7710085476433290510"
+    url: https://api.datadoghq.com/api/v1/integration/aws?account_id=Test-TestUpdateAWSAccount-1626196210&role_name=DatadogAWSIntegrationRole
     method: PUT
   response:
     body: '{}'
@@ -83,17 +79,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:05 GMT
+      - Tue, 13 Jul 2021 17:10:11 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - dCmL/3rURV6BPeaqeP3Rxigq41m5CAb17XjrRE42uZ01zpr07HVhbL5/3TWMkvgu
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -108,17 +100,17 @@ interactions:
       Dd-Operation-Id:
       - ListAWSAccounts
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2195622445948340015"
+      - "4172044507888609285"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5985021925961380289"
-    url: https://api.datadoghq.com/api/v1/integration/aws?account_id=Test-TestUpdateAWSAccount-1618220883&role_name=DatadogAWSIntegrationRoleUpdated
+      - "7710085476433290510"
+    url: https://api.datadoghq.com/api/v1/integration/aws?account_id=Test-TestUpdateAWSAccount-1626196210&role_name=DatadogAWSIntegrationRoleUpdated
     method: GET
   response:
-    body: '{"accounts":[{"role_name":"DatadogAWSIntegrationRoleUpdated","excluded_regions":["us-east-1","us-west-1"],"account_id":"Test-TestUpdateAWSAccount-1618220883","host_tags":["filter:foo","bar"],"account_specific_namespace_rules":{"opsworks":false},"errors":[],"filter_tags":["testTagUpdate","testUpdated:Tag2"]}]}'
+    body: '{"accounts":[{"role_name":"DatadogAWSIntegrationRoleUpdated","excluded_regions":["us-east-1","us-west-1"],"account_id":"Test-TestUpdateAWSAccount-1626196210","host_tags":["filter:foo","bar"],"account_specific_namespace_rules":{"opsworks":false},"errors":[],"filter_tags":["testTagUpdate","testUpdated:Tag2"]}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -127,7 +119,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:05 GMT
+      - Tue, 13 Jul 2021 17:10:11 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -136,10 +128,6 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - JpIJLwIH2nFlZOC+u71rq7aAOL43MLZN3MUsL+gpYHdZz5QLUOG8Jysf8kVK6tPU
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -147,7 +135,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestUpdateAWSAccount-1618220883","role_name":"DatadogAWSIntegrationRoleUpdated"}
+      {"account_id":"Test-TestUpdateAWSAccount-1626196210","role_name":"DatadogAWSIntegrationRoleUpdated"}
     form: {}
     headers:
       Accept:
@@ -157,13 +145,13 @@ interactions:
       Dd-Operation-Id:
       - DeleteAWSAccount
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8188545805084042838"
+      - "9031512306279368560"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5985021925961380289"
+      - "7710085476433290510"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: DELETE
   response:
@@ -178,17 +166,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:06 GMT
+      - Tue, 13 Jul 2021 17:10:15 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -196,7 +180,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestUpdateAWSAccount-1618220883","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"Test-TestUpdateAWSAccount-1626196210","role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -206,17 +190,17 @@ interactions:
       Dd-Operation-Id:
       - DeleteAWSAccount
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7268392141389912448"
+      - "1448929974573118916"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5985021925961380289"
+      - "7710085476433290510"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: DELETE
   response:
-    body: '{"errors": ["AWS account Test-TestUpdateAWSAccount-1618220883 does not
+    body: '{"errors": ["AWS account Test-TestUpdateAWSAccount-1626196210 does not
       exist in integration"]}'
     headers:
       Cache-Control:
@@ -228,15 +212,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:06 GMT
+      - Tue, 13 Jul 2021 17:10:15 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

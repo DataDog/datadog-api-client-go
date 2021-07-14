@@ -505,14 +505,14 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 type apiDeleteAWSAccountRequest struct {
 	ctx        _context.Context
 	ApiService *AWSIntegrationApiService
-	body       *AWSAccount
+	body       *AWSAccountDeleteRequest
 }
 
 /*
  * DeleteAWSAccount Delete an AWS integration
  * Delete a Datadog-AWS integration matching the specified `account_id` and `role_name parameters`.
  */
-func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, body AWSAccount) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, body AWSAccountDeleteRequest) (interface{}, *_nethttp.Response, error) {
 	req := apiDeleteAWSAccountRequest{
 		ApiService: a,
 		ctx:        ctx,

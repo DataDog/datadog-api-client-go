@@ -38,6 +38,7 @@ docs/APIErrorResponse.md
 docs/AWSAccount.md
 docs/AWSAccountAndLambdaRequest.md
 docs/AWSAccountCreateResponse.md
+docs/AWSAccountDeleteRequest.md
 docs/AWSAccountListResponse.md
 docs/AWSIntegrationApi.md
 docs/AWSLogsAsyncError.md
@@ -669,6 +670,7 @@ model_authentication_validation_response.go
 model_aws_account.go
 model_aws_account_and_lambda_request.go
 model_aws_account_create_response.go
+model_aws_account_delete_request.go
 model_aws_account_list_response.go
 model_aws_logs_async_error.go
 model_aws_logs_async_response.go
