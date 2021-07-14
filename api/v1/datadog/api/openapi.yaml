@@ -23170,24 +23170,23 @@ components:
         updated_at: updated_at
         values:
           browser_percentage: 9.301444243932576
-          profiled_hosts_percentage: 2.8841621266687802
+          profiled_container_percentage: 6.965117697638846
           infra_host_percentage: 1.1730742509559433
           apm_host_usage: 7.061401241503109
           lambda_invocations_usage: 6.683562403749608
-          profiled_hosts_usage: 6.778324963048013
           apm_host_percentage: 2.3021358869347655
           cws_host_usage: 7.457744773683766
           api_usage: 5.637376656633329
           custom_timeseries_usage: 1.2315135367772556
-          profiled_containers_percentage: 6.965117697638846
           cws_container_usage: 1.4894159098541704
+          profiled_container_usage: 1.284659006116532
           snmp_usage: 5.944895607614016
+          profiled_host_usage: 6.778324963048013
           browser_usage: 3.616076749251911
           infra_host_usage: 4.965218492984954
           lambda_functions_usage: 9.965781217890562
           custom_timeseries_percentage: 7.386281948385884
           cws_host_percentage: 6.84685269835264
-          profiled_containers_usage: 1.284659006116532
           lambda_usage: 9.018348186070783
           npm_host_percentage: 6.438423552598547
           snmp_percentage: 6.878052220127876
@@ -23198,6 +23197,7 @@ components:
           cws_container_percentage: 1.0246457001441578
           lambda_percentage: 8.762042012749001
           npm_host_usage: 3.5571952270680973
+          profiled_host_percentage: 2.8841621266687802
           container_percentage: 2.027123023002322
         tag_config_source: tag_config_source
         org_name: org_name
@@ -23302,24 +23302,23 @@ components:
           updated_at: updated_at
           values:
             browser_percentage: 9.301444243932576
-            profiled_hosts_percentage: 2.8841621266687802
+            profiled_container_percentage: 6.965117697638846
             infra_host_percentage: 1.1730742509559433
             apm_host_usage: 7.061401241503109
             lambda_invocations_usage: 6.683562403749608
-            profiled_hosts_usage: 6.778324963048013
             apm_host_percentage: 2.3021358869347655
             cws_host_usage: 7.457744773683766
             api_usage: 5.637376656633329
             custom_timeseries_usage: 1.2315135367772556
-            profiled_containers_percentage: 6.965117697638846
             cws_container_usage: 1.4894159098541704
+            profiled_container_usage: 1.284659006116532
             snmp_usage: 5.944895607614016
+            profiled_host_usage: 6.778324963048013
             browser_usage: 3.616076749251911
             infra_host_usage: 4.965218492984954
             lambda_functions_usage: 9.965781217890562
             custom_timeseries_percentage: 7.386281948385884
             cws_host_percentage: 6.84685269835264
-            profiled_containers_usage: 1.284659006116532
             lambda_usage: 9.018348186070783
             npm_host_percentage: 6.438423552598547
             snmp_percentage: 6.878052220127876
@@ -23330,6 +23329,7 @@ components:
             cws_container_percentage: 1.0246457001441578
             lambda_percentage: 8.762042012749001
             npm_host_usage: 3.5571952270680973
+            profiled_host_percentage: 2.8841621266687802
             container_percentage: 2.027123023002322
           tag_config_source: tag_config_source
           org_name: org_name
@@ -23342,24 +23342,23 @@ components:
           updated_at: updated_at
           values:
             browser_percentage: 9.301444243932576
-            profiled_hosts_percentage: 2.8841621266687802
+            profiled_container_percentage: 6.965117697638846
             infra_host_percentage: 1.1730742509559433
             apm_host_usage: 7.061401241503109
             lambda_invocations_usage: 6.683562403749608
-            profiled_hosts_usage: 6.778324963048013
             apm_host_percentage: 2.3021358869347655
             cws_host_usage: 7.457744773683766
             api_usage: 5.637376656633329
             custom_timeseries_usage: 1.2315135367772556
-            profiled_containers_percentage: 6.965117697638846
             cws_container_usage: 1.4894159098541704
+            profiled_container_usage: 1.284659006116532
             snmp_usage: 5.944895607614016
+            profiled_host_usage: 6.778324963048013
             browser_usage: 3.616076749251911
             infra_host_usage: 4.965218492984954
             lambda_functions_usage: 9.965781217890562
             custom_timeseries_percentage: 7.386281948385884
             cws_host_percentage: 6.84685269835264
-            profiled_containers_usage: 1.284659006116532
             lambda_usage: 9.018348186070783
             npm_host_percentage: 6.438423552598547
             snmp_percentage: 6.878052220127876
@@ -23370,6 +23369,7 @@ components:
             cws_container_percentage: 1.0246457001441578
             lambda_percentage: 8.762042012749001
             npm_host_usage: 3.5571952270680973
+            profiled_host_percentage: 2.8841621266687802
             container_percentage: 2.027123023002322
           tag_config_source: tag_config_source
           org_name: org_name
@@ -23515,24 +23515,23 @@ components:
       description: Fields in Usage Summary by tag(s).
       example:
         browser_percentage: 9.301444243932576
-        profiled_hosts_percentage: 2.8841621266687802
+        profiled_container_percentage: 6.965117697638846
         infra_host_percentage: 1.1730742509559433
         apm_host_usage: 7.061401241503109
         lambda_invocations_usage: 6.683562403749608
-        profiled_hosts_usage: 6.778324963048013
         apm_host_percentage: 2.3021358869347655
         cws_host_usage: 7.457744773683766
         api_usage: 5.637376656633329
         custom_timeseries_usage: 1.2315135367772556
-        profiled_containers_percentage: 6.965117697638846
         cws_container_usage: 1.4894159098541704
+        profiled_container_usage: 1.284659006116532
         snmp_usage: 5.944895607614016
+        profiled_host_usage: 6.778324963048013
         browser_usage: 3.616076749251911
         infra_host_usage: 4.965218492984954
         lambda_functions_usage: 9.965781217890562
         custom_timeseries_percentage: 7.386281948385884
         cws_host_percentage: 6.84685269835264
-        profiled_containers_usage: 1.284659006116532
         lambda_usage: 9.018348186070783
         npm_host_percentage: 6.438423552598547
         snmp_percentage: 6.878052220127876
@@ -23543,6 +23542,7 @@ components:
         cws_container_percentage: 1.0246457001441578
         lambda_percentage: 8.762042012749001
         npm_host_usage: 3.5571952270680973
+        profiled_host_percentage: 2.8841621266687802
         container_percentage: 2.027123023002322
       properties:
         api_percentage:
@@ -23648,19 +23648,19 @@ components:
           description: The network host usage by tag(s).
           format: double
           type: number
-        profiled_containers_percentage:
+        profiled_container_percentage:
           description: The percentage of profiled containers usage by tag(s).
           format: double
           type: number
-        profiled_containers_usage:
+        profiled_container_usage:
           description: The profiled container usage by tag(s).
           format: double
           type: number
-        profiled_hosts_percentage:
+        profiled_host_percentage:
           description: The percentage of profiled hosts usage by tag(s).
           format: double
           type: number
-        profiled_hosts_usage:
+        profiled_host_usage:
           description: The profiled host usage by tag(s).
           format: double
           type: number

@@ -63,13 +63,13 @@ type UsageAttributionValues struct {
 	// The network host usage by tag(s).
 	NpmHostUsage *float64 `json:"npm_host_usage,omitempty"`
 	// The percentage of profiled containers usage by tag(s).
-	ProfiledContainersPercentage *float64 `json:"profiled_containers_percentage,omitempty"`
+	ProfiledContainerPercentage *float64 `json:"profiled_container_percentage,omitempty"`
 	// The profiled container usage by tag(s).
-	ProfiledContainersUsage *float64 `json:"profiled_containers_usage,omitempty"`
+	ProfiledContainerUsage *float64 `json:"profiled_container_usage,omitempty"`
 	// The percentage of profiled hosts usage by tag(s).
-	ProfiledHostsPercentage *float64 `json:"profiled_hosts_percentage,omitempty"`
+	ProfiledHostPercentage *float64 `json:"profiled_host_percentage,omitempty"`
 	// The profiled host usage by tag(s).
-	ProfiledHostsUsage *float64 `json:"profiled_hosts_usage,omitempty"`
+	ProfiledHostUsage *float64 `json:"profiled_host_usage,omitempty"`
 	// The percentage of network device usage by tag(s).
 	SnmpPercentage *float64 `json:"snmp_percentage,omitempty"`
 	// The network device usage by tag(s).
@@ -861,132 +861,132 @@ func (o *UsageAttributionValues) SetNpmHostUsage(v float64) {
 	o.NpmHostUsage = &v
 }
 
-// GetProfiledContainersPercentage returns the ProfiledContainersPercentage field value if set, zero value otherwise.
-func (o *UsageAttributionValues) GetProfiledContainersPercentage() float64 {
-	if o == nil || o.ProfiledContainersPercentage == nil {
+// GetProfiledContainerPercentage returns the ProfiledContainerPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetProfiledContainerPercentage() float64 {
+	if o == nil || o.ProfiledContainerPercentage == nil {
 		var ret float64
 		return ret
 	}
-	return *o.ProfiledContainersPercentage
+	return *o.ProfiledContainerPercentage
 }
 
-// GetProfiledContainersPercentageOk returns a tuple with the ProfiledContainersPercentage field value if set, nil otherwise
+// GetProfiledContainerPercentageOk returns a tuple with the ProfiledContainerPercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageAttributionValues) GetProfiledContainersPercentageOk() (*float64, bool) {
-	if o == nil || o.ProfiledContainersPercentage == nil {
+func (o *UsageAttributionValues) GetProfiledContainerPercentageOk() (*float64, bool) {
+	if o == nil || o.ProfiledContainerPercentage == nil {
 		return nil, false
 	}
-	return o.ProfiledContainersPercentage, true
+	return o.ProfiledContainerPercentage, true
 }
 
-// HasProfiledContainersPercentage returns a boolean if a field has been set.
-func (o *UsageAttributionValues) HasProfiledContainersPercentage() bool {
-	if o != nil && o.ProfiledContainersPercentage != nil {
+// HasProfiledContainerPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasProfiledContainerPercentage() bool {
+	if o != nil && o.ProfiledContainerPercentage != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetProfiledContainersPercentage gets a reference to the given float64 and assigns it to the ProfiledContainersPercentage field.
-func (o *UsageAttributionValues) SetProfiledContainersPercentage(v float64) {
-	o.ProfiledContainersPercentage = &v
+// SetProfiledContainerPercentage gets a reference to the given float64 and assigns it to the ProfiledContainerPercentage field.
+func (o *UsageAttributionValues) SetProfiledContainerPercentage(v float64) {
+	o.ProfiledContainerPercentage = &v
 }
 
-// GetProfiledContainersUsage returns the ProfiledContainersUsage field value if set, zero value otherwise.
-func (o *UsageAttributionValues) GetProfiledContainersUsage() float64 {
-	if o == nil || o.ProfiledContainersUsage == nil {
+// GetProfiledContainerUsage returns the ProfiledContainerUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetProfiledContainerUsage() float64 {
+	if o == nil || o.ProfiledContainerUsage == nil {
 		var ret float64
 		return ret
 	}
-	return *o.ProfiledContainersUsage
+	return *o.ProfiledContainerUsage
 }
 
-// GetProfiledContainersUsageOk returns a tuple with the ProfiledContainersUsage field value if set, nil otherwise
+// GetProfiledContainerUsageOk returns a tuple with the ProfiledContainerUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageAttributionValues) GetProfiledContainersUsageOk() (*float64, bool) {
-	if o == nil || o.ProfiledContainersUsage == nil {
+func (o *UsageAttributionValues) GetProfiledContainerUsageOk() (*float64, bool) {
+	if o == nil || o.ProfiledContainerUsage == nil {
 		return nil, false
 	}
-	return o.ProfiledContainersUsage, true
+	return o.ProfiledContainerUsage, true
 }
 
-// HasProfiledContainersUsage returns a boolean if a field has been set.
-func (o *UsageAttributionValues) HasProfiledContainersUsage() bool {
-	if o != nil && o.ProfiledContainersUsage != nil {
+// HasProfiledContainerUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasProfiledContainerUsage() bool {
+	if o != nil && o.ProfiledContainerUsage != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetProfiledContainersUsage gets a reference to the given float64 and assigns it to the ProfiledContainersUsage field.
-func (o *UsageAttributionValues) SetProfiledContainersUsage(v float64) {
-	o.ProfiledContainersUsage = &v
+// SetProfiledContainerUsage gets a reference to the given float64 and assigns it to the ProfiledContainerUsage field.
+func (o *UsageAttributionValues) SetProfiledContainerUsage(v float64) {
+	o.ProfiledContainerUsage = &v
 }
 
-// GetProfiledHostsPercentage returns the ProfiledHostsPercentage field value if set, zero value otherwise.
-func (o *UsageAttributionValues) GetProfiledHostsPercentage() float64 {
-	if o == nil || o.ProfiledHostsPercentage == nil {
+// GetProfiledHostPercentage returns the ProfiledHostPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetProfiledHostPercentage() float64 {
+	if o == nil || o.ProfiledHostPercentage == nil {
 		var ret float64
 		return ret
 	}
-	return *o.ProfiledHostsPercentage
+	return *o.ProfiledHostPercentage
 }
 
-// GetProfiledHostsPercentageOk returns a tuple with the ProfiledHostsPercentage field value if set, nil otherwise
+// GetProfiledHostPercentageOk returns a tuple with the ProfiledHostPercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageAttributionValues) GetProfiledHostsPercentageOk() (*float64, bool) {
-	if o == nil || o.ProfiledHostsPercentage == nil {
+func (o *UsageAttributionValues) GetProfiledHostPercentageOk() (*float64, bool) {
+	if o == nil || o.ProfiledHostPercentage == nil {
 		return nil, false
 	}
-	return o.ProfiledHostsPercentage, true
+	return o.ProfiledHostPercentage, true
 }
 
-// HasProfiledHostsPercentage returns a boolean if a field has been set.
-func (o *UsageAttributionValues) HasProfiledHostsPercentage() bool {
-	if o != nil && o.ProfiledHostsPercentage != nil {
+// HasProfiledHostPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasProfiledHostPercentage() bool {
+	if o != nil && o.ProfiledHostPercentage != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetProfiledHostsPercentage gets a reference to the given float64 and assigns it to the ProfiledHostsPercentage field.
-func (o *UsageAttributionValues) SetProfiledHostsPercentage(v float64) {
-	o.ProfiledHostsPercentage = &v
+// SetProfiledHostPercentage gets a reference to the given float64 and assigns it to the ProfiledHostPercentage field.
+func (o *UsageAttributionValues) SetProfiledHostPercentage(v float64) {
+	o.ProfiledHostPercentage = &v
 }
 
-// GetProfiledHostsUsage returns the ProfiledHostsUsage field value if set, zero value otherwise.
-func (o *UsageAttributionValues) GetProfiledHostsUsage() float64 {
-	if o == nil || o.ProfiledHostsUsage == nil {
+// GetProfiledHostUsage returns the ProfiledHostUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetProfiledHostUsage() float64 {
+	if o == nil || o.ProfiledHostUsage == nil {
 		var ret float64
 		return ret
 	}
-	return *o.ProfiledHostsUsage
+	return *o.ProfiledHostUsage
 }
 
-// GetProfiledHostsUsageOk returns a tuple with the ProfiledHostsUsage field value if set, nil otherwise
+// GetProfiledHostUsageOk returns a tuple with the ProfiledHostUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageAttributionValues) GetProfiledHostsUsageOk() (*float64, bool) {
-	if o == nil || o.ProfiledHostsUsage == nil {
+func (o *UsageAttributionValues) GetProfiledHostUsageOk() (*float64, bool) {
+	if o == nil || o.ProfiledHostUsage == nil {
 		return nil, false
 	}
-	return o.ProfiledHostsUsage, true
+	return o.ProfiledHostUsage, true
 }
 
-// HasProfiledHostsUsage returns a boolean if a field has been set.
-func (o *UsageAttributionValues) HasProfiledHostsUsage() bool {
-	if o != nil && o.ProfiledHostsUsage != nil {
+// HasProfiledHostUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasProfiledHostUsage() bool {
+	if o != nil && o.ProfiledHostUsage != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetProfiledHostsUsage gets a reference to the given float64 and assigns it to the ProfiledHostsUsage field.
-func (o *UsageAttributionValues) SetProfiledHostsUsage(v float64) {
-	o.ProfiledHostsUsage = &v
+// SetProfiledHostUsage gets a reference to the given float64 and assigns it to the ProfiledHostUsage field.
+func (o *UsageAttributionValues) SetProfiledHostUsage(v float64) {
+	o.ProfiledHostUsage = &v
 }
 
 // GetSnmpPercentage returns the SnmpPercentage field value if set, zero value otherwise.
@@ -1127,17 +1127,17 @@ func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.NpmHostUsage != nil {
 		toSerialize["npm_host_usage"] = o.NpmHostUsage
 	}
-	if o.ProfiledContainersPercentage != nil {
-		toSerialize["profiled_containers_percentage"] = o.ProfiledContainersPercentage
+	if o.ProfiledContainerPercentage != nil {
+		toSerialize["profiled_container_percentage"] = o.ProfiledContainerPercentage
 	}
-	if o.ProfiledContainersUsage != nil {
-		toSerialize["profiled_containers_usage"] = o.ProfiledContainersUsage
+	if o.ProfiledContainerUsage != nil {
+		toSerialize["profiled_container_usage"] = o.ProfiledContainerUsage
 	}
-	if o.ProfiledHostsPercentage != nil {
-		toSerialize["profiled_hosts_percentage"] = o.ProfiledHostsPercentage
+	if o.ProfiledHostPercentage != nil {
+		toSerialize["profiled_host_percentage"] = o.ProfiledHostPercentage
 	}
-	if o.ProfiledHostsUsage != nil {
-		toSerialize["profiled_hosts_usage"] = o.ProfiledHostsUsage
+	if o.ProfiledHostUsage != nil {
+		toSerialize["profiled_host_usage"] = o.ProfiledHostUsage
 	}
 	if o.SnmpPercentage != nil {
 		toSerialize["snmp_percentage"] = o.SnmpPercentage
