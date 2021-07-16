@@ -1,0 +1,100 @@
+interactions:
+- request:
+    body: |
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_an_audit_logs_query-1626362641 with Audit Logs Query","widgets":[{"definition":{"requests":[{"queries":[{"compute":{"aggregation":"count"},"data_source":"audit","group_by":[],"indexes":["*"],"name":"query1","search":{"query":""}}],"response_format":"timeseries"}],"type":"timeseries"},"layout":{"height":2,"width":4,"x":2,"y":0}}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '398'
+      Content-Type:
+      - application/json
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.3; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '416849553464162765'
+      X-Datadog-Trace-Id:
+      - '6183266674255130707'
+    method: POST
+    url: https://api.datadoghq.com/api/v1/dashboard
+  response:
+    body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"p4g-d4h-n7v","title":"Test-Create_a_new_dashboard_with_an_audit_logs_query-1626362641
+      with Audit Logs Query","url":"/dashboard/p4g-d4h-n7v/test-createanewdashboardwithanauditlogsquery-1626362641-with-audit-logs-query","created_at":"2021-07-15T15:24:01.201286+00:00","modified_at":"2021-07-15T15:24:01.201286+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"response_format":"timeseries","queries":[{"search":{"query":""},"data_source":"audit","compute":{"aggregation":"count"},"name":"query1","indexes":["*"],"group_by":[]}]}],"type":"timeseries"},"layout":{"y":0,"width":4,"x":2,"height":2},"id":2504710761419893}],"layout_type":"ordered"}'
+    code: 200
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Length:
+      - '808'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 15 Jul 2021 15:24:01 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.3; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '3221273726630624468'
+      X-Datadog-Trace-Id:
+      - '6183266674255130707'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/dashboard/p4g-d4h-n7v
+  response:
+    body: '{"deleted_dashboard_id":"p4g-d4h-n7v"}'
+    code: 200
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Length:
+      - '38'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 15 Jul 2021 15:24:01 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+version: 1

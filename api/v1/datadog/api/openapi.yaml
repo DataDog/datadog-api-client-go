@@ -12064,6 +12064,7 @@ components:
       - rum
       - security_signals
       - profiles
+      - audit
       example: logs
       type: string
       x-enum-varnames:
@@ -12073,6 +12074,7 @@ components:
       - RUM
       - SECURITY_SIGNALS
       - PROFILES
+      - AUDIT
     FormulaAndFunctionMetricAggregation:
       description: The aggregation methods available for metrics queries.
       enum:
@@ -17790,6 +17792,8 @@ components:
           $ref: '#/components/schemas/WidgetAggregator'
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        audit_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         conditional_formats:
           description: List of conditional formats.
           items:
@@ -22891,6 +22895,8 @@ components:
       properties:
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        audit_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         display_type:
           $ref: '#/components/schemas/WidgetDisplayType'
         event_query:
@@ -22981,6 +22987,8 @@ components:
       description: Updated top list widget.
       properties:
         apm_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+        audit_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         conditional_formats:
           description: List of conditional formats.
