@@ -560,6 +560,39 @@ func TestDashboardLifecycle(t *testing.T) {
 
 	tableWidget := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetDefinition))
 
+	// Table Widget with Formulas and Functions Query
+	tableWidgetDefinitionFormulaFunctionsQuery := datadog.NewTableWidgetDefinitionWithDefaults()
+
+	tableWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TableWidgetRequest{{
+		Formulas: &[]datadog.WidgetFormula{{
+			Formula: "(((errors * 0.2)) / (query * 0.3))",
+			Alias:   datadog.PtrString("sample_performance_calculator"),
+			ConditionalFormats: &[]datadog.WidgetConditionalFormat{{
+				Comparator:    datadog.WIDGETCOMPARATOR_GREATER_THAN,
+				Value:         7.,
+				Palette:       datadog.WIDGETPALETTE_RED_ON_WHITE,
+				CustomBgColor: datadog.PtrString("blue"),
+				CustomFgColor: datadog.PtrString("black"),
+				ImageUrl:      datadog.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
+			}},
+			CellDisplayMode: &[]datadog.TableWidgetCellDisplayMode{datadog.TABLEWIDGETCELLDISPLAYMODE_NUMBER},
+		}},
+		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
+				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
+				Name:       "query",
+			},
+		},
+		}}})
+	tableWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
+	tableWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	tableWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
+	tableWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+
+	tableWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.TableWidgetDefinitionAsWidgetDefinition(tableWidgetDefinitionFormulaFunctionsQuery))
+
 	// Table Widget with APM Stats data
 	tableWidgetApmStatsDefinition := datadog.NewTableWidgetDefinitionWithDefaults()
 	tableWidgetApmStatsDefinition.SetRequests([]datadog.TableWidgetRequest{{
@@ -949,6 +982,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		*sloWidget,
 		*serviceMapWidget,
 		*tableWidget,
+		*tableWidgetFormulaFunctionsQuery,
 		*tableWidgetApmStats,
 		*timeseriesWidget,
 		*timeseriesWidgetProcessQuery,
