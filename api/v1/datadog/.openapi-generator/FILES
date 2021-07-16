@@ -85,6 +85,8 @@ docs/CheckStatusWidgetDefinitionType.md
 docs/ContentEncoding.md
 docs/Creator.md
 docs/Dashboard.md
+docs/DashboardBulkActionData.md
+docs/DashboardBulkDeleteRequest.md
 docs/DashboardDeleteResponse.md
 docs/DashboardLayoutType.md
 docs/DashboardList.md
@@ -92,6 +94,8 @@ docs/DashboardListDeleteResponse.md
 docs/DashboardListListResponse.md
 docs/DashboardListsApi.md
 docs/DashboardReflowType.md
+docs/DashboardResourceType.md
+docs/DashboardRestoreRequest.md
 docs/DashboardSummary.md
 docs/DashboardSummaryDefinition.md
 docs/DashboardTemplateVariable.md
@@ -698,12 +702,16 @@ model_check_status_widget_definition_type.go
 model_content_encoding.go
 model_creator.go
 model_dashboard.go
+model_dashboard_bulk_action_data.go
+model_dashboard_bulk_delete_request.go
 model_dashboard_delete_response.go
 model_dashboard_layout_type.go
 model_dashboard_list.go
 model_dashboard_list_delete_response.go
 model_dashboard_list_list_response.go
 model_dashboard_reflow_type.go
+model_dashboard_resource_type.go
+model_dashboard_restore_request.go
 model_dashboard_summary.go
 model_dashboard_summary_definition.go
 model_dashboard_template_variable.go
