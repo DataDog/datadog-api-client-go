@@ -866,6 +866,53 @@ paths:
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v1/dashboard:
+    delete:
+      description: Delete dashboards using the specified IDs. If there are any failures,
+        no dashboards will be deleted (partial success is not allowed).
+      operationId: DeleteDashboards
+      requestBody:
+        content:
+          application/json:
+            examples:
+              json-request-body:
+                value:
+                  data:
+                  - id: 123-abc-456
+                    type: dashboard
+                  - id: 789-def-101
+                    type: dashboard
+            schema:
+              $ref: '#/components/schemas/DashboardBulkDeleteRequest'
+        description: Delete dashboards request body.
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Dashboards Not Found
+      summary: Delete dashboards
+      tags:
+      - Dashboards
+      x-codegen-request-body-name: body
+      x-menu-order: 4
+      x-undo:
+        type: idempotent
     get:
       description: |-
         Get all dashboards.
@@ -903,6 +950,53 @@ paths:
       x-menu-order: 2
       x-undo:
         type: safe
+    patch:
+      description: Restore dashboards using the specified IDs. If there are any failures,
+        no dashboards will be restored (partial success is not allowed).
+      operationId: RestoreDashboards
+      requestBody:
+        content:
+          application/json:
+            examples:
+              json-request-body:
+                value:
+                  data:
+                  - id: 123-abc-456
+                    type: dashboard
+                  - id: 789-def-101
+                    type: dashboard
+            schema:
+              $ref: '#/components/schemas/DashboardRestoreRequest'
+        description: Restore dashboards request body.
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Dashboards Not Found
+      summary: Restore deleted dashboards
+      tags:
+      - Dashboards
+      x-codegen-request-body-name: body
+      x-menu-order: 5
+      x-undo:
+        type: idempotent
     post:
       description: |-
         Create a dashboard using the specified options. When defining queries in your widgets, take note of which queries should have the `as_count()` or `as_rate()` modifiers appended.
@@ -1215,7 +1309,7 @@ paths:
       summary: Get a dashboard
       tags:
       - Dashboards
-      x-menu-order: 5
+      x-menu-order: 7
       x-undo:
         type: safe
     put:
@@ -1266,7 +1360,7 @@ paths:
       tags:
       - Dashboards
       x-codegen-request-body-name: body
-      x-menu-order: 4
+      x-menu-order: 6
       x-undo:
         type: idempotent
   /api/v1/downtime:
@@ -2031,7 +2125,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AWSAccount'
+              $ref: '#/components/schemas/AWSAccountDeleteRequest'
         description: AWS request object
         required: true
       responses:
@@ -5709,7 +5803,8 @@ paths:
           application/json:
             examples:
               dynamic-points:
-                description: TODO.
+                description: Post time-series data that can be graphed on Datadog’s
+                  dashboards.
                 summary: Dynamic Points
                 value:
                   series:
@@ -9247,115 +9342,6 @@ paths:
       x-menu-order: 5
       x-undo:
         type: safe
-  /api/v1/usage/traces:
-    get:
-      deprecated: true
-      description: |-
-        Get hourly usage for trace search.
-
-        **Note** This endpoint has been renamed to `/api/v1/usage/indexed-spans`.
-      operationId: GetUsageTrace
-      parameters:
-      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage beginning at this hour.'
-        explode: true
-        in: query
-        name: start_hr
-        required: true
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
-          for usage ending **before** this hour.'
-        explode: true
-        in: query
-        name: end_hr
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json;datetime-format=rfc3339:
-              schema:
-                $ref: '#/components/schemas/UsageTraceResponse'
-          description: OK
-        "400":
-          content:
-            application/json;datetime-format=rfc3339:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Bad Request
-        "403":
-          content:
-            application/json;datetime-format=rfc3339:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden - User is not authorized
-      summary: Get hourly usage for Trace Search
-      tags:
-      - Usage Metering
-      x-menu-order: 6
-      x-undo:
-        type: safe
-  /api/v1/usage/tracing-without-limits:
-    get:
-      deprecated: true
-      description: |-
-        Get hourly usage for tracing without limits.
-
-        **Note** This endpoint has been renamed to `/api/v1/usage/ingested-spans`.
-      operationId: GetTracingWithoutLimits
-      parameters:
-      - description: 'Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]`
-          for usage beginning at this hour.'
-        explode: true
-        in: query
-        name: start_hr
-        required: true
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: |-
-          Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending
-          **before** this hour.
-        explode: true
-        in: query
-        name: end_hr
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json;datetime-format=rfc3339:
-              schema:
-                $ref: '#/components/schemas/UsageTracingWithoutLimitsResponse'
-          description: OK
-        "400":
-          content:
-            application/json;datetime-format=rfc3339:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Bad Request
-        "403":
-          content:
-            application/json;datetime-format=rfc3339:
-              schema:
-                $ref: '#/components/schemas/APIErrorResponse'
-          description: Forbidden - User is not authorized
-      summary: Get hourly usage for tracing without limits
-      tags:
-      - Usage Metering
-      x-menu-order: 25
-      x-undo:
-        type: safe
   /api/v1/user:
     get:
       description: List all users for your organization.
@@ -9893,6 +9879,26 @@ components:
       properties:
         external_id:
           description: AWS external_id.
+          type: string
+      type: object
+    AWSAccountDeleteRequest:
+      description: List of AWS accounts to delete.
+      example:
+        access_key_id: access_key_id
+        role_name: DatadogAWSIntegrationRole
+        account_id: "1234567"
+      properties:
+        access_key_id:
+          description: Your AWS access key ID. Only required if your AWS account is
+            a GovCloud or China account.
+          type: string
+        account_id:
+          description: Your AWS Account ID without dashes.
+          example: "1234567"
+          type: string
+        role_name:
+          description: Your Datadog role delegation name.
+          example: DatadogAWSIntegrationRole
           type: string
       type: object
     AWSAccountListResponse:
@@ -10828,6 +10834,48 @@ components:
       - title
       - widgets
       type: object
+    DashboardBulkActionData:
+      description: Dashboard bulk action request data.
+      example:
+        id: 123-abc-456
+        type: dashboard
+      properties:
+        id:
+          description: Dashboard resource ID.
+          example: 123-abc-456
+          type: string
+        type:
+          $ref: '#/components/schemas/DashboardResourceType'
+      required:
+      - id
+      - type
+      type: object
+    DashboardBulkActionDataList:
+      description: List of dashboard bulk action request data objects.
+      example:
+      - id: 123-abc-456
+        type: dashboard
+      items:
+        $ref: '#/components/schemas/DashboardBulkActionData'
+      type: array
+    DashboardBulkDeleteRequest:
+      description: Dashboard bulk delete request body.
+      example:
+        data:
+        - id: 123-abc-456
+          type: dashboard
+      properties:
+        data:
+          description: List of dashboard bulk action request data objects.
+          example:
+          - id: 123-abc-456
+            type: dashboard
+          items:
+            $ref: '#/components/schemas/DashboardBulkActionData'
+          type: array
+      required:
+      - data
+      type: object
     DashboardDeleteResponse:
       description: Response from the delete dashboard call.
       example:
@@ -10837,6 +10885,10 @@ components:
           description: ID of the deleted dashboard.
           type: string
       type: object
+    DashboardID:
+      description: Dashboard resource ID.
+      example: 123-abc-456
+      type: string
     DashboardLayoutType:
       description: Layout type of the dashboard.
       enum:
@@ -10954,6 +11006,33 @@ components:
       x-enum-varnames:
       - AUTO
       - FIXED
+    DashboardResourceType:
+      default: dashboard
+      description: Dashboard resource type.
+      enum:
+      - dashboard
+      example: dashboard
+      type: string
+      x-enum-varnames:
+      - DASHBOARD
+    DashboardRestoreRequest:
+      description: Dashboard restore request body.
+      example:
+        data:
+        - id: 123-abc-456
+          type: dashboard
+      properties:
+        data:
+          description: List of dashboard bulk action request data objects.
+          example:
+          - id: 123-abc-456
+            type: dashboard
+          items:
+            $ref: '#/components/schemas/DashboardBulkActionData'
+          type: array
+      required:
+      - data
+      type: object
     DashboardSummary:
       description: Dashboard summary response.
       example:
@@ -12152,6 +12231,7 @@ components:
       - rum
       - security_signals
       - profiles
+      - audit
       example: logs
       type: string
       x-enum-varnames:
@@ -12161,6 +12241,7 @@ components:
       - RUM
       - SECURITY_SIGNALS
       - PROFILES
+      - AUDIT
     FormulaAndFunctionMetricAggregation:
       description: The aggregation methods available for metrics queries.
       enum:
@@ -12559,7 +12640,7 @@ components:
           type: integer
         message:
           description: Error message.
-          example: ""
+          example: Your browser sent an invalid request.
           type: string
       required:
       - code
@@ -17777,6 +17858,7 @@ components:
           The numeric value format should be a 32bit float gauge-type value.
           Current is defined as not more than 10 minutes in the future or more than 1 hour in the past.
         format: double
+        nullable: true
         type: number
       maxItems: 2
       minItems: 2
@@ -17877,6 +17959,8 @@ components:
         aggregator:
           $ref: '#/components/schemas/WidgetAggregator'
         apm_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+        audit_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         conditional_formats:
           description: List of conditional formats.
@@ -19531,6 +19615,7 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
+          allow_insecure: true
           body: body
           timeout: 5.962133916683182
           url: url
@@ -19629,6 +19714,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -19668,6 +19754,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -19709,6 +19796,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -19794,6 +19882,7 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
+          allow_insecure: true
           body: body
           timeout: 5.962133916683182
           url: url
@@ -19833,6 +19922,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -19874,6 +19964,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -20074,6 +20165,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -20303,7 +20395,7 @@ components:
       example:
         name: ""
         description: ""
-        statusCode: 5
+        status: 5
       properties:
         description:
           description: Description of the error.
@@ -20313,7 +20405,7 @@ components:
           description: Name of the error.
           example: ""
           type: string
-        statusCode:
+        status:
           description: Status Code of the error.
           format: int64
           type: integer
@@ -20381,6 +20473,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -20480,6 +20573,7 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
+          allow_insecure: true
           body: body
           timeout: 5.962133916683182
           url: url
@@ -20561,10 +20655,10 @@ components:
           browserErrors:
           - name: ""
             description: ""
-            statusCode: 5
+            status: 5
           - name: ""
             description: ""
-            statusCode: 5
+            status: 5
           subTestStepDetails:
           - null
           - null
@@ -20591,10 +20685,10 @@ components:
           browserErrors:
           - name: ""
             description: ""
-            statusCode: 5
+            status: 5
           - name: ""
             description: ""
-            statusCode: 5
+            status: 5
           subTestStepDetails:
           - null
           - null
@@ -20681,10 +20775,10 @@ components:
             browserErrors:
             - name: ""
               description: ""
-              statusCode: 5
+              status: 5
             - name: ""
               description: ""
-              statusCode: 5
+              status: 5
             subTestStepDetails:
             - null
             - null
@@ -20711,10 +20805,10 @@ components:
             browserErrors:
             - name: ""
               description: ""
-              statusCode: 5
+              status: 5
             - name: ""
               description: ""
-              statusCode: 5
+              status: 5
             subTestStepDetails:
             - null
             - null
@@ -20743,6 +20837,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -21523,6 +21618,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -21607,6 +21703,7 @@ components:
                   filename: filename
                   content: content
                   updatedAt: updatedAt
+              allow_insecure: true
               body: body
               timeout: 5.962133916683182
               url: url
@@ -21916,10 +22013,10 @@ components:
         browserErrors:
         - name: ""
           description: ""
-          statusCode: 5
+          status: 5
         - name: ""
           description: ""
-          statusCode: 5
+          status: 5
         subTestStepDetails:
         - null
         - null
@@ -22078,6 +22175,7 @@ components:
               filename: filename
               content: content
               updatedAt: updatedAt
+          allow_insecure: true
           body: body
           timeout: 5.962133916683182
           url: url
@@ -22173,6 +22271,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -22448,6 +22547,7 @@ components:
             filename: filename
             content: content
             updatedAt: updatedAt
+        allow_insecure: true
         body: body
         timeout: 5.962133916683182
         url: url
@@ -22457,6 +22557,10 @@ components:
         numberOfPackets: 6
         dnsServer: dnsServer
       properties:
+        allow_insecure:
+          description: Allows loading insecure content for an HTTP request in a multistep
+            test step.
+          type: boolean
         basicAuth:
           $ref: '#/components/schemas/SyntheticsBasicAuth'
         body:
@@ -22959,6 +23063,8 @@ components:
       properties:
         apm_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        audit_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
         display_type:
           $ref: '#/components/schemas/WidgetDisplayType'
         event_query:
@@ -23049,6 +23155,8 @@ components:
       description: Updated top list widget.
       properties:
         apm_query:
+          $ref: '#/components/schemas/LogQueryDefinition'
+        audit_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         conditional_formats:
           description: List of conditional formats.
@@ -23237,35 +23345,39 @@ components:
         month: 2000-01-23T04:56:07.000+00:00
         updated_at: updated_at
         values:
+          cspm_host_percentage: 1.0246457001441578
+          cspm_container_percentage: 7.386281948385884
           browser_percentage: 9.301444243932576
-          profiled_hosts_percentage: 2.8841621266687802
-          infra_host_percentage: 1.1730742509559433
+          profiled_hosts_percentage: 6.704019297950036
+          infra_host_percentage: 9.369310271410669
+          cspm_host_usage: 1.4894159098541704
           apm_host_usage: 7.061401241503109
-          lambda_invocations_usage: 6.683562403749608
-          profiled_hosts_usage: 6.778324963048013
+          cspm_container_usage: 1.2315135367772556
+          lambda_invocations_usage: 3.5571952270680973
+          profiled_hosts_usage: 3.353193347011243
           apm_host_percentage: 2.3021358869347655
-          cws_host_usage: 7.457744773683766
+          cws_host_usage: 9.965781217890562
           api_usage: 5.637376656633329
-          custom_timeseries_usage: 1.2315135367772556
-          profiled_containers_percentage: 6.965117697638846
-          cws_container_usage: 1.4894159098541704
-          snmp_usage: 5.944895607614016
+          custom_timeseries_usage: 7.457744773683766
+          profiled_containers_percentage: 6.878052220127876
+          cws_container_usage: 4.965218492984954
+          snmp_usage: 7.143538047012306
           browser_usage: 3.616076749251911
-          infra_host_usage: 4.965218492984954
-          lambda_functions_usage: 9.965781217890562
-          custom_timeseries_percentage: 7.386281948385884
-          cws_host_percentage: 6.84685269835264
-          profiled_containers_usage: 1.284659006116532
-          lambda_usage: 9.018348186070783
-          npm_host_percentage: 6.438423552598547
-          snmp_percentage: 6.878052220127876
-          lambda_functions_percentage: 5.025004791520295
-          lambda_invocations_percentage: 9.369310271410669
+          infra_host_usage: 6.683562403749608
+          lambda_functions_usage: 9.018348186070783
+          custom_timeseries_percentage: 6.84685269835264
+          cws_host_percentage: 5.025004791520295
+          profiled_containers_usage: 5.944895607614016
+          lambda_usage: 1.284659006116532
+          npm_host_percentage: 2.8841621266687802
+          snmp_percentage: 3.0937452626664474
+          lambda_functions_percentage: 8.762042012749001
+          lambda_invocations_percentage: 6.438423552598547
           api_percentage: 5.962133916683182
           container_usage: 4.145608029883936
-          cws_container_percentage: 1.0246457001441578
-          lambda_percentage: 8.762042012749001
-          npm_host_usage: 3.5571952270680973
+          cws_container_percentage: 1.1730742509559433
+          lambda_percentage: 6.965117697638846
+          npm_host_usage: 6.778324963048013
           container_percentage: 2.027123023002322
         tag_config_source: tag_config_source
         org_name: org_name
@@ -23369,35 +23481,39 @@ components:
         - month: 2000-01-23T04:56:07.000+00:00
           updated_at: updated_at
           values:
+            cspm_host_percentage: 1.0246457001441578
+            cspm_container_percentage: 7.386281948385884
             browser_percentage: 9.301444243932576
-            profiled_hosts_percentage: 2.8841621266687802
-            infra_host_percentage: 1.1730742509559433
+            profiled_hosts_percentage: 6.704019297950036
+            infra_host_percentage: 9.369310271410669
+            cspm_host_usage: 1.4894159098541704
             apm_host_usage: 7.061401241503109
-            lambda_invocations_usage: 6.683562403749608
-            profiled_hosts_usage: 6.778324963048013
+            cspm_container_usage: 1.2315135367772556
+            lambda_invocations_usage: 3.5571952270680973
+            profiled_hosts_usage: 3.353193347011243
             apm_host_percentage: 2.3021358869347655
-            cws_host_usage: 7.457744773683766
+            cws_host_usage: 9.965781217890562
             api_usage: 5.637376656633329
-            custom_timeseries_usage: 1.2315135367772556
-            profiled_containers_percentage: 6.965117697638846
-            cws_container_usage: 1.4894159098541704
-            snmp_usage: 5.944895607614016
+            custom_timeseries_usage: 7.457744773683766
+            profiled_containers_percentage: 6.878052220127876
+            cws_container_usage: 4.965218492984954
+            snmp_usage: 7.143538047012306
             browser_usage: 3.616076749251911
-            infra_host_usage: 4.965218492984954
-            lambda_functions_usage: 9.965781217890562
-            custom_timeseries_percentage: 7.386281948385884
-            cws_host_percentage: 6.84685269835264
-            profiled_containers_usage: 1.284659006116532
-            lambda_usage: 9.018348186070783
-            npm_host_percentage: 6.438423552598547
-            snmp_percentage: 6.878052220127876
-            lambda_functions_percentage: 5.025004791520295
-            lambda_invocations_percentage: 9.369310271410669
+            infra_host_usage: 6.683562403749608
+            lambda_functions_usage: 9.018348186070783
+            custom_timeseries_percentage: 6.84685269835264
+            cws_host_percentage: 5.025004791520295
+            profiled_containers_usage: 5.944895607614016
+            lambda_usage: 1.284659006116532
+            npm_host_percentage: 2.8841621266687802
+            snmp_percentage: 3.0937452626664474
+            lambda_functions_percentage: 8.762042012749001
+            lambda_invocations_percentage: 6.438423552598547
             api_percentage: 5.962133916683182
             container_usage: 4.145608029883936
-            cws_container_percentage: 1.0246457001441578
-            lambda_percentage: 8.762042012749001
-            npm_host_usage: 3.5571952270680973
+            cws_container_percentage: 1.1730742509559433
+            lambda_percentage: 6.965117697638846
+            npm_host_usage: 6.778324963048013
             container_percentage: 2.027123023002322
           tag_config_source: tag_config_source
           org_name: org_name
@@ -23409,35 +23525,39 @@ components:
         - month: 2000-01-23T04:56:07.000+00:00
           updated_at: updated_at
           values:
+            cspm_host_percentage: 1.0246457001441578
+            cspm_container_percentage: 7.386281948385884
             browser_percentage: 9.301444243932576
-            profiled_hosts_percentage: 2.8841621266687802
-            infra_host_percentage: 1.1730742509559433
+            profiled_hosts_percentage: 6.704019297950036
+            infra_host_percentage: 9.369310271410669
+            cspm_host_usage: 1.4894159098541704
             apm_host_usage: 7.061401241503109
-            lambda_invocations_usage: 6.683562403749608
-            profiled_hosts_usage: 6.778324963048013
+            cspm_container_usage: 1.2315135367772556
+            lambda_invocations_usage: 3.5571952270680973
+            profiled_hosts_usage: 3.353193347011243
             apm_host_percentage: 2.3021358869347655
-            cws_host_usage: 7.457744773683766
+            cws_host_usage: 9.965781217890562
             api_usage: 5.637376656633329
-            custom_timeseries_usage: 1.2315135367772556
-            profiled_containers_percentage: 6.965117697638846
-            cws_container_usage: 1.4894159098541704
-            snmp_usage: 5.944895607614016
+            custom_timeseries_usage: 7.457744773683766
+            profiled_containers_percentage: 6.878052220127876
+            cws_container_usage: 4.965218492984954
+            snmp_usage: 7.143538047012306
             browser_usage: 3.616076749251911
-            infra_host_usage: 4.965218492984954
-            lambda_functions_usage: 9.965781217890562
-            custom_timeseries_percentage: 7.386281948385884
-            cws_host_percentage: 6.84685269835264
-            profiled_containers_usage: 1.284659006116532
-            lambda_usage: 9.018348186070783
-            npm_host_percentage: 6.438423552598547
-            snmp_percentage: 6.878052220127876
-            lambda_functions_percentage: 5.025004791520295
-            lambda_invocations_percentage: 9.369310271410669
+            infra_host_usage: 6.683562403749608
+            lambda_functions_usage: 9.018348186070783
+            custom_timeseries_percentage: 6.84685269835264
+            cws_host_percentage: 5.025004791520295
+            profiled_containers_usage: 5.944895607614016
+            lambda_usage: 1.284659006116532
+            npm_host_percentage: 2.8841621266687802
+            snmp_percentage: 3.0937452626664474
+            lambda_functions_percentage: 8.762042012749001
+            lambda_invocations_percentage: 6.438423552598547
             api_percentage: 5.962133916683182
             container_usage: 4.145608029883936
-            cws_container_percentage: 1.0246457001441578
-            lambda_percentage: 8.762042012749001
-            npm_host_usage: 3.5571952270680973
+            cws_container_percentage: 1.1730742509559433
+            lambda_percentage: 6.965117697638846
+            npm_host_usage: 6.778324963048013
             container_percentage: 2.027123023002322
           tag_config_source: tag_config_source
           org_name: org_name
@@ -23582,35 +23702,39 @@ components:
     UsageAttributionValues:
       description: Fields in Usage Summary by tag(s).
       example:
+        cspm_host_percentage: 1.0246457001441578
+        cspm_container_percentage: 7.386281948385884
         browser_percentage: 9.301444243932576
-        profiled_hosts_percentage: 2.8841621266687802
-        infra_host_percentage: 1.1730742509559433
+        profiled_hosts_percentage: 6.704019297950036
+        infra_host_percentage: 9.369310271410669
+        cspm_host_usage: 1.4894159098541704
         apm_host_usage: 7.061401241503109
-        lambda_invocations_usage: 6.683562403749608
-        profiled_hosts_usage: 6.778324963048013
+        cspm_container_usage: 1.2315135367772556
+        lambda_invocations_usage: 3.5571952270680973
+        profiled_hosts_usage: 3.353193347011243
         apm_host_percentage: 2.3021358869347655
-        cws_host_usage: 7.457744773683766
+        cws_host_usage: 9.965781217890562
         api_usage: 5.637376656633329
-        custom_timeseries_usage: 1.2315135367772556
-        profiled_containers_percentage: 6.965117697638846
-        cws_container_usage: 1.4894159098541704
-        snmp_usage: 5.944895607614016
+        custom_timeseries_usage: 7.457744773683766
+        profiled_containers_percentage: 6.878052220127876
+        cws_container_usage: 4.965218492984954
+        snmp_usage: 7.143538047012306
         browser_usage: 3.616076749251911
-        infra_host_usage: 4.965218492984954
-        lambda_functions_usage: 9.965781217890562
-        custom_timeseries_percentage: 7.386281948385884
-        cws_host_percentage: 6.84685269835264
-        profiled_containers_usage: 1.284659006116532
-        lambda_usage: 9.018348186070783
-        npm_host_percentage: 6.438423552598547
-        snmp_percentage: 6.878052220127876
-        lambda_functions_percentage: 5.025004791520295
-        lambda_invocations_percentage: 9.369310271410669
+        infra_host_usage: 6.683562403749608
+        lambda_functions_usage: 9.018348186070783
+        custom_timeseries_percentage: 6.84685269835264
+        cws_host_percentage: 5.025004791520295
+        profiled_containers_usage: 5.944895607614016
+        lambda_usage: 1.284659006116532
+        npm_host_percentage: 2.8841621266687802
+        snmp_percentage: 3.0937452626664474
+        lambda_functions_percentage: 8.762042012749001
+        lambda_invocations_percentage: 6.438423552598547
         api_percentage: 5.962133916683182
         container_usage: 4.145608029883936
-        cws_container_percentage: 1.0246457001441578
-        lambda_percentage: 8.762042012749001
-        npm_host_usage: 3.5571952270680973
+        cws_container_percentage: 1.1730742509559433
+        lambda_percentage: 6.965117697638846
+        npm_host_usage: 6.778324963048013
         container_percentage: 2.027123023002322
       properties:
         api_percentage:
@@ -23643,6 +23767,24 @@ components:
           type: number
         container_usage:
           description: The container usage by tag(s).
+          format: double
+          type: number
+        cspm_container_percentage:
+          description: The percentage of Cloud Security Posture Management container
+            usage by tag(s)
+          format: double
+          type: number
+        cspm_container_usage:
+          description: The Cloud Security Posture Management container usage by tag(s)
+          format: double
+          type: number
+        cspm_host_percentage:
+          description: The percentage of Cloud Security Posture Management host usage
+            by tag(s)
+          format: double
+          type: number
+        cspm_host_usage:
+          description: The Cloud Security Posture Management host usage by tag(s)
           format: double
           type: number
         custom_timeseries_percentage:
@@ -27448,70 +27590,6 @@ components:
             $ref: '#/components/schemas/UsageTopAvgMetricsHour'
           type: array
       type: object
-    UsageTraceHour:
-      description: The hours of trace usage.
-      example:
-        indexed_events_count: 0
-        hour: 2000-01-23T04:56:07.000+00:00
-      properties:
-        hour:
-          description: The hour for the usage.
-          format: date-time
-          type: string
-        indexed_events_count:
-          description: Contains the number of Indexed Spans indexed.
-          format: int64
-          type: integer
-      type: object
-    UsageTraceResponse:
-      description: A response containing trace usage.
-      example:
-        usage:
-        - indexed_events_count: 0
-          hour: 2000-01-23T04:56:07.000+00:00
-        - indexed_events_count: 0
-          hour: 2000-01-23T04:56:07.000+00:00
-      properties:
-        usage:
-          description: Array with the number of hourly traces indexed for a given
-            organization.
-          items:
-            $ref: '#/components/schemas/UsageTraceHour'
-          type: array
-      type: object
-    UsageTracingWithoutLimitsHour:
-      description: Tracing without limits usage for a given organization for a given
-        hour.
-      example:
-        hour: 2000-01-23T04:56:07.000+00:00
-        ingested_events_bytes: 0
-      properties:
-        hour:
-          description: The hour for the usage.
-          format: date-time
-          type: string
-        ingested_events_bytes:
-          description: Contains the total number of bytes ingested during a given
-            hour.
-          format: int64
-          type: integer
-      type: object
-    UsageTracingWithoutLimitsResponse:
-      description: Response containing the tracing without limits usage for each hour
-        for a given organization.
-      example:
-        usage:
-        - hour: 2000-01-23T04:56:07.000+00:00
-          ingested_events_bytes: 0
-        - hour: 2000-01-23T04:56:07.000+00:00
-          ingested_events_bytes: 0
-      properties:
-        usage:
-          description: Get hourly usage for tracing without limits.
-          items:
-            $ref: '#/components/schemas/UsageTracingWithoutLimitsHour'
-          type: array
-      type: object
     User:
       description: Create, edit, and disable users.
       example:
@@ -29294,6 +29372,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url
@@ -29382,6 +29461,7 @@ components:
                 filename: filename
                 content: content
                 updatedAt: updatedAt
+            allow_insecure: true
             body: body
             timeout: 5.962133916683182
             url: url

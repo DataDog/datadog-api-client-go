@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Description** | **string** | Description of the error. | 
 **Name** | **string** | Name of the error. | 
-**StatusCode** | Pointer to **int64** | Status Code of the error. | [optional] 
+**Status** | Pointer to **int64** | Status Code of the error. | [optional] 
 **Type** | [**SyntheticsBrowserErrorType**](SyntheticsBrowserErrorType.md) |  | 
 
 ## Methods
@@ -68,30 +68,30 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetStatusCode
+### GetStatus
 
-`func (o *SyntheticsBrowserError) GetStatusCode() int64`
+`func (o *SyntheticsBrowserError) GetStatus() int64`
 
-GetStatusCode returns the StatusCode field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetStatusCodeOk
+### GetStatusOk
 
-`func (o *SyntheticsBrowserError) GetStatusCodeOk() (*int64, bool)`
+`func (o *SyntheticsBrowserError) GetStatusOk() (*int64, bool)`
 
-GetStatusCodeOk returns a tuple with the StatusCode field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStatusCode
+### SetStatus
 
-`func (o *SyntheticsBrowserError) SetStatusCode(v int64)`
+`func (o *SyntheticsBrowserError) SetStatus(v int64)`
 
-SetStatusCode sets StatusCode field to given value.
+SetStatus sets Status field to given value.
 
-### HasStatusCode
+### HasStatus
 
-`func (o *SyntheticsBrowserError) HasStatusCode() bool`
+`func (o *SyntheticsBrowserError) HasStatus() bool`
 
-HasStatusCode returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
 ### GetType
 

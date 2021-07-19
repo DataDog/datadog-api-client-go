@@ -16,6 +16,7 @@ import (
 type QueryValueWidgetRequest struct {
 	Aggregator *WidgetAggregator   `json:"aggregator,omitempty"`
 	ApmQuery   *LogQueryDefinition `json:"apm_query,omitempty"`
+	AuditQuery *LogQueryDefinition `json:"audit_query,omitempty"`
 	// List of conditional formats.
 	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	EventQuery         *LogQueryDefinition        `json:"event_query,omitempty"`
@@ -113,6 +114,38 @@ func (o *QueryValueWidgetRequest) HasApmQuery() bool {
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
 func (o *QueryValueWidgetRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
+}
+
+// GetAuditQuery returns the AuditQuery field value if set, zero value otherwise.
+func (o *QueryValueWidgetRequest) GetAuditQuery() LogQueryDefinition {
+	if o == nil || o.AuditQuery == nil {
+		var ret LogQueryDefinition
+		return ret
+	}
+	return *o.AuditQuery
+}
+
+// GetAuditQueryOk returns a tuple with the AuditQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryValueWidgetRequest) GetAuditQueryOk() (*LogQueryDefinition, bool) {
+	if o == nil || o.AuditQuery == nil {
+		return nil, false
+	}
+	return o.AuditQuery, true
+}
+
+// HasAuditQuery returns a boolean if a field has been set.
+func (o *QueryValueWidgetRequest) HasAuditQuery() bool {
+	if o != nil && o.AuditQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAuditQuery gets a reference to the given LogQueryDefinition and assigns it to the AuditQuery field.
+func (o *QueryValueWidgetRequest) SetAuditQuery(v LogQueryDefinition) {
+	o.AuditQuery = &v
 }
 
 // GetConditionalFormats returns the ConditionalFormats field value if set, zero value otherwise.
@@ -506,6 +539,9 @@ func (o QueryValueWidgetRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.ApmQuery != nil {
 		toSerialize["apm_query"] = o.ApmQuery
+	}
+	if o.AuditQuery != nil {
+		toSerialize["audit_query"] = o.AuditQuery
 	}
 	if o.ConditionalFormats != nil {
 		toSerialize["conditional_formats"] = o.ConditionalFormats

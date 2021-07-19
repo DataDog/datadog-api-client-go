@@ -121,10 +121,11 @@ func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T, globalVari
 					Assertions: &[]datadog.SyntheticsAssertion{},
 					Name:       datadog.PtrString("First step"),
 					Request: &datadog.SyntheticsTestRequest{
-						Headers: &map[string]string{"testingGoClient": "true"},
-						Method:  datadog.HTTPMETHOD_GET.Ptr(),
-						Timeout: datadog.PtrFloat64(10),
-						Url:     datadog.PtrString("https://datadoghq.com"),
+						Headers:       &map[string]string{"testingGoClient": "true"},
+						Method:        datadog.HTTPMETHOD_GET.Ptr(),
+						Timeout:       datadog.PtrFloat64(10),
+						Url:           datadog.PtrString("https://datadoghq.com"),
+						AllowInsecure: datadog.PtrBool(true),
 					},
 					Subtype: datadog.SYNTHETICSAPISTEPSUBTYPE_HTTP.Ptr(),
 					ExtractedValues: &[]datadog.SyntheticsParsingOptions{
@@ -1645,7 +1646,7 @@ func TestSyntheticsAPIMultistepTestEndpointLifecycle(t *testing.T) {
 	testSyntheticsAPI := getTestSyntheticsAPIMultistep(ctx, t, globalVariable)
 	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
 	if err != nil {
-		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating Synthetics test %v: %v", testSyntheticsAPI, err)
 	}
 	publicID := synt.GetPublicId()
 	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
@@ -1660,7 +1661,7 @@ func TestSyntheticsAPIMultistepTestEndpointLifecycle(t *testing.T) {
 	synt.PublicId = nil
 	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID, synt)
 	if err != nil {
-		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error updating Synthetics test %s: %v", publicID, err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(updatedName, synt.GetName())

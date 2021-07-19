@@ -97,10 +97,22 @@
       "type": "safe"
     }
   },
+  "DeleteDashboards": {
+    "tag": "Dashboards",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListDashboards": {
     "tag": "Dashboards",
     "undo": {
       "type": "safe"
+    }
+  },
+  "RestoreDashboards": {
+    "tag": "Dashboards",
+    "undo": {
+      "type": "idempotent"
     }
   },
   "CreateDashboard": {
@@ -1219,18 +1231,6 @@
     }
   },
   "GetUsageTopAvgMetrics": {
-    "tag": "Usage Metering",
-    "undo": {
-      "type": "safe"
-    }
-  },
-  "GetUsageTrace": {
-    "tag": "Usage Metering",
-    "undo": {
-      "type": "safe"
-    }
-  },
-  "GetTracingWithoutLimits": {
     "tag": "Usage Metering",
     "undo": {
       "type": "safe"

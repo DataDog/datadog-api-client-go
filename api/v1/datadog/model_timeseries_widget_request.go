@@ -15,6 +15,7 @@ import (
 // TimeseriesWidgetRequest Updated timeseries widget.
 type TimeseriesWidgetRequest struct {
 	ApmQuery    *LogQueryDefinition `json:"apm_query,omitempty"`
+	AuditQuery  *LogQueryDefinition `json:"audit_query,omitempty"`
 	DisplayType *WidgetDisplayType  `json:"display_type,omitempty"`
 	EventQuery  *LogQueryDefinition `json:"event_query,omitempty"`
 	// List of formulas that operate on queries. **This feature is currently in beta.**
@@ -84,6 +85,38 @@ func (o *TimeseriesWidgetRequest) HasApmQuery() bool {
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
 func (o *TimeseriesWidgetRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
+}
+
+// GetAuditQuery returns the AuditQuery field value if set, zero value otherwise.
+func (o *TimeseriesWidgetRequest) GetAuditQuery() LogQueryDefinition {
+	if o == nil || o.AuditQuery == nil {
+		var ret LogQueryDefinition
+		return ret
+	}
+	return *o.AuditQuery
+}
+
+// GetAuditQueryOk returns a tuple with the AuditQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetRequest) GetAuditQueryOk() (*LogQueryDefinition, bool) {
+	if o == nil || o.AuditQuery == nil {
+		return nil, false
+	}
+	return o.AuditQuery, true
+}
+
+// HasAuditQuery returns a boolean if a field has been set.
+func (o *TimeseriesWidgetRequest) HasAuditQuery() bool {
+	if o != nil && o.AuditQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAuditQuery gets a reference to the given LogQueryDefinition and assigns it to the AuditQuery field.
+func (o *TimeseriesWidgetRequest) SetAuditQuery(v LogQueryDefinition) {
+	o.AuditQuery = &v
 }
 
 // GetDisplayType returns the DisplayType field value if set, zero value otherwise.
@@ -570,6 +603,9 @@ func (o TimeseriesWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ApmQuery != nil {
 		toSerialize["apm_query"] = o.ApmQuery
+	}
+	if o.AuditQuery != nil {
+		toSerialize["audit_query"] = o.AuditQuery
 	}
 	if o.DisplayType != nil {
 		toSerialize["display_type"] = o.DisplayType

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Aggregator** | Pointer to [**WidgetAggregator**](WidgetAggregator.md) |  | [optional] 
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+**AuditQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
 **EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Formulas** | Pointer to [**[]WidgetFormula**](WidgetFormula.md) | List of formulas that operate on queries. **This feature is currently in beta.** | [optional] 
@@ -87,6 +88,31 @@ SetApmQuery sets ApmQuery field to given value.
 `func (o *QueryValueWidgetRequest) HasApmQuery() bool`
 
 HasApmQuery returns a boolean if a field has been set.
+
+### GetAuditQuery
+
+`func (o *QueryValueWidgetRequest) GetAuditQuery() LogQueryDefinition`
+
+GetAuditQuery returns the AuditQuery field if non-nil, zero value otherwise.
+
+### GetAuditQueryOk
+
+`func (o *QueryValueWidgetRequest) GetAuditQueryOk() (*LogQueryDefinition, bool)`
+
+GetAuditQueryOk returns a tuple with the AuditQuery field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuditQuery
+
+`func (o *QueryValueWidgetRequest) SetAuditQuery(v LogQueryDefinition)`
+
+SetAuditQuery sets AuditQuery field to given value.
+
+### HasAuditQuery
+
+`func (o *QueryValueWidgetRequest) HasAuditQuery() bool`
+
+HasAuditQuery returns a boolean if a field has been set.
 
 ### GetConditionalFormats
 
