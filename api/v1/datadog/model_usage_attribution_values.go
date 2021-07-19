@@ -30,6 +30,14 @@ type UsageAttributionValues struct {
 	ContainerPercentage *float64 `json:"container_percentage,omitempty"`
 	// The container usage by tag(s).
 	ContainerUsage *float64 `json:"container_usage,omitempty"`
+	// The percentage of Cloud Security Posture Management container usage by tag(s)
+	CspmContainerPercentage *float64 `json:"cspm_container_percentage,omitempty"`
+	// The Cloud Security Posture Management container usage by tag(s)
+	CspmContainerUsage *float64 `json:"cspm_container_usage,omitempty"`
+	// The percentage of Cloud Security Posture Management host usage by tag(s)
+	CspmHostPercentage *float64 `json:"cspm_host_percentage,omitempty"`
+	// The Cloud Security Posture Management host usage by tag(s)
+	CspmHostUsage *float64 `json:"cspm_host_usage,omitempty"`
 	// The percentage of custom metrics usage by tag(s).
 	CustomTimeseriesPercentage *float64 `json:"custom_timeseries_percentage,omitempty"`
 	// The custom metrics usage by tag(s).
@@ -347,6 +355,134 @@ func (o *UsageAttributionValues) HasContainerUsage() bool {
 // SetContainerUsage gets a reference to the given float64 and assigns it to the ContainerUsage field.
 func (o *UsageAttributionValues) SetContainerUsage(v float64) {
 	o.ContainerUsage = &v
+}
+
+// GetCspmContainerPercentage returns the CspmContainerPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetCspmContainerPercentage() float64 {
+	if o == nil || o.CspmContainerPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.CspmContainerPercentage
+}
+
+// GetCspmContainerPercentageOk returns a tuple with the CspmContainerPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetCspmContainerPercentageOk() (*float64, bool) {
+	if o == nil || o.CspmContainerPercentage == nil {
+		return nil, false
+	}
+	return o.CspmContainerPercentage, true
+}
+
+// HasCspmContainerPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasCspmContainerPercentage() bool {
+	if o != nil && o.CspmContainerPercentage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCspmContainerPercentage gets a reference to the given float64 and assigns it to the CspmContainerPercentage field.
+func (o *UsageAttributionValues) SetCspmContainerPercentage(v float64) {
+	o.CspmContainerPercentage = &v
+}
+
+// GetCspmContainerUsage returns the CspmContainerUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetCspmContainerUsage() float64 {
+	if o == nil || o.CspmContainerUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.CspmContainerUsage
+}
+
+// GetCspmContainerUsageOk returns a tuple with the CspmContainerUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetCspmContainerUsageOk() (*float64, bool) {
+	if o == nil || o.CspmContainerUsage == nil {
+		return nil, false
+	}
+	return o.CspmContainerUsage, true
+}
+
+// HasCspmContainerUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasCspmContainerUsage() bool {
+	if o != nil && o.CspmContainerUsage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCspmContainerUsage gets a reference to the given float64 and assigns it to the CspmContainerUsage field.
+func (o *UsageAttributionValues) SetCspmContainerUsage(v float64) {
+	o.CspmContainerUsage = &v
+}
+
+// GetCspmHostPercentage returns the CspmHostPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetCspmHostPercentage() float64 {
+	if o == nil || o.CspmHostPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.CspmHostPercentage
+}
+
+// GetCspmHostPercentageOk returns a tuple with the CspmHostPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetCspmHostPercentageOk() (*float64, bool) {
+	if o == nil || o.CspmHostPercentage == nil {
+		return nil, false
+	}
+	return o.CspmHostPercentage, true
+}
+
+// HasCspmHostPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasCspmHostPercentage() bool {
+	if o != nil && o.CspmHostPercentage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCspmHostPercentage gets a reference to the given float64 and assigns it to the CspmHostPercentage field.
+func (o *UsageAttributionValues) SetCspmHostPercentage(v float64) {
+	o.CspmHostPercentage = &v
+}
+
+// GetCspmHostUsage returns the CspmHostUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetCspmHostUsage() float64 {
+	if o == nil || o.CspmHostUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.CspmHostUsage
+}
+
+// GetCspmHostUsageOk returns a tuple with the CspmHostUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetCspmHostUsageOk() (*float64, bool) {
+	if o == nil || o.CspmHostUsage == nil {
+		return nil, false
+	}
+	return o.CspmHostUsage, true
+}
+
+// HasCspmHostUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasCspmHostUsage() bool {
+	if o != nil && o.CspmHostUsage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCspmHostUsage gets a reference to the given float64 and assigns it to the CspmHostUsage field.
+func (o *UsageAttributionValues) SetCspmHostUsage(v float64) {
+	o.CspmHostUsage = &v
 }
 
 // GetCustomTimeseriesPercentage returns the CustomTimeseriesPercentage field value if set, zero value otherwise.
@@ -1078,6 +1214,18 @@ func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	}
 	if o.ContainerUsage != nil {
 		toSerialize["container_usage"] = o.ContainerUsage
+	}
+	if o.CspmContainerPercentage != nil {
+		toSerialize["cspm_container_percentage"] = o.CspmContainerPercentage
+	}
+	if o.CspmContainerUsage != nil {
+		toSerialize["cspm_container_usage"] = o.CspmContainerUsage
+	}
+	if o.CspmHostPercentage != nil {
+		toSerialize["cspm_host_percentage"] = o.CspmHostPercentage
+	}
+	if o.CspmHostUsage != nil {
+		toSerialize["cspm_host_usage"] = o.CspmHostUsage
 	}
 	if o.CustomTimeseriesPercentage != nil {
 		toSerialize["custom_timeseries_percentage"] = o.CustomTimeseriesPercentage

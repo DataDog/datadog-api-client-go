@@ -14,7 +14,9 @@ import (
 
 // SyntheticsTestRequest Object describing the Synthetic test request.
 type SyntheticsTestRequest struct {
-	BasicAuth *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
+	// Allows loading insecure content for an HTTP request in a multistep test step.
+	AllowInsecure *bool                `json:"allow_insecure,omitempty"`
+	BasicAuth     *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
 	// Body to include in the test.
 	Body        *string                           `json:"body,omitempty"`
 	Certificate *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
@@ -58,6 +60,38 @@ func NewSyntheticsTestRequest() *SyntheticsTestRequest {
 func NewSyntheticsTestRequestWithDefaults() *SyntheticsTestRequest {
 	this := SyntheticsTestRequest{}
 	return &this
+}
+
+// GetAllowInsecure returns the AllowInsecure field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetAllowInsecure() bool {
+	if o == nil || o.AllowInsecure == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AllowInsecure
+}
+
+// GetAllowInsecureOk returns a tuple with the AllowInsecure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetAllowInsecureOk() (*bool, bool) {
+	if o == nil || o.AllowInsecure == nil {
+		return nil, false
+	}
+	return o.AllowInsecure, true
+}
+
+// HasAllowInsecure returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasAllowInsecure() bool {
+	if o != nil && o.AllowInsecure != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowInsecure gets a reference to the given bool and assigns it to the AllowInsecure field.
+func (o *SyntheticsTestRequest) SetAllowInsecure(v bool) {
+	o.AllowInsecure = &v
 }
 
 // GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.
@@ -542,6 +576,9 @@ func (o *SyntheticsTestRequest) SetUrl(v string) {
 
 func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AllowInsecure != nil {
+		toSerialize["allow_insecure"] = o.AllowInsecure
+	}
 	if o.BasicAuth != nil {
 		toSerialize["basicAuth"] = o.BasicAuth
 	}

@@ -38,6 +38,7 @@ docs/APIErrorResponse.md
 docs/AWSAccount.md
 docs/AWSAccountAndLambdaRequest.md
 docs/AWSAccountCreateResponse.md
+docs/AWSAccountDeleteRequest.md
 docs/AWSAccountListResponse.md
 docs/AWSIntegrationApi.md
 docs/AWSLogsAsyncError.md
@@ -84,6 +85,8 @@ docs/CheckStatusWidgetDefinitionType.md
 docs/ContentEncoding.md
 docs/Creator.md
 docs/Dashboard.md
+docs/DashboardBulkActionData.md
+docs/DashboardBulkDeleteRequest.md
 docs/DashboardDeleteResponse.md
 docs/DashboardLayoutType.md
 docs/DashboardList.md
@@ -91,6 +94,8 @@ docs/DashboardListDeleteResponse.md
 docs/DashboardListListResponse.md
 docs/DashboardListsApi.md
 docs/DashboardReflowType.md
+docs/DashboardResourceType.md
+docs/DashboardRestoreRequest.md
 docs/DashboardSummary.md
 docs/DashboardSummaryDefinition.md
 docs/DashboardTemplateVariable.md
@@ -597,10 +602,6 @@ docs/UsageTimeseriesResponse.md
 docs/UsageTopAvgMetricsHour.md
 docs/UsageTopAvgMetricsMetadata.md
 docs/UsageTopAvgMetricsResponse.md
-docs/UsageTraceHour.md
-docs/UsageTraceResponse.md
-docs/UsageTracingWithoutLimitsHour.md
-docs/UsageTracingWithoutLimitsResponse.md
 docs/User.md
 docs/UserDisableResponse.md
 docs/UserListResponse.md
@@ -673,6 +674,7 @@ model_authentication_validation_response.go
 model_aws_account.go
 model_aws_account_and_lambda_request.go
 model_aws_account_create_response.go
+model_aws_account_delete_request.go
 model_aws_account_list_response.go
 model_aws_logs_async_error.go
 model_aws_logs_async_response.go
@@ -700,12 +702,16 @@ model_check_status_widget_definition_type.go
 model_content_encoding.go
 model_creator.go
 model_dashboard.go
+model_dashboard_bulk_action_data.go
+model_dashboard_bulk_delete_request.go
 model_dashboard_delete_response.go
 model_dashboard_layout_type.go
 model_dashboard_list.go
 model_dashboard_list_delete_response.go
 model_dashboard_list_list_response.go
 model_dashboard_reflow_type.go
+model_dashboard_resource_type.go
+model_dashboard_restore_request.go
 model_dashboard_summary.go
 model_dashboard_summary_definition.go
 model_dashboard_template_variable.go
@@ -1189,10 +1195,6 @@ model_usage_timeseries_response.go
 model_usage_top_avg_metrics_hour.go
 model_usage_top_avg_metrics_metadata.go
 model_usage_top_avg_metrics_response.go
-model_usage_trace_hour.go
-model_usage_trace_response.go
-model_usage_tracing_without_limits_hour.go
-model_usage_tracing_without_limits_response.go
 model_user.go
 model_user_disable_response.go
 model_user_list_response.go

@@ -108,8 +108,10 @@ Class | Method | HTTP request | Description
 *DashboardListsApi* | [**UpdateDashboardList**](docs/DashboardListsApi.md#updatedashboardlist) | **Put** /api/v1/dashboard/lists/manual/{list_id} | Update a dashboard list
 *DashboardsApi* | [**CreateDashboard**](docs/DashboardsApi.md#createdashboard) | **Post** /api/v1/dashboard | Create a new dashboard
 *DashboardsApi* | [**DeleteDashboard**](docs/DashboardsApi.md#deletedashboard) | **Delete** /api/v1/dashboard/{dashboard_id} | Delete a dashboard
+*DashboardsApi* | [**DeleteDashboards**](docs/DashboardsApi.md#deletedashboards) | **Delete** /api/v1/dashboard | Delete dashboards
 *DashboardsApi* | [**GetDashboard**](docs/DashboardsApi.md#getdashboard) | **Get** /api/v1/dashboard/{dashboard_id} | Get a dashboard
 *DashboardsApi* | [**ListDashboards**](docs/DashboardsApi.md#listdashboards) | **Get** /api/v1/dashboard | Get all dashboards
+*DashboardsApi* | [**RestoreDashboards**](docs/DashboardsApi.md#restoredashboards) | **Patch** /api/v1/dashboard | Restore deleted dashboards
 *DashboardsApi* | [**UpdateDashboard**](docs/DashboardsApi.md#updatedashboard) | **Put** /api/v1/dashboard/{dashboard_id} | Update a dashboard
 *DowntimesApi* | [**CancelDowntime**](docs/DowntimesApi.md#canceldowntime) | **Delete** /api/v1/downtime/{downtime_id} | Cancel a downtime
 *DowntimesApi* | [**CancelDowntimesByScope**](docs/DowntimesApi.md#canceldowntimesbyscope) | **Post** /api/v1/downtime/cancel/by_scope | Cancel downtimes by scope
@@ -240,7 +242,6 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetMonthlyCustomReports**](docs/UsageMeteringApi.md#getmonthlycustomreports) | **Get** /api/v1/monthly_custom_reports | Get the list of available monthly custom reports
 *UsageMeteringApi* | [**GetSpecifiedDailyCustomReports**](docs/UsageMeteringApi.md#getspecifieddailycustomreports) | **Get** /api/v1/daily_custom_reports/{report_id} | Get specified daily custom reports
 *UsageMeteringApi* | [**GetSpecifiedMonthlyCustomReports**](docs/UsageMeteringApi.md#getspecifiedmonthlycustomreports) | **Get** /api/v1/monthly_custom_reports/{report_id} | Get specified monthly custom reports
-*UsageMeteringApi* | [**GetTracingWithoutLimits**](docs/UsageMeteringApi.md#gettracingwithoutlimits) | **Get** /api/v1/usage/tracing-without-limits | Get hourly usage for tracing without limits
 *UsageMeteringApi* | [**GetUsageAnalyzedLogs**](docs/UsageMeteringApi.md#getusageanalyzedlogs) | **Get** /api/v1/usage/analyzed_logs | Get hourly usage for analyzed logs
 *UsageMeteringApi* | [**GetUsageAttribution**](docs/UsageMeteringApi.md#getusageattribution) | **Get** /api/v1/usage/attribution | Get Usage Attribution
 *UsageMeteringApi* | [**GetUsageAuditLogs**](docs/UsageMeteringApi.md#getusageauditlogs) | **Get** /api/v1/usage/audit_logs | Get hourly usage for audit logs
@@ -266,7 +267,6 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetUsageSyntheticsBrowser**](docs/UsageMeteringApi.md#getusagesyntheticsbrowser) | **Get** /api/v1/usage/synthetics_browser | Get hourly usage for Synthetics Browser Checks
 *UsageMeteringApi* | [**GetUsageTimeseries**](docs/UsageMeteringApi.md#getusagetimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics
 *UsageMeteringApi* | [**GetUsageTopAvgMetrics**](docs/UsageMeteringApi.md#getusagetopavgmetrics) | **Get** /api/v1/usage/top_avg_metrics | Get all custom metrics by hourly average
-*UsageMeteringApi* | [**GetUsageTrace**](docs/UsageMeteringApi.md#getusagetrace) | **Get** /api/v1/usage/traces | Get hourly usage for Trace Search
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /api/v1/user | Create a user
 *UsersApi* | [**DisableUser**](docs/UsersApi.md#disableuser) | **Delete** /api/v1/user/{user_handle} | Disable a user
 *UsersApi* | [**GetUser**](docs/UsersApi.md#getuser) | **Get** /api/v1/user/{user_handle} | Get user details
@@ -280,6 +280,7 @@ Class | Method | HTTP request | Description
  - [AWSAccount](docs/AWSAccount.md)
  - [AWSAccountAndLambdaRequest](docs/AWSAccountAndLambdaRequest.md)
  - [AWSAccountCreateResponse](docs/AWSAccountCreateResponse.md)
+ - [AWSAccountDeleteRequest](docs/AWSAccountDeleteRequest.md)
  - [AWSAccountListResponse](docs/AWSAccountListResponse.md)
  - [AWSLogsAsyncError](docs/AWSLogsAsyncError.md)
  - [AWSLogsAsyncResponse](docs/AWSLogsAsyncResponse.md)
@@ -322,12 +323,16 @@ Class | Method | HTTP request | Description
  - [ContentEncoding](docs/ContentEncoding.md)
  - [Creator](docs/Creator.md)
  - [Dashboard](docs/Dashboard.md)
+ - [DashboardBulkActionData](docs/DashboardBulkActionData.md)
+ - [DashboardBulkDeleteRequest](docs/DashboardBulkDeleteRequest.md)
  - [DashboardDeleteResponse](docs/DashboardDeleteResponse.md)
  - [DashboardLayoutType](docs/DashboardLayoutType.md)
  - [DashboardList](docs/DashboardList.md)
  - [DashboardListDeleteResponse](docs/DashboardListDeleteResponse.md)
  - [DashboardListListResponse](docs/DashboardListListResponse.md)
  - [DashboardReflowType](docs/DashboardReflowType.md)
+ - [DashboardResourceType](docs/DashboardResourceType.md)
+ - [DashboardRestoreRequest](docs/DashboardRestoreRequest.md)
  - [DashboardSummary](docs/DashboardSummary.md)
  - [DashboardSummaryDefinition](docs/DashboardSummaryDefinition.md)
  - [DashboardTemplateVariable](docs/DashboardTemplateVariable.md)
@@ -811,10 +816,6 @@ Class | Method | HTTP request | Description
  - [UsageTopAvgMetricsHour](docs/UsageTopAvgMetricsHour.md)
  - [UsageTopAvgMetricsMetadata](docs/UsageTopAvgMetricsMetadata.md)
  - [UsageTopAvgMetricsResponse](docs/UsageTopAvgMetricsResponse.md)
- - [UsageTraceHour](docs/UsageTraceHour.md)
- - [UsageTraceResponse](docs/UsageTraceResponse.md)
- - [UsageTracingWithoutLimitsHour](docs/UsageTracingWithoutLimitsHour.md)
- - [UsageTracingWithoutLimitsResponse](docs/UsageTracingWithoutLimitsResponse.md)
  - [User](docs/User.md)
  - [UserDisableResponse](docs/UserDisableResponse.md)
  - [UserListResponse](docs/UserListResponse.md)

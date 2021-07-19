@@ -12,6 +12,10 @@ Name | Type | Description | Notes
 **BrowserUsage** | Pointer to **float64** | The synthetic browser test usage by tag(s). | [optional] 
 **ContainerPercentage** | Pointer to **float64** | The percentage of container usage by tag(s). | [optional] 
 **ContainerUsage** | Pointer to **float64** | The container usage by tag(s). | [optional] 
+**CspmContainerPercentage** | Pointer to **float64** | The percentage of Cloud Security Posture Management container usage by tag(s) | [optional] 
+**CspmContainerUsage** | Pointer to **float64** | The Cloud Security Posture Management container usage by tag(s) | [optional] 
+**CspmHostPercentage** | Pointer to **float64** | The percentage of Cloud Security Posture Management host usage by tag(s) | [optional] 
+**CspmHostUsage** | Pointer to **float64** | The Cloud Security Posture Management host usage by tag(s) | [optional] 
 **CustomTimeseriesPercentage** | Pointer to **float64** | The percentage of custom metrics usage by tag(s). | [optional] 
 **CustomTimeseriesUsage** | Pointer to **float64** | The custom metrics usage by tag(s). | [optional] 
 **CwsContainerPercentage** | Pointer to **float64** | The percentage of Cloud Workload Security container usage by tag(s) | [optional] 
@@ -253,6 +257,106 @@ SetContainerUsage sets ContainerUsage field to given value.
 `func (o *UsageAttributionValues) HasContainerUsage() bool`
 
 HasContainerUsage returns a boolean if a field has been set.
+
+### GetCspmContainerPercentage
+
+`func (o *UsageAttributionValues) GetCspmContainerPercentage() float64`
+
+GetCspmContainerPercentage returns the CspmContainerPercentage field if non-nil, zero value otherwise.
+
+### GetCspmContainerPercentageOk
+
+`func (o *UsageAttributionValues) GetCspmContainerPercentageOk() (*float64, bool)`
+
+GetCspmContainerPercentageOk returns a tuple with the CspmContainerPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCspmContainerPercentage
+
+`func (o *UsageAttributionValues) SetCspmContainerPercentage(v float64)`
+
+SetCspmContainerPercentage sets CspmContainerPercentage field to given value.
+
+### HasCspmContainerPercentage
+
+`func (o *UsageAttributionValues) HasCspmContainerPercentage() bool`
+
+HasCspmContainerPercentage returns a boolean if a field has been set.
+
+### GetCspmContainerUsage
+
+`func (o *UsageAttributionValues) GetCspmContainerUsage() float64`
+
+GetCspmContainerUsage returns the CspmContainerUsage field if non-nil, zero value otherwise.
+
+### GetCspmContainerUsageOk
+
+`func (o *UsageAttributionValues) GetCspmContainerUsageOk() (*float64, bool)`
+
+GetCspmContainerUsageOk returns a tuple with the CspmContainerUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCspmContainerUsage
+
+`func (o *UsageAttributionValues) SetCspmContainerUsage(v float64)`
+
+SetCspmContainerUsage sets CspmContainerUsage field to given value.
+
+### HasCspmContainerUsage
+
+`func (o *UsageAttributionValues) HasCspmContainerUsage() bool`
+
+HasCspmContainerUsage returns a boolean if a field has been set.
+
+### GetCspmHostPercentage
+
+`func (o *UsageAttributionValues) GetCspmHostPercentage() float64`
+
+GetCspmHostPercentage returns the CspmHostPercentage field if non-nil, zero value otherwise.
+
+### GetCspmHostPercentageOk
+
+`func (o *UsageAttributionValues) GetCspmHostPercentageOk() (*float64, bool)`
+
+GetCspmHostPercentageOk returns a tuple with the CspmHostPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCspmHostPercentage
+
+`func (o *UsageAttributionValues) SetCspmHostPercentage(v float64)`
+
+SetCspmHostPercentage sets CspmHostPercentage field to given value.
+
+### HasCspmHostPercentage
+
+`func (o *UsageAttributionValues) HasCspmHostPercentage() bool`
+
+HasCspmHostPercentage returns a boolean if a field has been set.
+
+### GetCspmHostUsage
+
+`func (o *UsageAttributionValues) GetCspmHostUsage() float64`
+
+GetCspmHostUsage returns the CspmHostUsage field if non-nil, zero value otherwise.
+
+### GetCspmHostUsageOk
+
+`func (o *UsageAttributionValues) GetCspmHostUsageOk() (*float64, bool)`
+
+GetCspmHostUsageOk returns a tuple with the CspmHostUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCspmHostUsage
+
+`func (o *UsageAttributionValues) SetCspmHostUsage(v float64)`
+
+SetCspmHostUsage sets CspmHostUsage field to given value.
+
+### HasCspmHostUsage
+
+`func (o *UsageAttributionValues) HasCspmHostUsage() bool`
+
+HasCspmHostUsage returns a boolean if a field has been set.
 
 ### GetCustomTimeseriesPercentage
 

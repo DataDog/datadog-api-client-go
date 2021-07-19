@@ -10,7 +10,6 @@ Method | HTTP request | Description
 [**GetMonthlyCustomReports**](UsageMeteringApi.md#GetMonthlyCustomReports) | **Get** /api/v1/monthly_custom_reports | Get the list of available monthly custom reports
 [**GetSpecifiedDailyCustomReports**](UsageMeteringApi.md#GetSpecifiedDailyCustomReports) | **Get** /api/v1/daily_custom_reports/{report_id} | Get specified daily custom reports
 [**GetSpecifiedMonthlyCustomReports**](UsageMeteringApi.md#GetSpecifiedMonthlyCustomReports) | **Get** /api/v1/monthly_custom_reports/{report_id} | Get specified monthly custom reports
-[**GetTracingWithoutLimits**](UsageMeteringApi.md#GetTracingWithoutLimits) | **Get** /api/v1/usage/tracing-without-limits | Get hourly usage for tracing without limits
 [**GetUsageAnalyzedLogs**](UsageMeteringApi.md#GetUsageAnalyzedLogs) | **Get** /api/v1/usage/analyzed_logs | Get hourly usage for analyzed logs
 [**GetUsageAttribution**](UsageMeteringApi.md#GetUsageAttribution) | **Get** /api/v1/usage/attribution | Get Usage Attribution
 [**GetUsageAuditLogs**](UsageMeteringApi.md#GetUsageAuditLogs) | **Get** /api/v1/usage/audit_logs | Get hourly usage for audit logs
@@ -36,7 +35,6 @@ Method | HTTP request | Description
 [**GetUsageSyntheticsBrowser**](UsageMeteringApi.md#GetUsageSyntheticsBrowser) | **Get** /api/v1/usage/synthetics_browser | Get hourly usage for Synthetics Browser Checks
 [**GetUsageTimeseries**](UsageMeteringApi.md#GetUsageTimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics
 [**GetUsageTopAvgMetrics**](UsageMeteringApi.md#GetUsageTopAvgMetrics) | **Get** /api/v1/usage/top_avg_metrics | Get all custom metrics by hourly average
-[**GetUsageTrace**](UsageMeteringApi.md#GetUsageTrace) | **Get** /api/v1/usage/traces | Get hourly usage for Trace Search
 
 
 
@@ -495,88 +493,6 @@ This endpoint does not have optional parameters.
 ### Return type
 
 [**UsageSpecifiedCustomReportsResponse**](UsageSpecifiedCustomReportsResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetTracingWithoutLimits
-
-> UsageTracingWithoutLimitsResponse GetTracingWithoutLimits(ctx, startHr, datadog.GetTracingWithoutLimitsOptionalParameters{})
-
-Get hourly usage for tracing without limits.
-
-**Note** This endpoint has been renamed to `/api/v1/usage/ingested-spans`.
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "encoding/json"
-    "fmt"
-    "os"
-    "time"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := datadog.NewDefaultContext(context.Background())
-
-    startHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage beginning at this hour.
-    endHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending **before** this hour. (optional)
-    optionalParams := datadog.GetTracingWithoutLimitsOptionalParameters{
-        EndHr: &endHr,
-    }
-
-    configuration := datadog.NewConfiguration()
-
-    apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsageMeteringApi.GetTracingWithoutLimits(ctx, startHr, optionalParams)
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetTracingWithoutLimits`: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetTracingWithoutLimits`: UsageTracingWithoutLimitsResponse
-    responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetTracingWithoutLimits:\n%s\n", responseContent)
-}
-```
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
-
-### Optional Parameters
-
-
-Other parameters are passed through a pointer to a GetTracingWithoutLimitsOptionalParameters struct.
-
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
-
-### Return type
-
-[**UsageTracingWithoutLimitsResponse**](UsageTracingWithoutLimitsResponse.md)
 
 ### Authorization
 
@@ -2597,88 +2513,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UsageTopAvgMetricsResponse**](UsageTopAvgMetricsResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetUsageTrace
-
-> UsageTraceResponse GetUsageTrace(ctx, startHr, datadog.GetUsageTraceOptionalParameters{})
-
-Get hourly usage for trace search.
-
-**Note** This endpoint has been renamed to `/api/v1/usage/indexed-spans`.
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "encoding/json"
-    "fmt"
-    "os"
-    "time"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-)
-
-func main() {
-    ctx := datadog.NewDefaultContext(context.Background())
-
-    startHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour.
-    endHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. (optional)
-    optionalParams := datadog.GetUsageTraceOptionalParameters{
-        EndHr: &endHr,
-    }
-
-    configuration := datadog.NewConfiguration()
-
-    apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsageMeteringApi.GetUsageTrace(ctx, startHr, optionalParams)
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageTrace`: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetUsageTrace`: UsageTraceResponse
-    responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageTrace:\n%s\n", responseContent)
-}
-```
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
-
-### Optional Parameters
-
-
-Other parameters are passed through a pointer to a GetUsageTraceOptionalParameters struct.
-
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
-
-### Return type
-
-[**UsageTraceResponse**](UsageTraceResponse.md)
 
 ### Authorization
 

@@ -276,11 +276,11 @@ func TestAWSIntegrationDeleteErrors(t *testing.T) {
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
-		Body               datadog.AWSAccount
+		Body               datadog.AWSAccountDeleteRequest
 		ExpectedStatusCode int
 	}{
-		"400 Bad Request": {WithTestAuth, datadog.AWSAccount{}, 400},
-		"403 Forbidden":   {WithFakeAuth, datadog.AWSAccount{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.AWSAccountDeleteRequest{}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.AWSAccountDeleteRequest{}, 403},
 	}
 
 	for name, tc := range testCases {
@@ -383,8 +383,12 @@ func TestAWSIntegrationUpdateErrors(t *testing.T) {
 }
 
 func retryDeleteAccount(ctx context.Context, t *testing.T, awsAccount datadog.AWSAccount) {
+	// Convert AWSAccount to AWSAccountDeleteRequest
+	body := datadog.NewAWSAccountDeleteRequestWithDefaults()
+	body.AccountId = awsAccount.AccountId
+	body.RoleName = awsAccount.RoleName
 	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
-		_, httpresp, _ := Client(ctx).AWSIntegrationApi.DeleteAWSAccount(ctx, awsAccount)
+		_, httpresp, _ := Client(ctx).AWSIntegrationApi.DeleteAWSAccount(ctx, *body)
 		if httpresp.StatusCode == 502 {
 			return false
 		}

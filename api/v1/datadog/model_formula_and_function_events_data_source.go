@@ -24,6 +24,7 @@ const (
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_RUM              FormulaAndFunctionEventsDataSource = "rum"
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_SECURITY_SIGNALS FormulaAndFunctionEventsDataSource = "security_signals"
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_PROFILES         FormulaAndFunctionEventsDataSource = "profiles"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT            FormulaAndFunctionEventsDataSource = "audit"
 )
 
 var allowedFormulaAndFunctionEventsDataSourceEnumValues = []FormulaAndFunctionEventsDataSource{
@@ -33,6 +34,7 @@ var allowedFormulaAndFunctionEventsDataSourceEnumValues = []FormulaAndFunctionEv
 	"rum",
 	"security_signals",
 	"profiles",
+	"audit",
 }
 
 func (w *FormulaAndFunctionEventsDataSource) GetAllowedValues() []FormulaAndFunctionEventsDataSource {
