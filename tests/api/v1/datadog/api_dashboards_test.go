@@ -575,7 +575,7 @@ func TestDashboardLifecycle(t *testing.T) {
 				CustomFgColor: datadog.PtrString("black"),
 				ImageUrl:      datadog.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
 			}},
-			CellDisplayMode: &[]datadog.TableWidgetCellDisplayMode{datadog.TABLEWIDGETCELLDISPLAYMODE_NUMBER},
+			CellDisplayMode: datadog.TABLEWIDGETCELLDISPLAYMODE_NUMBER.Ptr(),
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
 		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
