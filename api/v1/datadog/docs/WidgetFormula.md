@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Alias** | Pointer to **string** | Expression alias. | [optional] 
+**CellDisplayMode** | Pointer to [**TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) |  | [optional] 
+**ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
 **Formula** | **string** | String expression built from queries, formulas, and functions. | 
 **Limit** | Pointer to [**WidgetFormulaLimit**](WidgetFormulaLimit.md) |  | [optional] 
 
@@ -51,6 +53,56 @@ SetAlias sets Alias field to given value.
 `func (o *WidgetFormula) HasAlias() bool`
 
 HasAlias returns a boolean if a field has been set.
+
+### GetCellDisplayMode
+
+`func (o *WidgetFormula) GetCellDisplayMode() TableWidgetCellDisplayMode`
+
+GetCellDisplayMode returns the CellDisplayMode field if non-nil, zero value otherwise.
+
+### GetCellDisplayModeOk
+
+`func (o *WidgetFormula) GetCellDisplayModeOk() (*TableWidgetCellDisplayMode, bool)`
+
+GetCellDisplayModeOk returns a tuple with the CellDisplayMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCellDisplayMode
+
+`func (o *WidgetFormula) SetCellDisplayMode(v TableWidgetCellDisplayMode)`
+
+SetCellDisplayMode sets CellDisplayMode field to given value.
+
+### HasCellDisplayMode
+
+`func (o *WidgetFormula) HasCellDisplayMode() bool`
+
+HasCellDisplayMode returns a boolean if a field has been set.
+
+### GetConditionalFormats
+
+`func (o *WidgetFormula) GetConditionalFormats() []WidgetConditionalFormat`
+
+GetConditionalFormats returns the ConditionalFormats field if non-nil, zero value otherwise.
+
+### GetConditionalFormatsOk
+
+`func (o *WidgetFormula) GetConditionalFormatsOk() (*[]WidgetConditionalFormat, bool)`
+
+GetConditionalFormatsOk returns a tuple with the ConditionalFormats field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConditionalFormats
+
+`func (o *WidgetFormula) SetConditionalFormats(v []WidgetConditionalFormat)`
+
+SetConditionalFormats sets ConditionalFormats field to given value.
+
+### HasConditionalFormats
+
+`func (o *WidgetFormula) HasConditionalFormats() bool`
+
+HasConditionalFormats returns a boolean if a field has been set.
 
 ### GetFormula
 
