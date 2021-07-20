@@ -16,7 +16,10 @@ import (
 // WidgetFormula Formula to be used in a widget query.
 type WidgetFormula struct {
 	// Expression alias.
-	Alias *string `json:"alias,omitempty"`
+	Alias           *string                     `json:"alias,omitempty"`
+	CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
+	// List of conditional formats.
+	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	// String expression built from queries, formulas, and functions.
 	Formula string              `json:"formula"`
 	Limit   *WidgetFormulaLimit `json:"limit,omitempty"`
@@ -70,6 +73,70 @@ func (o *WidgetFormula) HasAlias() bool {
 // SetAlias gets a reference to the given string and assigns it to the Alias field.
 func (o *WidgetFormula) SetAlias(v string) {
 	o.Alias = &v
+}
+
+// GetCellDisplayMode returns the CellDisplayMode field value if set, zero value otherwise.
+func (o *WidgetFormula) GetCellDisplayMode() TableWidgetCellDisplayMode {
+	if o == nil || o.CellDisplayMode == nil {
+		var ret TableWidgetCellDisplayMode
+		return ret
+	}
+	return *o.CellDisplayMode
+}
+
+// GetCellDisplayModeOk returns a tuple with the CellDisplayMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WidgetFormula) GetCellDisplayModeOk() (*TableWidgetCellDisplayMode, bool) {
+	if o == nil || o.CellDisplayMode == nil {
+		return nil, false
+	}
+	return o.CellDisplayMode, true
+}
+
+// HasCellDisplayMode returns a boolean if a field has been set.
+func (o *WidgetFormula) HasCellDisplayMode() bool {
+	if o != nil && o.CellDisplayMode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCellDisplayMode gets a reference to the given TableWidgetCellDisplayMode and assigns it to the CellDisplayMode field.
+func (o *WidgetFormula) SetCellDisplayMode(v TableWidgetCellDisplayMode) {
+	o.CellDisplayMode = &v
+}
+
+// GetConditionalFormats returns the ConditionalFormats field value if set, zero value otherwise.
+func (o *WidgetFormula) GetConditionalFormats() []WidgetConditionalFormat {
+	if o == nil || o.ConditionalFormats == nil {
+		var ret []WidgetConditionalFormat
+		return ret
+	}
+	return *o.ConditionalFormats
+}
+
+// GetConditionalFormatsOk returns a tuple with the ConditionalFormats field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WidgetFormula) GetConditionalFormatsOk() (*[]WidgetConditionalFormat, bool) {
+	if o == nil || o.ConditionalFormats == nil {
+		return nil, false
+	}
+	return o.ConditionalFormats, true
+}
+
+// HasConditionalFormats returns a boolean if a field has been set.
+func (o *WidgetFormula) HasConditionalFormats() bool {
+	if o != nil && o.ConditionalFormats != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetConditionalFormats gets a reference to the given []WidgetConditionalFormat and assigns it to the ConditionalFormats field.
+func (o *WidgetFormula) SetConditionalFormats(v []WidgetConditionalFormat) {
+	o.ConditionalFormats = &v
 }
 
 // GetFormula returns the Formula field value
@@ -133,6 +200,12 @@ func (o WidgetFormula) MarshalJSON() ([]byte, error) {
 	if o.Alias != nil {
 		toSerialize["alias"] = o.Alias
 	}
+	if o.CellDisplayMode != nil {
+		toSerialize["cell_display_mode"] = o.CellDisplayMode
+	}
+	if o.ConditionalFormats != nil {
+		toSerialize["conditional_formats"] = o.ConditionalFormats
+	}
 	if true {
 		toSerialize["formula"] = o.Formula
 	}
@@ -147,9 +220,11 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		Formula *string `json:"formula"`
 	}{}
 	all := struct {
-		Alias   *string             `json:"alias,omitempty"`
-		Formula string              `json:"formula"`
-		Limit   *WidgetFormulaLimit `json:"limit,omitempty"`
+		Alias              *string                     `json:"alias,omitempty"`
+		CellDisplayMode    *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
+		ConditionalFormats *[]WidgetConditionalFormat  `json:"conditional_formats,omitempty"`
+		Formula            string                      `json:"formula"`
+		Limit              *WidgetFormulaLimit         `json:"limit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -163,6 +238,8 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Alias = all.Alias
+	o.CellDisplayMode = all.CellDisplayMode
+	o.ConditionalFormats = all.ConditionalFormats
 	o.Formula = all.Formula
 	o.Limit = all.Limit
 	return nil
