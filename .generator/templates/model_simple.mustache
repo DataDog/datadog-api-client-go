@@ -416,29 +416,33 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 			{{name}} {{^required}}{{^isNullable}}*{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"`
 {{/vars}}
 		}{}
-	err = json.Unmarshal(bytes, &raw)
-	if err != nil {
-		return err
-	}
 {{#hasRequired}}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
-		o.UnparsedObject = raw
+		return err
 	}
 {{#requiredVars}}
-	if _, ok := o.UnparsedObject["{{baseName}}"]; required.{{name}} == nil && !ok {
+	if required.{{name}} == nil {
 		return fmt.Errorf("Required field {{baseName}} missing")
 	}
 {{/requiredVars}}
 {{/hasRequired}}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
+        err = json.Unmarshal(bytes, &raw)
+        if err != nil {
+            return err
+        }
 		o.UnparsedObject = raw
 		return nil
 	}
 {{#vars}}
 {{#allowableValues}}
 	if v := all.{{name}}; {{^required}}v != nil && {{/required}}!v.IsValid() {
+        err = json.Unmarshal(bytes, &raw)
+        if err != nil {
+            return err
+        }
 		o.UnparsedObject = raw
 		return nil
 	}
