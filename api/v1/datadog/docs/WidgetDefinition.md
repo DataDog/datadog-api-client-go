@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **HostMapWidgetDefinition** | Pointer to [**HostMapWidgetDefinition**](HostMapWidgetDefinition.md) | A pointer to the appropriate element. |
 **IFrameWidgetDefinition** | Pointer to [**IFrameWidgetDefinition**](IFrameWidgetDefinition.md) | A pointer to the appropriate element. |
 **ImageWidgetDefinition** | Pointer to [**ImageWidgetDefinition**](ImageWidgetDefinition.md) | A pointer to the appropriate element. |
+**ListStreamWidgetDefinition** | Pointer to [**ListStreamWidgetDefinition**](ListStreamWidgetDefinition.md) | A pointer to the appropriate element. |
 **LogStreamWidgetDefinition** | Pointer to [**LogStreamWidgetDefinition**](LogStreamWidgetDefinition.md) | A pointer to the appropriate element. |
 **MonitorSummaryWidgetDefinition** | Pointer to [**MonitorSummaryWidgetDefinition**](MonitorSummaryWidgetDefinition.md) | A pointer to the appropriate element. |
 **NoteWidgetDefinition** | Pointer to [**NoteWidgetDefinition**](NoteWidgetDefinition.md) | A pointer to the appropriate element. |
