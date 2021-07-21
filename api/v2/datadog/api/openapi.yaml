@@ -5123,7 +5123,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponse'
+                $ref: '#/components/schemas/OrganizationsResponse'
           description: OK
         "403":
           content:
@@ -9692,6 +9692,18 @@ components:
       type: object
     Organization:
       description: Organization object.
+      example:
+        attributes:
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          description: description
+          disabled: true
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          sharing: sharing
+          url: url
+          public_id: public_id
+        id: id
+        type: orgs
       properties:
         attributes:
           $ref: '#/components/schemas/OrganizationAttributes'
@@ -9705,6 +9717,15 @@ components:
       type: object
     OrganizationAttributes:
       description: Attributes of the organization.
+      example:
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        description: description
+        disabled: true
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        sharing: sharing
+        url: url
+        public_id: public_id
       properties:
         created_at:
           description: Creation time of the organization.
@@ -9732,6 +9753,46 @@ components:
         url:
           description: URL of the site that this organization exists at.
           type: string
+      type: object
+    OrganizationsResponse:
+      description: Response containing information about multiple organizations.
+      example:
+        data:
+        - attributes:
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            description: description
+            disabled: true
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            sharing: sharing
+            url: url
+            public_id: public_id
+          id: id
+          type: orgs
+        - attributes:
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            description: description
+            disabled: true
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            sharing: sharing
+            url: url
+            public_id: public_id
+          id: id
+          type: orgs
+        meta:
+          page:
+            total_count: 6
+            total_filtered_count: 1
+      properties:
+        data:
+          description: Array of returned organizations.
+          items:
+            $ref: '#/components/schemas/Organization'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ResponseMetaAttributes'
+      readOnly: true
       type: object
     OrganizationsType:
       default: orgs

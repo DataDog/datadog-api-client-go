@@ -634,7 +634,7 @@ type apiListUserOrganizationsRequest struct {
  * Get a user organization. Returns the user information and all organizations
 joined by this user.
 */
-func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId string) (OrganizationsResponse, *_nethttp.Response, error) {
 	req := apiListUserOrganizationsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -646,16 +646,16 @@ func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId str
 
 /*
  * Execute executes the request
- * @return UserResponse
+ * @return OrganizationsResponse
  */
-func (a *UsersApiService) listUserOrganizationsExecute(r apiListUserOrganizationsRequest) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) listUserOrganizationsExecute(r apiListUserOrganizationsRequest) (OrganizationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UserResponse
+		localVarReturnValue  OrganizationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.ListUserOrganizations")

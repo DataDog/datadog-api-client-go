@@ -373,6 +373,7 @@ Class | Method | HTTP request | Description
  - [MetricsAndMetricTagConfigurationsResponse](docs/MetricsAndMetricTagConfigurationsResponse.md)
  - [Organization](docs/Organization.md)
  - [OrganizationAttributes](docs/OrganizationAttributes.md)
+ - [OrganizationsResponse](docs/OrganizationsResponse.md)
  - [OrganizationsType](docs/OrganizationsType.md)
  - [Pagination](docs/Pagination.md)
  - [PartialAPIKey](docs/PartialAPIKey.md)

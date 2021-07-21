@@ -295,7 +295,7 @@ This endpoint does not have optional parameters.
 
 ## ListUserOrganizations
 
-> UserResponse ListUserOrganizations(ctx, userId)
+> OrganizationsResponse ListUserOrganizations(ctx, userId)
 
 Get a user organization. Returns the user information and all organizations
 joined by this user.
@@ -326,7 +326,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUserOrganizations`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListUserOrganizations`: UserResponse
+    // response from `ListUserOrganizations`: OrganizationsResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
     fmt.Fprintf(os.Stdout, "Response from UsersApi.ListUserOrganizations:\n%s\n", responseContent)
 }
@@ -348,7 +348,7 @@ This endpoint does not have optional parameters.
 
 ### Return type
 
-[**UserResponse**](UserResponse.md)
+[**OrganizationsResponse**](OrganizationsResponse.md)
 
 ### Authorization
 

@@ -225,6 +225,7 @@ docs/MetricsAndMetricTagConfigurationsResponse.md
 docs/MetricsApi.md
 docs/Organization.md
 docs/OrganizationAttributes.md
+docs/OrganizationsResponse.md
 docs/OrganizationsType.md
 docs/Pagination.md
 docs/PartialAPIKey.md
@@ -551,6 +552,7 @@ model_metrics_and_metric_tag_configurations.go
 model_metrics_and_metric_tag_configurations_response.go
 model_organization.go
 model_organization_attributes.go
+model_organizations_response.go
 model_organizations_type.go
 model_pagination.go
 model_partial_api_key.go
