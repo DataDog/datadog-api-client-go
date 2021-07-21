@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **CellDisplayMode** | Pointer to [**[]TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) | A list of display modes for each table cell. | [optional] 
 **ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
 **EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+**Formulas** | Pointer to [**[]WidgetFormula**](WidgetFormula.md) | List of formulas that operate on queries. **This feature is currently in beta.** | [optional] 
 **Limit** | Pointer to **int64** | For metric queries, the number of lines to show in the table. Only one request should have this property. | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
@@ -18,6 +19,8 @@ Name | Type | Description | Notes
 **ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
 **ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **Q** | Pointer to **string** | Query definition. | [optional] 
+**Queries** | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. **This feature is currently in beta.** | [optional] 
+**ResponseFormat** | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md) |  | [optional] 
 **RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **SecurityQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 
@@ -215,6 +218,31 @@ SetEventQuery sets EventQuery field to given value.
 
 HasEventQuery returns a boolean if a field has been set.
 
+### GetFormulas
+
+`func (o *TableWidgetRequest) GetFormulas() []WidgetFormula`
+
+GetFormulas returns the Formulas field if non-nil, zero value otherwise.
+
+### GetFormulasOk
+
+`func (o *TableWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool)`
+
+GetFormulasOk returns a tuple with the Formulas field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFormulas
+
+`func (o *TableWidgetRequest) SetFormulas(v []WidgetFormula)`
+
+SetFormulas sets Formulas field to given value.
+
+### HasFormulas
+
+`func (o *TableWidgetRequest) HasFormulas() bool`
+
+HasFormulas returns a boolean if a field has been set.
+
 ### GetLimit
 
 `func (o *TableWidgetRequest) GetLimit() int64`
@@ -389,6 +417,56 @@ SetQ sets Q field to given value.
 `func (o *TableWidgetRequest) HasQ() bool`
 
 HasQ returns a boolean if a field has been set.
+
+### GetQueries
+
+`func (o *TableWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition`
+
+GetQueries returns the Queries field if non-nil, zero value otherwise.
+
+### GetQueriesOk
+
+`func (o *TableWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinition, bool)`
+
+GetQueriesOk returns a tuple with the Queries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQueries
+
+`func (o *TableWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition)`
+
+SetQueries sets Queries field to given value.
+
+### HasQueries
+
+`func (o *TableWidgetRequest) HasQueries() bool`
+
+HasQueries returns a boolean if a field has been set.
+
+### GetResponseFormat
+
+`func (o *TableWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat`
+
+GetResponseFormat returns the ResponseFormat field if non-nil, zero value otherwise.
+
+### GetResponseFormatOk
+
+`func (o *TableWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionResponseFormat, bool)`
+
+GetResponseFormatOk returns a tuple with the ResponseFormat field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResponseFormat
+
+`func (o *TableWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat)`
+
+SetResponseFormat sets ResponseFormat field to given value.
+
+### HasResponseFormat
+
+`func (o *TableWidgetRequest) HasResponseFormat() bool`
+
+HasResponseFormat returns a boolean if a field has been set.
 
 ### GetRumQuery
 
