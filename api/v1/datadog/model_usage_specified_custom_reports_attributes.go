@@ -26,6 +26,8 @@ type UsageSpecifiedCustomReportsAttributes struct {
 	StartDate *string `json:"start_date,omitempty"`
 	// A list of tags to apply to specified custom reports.
 	Tags *[]string `json:"tags,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageSpecifiedCustomReportsAttributes instantiates a new UsageSpecifiedCustomReportsAttributes object
@@ -239,6 +241,9 @@ func (o *UsageSpecifiedCustomReportsAttributes) SetTags(v []string) {
 
 func (o UsageSpecifiedCustomReportsAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ComputedOn != nil {
 		toSerialize["computed_on"] = o.ComputedOn
 	}
@@ -258,6 +263,34 @@ func (o UsageSpecifiedCustomReportsAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageSpecifiedCustomReportsAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ComputedOn *string   `json:"computed_on,omitempty"`
+		EndDate    *string   `json:"end_date,omitempty"`
+		Location   *string   `json:"location,omitempty"`
+		Size       *int64    `json:"size,omitempty"`
+		StartDate  *string   `json:"start_date,omitempty"`
+		Tags       *[]string `json:"tags,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ComputedOn = all.ComputedOn
+	o.EndDate = all.EndDate
+	o.Location = all.Location
+	o.Size = all.Size
+	o.StartDate = all.StartDate
+	o.Tags = all.Tags
+	return nil
 }
 
 type NullableUsageSpecifiedCustomReportsAttributes struct {

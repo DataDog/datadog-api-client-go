@@ -31,6 +31,8 @@ type WidgetConditionalFormat struct {
 	Timeframe *string `json:"timeframe,omitempty"`
 	// Value for the comparator.
 	Value float64 `json:"value"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewWidgetConditionalFormat instantiates a new WidgetConditionalFormat object
@@ -319,6 +321,9 @@ func (o *WidgetConditionalFormat) SetValue(v float64) {
 
 func (o WidgetConditionalFormat) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["comparator"] = o.Comparator
 	}
@@ -350,6 +355,7 @@ func (o WidgetConditionalFormat) MarshalJSON() ([]byte, error) {
 }
 
 func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Comparator *WidgetComparator `json:"comparator"`
 		Palette    *WidgetPalette    `json:"palette"`
@@ -381,7 +387,28 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Comparator; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Palette; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Comparator = all.Comparator
 	o.CustomBgColor = all.CustomBgColor

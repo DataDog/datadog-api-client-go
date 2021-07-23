@@ -47,15 +47,8 @@ func (v *EventAlertType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := EventAlertType(value)
-	for _, existing := range allowedEventAlertTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid EventAlertType", value)
+	*v = EventAlertType(value)
+	return nil
 }
 
 // NewEventAlertTypeFromValue returns a pointer to a valid EventAlertType

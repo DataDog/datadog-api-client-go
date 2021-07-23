@@ -36,6 +36,8 @@ type LogStreamWidgetDefinition struct {
 	// Size of the title.
 	TitleSize *string                       `json:"title_size,omitempty"`
 	Type      LogStreamWidgetDefinitionType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogStreamWidgetDefinition instantiates a new LogStreamWidgetDefinition object
@@ -468,6 +470,9 @@ func (o *LogStreamWidgetDefinition) SetType(v LogStreamWidgetDefinitionType) {
 
 func (o LogStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Columns != nil {
 		toSerialize["columns"] = o.Columns
 	}
@@ -511,6 +516,7 @@ func (o LogStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Type *LogStreamWidgetDefinitionType `json:"type"`
 	}{}
@@ -538,7 +544,36 @@ func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.MessageDisplay; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Columns = all.Columns
 	o.Indexes = all.Indexes

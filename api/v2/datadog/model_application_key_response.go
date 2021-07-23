@@ -17,6 +17,8 @@ type ApplicationKeyResponse struct {
 	Data *FullApplicationKey `json:"data,omitempty"`
 	// Array of objects related to the application key.
 	Included *[]ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewApplicationKeyResponse instantiates a new ApplicationKeyResponse object
@@ -102,6 +104,9 @@ func (o *ApplicationKeyResponse) SetIncluded(v []ApplicationKeyResponseIncludedI
 
 func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
@@ -109,6 +114,26 @@ func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["included"] = o.Included
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ApplicationKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data     *FullApplicationKey                   `json:"data,omitempty"`
+		Included *[]ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	o.Included = all.Included
+	return nil
 }
 
 type NullableApplicationKeyResponse struct {

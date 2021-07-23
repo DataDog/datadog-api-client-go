@@ -18,6 +18,8 @@ type SyntheticsTriggerCITestLocation struct {
 	Id *int64 `json:"id,omitempty"`
 	// Name of the location.
 	Name *string `json:"name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTriggerCITestLocation instantiates a new SyntheticsTriggerCITestLocation object
@@ -103,6 +105,9 @@ func (o *SyntheticsTriggerCITestLocation) SetName(v string) {
 
 func (o SyntheticsTriggerCITestLocation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -110,6 +115,26 @@ func (o SyntheticsTriggerCITestLocation) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTriggerCITestLocation) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Id   *int64  `json:"id,omitempty"`
+		Name *string `json:"name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Id = all.Id
+	o.Name = all.Name
+	return nil
 }
 
 type NullableSyntheticsTriggerCITestLocation struct {

@@ -30,6 +30,8 @@ type SyntheticsAPITestResultData struct {
 	// Global size in byte of the API test response.
 	ResponseSize *int64            `json:"responseSize,omitempty"`
 	Timings      *SyntheticsTiming `json:"timings,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsAPITestResultData instantiates a new SyntheticsAPITestResultData object
@@ -371,6 +373,9 @@ func (o *SyntheticsAPITestResultData) SetTimings(v SyntheticsTiming) {
 
 func (o SyntheticsAPITestResultData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Cert != nil {
 		toSerialize["cert"] = o.Cert
 	}
@@ -402,6 +407,58 @@ func (o SyntheticsAPITestResultData) MarshalJSON() ([]byte, error) {
 		toSerialize["timings"] = o.Timings
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Cert            *SyntheticsSSLCertificate    `json:"cert,omitempty"`
+		ErrorCode       *SyntheticsErrorCode         `json:"errorCode,omitempty"`
+		ErrorMessage    *string                      `json:"errorMessage,omitempty"`
+		EventType       *SyntheticsTestProcessStatus `json:"eventType,omitempty"`
+		HttpStatusCode  *int64                       `json:"httpStatusCode,omitempty"`
+		RequestHeaders  *map[string]interface{}      `json:"requestHeaders,omitempty"`
+		ResponseBody    *string                      `json:"responseBody,omitempty"`
+		ResponseHeaders *map[string]interface{}      `json:"responseHeaders,omitempty"`
+		ResponseSize    *int64                       `json:"responseSize,omitempty"`
+		Timings         *SyntheticsTiming            `json:"timings,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.ErrorCode; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.EventType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Cert = all.Cert
+	o.ErrorCode = all.ErrorCode
+	o.ErrorMessage = all.ErrorMessage
+	o.EventType = all.EventType
+	o.HttpStatusCode = all.HttpStatusCode
+	o.RequestHeaders = all.RequestHeaders
+	o.ResponseBody = all.ResponseBody
+	o.ResponseHeaders = all.ResponseHeaders
+	o.ResponseSize = all.ResponseSize
+	o.Timings = all.Timings
+	return nil
 }
 
 type NullableSyntheticsAPITestResultData struct {

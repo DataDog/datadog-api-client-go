@@ -25,6 +25,8 @@ type MonitorStateGroup struct {
 	// The name of the monitor.
 	Name   *string               `json:"name,omitempty"`
 	Status *MonitorOverallStates `json:"status,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorStateGroup instantiates a new MonitorStateGroup object
@@ -238,6 +240,9 @@ func (o *MonitorStateGroup) SetStatus(v MonitorOverallStates) {
 
 func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.LastNodataTs != nil {
 		toSerialize["last_nodata_ts"] = o.LastNodataTs
 	}
@@ -257,6 +262,42 @@ func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		LastNodataTs    *int64                `json:"last_nodata_ts,omitempty"`
+		LastNotifiedTs  *int64                `json:"last_notified_ts,omitempty"`
+		LastResolvedTs  *int64                `json:"last_resolved_ts,omitempty"`
+		LastTriggeredTs *int64                `json:"last_triggered_ts,omitempty"`
+		Name            *string               `json:"name,omitempty"`
+		Status          *MonitorOverallStates `json:"status,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.LastNodataTs = all.LastNodataTs
+	o.LastNotifiedTs = all.LastNotifiedTs
+	o.LastResolvedTs = all.LastResolvedTs
+	o.LastTriggeredTs = all.LastTriggeredTs
+	o.Name = all.Name
+	o.Status = all.Status
+	return nil
 }
 
 type NullableMonitorStateGroup struct {

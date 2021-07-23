@@ -29,6 +29,8 @@ type UsageBillableSummaryBody struct {
 	PercentageInAccount *float64 `json:"percentage_in_account,omitempty"`
 	// Units pertaining to the usage.
 	UsageUnit *string `json:"usage_unit,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageBillableSummaryBody instantiates a new UsageBillableSummaryBody object
@@ -274,6 +276,9 @@ func (o *UsageBillableSummaryBody) SetUsageUnit(v string) {
 
 func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AccountBillableUsage != nil {
 		toSerialize["account_billable_usage"] = o.AccountBillableUsage
 	}
@@ -296,6 +301,36 @@ func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 		toSerialize["usage_unit"] = o.UsageUnit
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AccountBillableUsage   *int64     `json:"account_billable_usage,omitempty"`
+		ElapsedUsageHours      *int64     `json:"elapsed_usage_hours,omitempty"`
+		FirstBillableUsageHour *time.Time `json:"first_billable_usage_hour,omitempty"`
+		LastBillableUsageHour  *time.Time `json:"last_billable_usage_hour,omitempty"`
+		OrgBillableUsage       *int64     `json:"org_billable_usage,omitempty"`
+		PercentageInAccount    *float64   `json:"percentage_in_account,omitempty"`
+		UsageUnit              *string    `json:"usage_unit,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AccountBillableUsage = all.AccountBillableUsage
+	o.ElapsedUsageHours = all.ElapsedUsageHours
+	o.FirstBillableUsageHour = all.FirstBillableUsageHour
+	o.LastBillableUsageHour = all.LastBillableUsageHour
+	o.OrgBillableUsage = all.OrgBillableUsage
+	o.PercentageInAccount = all.PercentageInAccount
+	o.UsageUnit = all.UsageUnit
+	return nil
 }
 
 type NullableUsageBillableSummaryBody struct {

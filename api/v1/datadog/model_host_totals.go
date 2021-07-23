@@ -18,6 +18,8 @@ type HostTotals struct {
 	TotalActive *int64 `json:"total_active,omitempty"`
 	// Number of host that are UP and reporting to Datadog.
 	TotalUp *int64 `json:"total_up,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewHostTotals instantiates a new HostTotals object
@@ -103,6 +105,9 @@ func (o *HostTotals) SetTotalUp(v int64) {
 
 func (o HostTotals) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.TotalActive != nil {
 		toSerialize["total_active"] = o.TotalActive
 	}
@@ -110,6 +115,26 @@ func (o HostTotals) MarshalJSON() ([]byte, error) {
 		toSerialize["total_up"] = o.TotalUp
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *HostTotals) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		TotalActive *int64 `json:"total_active,omitempty"`
+		TotalUp     *int64 `json:"total_up,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.TotalActive = all.TotalActive
+	o.TotalUp = all.TotalUp
+	return nil
 }
 
 type NullableHostTotals struct {

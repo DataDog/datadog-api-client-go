@@ -22,6 +22,8 @@ type WidgetCustomLink struct {
 	Link *string `json:"link,omitempty"`
 	// The label ID that refers to a context menu link. Can be `logs`, `hosts`, `traces`, `profiles`, `processes`, `containers`, or `rum`.
 	OverrideLabel *string `json:"override_label,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewWidgetCustomLink instantiates a new WidgetCustomLink object
@@ -171,6 +173,9 @@ func (o *WidgetCustomLink) SetOverrideLabel(v string) {
 
 func (o WidgetCustomLink) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.IsHidden != nil {
 		toSerialize["is_hidden"] = o.IsHidden
 	}
@@ -184,6 +189,30 @@ func (o WidgetCustomLink) MarshalJSON() ([]byte, error) {
 		toSerialize["override_label"] = o.OverrideLabel
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *WidgetCustomLink) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		IsHidden      *bool   `json:"is_hidden,omitempty"`
+		Label         *string `json:"label,omitempty"`
+		Link          *string `json:"link,omitempty"`
+		OverrideLabel *string `json:"override_label,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.IsHidden = all.IsHidden
+	o.Label = all.Label
+	o.Link = all.Link
+	o.OverrideLabel = all.OverrideLabel
+	return nil
 }
 
 type NullableWidgetCustomLink struct {

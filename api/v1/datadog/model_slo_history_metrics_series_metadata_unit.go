@@ -26,6 +26,8 @@ type SLOHistoryMetricsSeriesMetadataUnit struct {
 	ScaleFactor *float64 `json:"scale_factor,omitempty"`
 	// A shorter and abbreviated version of the metric unit, for instance `B`.
 	ShortName NullableString `json:"short_name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOHistoryMetricsSeriesMetadataUnit instantiates a new SLOHistoryMetricsSeriesMetadataUnit object
@@ -261,6 +263,9 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) UnsetShortName() {
 
 func (o SLOHistoryMetricsSeriesMetadataUnit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Family != nil {
 		toSerialize["family"] = o.Family
 	}
@@ -280,6 +285,34 @@ func (o SLOHistoryMetricsSeriesMetadataUnit) MarshalJSON() ([]byte, error) {
 		toSerialize["short_name"] = o.ShortName.Get()
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Family      *string        `json:"family,omitempty"`
+		Id          *int64         `json:"id,omitempty"`
+		Name        *string        `json:"name,omitempty"`
+		Plural      NullableString `json:"plural,omitempty"`
+		ScaleFactor *float64       `json:"scale_factor,omitempty"`
+		ShortName   NullableString `json:"short_name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Family = all.Family
+	o.Id = all.Id
+	o.Name = all.Name
+	o.Plural = all.Plural
+	o.ScaleFactor = all.ScaleFactor
+	o.ShortName = all.ShortName
+	return nil
 }
 
 type NullableSLOHistoryMetricsSeriesMetadataUnit struct {

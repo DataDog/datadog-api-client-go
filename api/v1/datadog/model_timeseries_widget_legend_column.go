@@ -43,15 +43,8 @@ func (v *TimeseriesWidgetLegendColumn) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := TimeseriesWidgetLegendColumn(value)
-	for _, existing := range allowedTimeseriesWidgetLegendColumnEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid TimeseriesWidgetLegendColumn", value)
+	*v = TimeseriesWidgetLegendColumn(value)
+	return nil
 }
 
 // NewTimeseriesWidgetLegendColumnFromValue returns a pointer to a valid TimeseriesWidgetLegendColumn

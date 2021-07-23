@@ -35,6 +35,8 @@ type UserAttributes struct {
 	Title *string `json:"title,omitempty"`
 	// Whether the user is verified.
 	Verified *bool `json:"verified,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserAttributes instantiates a new UserAttributes object
@@ -376,6 +378,9 @@ func (o *UserAttributes) SetVerified(v bool) {
 
 func (o UserAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -407,6 +412,42 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["verified"] = o.Verified
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		CreatedAt  *time.Time `json:"created_at,omitempty"`
+		Disabled   *bool      `json:"disabled,omitempty"`
+		Email      *string    `json:"email,omitempty"`
+		Handle     *string    `json:"handle,omitempty"`
+		Icon       *string    `json:"icon,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		Name       *string    `json:"name,omitempty"`
+		Status     *string    `json:"status,omitempty"`
+		Title      *string    `json:"title,omitempty"`
+		Verified   *bool      `json:"verified,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.CreatedAt = all.CreatedAt
+	o.Disabled = all.Disabled
+	o.Email = all.Email
+	o.Handle = all.Handle
+	o.Icon = all.Icon
+	o.ModifiedAt = all.ModifiedAt
+	o.Name = all.Name
+	o.Status = all.Status
+	o.Title = all.Title
+	o.Verified = all.Verified
+	return nil
 }
 
 type NullableUserAttributes struct {

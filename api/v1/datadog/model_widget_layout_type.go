@@ -35,15 +35,8 @@ func (v *WidgetLayoutType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetLayoutType(value)
-	for _, existing := range allowedWidgetLayoutTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetLayoutType", value)
+	*v = WidgetLayoutType(value)
+	return nil
 }
 
 // NewWidgetLayoutTypeFromValue returns a pointer to a valid WidgetLayoutType

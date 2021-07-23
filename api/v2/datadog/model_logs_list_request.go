@@ -18,6 +18,8 @@ type LogsListRequest struct {
 	Options *LogsQueryOptions    `json:"options,omitempty"`
 	Page    *LogsListRequestPage `json:"page,omitempty"`
 	Sort    *LogsSort            `json:"sort,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsListRequest instantiates a new LogsListRequest object
@@ -167,6 +169,9 @@ func (o *LogsListRequest) SetSort(v LogsSort) {
 
 func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter
 	}
@@ -180,6 +185,38 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["sort"] = o.Sort
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Filter  *LogsQueryFilter     `json:"filter,omitempty"`
+		Options *LogsQueryOptions    `json:"options,omitempty"`
+		Page    *LogsListRequestPage `json:"page,omitempty"`
+		Sort    *LogsSort            `json:"sort,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Sort; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Filter = all.Filter
+	o.Options = all.Options
+	o.Page = all.Page
+	o.Sort = all.Sort
+	return nil
 }
 
 type NullableLogsListRequest struct {

@@ -17,6 +17,8 @@ import (
 type IncidentServiceUpdateAttributes struct {
 	// Name of the incident service.
 	Name string `json:"name"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentServiceUpdateAttributes instantiates a new IncidentServiceUpdateAttributes object
@@ -63,6 +65,9 @@ func (o *IncidentServiceUpdateAttributes) SetName(v string) {
 
 func (o IncidentServiceUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
@@ -70,6 +75,7 @@ func (o IncidentServiceUpdateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *IncidentServiceUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
@@ -85,7 +91,12 @@ func (o *IncidentServiceUpdateAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Name = all.Name
 	return nil

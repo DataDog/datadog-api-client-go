@@ -21,6 +21,8 @@ type LogsCompute struct {
 	// The metric to use
 	Metric *string          `json:"metric,omitempty"`
 	Type   *LogsComputeType `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsCompute instantiates a new LogsCompute object
@@ -167,6 +169,9 @@ func (o *LogsCompute) SetType(v LogsComputeType) {
 
 func (o LogsCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["aggregation"] = o.Aggregation
 	}
@@ -183,6 +188,7 @@ func (o LogsCompute) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Aggregation *LogsAggregationFunction `json:"aggregation"`
 	}{}
@@ -201,7 +207,28 @@ func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Aggregation; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Aggregation = all.Aggregation
 	o.Interval = all.Interval

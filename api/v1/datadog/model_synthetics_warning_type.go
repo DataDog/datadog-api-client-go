@@ -35,15 +35,8 @@ func (v *SyntheticsWarningType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsWarningType(value)
-	for _, existing := range allowedSyntheticsWarningTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsWarningType", value)
+	*v = SyntheticsWarningType(value)
+	return nil
 }
 
 // NewSyntheticsWarningTypeFromValue returns a pointer to a valid SyntheticsWarningType

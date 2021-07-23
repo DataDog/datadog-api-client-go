@@ -43,6 +43,8 @@ type UsageHostHour struct {
 	OpentelemetryHostCount *int64 `json:"opentelemetry_host_count,omitempty"`
 	// Contains the total number of hosts that reported via vSphere integration (and were NOT running the Datadog Agent).
 	VsphereHostCount *int64 `json:"vsphere_host_count,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageHostHour instantiates a new UsageHostHour object
@@ -512,6 +514,9 @@ func (o *UsageHostHour) SetVsphereHostCount(v int64) {
 
 func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AgentHostCount != nil {
 		toSerialize["agent_host_count"] = o.AgentHostCount
 	}
@@ -555,6 +560,50 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 		toSerialize["vsphere_host_count"] = o.VsphereHostCount
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AgentHostCount              *int64     `json:"agent_host_count,omitempty"`
+		AlibabaHostCount            *int64     `json:"alibaba_host_count,omitempty"`
+		ApmAzureAppServiceHostCount *int64     `json:"apm_azure_app_service_host_count,omitempty"`
+		ApmHostCount                *int64     `json:"apm_host_count,omitempty"`
+		AwsHostCount                *int64     `json:"aws_host_count,omitempty"`
+		AzureHostCount              *int64     `json:"azure_host_count,omitempty"`
+		ContainerCount              *int64     `json:"container_count,omitempty"`
+		GcpHostCount                *int64     `json:"gcp_host_count,omitempty"`
+		HerokuHostCount             *int64     `json:"heroku_host_count,omitempty"`
+		HostCount                   *int64     `json:"host_count,omitempty"`
+		Hour                        *time.Time `json:"hour,omitempty"`
+		InfraAzureAppService        *int64     `json:"infra_azure_app_service,omitempty"`
+		OpentelemetryHostCount      *int64     `json:"opentelemetry_host_count,omitempty"`
+		VsphereHostCount            *int64     `json:"vsphere_host_count,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AgentHostCount = all.AgentHostCount
+	o.AlibabaHostCount = all.AlibabaHostCount
+	o.ApmAzureAppServiceHostCount = all.ApmAzureAppServiceHostCount
+	o.ApmHostCount = all.ApmHostCount
+	o.AwsHostCount = all.AwsHostCount
+	o.AzureHostCount = all.AzureHostCount
+	o.ContainerCount = all.ContainerCount
+	o.GcpHostCount = all.GcpHostCount
+	o.HerokuHostCount = all.HerokuHostCount
+	o.HostCount = all.HostCount
+	o.Hour = all.Hour
+	o.InfraAzureAppService = all.InfraAzureAppService
+	o.OpentelemetryHostCount = all.OpentelemetryHostCount
+	o.VsphereHostCount = all.VsphereHostCount
+	return nil
 }
 
 type NullableUsageHostHour struct {

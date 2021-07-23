@@ -22,6 +22,8 @@ type HostMuteResponse struct {
 	Hostname *string `json:"hostname,omitempty"`
 	// Message associated with the mute.
 	Message *string `json:"message,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewHostMuteResponse instantiates a new HostMuteResponse object
@@ -171,6 +173,9 @@ func (o *HostMuteResponse) SetMessage(v string) {
 
 func (o HostMuteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Action != nil {
 		toSerialize["action"] = o.Action
 	}
@@ -184,6 +189,30 @@ func (o HostMuteResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["message"] = o.Message
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *HostMuteResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Action   *string `json:"action,omitempty"`
+		End      *int64  `json:"end,omitempty"`
+		Hostname *string `json:"hostname,omitempty"`
+		Message  *string `json:"message,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Action = all.Action
+	o.End = all.End
+	o.Hostname = all.Hostname
+	o.Message = all.Message
+	return nil
 }
 
 type NullableHostMuteResponse struct {

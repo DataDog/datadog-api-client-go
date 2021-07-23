@@ -22,6 +22,8 @@ type SyntheticsBrowserTestConfig struct {
 	SetCookie *string `json:"setCookie,omitempty"`
 	// Array of variables used for the test steps.
 	Variables *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsBrowserTestConfig instantiates a new SyntheticsBrowserTestConfig object
@@ -157,6 +159,9 @@ func (o *SyntheticsBrowserTestConfig) SetVariables(v []SyntheticsBrowserVariable
 
 func (o SyntheticsBrowserTestConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["assertions"] = o.Assertions
 	}
@@ -173,6 +178,7 @@ func (o SyntheticsBrowserTestConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Assertions *[]SyntheticsAssertion `json:"assertions"`
 		Request    *SyntheticsTestRequest `json:"request"`
@@ -195,7 +201,12 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Assertions = all.Assertions
 	o.Request = all.Request

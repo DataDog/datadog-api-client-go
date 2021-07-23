@@ -35,15 +35,8 @@ func (v *ListStreamResponseFormat) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ListStreamResponseFormat(value)
-	for _, existing := range allowedListStreamResponseFormatEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ListStreamResponseFormat", value)
+	*v = ListStreamResponseFormat(value)
+	return nil
 }
 
 // NewListStreamResponseFormatFromValue returns a pointer to a valid ListStreamResponseFormat

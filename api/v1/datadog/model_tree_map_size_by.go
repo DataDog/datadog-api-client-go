@@ -37,15 +37,8 @@ func (v *TreeMapSizeBy) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := TreeMapSizeBy(value)
-	for _, existing := range allowedTreeMapSizeByEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid TreeMapSizeBy", value)
+	*v = TreeMapSizeBy(value)
+	return nil
 }
 
 // NewTreeMapSizeByFromValue returns a pointer to a valid TreeMapSizeBy

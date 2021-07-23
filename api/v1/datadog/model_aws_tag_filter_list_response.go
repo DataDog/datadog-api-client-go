@@ -16,6 +16,8 @@ import (
 type AWSTagFilterListResponse struct {
 	// An array of tag filters.
 	Filters *[]AWSTagFilter `json:"filters,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAWSTagFilterListResponse instantiates a new AWSTagFilterListResponse object
@@ -69,10 +71,31 @@ func (o *AWSTagFilterListResponse) SetFilters(v []AWSTagFilter) {
 
 func (o AWSTagFilterListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Filters != nil {
 		toSerialize["filters"] = o.Filters
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSTagFilterListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Filters *[]AWSTagFilter `json:"filters,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Filters = all.Filters
+	return nil
 }
 
 type NullableAWSTagFilterListResponse struct {

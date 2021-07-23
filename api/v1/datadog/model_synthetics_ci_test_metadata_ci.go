@@ -18,6 +18,8 @@ type SyntheticsCITestMetadataCi struct {
 	Pipeline *string `json:"pipeline,omitempty"`
 	// Name of the CI provider.
 	Provider *string `json:"provider,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsCITestMetadataCi instantiates a new SyntheticsCITestMetadataCi object
@@ -103,6 +105,9 @@ func (o *SyntheticsCITestMetadataCi) SetProvider(v string) {
 
 func (o SyntheticsCITestMetadataCi) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Pipeline != nil {
 		toSerialize["pipeline"] = o.Pipeline
 	}
@@ -110,6 +115,26 @@ func (o SyntheticsCITestMetadataCi) MarshalJSON() ([]byte, error) {
 		toSerialize["provider"] = o.Provider
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsCITestMetadataCi) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Pipeline *string `json:"pipeline,omitempty"`
+		Provider *string `json:"provider,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Pipeline = all.Pipeline
+	o.Provider = all.Provider
+	return nil
 }
 
 type NullableSyntheticsCITestMetadataCi struct {

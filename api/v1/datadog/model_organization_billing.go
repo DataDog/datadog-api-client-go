@@ -16,6 +16,8 @@ import (
 type OrganizationBilling struct {
 	// The type of billing. Only `parent_billing` is supported.
 	Type *string `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewOrganizationBilling instantiates a new OrganizationBilling object
@@ -69,10 +71,31 @@ func (o *OrganizationBilling) SetType(v string) {
 
 func (o OrganizationBilling) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *OrganizationBilling) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Type *string `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Type = all.Type
+	return nil
 }
 
 type NullableOrganizationBilling struct {

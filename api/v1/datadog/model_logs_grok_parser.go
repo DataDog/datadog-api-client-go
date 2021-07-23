@@ -25,6 +25,8 @@ type LogsGrokParser struct {
 	// Name of the log attribute to parse.
 	Source string             `json:"source"`
 	Type   LogsGrokParserType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsGrokParser instantiates a new LogsGrokParser object
@@ -225,6 +227,9 @@ func (o *LogsGrokParser) SetType(v LogsGrokParserType) {
 
 func (o LogsGrokParser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["grok"] = o.Grok
 	}
@@ -247,6 +252,7 @@ func (o LogsGrokParser) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Grok   *LogsGrokParserRules `json:"grok"`
 		Source *string              `json:"source"`
@@ -275,7 +281,20 @@ func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Grok = all.Grok
 	o.IsEnabled = all.IsEnabled

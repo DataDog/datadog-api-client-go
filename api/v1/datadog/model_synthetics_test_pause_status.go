@@ -37,15 +37,8 @@ func (v *SyntheticsTestPauseStatus) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsTestPauseStatus(value)
-	for _, existing := range allowedSyntheticsTestPauseStatusEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsTestPauseStatus", value)
+	*v = SyntheticsTestPauseStatus(value)
+	return nil
 }
 
 // NewSyntheticsTestPauseStatusFromValue returns a pointer to a valid SyntheticsTestPauseStatus

@@ -16,6 +16,8 @@ import (
 type DashboardListListResponse struct {
 	// List of all your dashboard lists.
 	DashboardLists *[]DashboardList `json:"dashboard_lists,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDashboardListListResponse instantiates a new DashboardListListResponse object
@@ -69,10 +71,31 @@ func (o *DashboardListListResponse) SetDashboardLists(v []DashboardList) {
 
 func (o DashboardListListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DashboardLists != nil {
 		toSerialize["dashboard_lists"] = o.DashboardLists
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DashboardListListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		DashboardLists *[]DashboardList `json:"dashboard_lists,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.DashboardLists = all.DashboardLists
+	return nil
 }
 
 type NullableDashboardListListResponse struct {

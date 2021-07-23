@@ -17,6 +17,8 @@ import (
 type NotebookCellCreateRequest struct {
 	Attributes NotebookCellCreateRequestAttributes `json:"attributes"`
 	Type       NotebookCellResourceType            `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewNotebookCellCreateRequest instantiates a new NotebookCellCreateRequest object
@@ -90,6 +92,9 @@ func (o *NotebookCellCreateRequest) SetType(v NotebookCellResourceType) {
 
 func (o NotebookCellCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["attributes"] = o.Attributes
 	}
@@ -100,6 +105,7 @@ func (o NotebookCellCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (o *NotebookCellCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *NotebookCellCreateRequestAttributes `json:"attributes"`
 		Type       *NotebookCellResourceType            `json:"type"`
@@ -120,7 +126,20 @@ func (o *NotebookCellCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Attributes = all.Attributes
 	o.Type = all.Type

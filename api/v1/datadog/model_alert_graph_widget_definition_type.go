@@ -35,15 +35,8 @@ func (v *AlertGraphWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := AlertGraphWidgetDefinitionType(value)
-	for _, existing := range allowedAlertGraphWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid AlertGraphWidgetDefinitionType", value)
+	*v = AlertGraphWidgetDefinitionType(value)
+	return nil
 }
 
 // NewAlertGraphWidgetDefinitionTypeFromValue returns a pointer to a valid AlertGraphWidgetDefinitionType

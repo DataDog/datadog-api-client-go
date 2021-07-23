@@ -16,6 +16,8 @@ import (
 type SLOCorrectionCreateData struct {
 	Attributes *SLOCorrectionCreateRequestAttributes `json:"attributes,omitempty"`
 	Type       *SLOCorrectionType                    `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOCorrectionCreateData instantiates a new SLOCorrectionCreateData object
@@ -105,6 +107,9 @@ func (o *SLOCorrectionCreateData) SetType(v SLOCorrectionType) {
 
 func (o SLOCorrectionCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
@@ -112,6 +117,34 @@ func (o SLOCorrectionCreateData) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOCorrectionCreateData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Attributes *SLOCorrectionCreateRequestAttributes `json:"attributes,omitempty"`
+		Type       *SLOCorrectionType                    `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Attributes = all.Attributes
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSLOCorrectionCreateData struct {

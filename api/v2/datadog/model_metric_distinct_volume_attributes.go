@@ -16,6 +16,8 @@ import (
 type MetricDistinctVolumeAttributes struct {
 	// Distinct volume for the given metric.
 	DistinctVolume *int64 `json:"distinct_volume,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricDistinctVolumeAttributes instantiates a new MetricDistinctVolumeAttributes object
@@ -69,10 +71,31 @@ func (o *MetricDistinctVolumeAttributes) SetDistinctVolume(v int64) {
 
 func (o MetricDistinctVolumeAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DistinctVolume != nil {
 		toSerialize["distinct_volume"] = o.DistinctVolume
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricDistinctVolumeAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		DistinctVolume *int64 `json:"distinct_volume,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.DistinctVolume = all.DistinctVolume
+	return nil
 }
 
 type NullableMetricDistinctVolumeAttributes struct {

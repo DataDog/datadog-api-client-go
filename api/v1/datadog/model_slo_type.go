@@ -37,15 +37,8 @@ func (v *SLOType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SLOType(value)
-	for _, existing := range allowedSLOTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SLOType", value)
+	*v = SLOType(value)
+	return nil
 }
 
 // NewSLOTypeFromValue returns a pointer to a valid SLOType

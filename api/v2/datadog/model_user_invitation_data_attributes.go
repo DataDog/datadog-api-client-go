@@ -23,6 +23,8 @@ type UserInvitationDataAttributes struct {
 	InviteType *string `json:"invite_type,omitempty"`
 	// UUID of the user invitation.
 	Uuid *string `json:"uuid,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserInvitationDataAttributes instantiates a new UserInvitationDataAttributes object
@@ -172,6 +174,9 @@ func (o *UserInvitationDataAttributes) SetUuid(v string) {
 
 func (o UserInvitationDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -185,6 +190,30 @@ func (o UserInvitationDataAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["uuid"] = o.Uuid
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserInvitationDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		CreatedAt  *time.Time `json:"created_at,omitempty"`
+		ExpiresAt  *time.Time `json:"expires_at,omitempty"`
+		InviteType *string    `json:"invite_type,omitempty"`
+		Uuid       *string    `json:"uuid,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.CreatedAt = all.CreatedAt
+	o.ExpiresAt = all.ExpiresAt
+	o.InviteType = all.InviteType
+	o.Uuid = all.Uuid
+	return nil
 }
 
 type NullableUserInvitationDataAttributes struct {

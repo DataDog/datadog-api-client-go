@@ -36,6 +36,8 @@ type HostMapWidgetDefinition struct {
 	// Size of the title.
 	TitleSize *string                     `json:"title_size,omitempty"`
 	Type      HostMapWidgetDefinitionType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewHostMapWidgetDefinition instantiates a new HostMapWidgetDefinition object
@@ -461,6 +463,9 @@ func (o *HostMapWidgetDefinition) SetType(v HostMapWidgetDefinitionType) {
 
 func (o HostMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CustomLinks != nil {
 		toSerialize["custom_links"] = o.CustomLinks
 	}
@@ -504,6 +509,7 @@ func (o HostMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Requests *HostMapWidgetDefinitionRequests `json:"requests"`
 		Type     *HostMapWidgetDefinitionType     `json:"type"`
@@ -535,7 +541,36 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.NodeType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.CustomLinks = all.CustomLinks
 	o.Group = all.Group

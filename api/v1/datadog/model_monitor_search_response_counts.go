@@ -22,6 +22,8 @@ type MonitorSearchResponseCounts struct {
 	Tag *[]interface{} `json:"tag,omitempty"`
 	// Search facets.
 	Type *[]interface{} `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorSearchResponseCounts instantiates a new MonitorSearchResponseCounts object
@@ -171,6 +173,9 @@ func (o *MonitorSearchResponseCounts) SetType(v []interface{}) {
 
 func (o MonitorSearchResponseCounts) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Muted != nil {
 		toSerialize["muted"] = o.Muted
 	}
@@ -184,6 +189,30 @@ func (o MonitorSearchResponseCounts) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorSearchResponseCounts) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Muted  *[]interface{} `json:"muted,omitempty"`
+		Status *[]interface{} `json:"status,omitempty"`
+		Tag    *[]interface{} `json:"tag,omitempty"`
+		Type   *[]interface{} `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Muted = all.Muted
+	o.Status = all.Status
+	o.Tag = all.Tag
+	o.Type = all.Type
+	return nil
 }
 
 type NullableMonitorSearchResponseCounts struct {

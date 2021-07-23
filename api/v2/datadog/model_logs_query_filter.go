@@ -22,6 +22,8 @@ type LogsQueryFilter struct {
 	Query *string `json:"query,omitempty"`
 	// The maximum time for the requested logs, supports date math and regular timestamps
 	To *string `json:"to,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsQueryFilter instantiates a new LogsQueryFilter object
@@ -183,6 +185,9 @@ func (o *LogsQueryFilter) SetTo(v string) {
 
 func (o LogsQueryFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.From != nil {
 		toSerialize["from"] = o.From
 	}
@@ -196,6 +201,30 @@ func (o LogsQueryFilter) MarshalJSON() ([]byte, error) {
 		toSerialize["to"] = o.To
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		From    *string   `json:"from,omitempty"`
+		Indexes *[]string `json:"indexes,omitempty"`
+		Query   *string   `json:"query,omitempty"`
+		To      *string   `json:"to,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.From = all.From
+	o.Indexes = all.Indexes
+	o.Query = all.Query
+	o.To = all.To
+	return nil
 }
 
 type NullableLogsQueryFilter struct {

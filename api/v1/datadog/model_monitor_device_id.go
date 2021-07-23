@@ -51,15 +51,8 @@ func (v *MonitorDeviceID) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := MonitorDeviceID(value)
-	for _, existing := range allowedMonitorDeviceIDEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid MonitorDeviceID", value)
+	*v = MonitorDeviceID(value)
+	return nil
 }
 
 // NewMonitorDeviceIDFromValue returns a pointer to a valid MonitorDeviceID

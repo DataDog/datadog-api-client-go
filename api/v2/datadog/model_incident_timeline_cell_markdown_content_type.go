@@ -35,15 +35,8 @@ func (v *IncidentTimelineCellMarkdownContentType) UnmarshalJSON(src []byte) erro
 	if err != nil {
 		return err
 	}
-	enumTypeValue := IncidentTimelineCellMarkdownContentType(value)
-	for _, existing := range allowedIncidentTimelineCellMarkdownContentTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid IncidentTimelineCellMarkdownContentType", value)
+	*v = IncidentTimelineCellMarkdownContentType(value)
+	return nil
 }
 
 // NewIncidentTimelineCellMarkdownContentTypeFromValue returns a pointer to a valid IncidentTimelineCellMarkdownContentType

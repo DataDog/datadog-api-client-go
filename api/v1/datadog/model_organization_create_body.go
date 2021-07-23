@@ -19,6 +19,8 @@ type OrganizationCreateBody struct {
 	// The name of the new child-organization, limited to 32 characters.
 	Name         string                    `json:"name"`
 	Subscription *OrganizationSubscription `json:"subscription,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewOrganizationCreateBody instantiates a new OrganizationCreateBody object
@@ -129,6 +131,9 @@ func (o *OrganizationCreateBody) SetSubscription(v OrganizationSubscription) {
 
 func (o OrganizationCreateBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Billing != nil {
 		toSerialize["billing"] = o.Billing
 	}
@@ -142,6 +147,7 @@ func (o OrganizationCreateBody) MarshalJSON() ([]byte, error) {
 }
 
 func (o *OrganizationCreateBody) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
@@ -159,7 +165,12 @@ func (o *OrganizationCreateBody) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Billing = all.Billing
 	o.Name = all.Name

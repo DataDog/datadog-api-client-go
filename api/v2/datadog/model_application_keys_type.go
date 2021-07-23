@@ -35,15 +35,8 @@ func (v *ApplicationKeysType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ApplicationKeysType(value)
-	for _, existing := range allowedApplicationKeysTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ApplicationKeysType", value)
+	*v = ApplicationKeysType(value)
+	return nil
 }
 
 // NewApplicationKeysTypeFromValue returns a pointer to a valid ApplicationKeysType

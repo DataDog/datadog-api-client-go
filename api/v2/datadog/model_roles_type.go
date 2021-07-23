@@ -35,15 +35,8 @@ func (v *RolesType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := RolesType(value)
-	for _, existing := range allowedRolesTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid RolesType", value)
+	*v = RolesType(value)
+	return nil
 }
 
 // NewRolesTypeFromValue returns a pointer to a valid RolesType

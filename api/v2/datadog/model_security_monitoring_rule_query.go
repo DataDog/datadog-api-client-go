@@ -26,6 +26,8 @@ type SecurityMonitoringRuleQuery struct {
 	Name *string `json:"name,omitempty"`
 	// Query to run on logs.
 	Query *string `json:"query,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringRuleQuery instantiates a new SecurityMonitoringRuleQuery object
@@ -271,6 +273,9 @@ func (o *SecurityMonitoringRuleQuery) SetQuery(v string) {
 
 func (o SecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AgentRule != nil {
 		toSerialize["agentRule"] = o.AgentRule
 	}
@@ -293,6 +298,44 @@ func (o SecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
 		toSerialize["query"] = o.Query
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringRuleQuery) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AgentRule      *SecurityMonitoringRuntimeAgentRule     `json:"agentRule,omitempty"`
+		Aggregation    *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+		DistinctFields *[]string                               `json:"distinctFields,omitempty"`
+		GroupByFields  *[]string                               `json:"groupByFields,omitempty"`
+		Metric         *string                                 `json:"metric,omitempty"`
+		Name           *string                                 `json:"name,omitempty"`
+		Query          *string                                 `json:"query,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Aggregation; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AgentRule = all.AgentRule
+	o.Aggregation = all.Aggregation
+	o.DistinctFields = all.DistinctFields
+	o.GroupByFields = all.GroupByFields
+	o.Metric = all.Metric
+	o.Name = all.Name
+	o.Query = all.Query
+	return nil
 }
 
 type NullableSecurityMonitoringRuleQuery struct {

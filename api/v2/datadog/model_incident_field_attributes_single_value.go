@@ -17,6 +17,8 @@ type IncidentFieldAttributesSingleValue struct {
 	Type *IncidentFieldAttributesSingleValueType `json:"type,omitempty"`
 	// The single value selected for this field.
 	Value *string `json:"value,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentFieldAttributesSingleValue instantiates a new IncidentFieldAttributesSingleValue object
@@ -106,6 +108,9 @@ func (o *IncidentFieldAttributesSingleValue) SetValue(v string) {
 
 func (o IncidentFieldAttributesSingleValue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
@@ -113,6 +118,34 @@ func (o IncidentFieldAttributesSingleValue) MarshalJSON() ([]byte, error) {
 		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentFieldAttributesSingleValue) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Type  *IncidentFieldAttributesSingleValueType `json:"type,omitempty"`
+		Value *string                                 `json:"value,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Type = all.Type
+	o.Value = all.Value
+	return nil
 }
 
 type NullableIncidentFieldAttributesSingleValue struct {

@@ -15,6 +15,8 @@ import (
 // IncidentServicesResponseMeta The metadata object containing pagination metadata.
 type IncidentServicesResponseMeta struct {
 	Pagination *IncidentServicesResponseMetaPagination `json:"pagination,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentServicesResponseMeta instantiates a new IncidentServicesResponseMeta object
@@ -68,10 +70,31 @@ func (o *IncidentServicesResponseMeta) SetPagination(v IncidentServicesResponseM
 
 func (o IncidentServicesResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentServicesResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Pagination *IncidentServicesResponseMetaPagination `json:"pagination,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Pagination = all.Pagination
+	return nil
 }
 
 type NullableIncidentServicesResponseMeta struct {

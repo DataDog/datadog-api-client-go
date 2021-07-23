@@ -16,6 +16,8 @@ import (
 type SyntheticsPrivateLocationSecretsConfigDecryption struct {
 	// Private key for the private location.
 	Key *string `json:"key,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsPrivateLocationSecretsConfigDecryption instantiates a new SyntheticsPrivateLocationSecretsConfigDecryption object
@@ -69,10 +71,31 @@ func (o *SyntheticsPrivateLocationSecretsConfigDecryption) SetKey(v string) {
 
 func (o SyntheticsPrivateLocationSecretsConfigDecryption) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Key != nil {
 		toSerialize["key"] = o.Key
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsPrivateLocationSecretsConfigDecryption) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Key *string `json:"key,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Key = all.Key
+	return nil
 }
 
 type NullableSyntheticsPrivateLocationSecretsConfigDecryption struct {

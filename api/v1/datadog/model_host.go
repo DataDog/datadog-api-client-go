@@ -40,6 +40,8 @@ type Host struct {
 	TagsBySource *map[string][]string `json:"tags_by_source,omitempty"`
 	// Displays UP when the expected metrics are received and displays `???` if no metrics are received.
 	Up *bool `json:"up,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewHost instantiates a new Host object
@@ -509,6 +511,9 @@ func (o *Host) SetUp(v bool) {
 
 func (o Host) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Aliases != nil {
 		toSerialize["aliases"] = o.Aliases
 	}
@@ -552,6 +557,50 @@ func (o Host) MarshalJSON() ([]byte, error) {
 		toSerialize["up"] = o.Up
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Aliases          *[]string            `json:"aliases,omitempty"`
+		Apps             *[]string            `json:"apps,omitempty"`
+		AwsName          *string              `json:"aws_name,omitempty"`
+		HostName         *string              `json:"host_name,omitempty"`
+		Id               *int64               `json:"id,omitempty"`
+		IsMuted          *bool                `json:"is_muted,omitempty"`
+		LastReportedTime *int64               `json:"last_reported_time,omitempty"`
+		Meta             *HostMeta            `json:"meta,omitempty"`
+		Metrics          *HostMetrics         `json:"metrics,omitempty"`
+		MuteTimeout      *int64               `json:"mute_timeout,omitempty"`
+		Name             *string              `json:"name,omitempty"`
+		Sources          *[]string            `json:"sources,omitempty"`
+		TagsBySource     *map[string][]string `json:"tags_by_source,omitempty"`
+		Up               *bool                `json:"up,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Aliases = all.Aliases
+	o.Apps = all.Apps
+	o.AwsName = all.AwsName
+	o.HostName = all.HostName
+	o.Id = all.Id
+	o.IsMuted = all.IsMuted
+	o.LastReportedTime = all.LastReportedTime
+	o.Meta = all.Meta
+	o.Metrics = all.Metrics
+	o.MuteTimeout = all.MuteTimeout
+	o.Name = all.Name
+	o.Sources = all.Sources
+	o.TagsBySource = all.TagsBySource
+	o.Up = all.Up
+	return nil
 }
 
 type NullableHost struct {

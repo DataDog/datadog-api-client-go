@@ -17,6 +17,8 @@ import (
 type APIErrorResponse struct {
 	// A list of errors.
 	Errors []string `json:"errors"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAPIErrorResponse instantiates a new APIErrorResponse object
@@ -63,6 +65,9 @@ func (o *APIErrorResponse) SetErrors(v []string) {
 
 func (o APIErrorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["errors"] = o.Errors
 	}
@@ -70,6 +75,7 @@ func (o APIErrorResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (o *APIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Errors *[]string `json:"errors"`
 	}{}
@@ -85,7 +91,12 @@ func (o *APIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Errors = all.Errors
 	return nil

@@ -22,6 +22,8 @@ type LogsServiceRemapper struct {
 	// Array of source attributes.
 	Sources []string                `json:"sources"`
 	Type    LogsServiceRemapperType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsServiceRemapper instantiates a new LogsServiceRemapper object
@@ -163,6 +165,9 @@ func (o *LogsServiceRemapper) SetType(v LogsServiceRemapperType) {
 
 func (o LogsServiceRemapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.IsEnabled != nil {
 		toSerialize["is_enabled"] = o.IsEnabled
 	}
@@ -179,6 +184,7 @@ func (o LogsServiceRemapper) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsServiceRemapper) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Sources *[]string                `json:"sources"`
 		Type    *LogsServiceRemapperType `json:"type"`
@@ -201,7 +207,20 @@ func (o *LogsServiceRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name

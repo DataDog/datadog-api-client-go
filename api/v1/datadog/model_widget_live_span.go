@@ -63,15 +63,8 @@ func (v *WidgetLiveSpan) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetLiveSpan(value)
-	for _, existing := range allowedWidgetLiveSpanEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetLiveSpan", value)
+	*v = WidgetLiveSpan(value)
+	return nil
 }
 
 // NewWidgetLiveSpanFromValue returns a pointer to a valid WidgetLiveSpan

@@ -18,6 +18,8 @@ type UserResponseRelationships struct {
 	OtherOrgs  *RelationshipToOrganizations `json:"other_orgs,omitempty"`
 	OtherUsers *RelationshipToUsers         `json:"other_users,omitempty"`
 	Roles      *RelationshipToRoles         `json:"roles,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserResponseRelationships instantiates a new UserResponseRelationships object
@@ -167,6 +169,9 @@ func (o *UserResponseRelationships) SetRoles(v RelationshipToRoles) {
 
 func (o UserResponseRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Org != nil {
 		toSerialize["org"] = o.Org
 	}
@@ -180,6 +185,30 @@ func (o UserResponseRelationships) MarshalJSON() ([]byte, error) {
 		toSerialize["roles"] = o.Roles
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Org        *RelationshipToOrganization  `json:"org,omitempty"`
+		OtherOrgs  *RelationshipToOrganizations `json:"other_orgs,omitempty"`
+		OtherUsers *RelationshipToUsers         `json:"other_users,omitempty"`
+		Roles      *RelationshipToRoles         `json:"roles,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Org = all.Org
+	o.OtherOrgs = all.OtherOrgs
+	o.OtherUsers = all.OtherUsers
+	o.Roles = all.Roles
+	return nil
 }
 
 type NullableUserResponseRelationships struct {

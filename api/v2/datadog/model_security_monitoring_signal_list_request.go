@@ -17,6 +17,8 @@ type SecurityMonitoringSignalListRequest struct {
 	Filter *SecurityMonitoringSignalListRequestFilter `json:"filter,omitempty"`
 	Page   *SecurityMonitoringSignalListRequestPage   `json:"page,omitempty"`
 	Sort   *SecurityMonitoringSignalsSort             `json:"sort,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringSignalListRequest instantiates a new SecurityMonitoringSignalListRequest object
@@ -134,6 +136,9 @@ func (o *SecurityMonitoringSignalListRequest) SetSort(v SecurityMonitoringSignal
 
 func (o SecurityMonitoringSignalListRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter
 	}
@@ -144,6 +149,36 @@ func (o SecurityMonitoringSignalListRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["sort"] = o.Sort
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Filter *SecurityMonitoringSignalListRequestFilter `json:"filter,omitempty"`
+		Page   *SecurityMonitoringSignalListRequestPage   `json:"page,omitempty"`
+		Sort   *SecurityMonitoringSignalsSort             `json:"sort,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Sort; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Filter = all.Filter
+	o.Page = all.Page
+	o.Sort = all.Sort
+	return nil
 }
 
 type NullableSecurityMonitoringSignalListRequest struct {

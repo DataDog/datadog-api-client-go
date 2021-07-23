@@ -24,6 +24,8 @@ type HTTPLogItem struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the application or service generating the log events. It is used to switch from Logs to APM, so make sure you define the same value when you use both products. See [reserved attributes](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes).
 	Service *string `json:"service,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewHTTPLogItem instantiates a new HTTPLogItem object
@@ -205,6 +207,9 @@ func (o *HTTPLogItem) SetService(v string) {
 
 func (o HTTPLogItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Ddsource != nil {
 		toSerialize["ddsource"] = o.Ddsource
 	}
@@ -221,6 +226,32 @@ func (o HTTPLogItem) MarshalJSON() ([]byte, error) {
 		toSerialize["service"] = o.Service
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Ddsource *string `json:"ddsource,omitempty"`
+		Ddtags   *string `json:"ddtags,omitempty"`
+		Hostname *string `json:"hostname,omitempty"`
+		Message  *string `json:"message,omitempty"`
+		Service  *string `json:"service,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Ddsource = all.Ddsource
+	o.Ddtags = all.Ddtags
+	o.Hostname = all.Hostname
+	o.Message = all.Message
+	o.Service = all.Service
+	return nil
 }
 
 type NullableHTTPLogItem struct {

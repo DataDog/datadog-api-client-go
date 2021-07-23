@@ -22,6 +22,8 @@ type LogsRetentionAggSumUsage struct {
 	LogsRehydratedIndexedLogsUsageAggSum *int64 `json:"logs_rehydrated_indexed_logs_usage_agg_sum,omitempty"`
 	// The retention period in days or \"custom\" for all custom retention periods.
 	Retention *string `json:"retention,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsRetentionAggSumUsage instantiates a new LogsRetentionAggSumUsage object
@@ -171,6 +173,9 @@ func (o *LogsRetentionAggSumUsage) SetRetention(v string) {
 
 func (o LogsRetentionAggSumUsage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.LogsIndexedLogsUsageAggSum != nil {
 		toSerialize["logs_indexed_logs_usage_agg_sum"] = o.LogsIndexedLogsUsageAggSum
 	}
@@ -184,6 +189,30 @@ func (o LogsRetentionAggSumUsage) MarshalJSON() ([]byte, error) {
 		toSerialize["retention"] = o.Retention
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsRetentionAggSumUsage) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		LogsIndexedLogsUsageAggSum           *int64  `json:"logs_indexed_logs_usage_agg_sum,omitempty"`
+		LogsLiveIndexedLogsUsageAggSum       *int64  `json:"logs_live_indexed_logs_usage_agg_sum,omitempty"`
+		LogsRehydratedIndexedLogsUsageAggSum *int64  `json:"logs_rehydrated_indexed_logs_usage_agg_sum,omitempty"`
+		Retention                            *string `json:"retention,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.LogsIndexedLogsUsageAggSum = all.LogsIndexedLogsUsageAggSum
+	o.LogsLiveIndexedLogsUsageAggSum = all.LogsLiveIndexedLogsUsageAggSum
+	o.LogsRehydratedIndexedLogsUsageAggSum = all.LogsRehydratedIndexedLogsUsageAggSum
+	o.Retention = all.Retention
+	return nil
 }
 
 type NullableLogsRetentionAggSumUsage struct {

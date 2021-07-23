@@ -41,15 +41,8 @@ func (v *ServiceCheckStatus) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ServiceCheckStatus(value)
-	for _, existing := range allowedServiceCheckStatusEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ServiceCheckStatus", value)
+	*v = ServiceCheckStatus(value)
+	return nil
 }
 
 // NewServiceCheckStatusFromValue returns a pointer to a valid ServiceCheckStatus

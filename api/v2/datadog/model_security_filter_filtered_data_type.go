@@ -35,15 +35,8 @@ func (v *SecurityFilterFilteredDataType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SecurityFilterFilteredDataType(value)
-	for _, existing := range allowedSecurityFilterFilteredDataTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SecurityFilterFilteredDataType", value)
+	*v = SecurityFilterFilteredDataType(value)
+	return nil
 }
 
 // NewSecurityFilterFilteredDataTypeFromValue returns a pointer to a valid SecurityFilterFilteredDataType

@@ -23,6 +23,8 @@ type SecurityMonitoringSignalAttributes struct {
 	Tags *[]interface{} `json:"tags,omitempty"`
 	// The timestamp of the security signal.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringSignalAttributes instantiates a new SecurityMonitoringSignalAttributes object
@@ -172,6 +174,9 @@ func (o *SecurityMonitoringSignalAttributes) SetTimestamp(v time.Time) {
 
 func (o SecurityMonitoringSignalAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
@@ -185,6 +190,30 @@ func (o SecurityMonitoringSignalAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["timestamp"] = o.Timestamp
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringSignalAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Attributes *map[string]interface{} `json:"attributes,omitempty"`
+		Message    *string                 `json:"message,omitempty"`
+		Tags       *[]interface{}          `json:"tags,omitempty"`
+		Timestamp  *time.Time              `json:"timestamp,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Attributes = all.Attributes
+	o.Message = all.Message
+	o.Tags = all.Tags
+	o.Timestamp = all.Timestamp
+	return nil
 }
 
 type NullableSecurityMonitoringSignalAttributes struct {

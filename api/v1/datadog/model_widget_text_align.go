@@ -39,15 +39,8 @@ func (v *WidgetTextAlign) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetTextAlign(value)
-	for _, existing := range allowedWidgetTextAlignEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetTextAlign", value)
+	*v = WidgetTextAlign(value)
+	return nil
 }
 
 // NewWidgetTextAlignFromValue returns a pointer to a valid WidgetTextAlign

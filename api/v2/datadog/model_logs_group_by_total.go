@@ -10,117 +10,131 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // LogsGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type LogsGroupByTotal struct {
-	bool    *bool
-	float64 *float64
-	string  *string
+	Bool    *bool
+	Float64 *float64
+	String  *string
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
-// boolAsLogsGroupByTotal is a convenience function that returns bool wrapped in LogsGroupByTotal
-func boolAsLogsGroupByTotal(v *bool) LogsGroupByTotal {
-	return LogsGroupByTotal{bool: v}
+// BoolAsLogsGroupByTotal is a convenience function that returns bool wrapped in LogsGroupByTotal
+func BoolAsLogsGroupByTotal(v *bool) LogsGroupByTotal {
+	return LogsGroupByTotal{Bool: v}
 }
 
-// float64AsLogsGroupByTotal is a convenience function that returns float64 wrapped in LogsGroupByTotal
-func float64AsLogsGroupByTotal(v *float64) LogsGroupByTotal {
-	return LogsGroupByTotal{float64: v}
+// Float64AsLogsGroupByTotal is a convenience function that returns float64 wrapped in LogsGroupByTotal
+func Float64AsLogsGroupByTotal(v *float64) LogsGroupByTotal {
+	return LogsGroupByTotal{Float64: v}
 }
 
-// stringAsLogsGroupByTotal is a convenience function that returns string wrapped in LogsGroupByTotal
-func stringAsLogsGroupByTotal(v *string) LogsGroupByTotal {
-	return LogsGroupByTotal{string: v}
+// StringAsLogsGroupByTotal is a convenience function that returns string wrapped in LogsGroupByTotal
+func StringAsLogsGroupByTotal(v *string) LogsGroupByTotal {
+	return LogsGroupByTotal{String: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *LogsGroupByTotal) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into bool
-	err = json.Unmarshal(data, &dst.bool)
+	// try to unmarshal data into Bool
+	err = json.Unmarshal(data, &dst.Bool)
 	if err == nil {
-		jsonbool, _ := json.Marshal(dst.bool)
-		if string(jsonbool) == "{}" { // empty struct
-			dst.bool = nil
+		if dst.Bool != nil {
+			jsonBool, _ := json.Marshal(dst.Bool)
+			if string(jsonBool) == "{}" { // empty struct
+				dst.Bool = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.Bool = nil
 		}
 	} else {
-		dst.bool = nil
+		dst.Bool = nil
 	}
 
-	// try to unmarshal data into float64
-	err = json.Unmarshal(data, &dst.float64)
+	// try to unmarshal data into String
+	err = json.Unmarshal(data, &dst.String)
 	if err == nil {
-		jsonfloat64, _ := json.Marshal(dst.float64)
-		if string(jsonfloat64) == "{}" { // empty struct
-			dst.float64 = nil
+		if dst.String != nil {
+			jsonString, _ := json.Marshal(dst.String)
+			if string(jsonString) == "{}" { // empty struct
+				dst.String = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.String = nil
 		}
 	} else {
-		dst.float64 = nil
+		dst.String = nil
 	}
 
-	// try to unmarshal data into string
-	err = json.Unmarshal(data, &dst.string)
+	// try to unmarshal data into Float64
+	err = json.Unmarshal(data, &dst.Float64)
 	if err == nil {
-		jsonstring, _ := json.Marshal(dst.string)
-		if string(jsonstring) == "{}" { // empty struct
-			dst.string = nil
+		if dst.Float64 != nil {
+			jsonFloat64, _ := json.Marshal(dst.Float64)
+			if string(jsonFloat64) == "{}" { // empty struct
+				dst.Float64 = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.Float64 = nil
 		}
 	} else {
-		dst.string = nil
+		dst.Float64 = nil
 	}
 
-	if match > 1 { // more than 1 match
+	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.bool = nil
-		dst.float64 = nil
-		dst.string = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(LogsGroupByTotal)")
-	} else if match == 1 {
+		dst.Bool = nil
+		dst.Float64 = nil
+		dst.String = nil
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(LogsGroupByTotal)")
 	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src LogsGroupByTotal) MarshalJSON() ([]byte, error) {
-	if src.bool != nil {
-		return json.Marshal(&src.bool)
+	if src.Bool != nil {
+		return json.Marshal(&src.Bool)
 	}
 
-	if src.float64 != nil {
-		return json.Marshal(&src.float64)
+	if src.Float64 != nil {
+		return json.Marshal(&src.Float64)
 	}
 
-	if src.string != nil {
-		return json.Marshal(&src.string)
+	if src.String != nil {
+		return json.Marshal(&src.String)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 
 // Get the actual instance
 func (obj *LogsGroupByTotal) GetActualInstance() interface{} {
-	if obj.bool != nil {
-		return obj.bool
+	if obj.Bool != nil {
+		return obj.Bool
 	}
 
-	if obj.float64 != nil {
-		return obj.float64
+	if obj.Float64 != nil {
+		return obj.Float64
 	}
 
-	if obj.string != nil {
-		return obj.string
+	if obj.String != nil {
+		return obj.String
 	}
 
 	// all schemas are nil

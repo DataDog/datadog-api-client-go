@@ -10,7 +10,6 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // LogsArchiveDestination - An archive's destination.
@@ -18,6 +17,9 @@ type LogsArchiveDestination struct {
 	LogsArchiveDestinationAzure *LogsArchiveDestinationAzure
 	LogsArchiveDestinationGCS   *LogsArchiveDestinationGCS
 	LogsArchiveDestinationS3    *LogsArchiveDestinationS3
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // LogsArchiveDestinationAzureAsLogsArchiveDestination is a convenience function that returns LogsArchiveDestinationAzure wrapped in LogsArchiveDestination
@@ -47,11 +49,15 @@ func (dst *LogsArchiveDestination) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into LogsArchiveDestinationAzure
 	err = json.Unmarshal(data, &dst.LogsArchiveDestinationAzure)
 	if err == nil {
-		jsonLogsArchiveDestinationAzure, _ := json.Marshal(dst.LogsArchiveDestinationAzure)
-		if string(jsonLogsArchiveDestinationAzure) == "{}" { // empty struct
-			dst.LogsArchiveDestinationAzure = nil
+		if dst.LogsArchiveDestinationAzure != nil && dst.LogsArchiveDestinationAzure.UnparsedObject == nil {
+			jsonLogsArchiveDestinationAzure, _ := json.Marshal(dst.LogsArchiveDestinationAzure)
+			if string(jsonLogsArchiveDestinationAzure) == "{}" { // empty struct
+				dst.LogsArchiveDestinationAzure = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogsArchiveDestinationAzure = nil
 		}
 	} else {
 		dst.LogsArchiveDestinationAzure = nil
@@ -60,11 +66,15 @@ func (dst *LogsArchiveDestination) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into LogsArchiveDestinationGCS
 	err = json.Unmarshal(data, &dst.LogsArchiveDestinationGCS)
 	if err == nil {
-		jsonLogsArchiveDestinationGCS, _ := json.Marshal(dst.LogsArchiveDestinationGCS)
-		if string(jsonLogsArchiveDestinationGCS) == "{}" { // empty struct
-			dst.LogsArchiveDestinationGCS = nil
+		if dst.LogsArchiveDestinationGCS != nil && dst.LogsArchiveDestinationGCS.UnparsedObject == nil {
+			jsonLogsArchiveDestinationGCS, _ := json.Marshal(dst.LogsArchiveDestinationGCS)
+			if string(jsonLogsArchiveDestinationGCS) == "{}" { // empty struct
+				dst.LogsArchiveDestinationGCS = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogsArchiveDestinationGCS = nil
 		}
 	} else {
 		dst.LogsArchiveDestinationGCS = nil
@@ -73,27 +83,28 @@ func (dst *LogsArchiveDestination) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into LogsArchiveDestinationS3
 	err = json.Unmarshal(data, &dst.LogsArchiveDestinationS3)
 	if err == nil {
-		jsonLogsArchiveDestinationS3, _ := json.Marshal(dst.LogsArchiveDestinationS3)
-		if string(jsonLogsArchiveDestinationS3) == "{}" { // empty struct
-			dst.LogsArchiveDestinationS3 = nil
+		if dst.LogsArchiveDestinationS3 != nil && dst.LogsArchiveDestinationS3.UnparsedObject == nil {
+			jsonLogsArchiveDestinationS3, _ := json.Marshal(dst.LogsArchiveDestinationS3)
+			if string(jsonLogsArchiveDestinationS3) == "{}" { // empty struct
+				dst.LogsArchiveDestinationS3 = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogsArchiveDestinationS3 = nil
 		}
 	} else {
 		dst.LogsArchiveDestinationS3 = nil
 	}
 
-	if match > 1 { // more than 1 match
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.LogsArchiveDestinationAzure = nil
 		dst.LogsArchiveDestinationGCS = nil
 		dst.LogsArchiveDestinationS3 = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(LogsArchiveDestination)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(LogsArchiveDestination)")
 	}
 }
 
@@ -111,6 +122,9 @@ func (src LogsArchiveDestination) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.LogsArchiveDestinationS3)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

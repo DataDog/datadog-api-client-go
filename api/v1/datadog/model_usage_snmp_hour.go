@@ -19,6 +19,8 @@ type UsageSNMPHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the number of SNMP devices.
 	SnmpDevices *int64 `json:"snmp_devices,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageSNMPHour instantiates a new UsageSNMPHour object
@@ -104,6 +106,9 @@ func (o *UsageSNMPHour) SetSnmpDevices(v int64) {
 
 func (o UsageSNMPHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
@@ -111,6 +116,26 @@ func (o UsageSNMPHour) MarshalJSON() ([]byte, error) {
 		toSerialize["snmp_devices"] = o.SnmpDevices
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageSNMPHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Hour        *time.Time `json:"hour,omitempty"`
+		SnmpDevices *int64     `json:"snmp_devices,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Hour = all.Hour
+	o.SnmpDevices = all.SnmpDevices
+	return nil
 }
 
 type NullableUsageSNMPHour struct {

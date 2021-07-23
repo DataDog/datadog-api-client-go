@@ -37,15 +37,8 @@ func (v *SecurityMonitoringSignalsSort) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SecurityMonitoringSignalsSort(value)
-	for _, existing := range allowedSecurityMonitoringSignalsSortEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SecurityMonitoringSignalsSort", value)
+	*v = SecurityMonitoringSignalsSort(value)
+	return nil
 }
 
 // NewSecurityMonitoringSignalsSortFromValue returns a pointer to a valid SecurityMonitoringSignalsSort

@@ -22,6 +22,8 @@ type SlackIntegrationChannelDisplay struct {
 	Snapshot *bool `json:"snapshot,omitempty"`
 	// Show the scopes on which the monitor alerted.
 	Tags *bool `json:"tags,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSlackIntegrationChannelDisplay instantiates a new SlackIntegrationChannelDisplay object
@@ -187,6 +189,9 @@ func (o *SlackIntegrationChannelDisplay) SetTags(v bool) {
 
 func (o SlackIntegrationChannelDisplay) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
 	}
@@ -200,6 +205,30 @@ func (o SlackIntegrationChannelDisplay) MarshalJSON() ([]byte, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SlackIntegrationChannelDisplay) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Message  *bool `json:"message,omitempty"`
+		Notified *bool `json:"notified,omitempty"`
+		Snapshot *bool `json:"snapshot,omitempty"`
+		Tags     *bool `json:"tags,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Message = all.Message
+	o.Notified = all.Notified
+	o.Snapshot = all.Snapshot
+	o.Tags = all.Tags
+	return nil
 }
 
 type NullableSlackIntegrationChannelDisplay struct {

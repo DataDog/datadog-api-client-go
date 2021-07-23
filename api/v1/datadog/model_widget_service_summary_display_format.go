@@ -39,15 +39,8 @@ func (v *WidgetServiceSummaryDisplayFormat) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetServiceSummaryDisplayFormat(value)
-	for _, existing := range allowedWidgetServiceSummaryDisplayFormatEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetServiceSummaryDisplayFormat", value)
+	*v = WidgetServiceSummaryDisplayFormat(value)
+	return nil
 }
 
 // NewWidgetServiceSummaryDisplayFormatFromValue returns a pointer to a valid WidgetServiceSummaryDisplayFormat

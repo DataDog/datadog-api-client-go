@@ -35,15 +35,8 @@ func (v *TreeMapColorBy) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := TreeMapColorBy(value)
-	for _, existing := range allowedTreeMapColorByEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid TreeMapColorBy", value)
+	*v = TreeMapColorBy(value)
+	return nil
 }
 
 // NewTreeMapColorByFromValue returns a pointer to a valid TreeMapColorBy

@@ -19,6 +19,8 @@ type AWSLogsServicesRequest struct {
 	AccountId string `json:"account_id"`
 	// Array of services IDs set to enable automatic log collection. Discover the list of available services with the get list of AWS log ready services API endpoint.
 	Services []string `json:"services"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAWSLogsServicesRequest instantiates a new AWSLogsServicesRequest object
@@ -90,6 +92,9 @@ func (o *AWSLogsServicesRequest) SetServices(v []string) {
 
 func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["account_id"] = o.AccountId
 	}
@@ -100,6 +105,7 @@ func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		AccountId *string   `json:"account_id"`
 		Services  *[]string `json:"services"`
@@ -120,7 +126,12 @@ func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.AccountId = all.AccountId
 	o.Services = all.Services

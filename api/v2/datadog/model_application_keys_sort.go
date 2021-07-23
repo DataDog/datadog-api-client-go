@@ -45,15 +45,8 @@ func (v *ApplicationKeysSort) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ApplicationKeysSort(value)
-	for _, existing := range allowedApplicationKeysSortEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ApplicationKeysSort", value)
+	*v = ApplicationKeysSort(value)
+	return nil
 }
 
 // NewApplicationKeysSortFromValue returns a pointer to a valid ApplicationKeysSort

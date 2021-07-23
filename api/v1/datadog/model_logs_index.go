@@ -26,6 +26,8 @@ type LogsIndex struct {
 	Name string `json:"name"`
 	// The number of days before logs are deleted from this index. Available values depend on retention plans specified in your organization's contract/subscriptions.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsIndex instantiates a new LogsIndex object
@@ -225,6 +227,9 @@ func (o *LogsIndex) SetNumRetentionDays(v int64) {
 
 func (o LogsIndex) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DailyLimit != nil {
 		toSerialize["daily_limit"] = o.DailyLimit
 	}
@@ -247,6 +252,7 @@ func (o LogsIndex) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Filter *LogsFilter `json:"filter"`
 		Name   *string     `json:"name"`
@@ -271,7 +277,12 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.DailyLimit = all.DailyLimit
 	o.ExclusionFilters = all.ExclusionFilters

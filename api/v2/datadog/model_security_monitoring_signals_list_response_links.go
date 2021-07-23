@@ -16,6 +16,8 @@ import (
 type SecurityMonitoringSignalsListResponseLinks struct {
 	// The link for the next set of results. **Note**: The request can also be made using the POST endpoint.
 	Next *string `json:"next,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringSignalsListResponseLinks instantiates a new SecurityMonitoringSignalsListResponseLinks object
@@ -69,10 +71,31 @@ func (o *SecurityMonitoringSignalsListResponseLinks) SetNext(v string) {
 
 func (o SecurityMonitoringSignalsListResponseLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Next != nil {
 		toSerialize["next"] = o.Next
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringSignalsListResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Next *string `json:"next,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Next = all.Next
+	return nil
 }
 
 type NullableSecurityMonitoringSignalsListResponseLinks struct {

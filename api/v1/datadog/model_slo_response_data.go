@@ -39,6 +39,8 @@ type SLOResponseData struct {
 	// The thresholds (timeframes and associated targets) for this service level objective object.
 	Thresholds *[]SLOThreshold `json:"thresholds,omitempty"`
 	Type       *SLOType        `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOResponseData instantiates a new SLOResponseData object
@@ -519,6 +521,9 @@ func (o *SLOResponseData) SetType(v SLOType) {
 
 func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ConfiguredAlertIds != nil {
 		toSerialize["configured_alert_ids"] = o.ConfiguredAlertIds
 	}
@@ -562,6 +567,58 @@ func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ConfiguredAlertIds *[]int64                    `json:"configured_alert_ids,omitempty"`
+		CreatedAt          *int64                      `json:"created_at,omitempty"`
+		Creator            *Creator                    `json:"creator,omitempty"`
+		Description        NullableString              `json:"description,omitempty"`
+		Groups             *[]string                   `json:"groups,omitempty"`
+		Id                 *string                     `json:"id,omitempty"`
+		ModifiedAt         *int64                      `json:"modified_at,omitempty"`
+		MonitorIds         *[]int64                    `json:"monitor_ids,omitempty"`
+		MonitorTags        *[]string                   `json:"monitor_tags,omitempty"`
+		Name               *string                     `json:"name,omitempty"`
+		Query              *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+		Tags               *[]string                   `json:"tags,omitempty"`
+		Thresholds         *[]SLOThreshold             `json:"thresholds,omitempty"`
+		Type               *SLOType                    `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ConfiguredAlertIds = all.ConfiguredAlertIds
+	o.CreatedAt = all.CreatedAt
+	o.Creator = all.Creator
+	o.Description = all.Description
+	o.Groups = all.Groups
+	o.Id = all.Id
+	o.ModifiedAt = all.ModifiedAt
+	o.MonitorIds = all.MonitorIds
+	o.MonitorTags = all.MonitorTags
+	o.Name = all.Name
+	o.Query = all.Query
+	o.Tags = all.Tags
+	o.Thresholds = all.Thresholds
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSLOResponseData struct {

@@ -47,15 +47,8 @@ func (v *SyntheticsErrorCode) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsErrorCode(value)
-	for _, existing := range allowedSyntheticsErrorCodeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsErrorCode", value)
+	*v = SyntheticsErrorCode(value)
+	return nil
 }
 
 // NewSyntheticsErrorCodeFromValue returns a pointer to a valid SyntheticsErrorCode

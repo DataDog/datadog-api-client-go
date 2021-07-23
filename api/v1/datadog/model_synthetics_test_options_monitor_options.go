@@ -16,6 +16,8 @@ import (
 type SyntheticsTestOptionsMonitorOptions struct {
 	// Time interval before renotifying if the test is still failing (in minutes).
 	RenotifyInterval *int64 `json:"renotify_interval,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTestOptionsMonitorOptions instantiates a new SyntheticsTestOptionsMonitorOptions object
@@ -69,10 +71,31 @@ func (o *SyntheticsTestOptionsMonitorOptions) SetRenotifyInterval(v int64) {
 
 func (o SyntheticsTestOptionsMonitorOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.RenotifyInterval != nil {
 		toSerialize["renotify_interval"] = o.RenotifyInterval
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTestOptionsMonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		RenotifyInterval *int64 `json:"renotify_interval,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.RenotifyInterval = all.RenotifyInterval
+	return nil
 }
 
 type NullableSyntheticsTestOptionsMonitorOptions struct {

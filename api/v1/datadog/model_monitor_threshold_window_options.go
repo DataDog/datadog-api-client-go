@@ -18,6 +18,8 @@ type MonitorThresholdWindowOptions struct {
 	RecoveryWindow NullableString `json:"recovery_window,omitempty"`
 	// Describes how long a metric must be anomalous before an alert triggers.
 	TriggerWindow NullableString `json:"trigger_window,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorThresholdWindowOptions instantiates a new MonitorThresholdWindowOptions object
@@ -125,6 +127,9 @@ func (o *MonitorThresholdWindowOptions) UnsetTriggerWindow() {
 
 func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.RecoveryWindow.IsSet() {
 		toSerialize["recovery_window"] = o.RecoveryWindow.Get()
 	}
@@ -132,6 +137,26 @@ func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
 		toSerialize["trigger_window"] = o.TriggerWindow.Get()
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorThresholdWindowOptions) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		RecoveryWindow NullableString `json:"recovery_window,omitempty"`
+		TriggerWindow  NullableString `json:"trigger_window,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.RecoveryWindow = all.RecoveryWindow
+	o.TriggerWindow = all.TriggerWindow
+	return nil
 }
 
 type NullableMonitorThresholdWindowOptions struct {

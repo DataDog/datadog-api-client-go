@@ -35,15 +35,8 @@ func (v *HeatMapWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := HeatMapWidgetDefinitionType(value)
-	for _, existing := range allowedHeatMapWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid HeatMapWidgetDefinitionType", value)
+	*v = HeatMapWidgetDefinitionType(value)
+	return nil
 }
 
 // NewHeatMapWidgetDefinitionTypeFromValue returns a pointer to a valid HeatMapWidgetDefinitionType

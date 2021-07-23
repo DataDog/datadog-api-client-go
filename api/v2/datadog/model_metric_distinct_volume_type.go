@@ -35,15 +35,8 @@ func (v *MetricDistinctVolumeType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := MetricDistinctVolumeType(value)
-	for _, existing := range allowedMetricDistinctVolumeTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid MetricDistinctVolumeType", value)
+	*v = MetricDistinctVolumeType(value)
+	return nil
 }
 
 // NewMetricDistinctVolumeTypeFromValue returns a pointer to a valid MetricDistinctVolumeType

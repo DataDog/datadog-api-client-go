@@ -19,6 +19,8 @@ type NotebookToplistCellAttributes struct {
 	GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"`
 	SplitBy    *NotebookSplitBy         `json:"split_by,omitempty"`
 	Time       NullableNotebookCellTime `json:"time,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewNotebookToplistCellAttributes instantiates a new NotebookToplistCellAttributes object
@@ -172,6 +174,9 @@ func (o *NotebookToplistCellAttributes) UnsetTime() {
 
 func (o NotebookToplistCellAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["definition"] = o.Definition
 	}
@@ -188,6 +193,7 @@ func (o NotebookToplistCellAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *NotebookToplistCellAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Definition *ToplistWidgetDefinition `json:"definition"`
 	}{}
@@ -206,7 +212,20 @@ func (o *NotebookToplistCellAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.GraphSize; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Definition = all.Definition
 	o.GraphSize = all.GraphSize

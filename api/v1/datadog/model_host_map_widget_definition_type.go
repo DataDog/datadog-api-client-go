@@ -35,15 +35,8 @@ func (v *HostMapWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := HostMapWidgetDefinitionType(value)
-	for _, existing := range allowedHostMapWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid HostMapWidgetDefinitionType", value)
+	*v = HostMapWidgetDefinitionType(value)
+	return nil
 }
 
 // NewHostMapWidgetDefinitionTypeFromValue returns a pointer to a valid HostMapWidgetDefinitionType

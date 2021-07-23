@@ -19,6 +19,8 @@ type ServiceLevelObjectiveQuery struct {
 	Denominator string `json:"denominator"`
 	// A Datadog metric query for good events.
 	Numerator string `json:"numerator"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewServiceLevelObjectiveQuery instantiates a new ServiceLevelObjectiveQuery object
@@ -90,6 +92,9 @@ func (o *ServiceLevelObjectiveQuery) SetNumerator(v string) {
 
 func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["denominator"] = o.Denominator
 	}
@@ -100,6 +105,7 @@ func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
 }
 
 func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Denominator *string `json:"denominator"`
 		Numerator   *string `json:"numerator"`
@@ -120,7 +126,12 @@ func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Denominator = all.Denominator
 	o.Numerator = all.Numerator

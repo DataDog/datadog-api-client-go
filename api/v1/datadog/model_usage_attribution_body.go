@@ -28,6 +28,8 @@ type UsageAttributionBody struct {
 	// Shows the the most recent hour in the current months for all organizations for which all usages were calculated.
 	UpdatedAt *string                 `json:"updated_at,omitempty"`
 	Values    *UsageAttributionValues `json:"values,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageAttributionBody instantiates a new UsageAttributionBody object
@@ -273,6 +275,9 @@ func (o *UsageAttributionBody) SetValues(v UsageAttributionValues) {
 
 func (o UsageAttributionBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Month != nil {
 		toSerialize["month"] = o.Month
 	}
@@ -295,6 +300,36 @@ func (o UsageAttributionBody) MarshalJSON() ([]byte, error) {
 		toSerialize["values"] = o.Values
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Month           *time.Time              `json:"month,omitempty"`
+		OrgName         *string                 `json:"org_name,omitempty"`
+		PublicId        *string                 `json:"public_id,omitempty"`
+		TagConfigSource *string                 `json:"tag_config_source,omitempty"`
+		Tags            *map[string][]string    `json:"tags,omitempty"`
+		UpdatedAt       *string                 `json:"updated_at,omitempty"`
+		Values          *UsageAttributionValues `json:"values,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Month = all.Month
+	o.OrgName = all.OrgName
+	o.PublicId = all.PublicId
+	o.TagConfigSource = all.TagConfigSource
+	o.Tags = all.Tags
+	o.UpdatedAt = all.UpdatedAt
+	o.Values = all.Values
+	return nil
 }
 
 type NullableUsageAttributionBody struct {

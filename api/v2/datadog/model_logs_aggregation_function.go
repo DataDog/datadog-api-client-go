@@ -55,15 +55,8 @@ func (v *LogsAggregationFunction) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsAggregationFunction(value)
-	for _, existing := range allowedLogsAggregationFunctionEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsAggregationFunction", value)
+	*v = LogsAggregationFunction(value)
+	return nil
 }
 
 // NewLogsAggregationFunctionFromValue returns a pointer to a valid LogsAggregationFunction

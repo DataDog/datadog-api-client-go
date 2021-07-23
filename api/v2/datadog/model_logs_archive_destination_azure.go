@@ -25,6 +25,8 @@ type LogsArchiveDestinationAzure struct {
 	// The associated storage account.
 	StorageAccount string                          `json:"storage_account"`
 	Type           LogsArchiveDestinationAzureType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsArchiveDestinationAzure instantiates a new LogsArchiveDestinationAzure object
@@ -212,6 +214,9 @@ func (o *LogsArchiveDestinationAzure) SetType(v LogsArchiveDestinationAzureType)
 
 func (o LogsArchiveDestinationAzure) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["container"] = o.Container
 	}
@@ -234,6 +239,7 @@ func (o LogsArchiveDestinationAzure) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Container      *string                          `json:"container"`
 		Integration    *LogsArchiveIntegrationAzure     `json:"integration"`
@@ -266,7 +272,20 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Container = all.Container
 	o.Integration = all.Integration

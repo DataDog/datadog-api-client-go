@@ -20,6 +20,8 @@ type SLOBulkDeleteError struct {
 	// The error message.
 	Message   string            `json:"message"`
 	Timeframe SLOErrorTimeframe `json:"timeframe"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOBulkDeleteError instantiates a new SLOBulkDeleteError object
@@ -116,6 +118,9 @@ func (o *SLOBulkDeleteError) SetTimeframe(v SLOErrorTimeframe) {
 
 func (o SLOBulkDeleteError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
@@ -129,6 +134,7 @@ func (o SLOBulkDeleteError) MarshalJSON() ([]byte, error) {
 }
 
 func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Id        *string            `json:"id"`
 		Message   *string            `json:"message"`
@@ -154,7 +160,20 @@ func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Timeframe; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Id = all.Id
 	o.Message = all.Message

@@ -19,6 +19,8 @@ type LogsMetricCreateAttributes struct {
 	Filter  *LogsMetricFilter `json:"filter,omitempty"`
 	// The rules for the group by.
 	GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsMetricCreateAttributes instantiates a new LogsMetricCreateAttributes object
@@ -129,6 +131,9 @@ func (o *LogsMetricCreateAttributes) SetGroupBy(v []LogsMetricGroupBy) {
 
 func (o LogsMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["compute"] = o.Compute
 	}
@@ -142,6 +147,7 @@ func (o LogsMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Compute *LogsMetricCompute `json:"compute"`
 	}{}
@@ -159,7 +165,12 @@ func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Compute = all.Compute
 	o.Filter = all.Filter

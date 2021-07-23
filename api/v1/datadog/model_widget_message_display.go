@@ -39,15 +39,8 @@ func (v *WidgetMessageDisplay) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetMessageDisplay(value)
-	for _, existing := range allowedWidgetMessageDisplayEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetMessageDisplay", value)
+	*v = WidgetMessageDisplay(value)
+	return nil
 }
 
 // NewWidgetMessageDisplayFromValue returns a pointer to a valid WidgetMessageDisplay

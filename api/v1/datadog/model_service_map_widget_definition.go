@@ -27,6 +27,8 @@ type ServiceMapWidgetDefinition struct {
 	// Size of the title.
 	TitleSize *string                        `json:"title_size,omitempty"`
 	Type      ServiceMapWidgetDefinitionType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewServiceMapWidgetDefinition instantiates a new ServiceMapWidgetDefinition object
@@ -253,6 +255,9 @@ func (o *ServiceMapWidgetDefinition) SetType(v ServiceMapWidgetDefinitionType) {
 
 func (o ServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CustomLinks != nil {
 		toSerialize["custom_links"] = o.CustomLinks
 	}
@@ -278,6 +283,7 @@ func (o ServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Filters *[]string                       `json:"filters"`
 		Service *string                         `json:"service"`
@@ -307,7 +313,28 @@ func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.CustomLinks = all.CustomLinks
 	o.Filters = all.Filters

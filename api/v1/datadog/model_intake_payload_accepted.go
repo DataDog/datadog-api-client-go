@@ -16,6 +16,8 @@ import (
 type IntakePayloadAccepted struct {
 	// The status of the intake payload.
 	Status *string `json:"status,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIntakePayloadAccepted instantiates a new IntakePayloadAccepted object
@@ -69,10 +71,31 @@ func (o *IntakePayloadAccepted) SetStatus(v string) {
 
 func (o IntakePayloadAccepted) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IntakePayloadAccepted) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Status *string `json:"status,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Status = all.Status
+	return nil
 }
 
 type NullableIntakePayloadAccepted struct {

@@ -19,6 +19,8 @@ type UsageIngestedSpansHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the total number of bytes ingested during a given hour.
 	IngestedEventsBytes *int64 `json:"ingested_events_bytes,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageIngestedSpansHour instantiates a new UsageIngestedSpansHour object
@@ -104,6 +106,9 @@ func (o *UsageIngestedSpansHour) SetIngestedEventsBytes(v int64) {
 
 func (o UsageIngestedSpansHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
@@ -111,6 +116,26 @@ func (o UsageIngestedSpansHour) MarshalJSON() ([]byte, error) {
 		toSerialize["ingested_events_bytes"] = o.IngestedEventsBytes
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageIngestedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Hour                *time.Time `json:"hour,omitempty"`
+		IngestedEventsBytes *int64     `json:"ingested_events_bytes,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Hour = all.Hour
+	o.IngestedEventsBytes = all.IngestedEventsBytes
+	return nil
 }
 
 type NullableUsageIngestedSpansHour struct {

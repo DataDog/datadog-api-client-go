@@ -16,6 +16,8 @@ import (
 type SyntheticsCITestMetadata struct {
 	Ci  *SyntheticsCITestMetadataCi  `json:"ci,omitempty"`
 	Git *SyntheticsCITestMetadataGit `json:"git,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsCITestMetadata instantiates a new SyntheticsCITestMetadata object
@@ -101,6 +103,9 @@ func (o *SyntheticsCITestMetadata) SetGit(v SyntheticsCITestMetadataGit) {
 
 func (o SyntheticsCITestMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Ci != nil {
 		toSerialize["ci"] = o.Ci
 	}
@@ -108,6 +113,26 @@ func (o SyntheticsCITestMetadata) MarshalJSON() ([]byte, error) {
 		toSerialize["git"] = o.Git
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsCITestMetadata) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Ci  *SyntheticsCITestMetadataCi  `json:"ci,omitempty"`
+		Git *SyntheticsCITestMetadataGit `json:"git,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Ci = all.Ci
+	o.Git = all.Git
+	return nil
 }
 
 type NullableSyntheticsCITestMetadata struct {

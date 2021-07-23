@@ -40,6 +40,8 @@ type GCPAccount struct {
 	TokenUri *string `json:"token_uri,omitempty"`
 	// The value for service_account found in your JSON service account key.
 	Type *string `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewGCPAccount instantiates a new GCPAccount object
@@ -477,6 +479,9 @@ func (o *GCPAccount) SetType(v string) {
 
 func (o GCPAccount) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AuthProviderX509CertUrl != nil {
 		toSerialize["auth_provider_x509_cert_url"] = o.AuthProviderX509CertUrl
 	}
@@ -517,6 +522,48 @@ func (o GCPAccount) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AuthProviderX509CertUrl *string   `json:"auth_provider_x509_cert_url,omitempty"`
+		AuthUri                 *string   `json:"auth_uri,omitempty"`
+		Automute                *bool     `json:"automute,omitempty"`
+		ClientEmail             *string   `json:"client_email,omitempty"`
+		ClientId                *string   `json:"client_id,omitempty"`
+		ClientX509CertUrl       *string   `json:"client_x509_cert_url,omitempty"`
+		Errors                  *[]string `json:"errors,omitempty"`
+		HostFilters             *string   `json:"host_filters,omitempty"`
+		PrivateKey              *string   `json:"private_key,omitempty"`
+		PrivateKeyId            *string   `json:"private_key_id,omitempty"`
+		ProjectId               *string   `json:"project_id,omitempty"`
+		TokenUri                *string   `json:"token_uri,omitempty"`
+		Type                    *string   `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AuthProviderX509CertUrl = all.AuthProviderX509CertUrl
+	o.AuthUri = all.AuthUri
+	o.Automute = all.Automute
+	o.ClientEmail = all.ClientEmail
+	o.ClientId = all.ClientId
+	o.ClientX509CertUrl = all.ClientX509CertUrl
+	o.Errors = all.Errors
+	o.HostFilters = all.HostFilters
+	o.PrivateKey = all.PrivateKey
+	o.PrivateKeyId = all.PrivateKeyId
+	o.ProjectId = all.ProjectId
+	o.TokenUri = all.TokenUri
+	o.Type = all.Type
+	return nil
 }
 
 type NullableGCPAccount struct {

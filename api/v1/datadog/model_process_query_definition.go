@@ -23,6 +23,8 @@ type ProcessQueryDefinition struct {
 	Metric string `json:"metric"`
 	// Your chosen search term.
 	SearchBy *string `json:"search_by,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewProcessQueryDefinition instantiates a new ProcessQueryDefinition object
@@ -165,6 +167,9 @@ func (o *ProcessQueryDefinition) SetSearchBy(v string) {
 
 func (o ProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.FilterBy != nil {
 		toSerialize["filter_by"] = o.FilterBy
 	}
@@ -181,6 +186,7 @@ func (o ProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Metric *string `json:"metric"`
 	}{}
@@ -199,7 +205,12 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.FilterBy = all.FilterBy
 	o.Limit = all.Limit

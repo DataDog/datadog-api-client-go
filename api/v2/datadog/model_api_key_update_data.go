@@ -19,6 +19,8 @@ type APIKeyUpdateData struct {
 	// ID of the API key.
 	Id   string      `json:"id"`
 	Type APIKeysType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAPIKeyUpdateData instantiates a new APIKeyUpdateData object
@@ -117,6 +119,9 @@ func (o *APIKeyUpdateData) SetType(v APIKeysType) {
 
 func (o APIKeyUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["attributes"] = o.Attributes
 	}
@@ -130,6 +135,7 @@ func (o APIKeyUpdateData) MarshalJSON() ([]byte, error) {
 }
 
 func (o *APIKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *APIKeyUpdateAttributes `json:"attributes"`
 		Id         *string                 `json:"id"`
@@ -155,7 +161,20 @@ func (o *APIKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id

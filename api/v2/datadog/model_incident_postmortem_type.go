@@ -35,15 +35,8 @@ func (v *IncidentPostmortemType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := IncidentPostmortemType(value)
-	for _, existing := range allowedIncidentPostmortemTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid IncidentPostmortemType", value)
+	*v = IncidentPostmortemType(value)
+	return nil
 }
 
 // NewIncidentPostmortemTypeFromValue returns a pointer to a valid IncidentPostmortemType

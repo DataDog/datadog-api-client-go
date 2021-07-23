@@ -20,6 +20,8 @@ type LogsListResponse struct {
 	NextLogId *string `json:"nextLogId,omitempty"`
 	// Status of the response.
 	Status *string `json:"status,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsListResponse instantiates a new LogsListResponse object
@@ -137,6 +139,9 @@ func (o *LogsListResponse) SetStatus(v string) {
 
 func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Logs != nil {
 		toSerialize["logs"] = o.Logs
 	}
@@ -147,6 +152,28 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Logs      *[]Log  `json:"logs,omitempty"`
+		NextLogId *string `json:"nextLogId,omitempty"`
+		Status    *string `json:"status,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Logs = all.Logs
+	o.NextLogId = all.NextLogId
+	o.Status = all.Status
+	return nil
 }
 
 type NullableLogsListResponse struct {

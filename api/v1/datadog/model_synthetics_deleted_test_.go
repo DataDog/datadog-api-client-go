@@ -19,6 +19,8 @@ type SyntheticsDeletedTest struct {
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`
 	// The Synthetic test ID deleted.
 	PublicId *string `json:"public_id,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsDeletedTest instantiates a new SyntheticsDeletedTest object
@@ -104,6 +106,9 @@ func (o *SyntheticsDeletedTest) SetPublicId(v string) {
 
 func (o SyntheticsDeletedTest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DeletedAt != nil {
 		toSerialize["deleted_at"] = o.DeletedAt
 	}
@@ -111,6 +116,26 @@ func (o SyntheticsDeletedTest) MarshalJSON() ([]byte, error) {
 		toSerialize["public_id"] = o.PublicId
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsDeletedTest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		DeletedAt *time.Time `json:"deleted_at,omitempty"`
+		PublicId  *string    `json:"public_id,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.DeletedAt = all.DeletedAt
+	o.PublicId = all.PublicId
+	return nil
 }
 
 type NullableSyntheticsDeletedTest struct {

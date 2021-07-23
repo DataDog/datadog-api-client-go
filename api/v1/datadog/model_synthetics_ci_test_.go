@@ -40,6 +40,8 @@ type SyntheticsCITest struct {
 	StartUrl *string `json:"startUrl,omitempty"`
 	// Variables to replace in the test.
 	Variables *map[string]string `json:"variables,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsCITest instantiates a new SyntheticsCITest object
@@ -502,6 +504,9 @@ func (o *SyntheticsCITest) SetVariables(v map[string]string) {
 
 func (o SyntheticsCITest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AllowInsecureCertificates != nil {
 		toSerialize["allowInsecureCertificates"] = o.AllowInsecureCertificates
 	}
@@ -548,6 +553,7 @@ func (o SyntheticsCITest) MarshalJSON() ([]byte, error) {
 }
 
 func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		PublicId *string `json:"public_id"`
 	}{}
@@ -576,7 +582,12 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.AllowInsecureCertificates = all.AllowInsecureCertificates
 	o.BasicAuth = all.BasicAuth

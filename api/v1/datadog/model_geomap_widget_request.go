@@ -24,6 +24,8 @@ type GeomapWidgetRequest struct {
 	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
 	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
 	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewGeomapWidgetRequest instantiates a new GeomapWidgetRequest object
@@ -269,6 +271,9 @@ func (o *GeomapWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 
 func (o GeomapWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Formulas != nil {
 		toSerialize["formulas"] = o.Formulas
 	}
@@ -291,6 +296,44 @@ func (o GeomapWidgetRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["security_query"] = o.SecurityQuery
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Formulas       *[]WidgetFormula                     `json:"formulas,omitempty"`
+		LogQuery       *LogQueryDefinition                  `json:"log_query,omitempty"`
+		Q              *string                              `json:"q,omitempty"`
+		Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+		RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
+		SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Formulas = all.Formulas
+	o.LogQuery = all.LogQuery
+	o.Q = all.Q
+	o.Queries = all.Queries
+	o.ResponseFormat = all.ResponseFormat
+	o.RumQuery = all.RumQuery
+	o.SecurityQuery = all.SecurityQuery
+	return nil
 }
 
 type NullableGeomapWidgetRequest struct {

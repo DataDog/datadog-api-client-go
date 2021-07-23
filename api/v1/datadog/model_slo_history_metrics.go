@@ -29,6 +29,8 @@ type SLOHistoryMetrics struct {
 	RespVersion int64 `json:"resp_version"`
 	// An array of query timestamps in EPOCH milliseconds
 	Times []float64 `json:"times"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOHistoryMetrics instantiates a new SLOHistoryMetrics object
@@ -257,6 +259,9 @@ func (o *SLOHistoryMetrics) SetTimes(v []float64) {
 
 func (o SLOHistoryMetrics) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["denominator"] = o.Denominator
 	}
@@ -285,6 +290,7 @@ func (o SLOHistoryMetrics) MarshalJSON() ([]byte, error) {
 }
 
 func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Denominator *SLOHistoryMetricsSeries `json:"denominator"`
 		Interval    *int64                   `json:"interval"`
@@ -331,7 +337,12 @@ func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Denominator = all.Denominator
 	o.Interval = all.Interval

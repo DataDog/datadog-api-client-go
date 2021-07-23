@@ -35,15 +35,8 @@ func (v *ToplistWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ToplistWidgetDefinitionType(value)
-	for _, existing := range allowedToplistWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ToplistWidgetDefinitionType", value)
+	*v = ToplistWidgetDefinitionType(value)
+	return nil
 }
 
 // NewToplistWidgetDefinitionTypeFromValue returns a pointer to a valid ToplistWidgetDefinitionType

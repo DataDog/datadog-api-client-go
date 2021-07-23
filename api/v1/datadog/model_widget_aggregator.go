@@ -43,15 +43,8 @@ func (v *WidgetAggregator) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetAggregator(value)
-	for _, existing := range allowedWidgetAggregatorEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetAggregator", value)
+	*v = WidgetAggregator(value)
+	return nil
 }
 
 // NewWidgetAggregatorFromValue returns a pointer to a valid WidgetAggregator

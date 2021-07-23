@@ -17,6 +17,8 @@ type SLOResponse struct {
 	Data *SLOResponseData `json:"data,omitempty"`
 	// An array of error messages. Each endpoint documents how/whether this field is used.
 	Errors *[]string `json:"errors,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOResponse instantiates a new SLOResponse object
@@ -102,6 +104,9 @@ func (o *SLOResponse) SetErrors(v []string) {
 
 func (o SLOResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
@@ -109,6 +114,26 @@ func (o SLOResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["errors"] = o.Errors
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data   *SLOResponseData `json:"data,omitempty"`
+		Errors *[]string        `json:"errors,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	o.Errors = all.Errors
+	return nil
 }
 
 type NullableSLOResponse struct {

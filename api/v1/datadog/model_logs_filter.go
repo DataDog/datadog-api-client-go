@@ -16,6 +16,8 @@ import (
 type LogsFilter struct {
 	// The filter query.
 	Query *string `json:"query,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsFilter instantiates a new LogsFilter object
@@ -69,10 +71,31 @@ func (o *LogsFilter) SetQuery(v string) {
 
 func (o LogsFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsFilter) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Query *string `json:"query,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Query = all.Query
+	return nil
 }
 
 type NullableLogsFilter struct {

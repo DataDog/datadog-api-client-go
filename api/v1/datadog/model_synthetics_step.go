@@ -23,6 +23,8 @@ type SyntheticsStep struct {
 	// The time before declaring a step failed.
 	Timeout *int64              `json:"timeout,omitempty"`
 	Type    *SyntheticsStepType `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsStep instantiates a new SyntheticsStep object
@@ -204,6 +206,9 @@ func (o *SyntheticsStep) SetType(v SyntheticsStepType) {
 
 func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AllowFailure != nil {
 		toSerialize["allowFailure"] = o.AllowFailure
 	}
@@ -220,6 +225,40 @@ func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AllowFailure *bool               `json:"allowFailure,omitempty"`
+		Name         *string             `json:"name,omitempty"`
+		Params       *interface{}        `json:"params,omitempty"`
+		Timeout      *int64              `json:"timeout,omitempty"`
+		Type         *SyntheticsStepType `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AllowFailure = all.AllowFailure
+	o.Name = all.Name
+	o.Params = all.Params
+	o.Timeout = all.Timeout
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSyntheticsStep struct {

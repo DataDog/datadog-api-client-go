@@ -31,6 +31,8 @@ type DashboardList struct {
 	Name string `json:"name"`
 	// The type of dashboard list.
 	Type *string `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDashboardList instantiates a new DashboardList object
@@ -301,6 +303,9 @@ func (o *DashboardList) SetType(v string) {
 
 func (o DashboardList) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Author != nil {
 		toSerialize["author"] = o.Author
 	}
@@ -329,6 +334,7 @@ func (o DashboardList) MarshalJSON() ([]byte, error) {
 }
 
 func (o *DashboardList) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
@@ -351,7 +357,12 @@ func (o *DashboardList) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Author = all.Author
 	o.Created = all.Created

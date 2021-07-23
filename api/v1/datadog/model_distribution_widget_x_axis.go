@@ -22,6 +22,8 @@ type DistributionWidgetXAxis struct {
 	Min *string `json:"min,omitempty"`
 	// Specifies the scale type. Possible values are `linear`.
 	Scale *string `json:"scale,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDistributionWidgetXAxis instantiates a new DistributionWidgetXAxis object
@@ -183,6 +185,9 @@ func (o *DistributionWidgetXAxis) SetScale(v string) {
 
 func (o DistributionWidgetXAxis) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.IncludeZero != nil {
 		toSerialize["include_zero"] = o.IncludeZero
 	}
@@ -196,6 +201,30 @@ func (o DistributionWidgetXAxis) MarshalJSON() ([]byte, error) {
 		toSerialize["scale"] = o.Scale
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DistributionWidgetXAxis) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		IncludeZero *bool   `json:"include_zero,omitempty"`
+		Max         *string `json:"max,omitempty"`
+		Min         *string `json:"min,omitempty"`
+		Scale       *string `json:"scale,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.IncludeZero = all.IncludeZero
+	o.Max = all.Max
+	o.Min = all.Min
+	o.Scale = all.Scale
+	return nil
 }
 
 type NullableDistributionWidgetXAxis struct {

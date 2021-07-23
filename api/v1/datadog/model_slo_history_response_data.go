@@ -30,6 +30,8 @@ type SLOHistoryResponseData struct {
 	ToTs   *int64          `json:"to_ts,omitempty"`
 	Type   *SLOType        `json:"type,omitempty"`
 	TypeId *SLOTypeNumeric `json:"type_id,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOHistoryResponseData instantiates a new SLOHistoryResponseData object
@@ -371,6 +373,9 @@ func (o *SLOHistoryResponseData) SetTypeId(v SLOTypeNumeric) {
 
 func (o SLOHistoryResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.FromTs != nil {
 		toSerialize["from_ts"] = o.FromTs
 	}
@@ -402,6 +407,58 @@ func (o SLOHistoryResponseData) MarshalJSON() ([]byte, error) {
 		toSerialize["type_id"] = o.TypeId
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOHistoryResponseData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		FromTs     *int64                   `json:"from_ts,omitempty"`
+		GroupBy    *[]string                `json:"group_by,omitempty"`
+		Groups     *[]SLOHistorySLIData     `json:"groups,omitempty"`
+		Monitors   *[]SLOHistorySLIData     `json:"monitors,omitempty"`
+		Overall    *SLOHistorySLIData       `json:"overall,omitempty"`
+		Series     *SLOHistoryMetrics       `json:"series,omitempty"`
+		Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
+		ToTs       *int64                   `json:"to_ts,omitempty"`
+		Type       *SLOType                 `json:"type,omitempty"`
+		TypeId     *SLOTypeNumeric          `json:"type_id,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TypeId; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.FromTs = all.FromTs
+	o.GroupBy = all.GroupBy
+	o.Groups = all.Groups
+	o.Monitors = all.Monitors
+	o.Overall = all.Overall
+	o.Series = all.Series
+	o.Thresholds = all.Thresholds
+	o.ToTs = all.ToTs
+	o.Type = all.Type
+	o.TypeId = all.TypeId
+	return nil
 }
 
 type NullableSLOHistoryResponseData struct {

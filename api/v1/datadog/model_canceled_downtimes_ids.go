@@ -16,6 +16,8 @@ import (
 type CanceledDowntimesIds struct {
 	// ID of downtimes that were canceled.
 	CancelledIds *[]int64 `json:"cancelled_ids,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewCanceledDowntimesIds instantiates a new CanceledDowntimesIds object
@@ -69,10 +71,31 @@ func (o *CanceledDowntimesIds) SetCancelledIds(v []int64) {
 
 func (o CanceledDowntimesIds) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CancelledIds != nil {
 		toSerialize["cancelled_ids"] = o.CancelledIds
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *CanceledDowntimesIds) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		CancelledIds *[]int64 `json:"cancelled_ids,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.CancelledIds = all.CancelledIds
+	return nil
 }
 
 type NullableCanceledDowntimesIds struct {

@@ -21,6 +21,8 @@ type SecurityMonitoringSignalListRequestFilter struct {
 	Query *string `json:"query,omitempty"`
 	// The maximum timestamp for requested security signals.
 	To *time.Time `json:"to,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringSignalListRequestFilter instantiates a new SecurityMonitoringSignalListRequestFilter object
@@ -138,6 +140,9 @@ func (o *SecurityMonitoringSignalListRequestFilter) SetTo(v time.Time) {
 
 func (o SecurityMonitoringSignalListRequestFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.From != nil {
 		toSerialize["from"] = o.From
 	}
@@ -148,6 +153,28 @@ func (o SecurityMonitoringSignalListRequestFilter) MarshalJSON() ([]byte, error)
 		toSerialize["to"] = o.To
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringSignalListRequestFilter) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		From  *time.Time `json:"from,omitempty"`
+		Query *string    `json:"query,omitempty"`
+		To    *time.Time `json:"to,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.From = all.From
+	o.Query = all.Query
+	o.To = all.To
+	return nil
 }
 
 type NullableSecurityMonitoringSignalListRequestFilter struct {

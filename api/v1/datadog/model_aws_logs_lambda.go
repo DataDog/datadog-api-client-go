@@ -16,6 +16,8 @@ import (
 type AWSLogsLambda struct {
 	// Available ARN IDs.
 	Arn *string `json:"arn,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAWSLogsLambda instantiates a new AWSLogsLambda object
@@ -69,10 +71,31 @@ func (o *AWSLogsLambda) SetArn(v string) {
 
 func (o AWSLogsLambda) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Arn != nil {
 		toSerialize["arn"] = o.Arn
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSLogsLambda) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Arn *string `json:"arn,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Arn = all.Arn
+	return nil
 }
 
 type NullableAWSLogsLambda struct {

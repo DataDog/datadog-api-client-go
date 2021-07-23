@@ -20,6 +20,8 @@ type IncidentTeamUpdateData struct {
 	Id            *string                    `json:"id,omitempty"`
 	Relationships *IncidentTeamRelationships `json:"relationships,omitempty"`
 	Type          IncidentTeamType           `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentTeamUpdateData instantiates a new IncidentTeamUpdateData object
@@ -164,6 +166,9 @@ func (o *IncidentTeamUpdateData) SetType(v IncidentTeamType) {
 
 func (o IncidentTeamUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
@@ -180,6 +185,7 @@ func (o IncidentTeamUpdateData) MarshalJSON() ([]byte, error) {
 }
 
 func (o *IncidentTeamUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Type *IncidentTeamType `json:"type"`
 	}{}
@@ -198,7 +204,20 @@ func (o *IncidentTeamUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id

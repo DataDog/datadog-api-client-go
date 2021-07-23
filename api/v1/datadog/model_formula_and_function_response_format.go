@@ -37,15 +37,8 @@ func (v *FormulaAndFunctionResponseFormat) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := FormulaAndFunctionResponseFormat(value)
-	for _, existing := range allowedFormulaAndFunctionResponseFormatEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid FormulaAndFunctionResponseFormat", value)
+	*v = FormulaAndFunctionResponseFormat(value)
+	return nil
 }
 
 // NewFormulaAndFunctionResponseFormatFromValue returns a pointer to a valid FormulaAndFunctionResponseFormat

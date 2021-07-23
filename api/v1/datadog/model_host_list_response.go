@@ -20,6 +20,8 @@ type HostListResponse struct {
 	TotalMatching *int64 `json:"total_matching,omitempty"`
 	// Number of host returned.
 	TotalReturned *int64 `json:"total_returned,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewHostListResponse instantiates a new HostListResponse object
@@ -137,6 +139,9 @@ func (o *HostListResponse) SetTotalReturned(v int64) {
 
 func (o HostListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.HostList != nil {
 		toSerialize["host_list"] = o.HostList
 	}
@@ -147,6 +152,28 @@ func (o HostListResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["total_returned"] = o.TotalReturned
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *HostListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		HostList      *[]Host `json:"host_list,omitempty"`
+		TotalMatching *int64  `json:"total_matching,omitempty"`
+		TotalReturned *int64  `json:"total_returned,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.HostList = all.HostList
+	o.TotalMatching = all.TotalMatching
+	o.TotalReturned = all.TotalReturned
+	return nil
 }
 
 type NullableHostListResponse struct {

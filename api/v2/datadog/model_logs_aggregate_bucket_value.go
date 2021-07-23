@@ -10,14 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // LogsAggregateBucketValue - A bucket value, can be either a timeseries or a single value
 type LogsAggregateBucketValue struct {
 	LogsAggregateBucketValueTimeseries *LogsAggregateBucketValueTimeseries
-	float64                            *float64
-	string                             *string
+	Float64                            *float64
+	String                             *string
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // LogsAggregateBucketValueTimeseriesAsLogsAggregateBucketValue is a convenience function that returns LogsAggregateBucketValueTimeseries wrapped in LogsAggregateBucketValue
@@ -25,70 +27,79 @@ func LogsAggregateBucketValueTimeseriesAsLogsAggregateBucketValue(v *LogsAggrega
 	return LogsAggregateBucketValue{LogsAggregateBucketValueTimeseries: v}
 }
 
-// float64AsLogsAggregateBucketValue is a convenience function that returns float64 wrapped in LogsAggregateBucketValue
-func float64AsLogsAggregateBucketValue(v *float64) LogsAggregateBucketValue {
-	return LogsAggregateBucketValue{float64: v}
+// Float64AsLogsAggregateBucketValue is a convenience function that returns float64 wrapped in LogsAggregateBucketValue
+func Float64AsLogsAggregateBucketValue(v *float64) LogsAggregateBucketValue {
+	return LogsAggregateBucketValue{Float64: v}
 }
 
-// stringAsLogsAggregateBucketValue is a convenience function that returns string wrapped in LogsAggregateBucketValue
-func stringAsLogsAggregateBucketValue(v *string) LogsAggregateBucketValue {
-	return LogsAggregateBucketValue{string: v}
+// StringAsLogsAggregateBucketValue is a convenience function that returns string wrapped in LogsAggregateBucketValue
+func StringAsLogsAggregateBucketValue(v *string) LogsAggregateBucketValue {
+	return LogsAggregateBucketValue{String: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *LogsAggregateBucketValue) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// try to unmarshal data into String
+	err = json.Unmarshal(data, &dst.String)
+	if err == nil {
+		if dst.String != nil {
+			jsonString, _ := json.Marshal(dst.String)
+			if string(jsonString) == "{}" { // empty struct
+				dst.String = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.String = nil
+		}
+	} else {
+		dst.String = nil
+	}
+
+	// try to unmarshal data into Float64
+	err = json.Unmarshal(data, &dst.Float64)
+	if err == nil {
+		if dst.Float64 != nil {
+			jsonFloat64, _ := json.Marshal(dst.Float64)
+			if string(jsonFloat64) == "{}" { // empty struct
+				dst.Float64 = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.Float64 = nil
+		}
+	} else {
+		dst.Float64 = nil
+	}
+
 	// try to unmarshal data into LogsAggregateBucketValueTimeseries
 	err = json.Unmarshal(data, &dst.LogsAggregateBucketValueTimeseries)
 	if err == nil {
-		jsonLogsAggregateBucketValueTimeseries, _ := json.Marshal(dst.LogsAggregateBucketValueTimeseries)
-		if string(jsonLogsAggregateBucketValueTimeseries) == "{}" { // empty struct
-			dst.LogsAggregateBucketValueTimeseries = nil
+		if dst.LogsAggregateBucketValueTimeseries != nil {
+			jsonLogsAggregateBucketValueTimeseries, _ := json.Marshal(dst.LogsAggregateBucketValueTimeseries)
+			if string(jsonLogsAggregateBucketValueTimeseries) == "{}" { // empty struct
+				dst.LogsAggregateBucketValueTimeseries = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogsAggregateBucketValueTimeseries = nil
 		}
 	} else {
 		dst.LogsAggregateBucketValueTimeseries = nil
 	}
 
-	// try to unmarshal data into float64
-	err = json.Unmarshal(data, &dst.float64)
-	if err == nil {
-		jsonfloat64, _ := json.Marshal(dst.float64)
-		if string(jsonfloat64) == "{}" { // empty struct
-			dst.float64 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.float64 = nil
-	}
-
-	// try to unmarshal data into string
-	err = json.Unmarshal(data, &dst.string)
-	if err == nil {
-		jsonstring, _ := json.Marshal(dst.string)
-		if string(jsonstring) == "{}" { // empty struct
-			dst.string = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.string = nil
-	}
-
-	if match > 1 { // more than 1 match
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.LogsAggregateBucketValueTimeseries = nil
-		dst.float64 = nil
-		dst.string = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(LogsAggregateBucketValue)")
-	} else if match == 1 {
+		dst.Float64 = nil
+		dst.String = nil
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(LogsAggregateBucketValue)")
 	}
 }
 
@@ -98,14 +109,17 @@ func (src LogsAggregateBucketValue) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.LogsAggregateBucketValueTimeseries)
 	}
 
-	if src.float64 != nil {
-		return json.Marshal(&src.float64)
+	if src.Float64 != nil {
+		return json.Marshal(&src.Float64)
 	}
 
-	if src.string != nil {
-		return json.Marshal(&src.string)
+	if src.String != nil {
+		return json.Marshal(&src.String)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 
@@ -115,12 +129,12 @@ func (obj *LogsAggregateBucketValue) GetActualInstance() interface{} {
 		return obj.LogsAggregateBucketValueTimeseries
 	}
 
-	if obj.float64 != nil {
-		return obj.float64
+	if obj.Float64 != nil {
+		return obj.Float64
 	}
 
-	if obj.string != nil {
-		return obj.string
+	if obj.String != nil {
+		return obj.String
 	}
 
 	// all schemas are nil

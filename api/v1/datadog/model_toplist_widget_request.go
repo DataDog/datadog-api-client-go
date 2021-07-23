@@ -33,6 +33,8 @@ type ToplistWidgetRequest struct {
 	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
 	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
 	Style          *WidgetRequestStyle                  `json:"style,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewToplistWidgetRequest instantiates a new ToplistWidgetRequest object
@@ -534,6 +536,9 @@ func (o *ToplistWidgetRequest) SetStyle(v WidgetRequestStyle) {
 
 func (o ToplistWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ApmQuery != nil {
 		toSerialize["apm_query"] = o.ApmQuery
 	}
@@ -580,6 +585,60 @@ func (o ToplistWidgetRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["style"] = o.Style
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ToplistWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ApmQuery            *LogQueryDefinition                  `json:"apm_query,omitempty"`
+		AuditQuery          *LogQueryDefinition                  `json:"audit_query,omitempty"`
+		ConditionalFormats  *[]WidgetConditionalFormat           `json:"conditional_formats,omitempty"`
+		EventQuery          *LogQueryDefinition                  `json:"event_query,omitempty"`
+		Formulas            *[]WidgetFormula                     `json:"formulas,omitempty"`
+		LogQuery            *LogQueryDefinition                  `json:"log_query,omitempty"`
+		NetworkQuery        *LogQueryDefinition                  `json:"network_query,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition              `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition                  `json:"profile_metrics_query,omitempty"`
+		Q                   *string                              `json:"q,omitempty"`
+		Queries             *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat      *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+		RumQuery            *LogQueryDefinition                  `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition                  `json:"security_query,omitempty"`
+		Style               *WidgetRequestStyle                  `json:"style,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ApmQuery = all.ApmQuery
+	o.AuditQuery = all.AuditQuery
+	o.ConditionalFormats = all.ConditionalFormats
+	o.EventQuery = all.EventQuery
+	o.Formulas = all.Formulas
+	o.LogQuery = all.LogQuery
+	o.NetworkQuery = all.NetworkQuery
+	o.ProcessQuery = all.ProcessQuery
+	o.ProfileMetricsQuery = all.ProfileMetricsQuery
+	o.Q = all.Q
+	o.Queries = all.Queries
+	o.ResponseFormat = all.ResponseFormat
+	o.RumQuery = all.RumQuery
+	o.SecurityQuery = all.SecurityQuery
+	o.Style = all.Style
+	return nil
 }
 
 type NullableToplistWidgetRequest struct {

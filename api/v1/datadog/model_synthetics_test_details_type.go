@@ -37,15 +37,8 @@ func (v *SyntheticsTestDetailsType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsTestDetailsType(value)
-	for _, existing := range allowedSyntheticsTestDetailsTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsTestDetailsType", value)
+	*v = SyntheticsTestDetailsType(value)
+	return nil
 }
 
 // NewSyntheticsTestDetailsTypeFromValue returns a pointer to a valid SyntheticsTestDetailsType

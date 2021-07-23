@@ -47,15 +47,8 @@ func (v *AWSNamespace) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := AWSNamespace(value)
-	for _, existing := range allowedAWSNamespaceEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid AWSNamespace", value)
+	*v = AWSNamespace(value)
+	return nil
 }
 
 // NewAWSNamespaceFromValue returns a pointer to a valid AWSNamespace

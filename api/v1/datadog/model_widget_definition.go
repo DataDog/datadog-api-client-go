@@ -10,7 +10,6 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // WidgetDefinition - [Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).
@@ -42,6 +41,9 @@ type WidgetDefinition struct {
 	TimeseriesWidgetDefinition     *TimeseriesWidgetDefinition
 	ToplistWidgetDefinition        *ToplistWidgetDefinition
 	TreeMapWidgetDefinition        *TreeMapWidgetDefinition
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // AlertGraphWidgetDefinitionAsWidgetDefinition is a convenience function that returns AlertGraphWidgetDefinition wrapped in WidgetDefinition
@@ -186,11 +188,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into AlertGraphWidgetDefinition
 	err = json.Unmarshal(data, &dst.AlertGraphWidgetDefinition)
 	if err == nil {
-		jsonAlertGraphWidgetDefinition, _ := json.Marshal(dst.AlertGraphWidgetDefinition)
-		if string(jsonAlertGraphWidgetDefinition) == "{}" { // empty struct
-			dst.AlertGraphWidgetDefinition = nil
+		if dst.AlertGraphWidgetDefinition != nil && dst.AlertGraphWidgetDefinition.UnparsedObject == nil {
+			jsonAlertGraphWidgetDefinition, _ := json.Marshal(dst.AlertGraphWidgetDefinition)
+			if string(jsonAlertGraphWidgetDefinition) == "{}" { // empty struct
+				dst.AlertGraphWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.AlertGraphWidgetDefinition = nil
 		}
 	} else {
 		dst.AlertGraphWidgetDefinition = nil
@@ -199,11 +205,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into AlertValueWidgetDefinition
 	err = json.Unmarshal(data, &dst.AlertValueWidgetDefinition)
 	if err == nil {
-		jsonAlertValueWidgetDefinition, _ := json.Marshal(dst.AlertValueWidgetDefinition)
-		if string(jsonAlertValueWidgetDefinition) == "{}" { // empty struct
-			dst.AlertValueWidgetDefinition = nil
+		if dst.AlertValueWidgetDefinition != nil && dst.AlertValueWidgetDefinition.UnparsedObject == nil {
+			jsonAlertValueWidgetDefinition, _ := json.Marshal(dst.AlertValueWidgetDefinition)
+			if string(jsonAlertValueWidgetDefinition) == "{}" { // empty struct
+				dst.AlertValueWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.AlertValueWidgetDefinition = nil
 		}
 	} else {
 		dst.AlertValueWidgetDefinition = nil
@@ -212,11 +222,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ChangeWidgetDefinition
 	err = json.Unmarshal(data, &dst.ChangeWidgetDefinition)
 	if err == nil {
-		jsonChangeWidgetDefinition, _ := json.Marshal(dst.ChangeWidgetDefinition)
-		if string(jsonChangeWidgetDefinition) == "{}" { // empty struct
-			dst.ChangeWidgetDefinition = nil
+		if dst.ChangeWidgetDefinition != nil && dst.ChangeWidgetDefinition.UnparsedObject == nil {
+			jsonChangeWidgetDefinition, _ := json.Marshal(dst.ChangeWidgetDefinition)
+			if string(jsonChangeWidgetDefinition) == "{}" { // empty struct
+				dst.ChangeWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.ChangeWidgetDefinition = nil
 		}
 	} else {
 		dst.ChangeWidgetDefinition = nil
@@ -225,11 +239,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into CheckStatusWidgetDefinition
 	err = json.Unmarshal(data, &dst.CheckStatusWidgetDefinition)
 	if err == nil {
-		jsonCheckStatusWidgetDefinition, _ := json.Marshal(dst.CheckStatusWidgetDefinition)
-		if string(jsonCheckStatusWidgetDefinition) == "{}" { // empty struct
-			dst.CheckStatusWidgetDefinition = nil
+		if dst.CheckStatusWidgetDefinition != nil && dst.CheckStatusWidgetDefinition.UnparsedObject == nil {
+			jsonCheckStatusWidgetDefinition, _ := json.Marshal(dst.CheckStatusWidgetDefinition)
+			if string(jsonCheckStatusWidgetDefinition) == "{}" { // empty struct
+				dst.CheckStatusWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.CheckStatusWidgetDefinition = nil
 		}
 	} else {
 		dst.CheckStatusWidgetDefinition = nil
@@ -238,11 +256,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into DistributionWidgetDefinition
 	err = json.Unmarshal(data, &dst.DistributionWidgetDefinition)
 	if err == nil {
-		jsonDistributionWidgetDefinition, _ := json.Marshal(dst.DistributionWidgetDefinition)
-		if string(jsonDistributionWidgetDefinition) == "{}" { // empty struct
-			dst.DistributionWidgetDefinition = nil
+		if dst.DistributionWidgetDefinition != nil && dst.DistributionWidgetDefinition.UnparsedObject == nil {
+			jsonDistributionWidgetDefinition, _ := json.Marshal(dst.DistributionWidgetDefinition)
+			if string(jsonDistributionWidgetDefinition) == "{}" { // empty struct
+				dst.DistributionWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.DistributionWidgetDefinition = nil
 		}
 	} else {
 		dst.DistributionWidgetDefinition = nil
@@ -251,11 +273,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into EventStreamWidgetDefinition
 	err = json.Unmarshal(data, &dst.EventStreamWidgetDefinition)
 	if err == nil {
-		jsonEventStreamWidgetDefinition, _ := json.Marshal(dst.EventStreamWidgetDefinition)
-		if string(jsonEventStreamWidgetDefinition) == "{}" { // empty struct
-			dst.EventStreamWidgetDefinition = nil
+		if dst.EventStreamWidgetDefinition != nil && dst.EventStreamWidgetDefinition.UnparsedObject == nil {
+			jsonEventStreamWidgetDefinition, _ := json.Marshal(dst.EventStreamWidgetDefinition)
+			if string(jsonEventStreamWidgetDefinition) == "{}" { // empty struct
+				dst.EventStreamWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.EventStreamWidgetDefinition = nil
 		}
 	} else {
 		dst.EventStreamWidgetDefinition = nil
@@ -264,11 +290,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into EventTimelineWidgetDefinition
 	err = json.Unmarshal(data, &dst.EventTimelineWidgetDefinition)
 	if err == nil {
-		jsonEventTimelineWidgetDefinition, _ := json.Marshal(dst.EventTimelineWidgetDefinition)
-		if string(jsonEventTimelineWidgetDefinition) == "{}" { // empty struct
-			dst.EventTimelineWidgetDefinition = nil
+		if dst.EventTimelineWidgetDefinition != nil && dst.EventTimelineWidgetDefinition.UnparsedObject == nil {
+			jsonEventTimelineWidgetDefinition, _ := json.Marshal(dst.EventTimelineWidgetDefinition)
+			if string(jsonEventTimelineWidgetDefinition) == "{}" { // empty struct
+				dst.EventTimelineWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.EventTimelineWidgetDefinition = nil
 		}
 	} else {
 		dst.EventTimelineWidgetDefinition = nil
@@ -277,11 +307,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into FreeTextWidgetDefinition
 	err = json.Unmarshal(data, &dst.FreeTextWidgetDefinition)
 	if err == nil {
-		jsonFreeTextWidgetDefinition, _ := json.Marshal(dst.FreeTextWidgetDefinition)
-		if string(jsonFreeTextWidgetDefinition) == "{}" { // empty struct
-			dst.FreeTextWidgetDefinition = nil
+		if dst.FreeTextWidgetDefinition != nil && dst.FreeTextWidgetDefinition.UnparsedObject == nil {
+			jsonFreeTextWidgetDefinition, _ := json.Marshal(dst.FreeTextWidgetDefinition)
+			if string(jsonFreeTextWidgetDefinition) == "{}" { // empty struct
+				dst.FreeTextWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.FreeTextWidgetDefinition = nil
 		}
 	} else {
 		dst.FreeTextWidgetDefinition = nil
@@ -290,11 +324,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into GeomapWidgetDefinition
 	err = json.Unmarshal(data, &dst.GeomapWidgetDefinition)
 	if err == nil {
-		jsonGeomapWidgetDefinition, _ := json.Marshal(dst.GeomapWidgetDefinition)
-		if string(jsonGeomapWidgetDefinition) == "{}" { // empty struct
-			dst.GeomapWidgetDefinition = nil
+		if dst.GeomapWidgetDefinition != nil && dst.GeomapWidgetDefinition.UnparsedObject == nil {
+			jsonGeomapWidgetDefinition, _ := json.Marshal(dst.GeomapWidgetDefinition)
+			if string(jsonGeomapWidgetDefinition) == "{}" { // empty struct
+				dst.GeomapWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.GeomapWidgetDefinition = nil
 		}
 	} else {
 		dst.GeomapWidgetDefinition = nil
@@ -303,11 +341,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into GroupWidgetDefinition
 	err = json.Unmarshal(data, &dst.GroupWidgetDefinition)
 	if err == nil {
-		jsonGroupWidgetDefinition, _ := json.Marshal(dst.GroupWidgetDefinition)
-		if string(jsonGroupWidgetDefinition) == "{}" { // empty struct
-			dst.GroupWidgetDefinition = nil
+		if dst.GroupWidgetDefinition != nil && dst.GroupWidgetDefinition.UnparsedObject == nil {
+			jsonGroupWidgetDefinition, _ := json.Marshal(dst.GroupWidgetDefinition)
+			if string(jsonGroupWidgetDefinition) == "{}" { // empty struct
+				dst.GroupWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.GroupWidgetDefinition = nil
 		}
 	} else {
 		dst.GroupWidgetDefinition = nil
@@ -316,11 +358,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into HeatMapWidgetDefinition
 	err = json.Unmarshal(data, &dst.HeatMapWidgetDefinition)
 	if err == nil {
-		jsonHeatMapWidgetDefinition, _ := json.Marshal(dst.HeatMapWidgetDefinition)
-		if string(jsonHeatMapWidgetDefinition) == "{}" { // empty struct
-			dst.HeatMapWidgetDefinition = nil
+		if dst.HeatMapWidgetDefinition != nil && dst.HeatMapWidgetDefinition.UnparsedObject == nil {
+			jsonHeatMapWidgetDefinition, _ := json.Marshal(dst.HeatMapWidgetDefinition)
+			if string(jsonHeatMapWidgetDefinition) == "{}" { // empty struct
+				dst.HeatMapWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.HeatMapWidgetDefinition = nil
 		}
 	} else {
 		dst.HeatMapWidgetDefinition = nil
@@ -329,11 +375,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into HostMapWidgetDefinition
 	err = json.Unmarshal(data, &dst.HostMapWidgetDefinition)
 	if err == nil {
-		jsonHostMapWidgetDefinition, _ := json.Marshal(dst.HostMapWidgetDefinition)
-		if string(jsonHostMapWidgetDefinition) == "{}" { // empty struct
-			dst.HostMapWidgetDefinition = nil
+		if dst.HostMapWidgetDefinition != nil && dst.HostMapWidgetDefinition.UnparsedObject == nil {
+			jsonHostMapWidgetDefinition, _ := json.Marshal(dst.HostMapWidgetDefinition)
+			if string(jsonHostMapWidgetDefinition) == "{}" { // empty struct
+				dst.HostMapWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.HostMapWidgetDefinition = nil
 		}
 	} else {
 		dst.HostMapWidgetDefinition = nil
@@ -342,11 +392,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into IFrameWidgetDefinition
 	err = json.Unmarshal(data, &dst.IFrameWidgetDefinition)
 	if err == nil {
-		jsonIFrameWidgetDefinition, _ := json.Marshal(dst.IFrameWidgetDefinition)
-		if string(jsonIFrameWidgetDefinition) == "{}" { // empty struct
-			dst.IFrameWidgetDefinition = nil
+		if dst.IFrameWidgetDefinition != nil && dst.IFrameWidgetDefinition.UnparsedObject == nil {
+			jsonIFrameWidgetDefinition, _ := json.Marshal(dst.IFrameWidgetDefinition)
+			if string(jsonIFrameWidgetDefinition) == "{}" { // empty struct
+				dst.IFrameWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.IFrameWidgetDefinition = nil
 		}
 	} else {
 		dst.IFrameWidgetDefinition = nil
@@ -355,37 +409,32 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ImageWidgetDefinition
 	err = json.Unmarshal(data, &dst.ImageWidgetDefinition)
 	if err == nil {
-		jsonImageWidgetDefinition, _ := json.Marshal(dst.ImageWidgetDefinition)
-		if string(jsonImageWidgetDefinition) == "{}" { // empty struct
-			dst.ImageWidgetDefinition = nil
+		if dst.ImageWidgetDefinition != nil && dst.ImageWidgetDefinition.UnparsedObject == nil {
+			jsonImageWidgetDefinition, _ := json.Marshal(dst.ImageWidgetDefinition)
+			if string(jsonImageWidgetDefinition) == "{}" { // empty struct
+				dst.ImageWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.ImageWidgetDefinition = nil
 		}
 	} else {
 		dst.ImageWidgetDefinition = nil
 	}
 
-	// try to unmarshal data into ListStreamWidgetDefinition
-	err = json.Unmarshal(data, &dst.ListStreamWidgetDefinition)
-	if err == nil {
-		jsonListStreamWidgetDefinition, _ := json.Marshal(dst.ListStreamWidgetDefinition)
-		if string(jsonListStreamWidgetDefinition) == "{}" { // empty struct
-			dst.ListStreamWidgetDefinition = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.ListStreamWidgetDefinition = nil
-	}
-
 	// try to unmarshal data into LogStreamWidgetDefinition
 	err = json.Unmarshal(data, &dst.LogStreamWidgetDefinition)
 	if err == nil {
-		jsonLogStreamWidgetDefinition, _ := json.Marshal(dst.LogStreamWidgetDefinition)
-		if string(jsonLogStreamWidgetDefinition) == "{}" { // empty struct
-			dst.LogStreamWidgetDefinition = nil
+		if dst.LogStreamWidgetDefinition != nil && dst.LogStreamWidgetDefinition.UnparsedObject == nil {
+			jsonLogStreamWidgetDefinition, _ := json.Marshal(dst.LogStreamWidgetDefinition)
+			if string(jsonLogStreamWidgetDefinition) == "{}" { // empty struct
+				dst.LogStreamWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogStreamWidgetDefinition = nil
 		}
 	} else {
 		dst.LogStreamWidgetDefinition = nil
@@ -394,11 +443,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into MonitorSummaryWidgetDefinition
 	err = json.Unmarshal(data, &dst.MonitorSummaryWidgetDefinition)
 	if err == nil {
-		jsonMonitorSummaryWidgetDefinition, _ := json.Marshal(dst.MonitorSummaryWidgetDefinition)
-		if string(jsonMonitorSummaryWidgetDefinition) == "{}" { // empty struct
-			dst.MonitorSummaryWidgetDefinition = nil
+		if dst.MonitorSummaryWidgetDefinition != nil && dst.MonitorSummaryWidgetDefinition.UnparsedObject == nil {
+			jsonMonitorSummaryWidgetDefinition, _ := json.Marshal(dst.MonitorSummaryWidgetDefinition)
+			if string(jsonMonitorSummaryWidgetDefinition) == "{}" { // empty struct
+				dst.MonitorSummaryWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.MonitorSummaryWidgetDefinition = nil
 		}
 	} else {
 		dst.MonitorSummaryWidgetDefinition = nil
@@ -407,11 +460,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into NoteWidgetDefinition
 	err = json.Unmarshal(data, &dst.NoteWidgetDefinition)
 	if err == nil {
-		jsonNoteWidgetDefinition, _ := json.Marshal(dst.NoteWidgetDefinition)
-		if string(jsonNoteWidgetDefinition) == "{}" { // empty struct
-			dst.NoteWidgetDefinition = nil
+		if dst.NoteWidgetDefinition != nil && dst.NoteWidgetDefinition.UnparsedObject == nil {
+			jsonNoteWidgetDefinition, _ := json.Marshal(dst.NoteWidgetDefinition)
+			if string(jsonNoteWidgetDefinition) == "{}" { // empty struct
+				dst.NoteWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.NoteWidgetDefinition = nil
 		}
 	} else {
 		dst.NoteWidgetDefinition = nil
@@ -420,50 +477,66 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into QueryValueWidgetDefinition
 	err = json.Unmarshal(data, &dst.QueryValueWidgetDefinition)
 	if err == nil {
-		jsonQueryValueWidgetDefinition, _ := json.Marshal(dst.QueryValueWidgetDefinition)
-		if string(jsonQueryValueWidgetDefinition) == "{}" { // empty struct
-			dst.QueryValueWidgetDefinition = nil
+		if dst.QueryValueWidgetDefinition != nil && dst.QueryValueWidgetDefinition.UnparsedObject == nil {
+			jsonQueryValueWidgetDefinition, _ := json.Marshal(dst.QueryValueWidgetDefinition)
+			if string(jsonQueryValueWidgetDefinition) == "{}" { // empty struct
+				dst.QueryValueWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.QueryValueWidgetDefinition = nil
 		}
 	} else {
 		dst.QueryValueWidgetDefinition = nil
 	}
 
-	// try to unmarshal data into SLOWidgetDefinition
-	err = json.Unmarshal(data, &dst.SLOWidgetDefinition)
-	if err == nil {
-		jsonSLOWidgetDefinition, _ := json.Marshal(dst.SLOWidgetDefinition)
-		if string(jsonSLOWidgetDefinition) == "{}" { // empty struct
-			dst.SLOWidgetDefinition = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.SLOWidgetDefinition = nil
-	}
-
 	// try to unmarshal data into ScatterPlotWidgetDefinition
 	err = json.Unmarshal(data, &dst.ScatterPlotWidgetDefinition)
 	if err == nil {
-		jsonScatterPlotWidgetDefinition, _ := json.Marshal(dst.ScatterPlotWidgetDefinition)
-		if string(jsonScatterPlotWidgetDefinition) == "{}" { // empty struct
-			dst.ScatterPlotWidgetDefinition = nil
+		if dst.ScatterPlotWidgetDefinition != nil && dst.ScatterPlotWidgetDefinition.UnparsedObject == nil {
+			jsonScatterPlotWidgetDefinition, _ := json.Marshal(dst.ScatterPlotWidgetDefinition)
+			if string(jsonScatterPlotWidgetDefinition) == "{}" { // empty struct
+				dst.ScatterPlotWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.ScatterPlotWidgetDefinition = nil
 		}
 	} else {
 		dst.ScatterPlotWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into SLOWidgetDefinition
+	err = json.Unmarshal(data, &dst.SLOWidgetDefinition)
+	if err == nil {
+		if dst.SLOWidgetDefinition != nil && dst.SLOWidgetDefinition.UnparsedObject == nil {
+			jsonSLOWidgetDefinition, _ := json.Marshal(dst.SLOWidgetDefinition)
+			if string(jsonSLOWidgetDefinition) == "{}" { // empty struct
+				dst.SLOWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.SLOWidgetDefinition = nil
+		}
+	} else {
+		dst.SLOWidgetDefinition = nil
+	}
+
 	// try to unmarshal data into ServiceMapWidgetDefinition
 	err = json.Unmarshal(data, &dst.ServiceMapWidgetDefinition)
 	if err == nil {
-		jsonServiceMapWidgetDefinition, _ := json.Marshal(dst.ServiceMapWidgetDefinition)
-		if string(jsonServiceMapWidgetDefinition) == "{}" { // empty struct
-			dst.ServiceMapWidgetDefinition = nil
+		if dst.ServiceMapWidgetDefinition != nil && dst.ServiceMapWidgetDefinition.UnparsedObject == nil {
+			jsonServiceMapWidgetDefinition, _ := json.Marshal(dst.ServiceMapWidgetDefinition)
+			if string(jsonServiceMapWidgetDefinition) == "{}" { // empty struct
+				dst.ServiceMapWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.ServiceMapWidgetDefinition = nil
 		}
 	} else {
 		dst.ServiceMapWidgetDefinition = nil
@@ -472,11 +545,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ServiceSummaryWidgetDefinition
 	err = json.Unmarshal(data, &dst.ServiceSummaryWidgetDefinition)
 	if err == nil {
-		jsonServiceSummaryWidgetDefinition, _ := json.Marshal(dst.ServiceSummaryWidgetDefinition)
-		if string(jsonServiceSummaryWidgetDefinition) == "{}" { // empty struct
-			dst.ServiceSummaryWidgetDefinition = nil
+		if dst.ServiceSummaryWidgetDefinition != nil && dst.ServiceSummaryWidgetDefinition.UnparsedObject == nil {
+			jsonServiceSummaryWidgetDefinition, _ := json.Marshal(dst.ServiceSummaryWidgetDefinition)
+			if string(jsonServiceSummaryWidgetDefinition) == "{}" { // empty struct
+				dst.ServiceSummaryWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.ServiceSummaryWidgetDefinition = nil
 		}
 	} else {
 		dst.ServiceSummaryWidgetDefinition = nil
@@ -485,11 +562,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into TableWidgetDefinition
 	err = json.Unmarshal(data, &dst.TableWidgetDefinition)
 	if err == nil {
-		jsonTableWidgetDefinition, _ := json.Marshal(dst.TableWidgetDefinition)
-		if string(jsonTableWidgetDefinition) == "{}" { // empty struct
-			dst.TableWidgetDefinition = nil
+		if dst.TableWidgetDefinition != nil && dst.TableWidgetDefinition.UnparsedObject == nil {
+			jsonTableWidgetDefinition, _ := json.Marshal(dst.TableWidgetDefinition)
+			if string(jsonTableWidgetDefinition) == "{}" { // empty struct
+				dst.TableWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.TableWidgetDefinition = nil
 		}
 	} else {
 		dst.TableWidgetDefinition = nil
@@ -498,11 +579,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into TimeseriesWidgetDefinition
 	err = json.Unmarshal(data, &dst.TimeseriesWidgetDefinition)
 	if err == nil {
-		jsonTimeseriesWidgetDefinition, _ := json.Marshal(dst.TimeseriesWidgetDefinition)
-		if string(jsonTimeseriesWidgetDefinition) == "{}" { // empty struct
-			dst.TimeseriesWidgetDefinition = nil
+		if dst.TimeseriesWidgetDefinition != nil && dst.TimeseriesWidgetDefinition.UnparsedObject == nil {
+			jsonTimeseriesWidgetDefinition, _ := json.Marshal(dst.TimeseriesWidgetDefinition)
+			if string(jsonTimeseriesWidgetDefinition) == "{}" { // empty struct
+				dst.TimeseriesWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.TimeseriesWidgetDefinition = nil
 		}
 	} else {
 		dst.TimeseriesWidgetDefinition = nil
@@ -511,11 +596,15 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ToplistWidgetDefinition
 	err = json.Unmarshal(data, &dst.ToplistWidgetDefinition)
 	if err == nil {
-		jsonToplistWidgetDefinition, _ := json.Marshal(dst.ToplistWidgetDefinition)
-		if string(jsonToplistWidgetDefinition) == "{}" { // empty struct
-			dst.ToplistWidgetDefinition = nil
+		if dst.ToplistWidgetDefinition != nil && dst.ToplistWidgetDefinition.UnparsedObject == nil {
+			jsonToplistWidgetDefinition, _ := json.Marshal(dst.ToplistWidgetDefinition)
+			if string(jsonToplistWidgetDefinition) == "{}" { // empty struct
+				dst.ToplistWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.ToplistWidgetDefinition = nil
 		}
 	} else {
 		dst.ToplistWidgetDefinition = nil
@@ -524,17 +613,38 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into TreeMapWidgetDefinition
 	err = json.Unmarshal(data, &dst.TreeMapWidgetDefinition)
 	if err == nil {
-		jsonTreeMapWidgetDefinition, _ := json.Marshal(dst.TreeMapWidgetDefinition)
-		if string(jsonTreeMapWidgetDefinition) == "{}" { // empty struct
-			dst.TreeMapWidgetDefinition = nil
+		if dst.TreeMapWidgetDefinition != nil && dst.TreeMapWidgetDefinition.UnparsedObject == nil {
+			jsonTreeMapWidgetDefinition, _ := json.Marshal(dst.TreeMapWidgetDefinition)
+			if string(jsonTreeMapWidgetDefinition) == "{}" { // empty struct
+				dst.TreeMapWidgetDefinition = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.TreeMapWidgetDefinition = nil
 		}
 	} else {
 		dst.TreeMapWidgetDefinition = nil
 	}
 
-	if match > 1 { // more than 1 match
+	// try to unmarshal data into ListStreamWidgetDefinition
+	err = json.Unmarshal(data, &dst.ListStreamWidgetDefinition)
+	if err == nil {
+		if dst.ListStreamWidgetDefinition != nil && dst.ListStreamWidgetDefinition.UnparsedObject == nil {
+			jsonListStreamWidgetDefinition, _ := json.Marshal(dst.ListStreamWidgetDefinition)
+			if string(jsonListStreamWidgetDefinition) == "{}" { // empty struct
+				dst.ListStreamWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.ListStreamWidgetDefinition = nil
+		}
+	} else {
+		dst.ListStreamWidgetDefinition = nil
+	}
+
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.AlertGraphWidgetDefinition = nil
 		dst.AlertValueWidgetDefinition = nil
@@ -563,12 +673,9 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.TimeseriesWidgetDefinition = nil
 		dst.ToplistWidgetDefinition = nil
 		dst.TreeMapWidgetDefinition = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(WidgetDefinition)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(WidgetDefinition)")
 	}
 }
 
@@ -682,6 +789,9 @@ func (src WidgetDefinition) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.TreeMapWidgetDefinition)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

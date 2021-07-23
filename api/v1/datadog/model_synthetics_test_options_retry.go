@@ -18,6 +18,8 @@ type SyntheticsTestOptionsRetry struct {
 	Count *int64 `json:"count,omitempty"`
 	// Time interval between retries (in milliseconds). Defaults to 300ms.
 	Interval *float64 `json:"interval,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTestOptionsRetry instantiates a new SyntheticsTestOptionsRetry object
@@ -103,6 +105,9 @@ func (o *SyntheticsTestOptionsRetry) SetInterval(v float64) {
 
 func (o SyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Count != nil {
 		toSerialize["count"] = o.Count
 	}
@@ -110,6 +115,26 @@ func (o SyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
 		toSerialize["interval"] = o.Interval
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTestOptionsRetry) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Count    *int64   `json:"count,omitempty"`
+		Interval *float64 `json:"interval,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Count = all.Count
+	o.Interval = all.Interval
+	return nil
 }
 
 type NullableSyntheticsTestOptionsRetry struct {

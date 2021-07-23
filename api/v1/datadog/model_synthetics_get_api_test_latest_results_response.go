@@ -18,6 +18,8 @@ type SyntheticsGetAPITestLatestResultsResponse struct {
 	LastTimestampFetched *int64 `json:"last_timestamp_fetched,omitempty"`
 	// Result of the latest API test run.
 	Results *[]SyntheticsAPITestResultShort `json:"results,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsGetAPITestLatestResultsResponse instantiates a new SyntheticsGetAPITestLatestResultsResponse object
@@ -103,6 +105,9 @@ func (o *SyntheticsGetAPITestLatestResultsResponse) SetResults(v []SyntheticsAPI
 
 func (o SyntheticsGetAPITestLatestResultsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.LastTimestampFetched != nil {
 		toSerialize["last_timestamp_fetched"] = o.LastTimestampFetched
 	}
@@ -110,6 +115,26 @@ func (o SyntheticsGetAPITestLatestResultsResponse) MarshalJSON() ([]byte, error)
 		toSerialize["results"] = o.Results
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsGetAPITestLatestResultsResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		LastTimestampFetched *int64                          `json:"last_timestamp_fetched,omitempty"`
+		Results              *[]SyntheticsAPITestResultShort `json:"results,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.LastTimestampFetched = all.LastTimestampFetched
+	o.Results = all.Results
+	return nil
 }
 
 type NullableSyntheticsGetAPITestLatestResultsResponse struct {

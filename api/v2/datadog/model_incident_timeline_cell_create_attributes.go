@@ -10,12 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // IncidentTimelineCellCreateAttributes - The timeline cell's attributes for a create request.
 type IncidentTimelineCellCreateAttributes struct {
 	IncidentTimelineCellMarkdownCreateAttributes *IncidentTimelineCellMarkdownCreateAttributes
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // IncidentTimelineCellMarkdownCreateAttributesAsIncidentTimelineCellCreateAttributes is a convenience function that returns IncidentTimelineCellMarkdownCreateAttributes wrapped in IncidentTimelineCellCreateAttributes
@@ -30,25 +32,26 @@ func (dst *IncidentTimelineCellCreateAttributes) UnmarshalJSON(data []byte) erro
 	// try to unmarshal data into IncidentTimelineCellMarkdownCreateAttributes
 	err = json.Unmarshal(data, &dst.IncidentTimelineCellMarkdownCreateAttributes)
 	if err == nil {
-		jsonIncidentTimelineCellMarkdownCreateAttributes, _ := json.Marshal(dst.IncidentTimelineCellMarkdownCreateAttributes)
-		if string(jsonIncidentTimelineCellMarkdownCreateAttributes) == "{}" { // empty struct
-			dst.IncidentTimelineCellMarkdownCreateAttributes = nil
+		if dst.IncidentTimelineCellMarkdownCreateAttributes != nil && dst.IncidentTimelineCellMarkdownCreateAttributes.UnparsedObject == nil {
+			jsonIncidentTimelineCellMarkdownCreateAttributes, _ := json.Marshal(dst.IncidentTimelineCellMarkdownCreateAttributes)
+			if string(jsonIncidentTimelineCellMarkdownCreateAttributes) == "{}" { // empty struct
+				dst.IncidentTimelineCellMarkdownCreateAttributes = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.IncidentTimelineCellMarkdownCreateAttributes = nil
 		}
 	} else {
 		dst.IncidentTimelineCellMarkdownCreateAttributes = nil
 	}
 
-	if match > 1 { // more than 1 match
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.IncidentTimelineCellMarkdownCreateAttributes = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(IncidentTimelineCellCreateAttributes)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(IncidentTimelineCellCreateAttributes)")
 	}
 }
 
@@ -58,6 +61,9 @@ func (src IncidentTimelineCellCreateAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.IncidentTimelineCellMarkdownCreateAttributes)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

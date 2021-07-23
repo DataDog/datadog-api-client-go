@@ -19,6 +19,8 @@ type GeomapWidgetDefinitionStyle struct {
 	Palette string `json:"palette"`
 	// Whether to flip the palette tones.
 	PaletteFlip bool `json:"palette_flip"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewGeomapWidgetDefinitionStyle instantiates a new GeomapWidgetDefinitionStyle object
@@ -90,6 +92,9 @@ func (o *GeomapWidgetDefinitionStyle) SetPaletteFlip(v bool) {
 
 func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["palette"] = o.Palette
 	}
@@ -100,6 +105,7 @@ func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 }
 
 func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Palette     *string `json:"palette"`
 		PaletteFlip *bool   `json:"palette_flip"`
@@ -120,7 +126,12 @@ func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Palette = all.Palette
 	o.PaletteFlip = all.PaletteFlip

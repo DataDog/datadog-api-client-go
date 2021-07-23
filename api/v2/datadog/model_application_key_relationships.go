@@ -15,6 +15,8 @@ import (
 // ApplicationKeyRelationships Resources related to the application key.
 type ApplicationKeyRelationships struct {
 	CreatedBy *RelationshipToUser `json:"created_by,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewApplicationKeyRelationships instantiates a new ApplicationKeyRelationships object
@@ -68,10 +70,31 @@ func (o *ApplicationKeyRelationships) SetCreatedBy(v RelationshipToUser) {
 
 func (o ApplicationKeyRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CreatedBy != nil {
 		toSerialize["created_by"] = o.CreatedBy
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ApplicationKeyRelationships) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		CreatedBy *RelationshipToUser `json:"created_by,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.CreatedBy = all.CreatedBy
+	return nil
 }
 
 type NullableApplicationKeyRelationships struct {

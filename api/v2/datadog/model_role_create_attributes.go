@@ -22,6 +22,8 @@ type RoleCreateAttributes struct {
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// Name of the role.
 	Name string `json:"name"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewRoleCreateAttributes instantiates a new RoleCreateAttributes object
@@ -132,6 +134,9 @@ func (o *RoleCreateAttributes) SetName(v string) {
 
 func (o RoleCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -145,6 +150,7 @@ func (o RoleCreateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *RoleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
@@ -162,7 +168,12 @@ func (o *RoleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.CreatedAt = all.CreatedAt
 	o.ModifiedAt = all.ModifiedAt

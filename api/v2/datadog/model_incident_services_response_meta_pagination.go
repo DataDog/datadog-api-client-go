@@ -20,6 +20,8 @@ type IncidentServicesResponseMetaPagination struct {
 	Offset *int64 `json:"offset,omitempty"`
 	// Maximum size of pages to return.
 	Size *int64 `json:"size,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentServicesResponseMetaPagination instantiates a new IncidentServicesResponseMetaPagination object
@@ -137,6 +139,9 @@ func (o *IncidentServicesResponseMetaPagination) SetSize(v int64) {
 
 func (o IncidentServicesResponseMetaPagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.NextOffset != nil {
 		toSerialize["next_offset"] = o.NextOffset
 	}
@@ -147,6 +152,28 @@ func (o IncidentServicesResponseMetaPagination) MarshalJSON() ([]byte, error) {
 		toSerialize["size"] = o.Size
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentServicesResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		NextOffset *int64 `json:"next_offset,omitempty"`
+		Offset     *int64 `json:"offset,omitempty"`
+		Size       *int64 `json:"size,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.NextOffset = all.NextOffset
+	o.Offset = all.Offset
+	o.Size = all.Size
+	return nil
 }
 
 type NullableIncidentServicesResponseMetaPagination struct {

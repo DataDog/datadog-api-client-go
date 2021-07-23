@@ -18,6 +18,8 @@ type SLOListResponseMetadataPage struct {
 	TotalCount *int64 `json:"total_count,omitempty"`
 	// The total number of resources that match the parameters and filters in the request. This attribute can be used by a client to determine the total number of pages.
 	TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOListResponseMetadataPage instantiates a new SLOListResponseMetadataPage object
@@ -103,6 +105,9 @@ func (o *SLOListResponseMetadataPage) SetTotalFilteredCount(v int64) {
 
 func (o SLOListResponseMetadataPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.TotalCount != nil {
 		toSerialize["total_count"] = o.TotalCount
 	}
@@ -110,6 +115,26 @@ func (o SLOListResponseMetadataPage) MarshalJSON() ([]byte, error) {
 		toSerialize["total_filtered_count"] = o.TotalFilteredCount
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOListResponseMetadataPage) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		TotalCount         *int64 `json:"total_count,omitempty"`
+		TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.TotalCount = all.TotalCount
+	o.TotalFilteredCount = all.TotalFilteredCount
+	return nil
 }
 
 type NullableSLOListResponseMetadataPage struct {

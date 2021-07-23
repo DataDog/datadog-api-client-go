@@ -27,6 +27,8 @@ type MonitorGroupSearchResult struct {
 	// The name of the monitor.
 	MonitorName *string               `json:"monitor_name,omitempty"`
 	Status      *MonitorOverallStates `json:"status,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorGroupSearchResult instantiates a new MonitorGroupSearchResult object
@@ -283,6 +285,9 @@ func (o *MonitorGroupSearchResult) SetStatus(v MonitorOverallStates) {
 
 func (o MonitorGroupSearchResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Group != nil {
 		toSerialize["group"] = o.Group
 	}
@@ -305,6 +310,44 @@ func (o MonitorGroupSearchResult) MarshalJSON() ([]byte, error) {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorGroupSearchResult) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Group           *string               `json:"group,omitempty"`
+		GroupTags       *[]string             `json:"group_tags,omitempty"`
+		LastNodataTs    *int64                `json:"last_nodata_ts,omitempty"`
+		LastTriggeredTs NullableInt64         `json:"last_triggered_ts,omitempty"`
+		MonitorId       *int64                `json:"monitor_id,omitempty"`
+		MonitorName     *string               `json:"monitor_name,omitempty"`
+		Status          *MonitorOverallStates `json:"status,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Group = all.Group
+	o.GroupTags = all.GroupTags
+	o.LastNodataTs = all.LastNodataTs
+	o.LastTriggeredTs = all.LastTriggeredTs
+	o.MonitorId = all.MonitorId
+	o.MonitorName = all.MonitorName
+	o.Status = all.Status
+	return nil
 }
 
 type NullableMonitorGroupSearchResult struct {

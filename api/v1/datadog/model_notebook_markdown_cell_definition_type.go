@@ -35,15 +35,8 @@ func (v *NotebookMarkdownCellDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := NotebookMarkdownCellDefinitionType(value)
-	for _, existing := range allowedNotebookMarkdownCellDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid NotebookMarkdownCellDefinitionType", value)
+	*v = NotebookMarkdownCellDefinitionType(value)
+	return nil
 }
 
 // NewNotebookMarkdownCellDefinitionTypeFromValue returns a pointer to a valid NotebookMarkdownCellDefinitionType

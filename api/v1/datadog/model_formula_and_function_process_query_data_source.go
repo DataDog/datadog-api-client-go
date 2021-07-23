@@ -37,15 +37,8 @@ func (v *FormulaAndFunctionProcessQueryDataSource) UnmarshalJSON(src []byte) err
 	if err != nil {
 		return err
 	}
-	enumTypeValue := FormulaAndFunctionProcessQueryDataSource(value)
-	for _, existing := range allowedFormulaAndFunctionProcessQueryDataSourceEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid FormulaAndFunctionProcessQueryDataSource", value)
+	*v = FormulaAndFunctionProcessQueryDataSource(value)
+	return nil
 }
 
 // NewFormulaAndFunctionProcessQueryDataSourceFromValue returns a pointer to a valid FormulaAndFunctionProcessQueryDataSource

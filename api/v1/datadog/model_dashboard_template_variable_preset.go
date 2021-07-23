@@ -18,6 +18,8 @@ type DashboardTemplateVariablePreset struct {
 	Name *string `json:"name,omitempty"`
 	// List of variables.
 	TemplateVariables *[]DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDashboardTemplateVariablePreset instantiates a new DashboardTemplateVariablePreset object
@@ -103,6 +105,9 @@ func (o *DashboardTemplateVariablePreset) SetTemplateVariables(v []DashboardTemp
 
 func (o DashboardTemplateVariablePreset) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -110,6 +115,26 @@ func (o DashboardTemplateVariablePreset) MarshalJSON() ([]byte, error) {
 		toSerialize["template_variables"] = o.TemplateVariables
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DashboardTemplateVariablePreset) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Name              *string                                 `json:"name,omitempty"`
+		TemplateVariables *[]DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Name = all.Name
+	o.TemplateVariables = all.TemplateVariables
+	return nil
 }
 
 type NullableDashboardTemplateVariablePreset struct {

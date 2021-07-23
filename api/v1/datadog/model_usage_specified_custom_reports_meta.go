@@ -15,6 +15,8 @@ import (
 // UsageSpecifiedCustomReportsMeta The object containing document metadata.
 type UsageSpecifiedCustomReportsMeta struct {
 	Page *UsageSpecifiedCustomReportsPage `json:"page,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageSpecifiedCustomReportsMeta instantiates a new UsageSpecifiedCustomReportsMeta object
@@ -68,10 +70,31 @@ func (o *UsageSpecifiedCustomReportsMeta) SetPage(v UsageSpecifiedCustomReportsP
 
 func (o UsageSpecifiedCustomReportsMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Page != nil {
 		toSerialize["page"] = o.Page
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageSpecifiedCustomReportsMeta) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Page *UsageSpecifiedCustomReportsPage `json:"page,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Page = all.Page
+	return nil
 }
 
 type NullableUsageSpecifiedCustomReportsMeta struct {

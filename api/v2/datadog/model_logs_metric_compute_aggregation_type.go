@@ -37,15 +37,8 @@ func (v *LogsMetricComputeAggregationType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsMetricComputeAggregationType(value)
-	for _, existing := range allowedLogsMetricComputeAggregationTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsMetricComputeAggregationType", value)
+	*v = LogsMetricComputeAggregationType(value)
+	return nil
 }
 
 // NewLogsMetricComputeAggregationTypeFromValue returns a pointer to a valid LogsMetricComputeAggregationType

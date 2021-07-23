@@ -29,6 +29,8 @@ type ScatterPlotWidgetDefinition struct {
 	Type      ScatterPlotWidgetDefinitionType `json:"type"`
 	Xaxis     *WidgetAxis                     `json:"xaxis,omitempty"`
 	Yaxis     *WidgetAxis                     `json:"yaxis,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewScatterPlotWidgetDefinition instantiates a new ScatterPlotWidgetDefinition object
@@ -358,6 +360,9 @@ func (o *ScatterPlotWidgetDefinition) SetYaxis(v WidgetAxis) {
 
 func (o ScatterPlotWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ColorByGroups != nil {
 		toSerialize["color_by_groups"] = o.ColorByGroups
 	}
@@ -392,6 +397,7 @@ func (o ScatterPlotWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Requests *ScatterPlotWidgetDefinitionRequests `json:"requests"`
 		Type     *ScatterPlotWidgetDefinitionType     `json:"type"`
@@ -420,7 +426,28 @@ func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.ColorByGroups = all.ColorByGroups
 	o.CustomLinks = all.CustomLinks

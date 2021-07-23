@@ -15,6 +15,8 @@ import (
 // UserResponse A Datadog User.
 type UserResponse struct {
 	User *User `json:"user,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserResponse instantiates a new UserResponse object
@@ -68,10 +70,31 @@ func (o *UserResponse) SetUser(v User) {
 
 func (o UserResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.User != nil {
 		toSerialize["user"] = o.User
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		User *User `json:"user,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.User = all.User
+	return nil
 }
 
 type NullableUserResponse struct {

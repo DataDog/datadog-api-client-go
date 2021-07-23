@@ -35,15 +35,8 @@ func (v *ImageWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ImageWidgetDefinitionType(value)
-	for _, existing := range allowedImageWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ImageWidgetDefinitionType", value)
+	*v = ImageWidgetDefinitionType(value)
+	return nil
 }
 
 // NewImageWidgetDefinitionTypeFromValue returns a pointer to a valid ImageWidgetDefinitionType

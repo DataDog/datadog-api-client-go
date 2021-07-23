@@ -18,6 +18,8 @@ type SyntheticsPrivateLocationCreationResponse struct {
 	Config           *interface{}                                               `json:"config,omitempty"`
 	PrivateLocation  *SyntheticsPrivateLocation                                 `json:"private_location,omitempty"`
 	ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsPrivateLocationCreationResponse instantiates a new SyntheticsPrivateLocationCreationResponse object
@@ -135,6 +137,9 @@ func (o *SyntheticsPrivateLocationCreationResponse) SetResultEncryption(v Synthe
 
 func (o SyntheticsPrivateLocationCreationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Config != nil {
 		toSerialize["config"] = o.Config
 	}
@@ -145,6 +150,28 @@ func (o SyntheticsPrivateLocationCreationResponse) MarshalJSON() ([]byte, error)
 		toSerialize["result_encryption"] = o.ResultEncryption
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsPrivateLocationCreationResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Config           *interface{}                                               `json:"config,omitempty"`
+		PrivateLocation  *SyntheticsPrivateLocation                                 `json:"private_location,omitempty"`
+		ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Config = all.Config
+	o.PrivateLocation = all.PrivateLocation
+	o.ResultEncryption = all.ResultEncryption
+	return nil
 }
 
 type NullableSyntheticsPrivateLocationCreationResponse struct {

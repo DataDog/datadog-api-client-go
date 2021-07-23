@@ -18,6 +18,8 @@ type AWSLogsAsyncResponse struct {
 	Errors *[]AWSLogsAsyncError `json:"errors,omitempty"`
 	// Status of the properties.
 	Status *string `json:"status,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAWSLogsAsyncResponse instantiates a new AWSLogsAsyncResponse object
@@ -103,6 +105,9 @@ func (o *AWSLogsAsyncResponse) SetStatus(v string) {
 
 func (o AWSLogsAsyncResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
 	}
@@ -110,6 +115,26 @@ func (o AWSLogsAsyncResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSLogsAsyncResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Errors *[]AWSLogsAsyncError `json:"errors,omitempty"`
+		Status *string              `json:"status,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Errors = all.Errors
+	o.Status = all.Status
+	return nil
 }
 
 type NullableAWSLogsAsyncResponse struct {

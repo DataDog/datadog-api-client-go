@@ -17,6 +17,8 @@ type LogsMetricResponseCompute struct {
 	AggregationType *LogsMetricResponseComputeAggregationType `json:"aggregation_type,omitempty"`
 	// The path to the value the log-based metric will aggregate on (only used if the aggregation type is a \"distribution\").
 	Path *string `json:"path,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsMetricResponseCompute instantiates a new LogsMetricResponseCompute object
@@ -102,6 +104,9 @@ func (o *LogsMetricResponseCompute) SetPath(v string) {
 
 func (o LogsMetricResponseCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AggregationType != nil {
 		toSerialize["aggregation_type"] = o.AggregationType
 	}
@@ -109,6 +114,34 @@ func (o LogsMetricResponseCompute) MarshalJSON() ([]byte, error) {
 		toSerialize["path"] = o.Path
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsMetricResponseCompute) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AggregationType *LogsMetricResponseComputeAggregationType `json:"aggregation_type,omitempty"`
+		Path            *string                                   `json:"path,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.AggregationType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AggregationType = all.AggregationType
+	o.Path = all.Path
+	return nil
 }
 
 type NullableLogsMetricResponseCompute struct {

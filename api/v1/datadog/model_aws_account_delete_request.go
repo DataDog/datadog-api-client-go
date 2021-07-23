@@ -20,6 +20,8 @@ type AWSAccountDeleteRequest struct {
 	AccountId *string `json:"account_id,omitempty"`
 	// Your Datadog role delegation name.
 	RoleName *string `json:"role_name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAWSAccountDeleteRequest instantiates a new AWSAccountDeleteRequest object
@@ -137,6 +139,9 @@ func (o *AWSAccountDeleteRequest) SetRoleName(v string) {
 
 func (o AWSAccountDeleteRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AccessKeyId != nil {
 		toSerialize["access_key_id"] = o.AccessKeyId
 	}
@@ -147,6 +152,28 @@ func (o AWSAccountDeleteRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["role_name"] = o.RoleName
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSAccountDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AccessKeyId *string `json:"access_key_id,omitempty"`
+		AccountId   *string `json:"account_id,omitempty"`
+		RoleName    *string `json:"role_name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AccessKeyId = all.AccessKeyId
+	o.AccountId = all.AccountId
+	o.RoleName = all.RoleName
+	return nil
 }
 
 type NullableAWSAccountDeleteRequest struct {

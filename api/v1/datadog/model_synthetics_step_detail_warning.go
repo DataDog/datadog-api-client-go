@@ -18,6 +18,8 @@ type SyntheticsStepDetailWarning struct {
 	// Message for the warning.
 	Message string                `json:"message"`
 	Type    SyntheticsWarningType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsStepDetailWarning instantiates a new SyntheticsStepDetailWarning object
@@ -89,6 +91,9 @@ func (o *SyntheticsStepDetailWarning) SetType(v SyntheticsWarningType) {
 
 func (o SyntheticsStepDetailWarning) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["message"] = o.Message
 	}
@@ -99,6 +104,7 @@ func (o SyntheticsStepDetailWarning) MarshalJSON() ([]byte, error) {
 }
 
 func (o *SyntheticsStepDetailWarning) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Message *string                `json:"message"`
 		Type    *SyntheticsWarningType `json:"type"`
@@ -119,7 +125,20 @@ func (o *SyntheticsStepDetailWarning) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Message = all.Message
 	o.Type = all.Type

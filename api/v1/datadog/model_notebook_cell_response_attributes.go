@@ -10,7 +10,6 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // NotebookCellResponseAttributes - The attributes of a notebook cell response. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`, `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
@@ -21,6 +20,9 @@ type NotebookCellResponseAttributes struct {
 	NotebookMarkdownCellAttributes     *NotebookMarkdownCellAttributes
 	NotebookTimeseriesCellAttributes   *NotebookTimeseriesCellAttributes
 	NotebookToplistCellAttributes      *NotebookToplistCellAttributes
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // NotebookDistributionCellAttributesAsNotebookCellResponseAttributes is a convenience function that returns NotebookDistributionCellAttributes wrapped in NotebookCellResponseAttributes
@@ -57,53 +59,18 @@ func NotebookToplistCellAttributesAsNotebookCellResponseAttributes(v *NotebookTo
 func (dst *NotebookCellResponseAttributes) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into NotebookDistributionCellAttributes
-	err = json.Unmarshal(data, &dst.NotebookDistributionCellAttributes)
-	if err == nil {
-		jsonNotebookDistributionCellAttributes, _ := json.Marshal(dst.NotebookDistributionCellAttributes)
-		if string(jsonNotebookDistributionCellAttributes) == "{}" { // empty struct
-			dst.NotebookDistributionCellAttributes = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.NotebookDistributionCellAttributes = nil
-	}
-
-	// try to unmarshal data into NotebookHeatMapCellAttributes
-	err = json.Unmarshal(data, &dst.NotebookHeatMapCellAttributes)
-	if err == nil {
-		jsonNotebookHeatMapCellAttributes, _ := json.Marshal(dst.NotebookHeatMapCellAttributes)
-		if string(jsonNotebookHeatMapCellAttributes) == "{}" { // empty struct
-			dst.NotebookHeatMapCellAttributes = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.NotebookHeatMapCellAttributes = nil
-	}
-
-	// try to unmarshal data into NotebookLogStreamCellAttributes
-	err = json.Unmarshal(data, &dst.NotebookLogStreamCellAttributes)
-	if err == nil {
-		jsonNotebookLogStreamCellAttributes, _ := json.Marshal(dst.NotebookLogStreamCellAttributes)
-		if string(jsonNotebookLogStreamCellAttributes) == "{}" { // empty struct
-			dst.NotebookLogStreamCellAttributes = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.NotebookLogStreamCellAttributes = nil
-	}
-
 	// try to unmarshal data into NotebookMarkdownCellAttributes
 	err = json.Unmarshal(data, &dst.NotebookMarkdownCellAttributes)
 	if err == nil {
-		jsonNotebookMarkdownCellAttributes, _ := json.Marshal(dst.NotebookMarkdownCellAttributes)
-		if string(jsonNotebookMarkdownCellAttributes) == "{}" { // empty struct
-			dst.NotebookMarkdownCellAttributes = nil
+		if dst.NotebookMarkdownCellAttributes != nil && dst.NotebookMarkdownCellAttributes.UnparsedObject == nil {
+			jsonNotebookMarkdownCellAttributes, _ := json.Marshal(dst.NotebookMarkdownCellAttributes)
+			if string(jsonNotebookMarkdownCellAttributes) == "{}" { // empty struct
+				dst.NotebookMarkdownCellAttributes = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.NotebookMarkdownCellAttributes = nil
 		}
 	} else {
 		dst.NotebookMarkdownCellAttributes = nil
@@ -112,11 +79,15 @@ func (dst *NotebookCellResponseAttributes) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into NotebookTimeseriesCellAttributes
 	err = json.Unmarshal(data, &dst.NotebookTimeseriesCellAttributes)
 	if err == nil {
-		jsonNotebookTimeseriesCellAttributes, _ := json.Marshal(dst.NotebookTimeseriesCellAttributes)
-		if string(jsonNotebookTimeseriesCellAttributes) == "{}" { // empty struct
-			dst.NotebookTimeseriesCellAttributes = nil
+		if dst.NotebookTimeseriesCellAttributes != nil && dst.NotebookTimeseriesCellAttributes.UnparsedObject == nil {
+			jsonNotebookTimeseriesCellAttributes, _ := json.Marshal(dst.NotebookTimeseriesCellAttributes)
+			if string(jsonNotebookTimeseriesCellAttributes) == "{}" { // empty struct
+				dst.NotebookTimeseriesCellAttributes = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.NotebookTimeseriesCellAttributes = nil
 		}
 	} else {
 		dst.NotebookTimeseriesCellAttributes = nil
@@ -125,17 +96,72 @@ func (dst *NotebookCellResponseAttributes) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into NotebookToplistCellAttributes
 	err = json.Unmarshal(data, &dst.NotebookToplistCellAttributes)
 	if err == nil {
-		jsonNotebookToplistCellAttributes, _ := json.Marshal(dst.NotebookToplistCellAttributes)
-		if string(jsonNotebookToplistCellAttributes) == "{}" { // empty struct
-			dst.NotebookToplistCellAttributes = nil
+		if dst.NotebookToplistCellAttributes != nil && dst.NotebookToplistCellAttributes.UnparsedObject == nil {
+			jsonNotebookToplistCellAttributes, _ := json.Marshal(dst.NotebookToplistCellAttributes)
+			if string(jsonNotebookToplistCellAttributes) == "{}" { // empty struct
+				dst.NotebookToplistCellAttributes = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.NotebookToplistCellAttributes = nil
 		}
 	} else {
 		dst.NotebookToplistCellAttributes = nil
 	}
 
-	if match > 1 { // more than 1 match
+	// try to unmarshal data into NotebookHeatMapCellAttributes
+	err = json.Unmarshal(data, &dst.NotebookHeatMapCellAttributes)
+	if err == nil {
+		if dst.NotebookHeatMapCellAttributes != nil && dst.NotebookHeatMapCellAttributes.UnparsedObject == nil {
+			jsonNotebookHeatMapCellAttributes, _ := json.Marshal(dst.NotebookHeatMapCellAttributes)
+			if string(jsonNotebookHeatMapCellAttributes) == "{}" { // empty struct
+				dst.NotebookHeatMapCellAttributes = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.NotebookHeatMapCellAttributes = nil
+		}
+	} else {
+		dst.NotebookHeatMapCellAttributes = nil
+	}
+
+	// try to unmarshal data into NotebookDistributionCellAttributes
+	err = json.Unmarshal(data, &dst.NotebookDistributionCellAttributes)
+	if err == nil {
+		if dst.NotebookDistributionCellAttributes != nil && dst.NotebookDistributionCellAttributes.UnparsedObject == nil {
+			jsonNotebookDistributionCellAttributes, _ := json.Marshal(dst.NotebookDistributionCellAttributes)
+			if string(jsonNotebookDistributionCellAttributes) == "{}" { // empty struct
+				dst.NotebookDistributionCellAttributes = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.NotebookDistributionCellAttributes = nil
+		}
+	} else {
+		dst.NotebookDistributionCellAttributes = nil
+	}
+
+	// try to unmarshal data into NotebookLogStreamCellAttributes
+	err = json.Unmarshal(data, &dst.NotebookLogStreamCellAttributes)
+	if err == nil {
+		if dst.NotebookLogStreamCellAttributes != nil && dst.NotebookLogStreamCellAttributes.UnparsedObject == nil {
+			jsonNotebookLogStreamCellAttributes, _ := json.Marshal(dst.NotebookLogStreamCellAttributes)
+			if string(jsonNotebookLogStreamCellAttributes) == "{}" { // empty struct
+				dst.NotebookLogStreamCellAttributes = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.NotebookLogStreamCellAttributes = nil
+		}
+	} else {
+		dst.NotebookLogStreamCellAttributes = nil
+	}
+
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.NotebookDistributionCellAttributes = nil
 		dst.NotebookHeatMapCellAttributes = nil
@@ -143,12 +169,9 @@ func (dst *NotebookCellResponseAttributes) UnmarshalJSON(data []byte) error {
 		dst.NotebookMarkdownCellAttributes = nil
 		dst.NotebookTimeseriesCellAttributes = nil
 		dst.NotebookToplistCellAttributes = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(NotebookCellResponseAttributes)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(NotebookCellResponseAttributes)")
 	}
 }
 
@@ -178,6 +201,9 @@ func (src NotebookCellResponseAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.NotebookToplistCellAttributes)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

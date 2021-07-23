@@ -22,6 +22,8 @@ type LogQueryDefinition struct {
 	// This field is mutually exclusive with `compute`.
 	MultiCompute *[]LogsQueryCompute       `json:"multi_compute,omitempty"`
 	Search       *LogQueryDefinitionSearch `json:"search,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogQueryDefinition instantiates a new LogQueryDefinition object
@@ -203,6 +205,9 @@ func (o *LogQueryDefinition) SetSearch(v LogQueryDefinitionSearch) {
 
 func (o LogQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Compute != nil {
 		toSerialize["compute"] = o.Compute
 	}
@@ -219,6 +224,32 @@ func (o LogQueryDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["search"] = o.Search
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Compute      *LogsQueryCompute            `json:"compute,omitempty"`
+		GroupBy      *[]LogQueryDefinitionGroupBy `json:"group_by,omitempty"`
+		Index        *string                      `json:"index,omitempty"`
+		MultiCompute *[]LogsQueryCompute          `json:"multi_compute,omitempty"`
+		Search       *LogQueryDefinitionSearch    `json:"search,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Compute = all.Compute
+	o.GroupBy = all.GroupBy
+	o.Index = all.Index
+	o.MultiCompute = all.MultiCompute
+	o.Search = all.Search
+	return nil
 }
 
 type NullableLogQueryDefinition struct {

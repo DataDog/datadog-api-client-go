@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // NotebookUpdateCell - Updating a notebook can either insert new cell(s) or update existing cell(s) by including the cell `id`. To delete existing cell(s), simply omit it from the list of cells.
 type NotebookUpdateCell struct {
 	NotebookCellCreateRequest *NotebookCellCreateRequest
 	NotebookCellUpdateRequest *NotebookCellUpdateRequest
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // NotebookCellCreateRequestAsNotebookUpdateCell is a convenience function that returns NotebookCellCreateRequest wrapped in NotebookUpdateCell
@@ -36,11 +38,15 @@ func (dst *NotebookUpdateCell) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into NotebookCellCreateRequest
 	err = json.Unmarshal(data, &dst.NotebookCellCreateRequest)
 	if err == nil {
-		jsonNotebookCellCreateRequest, _ := json.Marshal(dst.NotebookCellCreateRequest)
-		if string(jsonNotebookCellCreateRequest) == "{}" { // empty struct
-			dst.NotebookCellCreateRequest = nil
+		if dst.NotebookCellCreateRequest != nil && dst.NotebookCellCreateRequest.UnparsedObject == nil {
+			jsonNotebookCellCreateRequest, _ := json.Marshal(dst.NotebookCellCreateRequest)
+			if string(jsonNotebookCellCreateRequest) == "{}" { // empty struct
+				dst.NotebookCellCreateRequest = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.NotebookCellCreateRequest = nil
 		}
 	} else {
 		dst.NotebookCellCreateRequest = nil
@@ -49,26 +55,27 @@ func (dst *NotebookUpdateCell) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into NotebookCellUpdateRequest
 	err = json.Unmarshal(data, &dst.NotebookCellUpdateRequest)
 	if err == nil {
-		jsonNotebookCellUpdateRequest, _ := json.Marshal(dst.NotebookCellUpdateRequest)
-		if string(jsonNotebookCellUpdateRequest) == "{}" { // empty struct
-			dst.NotebookCellUpdateRequest = nil
+		if dst.NotebookCellUpdateRequest != nil && dst.NotebookCellUpdateRequest.UnparsedObject == nil {
+			jsonNotebookCellUpdateRequest, _ := json.Marshal(dst.NotebookCellUpdateRequest)
+			if string(jsonNotebookCellUpdateRequest) == "{}" { // empty struct
+				dst.NotebookCellUpdateRequest = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.NotebookCellUpdateRequest = nil
 		}
 	} else {
 		dst.NotebookCellUpdateRequest = nil
 	}
 
-	if match > 1 { // more than 1 match
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.NotebookCellCreateRequest = nil
 		dst.NotebookCellUpdateRequest = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(NotebookUpdateCell)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(NotebookUpdateCell)")
 	}
 }
 
@@ -82,6 +89,9 @@ func (src NotebookUpdateCell) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.NotebookCellUpdateRequest)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

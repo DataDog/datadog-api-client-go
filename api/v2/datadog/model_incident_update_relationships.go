@@ -19,6 +19,8 @@ type IncidentUpdateRelationships struct {
 	Integrations       *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
 	LastModifiedByUser *RelationshipToUser                         `json:"last_modified_by_user,omitempty"`
 	Postmortem         *RelationshipToIncidentPostmortem           `json:"postmortem,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentUpdateRelationships instantiates a new IncidentUpdateRelationships object
@@ -200,6 +202,9 @@ func (o *IncidentUpdateRelationships) SetPostmortem(v RelationshipToIncidentPost
 
 func (o IncidentUpdateRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CommanderUser != nil {
 		toSerialize["commander_user"] = o.CommanderUser
 	}
@@ -216,6 +221,32 @@ func (o IncidentUpdateRelationships) MarshalJSON() ([]byte, error) {
 		toSerialize["postmortem"] = o.Postmortem
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentUpdateRelationships) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		CommanderUser      *RelationshipToUser                         `json:"commander_user,omitempty"`
+		CreatedByUser      *RelationshipToUser                         `json:"created_by_user,omitempty"`
+		Integrations       *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
+		LastModifiedByUser *RelationshipToUser                         `json:"last_modified_by_user,omitempty"`
+		Postmortem         *RelationshipToIncidentPostmortem           `json:"postmortem,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.CommanderUser = all.CommanderUser
+	o.CreatedByUser = all.CreatedByUser
+	o.Integrations = all.Integrations
+	o.LastModifiedByUser = all.LastModifiedByUser
+	o.Postmortem = all.Postmortem
+	return nil
 }
 
 type NullableIncidentUpdateRelationships struct {

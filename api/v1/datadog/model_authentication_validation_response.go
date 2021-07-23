@@ -16,6 +16,8 @@ import (
 type AuthenticationValidationResponse struct {
 	// Return `true` if the authentication response is valid.
 	Valid *bool `json:"valid,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAuthenticationValidationResponse instantiates a new AuthenticationValidationResponse object
@@ -69,10 +71,31 @@ func (o *AuthenticationValidationResponse) SetValid(v bool) {
 
 func (o AuthenticationValidationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Valid != nil {
 		toSerialize["valid"] = o.Valid
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AuthenticationValidationResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Valid *bool `json:"valid,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Valid = all.Valid
+	return nil
 }
 
 type NullableAuthenticationValidationResponse struct {

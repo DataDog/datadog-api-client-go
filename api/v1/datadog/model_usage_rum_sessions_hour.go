@@ -23,6 +23,8 @@ type UsageRumSessionsHour struct {
 	SessionCountAndroid *int64 `json:"session_count_android,omitempty"`
 	// Contains the number of mobile RUM Sessions on iOS (data available beginning December 1, 2020).
 	SessionCountIos *int64 `json:"session_count_ios,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageRumSessionsHour instantiates a new UsageRumSessionsHour object
@@ -172,6 +174,9 @@ func (o *UsageRumSessionsHour) SetSessionCountIos(v int64) {
 
 func (o UsageRumSessionsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
@@ -185,6 +190,30 @@ func (o UsageRumSessionsHour) MarshalJSON() ([]byte, error) {
 		toSerialize["session_count_ios"] = o.SessionCountIos
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageRumSessionsHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Hour                *time.Time `json:"hour,omitempty"`
+		SessionCount        *int64     `json:"session_count,omitempty"`
+		SessionCountAndroid *int64     `json:"session_count_android,omitempty"`
+		SessionCountIos     *int64     `json:"session_count_ios,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Hour = all.Hour
+	o.SessionCount = all.SessionCount
+	o.SessionCountAndroid = all.SessionCountAndroid
+	o.SessionCountIos = all.SessionCountIos
+	return nil
 }
 
 type NullableUsageRumSessionsHour struct {

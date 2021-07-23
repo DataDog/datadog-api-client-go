@@ -35,15 +35,8 @@ func (v *APIKeysType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := APIKeysType(value)
-	for _, existing := range allowedAPIKeysTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid APIKeysType", value)
+	*v = APIKeysType(value)
+	return nil
 }
 
 // NewAPIKeysTypeFromValue returns a pointer to a valid APIKeysType

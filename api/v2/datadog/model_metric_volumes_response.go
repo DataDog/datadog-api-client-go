@@ -15,6 +15,8 @@ import (
 // MetricVolumesResponse Response object which includes a single metric's volume.
 type MetricVolumesResponse struct {
 	Data *MetricVolumes `json:"data,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricVolumesResponse instantiates a new MetricVolumesResponse object
@@ -68,10 +70,31 @@ func (o *MetricVolumesResponse) SetData(v MetricVolumes) {
 
 func (o MetricVolumesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricVolumesResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data *MetricVolumes `json:"data,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	return nil
 }
 
 type NullableMetricVolumesResponse struct {

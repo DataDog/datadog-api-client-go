@@ -25,6 +25,8 @@ type LogsArchiveAttributes struct {
 	// An array of tags to add to rehydrated logs from an archive.
 	RehydrationTags *[]string         `json:"rehydration_tags,omitempty"`
 	State           *LogsArchiveState `json:"state,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsArchiveAttributes instantiates a new LogsArchiveAttributes object
@@ -223,6 +225,9 @@ func (o *LogsArchiveAttributes) SetState(v LogsArchiveState) {
 
 func (o LogsArchiveAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["destination"] = o.Destination.Get()
 	}
@@ -245,6 +250,7 @@ func (o LogsArchiveAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Destination *NullableLogsArchiveDestination `json:"destination"`
 		Name        *string                         `json:"name"`
@@ -273,7 +279,20 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.State; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Destination = all.Destination
 	o.IncludeTags = all.IncludeTags

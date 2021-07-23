@@ -35,15 +35,8 @@ func (v *LogsUserAgentParserType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsUserAgentParserType(value)
-	for _, existing := range allowedLogsUserAgentParserTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsUserAgentParserType", value)
+	*v = LogsUserAgentParserType(value)
+	return nil
 }
 
 // NewLogsUserAgentParserTypeFromValue returns a pointer to a valid LogsUserAgentParserType

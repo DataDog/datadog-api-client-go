@@ -16,6 +16,8 @@ import (
 type OrganizationSettingsSamlStrictMode struct {
 	// Whether or not the SAML strict mode is enabled. If true, all users must log in with SAML. Learn more on the [SAML Strict documentation](https://docs.datadoghq.com/account_management/saml/#saml-strict).
 	Enabled *bool `json:"enabled,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewOrganizationSettingsSamlStrictMode instantiates a new OrganizationSettingsSamlStrictMode object
@@ -69,10 +71,31 @@ func (o *OrganizationSettingsSamlStrictMode) SetEnabled(v bool) {
 
 func (o OrganizationSettingsSamlStrictMode) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *OrganizationSettingsSamlStrictMode) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Enabled *bool `json:"enabled,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Enabled = all.Enabled
+	return nil
 }
 
 type NullableOrganizationSettingsSamlStrictMode struct {

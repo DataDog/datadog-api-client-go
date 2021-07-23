@@ -20,6 +20,8 @@ type GraphSnapshot struct {
 	MetricQuery *string `json:"metric_query,omitempty"`
 	// URL of your [graph snapshot](https://docs.datadoghq.com/metrics/explorer/#snapshot).
 	SnapshotUrl *string `json:"snapshot_url,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewGraphSnapshot instantiates a new GraphSnapshot object
@@ -137,6 +139,9 @@ func (o *GraphSnapshot) SetSnapshotUrl(v string) {
 
 func (o GraphSnapshot) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.GraphDef != nil {
 		toSerialize["graph_def"] = o.GraphDef
 	}
@@ -147,6 +152,28 @@ func (o GraphSnapshot) MarshalJSON() ([]byte, error) {
 		toSerialize["snapshot_url"] = o.SnapshotUrl
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *GraphSnapshot) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		GraphDef    *string `json:"graph_def,omitempty"`
+		MetricQuery *string `json:"metric_query,omitempty"`
+		SnapshotUrl *string `json:"snapshot_url,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.GraphDef = all.GraphDef
+	o.MetricQuery = all.MetricQuery
+	o.SnapshotUrl = all.SnapshotUrl
+	return nil
 }
 
 type NullableGraphSnapshot struct {

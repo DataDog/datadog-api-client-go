@@ -19,6 +19,8 @@ type UsageIncidentManagementHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the total number monthly active users from the start of the given hour's month until the given hour.
 	MonthlyActiveUsers *int64 `json:"monthly_active_users,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageIncidentManagementHour instantiates a new UsageIncidentManagementHour object
@@ -104,6 +106,9 @@ func (o *UsageIncidentManagementHour) SetMonthlyActiveUsers(v int64) {
 
 func (o UsageIncidentManagementHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
@@ -111,6 +116,26 @@ func (o UsageIncidentManagementHour) MarshalJSON() ([]byte, error) {
 		toSerialize["monthly_active_users"] = o.MonthlyActiveUsers
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageIncidentManagementHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Hour               *time.Time `json:"hour,omitempty"`
+		MonthlyActiveUsers *int64     `json:"monthly_active_users,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Hour = all.Hour
+	o.MonthlyActiveUsers = all.MonthlyActiveUsers
+	return nil
 }
 
 type NullableUsageIncidentManagementHour struct {

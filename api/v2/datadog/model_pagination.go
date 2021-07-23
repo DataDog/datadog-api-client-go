@@ -18,6 +18,8 @@ type Pagination struct {
 	TotalCount *int64 `json:"total_count,omitempty"`
 	// Total count of elements matched by the filter.
 	TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewPagination instantiates a new Pagination object
@@ -103,6 +105,9 @@ func (o *Pagination) SetTotalFilteredCount(v int64) {
 
 func (o Pagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.TotalCount != nil {
 		toSerialize["total_count"] = o.TotalCount
 	}
@@ -110,6 +115,26 @@ func (o Pagination) MarshalJSON() ([]byte, error) {
 		toSerialize["total_filtered_count"] = o.TotalFilteredCount
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *Pagination) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		TotalCount         *int64 `json:"total_count,omitempty"`
+		TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.TotalCount = all.TotalCount
+	o.TotalFilteredCount = all.TotalFilteredCount
+	return nil
 }
 
 type NullablePagination struct {

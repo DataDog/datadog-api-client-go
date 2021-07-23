@@ -43,15 +43,8 @@ func (v *SyntheticsPlayingTab) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsPlayingTab(value)
-	for _, existing := range allowedSyntheticsPlayingTabEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsPlayingTab", value)
+	*v = SyntheticsPlayingTab(value)
+	return nil
 }
 
 // NewSyntheticsPlayingTabFromValue returns a pointer to a valid SyntheticsPlayingTab

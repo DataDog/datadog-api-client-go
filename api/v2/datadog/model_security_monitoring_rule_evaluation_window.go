@@ -49,15 +49,8 @@ func (v *SecurityMonitoringRuleEvaluationWindow) UnmarshalJSON(src []byte) error
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SecurityMonitoringRuleEvaluationWindow(value)
-	for _, existing := range allowedSecurityMonitoringRuleEvaluationWindowEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SecurityMonitoringRuleEvaluationWindow", value)
+	*v = SecurityMonitoringRuleEvaluationWindow(value)
+	return nil
 }
 
 // NewSecurityMonitoringRuleEvaluationWindowFromValue returns a pointer to a valid SecurityMonitoringRuleEvaluationWindow

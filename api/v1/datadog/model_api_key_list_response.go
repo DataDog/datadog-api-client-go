@@ -16,6 +16,8 @@ import (
 type ApiKeyListResponse struct {
 	// Array of API keys.
 	ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewApiKeyListResponse instantiates a new ApiKeyListResponse object
@@ -69,10 +71,31 @@ func (o *ApiKeyListResponse) SetApiKeys(v []ApiKey) {
 
 func (o ApiKeyListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ApiKeys != nil {
 		toSerialize["api_keys"] = o.ApiKeys
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ApiKeyListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ApiKeys = all.ApiKeys
+	return nil
 }
 
 type NullableApiKeyListResponse struct {

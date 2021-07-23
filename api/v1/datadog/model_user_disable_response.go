@@ -16,6 +16,8 @@ import (
 type UserDisableResponse struct {
 	// Information pertaining to a user disabled for a given organization.
 	Message *string `json:"message,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserDisableResponse instantiates a new UserDisableResponse object
@@ -69,10 +71,31 @@ func (o *UserDisableResponse) SetMessage(v string) {
 
 func (o UserDisableResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserDisableResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Message *string `json:"message,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Message = all.Message
+	return nil
 }
 
 type NullableUserDisableResponse struct {

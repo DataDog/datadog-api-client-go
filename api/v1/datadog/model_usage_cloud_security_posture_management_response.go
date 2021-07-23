@@ -16,6 +16,8 @@ import (
 type UsageCloudSecurityPostureManagementResponse struct {
 	// Get hourly usage for Cloud Security Posture Management.
 	Usage *[]UsageCloudSecurityPostureManagementHour `json:"usage,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageCloudSecurityPostureManagementResponse instantiates a new UsageCloudSecurityPostureManagementResponse object
@@ -69,10 +71,31 @@ func (o *UsageCloudSecurityPostureManagementResponse) SetUsage(v []UsageCloudSec
 
 func (o UsageCloudSecurityPostureManagementResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageCloudSecurityPostureManagementResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Usage *[]UsageCloudSecurityPostureManagementHour `json:"usage,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Usage = all.Usage
+	return nil
 }
 
 type NullableUsageCloudSecurityPostureManagementResponse struct {

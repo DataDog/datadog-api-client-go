@@ -18,6 +18,8 @@ type SecurityMonitoringSignalListRequestPage struct {
 	Cursor *string `json:"cursor,omitempty"`
 	// The maximum number of security signals in the response.
 	Limit *int32 `json:"limit,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringSignalListRequestPage instantiates a new SecurityMonitoringSignalListRequestPage object
@@ -107,6 +109,9 @@ func (o *SecurityMonitoringSignalListRequestPage) SetLimit(v int32) {
 
 func (o SecurityMonitoringSignalListRequestPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Cursor != nil {
 		toSerialize["cursor"] = o.Cursor
 	}
@@ -114,6 +119,26 @@ func (o SecurityMonitoringSignalListRequestPage) MarshalJSON() ([]byte, error) {
 		toSerialize["limit"] = o.Limit
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringSignalListRequestPage) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Cursor *string `json:"cursor,omitempty"`
+		Limit  *int32  `json:"limit,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Cursor = all.Cursor
+	o.Limit = all.Limit
+	return nil
 }
 
 type NullableSecurityMonitoringSignalListRequestPage struct {

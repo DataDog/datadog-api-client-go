@@ -71,15 +71,8 @@ func (v *WidgetPalette) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetPalette(value)
-	for _, existing := range allowedWidgetPaletteEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetPalette", value)
+	*v = WidgetPalette(value)
+	return nil
 }
 
 // NewWidgetPaletteFromValue returns a pointer to a valid WidgetPalette

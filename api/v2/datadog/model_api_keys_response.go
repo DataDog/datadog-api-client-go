@@ -18,6 +18,8 @@ type APIKeysResponse struct {
 	Data *[]PartialAPIKey `json:"data,omitempty"`
 	// Array of objects related to the API key.
 	Included *[]APIKeyResponseIncludedItem `json:"included,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAPIKeysResponse instantiates a new APIKeysResponse object
@@ -103,6 +105,9 @@ func (o *APIKeysResponse) SetIncluded(v []APIKeyResponseIncludedItem) {
 
 func (o APIKeysResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
@@ -110,6 +115,26 @@ func (o APIKeysResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["included"] = o.Included
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *APIKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data     *[]PartialAPIKey              `json:"data,omitempty"`
+		Included *[]APIKeyResponseIncludedItem `json:"included,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	o.Included = all.Included
+	return nil
 }
 
 type NullableAPIKeysResponse struct {

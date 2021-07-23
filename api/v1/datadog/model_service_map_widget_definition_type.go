@@ -35,15 +35,8 @@ func (v *ServiceMapWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ServiceMapWidgetDefinitionType(value)
-	for _, existing := range allowedServiceMapWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ServiceMapWidgetDefinitionType", value)
+	*v = ServiceMapWidgetDefinitionType(value)
+	return nil
 }
 
 // NewServiceMapWidgetDefinitionTypeFromValue returns a pointer to a valid ServiceMapWidgetDefinitionType

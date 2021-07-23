@@ -35,15 +35,8 @@ func (v *GroupWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := GroupWidgetDefinitionType(value)
-	for _, existing := range allowedGroupWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid GroupWidgetDefinitionType", value)
+	*v = GroupWidgetDefinitionType(value)
+	return nil
 }
 
 // NewGroupWidgetDefinitionTypeFromValue returns a pointer to a valid GroupWidgetDefinitionType

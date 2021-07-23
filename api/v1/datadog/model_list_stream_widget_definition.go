@@ -28,6 +28,8 @@ type ListStreamWidgetDefinition struct {
 	// Size of the title.
 	TitleSize *string                        `json:"title_size,omitempty"`
 	Type      ListStreamWidgetDefinitionType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewListStreamWidgetDefinition instantiates a new ListStreamWidgetDefinition object
@@ -293,6 +295,9 @@ func (o *ListStreamWidgetDefinition) SetType(v ListStreamWidgetDefinitionType) {
 
 func (o ListStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.LegendSize != nil {
 		toSerialize["legend_size"] = o.LegendSize
 	}
@@ -321,6 +326,7 @@ func (o ListStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Requests *[]ListStreamWidgetRequest      `json:"requests"`
 		Type     *ListStreamWidgetDefinitionType `json:"type"`
@@ -347,7 +353,28 @@ func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.LegendSize = all.LegendSize
 	o.Requests = all.Requests

@@ -19,6 +19,8 @@ type MetricTagConfigurationCreateData struct {
 	// The metric name for this resource.
 	Id   string                     `json:"id"`
 	Type MetricTagConfigurationType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricTagConfigurationCreateData instantiates a new MetricTagConfigurationCreateData object
@@ -124,6 +126,9 @@ func (o *MetricTagConfigurationCreateData) SetType(v MetricTagConfigurationType)
 
 func (o MetricTagConfigurationCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
@@ -137,6 +142,7 @@ func (o MetricTagConfigurationCreateData) MarshalJSON() ([]byte, error) {
 }
 
 func (o *MetricTagConfigurationCreateData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Id   *string                     `json:"id"`
 		Type *MetricTagConfigurationType `json:"type"`
@@ -158,7 +164,20 @@ func (o *MetricTagConfigurationCreateData) UnmarshalJSON(bytes []byte) (err erro
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id

@@ -39,15 +39,8 @@ func (v *ApmStatsQueryRowType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ApmStatsQueryRowType(value)
-	for _, existing := range allowedApmStatsQueryRowTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ApmStatsQueryRowType", value)
+	*v = ApmStatsQueryRowType(value)
+	return nil
 }
 
 // NewApmStatsQueryRowTypeFromValue returns a pointer to a valid ApmStatsQueryRowType

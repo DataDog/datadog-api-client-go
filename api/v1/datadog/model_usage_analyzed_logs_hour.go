@@ -19,6 +19,8 @@ type UsageAnalyzedLogsHour struct {
 	AnalyzedLogs *int64 `json:"analyzed_logs,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageAnalyzedLogsHour instantiates a new UsageAnalyzedLogsHour object
@@ -104,6 +106,9 @@ func (o *UsageAnalyzedLogsHour) SetHour(v time.Time) {
 
 func (o UsageAnalyzedLogsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AnalyzedLogs != nil {
 		toSerialize["analyzed_logs"] = o.AnalyzedLogs
 	}
@@ -111,6 +116,26 @@ func (o UsageAnalyzedLogsHour) MarshalJSON() ([]byte, error) {
 		toSerialize["hour"] = o.Hour
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageAnalyzedLogsHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AnalyzedLogs *int64     `json:"analyzed_logs,omitempty"`
+		Hour         *time.Time `json:"hour,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AnalyzedLogs = all.AnalyzedLogs
+	o.Hour = all.Hour
+	return nil
 }
 
 type NullableUsageAnalyzedLogsHour struct {

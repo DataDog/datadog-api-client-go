@@ -16,6 +16,8 @@ import (
 type TreeMapWidgetRequest struct {
 	// The widget metrics query.
 	Q *string `json:"q,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewTreeMapWidgetRequest instantiates a new TreeMapWidgetRequest object
@@ -69,10 +71,31 @@ func (o *TreeMapWidgetRequest) SetQ(v string) {
 
 func (o TreeMapWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Q != nil {
 		toSerialize["q"] = o.Q
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *TreeMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Q *string `json:"q,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Q = all.Q
+	return nil
 }
 
 type NullableTreeMapWidgetRequest struct {

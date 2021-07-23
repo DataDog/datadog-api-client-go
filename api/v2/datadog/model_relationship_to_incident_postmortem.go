@@ -16,6 +16,8 @@ import (
 // RelationshipToIncidentPostmortem A relationship reference for postmortems.
 type RelationshipToIncidentPostmortem struct {
 	Data RelationshipToIncidentPostmortemData `json:"data"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewRelationshipToIncidentPostmortem instantiates a new RelationshipToIncidentPostmortem object
@@ -62,6 +64,9 @@ func (o *RelationshipToIncidentPostmortem) SetData(v RelationshipToIncidentPostm
 
 func (o RelationshipToIncidentPostmortem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["data"] = o.Data
 	}
@@ -69,6 +74,7 @@ func (o RelationshipToIncidentPostmortem) MarshalJSON() ([]byte, error) {
 }
 
 func (o *RelationshipToIncidentPostmortem) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Data *RelationshipToIncidentPostmortemData `json:"data"`
 	}{}
@@ -84,7 +90,12 @@ func (o *RelationshipToIncidentPostmortem) UnmarshalJSON(bytes []byte) (err erro
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Data = all.Data
 	return nil

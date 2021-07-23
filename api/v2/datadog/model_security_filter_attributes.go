@@ -27,6 +27,8 @@ type SecurityFilterAttributes struct {
 	Query *string `json:"query,omitempty"`
 	// The version of the security filter.
 	Version *int32 `json:"version,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityFilterAttributes instantiates a new SecurityFilterAttributes object
@@ -272,6 +274,9 @@ func (o *SecurityFilterAttributes) SetVersion(v int32) {
 
 func (o SecurityFilterAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ExclusionFilters != nil {
 		toSerialize["exclusion_filters"] = o.ExclusionFilters
 	}
@@ -294,6 +299,44 @@ func (o SecurityFilterAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["version"] = o.Version
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ExclusionFilters *[]SecurityFilterExclusionFilterResponse `json:"exclusion_filters,omitempty"`
+		FilteredDataType *SecurityFilterFilteredDataType          `json:"filtered_data_type,omitempty"`
+		IsBuiltin        *bool                                    `json:"is_builtin,omitempty"`
+		IsEnabled        *bool                                    `json:"is_enabled,omitempty"`
+		Name             *string                                  `json:"name,omitempty"`
+		Query            *string                                  `json:"query,omitempty"`
+		Version          *int32                                   `json:"version,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.FilteredDataType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ExclusionFilters = all.ExclusionFilters
+	o.FilteredDataType = all.FilteredDataType
+	o.IsBuiltin = all.IsBuiltin
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.Query = all.Query
+	o.Version = all.Version
+	return nil
 }
 
 type NullableSecurityFilterAttributes struct {

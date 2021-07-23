@@ -37,6 +37,8 @@ type SyntheticsSSLCertificate struct {
 	ValidFrom *time.Time `json:"validFrom,omitempty"`
 	// Date until which the SSL certificate is valid.
 	ValidTo *time.Time `json:"validTo,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsSSLCertificate instantiates a new SyntheticsSSLCertificate object
@@ -442,6 +444,9 @@ func (o *SyntheticsSSLCertificate) SetValidTo(v time.Time) {
 
 func (o SyntheticsSSLCertificate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Cipher != nil {
 		toSerialize["cipher"] = o.Cipher
 	}
@@ -479,6 +484,46 @@ func (o SyntheticsSSLCertificate) MarshalJSON() ([]byte, error) {
 		toSerialize["validTo"] = o.ValidTo
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Cipher         *string                          `json:"cipher,omitempty"`
+		Exponent       *float64                         `json:"exponent,omitempty"`
+		ExtKeyUsage    *[]string                        `json:"extKeyUsage,omitempty"`
+		Fingerprint    *string                          `json:"fingerprint,omitempty"`
+		Fingerprint256 *string                          `json:"fingerprint256,omitempty"`
+		Issuer         *SyntheticsSSLCertificateIssuer  `json:"issuer,omitempty"`
+		Modulus        *string                          `json:"modulus,omitempty"`
+		Protocol       *string                          `json:"protocol,omitempty"`
+		SerialNumber   *string                          `json:"serialNumber,omitempty"`
+		Subject        *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
+		ValidFrom      *time.Time                       `json:"validFrom,omitempty"`
+		ValidTo        *time.Time                       `json:"validTo,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Cipher = all.Cipher
+	o.Exponent = all.Exponent
+	o.ExtKeyUsage = all.ExtKeyUsage
+	o.Fingerprint = all.Fingerprint
+	o.Fingerprint256 = all.Fingerprint256
+	o.Issuer = all.Issuer
+	o.Modulus = all.Modulus
+	o.Protocol = all.Protocol
+	o.SerialNumber = all.SerialNumber
+	o.Subject = all.Subject
+	o.ValidFrom = all.ValidFrom
+	o.ValidTo = all.ValidTo
+	return nil
 }
 
 type NullableSyntheticsSSLCertificate struct {

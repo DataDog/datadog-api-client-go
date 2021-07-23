@@ -19,6 +19,8 @@ type PagerDutyService struct {
 	ServiceKey string `json:"service_key"`
 	// Your service name associated with a service key in PagerDuty.
 	ServiceName string `json:"service_name"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewPagerDutyService instantiates a new PagerDutyService object
@@ -90,6 +92,9 @@ func (o *PagerDutyService) SetServiceName(v string) {
 
 func (o PagerDutyService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["service_key"] = o.ServiceKey
 	}
@@ -100,6 +105,7 @@ func (o PagerDutyService) MarshalJSON() ([]byte, error) {
 }
 
 func (o *PagerDutyService) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		ServiceKey  *string `json:"service_key"`
 		ServiceName *string `json:"service_name"`
@@ -120,7 +126,12 @@ func (o *PagerDutyService) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.ServiceKey = all.ServiceKey
 	o.ServiceName = all.ServiceName

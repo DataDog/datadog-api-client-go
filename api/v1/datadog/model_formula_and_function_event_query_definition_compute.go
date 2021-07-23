@@ -20,6 +20,8 @@ type FormulaAndFunctionEventQueryDefinitionCompute struct {
 	Interval *int64 `json:"interval,omitempty"`
 	// Measurable attribute to compute.
 	Metric *string `json:"metric,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewFormulaAndFunctionEventQueryDefinitionCompute instantiates a new FormulaAndFunctionEventQueryDefinitionCompute object
@@ -130,6 +132,9 @@ func (o *FormulaAndFunctionEventQueryDefinitionCompute) SetMetric(v string) {
 
 func (o FormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["aggregation"] = o.Aggregation
 	}
@@ -143,6 +148,7 @@ func (o FormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]byte, er
 }
 
 func (o *FormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Aggregation *FormulaAndFunctionEventAggregation `json:"aggregation"`
 	}{}
@@ -160,7 +166,20 @@ func (o *FormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []by
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Aggregation; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Aggregation = all.Aggregation
 	o.Interval = all.Interval

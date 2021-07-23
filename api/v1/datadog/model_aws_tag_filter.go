@@ -17,6 +17,8 @@ type AWSTagFilter struct {
 	Namespace *AWSNamespace `json:"namespace,omitempty"`
 	// The tag filter string.
 	TagFilterStr *string `json:"tag_filter_str,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAWSTagFilter instantiates a new AWSTagFilter object
@@ -102,6 +104,9 @@ func (o *AWSTagFilter) SetTagFilterStr(v string) {
 
 func (o AWSTagFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Namespace != nil {
 		toSerialize["namespace"] = o.Namespace
 	}
@@ -109,6 +114,34 @@ func (o AWSTagFilter) MarshalJSON() ([]byte, error) {
 		toSerialize["tag_filter_str"] = o.TagFilterStr
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSTagFilter) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Namespace    *AWSNamespace `json:"namespace,omitempty"`
+		TagFilterStr *string       `json:"tag_filter_str,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Namespace; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Namespace = all.Namespace
+	o.TagFilterStr = all.TagFilterStr
+	return nil
 }
 
 type NullableAWSTagFilter struct {

@@ -17,6 +17,8 @@ import (
 type LogsPipelinesOrder struct {
 	// Ordered Array of `<PIPELINE_ID>` strings, the order of pipeline IDs in the array define the overall Pipelines order for Datadog.
 	PipelineIds []string `json:"pipeline_ids"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsPipelinesOrder instantiates a new LogsPipelinesOrder object
@@ -63,6 +65,9 @@ func (o *LogsPipelinesOrder) SetPipelineIds(v []string) {
 
 func (o LogsPipelinesOrder) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["pipeline_ids"] = o.PipelineIds
 	}
@@ -70,6 +75,7 @@ func (o LogsPipelinesOrder) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsPipelinesOrder) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		PipelineIds *[]string `json:"pipeline_ids"`
 	}{}
@@ -85,7 +91,12 @@ func (o *LogsPipelinesOrder) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.PipelineIds = all.PipelineIds
 	return nil

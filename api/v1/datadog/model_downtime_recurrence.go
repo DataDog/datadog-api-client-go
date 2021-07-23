@@ -26,6 +26,8 @@ type DowntimeRecurrence struct {
 	UntilOccurrences NullableInt32 `json:"until_occurrences,omitempty"`
 	// A list of week days to repeat on. Choose from `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`. Only applicable when type is weeks. First letter must be capitalized.
 	WeekDays *[]string `json:"week_days,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDowntimeRecurrence instantiates a new DowntimeRecurrence object
@@ -261,6 +263,9 @@ func (o *DowntimeRecurrence) SetWeekDays(v []string) {
 
 func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Period != nil {
 		toSerialize["period"] = o.Period
 	}
@@ -280,6 +285,34 @@ func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
 		toSerialize["week_days"] = o.WeekDays
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Period           *int32        `json:"period,omitempty"`
+		Rrule            *string       `json:"rrule,omitempty"`
+		Type             *string       `json:"type,omitempty"`
+		UntilDate        NullableInt64 `json:"until_date,omitempty"`
+		UntilOccurrences NullableInt32 `json:"until_occurrences,omitempty"`
+		WeekDays         *[]string     `json:"week_days,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Period = all.Period
+	o.Rrule = all.Rrule
+	o.Type = all.Type
+	o.UntilDate = all.UntilDate
+	o.UntilOccurrences = all.UntilOccurrences
+	o.WeekDays = all.WeekDays
+	return nil
 }
 
 type NullableDowntimeRecurrence struct {

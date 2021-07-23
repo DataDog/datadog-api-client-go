@@ -19,6 +19,8 @@ type UsageSyntheticsBrowserHour struct {
 	BrowserCheckCallsCount *int64 `json:"browser_check_calls_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageSyntheticsBrowserHour instantiates a new UsageSyntheticsBrowserHour object
@@ -104,6 +106,9 @@ func (o *UsageSyntheticsBrowserHour) SetHour(v time.Time) {
 
 func (o UsageSyntheticsBrowserHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.BrowserCheckCallsCount != nil {
 		toSerialize["browser_check_calls_count"] = o.BrowserCheckCallsCount
 	}
@@ -111,6 +116,26 @@ func (o UsageSyntheticsBrowserHour) MarshalJSON() ([]byte, error) {
 		toSerialize["hour"] = o.Hour
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageSyntheticsBrowserHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		BrowserCheckCallsCount *int64     `json:"browser_check_calls_count,omitempty"`
+		Hour                   *time.Time `json:"hour,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.BrowserCheckCallsCount = all.BrowserCheckCallsCount
+	o.Hour = all.Hour
+	return nil
 }
 
 type NullableUsageSyntheticsBrowserHour struct {

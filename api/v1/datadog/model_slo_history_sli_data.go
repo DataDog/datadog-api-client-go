@@ -38,6 +38,8 @@ type SLOHistorySLIData struct {
 	SpanPrecision *float64 `json:"span_precision,omitempty"`
 	// Use `sli_value` instead.
 	Uptime *float64 `json:"uptime,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOHistorySLIData instantiates a new SLOHistorySLIData object
@@ -443,6 +445,9 @@ func (o *SLOHistorySLIData) SetUptime(v float64) {
 
 func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ErrorBudgetRemaining != nil {
 		toSerialize["error_budget_remaining"] = o.ErrorBudgetRemaining
 	}
@@ -480,6 +485,46 @@ func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
 		toSerialize["uptime"] = o.Uptime
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ErrorBudgetRemaining *map[string]float64        `json:"error_budget_remaining,omitempty"`
+		Errors               *[]SLOHistoryResponseError `json:"errors,omitempty"`
+		Group                *string                    `json:"group,omitempty"`
+		History              *[][]float64               `json:"history,omitempty"`
+		MonitorModified      *int64                     `json:"monitor_modified,omitempty"`
+		MonitorType          *string                    `json:"monitor_type,omitempty"`
+		Name                 *string                    `json:"name,omitempty"`
+		Precision            *map[string]float64        `json:"precision,omitempty"`
+		Preview              *bool                      `json:"preview,omitempty"`
+		SliValue             *float64                   `json:"sli_value,omitempty"`
+		SpanPrecision        *float64                   `json:"span_precision,omitempty"`
+		Uptime               *float64                   `json:"uptime,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ErrorBudgetRemaining = all.ErrorBudgetRemaining
+	o.Errors = all.Errors
+	o.Group = all.Group
+	o.History = all.History
+	o.MonitorModified = all.MonitorModified
+	o.MonitorType = all.MonitorType
+	o.Name = all.Name
+	o.Precision = all.Precision
+	o.Preview = all.Preview
+	o.SliValue = all.SliValue
+	o.SpanPrecision = all.SpanPrecision
+	o.Uptime = all.Uptime
+	return nil
 }
 
 type NullableSLOHistorySLIData struct {

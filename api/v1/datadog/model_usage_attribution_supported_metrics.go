@@ -91,15 +91,8 @@ func (v *UsageAttributionSupportedMetrics) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := UsageAttributionSupportedMetrics(value)
-	for _, existing := range allowedUsageAttributionSupportedMetricsEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid UsageAttributionSupportedMetrics", value)
+	*v = UsageAttributionSupportedMetrics(value)
+	return nil
 }
 
 // NewUsageAttributionSupportedMetricsFromValue returns a pointer to a valid UsageAttributionSupportedMetrics

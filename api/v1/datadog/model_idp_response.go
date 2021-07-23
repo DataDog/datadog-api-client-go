@@ -17,6 +17,8 @@ import (
 type IdpResponse struct {
 	// Identity provider response.
 	Message string `json:"message"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIdpResponse instantiates a new IdpResponse object
@@ -63,6 +65,9 @@ func (o *IdpResponse) SetMessage(v string) {
 
 func (o IdpResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["message"] = o.Message
 	}
@@ -70,6 +75,7 @@ func (o IdpResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Message *string `json:"message"`
 	}{}
@@ -85,7 +91,12 @@ func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Message = all.Message
 	return nil

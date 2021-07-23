@@ -20,6 +20,8 @@ type UsageTopAvgMetricsMetadata struct {
 	// The month value from the user request that contains the returned usage data. (If month was used the request)
 	Month      *time.Time                  `json:"month,omitempty"`
 	Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageTopAvgMetricsMetadata instantiates a new UsageTopAvgMetricsMetadata object
@@ -137,6 +139,9 @@ func (o *UsageTopAvgMetricsMetadata) SetPagination(v UsageAttributionPagination)
 
 func (o UsageTopAvgMetricsMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Day != nil {
 		toSerialize["day"] = o.Day
 	}
@@ -147,6 +152,28 @@ func (o UsageTopAvgMetricsMetadata) MarshalJSON() ([]byte, error) {
 		toSerialize["pagination"] = o.Pagination
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageTopAvgMetricsMetadata) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Day        *time.Time                  `json:"day,omitempty"`
+		Month      *time.Time                  `json:"month,omitempty"`
+		Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Day = all.Day
+	o.Month = all.Month
+	o.Pagination = all.Pagination
+	return nil
 }
 
 type NullableUsageTopAvgMetricsMetadata struct {

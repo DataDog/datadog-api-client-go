@@ -16,6 +16,8 @@ import (
 type MetricSearchResponseResults struct {
 	// List of metrics that match the search query.
 	Metrics *[]string `json:"metrics,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricSearchResponseResults instantiates a new MetricSearchResponseResults object
@@ -69,10 +71,31 @@ func (o *MetricSearchResponseResults) SetMetrics(v []string) {
 
 func (o MetricSearchResponseResults) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Metrics != nil {
 		toSerialize["metrics"] = o.Metrics
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricSearchResponseResults) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Metrics *[]string `json:"metrics,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Metrics = all.Metrics
+	return nil
 }
 
 type NullableMetricSearchResponseResults struct {

@@ -28,6 +28,8 @@ type AzureAccount struct {
 	NewTenantName *string `json:"new_tenant_name,omitempty"`
 	// Your Azure Active Directory ID.
 	TenantName *string `json:"tenant_name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAzureAccount instantiates a new AzureAccount object
@@ -273,6 +275,9 @@ func (o *AzureAccount) SetTenantName(v string) {
 
 func (o AzureAccount) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ClientId != nil {
 		toSerialize["client_id"] = o.ClientId
 	}
@@ -295,6 +300,36 @@ func (o AzureAccount) MarshalJSON() ([]byte, error) {
 		toSerialize["tenant_name"] = o.TenantName
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ClientId      *string   `json:"client_id,omitempty"`
+		ClientSecret  *string   `json:"client_secret,omitempty"`
+		Errors        *[]string `json:"errors,omitempty"`
+		HostFilters   *string   `json:"host_filters,omitempty"`
+		NewClientId   *string   `json:"new_client_id,omitempty"`
+		NewTenantName *string   `json:"new_tenant_name,omitempty"`
+		TenantName    *string   `json:"tenant_name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ClientId = all.ClientId
+	o.ClientSecret = all.ClientSecret
+	o.Errors = all.Errors
+	o.HostFilters = all.HostFilters
+	o.NewClientId = all.NewClientId
+	o.NewTenantName = all.NewTenantName
+	o.TenantName = all.TenantName
+	return nil
 }
 
 type NullableAzureAccount struct {

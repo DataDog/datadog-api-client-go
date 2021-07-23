@@ -16,6 +16,8 @@ import (
 type UserListResponse struct {
 	// Array of users.
 	Users *[]User `json:"users,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserListResponse instantiates a new UserListResponse object
@@ -69,10 +71,31 @@ func (o *UserListResponse) SetUsers(v []User) {
 
 func (o UserListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Users != nil {
 		toSerialize["users"] = o.Users
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Users *[]User `json:"users,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Users = all.Users
+	return nil
 }
 
 type NullableUserListResponse struct {

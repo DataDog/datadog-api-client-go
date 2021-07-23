@@ -31,6 +31,8 @@ type UsageLogsHour struct {
 	LogsRehydratedIndexedCount *int64 `json:"logs_rehydrated_indexed_count,omitempty"`
 	// Contains the number of rehydrated log bytes ingested (data available as of December 1, 2020).
 	LogsRehydratedIngestedBytes *int64 `json:"logs_rehydrated_ingested_bytes,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageLogsHour instantiates a new UsageLogsHour object
@@ -308,6 +310,9 @@ func (o *UsageLogsHour) SetLogsRehydratedIngestedBytes(v int64) {
 
 func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.BillableIngestedBytes != nil {
 		toSerialize["billable_ingested_bytes"] = o.BillableIngestedBytes
 	}
@@ -333,6 +338,38 @@ func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
 		toSerialize["logs_rehydrated_ingested_bytes"] = o.LogsRehydratedIngestedBytes
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageLogsHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		BillableIngestedBytes       *int64     `json:"billable_ingested_bytes,omitempty"`
+		Hour                        *time.Time `json:"hour,omitempty"`
+		IndexedEventsCount          *int64     `json:"indexed_events_count,omitempty"`
+		IngestedEventsBytes         *int64     `json:"ingested_events_bytes,omitempty"`
+		LogsLiveIndexedCount        *int64     `json:"logs_live_indexed_count,omitempty"`
+		LogsLiveIngestedBytes       *int64     `json:"logs_live_ingested_bytes,omitempty"`
+		LogsRehydratedIndexedCount  *int64     `json:"logs_rehydrated_indexed_count,omitempty"`
+		LogsRehydratedIngestedBytes *int64     `json:"logs_rehydrated_ingested_bytes,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.BillableIngestedBytes = all.BillableIngestedBytes
+	o.Hour = all.Hour
+	o.IndexedEventsCount = all.IndexedEventsCount
+	o.IngestedEventsBytes = all.IngestedEventsBytes
+	o.LogsLiveIndexedCount = all.LogsLiveIndexedCount
+	o.LogsLiveIngestedBytes = all.LogsLiveIngestedBytes
+	o.LogsRehydratedIndexedCount = all.LogsRehydratedIndexedCount
+	o.LogsRehydratedIngestedBytes = all.LogsRehydratedIngestedBytes
+	return nil
 }
 
 type NullableUsageLogsHour struct {

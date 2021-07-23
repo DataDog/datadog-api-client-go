@@ -37,15 +37,8 @@ func (v *WidgetChangeType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetChangeType(value)
-	for _, existing := range allowedWidgetChangeTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetChangeType", value)
+	*v = WidgetChangeType(value)
+	return nil
 }
 
 // NewWidgetChangeTypeFromValue returns a pointer to a valid WidgetChangeType

@@ -24,6 +24,8 @@ type LogsCategoryProcessor struct {
 	// Name of the target attribute which value is defined by the matching category.
 	Target string                    `json:"target"`
 	Type   LogsCategoryProcessorType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsCategoryProcessor instantiates a new LogsCategoryProcessor object
@@ -190,6 +192,9 @@ func (o *LogsCategoryProcessor) SetType(v LogsCategoryProcessorType) {
 
 func (o LogsCategoryProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["categories"] = o.Categories
 	}
@@ -209,6 +214,7 @@ func (o LogsCategoryProcessor) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Categories *[]LogsCategoryProcessorCategory `json:"categories"`
 		Target     *string                          `json:"target"`
@@ -236,7 +242,20 @@ func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Categories = all.Categories
 	o.IsEnabled = all.IsEnabled

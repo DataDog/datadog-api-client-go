@@ -25,6 +25,8 @@ type SyntheticsAPITestResultFull struct {
 	// ID of the API test result.
 	ResultId *string                      `json:"result_id,omitempty"`
 	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsAPITestResultFull instantiates a new SyntheticsAPITestResultFull object
@@ -270,6 +272,9 @@ func (o *SyntheticsAPITestResultFull) SetStatus(v SyntheticsTestMonitorStatus) {
 
 func (o SyntheticsAPITestResultFull) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Check != nil {
 		toSerialize["check"] = o.Check
 	}
@@ -292,6 +297,44 @@ func (o SyntheticsAPITestResultFull) MarshalJSON() ([]byte, error) {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsAPITestResultFull) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Check        *SyntheticsAPITestResultFullCheck `json:"check,omitempty"`
+		CheckTime    *float64                          `json:"check_time,omitempty"`
+		CheckVersion *int64                            `json:"check_version,omitempty"`
+		ProbeDc      *string                           `json:"probe_dc,omitempty"`
+		Result       *SyntheticsAPITestResultData      `json:"result,omitempty"`
+		ResultId     *string                           `json:"result_id,omitempty"`
+		Status       *SyntheticsTestMonitorStatus      `json:"status,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Check = all.Check
+	o.CheckTime = all.CheckTime
+	o.CheckVersion = all.CheckVersion
+	o.ProbeDc = all.ProbeDc
+	o.Result = all.Result
+	o.ResultId = all.ResultId
+	o.Status = all.Status
+	return nil
 }
 
 type NullableSyntheticsAPITestResultFull struct {

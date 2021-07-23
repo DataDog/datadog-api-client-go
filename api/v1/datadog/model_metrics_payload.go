@@ -17,6 +17,8 @@ import (
 type MetricsPayload struct {
 	// A list of time series to submit to Datadog.
 	Series []Series `json:"series"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricsPayload instantiates a new MetricsPayload object
@@ -63,6 +65,9 @@ func (o *MetricsPayload) SetSeries(v []Series) {
 
 func (o MetricsPayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["series"] = o.Series
 	}
@@ -70,6 +75,7 @@ func (o MetricsPayload) MarshalJSON() ([]byte, error) {
 }
 
 func (o *MetricsPayload) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Series *[]Series `json:"series"`
 	}{}
@@ -85,7 +91,12 @@ func (o *MetricsPayload) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Series = all.Series
 	return nil

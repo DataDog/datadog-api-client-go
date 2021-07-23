@@ -19,6 +19,8 @@ type LogsExclusionFilter struct {
 	Query *string `json:"query,omitempty"`
 	// Sample rate to apply to logs going through this exclusion filter, a value of 1 will exclude all logs matching the query.
 	SampleRate float64 `json:"sample_rate"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsExclusionFilter instantiates a new LogsExclusionFilter object
@@ -97,6 +99,9 @@ func (o *LogsExclusionFilter) SetSampleRate(v float64) {
 
 func (o LogsExclusionFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
@@ -107,6 +112,7 @@ func (o LogsExclusionFilter) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		SampleRate *float64 `json:"sample_rate"`
 	}{}
@@ -123,7 +129,12 @@ func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Query = all.Query
 	o.SampleRate = all.SampleRate

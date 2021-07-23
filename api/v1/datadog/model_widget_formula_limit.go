@@ -17,6 +17,8 @@ type WidgetFormulaLimit struct {
 	// Number of results to return.
 	Count *int64          `json:"count,omitempty"`
 	Order *QuerySortOrder `json:"order,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewWidgetFormulaLimit instantiates a new WidgetFormulaLimit object
@@ -106,6 +108,9 @@ func (o *WidgetFormulaLimit) SetOrder(v QuerySortOrder) {
 
 func (o WidgetFormulaLimit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Count != nil {
 		toSerialize["count"] = o.Count
 	}
@@ -113,6 +118,34 @@ func (o WidgetFormulaLimit) MarshalJSON() ([]byte, error) {
 		toSerialize["order"] = o.Order
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *WidgetFormulaLimit) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Count *int64          `json:"count,omitempty"`
+		Order *QuerySortOrder `json:"order,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Order; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Count = all.Count
+	o.Order = all.Order
+	return nil
 }
 
 type NullableWidgetFormulaLimit struct {

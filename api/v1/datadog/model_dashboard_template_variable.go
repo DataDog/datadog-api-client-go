@@ -21,6 +21,8 @@ type DashboardTemplateVariable struct {
 	Name string `json:"name"`
 	// The tag prefix associated with the variable. Only tags with this prefix appear in the variable drop-down.
 	Prefix NullableString `json:"prefix,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDashboardTemplateVariable instantiates a new DashboardTemplateVariable object
@@ -153,6 +155,9 @@ func (o *DashboardTemplateVariable) UnsetPrefix() {
 
 func (o DashboardTemplateVariable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Default.IsSet() {
 		toSerialize["default"] = o.Default.Get()
 	}
@@ -166,6 +171,7 @@ func (o DashboardTemplateVariable) MarshalJSON() ([]byte, error) {
 }
 
 func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
@@ -183,7 +189,12 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Default = all.Default
 	o.Name = all.Name

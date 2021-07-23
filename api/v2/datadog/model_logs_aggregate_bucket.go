@@ -18,6 +18,8 @@ type LogsAggregateBucket struct {
 	By *map[string]string `json:"by,omitempty"`
 	// A map of the metric name -> value for regular compute or list of values for a timeseries
 	Computes *map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsAggregateBucket instantiates a new LogsAggregateBucket object
@@ -103,6 +105,9 @@ func (o *LogsAggregateBucket) SetComputes(v map[string]LogsAggregateBucketValue)
 
 func (o LogsAggregateBucket) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.By != nil {
 		toSerialize["by"] = o.By
 	}
@@ -110,6 +115,26 @@ func (o LogsAggregateBucket) MarshalJSON() ([]byte, error) {
 		toSerialize["computes"] = o.Computes
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsAggregateBucket) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		By       *map[string]string                   `json:"by,omitempty"`
+		Computes *map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.By = all.By
+	o.Computes = all.Computes
+	return nil
 }
 
 type NullableLogsAggregateBucket struct {

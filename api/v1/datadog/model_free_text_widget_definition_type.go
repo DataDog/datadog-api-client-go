@@ -35,15 +35,8 @@ func (v *FreeTextWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := FreeTextWidgetDefinitionType(value)
-	for _, existing := range allowedFreeTextWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid FreeTextWidgetDefinitionType", value)
+	*v = FreeTextWidgetDefinitionType(value)
+	return nil
 }
 
 // NewFreeTextWidgetDefinitionTypeFromValue returns a pointer to a valid FreeTextWidgetDefinitionType

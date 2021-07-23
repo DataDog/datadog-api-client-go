@@ -18,6 +18,8 @@ type SecurityFilterExclusionFilterResponse struct {
 	Name *string `json:"name,omitempty"`
 	// The exclusion filter query.
 	Query *string `json:"query,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityFilterExclusionFilterResponse instantiates a new SecurityFilterExclusionFilterResponse object
@@ -103,6 +105,9 @@ func (o *SecurityFilterExclusionFilterResponse) SetQuery(v string) {
 
 func (o SecurityFilterExclusionFilterResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -110,6 +115,26 @@ func (o SecurityFilterExclusionFilterResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["query"] = o.Query
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityFilterExclusionFilterResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Name  *string `json:"name,omitempty"`
+		Query *string `json:"query,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Name = all.Name
+	o.Query = all.Query
+	return nil
 }
 
 type NullableSecurityFilterExclusionFilterResponse struct {

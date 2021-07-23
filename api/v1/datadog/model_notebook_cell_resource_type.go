@@ -35,15 +35,8 @@ func (v *NotebookCellResourceType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := NotebookCellResourceType(value)
-	for _, existing := range allowedNotebookCellResourceTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid NotebookCellResourceType", value)
+	*v = NotebookCellResourceType(value)
+	return nil
 }
 
 // NewNotebookCellResourceTypeFromValue returns a pointer to a valid NotebookCellResourceType

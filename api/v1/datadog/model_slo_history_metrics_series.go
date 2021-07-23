@@ -22,6 +22,8 @@ type SLOHistoryMetricsSeries struct {
 	Sum float64 `json:"sum"`
 	// The query values for each metric.
 	Values []float64 `json:"values"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOHistoryMetricsSeries instantiates a new SLOHistoryMetricsSeries object
@@ -143,6 +145,9 @@ func (o *SLOHistoryMetricsSeries) SetValues(v []float64) {
 
 func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["count"] = o.Count
 	}
@@ -159,6 +164,7 @@ func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 }
 
 func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Count    *int64                           `json:"count"`
 		Metadata *SLOHistoryMetricsSeriesMetadata `json:"metadata"`
@@ -189,7 +195,12 @@ func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Count = all.Count
 	o.Metadata = all.Metadata

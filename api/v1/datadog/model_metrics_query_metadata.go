@@ -40,6 +40,8 @@ type MetricsQueryMetadata struct {
 	TagSet *[]string `json:"tag_set,omitempty"`
 	// Detailed information about the metric unit. First element describes the \"primary unit\" (for example, `bytes` in `bytes per second`), second describes the \"per unit\" (for example, `second` in `bytes per second`).
 	Unit *[]MetricsQueryUnit `json:"unit,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricsQueryMetadata instantiates a new MetricsQueryMetadata object
@@ -477,6 +479,9 @@ func (o *MetricsQueryMetadata) SetUnit(v []MetricsQueryUnit) {
 
 func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Aggr != nil {
 		toSerialize["aggr"] = o.Aggr
 	}
@@ -517,6 +522,48 @@ func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
 		toSerialize["unit"] = o.Unit
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Aggr        *string             `json:"aggr,omitempty"`
+		DisplayName *string             `json:"display_name,omitempty"`
+		End         *int64              `json:"end,omitempty"`
+		Expression  *string             `json:"expression,omitempty"`
+		Interval    *int64              `json:"interval,omitempty"`
+		Length      *int64              `json:"length,omitempty"`
+		Metric      *string             `json:"metric,omitempty"`
+		Pointlist   *[][]float64        `json:"pointlist,omitempty"`
+		QueryIndex  *int64              `json:"query_index,omitempty"`
+		Scope       *string             `json:"scope,omitempty"`
+		Start       *int64              `json:"start,omitempty"`
+		TagSet      *[]string           `json:"tag_set,omitempty"`
+		Unit        *[]MetricsQueryUnit `json:"unit,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Aggr = all.Aggr
+	o.DisplayName = all.DisplayName
+	o.End = all.End
+	o.Expression = all.Expression
+	o.Interval = all.Interval
+	o.Length = all.Length
+	o.Metric = all.Metric
+	o.Pointlist = all.Pointlist
+	o.QueryIndex = all.QueryIndex
+	o.Scope = all.Scope
+	o.Start = all.Start
+	o.TagSet = all.TagSet
+	o.Unit = all.Unit
+	return nil
 }
 
 type NullableMetricsQueryMetadata struct {

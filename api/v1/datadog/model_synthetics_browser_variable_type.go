@@ -43,15 +43,8 @@ func (v *SyntheticsBrowserVariableType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsBrowserVariableType(value)
-	for _, existing := range allowedSyntheticsBrowserVariableTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsBrowserVariableType", value)
+	*v = SyntheticsBrowserVariableType(value)
+	return nil
 }
 
 // NewSyntheticsBrowserVariableTypeFromValue returns a pointer to a valid SyntheticsBrowserVariableType

@@ -35,15 +35,8 @@ func (v *CheckStatusWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := CheckStatusWidgetDefinitionType(value)
-	for _, existing := range allowedCheckStatusWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid CheckStatusWidgetDefinitionType", value)
+	*v = CheckStatusWidgetDefinitionType(value)
+	return nil
 }
 
 // NewCheckStatusWidgetDefinitionTypeFromValue returns a pointer to a valid CheckStatusWidgetDefinitionType

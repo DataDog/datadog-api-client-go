@@ -19,6 +19,8 @@ type LogsAggregateSort struct {
 	Metric *string                `json:"metric,omitempty"`
 	Order  *LogsSortOrder         `json:"order,omitempty"`
 	Type   *LogsAggregateSortType `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsAggregateSort instantiates a new LogsAggregateSort object
@@ -172,6 +174,9 @@ func (o *LogsAggregateSort) SetType(v LogsAggregateSortType) {
 
 func (o LogsAggregateSort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Aggregation != nil {
 		toSerialize["aggregation"] = o.Aggregation
 	}
@@ -185,6 +190,54 @@ func (o LogsAggregateSort) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Aggregation *LogsAggregationFunction `json:"aggregation,omitempty"`
+		Metric      *string                  `json:"metric,omitempty"`
+		Order       *LogsSortOrder           `json:"order,omitempty"`
+		Type        *LogsAggregateSortType   `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Aggregation; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Order; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Aggregation = all.Aggregation
+	o.Metric = all.Metric
+	o.Order = all.Order
+	o.Type = all.Type
+	return nil
 }
 
 type NullableLogsAggregateSort struct {

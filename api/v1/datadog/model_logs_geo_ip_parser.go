@@ -24,6 +24,8 @@ type LogsGeoIPParser struct {
 	// Name of the parent attribute that contains all the extracted details from the `sources`.
 	Target string              `json:"target"`
 	Type   LogsGeoIPParserType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsGeoIPParser instantiates a new LogsGeoIPParser object
@@ -192,6 +194,9 @@ func (o *LogsGeoIPParser) SetType(v LogsGeoIPParserType) {
 
 func (o LogsGeoIPParser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.IsEnabled != nil {
 		toSerialize["is_enabled"] = o.IsEnabled
 	}
@@ -211,6 +216,7 @@ func (o LogsGeoIPParser) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsGeoIPParser) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Sources *[]string            `json:"sources"`
 		Target  *string              `json:"target"`
@@ -238,7 +244,20 @@ func (o *LogsGeoIPParser) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name

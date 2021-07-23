@@ -83,15 +83,8 @@ func (v *SyntheticsStepType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsStepType(value)
-	for _, existing := range allowedSyntheticsStepTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsStepType", value)
+	*v = SyntheticsStepType(value)
+	return nil
 }
 
 // NewSyntheticsStepTypeFromValue returns a pointer to a valid SyntheticsStepType

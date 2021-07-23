@@ -61,15 +61,8 @@ func (v *SyntheticsCheckType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsCheckType(value)
-	for _, existing := range allowedSyntheticsCheckTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsCheckType", value)
+	*v = SyntheticsCheckType(value)
+	return nil
 }
 
 // NewSyntheticsCheckTypeFromValue returns a pointer to a valid SyntheticsCheckType

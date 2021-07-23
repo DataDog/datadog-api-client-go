@@ -39,15 +39,8 @@ func (v *TreeMapGroupBy) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := TreeMapGroupBy(value)
-	for _, existing := range allowedTreeMapGroupByEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid TreeMapGroupBy", value)
+	*v = TreeMapGroupBy(value)
+	return nil
 }
 
 // NewTreeMapGroupByFromValue returns a pointer to a valid TreeMapGroupBy

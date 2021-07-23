@@ -26,6 +26,8 @@ type SLOHistoryMetricsSeriesMetadata struct {
 	Scope *string `json:"scope,omitempty"`
 	// An array of metric units that contains up to two unit objects. For example, bytes represents one unit object and bytes per second represents two unit objects. If a metric query only has one unit object, the second array element is null.
 	Unit []SLOHistoryMetricsSeriesMetadataUnit `json:"unit,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOHistoryMetricsSeriesMetadata instantiates a new SLOHistoryMetricsSeriesMetadata object
@@ -240,6 +242,9 @@ func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v []SLOHistoryMetricsSeriesMet
 
 func (o SLOHistoryMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Aggr != nil {
 		toSerialize["aggr"] = o.Aggr
 	}
@@ -259,6 +264,34 @@ func (o SLOHistoryMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
 		toSerialize["unit"] = o.Unit
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOHistoryMetricsSeriesMetadata) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Aggr       *string                               `json:"aggr,omitempty"`
+		Expression *string                               `json:"expression,omitempty"`
+		Metric     *string                               `json:"metric,omitempty"`
+		QueryIndex *int64                                `json:"query_index,omitempty"`
+		Scope      *string                               `json:"scope,omitempty"`
+		Unit       []SLOHistoryMetricsSeriesMetadataUnit `json:"unit,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Aggr = all.Aggr
+	o.Expression = all.Expression
+	o.Metric = all.Metric
+	o.QueryIndex = all.QueryIndex
+	o.Scope = all.Scope
+	o.Unit = all.Unit
+	return nil
 }
 
 type NullableSLOHistoryMetricsSeriesMetadata struct {

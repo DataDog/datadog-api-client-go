@@ -37,15 +37,8 @@ func (v *LogsSort) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsSort(value)
-	for _, existing := range allowedLogsSortEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsSort", value)
+	*v = LogsSort(value)
+	return nil
 }
 
 // NewLogsSortFromValue returns a pointer to a valid LogsSort

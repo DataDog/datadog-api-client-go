@@ -18,6 +18,8 @@ type OrganizationCreateResponse struct {
 	ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
 	Org            *Organization   `json:"org,omitempty"`
 	User           *User           `json:"user,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewOrganizationCreateResponse instantiates a new OrganizationCreateResponse object
@@ -167,6 +169,9 @@ func (o *OrganizationCreateResponse) SetUser(v User) {
 
 func (o OrganizationCreateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ApiKey != nil {
 		toSerialize["api_key"] = o.ApiKey
 	}
@@ -180,6 +185,30 @@ func (o OrganizationCreateResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["user"] = o.User
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *OrganizationCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ApiKey         *ApiKey         `json:"api_key,omitempty"`
+		ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
+		Org            *Organization   `json:"org,omitempty"`
+		User           *User           `json:"user,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ApiKey = all.ApiKey
+	o.ApplicationKey = all.ApplicationKey
+	o.Org = all.Org
+	o.User = all.User
+	return nil
 }
 
 type NullableOrganizationCreateResponse struct {

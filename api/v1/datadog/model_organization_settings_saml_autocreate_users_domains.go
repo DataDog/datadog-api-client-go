@@ -18,6 +18,8 @@ type OrganizationSettingsSamlAutocreateUsersDomains struct {
 	Domains *[]string `json:"domains,omitempty"`
 	// Whether or not the automated user creation based on SAML domain is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewOrganizationSettingsSamlAutocreateUsersDomains instantiates a new OrganizationSettingsSamlAutocreateUsersDomains object
@@ -103,6 +105,9 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) SetEnabled(v bool) {
 
 func (o OrganizationSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Domains != nil {
 		toSerialize["domains"] = o.Domains
 	}
@@ -110,6 +115,26 @@ func (o OrganizationSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, e
 		toSerialize["enabled"] = o.Enabled
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *OrganizationSettingsSamlAutocreateUsersDomains) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Domains *[]string `json:"domains,omitempty"`
+		Enabled *bool     `json:"enabled,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Domains = all.Domains
+	o.Enabled = all.Enabled
+	return nil
 }
 
 type NullableOrganizationSettingsSamlAutocreateUsersDomains struct {

@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // ApplicationKeyResponseIncludedItem - An object related to an application key.
 type ApplicationKeyResponseIncludedItem struct {
 	Role *Role
 	User *User
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // RoleAsApplicationKeyResponseIncludedItem is a convenience function that returns Role wrapped in ApplicationKeyResponseIncludedItem
@@ -33,42 +35,47 @@ func UserAsApplicationKeyResponseIncludedItem(v *User) ApplicationKeyResponseInc
 func (dst *ApplicationKeyResponseIncludedItem) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into Role
-	err = json.Unmarshal(data, &dst.Role)
-	if err == nil {
-		jsonRole, _ := json.Marshal(dst.Role)
-		if string(jsonRole) == "{}" { // empty struct
-			dst.Role = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.Role = nil
-	}
-
 	// try to unmarshal data into User
 	err = json.Unmarshal(data, &dst.User)
 	if err == nil {
-		jsonUser, _ := json.Marshal(dst.User)
-		if string(jsonUser) == "{}" { // empty struct
-			dst.User = nil
+		if dst.User != nil && dst.User.UnparsedObject == nil {
+			jsonUser, _ := json.Marshal(dst.User)
+			if string(jsonUser) == "{}" { // empty struct
+				dst.User = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.User = nil
 		}
 	} else {
 		dst.User = nil
 	}
 
-	if match > 1 { // more than 1 match
+	// try to unmarshal data into Role
+	err = json.Unmarshal(data, &dst.Role)
+	if err == nil {
+		if dst.Role != nil && dst.Role.UnparsedObject == nil {
+			jsonRole, _ := json.Marshal(dst.Role)
+			if string(jsonRole) == "{}" { // empty struct
+				dst.Role = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.Role = nil
+		}
+	} else {
+		dst.Role = nil
+	}
+
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.Role = nil
 		dst.User = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(ApplicationKeyResponseIncludedItem)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(ApplicationKeyResponseIncludedItem)")
 	}
 }
 
@@ -82,6 +89,9 @@ func (src ApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.User)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

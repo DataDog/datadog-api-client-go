@@ -37,15 +37,8 @@ func (v *WidgetEventSize) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetEventSize(value)
-	for _, existing := range allowedWidgetEventSizeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetEventSize", value)
+	*v = WidgetEventSize(value)
+	return nil
 }
 
 // NewWidgetEventSizeFromValue returns a pointer to a valid WidgetEventSize

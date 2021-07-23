@@ -15,6 +15,8 @@ import (
 // SLOCorrectionCreateRequest An object that defines a correction to be applied to an SLO
 type SLOCorrectionCreateRequest struct {
 	Data *SLOCorrectionCreateData `json:"data,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOCorrectionCreateRequest instantiates a new SLOCorrectionCreateRequest object
@@ -68,10 +70,31 @@ func (o *SLOCorrectionCreateRequest) SetData(v SLOCorrectionCreateData) {
 
 func (o SLOCorrectionCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOCorrectionCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data *SLOCorrectionCreateData `json:"data,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	return nil
 }
 
 type NullableSLOCorrectionCreateRequest struct {

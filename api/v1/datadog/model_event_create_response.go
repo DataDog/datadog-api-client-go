@@ -40,6 +40,8 @@ type EventCreateResponse struct {
 	Title *string `json:"title,omitempty"`
 	// URL of the event.
 	Url *string `json:"url,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewEventCreateResponse instantiates a new EventCreateResponse object
@@ -509,6 +511,9 @@ func (o *EventCreateResponse) SetUrl(v string) {
 
 func (o EventCreateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AlertType != nil {
 		toSerialize["alert_type"] = o.AlertType
 	}
@@ -552,6 +557,66 @@ func (o EventCreateResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["url"] = o.Url
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *EventCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AlertType      *EventAlertType `json:"alert_type,omitempty"`
+		DateHappened   *int64          `json:"date_happened,omitempty"`
+		DeviceName     *string         `json:"device_name,omitempty"`
+		Host           *string         `json:"host,omitempty"`
+		Id             *int64          `json:"id,omitempty"`
+		Payload        *string         `json:"payload,omitempty"`
+		Priority       *EventPriority  `json:"priority,omitempty"`
+		RelatedEventId *int64          `json:"related_event_id,omitempty"`
+		SourceTypeName *string         `json:"source_type_name,omitempty"`
+		Status         *string         `json:"status,omitempty"`
+		Tags           *[]string       `json:"tags,omitempty"`
+		Text           *string         `json:"text,omitempty"`
+		Title          *string         `json:"title,omitempty"`
+		Url            *string         `json:"url,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.AlertType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Priority; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AlertType = all.AlertType
+	o.DateHappened = all.DateHappened
+	o.DeviceName = all.DeviceName
+	o.Host = all.Host
+	o.Id = all.Id
+	o.Payload = all.Payload
+	o.Priority = all.Priority
+	o.RelatedEventId = all.RelatedEventId
+	o.SourceTypeName = all.SourceTypeName
+	o.Status = all.Status
+	o.Tags = all.Tags
+	o.Text = all.Text
+	o.Title = all.Title
+	o.Url = all.Url
+	return nil
 }
 
 type NullableEventCreateResponse struct {

@@ -39,15 +39,8 @@ func (v *TimeseriesWidgetLegendLayout) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := TimeseriesWidgetLegendLayout(value)
-	for _, existing := range allowedTimeseriesWidgetLegendLayoutEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid TimeseriesWidgetLegendLayout", value)
+	*v = TimeseriesWidgetLegendLayout(value)
+	return nil
 }
 
 // NewTimeseriesWidgetLegendLayoutFromValue returns a pointer to a valid TimeseriesWidgetLegendLayout

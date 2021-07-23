@@ -33,6 +33,8 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	Tags *[]string `json:"tags,omitempty"`
 	// The version of the rule being updated.
 	Version *int32 `json:"version,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringRuleUpdatePayload instantiates a new SecurityMonitoringRuleUpdatePayload object
@@ -374,6 +376,9 @@ func (o *SecurityMonitoringRuleUpdatePayload) SetVersion(v int32) {
 
 func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Cases != nil {
 		toSerialize["cases"] = o.Cases
 	}
@@ -405,6 +410,42 @@ func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 		toSerialize["version"] = o.Version
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Cases            *[]SecurityMonitoringRuleCase  `json:"cases,omitempty"`
+		Filters          *[]SecurityMonitoringFilter    `json:"filters,omitempty"`
+		HasExtendedTitle *bool                          `json:"hasExtendedTitle,omitempty"`
+		IsEnabled        *bool                          `json:"isEnabled,omitempty"`
+		Message          *string                        `json:"message,omitempty"`
+		Name             *string                        `json:"name,omitempty"`
+		Options          *SecurityMonitoringRuleOptions `json:"options,omitempty"`
+		Queries          *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
+		Tags             *[]string                      `json:"tags,omitempty"`
+		Version          *int32                         `json:"version,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Cases = all.Cases
+	o.Filters = all.Filters
+	o.HasExtendedTitle = all.HasExtendedTitle
+	o.IsEnabled = all.IsEnabled
+	o.Message = all.Message
+	o.Name = all.Name
+	o.Options = all.Options
+	o.Queries = all.Queries
+	o.Tags = all.Tags
+	o.Version = all.Version
+	return nil
 }
 
 type NullableSecurityMonitoringRuleUpdatePayload struct {

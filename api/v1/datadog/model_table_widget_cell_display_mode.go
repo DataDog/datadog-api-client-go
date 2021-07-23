@@ -37,15 +37,8 @@ func (v *TableWidgetCellDisplayMode) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := TableWidgetCellDisplayMode(value)
-	for _, existing := range allowedTableWidgetCellDisplayModeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid TableWidgetCellDisplayMode", value)
+	*v = TableWidgetCellDisplayMode(value)
+	return nil
 }
 
 // NewTableWidgetCellDisplayModeFromValue returns a pointer to a valid TableWidgetCellDisplayMode

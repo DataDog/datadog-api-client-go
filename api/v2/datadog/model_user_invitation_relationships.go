@@ -16,6 +16,8 @@ import (
 // UserInvitationRelationships Relationships data for user invitation.
 type UserInvitationRelationships struct {
 	User RelationshipToUser `json:"user"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserInvitationRelationships instantiates a new UserInvitationRelationships object
@@ -62,6 +64,9 @@ func (o *UserInvitationRelationships) SetUser(v RelationshipToUser) {
 
 func (o UserInvitationRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["user"] = o.User
 	}
@@ -69,6 +74,7 @@ func (o UserInvitationRelationships) MarshalJSON() ([]byte, error) {
 }
 
 func (o *UserInvitationRelationships) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		User *RelationshipToUser `json:"user"`
 	}{}
@@ -84,7 +90,12 @@ func (o *UserInvitationRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.User = all.User
 	return nil

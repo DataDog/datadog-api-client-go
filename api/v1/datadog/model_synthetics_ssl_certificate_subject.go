@@ -28,6 +28,8 @@ type SyntheticsSSLCertificateSubject struct {
 	ST *string `json:"ST,omitempty"`
 	// Subject Alternative Name associated with the certificate.
 	AltName *string `json:"altName,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsSSLCertificateSubject instantiates a new SyntheticsSSLCertificateSubject object
@@ -273,6 +275,9 @@ func (o *SyntheticsSSLCertificateSubject) SetAltName(v string) {
 
 func (o SyntheticsSSLCertificateSubject) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.C != nil {
 		toSerialize["C"] = o.C
 	}
@@ -295,6 +300,36 @@ func (o SyntheticsSSLCertificateSubject) MarshalJSON() ([]byte, error) {
 		toSerialize["altName"] = o.AltName
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsSSLCertificateSubject) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		C       *string `json:"C,omitempty"`
+		CN      *string `json:"CN,omitempty"`
+		L       *string `json:"L,omitempty"`
+		O       *string `json:"O,omitempty"`
+		OU      *string `json:"OU,omitempty"`
+		ST      *string `json:"ST,omitempty"`
+		AltName *string `json:"altName,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.C = all.C
+	o.CN = all.CN
+	o.L = all.L
+	o.O = all.O
+	o.OU = all.OU
+	o.ST = all.ST
+	o.AltName = all.AltName
+	return nil
 }
 
 type NullableSyntheticsSSLCertificateSubject struct {

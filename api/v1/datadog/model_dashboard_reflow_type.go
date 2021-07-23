@@ -37,15 +37,8 @@ func (v *DashboardReflowType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := DashboardReflowType(value)
-	for _, existing := range allowedDashboardReflowTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid DashboardReflowType", value)
+	*v = DashboardReflowType(value)
+	return nil
 }
 
 // NewDashboardReflowTypeFromValue returns a pointer to a valid DashboardReflowType

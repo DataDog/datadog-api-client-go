@@ -32,6 +32,8 @@ type MetricsQueryResponse struct {
 	Status *string `json:"status,omitempty"`
 	// End of requested time window, milliseconds since Unix epoch.
 	ToDate *int64 `json:"to_date,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricsQueryResponse instantiates a new MetricsQueryResponse object
@@ -341,6 +343,9 @@ func (o *MetricsQueryResponse) SetToDate(v int64) {
 
 func (o MetricsQueryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Error != nil {
 		toSerialize["error"] = o.Error
 	}
@@ -369,6 +374,40 @@ func (o MetricsQueryResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["to_date"] = o.ToDate
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Error    *string                 `json:"error,omitempty"`
+		FromDate *int64                  `json:"from_date,omitempty"`
+		GroupBy  *[]string               `json:"group_by,omitempty"`
+		Message  *string                 `json:"message,omitempty"`
+		Query    *string                 `json:"query,omitempty"`
+		ResType  *string                 `json:"res_type,omitempty"`
+		Series   *[]MetricsQueryMetadata `json:"series,omitempty"`
+		Status   *string                 `json:"status,omitempty"`
+		ToDate   *int64                  `json:"to_date,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Error = all.Error
+	o.FromDate = all.FromDate
+	o.GroupBy = all.GroupBy
+	o.Message = all.Message
+	o.Query = all.Query
+	o.ResType = all.ResType
+	o.Series = all.Series
+	o.Status = all.Status
+	o.ToDate = all.ToDate
+	return nil
 }
 
 type NullableMetricsQueryResponse struct {

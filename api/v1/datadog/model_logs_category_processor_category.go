@@ -17,6 +17,8 @@ type LogsCategoryProcessorCategory struct {
 	Filter *LogsFilter `json:"filter,omitempty"`
 	// Value to assign to the target attribute.
 	Name *string `json:"name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsCategoryProcessorCategory instantiates a new LogsCategoryProcessorCategory object
@@ -102,6 +104,9 @@ func (o *LogsCategoryProcessorCategory) SetName(v string) {
 
 func (o LogsCategoryProcessorCategory) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter
 	}
@@ -109,6 +114,26 @@ func (o LogsCategoryProcessorCategory) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsCategoryProcessorCategory) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Filter *LogsFilter `json:"filter,omitempty"`
+		Name   *string     `json:"name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Filter = all.Filter
+	o.Name = all.Name
+	return nil
 }
 
 type NullableLogsCategoryProcessorCategory struct {

@@ -35,15 +35,8 @@ func (v *SyntheticsAPIStepSubtype) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsAPIStepSubtype(value)
-	for _, existing := range allowedSyntheticsAPIStepSubtypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsAPIStepSubtype", value)
+	*v = SyntheticsAPIStepSubtype(value)
+	return nil
 }
 
 // NewSyntheticsAPIStepSubtypeFromValue returns a pointer to a valid SyntheticsAPIStepSubtype

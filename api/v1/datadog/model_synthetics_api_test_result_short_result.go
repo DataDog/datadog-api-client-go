@@ -17,6 +17,8 @@ type SyntheticsAPITestResultShortResult struct {
 	// Describes if the test run has passed or failed.
 	Passed  *bool             `json:"passed,omitempty"`
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsAPITestResultShortResult instantiates a new SyntheticsAPITestResultShortResult object
@@ -102,6 +104,9 @@ func (o *SyntheticsAPITestResultShortResult) SetTimings(v SyntheticsTiming) {
 
 func (o SyntheticsAPITestResultShortResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Passed != nil {
 		toSerialize["passed"] = o.Passed
 	}
@@ -109,6 +114,26 @@ func (o SyntheticsAPITestResultShortResult) MarshalJSON() ([]byte, error) {
 		toSerialize["timings"] = o.Timings
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsAPITestResultShortResult) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Passed  *bool             `json:"passed,omitempty"`
+		Timings *SyntheticsTiming `json:"timings,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Passed = all.Passed
+	o.Timings = all.Timings
+	return nil
 }
 
 type NullableSyntheticsAPITestResultShortResult struct {

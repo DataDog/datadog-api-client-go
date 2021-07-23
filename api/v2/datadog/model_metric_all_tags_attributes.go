@@ -16,6 +16,8 @@ import (
 type MetricAllTagsAttributes struct {
 	// List of indexed tag value pairs.
 	Tags *[]string `json:"tags,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricAllTagsAttributes instantiates a new MetricAllTagsAttributes object
@@ -69,10 +71,31 @@ func (o *MetricAllTagsAttributes) SetTags(v []string) {
 
 func (o MetricAllTagsAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricAllTagsAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Tags *[]string `json:"tags,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Tags = all.Tags
+	return nil
 }
 
 type NullableMetricAllTagsAttributes struct {

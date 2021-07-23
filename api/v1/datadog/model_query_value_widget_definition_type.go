@@ -35,15 +35,8 @@ func (v *QueryValueWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := QueryValueWidgetDefinitionType(value)
-	for _, existing := range allowedQueryValueWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid QueryValueWidgetDefinitionType", value)
+	*v = QueryValueWidgetDefinitionType(value)
+	return nil
 }
 
 // NewQueryValueWidgetDefinitionTypeFromValue returns a pointer to a valid QueryValueWidgetDefinitionType

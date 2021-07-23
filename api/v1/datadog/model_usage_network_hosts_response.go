@@ -16,6 +16,8 @@ import (
 type UsageNetworkHostsResponse struct {
 	// Get hourly usage for NPM hosts.
 	Usage *[]UsageNetworkHostsHour `json:"usage,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageNetworkHostsResponse instantiates a new UsageNetworkHostsResponse object
@@ -69,10 +71,31 @@ func (o *UsageNetworkHostsResponse) SetUsage(v []UsageNetworkHostsHour) {
 
 func (o UsageNetworkHostsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageNetworkHostsResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Usage *[]UsageNetworkHostsHour `json:"usage,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Usage = all.Usage
+	return nil
 }
 
 type NullableUsageNetworkHostsResponse struct {

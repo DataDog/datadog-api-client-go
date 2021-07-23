@@ -18,6 +18,8 @@ type MonitorGroupSearchResponseCounts struct {
 	Status *[]interface{} `json:"status,omitempty"`
 	// Search facets.
 	Type *[]interface{} `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorGroupSearchResponseCounts instantiates a new MonitorGroupSearchResponseCounts object
@@ -103,6 +105,9 @@ func (o *MonitorGroupSearchResponseCounts) SetType(v []interface{}) {
 
 func (o MonitorGroupSearchResponseCounts) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
@@ -110,6 +115,26 @@ func (o MonitorGroupSearchResponseCounts) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorGroupSearchResponseCounts) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Status *[]interface{} `json:"status,omitempty"`
+		Type   *[]interface{} `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Status = all.Status
+	o.Type = all.Type
+	return nil
 }
 
 type NullableMonitorGroupSearchResponseCounts struct {

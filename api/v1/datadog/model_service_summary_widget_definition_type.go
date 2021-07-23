@@ -35,15 +35,8 @@ func (v *ServiceSummaryWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ServiceSummaryWidgetDefinitionType(value)
-	for _, existing := range allowedServiceSummaryWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ServiceSummaryWidgetDefinitionType", value)
+	*v = ServiceSummaryWidgetDefinitionType(value)
+	return nil
 }
 
 // NewServiceSummaryWidgetDefinitionTypeFromValue returns a pointer to a valid ServiceSummaryWidgetDefinitionType

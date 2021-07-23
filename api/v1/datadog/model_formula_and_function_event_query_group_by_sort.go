@@ -19,6 +19,8 @@ type FormulaAndFunctionEventQueryGroupBySort struct {
 	// Metric used for sorting group by results.
 	Metric *string         `json:"metric,omitempty"`
 	Order  *QuerySortOrder `json:"order,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewFormulaAndFunctionEventQueryGroupBySort instantiates a new FormulaAndFunctionEventQueryGroupBySort object
@@ -133,6 +135,9 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) SetOrder(v QuerySortOrder) {
 
 func (o FormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["aggregation"] = o.Aggregation
 	}
@@ -146,6 +151,7 @@ func (o FormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, error) {
 }
 
 func (o *FormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Aggregation *FormulaAndFunctionEventAggregation `json:"aggregation"`
 	}{}
@@ -163,7 +169,28 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []byte) (e
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Aggregation; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Order; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Aggregation = all.Aggregation
 	o.Metric = all.Metric

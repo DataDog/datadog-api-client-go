@@ -16,6 +16,8 @@ import (
 type SyntheticsTestRequestCertificate struct {
 	Cert *SyntheticsTestRequestCertificateItem `json:"cert,omitempty"`
 	Key  *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTestRequestCertificate instantiates a new SyntheticsTestRequestCertificate object
@@ -101,6 +103,9 @@ func (o *SyntheticsTestRequestCertificate) SetKey(v SyntheticsTestRequestCertifi
 
 func (o SyntheticsTestRequestCertificate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Cert != nil {
 		toSerialize["cert"] = o.Cert
 	}
@@ -108,6 +113,26 @@ func (o SyntheticsTestRequestCertificate) MarshalJSON() ([]byte, error) {
 		toSerialize["key"] = o.Key
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTestRequestCertificate) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Cert *SyntheticsTestRequestCertificateItem `json:"cert,omitempty"`
+		Key  *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Cert = all.Cert
+	o.Key = all.Key
+	return nil
 }
 
 type NullableSyntheticsTestRequestCertificate struct {

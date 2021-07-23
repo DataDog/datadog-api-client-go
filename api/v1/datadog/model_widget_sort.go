@@ -37,15 +37,8 @@ func (v *WidgetSort) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetSort(value)
-	for _, existing := range allowedWidgetSortEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetSort", value)
+	*v = WidgetSort(value)
+	return nil
 }
 
 // NewWidgetSortFromValue returns a pointer to a valid WidgetSort

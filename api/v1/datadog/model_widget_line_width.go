@@ -39,15 +39,8 @@ func (v *WidgetLineWidth) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetLineWidth(value)
-	for _, existing := range allowedWidgetLineWidthEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetLineWidth", value)
+	*v = WidgetLineWidth(value)
+	return nil
 }
 
 // NewWidgetLineWidthFromValue returns a pointer to a valid WidgetLineWidth

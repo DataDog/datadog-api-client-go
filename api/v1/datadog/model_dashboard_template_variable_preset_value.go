@@ -18,6 +18,8 @@ type DashboardTemplateVariablePresetValue struct {
 	Name *string `json:"name,omitempty"`
 	// The value of the template variable within the saved view.
 	Value *string `json:"value,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDashboardTemplateVariablePresetValue instantiates a new DashboardTemplateVariablePresetValue object
@@ -103,6 +105,9 @@ func (o *DashboardTemplateVariablePresetValue) SetValue(v string) {
 
 func (o DashboardTemplateVariablePresetValue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -110,6 +115,26 @@ func (o DashboardTemplateVariablePresetValue) MarshalJSON() ([]byte, error) {
 		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DashboardTemplateVariablePresetValue) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Name  *string `json:"name,omitempty"`
+		Value *string `json:"value,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Name = all.Name
+	o.Value = all.Value
+	return nil
 }
 
 type NullableDashboardTemplateVariablePresetValue struct {

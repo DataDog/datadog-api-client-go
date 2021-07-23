@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // IncidentFieldAttributes - Dynamic fields for which selections can be made, with field names as keys.
 type IncidentFieldAttributes struct {
 	IncidentFieldAttributesMultipleValue *IncidentFieldAttributesMultipleValue
 	IncidentFieldAttributesSingleValue   *IncidentFieldAttributesSingleValue
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // IncidentFieldAttributesMultipleValueAsIncidentFieldAttributes is a convenience function that returns IncidentFieldAttributesMultipleValue wrapped in IncidentFieldAttributes
@@ -33,42 +35,47 @@ func IncidentFieldAttributesSingleValueAsIncidentFieldAttributes(v *IncidentFiel
 func (dst *IncidentFieldAttributes) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into IncidentFieldAttributesMultipleValue
-	err = json.Unmarshal(data, &dst.IncidentFieldAttributesMultipleValue)
-	if err == nil {
-		jsonIncidentFieldAttributesMultipleValue, _ := json.Marshal(dst.IncidentFieldAttributesMultipleValue)
-		if string(jsonIncidentFieldAttributesMultipleValue) == "{}" { // empty struct
-			dst.IncidentFieldAttributesMultipleValue = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.IncidentFieldAttributesMultipleValue = nil
-	}
-
 	// try to unmarshal data into IncidentFieldAttributesSingleValue
 	err = json.Unmarshal(data, &dst.IncidentFieldAttributesSingleValue)
 	if err == nil {
-		jsonIncidentFieldAttributesSingleValue, _ := json.Marshal(dst.IncidentFieldAttributesSingleValue)
-		if string(jsonIncidentFieldAttributesSingleValue) == "{}" { // empty struct
-			dst.IncidentFieldAttributesSingleValue = nil
+		if dst.IncidentFieldAttributesSingleValue != nil && dst.IncidentFieldAttributesSingleValue.UnparsedObject == nil {
+			jsonIncidentFieldAttributesSingleValue, _ := json.Marshal(dst.IncidentFieldAttributesSingleValue)
+			if string(jsonIncidentFieldAttributesSingleValue) == "{}" { // empty struct
+				dst.IncidentFieldAttributesSingleValue = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.IncidentFieldAttributesSingleValue = nil
 		}
 	} else {
 		dst.IncidentFieldAttributesSingleValue = nil
 	}
 
-	if match > 1 { // more than 1 match
+	// try to unmarshal data into IncidentFieldAttributesMultipleValue
+	err = json.Unmarshal(data, &dst.IncidentFieldAttributesMultipleValue)
+	if err == nil {
+		if dst.IncidentFieldAttributesMultipleValue != nil && dst.IncidentFieldAttributesMultipleValue.UnparsedObject == nil {
+			jsonIncidentFieldAttributesMultipleValue, _ := json.Marshal(dst.IncidentFieldAttributesMultipleValue)
+			if string(jsonIncidentFieldAttributesMultipleValue) == "{}" { // empty struct
+				dst.IncidentFieldAttributesMultipleValue = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.IncidentFieldAttributesMultipleValue = nil
+		}
+	} else {
+		dst.IncidentFieldAttributesMultipleValue = nil
+	}
+
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.IncidentFieldAttributesMultipleValue = nil
 		dst.IncidentFieldAttributesSingleValue = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(IncidentFieldAttributes)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(IncidentFieldAttributes)")
 	}
 }
 
@@ -82,6 +89,9 @@ func (src IncidentFieldAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.IncidentFieldAttributesSingleValue)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

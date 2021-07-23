@@ -35,15 +35,8 @@ func (v *LogsAttributeRemapperType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsAttributeRemapperType(value)
-	for _, existing := range allowedLogsAttributeRemapperTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsAttributeRemapperType", value)
+	*v = LogsAttributeRemapperType(value)
+	return nil
 }
 
 // NewLogsAttributeRemapperTypeFromValue returns a pointer to a valid LogsAttributeRemapperType

@@ -30,6 +30,8 @@ type UsageBillableSummaryHour struct {
 	// Shows the first date of usage.
 	StartDate *time.Time                `json:"start_date,omitempty"`
 	Usage     *UsageBillableSummaryKeys `json:"usage,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageBillableSummaryHour instantiates a new UsageBillableSummaryHour object
@@ -307,6 +309,9 @@ func (o *UsageBillableSummaryHour) SetUsage(v UsageBillableSummaryKeys) {
 
 func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.BillingPlan != nil {
 		toSerialize["billing_plan"] = o.BillingPlan
 	}
@@ -332,6 +337,38 @@ func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
 		toSerialize["usage"] = o.Usage
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		BillingPlan  *string                   `json:"billing_plan,omitempty"`
+		EndDate      *time.Time                `json:"end_date,omitempty"`
+		NumOrgs      *int64                    `json:"num_orgs,omitempty"`
+		OrgName      *string                   `json:"org_name,omitempty"`
+		PublicId     *string                   `json:"public_id,omitempty"`
+		RatioInMonth *int64                    `json:"ratio_in_month,omitempty"`
+		StartDate    *time.Time                `json:"start_date,omitempty"`
+		Usage        *UsageBillableSummaryKeys `json:"usage,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.BillingPlan = all.BillingPlan
+	o.EndDate = all.EndDate
+	o.NumOrgs = all.NumOrgs
+	o.OrgName = all.OrgName
+	o.PublicId = all.PublicId
+	o.RatioInMonth = all.RatioInMonth
+	o.StartDate = all.StartDate
+	o.Usage = all.Usage
+	return nil
 }
 
 type NullableUsageBillableSummaryHour struct {
