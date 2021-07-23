@@ -29,6 +29,7 @@ type WidgetDefinition struct {
 	HostMapWidgetDefinition        *HostMapWidgetDefinition
 	IFrameWidgetDefinition         *IFrameWidgetDefinition
 	ImageWidgetDefinition          *ImageWidgetDefinition
+	ListStreamWidgetDefinition     *ListStreamWidgetDefinition
 	LogStreamWidgetDefinition      *LogStreamWidgetDefinition
 	MonitorSummaryWidgetDefinition *MonitorSummaryWidgetDefinition
 	NoteWidgetDefinition           *NoteWidgetDefinition
@@ -111,6 +112,11 @@ func IFrameWidgetDefinitionAsWidgetDefinition(v *IFrameWidgetDefinition) WidgetD
 // ImageWidgetDefinitionAsWidgetDefinition is a convenience function that returns ImageWidgetDefinition wrapped in WidgetDefinition
 func ImageWidgetDefinitionAsWidgetDefinition(v *ImageWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{ImageWidgetDefinition: v}
+}
+
+// ListStreamWidgetDefinitionAsWidgetDefinition is a convenience function that returns ListStreamWidgetDefinition wrapped in WidgetDefinition
+func ListStreamWidgetDefinitionAsWidgetDefinition(v *ListStreamWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{ListStreamWidgetDefinition: v}
 }
 
 // LogStreamWidgetDefinitionAsWidgetDefinition is a convenience function that returns LogStreamWidgetDefinition wrapped in WidgetDefinition
@@ -359,6 +365,19 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.ImageWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into ListStreamWidgetDefinition
+	err = json.Unmarshal(data, &dst.ListStreamWidgetDefinition)
+	if err == nil {
+		jsonListStreamWidgetDefinition, _ := json.Marshal(dst.ListStreamWidgetDefinition)
+		if string(jsonListStreamWidgetDefinition) == "{}" { // empty struct
+			dst.ListStreamWidgetDefinition = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ListStreamWidgetDefinition = nil
+	}
+
 	// try to unmarshal data into LogStreamWidgetDefinition
 	err = json.Unmarshal(data, &dst.LogStreamWidgetDefinition)
 	if err == nil {
@@ -531,6 +550,7 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.HostMapWidgetDefinition = nil
 		dst.IFrameWidgetDefinition = nil
 		dst.ImageWidgetDefinition = nil
+		dst.ListStreamWidgetDefinition = nil
 		dst.LogStreamWidgetDefinition = nil
 		dst.MonitorSummaryWidgetDefinition = nil
 		dst.NoteWidgetDefinition = nil
@@ -608,6 +628,10 @@ func (src WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if src.ImageWidgetDefinition != nil {
 		return json.Marshal(&src.ImageWidgetDefinition)
+	}
+
+	if src.ListStreamWidgetDefinition != nil {
+		return json.Marshal(&src.ListStreamWidgetDefinition)
 	}
 
 	if src.LogStreamWidgetDefinition != nil {
@@ -717,6 +741,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.ImageWidgetDefinition != nil {
 		return obj.ImageWidgetDefinition
+	}
+
+	if obj.ListStreamWidgetDefinition != nil {
+		return obj.ListStreamWidgetDefinition
 	}
 
 	if obj.LogStreamWidgetDefinition != nil {
