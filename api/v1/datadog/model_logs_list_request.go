@@ -25,6 +25,8 @@ type LogsListRequest struct {
 	// Hash identifier of the first log to return in the list, available in a log `id` attribute. This parameter is used for the pagination feature.  **Note**: This parameter is ignored if the corresponding log is out of the scope of the specified time window.
 	StartAt *string             `json:"startAt,omitempty"`
 	Time    LogsListRequestTime `json:"time"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsListRequest instantiates a new LogsListRequest object
@@ -231,6 +233,9 @@ func (o *LogsListRequest) SetTime(v LogsListRequestTime) {
 
 func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Index != nil {
 		toSerialize["index"] = o.Index
 	}
@@ -253,6 +258,7 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Time *LogsListRequestTime `json:"time"`
 	}{}
@@ -273,7 +279,20 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Sort; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Index = all.Index
 	o.Limit = all.Limit

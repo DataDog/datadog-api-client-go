@@ -41,15 +41,8 @@ func (v *WidgetComparator) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetComparator(value)
-	for _, existing := range allowedWidgetComparatorEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetComparator", value)
+	*v = WidgetComparator(value)
+	return nil
 }
 
 // NewWidgetComparatorFromValue returns a pointer to a valid WidgetComparator

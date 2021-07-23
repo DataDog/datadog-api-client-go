@@ -37,15 +37,8 @@ func (v *LogsAggregateResponseStatus) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsAggregateResponseStatus(value)
-	for _, existing := range allowedLogsAggregateResponseStatusEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsAggregateResponseStatus", value)
+	*v = LogsAggregateResponseStatus(value)
+	return nil
 }
 
 // NewLogsAggregateResponseStatusFromValue returns a pointer to a valid LogsAggregateResponseStatus

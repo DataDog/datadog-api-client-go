@@ -47,15 +47,8 @@ func (v *FormulaAndFunctionMetricAggregation) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := FormulaAndFunctionMetricAggregation(value)
-	for _, existing := range allowedFormulaAndFunctionMetricAggregationEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid FormulaAndFunctionMetricAggregation", value)
+	*v = FormulaAndFunctionMetricAggregation(value)
+	return nil
 }
 
 // NewFormulaAndFunctionMetricAggregationFromValue returns a pointer to a valid FormulaAndFunctionMetricAggregation

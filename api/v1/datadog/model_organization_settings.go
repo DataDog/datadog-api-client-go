@@ -29,6 +29,8 @@ type OrganizationSettings struct {
 	// URL for SAML logging.
 	SamlLoginUrl   *string                             `json:"saml_login_url,omitempty"`
 	SamlStrictMode *OrganizationSettingsSamlStrictMode `json:"saml_strict_mode,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewOrganizationSettings instantiates a new OrganizationSettings object
@@ -374,6 +376,9 @@ func (o *OrganizationSettings) SetSamlStrictMode(v OrganizationSettingsSamlStric
 
 func (o OrganizationSettings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.PrivateWidgetShare != nil {
 		toSerialize["private_widget_share"] = o.PrivateWidgetShare
 	}
@@ -405,6 +410,50 @@ func (o OrganizationSettings) MarshalJSON() ([]byte, error) {
 		toSerialize["saml_strict_mode"] = o.SamlStrictMode
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		PrivateWidgetShare         *bool                                           `json:"private_widget_share,omitempty"`
+		Saml                       *OrganizationSettingsSaml                       `json:"saml,omitempty"`
+		SamlAutocreateAccessRole   *AccessRole                                     `json:"saml_autocreate_access_role,omitempty"`
+		SamlAutocreateUsersDomains *OrganizationSettingsSamlAutocreateUsersDomains `json:"saml_autocreate_users_domains,omitempty"`
+		SamlCanBeEnabled           *bool                                           `json:"saml_can_be_enabled,omitempty"`
+		SamlIdpEndpoint            *string                                         `json:"saml_idp_endpoint,omitempty"`
+		SamlIdpInitiatedLogin      *OrganizationSettingsSamlIdpInitiatedLogin      `json:"saml_idp_initiated_login,omitempty"`
+		SamlIdpMetadataUploaded    *bool                                           `json:"saml_idp_metadata_uploaded,omitempty"`
+		SamlLoginUrl               *string                                         `json:"saml_login_url,omitempty"`
+		SamlStrictMode             *OrganizationSettingsSamlStrictMode             `json:"saml_strict_mode,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.SamlAutocreateAccessRole; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.PrivateWidgetShare = all.PrivateWidgetShare
+	o.Saml = all.Saml
+	o.SamlAutocreateAccessRole = all.SamlAutocreateAccessRole
+	o.SamlAutocreateUsersDomains = all.SamlAutocreateUsersDomains
+	o.SamlCanBeEnabled = all.SamlCanBeEnabled
+	o.SamlIdpEndpoint = all.SamlIdpEndpoint
+	o.SamlIdpInitiatedLogin = all.SamlIdpInitiatedLogin
+	o.SamlIdpMetadataUploaded = all.SamlIdpMetadataUploaded
+	o.SamlLoginUrl = all.SamlLoginUrl
+	o.SamlStrictMode = all.SamlStrictMode
+	return nil
 }
 
 type NullableOrganizationSettings struct {

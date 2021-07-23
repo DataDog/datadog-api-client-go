@@ -16,6 +16,8 @@ import (
 type HostMeta struct {
 	// Array of Unix versions.
 	NixV *[]string `json:"nixV,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewHostMeta instantiates a new HostMeta object
@@ -69,10 +71,31 @@ func (o *HostMeta) SetNixV(v []string) {
 
 func (o HostMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.NixV != nil {
 		toSerialize["nixV"] = o.NixV
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		NixV *[]string `json:"nixV,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.NixV = all.NixV
+	return nil
 }
 
 type NullableHostMeta struct {

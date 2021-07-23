@@ -18,6 +18,8 @@ type SyntheticsPrivateLocationSecretsAuthentication struct {
 	Id *string `json:"id,omitempty"`
 	// Secret access key for the private location.
 	Key *string `json:"key,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsPrivateLocationSecretsAuthentication instantiates a new SyntheticsPrivateLocationSecretsAuthentication object
@@ -103,6 +105,9 @@ func (o *SyntheticsPrivateLocationSecretsAuthentication) SetKey(v string) {
 
 func (o SyntheticsPrivateLocationSecretsAuthentication) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -110,6 +115,26 @@ func (o SyntheticsPrivateLocationSecretsAuthentication) MarshalJSON() ([]byte, e
 		toSerialize["key"] = o.Key
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsPrivateLocationSecretsAuthentication) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Id  *string `json:"id,omitempty"`
+		Key *string `json:"key,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Id = all.Id
+	o.Key = all.Key
+	return nil
 }
 
 type NullableSyntheticsPrivateLocationSecretsAuthentication struct {

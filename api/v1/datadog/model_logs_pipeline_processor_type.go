@@ -35,15 +35,8 @@ func (v *LogsPipelineProcessorType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsPipelineProcessorType(value)
-	for _, existing := range allowedLogsPipelineProcessorTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsPipelineProcessorType", value)
+	*v = LogsPipelineProcessorType(value)
+	return nil
 }
 
 // NewLogsPipelineProcessorTypeFromValue returns a pointer to a valid LogsPipelineProcessorType

@@ -23,6 +23,8 @@ type TreeMapWidgetDefinition struct {
 	// Title of your widget.
 	Title *string                     `json:"title,omitempty"`
 	Type  TreeMapWidgetDefinitionType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewTreeMapWidgetDefinition instantiates a new TreeMapWidgetDefinition object
@@ -205,6 +207,9 @@ func (o *TreeMapWidgetDefinition) SetType(v TreeMapWidgetDefinitionType) {
 
 func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["color_by"] = o.ColorBy
 	}
@@ -227,6 +232,7 @@ func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		ColorBy  *TreeMapColorBy              `json:"color_by"`
 		GroupBy  *TreeMapGroupBy              `json:"group_by"`
@@ -263,7 +269,44 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.ColorBy; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.GroupBy; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.SizeBy; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.ColorBy = all.ColorBy
 	o.GroupBy = all.GroupBy

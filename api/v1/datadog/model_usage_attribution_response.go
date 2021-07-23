@@ -17,6 +17,8 @@ type UsageAttributionResponse struct {
 	Metadata *UsageAttributionMetadata `json:"metadata,omitempty"`
 	// Get Usage Summary by tag(s).
 	Usage *[]UsageAttributionBody `json:"usage,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageAttributionResponse instantiates a new UsageAttributionResponse object
@@ -102,6 +104,9 @@ func (o *UsageAttributionResponse) SetUsage(v []UsageAttributionBody) {
 
 func (o UsageAttributionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -109,6 +114,26 @@ func (o UsageAttributionResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["usage"] = o.Usage
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Metadata *UsageAttributionMetadata `json:"metadata,omitempty"`
+		Usage    *[]UsageAttributionBody   `json:"usage,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Metadata = all.Metadata
+	o.Usage = all.Usage
+	return nil
 }
 
 type NullableUsageAttributionResponse struct {

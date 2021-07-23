@@ -39,15 +39,8 @@ func (v *WidgetViewMode) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetViewMode(value)
-	for _, existing := range allowedWidgetViewModeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetViewMode", value)
+	*v = WidgetViewMode(value)
+	return nil
 }
 
 // NewWidgetViewModeFromValue returns a pointer to a valid WidgetViewMode

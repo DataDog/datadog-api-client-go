@@ -37,15 +37,8 @@ func (v *SecurityMonitoringFilterAction) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SecurityMonitoringFilterAction(value)
-	for _, existing := range allowedSecurityMonitoringFilterActionEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SecurityMonitoringFilterAction", value)
+	*v = SecurityMonitoringFilterAction(value)
+	return nil
 }
 
 // NewSecurityMonitoringFilterActionFromValue returns a pointer to a valid SecurityMonitoringFilterAction

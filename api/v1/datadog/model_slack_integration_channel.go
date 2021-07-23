@@ -17,6 +17,8 @@ type SlackIntegrationChannel struct {
 	Display *SlackIntegrationChannelDisplay `json:"display,omitempty"`
 	// Your channel name.
 	Name *string `json:"name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSlackIntegrationChannel instantiates a new SlackIntegrationChannel object
@@ -102,6 +104,9 @@ func (o *SlackIntegrationChannel) SetName(v string) {
 
 func (o SlackIntegrationChannel) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Display != nil {
 		toSerialize["display"] = o.Display
 	}
@@ -109,6 +114,26 @@ func (o SlackIntegrationChannel) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SlackIntegrationChannel) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Display *SlackIntegrationChannelDisplay `json:"display,omitempty"`
+		Name    *string                         `json:"name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Display = all.Display
+	o.Name = all.Name
+	return nil
 }
 
 type NullableSlackIntegrationChannel struct {

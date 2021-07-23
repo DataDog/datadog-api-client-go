@@ -57,15 +57,8 @@ func (v *FormulaAndFunctionEventAggregation) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := FormulaAndFunctionEventAggregation(value)
-	for _, existing := range allowedFormulaAndFunctionEventAggregationEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid FormulaAndFunctionEventAggregation", value)
+	*v = FormulaAndFunctionEventAggregation(value)
+	return nil
 }
 
 // NewFormulaAndFunctionEventAggregationFromValue returns a pointer to a valid FormulaAndFunctionEventAggregation

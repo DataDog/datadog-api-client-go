@@ -77,15 +77,8 @@ func (v *UsageAttributionSort) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := UsageAttributionSort(value)
-	for _, existing := range allowedUsageAttributionSortEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid UsageAttributionSort", value)
+	*v = UsageAttributionSort(value)
+	return nil
 }
 
 // NewUsageAttributionSortFromValue returns a pointer to a valid UsageAttributionSort

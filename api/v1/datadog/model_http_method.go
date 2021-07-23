@@ -47,15 +47,8 @@ func (v *HTTPMethod) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := HTTPMethod(value)
-	for _, existing := range allowedHTTPMethodEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid HTTPMethod", value)
+	*v = HTTPMethod(value)
+	return nil
 }
 
 // NewHTTPMethodFromValue returns a pointer to a valid HTTPMethod

@@ -39,15 +39,8 @@ func (v *WidgetDisplayType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetDisplayType(value)
-	for _, existing := range allowedWidgetDisplayTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetDisplayType", value)
+	*v = WidgetDisplayType(value)
+	return nil
 }
 
 // NewWidgetDisplayTypeFromValue returns a pointer to a valid WidgetDisplayType

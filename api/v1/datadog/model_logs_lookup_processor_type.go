@@ -35,15 +35,8 @@ func (v *LogsLookupProcessorType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsLookupProcessorType(value)
-	for _, existing := range allowedLogsLookupProcessorTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsLookupProcessorType", value)
+	*v = LogsLookupProcessorType(value)
+	return nil
 }
 
 // NewLogsLookupProcessorTypeFromValue returns a pointer to a valid LogsLookupProcessorType

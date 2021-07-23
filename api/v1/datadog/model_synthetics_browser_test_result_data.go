@@ -35,6 +35,8 @@ type SyntheticsBrowserTestResultData struct {
 	ThumbnailsBucketKey *bool `json:"thumbnailsBucketKey,omitempty"`
 	// Time in second to wait before the browser test starts after reaching the start URL.
 	TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsBrowserTestResultData instantiates a new SyntheticsBrowserTestResultData object
@@ -408,6 +410,9 @@ func (o *SyntheticsBrowserTestResultData) SetTimeToInteractive(v float64) {
 
 func (o SyntheticsBrowserTestResultData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.BrowserType != nil {
 		toSerialize["browserType"] = o.BrowserType
 	}
@@ -442,6 +447,44 @@ func (o SyntheticsBrowserTestResultData) MarshalJSON() ([]byte, error) {
 		toSerialize["timeToInteractive"] = o.TimeToInteractive
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		BrowserType         *string                 `json:"browserType,omitempty"`
+		BrowserVersion      *string                 `json:"browserVersion,omitempty"`
+		Device              *SyntheticsDevice       `json:"device,omitempty"`
+		Duration            *float64                `json:"duration,omitempty"`
+		Error               *string                 `json:"error,omitempty"`
+		Passed              *bool                   `json:"passed,omitempty"`
+		ReceivedEmailCount  *int64                  `json:"receivedEmailCount,omitempty"`
+		StartUrl            *string                 `json:"startUrl,omitempty"`
+		StepDetails         *[]SyntheticsStepDetail `json:"stepDetails,omitempty"`
+		ThumbnailsBucketKey *bool                   `json:"thumbnailsBucketKey,omitempty"`
+		TimeToInteractive   *float64                `json:"timeToInteractive,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.BrowserType = all.BrowserType
+	o.BrowserVersion = all.BrowserVersion
+	o.Device = all.Device
+	o.Duration = all.Duration
+	o.Error = all.Error
+	o.Passed = all.Passed
+	o.ReceivedEmailCount = all.ReceivedEmailCount
+	o.StartUrl = all.StartUrl
+	o.StepDetails = all.StepDetails
+	o.ThumbnailsBucketKey = all.ThumbnailsBucketKey
+	o.TimeToInteractive = all.TimeToInteractive
+	return nil
 }
 
 type NullableSyntheticsBrowserTestResultData struct {

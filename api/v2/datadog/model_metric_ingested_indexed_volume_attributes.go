@@ -18,6 +18,8 @@ type MetricIngestedIndexedVolumeAttributes struct {
 	IndexedVolume *int64 `json:"indexed_volume,omitempty"`
 	// Ingested volume for the given metric.
 	IngestedVolume *int64 `json:"ingested_volume,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricIngestedIndexedVolumeAttributes instantiates a new MetricIngestedIndexedVolumeAttributes object
@@ -103,6 +105,9 @@ func (o *MetricIngestedIndexedVolumeAttributes) SetIngestedVolume(v int64) {
 
 func (o MetricIngestedIndexedVolumeAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.IndexedVolume != nil {
 		toSerialize["indexed_volume"] = o.IndexedVolume
 	}
@@ -110,6 +115,26 @@ func (o MetricIngestedIndexedVolumeAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["ingested_volume"] = o.IngestedVolume
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricIngestedIndexedVolumeAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		IndexedVolume  *int64 `json:"indexed_volume,omitempty"`
+		IngestedVolume *int64 `json:"ingested_volume,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.IndexedVolume = all.IndexedVolume
+	o.IngestedVolume = all.IngestedVolume
+	return nil
 }
 
 type NullableMetricIngestedIndexedVolumeAttributes struct {

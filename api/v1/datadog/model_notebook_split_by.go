@@ -19,6 +19,8 @@ type NotebookSplitBy struct {
 	Keys []string `json:"keys"`
 	// Tags to split on.
 	Tags []string `json:"tags"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewNotebookSplitBy instantiates a new NotebookSplitBy object
@@ -90,6 +92,9 @@ func (o *NotebookSplitBy) SetTags(v []string) {
 
 func (o NotebookSplitBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["keys"] = o.Keys
 	}
@@ -100,6 +105,7 @@ func (o NotebookSplitBy) MarshalJSON() ([]byte, error) {
 }
 
 func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Keys *[]string `json:"keys"`
 		Tags *[]string `json:"tags"`
@@ -120,7 +126,12 @@ func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Keys = all.Keys
 	o.Tags = all.Tags

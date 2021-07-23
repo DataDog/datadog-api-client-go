@@ -23,6 +23,8 @@ type LogsPipelineProcessor struct {
 	// Ordered list of processors in this pipeline.
 	Processors *[]LogsProcessor          `json:"processors,omitempty"`
 	Type       LogsPipelineProcessorType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsPipelineProcessor instantiates a new LogsPipelineProcessor object
@@ -203,6 +205,9 @@ func (o *LogsPipelineProcessor) SetType(v LogsPipelineProcessorType) {
 
 func (o LogsPipelineProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter
 	}
@@ -222,6 +227,7 @@ func (o LogsPipelineProcessor) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsPipelineProcessor) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Type *LogsPipelineProcessorType `json:"type"`
 	}{}
@@ -241,7 +247,20 @@ func (o *LogsPipelineProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Filter = all.Filter
 	o.IsEnabled = all.IsEnabled

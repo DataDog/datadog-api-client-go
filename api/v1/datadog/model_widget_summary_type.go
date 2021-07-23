@@ -39,15 +39,8 @@ func (v *WidgetSummaryType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetSummaryType(value)
-	for _, existing := range allowedWidgetSummaryTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetSummaryType", value)
+	*v = WidgetSummaryType(value)
+	return nil
 }
 
 // NewWidgetSummaryTypeFromValue returns a pointer to a valid WidgetSummaryType

@@ -16,6 +16,8 @@ import (
 // APIKeyUpdateRequest Request used to update an API key.
 type APIKeyUpdateRequest struct {
 	Data APIKeyUpdateData `json:"data"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAPIKeyUpdateRequest instantiates a new APIKeyUpdateRequest object
@@ -62,6 +64,9 @@ func (o *APIKeyUpdateRequest) SetData(v APIKeyUpdateData) {
 
 func (o APIKeyUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["data"] = o.Data
 	}
@@ -69,6 +74,7 @@ func (o APIKeyUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (o *APIKeyUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Data *APIKeyUpdateData `json:"data"`
 	}{}
@@ -84,7 +90,12 @@ func (o *APIKeyUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Data = all.Data
 	return nil

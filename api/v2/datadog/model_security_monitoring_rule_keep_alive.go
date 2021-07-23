@@ -53,15 +53,8 @@ func (v *SecurityMonitoringRuleKeepAlive) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SecurityMonitoringRuleKeepAlive(value)
-	for _, existing := range allowedSecurityMonitoringRuleKeepAliveEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SecurityMonitoringRuleKeepAlive", value)
+	*v = SecurityMonitoringRuleKeepAlive(value)
+	return nil
 }
 
 // NewSecurityMonitoringRuleKeepAliveFromValue returns a pointer to a valid SecurityMonitoringRuleKeepAlive

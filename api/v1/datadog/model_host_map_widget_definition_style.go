@@ -22,6 +22,8 @@ type HostMapWidgetDefinitionStyle struct {
 	Palette *string `json:"palette,omitempty"`
 	// Whether to flip the palette tones.
 	PaletteFlip *bool `json:"palette_flip,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewHostMapWidgetDefinitionStyle instantiates a new HostMapWidgetDefinitionStyle object
@@ -171,6 +173,9 @@ func (o *HostMapWidgetDefinitionStyle) SetPaletteFlip(v bool) {
 
 func (o HostMapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.FillMax != nil {
 		toSerialize["fill_max"] = o.FillMax
 	}
@@ -184,6 +189,30 @@ func (o HostMapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 		toSerialize["palette_flip"] = o.PaletteFlip
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *HostMapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		FillMax     *string `json:"fill_max,omitempty"`
+		FillMin     *string `json:"fill_min,omitempty"`
+		Palette     *string `json:"palette,omitempty"`
+		PaletteFlip *bool   `json:"palette_flip,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.FillMax = all.FillMax
+	o.FillMin = all.FillMin
+	o.Palette = all.Palette
+	o.PaletteFlip = all.PaletteFlip
+	return nil
 }
 
 type NullableHostMapWidgetDefinitionStyle struct {

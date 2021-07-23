@@ -43,15 +43,8 @@ func (v *DashboardType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := DashboardType(value)
-	for _, existing := range allowedDashboardTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid DashboardType", value)
+	*v = DashboardType(value)
+	return nil
 }
 
 // NewDashboardTypeFromValue returns a pointer to a valid DashboardType

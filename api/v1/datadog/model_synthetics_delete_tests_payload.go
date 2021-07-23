@@ -16,6 +16,8 @@ import (
 type SyntheticsDeleteTestsPayload struct {
 	// An array of Synthetic test IDs you want to delete.
 	PublicIds *[]string `json:"public_ids,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsDeleteTestsPayload instantiates a new SyntheticsDeleteTestsPayload object
@@ -69,10 +71,31 @@ func (o *SyntheticsDeleteTestsPayload) SetPublicIds(v []string) {
 
 func (o SyntheticsDeleteTestsPayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.PublicIds != nil {
 		toSerialize["public_ids"] = o.PublicIds
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsDeleteTestsPayload) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		PublicIds *[]string `json:"public_ids,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.PublicIds = all.PublicIds
+	return nil
 }
 
 type NullableSyntheticsDeleteTestsPayload struct {

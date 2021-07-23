@@ -35,15 +35,8 @@ func (v *LogsArchiveDestinationS3Type) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsArchiveDestinationS3Type(value)
-	for _, existing := range allowedLogsArchiveDestinationS3TypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsArchiveDestinationS3Type", value)
+	*v = LogsArchiveDestinationS3Type(value)
+	return nil
 }
 
 // NewLogsArchiveDestinationS3TypeFromValue returns a pointer to a valid LogsArchiveDestinationS3Type

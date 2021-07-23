@@ -20,6 +20,8 @@ type SyntheticsTestRequestCertificateItem struct {
 	Filename *string `json:"filename,omitempty"`
 	// Date of update of the certificate or key, ISO format.
 	UpdatedAt *string `json:"updatedAt,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTestRequestCertificateItem instantiates a new SyntheticsTestRequestCertificateItem object
@@ -137,6 +139,9 @@ func (o *SyntheticsTestRequestCertificateItem) SetUpdatedAt(v string) {
 
 func (o SyntheticsTestRequestCertificateItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Content != nil {
 		toSerialize["content"] = o.Content
 	}
@@ -147,6 +152,28 @@ func (o SyntheticsTestRequestCertificateItem) MarshalJSON() ([]byte, error) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTestRequestCertificateItem) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Content   *string `json:"content,omitempty"`
+		Filename  *string `json:"filename,omitempty"`
+		UpdatedAt *string `json:"updatedAt,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Content = all.Content
+	o.Filename = all.Filename
+	o.UpdatedAt = all.UpdatedAt
+	return nil
 }
 
 type NullableSyntheticsTestRequestCertificateItem struct {

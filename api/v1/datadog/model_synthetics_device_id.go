@@ -51,15 +51,8 @@ func (v *SyntheticsDeviceID) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsDeviceID(value)
-	for _, existing := range allowedSyntheticsDeviceIDEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsDeviceID", value)
+	*v = SyntheticsDeviceID(value)
+	return nil
 }
 
 // NewSyntheticsDeviceIDFromValue returns a pointer to a valid SyntheticsDeviceID

@@ -49,15 +49,8 @@ func (v *WidgetTimeWindows) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetTimeWindows(value)
-	for _, existing := range allowedWidgetTimeWindowsEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetTimeWindows", value)
+	*v = WidgetTimeWindows(value)
+	return nil
 }
 
 // NewWidgetTimeWindowsFromValue returns a pointer to a valid WidgetTimeWindows

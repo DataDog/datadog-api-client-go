@@ -18,6 +18,8 @@ type SyntheticsGlobalVariableValue struct {
 	Secure *bool `json:"secure,omitempty"`
 	// Value of the global variable. When reading a global variable, the value will not be present if the variable is secure.
 	Value *string `json:"value,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsGlobalVariableValue instantiates a new SyntheticsGlobalVariableValue object
@@ -103,6 +105,9 @@ func (o *SyntheticsGlobalVariableValue) SetValue(v string) {
 
 func (o SyntheticsGlobalVariableValue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Secure != nil {
 		toSerialize["secure"] = o.Secure
 	}
@@ -110,6 +115,26 @@ func (o SyntheticsGlobalVariableValue) MarshalJSON() ([]byte, error) {
 		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsGlobalVariableValue) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Secure *bool   `json:"secure,omitempty"`
+		Value  *string `json:"value,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Secure = all.Secure
+	o.Value = all.Value
+	return nil
 }
 
 type NullableSyntheticsGlobalVariableValue struct {

@@ -32,6 +32,8 @@ type DistributionWidgetDefinition struct {
 	Type      DistributionWidgetDefinitionType `json:"type"`
 	Xaxis     *DistributionWidgetXAxis         `json:"xaxis,omitempty"`
 	Yaxis     *DistributionWidgetYAxis         `json:"yaxis,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDistributionWidgetDefinition instantiates a new DistributionWidgetDefinition object
@@ -393,6 +395,9 @@ func (o *DistributionWidgetDefinition) SetYaxis(v DistributionWidgetYAxis) {
 
 func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.LegendSize != nil {
 		toSerialize["legend_size"] = o.LegendSize
 	}
@@ -430,6 +435,7 @@ func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Requests *[]DistributionWidgetRequest      `json:"requests"`
 		Type     *DistributionWidgetDefinitionType `json:"type"`
@@ -459,7 +465,28 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.LegendSize = all.LegendSize
 	o.Markers = all.Markers

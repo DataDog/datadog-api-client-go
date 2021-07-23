@@ -19,6 +19,8 @@ type UsersResponse struct {
 	// Array of objects related to the users.
 	Included *[]UserResponseIncludedItem `json:"included,omitempty"`
 	Meta     *ResponseMetaAttributes     `json:"meta,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsersResponse instantiates a new UsersResponse object
@@ -136,6 +138,9 @@ func (o *UsersResponse) SetMeta(v ResponseMetaAttributes) {
 
 func (o UsersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
@@ -146,6 +151,28 @@ func (o UsersResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["meta"] = o.Meta
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsersResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data     *[]User                     `json:"data,omitempty"`
+		Included *[]UserResponseIncludedItem `json:"included,omitempty"`
+		Meta     *ResponseMetaAttributes     `json:"meta,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	o.Included = all.Included
+	o.Meta = all.Meta
+	return nil
 }
 
 type NullableUsersResponse struct {

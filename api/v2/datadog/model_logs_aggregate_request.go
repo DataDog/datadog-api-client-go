@@ -21,6 +21,8 @@ type LogsAggregateRequest struct {
 	GroupBy *[]LogsGroupBy            `json:"group_by,omitempty"`
 	Options *LogsQueryOptions         `json:"options,omitempty"`
 	Page    *LogsAggregateRequestPage `json:"page,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsAggregateRequest instantiates a new LogsAggregateRequest object
@@ -202,6 +204,9 @@ func (o *LogsAggregateRequest) SetPage(v LogsAggregateRequestPage) {
 
 func (o LogsAggregateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Compute != nil {
 		toSerialize["compute"] = o.Compute
 	}
@@ -218,6 +223,32 @@ func (o LogsAggregateRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["page"] = o.Page
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Compute *[]LogsCompute            `json:"compute,omitempty"`
+		Filter  *LogsQueryFilter          `json:"filter,omitempty"`
+		GroupBy *[]LogsGroupBy            `json:"group_by,omitempty"`
+		Options *LogsQueryOptions         `json:"options,omitempty"`
+		Page    *LogsAggregateRequestPage `json:"page,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Compute = all.Compute
+	o.Filter = all.Filter
+	o.GroupBy = all.GroupBy
+	o.Options = all.Options
+	o.Page = all.Page
+	return nil
 }
 
 type NullableLogsAggregateRequest struct {

@@ -21,6 +21,8 @@ type SecurityMonitoringRuleCase struct {
 	// Notification targets for each rule case.
 	Notifications *[]string                       `json:"notifications,omitempty"`
 	Status        *SecurityMonitoringRuleSeverity `json:"status,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringRuleCase instantiates a new SecurityMonitoringRuleCase object
@@ -170,6 +172,9 @@ func (o *SecurityMonitoringRuleCase) SetStatus(v SecurityMonitoringRuleSeverity)
 
 func (o SecurityMonitoringRuleCase) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Condition != nil {
 		toSerialize["condition"] = o.Condition
 	}
@@ -183,6 +188,38 @@ func (o SecurityMonitoringRuleCase) MarshalJSON() ([]byte, error) {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringRuleCase) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Condition     *string                         `json:"condition,omitempty"`
+		Name          *string                         `json:"name,omitempty"`
+		Notifications *[]string                       `json:"notifications,omitempty"`
+		Status        *SecurityMonitoringRuleSeverity `json:"status,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Condition = all.Condition
+	o.Name = all.Name
+	o.Notifications = all.Notifications
+	o.Status = all.Status
+	return nil
 }
 
 type NullableSecurityMonitoringRuleCase struct {

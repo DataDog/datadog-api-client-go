@@ -25,6 +25,8 @@ type IPRanges struct {
 	// Version of the IP list.
 	Version  *int64              `json:"version,omitempty"`
 	Webhooks *IPPrefixesWebhooks `json:"webhooks,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIPRanges instantiates a new IPRanges object
@@ -334,6 +336,9 @@ func (o *IPRanges) SetWebhooks(v IPPrefixesWebhooks) {
 
 func (o IPRanges) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Agents != nil {
 		toSerialize["agents"] = o.Agents
 	}
@@ -362,6 +367,40 @@ func (o IPRanges) MarshalJSON() ([]byte, error) {
 		toSerialize["webhooks"] = o.Webhooks
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Agents     *IPPrefixesAgents     `json:"agents,omitempty"`
+		Api        *IPPrefixesAPI        `json:"api,omitempty"`
+		Apm        *IPPrefixesAPM        `json:"apm,omitempty"`
+		Logs       *IPPrefixesLogs       `json:"logs,omitempty"`
+		Modified   *string               `json:"modified,omitempty"`
+		Process    *IPPrefixesProcess    `json:"process,omitempty"`
+		Synthetics *IPPrefixesSynthetics `json:"synthetics,omitempty"`
+		Version    *int64                `json:"version,omitempty"`
+		Webhooks   *IPPrefixesWebhooks   `json:"webhooks,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Agents = all.Agents
+	o.Api = all.Api
+	o.Apm = all.Apm
+	o.Logs = all.Logs
+	o.Modified = all.Modified
+	o.Process = all.Process
+	o.Synthetics = all.Synthetics
+	o.Version = all.Version
+	o.Webhooks = all.Webhooks
+	return nil
 }
 
 type NullableIPRanges struct {

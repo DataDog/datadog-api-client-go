@@ -18,6 +18,8 @@ type SyntheticsLocation struct {
 	Id *string `json:"id,omitempty"`
 	// Name of the location.
 	Name *string `json:"name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsLocation instantiates a new SyntheticsLocation object
@@ -103,6 +105,9 @@ func (o *SyntheticsLocation) SetName(v string) {
 
 func (o SyntheticsLocation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -110,6 +115,26 @@ func (o SyntheticsLocation) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsLocation) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Id   *string `json:"id,omitempty"`
+		Name *string `json:"name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Id = all.Id
+	o.Name = all.Name
+	return nil
 }
 
 type NullableSyntheticsLocation struct {

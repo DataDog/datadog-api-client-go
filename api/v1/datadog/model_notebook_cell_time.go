@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // NotebookCellTime - Timeframe for the notebook cell. When 'null', the notebook global time is used.
 type NotebookCellTime struct {
 	NotebookAbsoluteTime *NotebookAbsoluteTime
 	NotebookRelativeTime *NotebookRelativeTime
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // NotebookAbsoluteTimeAsNotebookCellTime is a convenience function that returns NotebookAbsoluteTime wrapped in NotebookCellTime
@@ -38,42 +40,47 @@ func (dst *NotebookCellTime) UnmarshalJSON(data []byte) error {
 	}
 
 	match := 0
-	// try to unmarshal data into NotebookAbsoluteTime
-	err = json.Unmarshal(data, &dst.NotebookAbsoluteTime)
-	if err == nil {
-		jsonNotebookAbsoluteTime, _ := json.Marshal(dst.NotebookAbsoluteTime)
-		if string(jsonNotebookAbsoluteTime) == "{}" { // empty struct
-			dst.NotebookAbsoluteTime = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.NotebookAbsoluteTime = nil
-	}
-
 	// try to unmarshal data into NotebookRelativeTime
 	err = json.Unmarshal(data, &dst.NotebookRelativeTime)
 	if err == nil {
-		jsonNotebookRelativeTime, _ := json.Marshal(dst.NotebookRelativeTime)
-		if string(jsonNotebookRelativeTime) == "{}" { // empty struct
-			dst.NotebookRelativeTime = nil
+		if dst.NotebookRelativeTime != nil && dst.NotebookRelativeTime.UnparsedObject == nil {
+			jsonNotebookRelativeTime, _ := json.Marshal(dst.NotebookRelativeTime)
+			if string(jsonNotebookRelativeTime) == "{}" { // empty struct
+				dst.NotebookRelativeTime = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.NotebookRelativeTime = nil
 		}
 	} else {
 		dst.NotebookRelativeTime = nil
 	}
 
-	if match > 1 { // more than 1 match
+	// try to unmarshal data into NotebookAbsoluteTime
+	err = json.Unmarshal(data, &dst.NotebookAbsoluteTime)
+	if err == nil {
+		if dst.NotebookAbsoluteTime != nil && dst.NotebookAbsoluteTime.UnparsedObject == nil {
+			jsonNotebookAbsoluteTime, _ := json.Marshal(dst.NotebookAbsoluteTime)
+			if string(jsonNotebookAbsoluteTime) == "{}" { // empty struct
+				dst.NotebookAbsoluteTime = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.NotebookAbsoluteTime = nil
+		}
+	} else {
+		dst.NotebookAbsoluteTime = nil
+	}
+
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.NotebookAbsoluteTime = nil
 		dst.NotebookRelativeTime = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(NotebookCellTime)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(NotebookCellTime)")
 	}
 }
 
@@ -87,6 +94,9 @@ func (src NotebookCellTime) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.NotebookRelativeTime)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

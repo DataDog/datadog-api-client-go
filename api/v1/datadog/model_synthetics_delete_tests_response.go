@@ -16,6 +16,8 @@ import (
 type SyntheticsDeleteTestsResponse struct {
 	// Array of objects containing a deleted Synthetic test ID with the associated deletion timestamp.
 	DeletedTests *[]SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsDeleteTestsResponse instantiates a new SyntheticsDeleteTestsResponse object
@@ -69,10 +71,31 @@ func (o *SyntheticsDeleteTestsResponse) SetDeletedTests(v []SyntheticsDeletedTes
 
 func (o SyntheticsDeleteTestsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DeletedTests != nil {
 		toSerialize["deleted_tests"] = o.DeletedTests
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsDeleteTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		DeletedTests *[]SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.DeletedTests = all.DeletedTests
+	return nil
 }
 
 type NullableSyntheticsDeleteTestsResponse struct {

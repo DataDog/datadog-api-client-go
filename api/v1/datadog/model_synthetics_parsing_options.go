@@ -20,6 +20,8 @@ type SyntheticsParsingOptions struct {
 	Name   *string                                       `json:"name,omitempty"`
 	Parser *SyntheticsVariableParser                     `json:"parser,omitempty"`
 	Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsParsingOptions instantiates a new SyntheticsParsingOptions object
@@ -169,6 +171,9 @@ func (o *SyntheticsParsingOptions) SetType(v SyntheticsGlobalVariableParseTestOp
 
 func (o SyntheticsParsingOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Field != nil {
 		toSerialize["field"] = o.Field
 	}
@@ -182,6 +187,38 @@ func (o SyntheticsParsingOptions) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Field  *string                                       `json:"field,omitempty"`
+		Name   *string                                       `json:"name,omitempty"`
+		Parser *SyntheticsVariableParser                     `json:"parser,omitempty"`
+		Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Field = all.Field
+	o.Name = all.Name
+	o.Parser = all.Parser
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSyntheticsParsingOptions struct {

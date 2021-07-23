@@ -45,6 +45,8 @@ type DowntimeChild struct {
 	Timezone *string `json:"timezone,omitempty"`
 	// ID of the last user that updated the downtime.
 	UpdaterId NullableInt32 `json:"updater_id,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDowntimeChild instantiates a new DowntimeChild object
@@ -644,6 +646,9 @@ func (o *DowntimeChild) UnsetUpdaterId() {
 
 func (o DowntimeChild) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Active != nil {
 		toSerialize["active"] = o.Active
 	}
@@ -693,6 +698,54 @@ func (o DowntimeChild) MarshalJSON() ([]byte, error) {
 		toSerialize["updater_id"] = o.UpdaterId.Get()
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DowntimeChild) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Active       *bool                      `json:"active,omitempty"`
+		Canceled     NullableInt64              `json:"canceled,omitempty"`
+		CreatorId    *int32                     `json:"creator_id,omitempty"`
+		Disabled     *bool                      `json:"disabled,omitempty"`
+		DowntimeType *int32                     `json:"downtime_type,omitempty"`
+		End          NullableInt64              `json:"end,omitempty"`
+		Id           *int64                     `json:"id,omitempty"`
+		Message      *string                    `json:"message,omitempty"`
+		MonitorId    NullableInt64              `json:"monitor_id,omitempty"`
+		MonitorTags  *[]string                  `json:"monitor_tags,omitempty"`
+		ParentId     NullableInt64              `json:"parent_id,omitempty"`
+		Recurrence   NullableDowntimeRecurrence `json:"recurrence,omitempty"`
+		Scope        *[]string                  `json:"scope,omitempty"`
+		Start        *int64                     `json:"start,omitempty"`
+		Timezone     *string                    `json:"timezone,omitempty"`
+		UpdaterId    NullableInt32              `json:"updater_id,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Active = all.Active
+	o.Canceled = all.Canceled
+	o.CreatorId = all.CreatorId
+	o.Disabled = all.Disabled
+	o.DowntimeType = all.DowntimeType
+	o.End = all.End
+	o.Id = all.Id
+	o.Message = all.Message
+	o.MonitorId = all.MonitorId
+	o.MonitorTags = all.MonitorTags
+	o.ParentId = all.ParentId
+	o.Recurrence = all.Recurrence
+	o.Scope = all.Scope
+	o.Start = all.Start
+	o.Timezone = all.Timezone
+	o.UpdaterId = all.UpdaterId
+	return nil
 }
 
 type NullableDowntimeChild struct {

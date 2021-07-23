@@ -19,6 +19,8 @@ type UsageNetworkFlowsHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the number of netflow events indexed.
 	IndexedEventCount *int64 `json:"indexed_event_count,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageNetworkFlowsHour instantiates a new UsageNetworkFlowsHour object
@@ -104,6 +106,9 @@ func (o *UsageNetworkFlowsHour) SetIndexedEventCount(v int64) {
 
 func (o UsageNetworkFlowsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
@@ -111,6 +116,26 @@ func (o UsageNetworkFlowsHour) MarshalJSON() ([]byte, error) {
 		toSerialize["indexed_event_count"] = o.IndexedEventCount
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageNetworkFlowsHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Hour              *time.Time `json:"hour,omitempty"`
+		IndexedEventCount *int64     `json:"indexed_event_count,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Hour = all.Hour
+	o.IndexedEventCount = all.IndexedEventCount
+	return nil
 }
 
 type NullableUsageNetworkFlowsHour struct {

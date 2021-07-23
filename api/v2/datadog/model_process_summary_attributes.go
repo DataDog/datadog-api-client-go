@@ -30,6 +30,8 @@ type ProcessSummaryAttributes struct {
 	Timestamp *string `json:"timestamp,omitempty"`
 	// Process owner.
 	User *string `json:"user,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewProcessSummaryAttributes instantiates a new ProcessSummaryAttributes object
@@ -307,6 +309,9 @@ func (o *ProcessSummaryAttributes) SetUser(v string) {
 
 func (o ProcessSummaryAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Cmdline != nil {
 		toSerialize["cmdline"] = o.Cmdline
 	}
@@ -332,6 +337,38 @@ func (o ProcessSummaryAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["user"] = o.User
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ProcessSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Cmdline   *string   `json:"cmdline,omitempty"`
+		Host      *string   `json:"host,omitempty"`
+		Pid       *int64    `json:"pid,omitempty"`
+		Ppid      *int64    `json:"ppid,omitempty"`
+		Start     *string   `json:"start,omitempty"`
+		Tags      *[]string `json:"tags,omitempty"`
+		Timestamp *string   `json:"timestamp,omitempty"`
+		User      *string   `json:"user,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Cmdline = all.Cmdline
+	o.Host = all.Host
+	o.Pid = all.Pid
+	o.Ppid = all.Ppid
+	o.Start = all.Start
+	o.Tags = all.Tags
+	o.Timestamp = all.Timestamp
+	o.User = all.User
+	return nil
 }
 
 type NullableProcessSummaryAttributes struct {

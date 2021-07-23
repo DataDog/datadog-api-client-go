@@ -16,6 +16,8 @@ import (
 type UsageFargateResponse struct {
 	// Array with the number of hourly Fargate tasks recorded for a given organization.
 	Usage *[]UsageFargateHour `json:"usage,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageFargateResponse instantiates a new UsageFargateResponse object
@@ -69,10 +71,31 @@ func (o *UsageFargateResponse) SetUsage(v []UsageFargateHour) {
 
 func (o UsageFargateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageFargateResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Usage *[]UsageFargateHour `json:"usage,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Usage = all.Usage
+	return nil
 }
 
 type NullableUsageFargateResponse struct {

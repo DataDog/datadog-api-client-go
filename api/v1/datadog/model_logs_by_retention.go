@@ -18,6 +18,8 @@ type LogsByRetention struct {
 	// Aggregated index logs usage for each retention period with usage.
 	Usage        *[]LogsRetentionAggSumUsage  `json:"usage,omitempty"`
 	UsageByMonth *LogsByRetentionMonthlyUsage `json:"usage_by_month,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsByRetention instantiates a new LogsByRetention object
@@ -135,6 +137,9 @@ func (o *LogsByRetention) SetUsageByMonth(v LogsByRetentionMonthlyUsage) {
 
 func (o LogsByRetention) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Orgs != nil {
 		toSerialize["orgs"] = o.Orgs
 	}
@@ -145,6 +150,28 @@ func (o LogsByRetention) MarshalJSON() ([]byte, error) {
 		toSerialize["usage_by_month"] = o.UsageByMonth
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsByRetention) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Orgs         *LogsByRetentionOrgs         `json:"orgs,omitempty"`
+		Usage        *[]LogsRetentionAggSumUsage  `json:"usage,omitempty"`
+		UsageByMonth *LogsByRetentionMonthlyUsage `json:"usage_by_month,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Orgs = all.Orgs
+	o.Usage = all.Usage
+	o.UsageByMonth = all.UsageByMonth
+	return nil
 }
 
 type NullableLogsByRetention struct {

@@ -22,6 +22,8 @@ type SyntheticsBrowserTestResultShort struct {
 	// ID of the browser test result.
 	ResultId *string                      `json:"result_id,omitempty"`
 	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsBrowserTestResultShort instantiates a new SyntheticsBrowserTestResultShort object
@@ -203,6 +205,9 @@ func (o *SyntheticsBrowserTestResultShort) SetStatus(v SyntheticsTestMonitorStat
 
 func (o SyntheticsBrowserTestResultShort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CheckTime != nil {
 		toSerialize["check_time"] = o.CheckTime
 	}
@@ -219,6 +224,40 @@ func (o SyntheticsBrowserTestResultShort) MarshalJSON() ([]byte, error) {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsBrowserTestResultShort) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		CheckTime *float64                                `json:"check_time,omitempty"`
+		ProbeDc   *string                                 `json:"probe_dc,omitempty"`
+		Result    *SyntheticsBrowserTestResultShortResult `json:"result,omitempty"`
+		ResultId  *string                                 `json:"result_id,omitempty"`
+		Status    *SyntheticsTestMonitorStatus            `json:"status,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.CheckTime = all.CheckTime
+	o.ProbeDc = all.ProbeDc
+	o.Result = all.Result
+	o.ResultId = all.ResultId
+	o.Status = all.Status
+	return nil
 }
 
 type NullableSyntheticsBrowserTestResultShort struct {

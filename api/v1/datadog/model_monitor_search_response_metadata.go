@@ -22,6 +22,8 @@ type MonitorSearchResponseMetadata struct {
 	PerPage *int64 `json:"per_page,omitempty"`
 	// The total number of monitors.
 	TotalCount *int64 `json:"total_count,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorSearchResponseMetadata instantiates a new MonitorSearchResponseMetadata object
@@ -171,6 +173,9 @@ func (o *MonitorSearchResponseMetadata) SetTotalCount(v int64) {
 
 func (o MonitorSearchResponseMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Page != nil {
 		toSerialize["page"] = o.Page
 	}
@@ -184,6 +189,30 @@ func (o MonitorSearchResponseMetadata) MarshalJSON() ([]byte, error) {
 		toSerialize["total_count"] = o.TotalCount
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorSearchResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Page       *int64 `json:"page,omitempty"`
+		PageCount  *int64 `json:"page_count,omitempty"`
+		PerPage    *int64 `json:"per_page,omitempty"`
+		TotalCount *int64 `json:"total_count,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Page = all.Page
+	o.PageCount = all.PageCount
+	o.PerPage = all.PerPage
+	o.TotalCount = all.TotalCount
+	return nil
 }
 
 type NullableMonitorSearchResponseMetadata struct {

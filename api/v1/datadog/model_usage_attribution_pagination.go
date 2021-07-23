@@ -20,6 +20,8 @@ type UsageAttributionPagination struct {
 	NextRecordId *string `json:"next_record_id,omitempty"`
 	// Total number of records. (deprecated after May 1st, 2021)
 	TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageAttributionPagination instantiates a new UsageAttributionPagination object
@@ -137,6 +139,9 @@ func (o *UsageAttributionPagination) SetTotalNumberOfRecords(v int64) {
 
 func (o UsageAttributionPagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
 	}
@@ -147,6 +152,28 @@ func (o UsageAttributionPagination) MarshalJSON() ([]byte, error) {
 		toSerialize["total_number_of_records"] = o.TotalNumberOfRecords
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Limit                *int64  `json:"limit,omitempty"`
+		NextRecordId         *string `json:"next_record_id,omitempty"`
+		TotalNumberOfRecords *int64  `json:"total_number_of_records,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Limit = all.Limit
+	o.NextRecordId = all.NextRecordId
+	o.TotalNumberOfRecords = all.TotalNumberOfRecords
+	return nil
 }
 
 type NullableUsageAttributionPagination struct {

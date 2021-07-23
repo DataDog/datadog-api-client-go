@@ -21,6 +21,8 @@ type UsageCWSHour struct {
 	CwsHostCount *int64 `json:"cws_host_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageCWSHour instantiates a new UsageCWSHour object
@@ -138,6 +140,9 @@ func (o *UsageCWSHour) SetHour(v time.Time) {
 
 func (o UsageCWSHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CwsContainerCount != nil {
 		toSerialize["cws_container_count"] = o.CwsContainerCount
 	}
@@ -148,6 +153,28 @@ func (o UsageCWSHour) MarshalJSON() ([]byte, error) {
 		toSerialize["hour"] = o.Hour
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageCWSHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		CwsContainerCount *int64     `json:"cws_container_count,omitempty"`
+		CwsHostCount      *int64     `json:"cws_host_count,omitempty"`
+		Hour              *time.Time `json:"hour,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.CwsContainerCount = all.CwsContainerCount
+	o.CwsHostCount = all.CwsHostCount
+	o.Hour = all.Hour
+	return nil
 }
 
 type NullableUsageCWSHour struct {

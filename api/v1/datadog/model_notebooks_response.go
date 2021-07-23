@@ -17,6 +17,8 @@ type NotebooksResponse struct {
 	// List of notebook definitions.
 	Data *[]NotebooksResponseData `json:"data,omitempty"`
 	Meta *NotebooksResponseMeta   `json:"meta,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewNotebooksResponse instantiates a new NotebooksResponse object
@@ -102,6 +104,9 @@ func (o *NotebooksResponse) SetMeta(v NotebooksResponseMeta) {
 
 func (o NotebooksResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
@@ -109,6 +114,26 @@ func (o NotebooksResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["meta"] = o.Meta
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *NotebooksResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data *[]NotebooksResponseData `json:"data,omitempty"`
+		Meta *NotebooksResponseMeta   `json:"meta,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	o.Meta = all.Meta
+	return nil
 }
 
 type NullableNotebooksResponse struct {

@@ -19,6 +19,8 @@ type LogsArchiveIntegrationAzure struct {
 	ClientId string `json:"client_id"`
 	// A tenant ID.
 	TenantId string `json:"tenant_id"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsArchiveIntegrationAzure instantiates a new LogsArchiveIntegrationAzure object
@@ -90,6 +92,9 @@ func (o *LogsArchiveIntegrationAzure) SetTenantId(v string) {
 
 func (o LogsArchiveIntegrationAzure) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["client_id"] = o.ClientId
 	}
@@ -100,6 +105,7 @@ func (o LogsArchiveIntegrationAzure) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		ClientId *string `json:"client_id"`
 		TenantId *string `json:"tenant_id"`
@@ -120,7 +126,12 @@ func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.ClientId = all.ClientId
 	o.TenantId = all.TenantId

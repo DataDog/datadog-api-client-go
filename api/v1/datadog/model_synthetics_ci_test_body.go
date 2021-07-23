@@ -16,6 +16,8 @@ import (
 type SyntheticsCITestBody struct {
 	// Individual synthetics test.
 	Tests *[]SyntheticsCITest `json:"tests,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsCITestBody instantiates a new SyntheticsCITestBody object
@@ -69,10 +71,31 @@ func (o *SyntheticsCITestBody) SetTests(v []SyntheticsCITest) {
 
 func (o SyntheticsCITestBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Tests != nil {
 		toSerialize["tests"] = o.Tests
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsCITestBody) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Tests *[]SyntheticsCITest `json:"tests,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Tests = all.Tests
+	return nil
 }
 
 type NullableSyntheticsCITestBody struct {

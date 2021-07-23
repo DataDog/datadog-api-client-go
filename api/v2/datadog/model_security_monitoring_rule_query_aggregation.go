@@ -43,15 +43,8 @@ func (v *SecurityMonitoringRuleQueryAggregation) UnmarshalJSON(src []byte) error
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SecurityMonitoringRuleQueryAggregation(value)
-	for _, existing := range allowedSecurityMonitoringRuleQueryAggregationEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SecurityMonitoringRuleQueryAggregation", value)
+	*v = SecurityMonitoringRuleQueryAggregation(value)
+	return nil
 }
 
 // NewSecurityMonitoringRuleQueryAggregationFromValue returns a pointer to a valid SecurityMonitoringRuleQueryAggregation

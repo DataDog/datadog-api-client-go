@@ -21,6 +21,8 @@ type SyntheticsTestConfig struct {
 	Request         *SyntheticsTestRequest      `json:"request,omitempty"`
 	// Browser tests only - array of variables used for the test steps.
 	Variables *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTestConfig instantiates a new SyntheticsTestConfig object
@@ -170,6 +172,9 @@ func (o *SyntheticsTestConfig) SetVariables(v []SyntheticsBrowserVariable) {
 
 func (o SyntheticsTestConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Assertions != nil {
 		toSerialize["assertions"] = o.Assertions
 	}
@@ -183,6 +188,30 @@ func (o SyntheticsTestConfig) MarshalJSON() ([]byte, error) {
 		toSerialize["variables"] = o.Variables
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTestConfig) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Assertions      *[]SyntheticsAssertion       `json:"assertions,omitempty"`
+		ConfigVariables *[]SyntheticsConfigVariable  `json:"configVariables,omitempty"`
+		Request         *SyntheticsTestRequest       `json:"request,omitempty"`
+		Variables       *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Assertions = all.Assertions
+	o.ConfigVariables = all.ConfigVariables
+	o.Request = all.Request
+	o.Variables = all.Variables
+	return nil
 }
 
 type NullableSyntheticsTestConfig struct {

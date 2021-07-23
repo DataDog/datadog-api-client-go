@@ -17,6 +17,8 @@ type IncidentFieldAttributesMultipleValue struct {
 	Type *IncidentFieldAttributesValueType `json:"type,omitempty"`
 	// The multiple values selected for this field.
 	Value *[]string `json:"value,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentFieldAttributesMultipleValue instantiates a new IncidentFieldAttributesMultipleValue object
@@ -106,6 +108,9 @@ func (o *IncidentFieldAttributesMultipleValue) SetValue(v []string) {
 
 func (o IncidentFieldAttributesMultipleValue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
@@ -113,6 +118,34 @@ func (o IncidentFieldAttributesMultipleValue) MarshalJSON() ([]byte, error) {
 		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentFieldAttributesMultipleValue) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Type  *IncidentFieldAttributesValueType `json:"type,omitempty"`
+		Value *[]string                         `json:"value,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Type = all.Type
+	o.Value = all.Value
+	return nil
 }
 
 type NullableIncidentFieldAttributesMultipleValue struct {

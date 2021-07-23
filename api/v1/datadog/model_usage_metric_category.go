@@ -37,15 +37,8 @@ func (v *UsageMetricCategory) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := UsageMetricCategory(value)
-	for _, existing := range allowedUsageMetricCategoryEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid UsageMetricCategory", value)
+	*v = UsageMetricCategory(value)
+	return nil
 }
 
 // NewUsageMetricCategoryFromValue returns a pointer to a valid UsageMetricCategory

@@ -21,6 +21,8 @@ type UserCreateAttributes struct {
 	Name *string `json:"name,omitempty"`
 	// The title of the user.
 	Title *string `json:"title,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserCreateAttributes instantiates a new UserCreateAttributes object
@@ -131,6 +133,9 @@ func (o *UserCreateAttributes) SetTitle(v string) {
 
 func (o UserCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["email"] = o.Email
 	}
@@ -144,6 +149,7 @@ func (o UserCreateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Email *string `json:"email"`
 	}{}
@@ -161,7 +167,12 @@ func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Email = all.Email
 	o.Name = all.Name

@@ -35,6 +35,8 @@ type MonitorSearchResult struct {
 	// Tags associated with the monitor.
 	Tags *[]string    `json:"tags,omitempty"`
 	Type *MonitorType `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorSearchResult instantiates a new MonitorSearchResult object
@@ -451,6 +453,9 @@ func (o *MonitorSearchResult) SetType(v MonitorType) {
 
 func (o MonitorSearchResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Classification != nil {
 		toSerialize["classification"] = o.Classification
 	}
@@ -488,6 +493,62 @@ func (o MonitorSearchResult) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Classification  *string                            `json:"classification,omitempty"`
+		Creator         *Creator                           `json:"creator,omitempty"`
+		Id              *int64                             `json:"id,omitempty"`
+		LastTriggeredTs NullableInt64                      `json:"last_triggered_ts,omitempty"`
+		Metrics         *[]string                          `json:"metrics,omitempty"`
+		Name            *string                            `json:"name,omitempty"`
+		Notifications   *[]MonitorSearchResultNotification `json:"notifications,omitempty"`
+		OrgId           *int64                             `json:"org_id,omitempty"`
+		Scopes          *[]string                          `json:"scopes,omitempty"`
+		Status          *MonitorOverallStates              `json:"status,omitempty"`
+		Tags            *[]string                          `json:"tags,omitempty"`
+		Type            *MonitorType                       `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Classification = all.Classification
+	o.Creator = all.Creator
+	o.Id = all.Id
+	o.LastTriggeredTs = all.LastTriggeredTs
+	o.Metrics = all.Metrics
+	o.Name = all.Name
+	o.Notifications = all.Notifications
+	o.OrgId = all.OrgId
+	o.Scopes = all.Scopes
+	o.Status = all.Status
+	o.Tags = all.Tags
+	o.Type = all.Type
+	return nil
 }
 
 type NullableMonitorSearchResult struct {

@@ -35,15 +35,8 @@ func (v *MetricIngestedIndexedVolumeType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := MetricIngestedIndexedVolumeType(value)
-	for _, existing := range allowedMetricIngestedIndexedVolumeTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid MetricIngestedIndexedVolumeType", value)
+	*v = MetricIngestedIndexedVolumeType(value)
+	return nil
 }
 
 // NewMetricIngestedIndexedVolumeTypeFromValue returns a pointer to a valid MetricIngestedIndexedVolumeType

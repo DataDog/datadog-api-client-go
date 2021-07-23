@@ -20,6 +20,8 @@ type SyntheticsCoreWebVitals struct {
 	Lcp *int64 `json:"lcp,omitempty"`
 	// URL attached to the metrics.
 	Url *string `json:"url,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsCoreWebVitals instantiates a new SyntheticsCoreWebVitals object
@@ -137,6 +139,9 @@ func (o *SyntheticsCoreWebVitals) SetUrl(v string) {
 
 func (o SyntheticsCoreWebVitals) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Cls != nil {
 		toSerialize["cls"] = o.Cls
 	}
@@ -147,6 +152,28 @@ func (o SyntheticsCoreWebVitals) MarshalJSON() ([]byte, error) {
 		toSerialize["url"] = o.Url
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsCoreWebVitals) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Cls *int64  `json:"cls,omitempty"`
+		Lcp *int64  `json:"lcp,omitempty"`
+		Url *string `json:"url,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Cls = all.Cls
+	o.Lcp = all.Lcp
+	o.Url = all.Url
+	return nil
 }
 
 type NullableSyntheticsCoreWebVitals struct {

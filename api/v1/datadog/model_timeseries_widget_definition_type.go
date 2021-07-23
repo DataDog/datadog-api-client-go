@@ -35,15 +35,8 @@ func (v *TimeseriesWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := TimeseriesWidgetDefinitionType(value)
-	for _, existing := range allowedTimeseriesWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid TimeseriesWidgetDefinitionType", value)
+	*v = TimeseriesWidgetDefinitionType(value)
+	return nil
 }
 
 // NewTimeseriesWidgetDefinitionTypeFromValue returns a pointer to a valid TimeseriesWidgetDefinitionType

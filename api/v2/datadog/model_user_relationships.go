@@ -15,6 +15,8 @@ import (
 // UserRelationships Relationships of the user object.
 type UserRelationships struct {
 	Roles *RelationshipToRoles `json:"roles,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserRelationships instantiates a new UserRelationships object
@@ -68,10 +70,31 @@ func (o *UserRelationships) SetRoles(v RelationshipToRoles) {
 
 func (o UserRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Roles != nil {
 		toSerialize["roles"] = o.Roles
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserRelationships) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Roles *RelationshipToRoles `json:"roles,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Roles = all.Roles
+	return nil
 }
 
 type NullableUserRelationships struct {

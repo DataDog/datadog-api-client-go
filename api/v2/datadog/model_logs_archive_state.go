@@ -41,15 +41,8 @@ func (v *LogsArchiveState) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsArchiveState(value)
-	for _, existing := range allowedLogsArchiveStateEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsArchiveState", value)
+	*v = LogsArchiveState(value)
+	return nil
 }
 
 // NewLogsArchiveStateFromValue returns a pointer to a valid LogsArchiveState

@@ -18,6 +18,8 @@ type ListStreamColumn struct {
 	// Widget column field.
 	Field string                `json:"field"`
 	Width ListStreamColumnWidth `json:"width"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewListStreamColumn instantiates a new ListStreamColumn object
@@ -89,6 +91,9 @@ func (o *ListStreamColumn) SetWidth(v ListStreamColumnWidth) {
 
 func (o ListStreamColumn) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["field"] = o.Field
 	}
@@ -99,6 +104,7 @@ func (o ListStreamColumn) MarshalJSON() ([]byte, error) {
 }
 
 func (o *ListStreamColumn) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Field *string                `json:"field"`
 		Width *ListStreamColumnWidth `json:"width"`
@@ -119,7 +125,20 @@ func (o *ListStreamColumn) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Width; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Field = all.Field
 	o.Width = all.Width

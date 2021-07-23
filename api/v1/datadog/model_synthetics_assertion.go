@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // SyntheticsAssertion - Object describing the assertions type, their associated operator, which property they apply, and upon which target.
 type SyntheticsAssertion struct {
 	SyntheticsAssertionJSONPathTarget *SyntheticsAssertionJSONPathTarget
 	SyntheticsAssertionTarget         *SyntheticsAssertionTarget
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion is a convenience function that returns SyntheticsAssertionJSONPathTarget wrapped in SyntheticsAssertion
@@ -33,42 +35,47 @@ func SyntheticsAssertionTargetAsSyntheticsAssertion(v *SyntheticsAssertionTarget
 func (dst *SyntheticsAssertion) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into SyntheticsAssertionJSONPathTarget
-	err = json.Unmarshal(data, &dst.SyntheticsAssertionJSONPathTarget)
-	if err == nil {
-		jsonSyntheticsAssertionJSONPathTarget, _ := json.Marshal(dst.SyntheticsAssertionJSONPathTarget)
-		if string(jsonSyntheticsAssertionJSONPathTarget) == "{}" { // empty struct
-			dst.SyntheticsAssertionJSONPathTarget = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.SyntheticsAssertionJSONPathTarget = nil
-	}
-
 	// try to unmarshal data into SyntheticsAssertionTarget
 	err = json.Unmarshal(data, &dst.SyntheticsAssertionTarget)
 	if err == nil {
-		jsonSyntheticsAssertionTarget, _ := json.Marshal(dst.SyntheticsAssertionTarget)
-		if string(jsonSyntheticsAssertionTarget) == "{}" { // empty struct
-			dst.SyntheticsAssertionTarget = nil
+		if dst.SyntheticsAssertionTarget != nil && dst.SyntheticsAssertionTarget.UnparsedObject == nil {
+			jsonSyntheticsAssertionTarget, _ := json.Marshal(dst.SyntheticsAssertionTarget)
+			if string(jsonSyntheticsAssertionTarget) == "{}" { // empty struct
+				dst.SyntheticsAssertionTarget = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.SyntheticsAssertionTarget = nil
 		}
 	} else {
 		dst.SyntheticsAssertionTarget = nil
 	}
 
-	if match > 1 { // more than 1 match
+	// try to unmarshal data into SyntheticsAssertionJSONPathTarget
+	err = json.Unmarshal(data, &dst.SyntheticsAssertionJSONPathTarget)
+	if err == nil {
+		if dst.SyntheticsAssertionJSONPathTarget != nil && dst.SyntheticsAssertionJSONPathTarget.UnparsedObject == nil {
+			jsonSyntheticsAssertionJSONPathTarget, _ := json.Marshal(dst.SyntheticsAssertionJSONPathTarget)
+			if string(jsonSyntheticsAssertionJSONPathTarget) == "{}" { // empty struct
+				dst.SyntheticsAssertionJSONPathTarget = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.SyntheticsAssertionJSONPathTarget = nil
+		}
+	} else {
+		dst.SyntheticsAssertionJSONPathTarget = nil
+	}
+
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.SyntheticsAssertionJSONPathTarget = nil
 		dst.SyntheticsAssertionTarget = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(SyntheticsAssertion)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(SyntheticsAssertion)")
 	}
 }
 
@@ -82,6 +89,9 @@ func (src SyntheticsAssertion) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.SyntheticsAssertionTarget)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

@@ -15,6 +15,8 @@ import (
 // ProcessSummariesMeta Response metadata object.
 type ProcessSummariesMeta struct {
 	Page *ProcessSummariesMetaPage `json:"page,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewProcessSummariesMeta instantiates a new ProcessSummariesMeta object
@@ -68,10 +70,31 @@ func (o *ProcessSummariesMeta) SetPage(v ProcessSummariesMetaPage) {
 
 func (o ProcessSummariesMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Page != nil {
 		toSerialize["page"] = o.Page
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ProcessSummariesMeta) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Page *ProcessSummariesMetaPage `json:"page,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Page = all.Page
+	return nil
 }
 
 type NullableProcessSummariesMeta struct {

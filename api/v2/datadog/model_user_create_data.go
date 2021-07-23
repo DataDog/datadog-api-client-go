@@ -18,6 +18,8 @@ type UserCreateData struct {
 	Attributes    UserCreateAttributes `json:"attributes"`
 	Relationships *UserRelationships   `json:"relationships,omitempty"`
 	Type          UsersType            `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserCreateData instantiates a new UserCreateData object
@@ -123,6 +125,9 @@ func (o *UserCreateData) SetType(v UsersType) {
 
 func (o UserCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["attributes"] = o.Attributes
 	}
@@ -136,6 +141,7 @@ func (o UserCreateData) MarshalJSON() ([]byte, error) {
 }
 
 func (o *UserCreateData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *UserCreateAttributes `json:"attributes"`
 		Type       *UsersType            `json:"type"`
@@ -157,7 +163,20 @@ func (o *UserCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Attributes = all.Attributes
 	o.Relationships = all.Relationships

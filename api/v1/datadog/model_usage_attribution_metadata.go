@@ -17,6 +17,8 @@ type UsageAttributionMetadata struct {
 	// An array of available aggregates.
 	Aggregates *[]UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
 	Pagination *UsageAttributionPagination       `json:"pagination,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageAttributionMetadata instantiates a new UsageAttributionMetadata object
@@ -102,6 +104,9 @@ func (o *UsageAttributionMetadata) SetPagination(v UsageAttributionPagination) {
 
 func (o UsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Aggregates != nil {
 		toSerialize["aggregates"] = o.Aggregates
 	}
@@ -109,6 +114,26 @@ func (o UsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 		toSerialize["pagination"] = o.Pagination
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Aggregates *[]UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
+		Pagination *UsageAttributionPagination       `json:"pagination,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Aggregates = all.Aggregates
+	o.Pagination = all.Pagination
+	return nil
 }
 
 type NullableUsageAttributionMetadata struct {

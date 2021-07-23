@@ -43,6 +43,8 @@ type Monitor struct {
 	// Tags associated to your monitor.
 	Tags *[]string   `json:"tags,omitempty"`
 	Type MonitorType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitor instantiates a new Monitor object
@@ -573,6 +575,9 @@ func (o *Monitor) SetType(v MonitorType) {
 
 func (o Monitor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Created != nil {
 		toSerialize["created"] = o.Created
 	}
@@ -625,6 +630,7 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 }
 
 func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Query *string      `json:"query"`
 		Type  *MonitorType `json:"type"`
@@ -659,7 +665,28 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.OverallState; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Created = all.Created
 	o.Creator = all.Creator

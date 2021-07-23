@@ -19,6 +19,8 @@ type WidgetEvent struct {
 	Q string `json:"q"`
 	// The execution method for multi-value filters.
 	TagsExecution *string `json:"tags_execution,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewWidgetEvent instantiates a new WidgetEvent object
@@ -97,6 +99,9 @@ func (o *WidgetEvent) SetTagsExecution(v string) {
 
 func (o WidgetEvent) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["q"] = o.Q
 	}
@@ -107,6 +112,7 @@ func (o WidgetEvent) MarshalJSON() ([]byte, error) {
 }
 
 func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Q *string `json:"q"`
 	}{}
@@ -123,7 +129,12 @@ func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Q = all.Q
 	o.TagsExecution = all.TagsExecution

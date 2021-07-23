@@ -19,6 +19,8 @@ type HTTPLogError struct {
 	Code int32 `json:"code"`
 	// Error message.
 	Message string `json:"message"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewHTTPLogError instantiates a new HTTPLogError object
@@ -90,6 +92,9 @@ func (o *HTTPLogError) SetMessage(v string) {
 
 func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["code"] = o.Code
 	}
@@ -100,6 +105,7 @@ func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 }
 
 func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Code    *int32  `json:"code"`
 		Message *string `json:"message"`
@@ -120,7 +126,12 @@ func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Code = all.Code
 	o.Message = all.Message

@@ -17,6 +17,8 @@ import (
 type CancelDowntimesByScopeRequest struct {
 	// The scope(s) to which the downtime applies. For example, `host:app2`. Provide multiple scopes as a comma-separated list like `env:dev,env:prod`. The resulting downtime applies to sources that matches ALL provided scopes (`env:dev` **AND** `env:prod`).
 	Scope string `json:"scope"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewCancelDowntimesByScopeRequest instantiates a new CancelDowntimesByScopeRequest object
@@ -63,6 +65,9 @@ func (o *CancelDowntimesByScopeRequest) SetScope(v string) {
 
 func (o CancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["scope"] = o.Scope
 	}
@@ -70,6 +75,7 @@ func (o CancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (o *CancelDowntimesByScopeRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Scope *string `json:"scope"`
 	}{}
@@ -85,7 +91,12 @@ func (o *CancelDowntimesByScopeRequest) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Scope = all.Scope
 	return nil

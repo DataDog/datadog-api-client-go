@@ -28,6 +28,8 @@ type MetricMetadata struct {
 	Type *string `json:"type,omitempty"`
 	// Primary unit of the metric such as `byte` or `operation`.
 	Unit *string `json:"unit,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricMetadata instantiates a new MetricMetadata object
@@ -273,6 +275,9 @@ func (o *MetricMetadata) SetUnit(v string) {
 
 func (o MetricMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
@@ -295,6 +300,36 @@ func (o MetricMetadata) MarshalJSON() ([]byte, error) {
 		toSerialize["unit"] = o.Unit
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricMetadata) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Description    *string `json:"description,omitempty"`
+		Integration    *string `json:"integration,omitempty"`
+		PerUnit        *string `json:"per_unit,omitempty"`
+		ShortName      *string `json:"short_name,omitempty"`
+		StatsdInterval *int64  `json:"statsd_interval,omitempty"`
+		Type           *string `json:"type,omitempty"`
+		Unit           *string `json:"unit,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Description = all.Description
+	o.Integration = all.Integration
+	o.PerUnit = all.PerUnit
+	o.ShortName = all.ShortName
+	o.StatsdInterval = all.StatsdInterval
+	o.Type = all.Type
+	o.Unit = all.Unit
+	return nil
 }
 
 type NullableMetricMetadata struct {

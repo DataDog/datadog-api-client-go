@@ -24,6 +24,8 @@ type LogsIndexUpdateRequest struct {
 	Filter           LogsFilter       `json:"filter"`
 	// The number of days before logs are deleted from this index. Available values depend on retention plans specified in your organization's contract/subscriptions.  **Note:** Changing the retention for an index adjusts the length of retention for all logs already in this index. It may also affect billing.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsIndexUpdateRequest instantiates a new LogsIndexUpdateRequest object
@@ -198,6 +200,9 @@ func (o *LogsIndexUpdateRequest) SetNumRetentionDays(v int64) {
 
 func (o LogsIndexUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DailyLimit != nil {
 		toSerialize["daily_limit"] = o.DailyLimit
 	}
@@ -217,6 +222,7 @@ func (o LogsIndexUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Filter *LogsFilter `json:"filter"`
 	}{}
@@ -236,7 +242,12 @@ func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.DailyLimit = all.DailyLimit
 	o.DisableDailyLimit = all.DisableDailyLimit

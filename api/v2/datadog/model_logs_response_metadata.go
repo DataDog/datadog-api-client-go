@@ -22,6 +22,8 @@ type LogsResponseMetadata struct {
 	Status    *LogsAggregateResponseStatus `json:"status,omitempty"`
 	// A list of warnings (non fatal errors) encountered, partial results might be returned if warnings are present in the response.
 	Warnings *[]LogsWarning `json:"warnings,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsResponseMetadata instantiates a new LogsResponseMetadata object
@@ -203,6 +205,9 @@ func (o *LogsResponseMetadata) SetWarnings(v []LogsWarning) {
 
 func (o LogsResponseMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Elapsed != nil {
 		toSerialize["elapsed"] = o.Elapsed
 	}
@@ -219,6 +224,40 @@ func (o LogsResponseMetadata) MarshalJSON() ([]byte, error) {
 		toSerialize["warnings"] = o.Warnings
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Elapsed   *int64                       `json:"elapsed,omitempty"`
+		Page      *LogsResponseMetadataPage    `json:"page,omitempty"`
+		RequestId *string                      `json:"request_id,omitempty"`
+		Status    *LogsAggregateResponseStatus `json:"status,omitempty"`
+		Warnings  *[]LogsWarning               `json:"warnings,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Elapsed = all.Elapsed
+	o.Page = all.Page
+	o.RequestId = all.RequestId
+	o.Status = all.Status
+	o.Warnings = all.Warnings
+	return nil
 }
 
 type NullableLogsResponseMetadata struct {

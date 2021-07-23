@@ -18,6 +18,8 @@ type WidgetRequestStyle struct {
 	LineWidth *WidgetLineWidth `json:"line_width,omitempty"`
 	// Color palette to apply to the widget.
 	Palette *string `json:"palette,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewWidgetRequestStyle instantiates a new WidgetRequestStyle object
@@ -135,6 +137,9 @@ func (o *WidgetRequestStyle) SetPalette(v string) {
 
 func (o WidgetRequestStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.LineType != nil {
 		toSerialize["line_type"] = o.LineType
 	}
@@ -145,6 +150,44 @@ func (o WidgetRequestStyle) MarshalJSON() ([]byte, error) {
 		toSerialize["palette"] = o.Palette
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		LineType  *WidgetLineType  `json:"line_type,omitempty"`
+		LineWidth *WidgetLineWidth `json:"line_width,omitempty"`
+		Palette   *string          `json:"palette,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.LineType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.LineWidth; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.LineType = all.LineType
+	o.LineWidth = all.LineWidth
+	o.Palette = all.Palette
+	return nil
 }
 
 type NullableWidgetRequestStyle struct {

@@ -41,15 +41,8 @@ func (v *SLOTimeframe) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SLOTimeframe(value)
-	for _, existing := range allowedSLOTimeframeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SLOTimeframe", value)
+	*v = SLOTimeframe(value)
+	return nil
 }
 
 // NewSLOTimeframeFromValue returns a pointer to a valid SLOTimeframe

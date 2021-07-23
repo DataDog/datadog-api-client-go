@@ -23,6 +23,8 @@ type SyntheticsBrowserTestResultShortResult struct {
 	StepCountCompleted *int64 `json:"stepCountCompleted,omitempty"`
 	// Total amount of browser test steps.
 	StepCountTotal *int64 `json:"stepCountTotal,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsBrowserTestResultShortResult instantiates a new SyntheticsBrowserTestResultShortResult object
@@ -204,6 +206,9 @@ func (o *SyntheticsBrowserTestResultShortResult) SetStepCountTotal(v int64) {
 
 func (o SyntheticsBrowserTestResultShortResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Device != nil {
 		toSerialize["device"] = o.Device
 	}
@@ -220,6 +225,32 @@ func (o SyntheticsBrowserTestResultShortResult) MarshalJSON() ([]byte, error) {
 		toSerialize["stepCountTotal"] = o.StepCountTotal
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsBrowserTestResultShortResult) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Device             *SyntheticsDevice `json:"device,omitempty"`
+		Duration           *float64          `json:"duration,omitempty"`
+		ErrorCount         *int64            `json:"errorCount,omitempty"`
+		StepCountCompleted *int64            `json:"stepCountCompleted,omitempty"`
+		StepCountTotal     *int64            `json:"stepCountTotal,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Device = all.Device
+	o.Duration = all.Duration
+	o.ErrorCount = all.ErrorCount
+	o.StepCountCompleted = all.StepCountCompleted
+	o.StepCountTotal = all.StepCountTotal
+	return nil
 }
 
 type NullableSyntheticsBrowserTestResultShortResult struct {

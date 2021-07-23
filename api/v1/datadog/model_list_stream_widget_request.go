@@ -19,6 +19,8 @@ type ListStreamWidgetRequest struct {
 	Columns        []ListStreamColumn       `json:"columns"`
 	Query          ListStreamQuery          `json:"query"`
 	ResponseFormat ListStreamResponseFormat `json:"response_format"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewListStreamWidgetRequest instantiates a new ListStreamWidgetRequest object
@@ -115,6 +117,9 @@ func (o *ListStreamWidgetRequest) SetResponseFormat(v ListStreamResponseFormat) 
 
 func (o ListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["columns"] = o.Columns
 	}
@@ -128,6 +133,7 @@ func (o ListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Columns        *[]ListStreamColumn       `json:"columns"`
 		Query          *ListStreamQuery          `json:"query"`
@@ -153,7 +159,20 @@ func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.ResponseFormat; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Columns = all.Columns
 	o.Query = all.Query

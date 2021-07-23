@@ -23,6 +23,8 @@ type WidgetFormula struct {
 	// String expression built from queries, formulas, and functions.
 	Formula string              `json:"formula"`
 	Limit   *WidgetFormulaLimit `json:"limit,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewWidgetFormula instantiates a new WidgetFormula object
@@ -197,6 +199,9 @@ func (o *WidgetFormula) SetLimit(v WidgetFormulaLimit) {
 
 func (o WidgetFormula) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Alias != nil {
 		toSerialize["alias"] = o.Alias
 	}
@@ -216,6 +221,7 @@ func (o WidgetFormula) MarshalJSON() ([]byte, error) {
 }
 
 func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Formula *string `json:"formula"`
 	}{}
@@ -235,7 +241,20 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.CellDisplayMode; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Alias = all.Alias
 	o.CellDisplayMode = all.CellDisplayMode

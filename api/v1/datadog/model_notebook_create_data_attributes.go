@@ -21,6 +21,8 @@ type NotebookCreateDataAttributes struct {
 	Name   string             `json:"name"`
 	Status *NotebookStatus    `json:"status,omitempty"`
 	Time   NotebookGlobalTime `json:"time"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewNotebookCreateDataAttributes instantiates a new NotebookCreateDataAttributes object
@@ -153,6 +155,9 @@ func (o *NotebookCreateDataAttributes) SetTime(v NotebookGlobalTime) {
 
 func (o NotebookCreateDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["cells"] = o.Cells
 	}
@@ -169,6 +174,7 @@ func (o NotebookCreateDataAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Cells *[]NotebookCellCreateRequest `json:"cells"`
 		Name  *string                      `json:"name"`
@@ -195,7 +201,20 @@ func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Cells = all.Cells
 	o.Name = all.Name

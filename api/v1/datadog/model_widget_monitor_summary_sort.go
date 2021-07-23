@@ -63,15 +63,8 @@ func (v *WidgetMonitorSummarySort) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetMonitorSummarySort(value)
-	for _, existing := range allowedWidgetMonitorSummarySortEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetMonitorSummarySort", value)
+	*v = WidgetMonitorSummarySort(value)
+	return nil
 }
 
 // NewWidgetMonitorSummarySortFromValue returns a pointer to a valid WidgetMonitorSummarySort

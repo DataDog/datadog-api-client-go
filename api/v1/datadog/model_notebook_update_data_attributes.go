@@ -21,6 +21,8 @@ type NotebookUpdateDataAttributes struct {
 	Name   string             `json:"name"`
 	Status *NotebookStatus    `json:"status,omitempty"`
 	Time   NotebookGlobalTime `json:"time"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewNotebookUpdateDataAttributes instantiates a new NotebookUpdateDataAttributes object
@@ -153,6 +155,9 @@ func (o *NotebookUpdateDataAttributes) SetTime(v NotebookGlobalTime) {
 
 func (o NotebookUpdateDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["cells"] = o.Cells
 	}
@@ -169,6 +174,7 @@ func (o NotebookUpdateDataAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *NotebookUpdateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Cells *[]NotebookUpdateCell `json:"cells"`
 		Name  *string               `json:"name"`
@@ -195,7 +201,20 @@ func (o *NotebookUpdateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Cells = all.Cells
 	o.Name = all.Name

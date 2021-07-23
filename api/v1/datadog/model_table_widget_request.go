@@ -40,6 +40,8 @@ type TableWidgetRequest struct {
 	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
 	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
 	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewTableWidgetRequest instantiates a new TableWidgetRequest object
@@ -669,6 +671,9 @@ func (o *TableWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 
 func (o TableWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Aggregator != nil {
 		toSerialize["aggregator"] = o.Aggregator
 	}
@@ -727,6 +732,84 @@ func (o TableWidgetRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["security_query"] = o.SecurityQuery
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *TableWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Aggregator          *WidgetAggregator                    `json:"aggregator,omitempty"`
+		Alias               *string                              `json:"alias,omitempty"`
+		ApmQuery            *LogQueryDefinition                  `json:"apm_query,omitempty"`
+		ApmStatsQuery       *ApmStatsQueryDefinition             `json:"apm_stats_query,omitempty"`
+		CellDisplayMode     *[]TableWidgetCellDisplayMode        `json:"cell_display_mode,omitempty"`
+		ConditionalFormats  *[]WidgetConditionalFormat           `json:"conditional_formats,omitempty"`
+		EventQuery          *LogQueryDefinition                  `json:"event_query,omitempty"`
+		Formulas            *[]WidgetFormula                     `json:"formulas,omitempty"`
+		Limit               *int64                               `json:"limit,omitempty"`
+		LogQuery            *LogQueryDefinition                  `json:"log_query,omitempty"`
+		NetworkQuery        *LogQueryDefinition                  `json:"network_query,omitempty"`
+		Order               *WidgetSort                          `json:"order,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition              `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition                  `json:"profile_metrics_query,omitempty"`
+		Q                   *string                              `json:"q,omitempty"`
+		Queries             *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat      *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+		RumQuery            *LogQueryDefinition                  `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition                  `json:"security_query,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Aggregator; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Order; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Aggregator = all.Aggregator
+	o.Alias = all.Alias
+	o.ApmQuery = all.ApmQuery
+	o.ApmStatsQuery = all.ApmStatsQuery
+	o.CellDisplayMode = all.CellDisplayMode
+	o.ConditionalFormats = all.ConditionalFormats
+	o.EventQuery = all.EventQuery
+	o.Formulas = all.Formulas
+	o.Limit = all.Limit
+	o.LogQuery = all.LogQuery
+	o.NetworkQuery = all.NetworkQuery
+	o.Order = all.Order
+	o.ProcessQuery = all.ProcessQuery
+	o.ProfileMetricsQuery = all.ProfileMetricsQuery
+	o.Q = all.Q
+	o.Queries = all.Queries
+	o.ResponseFormat = all.ResponseFormat
+	o.RumQuery = all.RumQuery
+	o.SecurityQuery = all.SecurityQuery
+	return nil
 }
 
 type NullableTableWidgetRequest struct {

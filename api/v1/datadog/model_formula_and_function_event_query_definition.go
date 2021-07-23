@@ -24,6 +24,8 @@ type FormulaAndFunctionEventQueryDefinition struct {
 	// Name of the query for use in formulas.
 	Name   string                                        `json:"name"`
 	Search *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewFormulaAndFunctionEventQueryDefinition instantiates a new FormulaAndFunctionEventQueryDefinition object
@@ -216,6 +218,9 @@ func (o *FormulaAndFunctionEventQueryDefinition) SetSearch(v FormulaAndFunctionE
 
 func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["compute"] = o.Compute
 	}
@@ -238,6 +243,7 @@ func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Compute    *FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
 		DataSource *FormulaAndFunctionEventsDataSource            `json:"data_source"`
@@ -266,7 +272,20 @@ func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (er
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.DataSource; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Compute = all.Compute
 	o.DataSource = all.DataSource

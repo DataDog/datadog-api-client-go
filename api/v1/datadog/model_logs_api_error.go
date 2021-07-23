@@ -20,6 +20,8 @@ type LogsAPIError struct {
 	Details *[]LogsAPIError `json:"details,omitempty"`
 	// Error message
 	Message *string `json:"message,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsAPIError instantiates a new LogsAPIError object
@@ -137,6 +139,9 @@ func (o *LogsAPIError) SetMessage(v string) {
 
 func (o LogsAPIError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Code != nil {
 		toSerialize["code"] = o.Code
 	}
@@ -147,6 +152,28 @@ func (o LogsAPIError) MarshalJSON() ([]byte, error) {
 		toSerialize["message"] = o.Message
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsAPIError) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Code    *string         `json:"code,omitempty"`
+		Details *[]LogsAPIError `json:"details,omitempty"`
+		Message *string         `json:"message,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Code = all.Code
+	o.Details = all.Details
+	o.Message = all.Message
+	return nil
 }
 
 type NullableLogsAPIError struct {

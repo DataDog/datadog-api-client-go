@@ -32,6 +32,8 @@ type DashboardSummaryDefinition struct {
 	Title *string `json:"title,omitempty"`
 	// URL of the dashboard.
 	Url *string `json:"url,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDashboardSummaryDefinition instantiates a new DashboardSummaryDefinition object
@@ -341,6 +343,9 @@ func (o *DashboardSummaryDefinition) SetUrl(v string) {
 
 func (o DashboardSummaryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AuthorHandle != nil {
 		toSerialize["author_handle"] = o.AuthorHandle
 	}
@@ -369,6 +374,48 @@ func (o DashboardSummaryDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["url"] = o.Url
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DashboardSummaryDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AuthorHandle *string              `json:"author_handle,omitempty"`
+		CreatedAt    *time.Time           `json:"created_at,omitempty"`
+		Description  *string              `json:"description,omitempty"`
+		Id           *string              `json:"id,omitempty"`
+		IsReadOnly   *bool                `json:"is_read_only,omitempty"`
+		LayoutType   *DashboardLayoutType `json:"layout_type,omitempty"`
+		ModifiedAt   *time.Time           `json:"modified_at,omitempty"`
+		Title        *string              `json:"title,omitempty"`
+		Url          *string              `json:"url,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.LayoutType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AuthorHandle = all.AuthorHandle
+	o.CreatedAt = all.CreatedAt
+	o.Description = all.Description
+	o.Id = all.Id
+	o.IsReadOnly = all.IsReadOnly
+	o.LayoutType = all.LayoutType
+	o.ModifiedAt = all.ModifiedAt
+	o.Title = all.Title
+	o.Url = all.Url
+	return nil
 }
 
 type NullableDashboardSummaryDefinition struct {

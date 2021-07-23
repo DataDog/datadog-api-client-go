@@ -18,6 +18,8 @@ type SyntheticsCITestMetadataGit struct {
 	Branch *string `json:"branch,omitempty"`
 	// Commit SHA.
 	CommitSha *string `json:"commit_sha,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsCITestMetadataGit instantiates a new SyntheticsCITestMetadataGit object
@@ -103,6 +105,9 @@ func (o *SyntheticsCITestMetadataGit) SetCommitSha(v string) {
 
 func (o SyntheticsCITestMetadataGit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Branch != nil {
 		toSerialize["branch"] = o.Branch
 	}
@@ -110,6 +115,26 @@ func (o SyntheticsCITestMetadataGit) MarshalJSON() ([]byte, error) {
 		toSerialize["commit_sha"] = o.CommitSha
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsCITestMetadataGit) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Branch    *string `json:"branch,omitempty"`
+		CommitSha *string `json:"commit_sha,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Branch = all.Branch
+	o.CommitSha = all.CommitSha
+	return nil
 }
 
 type NullableSyntheticsCITestMetadataGit struct {

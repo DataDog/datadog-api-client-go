@@ -20,6 +20,8 @@ type SyntheticsTriggerCITestsResponse struct {
 	Results *[]SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
 	// The public IDs of the Synthetics test triggered.
 	TriggeredCheckIds *[]string `json:"triggered_check_ids,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTriggerCITestsResponse instantiates a new SyntheticsTriggerCITestsResponse object
@@ -137,6 +139,9 @@ func (o *SyntheticsTriggerCITestsResponse) SetTriggeredCheckIds(v []string) {
 
 func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Locations != nil {
 		toSerialize["locations"] = o.Locations
 	}
@@ -147,6 +152,28 @@ func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["triggered_check_ids"] = o.TriggeredCheckIds
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Locations         *[]SyntheticsTriggerCITestLocation  `json:"locations,omitempty"`
+		Results           *[]SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
+		TriggeredCheckIds *[]string                           `json:"triggered_check_ids,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Locations = all.Locations
+	o.Results = all.Results
+	o.TriggeredCheckIds = all.TriggeredCheckIds
+	return nil
 }
 
 type NullableSyntheticsTriggerCITestsResponse struct {

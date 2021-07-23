@@ -35,15 +35,8 @@ func (v *LogsGeoIPParserType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsGeoIPParserType(value)
-	for _, existing := range allowedLogsGeoIPParserTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsGeoIPParserType", value)
+	*v = LogsGeoIPParserType(value)
+	return nil
 }
 
 // NewLogsGeoIPParserTypeFromValue returns a pointer to a valid LogsGeoIPParserType

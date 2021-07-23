@@ -24,6 +24,8 @@ type MetricsQueryUnit struct {
 	ScaleFactor *float64 `json:"scale_factor,omitempty"`
 	// Abbreviation of the unit.
 	ShortName *string `json:"short_name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricsQueryUnit instantiates a new MetricsQueryUnit object
@@ -205,6 +207,9 @@ func (o *MetricsQueryUnit) SetShortName(v string) {
 
 func (o MetricsQueryUnit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Family != nil {
 		toSerialize["family"] = o.Family
 	}
@@ -221,6 +226,32 @@ func (o MetricsQueryUnit) MarshalJSON() ([]byte, error) {
 		toSerialize["short_name"] = o.ShortName
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricsQueryUnit) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Family      *string  `json:"family,omitempty"`
+		Name        *string  `json:"name,omitempty"`
+		Plural      *string  `json:"plural,omitempty"`
+		ScaleFactor *float64 `json:"scale_factor,omitempty"`
+		ShortName   *string  `json:"short_name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Family = all.Family
+	o.Name = all.Name
+	o.Plural = all.Plural
+	o.ScaleFactor = all.ScaleFactor
+	o.ShortName = all.ShortName
+	return nil
 }
 
 type NullableMetricsQueryUnit struct {

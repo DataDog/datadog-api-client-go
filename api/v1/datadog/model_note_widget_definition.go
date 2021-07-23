@@ -31,6 +31,8 @@ type NoteWidgetDefinition struct {
 	TickPos       *string                  `json:"tick_pos,omitempty"`
 	Type          NoteWidgetDefinitionType `json:"type"`
 	VerticalAlign *WidgetVerticalAlign     `json:"vertical_align,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewNoteWidgetDefinition instantiates a new NoteWidgetDefinition object
@@ -364,6 +366,9 @@ func (o *NoteWidgetDefinition) SetVerticalAlign(v WidgetVerticalAlign) {
 
 func (o NoteWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.BackgroundColor != nil {
 		toSerialize["background_color"] = o.BackgroundColor
 	}
@@ -398,6 +403,7 @@ func (o NoteWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Content *string                   `json:"content"`
 		Type    *NoteWidgetDefinitionType `json:"type"`
@@ -426,7 +432,44 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TextAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TickEdge; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.VerticalAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.BackgroundColor = all.BackgroundColor
 	o.Content = all.Content

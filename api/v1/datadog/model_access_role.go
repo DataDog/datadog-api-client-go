@@ -41,15 +41,8 @@ func (v *AccessRole) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := AccessRole(value)
-	for _, existing := range allowedAccessRoleEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid AccessRole", value)
+	*v = AccessRole(value)
+	return nil
 }
 
 // NewAccessRoleFromValue returns a pointer to a valid AccessRole

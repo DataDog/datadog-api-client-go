@@ -18,6 +18,8 @@ type SecurityMonitoringRuntimeAgentRule struct {
 	AgentRuleId *string `json:"agentRuleId,omitempty"`
 	// A Runtime Security expression determines what activity should be collected by the Datadog Agent. These logical expressions can use predefined operators and attributes. Tags cannot be used in Runtime Security expressions. Instead, allow or deny based on tags under the advanced option.
 	Expression *string `json:"expression,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringRuntimeAgentRule instantiates a new SecurityMonitoringRuntimeAgentRule object
@@ -103,6 +105,9 @@ func (o *SecurityMonitoringRuntimeAgentRule) SetExpression(v string) {
 
 func (o SecurityMonitoringRuntimeAgentRule) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AgentRuleId != nil {
 		toSerialize["agentRuleId"] = o.AgentRuleId
 	}
@@ -110,6 +115,26 @@ func (o SecurityMonitoringRuntimeAgentRule) MarshalJSON() ([]byte, error) {
 		toSerialize["expression"] = o.Expression
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringRuntimeAgentRule) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AgentRuleId *string `json:"agentRuleId,omitempty"`
+		Expression  *string `json:"expression,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AgentRuleId = all.AgentRuleId
+	o.Expression = all.Expression
+	return nil
 }
 
 type NullableSecurityMonitoringRuntimeAgentRule struct {

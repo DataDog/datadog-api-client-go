@@ -37,15 +37,8 @@ func (v *WidgetColorPreference) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetColorPreference(value)
-	for _, existing := range allowedWidgetColorPreferenceEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetColorPreference", value)
+	*v = WidgetColorPreference(value)
+	return nil
 }
 
 // NewWidgetColorPreferenceFromValue returns a pointer to a valid WidgetColorPreference

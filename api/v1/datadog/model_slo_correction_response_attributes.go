@@ -26,6 +26,8 @@ type SLOCorrectionResponseAttributes struct {
 	Start *int64 `json:"start,omitempty"`
 	// The timezone to display in the UI for the correction times (defaults to \"UTC\")
 	Timezone *string `json:"timezone,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOCorrectionResponseAttributes instantiates a new SLOCorrectionResponseAttributes object
@@ -271,6 +273,9 @@ func (o *SLOCorrectionResponseAttributes) SetTimezone(v string) {
 
 func (o SLOCorrectionResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Category != nil {
 		toSerialize["category"] = o.Category
 	}
@@ -293,6 +298,44 @@ func (o SLOCorrectionResponseAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["timezone"] = o.Timezone
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Category    *SLOCorrectionCategory `json:"category,omitempty"`
+		Creator     *Creator               `json:"creator,omitempty"`
+		Description *string                `json:"description,omitempty"`
+		End         *int64                 `json:"end,omitempty"`
+		SloId       *string                `json:"slo_id,omitempty"`
+		Start       *int64                 `json:"start,omitempty"`
+		Timezone    *string                `json:"timezone,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Category; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Category = all.Category
+	o.Creator = all.Creator
+	o.Description = all.Description
+	o.End = all.End
+	o.SloId = all.SloId
+	o.Start = all.Start
+	o.Timezone = all.Timezone
+	return nil
 }
 
 type NullableSLOCorrectionResponseAttributes struct {

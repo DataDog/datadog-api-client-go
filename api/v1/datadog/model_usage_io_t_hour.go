@@ -19,6 +19,8 @@ type UsageIoTHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 	// The total number of IoT devices during a given hour.
 	IotDeviceCount *int64 `json:"iot_device_count,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageIoTHour instantiates a new UsageIoTHour object
@@ -104,6 +106,9 @@ func (o *UsageIoTHour) SetIotDeviceCount(v int64) {
 
 func (o UsageIoTHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
@@ -111,6 +116,26 @@ func (o UsageIoTHour) MarshalJSON() ([]byte, error) {
 		toSerialize["iot_device_count"] = o.IotDeviceCount
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageIoTHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Hour           *time.Time `json:"hour,omitempty"`
+		IotDeviceCount *int64     `json:"iot_device_count,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Hour = all.Hour
+	o.IotDeviceCount = all.IotDeviceCount
+	return nil
 }
 
 type NullableUsageIoTHour struct {

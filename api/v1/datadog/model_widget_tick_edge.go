@@ -41,15 +41,8 @@ func (v *WidgetTickEdge) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetTickEdge(value)
-	for _, existing := range allowedWidgetTickEdgeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetTickEdge", value)
+	*v = WidgetTickEdge(value)
+	return nil
 }
 
 // NewWidgetTickEdgeFromValue returns a pointer to a valid WidgetTickEdge

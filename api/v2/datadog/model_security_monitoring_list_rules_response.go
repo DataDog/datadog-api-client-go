@@ -17,6 +17,8 @@ type SecurityMonitoringListRulesResponse struct {
 	// Array containing the list of rules.
 	Data *[]SecurityMonitoringRuleResponse `json:"data,omitempty"`
 	Meta *ResponseMetaAttributes           `json:"meta,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringListRulesResponse instantiates a new SecurityMonitoringListRulesResponse object
@@ -102,6 +104,9 @@ func (o *SecurityMonitoringListRulesResponse) SetMeta(v ResponseMetaAttributes) 
 
 func (o SecurityMonitoringListRulesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
@@ -109,6 +114,26 @@ func (o SecurityMonitoringListRulesResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["meta"] = o.Meta
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringListRulesResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data *[]SecurityMonitoringRuleResponse `json:"data,omitempty"`
+		Meta *ResponseMetaAttributes           `json:"meta,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	o.Meta = all.Meta
+	return nil
 }
 
 type NullableSecurityMonitoringListRulesResponse struct {

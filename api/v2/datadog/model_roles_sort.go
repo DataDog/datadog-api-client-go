@@ -45,15 +45,8 @@ func (v *RolesSort) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := RolesSort(value)
-	for _, existing := range allowedRolesSortEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid RolesSort", value)
+	*v = RolesSort(value)
+	return nil
 }
 
 // NewRolesSortFromValue returns a pointer to a valid RolesSort

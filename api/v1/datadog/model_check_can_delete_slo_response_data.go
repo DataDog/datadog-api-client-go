@@ -16,6 +16,8 @@ import (
 type CheckCanDeleteSLOResponseData struct {
 	// An array of of SLO IDs that can be safely deleted.
 	Ok *[]string `json:"ok,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewCheckCanDeleteSLOResponseData instantiates a new CheckCanDeleteSLOResponseData object
@@ -69,10 +71,31 @@ func (o *CheckCanDeleteSLOResponseData) SetOk(v []string) {
 
 func (o CheckCanDeleteSLOResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Ok != nil {
 		toSerialize["ok"] = o.Ok
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *CheckCanDeleteSLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Ok *[]string `json:"ok,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Ok = all.Ok
+	return nil
 }
 
 type NullableCheckCanDeleteSLOResponseData struct {

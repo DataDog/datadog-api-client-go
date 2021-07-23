@@ -42,6 +42,8 @@ type MonitorUpdateRequest struct {
 	// Tags associated to your monitor.
 	Tags *[]string    `json:"tags,omitempty"`
 	Type *MonitorType `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorUpdateRequest instantiates a new MonitorUpdateRequest object
@@ -586,6 +588,9 @@ func (o *MonitorUpdateRequest) SetType(v MonitorType) {
 
 func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Created != nil {
 		toSerialize["created"] = o.Created
 	}
@@ -635,6 +640,70 @@ func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Created         *time.Time            `json:"created,omitempty"`
+		Creator         *Creator              `json:"creator,omitempty"`
+		Deleted         NullableTime          `json:"deleted,omitempty"`
+		Id              *int64                `json:"id,omitempty"`
+		Message         *string               `json:"message,omitempty"`
+		Modified        *time.Time            `json:"modified,omitempty"`
+		Multi           *bool                 `json:"multi,omitempty"`
+		Name            *string               `json:"name,omitempty"`
+		Options         *MonitorOptions       `json:"options,omitempty"`
+		OverallState    *MonitorOverallStates `json:"overall_state,omitempty"`
+		Priority        *int64                `json:"priority,omitempty"`
+		Query           *string               `json:"query,omitempty"`
+		RestrictedRoles *[]string             `json:"restricted_roles,omitempty"`
+		State           *MonitorState         `json:"state,omitempty"`
+		Tags            *[]string             `json:"tags,omitempty"`
+		Type            *MonitorType          `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.OverallState; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Created = all.Created
+	o.Creator = all.Creator
+	o.Deleted = all.Deleted
+	o.Id = all.Id
+	o.Message = all.Message
+	o.Modified = all.Modified
+	o.Multi = all.Multi
+	o.Name = all.Name
+	o.Options = all.Options
+	o.OverallState = all.OverallState
+	o.Priority = all.Priority
+	o.Query = all.Query
+	o.RestrictedRoles = all.RestrictedRoles
+	o.State = all.State
+	o.Tags = all.Tags
+	o.Type = all.Type
+	return nil
 }
 
 type NullableMonitorUpdateRequest struct {

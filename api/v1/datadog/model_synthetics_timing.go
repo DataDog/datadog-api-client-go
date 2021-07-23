@@ -32,6 +32,8 @@ type SyntheticsTiming struct {
 	Total *float64 `json:"total,omitempty"`
 	// Time spent in millisecond waiting for a response.
 	Wait *float64 `json:"wait,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTiming instantiates a new SyntheticsTiming object
@@ -341,6 +343,9 @@ func (o *SyntheticsTiming) SetWait(v float64) {
 
 func (o SyntheticsTiming) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Dns != nil {
 		toSerialize["dns"] = o.Dns
 	}
@@ -369,6 +374,40 @@ func (o SyntheticsTiming) MarshalJSON() ([]byte, error) {
 		toSerialize["wait"] = o.Wait
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTiming) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Dns       *float64 `json:"dns,omitempty"`
+		Download  *float64 `json:"download,omitempty"`
+		FirstByte *float64 `json:"firstByte,omitempty"`
+		Handshake *float64 `json:"handshake,omitempty"`
+		Redirect  *float64 `json:"redirect,omitempty"`
+		Ssl       *float64 `json:"ssl,omitempty"`
+		Tcp       *float64 `json:"tcp,omitempty"`
+		Total     *float64 `json:"total,omitempty"`
+		Wait      *float64 `json:"wait,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Dns = all.Dns
+	o.Download = all.Download
+	o.FirstByte = all.FirstByte
+	o.Handshake = all.Handshake
+	o.Redirect = all.Redirect
+	o.Ssl = all.Ssl
+	o.Tcp = all.Tcp
+	o.Total = all.Total
+	o.Wait = all.Wait
+	return nil
 }
 
 type NullableSyntheticsTiming struct {

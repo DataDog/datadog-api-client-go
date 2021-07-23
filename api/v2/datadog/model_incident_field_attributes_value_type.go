@@ -41,15 +41,8 @@ func (v *IncidentFieldAttributesValueType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := IncidentFieldAttributesValueType(value)
-	for _, existing := range allowedIncidentFieldAttributesValueTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid IncidentFieldAttributesValueType", value)
+	*v = IncidentFieldAttributesValueType(value)
+	return nil
 }
 
 // NewIncidentFieldAttributesValueTypeFromValue returns a pointer to a valid IncidentFieldAttributesValueType

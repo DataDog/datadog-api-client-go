@@ -16,6 +16,8 @@ import (
 type DashboardListDeleteItemsResponse struct {
 	// List of dashboards deleted from the dashboard list.
 	DeletedDashboardsFromList *[]DashboardListItemResponse `json:"deleted_dashboards_from_list,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDashboardListDeleteItemsResponse instantiates a new DashboardListDeleteItemsResponse object
@@ -69,10 +71,31 @@ func (o *DashboardListDeleteItemsResponse) SetDeletedDashboardsFromList(v []Dash
 
 func (o DashboardListDeleteItemsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DeletedDashboardsFromList != nil {
 		toSerialize["deleted_dashboards_from_list"] = o.DeletedDashboardsFromList
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DashboardListDeleteItemsResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		DeletedDashboardsFromList *[]DashboardListItemResponse `json:"deleted_dashboards_from_list,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.DeletedDashboardsFromList = all.DeletedDashboardsFromList
+	return nil
 }
 
 type NullableDashboardListDeleteItemsResponse struct {

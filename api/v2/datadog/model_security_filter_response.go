@@ -16,6 +16,8 @@ import (
 type SecurityFilterResponse struct {
 	Data *SecurityFilter     `json:"data,omitempty"`
 	Meta *SecurityFilterMeta `json:"meta,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityFilterResponse instantiates a new SecurityFilterResponse object
@@ -101,6 +103,9 @@ func (o *SecurityFilterResponse) SetMeta(v SecurityFilterMeta) {
 
 func (o SecurityFilterResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
@@ -108,6 +113,26 @@ func (o SecurityFilterResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["meta"] = o.Meta
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityFilterResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data *SecurityFilter     `json:"data,omitempty"`
+		Meta *SecurityFilterMeta `json:"meta,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	o.Meta = all.Meta
+	return nil
 }
 
 type NullableSecurityFilterResponse struct {

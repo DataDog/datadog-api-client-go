@@ -61,15 +61,8 @@ func (v *SyntheticsAssertionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsAssertionType(value)
-	for _, existing := range allowedSyntheticsAssertionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsAssertionType", value)
+	*v = SyntheticsAssertionType(value)
+	return nil
 }
 
 // NewSyntheticsAssertionTypeFromValue returns a pointer to a valid SyntheticsAssertionType

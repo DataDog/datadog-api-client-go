@@ -16,6 +16,8 @@ import (
 type SyntheticsLocations struct {
 	// List of Synthetics locations.
 	Locations *[]SyntheticsLocation `json:"locations,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsLocations instantiates a new SyntheticsLocations object
@@ -69,10 +71,31 @@ func (o *SyntheticsLocations) SetLocations(v []SyntheticsLocation) {
 
 func (o SyntheticsLocations) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Locations != nil {
 		toSerialize["locations"] = o.Locations
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsLocations) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Locations *[]SyntheticsLocation `json:"locations,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Locations = all.Locations
+	return nil
 }
 
 type NullableSyntheticsLocations struct {

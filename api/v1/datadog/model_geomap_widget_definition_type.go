@@ -35,15 +35,8 @@ func (v *GeomapWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := GeomapWidgetDefinitionType(value)
-	for _, existing := range allowedGeomapWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid GeomapWidgetDefinitionType", value)
+	*v = GeomapWidgetDefinitionType(value)
+	return nil
 }
 
 // NewGeomapWidgetDefinitionTypeFromValue returns a pointer to a valid GeomapWidgetDefinitionType

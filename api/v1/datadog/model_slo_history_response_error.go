@@ -16,6 +16,8 @@ import (
 type SLOHistoryResponseError struct {
 	// Human readable error.
 	Error *string `json:"error,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOHistoryResponseError instantiates a new SLOHistoryResponseError object
@@ -69,10 +71,31 @@ func (o *SLOHistoryResponseError) SetError(v string) {
 
 func (o SLOHistoryResponseError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Error != nil {
 		toSerialize["error"] = o.Error
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOHistoryResponseError) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Error *string `json:"error,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Error = all.Error
+	return nil
 }
 
 type NullableSLOHistoryResponseError struct {

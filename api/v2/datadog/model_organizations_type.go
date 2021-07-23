@@ -35,15 +35,8 @@ func (v *OrganizationsType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := OrganizationsType(value)
-	for _, existing := range allowedOrganizationsTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid OrganizationsType", value)
+	*v = OrganizationsType(value)
+	return nil
 }
 
 // NewOrganizationsTypeFromValue returns a pointer to a valid OrganizationsType

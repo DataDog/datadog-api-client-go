@@ -20,6 +20,8 @@ type HostMetrics struct {
 	Iowait *float64 `json:"iowait,omitempty"`
 	// The system load over the last 15 minutes.
 	Load *float64 `json:"load,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewHostMetrics instantiates a new HostMetrics object
@@ -137,6 +139,9 @@ func (o *HostMetrics) SetLoad(v float64) {
 
 func (o HostMetrics) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Cpu != nil {
 		toSerialize["cpu"] = o.Cpu
 	}
@@ -147,6 +152,28 @@ func (o HostMetrics) MarshalJSON() ([]byte, error) {
 		toSerialize["load"] = o.Load
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *HostMetrics) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Cpu    *float64 `json:"cpu,omitempty"`
+		Iowait *float64 `json:"iowait,omitempty"`
+		Load   *float64 `json:"load,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Cpu = all.Cpu
+	o.Iowait = all.Iowait
+	o.Load = all.Load
+	return nil
 }
 
 type NullableHostMetrics struct {

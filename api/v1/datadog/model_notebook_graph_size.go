@@ -43,15 +43,8 @@ func (v *NotebookGraphSize) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := NotebookGraphSize(value)
-	for _, existing := range allowedNotebookGraphSizeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid NotebookGraphSize", value)
+	*v = NotebookGraphSize(value)
+	return nil
 }
 
 // NewNotebookGraphSizeFromValue returns a pointer to a valid NotebookGraphSize

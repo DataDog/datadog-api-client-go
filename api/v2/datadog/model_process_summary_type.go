@@ -35,15 +35,8 @@ func (v *ProcessSummaryType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ProcessSummaryType(value)
-	for _, existing := range allowedProcessSummaryTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ProcessSummaryType", value)
+	*v = ProcessSummaryType(value)
+	return nil
 }
 
 // NewProcessSummaryTypeFromValue returns a pointer to a valid ProcessSummaryType

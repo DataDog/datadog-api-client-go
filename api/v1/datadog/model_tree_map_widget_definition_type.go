@@ -35,15 +35,8 @@ func (v *TreeMapWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := TreeMapWidgetDefinitionType(value)
-	for _, existing := range allowedTreeMapWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid TreeMapWidgetDefinitionType", value)
+	*v = TreeMapWidgetDefinitionType(value)
+	return nil
 }
 
 // NewTreeMapWidgetDefinitionTypeFromValue returns a pointer to a valid TreeMapWidgetDefinitionType

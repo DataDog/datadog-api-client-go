@@ -16,6 +16,8 @@ import (
 type DashboardListAddItemsRequest struct {
 	// List of dashboards to add the dashboard list.
 	Dashboards *[]DashboardListItemRequest `json:"dashboards,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDashboardListAddItemsRequest instantiates a new DashboardListAddItemsRequest object
@@ -69,10 +71,31 @@ func (o *DashboardListAddItemsRequest) SetDashboards(v []DashboardListItemReques
 
 func (o DashboardListAddItemsRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Dashboards != nil {
 		toSerialize["dashboards"] = o.Dashboards
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DashboardListAddItemsRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Dashboards *[]DashboardListItemRequest `json:"dashboards,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Dashboards = all.Dashboards
+	return nil
 }
 
 type NullableDashboardListAddItemsRequest struct {

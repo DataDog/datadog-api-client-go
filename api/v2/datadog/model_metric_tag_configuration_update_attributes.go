@@ -18,6 +18,8 @@ type MetricTagConfigurationUpdateAttributes struct {
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
 	// A list of tag keys that will be queryable for your metric.
 	Tags *[]string `json:"tags,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricTagConfigurationUpdateAttributes instantiates a new MetricTagConfigurationUpdateAttributes object
@@ -107,6 +109,9 @@ func (o *MetricTagConfigurationUpdateAttributes) SetTags(v []string) {
 
 func (o MetricTagConfigurationUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.IncludePercentiles != nil {
 		toSerialize["include_percentiles"] = o.IncludePercentiles
 	}
@@ -114,6 +119,26 @@ func (o MetricTagConfigurationUpdateAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricTagConfigurationUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		IncludePercentiles *bool     `json:"include_percentiles,omitempty"`
+		Tags               *[]string `json:"tags,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.IncludePercentiles = all.IncludePercentiles
+	o.Tags = all.Tags
+	return nil
 }
 
 type NullableMetricTagConfigurationUpdateAttributes struct {

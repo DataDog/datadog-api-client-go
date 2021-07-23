@@ -41,6 +41,8 @@ type EventCreateRequest struct {
 	Title string `json:"title"`
 	// URL of the event.
 	Url *string `json:"url,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewEventCreateRequest instantiates a new EventCreateRequest object
@@ -496,6 +498,9 @@ func (o *EventCreateRequest) SetUrl(v string) {
 
 func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AggregationKey != nil {
 		toSerialize["aggregation_key"] = o.AggregationKey
 	}
@@ -542,6 +547,7 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Text  *string `json:"text"`
 		Title *string `json:"title"`
@@ -574,7 +580,28 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.AlertType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Priority; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.AggregationKey = all.AggregationKey
 	o.AlertType = all.AlertType

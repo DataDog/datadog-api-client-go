@@ -37,15 +37,8 @@ func (v *ListStreamSource) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ListStreamSource(value)
-	for _, existing := range allowedListStreamSourceEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ListStreamSource", value)
+	*v = ListStreamSource(value)
+	return nil
 }
 
 // NewListStreamSourceFromValue returns a pointer to a valid ListStreamSource

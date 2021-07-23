@@ -17,6 +17,8 @@ import (
 type LogsArchiveOrderAttributes struct {
 	// An ordered array of `<ARCHIVE_ID>` strings, the order of archive IDs in the array define the overall archives order for Datadog.
 	ArchiveIds []string `json:"archive_ids"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsArchiveOrderAttributes instantiates a new LogsArchiveOrderAttributes object
@@ -63,6 +65,9 @@ func (o *LogsArchiveOrderAttributes) SetArchiveIds(v []string) {
 
 func (o LogsArchiveOrderAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["archive_ids"] = o.ArchiveIds
 	}
@@ -70,6 +75,7 @@ func (o LogsArchiveOrderAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		ArchiveIds *[]string `json:"archive_ids"`
 	}{}
@@ -85,7 +91,12 @@ func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.ArchiveIds = all.ArchiveIds
 	return nil

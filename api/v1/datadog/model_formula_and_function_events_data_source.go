@@ -47,15 +47,8 @@ func (v *FormulaAndFunctionEventsDataSource) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := FormulaAndFunctionEventsDataSource(value)
-	for _, existing := range allowedFormulaAndFunctionEventsDataSourceEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid FormulaAndFunctionEventsDataSource", value)
+	*v = FormulaAndFunctionEventsDataSource(value)
+	return nil
 }
 
 // NewFormulaAndFunctionEventsDataSourceFromValue returns a pointer to a valid FormulaAndFunctionEventsDataSource

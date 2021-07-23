@@ -43,15 +43,8 @@ func (v *SecurityMonitoringRuleSeverity) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SecurityMonitoringRuleSeverity(value)
-	for _, existing := range allowedSecurityMonitoringRuleSeverityEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SecurityMonitoringRuleSeverity", value)
+	*v = SecurityMonitoringRuleSeverity(value)
+	return nil
 }
 
 // NewSecurityMonitoringRuleSeverityFromValue returns a pointer to a valid SecurityMonitoringRuleSeverity

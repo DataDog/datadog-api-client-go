@@ -21,6 +21,8 @@ type IncidentTeamResponseAttributes struct {
 	Modified *time.Time `json:"modified,omitempty"`
 	// Name of the incident team.
 	Name *string `json:"name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentTeamResponseAttributes instantiates a new IncidentTeamResponseAttributes object
@@ -138,6 +140,9 @@ func (o *IncidentTeamResponseAttributes) SetName(v string) {
 
 func (o IncidentTeamResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Created != nil {
 		toSerialize["created"] = o.Created
 	}
@@ -148,6 +153,28 @@ func (o IncidentTeamResponseAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentTeamResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Created  *time.Time `json:"created,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		Name     *string    `json:"name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Created = all.Created
+	o.Modified = all.Modified
+	o.Name = all.Name
+	return nil
 }
 
 type NullableIncidentTeamResponseAttributes struct {

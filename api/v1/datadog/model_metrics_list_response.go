@@ -18,6 +18,8 @@ type MetricsListResponse struct {
 	From *string `json:"from,omitempty"`
 	// List of metric names.
 	Metrics *[]string `json:"metrics,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMetricsListResponse instantiates a new MetricsListResponse object
@@ -103,6 +105,9 @@ func (o *MetricsListResponse) SetMetrics(v []string) {
 
 func (o MetricsListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.From != nil {
 		toSerialize["from"] = o.From
 	}
@@ -110,6 +115,26 @@ func (o MetricsListResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["metrics"] = o.Metrics
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MetricsListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		From    *string   `json:"from,omitempty"`
+		Metrics *[]string `json:"metrics,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.From = all.From
+	o.Metrics = all.Metrics
+	return nil
 }
 
 type NullableMetricsListResponse struct {

@@ -35,15 +35,8 @@ func (v *IncidentRelatedObject) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := IncidentRelatedObject(value)
-	for _, existing := range allowedIncidentRelatedObjectEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid IncidentRelatedObject", value)
+	*v = IncidentRelatedObject(value)
+	return nil
 }
 
 // NewIncidentRelatedObjectFromValue returns a pointer to a valid IncidentRelatedObject

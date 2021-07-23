@@ -45,6 +45,8 @@ type SyntheticsStepDetail struct {
 	VitalsMetrics *[]SyntheticsCoreWebVitals `json:"vitalsMetrics,omitempty"`
 	// Warning collected that didn't failed the step.
 	Warnings *[]SyntheticsStepDetailWarning `json:"warnings,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsStepDetail instantiates a new SyntheticsStepDetail object
@@ -610,6 +612,9 @@ func (o *SyntheticsStepDetail) SetWarnings(v []SyntheticsStepDetailWarning) {
 
 func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.BrowserErrors != nil {
 		toSerialize["browserErrors"] = o.BrowserErrors
 	}
@@ -662,6 +667,80 @@ func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
 		toSerialize["warnings"] = o.Warnings
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		BrowserErrors       *[]SyntheticsBrowserError      `json:"browserErrors,omitempty"`
+		CheckType           *SyntheticsCheckType           `json:"checkType,omitempty"`
+		Description         *string                        `json:"description,omitempty"`
+		Duration            *float64                       `json:"duration,omitempty"`
+		Error               *string                        `json:"error,omitempty"`
+		PlayingTab          *SyntheticsPlayingTab          `json:"playingTab,omitempty"`
+		ScreenshotBucketKey *bool                          `json:"screenshotBucketKey,omitempty"`
+		Skipped             *bool                          `json:"skipped,omitempty"`
+		SnapshotBucketKey   *bool                          `json:"snapshotBucketKey,omitempty"`
+		StepId              *int64                         `json:"stepId,omitempty"`
+		SubTestStepDetails  *[]SyntheticsStepDetail        `json:"subTestStepDetails,omitempty"`
+		TimeToInteractive   *float64                       `json:"timeToInteractive,omitempty"`
+		Type                *SyntheticsStepType            `json:"type,omitempty"`
+		Url                 *string                        `json:"url,omitempty"`
+		Value               *interface{}                   `json:"value,omitempty"`
+		VitalsMetrics       *[]SyntheticsCoreWebVitals     `json:"vitalsMetrics,omitempty"`
+		Warnings            *[]SyntheticsStepDetailWarning `json:"warnings,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.CheckType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.PlayingTab; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.BrowserErrors = all.BrowserErrors
+	o.CheckType = all.CheckType
+	o.Description = all.Description
+	o.Duration = all.Duration
+	o.Error = all.Error
+	o.PlayingTab = all.PlayingTab
+	o.ScreenshotBucketKey = all.ScreenshotBucketKey
+	o.Skipped = all.Skipped
+	o.SnapshotBucketKey = all.SnapshotBucketKey
+	o.StepId = all.StepId
+	o.SubTestStepDetails = all.SubTestStepDetails
+	o.TimeToInteractive = all.TimeToInteractive
+	o.Type = all.Type
+	o.Url = all.Url
+	o.Value = all.Value
+	o.VitalsMetrics = all.VitalsMetrics
+	o.Warnings = all.Warnings
+	return nil
 }
 
 type NullableSyntheticsStepDetail struct {

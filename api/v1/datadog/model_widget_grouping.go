@@ -37,15 +37,8 @@ func (v *WidgetGrouping) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetGrouping(value)
-	for _, existing := range allowedWidgetGroupingEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetGrouping", value)
+	*v = WidgetGrouping(value)
+	return nil
 }
 
 // NewWidgetGroupingFromValue returns a pointer to a valid WidgetGrouping

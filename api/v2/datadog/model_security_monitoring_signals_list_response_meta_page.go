@@ -16,6 +16,8 @@ import (
 type SecurityMonitoringSignalsListResponseMetaPage struct {
 	// The cursor used to get the next results, if any. To make the next request, use the same parameters with the addition of the `page[cursor]`.
 	After *string `json:"after,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringSignalsListResponseMetaPage instantiates a new SecurityMonitoringSignalsListResponseMetaPage object
@@ -69,10 +71,31 @@ func (o *SecurityMonitoringSignalsListResponseMetaPage) SetAfter(v string) {
 
 func (o SecurityMonitoringSignalsListResponseMetaPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.After != nil {
 		toSerialize["after"] = o.After
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringSignalsListResponseMetaPage) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		After *string `json:"after,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.After = all.After
+	return nil
 }
 
 type NullableSecurityMonitoringSignalsListResponseMetaPage struct {

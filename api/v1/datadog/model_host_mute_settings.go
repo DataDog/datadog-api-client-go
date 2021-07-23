@@ -20,6 +20,8 @@ type HostMuteSettings struct {
 	Message *string `json:"message,omitempty"`
 	// If true and the host is already muted, replaces existing host mute settings.
 	Override *bool `json:"override,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewHostMuteSettings instantiates a new HostMuteSettings object
@@ -137,6 +139,9 @@ func (o *HostMuteSettings) SetOverride(v bool) {
 
 func (o HostMuteSettings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.End != nil {
 		toSerialize["end"] = o.End
 	}
@@ -147,6 +152,28 @@ func (o HostMuteSettings) MarshalJSON() ([]byte, error) {
 		toSerialize["override"] = o.Override
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *HostMuteSettings) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		End      *int64  `json:"end,omitempty"`
+		Message  *string `json:"message,omitempty"`
+		Override *bool   `json:"override,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.End = all.End
+	o.Message = all.Message
+	o.Override = all.Override
+	return nil
 }
 
 type NullableHostMuteSettings struct {

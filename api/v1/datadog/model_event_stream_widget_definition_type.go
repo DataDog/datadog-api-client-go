@@ -35,15 +35,8 @@ func (v *EventStreamWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := EventStreamWidgetDefinitionType(value)
-	for _, existing := range allowedEventStreamWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid EventStreamWidgetDefinitionType", value)
+	*v = EventStreamWidgetDefinitionType(value)
+	return nil
 }
 
 // NewEventStreamWidgetDefinitionTypeFromValue returns a pointer to a valid EventStreamWidgetDefinitionType

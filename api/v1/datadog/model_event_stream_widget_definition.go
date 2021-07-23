@@ -27,6 +27,8 @@ type EventStreamWidgetDefinition struct {
 	// Size of the title.
 	TitleSize *string                         `json:"title_size,omitempty"`
 	Type      EventStreamWidgetDefinitionType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewEventStreamWidgetDefinition instantiates a new EventStreamWidgetDefinition object
@@ -292,6 +294,9 @@ func (o *EventStreamWidgetDefinition) SetType(v EventStreamWidgetDefinitionType)
 
 func (o EventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.EventSize != nil {
 		toSerialize["event_size"] = o.EventSize
 	}
@@ -320,6 +325,7 @@ func (o EventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Query *string                          `json:"query"`
 		Type  *EventStreamWidgetDefinitionType `json:"type"`
@@ -346,7 +352,36 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.EventSize; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.EventSize = all.EventSize
 	o.Query = all.Query

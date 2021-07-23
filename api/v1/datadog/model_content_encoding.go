@@ -37,15 +37,8 @@ func (v *ContentEncoding) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ContentEncoding(value)
-	for _, existing := range allowedContentEncodingEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ContentEncoding", value)
+	*v = ContentEncoding(value)
+	return nil
 }
 
 // NewContentEncodingFromValue returns a pointer to a valid ContentEncoding

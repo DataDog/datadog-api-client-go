@@ -16,6 +16,8 @@ import (
 type UsageCustomReportsPage struct {
 	// Total page count.
 	TotalCount *int64 `json:"total_count,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageCustomReportsPage instantiates a new UsageCustomReportsPage object
@@ -69,10 +71,31 @@ func (o *UsageCustomReportsPage) SetTotalCount(v int64) {
 
 func (o UsageCustomReportsPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.TotalCount != nil {
 		toSerialize["total_count"] = o.TotalCount
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageCustomReportsPage) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		TotalCount *int64 `json:"total_count,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.TotalCount = all.TotalCount
+	return nil
 }
 
 type NullableUsageCustomReportsPage struct {

@@ -18,6 +18,8 @@ type LogsAggregateBucketValueTimeseriesPoint struct {
 	Time *string `json:"time,omitempty"`
 	// The value for this point
 	Value *float64 `json:"value,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsAggregateBucketValueTimeseriesPoint instantiates a new LogsAggregateBucketValueTimeseriesPoint object
@@ -103,6 +105,9 @@ func (o *LogsAggregateBucketValueTimeseriesPoint) SetValue(v float64) {
 
 func (o LogsAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
@@ -110,6 +115,26 @@ func (o LogsAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
 		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Time  *string  `json:"time,omitempty"`
+		Value *float64 `json:"value,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Time = all.Time
+	o.Value = all.Value
+	return nil
 }
 
 type NullableLogsAggregateBucketValueTimeseriesPoint struct {

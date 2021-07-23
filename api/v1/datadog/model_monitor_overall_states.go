@@ -47,15 +47,8 @@ func (v *MonitorOverallStates) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := MonitorOverallStates(value)
-	for _, existing := range allowedMonitorOverallStatesEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid MonitorOverallStates", value)
+	*v = MonitorOverallStates(value)
+	return nil
 }
 
 // NewMonitorOverallStatesFromValue returns a pointer to a valid MonitorOverallStates

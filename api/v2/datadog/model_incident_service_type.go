@@ -35,15 +35,8 @@ func (v *IncidentServiceType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := IncidentServiceType(value)
-	for _, existing := range allowedIncidentServiceTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid IncidentServiceType", value)
+	*v = IncidentServiceType(value)
+	return nil
 }
 
 // NewIncidentServiceTypeFromValue returns a pointer to a valid IncidentServiceType

@@ -16,6 +16,8 @@ import (
 type AWSAccountCreateResponse struct {
 	// AWS external_id.
 	ExternalId *string `json:"external_id,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAWSAccountCreateResponse instantiates a new AWSAccountCreateResponse object
@@ -69,10 +71,31 @@ func (o *AWSAccountCreateResponse) SetExternalId(v string) {
 
 func (o AWSAccountCreateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ExternalId != nil {
 		toSerialize["external_id"] = o.ExternalId
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSAccountCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ExternalId *string `json:"external_id,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ExternalId = all.ExternalId
+	return nil
 }
 
 type NullableAWSAccountCreateResponse struct {

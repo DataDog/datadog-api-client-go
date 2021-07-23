@@ -22,6 +22,8 @@ type LogsRetentionSumUsage struct {
 	LogsRehydratedIndexedLogsUsageSum *int64 `json:"logs_rehydrated_indexed_logs_usage_sum,omitempty"`
 	// The retention period in days or \"custom\" for all custom retention periods.
 	Retention *string `json:"retention,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsRetentionSumUsage instantiates a new LogsRetentionSumUsage object
@@ -171,6 +173,9 @@ func (o *LogsRetentionSumUsage) SetRetention(v string) {
 
 func (o LogsRetentionSumUsage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.LogsIndexedLogsUsageSum != nil {
 		toSerialize["logs_indexed_logs_usage_sum"] = o.LogsIndexedLogsUsageSum
 	}
@@ -184,6 +189,30 @@ func (o LogsRetentionSumUsage) MarshalJSON() ([]byte, error) {
 		toSerialize["retention"] = o.Retention
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsRetentionSumUsage) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		LogsIndexedLogsUsageSum           *int64  `json:"logs_indexed_logs_usage_sum,omitempty"`
+		LogsLiveIndexedLogsUsageSum       *int64  `json:"logs_live_indexed_logs_usage_sum,omitempty"`
+		LogsRehydratedIndexedLogsUsageSum *int64  `json:"logs_rehydrated_indexed_logs_usage_sum,omitempty"`
+		Retention                         *string `json:"retention,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.LogsIndexedLogsUsageSum = all.LogsIndexedLogsUsageSum
+	o.LogsLiveIndexedLogsUsageSum = all.LogsLiveIndexedLogsUsageSum
+	o.LogsRehydratedIndexedLogsUsageSum = all.LogsRehydratedIndexedLogsUsageSum
+	o.Retention = all.Retention
+	return nil
 }
 
 type NullableLogsRetentionSumUsage struct {

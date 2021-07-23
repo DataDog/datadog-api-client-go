@@ -10,89 +10,99 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // LogsGroupByMissing - The value to use for logs that don't have the facet used to group by
 type LogsGroupByMissing struct {
-	float64 *float64
-	string  *string
+	Float64 *float64
+	String  *string
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
-// float64AsLogsGroupByMissing is a convenience function that returns float64 wrapped in LogsGroupByMissing
-func float64AsLogsGroupByMissing(v *float64) LogsGroupByMissing {
-	return LogsGroupByMissing{float64: v}
+// Float64AsLogsGroupByMissing is a convenience function that returns float64 wrapped in LogsGroupByMissing
+func Float64AsLogsGroupByMissing(v *float64) LogsGroupByMissing {
+	return LogsGroupByMissing{Float64: v}
 }
 
-// stringAsLogsGroupByMissing is a convenience function that returns string wrapped in LogsGroupByMissing
-func stringAsLogsGroupByMissing(v *string) LogsGroupByMissing {
-	return LogsGroupByMissing{string: v}
+// StringAsLogsGroupByMissing is a convenience function that returns string wrapped in LogsGroupByMissing
+func StringAsLogsGroupByMissing(v *string) LogsGroupByMissing {
+	return LogsGroupByMissing{String: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *LogsGroupByMissing) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into float64
-	err = json.Unmarshal(data, &dst.float64)
+	// try to unmarshal data into String
+	err = json.Unmarshal(data, &dst.String)
 	if err == nil {
-		jsonfloat64, _ := json.Marshal(dst.float64)
-		if string(jsonfloat64) == "{}" { // empty struct
-			dst.float64 = nil
+		if dst.String != nil {
+			jsonString, _ := json.Marshal(dst.String)
+			if string(jsonString) == "{}" { // empty struct
+				dst.String = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.String = nil
 		}
 	} else {
-		dst.float64 = nil
+		dst.String = nil
 	}
 
-	// try to unmarshal data into string
-	err = json.Unmarshal(data, &dst.string)
+	// try to unmarshal data into Float64
+	err = json.Unmarshal(data, &dst.Float64)
 	if err == nil {
-		jsonstring, _ := json.Marshal(dst.string)
-		if string(jsonstring) == "{}" { // empty struct
-			dst.string = nil
+		if dst.Float64 != nil {
+			jsonFloat64, _ := json.Marshal(dst.Float64)
+			if string(jsonFloat64) == "{}" { // empty struct
+				dst.Float64 = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.Float64 = nil
 		}
 	} else {
-		dst.string = nil
+		dst.Float64 = nil
 	}
 
-	if match > 1 { // more than 1 match
+	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.float64 = nil
-		dst.string = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(LogsGroupByMissing)")
-	} else if match == 1 {
+		dst.Float64 = nil
+		dst.String = nil
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(LogsGroupByMissing)")
 	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src LogsGroupByMissing) MarshalJSON() ([]byte, error) {
-	if src.float64 != nil {
-		return json.Marshal(&src.float64)
+	if src.Float64 != nil {
+		return json.Marshal(&src.Float64)
 	}
 
-	if src.string != nil {
-		return json.Marshal(&src.string)
+	if src.String != nil {
+		return json.Marshal(&src.String)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 
 // Get the actual instance
 func (obj *LogsGroupByMissing) GetActualInstance() interface{} {
-	if obj.float64 != nil {
-		return obj.float64
+	if obj.Float64 != nil {
+		return obj.Float64
 	}
 
-	if obj.string != nil {
-		return obj.string
+	if obj.String != nil {
+		return obj.String
 	}
 
 	// all schemas are nil

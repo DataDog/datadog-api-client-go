@@ -18,6 +18,8 @@ type SecurityFilter struct {
 	// The ID of the security filter.
 	Id   *string             `json:"id,omitempty"`
 	Type *SecurityFilterType `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityFilter instantiates a new SecurityFilter object
@@ -139,6 +141,9 @@ func (o *SecurityFilter) SetType(v SecurityFilterType) {
 
 func (o SecurityFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
@@ -149,6 +154,36 @@ func (o SecurityFilter) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityFilter) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Attributes *SecurityFilterAttributes `json:"attributes,omitempty"`
+		Id         *string                   `json:"id,omitempty"`
+		Type       *SecurityFilterType       `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Attributes = all.Attributes
+	o.Id = all.Id
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSecurityFilter struct {

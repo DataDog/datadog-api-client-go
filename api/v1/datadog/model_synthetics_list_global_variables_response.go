@@ -16,6 +16,8 @@ import (
 type SyntheticsListGlobalVariablesResponse struct {
 	// Array of Synthetic global variables.
 	Variables *[]SyntheticsGlobalVariable `json:"variables,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsListGlobalVariablesResponse instantiates a new SyntheticsListGlobalVariablesResponse object
@@ -69,10 +71,31 @@ func (o *SyntheticsListGlobalVariablesResponse) SetVariables(v []SyntheticsGloba
 
 func (o SyntheticsListGlobalVariablesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Variables != nil {
 		toSerialize["variables"] = o.Variables
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsListGlobalVariablesResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Variables *[]SyntheticsGlobalVariable `json:"variables,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Variables = all.Variables
+	return nil
 }
 
 type NullableSyntheticsListGlobalVariablesResponse struct {

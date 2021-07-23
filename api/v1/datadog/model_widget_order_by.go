@@ -41,15 +41,8 @@ func (v *WidgetOrderBy) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetOrderBy(value)
-	for _, existing := range allowedWidgetOrderByEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetOrderBy", value)
+	*v = WidgetOrderBy(value)
+	return nil
 }
 
 // NewWidgetOrderByFromValue returns a pointer to a valid WidgetOrderBy

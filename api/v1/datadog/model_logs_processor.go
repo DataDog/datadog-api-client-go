@@ -10,7 +10,6 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // LogsProcessor - Definition of a logs processor.
@@ -30,6 +29,9 @@ type LogsProcessor struct {
 	LogsTraceRemapper          *LogsTraceRemapper
 	LogsURLParser              *LogsURLParser
 	LogsUserAgentParser        *LogsUserAgentParser
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // LogsArithmeticProcessorAsLogsProcessor is a convenience function that returns LogsArithmeticProcessor wrapped in LogsProcessor
@@ -111,183 +113,120 @@ func LogsUserAgentParserAsLogsProcessor(v *LogsUserAgentParser) LogsProcessor {
 func (dst *LogsProcessor) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into LogsArithmeticProcessor
-	err = json.Unmarshal(data, &dst.LogsArithmeticProcessor)
-	if err == nil {
-		jsonLogsArithmeticProcessor, _ := json.Marshal(dst.LogsArithmeticProcessor)
-		if string(jsonLogsArithmeticProcessor) == "{}" { // empty struct
-			dst.LogsArithmeticProcessor = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.LogsArithmeticProcessor = nil
-	}
-
-	// try to unmarshal data into LogsAttributeRemapper
-	err = json.Unmarshal(data, &dst.LogsAttributeRemapper)
-	if err == nil {
-		jsonLogsAttributeRemapper, _ := json.Marshal(dst.LogsAttributeRemapper)
-		if string(jsonLogsAttributeRemapper) == "{}" { // empty struct
-			dst.LogsAttributeRemapper = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.LogsAttributeRemapper = nil
-	}
-
-	// try to unmarshal data into LogsCategoryProcessor
-	err = json.Unmarshal(data, &dst.LogsCategoryProcessor)
-	if err == nil {
-		jsonLogsCategoryProcessor, _ := json.Marshal(dst.LogsCategoryProcessor)
-		if string(jsonLogsCategoryProcessor) == "{}" { // empty struct
-			dst.LogsCategoryProcessor = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.LogsCategoryProcessor = nil
-	}
-
-	// try to unmarshal data into LogsDateRemapper
-	err = json.Unmarshal(data, &dst.LogsDateRemapper)
-	if err == nil {
-		jsonLogsDateRemapper, _ := json.Marshal(dst.LogsDateRemapper)
-		if string(jsonLogsDateRemapper) == "{}" { // empty struct
-			dst.LogsDateRemapper = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.LogsDateRemapper = nil
-	}
-
-	// try to unmarshal data into LogsGeoIPParser
-	err = json.Unmarshal(data, &dst.LogsGeoIPParser)
-	if err == nil {
-		jsonLogsGeoIPParser, _ := json.Marshal(dst.LogsGeoIPParser)
-		if string(jsonLogsGeoIPParser) == "{}" { // empty struct
-			dst.LogsGeoIPParser = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.LogsGeoIPParser = nil
-	}
-
 	// try to unmarshal data into LogsGrokParser
 	err = json.Unmarshal(data, &dst.LogsGrokParser)
 	if err == nil {
-		jsonLogsGrokParser, _ := json.Marshal(dst.LogsGrokParser)
-		if string(jsonLogsGrokParser) == "{}" { // empty struct
-			dst.LogsGrokParser = nil
+		if dst.LogsGrokParser != nil && dst.LogsGrokParser.UnparsedObject == nil {
+			jsonLogsGrokParser, _ := json.Marshal(dst.LogsGrokParser)
+			if string(jsonLogsGrokParser) == "{}" { // empty struct
+				dst.LogsGrokParser = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogsGrokParser = nil
 		}
 	} else {
 		dst.LogsGrokParser = nil
 	}
 
-	// try to unmarshal data into LogsLookupProcessor
-	err = json.Unmarshal(data, &dst.LogsLookupProcessor)
+	// try to unmarshal data into LogsDateRemapper
+	err = json.Unmarshal(data, &dst.LogsDateRemapper)
 	if err == nil {
-		jsonLogsLookupProcessor, _ := json.Marshal(dst.LogsLookupProcessor)
-		if string(jsonLogsLookupProcessor) == "{}" { // empty struct
-			dst.LogsLookupProcessor = nil
+		if dst.LogsDateRemapper != nil && dst.LogsDateRemapper.UnparsedObject == nil {
+			jsonLogsDateRemapper, _ := json.Marshal(dst.LogsDateRemapper)
+			if string(jsonLogsDateRemapper) == "{}" { // empty struct
+				dst.LogsDateRemapper = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogsDateRemapper = nil
 		}
 	} else {
-		dst.LogsLookupProcessor = nil
-	}
-
-	// try to unmarshal data into LogsMessageRemapper
-	err = json.Unmarshal(data, &dst.LogsMessageRemapper)
-	if err == nil {
-		jsonLogsMessageRemapper, _ := json.Marshal(dst.LogsMessageRemapper)
-		if string(jsonLogsMessageRemapper) == "{}" { // empty struct
-			dst.LogsMessageRemapper = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.LogsMessageRemapper = nil
-	}
-
-	// try to unmarshal data into LogsPipelineProcessor
-	err = json.Unmarshal(data, &dst.LogsPipelineProcessor)
-	if err == nil {
-		jsonLogsPipelineProcessor, _ := json.Marshal(dst.LogsPipelineProcessor)
-		if string(jsonLogsPipelineProcessor) == "{}" { // empty struct
-			dst.LogsPipelineProcessor = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.LogsPipelineProcessor = nil
-	}
-
-	// try to unmarshal data into LogsServiceRemapper
-	err = json.Unmarshal(data, &dst.LogsServiceRemapper)
-	if err == nil {
-		jsonLogsServiceRemapper, _ := json.Marshal(dst.LogsServiceRemapper)
-		if string(jsonLogsServiceRemapper) == "{}" { // empty struct
-			dst.LogsServiceRemapper = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.LogsServiceRemapper = nil
+		dst.LogsDateRemapper = nil
 	}
 
 	// try to unmarshal data into LogsStatusRemapper
 	err = json.Unmarshal(data, &dst.LogsStatusRemapper)
 	if err == nil {
-		jsonLogsStatusRemapper, _ := json.Marshal(dst.LogsStatusRemapper)
-		if string(jsonLogsStatusRemapper) == "{}" { // empty struct
-			dst.LogsStatusRemapper = nil
+		if dst.LogsStatusRemapper != nil && dst.LogsStatusRemapper.UnparsedObject == nil {
+			jsonLogsStatusRemapper, _ := json.Marshal(dst.LogsStatusRemapper)
+			if string(jsonLogsStatusRemapper) == "{}" { // empty struct
+				dst.LogsStatusRemapper = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogsStatusRemapper = nil
 		}
 	} else {
 		dst.LogsStatusRemapper = nil
 	}
 
-	// try to unmarshal data into LogsStringBuilderProcessor
-	err = json.Unmarshal(data, &dst.LogsStringBuilderProcessor)
+	// try to unmarshal data into LogsServiceRemapper
+	err = json.Unmarshal(data, &dst.LogsServiceRemapper)
 	if err == nil {
-		jsonLogsStringBuilderProcessor, _ := json.Marshal(dst.LogsStringBuilderProcessor)
-		if string(jsonLogsStringBuilderProcessor) == "{}" { // empty struct
-			dst.LogsStringBuilderProcessor = nil
+		if dst.LogsServiceRemapper != nil && dst.LogsServiceRemapper.UnparsedObject == nil {
+			jsonLogsServiceRemapper, _ := json.Marshal(dst.LogsServiceRemapper)
+			if string(jsonLogsServiceRemapper) == "{}" { // empty struct
+				dst.LogsServiceRemapper = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogsServiceRemapper = nil
 		}
 	} else {
-		dst.LogsStringBuilderProcessor = nil
+		dst.LogsServiceRemapper = nil
 	}
 
-	// try to unmarshal data into LogsTraceRemapper
-	err = json.Unmarshal(data, &dst.LogsTraceRemapper)
+	// try to unmarshal data into LogsMessageRemapper
+	err = json.Unmarshal(data, &dst.LogsMessageRemapper)
 	if err == nil {
-		jsonLogsTraceRemapper, _ := json.Marshal(dst.LogsTraceRemapper)
-		if string(jsonLogsTraceRemapper) == "{}" { // empty struct
-			dst.LogsTraceRemapper = nil
+		if dst.LogsMessageRemapper != nil && dst.LogsMessageRemapper.UnparsedObject == nil {
+			jsonLogsMessageRemapper, _ := json.Marshal(dst.LogsMessageRemapper)
+			if string(jsonLogsMessageRemapper) == "{}" { // empty struct
+				dst.LogsMessageRemapper = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogsMessageRemapper = nil
 		}
 	} else {
-		dst.LogsTraceRemapper = nil
+		dst.LogsMessageRemapper = nil
+	}
+
+	// try to unmarshal data into LogsAttributeRemapper
+	err = json.Unmarshal(data, &dst.LogsAttributeRemapper)
+	if err == nil {
+		if dst.LogsAttributeRemapper != nil && dst.LogsAttributeRemapper.UnparsedObject == nil {
+			jsonLogsAttributeRemapper, _ := json.Marshal(dst.LogsAttributeRemapper)
+			if string(jsonLogsAttributeRemapper) == "{}" { // empty struct
+				dst.LogsAttributeRemapper = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.LogsAttributeRemapper = nil
+		}
+	} else {
+		dst.LogsAttributeRemapper = nil
 	}
 
 	// try to unmarshal data into LogsURLParser
 	err = json.Unmarshal(data, &dst.LogsURLParser)
 	if err == nil {
-		jsonLogsURLParser, _ := json.Marshal(dst.LogsURLParser)
-		if string(jsonLogsURLParser) == "{}" { // empty struct
-			dst.LogsURLParser = nil
+		if dst.LogsURLParser != nil && dst.LogsURLParser.UnparsedObject == nil {
+			jsonLogsURLParser, _ := json.Marshal(dst.LogsURLParser)
+			if string(jsonLogsURLParser) == "{}" { // empty struct
+				dst.LogsURLParser = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogsURLParser = nil
 		}
 	} else {
 		dst.LogsURLParser = nil
@@ -296,17 +235,140 @@ func (dst *LogsProcessor) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into LogsUserAgentParser
 	err = json.Unmarshal(data, &dst.LogsUserAgentParser)
 	if err == nil {
-		jsonLogsUserAgentParser, _ := json.Marshal(dst.LogsUserAgentParser)
-		if string(jsonLogsUserAgentParser) == "{}" { // empty struct
-			dst.LogsUserAgentParser = nil
+		if dst.LogsUserAgentParser != nil && dst.LogsUserAgentParser.UnparsedObject == nil {
+			jsonLogsUserAgentParser, _ := json.Marshal(dst.LogsUserAgentParser)
+			if string(jsonLogsUserAgentParser) == "{}" { // empty struct
+				dst.LogsUserAgentParser = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.LogsUserAgentParser = nil
 		}
 	} else {
 		dst.LogsUserAgentParser = nil
 	}
 
-	if match > 1 { // more than 1 match
+	// try to unmarshal data into LogsCategoryProcessor
+	err = json.Unmarshal(data, &dst.LogsCategoryProcessor)
+	if err == nil {
+		if dst.LogsCategoryProcessor != nil && dst.LogsCategoryProcessor.UnparsedObject == nil {
+			jsonLogsCategoryProcessor, _ := json.Marshal(dst.LogsCategoryProcessor)
+			if string(jsonLogsCategoryProcessor) == "{}" { // empty struct
+				dst.LogsCategoryProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.LogsCategoryProcessor = nil
+		}
+	} else {
+		dst.LogsCategoryProcessor = nil
+	}
+
+	// try to unmarshal data into LogsArithmeticProcessor
+	err = json.Unmarshal(data, &dst.LogsArithmeticProcessor)
+	if err == nil {
+		if dst.LogsArithmeticProcessor != nil && dst.LogsArithmeticProcessor.UnparsedObject == nil {
+			jsonLogsArithmeticProcessor, _ := json.Marshal(dst.LogsArithmeticProcessor)
+			if string(jsonLogsArithmeticProcessor) == "{}" { // empty struct
+				dst.LogsArithmeticProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.LogsArithmeticProcessor = nil
+		}
+	} else {
+		dst.LogsArithmeticProcessor = nil
+	}
+
+	// try to unmarshal data into LogsStringBuilderProcessor
+	err = json.Unmarshal(data, &dst.LogsStringBuilderProcessor)
+	if err == nil {
+		if dst.LogsStringBuilderProcessor != nil && dst.LogsStringBuilderProcessor.UnparsedObject == nil {
+			jsonLogsStringBuilderProcessor, _ := json.Marshal(dst.LogsStringBuilderProcessor)
+			if string(jsonLogsStringBuilderProcessor) == "{}" { // empty struct
+				dst.LogsStringBuilderProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.LogsStringBuilderProcessor = nil
+		}
+	} else {
+		dst.LogsStringBuilderProcessor = nil
+	}
+
+	// try to unmarshal data into LogsPipelineProcessor
+	err = json.Unmarshal(data, &dst.LogsPipelineProcessor)
+	if err == nil {
+		if dst.LogsPipelineProcessor != nil && dst.LogsPipelineProcessor.UnparsedObject == nil {
+			jsonLogsPipelineProcessor, _ := json.Marshal(dst.LogsPipelineProcessor)
+			if string(jsonLogsPipelineProcessor) == "{}" { // empty struct
+				dst.LogsPipelineProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.LogsPipelineProcessor = nil
+		}
+	} else {
+		dst.LogsPipelineProcessor = nil
+	}
+
+	// try to unmarshal data into LogsGeoIPParser
+	err = json.Unmarshal(data, &dst.LogsGeoIPParser)
+	if err == nil {
+		if dst.LogsGeoIPParser != nil && dst.LogsGeoIPParser.UnparsedObject == nil {
+			jsonLogsGeoIPParser, _ := json.Marshal(dst.LogsGeoIPParser)
+			if string(jsonLogsGeoIPParser) == "{}" { // empty struct
+				dst.LogsGeoIPParser = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.LogsGeoIPParser = nil
+		}
+	} else {
+		dst.LogsGeoIPParser = nil
+	}
+
+	// try to unmarshal data into LogsLookupProcessor
+	err = json.Unmarshal(data, &dst.LogsLookupProcessor)
+	if err == nil {
+		if dst.LogsLookupProcessor != nil && dst.LogsLookupProcessor.UnparsedObject == nil {
+			jsonLogsLookupProcessor, _ := json.Marshal(dst.LogsLookupProcessor)
+			if string(jsonLogsLookupProcessor) == "{}" { // empty struct
+				dst.LogsLookupProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.LogsLookupProcessor = nil
+		}
+	} else {
+		dst.LogsLookupProcessor = nil
+	}
+
+	// try to unmarshal data into LogsTraceRemapper
+	err = json.Unmarshal(data, &dst.LogsTraceRemapper)
+	if err == nil {
+		if dst.LogsTraceRemapper != nil && dst.LogsTraceRemapper.UnparsedObject == nil {
+			jsonLogsTraceRemapper, _ := json.Marshal(dst.LogsTraceRemapper)
+			if string(jsonLogsTraceRemapper) == "{}" { // empty struct
+				dst.LogsTraceRemapper = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.LogsTraceRemapper = nil
+		}
+	} else {
+		dst.LogsTraceRemapper = nil
+	}
+
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.LogsArithmeticProcessor = nil
 		dst.LogsAttributeRemapper = nil
@@ -323,12 +385,9 @@ func (dst *LogsProcessor) UnmarshalJSON(data []byte) error {
 		dst.LogsTraceRemapper = nil
 		dst.LogsURLParser = nil
 		dst.LogsUserAgentParser = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(LogsProcessor)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(LogsProcessor)")
 	}
 }
 
@@ -394,6 +453,9 @@ func (src LogsProcessor) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.LogsUserAgentParser)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

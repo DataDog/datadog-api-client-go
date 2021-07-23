@@ -18,6 +18,8 @@ type LogsListResponse struct {
 	Data  *[]Log                 `json:"data,omitempty"`
 	Links *LogsListResponseLinks `json:"links,omitempty"`
 	Meta  *LogsResponseMetadata  `json:"meta,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsListResponse instantiates a new LogsListResponse object
@@ -135,6 +137,9 @@ func (o *LogsListResponse) SetMeta(v LogsResponseMetadata) {
 
 func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
@@ -145,6 +150,28 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["meta"] = o.Meta
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data  *[]Log                 `json:"data,omitempty"`
+		Links *LogsListResponseLinks `json:"links,omitempty"`
+		Meta  *LogsResponseMetadata  `json:"meta,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	o.Links = all.Links
+	o.Meta = all.Meta
+	return nil
 }
 
 type NullableLogsListResponse struct {

@@ -22,6 +22,8 @@ type UsageLogsByRetentionHour struct {
 	RehydratedIndexedEventsCount *int64 `json:"rehydrated_indexed_events_count,omitempty"`
 	// The retention period in days or \"custom\" for all custom retention usage.
 	Retention *string `json:"retention,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageLogsByRetentionHour instantiates a new UsageLogsByRetentionHour object
@@ -171,6 +173,9 @@ func (o *UsageLogsByRetentionHour) SetRetention(v string) {
 
 func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.IndexedEventsCount != nil {
 		toSerialize["indexed_events_count"] = o.IndexedEventsCount
 	}
@@ -184,6 +189,30 @@ func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
 		toSerialize["retention"] = o.Retention
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageLogsByRetentionHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		IndexedEventsCount           *int64  `json:"indexed_events_count,omitempty"`
+		LiveIndexedEventsCount       *int64  `json:"live_indexed_events_count,omitempty"`
+		RehydratedIndexedEventsCount *int64  `json:"rehydrated_indexed_events_count,omitempty"`
+		Retention                    *string `json:"retention,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.IndexedEventsCount = all.IndexedEventsCount
+	o.LiveIndexedEventsCount = all.LiveIndexedEventsCount
+	o.RehydratedIndexedEventsCount = all.RehydratedIndexedEventsCount
+	o.Retention = all.Retention
+	return nil
 }
 
 type NullableUsageLogsByRetentionHour struct {

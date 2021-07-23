@@ -35,15 +35,8 @@ func (v *LogStreamWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogStreamWidgetDefinitionType(value)
-	for _, existing := range allowedLogStreamWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogStreamWidgetDefinitionType", value)
+	*v = LogStreamWidgetDefinitionType(value)
+	return nil
 }
 
 // NewLogStreamWidgetDefinitionTypeFromValue returns a pointer to a valid LogStreamWidgetDefinitionType

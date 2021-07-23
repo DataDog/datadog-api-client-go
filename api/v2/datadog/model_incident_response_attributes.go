@@ -52,6 +52,8 @@ type IncidentResponseAttributes struct {
 	TimeToResolve *int64 `json:"time_to_resolve,omitempty"`
 	// The title of the incident, which summarizes what happened.
 	Title string `json:"title"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentResponseAttributes instantiates a new IncidentResponseAttributes object
@@ -697,6 +699,9 @@ func (o *IncidentResponseAttributes) SetTitle(v string) {
 
 func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Created != nil {
 		toSerialize["created"] = o.Created
 	}
@@ -755,6 +760,7 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Title *string `json:"title"`
 	}{}
@@ -787,7 +793,12 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Created = all.Created
 	o.CustomerImpactDuration = all.CustomerImpactDuration

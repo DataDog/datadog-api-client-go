@@ -16,6 +16,8 @@ import (
 type UsageIndexedSpansResponse struct {
 	// Array with the number of hourly traces indexed for a given organization.
 	Usage *[]UsageIndexedSpansHour `json:"usage,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageIndexedSpansResponse instantiates a new UsageIndexedSpansResponse object
@@ -69,10 +71,31 @@ func (o *UsageIndexedSpansResponse) SetUsage(v []UsageIndexedSpansHour) {
 
 func (o UsageIndexedSpansResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageIndexedSpansResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Usage *[]UsageIndexedSpansHour `json:"usage,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Usage = all.Usage
+	return nil
 }
 
 type NullableUsageIndexedSpansResponse struct {

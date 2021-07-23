@@ -35,15 +35,8 @@ func (v *TableWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := TableWidgetDefinitionType(value)
-	for _, existing := range allowedTableWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid TableWidgetDefinitionType", value)
+	*v = TableWidgetDefinitionType(value)
+	return nil
 }
 
 // NewTableWidgetDefinitionTypeFromValue returns a pointer to a valid TableWidgetDefinitionType

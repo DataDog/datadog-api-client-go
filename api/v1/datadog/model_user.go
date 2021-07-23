@@ -27,6 +27,8 @@ type User struct {
 	Name *string `json:"name,omitempty"`
 	// Whether or not the user logged in Datadog at least once.
 	Verified *bool `json:"verified,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUser instantiates a new User object
@@ -276,6 +278,9 @@ func (o *User) SetVerified(v bool) {
 
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AccessRole != nil {
 		toSerialize["access_role"] = o.AccessRole
 	}
@@ -298,6 +303,44 @@ func (o User) MarshalJSON() ([]byte, error) {
 		toSerialize["verified"] = o.Verified
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *User) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AccessRole *AccessRole `json:"access_role,omitempty"`
+		Disabled   *bool       `json:"disabled,omitempty"`
+		Email      *string     `json:"email,omitempty"`
+		Handle     *string     `json:"handle,omitempty"`
+		Icon       *string     `json:"icon,omitempty"`
+		Name       *string     `json:"name,omitempty"`
+		Verified   *bool       `json:"verified,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.AccessRole; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AccessRole = all.AccessRole
+	o.Disabled = all.Disabled
+	o.Email = all.Email
+	o.Handle = all.Handle
+	o.Icon = all.Icon
+	o.Name = all.Name
+	o.Verified = all.Verified
+	return nil
 }
 
 type NullableUser struct {

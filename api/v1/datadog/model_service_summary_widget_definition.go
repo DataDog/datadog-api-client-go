@@ -42,6 +42,8 @@ type ServiceSummaryWidgetDefinition struct {
 	// Size of the title.
 	TitleSize *string                            `json:"title_size,omitempty"`
 	Type      ServiceSummaryWidgetDefinitionType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewServiceSummaryWidgetDefinition instantiates a new ServiceSummaryWidgetDefinition object
@@ -549,6 +551,9 @@ func (o *ServiceSummaryWidgetDefinition) SetType(v ServiceSummaryWidgetDefinitio
 
 func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DisplayFormat != nil {
 		toSerialize["display_format"] = o.DisplayFormat
 	}
@@ -601,6 +606,7 @@ func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Env      *string                             `json:"env"`
 		Service  *string                             `json:"service"`
@@ -643,7 +649,44 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.DisplayFormat; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.SizeFormat; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.DisplayFormat = all.DisplayFormat
 	o.Env = all.Env

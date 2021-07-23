@@ -24,6 +24,8 @@ type SecurityFilterCreateAttributes struct {
 	Name string `json:"name"`
 	// The query of the security filter.
 	Query string `json:"query"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityFilterCreateAttributes instantiates a new SecurityFilterCreateAttributes object
@@ -170,6 +172,9 @@ func (o *SecurityFilterCreateAttributes) SetQuery(v string) {
 
 func (o SecurityFilterCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["exclusion_filters"] = o.ExclusionFilters
 	}
@@ -189,6 +194,7 @@ func (o SecurityFilterCreateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		ExclusionFilters *[]SecurityFilterExclusionFilter `json:"exclusion_filters"`
 		FilteredDataType *SecurityFilterFilteredDataType  `json:"filtered_data_type"`
@@ -224,7 +230,20 @@ func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.FilteredDataType; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.ExclusionFilters = all.ExclusionFilters
 	o.FilteredDataType = all.FilteredDataType

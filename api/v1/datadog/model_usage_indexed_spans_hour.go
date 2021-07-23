@@ -19,6 +19,8 @@ type UsageIndexedSpansHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the number of spans indexed.
 	IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageIndexedSpansHour instantiates a new UsageIndexedSpansHour object
@@ -104,6 +106,9 @@ func (o *UsageIndexedSpansHour) SetIndexedEventsCount(v int64) {
 
 func (o UsageIndexedSpansHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
@@ -111,6 +116,26 @@ func (o UsageIndexedSpansHour) MarshalJSON() ([]byte, error) {
 		toSerialize["indexed_events_count"] = o.IndexedEventsCount
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageIndexedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Hour               *time.Time `json:"hour,omitempty"`
+		IndexedEventsCount *int64     `json:"indexed_events_count,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Hour = all.Hour
+	o.IndexedEventsCount = all.IndexedEventsCount
+	return nil
 }
 
 type NullableUsageIndexedSpansHour struct {

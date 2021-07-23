@@ -18,6 +18,8 @@ type AWSLogsListServicesResponse struct {
 	Id *string `json:"id,omitempty"`
 	// Name of service available for configuration with Datadog logs.
 	Label *string `json:"label,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAWSLogsListServicesResponse instantiates a new AWSLogsListServicesResponse object
@@ -103,6 +105,9 @@ func (o *AWSLogsListServicesResponse) SetLabel(v string) {
 
 func (o AWSLogsListServicesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -110,6 +115,26 @@ func (o AWSLogsListServicesResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["label"] = o.Label
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSLogsListServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Id    *string `json:"id,omitempty"`
+		Label *string `json:"label,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Id = all.Id
+	o.Label = all.Label
+	return nil
 }
 
 type NullableAWSLogsListServicesResponse struct {

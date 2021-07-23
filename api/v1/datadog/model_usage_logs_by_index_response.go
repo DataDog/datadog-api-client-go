@@ -16,6 +16,8 @@ import (
 type UsageLogsByIndexResponse struct {
 	// An array of objects regarding hourly usage of logs by index response.
 	Usage *[]UsageLogsByIndexHour `json:"usage,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageLogsByIndexResponse instantiates a new UsageLogsByIndexResponse object
@@ -69,10 +71,31 @@ func (o *UsageLogsByIndexResponse) SetUsage(v []UsageLogsByIndexHour) {
 
 func (o UsageLogsByIndexResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageLogsByIndexResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Usage *[]UsageLogsByIndexHour `json:"usage,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Usage = all.Usage
+	return nil
 }
 
 type NullableUsageLogsByIndexResponse struct {

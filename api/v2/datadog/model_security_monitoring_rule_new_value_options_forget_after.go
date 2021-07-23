@@ -45,15 +45,8 @@ func (v *SecurityMonitoringRuleNewValueOptionsForgetAfter) UnmarshalJSON(src []b
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SecurityMonitoringRuleNewValueOptionsForgetAfter(value)
-	for _, existing := range allowedSecurityMonitoringRuleNewValueOptionsForgetAfterEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SecurityMonitoringRuleNewValueOptionsForgetAfter", value)
+	*v = SecurityMonitoringRuleNewValueOptionsForgetAfter(value)
+	return nil
 }
 
 // NewSecurityMonitoringRuleNewValueOptionsForgetAfterFromValue returns a pointer to a valid SecurityMonitoringRuleNewValueOptionsForgetAfter

@@ -35,15 +35,8 @@ func (v *MonitorSummaryWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := MonitorSummaryWidgetDefinitionType(value)
-	for _, existing := range allowedMonitorSummaryWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid MonitorSummaryWidgetDefinitionType", value)
+	*v = MonitorSummaryWidgetDefinitionType(value)
+	return nil
 }
 
 // NewMonitorSummaryWidgetDefinitionTypeFromValue returns a pointer to a valid MonitorSummaryWidgetDefinitionType

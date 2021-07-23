@@ -16,6 +16,8 @@ import (
 type AWSAccountListResponse struct {
 	// List of enabled AWS accounts.
 	Accounts *[]AWSAccount `json:"accounts,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAWSAccountListResponse instantiates a new AWSAccountListResponse object
@@ -69,10 +71,31 @@ func (o *AWSAccountListResponse) SetAccounts(v []AWSAccount) {
 
 func (o AWSAccountListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Accounts != nil {
 		toSerialize["accounts"] = o.Accounts
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSAccountListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Accounts *[]AWSAccount `json:"accounts,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Accounts = all.Accounts
+	return nil
 }
 
 type NullableAWSAccountListResponse struct {

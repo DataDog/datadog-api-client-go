@@ -21,6 +21,8 @@ type UsageTopAvgMetricsHour struct {
 	MetricCategory *UsageMetricCategory `json:"metric_category,omitempty"`
 	// Contains the custom metric name.
 	MetricName *string `json:"metric_name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageTopAvgMetricsHour instantiates a new UsageTopAvgMetricsHour object
@@ -170,6 +172,9 @@ func (o *UsageTopAvgMetricsHour) SetMetricName(v string) {
 
 func (o UsageTopAvgMetricsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AvgMetricHour != nil {
 		toSerialize["avg_metric_hour"] = o.AvgMetricHour
 	}
@@ -183,6 +188,38 @@ func (o UsageTopAvgMetricsHour) MarshalJSON() ([]byte, error) {
 		toSerialize["metric_name"] = o.MetricName
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AvgMetricHour  *int64               `json:"avg_metric_hour,omitempty"`
+		MaxMetricHour  *int64               `json:"max_metric_hour,omitempty"`
+		MetricCategory *UsageMetricCategory `json:"metric_category,omitempty"`
+		MetricName     *string              `json:"metric_name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.MetricCategory; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AvgMetricHour = all.AvgMetricHour
+	o.MaxMetricHour = all.MaxMetricHour
+	o.MetricCategory = all.MetricCategory
+	o.MetricName = all.MetricName
+	return nil
 }
 
 type NullableUsageTopAvgMetricsHour struct {

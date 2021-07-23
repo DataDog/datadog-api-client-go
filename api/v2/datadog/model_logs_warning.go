@@ -20,6 +20,8 @@ type LogsWarning struct {
 	Detail *string `json:"detail,omitempty"`
 	// A short human-readable summary of the warning
 	Title *string `json:"title,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsWarning instantiates a new LogsWarning object
@@ -137,6 +139,9 @@ func (o *LogsWarning) SetTitle(v string) {
 
 func (o LogsWarning) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Code != nil {
 		toSerialize["code"] = o.Code
 	}
@@ -147,6 +152,28 @@ func (o LogsWarning) MarshalJSON() ([]byte, error) {
 		toSerialize["title"] = o.Title
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsWarning) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Code   *string `json:"code,omitempty"`
+		Detail *string `json:"detail,omitempty"`
+		Title  *string `json:"title,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Code = all.Code
+	o.Detail = all.Detail
+	o.Title = all.Title
+	return nil
 }
 
 type NullableLogsWarning struct {

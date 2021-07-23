@@ -24,6 +24,8 @@ type LogsArchiveCreateRequestAttributes struct {
 	Query string `json:"query"`
 	// An array of tags to add to rehydrated logs from an archive.
 	RehydrationTags *[]string `json:"rehydration_tags,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsArchiveCreateRequestAttributes instantiates a new LogsArchiveCreateRequestAttributes object
@@ -188,6 +190,9 @@ func (o *LogsArchiveCreateRequestAttributes) SetRehydrationTags(v []string) {
 
 func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["destination"] = o.Destination
 	}
@@ -207,6 +212,7 @@ func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Destination *LogsArchiveCreateRequestDestination `json:"destination"`
 		Name        *string                              `json:"name"`
@@ -234,7 +240,12 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Destination = all.Destination
 	o.IncludeTags = all.IncludeTags

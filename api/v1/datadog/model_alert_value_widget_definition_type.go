@@ -35,15 +35,8 @@ func (v *AlertValueWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := AlertValueWidgetDefinitionType(value)
-	for _, existing := range allowedAlertValueWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid AlertValueWidgetDefinitionType", value)
+	*v = AlertValueWidgetDefinitionType(value)
+	return nil
 }
 
 // NewAlertValueWidgetDefinitionTypeFromValue returns a pointer to a valid AlertValueWidgetDefinitionType

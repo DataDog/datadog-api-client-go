@@ -16,6 +16,8 @@ import (
 type LogsIndexListResponse struct {
 	// Array of Log index configurations.
 	Indexes *[]LogsIndex `json:"indexes,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsIndexListResponse instantiates a new LogsIndexListResponse object
@@ -69,10 +71,31 @@ func (o *LogsIndexListResponse) SetIndexes(v []LogsIndex) {
 
 func (o LogsIndexListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsIndexListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Indexes *[]LogsIndex `json:"indexes,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Indexes = all.Indexes
+	return nil
 }
 
 type NullableLogsIndexListResponse struct {

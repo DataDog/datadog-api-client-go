@@ -35,15 +35,8 @@ func (v *SyntheticsAssertionJSONPathOperator) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsAssertionJSONPathOperator(value)
-	for _, existing := range allowedSyntheticsAssertionJSONPathOperatorEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsAssertionJSONPathOperator", value)
+	*v = SyntheticsAssertionJSONPathOperator(value)
+	return nil
 }
 
 // NewSyntheticsAssertionJSONPathOperatorFromValue returns a pointer to a valid SyntheticsAssertionJSONPathOperator

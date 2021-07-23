@@ -18,6 +18,8 @@ type SLOBulkDeleteResponseData struct {
 	Deleted *[]string `json:"deleted,omitempty"`
 	// An array of service level objective object IDs that indicates which objects that were modified (objects for which at least one threshold was deleted, but that were not completely deleted).
 	Updated *[]string `json:"updated,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOBulkDeleteResponseData instantiates a new SLOBulkDeleteResponseData object
@@ -103,6 +105,9 @@ func (o *SLOBulkDeleteResponseData) SetUpdated(v []string) {
 
 func (o SLOBulkDeleteResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Deleted != nil {
 		toSerialize["deleted"] = o.Deleted
 	}
@@ -110,6 +115,26 @@ func (o SLOBulkDeleteResponseData) MarshalJSON() ([]byte, error) {
 		toSerialize["updated"] = o.Updated
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLOBulkDeleteResponseData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Deleted *[]string `json:"deleted,omitempty"`
+		Updated *[]string `json:"updated,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Deleted = all.Deleted
+	o.Updated = all.Updated
+	return nil
 }
 
 type NullableSLOBulkDeleteResponseData struct {

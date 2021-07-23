@@ -23,6 +23,8 @@ type WidgetMarker struct {
 	Time *string `json:"time,omitempty"`
 	// Value to apply. Can be a single value y = 15 or a range of values 0 < y < 10.
 	Value string `json:"value"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewWidgetMarker instantiates a new WidgetMarker object
@@ -165,6 +167,9 @@ func (o *WidgetMarker) SetValue(v string) {
 
 func (o WidgetMarker) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DisplayType != nil {
 		toSerialize["display_type"] = o.DisplayType
 	}
@@ -181,6 +186,7 @@ func (o WidgetMarker) MarshalJSON() ([]byte, error) {
 }
 
 func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Value *string `json:"value"`
 	}{}
@@ -199,7 +205,12 @@ func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.DisplayType = all.DisplayType
 	o.Label = all.Label

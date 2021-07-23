@@ -10,7 +10,6 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // UserResponseIncludedItem - An object related to a user.
@@ -18,6 +17,9 @@ type UserResponseIncludedItem struct {
 	Organization *Organization
 	Permission   *Permission
 	Role         *Role
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // OrganizationAsUserResponseIncludedItem is a convenience function that returns Organization wrapped in UserResponseIncludedItem
@@ -42,11 +44,15 @@ func (dst *UserResponseIncludedItem) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Organization
 	err = json.Unmarshal(data, &dst.Organization)
 	if err == nil {
-		jsonOrganization, _ := json.Marshal(dst.Organization)
-		if string(jsonOrganization) == "{}" { // empty struct
-			dst.Organization = nil
+		if dst.Organization != nil && dst.Organization.UnparsedObject == nil {
+			jsonOrganization, _ := json.Marshal(dst.Organization)
+			if string(jsonOrganization) == "{}" { // empty struct
+				dst.Organization = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.Organization = nil
 		}
 	} else {
 		dst.Organization = nil
@@ -55,11 +61,15 @@ func (dst *UserResponseIncludedItem) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Permission
 	err = json.Unmarshal(data, &dst.Permission)
 	if err == nil {
-		jsonPermission, _ := json.Marshal(dst.Permission)
-		if string(jsonPermission) == "{}" { // empty struct
-			dst.Permission = nil
+		if dst.Permission != nil && dst.Permission.UnparsedObject == nil {
+			jsonPermission, _ := json.Marshal(dst.Permission)
+			if string(jsonPermission) == "{}" { // empty struct
+				dst.Permission = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.Permission = nil
 		}
 	} else {
 		dst.Permission = nil
@@ -68,27 +78,28 @@ func (dst *UserResponseIncludedItem) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Role
 	err = json.Unmarshal(data, &dst.Role)
 	if err == nil {
-		jsonRole, _ := json.Marshal(dst.Role)
-		if string(jsonRole) == "{}" { // empty struct
-			dst.Role = nil
+		if dst.Role != nil && dst.Role.UnparsedObject == nil {
+			jsonRole, _ := json.Marshal(dst.Role)
+			if string(jsonRole) == "{}" { // empty struct
+				dst.Role = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.Role = nil
 		}
 	} else {
 		dst.Role = nil
 	}
 
-	if match > 1 { // more than 1 match
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.Organization = nil
 		dst.Permission = nil
 		dst.Role = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(UserResponseIncludedItem)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(UserResponseIncludedItem)")
 	}
 }
 
@@ -106,6 +117,9 @@ func (src UserResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.Role)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

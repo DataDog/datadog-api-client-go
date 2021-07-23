@@ -25,6 +25,8 @@ type Organization struct {
 	PublicId     *string                   `json:"public_id,omitempty"`
 	Settings     *OrganizationSettings     `json:"settings,omitempty"`
 	Subscription *OrganizationSubscription `json:"subscription,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewOrganization instantiates a new Organization object
@@ -270,6 +272,9 @@ func (o *Organization) SetSubscription(v OrganizationSubscription) {
 
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Billing != nil {
 		toSerialize["billing"] = o.Billing
 	}
@@ -292,6 +297,36 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 		toSerialize["subscription"] = o.Subscription
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Billing      *OrganizationBilling      `json:"billing,omitempty"`
+		Created      *string                   `json:"created,omitempty"`
+		Description  *string                   `json:"description,omitempty"`
+		Name         *string                   `json:"name,omitempty"`
+		PublicId     *string                   `json:"public_id,omitempty"`
+		Settings     *OrganizationSettings     `json:"settings,omitempty"`
+		Subscription *OrganizationSubscription `json:"subscription,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Billing = all.Billing
+	o.Created = all.Created
+	o.Description = all.Description
+	o.Name = all.Name
+	o.PublicId = all.PublicId
+	o.Settings = all.Settings
+	o.Subscription = all.Subscription
+	return nil
 }
 
 type NullableOrganization struct {

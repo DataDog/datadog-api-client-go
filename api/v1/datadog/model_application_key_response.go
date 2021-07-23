@@ -15,6 +15,8 @@ import (
 // ApplicationKeyResponse An application key response.
 type ApplicationKeyResponse struct {
 	ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewApplicationKeyResponse instantiates a new ApplicationKeyResponse object
@@ -68,10 +70,31 @@ func (o *ApplicationKeyResponse) SetApplicationKey(v ApplicationKey) {
 
 func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ApplicationKey != nil {
 		toSerialize["application_key"] = o.ApplicationKey
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ApplicationKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ApplicationKey = all.ApplicationKey
+	return nil
 }
 
 type NullableApplicationKeyResponse struct {

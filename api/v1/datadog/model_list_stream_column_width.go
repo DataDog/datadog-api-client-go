@@ -39,15 +39,8 @@ func (v *ListStreamColumnWidth) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ListStreamColumnWidth(value)
-	for _, existing := range allowedListStreamColumnWidthEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ListStreamColumnWidth", value)
+	*v = ListStreamColumnWidth(value)
+	return nil
 }
 
 // NewListStreamColumnWidthFromValue returns a pointer to a valid ListStreamColumnWidth

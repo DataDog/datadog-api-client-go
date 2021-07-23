@@ -38,6 +38,8 @@ type SyntheticsTestOptions struct {
 	Retry        *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
 	// The frequency at which to run the Synthetic test (in seconds).
 	TickEvery *int64 `json:"tick_every,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTestOptions instantiates a new SyntheticsTestOptions object
@@ -475,6 +477,9 @@ func (o *SyntheticsTestOptions) SetTickEvery(v int64) {
 
 func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AcceptSelfSigned != nil {
 		toSerialize["accept_self_signed"] = o.AcceptSelfSigned
 	}
@@ -515,6 +520,48 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 		toSerialize["tick_every"] = o.TickEvery
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AcceptSelfSigned   *bool                                `json:"accept_self_signed,omitempty"`
+		AllowInsecure      *bool                                `json:"allow_insecure,omitempty"`
+		DeviceIds          *[]SyntheticsDeviceID                `json:"device_ids,omitempty"`
+		DisableCors        *bool                                `json:"disableCors,omitempty"`
+		FollowRedirects    *bool                                `json:"follow_redirects,omitempty"`
+		MinFailureDuration *int64                               `json:"min_failure_duration,omitempty"`
+		MinLocationFailed  *int64                               `json:"min_location_failed,omitempty"`
+		MonitorName        *string                              `json:"monitor_name,omitempty"`
+		MonitorOptions     *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
+		MonitorPriority    *int32                               `json:"monitor_priority,omitempty"`
+		NoScreenshot       *bool                                `json:"noScreenshot,omitempty"`
+		Retry              *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
+		TickEvery          *int64                               `json:"tick_every,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AcceptSelfSigned = all.AcceptSelfSigned
+	o.AllowInsecure = all.AllowInsecure
+	o.DeviceIds = all.DeviceIds
+	o.DisableCors = all.DisableCors
+	o.FollowRedirects = all.FollowRedirects
+	o.MinFailureDuration = all.MinFailureDuration
+	o.MinLocationFailed = all.MinLocationFailed
+	o.MonitorName = all.MonitorName
+	o.MonitorOptions = all.MonitorOptions
+	o.MonitorPriority = all.MonitorPriority
+	o.NoScreenshot = all.NoScreenshot
+	o.Retry = all.Retry
+	o.TickEvery = all.TickEvery
+	return nil
 }
 
 type NullableSyntheticsTestOptions struct {

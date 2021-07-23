@@ -16,6 +16,8 @@ import (
 // UserCreateRequest Create a user.
 type UserCreateRequest struct {
 	Data UserCreateData `json:"data"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserCreateRequest instantiates a new UserCreateRequest object
@@ -62,6 +64,9 @@ func (o *UserCreateRequest) SetData(v UserCreateData) {
 
 func (o UserCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["data"] = o.Data
 	}
@@ -69,6 +74,7 @@ func (o UserCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (o *UserCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Data *UserCreateData `json:"data"`
 	}{}
@@ -84,7 +90,12 @@ func (o *UserCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Data = all.Data
 	return nil

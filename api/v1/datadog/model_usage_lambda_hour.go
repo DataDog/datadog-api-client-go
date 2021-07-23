@@ -21,6 +21,8 @@ type UsageLambdaHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the sum of invocations of all functions.
 	InvocationsSum *int64 `json:"invocations_sum,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageLambdaHour instantiates a new UsageLambdaHour object
@@ -138,6 +140,9 @@ func (o *UsageLambdaHour) SetInvocationsSum(v int64) {
 
 func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.FuncCount != nil {
 		toSerialize["func_count"] = o.FuncCount
 	}
@@ -148,6 +153,28 @@ func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
 		toSerialize["invocations_sum"] = o.InvocationsSum
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageLambdaHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		FuncCount      *int64     `json:"func_count,omitempty"`
+		Hour           *time.Time `json:"hour,omitempty"`
+		InvocationsSum *int64     `json:"invocations_sum,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.FuncCount = all.FuncCount
+	o.Hour = all.Hour
+	o.InvocationsSum = all.InvocationsSum
+	return nil
 }
 
 type NullableUsageLambdaHour struct {

@@ -21,6 +21,8 @@ type SyntheticsTriggerCITestRunResult struct {
 	PublicId *string `json:"public_id,omitempty"`
 	// ID of the result.
 	ResultId *string `json:"result_id,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTriggerCITestRunResult instantiates a new SyntheticsTriggerCITestRunResult object
@@ -170,6 +172,9 @@ func (o *SyntheticsTriggerCITestRunResult) SetResultId(v string) {
 
 func (o SyntheticsTriggerCITestRunResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Device != nil {
 		toSerialize["device"] = o.Device
 	}
@@ -183,6 +188,38 @@ func (o SyntheticsTriggerCITestRunResult) MarshalJSON() ([]byte, error) {
 		toSerialize["result_id"] = o.ResultId
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTriggerCITestRunResult) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Device   *SyntheticsDeviceID `json:"device,omitempty"`
+		Location *int64              `json:"location,omitempty"`
+		PublicId *string             `json:"public_id,omitempty"`
+		ResultId *string             `json:"result_id,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Device; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Device = all.Device
+	o.Location = all.Location
+	o.PublicId = all.PublicId
+	o.ResultId = all.ResultId
+	return nil
 }
 
 type NullableSyntheticsTriggerCITestRunResult struct {

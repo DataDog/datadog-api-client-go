@@ -20,6 +20,8 @@ type AWSLogsListResponse struct {
 	Lambdas *[]AWSLogsLambda `json:"lambdas,omitempty"`
 	// Array of services IDs.
 	Services *[]string `json:"services,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAWSLogsListResponse instantiates a new AWSLogsListResponse object
@@ -137,6 +139,9 @@ func (o *AWSLogsListResponse) SetServices(v []string) {
 
 func (o AWSLogsListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AccountId != nil {
 		toSerialize["account_id"] = o.AccountId
 	}
@@ -147,6 +152,28 @@ func (o AWSLogsListResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["services"] = o.Services
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSLogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AccountId *string          `json:"account_id,omitempty"`
+		Lambdas   *[]AWSLogsLambda `json:"lambdas,omitempty"`
+		Services  *[]string        `json:"services,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AccountId = all.AccountId
+	o.Lambdas = all.Lambdas
+	o.Services = all.Services
+	return nil
 }
 
 type NullableAWSLogsListResponse struct {

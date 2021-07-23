@@ -15,6 +15,9 @@ import (
 // LogsAggregateBucketValueTimeseries A timeseries array
 type LogsAggregateBucketValueTimeseries struct {
 	Items []LogsAggregateBucketValueTimeseriesPoint
+
+	// UnparsedObject contains the raw value of the array if there was an error when deserializing into the struct
+	UnparsedObject []interface{} `json:-`
 }
 
 // NewLogsAggregateBucketValueTimeseries instantiates a new LogsAggregateBucketValueTimeseries object
@@ -36,8 +39,14 @@ func NewLogsAggregateBucketValueTimeseriesWithDefaults() *LogsAggregateBucketVal
 
 func (o LogsAggregateBucketValueTimeseries) MarshalJSON() ([]byte, error) {
 	toSerialize := make([]interface{}, len(o.Items))
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	for i, item := range o.Items {
 		toSerialize[i] = item
+	}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
 	}
 	return json.Marshal(toSerialize)
 }

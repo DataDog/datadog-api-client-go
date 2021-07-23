@@ -15,6 +15,8 @@ import (
 // SyntheticsUpdateTestPauseStatusPayload Object to start or pause an existing Synthetic test.
 type SyntheticsUpdateTestPauseStatusPayload struct {
 	NewStatus *SyntheticsTestPauseStatus `json:"new_status,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsUpdateTestPauseStatusPayload instantiates a new SyntheticsUpdateTestPauseStatusPayload object
@@ -68,10 +70,39 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) SetNewStatus(v SyntheticsTestPa
 
 func (o SyntheticsUpdateTestPauseStatusPayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.NewStatus != nil {
 		toSerialize["new_status"] = o.NewStatus
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		NewStatus *SyntheticsTestPauseStatus `json:"new_status,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.NewStatus; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.NewStatus = all.NewStatus
+	return nil
 }
 
 type NullableSyntheticsUpdateTestPauseStatusPayload struct {

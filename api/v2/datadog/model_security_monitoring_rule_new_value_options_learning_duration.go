@@ -39,15 +39,8 @@ func (v *SecurityMonitoringRuleNewValueOptionsLearningDuration) UnmarshalJSON(sr
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SecurityMonitoringRuleNewValueOptionsLearningDuration(value)
-	for _, existing := range allowedSecurityMonitoringRuleNewValueOptionsLearningDurationEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SecurityMonitoringRuleNewValueOptionsLearningDuration", value)
+	*v = SecurityMonitoringRuleNewValueOptionsLearningDuration(value)
+	return nil
 }
 
 // NewSecurityMonitoringRuleNewValueOptionsLearningDurationFromValue returns a pointer to a valid SecurityMonitoringRuleNewValueOptionsLearningDuration

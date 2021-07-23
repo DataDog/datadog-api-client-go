@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // MetricVolumes - Possible response objects for a metric's volume.
 type MetricVolumes struct {
 	MetricDistinctVolume        *MetricDistinctVolume
 	MetricIngestedIndexedVolume *MetricIngestedIndexedVolume
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // MetricDistinctVolumeAsMetricVolumes is a convenience function that returns MetricDistinctVolume wrapped in MetricVolumes
@@ -36,11 +38,15 @@ func (dst *MetricVolumes) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into MetricDistinctVolume
 	err = json.Unmarshal(data, &dst.MetricDistinctVolume)
 	if err == nil {
-		jsonMetricDistinctVolume, _ := json.Marshal(dst.MetricDistinctVolume)
-		if string(jsonMetricDistinctVolume) == "{}" { // empty struct
-			dst.MetricDistinctVolume = nil
+		if dst.MetricDistinctVolume != nil && dst.MetricDistinctVolume.UnparsedObject == nil {
+			jsonMetricDistinctVolume, _ := json.Marshal(dst.MetricDistinctVolume)
+			if string(jsonMetricDistinctVolume) == "{}" { // empty struct
+				dst.MetricDistinctVolume = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.MetricDistinctVolume = nil
 		}
 	} else {
 		dst.MetricDistinctVolume = nil
@@ -49,26 +55,27 @@ func (dst *MetricVolumes) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into MetricIngestedIndexedVolume
 	err = json.Unmarshal(data, &dst.MetricIngestedIndexedVolume)
 	if err == nil {
-		jsonMetricIngestedIndexedVolume, _ := json.Marshal(dst.MetricIngestedIndexedVolume)
-		if string(jsonMetricIngestedIndexedVolume) == "{}" { // empty struct
-			dst.MetricIngestedIndexedVolume = nil
+		if dst.MetricIngestedIndexedVolume != nil && dst.MetricIngestedIndexedVolume.UnparsedObject == nil {
+			jsonMetricIngestedIndexedVolume, _ := json.Marshal(dst.MetricIngestedIndexedVolume)
+			if string(jsonMetricIngestedIndexedVolume) == "{}" { // empty struct
+				dst.MetricIngestedIndexedVolume = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.MetricIngestedIndexedVolume = nil
 		}
 	} else {
 		dst.MetricIngestedIndexedVolume = nil
 	}
 
-	if match > 1 { // more than 1 match
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.MetricDistinctVolume = nil
 		dst.MetricIngestedIndexedVolume = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(MetricVolumes)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(MetricVolumes)")
 	}
 }
 
@@ -82,6 +89,9 @@ func (src MetricVolumes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.MetricIngestedIndexedVolume)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

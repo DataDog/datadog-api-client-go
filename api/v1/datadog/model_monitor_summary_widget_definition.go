@@ -35,6 +35,8 @@ type MonitorSummaryWidgetDefinition struct {
 	// Size of the title.
 	TitleSize *string                            `json:"title_size,omitempty"`
 	Type      MonitorSummaryWidgetDefinitionType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorSummaryWidgetDefinition instantiates a new MonitorSummaryWidgetDefinition object
@@ -460,6 +462,9 @@ func (o *MonitorSummaryWidgetDefinition) SetType(v MonitorSummaryWidgetDefinitio
 
 func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ColorPreference != nil {
 		toSerialize["color_preference"] = o.ColorPreference
 	}
@@ -503,6 +508,7 @@ func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Query *string                             `json:"query"`
 		Type  *MonitorSummaryWidgetDefinitionType `json:"type"`
@@ -534,7 +540,60 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.ColorPreference; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.DisplayFormat; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Sort; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.SummaryType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.ColorPreference = all.ColorPreference
 	o.Count = all.Count

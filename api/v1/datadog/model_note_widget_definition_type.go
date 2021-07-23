@@ -35,15 +35,8 @@ func (v *NoteWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := NoteWidgetDefinitionType(value)
-	for _, existing := range allowedNoteWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid NoteWidgetDefinitionType", value)
+	*v = NoteWidgetDefinitionType(value)
+	return nil
 }
 
 // NewNoteWidgetDefinitionTypeFromValue returns a pointer to a valid NoteWidgetDefinitionType

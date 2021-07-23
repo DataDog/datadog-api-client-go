@@ -35,15 +35,8 @@ func (v *DistributionWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := DistributionWidgetDefinitionType(value)
-	for _, existing := range allowedDistributionWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid DistributionWidgetDefinitionType", value)
+	*v = DistributionWidgetDefinitionType(value)
+	return nil
 }
 
 // NewDistributionWidgetDefinitionTypeFromValue returns a pointer to a valid DistributionWidgetDefinitionType

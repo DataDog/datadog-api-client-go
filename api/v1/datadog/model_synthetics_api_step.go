@@ -26,6 +26,8 @@ type SyntheticsAPIStep struct {
 	Name    *string                   `json:"name,omitempty"`
 	Request *SyntheticsTestRequest    `json:"request,omitempty"`
 	Subtype *SyntheticsAPIStepSubtype `json:"subtype,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsAPIStep instantiates a new SyntheticsAPIStep object
@@ -271,6 +273,9 @@ func (o *SyntheticsAPIStep) SetSubtype(v SyntheticsAPIStepSubtype) {
 
 func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AllowFailure != nil {
 		toSerialize["allowFailure"] = o.AllowFailure
 	}
@@ -293,6 +298,44 @@ func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 		toSerialize["subtype"] = o.Subtype
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AllowFailure    *bool                       `json:"allowFailure,omitempty"`
+		Assertions      *[]SyntheticsAssertion      `json:"assertions,omitempty"`
+		ExtractedValues *[]SyntheticsParsingOptions `json:"extractedValues,omitempty"`
+		IsCritical      *bool                       `json:"isCritical,omitempty"`
+		Name            *string                     `json:"name,omitempty"`
+		Request         *SyntheticsTestRequest      `json:"request,omitempty"`
+		Subtype         *SyntheticsAPIStepSubtype   `json:"subtype,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Subtype; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AllowFailure = all.AllowFailure
+	o.Assertions = all.Assertions
+	o.ExtractedValues = all.ExtractedValues
+	o.IsCritical = all.IsCritical
+	o.Name = all.Name
+	o.Request = all.Request
+	o.Subtype = all.Subtype
+	return nil
 }
 
 type NullableSyntheticsAPIStep struct {

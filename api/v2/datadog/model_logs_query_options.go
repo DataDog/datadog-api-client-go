@@ -18,6 +18,8 @@ type LogsQueryOptions struct {
 	TimeOffset *int64 `json:"timeOffset,omitempty"`
 	// The timezone can be specified both as an offset, for example: \"UTC+03:00\".
 	Timezone *string `json:"timezone,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsQueryOptions instantiates a new LogsQueryOptions object
@@ -107,6 +109,9 @@ func (o *LogsQueryOptions) SetTimezone(v string) {
 
 func (o LogsQueryOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.TimeOffset != nil {
 		toSerialize["timeOffset"] = o.TimeOffset
 	}
@@ -114,6 +119,26 @@ func (o LogsQueryOptions) MarshalJSON() ([]byte, error) {
 		toSerialize["timezone"] = o.Timezone
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogsQueryOptions) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		TimeOffset *int64  `json:"timeOffset,omitempty"`
+		Timezone   *string `json:"timezone,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.TimeOffset = all.TimeOffset
+	o.Timezone = all.Timezone
+	return nil
 }
 
 type NullableLogsQueryOptions struct {

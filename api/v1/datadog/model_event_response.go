@@ -17,6 +17,8 @@ type EventResponse struct {
 	Event *Event `json:"event,omitempty"`
 	// A status.
 	Status *string `json:"status,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewEventResponse instantiates a new EventResponse object
@@ -102,6 +104,9 @@ func (o *EventResponse) SetStatus(v string) {
 
 func (o EventResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Event != nil {
 		toSerialize["event"] = o.Event
 	}
@@ -109,6 +114,26 @@ func (o EventResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *EventResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Event  *Event  `json:"event,omitempty"`
+		Status *string `json:"status,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Event = all.Event
+	o.Status = all.Status
+	return nil
 }
 
 type NullableEventResponse struct {

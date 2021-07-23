@@ -35,15 +35,8 @@ func (v *UsageReportsType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := UsageReportsType(value)
-	for _, existing := range allowedUsageReportsTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid UsageReportsType", value)
+	*v = UsageReportsType(value)
+	return nil
 }
 
 // NewUsageReportsTypeFromValue returns a pointer to a valid UsageReportsType

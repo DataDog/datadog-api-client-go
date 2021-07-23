@@ -15,6 +15,8 @@ import (
 // UserInvitationResponse User invitation as returned by the API.
 type UserInvitationResponse struct {
 	Data *UserInvitationResponseData `json:"data,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserInvitationResponse instantiates a new UserInvitationResponse object
@@ -68,10 +70,31 @@ func (o *UserInvitationResponse) SetData(v UserInvitationResponseData) {
 
 func (o UserInvitationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserInvitationResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data *UserInvitationResponseData `json:"data,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	return nil
 }
 
 type NullableUserInvitationResponse struct {

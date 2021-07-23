@@ -33,6 +33,8 @@ type IncidentUpdateAttributes struct {
 	Resolved NullableTime `json:"resolved,omitempty"`
 	// The title of the incident, which summarizes what happened.
 	Title *string `json:"title,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentUpdateAttributes instantiates a new IncidentUpdateAttributes object
@@ -386,6 +388,9 @@ func (o *IncidentUpdateAttributes) SetTitle(v string) {
 
 func (o IncidentUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CustomerImpactEnd.IsSet() {
 		toSerialize["customer_impact_end"] = o.CustomerImpactEnd.Get()
 	}
@@ -414,6 +419,40 @@ func (o IncidentUpdateAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["title"] = o.Title
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IncidentUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		CustomerImpactEnd   NullableTime                        `json:"customer_impact_end,omitempty"`
+		CustomerImpactScope *string                             `json:"customer_impact_scope,omitempty"`
+		CustomerImpactStart NullableTime                        `json:"customer_impact_start,omitempty"`
+		CustomerImpacted    *bool                               `json:"customer_impacted,omitempty"`
+		Detected            NullableTime                        `json:"detected,omitempty"`
+		Fields              *map[string]IncidentFieldAttributes `json:"fields,omitempty"`
+		NotificationHandles *[]string                           `json:"notification_handles,omitempty"`
+		Resolved            NullableTime                        `json:"resolved,omitempty"`
+		Title               *string                             `json:"title,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.CustomerImpactEnd = all.CustomerImpactEnd
+	o.CustomerImpactScope = all.CustomerImpactScope
+	o.CustomerImpactStart = all.CustomerImpactStart
+	o.CustomerImpacted = all.CustomerImpacted
+	o.Detected = all.Detected
+	o.Fields = all.Fields
+	o.NotificationHandles = all.NotificationHandles
+	o.Resolved = all.Resolved
+	o.Title = all.Title
+	return nil
 }
 
 type NullableIncidentUpdateAttributes struct {

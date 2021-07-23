@@ -41,15 +41,8 @@ func (v *SLOCorrectionCategory) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SLOCorrectionCategory(value)
-	for _, existing := range allowedSLOCorrectionCategoryEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SLOCorrectionCategory", value)
+	*v = SLOCorrectionCategory(value)
+	return nil
 }
 
 // NewSLOCorrectionCategoryFromValue returns a pointer to a valid SLOCorrectionCategory

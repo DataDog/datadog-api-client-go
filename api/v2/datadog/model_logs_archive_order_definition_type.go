@@ -35,15 +35,8 @@ func (v *LogsArchiveOrderDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsArchiveOrderDefinitionType(value)
-	for _, existing := range allowedLogsArchiveOrderDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsArchiveOrderDefinitionType", value)
+	*v = LogsArchiveOrderDefinitionType(value)
+	return nil
 }
 
 // NewLogsArchiveOrderDefinitionTypeFromValue returns a pointer to a valid LogsArchiveOrderDefinitionType

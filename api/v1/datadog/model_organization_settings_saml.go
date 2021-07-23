@@ -16,6 +16,8 @@ import (
 type OrganizationSettingsSaml struct {
 	// Whether or not SAML is enabled for this organization.
 	Enabled *bool `json:"enabled,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewOrganizationSettingsSaml instantiates a new OrganizationSettingsSaml object
@@ -69,10 +71,31 @@ func (o *OrganizationSettingsSaml) SetEnabled(v bool) {
 
 func (o OrganizationSettingsSaml) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *OrganizationSettingsSaml) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Enabled *bool `json:"enabled,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Enabled = all.Enabled
+	return nil
 }
 
 type NullableOrganizationSettingsSaml struct {

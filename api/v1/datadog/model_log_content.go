@@ -27,6 +27,8 @@ type LogContent struct {
 	Tags *[]interface{} `json:"tags,omitempty"`
 	// Timestamp of your log.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogContent instantiates a new LogContent object
@@ -240,6 +242,9 @@ func (o *LogContent) SetTimestamp(v time.Time) {
 
 func (o LogContent) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
@@ -259,6 +264,34 @@ func (o LogContent) MarshalJSON() ([]byte, error) {
 		toSerialize["timestamp"] = o.Timestamp
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogContent) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Attributes *map[string]interface{} `json:"attributes,omitempty"`
+		Host       *string                 `json:"host,omitempty"`
+		Message    *string                 `json:"message,omitempty"`
+		Service    *string                 `json:"service,omitempty"`
+		Tags       *[]interface{}          `json:"tags,omitempty"`
+		Timestamp  *time.Time              `json:"timestamp,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Attributes = all.Attributes
+	o.Host = all.Host
+	o.Message = all.Message
+	o.Service = all.Service
+	o.Tags = all.Tags
+	o.Timestamp = all.Timestamp
+	return nil
 }
 
 type NullableLogContent struct {

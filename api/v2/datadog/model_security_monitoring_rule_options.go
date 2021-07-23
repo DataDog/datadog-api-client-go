@@ -19,6 +19,8 @@ type SecurityMonitoringRuleOptions struct {
 	KeepAlive         *SecurityMonitoringRuleKeepAlive         `json:"keepAlive,omitempty"`
 	MaxSignalDuration *SecurityMonitoringRuleMaxSignalDuration `json:"maxSignalDuration,omitempty"`
 	NewValueOptions   *SecurityMonitoringRuleNewValueOptions   `json:"newValueOptions,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSecurityMonitoringRuleOptions instantiates a new SecurityMonitoringRuleOptions object
@@ -200,6 +202,9 @@ func (o *SecurityMonitoringRuleOptions) SetNewValueOptions(v SecurityMonitoringR
 
 func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DetectionMethod != nil {
 		toSerialize["detectionMethod"] = o.DetectionMethod
 	}
@@ -216,6 +221,64 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 		toSerialize["newValueOptions"] = o.NewValueOptions
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		DetectionMethod   *SecurityMonitoringRuleDetectionMethod   `json:"detectionMethod,omitempty"`
+		EvaluationWindow  *SecurityMonitoringRuleEvaluationWindow  `json:"evaluationWindow,omitempty"`
+		KeepAlive         *SecurityMonitoringRuleKeepAlive         `json:"keepAlive,omitempty"`
+		MaxSignalDuration *SecurityMonitoringRuleMaxSignalDuration `json:"maxSignalDuration,omitempty"`
+		NewValueOptions   *SecurityMonitoringRuleNewValueOptions   `json:"newValueOptions,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.DetectionMethod; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.EvaluationWindow; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.KeepAlive; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.MaxSignalDuration; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.DetectionMethod = all.DetectionMethod
+	o.EvaluationWindow = all.EvaluationWindow
+	o.KeepAlive = all.KeepAlive
+	o.MaxSignalDuration = all.MaxSignalDuration
+	o.NewValueOptions = all.NewValueOptions
+	return nil
 }
 
 type NullableSecurityMonitoringRuleOptions struct {

@@ -18,6 +18,8 @@ type IncidentTeamResponse struct {
 	Data IncidentTeamResponseData `json:"data"`
 	// Included objects from relationships.
 	Included *[]IncidentTeamIncludedItems `json:"included,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentTeamResponse instantiates a new IncidentTeamResponse object
@@ -96,6 +98,9 @@ func (o *IncidentTeamResponse) SetIncluded(v []IncidentTeamIncludedItems) {
 
 func (o IncidentTeamResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["data"] = o.Data
 	}
@@ -106,6 +111,7 @@ func (o IncidentTeamResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (o *IncidentTeamResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Data *IncidentTeamResponseData `json:"data"`
 	}{}
@@ -122,7 +128,12 @@ func (o *IncidentTeamResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Data = all.Data
 	o.Included = all.Included

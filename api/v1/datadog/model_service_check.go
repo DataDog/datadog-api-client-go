@@ -26,6 +26,8 @@ type ServiceCheck struct {
 	Tags []string `json:"tags"`
 	// Time of check.
 	Timestamp *int64 `json:"timestamp,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewServiceCheck instantiates a new ServiceCheck object
@@ -211,6 +213,9 @@ func (o *ServiceCheck) SetTimestamp(v int64) {
 
 func (o ServiceCheck) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["check"] = o.Check
 	}
@@ -233,6 +238,7 @@ func (o ServiceCheck) MarshalJSON() ([]byte, error) {
 }
 
 func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Check    *string             `json:"check"`
 		HostName *string             `json:"host_name"`
@@ -265,7 +271,20 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Check = all.Check
 	o.HostName = all.HostName

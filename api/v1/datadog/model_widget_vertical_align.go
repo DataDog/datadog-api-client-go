@@ -39,15 +39,8 @@ func (v *WidgetVerticalAlign) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetVerticalAlign(value)
-	for _, existing := range allowedWidgetVerticalAlignEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetVerticalAlign", value)
+	*v = WidgetVerticalAlign(value)
+	return nil
 }
 
 // NewWidgetVerticalAlignFromValue returns a pointer to a valid WidgetVerticalAlign

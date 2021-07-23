@@ -16,6 +16,8 @@ import (
 type UsageTimeseriesResponse struct {
 	// An array of objects regarding hourly usage of timeseries.
 	Usage *[]UsageTimeseriesHour `json:"usage,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageTimeseriesResponse instantiates a new UsageTimeseriesResponse object
@@ -69,10 +71,31 @@ func (o *UsageTimeseriesResponse) SetUsage(v []UsageTimeseriesHour) {
 
 func (o UsageTimeseriesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageTimeseriesResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Usage *[]UsageTimeseriesHour `json:"usage,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Usage = all.Usage
+	return nil
 }
 
 type NullableUsageTimeseriesResponse struct {

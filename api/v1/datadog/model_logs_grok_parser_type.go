@@ -35,15 +35,8 @@ func (v *LogsGrokParserType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsGrokParserType(value)
-	for _, existing := range allowedLogsGrokParserTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsGrokParserType", value)
+	*v = LogsGrokParserType(value)
+	return nil
 }
 
 // NewLogsGrokParserTypeFromValue returns a pointer to a valid LogsGrokParserType

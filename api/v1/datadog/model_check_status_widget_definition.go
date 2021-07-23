@@ -31,6 +31,8 @@ type CheckStatusWidgetDefinition struct {
 	// Size of the title.
 	TitleSize *string                         `json:"title_size,omitempty"`
 	Type      CheckStatusWidgetDefinitionType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewCheckStatusWidgetDefinition instantiates a new CheckStatusWidgetDefinition object
@@ -353,6 +355,9 @@ func (o *CheckStatusWidgetDefinition) SetType(v CheckStatusWidgetDefinitionType)
 
 func (o CheckStatusWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["check"] = o.Check
 	}
@@ -387,6 +392,7 @@ func (o CheckStatusWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Check    *string                          `json:"check"`
 		Grouping *WidgetGrouping                  `json:"grouping"`
@@ -419,7 +425,36 @@ func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Grouping; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Check = all.Check
 	o.Group = all.Group

@@ -26,6 +26,8 @@ type MonitorThresholds struct {
 	Warning NullableFloat64 `json:"warning,omitempty"`
 	// The monitor `WARNING` recovery threshold.
 	WarningRecovery NullableFloat64 `json:"warning_recovery,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorThresholds instantiates a new MonitorThresholds object
@@ -294,6 +296,9 @@ func (o *MonitorThresholds) UnsetWarningRecovery() {
 
 func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Critical != nil {
 		toSerialize["critical"] = o.Critical
 	}
@@ -313,6 +318,34 @@ func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
 		toSerialize["warning_recovery"] = o.WarningRecovery.Get()
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorThresholds) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Critical         *float64        `json:"critical,omitempty"`
+		CriticalRecovery NullableFloat64 `json:"critical_recovery,omitempty"`
+		Ok               NullableFloat64 `json:"ok,omitempty"`
+		Unknown          NullableFloat64 `json:"unknown,omitempty"`
+		Warning          NullableFloat64 `json:"warning,omitempty"`
+		WarningRecovery  NullableFloat64 `json:"warning_recovery,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Critical = all.Critical
+	o.CriticalRecovery = all.CriticalRecovery
+	o.Ok = all.Ok
+	o.Unknown = all.Unknown
+	o.Warning = all.Warning
+	o.WarningRecovery = all.WarningRecovery
+	return nil
 }
 
 type NullableMonitorThresholds struct {

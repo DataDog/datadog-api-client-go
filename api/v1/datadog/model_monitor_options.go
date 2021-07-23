@@ -53,6 +53,8 @@ type MonitorOptions struct {
 	Thresholds        *MonitorThresholds             `json:"thresholds,omitempty"`
 	// The number of hours of the monitor not reporting data before it automatically resolves from a triggered state.
 	TimeoutH NullableInt64 `json:"timeout_h,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorOptions instantiates a new MonitorOptions object
@@ -862,6 +864,9 @@ func (o *MonitorOptions) UnsetTimeoutH() {
 
 func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Aggregation != nil {
 		toSerialize["aggregation"] = o.Aggregation
 	}
@@ -926,6 +931,64 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 		toSerialize["timeout_h"] = o.TimeoutH.Get()
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Aggregation          *MonitorOptionsAggregation     `json:"aggregation,omitempty"`
+		DeviceIds            *[]MonitorDeviceID             `json:"device_ids,omitempty"`
+		EnableLogsSample     *bool                          `json:"enable_logs_sample,omitempty"`
+		EscalationMessage    *string                        `json:"escalation_message,omitempty"`
+		EvaluationDelay      NullableInt64                  `json:"evaluation_delay,omitempty"`
+		GroupbySimpleMonitor *bool                          `json:"groupby_simple_monitor,omitempty"`
+		IncludeTags          *bool                          `json:"include_tags,omitempty"`
+		Locked               *bool                          `json:"locked,omitempty"`
+		MinFailureDuration   NullableInt64                  `json:"min_failure_duration,omitempty"`
+		MinLocationFailed    NullableInt64                  `json:"min_location_failed,omitempty"`
+		NewHostDelay         NullableInt64                  `json:"new_host_delay,omitempty"`
+		NoDataTimeframe      NullableInt64                  `json:"no_data_timeframe,omitempty"`
+		NotifyAudit          *bool                          `json:"notify_audit,omitempty"`
+		NotifyNoData         *bool                          `json:"notify_no_data,omitempty"`
+		RenotifyInterval     NullableInt64                  `json:"renotify_interval,omitempty"`
+		RequireFullWindow    *bool                          `json:"require_full_window,omitempty"`
+		Silenced             *map[string]int64              `json:"silenced,omitempty"`
+		SyntheticsCheckId    NullableString                 `json:"synthetics_check_id,omitempty"`
+		ThresholdWindows     *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
+		Thresholds           *MonitorThresholds             `json:"thresholds,omitempty"`
+		TimeoutH             NullableInt64                  `json:"timeout_h,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Aggregation = all.Aggregation
+	o.DeviceIds = all.DeviceIds
+	o.EnableLogsSample = all.EnableLogsSample
+	o.EscalationMessage = all.EscalationMessage
+	o.EvaluationDelay = all.EvaluationDelay
+	o.GroupbySimpleMonitor = all.GroupbySimpleMonitor
+	o.IncludeTags = all.IncludeTags
+	o.Locked = all.Locked
+	o.MinFailureDuration = all.MinFailureDuration
+	o.MinLocationFailed = all.MinLocationFailed
+	o.NewHostDelay = all.NewHostDelay
+	o.NoDataTimeframe = all.NoDataTimeframe
+	o.NotifyAudit = all.NotifyAudit
+	o.NotifyNoData = all.NotifyNoData
+	o.RenotifyInterval = all.RenotifyInterval
+	o.RequireFullWindow = all.RequireFullWindow
+	o.Silenced = all.Silenced
+	o.SyntheticsCheckId = all.SyntheticsCheckId
+	o.ThresholdWindows = all.ThresholdWindows
+	o.Thresholds = all.Thresholds
+	o.TimeoutH = all.TimeoutH
+	return nil
 }
 
 type NullableMonitorOptions struct {

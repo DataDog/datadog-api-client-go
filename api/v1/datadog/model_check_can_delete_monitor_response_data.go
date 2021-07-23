@@ -16,6 +16,8 @@ import (
 type CheckCanDeleteMonitorResponseData struct {
 	// An array of of Monitor IDs that can be safely deleted.
 	Ok *[]int64 `json:"ok,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewCheckCanDeleteMonitorResponseData instantiates a new CheckCanDeleteMonitorResponseData object
@@ -69,10 +71,31 @@ func (o *CheckCanDeleteMonitorResponseData) SetOk(v []int64) {
 
 func (o CheckCanDeleteMonitorResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Ok != nil {
 		toSerialize["ok"] = o.Ok
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *CheckCanDeleteMonitorResponseData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Ok *[]int64 `json:"ok,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Ok = all.Ok
+	return nil
 }
 
 type NullableCheckCanDeleteMonitorResponseData struct {

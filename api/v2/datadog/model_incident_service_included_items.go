@@ -10,12 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // IncidentServiceIncludedItems - An object related to an incident service which is present in the included payload.
 type IncidentServiceIncludedItems struct {
 	User *User
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 // UserAsIncidentServiceIncludedItems is a convenience function that returns User wrapped in IncidentServiceIncludedItems
@@ -30,25 +32,26 @@ func (dst *IncidentServiceIncludedItems) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into User
 	err = json.Unmarshal(data, &dst.User)
 	if err == nil {
-		jsonUser, _ := json.Marshal(dst.User)
-		if string(jsonUser) == "{}" { // empty struct
-			dst.User = nil
+		if dst.User != nil && dst.User.UnparsedObject == nil {
+			jsonUser, _ := json.Marshal(dst.User)
+			if string(jsonUser) == "{}" { // empty struct
+				dst.User = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.User = nil
 		}
 	} else {
 		dst.User = nil
 	}
 
-	if match > 1 { // more than 1 match
+	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.User = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(IncidentServiceIncludedItems)")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(IncidentServiceIncludedItems)")
 	}
 }
 
@@ -58,6 +61,9 @@ func (src IncidentServiceIncludedItems) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.User)
 	}
 
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 

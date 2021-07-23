@@ -16,6 +16,8 @@ import (
 type OrganizationListResponse struct {
 	// Array of organization objects.
 	Orgs *[]Organization `json:"orgs,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewOrganizationListResponse instantiates a new OrganizationListResponse object
@@ -69,10 +71,31 @@ func (o *OrganizationListResponse) SetOrgs(v []Organization) {
 
 func (o OrganizationListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Orgs != nil {
 		toSerialize["orgs"] = o.Orgs
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *OrganizationListResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Orgs *[]Organization `json:"orgs,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Orgs = all.Orgs
+	return nil
 }
 
 type NullableOrganizationListResponse struct {

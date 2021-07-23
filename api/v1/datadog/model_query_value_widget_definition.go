@@ -33,6 +33,8 @@ type QueryValueWidgetDefinition struct {
 	// Size of the title.
 	TitleSize *string                        `json:"title_size,omitempty"`
 	Type      QueryValueWidgetDefinitionType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewQueryValueWidgetDefinition instantiates a new QueryValueWidgetDefinition object
@@ -394,6 +396,9 @@ func (o *QueryValueWidgetDefinition) SetType(v QueryValueWidgetDefinitionType) {
 
 func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Autoscale != nil {
 		toSerialize["autoscale"] = o.Autoscale
 	}
@@ -431,6 +436,7 @@ func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Requests *[]QueryValueWidgetRequest      `json:"requests"`
 		Type     *QueryValueWidgetDefinitionType `json:"type"`
@@ -460,7 +466,36 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TextAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Autoscale = all.Autoscale
 	o.CustomLinks = all.CustomLinks

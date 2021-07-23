@@ -37,15 +37,8 @@ func (v *WidgetNodeType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetNodeType(value)
-	for _, existing := range allowedWidgetNodeTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetNodeType", value)
+	*v = WidgetNodeType(value)
+	return nil
 }
 
 // NewWidgetNodeTypeFromValue returns a pointer to a valid WidgetNodeType

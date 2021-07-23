@@ -20,6 +20,8 @@ type UserUpdateAttributes struct {
 	Email *string `json:"email,omitempty"`
 	// The name of the user.
 	Name *string `json:"name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUserUpdateAttributes instantiates a new UserUpdateAttributes object
@@ -137,6 +139,9 @@ func (o *UserUpdateAttributes) SetName(v string) {
 
 func (o UserUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Disabled != nil {
 		toSerialize["disabled"] = o.Disabled
 	}
@@ -147,6 +152,28 @@ func (o UserUpdateAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UserUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Disabled *bool   `json:"disabled,omitempty"`
+		Email    *string `json:"email,omitempty"`
+		Name     *string `json:"name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Disabled = all.Disabled
+	o.Email = all.Email
+	o.Name = all.Name
+	return nil
 }
 
 type NullableUserUpdateAttributes struct {

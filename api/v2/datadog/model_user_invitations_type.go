@@ -35,15 +35,8 @@ func (v *UserInvitationsType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := UserInvitationsType(value)
-	for _, existing := range allowedUserInvitationsTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid UserInvitationsType", value)
+	*v = UserInvitationsType(value)
+	return nil
 }
 
 // NewUserInvitationsTypeFromValue returns a pointer to a valid UserInvitationsType

@@ -37,15 +37,8 @@ func (v *EventPriority) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := EventPriority(value)
-	for _, existing := range allowedEventPriorityEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid EventPriority", value)
+	*v = EventPriority(value)
+	return nil
 }
 
 // NewEventPriorityFromValue returns a pointer to a valid EventPriority

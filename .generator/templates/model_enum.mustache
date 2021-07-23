@@ -30,15 +30,8 @@ func (v *{{{classname}}}) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := {{{classname}}}(value)
-	for _, existing := range allowed{{{classname}}}EnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid {{classname}}", value)
+	*v = {{{classname}}}(value)
+	return nil
 }
 
 // New{{{classname}}}FromValue returns a pointer to a valid {{{classname}}}

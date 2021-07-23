@@ -39,15 +39,8 @@ func (v *WidgetSizeFormat) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetSizeFormat(value)
-	for _, existing := range allowedWidgetSizeFormatEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetSizeFormat", value)
+	*v = WidgetSizeFormat(value)
+	return nil
 }
 
 // NewWidgetSizeFormatFromValue returns a pointer to a valid WidgetSizeFormat

@@ -39,15 +39,8 @@ func (v *TableWidgetHasSearchBar) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := TableWidgetHasSearchBar(value)
-	for _, existing := range allowedTableWidgetHasSearchBarEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid TableWidgetHasSearchBar", value)
+	*v = TableWidgetHasSearchBar(value)
+	return nil
 }
 
 // NewTableWidgetHasSearchBarFromValue returns a pointer to a valid TableWidgetHasSearchBar

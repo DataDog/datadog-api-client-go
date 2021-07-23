@@ -16,6 +16,8 @@ import (
 type SyntheticsPrivateLocationSecrets struct {
 	Authentication   *SyntheticsPrivateLocationSecretsAuthentication   `json:"authentication,omitempty"`
 	ConfigDecryption *SyntheticsPrivateLocationSecretsConfigDecryption `json:"config_decryption,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsPrivateLocationSecrets instantiates a new SyntheticsPrivateLocationSecrets object
@@ -101,6 +103,9 @@ func (o *SyntheticsPrivateLocationSecrets) SetConfigDecryption(v SyntheticsPriva
 
 func (o SyntheticsPrivateLocationSecrets) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Authentication != nil {
 		toSerialize["authentication"] = o.Authentication
 	}
@@ -108,6 +113,26 @@ func (o SyntheticsPrivateLocationSecrets) MarshalJSON() ([]byte, error) {
 		toSerialize["config_decryption"] = o.ConfigDecryption
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsPrivateLocationSecrets) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Authentication   *SyntheticsPrivateLocationSecretsAuthentication   `json:"authentication,omitempty"`
+		ConfigDecryption *SyntheticsPrivateLocationSecretsConfigDecryption `json:"config_decryption,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Authentication = all.Authentication
+	o.ConfigDecryption = all.ConfigDecryption
+	return nil
 }
 
 type NullableSyntheticsPrivateLocationSecrets struct {

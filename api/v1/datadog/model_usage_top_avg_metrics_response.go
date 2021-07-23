@@ -17,6 +17,8 @@ type UsageTopAvgMetricsResponse struct {
 	Metadata *UsageTopAvgMetricsMetadata `json:"metadata,omitempty"`
 	// Number of hourly recorded custom metrics for a given organization.
 	Usage *[]UsageTopAvgMetricsHour `json:"usage,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageTopAvgMetricsResponse instantiates a new UsageTopAvgMetricsResponse object
@@ -102,6 +104,9 @@ func (o *UsageTopAvgMetricsResponse) SetUsage(v []UsageTopAvgMetricsHour) {
 
 func (o UsageTopAvgMetricsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -109,6 +114,26 @@ func (o UsageTopAvgMetricsResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["usage"] = o.Usage
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageTopAvgMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Metadata *UsageTopAvgMetricsMetadata `json:"metadata,omitempty"`
+		Usage    *[]UsageTopAvgMetricsHour   `json:"usage,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Metadata = all.Metadata
+	o.Usage = all.Usage
+	return nil
 }
 
 type NullableUsageTopAvgMetricsResponse struct {

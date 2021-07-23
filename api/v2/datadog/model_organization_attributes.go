@@ -31,6 +31,8 @@ type OrganizationAttributes struct {
 	Sharing *string `json:"sharing,omitempty"`
 	// URL of the site that this organization exists at.
 	Url *string `json:"url,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewOrganizationAttributes instantiates a new OrganizationAttributes object
@@ -308,6 +310,9 @@ func (o *OrganizationAttributes) SetUrl(v string) {
 
 func (o OrganizationAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -333,6 +338,38 @@ func (o OrganizationAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["url"] = o.Url
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *OrganizationAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		CreatedAt   *time.Time `json:"created_at,omitempty"`
+		Description *string    `json:"description,omitempty"`
+		Disabled    *bool      `json:"disabled,omitempty"`
+		ModifiedAt  *time.Time `json:"modified_at,omitempty"`
+		Name        *string    `json:"name,omitempty"`
+		PublicId    *string    `json:"public_id,omitempty"`
+		Sharing     *string    `json:"sharing,omitempty"`
+		Url         *string    `json:"url,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.CreatedAt = all.CreatedAt
+	o.Description = all.Description
+	o.Disabled = all.Disabled
+	o.ModifiedAt = all.ModifiedAt
+	o.Name = all.Name
+	o.PublicId = all.PublicId
+	o.Sharing = all.Sharing
+	o.Url = all.Url
+	return nil
 }
 
 type NullableOrganizationAttributes struct {

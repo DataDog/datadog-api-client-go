@@ -24,6 +24,8 @@ type SyntheticsBrowserVariable struct {
 	// Pattern of the variable.
 	Pattern *string                       `json:"pattern,omitempty"`
 	Type    SyntheticsBrowserVariableType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsBrowserVariable instantiates a new SyntheticsBrowserVariable object
@@ -191,6 +193,9 @@ func (o *SyntheticsBrowserVariable) SetType(v SyntheticsBrowserVariableType) {
 
 func (o SyntheticsBrowserVariable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Example != nil {
 		toSerialize["example"] = o.Example
 	}
@@ -210,6 +215,7 @@ func (o SyntheticsBrowserVariable) MarshalJSON() ([]byte, error) {
 }
 
 func (o *SyntheticsBrowserVariable) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Name *string                        `json:"name"`
 		Type *SyntheticsBrowserVariableType `json:"type"`
@@ -233,7 +239,20 @@ func (o *SyntheticsBrowserVariable) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Example = all.Example
 	o.Id = all.Id

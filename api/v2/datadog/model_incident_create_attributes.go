@@ -25,6 +25,8 @@ type IncidentCreateAttributes struct {
 	NotificationHandles *[]string `json:"notification_handles,omitempty"`
 	// The title of the incident, which summarizes what happened.
 	Title string `json:"title"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentCreateAttributes instantiates a new IncidentCreateAttributes object
@@ -192,6 +194,9 @@ func (o *IncidentCreateAttributes) SetTitle(v string) {
 
 func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["customer_impacted"] = o.CustomerImpacted
 	}
@@ -211,6 +216,7 @@ func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		CustomerImpacted *bool   `json:"customer_impacted"`
 		Title            *string `json:"title"`
@@ -234,7 +240,12 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.CustomerImpacted = all.CustomerImpacted
 	o.Fields = all.Fields

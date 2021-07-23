@@ -49,15 +49,8 @@ func (v *WidgetImageSizing) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetImageSizing(value)
-	for _, existing := range allowedWidgetImageSizingEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetImageSizing", value)
+	*v = WidgetImageSizing(value)
+	return nil
 }
 
 // NewWidgetImageSizingFromValue returns a pointer to a valid WidgetImageSizing

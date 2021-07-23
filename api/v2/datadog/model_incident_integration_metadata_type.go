@@ -35,15 +35,8 @@ func (v *IncidentIntegrationMetadataType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := IncidentIntegrationMetadataType(value)
-	for _, existing := range allowedIncidentIntegrationMetadataTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid IncidentIntegrationMetadataType", value)
+	*v = IncidentIntegrationMetadataType(value)
+	return nil
 }
 
 // NewIncidentIntegrationMetadataTypeFromValue returns a pointer to a valid IncidentIntegrationMetadataType

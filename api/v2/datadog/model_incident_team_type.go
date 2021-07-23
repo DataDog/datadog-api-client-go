@@ -35,15 +35,8 @@ func (v *IncidentTeamType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := IncidentTeamType(value)
-	for _, existing := range allowedIncidentTeamTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid IncidentTeamType", value)
+	*v = IncidentTeamType(value)
+	return nil
 }
 
 // NewIncidentTeamTypeFromValue returns a pointer to a valid IncidentTeamType

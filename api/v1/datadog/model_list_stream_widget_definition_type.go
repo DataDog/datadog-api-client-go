@@ -35,15 +35,8 @@ func (v *ListStreamWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ListStreamWidgetDefinitionType(value)
-	for _, existing := range allowedListStreamWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ListStreamWidgetDefinitionType", value)
+	*v = ListStreamWidgetDefinitionType(value)
+	return nil
 }
 
 // NewListStreamWidgetDefinitionTypeFromValue returns a pointer to a valid ListStreamWidgetDefinitionType

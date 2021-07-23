@@ -35,15 +35,8 @@ func (v *ScatterPlotWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ScatterPlotWidgetDefinitionType(value)
-	for _, existing := range allowedScatterPlotWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ScatterPlotWidgetDefinitionType", value)
+	*v = ScatterPlotWidgetDefinitionType(value)
+	return nil
 }
 
 // NewScatterPlotWidgetDefinitionTypeFromValue returns a pointer to a valid ScatterPlotWidgetDefinitionType

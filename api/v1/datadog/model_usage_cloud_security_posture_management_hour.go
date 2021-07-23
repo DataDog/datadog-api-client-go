@@ -21,6 +21,8 @@ type UsageCloudSecurityPostureManagementHour struct {
 	HostCount *int64 `json:"host_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageCloudSecurityPostureManagementHour instantiates a new UsageCloudSecurityPostureManagementHour object
@@ -138,6 +140,9 @@ func (o *UsageCloudSecurityPostureManagementHour) SetHour(v time.Time) {
 
 func (o UsageCloudSecurityPostureManagementHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ContainerCount != nil {
 		toSerialize["container_count"] = o.ContainerCount
 	}
@@ -148,6 +153,28 @@ func (o UsageCloudSecurityPostureManagementHour) MarshalJSON() ([]byte, error) {
 		toSerialize["hour"] = o.Hour
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageCloudSecurityPostureManagementHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ContainerCount *int64     `json:"container_count,omitempty"`
+		HostCount      *int64     `json:"host_count,omitempty"`
+		Hour           *time.Time `json:"hour,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ContainerCount = all.ContainerCount
+	o.HostCount = all.HostCount
+	o.Hour = all.Hour
+	return nil
 }
 
 type NullableUsageCloudSecurityPostureManagementHour struct {

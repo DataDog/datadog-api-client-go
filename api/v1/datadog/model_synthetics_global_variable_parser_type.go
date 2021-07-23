@@ -39,15 +39,8 @@ func (v *SyntheticsGlobalVariableParserType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsGlobalVariableParserType(value)
-	for _, existing := range allowedSyntheticsGlobalVariableParserTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsGlobalVariableParserType", value)
+	*v = SyntheticsGlobalVariableParserType(value)
+	return nil
 }
 
 // NewSyntheticsGlobalVariableParserTypeFromValue returns a pointer to a valid SyntheticsGlobalVariableParserType

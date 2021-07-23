@@ -35,15 +35,8 @@ func (v *SLOWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SLOWidgetDefinitionType(value)
-	for _, existing := range allowedSLOWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SLOWidgetDefinitionType", value)
+	*v = SLOWidgetDefinitionType(value)
+	return nil
 }
 
 // NewSLOWidgetDefinitionTypeFromValue returns a pointer to a valid SLOWidgetDefinitionType

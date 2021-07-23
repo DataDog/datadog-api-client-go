@@ -20,6 +20,8 @@ type SyntheticsAssertionJSONPathTargetTarget struct {
 	Operator *string `json:"operator,omitempty"`
 	// The path target value to compare to.
 	TargetValue interface{} `json:"targetValue,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsAssertionJSONPathTargetTarget instantiates a new SyntheticsAssertionJSONPathTargetTarget object
@@ -138,6 +140,9 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) SetTargetValue(v interface{}) 
 
 func (o SyntheticsAssertionJSONPathTargetTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.JsonPath != nil {
 		toSerialize["jsonPath"] = o.JsonPath
 	}
@@ -148,6 +153,28 @@ func (o SyntheticsAssertionJSONPathTargetTarget) MarshalJSON() ([]byte, error) {
 		toSerialize["targetValue"] = o.TargetValue
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsAssertionJSONPathTargetTarget) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		JsonPath    *string     `json:"jsonPath,omitempty"`
+		Operator    *string     `json:"operator,omitempty"`
+		TargetValue interface{} `json:"targetValue,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.JsonPath = all.JsonPath
+	o.Operator = all.Operator
+	o.TargetValue = all.TargetValue
+	return nil
 }
 
 type NullableSyntheticsAssertionJSONPathTargetTarget struct {

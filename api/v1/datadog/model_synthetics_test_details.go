@@ -33,6 +33,8 @@ type SyntheticsTestDetails struct {
 	// Array of tags attached to the test.
 	Tags *[]string                  `json:"tags,omitempty"`
 	Type *SyntheticsTestDetailsType `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTestDetails instantiates a new SyntheticsTestDetails object
@@ -438,6 +440,9 @@ func (o *SyntheticsTestDetails) SetType(v SyntheticsTestDetailsType) {
 
 func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Config != nil {
 		toSerialize["config"] = o.Config
 	}
@@ -475,6 +480,70 @@ func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Config    *SyntheticsTestConfig         `json:"config,omitempty"`
+		Locations *[]string                     `json:"locations,omitempty"`
+		Message   *string                       `json:"message,omitempty"`
+		MonitorId *int64                        `json:"monitor_id,omitempty"`
+		Name      *string                       `json:"name,omitempty"`
+		Options   *SyntheticsTestOptions        `json:"options,omitempty"`
+		PublicId  *string                       `json:"public_id,omitempty"`
+		Status    *SyntheticsTestPauseStatus    `json:"status,omitempty"`
+		Steps     *[]SyntheticsStep             `json:"steps,omitempty"`
+		Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
+		Tags      *[]string                     `json:"tags,omitempty"`
+		Type      *SyntheticsTestDetailsType    `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Subtype; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Config = all.Config
+	o.Locations = all.Locations
+	o.Message = all.Message
+	o.MonitorId = all.MonitorId
+	o.Name = all.Name
+	o.Options = all.Options
+	o.PublicId = all.PublicId
+	o.Status = all.Status
+	o.Steps = all.Steps
+	o.Subtype = all.Subtype
+	o.Tags = all.Tags
+	o.Type = all.Type
+	return nil
 }
 
 type NullableSyntheticsTestDetails struct {

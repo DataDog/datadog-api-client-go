@@ -29,6 +29,8 @@ type PermissionAttributes struct {
 	Name *string `json:"name,omitempty"`
 	// Whether or not the permission is restricted.
 	Restricted *bool `json:"restricted,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewPermissionAttributes instantiates a new PermissionAttributes object
@@ -274,6 +276,9 @@ func (o *PermissionAttributes) SetRestricted(v bool) {
 
 func (o PermissionAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Created != nil {
 		toSerialize["created"] = o.Created
 	}
@@ -296,6 +301,36 @@ func (o PermissionAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["restricted"] = o.Restricted
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *PermissionAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Created     *time.Time `json:"created,omitempty"`
+		Description *string    `json:"description,omitempty"`
+		DisplayName *string    `json:"display_name,omitempty"`
+		DisplayType *string    `json:"display_type,omitempty"`
+		GroupName   *string    `json:"group_name,omitempty"`
+		Name        *string    `json:"name,omitempty"`
+		Restricted  *bool      `json:"restricted,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Created = all.Created
+	o.Description = all.Description
+	o.DisplayName = all.DisplayName
+	o.DisplayType = all.DisplayType
+	o.GroupName = all.GroupName
+	o.Name = all.Name
+	o.Restricted = all.Restricted
+	return nil
 }
 
 type NullablePermissionAttributes struct {

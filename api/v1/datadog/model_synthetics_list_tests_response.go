@@ -16,6 +16,8 @@ import (
 type SyntheticsListTestsResponse struct {
 	// Array of Synthetic tests configuration.
 	Tests *[]SyntheticsTestDetails `json:"tests,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsListTestsResponse instantiates a new SyntheticsListTestsResponse object
@@ -69,10 +71,31 @@ func (o *SyntheticsListTestsResponse) SetTests(v []SyntheticsTestDetails) {
 
 func (o SyntheticsListTestsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Tests != nil {
 		toSerialize["tests"] = o.Tests
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsListTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Tests *[]SyntheticsTestDetails `json:"tests,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Tests = all.Tests
+	return nil
 }
 
 type NullableSyntheticsListTestsResponse struct {

@@ -26,6 +26,8 @@ type LogsArithmeticProcessor struct {
 	// Name of the attribute that contains the result of the arithmetic operation.
 	Target string                      `json:"target"`
 	Type   LogsArithmeticProcessorType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsArithmeticProcessor instantiates a new LogsArithmeticProcessor object
@@ -228,6 +230,9 @@ func (o *LogsArithmeticProcessor) SetType(v LogsArithmeticProcessorType) {
 
 func (o LogsArithmeticProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["expression"] = o.Expression
 	}
@@ -250,6 +255,7 @@ func (o LogsArithmeticProcessor) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsArithmeticProcessor) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Expression *string                      `json:"expression"`
 		Target     *string                      `json:"target"`
@@ -278,7 +284,20 @@ func (o *LogsArithmeticProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Expression = all.Expression
 	o.IsEnabled = all.IsEnabled

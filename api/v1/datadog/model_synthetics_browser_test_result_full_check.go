@@ -16,6 +16,8 @@ import (
 // SyntheticsBrowserTestResultFullCheck Object describing the browser test configuration.
 type SyntheticsBrowserTestResultFullCheck struct {
 	Config SyntheticsTestConfig `json:"config"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsBrowserTestResultFullCheck instantiates a new SyntheticsBrowserTestResultFullCheck object
@@ -62,6 +64,9 @@ func (o *SyntheticsBrowserTestResultFullCheck) SetConfig(v SyntheticsTestConfig)
 
 func (o SyntheticsBrowserTestResultFullCheck) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["config"] = o.Config
 	}
@@ -69,6 +74,7 @@ func (o SyntheticsBrowserTestResultFullCheck) MarshalJSON() ([]byte, error) {
 }
 
 func (o *SyntheticsBrowserTestResultFullCheck) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Config *SyntheticsTestConfig `json:"config"`
 	}{}
@@ -84,7 +90,12 @@ func (o *SyntheticsBrowserTestResultFullCheck) UnmarshalJSON(bytes []byte) (err 
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Config = all.Config
 	return nil

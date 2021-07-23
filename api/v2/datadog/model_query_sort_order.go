@@ -37,15 +37,8 @@ func (v *QuerySortOrder) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := QuerySortOrder(value)
-	for _, existing := range allowedQuerySortOrderEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid QuerySortOrder", value)
+	*v = QuerySortOrder(value)
+	return nil
 }
 
 // NewQuerySortOrderFromValue returns a pointer to a valid QuerySortOrder

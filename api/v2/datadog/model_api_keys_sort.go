@@ -49,15 +49,8 @@ func (v *APIKeysSort) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := APIKeysSort(value)
-	for _, existing := range allowedAPIKeysSortEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid APIKeysSort", value)
+	*v = APIKeysSort(value)
+	return nil
 }
 
 // NewAPIKeysSortFromValue returns a pointer to a valid APIKeysSort

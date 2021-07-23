@@ -35,15 +35,8 @@ func (v *IFrameWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := IFrameWidgetDefinitionType(value)
-	for _, existing := range allowedIFrameWidgetDefinitionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid IFrameWidgetDefinitionType", value)
+	*v = IFrameWidgetDefinitionType(value)
+	return nil
 }
 
 // NewIFrameWidgetDefinitionTypeFromValue returns a pointer to a valid IFrameWidgetDefinitionType

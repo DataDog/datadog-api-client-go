@@ -18,6 +18,8 @@ type SLODeleteResponse struct {
 	Data *[]string `json:"data,omitempty"`
 	// An dictionary containing the ID of the SLO as key and a deletion error as value.
 	Errors *map[string]string `json:"errors,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLODeleteResponse instantiates a new SLODeleteResponse object
@@ -103,6 +105,9 @@ func (o *SLODeleteResponse) SetErrors(v map[string]string) {
 
 func (o SLODeleteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
@@ -110,6 +115,26 @@ func (o SLODeleteResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["errors"] = o.Errors
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SLODeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data   *[]string          `json:"data,omitempty"`
+		Errors *map[string]string `json:"errors,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	o.Errors = all.Errors
+	return nil
 }
 
 type NullableSLODeleteResponse struct {

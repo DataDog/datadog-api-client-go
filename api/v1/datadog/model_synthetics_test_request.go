@@ -43,6 +43,8 @@ type SyntheticsTestRequest struct {
 	Timeout *float64 `json:"timeout,omitempty"`
 	// URL to perform the test with.
 	Url *string `json:"url,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object
@@ -576,6 +578,9 @@ func (o *SyntheticsTestRequest) SetUrl(v string) {
 
 func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AllowInsecure != nil {
 		toSerialize["allow_insecure"] = o.AllowInsecure
 	}
@@ -625,6 +630,62 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["url"] = o.Url
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AllowInsecure        *bool                             `json:"allow_insecure,omitempty"`
+		BasicAuth            *SyntheticsBasicAuth              `json:"basicAuth,omitempty"`
+		Body                 *string                           `json:"body,omitempty"`
+		Certificate          *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
+		DnsServer            *string                           `json:"dnsServer,omitempty"`
+		DnsServerPort        *int32                            `json:"dnsServerPort,omitempty"`
+		Headers              *map[string]string                `json:"headers,omitempty"`
+		Host                 *string                           `json:"host,omitempty"`
+		Method               *HTTPMethod                       `json:"method,omitempty"`
+		NoSavingResponseBody *bool                             `json:"noSavingResponseBody,omitempty"`
+		NumberOfPackets      *int32                            `json:"numberOfPackets,omitempty"`
+		Port                 *int64                            `json:"port,omitempty"`
+		Query                *interface{}                      `json:"query,omitempty"`
+		ShouldTrackHops      *bool                             `json:"shouldTrackHops,omitempty"`
+		Timeout              *float64                          `json:"timeout,omitempty"`
+		Url                  *string                           `json:"url,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Method; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AllowInsecure = all.AllowInsecure
+	o.BasicAuth = all.BasicAuth
+	o.Body = all.Body
+	o.Certificate = all.Certificate
+	o.DnsServer = all.DnsServer
+	o.DnsServerPort = all.DnsServerPort
+	o.Headers = all.Headers
+	o.Host = all.Host
+	o.Method = all.Method
+	o.NoSavingResponseBody = all.NoSavingResponseBody
+	o.NumberOfPackets = all.NumberOfPackets
+	o.Port = all.Port
+	o.Query = all.Query
+	o.ShouldTrackHops = all.ShouldTrackHops
+	o.Timeout = all.Timeout
+	o.Url = all.Url
+	return nil
 }
 
 type NullableSyntheticsTestRequest struct {

@@ -25,6 +25,8 @@ type SyntheticsBrowserTestResultFull struct {
 	// ID of the browser test result.
 	ResultId *string                      `json:"result_id,omitempty"`
 	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsBrowserTestResultFull instantiates a new SyntheticsBrowserTestResultFull object
@@ -270,6 +272,9 @@ func (o *SyntheticsBrowserTestResultFull) SetStatus(v SyntheticsTestMonitorStatu
 
 func (o SyntheticsBrowserTestResultFull) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Check != nil {
 		toSerialize["check"] = o.Check
 	}
@@ -292,6 +297,44 @@ func (o SyntheticsBrowserTestResultFull) MarshalJSON() ([]byte, error) {
 		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *SyntheticsBrowserTestResultFull) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Check        *SyntheticsBrowserTestResultFullCheck `json:"check,omitempty"`
+		CheckTime    *float64                              `json:"check_time,omitempty"`
+		CheckVersion *int64                                `json:"check_version,omitempty"`
+		ProbeDc      *string                               `json:"probe_dc,omitempty"`
+		Result       *SyntheticsBrowserTestResultData      `json:"result,omitempty"`
+		ResultId     *string                               `json:"result_id,omitempty"`
+		Status       *SyntheticsTestMonitorStatus          `json:"status,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Check = all.Check
+	o.CheckTime = all.CheckTime
+	o.CheckVersion = all.CheckVersion
+	o.ProbeDc = all.ProbeDc
+	o.Result = all.Result
+	o.ResultId = all.ResultId
+	o.Status = all.Status
+	return nil
 }
 
 type NullableSyntheticsBrowserTestResultFull struct {

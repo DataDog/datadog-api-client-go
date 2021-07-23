@@ -19,6 +19,8 @@ type TimeseriesWidgetExpressionAlias struct {
 	AliasName *string `json:"alias_name,omitempty"`
 	// Expression name.
 	Expression string `json:"expression"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewTimeseriesWidgetExpressionAlias instantiates a new TimeseriesWidgetExpressionAlias object
@@ -97,6 +99,9 @@ func (o *TimeseriesWidgetExpressionAlias) SetExpression(v string) {
 
 func (o TimeseriesWidgetExpressionAlias) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AliasName != nil {
 		toSerialize["alias_name"] = o.AliasName
 	}
@@ -107,6 +112,7 @@ func (o TimeseriesWidgetExpressionAlias) MarshalJSON() ([]byte, error) {
 }
 
 func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Expression *string `json:"expression"`
 	}{}
@@ -123,7 +129,12 @@ func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.AliasName = all.AliasName
 	o.Expression = all.Expression

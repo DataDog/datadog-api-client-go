@@ -20,6 +20,8 @@ type UsageAttributionAggregatesBody struct {
 	Field *string `json:"field,omitempty"`
 	// The value for a given field.
 	Value *float64 `json:"value,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageAttributionAggregatesBody instantiates a new UsageAttributionAggregatesBody object
@@ -137,6 +139,9 @@ func (o *UsageAttributionAggregatesBody) SetValue(v float64) {
 
 func (o UsageAttributionAggregatesBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AggType != nil {
 		toSerialize["agg_type"] = o.AggType
 	}
@@ -147,6 +152,28 @@ func (o UsageAttributionAggregatesBody) MarshalJSON() ([]byte, error) {
 		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageAttributionAggregatesBody) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AggType *string  `json:"agg_type,omitempty"`
+		Field   *string  `json:"field,omitempty"`
+		Value   *float64 `json:"value,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AggType = all.AggType
+	o.Field = all.Field
+	o.Value = all.Value
+	return nil
 }
 
 type NullableUsageAttributionAggregatesBody struct {

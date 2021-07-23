@@ -19,6 +19,8 @@ type IncidentTimelineCellMarkdownCreateAttributes struct {
 	Content  IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
 	// A flag indicating whether the timeline cell is important and should be highlighted.
 	Important *bool `json:"important,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIncidentTimelineCellMarkdownCreateAttributes instantiates a new IncidentTimelineCellMarkdownCreateAttributes object
@@ -128,6 +130,9 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) SetImportant(v bool) {
 
 func (o IncidentTimelineCellMarkdownCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["cell_type"] = o.CellType
 	}
@@ -141,6 +146,7 @@ func (o IncidentTimelineCellMarkdownCreateAttributes) MarshalJSON() ([]byte, err
 }
 
 func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		CellType *IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
 		Content  *IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
@@ -162,7 +168,20 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.CellType; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.CellType = all.CellType
 	o.Content = all.Content

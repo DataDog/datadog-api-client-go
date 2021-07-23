@@ -1,14 +1,17 @@
 // {{classname}} - {{#description}}{{{description}}}{{/description}}{{^description}}struct for {{{classname}}}{{/description}}
 type {{classname}} struct {
 	{{#oneOf}}
-	{{{.}}} *{{{.}}}
+	{{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}} *{{{.}}}
 	{{/oneOf}}
+
+    // UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
 }
 
 {{#oneOf}}
-// {{{.}}}As{{classname}} is a convenience function that returns {{{.}}} wrapped in {{classname}}
-func {{{.}}}As{{classname}}(v *{{{.}}}) {{classname}} {
-	return {{classname}}{ {{{.}}}: v}
+// {{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}}As{{classname}} is a convenience function that returns {{{.}}} wrapped in {{classname}}
+func {{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}}As{{classname}}(v *{{{.}}}) {{classname}} {
+	return {{classname}}{ {{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}}: v}
 }
 
 {{/oneOf}}
@@ -31,7 +34,7 @@ func (dst *{{classname}}) UnmarshalJSON(data []byte) error {
 	var jsonDict map[string]interface{}
 	err = json.Unmarshal(data, &jsonDict)
 	if err != nil {
-		return fmt.Errorf("Failed to unmarshal JSON into map for the discrimintor lookup.")
+		return fmt.Errorf("Failed to unmarshal JSON into map for the discriminator lookup.")
 	}
 
 	{{/-first}}
@@ -53,32 +56,33 @@ func (dst *{{classname}}) UnmarshalJSON(data []byte) error {
 	{{/useOneOfDiscriminatorLookup}}
 	{{^useOneOfDiscriminatorLookup}}
 	match := 0
-	{{#oneOf}}
-	// try to unmarshal data into {{{.}}}
-	err = json.Unmarshal(data, &dst.{{{.}}})
+	{{#vendorExtensions.x-oneOf-as-properties}}
+	// try to unmarshal data into {{{name}}}
+	err = json.Unmarshal(data, &dst.{{#lambda.titlecase}}{{{name}}}{{/lambda.titlecase}})
 	if err == nil {
-		json{{{.}}}, _ := json.Marshal(dst.{{{.}}})
-		if string(json{{{.}}}) == "{}" { // empty struct
-			dst.{{{.}}} = nil
+		if dst.{{#lambda.titlecase}}{{{name}}}{{/lambda.titlecase}} != nil {{#isModel}}&& dst.{{#lambda.titlecase}}{{{name}}}{{/lambda.titlecase}}.UnparsedObject == nil {{/isModel}}{
+			json{{{name}}}, _ := json.Marshal(dst.{{#lambda.titlecase}}{{{name}}}{{/lambda.titlecase}})
+			if string(json{{{name}}}) == "{}" { // empty struct
+				dst.{{#lambda.titlecase}}{{{name}}}{{/lambda.titlecase}} = nil
+			} else {
+				match++
+			}
 		} else {
-			match++
+			dst.{{#lambda.titlecase}}{{{name}}}{{/lambda.titlecase}} = nil
 		}
 	} else {
-		dst.{{{.}}} = nil
+		dst.{{#lambda.titlecase}}{{{name}}}{{/lambda.titlecase}} = nil
 	}
 
-	{{/oneOf}}
-	if match > 1 { // more than 1 match
+	{{/vendorExtensions.x-oneOf-as-properties}}
+	if match != 1 { // more than 1 match
 		// reset to nil
 		{{#oneOf}}
-		dst.{{{.}}} = nil
+		dst.{{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}} = nil
 		{{/oneOf}}
-
-		return fmt.Errorf("Data matches more than one schema in oneOf({{classname}})")
-	} else if match == 1 {
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
 		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf({{classname}})")
 	}
 	{{/useOneOfDiscriminatorLookup}}
 }
@@ -86,19 +90,22 @@ func (dst *{{classname}}) UnmarshalJSON(data []byte) error {
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src {{classname}}) MarshalJSON() ([]byte, error) {
 {{#oneOf}}
-	if src.{{{.}}} != nil {
-		return json.Marshal(&src.{{{.}}})
+	if src.{{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}} != nil {
+		return json.Marshal(&src.{{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}})
 	}
 
 {{/oneOf}}
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
 	return nil, nil // no data in oneOf schemas
 }
 
 // Get the actual instance
 func (obj *{{classname}}) GetActualInstance() (interface{}) {
 {{#oneOf}}
-	if obj.{{{.}}} != nil {
-		return obj.{{{.}}}
+	if obj.{{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}} != nil {
+		return obj.{{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}}
 	}
 
 {{/oneOf}}

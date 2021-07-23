@@ -30,6 +30,8 @@ type AWSAccount struct {
 	RoleName *string `json:"role_name,omitempty"`
 	// Your AWS secret access key. Only required if your AWS account is a GovCloud or China account.
 	SecretAccessKey *string `json:"secret_access_key,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewAWSAccount instantiates a new AWSAccount object
@@ -307,6 +309,9 @@ func (o *AWSAccount) SetSecretAccessKey(v string) {
 
 func (o AWSAccount) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AccessKeyId != nil {
 		toSerialize["access_key_id"] = o.AccessKeyId
 	}
@@ -332,6 +337,38 @@ func (o AWSAccount) MarshalJSON() ([]byte, error) {
 		toSerialize["secret_access_key"] = o.SecretAccessKey
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AccessKeyId                   *string          `json:"access_key_id,omitempty"`
+		AccountId                     *string          `json:"account_id,omitempty"`
+		AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
+		ExcludedRegions               *[]string        `json:"excluded_regions,omitempty"`
+		FilterTags                    *[]string        `json:"filter_tags,omitempty"`
+		HostTags                      *[]string        `json:"host_tags,omitempty"`
+		RoleName                      *string          `json:"role_name,omitempty"`
+		SecretAccessKey               *string          `json:"secret_access_key,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AccessKeyId = all.AccessKeyId
+	o.AccountId = all.AccountId
+	o.AccountSpecificNamespaceRules = all.AccountSpecificNamespaceRules
+	o.ExcludedRegions = all.ExcludedRegions
+	o.FilterTags = all.FilterTags
+	o.HostTags = all.HostTags
+	o.RoleName = all.RoleName
+	o.SecretAccessKey = all.SecretAccessKey
+	return nil
 }
 
 type NullableAWSAccount struct {

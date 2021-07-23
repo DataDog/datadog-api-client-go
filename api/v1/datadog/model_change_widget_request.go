@@ -32,6 +32,8 @@ type ChangeWidgetRequest struct {
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	// Whether to show the present value.
 	ShowPresent *bool `json:"show_present,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewChangeWidgetRequest instantiates a new ChangeWidgetRequest object
@@ -533,6 +535,9 @@ func (o *ChangeWidgetRequest) SetShowPresent(v bool) {
 
 func (o ChangeWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ApmQuery != nil {
 		toSerialize["apm_query"] = o.ApmQuery
 	}
@@ -579,6 +584,84 @@ func (o ChangeWidgetRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["show_present"] = o.ShowPresent
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ApmQuery            *LogQueryDefinition     `json:"apm_query,omitempty"`
+		ChangeType          *WidgetChangeType       `json:"change_type,omitempty"`
+		CompareTo           *WidgetCompareTo        `json:"compare_to,omitempty"`
+		EventQuery          *LogQueryDefinition     `json:"event_query,omitempty"`
+		IncreaseGood        *bool                   `json:"increase_good,omitempty"`
+		LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
+		NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
+		OrderBy             *WidgetOrderBy          `json:"order_by,omitempty"`
+		OrderDir            *WidgetSort             `json:"order_dir,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
+		Q                   *string                 `json:"q,omitempty"`
+		RumQuery            *LogQueryDefinition     `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition     `json:"security_query,omitempty"`
+		ShowPresent         *bool                   `json:"show_present,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.ChangeType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.CompareTo; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.OrderBy; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.OrderDir; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ApmQuery = all.ApmQuery
+	o.ChangeType = all.ChangeType
+	o.CompareTo = all.CompareTo
+	o.EventQuery = all.EventQuery
+	o.IncreaseGood = all.IncreaseGood
+	o.LogQuery = all.LogQuery
+	o.NetworkQuery = all.NetworkQuery
+	o.OrderBy = all.OrderBy
+	o.OrderDir = all.OrderDir
+	o.ProcessQuery = all.ProcessQuery
+	o.ProfileMetricsQuery = all.ProfileMetricsQuery
+	o.Q = all.Q
+	o.RumQuery = all.RumQuery
+	o.SecurityQuery = all.SecurityQuery
+	o.ShowPresent = all.ShowPresent
+	return nil
 }
 
 type NullableChangeWidgetRequest struct {

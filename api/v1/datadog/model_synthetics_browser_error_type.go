@@ -37,15 +37,8 @@ func (v *SyntheticsBrowserErrorType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsBrowserErrorType(value)
-	for _, existing := range allowedSyntheticsBrowserErrorTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsBrowserErrorType", value)
+	*v = SyntheticsBrowserErrorType(value)
+	return nil
 }
 
 // NewSyntheticsBrowserErrorTypeFromValue returns a pointer to a valid SyntheticsBrowserErrorType

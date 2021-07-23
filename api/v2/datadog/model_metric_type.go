@@ -35,15 +35,8 @@ func (v *MetricType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := MetricType(value)
-	for _, existing := range allowedMetricTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid MetricType", value)
+	*v = MetricType(value)
+	return nil
 }
 
 // NewMetricTypeFromValue returns a pointer to a valid MetricType

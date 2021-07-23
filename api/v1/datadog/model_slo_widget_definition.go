@@ -32,6 +32,8 @@ type SLOWidgetDefinition struct {
 	ViewMode  *WidgetViewMode         `json:"view_mode,omitempty"`
 	// Type of view displayed by the widget.
 	ViewType string `json:"view_type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSLOWidgetDefinition instantiates a new SLOWidgetDefinition object
@@ -363,6 +365,9 @@ func (o *SLOWidgetDefinition) SetViewType(v string) {
 
 func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.GlobalTimeTarget != nil {
 		toSerialize["global_time_target"] = o.GlobalTimeTarget
 	}
@@ -397,6 +402,7 @@ func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Type     *SLOWidgetDefinitionType `json:"type"`
 		ViewType *string                  `json:"view_type"`
@@ -425,7 +431,36 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.ViewMode; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.GlobalTimeTarget = all.GlobalTimeTarget
 	o.ShowErrorBudget = all.ShowErrorBudget

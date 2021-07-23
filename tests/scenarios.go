@@ -134,6 +134,9 @@ func GetIgnoredTags() []string {
 	if GetRecording() != ModeIgnore {
 		tags = append(tags, "@integration-only")
 	}
+	if GetRecording() != ModeReplaying {
+		tags = append(tags, "@replay-only")
+	}
 	return tags
 }
 
@@ -402,7 +405,7 @@ func GetRequestsUndo(ctx gobdd.Context, operationID string) (func([]reflect.Valu
 					in[i] = object.Convert(undoOperation.Type().In(i))
 				} else if undo.Undo.Parameters[i-1].Template != "" {
 					data := Templated(t, responseJSON.(map[string]interface{}), undo.Undo.Parameters[i-1].Template)
-				        object := reflect.New(undoOperation.Type().In(i))
+					object := reflect.New(undoOperation.Type().In(i))
 					err := json.Unmarshal([]byte(data), object.Interface())
 					if err != nil {
 						t.Fatalf("%v", err)

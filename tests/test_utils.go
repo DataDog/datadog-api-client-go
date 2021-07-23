@@ -85,6 +85,9 @@ var testFiles2EndpointTags = map[string]map[string]string{
 		"security_monitoring_test": "security-monitoring",
 		"telemetry_test":           "telemetry",
 	},
+	"tests/api": {
+		"deserialization_test": "deserialization",
+	},
 }
 
 // GetRecording returns the value of RECORD environment variable

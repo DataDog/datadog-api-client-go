@@ -25,6 +25,8 @@ type UsageLogsByIndexHour struct {
 	IndexName *string `json:"index_name,omitempty"`
 	// The retention period (in days) for this index ID.
 	Retention *int64 `json:"retention,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageLogsByIndexHour instantiates a new UsageLogsByIndexHour object
@@ -206,6 +208,9 @@ func (o *UsageLogsByIndexHour) SetRetention(v int64) {
 
 func (o UsageLogsByIndexHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.EventCount != nil {
 		toSerialize["event_count"] = o.EventCount
 	}
@@ -222,6 +227,32 @@ func (o UsageLogsByIndexHour) MarshalJSON() ([]byte, error) {
 		toSerialize["retention"] = o.Retention
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageLogsByIndexHour) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		EventCount *int64     `json:"event_count,omitempty"`
+		Hour       *time.Time `json:"hour,omitempty"`
+		IndexId    *string    `json:"index_id,omitempty"`
+		IndexName  *string    `json:"index_name,omitempty"`
+		Retention  *int64     `json:"retention,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.EventCount = all.EventCount
+	o.Hour = all.Hour
+	o.IndexId = all.IndexId
+	o.IndexName = all.IndexName
+	o.Retention = all.Retention
+	return nil
 }
 
 type NullableUsageLogsByIndexHour struct {

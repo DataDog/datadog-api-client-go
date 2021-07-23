@@ -18,6 +18,8 @@ type MonitorGroupSearchResponse struct {
 	// The list of found monitor groups.
 	Groups   *[]MonitorGroupSearchResult    `json:"groups,omitempty"`
 	Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorGroupSearchResponse instantiates a new MonitorGroupSearchResponse object
@@ -135,6 +137,9 @@ func (o *MonitorGroupSearchResponse) SetMetadata(v MonitorSearchResponseMetadata
 
 func (o MonitorGroupSearchResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Counts != nil {
 		toSerialize["counts"] = o.Counts
 	}
@@ -145,6 +150,28 @@ func (o MonitorGroupSearchResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["metadata"] = o.Metadata
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorGroupSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Counts   *MonitorGroupSearchResponseCounts `json:"counts,omitempty"`
+		Groups   *[]MonitorGroupSearchResult       `json:"groups,omitempty"`
+		Metadata *MonitorSearchResponseMetadata    `json:"metadata,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Counts = all.Counts
+	o.Groups = all.Groups
+	o.Metadata = all.Metadata
+	return nil
 }
 
 type NullableMonitorGroupSearchResponse struct {

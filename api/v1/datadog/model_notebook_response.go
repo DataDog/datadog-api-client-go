@@ -15,6 +15,8 @@ import (
 // NotebookResponse The description of a notebook response.
 type NotebookResponse struct {
 	Data *NotebookResponseData `json:"data,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewNotebookResponse instantiates a new NotebookResponse object
@@ -68,10 +70,31 @@ func (o *NotebookResponse) SetData(v NotebookResponseData) {
 
 func (o NotebookResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *NotebookResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Data *NotebookResponseData `json:"data,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Data = all.Data
+	return nil
 }
 
 type NullableNotebookResponse struct {

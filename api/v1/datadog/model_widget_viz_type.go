@@ -37,15 +37,8 @@ func (v *WidgetVizType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetVizType(value)
-	for _, existing := range allowedWidgetVizTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetVizType", value)
+	*v = WidgetVizType(value)
+	return nil
 }
 
 // NewWidgetVizTypeFromValue returns a pointer to a valid WidgetVizType

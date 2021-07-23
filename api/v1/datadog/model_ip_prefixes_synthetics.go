@@ -22,6 +22,8 @@ type IPPrefixesSynthetics struct {
 	PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
 	// List of IPv6 prefixes by location.
 	PrefixesIpv6ByLocation *map[string][]string `json:"prefixes_ipv6_by_location,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIPPrefixesSynthetics instantiates a new IPPrefixesSynthetics object
@@ -171,6 +173,9 @@ func (o *IPPrefixesSynthetics) SetPrefixesIpv6ByLocation(v map[string][]string) 
 
 func (o IPPrefixesSynthetics) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.PrefixesIpv4 != nil {
 		toSerialize["prefixes_ipv4"] = o.PrefixesIpv4
 	}
@@ -184,6 +189,30 @@ func (o IPPrefixesSynthetics) MarshalJSON() ([]byte, error) {
 		toSerialize["prefixes_ipv6_by_location"] = o.PrefixesIpv6ByLocation
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IPPrefixesSynthetics) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		PrefixesIpv4           *[]string            `json:"prefixes_ipv4,omitempty"`
+		PrefixesIpv4ByLocation *map[string][]string `json:"prefixes_ipv4_by_location,omitempty"`
+		PrefixesIpv6           *[]string            `json:"prefixes_ipv6,omitempty"`
+		PrefixesIpv6ByLocation *map[string][]string `json:"prefixes_ipv6_by_location,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.PrefixesIpv4 = all.PrefixesIpv4
+	o.PrefixesIpv4ByLocation = all.PrefixesIpv4ByLocation
+	o.PrefixesIpv6 = all.PrefixesIpv6
+	o.PrefixesIpv6ByLocation = all.PrefixesIpv6ByLocation
+	return nil
 }
 
 type NullableIPPrefixesSynthetics struct {

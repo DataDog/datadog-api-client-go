@@ -15,6 +15,8 @@ import (
 // NotebooksResponseMeta Metadata returned by the API.
 type NotebooksResponseMeta struct {
 	Page *NotebooksResponsePage `json:"page,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewNotebooksResponseMeta instantiates a new NotebooksResponseMeta object
@@ -68,10 +70,31 @@ func (o *NotebooksResponseMeta) SetPage(v NotebooksResponsePage) {
 
 func (o NotebooksResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Page != nil {
 		toSerialize["page"] = o.Page
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *NotebooksResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Page *NotebooksResponsePage `json:"page,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Page = all.Page
+	return nil
 }
 
 type NullableNotebooksResponseMeta struct {

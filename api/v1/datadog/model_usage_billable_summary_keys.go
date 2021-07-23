@@ -46,6 +46,8 @@ type UsageBillableSummaryKeys struct {
 	SyntheticsApiTestsSum         *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
 	SyntheticsBrowserChecksSum    *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
 	TimeseriesAverage             *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageBillableSummaryKeys instantiates a new UsageBillableSummaryKeys object
@@ -1091,6 +1093,9 @@ func (o *UsageBillableSummaryKeys) SetTimeseriesAverage(v UsageBillableSummaryBo
 
 func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.ApmHostSum != nil {
 		toSerialize["apm_host_sum"] = o.ApmHostSum
 	}
@@ -1188,6 +1193,86 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 		toSerialize["timeseries_average"] = o.TimeseriesAverage
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		ApmHostSum                    *UsageBillableSummaryBody `json:"apm_host_sum,omitempty"`
+		ApmHostTop99p                 *UsageBillableSummaryBody `json:"apm_host_top99p,omitempty"`
+		ApmTraceSearchSum             *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
+		FargateContainerAverage       *UsageBillableSummaryBody `json:"fargate_container_average,omitempty"`
+		InfraContainerSum             *UsageBillableSummaryBody `json:"infra_container_sum,omitempty"`
+		InfraHostSum                  *UsageBillableSummaryBody `json:"infra_host_sum,omitempty"`
+		InfraHostTop99p               *UsageBillableSummaryBody `json:"infra_host_top99p,omitempty"`
+		IotTop99p                     *UsageBillableSummaryBody `json:"iot_top99p,omitempty"`
+		LambdaFunctionAverage         *UsageBillableSummaryBody `json:"lambda_function_average,omitempty"`
+		LogsIndexed15daySum           *UsageBillableSummaryBody `json:"logs_indexed_15day_sum,omitempty"`
+		LogsIndexed180daySum          *UsageBillableSummaryBody `json:"logs_indexed_180day_sum,omitempty"`
+		LogsIndexed30daySum           *UsageBillableSummaryBody `json:"logs_indexed_30day_sum,omitempty"`
+		LogsIndexed3daySum            *UsageBillableSummaryBody `json:"logs_indexed_3day_sum,omitempty"`
+		LogsIndexed45daySum           *UsageBillableSummaryBody `json:"logs_indexed_45day_sum,omitempty"`
+		LogsIndexed60daySum           *UsageBillableSummaryBody `json:"logs_indexed_60day_sum,omitempty"`
+		LogsIndexed7daySum            *UsageBillableSummaryBody `json:"logs_indexed_7day_sum,omitempty"`
+		LogsIndexed90daySum           *UsageBillableSummaryBody `json:"logs_indexed_90day_sum,omitempty"`
+		LogsIndexedCustomRetentionSum *UsageBillableSummaryBody `json:"logs_indexed_custom_retention_sum,omitempty"`
+		LogsIndexedSum                *UsageBillableSummaryBody `json:"logs_indexed_sum,omitempty"`
+		LogsIngestedSum               *UsageBillableSummaryBody `json:"logs_ingested_sum,omitempty"`
+		NetworkDeviceTop99p           *UsageBillableSummaryBody `json:"network_device_top99p,omitempty"`
+		NpmFlowSum                    *UsageBillableSummaryBody `json:"npm_flow_sum,omitempty"`
+		NpmHostSum                    *UsageBillableSummaryBody `json:"npm_host_sum,omitempty"`
+		NpmHostTop99p                 *UsageBillableSummaryBody `json:"npm_host_top99p,omitempty"`
+		ProfContainerSum              *UsageBillableSummaryBody `json:"prof_container_sum,omitempty"`
+		ProfHostTop99p                *UsageBillableSummaryBody `json:"prof_host_top99p,omitempty"`
+		RumSum                        *UsageBillableSummaryBody `json:"rum_sum,omitempty"`
+		ServerlessInvocationSum       *UsageBillableSummaryBody `json:"serverless_invocation_sum,omitempty"`
+		SiemSum                       *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
+		SyntheticsApiTestsSum         *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
+		SyntheticsBrowserChecksSum    *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
+		TimeseriesAverage             *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.ApmHostSum = all.ApmHostSum
+	o.ApmHostTop99p = all.ApmHostTop99p
+	o.ApmTraceSearchSum = all.ApmTraceSearchSum
+	o.FargateContainerAverage = all.FargateContainerAverage
+	o.InfraContainerSum = all.InfraContainerSum
+	o.InfraHostSum = all.InfraHostSum
+	o.InfraHostTop99p = all.InfraHostTop99p
+	o.IotTop99p = all.IotTop99p
+	o.LambdaFunctionAverage = all.LambdaFunctionAverage
+	o.LogsIndexed15daySum = all.LogsIndexed15daySum
+	o.LogsIndexed180daySum = all.LogsIndexed180daySum
+	o.LogsIndexed30daySum = all.LogsIndexed30daySum
+	o.LogsIndexed3daySum = all.LogsIndexed3daySum
+	o.LogsIndexed45daySum = all.LogsIndexed45daySum
+	o.LogsIndexed60daySum = all.LogsIndexed60daySum
+	o.LogsIndexed7daySum = all.LogsIndexed7daySum
+	o.LogsIndexed90daySum = all.LogsIndexed90daySum
+	o.LogsIndexedCustomRetentionSum = all.LogsIndexedCustomRetentionSum
+	o.LogsIndexedSum = all.LogsIndexedSum
+	o.LogsIngestedSum = all.LogsIngestedSum
+	o.NetworkDeviceTop99p = all.NetworkDeviceTop99p
+	o.NpmFlowSum = all.NpmFlowSum
+	o.NpmHostSum = all.NpmHostSum
+	o.NpmHostTop99p = all.NpmHostTop99p
+	o.ProfContainerSum = all.ProfContainerSum
+	o.ProfHostTop99p = all.ProfHostTop99p
+	o.RumSum = all.RumSum
+	o.ServerlessInvocationSum = all.ServerlessInvocationSum
+	o.SiemSum = all.SiemSum
+	o.SyntheticsApiTestsSum = all.SyntheticsApiTestsSum
+	o.SyntheticsBrowserChecksSum = all.SyntheticsBrowserChecksSum
+	o.TimeseriesAverage = all.TimeseriesAverage
+	return nil
 }
 
 type NullableUsageBillableSummaryKeys struct {

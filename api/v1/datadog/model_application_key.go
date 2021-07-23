@@ -20,6 +20,8 @@ type ApplicationKey struct {
 	Name *string `json:"name,omitempty"`
 	// Owner of an application key.
 	Owner *string `json:"owner,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewApplicationKey instantiates a new ApplicationKey object
@@ -137,6 +139,9 @@ func (o *ApplicationKey) SetOwner(v string) {
 
 func (o ApplicationKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Hash != nil {
 		toSerialize["hash"] = o.Hash
 	}
@@ -147,6 +152,28 @@ func (o ApplicationKey) MarshalJSON() ([]byte, error) {
 		toSerialize["owner"] = o.Owner
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *ApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Hash  *string `json:"hash,omitempty"`
+		Name  *string `json:"name,omitempty"`
+		Owner *string `json:"owner,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Hash = all.Hash
+	o.Name = all.Name
+	o.Owner = all.Owner
+	return nil
 }
 
 type NullableApplicationKey struct {

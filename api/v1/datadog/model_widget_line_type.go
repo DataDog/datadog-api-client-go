@@ -39,15 +39,8 @@ func (v *WidgetLineType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetLineType(value)
-	for _, existing := range allowedWidgetLineTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetLineType", value)
+	*v = WidgetLineType(value)
+	return nil
 }
 
 // NewWidgetLineTypeFromValue returns a pointer to a valid WidgetLineType

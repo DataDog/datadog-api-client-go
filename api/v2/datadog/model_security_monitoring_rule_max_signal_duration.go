@@ -57,15 +57,8 @@ func (v *SecurityMonitoringRuleMaxSignalDuration) UnmarshalJSON(src []byte) erro
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SecurityMonitoringRuleMaxSignalDuration(value)
-	for _, existing := range allowedSecurityMonitoringRuleMaxSignalDurationEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SecurityMonitoringRuleMaxSignalDuration", value)
+	*v = SecurityMonitoringRuleMaxSignalDuration(value)
+	return nil
 }
 
 // NewSecurityMonitoringRuleMaxSignalDurationFromValue returns a pointer to a valid SecurityMonitoringRuleMaxSignalDuration

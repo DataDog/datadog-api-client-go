@@ -16,6 +16,8 @@ import (
 type MonitorState struct {
 	// Dictionary where the keys are groups (comma separated lists of tags) and the values are the list of groups your monitor is broken down on.
 	Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewMonitorState instantiates a new MonitorState object
@@ -69,10 +71,31 @@ func (o *MonitorState) SetGroups(v map[string]MonitorStateGroup) {
 
 func (o MonitorState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Groups != nil {
 		toSerialize["groups"] = o.Groups
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *MonitorState) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Groups = all.Groups
+	return nil
 }
 
 type NullableMonitorState struct {

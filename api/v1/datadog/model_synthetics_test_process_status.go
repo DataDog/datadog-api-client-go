@@ -43,15 +43,8 @@ func (v *SyntheticsTestProcessStatus) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SyntheticsTestProcessStatus(value)
-	for _, existing := range allowedSyntheticsTestProcessStatusEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid SyntheticsTestProcessStatus", value)
+	*v = SyntheticsTestProcessStatus(value)
+	return nil
 }
 
 // NewSyntheticsTestProcessStatusFromValue returns a pointer to a valid SyntheticsTestProcessStatus

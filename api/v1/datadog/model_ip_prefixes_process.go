@@ -18,6 +18,8 @@ type IPPrefixesProcess struct {
 	PrefixesIpv4 *[]string `json:"prefixes_ipv4,omitempty"`
 	// List of IPv6 prefixes.
 	PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewIPPrefixesProcess instantiates a new IPPrefixesProcess object
@@ -103,6 +105,9 @@ func (o *IPPrefixesProcess) SetPrefixesIpv6(v []string) {
 
 func (o IPPrefixesProcess) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.PrefixesIpv4 != nil {
 		toSerialize["prefixes_ipv4"] = o.PrefixesIpv4
 	}
@@ -110,6 +115,26 @@ func (o IPPrefixesProcess) MarshalJSON() ([]byte, error) {
 		toSerialize["prefixes_ipv6"] = o.PrefixesIpv6
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *IPPrefixesProcess) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		PrefixesIpv4 *[]string `json:"prefixes_ipv4,omitempty"`
+		PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.PrefixesIpv4 = all.PrefixesIpv4
+	o.PrefixesIpv6 = all.PrefixesIpv6
+	return nil
 }
 
 type NullableIPPrefixesProcess struct {

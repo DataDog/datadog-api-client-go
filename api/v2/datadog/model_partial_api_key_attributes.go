@@ -22,6 +22,8 @@ type PartialAPIKeyAttributes struct {
 	ModifiedAt *string `json:"modified_at,omitempty"`
 	// Name of the API key.
 	Name *string `json:"name,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewPartialAPIKeyAttributes instantiates a new PartialAPIKeyAttributes object
@@ -171,6 +173,9 @@ func (o *PartialAPIKeyAttributes) SetName(v string) {
 
 func (o PartialAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -184,6 +189,30 @@ func (o PartialAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *PartialAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		CreatedAt  *string `json:"created_at,omitempty"`
+		Last4      *string `json:"last4,omitempty"`
+		ModifiedAt *string `json:"modified_at,omitempty"`
+		Name       *string `json:"name,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.CreatedAt = all.CreatedAt
+	o.Last4 = all.Last4
+	o.ModifiedAt = all.ModifiedAt
+	o.Name = all.Name
+	return nil
 }
 
 type NullablePartialAPIKeyAttributes struct {

@@ -39,15 +39,8 @@ func (v *WidgetHorizontalAlign) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetHorizontalAlign(value)
-	for _, existing := range allowedWidgetHorizontalAlignEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetHorizontalAlign", value)
+	*v = WidgetHorizontalAlign(value)
+	return nil
 }
 
 // NewWidgetHorizontalAlignFromValue returns a pointer to a valid WidgetHorizontalAlign

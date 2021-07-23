@@ -43,15 +43,8 @@ func (v *WidgetMargin) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := WidgetMargin(value)
-	for _, existing := range allowedWidgetMarginEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid WidgetMargin", value)
+	*v = WidgetMargin(value)
+	return nil
 }
 
 // NewWidgetMarginFromValue returns a pointer to a valid WidgetMargin

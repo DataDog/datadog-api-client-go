@@ -35,15 +35,8 @@ func (v *LogsStringBuilderProcessorType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsStringBuilderProcessorType(value)
-	for _, existing := range allowedLogsStringBuilderProcessorTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsStringBuilderProcessorType", value)
+	*v = LogsStringBuilderProcessorType(value)
+	return nil
 }
 
 // NewLogsStringBuilderProcessorTypeFromValue returns a pointer to a valid LogsStringBuilderProcessorType

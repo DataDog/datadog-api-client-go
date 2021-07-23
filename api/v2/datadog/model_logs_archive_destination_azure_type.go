@@ -35,15 +35,8 @@ func (v *LogsArchiveDestinationAzureType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := LogsArchiveDestinationAzureType(value)
-	for _, existing := range allowedLogsArchiveDestinationAzureTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogsArchiveDestinationAzureType", value)
+	*v = LogsArchiveDestinationAzureType(value)
+	return nil
 }
 
 // NewLogsArchiveDestinationAzureTypeFromValue returns a pointer to a valid LogsArchiveDestinationAzureType

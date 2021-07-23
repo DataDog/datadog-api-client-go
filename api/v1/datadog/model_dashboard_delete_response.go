@@ -16,6 +16,8 @@ import (
 type DashboardDeleteResponse struct {
 	// ID of the deleted dashboard.
 	DeletedDashboardId *string `json:"deleted_dashboard_id,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDashboardDeleteResponse instantiates a new DashboardDeleteResponse object
@@ -69,10 +71,31 @@ func (o *DashboardDeleteResponse) SetDeletedDashboardId(v string) {
 
 func (o DashboardDeleteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DeletedDashboardId != nil {
 		toSerialize["deleted_dashboard_id"] = o.DeletedDashboardId
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DashboardDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		DeletedDashboardId *string `json:"deleted_dashboard_id,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.DeletedDashboardId = all.DeletedDashboardId
+	return nil
 }
 
 type NullableDashboardDeleteResponse struct {

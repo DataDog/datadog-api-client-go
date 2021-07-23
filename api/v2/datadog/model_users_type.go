@@ -35,15 +35,8 @@ func (v *UsersType) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := UsersType(value)
-	for _, existing := range allowedUsersTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid UsersType", value)
+	*v = UsersType(value)
+	return nil
 }
 
 // NewUsersTypeFromValue returns a pointer to a valid UsersType

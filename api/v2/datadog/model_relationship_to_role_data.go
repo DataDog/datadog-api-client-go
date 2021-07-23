@@ -17,6 +17,8 @@ type RelationshipToRoleData struct {
 	// ID of the role.
 	Id   *string    `json:"id,omitempty"`
 	Type *RolesType `json:"type,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewRelationshipToRoleData instantiates a new RelationshipToRoleData object
@@ -106,6 +108,9 @@ func (o *RelationshipToRoleData) SetType(v RolesType) {
 
 func (o RelationshipToRoleData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -113,6 +118,34 @@ func (o RelationshipToRoleData) MarshalJSON() ([]byte, error) {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *RelationshipToRoleData) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		Id   *string    `json:"id,omitempty"`
+		Type *RolesType `json:"type,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.Id = all.Id
+	o.Type = all.Type
+	return nil
 }
 
 type NullableRelationshipToRoleData struct {

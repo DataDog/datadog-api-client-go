@@ -16,6 +16,8 @@ import (
 type DeletedMonitor struct {
 	// ID of the deleted monitor.
 	DeletedMonitorId *int64 `json:"deleted_monitor_id,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDeletedMonitor instantiates a new DeletedMonitor object
@@ -69,10 +71,31 @@ func (o *DeletedMonitor) SetDeletedMonitorId(v int64) {
 
 func (o DeletedMonitor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DeletedMonitorId != nil {
 		toSerialize["deleted_monitor_id"] = o.DeletedMonitorId
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *DeletedMonitor) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		DeletedMonitorId *int64 `json:"deleted_monitor_id,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.DeletedMonitorId = all.DeletedMonitorId
+	return nil
 }
 
 type NullableDeletedMonitor struct {

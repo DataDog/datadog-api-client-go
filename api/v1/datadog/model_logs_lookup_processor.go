@@ -28,6 +28,8 @@ type LogsLookupProcessor struct {
 	// Name of the attribute that contains the corresponding value in the mapping list or the `default_lookup` if not found in the mapping list.
 	Target string                  `json:"target"`
 	Type   LogsLookupProcessorType `json:"type"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsLookupProcessor instantiates a new LogsLookupProcessor object
@@ -251,6 +253,9 @@ func (o *LogsLookupProcessor) SetType(v LogsLookupProcessorType) {
 
 func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.DefaultLookup != nil {
 		toSerialize["default_lookup"] = o.DefaultLookup
 	}
@@ -276,6 +281,7 @@ func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		LookupTable *[]string                `json:"lookup_table"`
 		Source      *string                  `json:"source"`
@@ -309,7 +315,20 @@ func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.DefaultLookup = all.DefaultLookup
 	o.IsEnabled = all.IsEnabled

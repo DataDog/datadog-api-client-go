@@ -19,6 +19,8 @@ type SyntheticsBasicAuth struct {
 	Password string `json:"password"`
 	// Username to use for the basic authentication.
 	Username string `json:"username"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewSyntheticsBasicAuth instantiates a new SyntheticsBasicAuth object
@@ -90,6 +92,9 @@ func (o *SyntheticsBasicAuth) SetUsername(v string) {
 
 func (o SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["password"] = o.Password
 	}
@@ -100,6 +105,7 @@ func (o SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 }
 
 func (o *SyntheticsBasicAuth) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Password *string `json:"password"`
 		Username *string `json:"username"`
@@ -120,7 +126,12 @@ func (o *SyntheticsBasicAuth) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Password = all.Password
 	o.Username = all.Username

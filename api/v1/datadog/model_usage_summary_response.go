@@ -118,6 +118,8 @@ type UsageSummaryResponse struct {
 	Usage *[]UsageSummaryDate `json:"usage,omitempty"`
 	// Shows the 99th percentile of all vSphere hosts over all hours in the current months for all organizations.
 	VsphereHostTop99pSum *int64 `json:"vsphere_host_top99p_sum,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewUsageSummaryResponse instantiates a new UsageSummaryResponse object
@@ -1803,6 +1805,9 @@ func (o *UsageSummaryResponse) SetVsphereHostTop99pSum(v int64) {
 
 func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if o.AgentHostTop99pSum != nil {
 		toSerialize["agent_host_top99p_sum"] = o.AgentHostTop99pSum
 	}
@@ -1960,6 +1965,126 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["vsphere_host_top99p_sum"] = o.VsphereHostTop99pSum
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	all := struct {
+		AgentHostTop99pSum                         *int64              `json:"agent_host_top99p_sum,omitempty"`
+		ApmAzureAppServiceHostTop99pSum            *int64              `json:"apm_azure_app_service_host_top99p_sum,omitempty"`
+		ApmHostTop99pSum                           *int64              `json:"apm_host_top99p_sum,omitempty"`
+		AuditLogsLinesIndexedAggSum                *int64              `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
+		AwsHostTop99pSum                           *int64              `json:"aws_host_top99p_sum,omitempty"`
+		AwsLambdaFuncCount                         *int64              `json:"aws_lambda_func_count,omitempty"`
+		AwsLambdaInvocationsSum                    *int64              `json:"aws_lambda_invocations_sum,omitempty"`
+		AzureAppServiceTop99pSum                   *int64              `json:"azure_app_service_top99p_sum,omitempty"`
+		AzureHostTop99pSum                         *int64              `json:"azure_host_top99p_sum,omitempty"`
+		BillableIngestedBytesAggSum                *int64              `json:"billable_ingested_bytes_agg_sum,omitempty"`
+		ContainerAvgSum                            *int64              `json:"container_avg_sum,omitempty"`
+		ContainerHwmSum                            *int64              `json:"container_hwm_sum,omitempty"`
+		CspmContainerAvgSum                        *int64              `json:"cspm_container_avg_sum,omitempty"`
+		CspmContainerHwmSum                        *int64              `json:"cspm_container_hwm_sum,omitempty"`
+		CspmHostTop99pSum                          *int64              `json:"cspm_host_top99p_sum,omitempty"`
+		CustomTsSum                                *int64              `json:"custom_ts_sum,omitempty"`
+		CwsContainersAvgSum                        *int64              `json:"cws_containers_avg_sum,omitempty"`
+		CwsHostTop99pSum                           *int64              `json:"cws_host_top99p_sum,omitempty"`
+		EndDate                                    *time.Time          `json:"end_date,omitempty"`
+		FargateTasksCountAvgSum                    *int64              `json:"fargate_tasks_count_avg_sum,omitempty"`
+		FargateTasksCountHwmSum                    *int64              `json:"fargate_tasks_count_hwm_sum,omitempty"`
+		GcpHostTop99pSum                           *int64              `json:"gcp_host_top99p_sum,omitempty"`
+		HerokuHostTop99pSum                        *int64              `json:"heroku_host_top99p_sum,omitempty"`
+		IncidentManagementMonthlyActiveUsersHwmSum *int64              `json:"incident_management_monthly_active_users_hwm_sum,omitempty"`
+		IndexedEventsCountAggSum                   *int64              `json:"indexed_events_count_agg_sum,omitempty"`
+		InfraHostTop99pSum                         *int64              `json:"infra_host_top99p_sum,omitempty"`
+		IngestedEventsBytesAggSum                  *int64              `json:"ingested_events_bytes_agg_sum,omitempty"`
+		IotDeviceAggSum                            *int64              `json:"iot_device_agg_sum,omitempty"`
+		IotDeviceTop99pSum                         *int64              `json:"iot_device_top99p_sum,omitempty"`
+		LastUpdated                                *time.Time          `json:"last_updated,omitempty"`
+		LiveIndexedEventsAggSum                    *int64              `json:"live_indexed_events_agg_sum,omitempty"`
+		LiveIngestedBytesAggSum                    *int64              `json:"live_ingested_bytes_agg_sum,omitempty"`
+		LogsByRetention                            *LogsByRetention    `json:"logs_by_retention,omitempty"`
+		MobileRumSessionCountAggSum                *int64              `json:"mobile_rum_session_count_agg_sum,omitempty"`
+		MobileRumSessionCountAndroidAggSum         *int64              `json:"mobile_rum_session_count_android_agg_sum,omitempty"`
+		MobileRumSessionCountIosAggSum             *int64              `json:"mobile_rum_session_count_ios_agg_sum,omitempty"`
+		NetflowIndexedEventsCountAggSum            *int64              `json:"netflow_indexed_events_count_agg_sum,omitempty"`
+		NpmHostTop99pSum                           *int64              `json:"npm_host_top99p_sum,omitempty"`
+		OpentelemetryHostTop99pSum                 *int64              `json:"opentelemetry_host_top99p_sum,omitempty"`
+		ProfilingContainerAgentCountAvg            *int64              `json:"profiling_container_agent_count_avg,omitempty"`
+		ProfilingHostCountTop99pSum                *int64              `json:"profiling_host_count_top99p_sum,omitempty"`
+		RehydratedIndexedEventsAggSum              *int64              `json:"rehydrated_indexed_events_agg_sum,omitempty"`
+		RehydratedIngestedBytesAggSum              *int64              `json:"rehydrated_ingested_bytes_agg_sum,omitempty"`
+		RumSessionCountAggSum                      *int64              `json:"rum_session_count_agg_sum,omitempty"`
+		RumTotalSessionCountAggSum                 *int64              `json:"rum_total_session_count_agg_sum,omitempty"`
+		StartDate                                  *time.Time          `json:"start_date,omitempty"`
+		SyntheticsBrowserCheckCallsCountAggSum     *int64              `json:"synthetics_browser_check_calls_count_agg_sum,omitempty"`
+		SyntheticsCheckCallsCountAggSum            *int64              `json:"synthetics_check_calls_count_agg_sum,omitempty"`
+		TraceSearchIndexedEventsCountAggSum        *int64              `json:"trace_search_indexed_events_count_agg_sum,omitempty"`
+		TwolIngestedEventsBytesAggSum              *int64              `json:"twol_ingested_events_bytes_agg_sum,omitempty"`
+		Usage                                      *[]UsageSummaryDate `json:"usage,omitempty"`
+		VsphereHostTop99pSum                       *int64              `json:"vsphere_host_top99p_sum,omitempty"`
+	}{}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	o.AgentHostTop99pSum = all.AgentHostTop99pSum
+	o.ApmAzureAppServiceHostTop99pSum = all.ApmAzureAppServiceHostTop99pSum
+	o.ApmHostTop99pSum = all.ApmHostTop99pSum
+	o.AuditLogsLinesIndexedAggSum = all.AuditLogsLinesIndexedAggSum
+	o.AwsHostTop99pSum = all.AwsHostTop99pSum
+	o.AwsLambdaFuncCount = all.AwsLambdaFuncCount
+	o.AwsLambdaInvocationsSum = all.AwsLambdaInvocationsSum
+	o.AzureAppServiceTop99pSum = all.AzureAppServiceTop99pSum
+	o.AzureHostTop99pSum = all.AzureHostTop99pSum
+	o.BillableIngestedBytesAggSum = all.BillableIngestedBytesAggSum
+	o.ContainerAvgSum = all.ContainerAvgSum
+	o.ContainerHwmSum = all.ContainerHwmSum
+	o.CspmContainerAvgSum = all.CspmContainerAvgSum
+	o.CspmContainerHwmSum = all.CspmContainerHwmSum
+	o.CspmHostTop99pSum = all.CspmHostTop99pSum
+	o.CustomTsSum = all.CustomTsSum
+	o.CwsContainersAvgSum = all.CwsContainersAvgSum
+	o.CwsHostTop99pSum = all.CwsHostTop99pSum
+	o.EndDate = all.EndDate
+	o.FargateTasksCountAvgSum = all.FargateTasksCountAvgSum
+	o.FargateTasksCountHwmSum = all.FargateTasksCountHwmSum
+	o.GcpHostTop99pSum = all.GcpHostTop99pSum
+	o.HerokuHostTop99pSum = all.HerokuHostTop99pSum
+	o.IncidentManagementMonthlyActiveUsersHwmSum = all.IncidentManagementMonthlyActiveUsersHwmSum
+	o.IndexedEventsCountAggSum = all.IndexedEventsCountAggSum
+	o.InfraHostTop99pSum = all.InfraHostTop99pSum
+	o.IngestedEventsBytesAggSum = all.IngestedEventsBytesAggSum
+	o.IotDeviceAggSum = all.IotDeviceAggSum
+	o.IotDeviceTop99pSum = all.IotDeviceTop99pSum
+	o.LastUpdated = all.LastUpdated
+	o.LiveIndexedEventsAggSum = all.LiveIndexedEventsAggSum
+	o.LiveIngestedBytesAggSum = all.LiveIngestedBytesAggSum
+	o.LogsByRetention = all.LogsByRetention
+	o.MobileRumSessionCountAggSum = all.MobileRumSessionCountAggSum
+	o.MobileRumSessionCountAndroidAggSum = all.MobileRumSessionCountAndroidAggSum
+	o.MobileRumSessionCountIosAggSum = all.MobileRumSessionCountIosAggSum
+	o.NetflowIndexedEventsCountAggSum = all.NetflowIndexedEventsCountAggSum
+	o.NpmHostTop99pSum = all.NpmHostTop99pSum
+	o.OpentelemetryHostTop99pSum = all.OpentelemetryHostTop99pSum
+	o.ProfilingContainerAgentCountAvg = all.ProfilingContainerAgentCountAvg
+	o.ProfilingHostCountTop99pSum = all.ProfilingHostCountTop99pSum
+	o.RehydratedIndexedEventsAggSum = all.RehydratedIndexedEventsAggSum
+	o.RehydratedIngestedBytesAggSum = all.RehydratedIngestedBytesAggSum
+	o.RumSessionCountAggSum = all.RumSessionCountAggSum
+	o.RumTotalSessionCountAggSum = all.RumTotalSessionCountAggSum
+	o.StartDate = all.StartDate
+	o.SyntheticsBrowserCheckCallsCountAggSum = all.SyntheticsBrowserCheckCallsCountAggSum
+	o.SyntheticsCheckCallsCountAggSum = all.SyntheticsCheckCallsCountAggSum
+	o.TraceSearchIndexedEventsCountAggSum = all.TraceSearchIndexedEventsCountAggSum
+	o.TwolIngestedEventsBytesAggSum = all.TwolIngestedEventsBytesAggSum
+	o.Usage = all.Usage
+	o.VsphereHostTop99pSum = all.VsphereHostTop99pSum
+	return nil
 }
 
 type NullableUsageSummaryResponse struct {

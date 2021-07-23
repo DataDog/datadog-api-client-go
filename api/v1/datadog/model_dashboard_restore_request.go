@@ -17,6 +17,8 @@ import (
 type DashboardRestoreRequest struct {
 	// List of dashboard bulk action request data objects.
 	Data []DashboardBulkActionData `json:"data"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewDashboardRestoreRequest instantiates a new DashboardRestoreRequest object
@@ -63,6 +65,9 @@ func (o *DashboardRestoreRequest) SetData(v []DashboardBulkActionData) {
 
 func (o DashboardRestoreRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["data"] = o.Data
 	}
@@ -70,6 +75,7 @@ func (o DashboardRestoreRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (o *DashboardRestoreRequest) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Data *[]DashboardBulkActionData `json:"data"`
 	}{}
@@ -85,7 +91,12 @@ func (o *DashboardRestoreRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Data = all.Data
 	return nil

@@ -18,6 +18,8 @@ type WidgetFieldSort struct {
 	// Facet path for the column
 	Column string     `json:"column"`
 	Order  WidgetSort `json:"order"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewWidgetFieldSort instantiates a new WidgetFieldSort object
@@ -89,6 +91,9 @@ func (o *WidgetFieldSort) SetOrder(v WidgetSort) {
 
 func (o WidgetFieldSort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["column"] = o.Column
 	}
@@ -99,6 +104,7 @@ func (o WidgetFieldSort) MarshalJSON() ([]byte, error) {
 }
 
 func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		Column *string     `json:"column"`
 		Order  *WidgetSort `json:"order"`
@@ -119,7 +125,20 @@ func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Order; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.Column = all.Column
 	o.Order = all.Order

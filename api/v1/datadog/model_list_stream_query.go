@@ -20,6 +20,8 @@ type ListStreamQuery struct {
 	Indexes *[]string `json:"indexes,omitempty"`
 	// Widget query.
 	QueryString string `json:"query_string"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewListStreamQuery instantiates a new ListStreamQuery object
@@ -125,6 +127,9 @@ func (o *ListStreamQuery) SetQueryString(v string) {
 
 func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["data_source"] = o.DataSource
 	}
@@ -138,6 +143,7 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 }
 
 func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		DataSource  *ListStreamSource `json:"data_source"`
 		QueryString *string           `json:"query_string"`
@@ -159,7 +165,20 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.DataSource; !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.DataSource = all.DataSource
 	o.Indexes = all.Indexes

@@ -19,6 +19,8 @@ type LogsArchiveIntegrationGCS struct {
 	ClientEmail string `json:"client_email"`
 	// A project ID.
 	ProjectId string `json:"project_id"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
 }
 
 // NewLogsArchiveIntegrationGCS instantiates a new LogsArchiveIntegrationGCS object
@@ -90,6 +92,9 @@ func (o *LogsArchiveIntegrationGCS) SetProjectId(v string) {
 
 func (o LogsArchiveIntegrationGCS) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
 	if true {
 		toSerialize["client_email"] = o.ClientEmail
 	}
@@ -100,6 +105,7 @@ func (o LogsArchiveIntegrationGCS) MarshalJSON() ([]byte, error) {
 }
 
 func (o *LogsArchiveIntegrationGCS) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
 	required := struct {
 		ClientEmail *string `json:"client_email"`
 		ProjectId   *string `json:"project_id"`
@@ -120,7 +126,12 @@ func (o *LogsArchiveIntegrationGCS) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		return err
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
 	}
 	o.ClientEmail = all.ClientEmail
 	o.ProjectId = all.ProjectId
