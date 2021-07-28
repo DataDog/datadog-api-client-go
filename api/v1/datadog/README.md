@@ -236,6 +236,7 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**GetHostTags**](docs/TagsApi.md#gethosttags) | **Get** /api/v1/tags/hosts/{host_name} | Get host tags
 *TagsApi* | [**ListHostTags**](docs/TagsApi.md#listhosttags) | **Get** /api/v1/tags/hosts | Get Tags
 *TagsApi* | [**UpdateHostTags**](docs/TagsApi.md#updatehosttags) | **Put** /api/v1/tags/hosts/{host_name} | Update host tags
+*UsageMeteringApi* | [**GetChargebackSummary**](docs/UsageMeteringApi.md#getchargebacksummary) | **Get** /api/v1/usage/chargeback-summary | Get cost by sub-org
 *UsageMeteringApi* | [**GetDailyCustomReports**](docs/UsageMeteringApi.md#getdailycustomreports) | **Get** /api/v1/daily_custom_reports | Get the list of available daily custom reports
 *UsageMeteringApi* | [**GetIncidentManagement**](docs/UsageMeteringApi.md#getincidentmanagement) | **Get** /api/v1/usage/incident-management | Get hourly usage for incident management
 *UsageMeteringApi* | [**GetIngestedSpans**](docs/UsageMeteringApi.md#getingestedspans) | **Get** /api/v1/usage/ingested-spans | Get hourly usage for ingested spans
@@ -314,6 +315,9 @@ Class | Method | HTTP request | Description
  - [ChangeWidgetDefinition](docs/ChangeWidgetDefinition.md)
  - [ChangeWidgetDefinitionType](docs/ChangeWidgetDefinitionType.md)
  - [ChangeWidgetRequest](docs/ChangeWidgetRequest.md)
+ - [ChargebackOrgMonth](docs/ChargebackOrgMonth.md)
+ - [ChargebackSummaryCharge](docs/ChargebackSummaryCharge.md)
+ - [ChargebackSummaryResponse](docs/ChargebackSummaryResponse.md)
  - [CheckCanDeleteMonitorResponse](docs/CheckCanDeleteMonitorResponse.md)
  - [CheckCanDeleteMonitorResponseData](docs/CheckCanDeleteMonitorResponseData.md)
  - [CheckCanDeleteSLOResponse](docs/CheckCanDeleteSLOResponse.md)

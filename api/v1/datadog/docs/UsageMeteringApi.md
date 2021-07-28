@@ -4,6 +4,7 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------ | ------------ | ------------
+[**GetChargebackSummary**](UsageMeteringApi.md#GetChargebackSummary) | **Get** /api/v1/usage/chargeback-summary | Get cost by sub-org
 [**GetDailyCustomReports**](UsageMeteringApi.md#GetDailyCustomReports) | **Get** /api/v1/daily_custom_reports | Get the list of available daily custom reports
 [**GetIncidentManagement**](UsageMeteringApi.md#GetIncidentManagement) | **Get** /api/v1/usage/incident-management | Get hourly usage for incident management
 [**GetIngestedSpans**](UsageMeteringApi.md#GetIngestedSpans) | **Get** /api/v1/usage/ingested-spans | Get hourly usage for ingested spans
@@ -36,6 +37,86 @@ Method | HTTP request | Description
 [**GetUsageTimeseries**](UsageMeteringApi.md#GetUsageTimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics
 [**GetUsageTopAvgMetrics**](UsageMeteringApi.md#GetUsageTopAvgMetrics) | **Get** /api/v1/usage/top_avg_metrics | Get all custom metrics by hourly average
 
+
+
+## GetChargebackSummary
+
+> ChargebackSummaryResponse GetChargebackSummary(ctx, startMonth, datadog.GetChargebackSummaryOptionalParameters{})
+
+Get usage cost per product for each sub-org across your multi-org account.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    "time"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    startMonth := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage beginning in this month. Maximum of 15 months ago.
+    endMonth := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage ending this month. (optional)
+    optionalParams := datadog.GetChargebackSummaryOptionalParameters{
+        EndMonth: &endMonth,
+    }
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsageMeteringApi.GetChargebackSummary(ctx, startMonth, optionalParams)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetChargebackSummary`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetChargebackSummary`: ChargebackSummaryResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetChargebackSummary:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**startMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. | 
+
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a GetChargebackSummaryOptionalParameters struct.
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**endMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month. | 
+
+### Return type
+
+[**ChargebackSummaryResponse**](ChargebackSummaryResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json;datetime-format=rfc3339
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetDailyCustomReports

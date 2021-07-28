@@ -76,6 +76,9 @@ docs/CanceledDowntimesIds.md
 docs/ChangeWidgetDefinition.md
 docs/ChangeWidgetDefinitionType.md
 docs/ChangeWidgetRequest.md
+docs/ChargebackOrgMonth.md
+docs/ChargebackSummaryCharge.md
+docs/ChargebackSummaryResponse.md
 docs/CheckCanDeleteMonitorResponse.md
 docs/CheckCanDeleteMonitorResponseData.md
 docs/CheckCanDeleteSLOResponse.md
@@ -701,6 +704,9 @@ model_canceled_downtimes_ids.go
 model_change_widget_definition.go
 model_change_widget_definition_type.go
 model_change_widget_request.go
+model_chargeback_org_month.go
+model_chargeback_summary_charge.go
+model_chargeback_summary_response.go
 model_check_can_delete_monitor_response.go
 model_check_can_delete_monitor_response_data.go
 model_check_can_delete_slo_response.go
