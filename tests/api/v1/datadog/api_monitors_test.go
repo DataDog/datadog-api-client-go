@@ -57,15 +57,13 @@ var testUpdateMonitor = datadog.MonitorUpdateRequest{
 	Options: &datadog.MonitorOptions{
 		TimeoutH:         *datadog.NewNullableInt64(nil),
 		RenotifyInterval: *datadog.NewNullableInt64(nil),
+		NewGroupDelay:    *datadog.NewNullableInt64(datadog.PtrInt64(600)),
 		NewHostDelay:     *datadog.NewNullableInt64(nil),
 		EvaluationDelay:  *datadog.NewNullableInt64(nil),
 		Thresholds: &datadog.MonitorThresholds{
 			Critical: datadog.PtrFloat64(2),
 			Warning:  *datadog.NewNullableFloat64(nil),
 		},
-	},
-	RestrictedRoles: &[]string{
-		"94172442-be03-11e9-a77a-3b7612558ac1",
 	},
 }
 
@@ -116,6 +114,12 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.True(set)
 	assert.Nil(val)
 
+	var monitorOptions = monitor.GetOptions()
+
+	nhd, ok := monitorOptions.GetNewHostDelayOk()
+	assert.NotNil(nhd)
+	assert.Equal(true, ok)
+
 	// Edit a monitor
 	testUpdateMonitor.SetName(fmt.Sprintf("%s-updated", tm.GetName()))
 	updatedMonitor, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, monitor.GetId(), testUpdateMonitor)
@@ -126,7 +130,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Equal(testUpdateMonitor.GetName(), updatedMonitor.GetName())
 
 	// Assert Explicitly null fields
-	var monitorOptions = updatedMonitor.GetOptions()
+	monitorOptions = updatedMonitor.GetOptions()
 	var monitorOptionThresholds = monitorOptions.GetThresholds()
 	th, ok1 := monitorOptions.GetTimeoutHOk()
 	assert.Nil(th)
@@ -136,8 +140,9 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Nil(rn)
 	assert.Equal(true, ok2)
 
-	nhd, ok3 := monitorOptions.GetNewHostDelayOk()
-	assert.NotNil(nhd)
+	ngd, ok3 := monitorOptions.GetNewGroupDelayOk()
+	assert.NotNil(ngd)
+	assert.Equal(int64(600), *ngd)
 	assert.Equal(true, ok3)
 
 	ed, ok4 := monitorOptions.GetEvaluationDelayOk()
