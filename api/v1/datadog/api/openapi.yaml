@@ -193,7 +193,9 @@ tags:
 - description: |-
     The service check endpoint allows you to post check statuses for use with monitors.
     Service check messages are limited to 500 characters. If a check is posted with a message
-    containing more than 500 characters, only the first 500 characters are displayed.
+    containing more than 500 characters, only the first 500 characters are displayed. Messages
+    are limited for checks with a Critical or Warning status, they are dropped for checks with
+    an OK status.
 
     - [Read more about Service Check monitors.][1]
     - [Read more about Process Check monitors.][2]
@@ -14140,7 +14142,7 @@ components:
         API.
       example:
         filter:
-          sample_rate: 1
+          sample_rate: 1.0
           query: '*'
         is_enabled: true
         name: payment
@@ -14161,7 +14163,7 @@ components:
       description: Exclusion filter is defined by a query, a sampling rule, and a
         active/inactive toggle.
       example:
-        sample_rate: 1
+        sample_rate: 1.0
         query: '*'
       properties:
         query:
@@ -14173,8 +14175,8 @@ components:
         sample_rate:
           description: |-
             Sample rate to apply to logs going through this exclusion filter,
-            a value of 1 will exclude all logs matching the query.
-          example: 1
+            a value of 1.0 excludes all logs matching the query.
+          example: 1.0
           format: double
           type: number
       required:
@@ -14305,12 +14307,12 @@ components:
           query: source:python
         exclusion_filters:
         - filter:
-            sample_rate: 1
+            sample_rate: 1.0
             query: '*'
           is_enabled: true
           name: payment
         - filter:
-            sample_rate: 1
+            sample_rate: 1.0
             query: '*'
           is_enabled: true
           name: payment
@@ -14365,12 +14367,12 @@ components:
             query: source:python
           exclusion_filters:
           - filter:
-              sample_rate: 1
+              sample_rate: 1.0
               query: '*'
             is_enabled: true
             name: payment
           - filter:
-              sample_rate: 1
+              sample_rate: 1.0
               query: '*'
             is_enabled: true
             name: payment
@@ -14382,12 +14384,12 @@ components:
             query: source:python
           exclusion_filters:
           - filter:
-              sample_rate: 1
+              sample_rate: 1.0
               query: '*'
             is_enabled: true
             name: payment
           - filter:
-              sample_rate: 1
+              sample_rate: 1.0
               query: '*'
             is_enabled: true
             name: payment
@@ -14409,12 +14411,12 @@ components:
           query: source:python
         exclusion_filters:
         - filter:
-            sample_rate: 1
+            sample_rate: 1.0
             query: '*'
           is_enabled: true
           name: payment
         - filter:
-            sample_rate: 1
+            sample_rate: 1.0
             query: '*'
           is_enabled: true
           name: payment
