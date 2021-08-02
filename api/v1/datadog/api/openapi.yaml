@@ -193,7 +193,9 @@ tags:
 - description: |-
     The service check endpoint allows you to post check statuses for use with monitors.
     Service check messages are limited to 500 characters. If a check is posted with a message
-    containing more than 500 characters, only the first 500 characters are displayed.
+    containing more than 500 characters, only the first 500 characters are displayed. Messages
+    are limited for checks with a Critical or Warning status, they are dropped for checks with
+    an OK status.
 
     - [Read more about Service Check monitors.][1]
     - [Read more about Process Check monitors.][2]
