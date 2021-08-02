@@ -14142,7 +14142,7 @@ components:
         API.
       example:
         filter:
-          sample_rate: 1
+          sample_rate: 1.0
           query: '*'
         is_enabled: true
         name: payment
@@ -14163,7 +14163,7 @@ components:
       description: Exclusion filter is defined by a query, a sampling rule, and a
         active/inactive toggle.
       example:
-        sample_rate: 1
+        sample_rate: 1.0
         query: '*'
       properties:
         query:
@@ -14175,8 +14175,8 @@ components:
         sample_rate:
           description: |-
             Sample rate to apply to logs going through this exclusion filter,
-            a value of 1 will exclude all logs matching the query.
-          example: 1
+            a value of 1.0 excludes all logs matching the query.
+          example: 1.0
           format: double
           type: number
       required:
@@ -14307,12 +14307,12 @@ components:
           query: source:python
         exclusion_filters:
         - filter:
-            sample_rate: 1
+            sample_rate: 1.0
             query: '*'
           is_enabled: true
           name: payment
         - filter:
-            sample_rate: 1
+            sample_rate: 1.0
             query: '*'
           is_enabled: true
           name: payment
@@ -14367,12 +14367,12 @@ components:
             query: source:python
           exclusion_filters:
           - filter:
-              sample_rate: 1
+              sample_rate: 1.0
               query: '*'
             is_enabled: true
             name: payment
           - filter:
-              sample_rate: 1
+              sample_rate: 1.0
               query: '*'
             is_enabled: true
             name: payment
@@ -14384,12 +14384,12 @@ components:
             query: source:python
           exclusion_filters:
           - filter:
-              sample_rate: 1
+              sample_rate: 1.0
               query: '*'
             is_enabled: true
             name: payment
           - filter:
-              sample_rate: 1
+              sample_rate: 1.0
               query: '*'
             is_enabled: true
             name: payment
@@ -14411,12 +14411,12 @@ components:
           query: source:python
         exclusion_filters:
         - filter:
-            sample_rate: 1
+            sample_rate: 1.0
             query: '*'
           is_enabled: true
           name: payment
         - filter:
-            sample_rate: 1
+            sample_rate: 1.0
             query: '*'
           is_enabled: true
           name: payment
