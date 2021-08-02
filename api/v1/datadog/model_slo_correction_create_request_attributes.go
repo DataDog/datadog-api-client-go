@@ -279,9 +279,9 @@ func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 		return nil
 	}
 	if v := all.Category; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
+		errr := json.Unmarshal(bytes, &raw)
+		if errr != nil {
+			return errr
 		}
 		o.UnparsedObject = raw
 		return nil

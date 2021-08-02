@@ -277,33 +277,33 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	if v := all.ColorBy; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
+		errr := json.Unmarshal(bytes, &raw)
+		if errr != nil {
+			return errr
 		}
 		o.UnparsedObject = raw
 		return nil
 	}
 	if v := all.GroupBy; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
+		errr := json.Unmarshal(bytes, &raw)
+		if errr != nil {
+			return errr
 		}
 		o.UnparsedObject = raw
 		return nil
 	}
 	if v := all.SizeBy; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
+		errr := json.Unmarshal(bytes, &raw)
+		if errr != nil {
+			return errr
 		}
 		o.UnparsedObject = raw
 		return nil
 	}
 	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
+		errr := json.Unmarshal(bytes, &raw)
+		if errr != nil {
+			return errr
 		}
 		o.UnparsedObject = raw
 		return nil

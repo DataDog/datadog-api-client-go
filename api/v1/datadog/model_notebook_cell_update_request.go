@@ -169,9 +169,9 @@ func (o *NotebookCellUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
+		errr := json.Unmarshal(bytes, &raw)
+		if errr != nil {
+			return errr
 		}
 		o.UnparsedObject = raw
 		return nil

@@ -615,33 +615,33 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	if v := all.ChangeType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
+		errr := json.Unmarshal(bytes, &raw)
+		if errr != nil {
+			return errr
 		}
 		o.UnparsedObject = raw
 		return nil
 	}
 	if v := all.CompareTo; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
+		errr := json.Unmarshal(bytes, &raw)
+		if errr != nil {
+			return errr
 		}
 		o.UnparsedObject = raw
 		return nil
 	}
 	if v := all.OrderBy; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
+		errr := json.Unmarshal(bytes, &raw)
+		if errr != nil {
+			return errr
 		}
 		o.UnparsedObject = raw
 		return nil
 	}
 	if v := all.OrderDir; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
+		errr := json.Unmarshal(bytes, &raw)
+		if errr != nil {
+			return errr
 		}
 		o.UnparsedObject = raw
 		return nil
