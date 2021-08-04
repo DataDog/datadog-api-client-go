@@ -125,10 +125,10 @@ tags:
       for a list of the pipelines and processors currently configured in our UI.
 
     - Additional API-related information about processors can be found in the
-      [processors documentation](https://docs.datadoghq.com/logs/processing/processors/?tab=api#lookup-processor).
+      [processors documentation](https://docs.datadoghq.com/logs/log_configuration/processors/?tab=api#lookup-processor).
 
     - For more information about Pipelines, see the
-      [pipeline documentation](https://docs.datadoghq.com/logs/processing).
+      [pipeline documentation](https://docs.datadoghq.com/logs/log_configuration/pipelines).
 
     **Notes:**
 
@@ -144,7 +144,7 @@ tags:
     in the body data.
   externalDocs:
     description: Find out more at
-    url: https://docs.datadoghq.com/logs/processing/
+    url: https://docs.datadoghq.com/logs/log_configuration
   name: Logs Pipelines
 - description: |-
     The metrics endpoint allows you to:
@@ -8006,6 +8006,15 @@ paths:
         schema:
           $ref: '#/components/schemas/UsageAttributionSort'
         style: form
+      - description: Include child org usage in the response. Defaults to false.
+        explode: true
+        in: query
+        name: include_descendants
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -13822,7 +13831,7 @@ components:
         - Results are rounded up to the 9th decimal. For example, if the result of the formula is `0.1234567891`,
           the actual value stored for the attribute is `0.123456789`.
         - If you need to scale a unit of measure,
-          see [Scale Filter](https://docs.datadoghq.com/logs/processing/parsing/?tab=filter#matcher-and-filter).
+          see [Scale Filter](https://docs.datadoghq.com/logs/log_configuration/parsing/?tab=filter#matcher-and-filter).
       properties:
         expression:
           description: Arithmetic operation between one or more log attributes.
@@ -14238,8 +14247,8 @@ components:
       - GEO_IP_PARSER
     LogsGrokParser:
       description: |-
-        Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/processing/parsing/#advanced-settings).
-        For more information, see the [parsing section](https://docs.datadoghq.com/logs/processing/parsing).
+        Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/log_configuration/parsing/#advanced-settings).
+        For more information, see the [parsing section](https://docs.datadoghq.com/logs/log_configuration/parsing).
       properties:
         grok:
           $ref: '#/components/schemas/LogsGrokParserRules'

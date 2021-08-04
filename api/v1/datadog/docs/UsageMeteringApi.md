@@ -616,10 +616,12 @@ func main() {
     endMonth := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage ending this month. (optional)
     sortDirection := datadog.UsageSortDirection("desc") // UsageSortDirection | The direction to sort by: `[desc, asc]`. (optional) (default to "desc")
     sortName := datadog.UsageAttributionSort("api_percentage") // UsageAttributionSort | The field to sort by. (optional) (default to "custom_timeseries_usage")
+    includeDescendants := true // bool | Include child org usage in the response. Defaults to false. (optional) (default to false)
     optionalParams := datadog.GetUsageAttributionOptionalParameters{
         EndMonth: &endMonth,
         SortDirection: &sortDirection,
         SortName: &sortName,
+        IncludeDescendants: &includeDescendants,
     }
 
     configuration := datadog.NewConfiguration()
@@ -658,6 +660,7 @@ Name | Type | Description  | Notes
 **endMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month. | 
 **sortDirection** | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
 **sortName** | [**UsageAttributionSort**](UsageAttributionSort.md) | The field to sort by. | [default to &quot;custom_timeseries_usage&quot;]
+**includeDescendants** | **bool** | Include child org usage in the response. Defaults to false. | [default to false]
 
 ### Return type
 
