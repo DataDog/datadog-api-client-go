@@ -61,7 +61,7 @@ func TestLogsList(t *testing.T) {
 	var logsResponse datadog.LogsListResponse
 
 	// Make sure that both log items are indexed
-	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
 		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx, logsRequest)
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -75,7 +75,7 @@ func TestLogsList(t *testing.T) {
 	// Find first log item
 	logsRequest.SetLimit(1)
 
-	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
 		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx, logsRequest)
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
@@ -99,7 +99,7 @@ func TestLogsList(t *testing.T) {
 	logsRequest.SetStartAt(logsResponse.GetNextLogId())
 
 	assert.Equal(200, httpresp.StatusCode)
-	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
+	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
 		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx, logsRequest)
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)

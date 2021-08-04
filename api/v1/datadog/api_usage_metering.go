@@ -1298,19 +1298,21 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 }
 
 type apiGetUsageAttributionRequest struct {
-	ctx           _context.Context
-	ApiService    *UsageMeteringApiService
-	startMonth    *time.Time
-	fields        *UsageAttributionSupportedMetrics
-	endMonth      *time.Time
-	sortDirection *UsageSortDirection
-	sortName      *UsageAttributionSort
+	ctx                _context.Context
+	ApiService         *UsageMeteringApiService
+	startMonth         *time.Time
+	fields             *UsageAttributionSupportedMetrics
+	endMonth           *time.Time
+	sortDirection      *UsageSortDirection
+	sortName           *UsageAttributionSort
+	includeDescendants *bool
 }
 
 type GetUsageAttributionOptionalParameters struct {
-	EndMonth      *time.Time
-	SortDirection *UsageSortDirection
-	SortName      *UsageAttributionSort
+	EndMonth           *time.Time
+	SortDirection      *UsageSortDirection
+	SortName           *UsageAttributionSort
+	IncludeDescendants *bool
 }
 
 func NewGetUsageAttributionOptionalParameters() *GetUsageAttributionOptionalParameters {
@@ -1327,6 +1329,10 @@ func (r *GetUsageAttributionOptionalParameters) WithSortDirection(sortDirection 
 }
 func (r *GetUsageAttributionOptionalParameters) WithSortName(sortName UsageAttributionSort) *GetUsageAttributionOptionalParameters {
 	r.SortName = &sortName
+	return r
+}
+func (r *GetUsageAttributionOptionalParameters) WithIncludeDescendants(includeDescendants bool) *GetUsageAttributionOptionalParameters {
+	r.IncludeDescendants = &includeDescendants
 	return r
 }
 
@@ -1351,6 +1357,7 @@ func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, star
 		req.endMonth = o[0].EndMonth
 		req.sortDirection = o[0].SortDirection
 		req.sortName = o[0].SortName
+		req.includeDescendants = o[0].IncludeDescendants
 	}
 
 	return req.ApiService.getUsageAttributionExecute(req)
@@ -1404,6 +1411,9 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 	}
 	if r.sortName != nil {
 		localVarQueryParams.Add("sort_name", parameterToString(*r.sortName, ""))
+	}
+	if r.includeDescendants != nil {
+		localVarQueryParams.Add("include_descendants", parameterToString(*r.includeDescendants, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
