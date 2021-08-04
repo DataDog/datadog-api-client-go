@@ -8006,6 +8006,15 @@ paths:
         schema:
           $ref: '#/components/schemas/UsageAttributionSort'
         style: form
+      - description: Include child org usage in the response. Defaults to false.
+        explode: true
+        in: query
+        name: include_descendants
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
