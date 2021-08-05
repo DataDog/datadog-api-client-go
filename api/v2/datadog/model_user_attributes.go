@@ -29,6 +29,8 @@ type UserAttributes struct {
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// Name of the user.
 	Name *string `json:"name,omitempty"`
+	// Whether the user is a service account.
+	ServiceAccount *bool `json:"service_account,omitempty"`
 	// Status of the user.
 	Status *string `json:"status,omitempty"`
 	// Title of the user.
@@ -280,6 +282,38 @@ func (o *UserAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+// GetServiceAccount returns the ServiceAccount field value if set, zero value otherwise.
+func (o *UserAttributes) GetServiceAccount() bool {
+	if o == nil || o.ServiceAccount == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ServiceAccount
+}
+
+// GetServiceAccountOk returns a tuple with the ServiceAccount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserAttributes) GetServiceAccountOk() (*bool, bool) {
+	if o == nil || o.ServiceAccount == nil {
+		return nil, false
+	}
+	return o.ServiceAccount, true
+}
+
+// HasServiceAccount returns a boolean if a field has been set.
+func (o *UserAttributes) HasServiceAccount() bool {
+	if o != nil && o.ServiceAccount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceAccount gets a reference to the given bool and assigns it to the ServiceAccount field.
+func (o *UserAttributes) SetServiceAccount(v bool) {
+	o.ServiceAccount = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *UserAttributes) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -402,6 +436,9 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+	if o.ServiceAccount != nil {
+		toSerialize["service_account"] = o.ServiceAccount
+	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
@@ -417,16 +454,17 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 func (o *UserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt  *time.Time `json:"created_at,omitempty"`
-		Disabled   *bool      `json:"disabled,omitempty"`
-		Email      *string    `json:"email,omitempty"`
-		Handle     *string    `json:"handle,omitempty"`
-		Icon       *string    `json:"icon,omitempty"`
-		ModifiedAt *time.Time `json:"modified_at,omitempty"`
-		Name       *string    `json:"name,omitempty"`
-		Status     *string    `json:"status,omitempty"`
-		Title      *string    `json:"title,omitempty"`
-		Verified   *bool      `json:"verified,omitempty"`
+		CreatedAt      *time.Time `json:"created_at,omitempty"`
+		Disabled       *bool      `json:"disabled,omitempty"`
+		Email          *string    `json:"email,omitempty"`
+		Handle         *string    `json:"handle,omitempty"`
+		Icon           *string    `json:"icon,omitempty"`
+		ModifiedAt     *time.Time `json:"modified_at,omitempty"`
+		Name           *string    `json:"name,omitempty"`
+		ServiceAccount *bool      `json:"service_account,omitempty"`
+		Status         *string    `json:"status,omitempty"`
+		Title          *string    `json:"title,omitempty"`
+		Verified       *bool      `json:"verified,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -444,6 +482,7 @@ func (o *UserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Icon = all.Icon
 	o.ModifiedAt = all.ModifiedAt
 	o.Name = all.Name
+	o.ServiceAccount = all.ServiceAccount
 	o.Status = all.Status
 	o.Title = all.Title
 	o.Verified = all.Verified

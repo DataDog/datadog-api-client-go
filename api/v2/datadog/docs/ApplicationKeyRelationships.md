@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**CreatedBy** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
+**OwnedBy** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
 
 ## Methods
 
@@ -25,30 +25,30 @@ NewApplicationKeyRelationshipsWithDefaults instantiates a new ApplicationKeyRela
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
-### GetCreatedBy
+### GetOwnedBy
 
-`func (o *ApplicationKeyRelationships) GetCreatedBy() RelationshipToUser`
+`func (o *ApplicationKeyRelationships) GetOwnedBy() RelationshipToUser`
 
-GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+GetOwnedBy returns the OwnedBy field if non-nil, zero value otherwise.
 
-### GetCreatedByOk
+### GetOwnedByOk
 
-`func (o *ApplicationKeyRelationships) GetCreatedByOk() (*RelationshipToUser, bool)`
+`func (o *ApplicationKeyRelationships) GetOwnedByOk() (*RelationshipToUser, bool)`
 
-GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+GetOwnedByOk returns a tuple with the OwnedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedBy
+### SetOwnedBy
 
-`func (o *ApplicationKeyRelationships) SetCreatedBy(v RelationshipToUser)`
+`func (o *ApplicationKeyRelationships) SetOwnedBy(v RelationshipToUser)`
 
-SetCreatedBy sets CreatedBy field to given value.
+SetOwnedBy sets OwnedBy field to given value.
 
-### HasCreatedBy
+### HasOwnedBy
 
-`func (o *ApplicationKeyRelationships) HasCreatedBy() bool`
+`func (o *ApplicationKeyRelationships) HasOwnedBy() bool`
 
-HasCreatedBy returns a boolean if a field has been set.
+HasOwnedBy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

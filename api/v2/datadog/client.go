@@ -70,6 +70,8 @@ type APIClient struct {
 
 	SecurityMonitoringApi *SecurityMonitoringApiService
 
+	ServiceAccountsApi *ServiceAccountsApiService
+
 	UsersApi *UsersApiService
 }
 
@@ -101,6 +103,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ProcessesApi = (*ProcessesApiService)(&c.common)
 	c.RolesApi = (*RolesApiService)(&c.common)
 	c.SecurityMonitoringApi = (*SecurityMonitoringApiService)(&c.common)
+	c.ServiceAccountsApi = (*ServiceAccountsApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 
 	return c
