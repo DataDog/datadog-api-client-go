@@ -4,6 +4,7 @@ All URIs are relative to *https://api.datadoghq.com*
 
 Method | HTTP request | Description
 ------ | ------------ | ------------
+[**CreateServiceAccount**](UsersApi.md#CreateServiceAccount) | **Post** /api/v2/service_accounts | Create a service account
 [**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v2/users | Create a user
 [**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v2/users/{user_id} | Disable a user
 [**GetInvitation**](UsersApi.md#GetInvitation) | **Get** /api/v2/user_invitations/{user_invitation_uuid} | Get a user invitation
@@ -14,6 +15,76 @@ Method | HTTP request | Description
 [**SendInvitations**](UsersApi.md#SendInvitations) | **Post** /api/v2/user_invitations | Send invitation emails
 [**UpdateUser**](UsersApi.md#UpdateUser) | **Patch** /api/v2/users/{user_id} | Update a user
 
+
+
+## CreateServiceAccount
+
+> UserResponse CreateServiceAccount(ctx, body)
+
+Create a service account for your organization.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    body := *datadog.NewServiceAccountCreateRequest(*datadog.NewServiceAccountCreateData(*datadog.NewServiceAccountCreateAttributes("jane.doe@example.com", true), datadog.UsersType("users"))) // ServiceAccountCreateRequest | 
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsersApi.CreateServiceAccount(ctx, body)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateServiceAccount`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateServiceAccount`: UserResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsersApi.CreateServiceAccount:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**body** | [**ServiceAccountCreateRequest**](ServiceAccountCreateRequest.md) |  | 
+
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
+
+### Return type
+
+[**UserResponse**](UserResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateUser
