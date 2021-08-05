@@ -33,7 +33,9 @@ type MonitorOptions struct {
 	MinFailureDuration NullableInt64 `json:"min_failure_duration,omitempty"`
 	// The minimum number of locations in failure at the same time during at least one moment in the `min_failure_duration` period (`min_location_failed` and `min_failure_duration` are part of the advanced alerting rules - integer, >= 1).
 	MinLocationFailed NullableInt64 `json:"min_location_failed,omitempty"`
-	// Time (in seconds) to allow a host to boot and applications to fully start before starting the evaluation of monitor results. Should be a non negative integer.
+	// Time (in seconds) to skip evaluations for new groups.  For example, this option can be used to skip evaluations for new hosts while they initialize.  Must be a non negative integer.
+	NewGroupDelay NullableInt64 `json:"new_group_delay,omitempty"`
+	// Time (in seconds) to allow a host to boot and applications to fully start before starting the evaluation of monitor results. Should be a non negative integer.  Use new_group_delay instead.
 	NewHostDelay NullableInt64 `json:"new_host_delay,omitempty"`
 	// The number of minutes before a monitor notifies after data stops reporting. Datadog recommends at least 2x the monitor timeframe for metric alerts or 2 minutes for service checks. If omitted, 2x the evaluation timeframe is used for metric alerts, and 24 hours is used for service checks.
 	NoDataTimeframe NullableInt64 `json:"no_data_timeframe,omitempty"`
@@ -453,6 +455,49 @@ func (o *MonitorOptions) SetMinLocationFailedNil() {
 // UnsetMinLocationFailed ensures that no value is present for MinLocationFailed, not even an explicit nil
 func (o *MonitorOptions) UnsetMinLocationFailed() {
 	o.MinLocationFailed.Unset()
+}
+
+// GetNewGroupDelay returns the NewGroupDelay field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorOptions) GetNewGroupDelay() int64 {
+	if o == nil || o.NewGroupDelay.Get() == nil {
+		var ret int64
+		return ret
+	}
+	return *o.NewGroupDelay.Get()
+}
+
+// GetNewGroupDelayOk returns a tuple with the NewGroupDelay field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorOptions) GetNewGroupDelayOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NewGroupDelay.Get(), o.NewGroupDelay.IsSet()
+}
+
+// HasNewGroupDelay returns a boolean if a field has been set.
+func (o *MonitorOptions) HasNewGroupDelay() bool {
+	if o != nil && o.NewGroupDelay.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNewGroupDelay gets a reference to the given NullableInt64 and assigns it to the NewGroupDelay field.
+func (o *MonitorOptions) SetNewGroupDelay(v int64) {
+	o.NewGroupDelay.Set(&v)
+}
+
+// SetNewGroupDelayNil sets the value for NewGroupDelay to be an explicit nil
+func (o *MonitorOptions) SetNewGroupDelayNil() {
+	o.NewGroupDelay.Set(nil)
+}
+
+// UnsetNewGroupDelay ensures that no value is present for NewGroupDelay, not even an explicit nil
+func (o *MonitorOptions) UnsetNewGroupDelay() {
+	o.NewGroupDelay.Unset()
 }
 
 // GetNewHostDelay returns the NewHostDelay field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -897,6 +942,9 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	if o.MinLocationFailed.IsSet() {
 		toSerialize["min_location_failed"] = o.MinLocationFailed.Get()
 	}
+	if o.NewGroupDelay.IsSet() {
+		toSerialize["new_group_delay"] = o.NewGroupDelay.Get()
+	}
 	if o.NewHostDelay.IsSet() {
 		toSerialize["new_host_delay"] = o.NewHostDelay.Get()
 	}
@@ -946,6 +994,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		Locked               *bool                          `json:"locked,omitempty"`
 		MinFailureDuration   NullableInt64                  `json:"min_failure_duration,omitempty"`
 		MinLocationFailed    NullableInt64                  `json:"min_location_failed,omitempty"`
+		NewGroupDelay        NullableInt64                  `json:"new_group_delay,omitempty"`
 		NewHostDelay         NullableInt64                  `json:"new_host_delay,omitempty"`
 		NoDataTimeframe      NullableInt64                  `json:"no_data_timeframe,omitempty"`
 		NotifyAudit          *bool                          `json:"notify_audit,omitempty"`
@@ -977,6 +1026,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.Locked = all.Locked
 	o.MinFailureDuration = all.MinFailureDuration
 	o.MinLocationFailed = all.MinLocationFailed
+	o.NewGroupDelay = all.NewGroupDelay
 	o.NewHostDelay = all.NewHostDelay
 	o.NoDataTimeframe = all.NoDataTimeframe
 	o.NotifyAudit = all.NotifyAudit

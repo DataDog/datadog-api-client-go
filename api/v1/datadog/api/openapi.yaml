@@ -15543,9 +15543,9 @@ components:
         deleted: 2000-01-23T04:56:07.000+00:00
         name: name
         options:
-          no_data_timeframe: 2
+          no_data_timeframe: 7
           silenced:
-            key: 9
+            key: 3
           synthetics_check_id: synthetics_check_id
           notify_no_data: false
           enable_logs_sample: true
@@ -15557,15 +15557,16 @@ components:
           groupby_simple_monitor: true
           notify_audit: false
           min_location_failed: 5
-          new_host_delay: 5
-          renotify_interval: 7
+          new_host_delay: 2
+          renotify_interval: 9
           thresholds:
-            critical: 3.616076749251911
-            warning: 1.2315135367772556
-            warning_recovery: 1.0246457001441578
-            ok: 4.145608029883936
-            critical_recovery: 2.027123023002322
-            unknown: 7.386281948385884
+            critical: 2.027123023002322
+            warning: 1.0246457001441578
+            warning_recovery: 1.4894159098541704
+            ok: 7.386281948385884
+            critical_recovery: 4.145608029883936
+            unknown: 1.2315135367772556
+          new_group_delay: 5
           min_failure_duration: 1055
           threshold_windows:
             trigger_window: trigger_window
@@ -15576,18 +15577,18 @@ components:
           - null
           - null
           escalation_message: none
-          timeout_h: 1
+          timeout_h: 6
           locked: true
         modified: 2000-01-23T04:56:07.000+00:00
         id: 0
         state:
           groups:
             key:
-              last_triggered_ts: 5
-              last_notified_ts: 1
+              last_triggered_ts: 9
+              last_notified_ts: 4
               name: name
-              last_resolved_ts: 4
-              last_nodata_ts: 7
+              last_resolved_ts: 5
+              last_nodata_ts: 1
       properties:
         created:
           description: Timestamp of the monitor creation.
@@ -15766,9 +15767,9 @@ components:
     MonitorOptions:
       description: List of options associated with your monitor.
       example:
-        no_data_timeframe: 2
+        no_data_timeframe: 7
         silenced:
-          key: 9
+          key: 3
         synthetics_check_id: synthetics_check_id
         notify_no_data: false
         enable_logs_sample: true
@@ -15780,15 +15781,16 @@ components:
         groupby_simple_monitor: true
         notify_audit: false
         min_location_failed: 5
-        new_host_delay: 5
-        renotify_interval: 7
+        new_host_delay: 2
+        renotify_interval: 9
         thresholds:
-          critical: 3.616076749251911
-          warning: 1.2315135367772556
-          warning_recovery: 1.0246457001441578
-          ok: 4.145608029883936
-          critical_recovery: 2.027123023002322
-          unknown: 7.386281948385884
+          critical: 2.027123023002322
+          warning: 1.0246457001441578
+          warning_recovery: 1.4894159098541704
+          ok: 7.386281948385884
+          critical_recovery: 4.145608029883936
+          unknown: 1.2315135367772556
+        new_group_delay: 5
         min_failure_duration: 1055
         threshold_windows:
           trigger_window: trigger_window
@@ -15799,7 +15801,7 @@ components:
         - null
         - null
         escalation_message: none
-        timeout_h: 1
+        timeout_h: 6
         locked: true
       properties:
         aggregation:
@@ -15865,12 +15867,25 @@ components:
           format: int64
           nullable: true
           type: integer
+        new_group_delay:
+          description: |-
+            Time (in seconds) to skip evaluations for new groups.
+
+            For example, this option can be used to skip evaluations for new hosts while they initialize.
+
+            Must be a non negative integer.
+          format: int64
+          nullable: true
+          type: integer
         new_host_delay:
           default: 300
+          deprecated: true
           description: |-
             Time (in seconds) to allow a host to boot and applications
             to fully start before starting the evaluation of monitor results.
             Should be a non negative integer.
+
+            Use new_group_delay instead.
           format: int64
           nullable: true
           type: integer
@@ -16135,11 +16150,11 @@ components:
       example:
         groups:
           key:
-            last_triggered_ts: 5
-            last_notified_ts: 1
+            last_triggered_ts: 9
+            last_notified_ts: 4
             name: name
-            last_resolved_ts: 4
-            last_nodata_ts: 7
+            last_resolved_ts: 5
+            last_nodata_ts: 1
       properties:
         groups:
           additionalProperties:
@@ -16153,11 +16168,11 @@ components:
     MonitorStateGroup:
       description: Monitor state for a single group.
       example:
-        last_triggered_ts: 5
-        last_notified_ts: 1
+        last_triggered_ts: 9
+        last_notified_ts: 4
         name: name
-        last_resolved_ts: 4
-        last_nodata_ts: 7
+        last_resolved_ts: 5
+        last_nodata_ts: 1
       properties:
         last_nodata_ts:
           description: Latest timestamp the monitor was in NO_DATA state.
@@ -16259,12 +16274,12 @@ components:
     MonitorThresholds:
       description: List of the different monitor threshold available.
       example:
-        critical: 3.616076749251911
-        warning: 1.2315135367772556
-        warning_recovery: 1.0246457001441578
-        ok: 4.145608029883936
-        critical_recovery: 2.027123023002322
-        unknown: 7.386281948385884
+        critical: 2.027123023002322
+        warning: 1.0246457001441578
+        warning_recovery: 1.4894159098541704
+        ok: 7.386281948385884
+        critical_recovery: 4.145608029883936
+        unknown: 1.2315135367772556
       properties:
         critical:
           description: The monitor `CRITICAL` threshold.
@@ -16350,9 +16365,9 @@ components:
         deleted: 2000-01-23T04:56:07.000+00:00
         name: name
         options:
-          no_data_timeframe: 2
+          no_data_timeframe: 7
           silenced:
-            key: 9
+            key: 3
           synthetics_check_id: synthetics_check_id
           notify_no_data: false
           enable_logs_sample: true
@@ -16364,15 +16379,16 @@ components:
           groupby_simple_monitor: true
           notify_audit: false
           min_location_failed: 5
-          new_host_delay: 5
-          renotify_interval: 7
+          new_host_delay: 2
+          renotify_interval: 9
           thresholds:
-            critical: 3.616076749251911
-            warning: 1.2315135367772556
-            warning_recovery: 1.0246457001441578
-            ok: 4.145608029883936
-            critical_recovery: 2.027123023002322
-            unknown: 7.386281948385884
+            critical: 2.027123023002322
+            warning: 1.0246457001441578
+            warning_recovery: 1.4894159098541704
+            ok: 7.386281948385884
+            critical_recovery: 4.145608029883936
+            unknown: 1.2315135367772556
+          new_group_delay: 5
           min_failure_duration: 1055
           threshold_windows:
             trigger_window: trigger_window
@@ -16383,18 +16399,18 @@ components:
           - null
           - null
           escalation_message: none
-          timeout_h: 1
+          timeout_h: 6
           locked: true
         modified: 2000-01-23T04:56:07.000+00:00
         id: 0
         state:
           groups:
             key:
-              last_triggered_ts: 5
-              last_notified_ts: 1
+              last_triggered_ts: 9
+              last_notified_ts: 4
               name: name
-              last_resolved_ts: 4
-              last_nodata_ts: 7
+              last_resolved_ts: 5
+              last_nodata_ts: 1
       properties:
         created:
           description: Timestamp of the monitor creation.
