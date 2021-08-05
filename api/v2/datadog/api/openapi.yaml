@@ -5304,7 +5304,7 @@ components:
       schema:
         type: string
       style: form
-    ApplicationKeyId:
+    ApplicationKeyID:
       description: The ID of the application key.
       explode: false
       in: path
