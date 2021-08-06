@@ -463,10 +463,10 @@ func TestDashboardLifecycle(t *testing.T) {
 	scatterPlotWidgetDefinition.SetRequests(datadog.ScatterPlotWidgetDefinitionRequests{
 		X: datadog.ScatterPlotRequest{
 			Q:          datadog.PtrString("avg:system.load.1{*}"),
-			Aggregator: datadog.WIDGETAGGREGATOR_AVERAGE.Ptr()},
+			Aggregator: datadog.SCATTERPLOTWIDGETAGGREGATOR_AVERAGE.Ptr()},
 		Y: datadog.ScatterPlotRequest{
 			Q:          datadog.PtrString("avg:system.load.1{*}"),
-			Aggregator: datadog.WIDGETAGGREGATOR_AVERAGE.Ptr(),
+			Aggregator: datadog.SCATTERPLOTWIDGETAGGREGATOR_AVERAGE.Ptr(),
 		},
 	})
 	scatterPlotWidgetDefinition.SetYaxis(*widgetAxis)

@@ -18,13 +18,14 @@ type FormulaAndFunctionMetricAggregation string
 
 // List of FormulaAndFunctionMetricAggregation
 const (
-	FORMULAANDFUNCTIONMETRICAGGREGATION_AVG    FormulaAndFunctionMetricAggregation = "avg"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_MIN    FormulaAndFunctionMetricAggregation = "min"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_MAX    FormulaAndFunctionMetricAggregation = "max"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_SUM    FormulaAndFunctionMetricAggregation = "sum"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_LAST   FormulaAndFunctionMetricAggregation = "last"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_AREA   FormulaAndFunctionMetricAggregation = "area"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_L2NORM FormulaAndFunctionMetricAggregation = "l2norm"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_AVG        FormulaAndFunctionMetricAggregation = "avg"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_MIN        FormulaAndFunctionMetricAggregation = "min"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_MAX        FormulaAndFunctionMetricAggregation = "max"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_SUM        FormulaAndFunctionMetricAggregation = "sum"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_LAST       FormulaAndFunctionMetricAggregation = "last"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_AREA       FormulaAndFunctionMetricAggregation = "area"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_L2NORM     FormulaAndFunctionMetricAggregation = "l2norm"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_PERCENTILE FormulaAndFunctionMetricAggregation = "percentile"
 )
 
 var allowedFormulaAndFunctionMetricAggregationEnumValues = []FormulaAndFunctionMetricAggregation{
@@ -35,6 +36,7 @@ var allowedFormulaAndFunctionMetricAggregationEnumValues = []FormulaAndFunctionM
 	"last",
 	"area",
 	"l2norm",
+	"percentile",
 }
 
 func (w *FormulaAndFunctionMetricAggregation) GetAllowedValues() []FormulaAndFunctionMetricAggregation {

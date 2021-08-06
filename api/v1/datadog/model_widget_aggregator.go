@@ -18,11 +18,12 @@ type WidgetAggregator string
 
 // List of WidgetAggregator
 const (
-	WIDGETAGGREGATOR_AVERAGE WidgetAggregator = "avg"
-	WIDGETAGGREGATOR_LAST    WidgetAggregator = "last"
-	WIDGETAGGREGATOR_MAXIMUM WidgetAggregator = "max"
-	WIDGETAGGREGATOR_MINIMUM WidgetAggregator = "min"
-	WIDGETAGGREGATOR_SUM     WidgetAggregator = "sum"
+	WIDGETAGGREGATOR_AVERAGE    WidgetAggregator = "avg"
+	WIDGETAGGREGATOR_LAST       WidgetAggregator = "last"
+	WIDGETAGGREGATOR_MAXIMUM    WidgetAggregator = "max"
+	WIDGETAGGREGATOR_MINIMUM    WidgetAggregator = "min"
+	WIDGETAGGREGATOR_SUM        WidgetAggregator = "sum"
+	WIDGETAGGREGATOR_PERCENTILE WidgetAggregator = "percentile"
 )
 
 var allowedWidgetAggregatorEnumValues = []WidgetAggregator{
@@ -31,6 +32,7 @@ var allowedWidgetAggregatorEnumValues = []WidgetAggregator{
 	"max",
 	"min",
 	"sum",
+	"percentile",
 }
 
 func (w *WidgetAggregator) GetAllowedValues() []WidgetAggregator {

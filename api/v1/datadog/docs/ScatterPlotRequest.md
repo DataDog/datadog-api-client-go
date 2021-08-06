@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Aggregator** | Pointer to [**WidgetAggregator**](WidgetAggregator.md) |  | [optional] 
+**Aggregator** | Pointer to [**ScatterplotWidgetAggregator**](ScatterplotWidgetAggregator.md) |  | [optional] 
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
@@ -36,20 +36,20 @@ but it doesn't guarantee that properties required by API are set.
 
 ### GetAggregator
 
-`func (o *ScatterPlotRequest) GetAggregator() WidgetAggregator`
+`func (o *ScatterPlotRequest) GetAggregator() ScatterplotWidgetAggregator`
 
 GetAggregator returns the Aggregator field if non-nil, zero value otherwise.
 
 ### GetAggregatorOk
 
-`func (o *ScatterPlotRequest) GetAggregatorOk() (*WidgetAggregator, bool)`
+`func (o *ScatterPlotRequest) GetAggregatorOk() (*ScatterplotWidgetAggregator, bool)`
 
 GetAggregatorOk returns a tuple with the Aggregator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAggregator
 
-`func (o *ScatterPlotRequest) SetAggregator(v WidgetAggregator)`
+`func (o *ScatterPlotRequest) SetAggregator(v ScatterplotWidgetAggregator)`
 
 SetAggregator sets Aggregator field to given value.
 
