@@ -27,6 +27,9 @@ const (
 	SYNTHETICSDEVICEID_FIREFOX_LAPTOP_LARGE SyntheticsDeviceID = "firefox.laptop_large"
 	SYNTHETICSDEVICEID_FIREFOX_TABLET       SyntheticsDeviceID = "firefox.tablet"
 	SYNTHETICSDEVICEID_FIREFOX_MOBILE_SMALL SyntheticsDeviceID = "firefox.mobile_small"
+	SYNTHETICSDEVICEID_EDGE_LAPTOP_LARGE    SyntheticsDeviceID = "edge.laptop_large"
+	SYNTHETICSDEVICEID_EDGE_TABLET          SyntheticsDeviceID = "edge.tablet"
+	SYNTHETICSDEVICEID_EDGE_MOBILE_SMALL    SyntheticsDeviceID = "edge.mobile_small"
 )
 
 var allowedSyntheticsDeviceIDEnumValues = []SyntheticsDeviceID{
@@ -39,6 +42,9 @@ var allowedSyntheticsDeviceIDEnumValues = []SyntheticsDeviceID{
 	"firefox.laptop_large",
 	"firefox.tablet",
 	"firefox.mobile_small",
+	"edge.laptop_large",
+	"edge.tablet",
+	"edge.mobile_small",
 }
 
 func (w *SyntheticsDeviceID) GetAllowedValues() []SyntheticsDeviceID {
