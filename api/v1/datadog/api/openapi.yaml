@@ -125,10 +125,10 @@ tags:
       for a list of the pipelines and processors currently configured in our UI.
 
     - Additional API-related information about processors can be found in the
-      [processors documentation](https://docs.datadoghq.com/logs/processing/processors/?tab=api#lookup-processor).
+      [processors documentation](https://docs.datadoghq.com/logs/log_configuration/processors/?tab=api#lookup-processor).
 
     - For more information about Pipelines, see the
-      [pipeline documentation](https://docs.datadoghq.com/logs/processing).
+      [pipeline documentation](https://docs.datadoghq.com/logs/log_configuration/pipelines).
 
     **Notes:**
 
@@ -144,7 +144,7 @@ tags:
     in the body data.
   externalDocs:
     description: Find out more at
-    url: https://docs.datadoghq.com/logs/processing/
+    url: https://docs.datadoghq.com/logs/log_configuration
   name: Logs Pipelines
 - description: |-
     The metrics endpoint allows you to:
@@ -8006,6 +8006,15 @@ paths:
         schema:
           $ref: '#/components/schemas/UsageAttributionSort'
         style: form
+      - description: Include child org usage in the response. Defaults to false.
+        explode: true
+        in: query
+        name: include_descendants
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -11697,19 +11706,20 @@ components:
     Event:
       description: Object representing an event.
       example:
-        device_name: device_name
-        payload: '{}'
-        host: host
-        id: 6
-        text: Oh boy!
         priority: normal
         source_type_name: source_type_name
         title: Did you hear the news today?
         alert_type: info
         url: url
-        date_happened: 0
         tags:
         - environment:test
+        device_name: device_name
+        payload: '{}'
+        id_str: id_str
+        host: host
+        id: 6
+        text: Oh boy!
+        date_happened: 0
       properties:
         alert_type:
           $ref: '#/components/schemas/EventAlertType'
@@ -11732,6 +11742,12 @@ components:
           format: int64
           readOnly: true
           type: integer
+        id_str:
+          description: |-
+            Handling IDs as large 64-bit numbers can cause loss of accuracy issues with some programming languages.
+            Instead, use the string representation of the Event ID to avoid losing accuracy.
+          readOnly: true
+          type: string
         payload:
           description: Payload of the event.
           example: '{}'
@@ -11977,32 +11993,34 @@ components:
       description: An event list response.
       example:
         events:
-        - device_name: device_name
-          payload: '{}'
-          host: host
-          id: 6
-          text: Oh boy!
-          priority: normal
+        - priority: normal
           source_type_name: source_type_name
           title: Did you hear the news today?
           alert_type: info
           url: url
-          date_happened: 0
           tags:
           - environment:test
-        - device_name: device_name
+          device_name: device_name
           payload: '{}'
+          id_str: id_str
           host: host
           id: 6
           text: Oh boy!
-          priority: normal
+          date_happened: 0
+        - priority: normal
           source_type_name: source_type_name
           title: Did you hear the news today?
           alert_type: info
           url: url
-          date_happened: 0
           tags:
           - environment:test
+          device_name: device_name
+          payload: '{}'
+          id_str: id_str
+          host: host
+          id: 6
+          text: Oh boy!
+          date_happened: 0
         status: status
       properties:
         events:
@@ -12044,19 +12062,20 @@ components:
       description: Object containing an event response.
       example:
         event:
-          device_name: device_name
-          payload: '{}'
-          host: host
-          id: 6
-          text: Oh boy!
           priority: normal
           source_type_name: source_type_name
           title: Did you hear the news today?
           alert_type: info
           url: url
-          date_happened: 0
           tags:
           - environment:test
+          device_name: device_name
+          payload: '{}'
+          id_str: id_str
+          host: host
+          id: 6
+          text: Oh boy!
+          date_happened: 0
         status: status
       properties:
         event:
@@ -13822,7 +13841,7 @@ components:
         - Results are rounded up to the 9th decimal. For example, if the result of the formula is `0.1234567891`,
           the actual value stored for the attribute is `0.123456789`.
         - If you need to scale a unit of measure,
-          see [Scale Filter](https://docs.datadoghq.com/logs/processing/parsing/?tab=filter#matcher-and-filter).
+          see [Scale Filter](https://docs.datadoghq.com/logs/log_configuration/parsing/?tab=filter#matcher-and-filter).
       properties:
         expression:
           description: Arithmetic operation between one or more log attributes.
@@ -14238,8 +14257,8 @@ components:
       - GEO_IP_PARSER
     LogsGrokParser:
       description: |-
-        Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/processing/parsing/#advanced-settings).
-        For more information, see the [parsing section](https://docs.datadoghq.com/logs/processing/parsing).
+        Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/log_configuration/parsing/#advanced-settings).
+        For more information, see the [parsing section](https://docs.datadoghq.com/logs/log_configuration/parsing).
       properties:
         grok:
           $ref: '#/components/schemas/LogsGrokParserRules'
@@ -15534,9 +15553,9 @@ components:
         deleted: 2000-01-23T04:56:07.000+00:00
         name: name
         options:
-          no_data_timeframe: 2
+          no_data_timeframe: 7
           silenced:
-            key: 9
+            key: 3
           synthetics_check_id: synthetics_check_id
           notify_no_data: false
           enable_logs_sample: true
@@ -15548,15 +15567,16 @@ components:
           groupby_simple_monitor: true
           notify_audit: false
           min_location_failed: 5
-          new_host_delay: 5
-          renotify_interval: 7
+          new_host_delay: 2
+          renotify_interval: 9
           thresholds:
-            critical: 3.616076749251911
-            warning: 1.2315135367772556
-            warning_recovery: 1.0246457001441578
-            ok: 4.145608029883936
-            critical_recovery: 2.027123023002322
-            unknown: 7.386281948385884
+            critical: 2.027123023002322
+            warning: 1.0246457001441578
+            warning_recovery: 1.4894159098541704
+            ok: 7.386281948385884
+            critical_recovery: 4.145608029883936
+            unknown: 1.2315135367772556
+          new_group_delay: 5
           min_failure_duration: 1055
           threshold_windows:
             trigger_window: trigger_window
@@ -15567,18 +15587,18 @@ components:
           - null
           - null
           escalation_message: none
-          timeout_h: 1
+          timeout_h: 6
           locked: true
         modified: 2000-01-23T04:56:07.000+00:00
         id: 0
         state:
           groups:
             key:
-              last_triggered_ts: 5
-              last_notified_ts: 1
+              last_triggered_ts: 9
+              last_notified_ts: 4
               name: name
-              last_resolved_ts: 4
-              last_nodata_ts: 7
+              last_resolved_ts: 5
+              last_nodata_ts: 1
       properties:
         created:
           description: Timestamp of the monitor creation.
@@ -15757,9 +15777,9 @@ components:
     MonitorOptions:
       description: List of options associated with your monitor.
       example:
-        no_data_timeframe: 2
+        no_data_timeframe: 7
         silenced:
-          key: 9
+          key: 3
         synthetics_check_id: synthetics_check_id
         notify_no_data: false
         enable_logs_sample: true
@@ -15771,15 +15791,16 @@ components:
         groupby_simple_monitor: true
         notify_audit: false
         min_location_failed: 5
-        new_host_delay: 5
-        renotify_interval: 7
+        new_host_delay: 2
+        renotify_interval: 9
         thresholds:
-          critical: 3.616076749251911
-          warning: 1.2315135367772556
-          warning_recovery: 1.0246457001441578
-          ok: 4.145608029883936
-          critical_recovery: 2.027123023002322
-          unknown: 7.386281948385884
+          critical: 2.027123023002322
+          warning: 1.0246457001441578
+          warning_recovery: 1.4894159098541704
+          ok: 7.386281948385884
+          critical_recovery: 4.145608029883936
+          unknown: 1.2315135367772556
+        new_group_delay: 5
         min_failure_duration: 1055
         threshold_windows:
           trigger_window: trigger_window
@@ -15790,7 +15811,7 @@ components:
         - null
         - null
         escalation_message: none
-        timeout_h: 1
+        timeout_h: 6
         locked: true
       properties:
         aggregation:
@@ -15856,12 +15877,25 @@ components:
           format: int64
           nullable: true
           type: integer
+        new_group_delay:
+          description: |-
+            Time (in seconds) to skip evaluations for new groups.
+
+            For example, this option can be used to skip evaluations for new hosts while they initialize.
+
+            Must be a non negative integer.
+          format: int64
+          nullable: true
+          type: integer
         new_host_delay:
           default: 300
+          deprecated: true
           description: |-
             Time (in seconds) to allow a host to boot and applications
             to fully start before starting the evaluation of monitor results.
             Should be a non negative integer.
+
+            Use new_group_delay instead.
           format: int64
           nullable: true
           type: integer
@@ -16126,11 +16160,11 @@ components:
       example:
         groups:
           key:
-            last_triggered_ts: 5
-            last_notified_ts: 1
+            last_triggered_ts: 9
+            last_notified_ts: 4
             name: name
-            last_resolved_ts: 4
-            last_nodata_ts: 7
+            last_resolved_ts: 5
+            last_nodata_ts: 1
       properties:
         groups:
           additionalProperties:
@@ -16144,11 +16178,11 @@ components:
     MonitorStateGroup:
       description: Monitor state for a single group.
       example:
-        last_triggered_ts: 5
-        last_notified_ts: 1
+        last_triggered_ts: 9
+        last_notified_ts: 4
         name: name
-        last_resolved_ts: 4
-        last_nodata_ts: 7
+        last_resolved_ts: 5
+        last_nodata_ts: 1
       properties:
         last_nodata_ts:
           description: Latest timestamp the monitor was in NO_DATA state.
@@ -16250,12 +16284,12 @@ components:
     MonitorThresholds:
       description: List of the different monitor threshold available.
       example:
-        critical: 3.616076749251911
-        warning: 1.2315135367772556
-        warning_recovery: 1.0246457001441578
-        ok: 4.145608029883936
-        critical_recovery: 2.027123023002322
-        unknown: 7.386281948385884
+        critical: 2.027123023002322
+        warning: 1.0246457001441578
+        warning_recovery: 1.4894159098541704
+        ok: 7.386281948385884
+        critical_recovery: 4.145608029883936
+        unknown: 1.2315135367772556
       properties:
         critical:
           description: The monitor `CRITICAL` threshold.
@@ -16341,9 +16375,9 @@ components:
         deleted: 2000-01-23T04:56:07.000+00:00
         name: name
         options:
-          no_data_timeframe: 2
+          no_data_timeframe: 7
           silenced:
-            key: 9
+            key: 3
           synthetics_check_id: synthetics_check_id
           notify_no_data: false
           enable_logs_sample: true
@@ -16355,15 +16389,16 @@ components:
           groupby_simple_monitor: true
           notify_audit: false
           min_location_failed: 5
-          new_host_delay: 5
-          renotify_interval: 7
+          new_host_delay: 2
+          renotify_interval: 9
           thresholds:
-            critical: 3.616076749251911
-            warning: 1.2315135367772556
-            warning_recovery: 1.0246457001441578
-            ok: 4.145608029883936
-            critical_recovery: 2.027123023002322
-            unknown: 7.386281948385884
+            critical: 2.027123023002322
+            warning: 1.0246457001441578
+            warning_recovery: 1.4894159098541704
+            ok: 7.386281948385884
+            critical_recovery: 4.145608029883936
+            unknown: 1.2315135367772556
+          new_group_delay: 5
           min_failure_duration: 1055
           threshold_windows:
             trigger_window: trigger_window
@@ -16374,18 +16409,18 @@ components:
           - null
           - null
           escalation_message: none
-          timeout_h: 1
+          timeout_h: 6
           locked: true
         modified: 2000-01-23T04:56:07.000+00:00
         id: 0
         state:
           groups:
             key:
-              last_triggered_ts: 5
-              last_notified_ts: 1
+              last_triggered_ts: 9
+              last_notified_ts: 4
               name: name
-              last_resolved_ts: 4
-              last_nodata_ts: 7
+              last_resolved_ts: 5
+              last_nodata_ts: 1
       properties:
         created:
           description: Timestamp of the monitor creation.
@@ -21457,6 +21492,9 @@ components:
       - firefox.laptop_large
       - firefox.tablet
       - firefox.mobile_small
+      - edge.laptop_large
+      - edge.tablet
+      - edge.mobile_small
       type: string
       x-enum-varnames:
       - LAPTOP_LARGE
@@ -21468,6 +21506,9 @@ components:
       - FIREFOX_LAPTOP_LARGE
       - FIREFOX_TABLET
       - FIREFOX_MOBILE_SMALL
+      - EDGE_LAPTOP_LARGE
+      - EDGE_TABLET
+      - EDGE_MOBILE_SMALL
     SyntheticsErrorCode:
       description: Error code that can be returned by a Synthetic test.
       enum:

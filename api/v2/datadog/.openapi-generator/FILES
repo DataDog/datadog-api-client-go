@@ -15,6 +15,7 @@ api_metrics.go
 api_processes.go
 api_roles.go
 api_security_monitoring.go
+api_service_accounts.go
 api_users.go
 client.go
 configuration.go
@@ -231,6 +232,7 @@ docs/PartialAPIKey.md
 docs/PartialAPIKeyAttributes.md
 docs/PartialApplicationKey.md
 docs/PartialApplicationKeyAttributes.md
+docs/PartialApplicationKeyResponse.md
 docs/Permission.md
 docs/PermissionAttributes.md
 docs/PermissionsResponse.md
@@ -327,6 +329,10 @@ docs/SecurityMonitoringSignalsListResponseLinks.md
 docs/SecurityMonitoringSignalsListResponseMeta.md
 docs/SecurityMonitoringSignalsListResponseMetaPage.md
 docs/SecurityMonitoringSignalsSort.md
+docs/ServiceAccountCreateAttributes.md
+docs/ServiceAccountCreateData.md
+docs/ServiceAccountCreateRequest.md
+docs/ServiceAccountsApi.md
 docs/User.md
 docs/UserAttributes.md
 docs/UserCreateAttributes.md
@@ -557,6 +563,7 @@ model_partial_api_key.go
 model_partial_api_key_attributes.go
 model_partial_application_key.go
 model_partial_application_key_attributes.go
+model_partial_application_key_response.go
 model_permission.go
 model_permission_attributes.go
 model_permissions_response.go
@@ -650,6 +657,9 @@ model_security_monitoring_signals_list_response_links.go
 model_security_monitoring_signals_list_response_meta.go
 model_security_monitoring_signals_list_response_meta_page.go
 model_security_monitoring_signals_sort.go
+model_service_account_create_attributes.go
+model_service_account_create_data.go
+model_service_account_create_request.go
 model_user.go
 model_user_attributes.go
 model_user_create_attributes.go

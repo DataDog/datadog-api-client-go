@@ -14,7 +14,8 @@ Name | Type | Description | Notes
 **Locked** | Pointer to **bool** | Whether or not the monitor is locked (only editable by creator and admins). | [optional] 
 **MinFailureDuration** | Pointer to **NullableInt64** | How long the test should be in failure before alerting (integer, number of seconds, max 7200). | [optional] [default to 0]
 **MinLocationFailed** | Pointer to **NullableInt64** | The minimum number of locations in failure at the same time during at least one moment in the &#x60;min_failure_duration&#x60; period (&#x60;min_location_failed&#x60; and &#x60;min_failure_duration&#x60; are part of the advanced alerting rules - integer, &gt;&#x3D; 1). | [optional] [default to 1]
-**NewHostDelay** | Pointer to **NullableInt64** | Time (in seconds) to allow a host to boot and applications to fully start before starting the evaluation of monitor results. Should be a non negative integer. | [optional] [default to 300]
+**NewGroupDelay** | Pointer to **NullableInt64** | Time (in seconds) to skip evaluations for new groups.  For example, this option can be used to skip evaluations for new hosts while they initialize.  Must be a non negative integer. | [optional] 
+**NewHostDelay** | Pointer to **NullableInt64** | Time (in seconds) to allow a host to boot and applications to fully start before starting the evaluation of monitor results. Should be a non negative integer.  Use new_group_delay instead. | [optional] [default to 300]
 **NoDataTimeframe** | Pointer to **NullableInt64** | The number of minutes before a monitor notifies after data stops reporting. Datadog recommends at least 2x the monitor timeframe for metric alerts or 2 minutes for service checks. If omitted, 2x the evaluation timeframe is used for metric alerts, and 24 hours is used for service checks. | [optional] 
 **NotifyAudit** | Pointer to **bool** | A Boolean indicating whether tagged users is notified on changes to this monitor. | [optional] [default to false]
 **NotifyNoData** | Pointer to **bool** | A Boolean indicating whether this monitor notifies when data stops reporting. | [optional] [default to false]
@@ -325,6 +326,41 @@ HasMinLocationFailed returns a boolean if a field has been set.
 `func (o *MonitorOptions) UnsetMinLocationFailed()`
 
 UnsetMinLocationFailed ensures that no value is present for MinLocationFailed, not even an explicit nil
+### GetNewGroupDelay
+
+`func (o *MonitorOptions) GetNewGroupDelay() int64`
+
+GetNewGroupDelay returns the NewGroupDelay field if non-nil, zero value otherwise.
+
+### GetNewGroupDelayOk
+
+`func (o *MonitorOptions) GetNewGroupDelayOk() (*int64, bool)`
+
+GetNewGroupDelayOk returns a tuple with the NewGroupDelay field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNewGroupDelay
+
+`func (o *MonitorOptions) SetNewGroupDelay(v int64)`
+
+SetNewGroupDelay sets NewGroupDelay field to given value.
+
+### HasNewGroupDelay
+
+`func (o *MonitorOptions) HasNewGroupDelay() bool`
+
+HasNewGroupDelay returns a boolean if a field has been set.
+
+### SetNewGroupDelayNil
+
+`func (o *MonitorOptions) SetNewGroupDelayNil(b bool)`
+
+ SetNewGroupDelayNil sets the value for NewGroupDelay to be an explicit nil
+
+### UnsetNewGroupDelay
+`func (o *MonitorOptions) UnsetNewGroupDelay()`
+
+UnsetNewGroupDelay ensures that no value is present for NewGroupDelay, not even an explicit nil
 ### GetNewHostDelay
 
 `func (o *MonitorOptions) GetNewHostDelay() int64`
