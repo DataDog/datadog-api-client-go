@@ -621,6 +621,7 @@ Class | Method | HTTP request | Description
  - [ScatterPlotWidgetDefinition](docs/ScatterPlotWidgetDefinition.md)
  - [ScatterPlotWidgetDefinitionRequests](docs/ScatterPlotWidgetDefinitionRequests.md)
  - [ScatterPlotWidgetDefinitionType](docs/ScatterPlotWidgetDefinitionType.md)
+ - [ScatterplotWidgetAggregator](docs/ScatterplotWidgetAggregator.md)
  - [Series](docs/Series.md)
  - [ServiceCheck](docs/ServiceCheck.md)
  - [ServiceCheckStatus](docs/ServiceCheckStatus.md)
