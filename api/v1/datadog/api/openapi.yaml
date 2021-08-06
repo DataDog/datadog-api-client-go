@@ -11706,19 +11706,20 @@ components:
     Event:
       description: Object representing an event.
       example:
-        device_name: device_name
-        payload: '{}'
-        host: host
-        id: 6
-        text: Oh boy!
         priority: normal
         source_type_name: source_type_name
         title: Did you hear the news today?
         alert_type: info
         url: url
-        date_happened: 0
         tags:
         - environment:test
+        device_name: device_name
+        payload: '{}'
+        id_str: id_str
+        host: host
+        id: 6
+        text: Oh boy!
+        date_happened: 0
       properties:
         alert_type:
           $ref: '#/components/schemas/EventAlertType'
@@ -11741,6 +11742,12 @@ components:
           format: int64
           readOnly: true
           type: integer
+        id_str:
+          description: |-
+            Handling IDs as large 64-bit numbers can cause loss of accuracy issues with some programming languages.
+            Instead, use the string representation of the Event ID to avoid losing accuracy.
+          readOnly: true
+          type: string
         payload:
           description: Payload of the event.
           example: '{}'
@@ -11986,32 +11993,34 @@ components:
       description: An event list response.
       example:
         events:
-        - device_name: device_name
-          payload: '{}'
-          host: host
-          id: 6
-          text: Oh boy!
-          priority: normal
+        - priority: normal
           source_type_name: source_type_name
           title: Did you hear the news today?
           alert_type: info
           url: url
-          date_happened: 0
           tags:
           - environment:test
-        - device_name: device_name
+          device_name: device_name
           payload: '{}'
+          id_str: id_str
           host: host
           id: 6
           text: Oh boy!
-          priority: normal
+          date_happened: 0
+        - priority: normal
           source_type_name: source_type_name
           title: Did you hear the news today?
           alert_type: info
           url: url
-          date_happened: 0
           tags:
           - environment:test
+          device_name: device_name
+          payload: '{}'
+          id_str: id_str
+          host: host
+          id: 6
+          text: Oh boy!
+          date_happened: 0
         status: status
       properties:
         events:
@@ -12053,19 +12062,20 @@ components:
       description: Object containing an event response.
       example:
         event:
-          device_name: device_name
-          payload: '{}'
-          host: host
-          id: 6
-          text: Oh boy!
           priority: normal
           source_type_name: source_type_name
           title: Did you hear the news today?
           alert_type: info
           url: url
-          date_happened: 0
           tags:
           - environment:test
+          device_name: device_name
+          payload: '{}'
+          id_str: id_str
+          host: host
+          id: 6
+          text: Oh boy!
+          date_happened: 0
         status: status
       properties:
         event:

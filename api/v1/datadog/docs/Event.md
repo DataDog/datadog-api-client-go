@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **DeviceName** | Pointer to **string** | A device name. | [optional] 
 **Host** | Pointer to **string** | Host name to associate with the event. Any tags associated with the host are also applied to this event. | [optional] 
 **Id** | Pointer to **int64** | Integer ID of the event. | [optional] [readonly] 
+**IdStr** | Pointer to **string** | Handling IDs as large 64-bit numbers can cause loss of accuracy issues with some programming languages. Instead, use the string representation of the Event ID to avoid losing accuracy. | [optional] [readonly] 
 **Payload** | Pointer to **string** | Payload of the event. | [optional] [readonly] 
 **Priority** | Pointer to [**EventPriority**](EventPriority.md) |  | [optional] 
 **SourceTypeName** | Pointer to **string** | The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | [optional] 
@@ -160,6 +161,31 @@ SetId sets Id field to given value.
 `func (o *Event) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetIdStr
+
+`func (o *Event) GetIdStr() string`
+
+GetIdStr returns the IdStr field if non-nil, zero value otherwise.
+
+### GetIdStrOk
+
+`func (o *Event) GetIdStrOk() (*string, bool)`
+
+GetIdStrOk returns a tuple with the IdStr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdStr
+
+`func (o *Event) SetIdStr(v string)`
+
+SetIdStr sets IdStr field to given value.
+
+### HasIdStr
+
+`func (o *Event) HasIdStr() bool`
+
+HasIdStr returns a boolean if a field has been set.
 
 ### GetPayload
 
