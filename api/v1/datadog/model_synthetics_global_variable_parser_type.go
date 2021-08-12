@@ -21,12 +21,14 @@ const (
 	SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW       SyntheticsGlobalVariableParserType = "raw"
 	SYNTHETICSGLOBALVARIABLEPARSERTYPE_JSON_PATH SyntheticsGlobalVariableParserType = "json_path"
 	SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX     SyntheticsGlobalVariableParserType = "regex"
+	SYNTHETICSGLOBALVARIABLEPARSERTYPE_X_PATH    SyntheticsGlobalVariableParserType = "x_path"
 )
 
 var allowedSyntheticsGlobalVariableParserTypeEnumValues = []SyntheticsGlobalVariableParserType{
 	"raw",
 	"json_path",
 	"regex",
+	"x_path",
 }
 
 func (w *SyntheticsGlobalVariableParserType) GetAllowedValues() []SyntheticsGlobalVariableParserType {
