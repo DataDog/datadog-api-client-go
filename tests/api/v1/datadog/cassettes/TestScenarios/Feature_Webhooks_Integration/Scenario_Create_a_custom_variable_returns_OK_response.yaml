@@ -1,0 +1,92 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"is_secret":true,"name":"TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628843839","value":"CUSTOM_VARIABLE_VALUE"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateWebhooksIntegrationCustomVariable
+      User-Agent:
+      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3724042000728344456"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8837709767732673741"
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables
+    method: POST
+  response:
+    body: '{"is_secret":true,"name":"TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628843839"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "80"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 13 Aug 2021 08:37:19 GMT
+      Location:
+      - https://app.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628843839
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteWebhooksIntegrationCustomVariable
+      User-Agent:
+      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3332002359779328470"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "8837709767732673741"
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628843839
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "2"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 13 Aug 2021 08:37:20 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
