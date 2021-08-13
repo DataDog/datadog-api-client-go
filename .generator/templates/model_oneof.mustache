@@ -4,8 +4,9 @@ type {{classname}} struct {
 	{{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}} *{{{.}}}
 	{{/oneOf}}
 
-    // UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
+	ContainsUnparsedObject bool
 }
 
 {{#oneOf}}
@@ -80,6 +81,7 @@ func (dst *{{classname}}) UnmarshalJSON(data []byte) error {
 		{{#oneOf}}
 		dst.{{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}} = nil
 		{{/oneOf}}
+		dst.ContainsUnparsedObject = true
 		return json.Unmarshal(data, &dst.UnparsedObject)
 	} else {
 		return nil // exactly one match

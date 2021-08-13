@@ -317,3 +317,31 @@ func (v *NullableTime) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+func containsUnparsedObject(v reflect.Value) bool {
+	switch v.Kind() {
+	case reflect.Array, reflect.Slice:
+		for i := 0; i < v.Len(); i++ {
+			if containsUnparsedObject(v.Index(i)) {
+				return true
+			}
+		}
+	case reflect.Map:
+		for _, k := range v.MapKeys() {
+			if containsUnparsedObject(v.MapIndex(k)) {
+				return true
+			}
+		}
+	case reflect.Struct:
+		if u := v.FieldByName("ContainsUnparsedObject"); u.IsValid() && u.Bool() {
+			return true
+		}
+	case reflect.Interface, reflect.Ptr:
+		return containsUnparsedObject(v.Elem())
+	default:
+		if m := v.MethodByName("IsValid"); m.IsValid() {
+			return !m.Call([]reflect.Value{})[0].Bool()
+		}
+	}
+	return false
+}
