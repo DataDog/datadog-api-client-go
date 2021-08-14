@@ -438,8 +438,10 @@ func SetFixtureData(ctx gobdd.Context) {
 	data := GetData(ctx)
 	data["unique"] = unique
 	data["unique_lower"] = strings.ToLower(unique)
+	data["unique_upper"] = strings.ToUpper(unique)
 	data["unique_alnum"] = string(alnum.ReplaceAll([]byte(unique), []byte("")))
 	data["unique_lower_alnum"] = strings.ToLower(data["unique_alnum"].(string))
+	data["unique_upper_alnum"] = strings.ToUpper(data["unique_alnum"].(string))
 	data["now"] = ClockFromContext(cctx).Now()
 }
 

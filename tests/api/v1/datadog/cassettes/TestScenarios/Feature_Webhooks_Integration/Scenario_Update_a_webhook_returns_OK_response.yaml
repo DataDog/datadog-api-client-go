@@ -1,0 +1,143 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"name":"Test-Update_a_webhook_returns_OK_response-1628843843","url":"http://example.com/webhook"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateWebhooksIntegration
+      User-Agent:
+      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7493685156855815481"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7926667000585977557"
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks
+    method: POST
+  response:
+    body: '{"encode_as":"json","url":"http://example.com/webhook","custom_headers":null,"name":"Test-Update_a_webhook_returns_OK_response-1628843843","payload":"{\"body\":
+      \"$EVENT_MSG\", \"last_updated\": \"$LAST_UPDATED\", \"event_type\": \"$EVENT_TYPE\",
+      \"title\": \"$EVENT_TITLE\", \"date\": \"$DATE\", \"org\": {\"id\": \"$ORG_ID\",
+      \"name\": \"$ORG_NAME\"}, \"id\": \"$ID\"}"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "372"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 13 Aug 2021 08:37:23 GMT
+      Location:
+      - https://app.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Update_a_webhook_returns_OK_response-1628843843
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: |
+      {"url":"https://example.com/webhook-updated"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - UpdateWebhooksIntegration
+      User-Agent:
+      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "4648225404613756726"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7926667000585977557"
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Update_a_webhook_returns_OK_response-1628843843
+    method: PUT
+  response:
+    body: '{"encode_as":"json","url":"https://example.com/webhook-updated","custom_headers":null,"name":"Test-Update_a_webhook_returns_OK_response-1628843843","payload":"{\"body\":
+      \"$EVENT_MSG\", \"last_updated\": \"$LAST_UPDATED\", \"event_type\": \"$EVENT_TYPE\",
+      \"title\": \"$EVENT_TITLE\", \"date\": \"$DATE\", \"org\": {\"id\": \"$ORG_ID\",
+      \"name\": \"$ORG_NAME\"}, \"id\": \"$ID\"}"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 13 Aug 2021 08:37:23 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteWebhooksIntegration
+      User-Agent:
+      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "7728056006029863653"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "7926667000585977557"
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Update_a_webhook_returns_OK_response-1628843843
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "2"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 13 Aug 2021 08:37:23 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
