@@ -690,6 +690,7 @@ Class | Method | HTTP request | Description
  - [SyntheticsGetAPITestLatestResultsResponse](docs/SyntheticsGetAPITestLatestResultsResponse.md)
  - [SyntheticsGetBrowserTestLatestResultsResponse](docs/SyntheticsGetBrowserTestLatestResultsResponse.md)
  - [SyntheticsGlobalVariable](docs/SyntheticsGlobalVariable.md)
+ - [SyntheticsGlobalVariableAttributes](docs/SyntheticsGlobalVariableAttributes.md)
  - [SyntheticsGlobalVariableParseTestOptions](docs/SyntheticsGlobalVariableParseTestOptions.md)
  - [SyntheticsGlobalVariableParseTestOptionsType](docs/SyntheticsGlobalVariableParseTestOptionsType.md)
  - [SyntheticsGlobalVariableParserType](docs/SyntheticsGlobalVariableParserType.md)
