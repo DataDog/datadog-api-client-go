@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
+**Attributes** | Pointer to [**SyntheticsGlobalVariableAttributes**](SyntheticsGlobalVariableAttributes.md) |  | [optional] 
 **Description** | **string** | Description of the global variable. | 
 **Id** | Pointer to **string** | Unique identifier of the global variable. | [optional] [readonly] 
 **Name** | **string** | Name of the global variable. | 
@@ -30,6 +31,31 @@ will change when the set of required properties is changed.
 NewSyntheticsGlobalVariableWithDefaults instantiates a new SyntheticsGlobalVariable object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetAttributes
+
+`func (o *SyntheticsGlobalVariable) GetAttributes() SyntheticsGlobalVariableAttributes`
+
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+
+### GetAttributesOk
+
+`func (o *SyntheticsGlobalVariable) GetAttributesOk() (*SyntheticsGlobalVariableAttributes, bool)`
+
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttributes
+
+`func (o *SyntheticsGlobalVariable) SetAttributes(v SyntheticsGlobalVariableAttributes)`
+
+SetAttributes sets Attributes field to given value.
+
+### HasAttributes
+
+`func (o *SyntheticsGlobalVariable) HasAttributes() bool`
+
+HasAttributes returns a boolean if a field has been set.
 
 ### GetDescription
 

@@ -15,6 +15,7 @@ import (
 
 // SyntheticsGlobalVariable Synthetics global variable.
 type SyntheticsGlobalVariable struct {
+	Attributes *SyntheticsGlobalVariableAttributes `json:"attributes,omitempty"`
 	// Description of the global variable.
 	Description string `json:"description"`
 	// Unique identifier of the global variable.
@@ -50,6 +51,38 @@ func NewSyntheticsGlobalVariable(description string, name string, tags []string,
 func NewSyntheticsGlobalVariableWithDefaults() *SyntheticsGlobalVariable {
 	this := SyntheticsGlobalVariable{}
 	return &this
+}
+
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *SyntheticsGlobalVariable) GetAttributes() SyntheticsGlobalVariableAttributes {
+	if o == nil || o.Attributes == nil {
+		var ret SyntheticsGlobalVariableAttributes
+		return ret
+	}
+	return *o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsGlobalVariable) GetAttributesOk() (*SyntheticsGlobalVariableAttributes, bool) {
+	if o == nil || o.Attributes == nil {
+		return nil, false
+	}
+	return o.Attributes, true
+}
+
+// HasAttributes returns a boolean if a field has been set.
+func (o *SyntheticsGlobalVariable) HasAttributes() bool {
+	if o != nil && o.Attributes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAttributes gets a reference to the given SyntheticsGlobalVariableAttributes and assigns it to the Attributes field.
+func (o *SyntheticsGlobalVariable) SetAttributes(v SyntheticsGlobalVariableAttributes) {
+	o.Attributes = &v
 }
 
 // GetDescription returns the Description field value
@@ -249,6 +282,9 @@ func (o SyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
 	if true {
 		toSerialize["description"] = o.Description
 	}
@@ -282,6 +318,7 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 		Value       *SyntheticsGlobalVariableValue `json:"value"`
 	}{}
 	all := struct {
+		Attributes        *SyntheticsGlobalVariableAttributes       `json:"attributes,omitempty"`
 		Description       string                                    `json:"description"`
 		Id                *string                                   `json:"id,omitempty"`
 		Name              string                                    `json:"name"`
@@ -315,6 +352,7 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	o.Attributes = all.Attributes
 	o.Description = all.Description
 	o.Id = all.Id
 	o.Name = all.Name

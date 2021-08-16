@@ -22017,6 +22017,10 @@ components:
             value: .*
         description: Example description
         parse_test_public_id: abc-def-123
+        attributes:
+          restricted_roles:
+          - restricted_roles
+          - restricted_roles
         id: id
         value:
           secure: true
@@ -22025,6 +22029,8 @@ components:
         - team:front
         - test:workflow-1
       properties:
+        attributes:
+          $ref: '#/components/schemas/SyntheticsGlobalVariable_attributes'
         description:
           description: Description of the global variable.
           example: Example description
@@ -22113,6 +22119,10 @@ components:
               value: .*
           description: Example description
           parse_test_public_id: abc-def-123
+          attributes:
+            restricted_roles:
+            - restricted_roles
+            - restricted_roles
           id: id
           value:
             secure: true
@@ -22128,6 +22138,10 @@ components:
               value: .*
           description: Example description
           parse_test_public_id: abc-def-123
+          attributes:
+            restricted_roles:
+            - restricted_roles
+            - restricted_roles
           id: id
           value:
             secure: true
@@ -30328,6 +30342,21 @@ components:
           $ref: '#/components/schemas/SyntheticsCITest_metadata_ci'
         git:
           $ref: '#/components/schemas/SyntheticsCITest_metadata_git'
+      type: object
+    SyntheticsGlobalVariable_attributes:
+      description: Attributes of the global variable.
+      example:
+        restricted_roles:
+        - restricted_roles
+        - restricted_roles
+      properties:
+        restricted_roles:
+          description: List of role identifiers that can be pulled from the Roles
+            API.
+          items:
+            description: UUID for a role.
+            type: string
+          type: array
       type: object
     SyntheticsGlobalVariable_parse_test_options:
       description: Parser options to use for retrieving a Synthetics global variable
