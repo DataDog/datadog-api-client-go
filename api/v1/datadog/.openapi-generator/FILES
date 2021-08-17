@@ -32,6 +32,7 @@ api_synthetics.go
 api_tags.go
 api_usage_metering.go
 api_users.go
+api_webhooks_integration.go
 client.go
 configuration.go
 docs/APIErrorResponse.md
@@ -466,6 +467,7 @@ docs/SyntheticsErrorCode.md
 docs/SyntheticsGetAPITestLatestResultsResponse.md
 docs/SyntheticsGetBrowserTestLatestResultsResponse.md
 docs/SyntheticsGlobalVariable.md
+docs/SyntheticsGlobalVariableAttributes.md
 docs/SyntheticsGlobalVariableParseTestOptions.md
 docs/SyntheticsGlobalVariableParseTestOptionsType.md
 docs/SyntheticsGlobalVariableParserType.md
@@ -616,6 +618,13 @@ docs/UserDisableResponse.md
 docs/UserListResponse.md
 docs/UserResponse.md
 docs/UsersApi.md
+docs/WebhooksIntegration.md
+docs/WebhooksIntegrationApi.md
+docs/WebhooksIntegrationCustomVariable.md
+docs/WebhooksIntegrationCustomVariableResponse.md
+docs/WebhooksIntegrationCustomVariableUpdateRequest.md
+docs/WebhooksIntegrationEncoding.md
+docs/WebhooksIntegrationUpdateRequest.md
 docs/Widget.md
 docs/WidgetAggregator.md
 docs/WidgetAxis.md
@@ -1070,6 +1079,7 @@ model_synthetics_error_code.go
 model_synthetics_get_api_test_latest_results_response.go
 model_synthetics_get_browser_test_latest_results_response.go
 model_synthetics_global_variable.go
+model_synthetics_global_variable_attributes.go
 model_synthetics_global_variable_parse_test_options.go
 model_synthetics_global_variable_parse_test_options_type.go
 model_synthetics_global_variable_parser_type.go
@@ -1217,6 +1227,12 @@ model_user.go
 model_user_disable_response.go
 model_user_list_response.go
 model_user_response.go
+model_webhooks_integration.go
+model_webhooks_integration_custom_variable.go
+model_webhooks_integration_custom_variable_response.go
+model_webhooks_integration_custom_variable_update_request.go
+model_webhooks_integration_encoding.go
+model_webhooks_integration_update_request.go
 model_widget.go
 model_widget_aggregator.go
 model_widget_axis.go
