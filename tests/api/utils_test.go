@@ -4,7 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	datadogV1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	datadogV2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
@@ -17,32 +18,47 @@ func TestContainsUnparsedObject(t *testing.T) {
 	}{
 		{
 			"top level unparsed struct",
-			datadog.Dashboard{UnparsedObject: map[string]interface{}{"foo": "bar"}},
+			datadogV1.Dashboard{UnparsedObject: map[string]interface{}{"foo": "bar"}},
 			true,
 		},
 		{
 			"nested unparsed struct",
-			datadog.SyntheticsAPITest{Name: datadog.PtrString("foo"), Config: &datadog.SyntheticsAPITestConfig{UnparsedObject: map[string]interface{}{"foo": "bar"}}},
+			datadogV1.SyntheticsAPITest{Name: datadogV1.PtrString("foo"), Config: &datadogV1.SyntheticsAPITestConfig{UnparsedObject: map[string]interface{}{"foo": "bar"}}},
 			true,
 		},
 		{
 			"unparsed struct in array",
-			datadog.Dashboard{Widgets: []datadog.Widget{{Definition: datadog.WidgetDefinition{}}, {UnparsedObject: map[string]interface{}{"foo": "bar"}}}},
+			datadogV1.Dashboard{Widgets: []datadogV1.Widget{{Definition: datadogV1.WidgetDefinition{}}, {UnparsedObject: map[string]interface{}{"foo": "bar"}}}},
 			true,
 		},
 		{
 			"unparsed enum in array",
-			datadog.SyntheticsTestOptions{DeviceIds: &[]datadog.SyntheticsDeviceID{"edge", "foobar"}},
+			datadogV1.SyntheticsTestOptions{DeviceIds: &[]datadogV1.SyntheticsDeviceID{"edge", "foobar"}},
 			true,
 		},
 		{
 			"unparsed enum in map",
-			map[string]datadog.SyntheticsDeviceID{"foo": "edge", "bar": "foobar"},
+			map[string]datadogV1.SyntheticsDeviceID{"foo": "edge", "bar": "foobar"},
 			true,
 		},
 		{
+			"unparsed nullable",
+			datadogV2.NewNullableLogsArchiveDestination(&datadogV2.LogsArchiveDestination{UnparsedObject: map[string]interface{}{"foo": "bar"}}),
+			true,
+		},
+		{
+			"unparsed nested in nullable",
+			datadogV2.NewNullableLogsArchiveDestination(&datadogV2.LogsArchiveDestination{LogsArchiveDestinationAzure: &datadogV2.LogsArchiveDestinationAzure{UnparsedObject: map[string]interface{}{"foo": "bar"}}}),
+			true,
+		},
+		{
+			"valid nullable",
+			datadogV2.NewNullableLogsArchiveDestination(&datadogV2.LogsArchiveDestination{LogsArchiveDestinationAzure: &datadogV2.LogsArchiveDestinationAzure{Type: datadogV2.LOGSARCHIVEDESTINATIONAZURETYPE_AZURE}}),
+			false,
+		},
+		{
 			"valid struct",
-			datadog.SyntheticsAPITest{Name: datadog.PtrString("foo"), Config: &datadog.SyntheticsAPITestConfig{Assertions: &[]datadog.SyntheticsAssertion{{SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{Type: datadog.SYNTHETICSASSERTIONTYPE_BODY}}}}},
+			datadogV1.SyntheticsAPITest{Name: datadogV1.PtrString("foo"), Config: &datadogV1.SyntheticsAPITestConfig{Assertions: &[]datadogV1.SyntheticsAssertion{{SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY}}}}},
 			false,
 		},
 		{
@@ -52,7 +68,7 @@ func TestContainsUnparsedObject(t *testing.T) {
 		},
 		{
 			"valid simple pointer",
-			datadog.PtrString("a simple pointer to string"),
+			datadogV1.PtrString("a simple pointer to string"),
 			false,
 		},
 	}
@@ -60,7 +76,7 @@ func TestContainsUnparsedObject(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			t.Parallel()
-			assert.Equal(tc.expected, datadog.ContainsUnparsedObject(tc.value))
+			assert.Equal(tc.expected, datadogV1.ContainsUnparsedObject(tc.value))
 		})
 	}
 }
