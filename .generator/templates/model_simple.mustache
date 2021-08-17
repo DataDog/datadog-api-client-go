@@ -28,7 +28,6 @@ type {{classname}} struct {
 {{#isAdditionalPropertiesTrue}}
 	AdditionalProperties map[string]interface{}
 {{/isAdditionalPropertiesTrue}}
-	ContainsUnparsedObject bool  `json:-`
 }
 
 {{#isAdditionalPropertiesTrue}}
@@ -434,7 +433,6 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 		if err != nil {
 			return err
 		}
-		o.ContainsUnparsedObject = true
 		o.UnparsedObject = raw
 		return nil
 	}
@@ -445,37 +443,10 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 		if err != nil {
 			return err
 		}
-		o.ContainsUnparsedObject = true
 		o.UnparsedObject = raw
 		return nil
 	}
 {{/allowableValues}}
-{{#isModel}}
-{{^isNullable}}
-	if v := all.{{name}}; !o.ContainsUnparsedObject && {{^required}}v != nil && {{/required}}v.ContainsUnparsedObject {
-		o.ContainsUnparsedObject = true
-	}
-{{/isNullable}}
-{{#isNullable}}
-	if v := all.{{name}}.Get(); !o.ContainsUnparsedObject && v != nil && v.ContainsUnparsedObject {
-		o.ContainsUnparsedObject = true
-	}
-{{/isNullable}}
-{{/isModel}}
-{{#isArray}}{{#complexType}}
-	if !o.ContainsUnparsedObject {
-		if v := all.{{name}}; v != nil {
-			o.ContainsUnparsedObject = containsUnparsedObject(reflect.ValueOf({{^required}}{{^isNullable}}*{{/isNullable}}{{/required}}v))
-		}
-	}
-{{/complexType}}{{/isArray}}
-{{#isMap}}{{#complexType}}
-	if !o.ContainsUnparsedObject {
-		if v := all.{{name}}; v != nil {
-			o.ContainsUnparsedObject = containsUnparsedObject(reflect.ValueOf({{^required}}{{^isNullable}}*{{/isNullable}}{{/required}}v))
-		}
-	}
-{{/complexType}}{{/isMap}}
 {{/vars}}
 {{#vars}}
 	o.{{name}} = all.{{name}}
