@@ -28,7 +28,7 @@ type IncidentUpdateAttributes struct {
 	// A condensed view of the user-defined fields for which to update selections.
 	Fields *map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 	// Notification handles that will be notified of the incident during update.
-	NotificationHandles *[]string `json:"notification_handles,omitempty"`
+	NotificationHandles *[]IncidentNotificationHandle `json:"notification_handles,omitempty"`
 	// Timestamp when the incident's state was set to resolved.
 	Resolved NullableTime `json:"resolved,omitempty"`
 	// The title of the incident, which summarizes what happened.
@@ -280,9 +280,9 @@ func (o *IncidentUpdateAttributes) SetFields(v map[string]IncidentFieldAttribute
 }
 
 // GetNotificationHandles returns the NotificationHandles field value if set, zero value otherwise.
-func (o *IncidentUpdateAttributes) GetNotificationHandles() []string {
+func (o *IncidentUpdateAttributes) GetNotificationHandles() []IncidentNotificationHandle {
 	if o == nil || o.NotificationHandles == nil {
-		var ret []string
+		var ret []IncidentNotificationHandle
 		return ret
 	}
 	return *o.NotificationHandles
@@ -290,7 +290,7 @@ func (o *IncidentUpdateAttributes) GetNotificationHandles() []string {
 
 // GetNotificationHandlesOk returns a tuple with the NotificationHandles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentUpdateAttributes) GetNotificationHandlesOk() (*[]string, bool) {
+func (o *IncidentUpdateAttributes) GetNotificationHandlesOk() (*[]IncidentNotificationHandle, bool) {
 	if o == nil || o.NotificationHandles == nil {
 		return nil, false
 	}
@@ -306,8 +306,8 @@ func (o *IncidentUpdateAttributes) HasNotificationHandles() bool {
 	return false
 }
 
-// SetNotificationHandles gets a reference to the given []string and assigns it to the NotificationHandles field.
-func (o *IncidentUpdateAttributes) SetNotificationHandles(v []string) {
+// SetNotificationHandles gets a reference to the given []IncidentNotificationHandle and assigns it to the NotificationHandles field.
+func (o *IncidentUpdateAttributes) SetNotificationHandles(v []IncidentNotificationHandle) {
 	o.NotificationHandles = &v
 }
 
@@ -430,7 +430,7 @@ func (o *IncidentUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		CustomerImpacted    *bool                               `json:"customer_impacted,omitempty"`
 		Detected            NullableTime                        `json:"detected,omitempty"`
 		Fields              *map[string]IncidentFieldAttributes `json:"fields,omitempty"`
-		NotificationHandles *[]string                           `json:"notification_handles,omitempty"`
+		NotificationHandles *[]IncidentNotificationHandle       `json:"notification_handles,omitempty"`
 		Resolved            NullableTime                        `json:"resolved,omitempty"`
 		Title               *string                             `json:"title,omitempty"`
 	}{}

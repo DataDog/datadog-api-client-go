@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **CustomerImpacted** | **bool** | A flag indicating whether the incident caused customer impact. | 
 **Fields** | Pointer to [**map[string]IncidentFieldAttributes**](IncidentFieldAttributes.md) | A condensed view of the user-defined fields for which to create initial selections. | [optional] 
-**InitialTimelineCells** | Pointer to [**[]IncidentTimelineCellCreateAttributes**](IncidentTimelineCellCreateAttributes.md) | An array of initial timeline cells to be placed at the beginning of the incident timeline. | [optional] 
-**NotificationHandles** | Pointer to **[]string** | Notification handles that will be notified of the incident at creation. | [optional] 
+**InitialCells** | Pointer to [**[]IncidentTimelineCellCreateAttributes**](IncidentTimelineCellCreateAttributes.md) | An array of initial timeline cells to be placed at the beginning of the incident timeline. | [optional] 
+**NotificationHandles** | Pointer to [**[]IncidentNotificationHandle**](IncidentNotificationHandle.md) | Notification handles that will be notified of the incident at creation. | [optional] 
 **Title** | **string** | The title of the incident, which summarizes what happened. | 
 
 ## Methods
@@ -74,47 +74,47 @@ SetFields sets Fields field to given value.
 
 HasFields returns a boolean if a field has been set.
 
-### GetInitialTimelineCells
+### GetInitialCells
 
-`func (o *IncidentCreateAttributes) GetInitialTimelineCells() []IncidentTimelineCellCreateAttributes`
+`func (o *IncidentCreateAttributes) GetInitialCells() []IncidentTimelineCellCreateAttributes`
 
-GetInitialTimelineCells returns the InitialTimelineCells field if non-nil, zero value otherwise.
+GetInitialCells returns the InitialCells field if non-nil, zero value otherwise.
 
-### GetInitialTimelineCellsOk
+### GetInitialCellsOk
 
-`func (o *IncidentCreateAttributes) GetInitialTimelineCellsOk() (*[]IncidentTimelineCellCreateAttributes, bool)`
+`func (o *IncidentCreateAttributes) GetInitialCellsOk() (*[]IncidentTimelineCellCreateAttributes, bool)`
 
-GetInitialTimelineCellsOk returns a tuple with the InitialTimelineCells field if it's non-nil, zero value otherwise
+GetInitialCellsOk returns a tuple with the InitialCells field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInitialTimelineCells
+### SetInitialCells
 
-`func (o *IncidentCreateAttributes) SetInitialTimelineCells(v []IncidentTimelineCellCreateAttributes)`
+`func (o *IncidentCreateAttributes) SetInitialCells(v []IncidentTimelineCellCreateAttributes)`
 
-SetInitialTimelineCells sets InitialTimelineCells field to given value.
+SetInitialCells sets InitialCells field to given value.
 
-### HasInitialTimelineCells
+### HasInitialCells
 
-`func (o *IncidentCreateAttributes) HasInitialTimelineCells() bool`
+`func (o *IncidentCreateAttributes) HasInitialCells() bool`
 
-HasInitialTimelineCells returns a boolean if a field has been set.
+HasInitialCells returns a boolean if a field has been set.
 
 ### GetNotificationHandles
 
-`func (o *IncidentCreateAttributes) GetNotificationHandles() []string`
+`func (o *IncidentCreateAttributes) GetNotificationHandles() []IncidentNotificationHandle`
 
 GetNotificationHandles returns the NotificationHandles field if non-nil, zero value otherwise.
 
 ### GetNotificationHandlesOk
 
-`func (o *IncidentCreateAttributes) GetNotificationHandlesOk() (*[]string, bool)`
+`func (o *IncidentCreateAttributes) GetNotificationHandlesOk() (*[]IncidentNotificationHandle, bool)`
 
 GetNotificationHandlesOk returns a tuple with the NotificationHandles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNotificationHandles
 
-`func (o *IncidentCreateAttributes) SetNotificationHandles(v []string)`
+`func (o *IncidentCreateAttributes) SetNotificationHandles(v []IncidentNotificationHandle)`
 
 SetNotificationHandles sets NotificationHandles field to given value.
 
