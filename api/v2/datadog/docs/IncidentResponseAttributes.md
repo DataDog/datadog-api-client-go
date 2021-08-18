@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Detected** | Pointer to **NullableTime** | Timestamp when the incident was detected. | [optional] 
 **Fields** | Pointer to [**map[string]IncidentFieldAttributes**](IncidentFieldAttributes.md) | A condensed view of the user-defined fields attached to incidents. | [optional] 
 **Modified** | Pointer to **time.Time** | Timestamp when the incident was last modified. | [optional] [readonly] 
-**NotificationHandles** | Pointer to **[]string** | Notification handles that will be notified of the incident during update. | [optional] 
+**NotificationHandles** | Pointer to [**[]IncidentNotificationHandle**](IncidentNotificationHandle.md) | Notification handles that will be notified of the incident during update. | [optional] 
 **PostmortemId** | Pointer to **string** | The UUID of the postmortem object attached to the incident. | [optional] 
 **PublicId** | Pointer to **int64** | The monotonically increasing integer ID for the incident. | [optional] 
 **Resolved** | Pointer to **NullableTime** | Timestamp when the incident&#39;s state was set to resolved. | [optional] 
@@ -309,20 +309,20 @@ HasModified returns a boolean if a field has been set.
 
 ### GetNotificationHandles
 
-`func (o *IncidentResponseAttributes) GetNotificationHandles() []string`
+`func (o *IncidentResponseAttributes) GetNotificationHandles() []IncidentNotificationHandle`
 
 GetNotificationHandles returns the NotificationHandles field if non-nil, zero value otherwise.
 
 ### GetNotificationHandlesOk
 
-`func (o *IncidentResponseAttributes) GetNotificationHandlesOk() (*[]string, bool)`
+`func (o *IncidentResponseAttributes) GetNotificationHandlesOk() (*[]IncidentNotificationHandle, bool)`
 
 GetNotificationHandlesOk returns a tuple with the NotificationHandles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNotificationHandles
 
-`func (o *IncidentResponseAttributes) SetNotificationHandles(v []string)`
+`func (o *IncidentResponseAttributes) SetNotificationHandles(v []IncidentNotificationHandle)`
 
 SetNotificationHandles sets NotificationHandles field to given value.
 

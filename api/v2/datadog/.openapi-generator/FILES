@@ -70,6 +70,7 @@ docs/IncidentFieldAttributesSingleValue.md
 docs/IncidentFieldAttributesSingleValueType.md
 docs/IncidentFieldAttributesValueType.md
 docs/IncidentIntegrationMetadataType.md
+docs/IncidentNotificationHandle.md
 docs/IncidentPostmortemType.md
 docs/IncidentRelatedObject.md
 docs/IncidentResponse.md
@@ -409,6 +410,7 @@ model_incident_field_attributes_single_value.go
 model_incident_field_attributes_single_value_type.go
 model_incident_field_attributes_value_type.go
 model_incident_integration_metadata_type.go
+model_incident_notification_handle.go
 model_incident_postmortem_type.go
 model_incident_related_object.go
 model_incident_response.go
