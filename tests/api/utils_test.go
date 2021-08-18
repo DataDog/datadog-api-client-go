@@ -12,9 +12,9 @@ import (
 func TestContainsUnparsedObject(t *testing.T) {
 	assert := tests.Assert(context.Background(), t)
 	testCases := []struct {
-		name     string
-		value    interface{}
-		expectedBool bool
+		name                   string
+		value                  interface{}
+		expectedBool           bool
 		expectedUnparsedObject interface{}
 	}{
 		{
@@ -58,7 +58,6 @@ func TestContainsUnparsedObject(t *testing.T) {
 			datadogV2.NewNullableLogsArchiveDestination(&datadogV2.LogsArchiveDestination{LogsArchiveDestinationAzure: &datadogV2.LogsArchiveDestinationAzure{UnparsedObject: map[string]interface{}{"foo": "bar"}}}),
 			true,
 			map[string]interface{}{"foo": "bar"},
-
 		},
 		{
 			"valid nullable",

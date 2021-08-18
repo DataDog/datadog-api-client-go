@@ -331,7 +331,7 @@ func ContainsUnparsedObject(i interface{}) (bool, interface{}) {
 		for _, k := range v.MapKeys() {
 			if n, m := ContainsUnparsedObject(v.MapIndex(k).Interface()); n {
 				return n, m
-}
+			}
 		}
 	case reflect.Struct:
 		if u := v.FieldByName("UnparsedObject"); u.IsValid() && !u.IsNil() {
