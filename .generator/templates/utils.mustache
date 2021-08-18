@@ -338,8 +338,7 @@ func ContainsUnparsedObject(i interface{}) (bool, interface{}) {
 			return true, u.Interface()
 		}
 		for i := 0; i < v.NumField(); i++ {
-			fn := v.Type().Field(i).Name
-			if string(fn[0]) == strings.ToUpper(string(fn[0])) && fn != "UnparsedObject" {
+			if fn := v.Type().Field(i).Name; string(fn[0]) == strings.ToUpper(string(fn[0])) && fn != "UnparsedObject" {
 				if n, m := ContainsUnparsedObject(v.Field(i).Interface()); n {
 					return n, m
 				}
