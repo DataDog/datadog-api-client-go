@@ -318,31 +318,35 @@ func (v *NullableTime) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-func ContainsUnparsedObject(i interface{}) bool {
+func ContainsUnparsedObject(i interface{}) (bool, interface{}) {
 	v := reflect.ValueOf(i)
 	switch v.Kind() {
 	case reflect.Array, reflect.Slice:
 		for i := 0; i < v.Len(); i++ {
-			if ContainsUnparsedObject(v.Index(i).Interface()) {
-				return true
+			if n, m := ContainsUnparsedObject(v.Index(i).Interface()); n {
+				return n, m
 			}
 		}
 	case reflect.Map:
 		for _, k := range v.MapKeys() {
-			if ContainsUnparsedObject(v.MapIndex(k).Interface()) {
-				return true
+			if n, m := ContainsUnparsedObject(v.MapIndex(k).Interface()); n {
+				return n, m
 			}
 		}
 	case reflect.Struct:
 		if u := v.FieldByName("UnparsedObject"); u.IsValid() && !u.IsNil() {
-			return true
+			return true, u.Interface()
 		}
 		for i := 0; i < v.NumField(); i++ {
-			if fn := v.Type().Field(i).Name; string(fn[0]) == strings.ToUpper(string(fn[0])) && fn != "UnparsedObject" && ContainsUnparsedObject(v.Field(i).Interface()) {
-				return true
+			if fn := v.Type().Field(i).Name; string(fn[0]) == strings.ToUpper(string(fn[0])) && fn != "UnparsedObject" {
+				if n, m := ContainsUnparsedObject(v.Field(i).Interface()); n {
+					return n, m
+				}
 			} else if fn == "value" { // Special case for Nullables
-				if get := v.MethodByName("Get"); get.IsValid() && ContainsUnparsedObject(get.Call([]reflect.Value{})[0].Interface()) {
-					return true
+				if get := v.MethodByName("Get"); get.IsValid() {
+					if n, m := ContainsUnparsedObject(get.Call([]reflect.Value{})[0].Interface()); n {
+						return n, m
+					}
 				}
 			}
 		}
@@ -352,8 +356,10 @@ func ContainsUnparsedObject(i interface{}) bool {
 		}
 	default:
 		if m := v.MethodByName("IsValid"); m.IsValid() {
-			return !m.Call([]reflect.Value{})[0].Bool()
+			if !m.Call([]reflect.Value{})[0].Bool() {
+				return true, v.Interface()
+			}
 		}
 	}
-	return false
+	return false, nil
 }
