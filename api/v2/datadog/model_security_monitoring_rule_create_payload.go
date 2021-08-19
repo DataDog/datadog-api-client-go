@@ -31,7 +31,8 @@ type SecurityMonitoringRuleCreatePayload struct {
 	// Queries for selecting logs which are part of the rule.
 	Queries []SecurityMonitoringRuleQueryCreate `json:"queries"`
 	// Tags for generated signals.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags *[]string                         `json:"tags,omitempty"`
+	Type *SecurityMonitoringRuleTypeCreate `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -299,6 +300,38 @@ func (o *SecurityMonitoringRuleCreatePayload) SetTags(v []string) {
 	o.Tags = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleCreatePayload) GetType() SecurityMonitoringRuleTypeCreate {
+	if o == nil || o.Type == nil {
+		var ret SecurityMonitoringRuleTypeCreate
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleCreatePayload) GetTypeOk() (*SecurityMonitoringRuleTypeCreate, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleCreatePayload) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given SecurityMonitoringRuleTypeCreate and assigns it to the Type field.
+func (o *SecurityMonitoringRuleCreatePayload) SetType(v SecurityMonitoringRuleTypeCreate) {
+	o.Type = &v
+}
+
 func (o SecurityMonitoringRuleCreatePayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -331,6 +364,9 @@ func (o SecurityMonitoringRuleCreatePayload) MarshalJSON() ([]byte, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -354,6 +390,7 @@ func (o *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 		Options          SecurityMonitoringRuleOptions       `json:"options"`
 		Queries          []SecurityMonitoringRuleQueryCreate `json:"queries"`
 		Tags             *[]string                           `json:"tags,omitempty"`
+		Type             *SecurityMonitoringRuleTypeCreate   `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -386,6 +423,14 @@ func (o *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
 	o.Cases = all.Cases
 	o.Filters = all.Filters
 	o.HasExtendedTitle = all.HasExtendedTitle
@@ -395,6 +440,7 @@ func (o *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 	o.Options = all.Options
 	o.Queries = all.Queries
 	o.Tags = all.Tags
+	o.Type = all.Type
 	return nil
 }
 

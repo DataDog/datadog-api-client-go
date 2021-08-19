@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Options** | [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md) |  | 
 **Queries** | [**[]SecurityMonitoringRuleQueryCreate**](SecurityMonitoringRuleQueryCreate.md) | Queries for selecting logs which are part of the rule. | 
 **Tags** | Pointer to **[]string** | Tags for generated signals. | [optional] 
+**Type** | Pointer to [**SecurityMonitoringRuleTypeCreate**](SecurityMonitoringRuleTypeCreate.md) |  | [optional] 
 
 ## Methods
 
@@ -227,6 +228,31 @@ SetTags sets Tags field to given value.
 `func (o *SecurityMonitoringRuleCreatePayload) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *SecurityMonitoringRuleCreatePayload) GetType() SecurityMonitoringRuleTypeCreate`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *SecurityMonitoringRuleCreatePayload) GetTypeOk() (*SecurityMonitoringRuleTypeCreate, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *SecurityMonitoringRuleCreatePayload) SetType(v SecurityMonitoringRuleTypeCreate)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *SecurityMonitoringRuleCreatePayload) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
