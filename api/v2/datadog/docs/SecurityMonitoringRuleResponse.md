@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Options** | Pointer to [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md) |  | [optional] 
 **Queries** | Pointer to [**[]SecurityMonitoringRuleQuery**](SecurityMonitoringRuleQuery.md) | Queries for selecting logs which are part of the rule. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for generated signals. | [optional] 
+**Type** | Pointer to [**SecurityMonitoringRuleTypeRead**](SecurityMonitoringRuleTypeRead.md) |  | [optional] 
 **UpdateAuthorId** | Pointer to **int64** | User ID of the user who updated the rule. | [optional] 
 **Version** | Pointer to **int64** | The version of the rule. | [optional] 
 
@@ -389,6 +390,31 @@ SetTags sets Tags field to given value.
 `func (o *SecurityMonitoringRuleResponse) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *SecurityMonitoringRuleResponse) GetType() SecurityMonitoringRuleTypeRead`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *SecurityMonitoringRuleResponse) GetTypeOk() (*SecurityMonitoringRuleTypeRead, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *SecurityMonitoringRuleResponse) SetType(v SecurityMonitoringRuleTypeRead)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *SecurityMonitoringRuleResponse) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetUpdateAuthorId
 

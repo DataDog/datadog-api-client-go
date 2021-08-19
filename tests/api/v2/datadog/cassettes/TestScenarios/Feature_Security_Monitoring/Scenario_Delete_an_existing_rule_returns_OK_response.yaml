@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Delete_an_existing_rule_returns_OK_response-1618572735","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metric":"","query":"@test:true"}],"tags":[]}
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Delete_an_existing_rule_returns_OK_response-1618572735","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metric":"","query":"@test:true"}],"tags":[],"type":"log_detection"}
     form: {}
     headers:
       Accept:
@@ -9,23 +9,23 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '395'
+      - '418'
       Content-Type:
       - application/json
       Host:
       - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
+      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.5; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - '4909198046585186715'
+      - '4425955630342748850'
       X-Datadog-Trace-Id:
-      - '9212412167078932494'
+      - '4894760210927799586'
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
   response:
-    body: '{"creationAuthorId":2320499,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
-      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1618572735575,"filters":[],"queries":[{"distinctFields":[],"name":"","metric":"","aggregation":"count","groupByFields":[],"query":"@test:true","trackType":"logs"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
-      > 0"}],"type":"log_detection","id":"v3s-vcj-eu3","isDefault":false,"name":"Test-Delete_an_existing_rule_returns_OK_response-1618572735"}'
+    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
+      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1629359425373,"filters":[],"queries":[{"distinctFields":[],"name":"","metric":"","aggregation":"count","groupByFields":[],"query":"@test:true"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"zpf-hj4-sl6","isDefault":false,"name":"Test-Delete_an_existing_rule_returns_OK_response-1618572735"}'
     code: 200
     duration: ''
     headers:
@@ -36,27 +36,29 @@ interactions:
       Content-Disposition:
       - inline
       Content-Length:
-      - '622'
+      - '603'
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json;charset=utf-8
       Date:
-      - Fri, 16 Apr 2021 11:32:15 GMT
+      - Thu, 19 Aug 2021 07:50:25 GMT
       Pragma:
       - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - 5gfwVh/5HZ+AnGd/Di93w3NEWC6KMHT9KzmHEiRJmNdOjBtAsbOcgVFyqEChw71h
-      X-Dd-Version:
-      - '35.4327367'
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '600'
+      X-Ratelimit-Period:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '597'
+      X-Ratelimit-Reset:
+      - '35'
     status: 200 OK
 - request:
     body: ''
@@ -69,13 +71,13 @@ interactions:
       Host:
       - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
+      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.5; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - '6537172424482588211'
+      - '7845847526136989233'
       X-Datadog-Trace-Id:
-      - '9212412167078932494'
+      - '4894760210927799586'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/v3s-vcj-eu3
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/zpf-hj4-sl6
   response:
     body: ''
     code: 204
@@ -92,19 +94,21 @@ interactions:
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Date:
-      - Fri, 16 Apr 2021 11:32:15 GMT
+      - Thu, 19 Aug 2021 07:50:25 GMT
       Pragma:
       - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - l8RQo2maZqJf6GFThBbKNE6dvthz6njusVtau3dPXJWL2RLFoN81H+BLPB/1xgs1
-      X-Dd-Version:
-      - '35.4327367'
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '600'
+      X-Ratelimit-Period:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '596'
+      X-Ratelimit-Reset:
+      - '35'
     status: 204 No Content
 - request:
     body: ''
@@ -117,15 +121,15 @@ interactions:
       Host:
       - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
+      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.5; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - '755466276188402746'
+      - '3749099268306567443'
       X-Datadog-Trace-Id:
-      - '9212412167078932494'
+      - '4894760210927799586'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/v3s-vcj-eu3
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/zpf-hj4-sl6
   response:
-    body: '{"errors":["Threat detection rule not found: v3s-vcj-eu3"]}'
+    body: '{"errors":["Threat detection rule not found: zpf-hj4-sl6"]}'
     code: 404
     duration: ''
     headers:
@@ -140,18 +144,22 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 16 Apr 2021 11:32:15 GMT
+      - Thu, 19 Aug 2021 07:50:25 GMT
       Pragma:
       - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - '35.4327367'
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '600'
+      X-Ratelimit-Period:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '595'
+      X-Ratelimit-Reset:
+      - '35'
     status: 404 Not Found
 version: 1
