@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
+**BatchId** | Pointer to **string** | The public ID of the batch triggered. | [optional] 
 **Locations** | Pointer to [**[]SyntheticsTriggerCITestLocation**](SyntheticsTriggerCITestLocation.md) | List of Synthetics locations. | [optional] 
 **Results** | Pointer to [**[]SyntheticsTriggerCITestRunResult**](SyntheticsTriggerCITestRunResult.md) | Information about the tests runs. | [optional] 
 **TriggeredCheckIds** | Pointer to **[]string** | The public IDs of the Synthetics test triggered. | [optional] 
@@ -26,6 +27,31 @@ will change when the set of required properties is changed.
 NewSyntheticsTriggerCITestsResponseWithDefaults instantiates a new SyntheticsTriggerCITestsResponse object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetBatchId
+
+`func (o *SyntheticsTriggerCITestsResponse) GetBatchId() string`
+
+GetBatchId returns the BatchId field if non-nil, zero value otherwise.
+
+### GetBatchIdOk
+
+`func (o *SyntheticsTriggerCITestsResponse) GetBatchIdOk() (*string, bool)`
+
+GetBatchIdOk returns a tuple with the BatchId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBatchId
+
+`func (o *SyntheticsTriggerCITestsResponse) SetBatchId(v string)`
+
+SetBatchId sets BatchId field to given value.
+
+### HasBatchId
+
+`func (o *SyntheticsTriggerCITestsResponse) HasBatchId() bool`
+
+HasBatchId returns a boolean if a field has been set.
 
 ### GetLocations
 

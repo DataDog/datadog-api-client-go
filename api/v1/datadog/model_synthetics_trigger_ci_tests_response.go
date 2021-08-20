@@ -14,6 +14,8 @@ import (
 
 // SyntheticsTriggerCITestsResponse Object containing information about the tests triggered.
 type SyntheticsTriggerCITestsResponse struct {
+	// The public ID of the batch triggered.
+	BatchId *string `json:"batch_id,omitempty"`
 	// List of Synthetics locations.
 	Locations *[]SyntheticsTriggerCITestLocation `json:"locations,omitempty"`
 	// Information about the tests runs.
@@ -39,6 +41,38 @@ func NewSyntheticsTriggerCITestsResponse() *SyntheticsTriggerCITestsResponse {
 func NewSyntheticsTriggerCITestsResponseWithDefaults() *SyntheticsTriggerCITestsResponse {
 	this := SyntheticsTriggerCITestsResponse{}
 	return &this
+}
+
+// GetBatchId returns the BatchId field value if set, zero value otherwise.
+func (o *SyntheticsTriggerCITestsResponse) GetBatchId() string {
+	if o == nil || o.BatchId == nil {
+		var ret string
+		return ret
+	}
+	return *o.BatchId
+}
+
+// GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTriggerCITestsResponse) GetBatchIdOk() (*string, bool) {
+	if o == nil || o.BatchId == nil {
+		return nil, false
+	}
+	return o.BatchId, true
+}
+
+// HasBatchId returns a boolean if a field has been set.
+func (o *SyntheticsTriggerCITestsResponse) HasBatchId() bool {
+	if o != nil && o.BatchId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchId gets a reference to the given string and assigns it to the BatchId field.
+func (o *SyntheticsTriggerCITestsResponse) SetBatchId(v string) {
+	o.BatchId = &v
 }
 
 // GetLocations returns the Locations field value if set, zero value otherwise.
@@ -142,6 +176,9 @@ func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.BatchId != nil {
+		toSerialize["batch_id"] = o.BatchId
+	}
 	if o.Locations != nil {
 		toSerialize["locations"] = o.Locations
 	}
@@ -157,6 +194,7 @@ func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
+		BatchId           *string                             `json:"batch_id,omitempty"`
 		Locations         *[]SyntheticsTriggerCITestLocation  `json:"locations,omitempty"`
 		Results           *[]SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
 		TriggeredCheckIds *[]string                           `json:"triggered_check_ids,omitempty"`
@@ -170,6 +208,7 @@ func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err erro
 		o.UnparsedObject = raw
 		return nil
 	}
+	o.BatchId = all.BatchId
 	o.Locations = all.Locations
 	o.Results = all.Results
 	o.TriggeredCheckIds = all.TriggeredCheckIds
