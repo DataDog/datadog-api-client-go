@@ -30,6 +30,7 @@ const (
 	MONITORTYPE_TRACE_ANALYTICS_ALERT MonitorType = "trace-analytics alert"
 	MONITORTYPE_SLO_ALERT             MonitorType = "slo alert"
 	MONITORTYPE_EVENT_V2_ALERT        MonitorType = "event-v2 alert"
+	MONITORTYPE_AUDIT_ALERT           MonitorType = "audit alert"
 )
 
 var allowedMonitorTypeEnumValues = []MonitorType{
@@ -45,6 +46,7 @@ var allowedMonitorTypeEnumValues = []MonitorType{
 	"trace-analytics alert",
 	"slo alert",
 	"event-v2 alert",
+	"audit alert",
 }
 
 func (w *MonitorType) GetAllowedValues() []MonitorType {
