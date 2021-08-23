@@ -4658,7 +4658,7 @@ paths:
           type: string
         style: form
       - description: If this argument is set to true, then the returned data includes
-          all current downtimes for each monitor.
+          all current active downtimes for each monitor.
         explode: true
         in: query
         name: with_downtimes
