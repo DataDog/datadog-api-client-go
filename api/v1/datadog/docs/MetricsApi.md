@@ -341,7 +341,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewMetricsPayload([]datadog.Series{*datadog.NewSeries("system.load.1", [][]float64{[]float64{float64(123)}})}) // MetricsPayload | 
+	body := *datadog.NewMetricsPayload([]datadog.Series{*datadog.NewSeries("api.test", [][]float64{[]float64{float64(1629689337), float64(100)}})}) // MetricsPayload |
 
     configuration := datadog.NewConfiguration()
 
