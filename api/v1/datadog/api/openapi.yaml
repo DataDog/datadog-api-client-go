@@ -7451,7 +7451,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Timestamp from which to start querying results.
+      - description: Timestamp in milliseconds from which to start querying results.
         explode: true
         in: query
         name: from_ts
@@ -7460,7 +7460,7 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: Timestamp up to which to query results.
+      - description: Timestamp in milliseconds up to which to query results.
         explode: true
         in: query
         name: to_ts
@@ -7690,7 +7690,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Timestamp from which to start querying results.
+      - description: Timestamp in milliseconds from which to start querying results.
         explode: true
         in: query
         name: from_ts
@@ -7699,7 +7699,7 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: Timestamp up to which to query results.
+      - description: Timestamp in milliseconds up to which to query results.
         explode: true
         in: query
         name: to_ts
