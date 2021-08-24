@@ -27,6 +27,8 @@
 
 * `EVENT_V2_ALERT` (value: `"event-v2 alert"`)
 
+* `AUDIT_ALERT` (value: `"audit alert"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
