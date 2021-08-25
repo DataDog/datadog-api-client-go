@@ -59,6 +59,14 @@
 
 * `PROFILED_CONTAINER_PERCENTAGE` (value: `"profiled_container_percentage"`)
 
+* `DBM_HOST_USAGE` (value: `"dbm_host_usage"`)
+
+* `DBM_HOST_PERCENTAGE` (value: `"dbm_host_percentage"`)
+
+* `DBM_QUERIES_USAGE` (value: `"dbm_queries_usage"`)
+
+* `DBM_QUERIES_PERCENTAGE` (value: `"dbm_queries_percentage"`)
+
 * `ALL` (value: `"*"`)
 
 

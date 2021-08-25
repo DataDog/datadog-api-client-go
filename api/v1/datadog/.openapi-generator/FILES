@@ -559,6 +559,8 @@ docs/UsageCustomReportsData.md
 docs/UsageCustomReportsMeta.md
 docs/UsageCustomReportsPage.md
 docs/UsageCustomReportsResponse.md
+docs/UsageDBMHour.md
+docs/UsageDBMResponse.md
 docs/UsageFargateHour.md
 docs/UsageFargateResponse.md
 docs/UsageHostHour.md
@@ -1170,6 +1172,8 @@ model_usage_custom_reports_page.go
 model_usage_custom_reports_response.go
 model_usage_cws_hour.go
 model_usage_cws_response.go
+model_usage_dbm_hour.go
+model_usage_dbm_response.go
 model_usage_fargate_hour.go
 model_usage_fargate_response.go
 model_usage_host_hour.go

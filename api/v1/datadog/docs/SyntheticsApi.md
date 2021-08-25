@@ -680,8 +680,8 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     publicId := "publicId_example" // string | The public ID of the test for which to search results for.
-    fromTs := int64(789) // int64 | Timestamp from which to start querying results. (optional)
-    toTs := int64(789) // int64 | Timestamp up to which to query results. (optional)
+    fromTs := int64(789) // int64 | Timestamp in milliseconds from which to start querying results. (optional)
+    toTs := int64(789) // int64 | Timestamp in milliseconds up to which to query results. (optional)
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
     optionalParams := datadog.GetAPITestLatestResultsOptionalParameters{
         FromTs: &fromTs,
@@ -720,8 +720,8 @@ Other parameters are passed through a pointer to a GetAPITestLatestResultsOption
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
-**fromTs** | **int64** | Timestamp from which to start querying results. | 
-**toTs** | **int64** | Timestamp up to which to query results. | 
+**fromTs** | **int64** | Timestamp in milliseconds from which to start querying results. | 
+**toTs** | **int64** | Timestamp in milliseconds up to which to query results. | 
 **probeDc** | **[]string** | Locations for which to query results. | 
 
 ### Return type
@@ -908,8 +908,8 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     publicId := "publicId_example" // string | The public ID of the browser test for which to search results for.
-    fromTs := int64(789) // int64 | Timestamp from which to start querying results. (optional)
-    toTs := int64(789) // int64 | Timestamp up to which to query results. (optional)
+    fromTs := int64(789) // int64 | Timestamp in milliseconds from which to start querying results. (optional)
+    toTs := int64(789) // int64 | Timestamp in milliseconds up to which to query results. (optional)
     probeDc := []string{"Inner_example"} // []string | Locations for which to query results. (optional)
     optionalParams := datadog.GetBrowserTestLatestResultsOptionalParameters{
         FromTs: &fromTs,
@@ -948,8 +948,8 @@ Other parameters are passed through a pointer to a GetBrowserTestLatestResultsOp
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
-**fromTs** | **int64** | Timestamp from which to start querying results. | 
-**toTs** | **int64** | Timestamp up to which to query results. | 
+**fromTs** | **int64** | Timestamp in milliseconds from which to start querying results. | 
+**toTs** | **int64** | Timestamp in milliseconds up to which to query results. | 
 **probeDc** | **[]string** | Locations for which to query results. | 
 
 ### Return type

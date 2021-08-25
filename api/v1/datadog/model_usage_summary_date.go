@@ -51,6 +51,10 @@ type UsageSummaryDate struct {
 	CwsHostTop99p *int64 `json:"cws_host_top99p,omitempty"`
 	// The date for the usage.
 	Date *time.Time `json:"date,omitempty"`
+	// Shows the 99th percentile of all Database Monitoring hosts over all hours in the current date for all organizations.
+	DbmHostTop99p *int64 `json:"dbm_host_top99p,omitempty"`
+	// Shows the average of all normalized Database Monitoring queries over all hours in the current date for all organizations.
+	DbmQueriesCountAvg *int64 `json:"dbm_queries_count_avg,omitempty"`
 	// Shows the high-watermark of all Fargate tasks over all hours in the current date for all organizations.
 	FargateTasksCountAvg *int64 `json:"fargate_tasks_count_avg,omitempty"`
 	// Shows the average of all Fargate tasks over all hours in the current date for all organizations.
@@ -696,6 +700,70 @@ func (o *UsageSummaryDate) HasDate() bool {
 // SetDate gets a reference to the given time.Time and assigns it to the Date field.
 func (o *UsageSummaryDate) SetDate(v time.Time) {
 	o.Date = &v
+}
+
+// GetDbmHostTop99p returns the DbmHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetDbmHostTop99p() int64 {
+	if o == nil || o.DbmHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.DbmHostTop99p
+}
+
+// GetDbmHostTop99pOk returns a tuple with the DbmHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetDbmHostTop99pOk() (*int64, bool) {
+	if o == nil || o.DbmHostTop99p == nil {
+		return nil, false
+	}
+	return o.DbmHostTop99p, true
+}
+
+// HasDbmHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasDbmHostTop99p() bool {
+	if o != nil && o.DbmHostTop99p != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDbmHostTop99p gets a reference to the given int64 and assigns it to the DbmHostTop99p field.
+func (o *UsageSummaryDate) SetDbmHostTop99p(v int64) {
+	o.DbmHostTop99p = &v
+}
+
+// GetDbmQueriesCountAvg returns the DbmQueriesCountAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetDbmQueriesCountAvg() int64 {
+	if o == nil || o.DbmQueriesCountAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.DbmQueriesCountAvg
+}
+
+// GetDbmQueriesCountAvgOk returns a tuple with the DbmQueriesCountAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetDbmQueriesCountAvgOk() (*int64, bool) {
+	if o == nil || o.DbmQueriesCountAvg == nil {
+		return nil, false
+	}
+	return o.DbmQueriesCountAvg, true
+}
+
+// HasDbmQueriesCountAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasDbmQueriesCountAvg() bool {
+	if o != nil && o.DbmQueriesCountAvg != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDbmQueriesCountAvg gets a reference to the given int64 and assigns it to the DbmQueriesCountAvg field.
+func (o *UsageSummaryDate) SetDbmQueriesCountAvg(v int64) {
+	o.DbmQueriesCountAvg = &v
 }
 
 // GetFargateTasksCountAvg returns the FargateTasksCountAvg field value if set, zero value otherwise.
@@ -1557,6 +1625,12 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.Date != nil {
 		toSerialize["date"] = o.Date
 	}
+	if o.DbmHostTop99p != nil {
+		toSerialize["dbm_host_top99p"] = o.DbmHostTop99p
+	}
+	if o.DbmQueriesCountAvg != nil {
+		toSerialize["dbm_queries_count_avg"] = o.DbmQueriesCountAvg
+	}
 	if o.FargateTasksCountAvg != nil {
 		toSerialize["fargate_tasks_count_avg"] = o.FargateTasksCountAvg
 	}
@@ -1656,6 +1730,8 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 		CwsContainerCountAvg                    *int64                 `json:"cws_container_count_avg,omitempty"`
 		CwsHostTop99p                           *int64                 `json:"cws_host_top99p,omitempty"`
 		Date                                    *time.Time             `json:"date,omitempty"`
+		DbmHostTop99p                           *int64                 `json:"dbm_host_top99p,omitempty"`
+		DbmQueriesCountAvg                      *int64                 `json:"dbm_queries_count_avg,omitempty"`
 		FargateTasksCountAvg                    *int64                 `json:"fargate_tasks_count_avg,omitempty"`
 		FargateTasksCountHwm                    *int64                 `json:"fargate_tasks_count_hwm,omitempty"`
 		GcpHostTop99p                           *int64                 `json:"gcp_host_top99p,omitempty"`
@@ -1709,6 +1785,8 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	o.CwsContainerCountAvg = all.CwsContainerCountAvg
 	o.CwsHostTop99p = all.CwsHostTop99p
 	o.Date = all.Date
+	o.DbmHostTop99p = all.DbmHostTop99p
+	o.DbmQueriesCountAvg = all.DbmQueriesCountAvg
 	o.FargateTasksCountAvg = all.FargateTasksCountAvg
 	o.FargateTasksCountHwm = all.FargateTasksCountHwm
 	o.GcpHostTop99p = all.GcpHostTop99p
