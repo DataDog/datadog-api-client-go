@@ -22,6 +22,8 @@ Name | Type | Description | Notes
 **CwsContainerCountAvg** | Pointer to **int64** | Shows the average of all distinct Cloud Workload Security containers over all hours in the current date for all organizations. | [optional] 
 **CwsHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Cloud Workload Security hosts over all hours in the current date for all organizations. | [optional] 
 **Date** | Pointer to **time.Time** | The date for the usage. | [optional] 
+**DbmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Database Monitoring hosts over all hours in the current date for all organizations. | [optional] 
+**DbmQueriesCountAvg** | Pointer to **int64** | Shows the average of all normalized Database Monitoring queries over all hours in the current date for all organizations. | [optional] 
 **FargateTasksCountAvg** | Pointer to **int64** | Shows the high-watermark of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
 **FargateTasksCountHwm** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
 **GcpHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current date for all organizations. | [optional] 
@@ -516,6 +518,56 @@ SetDate sets Date field to given value.
 `func (o *UsageSummaryDate) HasDate() bool`
 
 HasDate returns a boolean if a field has been set.
+
+### GetDbmHostTop99p
+
+`func (o *UsageSummaryDate) GetDbmHostTop99p() int64`
+
+GetDbmHostTop99p returns the DbmHostTop99p field if non-nil, zero value otherwise.
+
+### GetDbmHostTop99pOk
+
+`func (o *UsageSummaryDate) GetDbmHostTop99pOk() (*int64, bool)`
+
+GetDbmHostTop99pOk returns a tuple with the DbmHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDbmHostTop99p
+
+`func (o *UsageSummaryDate) SetDbmHostTop99p(v int64)`
+
+SetDbmHostTop99p sets DbmHostTop99p field to given value.
+
+### HasDbmHostTop99p
+
+`func (o *UsageSummaryDate) HasDbmHostTop99p() bool`
+
+HasDbmHostTop99p returns a boolean if a field has been set.
+
+### GetDbmQueriesCountAvg
+
+`func (o *UsageSummaryDate) GetDbmQueriesCountAvg() int64`
+
+GetDbmQueriesCountAvg returns the DbmQueriesCountAvg field if non-nil, zero value otherwise.
+
+### GetDbmQueriesCountAvgOk
+
+`func (o *UsageSummaryDate) GetDbmQueriesCountAvgOk() (*int64, bool)`
+
+GetDbmQueriesCountAvgOk returns a tuple with the DbmQueriesCountAvg field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDbmQueriesCountAvg
+
+`func (o *UsageSummaryDate) SetDbmQueriesCountAvg(v int64)`
+
+SetDbmQueriesCountAvg sets DbmQueriesCountAvg field to given value.
+
+### HasDbmQueriesCountAvg
+
+`func (o *UsageSummaryDate) HasDbmQueriesCountAvg() bool`
+
+HasDbmQueriesCountAvg returns a boolean if a field has been set.
 
 ### GetFargateTasksCountAvg
 

@@ -22,6 +22,10 @@ Name | Type | Description | Notes
 **CwsContainerUsage** | Pointer to **float64** | The Cloud Workload Security container usage by tag(s) | [optional] 
 **CwsHostPercentage** | Pointer to **float64** | The percentage of Cloud Workload Security host usage by tag(s) | [optional] 
 **CwsHostUsage** | Pointer to **float64** | The Cloud Workload Security host usage by tag(s) | [optional] 
+**DbmHostPercentage** | Pointer to **float64** | The percentage of Database Monitoring host usage by tag(s). | [optional] 
+**DbmHostUsage** | Pointer to **float64** | The Database Monitoring host usage by tag(s). | [optional] 
+**DbmQueriesPercentage** | Pointer to **float64** | The percentage of Database Monitoring normalized queries usage by tag(s). | [optional] 
+**DbmQueriesUsage** | Pointer to **float64** | The Database Monitoring normalized queries usage by tag(s). | [optional] 
 **InfraHostPercentage** | Pointer to **float64** | The percentage of infrastructure host usage by tag(s). | [optional] 
 **InfraHostUsage** | Pointer to **float64** | The infrastructure host usage by tag(s). | [optional] 
 **LambdaFunctionsPercentage** | Pointer to **float64** | The percentage of Lambda function usage by tag(s). | [optional] 
@@ -507,6 +511,106 @@ SetCwsHostUsage sets CwsHostUsage field to given value.
 `func (o *UsageAttributionValues) HasCwsHostUsage() bool`
 
 HasCwsHostUsage returns a boolean if a field has been set.
+
+### GetDbmHostPercentage
+
+`func (o *UsageAttributionValues) GetDbmHostPercentage() float64`
+
+GetDbmHostPercentage returns the DbmHostPercentage field if non-nil, zero value otherwise.
+
+### GetDbmHostPercentageOk
+
+`func (o *UsageAttributionValues) GetDbmHostPercentageOk() (*float64, bool)`
+
+GetDbmHostPercentageOk returns a tuple with the DbmHostPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDbmHostPercentage
+
+`func (o *UsageAttributionValues) SetDbmHostPercentage(v float64)`
+
+SetDbmHostPercentage sets DbmHostPercentage field to given value.
+
+### HasDbmHostPercentage
+
+`func (o *UsageAttributionValues) HasDbmHostPercentage() bool`
+
+HasDbmHostPercentage returns a boolean if a field has been set.
+
+### GetDbmHostUsage
+
+`func (o *UsageAttributionValues) GetDbmHostUsage() float64`
+
+GetDbmHostUsage returns the DbmHostUsage field if non-nil, zero value otherwise.
+
+### GetDbmHostUsageOk
+
+`func (o *UsageAttributionValues) GetDbmHostUsageOk() (*float64, bool)`
+
+GetDbmHostUsageOk returns a tuple with the DbmHostUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDbmHostUsage
+
+`func (o *UsageAttributionValues) SetDbmHostUsage(v float64)`
+
+SetDbmHostUsage sets DbmHostUsage field to given value.
+
+### HasDbmHostUsage
+
+`func (o *UsageAttributionValues) HasDbmHostUsage() bool`
+
+HasDbmHostUsage returns a boolean if a field has been set.
+
+### GetDbmQueriesPercentage
+
+`func (o *UsageAttributionValues) GetDbmQueriesPercentage() float64`
+
+GetDbmQueriesPercentage returns the DbmQueriesPercentage field if non-nil, zero value otherwise.
+
+### GetDbmQueriesPercentageOk
+
+`func (o *UsageAttributionValues) GetDbmQueriesPercentageOk() (*float64, bool)`
+
+GetDbmQueriesPercentageOk returns a tuple with the DbmQueriesPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDbmQueriesPercentage
+
+`func (o *UsageAttributionValues) SetDbmQueriesPercentage(v float64)`
+
+SetDbmQueriesPercentage sets DbmQueriesPercentage field to given value.
+
+### HasDbmQueriesPercentage
+
+`func (o *UsageAttributionValues) HasDbmQueriesPercentage() bool`
+
+HasDbmQueriesPercentage returns a boolean if a field has been set.
+
+### GetDbmQueriesUsage
+
+`func (o *UsageAttributionValues) GetDbmQueriesUsage() float64`
+
+GetDbmQueriesUsage returns the DbmQueriesUsage field if non-nil, zero value otherwise.
+
+### GetDbmQueriesUsageOk
+
+`func (o *UsageAttributionValues) GetDbmQueriesUsageOk() (*float64, bool)`
+
+GetDbmQueriesUsageOk returns a tuple with the DbmQueriesUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDbmQueriesUsage
+
+`func (o *UsageAttributionValues) SetDbmQueriesUsage(v float64)`
+
+SetDbmQueriesUsage sets DbmQueriesUsage field to given value.
+
+### HasDbmQueriesUsage
+
+`func (o *UsageAttributionValues) HasDbmQueriesUsage() bool`
+
+HasDbmQueriesUsage returns a boolean if a field has been set.
 
 ### GetInfraHostPercentage
 

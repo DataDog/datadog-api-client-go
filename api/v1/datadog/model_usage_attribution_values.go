@@ -50,6 +50,14 @@ type UsageAttributionValues struct {
 	CwsHostPercentage *float64 `json:"cws_host_percentage,omitempty"`
 	// The Cloud Workload Security host usage by tag(s)
 	CwsHostUsage *float64 `json:"cws_host_usage,omitempty"`
+	// The percentage of Database Monitoring host usage by tag(s).
+	DbmHostPercentage *float64 `json:"dbm_host_percentage,omitempty"`
+	// The Database Monitoring host usage by tag(s).
+	DbmHostUsage *float64 `json:"dbm_host_usage,omitempty"`
+	// The percentage of Database Monitoring normalized queries usage by tag(s).
+	DbmQueriesPercentage *float64 `json:"dbm_queries_percentage,omitempty"`
+	// The Database Monitoring normalized queries usage by tag(s).
+	DbmQueriesUsage *float64 `json:"dbm_queries_usage,omitempty"`
 	// The percentage of infrastructure host usage by tag(s).
 	InfraHostPercentage *float64 `json:"infra_host_percentage,omitempty"`
 	// The infrastructure host usage by tag(s).
@@ -679,6 +687,134 @@ func (o *UsageAttributionValues) SetCwsHostUsage(v float64) {
 	o.CwsHostUsage = &v
 }
 
+// GetDbmHostPercentage returns the DbmHostPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetDbmHostPercentage() float64 {
+	if o == nil || o.DbmHostPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.DbmHostPercentage
+}
+
+// GetDbmHostPercentageOk returns a tuple with the DbmHostPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetDbmHostPercentageOk() (*float64, bool) {
+	if o == nil || o.DbmHostPercentage == nil {
+		return nil, false
+	}
+	return o.DbmHostPercentage, true
+}
+
+// HasDbmHostPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasDbmHostPercentage() bool {
+	if o != nil && o.DbmHostPercentage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDbmHostPercentage gets a reference to the given float64 and assigns it to the DbmHostPercentage field.
+func (o *UsageAttributionValues) SetDbmHostPercentage(v float64) {
+	o.DbmHostPercentage = &v
+}
+
+// GetDbmHostUsage returns the DbmHostUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetDbmHostUsage() float64 {
+	if o == nil || o.DbmHostUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.DbmHostUsage
+}
+
+// GetDbmHostUsageOk returns a tuple with the DbmHostUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetDbmHostUsageOk() (*float64, bool) {
+	if o == nil || o.DbmHostUsage == nil {
+		return nil, false
+	}
+	return o.DbmHostUsage, true
+}
+
+// HasDbmHostUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasDbmHostUsage() bool {
+	if o != nil && o.DbmHostUsage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDbmHostUsage gets a reference to the given float64 and assigns it to the DbmHostUsage field.
+func (o *UsageAttributionValues) SetDbmHostUsage(v float64) {
+	o.DbmHostUsage = &v
+}
+
+// GetDbmQueriesPercentage returns the DbmQueriesPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetDbmQueriesPercentage() float64 {
+	if o == nil || o.DbmQueriesPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.DbmQueriesPercentage
+}
+
+// GetDbmQueriesPercentageOk returns a tuple with the DbmQueriesPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetDbmQueriesPercentageOk() (*float64, bool) {
+	if o == nil || o.DbmQueriesPercentage == nil {
+		return nil, false
+	}
+	return o.DbmQueriesPercentage, true
+}
+
+// HasDbmQueriesPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasDbmQueriesPercentage() bool {
+	if o != nil && o.DbmQueriesPercentage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDbmQueriesPercentage gets a reference to the given float64 and assigns it to the DbmQueriesPercentage field.
+func (o *UsageAttributionValues) SetDbmQueriesPercentage(v float64) {
+	o.DbmQueriesPercentage = &v
+}
+
+// GetDbmQueriesUsage returns the DbmQueriesUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetDbmQueriesUsage() float64 {
+	if o == nil || o.DbmQueriesUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.DbmQueriesUsage
+}
+
+// GetDbmQueriesUsageOk returns a tuple with the DbmQueriesUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetDbmQueriesUsageOk() (*float64, bool) {
+	if o == nil || o.DbmQueriesUsage == nil {
+		return nil, false
+	}
+	return o.DbmQueriesUsage, true
+}
+
+// HasDbmQueriesUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasDbmQueriesUsage() bool {
+	if o != nil && o.DbmQueriesUsage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDbmQueriesUsage gets a reference to the given float64 and assigns it to the DbmQueriesUsage field.
+func (o *UsageAttributionValues) SetDbmQueriesUsage(v float64) {
+	o.DbmQueriesUsage = &v
+}
+
 // GetInfraHostPercentage returns the InfraHostPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetInfraHostPercentage() float64 {
 	if o == nil || o.InfraHostPercentage == nil {
@@ -1250,6 +1386,18 @@ func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.CwsHostUsage != nil {
 		toSerialize["cws_host_usage"] = o.CwsHostUsage
 	}
+	if o.DbmHostPercentage != nil {
+		toSerialize["dbm_host_percentage"] = o.DbmHostPercentage
+	}
+	if o.DbmHostUsage != nil {
+		toSerialize["dbm_host_usage"] = o.DbmHostUsage
+	}
+	if o.DbmQueriesPercentage != nil {
+		toSerialize["dbm_queries_percentage"] = o.DbmQueriesPercentage
+	}
+	if o.DbmQueriesUsage != nil {
+		toSerialize["dbm_queries_usage"] = o.DbmQueriesUsage
+	}
 	if o.InfraHostPercentage != nil {
 		toSerialize["infra_host_percentage"] = o.InfraHostPercentage
 	}
@@ -1322,6 +1470,10 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 		CwsContainerUsage            *float64 `json:"cws_container_usage,omitempty"`
 		CwsHostPercentage            *float64 `json:"cws_host_percentage,omitempty"`
 		CwsHostUsage                 *float64 `json:"cws_host_usage,omitempty"`
+		DbmHostPercentage            *float64 `json:"dbm_host_percentage,omitempty"`
+		DbmHostUsage                 *float64 `json:"dbm_host_usage,omitempty"`
+		DbmQueriesPercentage         *float64 `json:"dbm_queries_percentage,omitempty"`
+		DbmQueriesUsage              *float64 `json:"dbm_queries_usage,omitempty"`
 		InfraHostPercentage          *float64 `json:"infra_host_percentage,omitempty"`
 		InfraHostUsage               *float64 `json:"infra_host_usage,omitempty"`
 		LambdaFunctionsPercentage    *float64 `json:"lambda_functions_percentage,omitempty"`
@@ -1366,6 +1518,10 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	o.CwsContainerUsage = all.CwsContainerUsage
 	o.CwsHostPercentage = all.CwsHostPercentage
 	o.CwsHostUsage = all.CwsHostUsage
+	o.DbmHostPercentage = all.DbmHostPercentage
+	o.DbmHostUsage = all.DbmHostUsage
+	o.DbmQueriesPercentage = all.DbmQueriesPercentage
+	o.DbmQueriesUsage = all.DbmQueriesUsage
 	o.InfraHostPercentage = all.InfraHostPercentage
 	o.InfraHostUsage = all.InfraHostUsage
 	o.LambdaFunctionsPercentage = all.LambdaFunctionsPercentage
