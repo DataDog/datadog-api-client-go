@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.3.0 / 2021-08-25
+## 1.3.0 / 2021-08-26
 
 * [Added] Add config variables to Synthetics browser test config. See [#1086](https://github.com/DataDog/datadog-api-client-go/pull/1086).
 * [Added] Add DBM usage endpoint. See [#1068](https://github.com/DataDog/datadog-api-client-go/pull/1068).
