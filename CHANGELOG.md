@@ -7,7 +7,6 @@
 * [Added] Add `audit alert` monitor type. See [#1081](https://github.com/DataDog/datadog-api-client-go/pull/1081).
 * [Added] Add `batch_id` to the synthetics trigger endpoint response. See [#1079](https://github.com/DataDog/datadog-api-client-go/pull/1079).
 * [Added] Adding support for security monitoring rule `type` property. See [#1065](https://github.com/DataDog/datadog-api-client-go/pull/1065).
-* [Added] Add flag to easily detect if there were any deserialization problems. See [#1073](https://github.com/DataDog/datadog-api-client-go/pull/1073).
 * [Added] Add events data source to Dashboard widgets. See [#1067](https://github.com/DataDog/datadog-api-client-go/pull/1067).
 * [Added] Add restricted roles for Synthetics global variables. See [#1072](https://github.com/DataDog/datadog-api-client-go/pull/1072).
 * [Added] Webhooks integration SDK. See [#1071](https://github.com/DataDog/datadog-api-client-go/pull/1071).
@@ -20,17 +19,17 @@
 * [Added] Add `new_group_delay` and deprecate `new_host_delay` monitor properties. See [#1055](https://github.com/DataDog/datadog-api-client-go/pull/1055).
 * [Added] Add `include_descendants` param to usage attribution API. See [#1062](https://github.com/DataDog/datadog-api-client-go/pull/1062).
 * [Added] Improve resiliency of go SDK when deserializing enums/oneOfs. See [#1028](https://github.com/DataDog/datadog-api-client-go/pull/1028).
+* [Added] Add `ContainsUnparsedObject` utility method to check if an object wasn't fully deserialized. See [#1073](https://github.com/DataDog/datadog-api-client-go/pull/1073) and [#1077](https://github.com/DataDog/datadog-api-client-go/pull/1077).
 * [Added] Add support for list widget in dashboards. See [#1023](https://github.com/DataDog/datadog-api-client-go/pull/1023).
-* [Added] [dashboards] Extend table widget requests to support formulas and functions. See [#1046](https://github.com/DataDog/datadog-api-client-go/pull/1046).
+* [Added] Extend table widget requests to support formulas and functions in dashboards. See [#1046](https://github.com/DataDog/datadog-api-client-go/pull/1046).
 * [Added] Add CSPM to usage attribution. See [#1037](https://github.com/DataDog/datadog-api-client-go/pull/1037).
-* [Added] Add support for dashboard bulk delete, restore endpoints. See [#1020](https://github.com/DataDog/datadog-api-client-go/pull/1020).
+* [Added] Add support for dashboard bulk delete and restore endpoints. See [#1020](https://github.com/DataDog/datadog-api-client-go/pull/1020).
 * [Added] Add support for audit logs data source in dashboards. See [#1041](https://github.com/DataDog/datadog-api-client-go/pull/1041).
 * [Added] Add `allow_insecure` option for multistep steps in Synthetics. See [#1031](https://github.com/DataDog/datadog-api-client-go/pull/1031).
 * [Fixed] Make SLO history metadata unit nullable. See [#1078](https://github.com/DataDog/datadog-api-client-go/pull/1078).
 * [Fixed] Minor fixes of the incident schema. See [#1074](https://github.com/DataDog/datadog-api-client-go/pull/1074).
 * [Fixed] Fix serialization of query metrics response containing nullable points. See [#1034](https://github.com/DataDog/datadog-api-client-go/pull/1034).
 * [Fixed] Fix `status` property name for browser error status in Synthetics. See [#1036](https://github.com/DataDog/datadog-api-client-go/pull/1036).
-* [Changed] Update Go clients `ContainsUnparsedObject` method to return the actual object. See [#1077](https://github.com/DataDog/datadog-api-client-go/pull/1077).
 * [Changed] Add separate schema for deleting AWS account. See [#1030](https://github.com/DataDog/datadog-api-client-go/pull/1030).
 * [Removed] Remove deprecated endpoints `/api/v1/usage/traces` and `/api/v1/usage/tracing-without-limits`. See [#1038](https://github.com/DataDog/datadog-api-client-go/pull/1038).
 
