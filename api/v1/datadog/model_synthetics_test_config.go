@@ -16,7 +16,7 @@ import (
 type SyntheticsTestConfig struct {
 	// Array of assertions used for the test.
 	Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
-	// API tests only - array of variables used for the test.
+	// Array of variables used for the test.
 	ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
 	Request         *SyntheticsTestRequest      `json:"request,omitempty"`
 	// Browser tests only - array of variables used for the test steps.

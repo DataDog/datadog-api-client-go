@@ -251,6 +251,14 @@ func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.Synthet
 	return datadog.SyntheticsBrowserTest{
 		Config: &datadog.SyntheticsBrowserTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{},
+			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
+				datadog.SyntheticsConfigVariable{
+					Name:    "PROPERTY",
+					Example: datadog.PtrString("content-type"),
+					Pattern: datadog.PtrString("content-type"),
+					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+				},
+			},
 			Request: datadog.SyntheticsTestRequest{
 				Method: datadog.HTTPMETHOD_GET.Ptr(),
 				Url:    datadog.PtrString("https://datadoghq.com"),
