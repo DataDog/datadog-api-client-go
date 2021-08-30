@@ -955,6 +955,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	templateVariable.SetName("test template var")
 	templateVariable.SetPrefix("test-go")
 	templateVariable.SetDefault("*")
+	templateVariable.SetAvailableValues([]string{"available-value-1, available-value-2"})
 
 	// Template Variable Presets
 	dashboardTemplateVariablePreset := datadog.NewDashboardTemplateVariablePreset()
