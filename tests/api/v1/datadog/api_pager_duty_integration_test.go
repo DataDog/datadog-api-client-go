@@ -75,8 +75,7 @@ func TestPagerDutyServicesCreateErrors(t *testing.T) {
 		Body               datadog.PagerDutyService
 		ExpectedStatusCode int
 	}{
-		"400 Bad Request": {WithTestAuth, datadog.PagerDutyService{}, 400},
-		"403 Forbidden":   {WithFakeAuth, pgService, 403},
+		"403 Forbidden": {WithFakeAuth, pgService, 403},
 	}
 
 	for name, tc := range testCases {

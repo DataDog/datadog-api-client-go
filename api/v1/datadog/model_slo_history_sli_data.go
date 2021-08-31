@@ -20,7 +20,7 @@ type SLOHistorySLIData struct {
 	Errors *[]SLOHistoryResponseError `json:"errors,omitempty"`
 	// For groups in a grouped SLO, this is the group name.
 	Group *string `json:"group,omitempty"`
-	// For `monitor` based SLOs, this includes the aggregated history uptime time series.
+	// For `monitor` based SLOs, this includes the aggregated history as arrays that include time series and uptime data where `0=monitor` is in `OK` state and `1=monitor` is in `alert` state.
 	History *[][]float64 `json:"history,omitempty"`
 	// For `monitor` based SLOs, this is the last modified timestamp in epoch seconds of the monitor.
 	MonitorModified *int64 `json:"monitor_modified,omitempty"`

@@ -70,6 +70,7 @@ docs/IncidentFieldAttributesSingleValue.md
 docs/IncidentFieldAttributesSingleValueType.md
 docs/IncidentFieldAttributesValueType.md
 docs/IncidentIntegrationMetadataType.md
+docs/IncidentNotificationHandle.md
 docs/IncidentPostmortemType.md
 docs/IncidentRelatedObject.md
 docs/IncidentResponse.md
@@ -316,6 +317,8 @@ docs/SecurityMonitoringRuleQueryAggregation.md
 docs/SecurityMonitoringRuleQueryCreate.md
 docs/SecurityMonitoringRuleResponse.md
 docs/SecurityMonitoringRuleSeverity.md
+docs/SecurityMonitoringRuleTypeCreate.md
+docs/SecurityMonitoringRuleTypeRead.md
 docs/SecurityMonitoringRuleUpdatePayload.md
 docs/SecurityMonitoringRuntimeAgentRule.md
 docs/SecurityMonitoringSignal.md
@@ -409,6 +412,7 @@ model_incident_field_attributes_single_value.go
 model_incident_field_attributes_single_value_type.go
 model_incident_field_attributes_value_type.go
 model_incident_integration_metadata_type.go
+model_incident_notification_handle.go
 model_incident_postmortem_type.go
 model_incident_related_object.go
 model_incident_response.go
@@ -644,6 +648,8 @@ model_security_monitoring_rule_query_aggregation.go
 model_security_monitoring_rule_query_create.go
 model_security_monitoring_rule_response.go
 model_security_monitoring_rule_severity.go
+model_security_monitoring_rule_type_create.go
+model_security_monitoring_rule_type_read.go
 model_security_monitoring_rule_update_payload.go
 model_security_monitoring_runtime_agent_rule.go
 model_security_monitoring_signal.go

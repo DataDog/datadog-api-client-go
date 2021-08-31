@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**GetUsageBillableSummary**](UsageMeteringApi.md#GetUsageBillableSummary) | **Get** /api/v1/usage/billable-summary | Get billable usage across your account
 [**GetUsageCWS**](UsageMeteringApi.md#GetUsageCWS) | **Get** /api/v1/usage/cws | Get hourly usage for Cloud Workload Security
 [**GetUsageCloudSecurityPostureManagement**](UsageMeteringApi.md#GetUsageCloudSecurityPostureManagement) | **Get** /api/v1/usage/cspm | Get hourly usage for CSPM
+[**GetUsageDBM**](UsageMeteringApi.md#GetUsageDBM) | **Get** /api/v1/usage/dbm | Get hourly usage for Database Monitoring
 [**GetUsageFargate**](UsageMeteringApi.md#GetUsageFargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
 [**GetUsageHosts**](UsageMeteringApi.md#GetUsageHosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
 [**GetUsageIndexedSpans**](UsageMeteringApi.md#GetUsageIndexedSpans) | **Get** /api/v1/usage/indexed-spans | Get hourly usage for indexed spans
@@ -980,6 +981,86 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UsageCloudSecurityPostureManagementResponse**](UsageCloudSecurityPostureManagementResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json;datetime-format=rfc3339
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUsageDBM
+
+> UsageDBMResponse GetUsageDBM(ctx, startHr, datadog.GetUsageDBMOptionalParameters{})
+
+Get hourly usage for Database Monitoring
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    "time"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    startHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage beginning at this hour.
+    endHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending **before** this hour. (optional)
+    optionalParams := datadog.GetUsageDBMOptionalParameters{
+        EndHr: &endHr,
+    }
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsageMeteringApi.GetUsageDBM(ctx, startHr, optionalParams)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageDBM`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsageDBM`: UsageDBMResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetUsageDBM:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
+
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a GetUsageDBMOptionalParameters struct.
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+
+### Return type
+
+[**UsageDBMResponse**](UsageDBMResponse.md)
 
 ### Authorization
 

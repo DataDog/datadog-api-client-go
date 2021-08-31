@@ -4,7 +4,7 @@ type {{classname}} struct {
 	{{#lambda.titlecase}}{{{.}}}{{/lambda.titlecase}} *{{{.}}}
 	{{/oneOf}}
 
-    // UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
 }
 

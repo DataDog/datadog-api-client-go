@@ -40,7 +40,8 @@ type SecurityMonitoringRuleResponse struct {
 	// Queries for selecting logs which are part of the rule.
 	Queries *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
 	// Tags for generated signals.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags *[]string                       `json:"tags,omitempty"`
+	Type *SecurityMonitoringRuleTypeRead `json:"type,omitempty"`
 	// User ID of the user who updated the rule.
 	UpdateAuthorId *int64 `json:"updateAuthorId,omitempty"`
 	// The version of the rule.
@@ -514,6 +515,38 @@ func (o *SecurityMonitoringRuleResponse) SetTags(v []string) {
 	o.Tags = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleResponse) GetType() SecurityMonitoringRuleTypeRead {
+	if o == nil || o.Type == nil {
+		var ret SecurityMonitoringRuleTypeRead
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleResponse) GetTypeOk() (*SecurityMonitoringRuleTypeRead, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleResponse) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given SecurityMonitoringRuleTypeRead and assigns it to the Type field.
+func (o *SecurityMonitoringRuleResponse) SetType(v SecurityMonitoringRuleTypeRead) {
+	o.Type = &v
+}
+
 // GetUpdateAuthorId returns the UpdateAuthorId field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleResponse) GetUpdateAuthorId() int64 {
 	if o == nil || o.UpdateAuthorId == nil {
@@ -625,6 +658,9 @@ func (o SecurityMonitoringRuleResponse) MarshalJSON() ([]byte, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
 	if o.UpdateAuthorId != nil {
 		toSerialize["updateAuthorId"] = o.UpdateAuthorId
 	}
@@ -637,25 +673,34 @@ func (o SecurityMonitoringRuleResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cases            *[]SecurityMonitoringRuleCase  `json:"cases,omitempty"`
-		CreatedAt        *int64                         `json:"createdAt,omitempty"`
-		CreationAuthorId *int64                         `json:"creationAuthorId,omitempty"`
-		Filters          *[]SecurityMonitoringFilter    `json:"filters,omitempty"`
-		HasExtendedTitle *bool                          `json:"hasExtendedTitle,omitempty"`
-		Id               *string                        `json:"id,omitempty"`
-		IsDefault        *bool                          `json:"isDefault,omitempty"`
-		IsDeleted        *bool                          `json:"isDeleted,omitempty"`
-		IsEnabled        *bool                          `json:"isEnabled,omitempty"`
-		Message          *string                        `json:"message,omitempty"`
-		Name             *string                        `json:"name,omitempty"`
-		Options          *SecurityMonitoringRuleOptions `json:"options,omitempty"`
-		Queries          *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
-		Tags             *[]string                      `json:"tags,omitempty"`
-		UpdateAuthorId   *int64                         `json:"updateAuthorId,omitempty"`
-		Version          *int64                         `json:"version,omitempty"`
+		Cases            *[]SecurityMonitoringRuleCase   `json:"cases,omitempty"`
+		CreatedAt        *int64                          `json:"createdAt,omitempty"`
+		CreationAuthorId *int64                          `json:"creationAuthorId,omitempty"`
+		Filters          *[]SecurityMonitoringFilter     `json:"filters,omitempty"`
+		HasExtendedTitle *bool                           `json:"hasExtendedTitle,omitempty"`
+		Id               *string                         `json:"id,omitempty"`
+		IsDefault        *bool                           `json:"isDefault,omitempty"`
+		IsDeleted        *bool                           `json:"isDeleted,omitempty"`
+		IsEnabled        *bool                           `json:"isEnabled,omitempty"`
+		Message          *string                         `json:"message,omitempty"`
+		Name             *string                         `json:"name,omitempty"`
+		Options          *SecurityMonitoringRuleOptions  `json:"options,omitempty"`
+		Queries          *[]SecurityMonitoringRuleQuery  `json:"queries,omitempty"`
+		Tags             *[]string                       `json:"tags,omitempty"`
+		Type             *SecurityMonitoringRuleTypeRead `json:"type,omitempty"`
+		UpdateAuthorId   *int64                          `json:"updateAuthorId,omitempty"`
+		Version          *int64                          `json:"version,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -677,6 +722,7 @@ func (o *SecurityMonitoringRuleResponse) UnmarshalJSON(bytes []byte) (err error)
 	o.Options = all.Options
 	o.Queries = all.Queries
 	o.Tags = all.Tags
+	o.Type = all.Type
 	o.UpdateAuthorId = all.UpdateAuthorId
 	o.Version = all.Version
 	return nil

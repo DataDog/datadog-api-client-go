@@ -1,0 +1,119 @@
+interactions:
+- request:
+    body: |
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_with_type_workload_security_returns_OK_response-1629100140","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"agentRule":{"agentRuleId":"kernel_module_unlink_2","expression":"(open.flags \u0026 ((O_CREAT|O_RDWR|O_WRONLY|O_TRUNC)) \u003e 0)"},"aggregation":"count","distinctFields":[],"groupByFields":[],"metric":"","query":"@test:true"}],"tags":[],"type":"workload_security"}
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '573'
+      Content-Type:
+      - application/json
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.4; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '6698455153852476541'
+      X-Datadog-Trace-Id:
+      - '1792726140053302697'
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
+  response:
+    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
+      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1629100140907,"filters":[],"queries":[{"distinctFields":[],"name":"","metric":"","aggregation":"count","groupByFields":[],"query":"@agent.rule_id:(Test_Create_a_detection_rule_with_type_workload_security_returns_OK_response_1629100140_kernel_module_unlink_2
+      OR kernel_module_unlink_2)","agentRule":{"expression":"(open.flags & ((O_CREAT|O_RDWR|O_WRONLY|O_TRUNC))
+      > 0)","agentRuleId":"kernel_module_unlink_2"}}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"workload_security","id":"csl-lpm-o3j","isDefault":false,"name":"Test-Create_a_detection_rule_with_type_workload_security_returns_OK_response-1629100140"}'
+    code: 200
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - '901'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 16 Aug 2021 07:49:00 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '600'
+      X-Ratelimit-Period:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '599'
+      X-Ratelimit-Reset:
+      - '60'
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.4; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '2468041391897675304'
+      X-Datadog-Trace-Id:
+      - '1792726140053302697'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/csl-lpm-o3j
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Disposition:
+      - inline
+      Content-Length:
+      - '0'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Date:
+      - Mon, 16 Aug 2021 07:49:01 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '600'
+      X-Ratelimit-Period:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '598'
+      X-Ratelimit-Reset:
+      - '59'
+    status: 204 No Content
+version: 1

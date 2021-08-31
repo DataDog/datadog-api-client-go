@@ -248,6 +248,7 @@ Class | Method | HTTP request | Description
 *UsageMeteringApi* | [**GetUsageBillableSummary**](docs/UsageMeteringApi.md#getusagebillablesummary) | **Get** /api/v1/usage/billable-summary | Get billable usage across your account
 *UsageMeteringApi* | [**GetUsageCWS**](docs/UsageMeteringApi.md#getusagecws) | **Get** /api/v1/usage/cws | Get hourly usage for Cloud Workload Security
 *UsageMeteringApi* | [**GetUsageCloudSecurityPostureManagement**](docs/UsageMeteringApi.md#getusagecloudsecurityposturemanagement) | **Get** /api/v1/usage/cspm | Get hourly usage for CSPM
+*UsageMeteringApi* | [**GetUsageDBM**](docs/UsageMeteringApi.md#getusagedbm) | **Get** /api/v1/usage/dbm | Get hourly usage for Database Monitoring
 *UsageMeteringApi* | [**GetUsageFargate**](docs/UsageMeteringApi.md#getusagefargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
 *UsageMeteringApi* | [**GetUsageHosts**](docs/UsageMeteringApi.md#getusagehosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
 *UsageMeteringApi* | [**GetUsageIndexedSpans**](docs/UsageMeteringApi.md#getusageindexedspans) | **Get** /api/v1/usage/indexed-spans | Get hourly usage for indexed spans
@@ -272,6 +273,14 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**GetUser**](docs/UsersApi.md#getuser) | **Get** /api/v1/user/{user_handle} | Get user details
 *UsersApi* | [**ListUsers**](docs/UsersApi.md#listusers) | **Get** /api/v1/user | List all users
 *UsersApi* | [**UpdateUser**](docs/UsersApi.md#updateuser) | **Put** /api/v1/user/{user_handle} | Update a user
+*WebhooksIntegrationApi* | [**CreateWebhooksIntegration**](docs/WebhooksIntegrationApi.md#createwebhooksintegration) | **Post** /api/v1/integration/webhooks/configuration/webhooks | Create a webhooks integration
+*WebhooksIntegrationApi* | [**CreateWebhooksIntegrationCustomVariable**](docs/WebhooksIntegrationApi.md#createwebhooksintegrationcustomvariable) | **Post** /api/v1/integration/webhooks/configuration/custom-variables | Create a custom variable
+*WebhooksIntegrationApi* | [**DeleteWebhooksIntegration**](docs/WebhooksIntegrationApi.md#deletewebhooksintegration) | **Delete** /api/v1/integration/webhooks/configuration/webhooks/{webhook_name} | Delete a webhook
+*WebhooksIntegrationApi* | [**DeleteWebhooksIntegrationCustomVariable**](docs/WebhooksIntegrationApi.md#deletewebhooksintegrationcustomvariable) | **Delete** /api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name} | Delete a custom variable
+*WebhooksIntegrationApi* | [**GetWebhooksIntegration**](docs/WebhooksIntegrationApi.md#getwebhooksintegration) | **Get** /api/v1/integration/webhooks/configuration/webhooks/{webhook_name} | Get a webhook integration
+*WebhooksIntegrationApi* | [**GetWebhooksIntegrationCustomVariable**](docs/WebhooksIntegrationApi.md#getwebhooksintegrationcustomvariable) | **Get** /api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name} | Get a custom variable
+*WebhooksIntegrationApi* | [**UpdateWebhooksIntegration**](docs/WebhooksIntegrationApi.md#updatewebhooksintegration) | **Put** /api/v1/integration/webhooks/configuration/webhooks/{webhook_name} | Update a webhook
+*WebhooksIntegrationApi* | [**UpdateWebhooksIntegrationCustomVariable**](docs/WebhooksIntegrationApi.md#updatewebhooksintegrationcustomvariable) | **Put** /api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name} | Update a custom variable
 
 
 ## Documentation For Models
@@ -682,6 +691,7 @@ Class | Method | HTTP request | Description
  - [SyntheticsGetAPITestLatestResultsResponse](docs/SyntheticsGetAPITestLatestResultsResponse.md)
  - [SyntheticsGetBrowserTestLatestResultsResponse](docs/SyntheticsGetBrowserTestLatestResultsResponse.md)
  - [SyntheticsGlobalVariable](docs/SyntheticsGlobalVariable.md)
+ - [SyntheticsGlobalVariableAttributes](docs/SyntheticsGlobalVariableAttributes.md)
  - [SyntheticsGlobalVariableParseTestOptions](docs/SyntheticsGlobalVariableParseTestOptions.md)
  - [SyntheticsGlobalVariableParseTestOptionsType](docs/SyntheticsGlobalVariableParseTestOptionsType.md)
  - [SyntheticsGlobalVariableParserType](docs/SyntheticsGlobalVariableParserType.md)
@@ -772,6 +782,8 @@ Class | Method | HTTP request | Description
  - [UsageCustomReportsMeta](docs/UsageCustomReportsMeta.md)
  - [UsageCustomReportsPage](docs/UsageCustomReportsPage.md)
  - [UsageCustomReportsResponse](docs/UsageCustomReportsResponse.md)
+ - [UsageDBMHour](docs/UsageDBMHour.md)
+ - [UsageDBMResponse](docs/UsageDBMResponse.md)
  - [UsageFargateHour](docs/UsageFargateHour.md)
  - [UsageFargateResponse](docs/UsageFargateResponse.md)
  - [UsageHostHour](docs/UsageHostHour.md)
@@ -829,6 +841,12 @@ Class | Method | HTTP request | Description
  - [UserDisableResponse](docs/UserDisableResponse.md)
  - [UserListResponse](docs/UserListResponse.md)
  - [UserResponse](docs/UserResponse.md)
+ - [WebhooksIntegration](docs/WebhooksIntegration.md)
+ - [WebhooksIntegrationCustomVariable](docs/WebhooksIntegrationCustomVariable.md)
+ - [WebhooksIntegrationCustomVariableResponse](docs/WebhooksIntegrationCustomVariableResponse.md)
+ - [WebhooksIntegrationCustomVariableUpdateRequest](docs/WebhooksIntegrationCustomVariableUpdateRequest.md)
+ - [WebhooksIntegrationEncoding](docs/WebhooksIntegrationEncoding.md)
+ - [WebhooksIntegrationUpdateRequest](docs/WebhooksIntegrationUpdateRequest.md)
  - [Widget](docs/Widget.md)
  - [WidgetAggregator](docs/WidgetAggregator.md)
  - [WidgetAxis](docs/WidgetAxis.md)

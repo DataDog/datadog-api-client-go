@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ErrorBudgetRemaining** | Pointer to **map[string]float64** | A mapping of threshold &#x60;timeframe&#x60; to the remaining error budget. | [optional] 
 **Errors** | Pointer to [**[]SLOHistoryResponseError**](SLOHistoryResponseError.md) | A list of errors while querying the history data for the service level objective. | [optional] 
 **Group** | Pointer to **string** | For groups in a grouped SLO, this is the group name. | [optional] 
-**History** | Pointer to **[][]float64** | For &#x60;monitor&#x60; based SLOs, this includes the aggregated history uptime time series. | [optional] 
+**History** | Pointer to **[][]float64** | For &#x60;monitor&#x60; based SLOs, this includes the aggregated history as arrays that include time series and uptime data where &#x60;0&#x3D;monitor&#x60; is in &#x60;OK&#x60; state and &#x60;1&#x3D;monitor&#x60; is in &#x60;alert&#x60; state. | [optional] 
 **MonitorModified** | Pointer to **int64** | For &#x60;monitor&#x60; based SLOs, this is the last modified timestamp in epoch seconds of the monitor. | [optional] 
 **MonitorType** | Pointer to **string** | For &#x60;monitor&#x60; based SLOs, this describes the type of monitor. | [optional] 
 **Name** | Pointer to **string** | For groups in a grouped SLO, this is the group name. For monitors in a multi-monitor SLO, this is the monitor name. | [optional] 

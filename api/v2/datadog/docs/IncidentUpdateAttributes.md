@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **CustomerImpacted** | Pointer to **bool** | A flag indicating whether the incident caused customer impact. | [optional] 
 **Detected** | Pointer to **NullableTime** | Timestamp when the incident was detected. | [optional] 
 **Fields** | Pointer to [**map[string]IncidentFieldAttributes**](IncidentFieldAttributes.md) | A condensed view of the user-defined fields for which to update selections. | [optional] 
-**NotificationHandles** | Pointer to **[]string** | Notification handles that will be notified of the incident during update. | [optional] 
+**NotificationHandles** | Pointer to [**[]IncidentNotificationHandle**](IncidentNotificationHandle.md) | Notification handles that will be notified of the incident during update. | [optional] 
 **Resolved** | Pointer to **NullableTime** | Timestamp when the incident&#39;s state was set to resolved. | [optional] 
 **Title** | Pointer to **string** | The title of the incident, which summarizes what happened. | [optional] 
 
@@ -215,20 +215,20 @@ HasFields returns a boolean if a field has been set.
 
 ### GetNotificationHandles
 
-`func (o *IncidentUpdateAttributes) GetNotificationHandles() []string`
+`func (o *IncidentUpdateAttributes) GetNotificationHandles() []IncidentNotificationHandle`
 
 GetNotificationHandles returns the NotificationHandles field if non-nil, zero value otherwise.
 
 ### GetNotificationHandlesOk
 
-`func (o *IncidentUpdateAttributes) GetNotificationHandlesOk() (*[]string, bool)`
+`func (o *IncidentUpdateAttributes) GetNotificationHandlesOk() (*[]IncidentNotificationHandle, bool)`
 
 GetNotificationHandlesOk returns a tuple with the NotificationHandles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNotificationHandles
 
-`func (o *IncidentUpdateAttributes) SetNotificationHandles(v []string)`
+`func (o *IncidentUpdateAttributes) SetNotificationHandles(v []IncidentNotificationHandle)`
 
 SetNotificationHandles sets NotificationHandles field to given value.
 

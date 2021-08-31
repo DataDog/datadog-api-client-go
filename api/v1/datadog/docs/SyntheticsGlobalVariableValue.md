@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Secure** | Pointer to **bool** | Determines if the variable is secure. | [optional] 
-**Value** | Pointer to **string** | Value of the global variable. When reading a global variable, the value will not be present if the variable is secure. | [optional] 
+**Secure** | Pointer to **bool** | Determines if the value of the variable is hidden. | [optional] 
+**Value** | Pointer to **string** | Value of the global variable. When reading a global variable, the value will not be present if the variable is hidden with the &#x60;secure&#x60; property. | [optional] 
 
 ## Methods
 
