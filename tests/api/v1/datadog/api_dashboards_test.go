@@ -107,9 +107,8 @@ func TestDashboardLifecycle(t *testing.T) {
 	changeWidget.SetDefinition(datadog.ChangeWidgetDefinitionAsWidgetDefinition(changeWidgetDefinition))
 
 	// Change Widget with Formulas and Functions Query
-	changeWidgetFormulasFunctionsQuery := datadog.NewChangeWidgetDefinitionWithDefaults()
-
-	changeWidgetFormulasFunctionsQuery.SetRequests([]datadog.ChangeWidgetRequest{{
+	changeWidgetDefinitionFormulaFunctionsQuery := datadog.NewChangeWidgetDefinitionWithDefaults()
+	changeWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.ChangeWidgetRequest{{
 		Formulas: &[]datadog.WidgetFormula{{
 			Formula: "(((errors * 0.2)) / (query * 0.3))",
 			Alias:   datadog.PtrString("sample_performance_calculator"),
@@ -148,12 +147,12 @@ func TestDashboardLifecycle(t *testing.T) {
 				},
 			},
 		}}})
-	changeWidgetFormulasFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
-	changeWidgetFormulasFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
-	changeWidgetFormulasFunctionsQuery.SetTitleSize("16")
-	changeWidgetFormulasFunctionsQuery.SetTime(*widgetTime)
+	changeWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
+	changeWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	changeWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
+	changeWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
 
-	changeWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.ChangeWidgetDefinitionAsWidgetDefinition(changeWidgetFormulasFunctionsQuery))
+	changeWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.ChangeWidgetDefinitionAsWidgetDefinition(changeWidgetDefinitionFormulaFunctionsQuery))
 
 	// Check Status Widget
 	checkStatusWidgetDefinition := datadog.NewCheckStatusWidgetDefinitionWithDefaults()
