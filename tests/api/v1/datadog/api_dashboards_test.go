@@ -106,6 +106,55 @@ func TestDashboardLifecycle(t *testing.T) {
 	changeWidget := datadog.NewWidgetWithDefaults()
 	changeWidget.SetDefinition(datadog.ChangeWidgetDefinitionAsWidgetDefinition(changeWidgetDefinition))
 
+	// Change Widget with Formulas and Functions Query
+	changeWidgetFormulasFunctionsQuery := datadog.NewChangeWidgetDefinitionWithDefaults()
+
+	changeWidgetFormulasFunctionsQuery.SetRequests([]datadog.ChangeWidgetRequest{{
+		Formulas: &[]datadog.WidgetFormula{{
+			Formula: "(((errors * 0.2)) / (query * 0.3))",
+			Alias:   datadog.PtrString("sample_performance_calculator"),
+		}},
+		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
+		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
+				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
+				Name:       "query",
+			},
+		},
+			{
+				FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
+					Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
+						Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+					},
+					Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
+						Query: "service:query Errors",
+					},
+					GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{{
+						Facet: "host",
+					}},
+					Indexes: &[]string{"*"},
+					Name:    "errors",
+				},
+			},
+			{
+				FormulaAndFunctionProcessQueryDefinition: &datadog.FormulaAndFunctionProcessQueryDefinition{
+					DataSource: datadog.FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS,
+					TextFilter: datadog.PtrString(""),
+					Metric:     "process.stat.cpu.total_pct",
+					Limit:      datadog.PtrInt64(10),
+					Name:       "process_query",
+				},
+			},
+		}}})
+	changeWidgetFormulasFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
+	changeWidgetFormulasFunctionsQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
+	changeWidgetFormulasFunctionsQuery.SetTitleSize("16")
+	changeWidgetFormulasFunctionsQuery.SetTime(*widgetTime)
+
+	changeWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.ChangeWidgetDefinitionAsWidgetDefinition(changeWidgetFormulasFunctionsQuery))
+
 	// Check Status Widget
 	checkStatusWidgetDefinition := datadog.NewCheckStatusWidgetDefinitionWithDefaults()
 	checkStatusWidgetDefinition.SetCheck("service_check.up")
@@ -968,6 +1017,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		*alertGraphWidget,
 		*alertValueWidget,
 		*changeWidget,
+		*changeWidgetFormulaFunctionsQuery,
 		*checkStatusWidget,
 		*distributionWidget,
 		*geoMapWidget,
