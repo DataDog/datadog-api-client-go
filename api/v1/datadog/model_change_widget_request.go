@@ -18,6 +18,8 @@ type ChangeWidgetRequest struct {
 	ChangeType *WidgetChangeType   `json:"change_type,omitempty"`
 	CompareTo  *WidgetCompareTo    `json:"compare_to,omitempty"`
 	EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+	// List of formulas that operate on queries. **This feature is currently in beta.**
+	Formulas *[]WidgetFormula `json:"formulas,omitempty"`
 	// Whether to show increase as good.
 	IncreaseGood        *bool                   `json:"increase_good,omitempty"`
 	LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
@@ -27,9 +29,12 @@ type ChangeWidgetRequest struct {
 	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
 	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
 	// Query definition.
-	Q             *string             `json:"q,omitempty"`
-	RumQuery      *LogQueryDefinition `json:"rum_query,omitempty"`
-	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+	Q *string `json:"q,omitempty"`
+	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
+	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
+	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
 	// Whether to show the present value.
 	ShowPresent *bool `json:"show_present,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -179,6 +184,38 @@ func (o *ChangeWidgetRequest) HasEventQuery() bool {
 // SetEventQuery gets a reference to the given LogQueryDefinition and assigns it to the EventQuery field.
 func (o *ChangeWidgetRequest) SetEventQuery(v LogQueryDefinition) {
 	o.EventQuery = &v
+}
+
+// GetFormulas returns the Formulas field value if set, zero value otherwise.
+func (o *ChangeWidgetRequest) GetFormulas() []WidgetFormula {
+	if o == nil || o.Formulas == nil {
+		var ret []WidgetFormula
+		return ret
+	}
+	return *o.Formulas
+}
+
+// GetFormulasOk returns a tuple with the Formulas field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChangeWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
+	if o == nil || o.Formulas == nil {
+		return nil, false
+	}
+	return o.Formulas, true
+}
+
+// HasFormulas returns a boolean if a field has been set.
+func (o *ChangeWidgetRequest) HasFormulas() bool {
+	if o != nil && o.Formulas != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
+func (o *ChangeWidgetRequest) SetFormulas(v []WidgetFormula) {
+	o.Formulas = &v
 }
 
 // GetIncreaseGood returns the IncreaseGood field value if set, zero value otherwise.
@@ -437,6 +474,70 @@ func (o *ChangeWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
 
+// GetQueries returns the Queries field value if set, zero value otherwise.
+func (o *ChangeWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
+	if o == nil || o.Queries == nil {
+		var ret []FormulaAndFunctionQueryDefinition
+		return ret
+	}
+	return *o.Queries
+}
+
+// GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChangeWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinition, bool) {
+	if o == nil || o.Queries == nil {
+		return nil, false
+	}
+	return o.Queries, true
+}
+
+// HasQueries returns a boolean if a field has been set.
+func (o *ChangeWidgetRequest) HasQueries() bool {
+	if o != nil && o.Queries != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
+func (o *ChangeWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
+	o.Queries = &v
+}
+
+// GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
+func (o *ChangeWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
+	if o == nil || o.ResponseFormat == nil {
+		var ret FormulaAndFunctionResponseFormat
+		return ret
+	}
+	return *o.ResponseFormat
+}
+
+// GetResponseFormatOk returns a tuple with the ResponseFormat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChangeWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionResponseFormat, bool) {
+	if o == nil || o.ResponseFormat == nil {
+		return nil, false
+	}
+	return o.ResponseFormat, true
+}
+
+// HasResponseFormat returns a boolean if a field has been set.
+func (o *ChangeWidgetRequest) HasResponseFormat() bool {
+	if o != nil && o.ResponseFormat != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetResponseFormat gets a reference to the given FormulaAndFunctionResponseFormat and assigns it to the ResponseFormat field.
+func (o *ChangeWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat) {
+	o.ResponseFormat = &v
+}
+
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetRumQuery() LogQueryDefinition {
 	if o == nil || o.RumQuery == nil {
@@ -550,6 +651,9 @@ func (o ChangeWidgetRequest) MarshalJSON() ([]byte, error) {
 	if o.EventQuery != nil {
 		toSerialize["event_query"] = o.EventQuery
 	}
+	if o.Formulas != nil {
+		toSerialize["formulas"] = o.Formulas
+	}
 	if o.IncreaseGood != nil {
 		toSerialize["increase_good"] = o.IncreaseGood
 	}
@@ -574,6 +678,12 @@ func (o ChangeWidgetRequest) MarshalJSON() ([]byte, error) {
 	if o.Q != nil {
 		toSerialize["q"] = o.Q
 	}
+	if o.Queries != nil {
+		toSerialize["queries"] = o.Queries
+	}
+	if o.ResponseFormat != nil {
+		toSerialize["response_format"] = o.ResponseFormat
+	}
 	if o.RumQuery != nil {
 		toSerialize["rum_query"] = o.RumQuery
 	}
@@ -589,21 +699,24 @@ func (o ChangeWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition     `json:"apm_query,omitempty"`
-		ChangeType          *WidgetChangeType       `json:"change_type,omitempty"`
-		CompareTo           *WidgetCompareTo        `json:"compare_to,omitempty"`
-		EventQuery          *LogQueryDefinition     `json:"event_query,omitempty"`
-		IncreaseGood        *bool                   `json:"increase_good,omitempty"`
-		LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
-		OrderBy             *WidgetOrderBy          `json:"order_by,omitempty"`
-		OrderDir            *WidgetSort             `json:"order_dir,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
-		Q                   *string                 `json:"q,omitempty"`
-		RumQuery            *LogQueryDefinition     `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition     `json:"security_query,omitempty"`
-		ShowPresent         *bool                   `json:"show_present,omitempty"`
+		ApmQuery            *LogQueryDefinition                  `json:"apm_query,omitempty"`
+		ChangeType          *WidgetChangeType                    `json:"change_type,omitempty"`
+		CompareTo           *WidgetCompareTo                     `json:"compare_to,omitempty"`
+		EventQuery          *LogQueryDefinition                  `json:"event_query,omitempty"`
+		Formulas            *[]WidgetFormula                     `json:"formulas,omitempty"`
+		IncreaseGood        *bool                                `json:"increase_good,omitempty"`
+		LogQuery            *LogQueryDefinition                  `json:"log_query,omitempty"`
+		NetworkQuery        *LogQueryDefinition                  `json:"network_query,omitempty"`
+		OrderBy             *WidgetOrderBy                       `json:"order_by,omitempty"`
+		OrderDir            *WidgetSort                          `json:"order_dir,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition              `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition                  `json:"profile_metrics_query,omitempty"`
+		Q                   *string                              `json:"q,omitempty"`
+		Queries             *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat      *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+		RumQuery            *LogQueryDefinition                  `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition                  `json:"security_query,omitempty"`
+		ShowPresent         *bool                                `json:"show_present,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -646,10 +759,19 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
 	o.ApmQuery = all.ApmQuery
 	o.ChangeType = all.ChangeType
 	o.CompareTo = all.CompareTo
 	o.EventQuery = all.EventQuery
+	o.Formulas = all.Formulas
 	o.IncreaseGood = all.IncreaseGood
 	o.LogQuery = all.LogQuery
 	o.NetworkQuery = all.NetworkQuery
@@ -658,6 +780,8 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.ProcessQuery = all.ProcessQuery
 	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
+	o.Queries = all.Queries
+	o.ResponseFormat = all.ResponseFormat
 	o.RumQuery = all.RumQuery
 	o.SecurityQuery = all.SecurityQuery
 	o.ShowPresent = all.ShowPresent
