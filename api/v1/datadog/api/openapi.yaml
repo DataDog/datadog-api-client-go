@@ -19230,7 +19230,11 @@ components:
             - - - 1579212382
                 - 0
             monitor_type: string
-            errors: []
+            errors:
+            - error_message: ""
+              error_type: ""
+            - error_message: ""
+              error_type: ""
             group: name
             uptime: 99.99
           type: metric
@@ -19249,13 +19253,32 @@ components:
           type: array
       type: object
     SLOHistoryResponseError:
-      description: A service level objective response containing the requested history.
+      description: A list of errors while querying the history data for the service
+        level objective.
       example:
         error: error
       properties:
         error:
           description: Human readable error.
           type: string
+      type: object
+    SLOHistoryResponseErrorWithType:
+      description: An object describing the error with error type and error message.
+      example:
+        error_message: ""
+        error_type: ""
+      properties:
+        error_message:
+          description: A message with more details about the error.
+          example: ""
+          type: string
+        error_type:
+          description: Type of the error.
+          example: ""
+          type: string
+      required:
+      - error_message
+      - error_type
       type: object
     SLOHistorySLIData:
       description: |-
@@ -19278,7 +19301,11 @@ components:
         - - - 1579212382
             - 0
         monitor_type: string
-        errors: []
+        errors:
+        - error_message: ""
+          error_type: ""
+        - error_message: ""
+          error_type: ""
         group: name
         uptime: 99.99
       properties:
@@ -19292,11 +19319,10 @@ components:
             "7d": 100.0
           type: object
         errors:
-          description: A list of errors while querying the history data for the service
-            level objective.
-          example: []
+          description: An array of error objects returned while querying the history
+            data for the service level objective.
           items:
-            $ref: '#/components/schemas/SLOHistoryResponseError'
+            $ref: '#/components/schemas/SLOHistoryResponseErrorWithType'
           type: array
         group:
           description: For groups in a grouped SLO, this is the group name.
@@ -30094,7 +30120,11 @@ components:
           - - - 1579212382
               - 0
           monitor_type: string
-          errors: []
+          errors:
+          - error_message: ""
+            error_type: ""
+          - error_message: ""
+            error_type: ""
           group: name
           uptime: 99.99
         type: metric

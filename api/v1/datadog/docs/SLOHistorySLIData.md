@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **ErrorBudgetRemaining** | Pointer to **map[string]float64** | A mapping of threshold &#x60;timeframe&#x60; to the remaining error budget. | [optional] 
-**Errors** | Pointer to [**[]SLOHistoryResponseError**](SLOHistoryResponseError.md) | A list of errors while querying the history data for the service level objective. | [optional] 
+**Errors** | Pointer to [**[]SLOHistoryResponseErrorWithType**](SLOHistoryResponseErrorWithType.md) | An array of error objects returned while querying the history data for the service level objective. | [optional] 
 **Group** | Pointer to **string** | For groups in a grouped SLO, this is the group name. | [optional] 
 **History** | Pointer to **[][]float64** | For &#x60;monitor&#x60; based SLOs, this includes the aggregated history as arrays that include time series and uptime data where &#x60;0&#x3D;monitor&#x60; is in &#x60;OK&#x60; state and &#x60;1&#x3D;monitor&#x60; is in &#x60;alert&#x60; state. | [optional] 
 **MonitorModified** | Pointer to **int64** | For &#x60;monitor&#x60; based SLOs, this is the last modified timestamp in epoch seconds of the monitor. | [optional] 
@@ -63,20 +63,20 @@ HasErrorBudgetRemaining returns a boolean if a field has been set.
 
 ### GetErrors
 
-`func (o *SLOHistorySLIData) GetErrors() []SLOHistoryResponseError`
+`func (o *SLOHistorySLIData) GetErrors() []SLOHistoryResponseErrorWithType`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *SLOHistorySLIData) GetErrorsOk() (*[]SLOHistoryResponseError, bool)`
+`func (o *SLOHistorySLIData) GetErrorsOk() (*[]SLOHistoryResponseErrorWithType, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrors
 
-`func (o *SLOHistorySLIData) SetErrors(v []SLOHistoryResponseError)`
+`func (o *SLOHistorySLIData) SetErrors(v []SLOHistoryResponseErrorWithType)`
 
 SetErrors sets Errors field to given value.
 
