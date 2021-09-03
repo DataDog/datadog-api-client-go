@@ -11184,9 +11184,17 @@ components:
         - default: my-host
           prefix: host
           name: host1
+          available_values:
+          - my-host
+          - host1
+          - host2
         - default: my-host
           prefix: host
           name: host1
+          available_values:
+          - my-host
+          - host1
+          - host2
         url: /dashboard/123-abc-456/example-dashboard-title
         is_read_only: false
         id: 123-abc-456
@@ -11554,7 +11562,23 @@ components:
         default: my-host
         prefix: host
         name: host1
+        available_values:
+        - my-host
+        - host1
+        - host2
       properties:
+        available_values:
+          description: The list of values that the template variable drop-down is
+            limited to.
+          example:
+          - my-host
+          - host1
+          - host2
+          items:
+            description: Template variable value.
+            type: string
+          nullable: true
+          type: array
         default:
           description: The default value for the template variable on dashboard load.
           example: my-host
