@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SLOHistoryResponseError A service level objective response containing the requested history.
+// SLOHistoryResponseError A list of errors while querying the history data for the service level objective.
 type SLOHistoryResponseError struct {
 	// Human readable error.
 	Error *string `json:"error,omitempty"`

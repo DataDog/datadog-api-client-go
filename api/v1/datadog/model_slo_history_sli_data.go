@@ -16,8 +16,8 @@ import (
 type SLOHistorySLIData struct {
 	// A mapping of threshold `timeframe` to the remaining error budget.
 	ErrorBudgetRemaining *map[string]float64 `json:"error_budget_remaining,omitempty"`
-	// A list of errors while querying the history data for the service level objective.
-	Errors *[]SLOHistoryResponseError `json:"errors,omitempty"`
+	// An array of error objects returned while querying the history data for the service level objective.
+	Errors *[]SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
 	// For groups in a grouped SLO, this is the group name.
 	Group *string `json:"group,omitempty"`
 	// For `monitor` based SLOs, this includes the aggregated history as arrays that include time series and uptime data where `0=monitor` is in `OK` state and `1=monitor` is in `alert` state.
@@ -92,9 +92,9 @@ func (o *SLOHistorySLIData) SetErrorBudgetRemaining(v map[string]float64) {
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetErrors() []SLOHistoryResponseError {
+func (o *SLOHistorySLIData) GetErrors() []SLOHistoryResponseErrorWithType {
 	if o == nil || o.Errors == nil {
-		var ret []SLOHistoryResponseError
+		var ret []SLOHistoryResponseErrorWithType
 		return ret
 	}
 	return *o.Errors
@@ -102,7 +102,7 @@ func (o *SLOHistorySLIData) GetErrors() []SLOHistoryResponseError {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetErrorsOk() (*[]SLOHistoryResponseError, bool) {
+func (o *SLOHistorySLIData) GetErrorsOk() (*[]SLOHistoryResponseErrorWithType, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
@@ -118,8 +118,8 @@ func (o *SLOHistorySLIData) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given []SLOHistoryResponseError and assigns it to the Errors field.
-func (o *SLOHistorySLIData) SetErrors(v []SLOHistoryResponseError) {
+// SetErrors gets a reference to the given []SLOHistoryResponseErrorWithType and assigns it to the Errors field.
+func (o *SLOHistorySLIData) SetErrors(v []SLOHistoryResponseErrorWithType) {
 	o.Errors = &v
 }
 
@@ -490,18 +490,18 @@ func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
 func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ErrorBudgetRemaining *map[string]float64        `json:"error_budget_remaining,omitempty"`
-		Errors               *[]SLOHistoryResponseError `json:"errors,omitempty"`
-		Group                *string                    `json:"group,omitempty"`
-		History              *[][]float64               `json:"history,omitempty"`
-		MonitorModified      *int64                     `json:"monitor_modified,omitempty"`
-		MonitorType          *string                    `json:"monitor_type,omitempty"`
-		Name                 *string                    `json:"name,omitempty"`
-		Precision            *map[string]float64        `json:"precision,omitempty"`
-		Preview              *bool                      `json:"preview,omitempty"`
-		SliValue             *float64                   `json:"sli_value,omitempty"`
-		SpanPrecision        *float64                   `json:"span_precision,omitempty"`
-		Uptime               *float64                   `json:"uptime,omitempty"`
+		ErrorBudgetRemaining *map[string]float64                `json:"error_budget_remaining,omitempty"`
+		Errors               *[]SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
+		Group                *string                            `json:"group,omitempty"`
+		History              *[][]float64                       `json:"history,omitempty"`
+		MonitorModified      *int64                             `json:"monitor_modified,omitempty"`
+		MonitorType          *string                            `json:"monitor_type,omitempty"`
+		Name                 *string                            `json:"name,omitempty"`
+		Precision            *map[string]float64                `json:"precision,omitempty"`
+		Preview              *bool                              `json:"preview,omitempty"`
+		SliValue             *float64                           `json:"sli_value,omitempty"`
+		SpanPrecision        *float64                           `json:"span_precision,omitempty"`
+		Uptime               *float64                           `json:"uptime,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

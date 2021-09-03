@@ -614,6 +614,7 @@ Class | Method | HTTP request | Description
  - [SLOHistoryResponse](docs/SLOHistoryResponse.md)
  - [SLOHistoryResponseData](docs/SLOHistoryResponseData.md)
  - [SLOHistoryResponseError](docs/SLOHistoryResponseError.md)
+ - [SLOHistoryResponseErrorWithType](docs/SLOHistoryResponseErrorWithType.md)
  - [SLOHistorySLIData](docs/SLOHistorySLIData.md)
  - [SLOListResponse](docs/SLOListResponse.md)
  - [SLOListResponseMetadata](docs/SLOListResponseMetadata.md)
