@@ -651,7 +651,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	slo := sloResp.GetData()[0]
 	defer deleteSLOIfExists(ctx, t, slo.GetId())
 
-	testSLOCorrectionCreateData := datadog.NewSLOCorrectionCreateData()
+	testSLOCorrectionCreateData := datadog.NewSLOCorrectionCreateDataWithDefaults()
 	now := tests.ClockFromContext(ctx).Now().Unix()
 	testTimezone := "UTC"
 	testStart := now
