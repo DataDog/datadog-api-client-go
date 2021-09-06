@@ -15,6 +15,8 @@ import (
 
 // DashboardTemplateVariable Template variable.
 type DashboardTemplateVariable struct {
+	// The list of values that the template variable drop-down is limited to.
+	AvailableValues []string `json:"available_values,omitempty"`
 	// The default value for the template variable on dashboard load.
 	Default NullableString `json:"default,omitempty"`
 	// The name of the variable.
@@ -41,6 +43,39 @@ func NewDashboardTemplateVariable(name string) *DashboardTemplateVariable {
 func NewDashboardTemplateVariableWithDefaults() *DashboardTemplateVariable {
 	this := DashboardTemplateVariable{}
 	return &this
+}
+
+// GetAvailableValues returns the AvailableValues field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DashboardTemplateVariable) GetAvailableValues() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.AvailableValues
+}
+
+// GetAvailableValuesOk returns a tuple with the AvailableValues field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DashboardTemplateVariable) GetAvailableValuesOk() (*[]string, bool) {
+	if o == nil || o.AvailableValues == nil {
+		return nil, false
+	}
+	return &o.AvailableValues, true
+}
+
+// HasAvailableValues returns a boolean if a field has been set.
+func (o *DashboardTemplateVariable) HasAvailableValues() bool {
+	if o != nil && o.AvailableValues != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailableValues gets a reference to the given []string and assigns it to the AvailableValues field.
+func (o *DashboardTemplateVariable) SetAvailableValues(v []string) {
+	o.AvailableValues = v
 }
 
 // GetDefault returns the Default field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -158,6 +193,9 @@ func (o DashboardTemplateVariable) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.AvailableValues != nil {
+		toSerialize["available_values"] = o.AvailableValues
+	}
 	if o.Default.IsSet() {
 		toSerialize["default"] = o.Default.Get()
 	}
@@ -176,9 +214,10 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Default NullableString `json:"default,omitempty"`
-		Name    string         `json:"name"`
-		Prefix  NullableString `json:"prefix,omitempty"`
+		AvailableValues []string       `json:"available_values,omitempty"`
+		Default         NullableString `json:"default,omitempty"`
+		Name            string         `json:"name"`
+		Prefix          NullableString `json:"prefix,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -196,6 +235,7 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	o.AvailableValues = all.AvailableValues
 	o.Default = all.Default
 	o.Name = all.Name
 	o.Prefix = all.Prefix
