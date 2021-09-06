@@ -1533,7 +1533,7 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 	assert.Equal(publicID, triggeredCheckIds[0])
 
 	// get batch details
-	batch, httpresp, err := Client(ctx).SyntheticsApi.GetBatch(ctx, fullResult.GetBatchId())
+	_, httpresp, err := Client(ctx).SyntheticsApi.GetBatch(ctx, fullResult.GetBatchId())
 
 	if err != nil {
 		t.Fatalf("Error triggering ci tests: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
