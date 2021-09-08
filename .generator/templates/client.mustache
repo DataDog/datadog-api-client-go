@@ -112,7 +112,7 @@ func selectHeaderAccept(accepts []string) string {
 	return strings.Join(accepts, ",")
 }
 
-// contains is a case insenstive match, finding needle in a haystack
+// contains is a case insensitive match, finding needle in a haystack
 func contains(haystack []string, needle string) bool {
 	for _, a := range haystack {
 		if strings.ToLower(a) == strings.ToLower(needle) {
@@ -169,6 +169,7 @@ func parameterToJson(obj interface{}) (string, error) {
 	return string(jsonBuf), err
 }
 
+{{! The method is used in Terraform client and needs to be public. }}
 // CallAPI do the request.
 func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	if c.cfg.Debug {
@@ -210,6 +211,7 @@ func (c *APIClient) GetConfig() *Configuration {
 	return c.cfg
 }
 
+{{! The method is used in Terraform client and needs to be public. }}
 // PrepareRequest build the request
 func (c *APIClient) PrepareRequest(
 	ctx context.Context,
@@ -377,7 +379,7 @@ func (c *APIClient) PrepareRequest(
 				reader = strings.NewReader(body.String())
 			}
 
-			// Define default values for region and service to maintain backward compatibility 
+			// Define default values for region and service to maintain backward compatibility
 			region := auth.Region
 			if region == "" {
 				region = "eu-west-2"
@@ -399,6 +401,13 @@ func (c *APIClient) PrepareRequest(
 	for header, value := range c.cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)
 	}
+{{#withCustomMiddlewareFunction}}
+
+	if c.cfg.Middleware != nil {
+		c.cfg.Middleware(localVarRequest)
+	}
+
+{{/withCustomMiddlewareFunction}}
 {{#hasHttpSignatureMethods}}
 	if ctx != nil {
 		// HTTP Signature Authentication. All request headers must be set (including default headers)
