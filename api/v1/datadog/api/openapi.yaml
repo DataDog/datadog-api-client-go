@@ -20396,6 +20396,7 @@ components:
           dnsServerPort: 5249
           host: host
           numberOfPackets: 6
+          follow_redirects: true
           dnsServer: dnsServer
         allowFailure: true
         name: name
@@ -20495,6 +20496,7 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           assertions: []
           steps:
@@ -20535,6 +20537,7 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             allowFailure: true
             name: name
@@ -20577,6 +20580,7 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             allowFailure: true
             name: name
@@ -20663,6 +20667,7 @@ components:
           dnsServerPort: 5249
           host: host
           numberOfPackets: 6
+          follow_redirects: true
           dnsServer: dnsServer
         assertions: []
         steps:
@@ -20703,6 +20708,7 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           allowFailure: true
           name: name
@@ -20745,6 +20751,7 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           allowFailure: true
           name: name
@@ -20946,6 +20953,7 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
@@ -21253,6 +21261,7 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
@@ -21362,6 +21371,7 @@ components:
           dnsServerPort: 5249
           host: host
           numberOfPackets: 6
+          follow_redirects: true
           dnsServer: dnsServer
         variables:
         - name: VARIABLE_NAME
@@ -21640,6 +21650,7 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
@@ -22443,6 +22454,7 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
@@ -22528,6 +22540,7 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
@@ -23000,6 +23013,7 @@ components:
           dnsServerPort: 5249
           host: host
           numberOfPackets: 6
+          follow_redirects: true
           dnsServer: dnsServer
         variables:
         - name: VARIABLE_NAME
@@ -23096,6 +23110,7 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
@@ -23372,6 +23387,7 @@ components:
         dnsServerPort: 5249
         host: host
         numberOfPackets: 6
+        follow_redirects: true
         dnsServer: dnsServer
       properties:
         allow_insecure:
@@ -23394,6 +23410,9 @@ components:
           maximum: 65535
           minimum: 1
           type: integer
+        follow_redirects:
+          description: Specifies whether or not the request follows redirects.
+          type: boolean
         headers:
           additionalProperties:
             description: A single Header.
@@ -30528,6 +30547,7 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
@@ -30617,6 +30637,7 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
