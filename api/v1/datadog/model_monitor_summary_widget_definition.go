@@ -17,6 +17,7 @@ import (
 type MonitorSummaryWidgetDefinition struct {
 	ColorPreference *WidgetColorPreference `json:"color_preference,omitempty"`
 	// The number of monitors to display.
+	// Deprecated
 	Count         *int64                             `json:"count,omitempty"`
 	DisplayFormat *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"`
 	// Whether to show counts of 0 or not.
@@ -27,6 +28,7 @@ type MonitorSummaryWidgetDefinition struct {
 	ShowLastTriggered *bool                     `json:"show_last_triggered,omitempty"`
 	Sort              *WidgetMonitorSummarySort `json:"sort,omitempty"`
 	// The start of the list. Typically 0.
+	// Deprecated
 	Start       *int64             `json:"start,omitempty"`
 	SummaryType *WidgetSummaryType `json:"summary_type,omitempty"`
 	// Title of the widget.
@@ -93,6 +95,7 @@ func (o *MonitorSummaryWidgetDefinition) SetColorPreference(v WidgetColorPrefere
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
+// Deprecated
 func (o *MonitorSummaryWidgetDefinition) GetCount() int64 {
 	if o == nil || o.Count == nil {
 		var ret int64
@@ -103,6 +106,7 @@ func (o *MonitorSummaryWidgetDefinition) GetCount() int64 {
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *MonitorSummaryWidgetDefinition) GetCountOk() (*int64, bool) {
 	if o == nil || o.Count == nil {
 		return nil, false
@@ -120,6 +124,7 @@ func (o *MonitorSummaryWidgetDefinition) HasCount() bool {
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
+// Deprecated
 func (o *MonitorSummaryWidgetDefinition) SetCount(v int64) {
 	o.Count = &v
 }
@@ -277,6 +282,7 @@ func (o *MonitorSummaryWidgetDefinition) SetSort(v WidgetMonitorSummarySort) {
 }
 
 // GetStart returns the Start field value if set, zero value otherwise.
+// Deprecated
 func (o *MonitorSummaryWidgetDefinition) GetStart() int64 {
 	if o == nil || o.Start == nil {
 		var ret int64
@@ -287,6 +293,7 @@ func (o *MonitorSummaryWidgetDefinition) GetStart() int64 {
 
 // GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *MonitorSummaryWidgetDefinition) GetStartOk() (*int64, bool) {
 	if o == nil || o.Start == nil {
 		return nil, false
@@ -304,6 +311,7 @@ func (o *MonitorSummaryWidgetDefinition) HasStart() bool {
 }
 
 // SetStart gets a reference to the given int64 and assigns it to the Start field.
+// Deprecated
 func (o *MonitorSummaryWidgetDefinition) SetStart(v int64) {
 	o.Start = &v
 }

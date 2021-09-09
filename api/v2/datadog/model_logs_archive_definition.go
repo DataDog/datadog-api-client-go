@@ -39,8 +39,6 @@ func NewLogsArchiveDefinition(type_ string) *LogsArchiveDefinition {
 // but it doesn't guarantee that properties required by API are set
 func NewLogsArchiveDefinitionWithDefaults() *LogsArchiveDefinition {
 	this := LogsArchiveDefinition{}
-	var type_ string = "archives"
-	this.Type = type_
 	return &this
 }
 
