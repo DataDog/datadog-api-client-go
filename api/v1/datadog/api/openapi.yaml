@@ -19153,7 +19153,6 @@ components:
           type: array
       required:
       - count
-      - metadata
       - sum
       - values
       type: object
