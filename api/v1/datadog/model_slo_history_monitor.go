@@ -29,6 +29,7 @@ type SLOHistoryMonitor struct {
 	// For groups in a grouped SLO, this is the group name. For monitors in a multi-monitor SLO, this is the monitor name.
 	Name *string `json:"name,omitempty"`
 	// The amount of decimal places the SLI value is accurate to for the given from `&&` to timestamp. Use `span_precision` instead.
+	// Deprecated
 	Precision *float64 `json:"precision,omitempty"`
 	// For `monitor` based SLOs, when `true` this indicates that a replay is in progress to give an accurate uptime calculation.
 	Preview *bool `json:"preview,omitempty"`
@@ -37,6 +38,7 @@ type SLOHistoryMonitor struct {
 	// The amount of decimal places the SLI value is accurate to for the given from `&&` to timestamp.
 	SpanPrecision *float64 `json:"span_precision,omitempty"`
 	// Use `sli_value` instead.
+	// Deprecated
 	Uptime *float64 `json:"uptime,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -284,6 +286,7 @@ func (o *SLOHistoryMonitor) SetName(v string) {
 }
 
 // GetPrecision returns the Precision field value if set, zero value otherwise.
+// Deprecated
 func (o *SLOHistoryMonitor) GetPrecision() float64 {
 	if o == nil || o.Precision == nil {
 		var ret float64
@@ -294,6 +297,7 @@ func (o *SLOHistoryMonitor) GetPrecision() float64 {
 
 // GetPrecisionOk returns a tuple with the Precision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *SLOHistoryMonitor) GetPrecisionOk() (*float64, bool) {
 	if o == nil || o.Precision == nil {
 		return nil, false
@@ -311,6 +315,7 @@ func (o *SLOHistoryMonitor) HasPrecision() bool {
 }
 
 // SetPrecision gets a reference to the given float64 and assigns it to the Precision field.
+// Deprecated
 func (o *SLOHistoryMonitor) SetPrecision(v float64) {
 	o.Precision = &v
 }
@@ -412,6 +417,7 @@ func (o *SLOHistoryMonitor) SetSpanPrecision(v float64) {
 }
 
 // GetUptime returns the Uptime field value if set, zero value otherwise.
+// Deprecated
 func (o *SLOHistoryMonitor) GetUptime() float64 {
 	if o == nil || o.Uptime == nil {
 		var ret float64
@@ -422,6 +428,7 @@ func (o *SLOHistoryMonitor) GetUptime() float64 {
 
 // GetUptimeOk returns a tuple with the Uptime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *SLOHistoryMonitor) GetUptimeOk() (*float64, bool) {
 	if o == nil || o.Uptime == nil {
 		return nil, false
@@ -439,6 +446,7 @@ func (o *SLOHistoryMonitor) HasUptime() bool {
 }
 
 // SetUptime gets a reference to the given float64 and assigns it to the Uptime field.
+// Deprecated
 func (o *SLOHistoryMonitor) SetUptime(v float64) {
 	o.Uptime = &v
 }

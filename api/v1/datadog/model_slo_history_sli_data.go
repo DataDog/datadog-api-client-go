@@ -37,6 +37,7 @@ type SLOHistorySLIData struct {
 	// The amount of decimal places the SLI value is accurate to for the given from `&&` to timestamp.
 	SpanPrecision *float64 `json:"span_precision,omitempty"`
 	// Use `sli_value` instead.
+	// Deprecated
 	Uptime *float64 `json:"uptime,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -412,6 +413,7 @@ func (o *SLOHistorySLIData) SetSpanPrecision(v float64) {
 }
 
 // GetUptime returns the Uptime field value if set, zero value otherwise.
+// Deprecated
 func (o *SLOHistorySLIData) GetUptime() float64 {
 	if o == nil || o.Uptime == nil {
 		var ret float64
@@ -422,6 +424,7 @@ func (o *SLOHistorySLIData) GetUptime() float64 {
 
 // GetUptimeOk returns a tuple with the Uptime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *SLOHistorySLIData) GetUptimeOk() (*float64, bool) {
 	if o == nil || o.Uptime == nil {
 		return nil, false
@@ -439,6 +442,7 @@ func (o *SLOHistorySLIData) HasUptime() bool {
 }
 
 // SetUptime gets a reference to the given float64 and assigns it to the Uptime field.
+// Deprecated
 func (o *SLOHistorySLIData) SetUptime(v float64) {
 	o.Uptime = &v
 }
