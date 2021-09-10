@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Count** | **int64** | Count of submitted metrics. | 
-**Metadata** | [**SLOHistoryMetricsSeriesMetadata**](SLOHistoryMetricsSeriesMetadata.md) |  | 
+**Metadata** | Pointer to [**SLOHistoryMetricsSeriesMetadata**](SLOHistoryMetricsSeriesMetadata.md) |  | [optional] 
 **Sum** | **float64** | Total sum of the query. | 
 **Values** | **[]float64** | The query values for each metric. | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewSLOHistoryMetricsSeries
 
-`func NewSLOHistoryMetricsSeries(count int64, metadata SLOHistoryMetricsSeriesMetadata, sum float64, values []float64) *SLOHistoryMetricsSeries`
+`func NewSLOHistoryMetricsSeries(count int64, sum float64, values []float64) *SLOHistoryMetricsSeries`
 
 NewSLOHistoryMetricsSeries instantiates a new SLOHistoryMetricsSeries object.
 This constructor will assign default values to properties that have it defined,
@@ -67,6 +67,11 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
+### HasMetadata
+
+`func (o *SLOHistoryMetricsSeries) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetSum
 

@@ -16,8 +16,8 @@ import (
 // SLOHistoryMetricsSeries A representation of `metric` based SLO time series for the provided queries. This is the same response type from `batch_query` endpoint.
 type SLOHistoryMetricsSeries struct {
 	// Count of submitted metrics.
-	Count    int64                           `json:"count"`
-	Metadata SLOHistoryMetricsSeriesMetadata `json:"metadata"`
+	Count    int64                            `json:"count"`
+	Metadata *SLOHistoryMetricsSeriesMetadata `json:"metadata,omitempty"`
 	// Total sum of the query.
 	Sum float64 `json:"sum"`
 	// The query values for each metric.
@@ -30,10 +30,9 @@ type SLOHistoryMetricsSeries struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSLOHistoryMetricsSeries(count int64, metadata SLOHistoryMetricsSeriesMetadata, sum float64, values []float64) *SLOHistoryMetricsSeries {
+func NewSLOHistoryMetricsSeries(count int64, sum float64, values []float64) *SLOHistoryMetricsSeries {
 	this := SLOHistoryMetricsSeries{}
 	this.Count = count
-	this.Metadata = metadata
 	this.Sum = sum
 	this.Values = values
 	return &this
@@ -71,28 +70,36 @@ func (o *SLOHistoryMetricsSeries) SetCount(v int64) {
 	o.Count = v
 }
 
-// GetMetadata returns the Metadata field value
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *SLOHistoryMetricsSeries) GetMetadata() SLOHistoryMetricsSeriesMetadata {
-	if o == nil {
+	if o == nil || o.Metadata == nil {
 		var ret SLOHistoryMetricsSeriesMetadata
 		return ret
 	}
-
-	return o.Metadata
+	return *o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetricsSeries) GetMetadataOk() (*SLOHistoryMetricsSeriesMetadata, bool) {
-	if o == nil {
+	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
-	return &o.Metadata, true
+	return o.Metadata, true
 }
 
-// SetMetadata sets field value
+// HasMetadata returns a boolean if a field has been set.
+func (o *SLOHistoryMetricsSeries) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given SLOHistoryMetricsSeriesMetadata and assigns it to the Metadata field.
 func (o *SLOHistoryMetricsSeries) SetMetadata(v SLOHistoryMetricsSeriesMetadata) {
-	o.Metadata = v
+	o.Metadata = &v
 }
 
 // GetSum returns the Sum field value
@@ -151,7 +158,7 @@ func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["count"] = o.Count
 	}
-	if true {
+	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
 	if true {
@@ -166,16 +173,15 @@ func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Count    *int64                           `json:"count"`
-		Metadata *SLOHistoryMetricsSeriesMetadata `json:"metadata"`
-		Sum      *float64                         `json:"sum"`
-		Values   *[]float64                       `json:"values"`
+		Count  *int64     `json:"count"`
+		Sum    *float64   `json:"sum"`
+		Values *[]float64 `json:"values"`
 	}{}
 	all := struct {
-		Count    int64                           `json:"count"`
-		Metadata SLOHistoryMetricsSeriesMetadata `json:"metadata"`
-		Sum      float64                         `json:"sum"`
-		Values   []float64                       `json:"values"`
+		Count    int64                            `json:"count"`
+		Metadata *SLOHistoryMetricsSeriesMetadata `json:"metadata,omitempty"`
+		Sum      float64                          `json:"sum"`
+		Values   []float64                        `json:"values"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -183,9 +189,6 @@ func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if required.Count == nil {
 		return fmt.Errorf("Required field count missing")
-	}
-	if required.Metadata == nil {
-		return fmt.Errorf("Required field metadata missing")
 	}
 	if required.Sum == nil {
 		return fmt.Errorf("Required field sum missing")
