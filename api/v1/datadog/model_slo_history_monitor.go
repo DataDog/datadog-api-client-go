@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// SLOHistorySLIData An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value. This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
-type SLOHistorySLIData struct {
+// SLOHistoryMonitor An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value. This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
+type SLOHistoryMonitor struct {
 	// A mapping of threshold `timeframe` to the remaining error budget.
 	ErrorBudgetRemaining *map[string]float64 `json:"error_budget_remaining,omitempty"`
 	// An array of error objects returned while querying the history data for the service level objective.
@@ -28,8 +28,9 @@ type SLOHistorySLIData struct {
 	MonitorType *string `json:"monitor_type,omitempty"`
 	// For groups in a grouped SLO, this is the group name. For monitors in a multi-monitor SLO, this is the monitor name.
 	Name *string `json:"name,omitempty"`
-	// A mapping of threshold `timeframe` to number of accurate decimals, regardless of the from && to timestamp.
-	Precision *map[string]float64 `json:"precision,omitempty"`
+	// The amount of decimal places the SLI value is accurate to for the given from `&&` to timestamp. Use `span_precision` instead.
+	// Deprecated
+	Precision *float64 `json:"precision,omitempty"`
 	// For `monitor` based SLOs, when `true` this indicates that a replay is in progress to give an accurate uptime calculation.
 	Preview *bool `json:"preview,omitempty"`
 	// The current SLI value of the SLO over the history window.
@@ -43,25 +44,25 @@ type SLOHistorySLIData struct {
 	UnparsedObject map[string]interface{} `json:-`
 }
 
-// NewSLOHistorySLIData instantiates a new SLOHistorySLIData object
+// NewSLOHistoryMonitor instantiates a new SLOHistoryMonitor object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSLOHistorySLIData() *SLOHistorySLIData {
-	this := SLOHistorySLIData{}
+func NewSLOHistoryMonitor() *SLOHistoryMonitor {
+	this := SLOHistoryMonitor{}
 	return &this
 }
 
-// NewSLOHistorySLIDataWithDefaults instantiates a new SLOHistorySLIData object
+// NewSLOHistoryMonitorWithDefaults instantiates a new SLOHistoryMonitor object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSLOHistorySLIDataWithDefaults() *SLOHistorySLIData {
-	this := SLOHistorySLIData{}
+func NewSLOHistoryMonitorWithDefaults() *SLOHistoryMonitor {
+	this := SLOHistoryMonitor{}
 	return &this
 }
 
 // GetErrorBudgetRemaining returns the ErrorBudgetRemaining field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetErrorBudgetRemaining() map[string]float64 {
+func (o *SLOHistoryMonitor) GetErrorBudgetRemaining() map[string]float64 {
 	if o == nil || o.ErrorBudgetRemaining == nil {
 		var ret map[string]float64
 		return ret
@@ -71,7 +72,7 @@ func (o *SLOHistorySLIData) GetErrorBudgetRemaining() map[string]float64 {
 
 // GetErrorBudgetRemainingOk returns a tuple with the ErrorBudgetRemaining field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetErrorBudgetRemainingOk() (*map[string]float64, bool) {
+func (o *SLOHistoryMonitor) GetErrorBudgetRemainingOk() (*map[string]float64, bool) {
 	if o == nil || o.ErrorBudgetRemaining == nil {
 		return nil, false
 	}
@@ -79,7 +80,7 @@ func (o *SLOHistorySLIData) GetErrorBudgetRemainingOk() (*map[string]float64, bo
 }
 
 // HasErrorBudgetRemaining returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasErrorBudgetRemaining() bool {
+func (o *SLOHistoryMonitor) HasErrorBudgetRemaining() bool {
 	if o != nil && o.ErrorBudgetRemaining != nil {
 		return true
 	}
@@ -88,12 +89,12 @@ func (o *SLOHistorySLIData) HasErrorBudgetRemaining() bool {
 }
 
 // SetErrorBudgetRemaining gets a reference to the given map[string]float64 and assigns it to the ErrorBudgetRemaining field.
-func (o *SLOHistorySLIData) SetErrorBudgetRemaining(v map[string]float64) {
+func (o *SLOHistoryMonitor) SetErrorBudgetRemaining(v map[string]float64) {
 	o.ErrorBudgetRemaining = &v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetErrors() []SLOHistoryResponseErrorWithType {
+func (o *SLOHistoryMonitor) GetErrors() []SLOHistoryResponseErrorWithType {
 	if o == nil || o.Errors == nil {
 		var ret []SLOHistoryResponseErrorWithType
 		return ret
@@ -103,7 +104,7 @@ func (o *SLOHistorySLIData) GetErrors() []SLOHistoryResponseErrorWithType {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetErrorsOk() (*[]SLOHistoryResponseErrorWithType, bool) {
+func (o *SLOHistoryMonitor) GetErrorsOk() (*[]SLOHistoryResponseErrorWithType, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
@@ -111,7 +112,7 @@ func (o *SLOHistorySLIData) GetErrorsOk() (*[]SLOHistoryResponseErrorWithType, b
 }
 
 // HasErrors returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasErrors() bool {
+func (o *SLOHistoryMonitor) HasErrors() bool {
 	if o != nil && o.Errors != nil {
 		return true
 	}
@@ -120,12 +121,12 @@ func (o *SLOHistorySLIData) HasErrors() bool {
 }
 
 // SetErrors gets a reference to the given []SLOHistoryResponseErrorWithType and assigns it to the Errors field.
-func (o *SLOHistorySLIData) SetErrors(v []SLOHistoryResponseErrorWithType) {
+func (o *SLOHistoryMonitor) SetErrors(v []SLOHistoryResponseErrorWithType) {
 	o.Errors = &v
 }
 
 // GetGroup returns the Group field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetGroup() string {
+func (o *SLOHistoryMonitor) GetGroup() string {
 	if o == nil || o.Group == nil {
 		var ret string
 		return ret
@@ -135,7 +136,7 @@ func (o *SLOHistorySLIData) GetGroup() string {
 
 // GetGroupOk returns a tuple with the Group field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetGroupOk() (*string, bool) {
+func (o *SLOHistoryMonitor) GetGroupOk() (*string, bool) {
 	if o == nil || o.Group == nil {
 		return nil, false
 	}
@@ -143,7 +144,7 @@ func (o *SLOHistorySLIData) GetGroupOk() (*string, bool) {
 }
 
 // HasGroup returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasGroup() bool {
+func (o *SLOHistoryMonitor) HasGroup() bool {
 	if o != nil && o.Group != nil {
 		return true
 	}
@@ -152,12 +153,12 @@ func (o *SLOHistorySLIData) HasGroup() bool {
 }
 
 // SetGroup gets a reference to the given string and assigns it to the Group field.
-func (o *SLOHistorySLIData) SetGroup(v string) {
+func (o *SLOHistoryMonitor) SetGroup(v string) {
 	o.Group = &v
 }
 
 // GetHistory returns the History field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetHistory() [][]float64 {
+func (o *SLOHistoryMonitor) GetHistory() [][]float64 {
 	if o == nil || o.History == nil {
 		var ret [][]float64
 		return ret
@@ -167,7 +168,7 @@ func (o *SLOHistorySLIData) GetHistory() [][]float64 {
 
 // GetHistoryOk returns a tuple with the History field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetHistoryOk() (*[][]float64, bool) {
+func (o *SLOHistoryMonitor) GetHistoryOk() (*[][]float64, bool) {
 	if o == nil || o.History == nil {
 		return nil, false
 	}
@@ -175,7 +176,7 @@ func (o *SLOHistorySLIData) GetHistoryOk() (*[][]float64, bool) {
 }
 
 // HasHistory returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasHistory() bool {
+func (o *SLOHistoryMonitor) HasHistory() bool {
 	if o != nil && o.History != nil {
 		return true
 	}
@@ -184,12 +185,12 @@ func (o *SLOHistorySLIData) HasHistory() bool {
 }
 
 // SetHistory gets a reference to the given [][]float64 and assigns it to the History field.
-func (o *SLOHistorySLIData) SetHistory(v [][]float64) {
+func (o *SLOHistoryMonitor) SetHistory(v [][]float64) {
 	o.History = &v
 }
 
 // GetMonitorModified returns the MonitorModified field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetMonitorModified() int64 {
+func (o *SLOHistoryMonitor) GetMonitorModified() int64 {
 	if o == nil || o.MonitorModified == nil {
 		var ret int64
 		return ret
@@ -199,7 +200,7 @@ func (o *SLOHistorySLIData) GetMonitorModified() int64 {
 
 // GetMonitorModifiedOk returns a tuple with the MonitorModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetMonitorModifiedOk() (*int64, bool) {
+func (o *SLOHistoryMonitor) GetMonitorModifiedOk() (*int64, bool) {
 	if o == nil || o.MonitorModified == nil {
 		return nil, false
 	}
@@ -207,7 +208,7 @@ func (o *SLOHistorySLIData) GetMonitorModifiedOk() (*int64, bool) {
 }
 
 // HasMonitorModified returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasMonitorModified() bool {
+func (o *SLOHistoryMonitor) HasMonitorModified() bool {
 	if o != nil && o.MonitorModified != nil {
 		return true
 	}
@@ -216,12 +217,12 @@ func (o *SLOHistorySLIData) HasMonitorModified() bool {
 }
 
 // SetMonitorModified gets a reference to the given int64 and assigns it to the MonitorModified field.
-func (o *SLOHistorySLIData) SetMonitorModified(v int64) {
+func (o *SLOHistoryMonitor) SetMonitorModified(v int64) {
 	o.MonitorModified = &v
 }
 
 // GetMonitorType returns the MonitorType field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetMonitorType() string {
+func (o *SLOHistoryMonitor) GetMonitorType() string {
 	if o == nil || o.MonitorType == nil {
 		var ret string
 		return ret
@@ -231,7 +232,7 @@ func (o *SLOHistorySLIData) GetMonitorType() string {
 
 // GetMonitorTypeOk returns a tuple with the MonitorType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetMonitorTypeOk() (*string, bool) {
+func (o *SLOHistoryMonitor) GetMonitorTypeOk() (*string, bool) {
 	if o == nil || o.MonitorType == nil {
 		return nil, false
 	}
@@ -239,7 +240,7 @@ func (o *SLOHistorySLIData) GetMonitorTypeOk() (*string, bool) {
 }
 
 // HasMonitorType returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasMonitorType() bool {
+func (o *SLOHistoryMonitor) HasMonitorType() bool {
 	if o != nil && o.MonitorType != nil {
 		return true
 	}
@@ -248,12 +249,12 @@ func (o *SLOHistorySLIData) HasMonitorType() bool {
 }
 
 // SetMonitorType gets a reference to the given string and assigns it to the MonitorType field.
-func (o *SLOHistorySLIData) SetMonitorType(v string) {
+func (o *SLOHistoryMonitor) SetMonitorType(v string) {
 	o.MonitorType = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetName() string {
+func (o *SLOHistoryMonitor) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -263,7 +264,7 @@ func (o *SLOHistorySLIData) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetNameOk() (*string, bool) {
+func (o *SLOHistoryMonitor) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -271,7 +272,7 @@ func (o *SLOHistorySLIData) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasName() bool {
+func (o *SLOHistoryMonitor) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -280,14 +281,15 @@ func (o *SLOHistorySLIData) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *SLOHistorySLIData) SetName(v string) {
+func (o *SLOHistoryMonitor) SetName(v string) {
 	o.Name = &v
 }
 
 // GetPrecision returns the Precision field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetPrecision() map[string]float64 {
+// Deprecated
+func (o *SLOHistoryMonitor) GetPrecision() float64 {
 	if o == nil || o.Precision == nil {
-		var ret map[string]float64
+		var ret float64
 		return ret
 	}
 	return *o.Precision
@@ -295,7 +297,8 @@ func (o *SLOHistorySLIData) GetPrecision() map[string]float64 {
 
 // GetPrecisionOk returns a tuple with the Precision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetPrecisionOk() (*map[string]float64, bool) {
+// Deprecated
+func (o *SLOHistoryMonitor) GetPrecisionOk() (*float64, bool) {
 	if o == nil || o.Precision == nil {
 		return nil, false
 	}
@@ -303,7 +306,7 @@ func (o *SLOHistorySLIData) GetPrecisionOk() (*map[string]float64, bool) {
 }
 
 // HasPrecision returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasPrecision() bool {
+func (o *SLOHistoryMonitor) HasPrecision() bool {
 	if o != nil && o.Precision != nil {
 		return true
 	}
@@ -311,13 +314,14 @@ func (o *SLOHistorySLIData) HasPrecision() bool {
 	return false
 }
 
-// SetPrecision gets a reference to the given map[string]float64 and assigns it to the Precision field.
-func (o *SLOHistorySLIData) SetPrecision(v map[string]float64) {
+// SetPrecision gets a reference to the given float64 and assigns it to the Precision field.
+// Deprecated
+func (o *SLOHistoryMonitor) SetPrecision(v float64) {
 	o.Precision = &v
 }
 
 // GetPreview returns the Preview field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetPreview() bool {
+func (o *SLOHistoryMonitor) GetPreview() bool {
 	if o == nil || o.Preview == nil {
 		var ret bool
 		return ret
@@ -327,7 +331,7 @@ func (o *SLOHistorySLIData) GetPreview() bool {
 
 // GetPreviewOk returns a tuple with the Preview field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetPreviewOk() (*bool, bool) {
+func (o *SLOHistoryMonitor) GetPreviewOk() (*bool, bool) {
 	if o == nil || o.Preview == nil {
 		return nil, false
 	}
@@ -335,7 +339,7 @@ func (o *SLOHistorySLIData) GetPreviewOk() (*bool, bool) {
 }
 
 // HasPreview returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasPreview() bool {
+func (o *SLOHistoryMonitor) HasPreview() bool {
 	if o != nil && o.Preview != nil {
 		return true
 	}
@@ -344,12 +348,12 @@ func (o *SLOHistorySLIData) HasPreview() bool {
 }
 
 // SetPreview gets a reference to the given bool and assigns it to the Preview field.
-func (o *SLOHistorySLIData) SetPreview(v bool) {
+func (o *SLOHistoryMonitor) SetPreview(v bool) {
 	o.Preview = &v
 }
 
 // GetSliValue returns the SliValue field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetSliValue() float64 {
+func (o *SLOHistoryMonitor) GetSliValue() float64 {
 	if o == nil || o.SliValue == nil {
 		var ret float64
 		return ret
@@ -359,7 +363,7 @@ func (o *SLOHistorySLIData) GetSliValue() float64 {
 
 // GetSliValueOk returns a tuple with the SliValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetSliValueOk() (*float64, bool) {
+func (o *SLOHistoryMonitor) GetSliValueOk() (*float64, bool) {
 	if o == nil || o.SliValue == nil {
 		return nil, false
 	}
@@ -367,7 +371,7 @@ func (o *SLOHistorySLIData) GetSliValueOk() (*float64, bool) {
 }
 
 // HasSliValue returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasSliValue() bool {
+func (o *SLOHistoryMonitor) HasSliValue() bool {
 	if o != nil && o.SliValue != nil {
 		return true
 	}
@@ -376,12 +380,12 @@ func (o *SLOHistorySLIData) HasSliValue() bool {
 }
 
 // SetSliValue gets a reference to the given float64 and assigns it to the SliValue field.
-func (o *SLOHistorySLIData) SetSliValue(v float64) {
+func (o *SLOHistoryMonitor) SetSliValue(v float64) {
 	o.SliValue = &v
 }
 
 // GetSpanPrecision returns the SpanPrecision field value if set, zero value otherwise.
-func (o *SLOHistorySLIData) GetSpanPrecision() float64 {
+func (o *SLOHistoryMonitor) GetSpanPrecision() float64 {
 	if o == nil || o.SpanPrecision == nil {
 		var ret float64
 		return ret
@@ -391,7 +395,7 @@ func (o *SLOHistorySLIData) GetSpanPrecision() float64 {
 
 // GetSpanPrecisionOk returns a tuple with the SpanPrecision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOHistorySLIData) GetSpanPrecisionOk() (*float64, bool) {
+func (o *SLOHistoryMonitor) GetSpanPrecisionOk() (*float64, bool) {
 	if o == nil || o.SpanPrecision == nil {
 		return nil, false
 	}
@@ -399,7 +403,7 @@ func (o *SLOHistorySLIData) GetSpanPrecisionOk() (*float64, bool) {
 }
 
 // HasSpanPrecision returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasSpanPrecision() bool {
+func (o *SLOHistoryMonitor) HasSpanPrecision() bool {
 	if o != nil && o.SpanPrecision != nil {
 		return true
 	}
@@ -408,13 +412,13 @@ func (o *SLOHistorySLIData) HasSpanPrecision() bool {
 }
 
 // SetSpanPrecision gets a reference to the given float64 and assigns it to the SpanPrecision field.
-func (o *SLOHistorySLIData) SetSpanPrecision(v float64) {
+func (o *SLOHistoryMonitor) SetSpanPrecision(v float64) {
 	o.SpanPrecision = &v
 }
 
 // GetUptime returns the Uptime field value if set, zero value otherwise.
 // Deprecated
-func (o *SLOHistorySLIData) GetUptime() float64 {
+func (o *SLOHistoryMonitor) GetUptime() float64 {
 	if o == nil || o.Uptime == nil {
 		var ret float64
 		return ret
@@ -425,7 +429,7 @@ func (o *SLOHistorySLIData) GetUptime() float64 {
 // GetUptimeOk returns a tuple with the Uptime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated
-func (o *SLOHistorySLIData) GetUptimeOk() (*float64, bool) {
+func (o *SLOHistoryMonitor) GetUptimeOk() (*float64, bool) {
 	if o == nil || o.Uptime == nil {
 		return nil, false
 	}
@@ -433,7 +437,7 @@ func (o *SLOHistorySLIData) GetUptimeOk() (*float64, bool) {
 }
 
 // HasUptime returns a boolean if a field has been set.
-func (o *SLOHistorySLIData) HasUptime() bool {
+func (o *SLOHistoryMonitor) HasUptime() bool {
 	if o != nil && o.Uptime != nil {
 		return true
 	}
@@ -443,11 +447,11 @@ func (o *SLOHistorySLIData) HasUptime() bool {
 
 // SetUptime gets a reference to the given float64 and assigns it to the Uptime field.
 // Deprecated
-func (o *SLOHistorySLIData) SetUptime(v float64) {
+func (o *SLOHistoryMonitor) SetUptime(v float64) {
 	o.Uptime = &v
 }
 
-func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
+func (o SLOHistoryMonitor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -491,7 +495,7 @@ func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SLOHistoryMonitor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		ErrorBudgetRemaining *map[string]float64                `json:"error_budget_remaining,omitempty"`
@@ -501,7 +505,7 @@ func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
 		MonitorModified      *int64                             `json:"monitor_modified,omitempty"`
 		MonitorType          *string                            `json:"monitor_type,omitempty"`
 		Name                 *string                            `json:"name,omitempty"`
-		Precision            *map[string]float64                `json:"precision,omitempty"`
+		Precision            *float64                           `json:"precision,omitempty"`
 		Preview              *bool                              `json:"preview,omitempty"`
 		SliValue             *float64                           `json:"sli_value,omitempty"`
 		SpanPrecision        *float64                           `json:"span_precision,omitempty"`
@@ -531,38 +535,38 @@ func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
 	return nil
 }
 
-type NullableSLOHistorySLIData struct {
-	value *SLOHistorySLIData
+type NullableSLOHistoryMonitor struct {
+	value *SLOHistoryMonitor
 	isSet bool
 }
 
-func (v NullableSLOHistorySLIData) Get() *SLOHistorySLIData {
+func (v NullableSLOHistoryMonitor) Get() *SLOHistoryMonitor {
 	return v.value
 }
 
-func (v *NullableSLOHistorySLIData) Set(val *SLOHistorySLIData) {
+func (v *NullableSLOHistoryMonitor) Set(val *SLOHistoryMonitor) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSLOHistorySLIData) IsSet() bool {
+func (v NullableSLOHistoryMonitor) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSLOHistorySLIData) Unset() {
+func (v *NullableSLOHistoryMonitor) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSLOHistorySLIData(val *SLOHistorySLIData) *NullableSLOHistorySLIData {
-	return &NullableSLOHistorySLIData{value: val, isSet: true}
+func NewNullableSLOHistoryMonitor(val *SLOHistoryMonitor) *NullableSLOHistoryMonitor {
+	return &NullableSLOHistoryMonitor{value: val, isSet: true}
 }
 
-func (v NullableSLOHistorySLIData) MarshalJSON() ([]byte, error) {
+func (v NullableSLOHistoryMonitor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSLOHistorySLIData) UnmarshalJSON(src []byte) error {
+func (v *NullableSLOHistoryMonitor) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

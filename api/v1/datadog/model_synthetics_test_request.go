@@ -24,6 +24,8 @@ type SyntheticsTestRequest struct {
 	DnsServer *string `json:"dnsServer,omitempty"`
 	// DNS server port to use for DNS tests.
 	DnsServerPort *int32 `json:"dnsServerPort,omitempty"`
+	// Specifies whether or not the request follows redirects.
+	FollowRedirects *bool `json:"follow_redirects,omitempty"`
 	// Headers to include when performing the test.
 	Headers *map[string]string `json:"headers,omitempty"`
 	// Host name to perform the test with.
@@ -254,6 +256,38 @@ func (o *SyntheticsTestRequest) HasDnsServerPort() bool {
 // SetDnsServerPort gets a reference to the given int32 and assigns it to the DnsServerPort field.
 func (o *SyntheticsTestRequest) SetDnsServerPort(v int32) {
 	o.DnsServerPort = &v
+}
+
+// GetFollowRedirects returns the FollowRedirects field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetFollowRedirects() bool {
+	if o == nil || o.FollowRedirects == nil {
+		var ret bool
+		return ret
+	}
+	return *o.FollowRedirects
+}
+
+// GetFollowRedirectsOk returns a tuple with the FollowRedirects field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetFollowRedirectsOk() (*bool, bool) {
+	if o == nil || o.FollowRedirects == nil {
+		return nil, false
+	}
+	return o.FollowRedirects, true
+}
+
+// HasFollowRedirects returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasFollowRedirects() bool {
+	if o != nil && o.FollowRedirects != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowRedirects gets a reference to the given bool and assigns it to the FollowRedirects field.
+func (o *SyntheticsTestRequest) SetFollowRedirects(v bool) {
+	o.FollowRedirects = &v
 }
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
@@ -599,6 +633,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.DnsServerPort != nil {
 		toSerialize["dnsServerPort"] = o.DnsServerPort
 	}
+	if o.FollowRedirects != nil {
+		toSerialize["follow_redirects"] = o.FollowRedirects
+	}
 	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers
 	}
@@ -641,6 +678,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Certificate          *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
 		DnsServer            *string                           `json:"dnsServer,omitempty"`
 		DnsServerPort        *int32                            `json:"dnsServerPort,omitempty"`
+		FollowRedirects      *bool                             `json:"follow_redirects,omitempty"`
 		Headers              *map[string]string                `json:"headers,omitempty"`
 		Host                 *string                           `json:"host,omitempty"`
 		Method               *HTTPMethod                       `json:"method,omitempty"`
@@ -675,6 +713,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Certificate = all.Certificate
 	o.DnsServer = all.DnsServer
 	o.DnsServerPort = all.DnsServerPort
+	o.FollowRedirects = all.FollowRedirects
 	o.Headers = all.Headers
 	o.Host = all.Host
 	o.Method = all.Method

@@ -20,6 +20,7 @@ type LogStreamWidgetDefinition struct {
 	// An array of index names to query in the stream. Use [] to query all indexes at once.
 	Indexes *[]string `json:"indexes,omitempty"`
 	// ID of the log set to use.
+	// Deprecated
 	Logset         *string               `json:"logset,omitempty"`
 	MessageDisplay *WidgetMessageDisplay `json:"message_display,omitempty"`
 	// Query to filter the log stream with.
@@ -125,6 +126,7 @@ func (o *LogStreamWidgetDefinition) SetIndexes(v []string) {
 }
 
 // GetLogset returns the Logset field value if set, zero value otherwise.
+// Deprecated
 func (o *LogStreamWidgetDefinition) GetLogset() string {
 	if o == nil || o.Logset == nil {
 		var ret string
@@ -135,6 +137,7 @@ func (o *LogStreamWidgetDefinition) GetLogset() string {
 
 // GetLogsetOk returns a tuple with the Logset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *LogStreamWidgetDefinition) GetLogsetOk() (*string, bool) {
 	if o == nil || o.Logset == nil {
 		return nil, false
@@ -152,6 +155,7 @@ func (o *LogStreamWidgetDefinition) HasLogset() bool {
 }
 
 // SetLogset gets a reference to the given string and assigns it to the Logset field.
+// Deprecated
 func (o *LogStreamWidgetDefinition) SetLogset(v string) {
 	o.Logset = &v
 }

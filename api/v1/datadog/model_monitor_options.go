@@ -16,6 +16,7 @@ import (
 type MonitorOptions struct {
 	Aggregation *MonitorOptionsAggregation `json:"aggregation,omitempty"`
 	// IDs of the device the Synthetics monitor is running on.
+	// Deprecated
 	DeviceIds *[]MonitorDeviceID `json:"device_ids,omitempty"`
 	// Whether or not to send a log sample when the log monitor triggers.
 	EnableLogsSample *bool `json:"enable_logs_sample,omitempty"`
@@ -36,6 +37,7 @@ type MonitorOptions struct {
 	// Time (in seconds) to skip evaluations for new groups.  For example, this option can be used to skip evaluations for new hosts while they initialize.  Must be a non negative integer.
 	NewGroupDelay NullableInt64 `json:"new_group_delay,omitempty"`
 	// Time (in seconds) to allow a host to boot and applications to fully start before starting the evaluation of monitor results. Should be a non negative integer.  Use new_group_delay instead.
+	// Deprecated
 	NewHostDelay NullableInt64 `json:"new_host_delay,omitempty"`
 	// The number of minutes before a monitor notifies after data stops reporting. Datadog recommends at least 2x the monitor timeframe for metric alerts or 2 minutes for service checks. If omitted, 2x the evaluation timeframe is used for metric alerts, and 24 hours is used for service checks.
 	NoDataTimeframe NullableInt64 `json:"no_data_timeframe,omitempty"`
@@ -48,8 +50,10 @@ type MonitorOptions struct {
 	// A Boolean indicating whether this monitor needs a full window of data before it’s evaluated. We highly recommend you set this to `false` for sparse metrics, otherwise some evaluations are skipped. Default is false.
 	RequireFullWindow *bool `json:"require_full_window,omitempty"`
 	// Information about the downtime applied to the monitor.
+	// Deprecated
 	Silenced *map[string]int64 `json:"silenced,omitempty"`
 	// ID of the corresponding Synthetic check.
+	// Deprecated
 	SyntheticsCheckId NullableString                 `json:"synthetics_check_id,omitempty"`
 	ThresholdWindows  *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
 	Thresholds        *MonitorThresholds             `json:"thresholds,omitempty"`
@@ -137,6 +141,7 @@ func (o *MonitorOptions) SetAggregation(v MonitorOptionsAggregation) {
 }
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
+// Deprecated
 func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceID {
 	if o == nil || o.DeviceIds == nil {
 		var ret []MonitorDeviceID
@@ -147,6 +152,7 @@ func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceID {
 
 // GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *MonitorOptions) GetDeviceIdsOk() (*[]MonitorDeviceID, bool) {
 	if o == nil || o.DeviceIds == nil {
 		return nil, false
@@ -164,6 +170,7 @@ func (o *MonitorOptions) HasDeviceIds() bool {
 }
 
 // SetDeviceIds gets a reference to the given []MonitorDeviceID and assigns it to the DeviceIds field.
+// Deprecated
 func (o *MonitorOptions) SetDeviceIds(v []MonitorDeviceID) {
 	o.DeviceIds = &v
 }
@@ -501,6 +508,7 @@ func (o *MonitorOptions) UnsetNewGroupDelay() {
 }
 
 // GetNewHostDelay returns the NewHostDelay field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *MonitorOptions) GetNewHostDelay() int64 {
 	if o == nil || o.NewHostDelay.Get() == nil {
 		var ret int64
@@ -512,6 +520,7 @@ func (o *MonitorOptions) GetNewHostDelay() int64 {
 // GetNewHostDelayOk returns a tuple with the NewHostDelay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *MonitorOptions) GetNewHostDelayOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -529,6 +538,7 @@ func (o *MonitorOptions) HasNewHostDelay() bool {
 }
 
 // SetNewHostDelay gets a reference to the given NullableInt64 and assigns it to the NewHostDelay field.
+// Deprecated
 func (o *MonitorOptions) SetNewHostDelay(v int64) {
 	o.NewHostDelay.Set(&v)
 }
@@ -726,6 +736,7 @@ func (o *MonitorOptions) SetRequireFullWindow(v bool) {
 }
 
 // GetSilenced returns the Silenced field value if set, zero value otherwise.
+// Deprecated
 func (o *MonitorOptions) GetSilenced() map[string]int64 {
 	if o == nil || o.Silenced == nil {
 		var ret map[string]int64
@@ -736,6 +747,7 @@ func (o *MonitorOptions) GetSilenced() map[string]int64 {
 
 // GetSilencedOk returns a tuple with the Silenced field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *MonitorOptions) GetSilencedOk() (*map[string]int64, bool) {
 	if o == nil || o.Silenced == nil {
 		return nil, false
@@ -753,11 +765,13 @@ func (o *MonitorOptions) HasSilenced() bool {
 }
 
 // SetSilenced gets a reference to the given map[string]int64 and assigns it to the Silenced field.
+// Deprecated
 func (o *MonitorOptions) SetSilenced(v map[string]int64) {
 	o.Silenced = &v
 }
 
 // GetSyntheticsCheckId returns the SyntheticsCheckId field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *MonitorOptions) GetSyntheticsCheckId() string {
 	if o == nil || o.SyntheticsCheckId.Get() == nil {
 		var ret string
@@ -769,6 +783,7 @@ func (o *MonitorOptions) GetSyntheticsCheckId() string {
 // GetSyntheticsCheckIdOk returns a tuple with the SyntheticsCheckId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *MonitorOptions) GetSyntheticsCheckIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -786,6 +801,7 @@ func (o *MonitorOptions) HasSyntheticsCheckId() bool {
 }
 
 // SetSyntheticsCheckId gets a reference to the given NullableString and assigns it to the SyntheticsCheckId field.
+// Deprecated
 func (o *MonitorOptions) SetSyntheticsCheckId(v string) {
 	o.SyntheticsCheckId.Set(&v)
 }

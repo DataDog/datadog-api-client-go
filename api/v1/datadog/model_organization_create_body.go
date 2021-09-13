@@ -15,9 +15,11 @@ import (
 
 // OrganizationCreateBody Object describing an organization to create.
 type OrganizationCreateBody struct {
+	// Deprecated
 	Billing *OrganizationBilling `json:"billing,omitempty"`
 	// The name of the new child-organization, limited to 32 characters.
-	Name         string                    `json:"name"`
+	Name string `json:"name"`
+	// Deprecated
 	Subscription *OrganizationSubscription `json:"subscription,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -42,6 +44,7 @@ func NewOrganizationCreateBodyWithDefaults() *OrganizationCreateBody {
 }
 
 // GetBilling returns the Billing field value if set, zero value otherwise.
+// Deprecated
 func (o *OrganizationCreateBody) GetBilling() OrganizationBilling {
 	if o == nil || o.Billing == nil {
 		var ret OrganizationBilling
@@ -52,6 +55,7 @@ func (o *OrganizationCreateBody) GetBilling() OrganizationBilling {
 
 // GetBillingOk returns a tuple with the Billing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *OrganizationCreateBody) GetBillingOk() (*OrganizationBilling, bool) {
 	if o == nil || o.Billing == nil {
 		return nil, false
@@ -69,6 +73,7 @@ func (o *OrganizationCreateBody) HasBilling() bool {
 }
 
 // SetBilling gets a reference to the given OrganizationBilling and assigns it to the Billing field.
+// Deprecated
 func (o *OrganizationCreateBody) SetBilling(v OrganizationBilling) {
 	o.Billing = &v
 }
@@ -98,6 +103,7 @@ func (o *OrganizationCreateBody) SetName(v string) {
 }
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
+// Deprecated
 func (o *OrganizationCreateBody) GetSubscription() OrganizationSubscription {
 	if o == nil || o.Subscription == nil {
 		var ret OrganizationSubscription
@@ -108,6 +114,7 @@ func (o *OrganizationCreateBody) GetSubscription() OrganizationSubscription {
 
 // GetSubscriptionOk returns a tuple with the Subscription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *OrganizationCreateBody) GetSubscriptionOk() (*OrganizationSubscription, bool) {
 	if o == nil || o.Subscription == nil {
 		return nil, false
@@ -125,6 +132,7 @@ func (o *OrganizationCreateBody) HasSubscription() bool {
 }
 
 // SetSubscription gets a reference to the given OrganizationSubscription and assigns it to the Subscription field.
+// Deprecated
 func (o *OrganizationCreateBody) SetSubscription(v OrganizationSubscription) {
 	o.Subscription = &v
 }
