@@ -14,12 +14,18 @@ import (
 
 // FormulaAndFunctionQueryDefinition - A formula and function query.
 type FormulaAndFunctionQueryDefinition struct {
-	FormulaAndFunctionEventQueryDefinition   *FormulaAndFunctionEventQueryDefinition
-	FormulaAndFunctionMetricQueryDefinition  *FormulaAndFunctionMetricQueryDefinition
-	FormulaAndFunctionProcessQueryDefinition *FormulaAndFunctionProcessQueryDefinition
+	FormulaAndFunctionApmDependencyStatsQueryDefinition *FormulaAndFunctionApmDependencyStatsQueryDefinition
+	FormulaAndFunctionEventQueryDefinition              *FormulaAndFunctionEventQueryDefinition
+	FormulaAndFunctionMetricQueryDefinition             *FormulaAndFunctionMetricQueryDefinition
+	FormulaAndFunctionProcessQueryDefinition            *FormulaAndFunctionProcessQueryDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
+}
+
+// FormulaAndFunctionApmDependencyStatsQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionApmDependencyStatsQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
+func FormulaAndFunctionApmDependencyStatsQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *FormulaAndFunctionApmDependencyStatsQueryDefinition) FormulaAndFunctionQueryDefinition {
+	return FormulaAndFunctionQueryDefinition{FormulaAndFunctionApmDependencyStatsQueryDefinition: v}
 }
 
 // FormulaAndFunctionEventQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionEventQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
@@ -92,8 +98,26 @@ func (dst *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 		dst.FormulaAndFunctionProcessQueryDefinition = nil
 	}
 
+	// try to unmarshal data into FormulaAndFunctionApmDependencyStatsQueryDefinition
+	err = json.Unmarshal(data, &dst.FormulaAndFunctionApmDependencyStatsQueryDefinition)
+	if err == nil {
+		if dst.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil && dst.FormulaAndFunctionApmDependencyStatsQueryDefinition.UnparsedObject == nil {
+			jsonFormulaAndFunctionApmDependencyStatsQueryDefinition, _ := json.Marshal(dst.FormulaAndFunctionApmDependencyStatsQueryDefinition)
+			if string(jsonFormulaAndFunctionApmDependencyStatsQueryDefinition) == "{}" { // empty struct
+				dst.FormulaAndFunctionApmDependencyStatsQueryDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.FormulaAndFunctionApmDependencyStatsQueryDefinition = nil
+		}
+	} else {
+		dst.FormulaAndFunctionApmDependencyStatsQueryDefinition = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
+		dst.FormulaAndFunctionApmDependencyStatsQueryDefinition = nil
 		dst.FormulaAndFunctionEventQueryDefinition = nil
 		dst.FormulaAndFunctionMetricQueryDefinition = nil
 		dst.FormulaAndFunctionProcessQueryDefinition = nil
@@ -105,6 +129,10 @@ func (dst *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
+	if src.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil {
+		return json.Marshal(&src.FormulaAndFunctionApmDependencyStatsQueryDefinition)
+	}
+
 	if src.FormulaAndFunctionEventQueryDefinition != nil {
 		return json.Marshal(&src.FormulaAndFunctionEventQueryDefinition)
 	}
@@ -125,6 +153,10 @@ func (src FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *FormulaAndFunctionQueryDefinition) GetActualInstance() interface{} {
+	if obj.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil {
+		return obj.FormulaAndFunctionApmDependencyStatsQueryDefinition
+	}
+
 	if obj.FormulaAndFunctionEventQueryDefinition != nil {
 		return obj.FormulaAndFunctionEventQueryDefinition
 	}
