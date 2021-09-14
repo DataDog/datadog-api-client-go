@@ -915,6 +915,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Dashboards Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_write
       summary: Delete dashboards
       tags:
       - Dashboards
@@ -953,6 +958,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication Error
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_read
       summary: Get all dashboards
       tags:
       - Dashboards
@@ -999,6 +1009,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Dashboards Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_write
       summary: Restore deleted dashboards
       tags:
       - Dashboards
@@ -1037,6 +1052,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication Error
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_write
       summary: Create a new dashboard
       tags:
       - Dashboards
@@ -1071,6 +1091,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_read
       summary: Get all dashboard lists
       tags:
       - Dashboard Lists
@@ -1106,6 +1131,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_write
       summary: Create a dashboard list
       tags:
       - Dashboard Lists
@@ -1150,6 +1180,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_write
       summary: Delete a dashboard list
       tags:
       - Dashboard Lists
@@ -1188,6 +1223,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_read
       summary: Get a dashboard list
       tags:
       - Dashboard Lists
@@ -1239,6 +1279,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_write
       summary: Update a dashboard list
       tags:
       - Dashboard Lists
@@ -1278,6 +1323,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Dashboards Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_write
       summary: Delete a dashboard
       tags:
       - Dashboards
@@ -1315,6 +1365,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Item Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_read
       summary: Get a dashboard
       tags:
       - Dashboards
@@ -1365,6 +1420,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Item Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - dashboards_write
       summary: Update a dashboard
       tags:
       - Dashboards
@@ -1400,6 +1460,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ: []
       summary: Get all downtimes
       tags:
       - Downtimes
@@ -1435,6 +1499,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_downtime
       summary: Schedule a downtime
       tags:
       - Downtimes
@@ -1480,6 +1549,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Downtimes not found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_downtime
       summary: Cancel downtimes by scope
       tags:
       - Downtimes
@@ -1517,6 +1591,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Downtime not found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_downtime
       summary: Cancel a downtime
       tags:
       - Downtimes
@@ -1556,6 +1635,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Downtime not found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ: []
       summary: Get a downtime
       tags:
       - Downtimes
@@ -1608,6 +1691,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Downtime not found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_downtime
       summary: Update a downtime
       tags:
       - Downtimes
@@ -1725,6 +1813,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication Error
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - events_read
       summary: Query the event stream
       tags:
       - Events
@@ -1802,6 +1895,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Item Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - events_read
       summary: Get an event
       tags:
       - Events
@@ -1888,6 +1986,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ: []
       summary: Take graph snapshots
       tags:
       - Snapshots
@@ -2077,6 +2179,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ: []
       summary: Get all hosts for your organization
       tags:
       - Hosts
@@ -2686,6 +2792,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication Error
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ: []
       summary: Check that an AWS Lambda Function exists
       tags:
       - AWS Logs Integration
@@ -4515,6 +4625,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - metrics_read
       summary: Get active metrics list
       tags:
       - Metrics
@@ -4553,6 +4668,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - metrics_read
       summary: Get metric metadata
       tags:
       - Metrics
@@ -4658,7 +4778,7 @@ paths:
           type: string
         style: form
       - description: If this argument is set to true, then the returned data includes
-          all current downtimes for each monitor.
+          all current active downtimes for each monitor.
         explode: true
         in: query
         name: with_downtimes
@@ -4721,6 +4841,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_read
       summary: Get all monitor details
       tags:
       - Monitors
@@ -4915,6 +5040,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_write
       summary: Create a monitor
       tags:
       - Monitors
@@ -4967,6 +5097,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/CheckCanDeleteMonitorResponse'
           description: Deletion conflict error
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_read
       summary: Check if a monitor can be deleted
       tags:
       - Monitors
@@ -5046,6 +5181,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_read
       summary: Monitors group search
       tags:
       - Monitors
@@ -5125,6 +5265,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_read
       summary: Monitors search
       tags:
       - Monitors
@@ -5162,6 +5307,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_write
       summary: Validate a monitor
       tags:
       - Monitors
@@ -5224,6 +5374,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Item not found error
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_write
       summary: Delete a monitor
       tags:
       - Monitors
@@ -5277,6 +5432,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Monitor Not Found error
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_read
       summary: Get a monitor's details
       tags:
       - Monitors
@@ -5334,6 +5494,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Monitor Not Found error
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - monitors_write
       summary: Edit a monitor
       tags:
       - Monitors
@@ -6125,6 +6290,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - timeseries_query
       summary: Query timeseries points
       tags:
       - Metrics
@@ -6163,6 +6333,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ: []
       summary: Search metrics
       tags:
       - Metrics
@@ -6329,6 +6503,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ: []
       summary: Get all SLOs
       tags:
       - Service Level Objectives
@@ -6486,7 +6664,7 @@ paths:
         type: safe
   /api/v1/slo/correction:
     get:
-      description: Get all Service Level Objective corrections
+      description: Get all Service Level Objective corrections.
       operationId: ListSLOCorrection
       responses:
         "200":
@@ -6511,7 +6689,7 @@ paths:
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     post:
-      description: Create an SLO Correction
+      description: Create an SLO Correction.
       operationId: CreateSLOCorrection
       requestBody:
         content:
@@ -6580,10 +6758,10 @@ paths:
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
   /api/v1/slo/correction/{slo_correction_id}:
     delete:
-      description: Permanently delete the specified SLO correction object
+      description: Permanently delete the specified SLO correction object.
       operationId: DeleteSLOCorrection
       parameters:
-      - description: The ID of the SLO correction object
+      - description: The ID of the SLO correction object.
         explode: false
         in: path
         name: slo_correction_id
@@ -6616,10 +6794,10 @@ paths:
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     get:
-      description: Get an SLO correction
+      description: Get an SLO correction.
       operationId: GetSLOCorrection
       parameters:
-      - description: The ID of the SLO correction object
+      - description: The ID of the SLO correction object.
         explode: false
         in: path
         name: slo_correction_id
@@ -6656,10 +6834,10 @@ paths:
         **Note**: This endpoint is in public beta.
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
     patch:
-      description: Update the specified SLO correction object object
+      description: Update the specified SLO correction object object.
       operationId: UpdateSLOCorrection
       parameters:
-      - description: The ID of the SLO correction object
+      - description: The ID of the SLO correction object.
         explode: false
         in: path
         name: slo_correction_id
@@ -6806,6 +6984,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ: []
       summary: Get an SLO's details
       tags:
       - Service Level Objectives
@@ -6941,6 +7123,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ: []
       summary: Get an SLO's history
       tags:
       - Service Level Objectives
@@ -6963,6 +7149,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/SyntheticsLocations'
           description: OK
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_private_location_read
       summary: Get all locations (public and private)
       tags:
       - Synthetics
@@ -7137,6 +7328,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Synthetics is not activated for the user.
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_read
       summary: Get the list of all tests
       tags:
       - Synthetics
@@ -7181,6 +7377,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_write
       summary: Create an API test
       tags:
       - Synthetics
@@ -7228,6 +7429,11 @@ paths:
           description: |-
             - Synthetic Monitoring is not activated for the user
             - Test is not owned by the user
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_read
       summary: Get an API test
       tags:
       - Synthetics
@@ -7283,6 +7489,11 @@ paths:
             - Synthetic Monitoring is not activated for the user
             - Test is not owned by the user
             - Test can't be found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_write
       summary: Edit an API test
       tags:
       - Synthetics
@@ -7328,6 +7539,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_write
       summary: Create a browser test
       tags:
       - Synthetics
@@ -7373,6 +7589,11 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test is not owned by the user
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_read
       summary: Get a browser test
       tags:
       - Synthetics
@@ -7428,6 +7649,11 @@ paths:
             - Synthetic Monitoring is not activated for the user
             - Test is not owned by the user
             - Test can't be found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_write
       summary: Edit a browser test
       tags:
       - Synthetics
@@ -7500,6 +7726,11 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test is not owned by the user
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_read
       summary: Get a browser test's latest results summaries
       tags:
       - Synthetics
@@ -7551,6 +7782,11 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test or result is not owned by the user
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_read
       summary: Get a browser test result
       tags:
       - Synthetics
@@ -7598,6 +7834,11 @@ paths:
           description: |-
             - Tests to be deleted can't be found
             - Synthetics is not activated for the user
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_write
       summary: Delete tests
       tags:
       - Synthetics
@@ -7739,6 +7980,11 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test is not owned by the user
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_read
       summary: Get an API test's latest results summaries
       tags:
       - Synthetics
@@ -7788,6 +8034,11 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test or result is not owned by the user
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_read
       summary: Get an API test result
       tags:
       - Synthetics
@@ -7841,6 +8092,11 @@ paths:
           description: |-
             - Synthetic is not activated for the user
             - Test is not owned by the user
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_write
       summary: Pause or start a test
       tags:
       - Synthetics
@@ -7865,6 +8121,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_global_variable_read
       summary: Get all global variables
       tags:
       - Synthetics
@@ -7945,6 +8206,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_global_variable_write
       summary: Delete a global variable
       tags:
       - Synthetics
@@ -7982,6 +8248,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - synthetics_global_variable_read
       summary: Get a global variable
       tags:
       - Synthetics
@@ -8066,6 +8337,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Not Found
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ: []
       summary: Get Tags
       tags:
       - Tags
@@ -8333,6 +8608,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for analyzed logs
       tags:
       - Usage Metering
@@ -8412,6 +8692,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get Usage Attribution
       tags:
       - Usage Metering
@@ -8516,6 +8801,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for Lambda
       tags:
       - Usage Metering
@@ -8556,6 +8846,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get billable usage across your account
       tags:
       - Usage Metering
@@ -8658,6 +8953,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for Cloud Workload Security
       tags:
       - Usage Metering
@@ -8759,6 +9059,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for Fargate
       tags:
       - Usage Metering
@@ -8809,6 +9114,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for hosts and containers
       tags:
       - Usage Metering
@@ -8860,6 +9170,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for incident management
       tags:
       - Usage Metering
@@ -8910,6 +9225,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for indexed spans
       tags:
       - Usage Metering
@@ -8961,6 +9281,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for ingested spans
       tags:
       - Usage Metering
@@ -9012,6 +9337,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for IoT
       tags:
       - Usage Metering
@@ -9062,6 +9392,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for Logs
       tags:
       - Usage Metering
@@ -9172,6 +9507,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for Logs by Index
       tags:
       - Usage Metering
@@ -9223,6 +9563,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for Network Flows
       tags:
       - Usage Metering
@@ -9273,6 +9618,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for Network Hosts
       tags:
       - Usage Metering
@@ -9324,6 +9674,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for profiled hosts
       tags:
       - Usage Metering
@@ -9383,6 +9738,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for RUM Sessions
       tags:
       - Usage Metering
@@ -9434,6 +9794,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for SNMP devices
       tags:
       - Usage Metering
@@ -9494,6 +9859,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get usage across your multi-org account
       tags:
       - Usage Metering
@@ -9545,6 +9915,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for Synthetics Checks
       tags:
       - Usage Metering
@@ -9595,6 +9970,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for Synthetics API Checks
       tags:
       - Usage Metering
@@ -9645,6 +10025,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for Synthetics Browser Checks
       tags:
       - Usage Metering
@@ -9695,6 +10080,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get hourly usage for custom metrics
       tags:
       - Usage Metering
@@ -9782,6 +10172,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Forbidden - User is not authorized
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - usage_read
       summary: Get all custom metrics by hourly average
       tags:
       - Usage Metering
@@ -9805,6 +10200,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ: []
       summary: List all users
       tags:
       - Users
@@ -9850,6 +10249,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Conflict
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - user_access_invite
       summary: Create a user
       tags:
       - Users
@@ -10026,6 +10430,7 @@ paths:
           description: Authentication error
       security:
       - apiKeyAuth: []
+      - AuthZ: []
       summary: Validate API key
       tags:
       - Authentication
@@ -11166,6 +11571,7 @@ components:
             value: value
         created_at: 2000-01-23T04:56:07.000+00:00
         description: description
+        layout_type: ordered
         notify_list:
         - notify_list
         - notify_list
@@ -11348,6 +11754,7 @@ components:
       enum:
       - ordered
       - free
+      example: ordered
       type: string
       x-enum-varnames:
       - ORDERED
@@ -11493,6 +11900,7 @@ components:
         dashboards:
         - created_at: 2000-01-23T04:56:07.000+00:00
           description: description
+          layout_type: ordered
           is_read_only: true
           id: id
           modified_at: 2000-01-23T04:56:07.000+00:00
@@ -11501,6 +11909,7 @@ components:
           url: url
         - created_at: 2000-01-23T04:56:07.000+00:00
           description: description
+          layout_type: ordered
           is_read_only: true
           id: id
           modified_at: 2000-01-23T04:56:07.000+00:00
@@ -11519,6 +11928,7 @@ components:
       example:
         created_at: 2000-01-23T04:56:07.000+00:00
         description: description
+        layout_type: ordered
         is_read_only: true
         id: id
         modified_at: 2000-01-23T04:56:07.000+00:00
@@ -12620,6 +13030,84 @@ components:
       type: string
       x-enum-varnames:
       - EVENT_TIMELINE
+    FormulaAndFunctionApmDependencyStatName:
+      description: APM statistic.
+      enum:
+      - avg_duration
+      - avg_root_duration
+      - avg_spans_per_trace
+      - error_rate
+      - pct_exec_time
+      - pct_of_traces
+      - total_traces_count
+      example: avg_duration
+      type: string
+      x-enum-varnames:
+      - AVG_DURATION
+      - AVG_ROOT_DURATION
+      - AVG_SPANS_PER_TRACE
+      - ERROR_RATE
+      - PCT_EXEC_TIME
+      - PCT_OF_TRACES
+      - TOTAL_TRACES_COUNT
+    FormulaAndFunctionApmDependencyStatsDataSource:
+      description: Data source for APM dependency stats queries.
+      enum:
+      - apm_dependency_stats
+      example: apm_dependency_stats
+      type: string
+      x-enum-varnames:
+      - APM_DEPENDENCY_STATS
+    FormulaAndFunctionApmDependencyStatsQueryDefinition:
+      description: A formula and functions APM dependency stats query.
+      properties:
+        data_source:
+          $ref: '#/components/schemas/FormulaAndFunctionApmDependencyStatsDataSource'
+        env:
+          description: APM environment.
+          example: staging
+          type: string
+        is_upstream:
+          description: Determines whether stats for upstream or downstream dependencies
+            should be queried.
+          example: false
+          type: boolean
+        name:
+          description: Name of query to use in formulas.
+          example: query_errors
+          type: string
+        operation_name:
+          description: Name of operation on service.
+          example: cassandra.query
+          type: string
+        primary_tag_name:
+          description: The name of the second primary tag used within APM; required
+            when `primary_tag_value` is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadog.
+          example: datacenter
+          type: string
+        primary_tag_value:
+          description: Filter APM data by the second primary tag. `primary_tag_name`
+            must also be specified.
+          example: staging
+          type: string
+        resource_name:
+          description: APM resource.
+          example: DELETE FROM foo WHERE baz = ?
+          type: string
+        service:
+          description: APM service.
+          example: cassandra
+          type: string
+        stat:
+          $ref: '#/components/schemas/FormulaAndFunctionApmDependencyStatName'
+      required:
+      - data_source
+      - env
+      - operation_name
+      - resource_name
+      - service
+      - stat
+      type: object
     FormulaAndFunctionEventAggregation:
       description: Aggregation methods for event platform queries.
       enum:
@@ -12782,6 +13270,7 @@ components:
       enum:
       - process
       - container
+      example: process
       type: string
       x-enum-varnames:
       - PROCESS
@@ -12830,12 +13319,14 @@ components:
       - $ref: '#/components/schemas/FormulaAndFunctionMetricQueryDefinition'
       - $ref: '#/components/schemas/FormulaAndFunctionEventQueryDefinition'
       - $ref: '#/components/schemas/FormulaAndFunctionProcessQueryDefinition'
+      - $ref: '#/components/schemas/FormulaAndFunctionApmDependencyStatsQueryDefinition'
       type: object
     FormulaAndFunctionResponseFormat:
       description: Timeseries or Scalar response. **This feature is currently in beta.**
       enum:
       - timeseries
       - scalar
+      example: timeseries
       type: string
       x-enum-varnames:
       - TIMESERIES
@@ -14021,6 +14512,7 @@ components:
       - auto
       - compact
       - full
+      example: compact
       type: string
       x-enum-varnames:
       - AUTO
@@ -14049,6 +14541,7 @@ components:
       description: Widget response format.
       enum:
       - event_list
+      example: event_list
       type: string
       x-enum-varnames:
       - EVENT_LIST
@@ -15712,7 +16205,7 @@ components:
         series:
         - metric: system.load.1
           points:
-          - - 1475317847
+          - - 1.475317847E9
             - 0.7
       properties:
         series:
@@ -15720,7 +16213,7 @@ components:
           example:
           - metric: system.load.1
             points:
-            - - 1475317847
+            - - 1.475317847E9
               - 0.7
           items:
             $ref: '#/components/schemas/Series'
@@ -15734,9 +16227,9 @@ components:
       example:
         expression: system.cpu.idle{host:foo,env:test}
         pointlist:
-        - - 1575317847
+        - - 1.575317847E9
           - 0.5
-        - - 1575317847
+        - - 1.575317847E9
           - 0.5
         length: 5
         start: 2
@@ -15847,9 +16340,9 @@ components:
         series:
         - expression: system.cpu.idle{host:foo,env:test}
           pointlist:
-          - - 1575317847
+          - - 1.575317847E9
             - 0.5
-          - - 1575317847
+          - - 1.575317847E9
             - 0.5
           length: 5
           start: 2
@@ -15876,9 +16369,9 @@ components:
           aggr: avg
         - expression: system.cpu.idle{host:foo,env:test}
           pointlist:
-          - - 1575317847
+          - - 1.575317847E9
             - 0.5
-          - - 1575317847
+          - - 1.575317847E9
             - 0.5
           length: 5
           start: 2
@@ -18491,7 +18984,7 @@ components:
     Point:
       description: Array of timeseries points.
       example:
-      - 1575317847
+      - 1.575317847E9
       - 0.5
       items:
         description: |-
@@ -18521,7 +19014,7 @@ components:
           type: integer
         metric:
           description: Your chosen metric.
-          example: ""
+          example: system.load.1
           type: string
         search_by:
           description: Your chosen search term.
@@ -18671,6 +19164,7 @@ components:
     SLOBulkDeleteError:
       description: Object describing the error.
       example:
+        timeframe: 30d
         id: ""
         message: ""
       properties:
@@ -18708,9 +19202,11 @@ components:
           - updated
           - updated
         errors:
-        - id: ""
+        - timeframe: 30d
+          id: ""
           message: ""
-        - id: ""
+        - timeframe: 30d
+          id: ""
           message: ""
       properties:
         data:
@@ -18722,7 +19218,7 @@ components:
           type: array
       type: object
     SLOCorrection:
-      description: The response object of a list of SLO corrections
+      description: The response object of a list of SLO corrections.
       example:
         attributes:
           creator:
@@ -18741,13 +19237,13 @@ components:
         attributes:
           $ref: '#/components/schemas/SLOCorrectionResponseAttributes'
         id:
-          description: The ID of the SLO correction
+          description: The ID of the SLO correction.
           type: string
         type:
           $ref: '#/components/schemas/SLOCorrectionType'
       type: object
     SLOCorrectionCategory:
-      description: Category the SLO correction belongs to
+      description: Category the SLO correction belongs to.
       enum:
       - Scheduled Maintenance
       - Outside Business Hours
@@ -18761,7 +19257,7 @@ components:
       - DEPLOYMENT
       - OTHER
     SLOCorrectionCreateData:
-      description: The data object associated with the SLO correction to be created
+      description: The data object associated with the SLO correction to be created.
       example:
         attributes:
           timezone: UTC
@@ -18776,9 +19272,11 @@ components:
           $ref: '#/components/schemas/SLOCorrectionCreateRequestAttributes'
         type:
           $ref: '#/components/schemas/SLOCorrectionType'
+      required:
+      - type
       type: object
     SLOCorrectionCreateRequest:
-      description: An object that defines a correction to be applied to an SLO
+      description: An object that defines a correction to be applied to an SLO.
       example:
         data:
           attributes:
@@ -18794,7 +19292,7 @@ components:
           $ref: '#/components/schemas/SLOCorrectionCreateData'
       type: object
     SLOCorrectionCreateRequestAttributes:
-      description: The attribute object associated with the SLO correction to be created
+      description: The attribute object associated with the SLO correction to be created.
       example:
         timezone: UTC
         slo_id: sloId
@@ -18809,22 +19307,22 @@ components:
           description: Description of the correction being made.
           type: string
         end:
-          description: Ending time of the correction in epoch seconds
+          description: Ending time of the correction in epoch seconds.
           example: 1600000000
           format: int64
           type: integer
         slo_id:
-          description: ID of the SLO that this correction will be applied to
+          description: ID of the SLO that this correction will be applied to.
           example: sloId
           type: string
         start:
-          description: Starting time of the correction in epoch seconds
+          description: Starting time of the correction in epoch seconds.
           example: 1600000000
           format: int64
           type: integer
         timezone:
           description: The timezone to display in the UI for the correction times
-            (defaults to "UTC")
+            (defaults to "UTC").
           example: UTC
           type: string
       required:
@@ -18834,7 +19332,7 @@ components:
       - start
       type: object
     SLOCorrectionListResponse:
-      description: A list of  SLO correction objects
+      description: A list of  SLO correction objects.
       example:
         data:
         - attributes:
@@ -18869,7 +19367,7 @@ components:
             total_filtered_count: 5
       properties:
         data:
-          description: The list of of SLO corrections objects
+          description: The list of of SLO corrections objects.
           items:
             $ref: '#/components/schemas/SLOCorrection'
           type: array
@@ -18877,7 +19375,7 @@ components:
           $ref: '#/components/schemas/ResponseMetaAttributes'
       type: object
     SLOCorrectionResponse:
-      description: The response object of an SLO correction
+      description: The response object of an SLO correction.
       example:
         data:
           attributes:
@@ -18898,7 +19396,7 @@ components:
           $ref: '#/components/schemas/SLOCorrection'
       type: object
     SLOCorrectionResponseAttributes:
-      description: The attribute object associated with the SLO correction
+      description: The attribute object associated with the SLO correction.
       example:
         creator:
           name: name
@@ -18919,19 +19417,19 @@ components:
           description: Description of the correction being made.
           type: string
         end:
-          description: Ending time of the correction in epoch seconds
+          description: Ending time of the correction in epoch seconds.
           format: int64
           type: integer
         slo_id:
-          description: ID of the SLO that this correction will be applied to
+          description: ID of the SLO that this correction will be applied to.
           type: string
         start:
-          description: Starting time of the correction in epoch seconds
+          description: Starting time of the correction in epoch seconds.
           format: int64
           type: integer
         timezone:
           description: The timezone to display in the UI for the correction times
-            (defaults to "UTC")
+            (defaults to "UTC").
           type: string
       type: object
     SLOCorrectionType:
@@ -18944,7 +19442,7 @@ components:
       x-enum-varnames:
       - CORRECTION
     SLOCorrectionUpdateData:
-      description: The data object associated with the SLO correction to be updated
+      description: The data object associated with the SLO correction to be updated.
       example:
         attributes:
           timezone: UTC
@@ -18960,7 +19458,7 @@ components:
           $ref: '#/components/schemas/SLOCorrectionType'
       type: object
     SLOCorrectionUpdateRequest:
-      description: An object that defines a correction to be applied to an SLO
+      description: An object that defines a correction to be applied to an SLO.
       example:
         data:
           attributes:
@@ -18975,7 +19473,7 @@ components:
           $ref: '#/components/schemas/SLOCorrectionUpdateData'
       type: object
     SLOCorrectionUpdateRequestAttributes:
-      description: The attribute object associated with the SLO correction to be updated
+      description: The attribute object associated with the SLO correction to be updated.
       example:
         timezone: UTC
         start: 1600000000
@@ -18989,18 +19487,18 @@ components:
           description: Description of the correction being made.
           type: string
         end:
-          description: Ending time of the correction in epoch seconds
+          description: Ending time of the correction in epoch seconds.
           example: 1600000000
           format: int64
           type: integer
         start:
-          description: Starting time of the correction in epoch seconds
+          description: Starting time of the correction in epoch seconds.
           example: 1600000000
           format: int64
           type: integer
         timezone:
           description: The timezone to display in the UI for the correction times
-            (defaults to "UTC")
+            (defaults to "UTC").
           example: UTC
           type: string
       type: object
@@ -19046,6 +19544,7 @@ components:
       - 30d
       - 90d
       - all
+      example: 30d
       type: string
       x-enum-varnames:
       - SEVEN_DAYS
@@ -19153,7 +19652,6 @@ components:
           type: array
       required:
       - count
-      - metadata
       - sum
       - values
       type: object
@@ -19185,6 +19683,94 @@ components:
             `B`.
           nullable: true
           type: string
+      type: object
+    SLOHistoryMonitor:
+      description: |-
+        An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.
+        This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
+      properties:
+        error_budget_remaining:
+          additionalProperties:
+            description: Remaining error budget.
+            format: double
+            type: number
+          description: A mapping of threshold `timeframe` to the remaining error budget.
+          example:
+            "7d": 100.0
+          type: object
+        errors:
+          description: An array of error objects returned while querying the history
+            data for the service level objective.
+          items:
+            $ref: '#/components/schemas/SLOHistoryResponseErrorWithType'
+          type: array
+        group:
+          description: For groups in a grouped SLO, this is the group name.
+          example: name
+          type: string
+        history:
+          description: For `monitor` based SLOs, this includes the aggregated history
+            as arrays that include time series and uptime data where `0=monitor` is
+            in `OK` state and `1=monitor` is in `alert` state.
+          items:
+            description: Represents an array time series data.
+            example:
+            - - 1579212382
+              - 0
+            items:
+              description: A time series data point which is a tuple of (timestamp,
+                value).
+              format: double
+              type: number
+            maxItems: 2
+            minItems: 2
+            type: array
+          type: array
+        monitor_modified:
+          description: For `monitor` based SLOs, this is the last modified timestamp
+            in epoch seconds of the monitor.
+          example: 1615867200
+          format: int64
+          type: integer
+        monitor_type:
+          description: For `monitor` based SLOs, this describes the type of monitor.
+          example: string
+          type: string
+        name:
+          description: For groups in a grouped SLO, this is the group name. For monitors
+            in a multi-monitor SLO, this is the monitor name.
+          example: string
+          type: string
+        precision:
+          deprecated: true
+          description: The amount of decimal places the SLI value is accurate to for
+            the given from `&&` to timestamp. Use `span_precision` instead.
+          example: 2
+          format: double
+          type: number
+        preview:
+          description: |-
+            For `monitor` based SLOs, when `true` this indicates that a replay is in progress to give an accurate uptime
+            calculation.
+          example: true
+          type: boolean
+        sli_value:
+          description: The current SLI value of the SLO over the history window.
+          example: 99.99
+          format: double
+          type: number
+        span_precision:
+          description: The amount of decimal places the SLI value is accurate to for
+            the given from `&&` to timestamp.
+          example: 2
+          format: double
+          type: number
+        uptime:
+          deprecated: true
+          description: Use `sli_value` instead.
+          example: 99.99
+          format: double
+          type: number
       type: object
     SLOHistoryResponse:
       description: A service level objective history response.
@@ -19588,6 +20174,7 @@ components:
       - 30d
       - 90d
       - custom
+      example: 30d
       type: string
       x-enum-varnames:
       - SEVEN_DAYS
@@ -19777,9 +20364,6 @@ components:
             timestamp and a scalar value (cannot be a string). Timestamps should be
             in POSIX time in seconds, and cannot be more than ten minutes in the future
             or more than one hour in the past.
-          example:
-          - - 1575317847
-            - 0.5
           items:
             $ref: '#/components/schemas/Point'
           type: array
@@ -20272,16 +20856,8 @@ components:
       description: The steps used in a Synthetics multistep API test.
       example:
         extractedValues:
-        - field: content-type
-          parser:
-            type: regex
-            value: .*
-          name: name
-        - field: content-type
-          parser:
-            type: regex
-            value: .*
-          name: name
+        - {}
+        - {}
         request:
           headers:
             key: headers
@@ -20308,11 +20884,14 @@ components:
           dnsServerPort: 5249
           host: host
           numberOfPackets: 6
+          follow_redirects: true
           dnsServer: dnsServer
         allowFailure: true
         name: name
         isCritical: true
-        assertions: []
+        assertions:
+        - null
+        - null
       properties:
         allowFailure:
           description: Determines whether or not to continue with test if this step
@@ -20321,7 +20900,6 @@ components:
         assertions:
           default: []
           description: Array of assertions used for the test.
-          example: []
           items:
             $ref: '#/components/schemas/SyntheticsAssertion'
           type: array
@@ -20369,8 +20947,8 @@ components:
           monitor_priority: 2
           noScreenshot: true
           device_ids:
-          - null
-          - null
+          - laptop_large
+          - laptop_large
           follow_redirects: true
           retry:
             count: 2
@@ -20407,20 +20985,13 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           assertions: []
           steps:
           - extractedValues:
-            - field: content-type
-              parser:
-                type: regex
-                value: .*
-              name: name
-            - field: content-type
-              parser:
-                type: regex
-                value: .*
-              name: name
+            - {}
+            - {}
             request:
               headers:
                 key: headers
@@ -20447,22 +21018,17 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             allowFailure: true
             name: name
             isCritical: true
-            assertions: []
+            assertions:
+            - null
+            - null
           - extractedValues:
-            - field: content-type
-              parser:
-                type: regex
-                value: .*
-              name: name
-            - field: content-type
-              parser:
-                type: regex
-                value: .*
-              name: name
+            - {}
+            - {}
             request:
               headers:
                 key: headers
@@ -20489,19 +21055,24 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             allowFailure: true
             name: name
             isCritical: true
-            assertions: []
+            assertions:
+            - null
+            - null
           configVariables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
         public_id: public_id
         tags:
@@ -20575,20 +21146,13 @@ components:
           dnsServerPort: 5249
           host: host
           numberOfPackets: 6
+          follow_redirects: true
           dnsServer: dnsServer
         assertions: []
         steps:
         - extractedValues:
-          - field: content-type
-            parser:
-              type: regex
-              value: .*
-            name: name
-          - field: content-type
-            parser:
-              type: regex
-              value: .*
-            name: name
+          - {}
+          - {}
           request:
             headers:
               key: headers
@@ -20615,22 +21179,17 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           allowFailure: true
           name: name
           isCritical: true
-          assertions: []
+          assertions:
+          - null
+          - null
         - extractedValues:
-          - field: content-type
-            parser:
-              type: regex
-              value: .*
-            name: name
-          - field: content-type
-            parser:
-              type: regex
-              value: .*
-            name: name
+          - {}
+          - {}
           request:
             headers:
               key: headers
@@ -20657,19 +21216,24 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           allowFailure: true
           name: name
           isCritical: true
-          assertions: []
+          assertions:
+          - null
+          - null
         configVariables:
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
       properties:
         assertions:
@@ -20858,25 +21422,30 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             assertions: []
             configVariables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
         check_time: 0.8008281904610115
       properties:
@@ -20956,6 +21525,7 @@ components:
       description: Assertion operator to apply.
       enum:
       - validatesJSONPath
+      example: validatesJSONPath
       type: string
       x-enum-varnames:
       - VALIDATES_JSON_PATH
@@ -20991,6 +21561,7 @@ components:
       - validates
       - isInMoreThan
       - isInLessThan
+      example: contains
       type: string
       x-enum-varnames:
       - CONTAINS
@@ -21040,6 +21611,7 @@ components:
       - packetLossPercentage
       - packetsReceived
       - networkHop
+      example: statusCode
       type: string
       x-enum-varnames:
       - BODY
@@ -21077,20 +21649,22 @@ components:
     SyntheticsBrowserError:
       description: Error response object for a browser test.
       example:
-        name: ""
-        description: ""
-        status: 5
+        name: Failed test
+        description: Example error message
+        type: network
+        status: 500
       properties:
         description:
           description: Description of the error.
-          example: ""
+          example: Example error message
           type: string
         name:
           description: Name of the error.
-          example: ""
+          example: Failed test
           type: string
         status:
           description: Status Code of the error.
+          example: 500
           format: int64
           type: integer
         type:
@@ -21105,6 +21679,7 @@ components:
       enum:
       - network
       - js
+      example: network
       type: string
       x-enum-varnames:
       - NETWORK
@@ -21127,8 +21702,8 @@ components:
           monitor_priority: 2
           noScreenshot: true
           device_ids:
-          - null
-          - null
+          - laptop_large
+          - laptop_large
           follow_redirects: true
           retry:
             count: 2
@@ -21165,15 +21740,18 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           setCookie: setCookie
           assertions: []
@@ -21181,19 +21759,23 @@ components:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
         steps:
         - allowFailure: true
           name: name
           params: '{}'
+          type: assertElementContent
           timeout: 1
         - allowFailure: true
           name: name
           params: '{}'
+          type: assertElementContent
           timeout: 1
         public_id: public_id
         tags:
@@ -21274,15 +21856,18 @@ components:
           dnsServerPort: 5249
           host: host
           numberOfPackets: 6
+          follow_redirects: true
           dnsServer: dnsServer
         variables:
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         setCookie: setCookie
         assertions: []
@@ -21290,10 +21875,12 @@ components:
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
       properties:
         assertions:
@@ -21331,12 +21918,13 @@ components:
         thumbnailsBucketKey: true
         browserVersion: browserVersion
         receivedEmailCount: 5
-        timeToInteractive: 4.145608029883936
+        timeToInteractive: 2.027123023002322
         passed: true
         error: error
         device:
           name: ""
           width: 0
+          id: laptop_large
           isMobile: true
           height: 0
         stepDetails:
@@ -21344,28 +21932,33 @@ components:
           snapshotBucketKey: true
           warnings:
           - message: ""
+            type: user_locator
           - message: ""
-          stepId: 7
-          timeToInteractive: 9.301444243932576
+            type: user_locator
+          stepId: 2
+          timeToInteractive: 7.061401241503109
           description: description
           error: error
+          type: assertElementContent
           url: url
           skipped: true
-          duration: 2.3021358869347655
+          duration: 5.637376656633329
           vitalsMetrics:
-          - lcp: 2
-            cls: 3
+          - lcp: 3
+            cls: 9
             url: url
-          - lcp: 2
-            cls: 3
+          - lcp: 3
+            cls: 9
             url: url
           browserErrors:
-          - name: ""
-            description: ""
-            status: 5
-          - name: ""
-            description: ""
-            status: 5
+          - name: Failed test
+            description: Example error message
+            type: network
+            status: 500
+          - name: Failed test
+            description: Example error message
+            type: network
+            status: 500
           subTestStepDetails:
           - null
           - null
@@ -21374,28 +21967,33 @@ components:
           snapshotBucketKey: true
           warnings:
           - message: ""
+            type: user_locator
           - message: ""
-          stepId: 7
-          timeToInteractive: 9.301444243932576
+            type: user_locator
+          stepId: 2
+          timeToInteractive: 7.061401241503109
           description: description
           error: error
+          type: assertElementContent
           url: url
           skipped: true
-          duration: 2.3021358869347655
+          duration: 5.637376656633329
           vitalsMetrics:
-          - lcp: 2
-            cls: 3
+          - lcp: 3
+            cls: 9
             url: url
-          - lcp: 2
-            cls: 3
+          - lcp: 3
+            cls: 9
             url: url
           browserErrors:
-          - name: ""
-            description: ""
-            status: 5
-          - name: ""
-            description: ""
-            status: 5
+          - name: Failed test
+            description: Example error message
+            type: network
+            status: 500
+          - name: Failed test
+            description: Example error message
+            type: network
+            status: 500
           subTestStepDetails:
           - null
           - null
@@ -21451,12 +22049,13 @@ components:
           thumbnailsBucketKey: true
           browserVersion: browserVersion
           receivedEmailCount: 5
-          timeToInteractive: 4.145608029883936
+          timeToInteractive: 2.027123023002322
           passed: true
           error: error
           device:
             name: ""
             width: 0
+            id: laptop_large
             isMobile: true
             height: 0
           stepDetails:
@@ -21464,28 +22063,33 @@ components:
             snapshotBucketKey: true
             warnings:
             - message: ""
+              type: user_locator
             - message: ""
-            stepId: 7
-            timeToInteractive: 9.301444243932576
+              type: user_locator
+            stepId: 2
+            timeToInteractive: 7.061401241503109
             description: description
             error: error
+            type: assertElementContent
             url: url
             skipped: true
-            duration: 2.3021358869347655
+            duration: 5.637376656633329
             vitalsMetrics:
-            - lcp: 2
-              cls: 3
+            - lcp: 3
+              cls: 9
               url: url
-            - lcp: 2
-              cls: 3
+            - lcp: 3
+              cls: 9
               url: url
             browserErrors:
-            - name: ""
-              description: ""
-              status: 5
-            - name: ""
-              description: ""
-              status: 5
+            - name: Failed test
+              description: Example error message
+              type: network
+              status: 500
+            - name: Failed test
+              description: Example error message
+              type: network
+              status: 500
             subTestStepDetails:
             - null
             - null
@@ -21494,28 +22098,33 @@ components:
             snapshotBucketKey: true
             warnings:
             - message: ""
+              type: user_locator
             - message: ""
-            stepId: 7
-            timeToInteractive: 9.301444243932576
+              type: user_locator
+            stepId: 2
+            timeToInteractive: 7.061401241503109
             description: description
             error: error
+            type: assertElementContent
             url: url
             skipped: true
-            duration: 2.3021358869347655
+            duration: 5.637376656633329
             vitalsMetrics:
-            - lcp: 2
-              cls: 3
+            - lcp: 3
+              cls: 9
               url: url
-            - lcp: 2
-              cls: 3
+            - lcp: 3
+              cls: 9
               url: url
             browserErrors:
-            - name: ""
-              description: ""
-              status: 5
-            - name: ""
-              description: ""
-              status: 5
+            - name: Failed test
+              description: Example error message
+              type: network
+              status: 500
+            - name: Failed test
+              description: Example error message
+              type: network
+              status: 500
             subTestStepDetails:
             - null
             - null
@@ -21552,25 +22161,30 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             assertions: []
             configVariables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
         check_time: 0.8008281904610115
       properties:
@@ -21604,6 +22218,7 @@ components:
           device:
             name: ""
             width: 0
+            id: laptop_large
             isMobile: true
             height: 0
           errorCount: 5
@@ -21647,6 +22262,7 @@ components:
         name: VARIABLE_NAME
         pattern: pattern
         id: id
+        type: text
         example: example
       properties:
         example:
@@ -21676,6 +22292,7 @@ components:
       - global
       - javascript
       - text
+      example: text
       type: string
       x-enum-varnames:
       - ELEMENT
@@ -21690,8 +22307,8 @@ components:
         headers:
           key: headers
         deviceIds:
-        - null
-        - null
+        - laptop_large
+        - laptop_large
         metadata:
           git:
             commit_sha: commit_sha
@@ -21780,8 +22397,8 @@ components:
           headers:
             key: headers
           deviceIds:
-          - null
-          - null
+          - laptop_large
+          - laptop_large
           metadata:
             git:
               commit_sha: commit_sha
@@ -21810,8 +22427,8 @@ components:
           headers:
             key: headers
           deviceIds:
-          - null
-          - null
+          - laptop_large
+          - laptop_large
           metadata:
             git:
               commit_sha: commit_sha
@@ -21882,6 +22499,7 @@ components:
         name: VARIABLE_NAME
         pattern: pattern
         id: id
+        type: text
         example: example
       properties:
         example:
@@ -21908,6 +22526,7 @@ components:
       enum:
       - global
       - text
+      example: text
       type: string
       x-enum-varnames:
       - GLOBAL
@@ -21915,8 +22534,8 @@ components:
     SyntheticsCoreWebVitals:
       description: Core Web Vitals attached to a browser test step.
       example:
-        lcp: 2
-        cls: 3
+        lcp: 3
+        cls: 9
         url: url
       properties:
         cls:
@@ -21985,6 +22604,7 @@ components:
       example:
         name: ""
         width: 0
+        id: laptop_large
         isMobile: true
         height: 0
       properties:
@@ -22028,6 +22648,7 @@ components:
       - edge.laptop_large
       - edge.tablet
       - edge.mobile_small
+      example: laptop_large
       type: string
       x-enum-varnames:
       - LAPTOP_LARGE
@@ -22118,6 +22739,7 @@ components:
             device:
               name: ""
               width: 0
+              id: laptop_large
               isMobile: true
               height: 0
             errorCount: 5
@@ -22131,6 +22753,7 @@ components:
             device:
               name: ""
               width: 0
+              id: laptop_large
               isMobile: true
               height: 0
             errorCount: 5
@@ -22158,6 +22781,7 @@ components:
           parser:
             type: regex
             value: .*
+          type: http_body
         description: Example description
         parse_test_public_id: abc-def-123
         attributes:
@@ -22216,6 +22840,7 @@ components:
       enum:
       - http_body
       - http_header
+      example: http_body
       type: string
       x-enum-varnames:
       - HTTP_BODY
@@ -22228,6 +22853,7 @@ components:
       - json_path
       - regex
       - x_path
+      example: raw
       type: string
       x-enum-varnames:
       - RAW
@@ -22260,6 +22886,7 @@ components:
             parser:
               type: regex
               value: .*
+            type: http_body
           description: Example description
           parse_test_public_id: abc-def-123
           attributes:
@@ -22279,6 +22906,7 @@ components:
             parser:
               type: regex
               value: .*
+            type: http_body
           description: Example description
           parse_test_public_id: abc-def-123
           attributes:
@@ -22318,8 +22946,8 @@ components:
             monitor_priority: 2
             noScreenshot: true
             device_ids:
-            - null
-            - null
+            - laptop_large
+            - laptop_large
             follow_redirects: true
             retry:
               count: 2
@@ -22355,34 +22983,41 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             assertions: []
             configVariables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
           steps:
           - allowFailure: true
             name: name
             params: '{}'
+            type: assertElementContent
             timeout: 1
           - allowFailure: true
             name: name
             params: '{}'
+            type: assertElementContent
             timeout: 1
           public_id: public_id
           tags:
@@ -22403,8 +23038,8 @@ components:
             monitor_priority: 2
             noScreenshot: true
             device_ids:
-            - null
-            - null
+            - laptop_large
+            - laptop_large
             follow_redirects: true
             retry:
               count: 2
@@ -22440,34 +23075,41 @@ components:
               dnsServerPort: 5249
               host: host
               numberOfPackets: 6
+              follow_redirects: true
               dnsServer: dnsServer
             variables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             assertions: []
             configVariables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
           steps:
           - allowFailure: true
             name: name
             params: '{}'
+            type: assertElementContent
             timeout: 1
           - allowFailure: true
             name: name
             params: '{}'
+            type: assertElementContent
             timeout: 1
           public_id: public_id
           tags:
@@ -22512,12 +23154,7 @@ components:
       type: object
     SyntheticsParsingOptions:
       description: Parsing options for variables to extract.
-      example:
-        field: content-type
-        parser:
-          type: regex
-          value: .*
-        name: name
+      example: {}
       properties:
         field:
           description: When type is `http_header`, name of the header to use to extract
@@ -22699,6 +23336,7 @@ components:
         allowFailure: true
         name: name
         params: '{}'
+        type: assertElementContent
         timeout: 1
       properties:
         allowFailure:
@@ -22724,28 +23362,33 @@ components:
         snapshotBucketKey: true
         warnings:
         - message: ""
+          type: user_locator
         - message: ""
-        stepId: 7
-        timeToInteractive: 9.301444243932576
+          type: user_locator
+        stepId: 2
+        timeToInteractive: 7.061401241503109
         description: description
         error: error
+        type: assertElementContent
         url: url
         skipped: true
-        duration: 2.3021358869347655
+        duration: 5.637376656633329
         vitalsMetrics:
-        - lcp: 2
-          cls: 3
+        - lcp: 3
+          cls: 9
           url: url
-        - lcp: 2
-          cls: 3
+        - lcp: 3
+          cls: 9
           url: url
         browserErrors:
-        - name: ""
-          description: ""
-          status: 5
-        - name: ""
-          description: ""
-          status: 5
+        - name: Failed test
+          description: Example error message
+          type: network
+          status: 500
+        - name: Failed test
+          description: Example error message
+          type: network
+          status: 500
         subTestStepDetails:
         - null
         - null
@@ -22817,6 +23460,7 @@ components:
       description: Object collecting warnings for a given step.
       example:
         message: ""
+        type: user_locator
       properties:
         message:
           description: Message for the warning.
@@ -22856,6 +23500,7 @@ components:
       - typeText
       - uploadFiles
       - wait
+      example: assertElementContent
       type: string
       x-enum-varnames:
       - ASSERT_CURRENT_URL
@@ -22912,25 +23557,30 @@ components:
           dnsServerPort: 5249
           host: host
           numberOfPackets: 6
+          follow_redirects: true
           dnsServer: dnsServer
         variables:
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         assertions: []
         configVariables:
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
       properties:
         assertions:
@@ -22971,8 +23621,8 @@ components:
           monitor_priority: 2
           noScreenshot: true
           device_ids:
-          - null
-          - null
+          - laptop_large
+          - laptop_large
           follow_redirects: true
           retry:
             count: 2
@@ -23008,34 +23658,41 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           assertions: []
           configVariables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
         steps:
         - allowFailure: true
           name: name
           params: '{}'
+          type: assertElementContent
           timeout: 1
         - allowFailure: true
           name: name
           params: '{}'
+          type: assertElementContent
           timeout: 1
         public_id: public_id
         tags:
@@ -23150,8 +23807,8 @@ components:
         monitor_priority: 2
         noScreenshot: true
         device_ids:
-        - null
-        - null
+        - laptop_large
+        - laptop_large
         follow_redirects: true
         retry:
           count: 2
@@ -23284,6 +23941,7 @@ components:
         dnsServerPort: 5249
         host: host
         numberOfPackets: 6
+        follow_redirects: true
         dnsServer: dnsServer
       properties:
         allow_insecure:
@@ -23306,6 +23964,9 @@ components:
           maximum: 65535
           minimum: 1
           type: integer
+        follow_redirects:
+          description: Specifies whether or not the request follows redirects.
+          type: boolean
         headers:
           additionalProperties:
             description: A single Header.
@@ -23450,6 +24111,7 @@ components:
       example:
         result_id: result_id
         location: 6
+        device: laptop_large
         public_id: public_id
       properties:
         device:
@@ -23480,9 +24142,11 @@ components:
         results:
         - result_id: result_id
           location: 6
+          device: laptop_large
           public_id: public_id
         - result_id: result_id
           location: 6
+          device: laptop_large
           public_id: public_id
       properties:
         batch_id:
@@ -23531,6 +24195,7 @@ components:
       description: User locator used.
       enum:
       - user_locator
+      example: user_locator
       type: string
       x-enum-varnames:
       - USER_LOCATOR
@@ -28814,6 +29479,7 @@ components:
       - '>='
       - <
       - <=
+      example: '>'
       type: string
       x-enum-varnames:
       - GREATER_THAN
@@ -29002,6 +29668,7 @@ components:
       enum:
       - check
       - cluster
+      example: check
       type: string
       x-enum-varnames:
       - CHECK
@@ -29085,6 +29752,7 @@ components:
       description: Layout type of the group.
       enum:
       - ordered
+      example: ordered
       type: string
       x-enum-varnames:
       - ORDERED
@@ -29132,6 +29800,7 @@ components:
       - 6mo
       - 1y
       - alert
+      example: 5m
       type: string
       x-enum-varnames:
       - PAST_ONE_MINUTE
@@ -29295,6 +29964,7 @@ components:
       - black_on_light_yellow
       - black_on_light_green
       - black_on_light_red
+      example: blue
       type: string
       x-enum-varnames:
       - BLUE
@@ -29452,6 +30122,7 @@ components:
       enum:
       - timeseries
       - toplist
+      example: timeseries
       type: string
       x-enum-varnames:
       - TIMESERIES
@@ -30152,7 +30823,7 @@ components:
             This is not included in the responses for `metric` based SLOs.
           example: []
           items:
-            $ref: '#/components/schemas/SLOHistorySLIData'
+            $ref: '#/components/schemas/SLOHistoryMonitor'
           type: array
         monitors:
           description: |-
@@ -30161,7 +30832,7 @@ components:
             This is not included in the responses for `metric` based SLOs.
           example: []
           items:
-            $ref: '#/components/schemas/SLOHistorySLIData'
+            $ref: '#/components/schemas/SLOHistoryMonitor'
           type: array
         overall:
           $ref: '#/components/schemas/SLOHistorySLIData'
@@ -30440,25 +31111,30 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           assertions: []
           configVariables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
       properties:
         config:
@@ -30529,25 +31205,30 @@ components:
             dnsServerPort: 5249
             host: host
             numberOfPackets: 6
+            follow_redirects: true
             dnsServer: dnsServer
           variables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           assertions: []
           configVariables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
       properties:
         config:
@@ -30563,6 +31244,7 @@ components:
         device:
           name: ""
           width: 0
+          id: laptop_large
           isMobile: true
           height: 0
         errorCount: 5
@@ -30651,6 +31333,7 @@ components:
         parser:
           type: regex
           value: .*
+        type: http_body
       properties:
         field:
           description: When type is `http_header`, name of the header to use to extract
@@ -30808,6 +31491,38 @@ components:
           $ref: '#/components/schemas/QuerySortOrder'
       type: object
   securitySchemes:
+    AuthZ:
+      description: This API uses OAuth 2 with the implicit grant flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth2/v1/authorize
+          scopes:
+            dashboards_public_share: The ability to share dashboards externally.
+            dashboards_read: The ability to view dashboards.
+            dashboards_write: The ability to create and change dashboards.
+            events_read: The ability to read events data.
+            metrics_read: The ability to view custom metrics.
+            monitors_downtime: The ability to set downtimes for your organization.
+              A user with this permission can suppress alerts from any monitor using
+              a downtime, even if they do not have permission to edit those monitors
+              explicitly.
+            monitors_read: The ability to view monitors.
+            monitors_write: The ability to change, mute, and delete individual monitors.
+            synthetics_global_variable_read: The ability to view, search and use in
+              tests the list of global variables available for Synthetics.
+            synthetics_global_variable_write: The ability to create, edit, and delete
+              global variables for Synthetics.
+            synthetics_private_location_read: The ability to view, search and use
+              in tests the list of private locations available.
+            synthetics_read: The ability to list and view configured Synthetic tests.
+            synthetics_write: The ability to create, edit, and delete Synthetic tests.
+            timeseries_query: The ability to query timeseries data.
+            usage_read: The ability to view your organization's usage and usage attribution.
+            user_access_invite: Allows users to invite other users to your organization.
+            user_access_manage: Grants the permission to disable users, manage user
+              roles and SAML-to-role mappings.
+          tokenUrl: /oauth2/v1/token
+      type: oauth2
     apiKeyAuth:
       description: Your Datadog API Key.
       in: header

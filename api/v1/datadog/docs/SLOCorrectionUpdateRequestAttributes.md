@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Category** | Pointer to [**SLOCorrectionCategory**](SLOCorrectionCategory.md) |  | [optional] 
 **Description** | Pointer to **string** | Description of the correction being made. | [optional] 
-**End** | Pointer to **int64** | Ending time of the correction in epoch seconds | [optional] 
-**Start** | Pointer to **int64** | Starting time of the correction in epoch seconds | [optional] 
-**Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;) | [optional] 
+**End** | Pointer to **int64** | Ending time of the correction in epoch seconds. | [optional] 
+**Start** | Pointer to **int64** | Starting time of the correction in epoch seconds. | [optional] 
+**Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;). | [optional] 
 
 ## Methods
 

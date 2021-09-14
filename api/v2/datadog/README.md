@@ -59,7 +59,7 @@ Note, enum values are always validated and all unused variables are silently ign
 ### URLs Configuration per Operation
 
 Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
-An operation is uniquely identifield by `"{classname}Service.{nickname}"` string.
+An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
 ```
@@ -511,6 +511,44 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
+
+
+### AuthZ
+
+
+- **Type**: OAuth
+- **Flow**: accessCode
+- **Authorization URL**: /oauth2/v1/authorize
+- **Scopes**: 
+ - **dashboards_public_share**: The ability to share dashboards externally.
+ - **dashboards_read**: The ability to view dashboards.
+ - **dashboards_write**: The ability to create and change dashboards.
+ - **events_read**: The ability to read events data.
+ - **metrics_read**: The ability to view custom metrics.
+ - **security_monitoring_rules_read**: The ability to read Detection rules.
+ - **security_monitoring_rules_write**: The ability to create and edit Detection rules.
+ - **security_monitoring_signals_read**: The ability to view Security signals.
+ - **user_access_invite**: Allows users to invite other users to your organization.
+ - **user_access_manage**: Grants the permission to disable users, manage user roles and SAML-to-role mappings.
+
+Example
+
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAccessToken, "ACCESSTOKENSTRING")
+r, err := client.Service.Operation(auth, args)
+```
+
+Or via OAuth2 module to automatically refresh tokens and perform user authentication.
+
+```golang
+import "golang.org/x/oauth2"
+
+/* Perform OAuth2 round trip request and obtain a token */
+
+tokenSource := oauth2cfg.TokenSource(createContext(httpClient), &token)
+auth := context.WithValue(oauth2.NoContext, sw.ContextOAuth2, tokenSource)
+r, err := client.Service.Operation(auth, args)
+```
 
 
 ### apiKeyAuth

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SLOCorrectionResponse The response object of an SLO correction
+// SLOCorrectionResponse The response object of an SLO correction.
 type SLOCorrectionResponse struct {
 	Data *SLOCorrection `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct

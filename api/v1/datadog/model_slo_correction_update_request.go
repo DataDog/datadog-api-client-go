@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SLOCorrectionUpdateRequest An object that defines a correction to be applied to an SLO
+// SLOCorrectionUpdateRequest An object that defines a correction to be applied to an SLO.
 type SLOCorrectionUpdateRequest struct {
 	Data *SLOCorrectionUpdateData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Certificate** | Pointer to [**SyntheticsTestRequestCertificate**](SyntheticsTestRequestCertificate.md) |  | [optional] 
 **DnsServer** | Pointer to **string** | DNS server to use for DNS tests. | [optional] 
 **DnsServerPort** | Pointer to **int32** | DNS server port to use for DNS tests. | [optional] 
+**FollowRedirects** | Pointer to **bool** | Specifies whether or not the request follows redirects. | [optional] 
 **Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
 **Host** | Pointer to **string** | Host name to perform the test with. | [optional] 
 **Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | [optional] 
@@ -189,6 +190,31 @@ SetDnsServerPort sets DnsServerPort field to given value.
 `func (o *SyntheticsTestRequest) HasDnsServerPort() bool`
 
 HasDnsServerPort returns a boolean if a field has been set.
+
+### GetFollowRedirects
+
+`func (o *SyntheticsTestRequest) GetFollowRedirects() bool`
+
+GetFollowRedirects returns the FollowRedirects field if non-nil, zero value otherwise.
+
+### GetFollowRedirectsOk
+
+`func (o *SyntheticsTestRequest) GetFollowRedirectsOk() (*bool, bool)`
+
+GetFollowRedirectsOk returns a tuple with the FollowRedirects field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFollowRedirects
+
+`func (o *SyntheticsTestRequest) SetFollowRedirects(v bool)`
+
+SetFollowRedirects sets FollowRedirects field to given value.
+
+### HasFollowRedirects
+
+`func (o *SyntheticsTestRequest) HasFollowRedirects() bool`
+
+HasFollowRedirects returns a boolean if a field has been set.
 
 ### GetHeaders
 

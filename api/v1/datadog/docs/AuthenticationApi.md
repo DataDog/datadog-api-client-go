@@ -61,7 +61,7 @@ This endpoint does not have optional parameters.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)
+[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

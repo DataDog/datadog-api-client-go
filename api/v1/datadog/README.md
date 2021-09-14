@@ -59,7 +59,7 @@ Note, enum values are always validated and all unused variables are silently ign
 ### URLs Configuration per Operation
 
 Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
-An operation is uniquely identifield by `"{classname}Service.{nickname}"` string.
+An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
 ```
@@ -368,6 +368,9 @@ Class | Method | HTTP request | Description
  - [EventStreamWidgetDefinitionType](docs/EventStreamWidgetDefinitionType.md)
  - [EventTimelineWidgetDefinition](docs/EventTimelineWidgetDefinition.md)
  - [EventTimelineWidgetDefinitionType](docs/EventTimelineWidgetDefinitionType.md)
+ - [FormulaAndFunctionApmDependencyStatName](docs/FormulaAndFunctionApmDependencyStatName.md)
+ - [FormulaAndFunctionApmDependencyStatsDataSource](docs/FormulaAndFunctionApmDependencyStatsDataSource.md)
+ - [FormulaAndFunctionApmDependencyStatsQueryDefinition](docs/FormulaAndFunctionApmDependencyStatsQueryDefinition.md)
  - [FormulaAndFunctionEventAggregation](docs/FormulaAndFunctionEventAggregation.md)
  - [FormulaAndFunctionEventQueryDefinition](docs/FormulaAndFunctionEventQueryDefinition.md)
  - [FormulaAndFunctionEventQueryDefinitionCompute](docs/FormulaAndFunctionEventQueryDefinitionCompute.md)
@@ -611,6 +614,7 @@ Class | Method | HTTP request | Description
  - [SLOHistoryMetricsSeries](docs/SLOHistoryMetricsSeries.md)
  - [SLOHistoryMetricsSeriesMetadata](docs/SLOHistoryMetricsSeriesMetadata.md)
  - [SLOHistoryMetricsSeriesMetadataUnit](docs/SLOHistoryMetricsSeriesMetadataUnit.md)
+ - [SLOHistoryMonitor](docs/SLOHistoryMonitor.md)
  - [SLOHistoryResponse](docs/SLOHistoryResponse.md)
  - [SLOHistoryResponseData](docs/SLOHistoryResponseData.md)
  - [SLOHistoryResponseError](docs/SLOHistoryResponseError.md)
@@ -897,6 +901,51 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
+
+
+### AuthZ
+
+
+- **Type**: OAuth
+- **Flow**: accessCode
+- **Authorization URL**: /oauth2/v1/authorize
+- **Scopes**: 
+ - **dashboards_public_share**: The ability to share dashboards externally.
+ - **dashboards_read**: The ability to view dashboards.
+ - **dashboards_write**: The ability to create and change dashboards.
+ - **events_read**: The ability to read events data.
+ - **metrics_read**: The ability to view custom metrics.
+ - **monitors_downtime**: The ability to set downtimes for your organization. A user with this permission can suppress alerts from any monitor using a downtime, even if they do not have permission to edit those monitors explicitly.
+ - **monitors_read**: The ability to view monitors.
+ - **monitors_write**: The ability to change, mute, and delete individual monitors.
+ - **synthetics_global_variable_read**: The ability to view, search and use in tests the list of global variables available for Synthetics.
+ - **synthetics_global_variable_write**: The ability to create, edit, and delete global variables for Synthetics.
+ - **synthetics_private_location_read**: The ability to view, search and use in tests the list of private locations available.
+ - **synthetics_read**: The ability to list and view configured Synthetic tests.
+ - **synthetics_write**: The ability to create, edit, and delete Synthetic tests.
+ - **timeseries_query**: The ability to query timeseries data.
+ - **usage_read**: The ability to view your organization's usage and usage attribution.
+ - **user_access_invite**: Allows users to invite other users to your organization.
+ - **user_access_manage**: Grants the permission to disable users, manage user roles and SAML-to-role mappings.
+
+Example
+
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAccessToken, "ACCESSTOKENSTRING")
+r, err := client.Service.Operation(auth, args)
+```
+
+Or via OAuth2 module to automatically refresh tokens and perform user authentication.
+
+```golang
+import "golang.org/x/oauth2"
+
+/* Perform OAuth2 round trip request and obtain a token */
+
+tokenSource := oauth2cfg.TokenSource(createContext(httpClient), &token)
+auth := context.WithValue(oauth2.NoContext, sw.ContextOAuth2, tokenSource)
+r, err := client.Service.Operation(auth, args)
+```
 
 
 ### apiKeyAuth

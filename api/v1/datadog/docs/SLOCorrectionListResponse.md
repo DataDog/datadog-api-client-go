@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Data** | Pointer to [**[]SLOCorrection**](SLOCorrection.md) | The list of of SLO corrections objects | [optional] 
+**Data** | Pointer to [**[]SLOCorrection**](SLOCorrection.md) | The list of of SLO corrections objects. | [optional] 
 **Meta** | Pointer to [**ResponseMetaAttributes**](ResponseMetaAttributes.md) |  | [optional] 
 
 ## Methods

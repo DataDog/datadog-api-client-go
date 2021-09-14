@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// SLOCorrectionCategory Category the SLO correction belongs to
+// SLOCorrectionCategory Category the SLO correction belongs to.
 type SLOCorrectionCategory string
 
 // List of SLOCorrectionCategory

@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Attributes** | Pointer to [**SLOCorrectionCreateRequestAttributes**](SLOCorrectionCreateRequestAttributes.md) |  | [optional] 
-**Type** | Pointer to [**SLOCorrectionType**](SLOCorrectionType.md) |  | [optional] [default to SLOCORRECTIONTYPE_CORRECTION]
+**Type** | [**SLOCorrectionType**](SLOCorrectionType.md) |  | [default to SLOCORRECTIONTYPE_CORRECTION]
 
 ## Methods
 
 ### NewSLOCorrectionCreateData
 
-`func NewSLOCorrectionCreateData() *SLOCorrectionCreateData`
+`func NewSLOCorrectionCreateData(type_ SLOCorrectionType) *SLOCorrectionCreateData`
 
 NewSLOCorrectionCreateData instantiates a new SLOCorrectionCreateData object.
 This constructor will assign default values to properties that have it defined,
@@ -70,11 +70,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *SLOCorrectionCreateData) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

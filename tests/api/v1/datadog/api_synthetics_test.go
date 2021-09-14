@@ -121,11 +121,12 @@ func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T, globalVari
 					Assertions: &[]datadog.SyntheticsAssertion{},
 					Name:       datadog.PtrString("First step"),
 					Request: &datadog.SyntheticsTestRequest{
-						Headers:       &map[string]string{"testingGoClient": "true"},
-						Method:        datadog.HTTPMETHOD_GET.Ptr(),
-						Timeout:       datadog.PtrFloat64(10),
-						Url:           datadog.PtrString("https://datadoghq.com"),
-						AllowInsecure: datadog.PtrBool(true),
+						Headers:         &map[string]string{"testingGoClient": "true"},
+						Method:          datadog.HTTPMETHOD_GET.Ptr(),
+						Timeout:         datadog.PtrFloat64(10),
+						Url:             datadog.PtrString("https://datadoghq.com"),
+						AllowInsecure:   datadog.PtrBool(true),
+						FollowRedirects: datadog.PtrBool(true),
 					},
 					Subtype: datadog.SYNTHETICSAPISTEPSUBTYPE_HTTP.Ptr(),
 					ExtractedValues: &[]datadog.SyntheticsParsingOptions{
