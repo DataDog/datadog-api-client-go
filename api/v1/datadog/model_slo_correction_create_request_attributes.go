@@ -13,18 +13,18 @@ import (
 	"fmt"
 )
 
-// SLOCorrectionCreateRequestAttributes The attribute object associated with the SLO correction to be created
+// SLOCorrectionCreateRequestAttributes The attribute object associated with the SLO correction to be created.
 type SLOCorrectionCreateRequestAttributes struct {
 	Category SLOCorrectionCategory `json:"category"`
 	// Description of the correction being made.
 	Description *string `json:"description,omitempty"`
-	// Ending time of the correction in epoch seconds
+	// Ending time of the correction in epoch seconds.
 	End int64 `json:"end"`
-	// ID of the SLO that this correction will be applied to
+	// ID of the SLO that this correction will be applied to.
 	SloId string `json:"slo_id"`
-	// Starting time of the correction in epoch seconds
+	// Starting time of the correction in epoch seconds.
 	Start int64 `json:"start"`
-	// The timezone to display in the UI for the correction times (defaults to \"UTC\")
+	// The timezone to display in the UI for the correction times (defaults to \"UTC\").
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
