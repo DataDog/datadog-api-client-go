@@ -11571,6 +11571,7 @@ components:
             value: value
         created_at: 2000-01-23T04:56:07.000+00:00
         description: description
+        layout_type: ordered
         notify_list:
         - notify_list
         - notify_list
@@ -11753,6 +11754,7 @@ components:
       enum:
       - ordered
       - free
+      example: ordered
       type: string
       x-enum-varnames:
       - ORDERED
@@ -11898,6 +11900,7 @@ components:
         dashboards:
         - created_at: 2000-01-23T04:56:07.000+00:00
           description: description
+          layout_type: ordered
           is_read_only: true
           id: id
           modified_at: 2000-01-23T04:56:07.000+00:00
@@ -11906,6 +11909,7 @@ components:
           url: url
         - created_at: 2000-01-23T04:56:07.000+00:00
           description: description
+          layout_type: ordered
           is_read_only: true
           id: id
           modified_at: 2000-01-23T04:56:07.000+00:00
@@ -11924,6 +11928,7 @@ components:
       example:
         created_at: 2000-01-23T04:56:07.000+00:00
         description: description
+        layout_type: ordered
         is_read_only: true
         id: id
         modified_at: 2000-01-23T04:56:07.000+00:00
@@ -13187,6 +13192,7 @@ components:
       enum:
       - process
       - container
+      example: process
       type: string
       x-enum-varnames:
       - PROCESS
@@ -13241,6 +13247,7 @@ components:
       enum:
       - timeseries
       - scalar
+      example: timeseries
       type: string
       x-enum-varnames:
       - TIMESERIES
@@ -14426,6 +14433,7 @@ components:
       - auto
       - compact
       - full
+      example: compact
       type: string
       x-enum-varnames:
       - AUTO
@@ -14454,6 +14462,7 @@ components:
       description: Widget response format.
       enum:
       - event_list
+      example: event_list
       type: string
       x-enum-varnames:
       - EVENT_LIST
@@ -16117,7 +16126,7 @@ components:
         series:
         - metric: system.load.1
           points:
-          - - 1475317847
+          - - 1.475317847E9
             - 0.7
       properties:
         series:
@@ -16125,7 +16134,7 @@ components:
           example:
           - metric: system.load.1
             points:
-            - - 1475317847
+            - - 1.475317847E9
               - 0.7
           items:
             $ref: '#/components/schemas/Series'
@@ -16139,9 +16148,9 @@ components:
       example:
         expression: system.cpu.idle{host:foo,env:test}
         pointlist:
-        - - 1575317847
+        - - 1.575317847E9
           - 0.5
-        - - 1575317847
+        - - 1.575317847E9
           - 0.5
         length: 5
         start: 2
@@ -16252,9 +16261,9 @@ components:
         series:
         - expression: system.cpu.idle{host:foo,env:test}
           pointlist:
-          - - 1575317847
+          - - 1.575317847E9
             - 0.5
-          - - 1575317847
+          - - 1.575317847E9
             - 0.5
           length: 5
           start: 2
@@ -16281,9 +16290,9 @@ components:
           aggr: avg
         - expression: system.cpu.idle{host:foo,env:test}
           pointlist:
-          - - 1575317847
+          - - 1.575317847E9
             - 0.5
-          - - 1575317847
+          - - 1.575317847E9
             - 0.5
           length: 5
           start: 2
@@ -18896,7 +18905,7 @@ components:
     Point:
       description: Array of timeseries points.
       example:
-      - 1575317847
+      - 1.575317847E9
       - 0.5
       items:
         description: |-
@@ -18926,7 +18935,7 @@ components:
           type: integer
         metric:
           description: Your chosen metric.
-          example: ""
+          example: system.load.1
           type: string
         search_by:
           description: Your chosen search term.
@@ -19076,6 +19085,7 @@ components:
     SLOBulkDeleteError:
       description: Object describing the error.
       example:
+        timeframe: 30d
         id: ""
         message: ""
       properties:
@@ -19113,9 +19123,11 @@ components:
           - updated
           - updated
         errors:
-        - id: ""
+        - timeframe: 30d
+          id: ""
           message: ""
-        - id: ""
+        - timeframe: 30d
+          id: ""
           message: ""
       properties:
         data:
@@ -19451,6 +19463,7 @@ components:
       - 30d
       - 90d
       - all
+      example: 30d
       type: string
       x-enum-varnames:
       - SEVEN_DAYS
@@ -20080,6 +20093,7 @@ components:
       - 30d
       - 90d
       - custom
+      example: 30d
       type: string
       x-enum-varnames:
       - SEVEN_DAYS
@@ -20269,9 +20283,6 @@ components:
             timestamp and a scalar value (cannot be a string). Timestamps should be
             in POSIX time in seconds, and cannot be more than ten minutes in the future
             or more than one hour in the past.
-          example:
-          - - 1575317847
-            - 0.5
           items:
             $ref: '#/components/schemas/Point'
           type: array
@@ -20764,16 +20775,8 @@ components:
       description: The steps used in a Synthetics multistep API test.
       example:
         extractedValues:
-        - field: content-type
-          parser:
-            type: regex
-            value: .*
-          name: name
-        - field: content-type
-          parser:
-            type: regex
-            value: .*
-          name: name
+        - {}
+        - {}
         request:
           headers:
             key: headers
@@ -20805,7 +20808,9 @@ components:
         allowFailure: true
         name: name
         isCritical: true
-        assertions: []
+        assertions:
+        - null
+        - null
       properties:
         allowFailure:
           description: Determines whether or not to continue with test if this step
@@ -20814,7 +20819,6 @@ components:
         assertions:
           default: []
           description: Array of assertions used for the test.
-          example: []
           items:
             $ref: '#/components/schemas/SyntheticsAssertion'
           type: array
@@ -20862,8 +20866,8 @@ components:
           monitor_priority: 2
           noScreenshot: true
           device_ids:
-          - null
-          - null
+          - laptop_large
+          - laptop_large
           follow_redirects: true
           retry:
             count: 2
@@ -20905,16 +20909,8 @@ components:
           assertions: []
           steps:
           - extractedValues:
-            - field: content-type
-              parser:
-                type: regex
-                value: .*
-              name: name
-            - field: content-type
-              parser:
-                type: regex
-                value: .*
-              name: name
+            - {}
+            - {}
             request:
               headers:
                 key: headers
@@ -20946,18 +20942,12 @@ components:
             allowFailure: true
             name: name
             isCritical: true
-            assertions: []
+            assertions:
+            - null
+            - null
           - extractedValues:
-            - field: content-type
-              parser:
-                type: regex
-                value: .*
-              name: name
-            - field: content-type
-              parser:
-                type: regex
-                value: .*
-              name: name
+            - {}
+            - {}
             request:
               headers:
                 key: headers
@@ -20989,15 +20979,19 @@ components:
             allowFailure: true
             name: name
             isCritical: true
-            assertions: []
+            assertions:
+            - null
+            - null
           configVariables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
         public_id: public_id
         tags:
@@ -21076,16 +21070,8 @@ components:
         assertions: []
         steps:
         - extractedValues:
-          - field: content-type
-            parser:
-              type: regex
-              value: .*
-            name: name
-          - field: content-type
-            parser:
-              type: regex
-              value: .*
-            name: name
+          - {}
+          - {}
           request:
             headers:
               key: headers
@@ -21117,18 +21103,12 @@ components:
           allowFailure: true
           name: name
           isCritical: true
-          assertions: []
+          assertions:
+          - null
+          - null
         - extractedValues:
-          - field: content-type
-            parser:
-              type: regex
-              value: .*
-            name: name
-          - field: content-type
-            parser:
-              type: regex
-              value: .*
-            name: name
+          - {}
+          - {}
           request:
             headers:
               key: headers
@@ -21160,15 +21140,19 @@ components:
           allowFailure: true
           name: name
           isCritical: true
-          assertions: []
+          assertions:
+          - null
+          - null
         configVariables:
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
       properties:
         assertions:
@@ -21363,20 +21347,24 @@ components:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             assertions: []
             configVariables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
         check_time: 0.8008281904610115
       properties:
@@ -21456,6 +21444,7 @@ components:
       description: Assertion operator to apply.
       enum:
       - validatesJSONPath
+      example: validatesJSONPath
       type: string
       x-enum-varnames:
       - VALIDATES_JSON_PATH
@@ -21491,6 +21480,7 @@ components:
       - validates
       - isInMoreThan
       - isInLessThan
+      example: contains
       type: string
       x-enum-varnames:
       - CONTAINS
@@ -21540,6 +21530,7 @@ components:
       - packetLossPercentage
       - packetsReceived
       - networkHop
+      example: statusCode
       type: string
       x-enum-varnames:
       - BODY
@@ -21577,20 +21568,22 @@ components:
     SyntheticsBrowserError:
       description: Error response object for a browser test.
       example:
-        name: ""
-        description: ""
-        status: 5
+        name: Failed test
+        description: Example error message
+        type: network
+        status: 500
       properties:
         description:
           description: Description of the error.
-          example: ""
+          example: Example error message
           type: string
         name:
           description: Name of the error.
-          example: ""
+          example: Failed test
           type: string
         status:
           description: Status Code of the error.
+          example: 500
           format: int64
           type: integer
         type:
@@ -21605,6 +21598,7 @@ components:
       enum:
       - network
       - js
+      example: network
       type: string
       x-enum-varnames:
       - NETWORK
@@ -21627,8 +21621,8 @@ components:
           monitor_priority: 2
           noScreenshot: true
           device_ids:
-          - null
-          - null
+          - laptop_large
+          - laptop_large
           follow_redirects: true
           retry:
             count: 2
@@ -21671,10 +21665,12 @@ components:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           setCookie: setCookie
           assertions: []
@@ -21682,19 +21678,23 @@ components:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
         steps:
         - allowFailure: true
           name: name
           params: '{}'
+          type: assertElementContent
           timeout: 1
         - allowFailure: true
           name: name
           params: '{}'
+          type: assertElementContent
           timeout: 1
         public_id: public_id
         tags:
@@ -21781,10 +21781,12 @@ components:
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         setCookie: setCookie
         assertions: []
@@ -21792,10 +21794,12 @@ components:
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
       properties:
         assertions:
@@ -21833,12 +21837,13 @@ components:
         thumbnailsBucketKey: true
         browserVersion: browserVersion
         receivedEmailCount: 5
-        timeToInteractive: 4.145608029883936
+        timeToInteractive: 2.027123023002322
         passed: true
         error: error
         device:
           name: ""
           width: 0
+          id: laptop_large
           isMobile: true
           height: 0
         stepDetails:
@@ -21846,28 +21851,33 @@ components:
           snapshotBucketKey: true
           warnings:
           - message: ""
+            type: user_locator
           - message: ""
-          stepId: 7
-          timeToInteractive: 9.301444243932576
+            type: user_locator
+          stepId: 2
+          timeToInteractive: 7.061401241503109
           description: description
           error: error
+          type: assertElementContent
           url: url
           skipped: true
-          duration: 2.3021358869347655
+          duration: 5.637376656633329
           vitalsMetrics:
-          - lcp: 2
-            cls: 3
+          - lcp: 3
+            cls: 9
             url: url
-          - lcp: 2
-            cls: 3
+          - lcp: 3
+            cls: 9
             url: url
           browserErrors:
-          - name: ""
-            description: ""
-            status: 5
-          - name: ""
-            description: ""
-            status: 5
+          - name: Failed test
+            description: Example error message
+            type: network
+            status: 500
+          - name: Failed test
+            description: Example error message
+            type: network
+            status: 500
           subTestStepDetails:
           - null
           - null
@@ -21876,28 +21886,33 @@ components:
           snapshotBucketKey: true
           warnings:
           - message: ""
+            type: user_locator
           - message: ""
-          stepId: 7
-          timeToInteractive: 9.301444243932576
+            type: user_locator
+          stepId: 2
+          timeToInteractive: 7.061401241503109
           description: description
           error: error
+          type: assertElementContent
           url: url
           skipped: true
-          duration: 2.3021358869347655
+          duration: 5.637376656633329
           vitalsMetrics:
-          - lcp: 2
-            cls: 3
+          - lcp: 3
+            cls: 9
             url: url
-          - lcp: 2
-            cls: 3
+          - lcp: 3
+            cls: 9
             url: url
           browserErrors:
-          - name: ""
-            description: ""
-            status: 5
-          - name: ""
-            description: ""
-            status: 5
+          - name: Failed test
+            description: Example error message
+            type: network
+            status: 500
+          - name: Failed test
+            description: Example error message
+            type: network
+            status: 500
           subTestStepDetails:
           - null
           - null
@@ -21953,12 +21968,13 @@ components:
           thumbnailsBucketKey: true
           browserVersion: browserVersion
           receivedEmailCount: 5
-          timeToInteractive: 4.145608029883936
+          timeToInteractive: 2.027123023002322
           passed: true
           error: error
           device:
             name: ""
             width: 0
+            id: laptop_large
             isMobile: true
             height: 0
           stepDetails:
@@ -21966,28 +21982,33 @@ components:
             snapshotBucketKey: true
             warnings:
             - message: ""
+              type: user_locator
             - message: ""
-            stepId: 7
-            timeToInteractive: 9.301444243932576
+              type: user_locator
+            stepId: 2
+            timeToInteractive: 7.061401241503109
             description: description
             error: error
+            type: assertElementContent
             url: url
             skipped: true
-            duration: 2.3021358869347655
+            duration: 5.637376656633329
             vitalsMetrics:
-            - lcp: 2
-              cls: 3
+            - lcp: 3
+              cls: 9
               url: url
-            - lcp: 2
-              cls: 3
+            - lcp: 3
+              cls: 9
               url: url
             browserErrors:
-            - name: ""
-              description: ""
-              status: 5
-            - name: ""
-              description: ""
-              status: 5
+            - name: Failed test
+              description: Example error message
+              type: network
+              status: 500
+            - name: Failed test
+              description: Example error message
+              type: network
+              status: 500
             subTestStepDetails:
             - null
             - null
@@ -21996,28 +22017,33 @@ components:
             snapshotBucketKey: true
             warnings:
             - message: ""
+              type: user_locator
             - message: ""
-            stepId: 7
-            timeToInteractive: 9.301444243932576
+              type: user_locator
+            stepId: 2
+            timeToInteractive: 7.061401241503109
             description: description
             error: error
+            type: assertElementContent
             url: url
             skipped: true
-            duration: 2.3021358869347655
+            duration: 5.637376656633329
             vitalsMetrics:
-            - lcp: 2
-              cls: 3
+            - lcp: 3
+              cls: 9
               url: url
-            - lcp: 2
-              cls: 3
+            - lcp: 3
+              cls: 9
               url: url
             browserErrors:
-            - name: ""
-              description: ""
-              status: 5
-            - name: ""
-              description: ""
-              status: 5
+            - name: Failed test
+              description: Example error message
+              type: network
+              status: 500
+            - name: Failed test
+              description: Example error message
+              type: network
+              status: 500
             subTestStepDetails:
             - null
             - null
@@ -22060,20 +22086,24 @@ components:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             assertions: []
             configVariables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
         check_time: 0.8008281904610115
       properties:
@@ -22107,6 +22137,7 @@ components:
           device:
             name: ""
             width: 0
+            id: laptop_large
             isMobile: true
             height: 0
           errorCount: 5
@@ -22150,6 +22181,7 @@ components:
         name: VARIABLE_NAME
         pattern: pattern
         id: id
+        type: text
         example: example
       properties:
         example:
@@ -22179,6 +22211,7 @@ components:
       - global
       - javascript
       - text
+      example: text
       type: string
       x-enum-varnames:
       - ELEMENT
@@ -22193,8 +22226,8 @@ components:
         headers:
           key: headers
         deviceIds:
-        - null
-        - null
+        - laptop_large
+        - laptop_large
         metadata:
           git:
             commit_sha: commit_sha
@@ -22283,8 +22316,8 @@ components:
           headers:
             key: headers
           deviceIds:
-          - null
-          - null
+          - laptop_large
+          - laptop_large
           metadata:
             git:
               commit_sha: commit_sha
@@ -22313,8 +22346,8 @@ components:
           headers:
             key: headers
           deviceIds:
-          - null
-          - null
+          - laptop_large
+          - laptop_large
           metadata:
             git:
               commit_sha: commit_sha
@@ -22385,6 +22418,7 @@ components:
         name: VARIABLE_NAME
         pattern: pattern
         id: id
+        type: text
         example: example
       properties:
         example:
@@ -22411,6 +22445,7 @@ components:
       enum:
       - global
       - text
+      example: text
       type: string
       x-enum-varnames:
       - GLOBAL
@@ -22418,8 +22453,8 @@ components:
     SyntheticsCoreWebVitals:
       description: Core Web Vitals attached to a browser test step.
       example:
-        lcp: 2
-        cls: 3
+        lcp: 3
+        cls: 9
         url: url
       properties:
         cls:
@@ -22488,6 +22523,7 @@ components:
       example:
         name: ""
         width: 0
+        id: laptop_large
         isMobile: true
         height: 0
       properties:
@@ -22531,6 +22567,7 @@ components:
       - edge.laptop_large
       - edge.tablet
       - edge.mobile_small
+      example: laptop_large
       type: string
       x-enum-varnames:
       - LAPTOP_LARGE
@@ -22621,6 +22658,7 @@ components:
             device:
               name: ""
               width: 0
+              id: laptop_large
               isMobile: true
               height: 0
             errorCount: 5
@@ -22634,6 +22672,7 @@ components:
             device:
               name: ""
               width: 0
+              id: laptop_large
               isMobile: true
               height: 0
             errorCount: 5
@@ -22661,6 +22700,7 @@ components:
           parser:
             type: regex
             value: .*
+          type: http_body
         description: Example description
         parse_test_public_id: abc-def-123
         attributes:
@@ -22719,6 +22759,7 @@ components:
       enum:
       - http_body
       - http_header
+      example: http_body
       type: string
       x-enum-varnames:
       - HTTP_BODY
@@ -22731,6 +22772,7 @@ components:
       - json_path
       - regex
       - x_path
+      example: raw
       type: string
       x-enum-varnames:
       - RAW
@@ -22763,6 +22805,7 @@ components:
             parser:
               type: regex
               value: .*
+            type: http_body
           description: Example description
           parse_test_public_id: abc-def-123
           attributes:
@@ -22782,6 +22825,7 @@ components:
             parser:
               type: regex
               value: .*
+            type: http_body
           description: Example description
           parse_test_public_id: abc-def-123
           attributes:
@@ -22821,8 +22865,8 @@ components:
             monitor_priority: 2
             noScreenshot: true
             device_ids:
-            - null
-            - null
+            - laptop_large
+            - laptop_large
             follow_redirects: true
             retry:
               count: 2
@@ -22864,29 +22908,35 @@ components:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             assertions: []
             configVariables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
           steps:
           - allowFailure: true
             name: name
             params: '{}'
+            type: assertElementContent
             timeout: 1
           - allowFailure: true
             name: name
             params: '{}'
+            type: assertElementContent
             timeout: 1
           public_id: public_id
           tags:
@@ -22907,8 +22957,8 @@ components:
             monitor_priority: 2
             noScreenshot: true
             device_ids:
-            - null
-            - null
+            - laptop_large
+            - laptop_large
             follow_redirects: true
             retry:
               count: 2
@@ -22950,29 +23000,35 @@ components:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             assertions: []
             configVariables:
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
             - name: VARIABLE_NAME
               pattern: pattern
               id: id
+              type: text
               example: example
           steps:
           - allowFailure: true
             name: name
             params: '{}'
+            type: assertElementContent
             timeout: 1
           - allowFailure: true
             name: name
             params: '{}'
+            type: assertElementContent
             timeout: 1
           public_id: public_id
           tags:
@@ -23017,12 +23073,7 @@ components:
       type: object
     SyntheticsParsingOptions:
       description: Parsing options for variables to extract.
-      example:
-        field: content-type
-        parser:
-          type: regex
-          value: .*
-        name: name
+      example: {}
       properties:
         field:
           description: When type is `http_header`, name of the header to use to extract
@@ -23204,6 +23255,7 @@ components:
         allowFailure: true
         name: name
         params: '{}'
+        type: assertElementContent
         timeout: 1
       properties:
         allowFailure:
@@ -23229,28 +23281,33 @@ components:
         snapshotBucketKey: true
         warnings:
         - message: ""
+          type: user_locator
         - message: ""
-        stepId: 7
-        timeToInteractive: 9.301444243932576
+          type: user_locator
+        stepId: 2
+        timeToInteractive: 7.061401241503109
         description: description
         error: error
+        type: assertElementContent
         url: url
         skipped: true
-        duration: 2.3021358869347655
+        duration: 5.637376656633329
         vitalsMetrics:
-        - lcp: 2
-          cls: 3
+        - lcp: 3
+          cls: 9
           url: url
-        - lcp: 2
-          cls: 3
+        - lcp: 3
+          cls: 9
           url: url
         browserErrors:
-        - name: ""
-          description: ""
-          status: 5
-        - name: ""
-          description: ""
-          status: 5
+        - name: Failed test
+          description: Example error message
+          type: network
+          status: 500
+        - name: Failed test
+          description: Example error message
+          type: network
+          status: 500
         subTestStepDetails:
         - null
         - null
@@ -23322,6 +23379,7 @@ components:
       description: Object collecting warnings for a given step.
       example:
         message: ""
+        type: user_locator
       properties:
         message:
           description: Message for the warning.
@@ -23361,6 +23419,7 @@ components:
       - typeText
       - uploadFiles
       - wait
+      example: assertElementContent
       type: string
       x-enum-varnames:
       - ASSERT_CURRENT_URL
@@ -23423,20 +23482,24 @@ components:
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         assertions: []
         configVariables:
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
         - name: VARIABLE_NAME
           pattern: pattern
           id: id
+          type: text
           example: example
       properties:
         assertions:
@@ -23477,8 +23540,8 @@ components:
           monitor_priority: 2
           noScreenshot: true
           device_ids:
-          - null
-          - null
+          - laptop_large
+          - laptop_large
           follow_redirects: true
           retry:
             count: 2
@@ -23520,29 +23583,35 @@ components:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           assertions: []
           configVariables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
         steps:
         - allowFailure: true
           name: name
           params: '{}'
+          type: assertElementContent
           timeout: 1
         - allowFailure: true
           name: name
           params: '{}'
+          type: assertElementContent
           timeout: 1
         public_id: public_id
         tags:
@@ -23657,8 +23726,8 @@ components:
         monitor_priority: 2
         noScreenshot: true
         device_ids:
-        - null
-        - null
+        - laptop_large
+        - laptop_large
         follow_redirects: true
         retry:
           count: 2
@@ -23961,6 +24030,7 @@ components:
       example:
         result_id: result_id
         location: 6
+        device: laptop_large
         public_id: public_id
       properties:
         device:
@@ -23991,9 +24061,11 @@ components:
         results:
         - result_id: result_id
           location: 6
+          device: laptop_large
           public_id: public_id
         - result_id: result_id
           location: 6
+          device: laptop_large
           public_id: public_id
       properties:
         batch_id:
@@ -24042,6 +24114,7 @@ components:
       description: User locator used.
       enum:
       - user_locator
+      example: user_locator
       type: string
       x-enum-varnames:
       - USER_LOCATOR
@@ -29325,6 +29398,7 @@ components:
       - '>='
       - <
       - <=
+      example: '>'
       type: string
       x-enum-varnames:
       - GREATER_THAN
@@ -29513,6 +29587,7 @@ components:
       enum:
       - check
       - cluster
+      example: check
       type: string
       x-enum-varnames:
       - CHECK
@@ -29596,6 +29671,7 @@ components:
       description: Layout type of the group.
       enum:
       - ordered
+      example: ordered
       type: string
       x-enum-varnames:
       - ORDERED
@@ -29643,6 +29719,7 @@ components:
       - 6mo
       - 1y
       - alert
+      example: 5m
       type: string
       x-enum-varnames:
       - PAST_ONE_MINUTE
@@ -29806,6 +29883,7 @@ components:
       - black_on_light_yellow
       - black_on_light_green
       - black_on_light_red
+      example: blue
       type: string
       x-enum-varnames:
       - BLUE
@@ -29963,6 +30041,7 @@ components:
       enum:
       - timeseries
       - toplist
+      example: timeseries
       type: string
       x-enum-varnames:
       - TIMESERIES
@@ -30957,20 +31036,24 @@ components:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           assertions: []
           configVariables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
       properties:
         config:
@@ -31047,20 +31130,24 @@ components:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           assertions: []
           configVariables:
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
           - name: VARIABLE_NAME
             pattern: pattern
             id: id
+            type: text
             example: example
       properties:
         config:
@@ -31076,6 +31163,7 @@ components:
         device:
           name: ""
           width: 0
+          id: laptop_large
           isMobile: true
           height: 0
         errorCount: 5
@@ -31164,6 +31252,7 @@ components:
         parser:
           type: regex
           value: .*
+        type: http_body
       properties:
         field:
           description: When type is `http_header`, name of the header to use to extract
