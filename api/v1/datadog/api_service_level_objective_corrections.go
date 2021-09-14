@@ -35,7 +35,7 @@ type apiCreateSLOCorrectionRequest struct {
 
 /*
  * CreateSLOCorrection Create an SLO correction
- * Create an SLO Correction
+ * Create an SLO Correction.
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) CreateSLOCorrection(ctx _context.Context, body SLOCorrectionCreateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req := apiCreateSLOCorrectionRequest{
@@ -207,7 +207,7 @@ type apiDeleteSLOCorrectionRequest struct {
 
 /*
  * DeleteSLOCorrection Delete an SLO correction
- * Permanently delete the specified SLO correction object
+ * Permanently delete the specified SLO correction object.
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) DeleteSLOCorrection(ctx _context.Context, sloCorrectionId string) (*_nethttp.Response, error) {
 	req := apiDeleteSLOCorrectionRequest{
@@ -354,7 +354,7 @@ type apiGetSLOCorrectionRequest struct {
 
 /*
  * GetSLOCorrection Get an SLO correction for an SLO
- * Get an SLO correction
+ * Get an SLO correction.
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) GetSLOCorrection(ctx _context.Context, sloCorrectionId string) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req := apiGetSLOCorrectionRequest{
@@ -511,7 +511,7 @@ type apiListSLOCorrectionRequest struct {
 
 /*
  * ListSLOCorrection Get all SLO corrections
- * Get all Service Level Objective corrections
+ * Get all Service Level Objective corrections.
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) ListSLOCorrection(ctx _context.Context) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	req := apiListSLOCorrectionRequest{
@@ -658,7 +658,7 @@ type apiUpdateSLOCorrectionRequest struct {
 
 /*
  * UpdateSLOCorrection Update an SLO correction
- * Update the specified SLO correction object object
+ * Update the specified SLO correction object object.
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) UpdateSLOCorrection(ctx _context.Context, sloCorrectionId string, body SLOCorrectionUpdateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req := apiUpdateSLOCorrectionRequest{

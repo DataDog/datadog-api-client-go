@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Category** | [**SLOCorrectionCategory**](SLOCorrectionCategory.md) |  | 
 **Description** | Pointer to **string** | Description of the correction being made. | [optional] 
-**End** | **int64** | Ending time of the correction in epoch seconds | 
-**SloId** | **string** | ID of the SLO that this correction will be applied to | 
-**Start** | **int64** | Starting time of the correction in epoch seconds | 
-**Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;) | [optional] 
+**End** | **int64** | Ending time of the correction in epoch seconds. | 
+**SloId** | **string** | ID of the SLO that this correction will be applied to. | 
+**Start** | **int64** | Starting time of the correction in epoch seconds. | 
+**Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;). | [optional] 
 
 ## Methods
 

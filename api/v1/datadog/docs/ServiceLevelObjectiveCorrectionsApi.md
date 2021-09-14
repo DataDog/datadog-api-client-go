@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > SLOCorrectionResponse CreateSLOCorrection(ctx, body)
 
-Create an SLO Correction
+Create an SLO Correction.
 
 ### Example
 
@@ -87,7 +87,7 @@ This endpoint does not have optional parameters.
 
 > DeleteSLOCorrection(ctx, sloCorrectionId)
 
-Permanently delete the specified SLO correction object
+Permanently delete the specified SLO correction object.
 
 ### Example
 
@@ -104,7 +104,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    sloCorrectionId := "sloCorrectionId_example" // string | The ID of the SLO correction object
+    sloCorrectionId := "sloCorrectionId_example" // string | The ID of the SLO correction object.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("DeleteSLOCorrection", true)
@@ -124,7 +124,7 @@ func main() {
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
 **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**sloCorrectionId** | **string** | The ID of the SLO correction object | 
+**sloCorrectionId** | **string** | The ID of the SLO correction object. | 
 
 
 ### Optional Parameters
@@ -154,7 +154,7 @@ This endpoint does not have optional parameters.
 
 > SLOCorrectionResponse GetSLOCorrection(ctx, sloCorrectionId)
 
-Get an SLO correction
+Get an SLO correction.
 
 ### Example
 
@@ -172,7 +172,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    sloCorrectionId := "sloCorrectionId_example" // string | The ID of the SLO correction object
+    sloCorrectionId := "sloCorrectionId_example" // string | The ID of the SLO correction object.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("GetSLOCorrection", true)
@@ -195,7 +195,7 @@ func main() {
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
 **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**sloCorrectionId** | **string** | The ID of the SLO correction object | 
+**sloCorrectionId** | **string** | The ID of the SLO correction object. | 
 
 
 ### Optional Parameters
@@ -225,7 +225,7 @@ This endpoint does not have optional parameters.
 
 > SLOCorrectionListResponse ListSLOCorrection(ctx)
 
-Get all Service Level Objective corrections
+Get all Service Level Objective corrections.
 
 ### Example
 
@@ -291,7 +291,7 @@ This endpoint does not have optional parameters.
 
 > SLOCorrectionResponse UpdateSLOCorrection(ctx, sloCorrectionId, body)
 
-Update the specified SLO correction object object
+Update the specified SLO correction object object.
 
 ### Example
 
@@ -309,7 +309,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    sloCorrectionId := "sloCorrectionId_example" // string | The ID of the SLO correction object
+    sloCorrectionId := "sloCorrectionId_example" // string | The ID of the SLO correction object.
     body := *datadog.NewSLOCorrectionUpdateRequest() // SLOCorrectionUpdateRequest | The edited SLO correction object.
 
     configuration := datadog.NewConfiguration()
@@ -333,7 +333,7 @@ func main() {
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
 **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**sloCorrectionId** | **string** | The ID of the SLO correction object |  |
+**sloCorrectionId** | **string** | The ID of the SLO correction object. |  |
 **body** | [**SLOCorrectionUpdateRequest**](SLOCorrectionUpdateRequest.md) | The edited SLO correction object. | 
 
 

@@ -12,10 +12,10 @@ import (
 	"encoding/json"
 )
 
-// SLOCorrection The response object of a list of SLO corrections
+// SLOCorrection The response object of a list of SLO corrections.
 type SLOCorrection struct {
 	Attributes *SLOCorrectionResponseAttributes `json:"attributes,omitempty"`
-	// The ID of the SLO correction
+	// The ID of the SLO correction.
 	Id   *string            `json:"id,omitempty"`
 	Type *SLOCorrectionType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct

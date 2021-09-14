@@ -12,16 +12,16 @@ import (
 	"encoding/json"
 )
 
-// SLOCorrectionUpdateRequestAttributes The attribute object associated with the SLO correction to be updated
+// SLOCorrectionUpdateRequestAttributes The attribute object associated with the SLO correction to be updated.
 type SLOCorrectionUpdateRequestAttributes struct {
 	Category *SLOCorrectionCategory `json:"category,omitempty"`
 	// Description of the correction being made.
 	Description *string `json:"description,omitempty"`
-	// Ending time of the correction in epoch seconds
+	// Ending time of the correction in epoch seconds.
 	End *int64 `json:"end,omitempty"`
-	// Starting time of the correction in epoch seconds
+	// Starting time of the correction in epoch seconds.
 	Start *int64 `json:"start,omitempty"`
-	// The timezone to display in the UI for the correction times (defaults to \"UTC\")
+	// The timezone to display in the UI for the correction times (defaults to \"UTC\").
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`

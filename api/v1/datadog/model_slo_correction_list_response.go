@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-// SLOCorrectionListResponse A list of  SLO correction objects
+// SLOCorrectionListResponse A list of  SLO correction objects.
 type SLOCorrectionListResponse struct {
-	// The list of of SLO corrections objects
+	// The list of of SLO corrections objects.
 	Data *[]SLOCorrection        `json:"data,omitempty"`
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
