@@ -297,9 +297,10 @@ func SetClock(path string) (clockwork.FakeClock, error) {
 
 // RestoreClock restore current time from .freeze file.
 func RestoreClock(path string) (clockwork.FakeClock, error) {
-	data, err := ioutil.ReadFile(fmt.Sprintf("cassettes/%s.freeze", path))
+	freezePath := fmt.Sprintf("cassettes/%s.freeze", path)
+	data, err := ioutil.ReadFile(freezePath)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("time file '%s' not found: create one setting `RECORD=true` or ignore it using `RECORD=none`", freezePath)
 	}
 	now, err := time.Parse(time.RFC3339Nano, string(data))
 	if err != nil {
