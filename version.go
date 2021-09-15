@@ -1,4 +1,4 @@
 package client
 
 // Version used in User-Agent header.
-const Version = "1.4.0"
+const Version = "1.3.1+dev"
