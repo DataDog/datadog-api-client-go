@@ -21,7 +21,7 @@ type FormulaAndFunctionApmDependencyStatsQueryDefinition struct {
 	// Determines whether stats for upstream or downstream dependencies should be queried.
 	IsUpstream *bool `json:"is_upstream,omitempty"`
 	// Name of query to use in formulas.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Name of operation on service.
 	OperationName string `json:"operation_name"`
 	// The name of the second primary tag used within APM; required when `primary_tag_value` is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadog.
@@ -41,10 +41,11 @@ type FormulaAndFunctionApmDependencyStatsQueryDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFormulaAndFunctionApmDependencyStatsQueryDefinition(dataSource FormulaAndFunctionApmDependencyStatsDataSource, env string, operationName string, resourceName string, service string, stat FormulaAndFunctionApmDependencyStatName) *FormulaAndFunctionApmDependencyStatsQueryDefinition {
+func NewFormulaAndFunctionApmDependencyStatsQueryDefinition(dataSource FormulaAndFunctionApmDependencyStatsDataSource, env string, name string, operationName string, resourceName string, service string, stat FormulaAndFunctionApmDependencyStatName) *FormulaAndFunctionApmDependencyStatsQueryDefinition {
 	this := FormulaAndFunctionApmDependencyStatsQueryDefinition{}
 	this.DataSource = dataSource
 	this.Env = env
+	this.Name = name
 	this.OperationName = operationName
 	this.ResourceName = resourceName
 	this.Service = service
@@ -140,36 +141,28 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetIsUpstream(v bo
 	o.IsUpstream = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetOperationName returns the OperationName field value
@@ -346,7 +339,7 @@ func (o FormulaAndFunctionApmDependencyStatsQueryDefinition) MarshalJSON() ([]by
 	if o.IsUpstream != nil {
 		toSerialize["is_upstream"] = o.IsUpstream
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
 	if true {
@@ -375,6 +368,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(byte
 	required := struct {
 		DataSource    *FormulaAndFunctionApmDependencyStatsDataSource `json:"data_source"`
 		Env           *string                                         `json:"env"`
+		Name          *string                                         `json:"name"`
 		OperationName *string                                         `json:"operation_name"`
 		ResourceName  *string                                         `json:"resource_name"`
 		Service       *string                                         `json:"service"`
@@ -384,7 +378,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(byte
 		DataSource      FormulaAndFunctionApmDependencyStatsDataSource `json:"data_source"`
 		Env             string                                         `json:"env"`
 		IsUpstream      *bool                                          `json:"is_upstream,omitempty"`
-		Name            *string                                        `json:"name,omitempty"`
+		Name            string                                         `json:"name"`
 		OperationName   string                                         `json:"operation_name"`
 		PrimaryTagName  *string                                        `json:"primary_tag_name,omitempty"`
 		PrimaryTagValue *string                                        `json:"primary_tag_value,omitempty"`
@@ -401,6 +395,9 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(byte
 	}
 	if required.Env == nil {
 		return fmt.Errorf("Required field env missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
 	}
 	if required.OperationName == nil {
 		return fmt.Errorf("Required field operation_name missing")
