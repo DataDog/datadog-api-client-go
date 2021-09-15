@@ -15,6 +15,7 @@ import (
 // FormulaAndFunctionQueryDefinition - A formula and function query.
 type FormulaAndFunctionQueryDefinition struct {
 	FormulaAndFunctionApmDependencyStatsQueryDefinition *FormulaAndFunctionApmDependencyStatsQueryDefinition
+	FormulaAndFunctionApmResourceStatsQueryDefinition   *FormulaAndFunctionApmResourceStatsQueryDefinition
 	FormulaAndFunctionEventQueryDefinition              *FormulaAndFunctionEventQueryDefinition
 	FormulaAndFunctionMetricQueryDefinition             *FormulaAndFunctionMetricQueryDefinition
 	FormulaAndFunctionProcessQueryDefinition            *FormulaAndFunctionProcessQueryDefinition
@@ -26,6 +27,11 @@ type FormulaAndFunctionQueryDefinition struct {
 // FormulaAndFunctionApmDependencyStatsQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionApmDependencyStatsQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
 func FormulaAndFunctionApmDependencyStatsQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *FormulaAndFunctionApmDependencyStatsQueryDefinition) FormulaAndFunctionQueryDefinition {
 	return FormulaAndFunctionQueryDefinition{FormulaAndFunctionApmDependencyStatsQueryDefinition: v}
+}
+
+// FormulaAndFunctionApmResourceStatsQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionApmResourceStatsQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
+func FormulaAndFunctionApmResourceStatsQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *FormulaAndFunctionApmResourceStatsQueryDefinition) FormulaAndFunctionQueryDefinition {
+	return FormulaAndFunctionQueryDefinition{FormulaAndFunctionApmResourceStatsQueryDefinition: v}
 }
 
 // FormulaAndFunctionEventQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionEventQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
@@ -115,9 +121,27 @@ func (dst *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 		dst.FormulaAndFunctionApmDependencyStatsQueryDefinition = nil
 	}
 
+	// try to unmarshal data into FormulaAndFunctionApmResourceStatsQueryDefinition
+	err = json.Unmarshal(data, &dst.FormulaAndFunctionApmResourceStatsQueryDefinition)
+	if err == nil {
+		if dst.FormulaAndFunctionApmResourceStatsQueryDefinition != nil && dst.FormulaAndFunctionApmResourceStatsQueryDefinition.UnparsedObject == nil {
+			jsonFormulaAndFunctionApmResourceStatsQueryDefinition, _ := json.Marshal(dst.FormulaAndFunctionApmResourceStatsQueryDefinition)
+			if string(jsonFormulaAndFunctionApmResourceStatsQueryDefinition) == "{}" { // empty struct
+				dst.FormulaAndFunctionApmResourceStatsQueryDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.FormulaAndFunctionApmResourceStatsQueryDefinition = nil
+		}
+	} else {
+		dst.FormulaAndFunctionApmResourceStatsQueryDefinition = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.FormulaAndFunctionApmDependencyStatsQueryDefinition = nil
+		dst.FormulaAndFunctionApmResourceStatsQueryDefinition = nil
 		dst.FormulaAndFunctionEventQueryDefinition = nil
 		dst.FormulaAndFunctionMetricQueryDefinition = nil
 		dst.FormulaAndFunctionProcessQueryDefinition = nil
@@ -131,6 +155,10 @@ func (dst *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 func (src FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
 	if src.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil {
 		return json.Marshal(&src.FormulaAndFunctionApmDependencyStatsQueryDefinition)
+	}
+
+	if src.FormulaAndFunctionApmResourceStatsQueryDefinition != nil {
+		return json.Marshal(&src.FormulaAndFunctionApmResourceStatsQueryDefinition)
 	}
 
 	if src.FormulaAndFunctionEventQueryDefinition != nil {
@@ -155,6 +183,10 @@ func (src FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
 func (obj *FormulaAndFunctionQueryDefinition) GetActualInstance() interface{} {
 	if obj.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil {
 		return obj.FormulaAndFunctionApmDependencyStatsQueryDefinition
+	}
+
+	if obj.FormulaAndFunctionApmResourceStatsQueryDefinition != nil {
+		return obj.FormulaAndFunctionApmResourceStatsQueryDefinition
 	}
 
 	if obj.FormulaAndFunctionEventQueryDefinition != nil {
