@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 1.4.0 / 2021-09-15
+
+* [Added] Added `available_values` property to template variables schema. See [#1089](https://github.com/DataDog/datadog-api-client-go/pull/1089).
+* [Added] Add `follow_redirects` options to test request in Synthetics. See [#1096](https://github.com/DataDog/datadog-api-client-go/pull/1096).
+* [Added] ApmDependencyStatsQuery for formulas and functions dashboard widgets. See [#1103](https://github.com/DataDog/datadog-api-client-go/pull/1103).
+* [Added] Add formula and function APM resource stats query definition for dashboards. See [#1104](https://github.com/DataDog/datadog-api-client-go/pull/1104).
+* [Fixed] Fix SLO history error response type for overall errors. See [#1095](https://github.com/DataDog/datadog-api-client-go/pull/1095).
+* [Fixed] Mark SLO Correction Type as required. See [#1093](https://github.com/DataDog/datadog-api-client-go/pull/1093).
+* [Fixed] Make the `name` property required for APM Dependency Stat Query. See [#1110](https://github.com/DataDog/datadog-api-client-go/pull/1110).
+* [Changed] Fix SLO history schema for groups and monitors fields. See [#1099](https://github.com/DataDog/datadog-api-client-go/pull/1099).
+* [Changed] Remove metadata from required list for metric SLO history endpoint. See [#1102](https://github.com/DataDog/datadog-api-client-go/pull/1102).
+
 ## 1.3.0 / 2021-08-26
 
 * [Added] Add config variables to Synthetics browser test config. See [#1086](https://github.com/DataDog/datadog-api-client-go/pull/1086).
