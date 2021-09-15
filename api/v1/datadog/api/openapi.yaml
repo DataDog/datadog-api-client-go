@@ -13103,6 +13103,7 @@ components:
       required:
       - data_source
       - env
+      - name
       - operation_name
       - resource_name
       - service

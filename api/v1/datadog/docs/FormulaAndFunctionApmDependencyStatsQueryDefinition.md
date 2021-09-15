@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **DataSource** | [**FormulaAndFunctionApmDependencyStatsDataSource**](FormulaAndFunctionApmDependencyStatsDataSource.md) |  | 
 **Env** | **string** | APM environment. | 
 **IsUpstream** | Pointer to **bool** | Determines whether stats for upstream or downstream dependencies should be queried. | [optional] 
-**Name** | Pointer to **string** | Name of query to use in formulas. | [optional] 
+**Name** | **string** | Name of query to use in formulas. | 
 **OperationName** | **string** | Name of operation on service. | 
 **PrimaryTagName** | Pointer to **string** | The name of the second primary tag used within APM; required when &#x60;primary_tag_value&#x60; is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadog. | [optional] 
 **PrimaryTagValue** | Pointer to **string** | Filter APM data by the second primary tag. &#x60;primary_tag_name&#x60; must also be specified. | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewFormulaAndFunctionApmDependencyStatsQueryDefinition
 
-`func NewFormulaAndFunctionApmDependencyStatsQueryDefinition(dataSource FormulaAndFunctionApmDependencyStatsDataSource, env string, operationName string, resourceName string, service string, stat FormulaAndFunctionApmDependencyStatName) *FormulaAndFunctionApmDependencyStatsQueryDefinition`
+`func NewFormulaAndFunctionApmDependencyStatsQueryDefinition(dataSource FormulaAndFunctionApmDependencyStatsDataSource, env string, name string, operationName string, resourceName string, service string, stat FormulaAndFunctionApmDependencyStatName) *FormulaAndFunctionApmDependencyStatsQueryDefinition`
 
 NewFormulaAndFunctionApmDependencyStatsQueryDefinition instantiates a new FormulaAndFunctionApmDependencyStatsQueryDefinition object.
 This constructor will assign default values to properties that have it defined,
@@ -118,11 +118,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetOperationName
 
