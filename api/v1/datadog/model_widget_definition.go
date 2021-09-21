@@ -22,6 +22,7 @@ type WidgetDefinition struct {
 	EventStreamWidgetDefinition    *EventStreamWidgetDefinition
 	EventTimelineWidgetDefinition  *EventTimelineWidgetDefinition
 	FreeTextWidgetDefinition       *FreeTextWidgetDefinition
+	FunnelWidgetDefinition         *FunnelWidgetDefinition
 	GeomapWidgetDefinition         *GeomapWidgetDefinition
 	GroupWidgetDefinition          *GroupWidgetDefinition
 	HeatMapWidgetDefinition        *HeatMapWidgetDefinition
@@ -84,6 +85,11 @@ func EventTimelineWidgetDefinitionAsWidgetDefinition(v *EventTimelineWidgetDefin
 // FreeTextWidgetDefinitionAsWidgetDefinition is a convenience function that returns FreeTextWidgetDefinition wrapped in WidgetDefinition
 func FreeTextWidgetDefinitionAsWidgetDefinition(v *FreeTextWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{FreeTextWidgetDefinition: v}
+}
+
+// FunnelWidgetDefinitionAsWidgetDefinition is a convenience function that returns FunnelWidgetDefinition wrapped in WidgetDefinition
+func FunnelWidgetDefinitionAsWidgetDefinition(v *FunnelWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{FunnelWidgetDefinition: v}
 }
 
 // GeomapWidgetDefinitionAsWidgetDefinition is a convenience function that returns GeomapWidgetDefinition wrapped in WidgetDefinition
@@ -644,6 +650,23 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.ListStreamWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into FunnelWidgetDefinition
+	err = json.Unmarshal(data, &dst.FunnelWidgetDefinition)
+	if err == nil {
+		if dst.FunnelWidgetDefinition != nil && dst.FunnelWidgetDefinition.UnparsedObject == nil {
+			jsonFunnelWidgetDefinition, _ := json.Marshal(dst.FunnelWidgetDefinition)
+			if string(jsonFunnelWidgetDefinition) == "{}" { // empty struct
+				dst.FunnelWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.FunnelWidgetDefinition = nil
+		}
+	} else {
+		dst.FunnelWidgetDefinition = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.AlertGraphWidgetDefinition = nil
@@ -654,6 +677,7 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.EventStreamWidgetDefinition = nil
 		dst.EventTimelineWidgetDefinition = nil
 		dst.FreeTextWidgetDefinition = nil
+		dst.FunnelWidgetDefinition = nil
 		dst.GeomapWidgetDefinition = nil
 		dst.GroupWidgetDefinition = nil
 		dst.HeatMapWidgetDefinition = nil
@@ -711,6 +735,10 @@ func (src WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if src.FreeTextWidgetDefinition != nil {
 		return json.Marshal(&src.FreeTextWidgetDefinition)
+	}
+
+	if src.FunnelWidgetDefinition != nil {
+		return json.Marshal(&src.FunnelWidgetDefinition)
 	}
 
 	if src.GeomapWidgetDefinition != nil {
@@ -827,6 +855,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.FreeTextWidgetDefinition != nil {
 		return obj.FreeTextWidgetDefinition
+	}
+
+	if obj.FunnelWidgetDefinition != nil {
+		return obj.FunnelWidgetDefinition
 	}
 
 	if obj.GeomapWidgetDefinition != nil {
