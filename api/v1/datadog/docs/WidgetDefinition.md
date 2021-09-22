@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **EventStreamWidgetDefinition** | Pointer to [**EventStreamWidgetDefinition**](EventStreamWidgetDefinition.md) | A pointer to the appropriate element. |
 **EventTimelineWidgetDefinition** | Pointer to [**EventTimelineWidgetDefinition**](EventTimelineWidgetDefinition.md) | A pointer to the appropriate element. |
 **FreeTextWidgetDefinition** | Pointer to [**FreeTextWidgetDefinition**](FreeTextWidgetDefinition.md) | A pointer to the appropriate element. |
+**FunnelWidgetDefinition** | Pointer to [**FunnelWidgetDefinition**](FunnelWidgetDefinition.md) | A pointer to the appropriate element. |
 **GeomapWidgetDefinition** | Pointer to [**GeomapWidgetDefinition**](GeomapWidgetDefinition.md) | A pointer to the appropriate element. |
 **GroupWidgetDefinition** | Pointer to [**GroupWidgetDefinition**](GroupWidgetDefinition.md) | A pointer to the appropriate element. |
 **HeatMapWidgetDefinition** | Pointer to [**HeatMapWidgetDefinition**](HeatMapWidgetDefinition.md) | A pointer to the appropriate element. |
