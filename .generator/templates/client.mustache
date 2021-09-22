@@ -4,6 +4,8 @@ package {{packageName}}
 import (
 	"bytes"
 	"context"
+	"compress/zlib"
+	"compress/gzip"
 	"encoding/json"
 	"encoding/xml"
 	"errors"
@@ -276,8 +278,6 @@ func (c *APIClient) PrepareRequest(
 		// Set the Boundary in the Content-Type
 		headerParams["Content-Type"] = w.FormDataContentType()
 
-		// Set Content-Length
-		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
 		w.Close()
 	}
 
@@ -287,8 +287,6 @@ func (c *APIClient) PrepareRequest(
 		}
 		body = &bytes.Buffer{}
 		body.WriteString(formParams.Encode())
-		// Set Content-Length
-		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
 	}
 
 	// Setup path and query parameters
@@ -320,6 +318,29 @@ func (c *APIClient) PrepareRequest(
 
 	// Generate a new request
 	if body != nil {
+		if headerParams["Content-Encoding"] == "gzip" {
+			var buf bytes.Buffer
+			compressor := gzip.NewWriter(&buf)
+			if _, err = compressor.Write(body.Bytes()); err != nil {
+			    return nil, err
+			}
+			if err = compressor.Close(); err != nil {
+			    return nil, err
+			}
+			body = &buf
+
+		} else if headerParams["Content-Encoding"] == "deflate" {
+			var buf bytes.Buffer
+			compressor := zlib.NewWriter(&buf)
+			if _, err = compressor.Write(body.Bytes()); err != nil {
+			    return nil, err
+			}
+			if err = compressor.Close(); err != nil {
+			    return nil, err
+			}
+			body = &buf
+		}
+		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
 		localVarRequest, err = http.NewRequest(method, url.String(), body)
 	} else {
 		localVarRequest, err = http.NewRequest(method, url.String(), nil)
