@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Interval** | Pointer to **int64** | Number of seconds between data samples. | [optional] [readonly] 
 **Length** | Pointer to **int64** | Number of data samples. | [optional] [readonly] 
 **Metric** | Pointer to **string** | Metric name. | [optional] [readonly] 
-**Pointlist** | Pointer to **[][]float64** | List of points of the time series. | [optional] [readonly] 
+**Pointlist** | Pointer to **[][]*float64** | List of points of the time series. | [optional] [readonly] 
 **QueryIndex** | Pointer to **int64** | The index of the series&#39; query within the request. | [optional] [readonly] 
 **Scope** | Pointer to **string** | Metric scope, comma separated list of tags. | [optional] [readonly] 
 **Start** | Pointer to **int64** | Start of the time window, milliseconds since Unix epoch. | [optional] [readonly] 
@@ -214,20 +214,20 @@ HasMetric returns a boolean if a field has been set.
 
 ### GetPointlist
 
-`func (o *MetricsQueryMetadata) GetPointlist() [][]float64`
+`func (o *MetricsQueryMetadata) GetPointlist() [][]*float64`
 
 GetPointlist returns the Pointlist field if non-nil, zero value otherwise.
 
 ### GetPointlistOk
 
-`func (o *MetricsQueryMetadata) GetPointlistOk() (*[][]float64, bool)`
+`func (o *MetricsQueryMetadata) GetPointlistOk() (*[][]*float64, bool)`
 
 GetPointlistOk returns a tuple with the Pointlist field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPointlist
 
-`func (o *MetricsQueryMetadata) SetPointlist(v [][]float64)`
+`func (o *MetricsQueryMetadata) SetPointlist(v [][]*float64)`
 
 SetPointlist sets Pointlist field to given value.
 
