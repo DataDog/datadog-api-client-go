@@ -148,6 +148,12 @@ docs/FormulaAndFunctionQueryDefinition.md
 docs/FormulaAndFunctionResponseFormat.md
 docs/FreeTextWidgetDefinition.md
 docs/FreeTextWidgetDefinitionType.md
+docs/FunnelQuery.md
+docs/FunnelRequestType.md
+docs/FunnelSource.md
+docs/FunnelWidgetDefinition.md
+docs/FunnelWidgetDefinitionType.md
+docs/FunnelWidgetRequest.md
 docs/GCPAccount.md
 docs/GCPIntegrationApi.md
 docs/GeomapWidgetDefinition.md
@@ -788,6 +794,12 @@ model_formula_and_function_query_definition.go
 model_formula_and_function_response_format.go
 model_free_text_widget_definition.go
 model_free_text_widget_definition_type.go
+model_funnel_query.go
+model_funnel_request_type.go
+model_funnel_source.go
+model_funnel_widget_definition.go
+model_funnel_widget_definition_type.go
+model_funnel_widget_request.go
 model_gcp_account.go
 model_geomap_widget_definition.go
 model_geomap_widget_definition_style.go

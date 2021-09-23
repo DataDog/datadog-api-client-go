@@ -56,7 +56,7 @@ func (dst *{{classname}}) UnmarshalJSON(data []byte) error {
 	{{/useOneOfDiscriminatorLookup}}
 	{{^useOneOfDiscriminatorLookup}}
 	match := 0
-	{{#vendorExtensions.x-oneOf-as-properties}}
+	{{#oneOfProps}}
 	// try to unmarshal data into {{{name}}}
 	err = json.Unmarshal(data, &dst.{{#lambda.titlecase}}{{{name}}}{{/lambda.titlecase}})
 	if err == nil {
@@ -74,7 +74,7 @@ func (dst *{{classname}}) UnmarshalJSON(data []byte) error {
 		dst.{{#lambda.titlecase}}{{{name}}}{{/lambda.titlecase}} = nil
 	}
 
-	{{/vendorExtensions.x-oneOf-as-properties}}
+	{{/oneOfProps}}
 	if match != 1 { // more than 1 match
 		// reset to nil
 		{{#oneOf}}
