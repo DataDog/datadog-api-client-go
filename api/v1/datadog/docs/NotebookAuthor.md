@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **Email** | Pointer to **string** | Email of the user. | [optional] 
 **Handle** | Pointer to **string** | Handle of the user. | [optional] 
 **Icon** | Pointer to **string** | URL of the user&#39;s icon. | [optional] 
-**Name** | Pointer to **string** | Name of the user. | [optional] 
+**Name** | Pointer to **NullableString** | Name of the user. | [optional] 
 **Status** | Pointer to **string** | Status of the user. | [optional] 
-**Title** | Pointer to **string** | Title of the user. | [optional] 
+**Title** | Pointer to **NullableString** | Title of the user. | [optional] 
 **Verified** | Pointer to **bool** | Whether the user is verified. | [optional] 
 
 ## Methods
@@ -183,6 +183,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *NotebookAuthor) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *NotebookAuthor) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetStatus
 
 `func (o *NotebookAuthor) GetStatus() string`
@@ -233,6 +243,16 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
+### SetTitleNil
+
+`func (o *NotebookAuthor) SetTitleNil(b bool)`
+
+ SetTitleNil sets the value for Title to be an explicit nil
+
+### UnsetTitle
+`func (o *NotebookAuthor) UnsetTitle()`
+
+UnsetTitle ensures that no value is present for Title, not even an explicit nil
 ### GetVerified
 
 `func (o *NotebookAuthor) GetVerified() bool`

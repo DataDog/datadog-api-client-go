@@ -1,84 +1,90 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"is_secret":false,"name":"TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628843840","value":"variable-value"}
+      {"is_secret":false,"name":"TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628785713","value":"variable-value"}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '106'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateWebhooksIntegrationCustomVariable
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.3.0; os Darwin; arch
+        x64)
       X-Datadog-Parent-Id:
-      - "8742887867288285431"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '3089514925855613338'
       X-Datadog-Trace-Id:
-      - "8248656593086208019"
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables
+      - '3089514925855613338'
     method: POST
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables
   response:
-    body: '{"is_secret":false,"name":"TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628843840","value":"variable-value"}'
+    body: '{"is_secret":false,"name":"TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628785713","value":"variable-value"}'
+    code: 201
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "106"
+      - '106'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Aug 2021 08:37:20 GMT
+      - Thu, 12 Aug 2021 16:28:34 GMT
       Location:
-      - https://app.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628843840
+      - https://app.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628785713
       Pragma:
       - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
       - SAMEORIGIN
     status: 201 Created
-    code: 201
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteWebhooksIntegrationCustomVariable
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.3.0; os Darwin; arch
+        x64)
       X-Datadog-Parent-Id:
-      - "2610767430359937748"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '3089514925855613338'
       X-Datadog-Trace-Id:
-      - "8248656593086208019"
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628843840
+      - '3089514925855613338'
     method: DELETE
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628785713
   response:
     body: '{}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "2"
+      - '2'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Aug 2021 08:37:20 GMT
+      - Thu, 12 Aug 2021 16:28:34 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -88,45 +94,49 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteWebhooksIntegrationCustomVariable
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.3.0; os Darwin; arch
+        x64)
       X-Datadog-Parent-Id:
-      - "1504318731862962139"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '3089514925855613338'
       X-Datadog-Trace-Id:
-      - "8248656593086208019"
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628843840
+      - '3089514925855613338'
     method: DELETE
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628785713
   response:
     body: '{"errors": ["Custom variable does not exist"]}'
+    code: 400
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "46"
+      - '46'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Aug 2021 08:37:21 GMT
+      - Thu, 12 Aug 2021 16:28:35 GMT
       Pragma:
       - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
-    code: 400
-    duration: ""
+version: 1
