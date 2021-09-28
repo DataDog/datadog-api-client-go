@@ -10,10 +10,10 @@ Name | Type | Description | Notes
 **Handle** | Pointer to **string** | Handle of the user. | [optional] 
 **Icon** | Pointer to **string** | URL of the user&#39;s icon. | [optional] 
 **ModifiedAt** | Pointer to **time.Time** | Time that the user was last modified. | [optional] 
-**Name** | Pointer to **string** | Name of the user. | [optional] 
+**Name** | Pointer to **NullableString** | Name of the user. | [optional] 
 **ServiceAccount** | Pointer to **bool** | Whether the user is a service account. | [optional] 
 **Status** | Pointer to **string** | Status of the user. | [optional] 
-**Title** | Pointer to **string** | Title of the user. | [optional] 
+**Title** | Pointer to **NullableString** | Title of the user. | [optional] 
 **Verified** | Pointer to **bool** | Whether the user is verified. | [optional] 
 
 ## Methods
@@ -210,6 +210,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *UserAttributes) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *UserAttributes) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetServiceAccount
 
 `func (o *UserAttributes) GetServiceAccount() bool`
@@ -285,6 +295,16 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
+### SetTitleNil
+
+`func (o *UserAttributes) SetTitleNil(b bool)`
+
+ SetTitleNil sets the value for Title to be an explicit nil
+
+### UnsetTitle
+`func (o *UserAttributes) UnsetTitle()`
+
+UnsetTitle ensures that no value is present for Title, not even an explicit nil
 ### GetVerified
 
 `func (o *UserAttributes) GetVerified() bool`

@@ -1,45 +1,50 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"name":"Test-Get_a_webhook_integration_returns_OK_response-1628843841","url":"http://example.com/webhook"}
+      {"name":"Test-Get_a_webhook_integration_returns_OK_response-1628785716","url":"http://example.com/webhook"}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '107'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateWebhooksIntegration
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.3.0; os Darwin; arch
+        x64)
       X-Datadog-Parent-Id:
-      - "6032344989715392126"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '3089514925855613338'
       X-Datadog-Trace-Id:
-      - "3100873230694037683"
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks
+      - '3089514925855613338'
     method: POST
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks
   response:
-    body: '{"encode_as":"json","url":"http://example.com/webhook","custom_headers":null,"name":"Test-Get_a_webhook_integration_returns_OK_response-1628843841","payload":"{\"body\":
+    body: '{"encode_as":"json","url":"http://example.com/webhook","custom_headers":null,"name":"Test-Get_a_webhook_integration_returns_OK_response-1628785716","payload":"{\"body\":
       \"$EVENT_MSG\", \"last_updated\": \"$LAST_UPDATED\", \"event_type\": \"$EVENT_TYPE\",
       \"title\": \"$EVENT_TITLE\", \"date\": \"$DATE\", \"org\": {\"id\": \"$ORG_ID\",
       \"name\": \"$ORG_NAME\"}, \"id\": \"$ID\"}"}'
+    code: 201
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "381"
+      - '381'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Aug 2021 08:37:21 GMT
+      - Thu, 12 Aug 2021 16:28:37 GMT
       Location:
-      - https://app.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Get_a_webhook_integration_returns_OK_response-1628843841
+      - https://app.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Get_a_webhook_integration_returns_OK_response-1628785716
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -49,40 +54,45 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 201 Created
-    code: 201
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - GetWebhooksIntegration
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.3.0; os Darwin; arch
+        x64)
       X-Datadog-Parent-Id:
-      - "7636653264069228737"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '3089514925855613338'
       X-Datadog-Trace-Id:
-      - "3100873230694037683"
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Get_a_webhook_integration_returns_OK_response-1628843841
+      - '3089514925855613338'
     method: GET
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Get_a_webhook_integration_returns_OK_response-1628785716
   response:
-    body: '{"encode_as":"json","url":"http://example.com/webhook","custom_headers":null,"name":"Test-Get_a_webhook_integration_returns_OK_response-1628843841","payload":"{\"body\":
+    body: '{"encode_as":"json","url":"http://example.com/webhook","custom_headers":null,"name":"Test-Get_a_webhook_integration_returns_OK_response-1628785716","payload":"{\"body\":
       \"$EVENT_MSG\", \"last_updated\": \"$LAST_UPDATED\", \"event_type\": \"$EVENT_TYPE\",
       \"title\": \"$EVENT_TITLE\", \"date\": \"$DATE\", \"org\": {\"id\": \"$ORG_ID\",
       \"name\": \"$ORG_NAME\"}, \"id\": \"$ID\"}"}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '381'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Aug 2021 08:37:22 GMT
+      - Thu, 12 Aug 2021 16:28:37 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -94,39 +104,42 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteWebhooksIntegration
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.3.0; os Darwin; arch
+        x64)
       X-Datadog-Parent-Id:
-      - "241151497097784332"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '3089514925855613338'
       X-Datadog-Trace-Id:
-      - "3100873230694037683"
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Get_a_webhook_integration_returns_OK_response-1628843841
+      - '3089514925855613338'
     method: DELETE
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Get_a_webhook_integration_returns_OK_response-1628785716
   response:
     body: '{}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "2"
+      - '2'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Aug 2021 08:37:22 GMT
+      - Thu, 12 Aug 2021 16:28:38 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -136,5 +149,4 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1
