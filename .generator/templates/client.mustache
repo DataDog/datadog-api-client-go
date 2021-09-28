@@ -278,6 +278,8 @@ func (c *APIClient) PrepareRequest(
 		// Set the Boundary in the Content-Type
 		headerParams["Content-Type"] = w.FormDataContentType()
 
+		// Set Content-Length
+		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
 		w.Close()
 	}
 
@@ -287,6 +289,8 @@ func (c *APIClient) PrepareRequest(
 		}
 		body = &bytes.Buffer{}
 		body.WriteString(formParams.Encode())
+		// Set Content-Length
+		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
 	}
 
 	// Setup path and query parameters
