@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **CustomHeaders** | Pointer to **string** | If &#x60;null&#x60;, uses no header. If given a JSON payload, these will be headers attached to your webhook. | [optional] 
 **EncodeAs** | Pointer to [**WebhooksIntegrationEncoding**](WebhooksIntegrationEncoding.md) |  | [optional] [default to WEBHOOKSINTEGRATIONENCODING_JSON]
-**Name** | Pointer to **string** | The name of the webhook. It corresponds with &#x60;&lt;WEBHOOK_NAME&gt;&#x60;. Learn more on how to use it in [monitor notifications](https://docs.datadoghq.com/monitors/notifications). | [optional] 
+**Name** | Pointer to **string** | The name of the webhook. It corresponds with &#x60;&lt;WEBHOOK_NAME&gt;&#x60;. Learn more on how to use it in [monitor notifications](https://docs.datadoghq.com/monitors/notify). | [optional] 
 **Payload** | Pointer to **NullableString** | If &#x60;null&#x60;, uses the default payload. If given a JSON payload, the webhook returns the payload specified by the given payload. [Webhooks variable usage](https://docs.datadoghq.com/integrations/webhooks/#usage). | [optional] 
 **Url** | Pointer to **string** | URL of the webhook. | [optional] 
 

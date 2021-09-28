@@ -252,7 +252,7 @@ If you are using the `_change_` or `_pct_change_` time aggregator, instead use `
 timeshift):space_aggr:metric{tags} [by {key}] operator #` with:
 
 - `change_aggr` change, pct_change
-- `time_aggr` avg, sum, max, min [Learn more](https://docs.datadoghq.com/monitors/monitor_types/#define-the-conditions)
+- `time_aggr` avg, sum, max, min [Learn more](https://docs.datadoghq.com/monitors/create/types/#define-the-conditions)
 - `time_window` last\_#m (between 1 and 2880 depending on the monitor type), last\_#h (between 1 and 48 depending on the monitor type), or last_#d (1 or 2)
 - `timeshift` #m_ago (5, 10, 15, or 30), #h_ago (1, 2, or 4), or 1d_ago
 
