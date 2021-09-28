@@ -18,13 +18,15 @@ type IncidentFieldAttributesSingleValueType string
 
 // List of IncidentFieldAttributesSingleValueType
 const (
-	INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN IncidentFieldAttributesSingleValueType = "dropdown"
-	INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_TEXTBOX  IncidentFieldAttributesSingleValueType = "textbox"
+	INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN     IncidentFieldAttributesSingleValueType = "dropdown"
+	INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_TEXTBOX      IncidentFieldAttributesSingleValueType = "textbox"
+	INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_AUTOCOMPLETE IncidentFieldAttributesSingleValueType = "autocomplete"
 )
 
 var allowedIncidentFieldAttributesSingleValueTypeEnumValues = []IncidentFieldAttributesSingleValueType{
 	"dropdown",
 	"textbox",
+	"autocomplete",
 }
 
 func (w *IncidentFieldAttributesSingleValueType) GetAllowedValues() []IncidentFieldAttributesSingleValueType {
