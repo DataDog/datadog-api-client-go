@@ -23142,7 +23142,27 @@ components:
       description: Object containing an array of Synthetic tests configuration.
       example:
         tests:
-        - monitor_id: 5
+        - creator:
+            name: name
+            handle: handle
+            email: email
+          monitor_id: 5
+          message: message
+          steps:
+          - allowFailure: true
+            name: name
+            params: '{}'
+            type: assertElementContent
+            timeout: 1
+          - allowFailure: true
+            name: name
+            params: '{}'
+            type: assertElementContent
+            timeout: 1
+          public_id: public_id
+          tags:
+          - tags
+          - tags
           name: name
           options:
             allow_insecure: true
@@ -23166,7 +23186,6 @@ components:
           locations:
           - locations
           - locations
-          message: message
           config:
             request:
               headers:
@@ -23219,6 +23238,12 @@ components:
               id: id
               type: text
               example: example
+        - creator:
+            name: name
+            handle: handle
+            email: email
+          monitor_id: 5
+          message: message
           steps:
           - allowFailure: true
             name: name
@@ -23234,7 +23259,6 @@ components:
           tags:
           - tags
           - tags
-        - monitor_id: 5
           name: name
           options:
             allow_insecure: true
@@ -23258,7 +23282,6 @@ components:
           locations:
           - locations
           - locations
-          message: message
           config:
             request:
               headers:
@@ -23311,21 +23334,6 @@ components:
               id: id
               type: text
               example: example
-          steps:
-          - allowFailure: true
-            name: name
-            params: '{}'
-            type: assertElementContent
-            timeout: 1
-          - allowFailure: true
-            name: name
-            params: '{}'
-            type: assertElementContent
-            timeout: 1
-          public_id: public_id
-          tags:
-          - tags
-          - tags
       properties:
         tests:
           description: Array of Synthetic tests configuration.
@@ -23817,7 +23825,27 @@ components:
     SyntheticsTestDetails:
       description: Object containing details about your Synthetic test.
       example:
+        creator:
+          name: name
+          handle: handle
+          email: email
         monitor_id: 5
+        message: message
+        steps:
+        - allowFailure: true
+          name: name
+          params: '{}'
+          type: assertElementContent
+          timeout: 1
+        - allowFailure: true
+          name: name
+          params: '{}'
+          type: assertElementContent
+          timeout: 1
+        public_id: public_id
+        tags:
+        - tags
+        - tags
         name: name
         options:
           allow_insecure: true
@@ -23841,7 +23869,6 @@ components:
         locations:
         - locations
         - locations
-        message: message
         config:
           request:
             headers:
@@ -23894,24 +23921,11 @@ components:
             id: id
             type: text
             example: example
-        steps:
-        - allowFailure: true
-          name: name
-          params: '{}'
-          type: assertElementContent
-          timeout: 1
-        - allowFailure: true
-          name: name
-          params: '{}'
-          type: assertElementContent
-          timeout: 1
-        public_id: public_id
-        tags:
-        - tags
-        - tags
       properties:
         config:
           $ref: '#/components/schemas/SyntheticsTestConfig'
+        creator:
+          $ref: '#/components/schemas/Creator'
         locations:
           description: Array of locations used to run the test.
           items:
@@ -24972,6 +24986,7 @@ components:
           cspm_host_percentage: 1.0246457001441578
           cspm_container_percentage: 7.386281948385884
           browser_percentage: 9.301444243932576
+          profiled_container_percentage: 3.0937452626664474
           profiled_hosts_percentage: 0.8851374739011653
           dbm_host_usage: 6.683562403749608
           infra_host_percentage: 6.438423552598547
@@ -24984,15 +24999,14 @@ components:
           cws_host_usage: 9.965781217890562
           api_usage: 5.637376656633329
           custom_timeseries_usage: 7.457744773683766
-          profiled_containers_percentage: 3.0937452626664474
           cws_container_usage: 4.965218492984954
+          profiled_container_usage: 7.143538047012306
           snmp_usage: 0.10263654006109402
           browser_usage: 3.616076749251911
           infra_host_usage: 3.5571952270680973
           lambda_functions_usage: 1.284659006116532
           custom_timeseries_percentage: 6.84685269835264
           cws_host_percentage: 5.025004791520295
-          profiled_containers_usage: 7.143538047012306
           lambda_usage: 5.944895607614016
           npm_host_percentage: 6.704019297950036
           snmp_percentage: 6.519180951018382
@@ -25112,6 +25126,7 @@ components:
             cspm_host_percentage: 1.0246457001441578
             cspm_container_percentage: 7.386281948385884
             browser_percentage: 9.301444243932576
+            profiled_container_percentage: 3.0937452626664474
             profiled_hosts_percentage: 0.8851374739011653
             dbm_host_usage: 6.683562403749608
             infra_host_percentage: 6.438423552598547
@@ -25124,15 +25139,14 @@ components:
             cws_host_usage: 9.965781217890562
             api_usage: 5.637376656633329
             custom_timeseries_usage: 7.457744773683766
-            profiled_containers_percentage: 3.0937452626664474
             cws_container_usage: 4.965218492984954
+            profiled_container_usage: 7.143538047012306
             snmp_usage: 0.10263654006109402
             browser_usage: 3.616076749251911
             infra_host_usage: 3.5571952270680973
             lambda_functions_usage: 1.284659006116532
             custom_timeseries_percentage: 6.84685269835264
             cws_host_percentage: 5.025004791520295
-            profiled_containers_usage: 7.143538047012306
             lambda_usage: 5.944895607614016
             npm_host_percentage: 6.704019297950036
             snmp_percentage: 6.519180951018382
@@ -25160,6 +25174,7 @@ components:
             cspm_host_percentage: 1.0246457001441578
             cspm_container_percentage: 7.386281948385884
             browser_percentage: 9.301444243932576
+            profiled_container_percentage: 3.0937452626664474
             profiled_hosts_percentage: 0.8851374739011653
             dbm_host_usage: 6.683562403749608
             infra_host_percentage: 6.438423552598547
@@ -25172,15 +25187,14 @@ components:
             cws_host_usage: 9.965781217890562
             api_usage: 5.637376656633329
             custom_timeseries_usage: 7.457744773683766
-            profiled_containers_percentage: 3.0937452626664474
             cws_container_usage: 4.965218492984954
+            profiled_container_usage: 7.143538047012306
             snmp_usage: 0.10263654006109402
             browser_usage: 3.616076749251911
             infra_host_usage: 3.5571952270680973
             lambda_functions_usage: 1.284659006116532
             custom_timeseries_percentage: 6.84685269835264
             cws_host_percentage: 5.025004791520295
-            profiled_containers_usage: 7.143538047012306
             lambda_usage: 5.944895607614016
             npm_host_percentage: 6.704019297950036
             snmp_percentage: 6.519180951018382
@@ -25349,6 +25363,7 @@ components:
         cspm_host_percentage: 1.0246457001441578
         cspm_container_percentage: 7.386281948385884
         browser_percentage: 9.301444243932576
+        profiled_container_percentage: 3.0937452626664474
         profiled_hosts_percentage: 0.8851374739011653
         dbm_host_usage: 6.683562403749608
         infra_host_percentage: 6.438423552598547
@@ -25361,15 +25376,14 @@ components:
         cws_host_usage: 9.965781217890562
         api_usage: 5.637376656633329
         custom_timeseries_usage: 7.457744773683766
-        profiled_containers_percentage: 3.0937452626664474
         cws_container_usage: 4.965218492984954
+        profiled_container_usage: 7.143538047012306
         snmp_usage: 0.10263654006109402
         browser_usage: 3.616076749251911
         infra_host_usage: 3.5571952270680973
         lambda_functions_usage: 1.284659006116532
         custom_timeseries_percentage: 6.84685269835264
         cws_host_percentage: 5.025004791520295
-        profiled_containers_usage: 7.143538047012306
         lambda_usage: 5.944895607614016
         npm_host_percentage: 6.704019297950036
         snmp_percentage: 6.519180951018382
@@ -25522,11 +25536,11 @@ components:
           description: The network host usage by tag(s).
           format: double
           type: number
-        profiled_containers_percentage:
+        profiled_container_percentage:
           description: The percentage of profiled containers usage by tag(s).
           format: double
           type: number
-        profiled_containers_usage:
+        profiled_container_usage:
           description: The profiled container usage by tag(s).
           format: double
           type: number

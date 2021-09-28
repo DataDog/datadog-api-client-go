@@ -14,7 +14,8 @@ import (
 
 // SyntheticsTestDetails Object containing details about your Synthetic test.
 type SyntheticsTestDetails struct {
-	Config *SyntheticsTestConfig `json:"config,omitempty"`
+	Config  *SyntheticsTestConfig `json:"config,omitempty"`
+	Creator *Creator              `json:"creator,omitempty"`
 	// Array of locations used to run the test.
 	Locations *[]string `json:"locations,omitempty"`
 	// Notification message associated with the test.
@@ -84,6 +85,38 @@ func (o *SyntheticsTestDetails) HasConfig() bool {
 // SetConfig gets a reference to the given SyntheticsTestConfig and assigns it to the Config field.
 func (o *SyntheticsTestDetails) SetConfig(v SyntheticsTestConfig) {
 	o.Config = &v
+}
+
+// GetCreator returns the Creator field value if set, zero value otherwise.
+func (o *SyntheticsTestDetails) GetCreator() Creator {
+	if o == nil || o.Creator == nil {
+		var ret Creator
+		return ret
+	}
+	return *o.Creator
+}
+
+// GetCreatorOk returns a tuple with the Creator field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestDetails) GetCreatorOk() (*Creator, bool) {
+	if o == nil || o.Creator == nil {
+		return nil, false
+	}
+	return o.Creator, true
+}
+
+// HasCreator returns a boolean if a field has been set.
+func (o *SyntheticsTestDetails) HasCreator() bool {
+	if o != nil && o.Creator != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreator gets a reference to the given Creator and assigns it to the Creator field.
+func (o *SyntheticsTestDetails) SetCreator(v Creator) {
+	o.Creator = &v
 }
 
 // GetLocations returns the Locations field value if set, zero value otherwise.
@@ -446,6 +479,9 @@ func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
 	if o.Config != nil {
 		toSerialize["config"] = o.Config
 	}
+	if o.Creator != nil {
+		toSerialize["creator"] = o.Creator
+	}
 	if o.Locations != nil {
 		toSerialize["locations"] = o.Locations
 	}
@@ -486,6 +522,7 @@ func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Config    *SyntheticsTestConfig         `json:"config,omitempty"`
+		Creator   *Creator                      `json:"creator,omitempty"`
 		Locations *[]string                     `json:"locations,omitempty"`
 		Message   *string                       `json:"message,omitempty"`
 		MonitorId *int64                        `json:"monitor_id,omitempty"`
@@ -532,6 +569,7 @@ func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Config = all.Config
+	o.Creator = all.Creator
 	o.Locations = all.Locations
 	o.Message = all.Message
 	o.MonitorId = all.MonitorId

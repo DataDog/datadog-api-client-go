@@ -36,8 +36,8 @@ Name | Type | Description | Notes
 **LambdaUsage** | Pointer to **float64** | The Lambda function usage by tag(s).  **Note** this field is deprecated. Use lambda_functions_usage instead. | [optional] 
 **NpmHostPercentage** | Pointer to **float64** | The percentage of network host usage by tag(s). | [optional] 
 **NpmHostUsage** | Pointer to **float64** | The network host usage by tag(s). | [optional] 
-**ProfiledContainersPercentage** | Pointer to **float64** | The percentage of profiled containers usage by tag(s). | [optional] 
-**ProfiledContainersUsage** | Pointer to **float64** | The profiled container usage by tag(s). | [optional] 
+**ProfiledContainerPercentage** | Pointer to **float64** | The percentage of profiled containers usage by tag(s). | [optional] 
+**ProfiledContainerUsage** | Pointer to **float64** | The profiled container usage by tag(s). | [optional] 
 **ProfiledHostsPercentage** | Pointer to **float64** | The percentage of profiled hosts usage by tag(s). | [optional] 
 **ProfiledHostsUsage** | Pointer to **float64** | The profiled host usage by tag(s). | [optional] 
 **SnmpPercentage** | Pointer to **float64** | The percentage of network device usage by tag(s). | [optional] 
@@ -862,55 +862,55 @@ SetNpmHostUsage sets NpmHostUsage field to given value.
 
 HasNpmHostUsage returns a boolean if a field has been set.
 
-### GetProfiledContainersPercentage
+### GetProfiledContainerPercentage
 
-`func (o *UsageAttributionValues) GetProfiledContainersPercentage() float64`
+`func (o *UsageAttributionValues) GetProfiledContainerPercentage() float64`
 
-GetProfiledContainersPercentage returns the ProfiledContainersPercentage field if non-nil, zero value otherwise.
+GetProfiledContainerPercentage returns the ProfiledContainerPercentage field if non-nil, zero value otherwise.
 
-### GetProfiledContainersPercentageOk
+### GetProfiledContainerPercentageOk
 
-`func (o *UsageAttributionValues) GetProfiledContainersPercentageOk() (*float64, bool)`
+`func (o *UsageAttributionValues) GetProfiledContainerPercentageOk() (*float64, bool)`
 
-GetProfiledContainersPercentageOk returns a tuple with the ProfiledContainersPercentage field if it's non-nil, zero value otherwise
+GetProfiledContainerPercentageOk returns a tuple with the ProfiledContainerPercentage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProfiledContainersPercentage
+### SetProfiledContainerPercentage
 
-`func (o *UsageAttributionValues) SetProfiledContainersPercentage(v float64)`
+`func (o *UsageAttributionValues) SetProfiledContainerPercentage(v float64)`
 
-SetProfiledContainersPercentage sets ProfiledContainersPercentage field to given value.
+SetProfiledContainerPercentage sets ProfiledContainerPercentage field to given value.
 
-### HasProfiledContainersPercentage
+### HasProfiledContainerPercentage
 
-`func (o *UsageAttributionValues) HasProfiledContainersPercentage() bool`
+`func (o *UsageAttributionValues) HasProfiledContainerPercentage() bool`
 
-HasProfiledContainersPercentage returns a boolean if a field has been set.
+HasProfiledContainerPercentage returns a boolean if a field has been set.
 
-### GetProfiledContainersUsage
+### GetProfiledContainerUsage
 
-`func (o *UsageAttributionValues) GetProfiledContainersUsage() float64`
+`func (o *UsageAttributionValues) GetProfiledContainerUsage() float64`
 
-GetProfiledContainersUsage returns the ProfiledContainersUsage field if non-nil, zero value otherwise.
+GetProfiledContainerUsage returns the ProfiledContainerUsage field if non-nil, zero value otherwise.
 
-### GetProfiledContainersUsageOk
+### GetProfiledContainerUsageOk
 
-`func (o *UsageAttributionValues) GetProfiledContainersUsageOk() (*float64, bool)`
+`func (o *UsageAttributionValues) GetProfiledContainerUsageOk() (*float64, bool)`
 
-GetProfiledContainersUsageOk returns a tuple with the ProfiledContainersUsage field if it's non-nil, zero value otherwise
+GetProfiledContainerUsageOk returns a tuple with the ProfiledContainerUsage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProfiledContainersUsage
+### SetProfiledContainerUsage
 
-`func (o *UsageAttributionValues) SetProfiledContainersUsage(v float64)`
+`func (o *UsageAttributionValues) SetProfiledContainerUsage(v float64)`
 
-SetProfiledContainersUsage sets ProfiledContainersUsage field to given value.
+SetProfiledContainerUsage sets ProfiledContainerUsage field to given value.
 
-### HasProfiledContainersUsage
+### HasProfiledContainerUsage
 
-`func (o *UsageAttributionValues) HasProfiledContainersUsage() bool`
+`func (o *UsageAttributionValues) HasProfiledContainerUsage() bool`
 
-HasProfiledContainersUsage returns a boolean if a field has been set.
+HasProfiledContainerUsage returns a boolean if a field has been set.
 
 ### GetProfiledHostsPercentage
 
