@@ -79,7 +79,7 @@ tags:
     find, and share all of your dashboards with your team and organization.
   name: Dashboards
 - description: |-
-    [Downtiming](https://docs.datadoghq.com/monitors/downtimes) gives
+    [Downtiming](https://docs.datadoghq.com/monitors/notify/downtimes) gives
     you greater control over monitor notifications by allowing you to globally exclude
     scopes from alerting. Downtime settings, which can be scheduled with start and
     end times, prevent all alerting related to specified Datadog tags.
@@ -165,10 +165,10 @@ tags:
     [Monitors](https://docs.datadoghq.com/monitors) allow you to watch a metric or check that you care about and
     notifies your team when a defined threshold has exceeded.
 
-    For more information, see [Creating Monitors](https://docs.datadoghq.com/monitors/monitor_types/).
+    For more information, see [Creating Monitors](https://docs.datadoghq.com/monitors/create/types/).
   externalDocs:
     description: Find out more at
-    url: https://docs.datadoghq.com/monitors/monitor_types/
+    url: https://docs.datadoghq.com/monitors/create/types/
   name: Monitors
 - description: |-
     Interact with your notebooks through the API to make it easier to organize, find, and
@@ -203,10 +203,10 @@ tags:
     - [Read more about Custom Check monitors.][4]
     - [Read more about Service Check and status codes.][5]
 
-    [1]: https://docs.datadoghq.com/monitors/monitor_types/host/?tab=checkalert
-    [2]: https://docs.datadoghq.com/monitors/monitor_types/process_check/?tab=checkalert
-    [3]: https://docs.datadoghq.com/monitors/monitor_types/network/?tab=checkalert
-    [4]: https://docs.datadoghq.com/monitors/monitor_types/custom_check/?tab=checkalert
+    [1]: https://docs.datadoghq.com/monitors/create/types/host/?tab=checkalert
+    [2]: https://docs.datadoghq.com/monitors/create/types/process_check/?tab=checkalert
+    [3]: https://docs.datadoghq.com/monitors/create/types/network/?tab=checkalert
+    [4]: https://docs.datadoghq.com/monitors/create/types/custom_check/?tab=checkalert
     [5]: https://docs.datadoghq.com/developers/service_checks/
   name: Service Checks
 - description: |-
@@ -4900,7 +4900,7 @@ paths:
         timeshift):space_aggr:metric{tags} [by {key}] operator #` with:
 
         - `change_aggr` change, pct_change
-        - `time_aggr` avg, sum, max, min [Learn more](https://docs.datadoghq.com/monitors/monitor_types/#define-the-conditions)
+        - `time_aggr` avg, sum, max, min [Learn more](https://docs.datadoghq.com/monitors/create/types/#define-the-conditions)
         - `time_window` last\_#m (between 1 and 2880 depending on the monitor type), last\_#h (between 1 and 48 depending on the monitor type), or last_#d (1 or 2)
         - `timeshift` #m_ago (5, 10, 15, or 30), #h_ago (1, 2, or 4), or 1d_ago
 
@@ -5123,7 +5123,7 @@ paths:
           The query can contain any number of space-separated monitor attributes, for instance `query="type:metric status:alert"`.
 
           [1]: https://app.datadoghq.com/monitors/manage
-          [2]: /monitors/manage_monitor/#find-the-monitors
+          [2]: /monitors/manage/#find-the-monitors
         explode: true
         in: query
         name: query
@@ -5207,7 +5207,7 @@ paths:
           The query can contain any number of space-separated monitor attributes, for instance `query="type:metric status:alert"`.
 
           [1]: https://app.datadoghq.com/monitors/manage
-          [2]: /monitors/manage_monitor/#find-the-monitors
+          [2]: /monitors/manage/#find-the-monitors
         explode: true
         in: query
         name: query
@@ -12536,7 +12536,7 @@ components:
             Most common `rrule` options from the [iCalendar Spec](https://tools.ietf.org/html/rfc5545) are supported.
 
             **Note**: Attributes specifying the duration in `RRULE` are not supported (for example, `DTSTART`, `DTEND`, `DURATION`).
-            More examples available in this [downtime guide](https://docs.datadoghq.com/monitors/guide/supress-alert-with-downtimes/?tab=api)
+            More examples available in this [downtime guide](https://docs.datadoghq.com/monitors/guide/suppress-alert-with-downtimes/?tab=api)
           example: FREQ=MONTHLY;BYSETPOS=3;BYDAY=WE;INTERVAL=1
           type: string
         type:
@@ -17000,7 +17000,7 @@ components:
         escalation_message:
           default: none
           description: |-
-            We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#renotify),
+            We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notify/?tab=is_alert#renotify),
             block in the original message instead.
             A message to include with a re-notification. Supports the `@username` notification we allow elsewhere.
             Not applicable if `renotify_interval` is `None`.
@@ -29474,7 +29474,7 @@ components:
           description: |-
             The name of the webhook. It corresponds with `<WEBHOOK_NAME>`.
             Learn more on how to use it in
-            [monitor notifications](https://docs.datadoghq.com/monitors/notifications).
+            [monitor notifications](https://docs.datadoghq.com/monitors/notify).
           example: WEBHOOK_NAME
           type: string
         payload:
@@ -29603,7 +29603,7 @@ components:
           description: |-
             The name of the webhook. It corresponds with `<WEBHOOK_NAME>`.
             Learn more on how to use it in
-            [monitor notifications](https://docs.datadoghq.com/monitors/notifications).
+            [monitor notifications](https://docs.datadoghq.com/monitors/notify).
           example: WEBHOOK_NAME
           type: string
         payload:
