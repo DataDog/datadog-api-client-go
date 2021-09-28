@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Config** | Pointer to [**SyntheticsTestConfig**](SyntheticsTestConfig.md) |  | [optional] 
+**Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
 **Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
 **Message** | Pointer to **string** | Notification message associated with the test. | [optional] 
 **MonitorId** | Pointer to **int64** | The associated monitor ID. | [optional] [readonly] 
@@ -60,6 +61,31 @@ SetConfig sets Config field to given value.
 `func (o *SyntheticsTestDetails) HasConfig() bool`
 
 HasConfig returns a boolean if a field has been set.
+
+### GetCreator
+
+`func (o *SyntheticsTestDetails) GetCreator() Creator`
+
+GetCreator returns the Creator field if non-nil, zero value otherwise.
+
+### GetCreatorOk
+
+`func (o *SyntheticsTestDetails) GetCreatorOk() (*Creator, bool)`
+
+GetCreatorOk returns a tuple with the Creator field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreator
+
+`func (o *SyntheticsTestDetails) SetCreator(v Creator)`
+
+SetCreator sets Creator field to given value.
+
+### HasCreator
+
+`func (o *SyntheticsTestDetails) HasCreator() bool`
+
+HasCreator returns a boolean if a field has been set.
 
 ### GetLocations
 
