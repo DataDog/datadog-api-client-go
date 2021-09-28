@@ -35,7 +35,7 @@ type IncidentResponseAttributes struct {
 	// Timestamp when the incident was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
 	// Notification handles that will be notified of the incident during update.
-	NotificationHandles *[]IncidentNotificationHandle `json:"notification_handles,omitempty"`
+	NotificationHandles []IncidentNotificationHandle `json:"notification_handles,omitempty"`
 	// The UUID of the postmortem object attached to the incident.
 	PostmortemId *string `json:"postmortem_id,omitempty"`
 	// The monotonically increasing integer ID for the incident.
@@ -406,22 +406,23 @@ func (o *IncidentResponseAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
-// GetNotificationHandles returns the NotificationHandles field value if set, zero value otherwise.
+// GetNotificationHandles returns the NotificationHandles field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetNotificationHandles() []IncidentNotificationHandle {
-	if o == nil || o.NotificationHandles == nil {
+	if o == nil {
 		var ret []IncidentNotificationHandle
 		return ret
 	}
-	return *o.NotificationHandles
+	return o.NotificationHandles
 }
 
 // GetNotificationHandlesOk returns a tuple with the NotificationHandles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IncidentResponseAttributes) GetNotificationHandlesOk() (*[]IncidentNotificationHandle, bool) {
 	if o == nil || o.NotificationHandles == nil {
 		return nil, false
 	}
-	return o.NotificationHandles, true
+	return &o.NotificationHandles, true
 }
 
 // HasNotificationHandles returns a boolean if a field has been set.
@@ -435,7 +436,7 @@ func (o *IncidentResponseAttributes) HasNotificationHandles() bool {
 
 // SetNotificationHandles gets a reference to the given []IncidentNotificationHandle and assigns it to the NotificationHandles field.
 func (o *IncidentResponseAttributes) SetNotificationHandles(v []IncidentNotificationHandle) {
-	o.NotificationHandles = &v
+	o.NotificationHandles = v
 }
 
 // GetPostmortemId returns the PostmortemId field value if set, zero value otherwise.
@@ -774,7 +775,7 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Detected               NullableTime                        `json:"detected,omitempty"`
 		Fields                 *map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 		Modified               *time.Time                          `json:"modified,omitempty"`
-		NotificationHandles    *[]IncidentNotificationHandle       `json:"notification_handles,omitempty"`
+		NotificationHandles    []IncidentNotificationHandle        `json:"notification_handles,omitempty"`
 		PostmortemId           *string                             `json:"postmortem_id,omitempty"`
 		PublicId               *int64                              `json:"public_id,omitempty"`
 		Resolved               NullableTime                        `json:"resolved,omitempty"`
