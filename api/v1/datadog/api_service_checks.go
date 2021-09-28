@@ -84,7 +84,7 @@ func (a *ServiceChecksApiService) submitServiceCheckExecute(r apiSubmitServiceCh
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

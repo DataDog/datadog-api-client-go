@@ -19,7 +19,7 @@ type Creator struct {
 	// Handle of the creator.
 	Handle *string `json:"handle,omitempty"`
 	// Name of the creator.
-	Name *string `json:"name,omitempty"`
+	Name NullableString `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -105,36 +105,47 @@ func (o *Creator) SetHandle(v string) {
 	o.Handle = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Creator) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Creator) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Creator) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && o.Name.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *Creator) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *Creator) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *Creator) UnsetName() {
+	o.Name.Unset()
 }
 
 func (o Creator) MarshalJSON() ([]byte, error) {
@@ -148,8 +159,8 @@ func (o Creator) MarshalJSON() ([]byte, error) {
 	if o.Handle != nil {
 		toSerialize["handle"] = o.Handle
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -157,9 +168,9 @@ func (o Creator) MarshalJSON() ([]byte, error) {
 func (o *Creator) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Email  *string `json:"email,omitempty"`
-		Handle *string `json:"handle,omitempty"`
-		Name   *string `json:"name,omitempty"`
+		Email  *string        `json:"email,omitempty"`
+		Handle *string        `json:"handle,omitempty"`
+		Name   NullableString `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

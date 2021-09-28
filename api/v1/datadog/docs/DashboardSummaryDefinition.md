@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **AuthorHandle** | Pointer to **string** | Identifier of the dashboard author. | [optional] 
 **CreatedAt** | Pointer to **time.Time** | Creation date of the dashboard. | [optional] 
-**Description** | Pointer to **string** | Description of the dashboard. | [optional] 
+**Description** | Pointer to **NullableString** | Description of the dashboard. | [optional] 
 **Id** | Pointer to **string** | Dashboard identifier. | [optional] 
 **IsReadOnly** | Pointer to **bool** | Whether this dashboard is read-only. If True, only the author and admins can make changes to it. | [optional] 
 **LayoutType** | Pointer to [**DashboardLayoutType**](DashboardLayoutType.md) |  | [optional] 
@@ -108,6 +108,16 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### SetDescriptionNil
+
+`func (o *DashboardSummaryDefinition) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *DashboardSummaryDefinition) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetId
 
 `func (o *DashboardSummaryDefinition) GetId() string`

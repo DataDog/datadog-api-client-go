@@ -28,13 +28,13 @@ type UserAttributes struct {
 	// Time that the user was last modified.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// Name of the user.
-	Name *string `json:"name,omitempty"`
+	Name NullableString `json:"name,omitempty"`
 	// Whether the user is a service account.
 	ServiceAccount *bool `json:"service_account,omitempty"`
 	// Status of the user.
 	Status *string `json:"status,omitempty"`
 	// Title of the user.
-	Title *string `json:"title,omitempty"`
+	Title NullableString `json:"title,omitempty"`
 	// Whether the user is verified.
 	Verified *bool `json:"verified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -250,36 +250,47 @@ func (o *UserAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserAttributes) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserAttributes) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UserAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && o.Name.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *UserAttributes) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *UserAttributes) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *UserAttributes) UnsetName() {
+	o.Name.Unset()
 }
 
 // GetServiceAccount returns the ServiceAccount field value if set, zero value otherwise.
@@ -346,36 +357,47 @@ func (o *UserAttributes) SetStatus(v string) {
 	o.Status = &v
 }
 
-// GetTitle returns the Title field value if set, zero value otherwise.
+// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserAttributes) GetTitle() string {
-	if o == nil || o.Title == nil {
+	if o == nil || o.Title.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Title
+	return *o.Title.Get()
 }
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserAttributes) GetTitleOk() (*string, bool) {
-	if o == nil || o.Title == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Title, true
+	return o.Title.Get(), o.Title.IsSet()
 }
 
 // HasTitle returns a boolean if a field has been set.
 func (o *UserAttributes) HasTitle() bool {
-	if o != nil && o.Title != nil {
+	if o != nil && o.Title.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTitle gets a reference to the given string and assigns it to the Title field.
+// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
 func (o *UserAttributes) SetTitle(v string) {
-	o.Title = &v
+	o.Title.Set(&v)
+}
+
+// SetTitleNil sets the value for Title to be an explicit nil
+func (o *UserAttributes) SetTitleNil() {
+	o.Title.Set(nil)
+}
+
+// UnsetTitle ensures that no value is present for Title, not even an explicit nil
+func (o *UserAttributes) UnsetTitle() {
+	o.Title.Unset()
 }
 
 // GetVerified returns the Verified field value if set, zero value otherwise.
@@ -433,8 +455,8 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 	if o.ModifiedAt != nil {
 		toSerialize["modified_at"] = o.ModifiedAt
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	if o.ServiceAccount != nil {
 		toSerialize["service_account"] = o.ServiceAccount
@@ -442,8 +464,8 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
-	if o.Title != nil {
-		toSerialize["title"] = o.Title
+	if o.Title.IsSet() {
+		toSerialize["title"] = o.Title.Get()
 	}
 	if o.Verified != nil {
 		toSerialize["verified"] = o.Verified
@@ -454,17 +476,17 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 func (o *UserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt      *time.Time `json:"created_at,omitempty"`
-		Disabled       *bool      `json:"disabled,omitempty"`
-		Email          *string    `json:"email,omitempty"`
-		Handle         *string    `json:"handle,omitempty"`
-		Icon           *string    `json:"icon,omitempty"`
-		ModifiedAt     *time.Time `json:"modified_at,omitempty"`
-		Name           *string    `json:"name,omitempty"`
-		ServiceAccount *bool      `json:"service_account,omitempty"`
-		Status         *string    `json:"status,omitempty"`
-		Title          *string    `json:"title,omitempty"`
-		Verified       *bool      `json:"verified,omitempty"`
+		CreatedAt      *time.Time     `json:"created_at,omitempty"`
+		Disabled       *bool          `json:"disabled,omitempty"`
+		Email          *string        `json:"email,omitempty"`
+		Handle         *string        `json:"handle,omitempty"`
+		Icon           *string        `json:"icon,omitempty"`
+		ModifiedAt     *time.Time     `json:"modified_at,omitempty"`
+		Name           NullableString `json:"name,omitempty"`
+		ServiceAccount *bool          `json:"service_account,omitempty"`
+		Status         *string        `json:"status,omitempty"`
+		Title          NullableString `json:"title,omitempty"`
+		Verified       *bool          `json:"verified,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
