@@ -50,8 +50,8 @@ type UsageSummaryDateOrg struct {
 	CwsHostTop99p *int64 `json:"cws_host_top99p,omitempty"`
 	// Shows the 99th percentile of all Database Monitoring hosts over all hours in the current month for all organizations.
 	DbmHostTop99pSum *int64 `json:"dbm_host_top99p_sum,omitempty"`
-	// Shows the sum of all distinct Database Monitoring normalized queries over all hours in the current month for all organizations.
-	DbmQueriesAggSum *int64 `json:"dbm_queries_agg_sum,omitempty"`
+	// Shows the average of all distinct Database Monitoring normalized queries over all hours in the current month for all organizations.
+	DbmQueriesAvgSum *int64 `json:"dbm_queries_avg_sum,omitempty"`
 	// The average task count for Fargate.
 	FargateTasksCountAvg *int64 `json:"fargate_tasks_count_avg,omitempty"`
 	// Shows the high-water mark of all Fargate tasks over all hours in the current date for the given org.
@@ -703,36 +703,36 @@ func (o *UsageSummaryDateOrg) SetDbmHostTop99pSum(v int64) {
 	o.DbmHostTop99pSum = &v
 }
 
-// GetDbmQueriesAggSum returns the DbmQueriesAggSum field value if set, zero value otherwise.
-func (o *UsageSummaryDateOrg) GetDbmQueriesAggSum() int64 {
-	if o == nil || o.DbmQueriesAggSum == nil {
+// GetDbmQueriesAvgSum returns the DbmQueriesAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetDbmQueriesAvgSum() int64 {
+	if o == nil || o.DbmQueriesAvgSum == nil {
 		var ret int64
 		return ret
 	}
-	return *o.DbmQueriesAggSum
+	return *o.DbmQueriesAvgSum
 }
 
-// GetDbmQueriesAggSumOk returns a tuple with the DbmQueriesAggSum field value if set, nil otherwise
+// GetDbmQueriesAvgSumOk returns a tuple with the DbmQueriesAvgSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageSummaryDateOrg) GetDbmQueriesAggSumOk() (*int64, bool) {
-	if o == nil || o.DbmQueriesAggSum == nil {
+func (o *UsageSummaryDateOrg) GetDbmQueriesAvgSumOk() (*int64, bool) {
+	if o == nil || o.DbmQueriesAvgSum == nil {
 		return nil, false
 	}
-	return o.DbmQueriesAggSum, true
+	return o.DbmQueriesAvgSum, true
 }
 
-// HasDbmQueriesAggSum returns a boolean if a field has been set.
-func (o *UsageSummaryDateOrg) HasDbmQueriesAggSum() bool {
-	if o != nil && o.DbmQueriesAggSum != nil {
+// HasDbmQueriesAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasDbmQueriesAvgSum() bool {
+	if o != nil && o.DbmQueriesAvgSum != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetDbmQueriesAggSum gets a reference to the given int64 and assigns it to the DbmQueriesAggSum field.
-func (o *UsageSummaryDateOrg) SetDbmQueriesAggSum(v int64) {
-	o.DbmQueriesAggSum = &v
+// SetDbmQueriesAvgSum gets a reference to the given int64 and assigns it to the DbmQueriesAvgSum field.
+func (o *UsageSummaryDateOrg) SetDbmQueriesAvgSum(v int64) {
+	o.DbmQueriesAvgSum = &v
 }
 
 // GetFargateTasksCountAvg returns the FargateTasksCountAvg field value if set, zero value otherwise.
@@ -1658,8 +1658,8 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.DbmHostTop99pSum != nil {
 		toSerialize["dbm_host_top99p_sum"] = o.DbmHostTop99pSum
 	}
-	if o.DbmQueriesAggSum != nil {
-		toSerialize["dbm_queries_agg_sum"] = o.DbmQueriesAggSum
+	if o.DbmQueriesAvgSum != nil {
+		toSerialize["dbm_queries_avg_sum"] = o.DbmQueriesAvgSum
 	}
 	if o.FargateTasksCountAvg != nil {
 		toSerialize["fargate_tasks_count_avg"] = o.FargateTasksCountAvg
@@ -1766,7 +1766,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		CwsContainerCountAvg                    *int64  `json:"cws_container_count_avg,omitempty"`
 		CwsHostTop99p                           *int64  `json:"cws_host_top99p,omitempty"`
 		DbmHostTop99pSum                        *int64  `json:"dbm_host_top99p_sum,omitempty"`
-		DbmQueriesAggSum                        *int64  `json:"dbm_queries_agg_sum,omitempty"`
+		DbmQueriesAvgSum                        *int64  `json:"dbm_queries_avg_sum,omitempty"`
 		FargateTasksCountAvg                    *int64  `json:"fargate_tasks_count_avg,omitempty"`
 		FargateTasksCountHwm                    *int64  `json:"fargate_tasks_count_hwm,omitempty"`
 		GcpHostTop99p                           *int64  `json:"gcp_host_top99p,omitempty"`
@@ -1822,7 +1822,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.CwsContainerCountAvg = all.CwsContainerCountAvg
 	o.CwsHostTop99p = all.CwsHostTop99p
 	o.DbmHostTop99pSum = all.DbmHostTop99pSum
-	o.DbmQueriesAggSum = all.DbmQueriesAggSum
+	o.DbmQueriesAvgSum = all.DbmQueriesAvgSum
 	o.FargateTasksCountAvg = all.FargateTasksCountAvg
 	o.FargateTasksCountHwm = all.FargateTasksCountHwm
 	o.GcpHostTop99p = all.GcpHostTop99p

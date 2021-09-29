@@ -27963,6 +27963,7 @@ components:
           rum_session_count_sum: 3
           ingested_events_bytes_sum: 3
           public_id: public_id
+          dbm_queries_avg_sum: 1
           mobile_rum_session_count_sum: 7
           container_avg: 4
           audit_logs_lines_indexed_sum: 3
@@ -27981,7 +27982,6 @@ components:
           cws_host_top99p: 6
           apm_azure_app_service_host_top99p: 3
           cspm_container_hwm: 0
-          dbm_queries_agg_sum: 1
           mobile_rum_session_count_android_sum: 9
           apm_host_top99p: 2
           synthetics_check_calls_count_sum: 9
@@ -28009,6 +28009,7 @@ components:
           rum_session_count_sum: 3
           ingested_events_bytes_sum: 3
           public_id: public_id
+          dbm_queries_avg_sum: 1
           mobile_rum_session_count_sum: 7
           container_avg: 4
           audit_logs_lines_indexed_sum: 3
@@ -28027,7 +28028,6 @@ components:
           cws_host_top99p: 6
           apm_azure_app_service_host_top99p: 3
           cspm_container_hwm: 0
-          dbm_queries_agg_sum: 1
           mobile_rum_session_count_android_sum: 9
           apm_host_top99p: 2
           synthetics_check_calls_count_sum: 9
@@ -28289,6 +28289,7 @@ components:
         rum_session_count_sum: 3
         ingested_events_bytes_sum: 3
         public_id: public_id
+        dbm_queries_avg_sum: 1
         mobile_rum_session_count_sum: 7
         container_avg: 4
         audit_logs_lines_indexed_sum: 3
@@ -28307,7 +28308,6 @@ components:
         cws_host_top99p: 6
         apm_azure_app_service_host_top99p: 3
         cspm_container_hwm: 0
-        dbm_queries_agg_sum: 1
         mobile_rum_session_count_android_sum: 9
         apm_host_top99p: 2
         synthetics_check_calls_count_sum: 9
@@ -28416,8 +28416,8 @@ components:
             over all hours in the current month for all organizations.
           format: int64
           type: integer
-        dbm_queries_agg_sum:
-          description: Shows the sum of all distinct Database Monitoring normalized
+        dbm_queries_avg_sum:
+          description: Shows the average of all distinct Database Monitoring normalized
             queries over all hours in the current month for all organizations.
           format: int64
           type: integer
@@ -28608,6 +28608,7 @@ components:
             rum_session_count_sum: 3
             ingested_events_bytes_sum: 3
             public_id: public_id
+            dbm_queries_avg_sum: 1
             mobile_rum_session_count_sum: 7
             container_avg: 4
             audit_logs_lines_indexed_sum: 3
@@ -28626,7 +28627,6 @@ components:
             cws_host_top99p: 6
             apm_azure_app_service_host_top99p: 3
             cspm_container_hwm: 0
-            dbm_queries_agg_sum: 1
             mobile_rum_session_count_android_sum: 9
             apm_host_top99p: 2
             synthetics_check_calls_count_sum: 9
@@ -28654,6 +28654,7 @@ components:
             rum_session_count_sum: 3
             ingested_events_bytes_sum: 3
             public_id: public_id
+            dbm_queries_avg_sum: 1
             mobile_rum_session_count_sum: 7
             container_avg: 4
             audit_logs_lines_indexed_sum: 3
@@ -28672,7 +28673,6 @@ components:
             cws_host_top99p: 6
             apm_azure_app_service_host_top99p: 3
             cspm_container_hwm: 0
-            dbm_queries_agg_sum: 1
             mobile_rum_session_count_android_sum: 9
             apm_host_top99p: 2
             synthetics_check_calls_count_sum: 9
@@ -28745,6 +28745,7 @@ components:
             rum_session_count_sum: 3
             ingested_events_bytes_sum: 3
             public_id: public_id
+            dbm_queries_avg_sum: 1
             mobile_rum_session_count_sum: 7
             container_avg: 4
             audit_logs_lines_indexed_sum: 3
@@ -28763,7 +28764,6 @@ components:
             cws_host_top99p: 6
             apm_azure_app_service_host_top99p: 3
             cspm_container_hwm: 0
-            dbm_queries_agg_sum: 1
             mobile_rum_session_count_android_sum: 9
             apm_host_top99p: 2
             synthetics_check_calls_count_sum: 9
@@ -28791,6 +28791,7 @@ components:
             rum_session_count_sum: 3
             ingested_events_bytes_sum: 3
             public_id: public_id
+            dbm_queries_avg_sum: 1
             mobile_rum_session_count_sum: 7
             container_avg: 4
             audit_logs_lines_indexed_sum: 3
@@ -28809,7 +28810,6 @@ components:
             cws_host_top99p: 6
             apm_azure_app_service_host_top99p: 3
             cspm_container_hwm: 0
-            dbm_queries_agg_sum: 1
             mobile_rum_session_count_android_sum: 9
             apm_host_top99p: 2
             synthetics_check_calls_count_sum: 9
@@ -28833,6 +28833,7 @@ components:
         cspm_container_hwm_sum: 1
         apm_host_top99p_sum: 1
         mobile_rum_session_count_android_agg_sum: 6
+        dbm_queries_avg_sum: 5
         infra_host_top99p_sum: 3
         cspm_container_avg_sum: 1
         synthetics_check_calls_count_agg_sum: 6
@@ -28916,7 +28917,6 @@ components:
         billable_ingested_bytes_agg_sum: 2
         ingested_events_bytes_agg_sum: 6
         twol_ingested_events_bytes_agg_sum: 1
-        dbm_queries_agg_sum: 5
         mobile_rum_session_count_ios_agg_sum: 0
         gcp_host_top99p_sum: 6
         dbm_host_top99p_sum: 4
@@ -29019,8 +29019,8 @@ components:
             over all hours in the current month for all organizations.
           format: int64
           type: integer
-        dbm_queries_agg_sum:
-          description: Shows the sum of all distinct Database Monitoring Normalized
+        dbm_queries_avg_sum:
+          description: Shows the average of all distinct Database Monitoring Normalized
             Queries over all hours in the current month for all organizations.
           format: int64
           type: integer
