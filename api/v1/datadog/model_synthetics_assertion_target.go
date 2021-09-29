@@ -19,7 +19,7 @@ type SyntheticsAssertionTarget struct {
 	// The associated assertion property.
 	Property *string `json:"property,omitempty"`
 	// Value used by the operator.
-	Target *interface{}            `json:"target,omitempty"`
+	Target interface{}             `json:"target,omitempty"`
 	Type   SyntheticsAssertionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -100,22 +100,23 @@ func (o *SyntheticsAssertionTarget) SetProperty(v string) {
 	o.Property = &v
 }
 
-// GetTarget returns the Target field value if set, zero value otherwise.
+// GetTarget returns the Target field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SyntheticsAssertionTarget) GetTarget() interface{} {
-	if o == nil || o.Target == nil {
+	if o == nil {
 		var ret interface{}
 		return ret
 	}
-	return *o.Target
+	return o.Target
 }
 
 // GetTargetOk returns a tuple with the Target field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SyntheticsAssertionTarget) GetTargetOk() (*interface{}, bool) {
 	if o == nil || o.Target == nil {
 		return nil, false
 	}
-	return o.Target, true
+	return &o.Target, true
 }
 
 // HasTarget returns a boolean if a field has been set.
@@ -129,7 +130,7 @@ func (o *SyntheticsAssertionTarget) HasTarget() bool {
 
 // SetTarget gets a reference to the given interface{} and assigns it to the Target field.
 func (o *SyntheticsAssertionTarget) SetTarget(v interface{}) {
-	o.Target = &v
+	o.Target = v
 }
 
 // GetType returns the Type field value
@@ -185,7 +186,7 @@ func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Operator SyntheticsAssertionOperator `json:"operator"`
 		Property *string                     `json:"property,omitempty"`
-		Target   *interface{}                `json:"target,omitempty"`
+		Target   interface{}                 `json:"target,omitempty"`
 		Type     SyntheticsAssertionType     `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
