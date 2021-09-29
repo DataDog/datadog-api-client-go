@@ -1517,6 +1517,19 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 	test := datadog.SyntheticsCITest{
 		Locations: &[]string{"aws:us-east-2"},
 		PublicId:  publicID,
+		Metadata: &datadog.SyntheticsCITestMetadata{
+			Ci: &datadog.SyntheticsCITestMetadataCI{
+				Pipeline: &datadog.SyntheticsCITestMetadataPipeline{
+					Url: datadog.PtrString("pipeline-url"),
+				},
+				Provider: &datadog.SyntheticsCITestMetadataProvider{
+					Name: datadog.PtrString("provider name"),
+				},
+			},
+			Git: &datadog.SyntheticsCITestMetadataGit{
+				Branch: datadog.PtrString("branch-name"),
+			},
+		},
 	}
 	tests := []datadog.SyntheticsCITest{test}
 
