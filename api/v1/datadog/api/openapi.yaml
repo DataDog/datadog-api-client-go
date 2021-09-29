@@ -20534,6 +20534,38 @@ components:
       type: string
       x-enum-varnames:
       - SCATTERPLOT
+    ScatterplotDimension:
+      description: Dimension of the Scatterplot.
+      enum:
+      - x
+      - "y"
+      - radius
+      - color
+      example: radius
+      type: string
+      x-enum-varnames:
+      - X
+      - "Y"
+      - RADIUS
+      - COLOR
+    ScatterplotTableRequest:
+      description: Scatterplot request containing formulas and functions.
+      properties:
+        formulas:
+          description: List of Scatterplot formulas that operate on queries. **This
+            feature is currently in beta.**
+          items:
+            $ref: '#/components/schemas/ScatterplotWidgetFormula'
+          type: array
+        queries:
+          description: List of queries that can be returned directly or used in formulas.
+            **This feature is currently in beta.**
+          items:
+            $ref: '#/components/schemas/FormulaAndFunctionQueryDefinition'
+          type: array
+        response_format:
+          $ref: '#/components/schemas/FormulaAndFunctionResponseFormat'
+      type: object
     ScatterplotWidgetAggregator:
       description: Aggregator used for the request.
       enum:
@@ -20549,6 +20581,23 @@ components:
       - MAXIMUM
       - MINIMUM
       - SUM
+    ScatterplotWidgetFormula:
+      description: Formula to be used in a Scatterplot widget query.
+      properties:
+        alias:
+          description: Expression alias.
+          example: my-query
+          type: string
+        dimension:
+          $ref: '#/components/schemas/ScatterplotDimension'
+        formula:
+          description: String expression built from queries, formulas, and functions.
+          example: func(a) + b
+          type: string
+      required:
+      - dimension
+      - formula
+      type: object
     Series:
       description: |-
         A metric to submit to Datadog.
@@ -31273,13 +31322,12 @@ components:
         y:
           q: system.mem.used
       properties:
+        table:
+          $ref: '#/components/schemas/ScatterplotTableRequest'
         x:
           $ref: '#/components/schemas/ScatterPlotRequest'
         y:
           $ref: '#/components/schemas/ScatterPlotRequest'
-      required:
-      - x
-      - "y"
       type: object
     SlackIntegrationChannel_display:
       description: Configuration options for what is shown in an alert event message.

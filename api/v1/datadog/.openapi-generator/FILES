@@ -414,7 +414,10 @@ docs/ScatterPlotRequest.md
 docs/ScatterPlotWidgetDefinition.md
 docs/ScatterPlotWidgetDefinitionRequests.md
 docs/ScatterPlotWidgetDefinitionType.md
+docs/ScatterplotDimension.md
+docs/ScatterplotTableRequest.md
 docs/ScatterplotWidgetAggregator.md
+docs/ScatterplotWidgetFormula.md
 docs/Series.md
 docs/ServiceCheck.md
 docs/ServiceCheckStatus.md
@@ -1010,7 +1013,10 @@ model_scatter_plot_request.go
 model_scatter_plot_widget_definition.go
 model_scatter_plot_widget_definition_requests.go
 model_scatter_plot_widget_definition_type.go
+model_scatterplot_dimension.go
+model_scatterplot_table_request.go
 model_scatterplot_widget_aggregator.go
+model_scatterplot_widget_formula.go
 model_series.go
 model_service_check.go
 model_service_check_status.go
