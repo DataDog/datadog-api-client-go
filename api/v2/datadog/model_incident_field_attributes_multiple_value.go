@@ -16,7 +16,7 @@ import (
 type IncidentFieldAttributesMultipleValue struct {
 	Type *IncidentFieldAttributesValueType `json:"type,omitempty"`
 	// The multiple values selected for this field.
-	Value *[]string `json:"value,omitempty"`
+	Value []string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -74,22 +74,23 @@ func (o *IncidentFieldAttributesMultipleValue) SetType(v IncidentFieldAttributes
 	o.Type = &v
 }
 
-// GetValue returns the Value field value if set, zero value otherwise.
+// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentFieldAttributesMultipleValue) GetValue() []string {
-	if o == nil || o.Value == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.Value
+	return o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IncidentFieldAttributesMultipleValue) GetValueOk() (*[]string, bool) {
 	if o == nil || o.Value == nil {
 		return nil, false
 	}
-	return o.Value, true
+	return &o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -103,7 +104,7 @@ func (o *IncidentFieldAttributesMultipleValue) HasValue() bool {
 
 // SetValue gets a reference to the given []string and assigns it to the Value field.
 func (o *IncidentFieldAttributesMultipleValue) SetValue(v []string) {
-	o.Value = &v
+	o.Value = v
 }
 
 func (o IncidentFieldAttributesMultipleValue) MarshalJSON() ([]byte, error) {
@@ -124,7 +125,7 @@ func (o *IncidentFieldAttributesMultipleValue) UnmarshalJSON(bytes []byte) (err 
 	raw := map[string]interface{}{}
 	all := struct {
 		Type  *IncidentFieldAttributesValueType `json:"type,omitempty"`
-		Value *[]string                         `json:"value,omitempty"`
+		Value []string                          `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
