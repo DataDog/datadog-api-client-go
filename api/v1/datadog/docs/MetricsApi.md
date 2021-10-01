@@ -311,7 +311,7 @@ This endpoint does not have optional parameters.
 
 ## SubmitMetrics
 
-> IntakePayloadAccepted SubmitMetrics(ctx, body)
+> IntakePayloadAccepted SubmitMetrics(ctx, body, datadog.SubmitMetricsOptionalParameters{})
 
 The metrics end-point allows you to post time-series data that can be graphed on Datadog’s dashboards.
 The maximum payload size is 3.2 megabytes (3200000 bytes). Compressed payloads must have a decompressed size of less than 62 megabytes (62914560 bytes).
@@ -342,11 +342,15 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     body := *datadog.NewMetricsPayload([]datadog.Series{*datadog.NewSeries("system.load.1", [][]*float64{[]*float64{nil}})}) // MetricsPayload | 
+    contentEncoding := datadog.MetricContentEncoding("deflate") // MetricContentEncoding | HTTP header used to compress the media-type. (optional)
+    optionalParams := datadog.SubmitMetricsOptionalParameters{
+        ContentEncoding: &contentEncoding,
+    }
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetricsApi.SubmitMetrics(ctx, body)
+    resp, r, err := apiClient.MetricsApi.SubmitMetrics(ctx, body, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitMetrics`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -368,8 +372,13 @@ Name | Type | Description  | Notes
 
 ### Optional Parameters
 
-This endpoint does not have optional parameters.
 
+Other parameters are passed through a pointer to a SubmitMetricsOptionalParameters struct.
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**contentEncoding** | [**MetricContentEncoding**](MetricContentEncoding.md) | HTTP header used to compress the media-type. | 
 
 ### Return type
 

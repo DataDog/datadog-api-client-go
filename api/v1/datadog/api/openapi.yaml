@@ -6360,6 +6360,15 @@ paths:
         - The full payload is approximately 100 bytes. However, with the DogStatsD API,
         compression is applied, which reduces the payload size.
       operationId: SubmitMetrics
+      parameters:
+      - description: HTTP header used to compress the media-type.
+        explode: false
+        in: header
+        name: Content-Encoding
+        required: false
+        schema:
+          $ref: '#/components/schemas/MetricContentEncoding'
+        style: simple
       requestBody:
         content:
           text/json:
@@ -11527,7 +11536,7 @@ components:
       x-enum-varnames:
       - CHECK_STATUS
     ContentEncoding:
-      description: HTTP header used to compress the media-type
+      description: HTTP header used to compress the media-type.
       enum:
       - gzip
       - deflate
@@ -16343,6 +16352,13 @@ components:
       type: string
       x-enum-varnames:
       - USER_AGENT_PARSER
+    MetricContentEncoding:
+      description: HTTP header used to compress the media-type.
+      enum:
+      - deflate
+      type: string
+      x-enum-varnames:
+      - DEFLATE
     MetricMetadata:
       description: Object with all metric related metadata.
       example:

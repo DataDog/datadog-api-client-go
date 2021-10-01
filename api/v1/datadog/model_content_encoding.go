@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// ContentEncoding HTTP header used to compress the media-type
+// ContentEncoding HTTP header used to compress the media-type.
 type ContentEncoding string
 
 // List of ContentEncoding

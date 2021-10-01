@@ -275,6 +275,7 @@ docs/LogsURLParser.md
 docs/LogsURLParserType.md
 docs/LogsUserAgentParser.md
 docs/LogsUserAgentParserType.md
+docs/MetricContentEncoding.md
 docs/MetricMetadata.md
 docs/MetricSearchResponse.md
 docs/MetricSearchResponseResults.md
@@ -917,6 +918,7 @@ model_logs_url_parser.go
 model_logs_url_parser_type.go
 model_logs_user_agent_parser.go
 model_logs_user_agent_parser_type.go
+model_metric_content_encoding.go
 model_metric_metadata.go
 model_metric_search_response.go
 model_metric_search_response_results.go
