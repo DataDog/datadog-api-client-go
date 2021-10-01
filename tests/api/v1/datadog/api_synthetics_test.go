@@ -27,12 +27,12 @@ var target2000 interface{} = 2000
 var targetValue0 interface{} = "0"
 
 func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
-	assertionTextHTML := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
+	assertionTextHTML := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, targetTextHTML, datadog.SYNTHETICSASSERTIONTYPE_HEADER)
 	assertionTextHTML.Property = datadog.PtrString("{{ PROPERTY }}")
-	assertionTextHTML.Target = &targetTextHTML
+	// assertionTextHTML.Target = &targetTextHTML
 
-	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
-	assertion2000.Target = &target2000
+	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, target2000, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
+	// assertion2000.Target = &target2000
 
 	targetJSONPath := datadog.NewSyntheticsAssertionJSONPathTarget(datadog.SYNTHETICSASSERTIONJSONPATHOPERATOR_VALIDATES_JSON_PATH, datadog.SYNTHETICSASSERTIONTYPE_BODY)
 	targetJSONPath.SetTarget(
@@ -166,8 +166,8 @@ func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T, globalVari
 }
 
 func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
-	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
-	assertion2000.SetTarget(target2000)
+	assertion2000 := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, target2000, datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME)
+	// assertion2000.SetTarget(target2000)
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
@@ -192,10 +192,10 @@ func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.S
 }
 
 func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
-	recordAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_RECORD_SOME)
 	var target interface{} = "0.0.0.0"
+	recordAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, target, datadog.SYNTHETICSASSERTIONTYPE_RECORD_SOME)
 	recordAssertion.SetProperty("A")
-	recordAssertion.SetTarget(target)
+	// recordAssertion.SetTarget(target)
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
@@ -221,10 +221,10 @@ func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.S
 }
 
 func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
-	latencyAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, datadog.SYNTHETICSASSERTIONTYPE_LATENCY)
 	var target interface{} = 200
+	latencyAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN, target, datadog.SYNTHETICSASSERTIONTYPE_LATENCY)
 	latencyAssertion.SetProperty("avg")
-	latencyAssertion.SetTarget(target)
+	// latencyAssertion.SetTarget(target)
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
