@@ -23,7 +23,7 @@ The first time you run a test that needs cassettes, it will fail with:
 `time file 'cassettes/$TEST_NAME.freeze' not found: create one setting 'RECORD=true' or ignore it using 'RECORD=none'`.
 
 BDD tests are triggered by a parent test named `TestScenarios`. To run a specific test, you need to specify
-the parent feature name in the `-run` argument, to look like `TestScenarios/Feature_$NAME/$TEST_NAME.
+the parent feature name in the `-run` argument, to look like `TestScenarios/Feature_$NAME/$TEST_NAME`.
 For example `go test $(go list ./...)  -run TestScenarios/Feature_Users/Scenario_Send_invitation_emails`. Again
 we don't need to pass the full test name as it's a regular expression, but we do need to pass the
 full prefix.
