@@ -718,6 +718,8 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
 	GetRequestParameters(ctx)["body"] = Templated(t, GetData(ctx), body)
+	pathCount, _ := ctx.Get(pathParamCountKey{})
+	ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
 }
 
 func bodyFromFile(t gobdd.StepTest, ctx gobdd.Context, bodyFile string) {
@@ -727,6 +729,8 @@ func bodyFromFile(t gobdd.StepTest, ctx gobdd.Context, bodyFile string) {
 	}
 
 	GetRequestParameters(ctx)["body"] = Templated(t, GetData(ctx), string(body))
+	pathCount, _ := ctx.Get(pathParamCountKey{})
+	ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
 }
 
 func stringToType(s string, t interface{}) (interface{}, error) {
