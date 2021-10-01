@@ -39,6 +39,8 @@ type SyntheticsTestRequest struct {
 	Port *int64 `json:"port,omitempty"`
 	// Query to use for the test.
 	Query *interface{} `json:"query,omitempty"`
+	// For SSL tests, it specifies on which server you want to initiate the TLS handshake, allowing the server to present one of multiple possible certificates on the same IP address and TCP port number.
+	Servername *string `json:"servername,omitempty"`
 	// Turns on a traceroute probe to discover all gateways along the path to the host destination.
 	ShouldTrackHops *bool `json:"shouldTrackHops,omitempty"`
 	// Timeout in seconds for the test.
@@ -514,6 +516,38 @@ func (o *SyntheticsTestRequest) SetQuery(v interface{}) {
 	o.Query = &v
 }
 
+// GetServername returns the Servername field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetServername() string {
+	if o == nil || o.Servername == nil {
+		var ret string
+		return ret
+	}
+	return *o.Servername
+}
+
+// GetServernameOk returns a tuple with the Servername field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetServernameOk() (*string, bool) {
+	if o == nil || o.Servername == nil {
+		return nil, false
+	}
+	return o.Servername, true
+}
+
+// HasServername returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasServername() bool {
+	if o != nil && o.Servername != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetServername gets a reference to the given string and assigns it to the Servername field.
+func (o *SyntheticsTestRequest) SetServername(v string) {
+	o.Servername = &v
+}
+
 // GetShouldTrackHops returns the ShouldTrackHops field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetShouldTrackHops() bool {
 	if o == nil || o.ShouldTrackHops == nil {
@@ -657,6 +691,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
+	if o.Servername != nil {
+		toSerialize["servername"] = o.Servername
+	}
 	if o.ShouldTrackHops != nil {
 		toSerialize["shouldTrackHops"] = o.ShouldTrackHops
 	}
@@ -686,6 +723,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		NumberOfPackets      *int32                            `json:"numberOfPackets,omitempty"`
 		Port                 *int64                            `json:"port,omitempty"`
 		Query                *interface{}                      `json:"query,omitempty"`
+		Servername           *string                           `json:"servername,omitempty"`
 		ShouldTrackHops      *bool                             `json:"shouldTrackHops,omitempty"`
 		Timeout              *float64                          `json:"timeout,omitempty"`
 		Url                  *string                           `json:"url,omitempty"`
@@ -721,6 +759,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.NumberOfPackets = all.NumberOfPackets
 	o.Port = all.Port
 	o.Query = all.Query
+	o.Servername = all.Servername
 	o.ShouldTrackHops = all.ShouldTrackHops
 	o.Timeout = all.Timeout
 	o.Url = all.Url
