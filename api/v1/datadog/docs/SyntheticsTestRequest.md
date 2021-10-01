@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **NumberOfPackets** | Pointer to **int32** | Number of pings to use per test. | [optional] 
 **Port** | Pointer to **int64** | Port to use when performing the test. | [optional] 
 **Query** | Pointer to **interface{}** | Query to use for the test. | [optional] 
+**Servername** | Pointer to **string** | For SSL tests, it specifies on which server you want to initiate the TLS handshake, allowing the server to present one of multiple possible certificates on the same IP address and TCP port number. | [optional] 
 **ShouldTrackHops** | Pointer to **bool** | Turns on a traceroute probe to discover all gateways along the path to the host destination. | [optional] 
 **Timeout** | Pointer to **float64** | Timeout in seconds for the test. | [optional] 
 **Url** | Pointer to **string** | URL to perform the test with. | [optional] 
@@ -390,6 +391,31 @@ SetQuery sets Query field to given value.
 `func (o *SyntheticsTestRequest) HasQuery() bool`
 
 HasQuery returns a boolean if a field has been set.
+
+### GetServername
+
+`func (o *SyntheticsTestRequest) GetServername() string`
+
+GetServername returns the Servername field if non-nil, zero value otherwise.
+
+### GetServernameOk
+
+`func (o *SyntheticsTestRequest) GetServernameOk() (*string, bool)`
+
+GetServernameOk returns a tuple with the Servername field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServername
+
+`func (o *SyntheticsTestRequest) SetServername(v string)`
+
+SetServername sets Servername field to given value.
+
+### HasServername
+
+`func (o *SyntheticsTestRequest) HasServername() bool`
+
+HasServername returns a boolean if a field has been set.
 
 ### GetShouldTrackHops
 
