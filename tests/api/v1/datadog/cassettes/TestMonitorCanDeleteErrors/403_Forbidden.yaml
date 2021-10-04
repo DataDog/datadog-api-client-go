@@ -12,11 +12,11 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6001492195766479120"
+      - "6405066388903274744"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1732459399704084082"
+      - "8692518276294885279"
     url: https://api.datadoghq.com/api/v1/monitor/can_delete?monitor_ids=1234
     method: GET
   response:
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Oct 2021 16:49:46 GMT
+      - Mon, 04 Oct 2021 16:32:35 GMT
       Via:
       - haproxy
     status: 403 Forbidden

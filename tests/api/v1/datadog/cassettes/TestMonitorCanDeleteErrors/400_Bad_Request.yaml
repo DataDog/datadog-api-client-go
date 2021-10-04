@@ -12,12 +12,12 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6193893121841754869"
+      - "5617974592214179360"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1732459399704084082"
-    url: https://api.datadoghq.com/api/v1/monitor/can_delete?monitor_ids=
+      - "8692518276294885279"
+    url: https://api.datadoghq.com/api/v1/monitor/can_delete
     method: GET
   response:
     body: '{"errors": ["monitor_ids are required"]}'
@@ -31,7 +31,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Oct 2021 16:49:46 GMT
+      - Mon, 04 Oct 2021 16:32:34 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -45,9 +45,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "11998"
+      - "11999"
       X-Ratelimit-Reset:
-      - "14"
+      - "26"
     status: 400 Bad Request
     code: 400
     duration: ""

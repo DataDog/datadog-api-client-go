@@ -17,17 +17,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "713732262934077123"
+      - "4635692279473691913"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1732459399704084082"
+      - "8692518276294885279"
     url: https://api.datadoghq.com/api/v1/monitor
     method: POST
   response:
     body: '{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
-      > 100","message":"","id":48105069,"multi":false,"name":"**system.net.bytes_rcvd**
-      over **host:host0** was **> 100.0** on average during the **last 5m**.","created":"2021-10-01T16:49:45.890763+00:00","created_at":1633106985000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-01T16:49:45.890763+00:00","priority":null,"overall_state_modified":null,"overall_state":"No
+      > 100","message":"","id":48379481,"multi":false,"name":"**system.net.bytes_rcvd**
+      over **host:host0** was **> 100.0** on average during the **last 5m**.","created":"2021-10-04T16:32:34.588452+00:00","created_at":1633365154000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-04T16:32:34.588452+00:00","priority":null,"overall_state_modified":null,"overall_state":"No
       Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}}'
     headers:
       Cache-Control:
@@ -37,7 +37,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Oct 2021 16:49:45 GMT
+      - Mon, 04 Oct 2021 16:32:34 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -55,13 +55,13 @@ interactions:
       X-Ratelimit-Remaining:
       - "499"
       X-Ratelimit-Reset:
-      - "5"
+      - "6"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"query":"48105069","type":"composite"}
+      {"query":"48379481","type":"composite"}
     form: {}
     headers:
       Accept:
@@ -75,15 +75,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7251791373024819660"
+      - "5464953850398651551"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1732459399704084082"
+      - "8692518276294885279"
     url: https://api.datadoghq.com/api/v1/monitor
     method: POST
   response:
-    body: '{"restricted_roles":null,"tags":[],"deleted":null,"query":"48105069","message":"","id":48105072,"multi":false,"name":"48105069","created":"2021-10-01T16:49:46.097609+00:00","created_at":1633106986000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-01T16:49:46.097609+00:00","priority":null,"overall_state_modified":null,"overall_state":"No
+    body: '{"restricted_roles":null,"tags":[],"deleted":null,"query":"48379481","message":"","id":48379482,"multi":false,"name":"48379481","created":"2021-10-04T16:32:34.798527+00:00","created_at":1633365154000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-04T16:32:34.798527+00:00","priority":null,"overall_state_modified":null,"overall_state":"No
       Data","type":"composite","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}}'
     headers:
       Cache-Control:
@@ -93,7 +93,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Oct 2021 16:49:46 GMT
+      - Mon, 04 Oct 2021 16:32:34 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -111,7 +111,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "498"
       X-Ratelimit-Reset:
-      - "4"
+      - "6"
     status: 200 OK
     code: 200
     duration: ""
@@ -126,15 +126,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "797855017588424190"
+      - "5250933264362233654"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1732459399704084082"
-    url: https://api.datadoghq.com/api/v1/monitor/48105072
+      - "8692518276294885279"
+    url: https://api.datadoghq.com/api/v1/monitor/48379482
     method: DELETE
   response:
-    body: '{"deleted_monitor_id":48105072}'
+    body: '{"deleted_monitor_id":48379482}'
     headers:
       Cache-Control:
       - no-cache
@@ -143,7 +143,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Oct 2021 16:49:46 GMT
+      - Mon, 04 Oct 2021 16:32:35 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -168,15 +168,15 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6825049893218249829"
+      - "5896509143729540386"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "1732459399704084082"
-    url: https://api.datadoghq.com/api/v1/monitor/48105069
+      - "8692518276294885279"
+    url: https://api.datadoghq.com/api/v1/monitor/48379481
     method: DELETE
   response:
-    body: '{"deleted_monitor_id":48105069}'
+    body: '{"deleted_monitor_id":48379481}'
     headers:
       Cache-Control:
       - no-cache
@@ -185,7 +185,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Oct 2021 16:49:47 GMT
+      - Mon, 04 Oct 2021 16:32:35 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
