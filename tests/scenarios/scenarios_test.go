@@ -65,8 +65,8 @@ func TestScenarios(t *testing.T) {
 						datadog.NewDefaultContext(context.Background()),
 						tt,
 						ddtesting.WithSpanOptions(
-							tracer.Tag(ext.TestName, testParts[2]),
-							tracer.Tag(ext.TestSuite, fmt.Sprintf("%s/%s", version, testParts[1])),
+							tracer.Tag(ext.TestName, testParts[3]),
+							tracer.Tag(ext.TestSuite, fmt.Sprintf("%s/%s", version, testParts[2])),
 							tracer.Tag(ext.TestFramework, "github.com/go-bdd/gobdd"),
 						),
 					)
