@@ -126,7 +126,7 @@ func NewConfiguration() *Configuration {
 		DefaultHeader:    make(map[string]string),
 		UserAgent:        getUserAgent(),
 		Debug:            false,
-		Compress:         false,
+		Compress:         true,
 		{{#servers}}
 		{{#-first}}
 		Servers:          ServerConfigurations{
