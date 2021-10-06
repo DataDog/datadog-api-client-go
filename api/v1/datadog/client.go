@@ -10,6 +10,8 @@ package datadog
 
 import (
 	"bytes"
+	"compress/gzip"
+	"compress/zlib"
 	"context"
 	"encoding/json"
 	"encoding/xml"
@@ -389,6 +391,29 @@ func (c *APIClient) PrepareRequest(
 
 	// Generate a new request
 	if body != nil {
+		if headerParams["Content-Encoding"] == "gzip" {
+			var buf bytes.Buffer
+			compressor := gzip.NewWriter(&buf)
+			if _, err = compressor.Write(body.Bytes()); err != nil {
+				return nil, err
+			}
+			if err = compressor.Close(); err != nil {
+				return nil, err
+			}
+			body = &buf
+
+		} else if headerParams["Content-Encoding"] == "deflate" {
+			var buf bytes.Buffer
+			compressor := zlib.NewWriter(&buf)
+			if _, err = compressor.Write(body.Bytes()); err != nil {
+				return nil, err
+			}
+			if err = compressor.Close(); err != nil {
+				return nil, err
+			}
+			body = &buf
+		}
+		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
 		localVarRequest, err = http.NewRequest(method, url.String(), body)
 	} else {
 		localVarRequest, err = http.NewRequest(method, url.String(), nil)

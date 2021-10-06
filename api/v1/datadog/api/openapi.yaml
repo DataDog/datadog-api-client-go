@@ -79,7 +79,7 @@ tags:
     find, and share all of your dashboards with your team and organization.
   name: Dashboards
 - description: |-
-    [Downtiming](https://docs.datadoghq.com/monitors/downtimes) gives
+    [Downtiming](https://docs.datadoghq.com/monitors/notify/downtimes) gives
     you greater control over monitor notifications by allowing you to globally exclude
     scopes from alerting. Downtime settings, which can be scheduled with start and
     end times, prevent all alerting related to specified Datadog tags.
@@ -165,10 +165,10 @@ tags:
     [Monitors](https://docs.datadoghq.com/monitors) allow you to watch a metric or check that you care about and
     notifies your team when a defined threshold has exceeded.
 
-    For more information, see [Creating Monitors](https://docs.datadoghq.com/monitors/monitor_types/).
+    For more information, see [Creating Monitors](https://docs.datadoghq.com/monitors/create/types/).
   externalDocs:
     description: Find out more at
-    url: https://docs.datadoghq.com/monitors/monitor_types/
+    url: https://docs.datadoghq.com/monitors/create/types/
   name: Monitors
 - description: |-
     Interact with your notebooks through the API to make it easier to organize, find, and
@@ -203,10 +203,10 @@ tags:
     - [Read more about Custom Check monitors.][4]
     - [Read more about Service Check and status codes.][5]
 
-    [1]: https://docs.datadoghq.com/monitors/monitor_types/host/?tab=checkalert
-    [2]: https://docs.datadoghq.com/monitors/monitor_types/process_check/?tab=checkalert
-    [3]: https://docs.datadoghq.com/monitors/monitor_types/network/?tab=checkalert
-    [4]: https://docs.datadoghq.com/monitors/monitor_types/custom_check/?tab=checkalert
+    [1]: https://docs.datadoghq.com/monitors/create/types/host/?tab=checkalert
+    [2]: https://docs.datadoghq.com/monitors/create/types/process_check/?tab=checkalert
+    [3]: https://docs.datadoghq.com/monitors/create/types/network/?tab=checkalert
+    [4]: https://docs.datadoghq.com/monitors/create/types/custom_check/?tab=checkalert
     [5]: https://docs.datadoghq.com/developers/service_checks/
   name: Service Checks
 - description: |-
@@ -734,31 +734,31 @@ paths:
       responses:
         "202":
           content:
-            application/json:
+            text/json:
               schema:
                 $ref: '#/components/schemas/IntakePayloadAccepted'
           description: Payload accepted
         "400":
           content:
-            application/json:
+            text/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Bad Request
         "403":
           content:
-            application/json:
+            text/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication Error
         "408":
           content:
-            application/json:
+            text/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Request timeout
         "413":
           content:
-            application/json:
+            text/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Payload too large
@@ -1463,7 +1463,8 @@ paths:
       security:
       - apiKeyAuth: []
         appKeyAuth: []
-      - AuthZ: []
+      - AuthZ:
+        - monitors_read
       summary: Get all downtimes
       tags:
       - Downtimes
@@ -1638,7 +1639,8 @@ paths:
       security:
       - apiKeyAuth: []
         appKeyAuth: []
-      - AuthZ: []
+      - AuthZ:
+        - monitors_read
       summary: Get a downtime
       tags:
       - Downtimes
@@ -4898,7 +4900,7 @@ paths:
         timeshift):space_aggr:metric{tags} [by {key}] operator #` with:
 
         - `change_aggr` change, pct_change
-        - `time_aggr` avg, sum, max, min [Learn more](https://docs.datadoghq.com/monitors/monitor_types/#define-the-conditions)
+        - `time_aggr` avg, sum, max, min [Learn more](https://docs.datadoghq.com/monitors/create/types/#define-the-conditions)
         - `time_window` last\_#m (between 1 and 2880 depending on the monitor type), last\_#h (between 1 and 48 depending on the monitor type), or last_#d (1 or 2)
         - `timeshift` #m_ago (5, 10, 15, or 30), #h_ago (1, 2, or 4), or 1d_ago
 
@@ -5121,7 +5123,7 @@ paths:
           The query can contain any number of space-separated monitor attributes, for instance `query="type:metric status:alert"`.
 
           [1]: https://app.datadoghq.com/monitors/manage
-          [2]: /monitors/manage_monitor/#find-the-monitors
+          [2]: /monitors/manage/#find-the-monitors
         explode: true
         in: query
         name: query
@@ -5205,7 +5207,7 @@ paths:
           The query can contain any number of space-separated monitor attributes, for instance `query="type:metric status:alert"`.
 
           [1]: https://app.datadoghq.com/monitors/manage
-          [2]: /monitors/manage_monitor/#find-the-monitors
+          [2]: /monitors/manage/#find-the-monitors
         explode: true
         in: query
         name: query
@@ -6358,9 +6360,18 @@ paths:
         - The full payload is approximately 100 bytes. However, with the DogStatsD API,
         compression is applied, which reduces the payload size.
       operationId: SubmitMetrics
+      parameters:
+      - description: HTTP header used to compress the media-type.
+        explode: false
+        in: header
+        name: Content-Encoding
+        required: false
+        schema:
+          $ref: '#/components/schemas/MetricContentEncoding'
+        style: simple
       requestBody:
         content:
-          application/json:
+          text/json:
             examples:
               dynamic-points:
                 description: Post time-series data that can be graphed on Datadog’s
@@ -6380,31 +6391,31 @@ paths:
       responses:
         "202":
           content:
-            application/json:
+            text/json:
               schema:
                 $ref: '#/components/schemas/IntakePayloadAccepted'
           description: Payload accepted
         "400":
           content:
-            application/json:
+            text/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Bad Request
         "403":
           content:
-            application/json:
+            text/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Authentication error
         "408":
           content:
-            application/json:
+            text/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Request timeout
         "413":
           content:
-            application/json:
+            text/json:
               schema:
                 $ref: '#/components/schemas/APIErrorResponse'
           description: Payload too large
@@ -11525,14 +11536,14 @@ components:
       x-enum-varnames:
       - CHECK_STATUS
     ContentEncoding:
-      description: HTTP header used to compress the media-type
+      description: HTTP header used to compress the media-type.
       enum:
       - gzip
       - deflate
       type: string
       x-enum-varnames:
-      - gzip
-      - deflate
+      - GZIP
+      - DEFLATE
     Creator:
       description: Object describing the creator of the shared element.
       example:
@@ -11548,6 +11559,7 @@ components:
           type: string
         name:
           description: Name of the creator.
+          nullable: true
           type: string
       readOnly: true
       type: object
@@ -11945,6 +11957,7 @@ components:
           type: string
         description:
           description: Description of the dashboard.
+          nullable: true
           type: string
         id:
           description: Dashboard identifier.
@@ -12534,7 +12547,7 @@ components:
             Most common `rrule` options from the [iCalendar Spec](https://tools.ietf.org/html/rfc5545) are supported.
 
             **Note**: Attributes specifying the duration in `RRULE` are not supported (for example, `DTSTART`, `DTEND`, `DURATION`).
-            More examples available in this [downtime guide](https://docs.datadoghq.com/monitors/guide/supress-alert-with-downtimes/?tab=api)
+            More examples available in this [downtime guide](https://docs.datadoghq.com/monitors/guide/suppress-alert-with-downtimes/?tab=api)
           example: FREQ=MONTHLY;BYSETPOS=3;BYDAY=WE;INTERVAL=1
           type: string
         type:
@@ -14693,8 +14706,6 @@ components:
       - IMAGE
     IntakePayloadAccepted:
       description: The payload accepted for intake.
-      example:
-        status: ok
       properties:
         status:
           description: The status of the intake payload.
@@ -16341,6 +16352,13 @@ components:
       type: string
       x-enum-varnames:
       - USER_AGENT_PARSER
+    MetricContentEncoding:
+      description: HTTP header used to compress the media-type.
+      enum:
+      - deflate
+      type: string
+      x-enum-varnames:
+      - DEFLATE
     MetricMetadata:
       description: Object with all metric related metadata.
       example:
@@ -16412,12 +16430,6 @@ components:
       type: object
     MetricsPayload:
       description: The metrics' payload.
-      example:
-        series:
-        - metric: system.load.1
-          points:
-          - - 1.475317847E9
-            - 0.7
       properties:
         series:
           description: A list of time series to submit to Datadog.
@@ -16469,6 +16481,7 @@ components:
         aggr:
           description: Aggregation type.
           example: avg
+          nullable: true
           readOnly: true
           type: string
         display_name:
@@ -16998,7 +17011,7 @@ components:
         escalation_message:
           default: none
           description: |-
-            We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#renotify),
+            We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notify/?tab=is_alert#renotify),
             block in the original message instead.
             A message to include with a re-notification. Supports the `@username` notification we allow elsewhere.
             Not applicable if `renotify_interval` is `None`.
@@ -17757,12 +17770,14 @@ components:
           type: string
         name:
           description: Name of the user.
+          nullable: true
           type: string
         status:
           description: Status of the user.
           type: string
         title:
           description: Title of the user.
+          nullable: true
           type: string
         verified:
           description: Whether the user is verified.
@@ -18185,6 +18200,7 @@ components:
       description: Relative timeframe.
       example:
         live_span: 1h
+      nullable: true
       properties:
         live_span:
           $ref: '#/components/schemas/WidgetLiveSpan'
@@ -20535,6 +20551,38 @@ components:
       type: string
       x-enum-varnames:
       - SCATTERPLOT
+    ScatterplotDimension:
+      description: Dimension of the Scatterplot.
+      enum:
+      - x
+      - "y"
+      - radius
+      - color
+      example: radius
+      type: string
+      x-enum-varnames:
+      - X
+      - "Y"
+      - RADIUS
+      - COLOR
+    ScatterplotTableRequest:
+      description: Scatterplot request containing formulas and functions.
+      properties:
+        formulas:
+          description: List of Scatterplot formulas that operate on queries. **This
+            feature is currently in beta.**
+          items:
+            $ref: '#/components/schemas/ScatterplotWidgetFormula'
+          type: array
+        queries:
+          description: List of queries that can be returned directly or used in formulas.
+            **This feature is currently in beta.**
+          items:
+            $ref: '#/components/schemas/FormulaAndFunctionQueryDefinition'
+          type: array
+        response_format:
+          $ref: '#/components/schemas/FormulaAndFunctionResponseFormat'
+      type: object
     ScatterplotWidgetAggregator:
       description: Aggregator used for the request.
       enum:
@@ -20550,6 +20598,23 @@ components:
       - MAXIMUM
       - MINIMUM
       - SUM
+    ScatterplotWidgetFormula:
+      description: Formula to be used in a Scatterplot widget query.
+      properties:
+        alias:
+          description: Expression alias.
+          example: my-query
+          type: string
+        dimension:
+          $ref: '#/components/schemas/ScatterplotDimension'
+        formula:
+          description: String expression built from queries, formulas, and functions.
+          example: func(a) + b
+          type: string
+      required:
+      - dimension
+      - formula
+      type: object
     Series:
       description: |-
         A metric to submit to Datadog.
@@ -21094,6 +21159,7 @@ components:
           port: 1
           dnsServerPort: 5249
           host: host
+          servername: servername
           numberOfPackets: 6
           follow_redirects: true
           dnsServer: dnsServer
@@ -21195,6 +21261,7 @@ components:
             port: 1
             dnsServerPort: 5249
             host: host
+            servername: servername
             numberOfPackets: 6
             follow_redirects: true
             dnsServer: dnsServer
@@ -21228,6 +21295,7 @@ components:
               port: 1
               dnsServerPort: 5249
               host: host
+              servername: servername
               numberOfPackets: 6
               follow_redirects: true
               dnsServer: dnsServer
@@ -21265,6 +21333,7 @@ components:
               port: 1
               dnsServerPort: 5249
               host: host
+              servername: servername
               numberOfPackets: 6
               follow_redirects: true
               dnsServer: dnsServer
@@ -21356,6 +21425,7 @@ components:
           port: 1
           dnsServerPort: 5249
           host: host
+          servername: servername
           numberOfPackets: 6
           follow_redirects: true
           dnsServer: dnsServer
@@ -21389,6 +21459,7 @@ components:
             port: 1
             dnsServerPort: 5249
             host: host
+            servername: servername
             numberOfPackets: 6
             follow_redirects: true
             dnsServer: dnsServer
@@ -21426,6 +21497,7 @@ components:
             port: 1
             dnsServerPort: 5249
             host: host
+            servername: servername
             numberOfPackets: 6
             follow_redirects: true
             dnsServer: dnsServer
@@ -21632,6 +21704,7 @@ components:
               port: 1
               dnsServerPort: 5249
               host: host
+              servername: servername
               numberOfPackets: 6
               follow_redirects: true
               dnsServer: dnsServer
@@ -21950,6 +22023,7 @@ components:
             port: 1
             dnsServerPort: 5249
             host: host
+            servername: servername
             numberOfPackets: 6
             follow_redirects: true
             dnsServer: dnsServer
@@ -22066,6 +22140,7 @@ components:
           port: 1
           dnsServerPort: 5249
           host: host
+          servername: servername
           numberOfPackets: 6
           follow_redirects: true
           dnsServer: dnsServer
@@ -22371,6 +22446,7 @@ components:
               port: 1
               dnsServerPort: 5249
               host: host
+              servername: servername
               numberOfPackets: 6
               follow_redirects: true
               dnsServer: dnsServer
@@ -23212,6 +23288,7 @@ components:
               port: 1
               dnsServerPort: 5249
               host: host
+              servername: servername
               numberOfPackets: 6
               follow_redirects: true
               dnsServer: dnsServer
@@ -23308,6 +23385,7 @@ components:
               port: 1
               dnsServerPort: 5249
               host: host
+              servername: servername
               numberOfPackets: 6
               follow_redirects: true
               dnsServer: dnsServer
@@ -23775,6 +23853,7 @@ components:
           port: 1
           dnsServerPort: 5249
           host: host
+          servername: servername
           numberOfPackets: 6
           follow_redirects: true
           dnsServer: dnsServer
@@ -23895,6 +23974,7 @@ components:
             port: 1
             dnsServerPort: 5249
             host: host
+            servername: servername
             numberOfPackets: 6
             follow_redirects: true
             dnsServer: dnsServer
@@ -24165,6 +24245,7 @@ components:
         port: 1
         dnsServerPort: 5249
         host: host
+        servername: servername
         numberOfPackets: 6
         follow_redirects: true
         dnsServer: dnsServer
@@ -24219,6 +24300,12 @@ components:
         query:
           description: Query to use for the test.
           type: object
+        servername:
+          description: |-
+            For SSL tests, it specifies on which server you want to initiate the TLS handshake,
+            allowing the server to present one of multiple possible certificates on
+            the same IP address and TCP port number.
+          type: string
         shouldTrackHops:
           description: Turns on a traceroute probe to discover all gateways along
             the path to the host destination.
@@ -27915,6 +28002,7 @@ components:
           rum_session_count_sum: 3
           ingested_events_bytes_sum: 3
           public_id: public_id
+          dbm_queries_avg_sum: 1
           mobile_rum_session_count_sum: 7
           container_avg: 4
           audit_logs_lines_indexed_sum: 3
@@ -27933,7 +28021,6 @@ components:
           cws_host_top99p: 6
           apm_azure_app_service_host_top99p: 3
           cspm_container_hwm: 0
-          dbm_queries_agg_sum: 1
           mobile_rum_session_count_android_sum: 9
           apm_host_top99p: 2
           synthetics_check_calls_count_sum: 9
@@ -27961,6 +28048,7 @@ components:
           rum_session_count_sum: 3
           ingested_events_bytes_sum: 3
           public_id: public_id
+          dbm_queries_avg_sum: 1
           mobile_rum_session_count_sum: 7
           container_avg: 4
           audit_logs_lines_indexed_sum: 3
@@ -27979,7 +28067,6 @@ components:
           cws_host_top99p: 6
           apm_azure_app_service_host_top99p: 3
           cspm_container_hwm: 0
-          dbm_queries_agg_sum: 1
           mobile_rum_session_count_android_sum: 9
           apm_host_top99p: 2
           synthetics_check_calls_count_sum: 9
@@ -28241,6 +28328,7 @@ components:
         rum_session_count_sum: 3
         ingested_events_bytes_sum: 3
         public_id: public_id
+        dbm_queries_avg_sum: 1
         mobile_rum_session_count_sum: 7
         container_avg: 4
         audit_logs_lines_indexed_sum: 3
@@ -28259,7 +28347,6 @@ components:
         cws_host_top99p: 6
         apm_azure_app_service_host_top99p: 3
         cspm_container_hwm: 0
-        dbm_queries_agg_sum: 1
         mobile_rum_session_count_android_sum: 9
         apm_host_top99p: 2
         synthetics_check_calls_count_sum: 9
@@ -28368,8 +28455,8 @@ components:
             over all hours in the current month for all organizations.
           format: int64
           type: integer
-        dbm_queries_agg_sum:
-          description: Shows the sum of all distinct Database Monitoring normalized
+        dbm_queries_avg_sum:
+          description: Shows the average of all distinct Database Monitoring normalized
             queries over all hours in the current month for all organizations.
           format: int64
           type: integer
@@ -28560,6 +28647,7 @@ components:
             rum_session_count_sum: 3
             ingested_events_bytes_sum: 3
             public_id: public_id
+            dbm_queries_avg_sum: 1
             mobile_rum_session_count_sum: 7
             container_avg: 4
             audit_logs_lines_indexed_sum: 3
@@ -28578,7 +28666,6 @@ components:
             cws_host_top99p: 6
             apm_azure_app_service_host_top99p: 3
             cspm_container_hwm: 0
-            dbm_queries_agg_sum: 1
             mobile_rum_session_count_android_sum: 9
             apm_host_top99p: 2
             synthetics_check_calls_count_sum: 9
@@ -28606,6 +28693,7 @@ components:
             rum_session_count_sum: 3
             ingested_events_bytes_sum: 3
             public_id: public_id
+            dbm_queries_avg_sum: 1
             mobile_rum_session_count_sum: 7
             container_avg: 4
             audit_logs_lines_indexed_sum: 3
@@ -28624,7 +28712,6 @@ components:
             cws_host_top99p: 6
             apm_azure_app_service_host_top99p: 3
             cspm_container_hwm: 0
-            dbm_queries_agg_sum: 1
             mobile_rum_session_count_android_sum: 9
             apm_host_top99p: 2
             synthetics_check_calls_count_sum: 9
@@ -28697,6 +28784,7 @@ components:
             rum_session_count_sum: 3
             ingested_events_bytes_sum: 3
             public_id: public_id
+            dbm_queries_avg_sum: 1
             mobile_rum_session_count_sum: 7
             container_avg: 4
             audit_logs_lines_indexed_sum: 3
@@ -28715,7 +28803,6 @@ components:
             cws_host_top99p: 6
             apm_azure_app_service_host_top99p: 3
             cspm_container_hwm: 0
-            dbm_queries_agg_sum: 1
             mobile_rum_session_count_android_sum: 9
             apm_host_top99p: 2
             synthetics_check_calls_count_sum: 9
@@ -28743,6 +28830,7 @@ components:
             rum_session_count_sum: 3
             ingested_events_bytes_sum: 3
             public_id: public_id
+            dbm_queries_avg_sum: 1
             mobile_rum_session_count_sum: 7
             container_avg: 4
             audit_logs_lines_indexed_sum: 3
@@ -28761,7 +28849,6 @@ components:
             cws_host_top99p: 6
             apm_azure_app_service_host_top99p: 3
             cspm_container_hwm: 0
-            dbm_queries_agg_sum: 1
             mobile_rum_session_count_android_sum: 9
             apm_host_top99p: 2
             synthetics_check_calls_count_sum: 9
@@ -28785,6 +28872,7 @@ components:
         cspm_container_hwm_sum: 1
         apm_host_top99p_sum: 1
         mobile_rum_session_count_android_agg_sum: 6
+        dbm_queries_avg_sum: 5
         infra_host_top99p_sum: 3
         cspm_container_avg_sum: 1
         synthetics_check_calls_count_agg_sum: 6
@@ -28868,7 +28956,6 @@ components:
         billable_ingested_bytes_agg_sum: 2
         ingested_events_bytes_agg_sum: 6
         twol_ingested_events_bytes_agg_sum: 1
-        dbm_queries_agg_sum: 5
         mobile_rum_session_count_ios_agg_sum: 0
         gcp_host_top99p_sum: 6
         dbm_host_top99p_sum: 4
@@ -28971,8 +29058,8 @@ components:
             over all hours in the current month for all organizations.
           format: int64
           type: integer
-        dbm_queries_agg_sum:
-          description: Shows the sum of all distinct Database Monitoring Normalized
+        dbm_queries_avg_sum:
+          description: Shows the average of all distinct Database Monitoring Normalized
             Queries over all hours in the current month for all organizations.
           format: int64
           type: integer
@@ -29472,7 +29559,7 @@ components:
           description: |-
             The name of the webhook. It corresponds with `<WEBHOOK_NAME>`.
             Learn more on how to use it in
-            [monitor notifications](https://docs.datadoghq.com/monitors/notifications).
+            [monitor notifications](https://docs.datadoghq.com/monitors/notify).
           example: WEBHOOK_NAME
           type: string
         payload:
@@ -29601,7 +29688,7 @@ components:
           description: |-
             The name of the webhook. It corresponds with `<WEBHOOK_NAME>`.
             Learn more on how to use it in
-            [monitor notifications](https://docs.datadoghq.com/monitors/notifications).
+            [monitor notifications](https://docs.datadoghq.com/monitors/notify).
           example: WEBHOOK_NAME
           type: string
         payload:
@@ -31274,13 +31361,12 @@ components:
         y:
           q: system.mem.used
       properties:
+        table:
+          $ref: '#/components/schemas/ScatterplotTableRequest'
         x:
           $ref: '#/components/schemas/ScatterPlotRequest'
         y:
           $ref: '#/components/schemas/ScatterPlotRequest'
-      required:
-      - x
-      - "y"
       type: object
     SlackIntegrationChannel_display:
       description: Configuration options for what is shown in an alert event message.
@@ -31336,6 +31422,7 @@ components:
             port: 1
             dnsServerPort: 5249
             host: host
+            servername: servername
             numberOfPackets: 6
             follow_redirects: true
             dnsServer: dnsServer
@@ -31430,6 +31517,7 @@ components:
             port: 1
             dnsServerPort: 5249
             host: host
+            servername: servername
             numberOfPackets: 6
             follow_redirects: true
             dnsServer: dnsServer

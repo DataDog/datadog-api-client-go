@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**X** | [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | 
-**Y** | [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | 
+**Table** | Pointer to [**ScatterplotTableRequest**](ScatterplotTableRequest.md) |  | [optional] 
+**X** | Pointer to [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | [optional] 
+**Y** | Pointer to [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | [optional] 
 
 ## Methods
 
 ### NewScatterPlotWidgetDefinitionRequests
 
-`func NewScatterPlotWidgetDefinitionRequests(x ScatterPlotRequest, y ScatterPlotRequest) *ScatterPlotWidgetDefinitionRequests`
+`func NewScatterPlotWidgetDefinitionRequests() *ScatterPlotWidgetDefinitionRequests`
 
 NewScatterPlotWidgetDefinitionRequests instantiates a new ScatterPlotWidgetDefinitionRequests object.
 This constructor will assign default values to properties that have it defined,
@@ -25,6 +26,31 @@ will change when the set of required properties is changed.
 NewScatterPlotWidgetDefinitionRequestsWithDefaults instantiates a new ScatterPlotWidgetDefinitionRequests object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetTable
+
+`func (o *ScatterPlotWidgetDefinitionRequests) GetTable() ScatterplotTableRequest`
+
+GetTable returns the Table field if non-nil, zero value otherwise.
+
+### GetTableOk
+
+`func (o *ScatterPlotWidgetDefinitionRequests) GetTableOk() (*ScatterplotTableRequest, bool)`
+
+GetTableOk returns a tuple with the Table field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTable
+
+`func (o *ScatterPlotWidgetDefinitionRequests) SetTable(v ScatterplotTableRequest)`
+
+SetTable sets Table field to given value.
+
+### HasTable
+
+`func (o *ScatterPlotWidgetDefinitionRequests) HasTable() bool`
+
+HasTable returns a boolean if a field has been set.
 
 ### GetX
 
@@ -45,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetX sets X field to given value.
 
+### HasX
+
+`func (o *ScatterPlotWidgetDefinitionRequests) HasX() bool`
+
+HasX returns a boolean if a field has been set.
 
 ### GetY
 
@@ -65,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetY sets Y field to given value.
 
+### HasY
+
+`func (o *ScatterPlotWidgetDefinitionRequests) HasY() bool`
+
+HasY returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

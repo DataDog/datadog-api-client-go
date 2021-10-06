@@ -10,13 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // ScatterPlotWidgetDefinitionRequests Widget definition.
 type ScatterPlotWidgetDefinitionRequests struct {
-	X ScatterPlotRequest `json:"x"`
-	Y ScatterPlotRequest `json:"y"`
+	Table *ScatterplotTableRequest `json:"table,omitempty"`
+	X     *ScatterPlotRequest      `json:"x,omitempty"`
+	Y     *ScatterPlotRequest      `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -25,10 +25,8 @@ type ScatterPlotWidgetDefinitionRequests struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScatterPlotWidgetDefinitionRequests(x ScatterPlotRequest, y ScatterPlotRequest) *ScatterPlotWidgetDefinitionRequests {
+func NewScatterPlotWidgetDefinitionRequests() *ScatterPlotWidgetDefinitionRequests {
 	this := ScatterPlotWidgetDefinitionRequests{}
-	this.X = x
-	this.Y = y
 	return &this
 }
 
@@ -40,52 +38,100 @@ func NewScatterPlotWidgetDefinitionRequestsWithDefaults() *ScatterPlotWidgetDefi
 	return &this
 }
 
-// GetX returns the X field value
+// GetTable returns the Table field value if set, zero value otherwise.
+func (o *ScatterPlotWidgetDefinitionRequests) GetTable() ScatterplotTableRequest {
+	if o == nil || o.Table == nil {
+		var ret ScatterplotTableRequest
+		return ret
+	}
+	return *o.Table
+}
+
+// GetTableOk returns a tuple with the Table field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScatterPlotWidgetDefinitionRequests) GetTableOk() (*ScatterplotTableRequest, bool) {
+	if o == nil || o.Table == nil {
+		return nil, false
+	}
+	return o.Table, true
+}
+
+// HasTable returns a boolean if a field has been set.
+func (o *ScatterPlotWidgetDefinitionRequests) HasTable() bool {
+	if o != nil && o.Table != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTable gets a reference to the given ScatterplotTableRequest and assigns it to the Table field.
+func (o *ScatterPlotWidgetDefinitionRequests) SetTable(v ScatterplotTableRequest) {
+	o.Table = &v
+}
+
+// GetX returns the X field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinitionRequests) GetX() ScatterPlotRequest {
-	if o == nil {
+	if o == nil || o.X == nil {
 		var ret ScatterPlotRequest
 		return ret
 	}
-
-	return o.X
+	return *o.X
 }
 
-// GetXOk returns a tuple with the X field value
+// GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScatterPlotWidgetDefinitionRequests) GetXOk() (*ScatterPlotRequest, bool) {
-	if o == nil {
+	if o == nil || o.X == nil {
 		return nil, false
 	}
-	return &o.X, true
+	return o.X, true
 }
 
-// SetX sets field value
+// HasX returns a boolean if a field has been set.
+func (o *ScatterPlotWidgetDefinitionRequests) HasX() bool {
+	if o != nil && o.X != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetX gets a reference to the given ScatterPlotRequest and assigns it to the X field.
 func (o *ScatterPlotWidgetDefinitionRequests) SetX(v ScatterPlotRequest) {
-	o.X = v
+	o.X = &v
 }
 
-// GetY returns the Y field value
+// GetY returns the Y field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinitionRequests) GetY() ScatterPlotRequest {
-	if o == nil {
+	if o == nil || o.Y == nil {
 		var ret ScatterPlotRequest
 		return ret
 	}
-
-	return o.Y
+	return *o.Y
 }
 
-// GetYOk returns a tuple with the Y field value
+// GetYOk returns a tuple with the Y field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScatterPlotWidgetDefinitionRequests) GetYOk() (*ScatterPlotRequest, bool) {
-	if o == nil {
+	if o == nil || o.Y == nil {
 		return nil, false
 	}
-	return &o.Y, true
+	return o.Y, true
 }
 
-// SetY sets field value
+// HasY returns a boolean if a field has been set.
+func (o *ScatterPlotWidgetDefinitionRequests) HasY() bool {
+	if o != nil && o.Y != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetY gets a reference to the given ScatterPlotRequest and assigns it to the Y field.
 func (o *ScatterPlotWidgetDefinitionRequests) SetY(v ScatterPlotRequest) {
-	o.Y = v
+	o.Y = &v
 }
 
 func (o ScatterPlotWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
@@ -93,10 +139,13 @@ func (o ScatterPlotWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
+	if o.Table != nil {
+		toSerialize["table"] = o.Table
+	}
+	if o.X != nil {
 		toSerialize["x"] = o.X
 	}
-	if true {
+	if o.Y != nil {
 		toSerialize["y"] = o.Y
 	}
 	return json.Marshal(toSerialize)
@@ -104,24 +153,11 @@ func (o ScatterPlotWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 
 func (o *ScatterPlotWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		X *ScatterPlotRequest `json:"x"`
-		Y *ScatterPlotRequest `json:"y"`
-	}{}
 	all := struct {
-		X ScatterPlotRequest `json:"x"`
-		Y ScatterPlotRequest `json:"y"`
+		Table *ScatterplotTableRequest `json:"table,omitempty"`
+		X     *ScatterPlotRequest      `json:"x,omitempty"`
+		Y     *ScatterPlotRequest      `json:"y,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.X == nil {
-		return fmt.Errorf("Required field x missing")
-	}
-	if required.Y == nil {
-		return fmt.Errorf("Required field y missing")
-	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -131,6 +167,7 @@ func (o *ScatterPlotWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	o.Table = all.Table
 	o.X = all.X
 	o.Y = all.Y
 	return nil

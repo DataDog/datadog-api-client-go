@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Aggr** | Pointer to **string** | Aggregation type. | [optional] [readonly] 
+**Aggr** | Pointer to **NullableString** | Aggregation type. | [optional] [readonly] 
 **DisplayName** | Pointer to **string** | Display name of the metric. | [optional] [readonly] 
 **End** | Pointer to **int64** | End of the time window, milliseconds since Unix epoch. | [optional] [readonly] 
 **Expression** | Pointer to **string** | Metric expression. | [optional] [readonly] 
@@ -62,6 +62,16 @@ SetAggr sets Aggr field to given value.
 
 HasAggr returns a boolean if a field has been set.
 
+### SetAggrNil
+
+`func (o *MetricsQueryMetadata) SetAggrNil(b bool)`
+
+ SetAggrNil sets the value for Aggr to be an explicit nil
+
+### UnsetAggr
+`func (o *MetricsQueryMetadata) UnsetAggr()`
+
+UnsetAggr ensures that no value is present for Aggr, not even an explicit nil
 ### GetDisplayName
 
 `func (o *MetricsQueryMetadata) GetDisplayName() string`

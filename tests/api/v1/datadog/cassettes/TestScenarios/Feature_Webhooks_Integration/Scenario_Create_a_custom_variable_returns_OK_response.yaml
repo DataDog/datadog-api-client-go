@@ -1,42 +1,47 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"is_secret":true,"name":"TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628843839","value":"CUSTOM_VARIABLE_VALUE"}
+      {"is_secret":true,"name":"TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628785711","value":"CUSTOM_VARIABLE_VALUE"}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '112'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateWebhooksIntegrationCustomVariable
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.3.0; os Darwin; arch
+        x64)
       X-Datadog-Parent-Id:
-      - "3724042000728344456"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '3089514925855613338'
       X-Datadog-Trace-Id:
-      - "8837709767732673741"
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables
+      - '3089514925855613338'
     method: POST
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables
   response:
-    body: '{"is_secret":true,"name":"TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628843839"}'
+    body: '{"is_secret":true,"name":"TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628785711"}'
+    code: 201
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "80"
+      - '80'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Aug 2021 08:37:19 GMT
+      - Thu, 12 Aug 2021 16:28:32 GMT
       Location:
-      - https://app.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628843839
+      - https://app.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628785711
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -46,39 +51,42 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 201 Created
-    code: 201
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteWebhooksIntegrationCustomVariable
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.5; os darwin; arch amd64)
+      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.3.0; os Darwin; arch
+        x64)
       X-Datadog-Parent-Id:
-      - "3332002359779328470"
-      X-Datadog-Sampling-Priority:
-      - "1"
+      - '3089514925855613338'
       X-Datadog-Trace-Id:
-      - "8837709767732673741"
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628843839
+      - '3089514925855613338'
     method: DELETE
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628785711
   response:
     body: '{}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "2"
+      - '2'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Aug 2021 08:37:20 GMT
+      - Thu, 12 Aug 2021 16:28:33 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -88,5 +96,4 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1

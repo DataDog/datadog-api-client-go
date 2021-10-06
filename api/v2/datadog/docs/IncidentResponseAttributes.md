@@ -332,6 +332,16 @@ SetNotificationHandles sets NotificationHandles field to given value.
 
 HasNotificationHandles returns a boolean if a field has been set.
 
+### SetNotificationHandlesNil
+
+`func (o *IncidentResponseAttributes) SetNotificationHandlesNil(b bool)`
+
+ SetNotificationHandlesNil sets the value for NotificationHandles to be an explicit nil
+
+### UnsetNotificationHandles
+`func (o *IncidentResponseAttributes) UnsetNotificationHandles()`
+
+UnsetNotificationHandles ensures that no value is present for NotificationHandles, not even an explicit nil
 ### GetPostmortemId
 
 `func (o *IncidentResponseAttributes) GetPostmortemId() string`

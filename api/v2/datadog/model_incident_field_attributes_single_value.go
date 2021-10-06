@@ -16,7 +16,7 @@ import (
 type IncidentFieldAttributesSingleValue struct {
 	Type *IncidentFieldAttributesSingleValueType `json:"type,omitempty"`
 	// The single value selected for this field.
-	Value *string `json:"value,omitempty"`
+	Value NullableString `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -74,36 +74,47 @@ func (o *IncidentFieldAttributesSingleValue) SetType(v IncidentFieldAttributesSi
 	o.Type = &v
 }
 
-// GetValue returns the Value field value if set, zero value otherwise.
+// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentFieldAttributesSingleValue) GetValue() string {
-	if o == nil || o.Value == nil {
+	if o == nil || o.Value.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Value
+	return *o.Value.Get()
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IncidentFieldAttributesSingleValue) GetValueOk() (*string, bool) {
-	if o == nil || o.Value == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Value, true
+	return o.Value.Get(), o.Value.IsSet()
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *IncidentFieldAttributesSingleValue) HasValue() bool {
-	if o != nil && o.Value != nil {
+	if o != nil && o.Value.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetValue gets a reference to the given string and assigns it to the Value field.
+// SetValue gets a reference to the given NullableString and assigns it to the Value field.
 func (o *IncidentFieldAttributesSingleValue) SetValue(v string) {
-	o.Value = &v
+	o.Value.Set(&v)
+}
+
+// SetValueNil sets the value for Value to be an explicit nil
+func (o *IncidentFieldAttributesSingleValue) SetValueNil() {
+	o.Value.Set(nil)
+}
+
+// UnsetValue ensures that no value is present for Value, not even an explicit nil
+func (o *IncidentFieldAttributesSingleValue) UnsetValue() {
+	o.Value.Unset()
 }
 
 func (o IncidentFieldAttributesSingleValue) MarshalJSON() ([]byte, error) {
@@ -114,8 +125,8 @@ func (o IncidentFieldAttributesSingleValue) MarshalJSON() ([]byte, error) {
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
+	if o.Value.IsSet() {
+		toSerialize["value"] = o.Value.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -124,7 +135,7 @@ func (o *IncidentFieldAttributesSingleValue) UnmarshalJSON(bytes []byte) (err er
 	raw := map[string]interface{}{}
 	all := struct {
 		Type  *IncidentFieldAttributesSingleValueType `json:"type,omitempty"`
-		Value *string                                 `json:"value,omitempty"`
+		Value NullableString                          `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

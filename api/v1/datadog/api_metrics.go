@@ -687,9 +687,23 @@ func (a *MetricsApiService) queryMetricsExecute(r apiQueryMetricsRequest) (Metri
 }
 
 type apiSubmitMetricsRequest struct {
-	ctx        _context.Context
-	ApiService *MetricsApiService
-	body       *MetricsPayload
+	ctx             _context.Context
+	ApiService      *MetricsApiService
+	body            *MetricsPayload
+	contentEncoding *MetricContentEncoding
+}
+
+type SubmitMetricsOptionalParameters struct {
+	ContentEncoding *MetricContentEncoding
+}
+
+func NewSubmitMetricsOptionalParameters() *SubmitMetricsOptionalParameters {
+	this := SubmitMetricsOptionalParameters{}
+	return &this
+}
+func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding MetricContentEncoding) *SubmitMetricsOptionalParameters {
+	r.ContentEncoding = &contentEncoding
+	return r
 }
 
 /*
@@ -706,11 +720,20 @@ If you’re submitting metrics directly to the Datadog API without using DogStat
 - The full payload is approximately 100 bytes. However, with the DogStatsD API,
 compression is applied, which reduces the payload size.
 */
-func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricsPayload) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricsPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req := apiSubmitMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
+	}
+
+	if len(o) > 1 {
+		var localVarReturnValue IntakePayloadAccepted
+		return localVarReturnValue, nil, reportError("only one argument of type SubmitMetricsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.contentEncoding = o[0].ContentEncoding
 	}
 
 	return req.ApiService.submitMetricsExecute(req)
@@ -745,7 +768,7 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"text/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -754,7 +777,7 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -765,6 +788,9 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 	// Set Operation-ID header for telemetry
 	localVarHeaderParams["DD-OPERATION-ID"] = "SubmitMetrics"
 
+	if r.contentEncoding != nil {
+		localVarHeaderParams["Content-Encoding"] = parameterToString(*r.contentEncoding, "")
+	}
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {

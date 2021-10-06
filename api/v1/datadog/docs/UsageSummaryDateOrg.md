@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **CwsContainerCountAvg** | Pointer to **int64** | Shows the average of all distinct Cloud Workload Security containers over all hours in the current date for the given org. | [optional] 
 **CwsHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Cloud Workload Security hosts over all hours in the current date for the given org. | [optional] 
 **DbmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Database Monitoring hosts over all hours in the current month for all organizations. | [optional] 
-**DbmQueriesAggSum** | Pointer to **int64** | Shows the sum of all distinct Database Monitoring normalized queries over all hours in the current month for all organizations. | [optional] 
+**DbmQueriesAvgSum** | Pointer to **int64** | Shows the average of all distinct Database Monitoring normalized queries over all hours in the current month for all organizations. | [optional] 
 **FargateTasksCountAvg** | Pointer to **int64** | The average task count for Fargate. | [optional] 
 **FargateTasksCountHwm** | Pointer to **int64** | Shows the high-water mark of all Fargate tasks over all hours in the current date for the given org. | [optional] 
 **GcpHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current date for the given org. | [optional] 
@@ -520,30 +520,30 @@ SetDbmHostTop99pSum sets DbmHostTop99pSum field to given value.
 
 HasDbmHostTop99pSum returns a boolean if a field has been set.
 
-### GetDbmQueriesAggSum
+### GetDbmQueriesAvgSum
 
-`func (o *UsageSummaryDateOrg) GetDbmQueriesAggSum() int64`
+`func (o *UsageSummaryDateOrg) GetDbmQueriesAvgSum() int64`
 
-GetDbmQueriesAggSum returns the DbmQueriesAggSum field if non-nil, zero value otherwise.
+GetDbmQueriesAvgSum returns the DbmQueriesAvgSum field if non-nil, zero value otherwise.
 
-### GetDbmQueriesAggSumOk
+### GetDbmQueriesAvgSumOk
 
-`func (o *UsageSummaryDateOrg) GetDbmQueriesAggSumOk() (*int64, bool)`
+`func (o *UsageSummaryDateOrg) GetDbmQueriesAvgSumOk() (*int64, bool)`
 
-GetDbmQueriesAggSumOk returns a tuple with the DbmQueriesAggSum field if it's non-nil, zero value otherwise
+GetDbmQueriesAvgSumOk returns a tuple with the DbmQueriesAvgSum field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDbmQueriesAggSum
+### SetDbmQueriesAvgSum
 
-`func (o *UsageSummaryDateOrg) SetDbmQueriesAggSum(v int64)`
+`func (o *UsageSummaryDateOrg) SetDbmQueriesAvgSum(v int64)`
 
-SetDbmQueriesAggSum sets DbmQueriesAggSum field to given value.
+SetDbmQueriesAvgSum sets DbmQueriesAvgSum field to given value.
 
-### HasDbmQueriesAggSum
+### HasDbmQueriesAvgSum
 
-`func (o *UsageSummaryDateOrg) HasDbmQueriesAggSum() bool`
+`func (o *UsageSummaryDateOrg) HasDbmQueriesAvgSum() bool`
 
-HasDbmQueriesAggSum returns a boolean if a field has been set.
+HasDbmQueriesAvgSum returns a boolean if a field has been set.
 
 ### GetFargateTasksCountAvg
 

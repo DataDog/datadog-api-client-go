@@ -15,7 +15,7 @@ import (
 // MetricsQueryMetadata Object containing all metric names returned and their associated metadata.
 type MetricsQueryMetadata struct {
 	// Aggregation type.
-	Aggr *string `json:"aggr,omitempty"`
+	Aggr NullableString `json:"aggr,omitempty"`
 	// Display name of the metric.
 	DisplayName *string `json:"display_name,omitempty"`
 	// End of the time window, milliseconds since Unix epoch.
@@ -61,36 +61,47 @@ func NewMetricsQueryMetadataWithDefaults() *MetricsQueryMetadata {
 	return &this
 }
 
-// GetAggr returns the Aggr field value if set, zero value otherwise.
+// GetAggr returns the Aggr field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MetricsQueryMetadata) GetAggr() string {
-	if o == nil || o.Aggr == nil {
+	if o == nil || o.Aggr.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Aggr
+	return *o.Aggr.Get()
 }
 
 // GetAggrOk returns a tuple with the Aggr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MetricsQueryMetadata) GetAggrOk() (*string, bool) {
-	if o == nil || o.Aggr == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Aggr, true
+	return o.Aggr.Get(), o.Aggr.IsSet()
 }
 
 // HasAggr returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasAggr() bool {
-	if o != nil && o.Aggr != nil {
+	if o != nil && o.Aggr.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAggr gets a reference to the given string and assigns it to the Aggr field.
+// SetAggr gets a reference to the given NullableString and assigns it to the Aggr field.
 func (o *MetricsQueryMetadata) SetAggr(v string) {
-	o.Aggr = &v
+	o.Aggr.Set(&v)
+}
+
+// SetAggrNil sets the value for Aggr to be an explicit nil
+func (o *MetricsQueryMetadata) SetAggrNil() {
+	o.Aggr.Set(nil)
+}
+
+// UnsetAggr ensures that no value is present for Aggr, not even an explicit nil
+func (o *MetricsQueryMetadata) UnsetAggr() {
+	o.Aggr.Unset()
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
@@ -482,8 +493,8 @@ func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.Aggr != nil {
-		toSerialize["aggr"] = o.Aggr
+	if o.Aggr.IsSet() {
+		toSerialize["aggr"] = o.Aggr.Get()
 	}
 	if o.DisplayName != nil {
 		toSerialize["display_name"] = o.DisplayName
@@ -527,7 +538,7 @@ func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
 func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggr        *string             `json:"aggr,omitempty"`
+		Aggr        NullableString      `json:"aggr,omitempty"`
 		DisplayName *string             `json:"display_name,omitempty"`
 		End         *int64              `json:"end,omitempty"`
 		Expression  *string             `json:"expression,omitempty"`

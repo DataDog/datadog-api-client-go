@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"log"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -69,9 +68,7 @@ func TestGraphGetErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).SnapshotsApi.GetGraphSnapshot(ctx, 345, 123)
-			log.Println("maybe here", httpresp, err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			log.Println("maybe here 2")
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())

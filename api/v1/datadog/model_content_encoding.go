@@ -13,13 +13,13 @@ import (
 	"fmt"
 )
 
-// ContentEncoding HTTP header used to compress the media-type
+// ContentEncoding HTTP header used to compress the media-type.
 type ContentEncoding string
 
 // List of ContentEncoding
 const (
-	CONTENTENCODING_gzip    ContentEncoding = "gzip"
-	CONTENTENCODING_deflate ContentEncoding = "deflate"
+	CONTENTENCODING_GZIP    ContentEncoding = "gzip"
+	CONTENTENCODING_DEFLATE ContentEncoding = "deflate"
 )
 
 var allowedContentEncodingEnumValues = []ContentEncoding{
