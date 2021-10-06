@@ -1,0 +1,35 @@
+---
+version: 1
+interactions:
+- request:
+    body: !!binary |
+      eJyKrlZKSSlJTC9WslLKyC8usQpJLS7xyU8vNjQzNjY2sTQ0M1XSUcpNLS5OTE9VslICSe
+      uC5HWRFNTGcgECAAD//0fsFZU=
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Encoding:
+      - deflate
+      Content-Length:
+      - "71"
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - SubmitLog
+      User-Agent:
+      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
+    url: https://http-intake.logs.datadoghq.com/v1/input
+    method: POST
+  response:
+    body: '{}'
+    headers:
+      Content-Length:
+      - "2"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 04 Oct 2021 12:06:06 GMT
+    status: 200 OK
+    code: 200
+    duration: ""
