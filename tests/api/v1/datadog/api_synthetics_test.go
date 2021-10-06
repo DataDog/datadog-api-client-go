@@ -44,7 +44,7 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 	)
 
 	return datadog.SyntheticsAPITest{
-		Config: &datadog.SyntheticsAPITestConfig{
+		Config: datadog.SyntheticsAPITestConfig{
 			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertionTextHTML),
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
@@ -77,10 +77,10 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 				},
 			},
 		},
-		Locations: &[]string{"aws:us-east-2"},
-		Message:   datadog.PtrString("Go client testing Synthetics API test - this is message"),
-		Name:      tests.UniqueEntityName(ctx, t),
-		Options: &datadog.SyntheticsTestOptions{
+		Locations: []string{"aws:us-east-2"},
+		Message:   "Go client testing Synthetics API test - this is message",
+		Name:      *tests.UniqueEntityName(ctx, t),
+		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
 			AllowInsecure:      datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
@@ -96,13 +96,13 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
 		Tags:    &[]string{"testing:api"},
-		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+		Type:    datadog.SYNTHETICSAPITESTTYPE_API,
 	}
 }
 
 func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T, globalVariable datadog.SyntheticsGlobalVariable) datadog.SyntheticsAPITest {
 	return datadog.SyntheticsAPITest{
-		Config: &datadog.SyntheticsAPITestConfig{
+		Config: datadog.SyntheticsAPITestConfig{
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
 				datadog.SyntheticsConfigVariable{
 					Name:    "PROPERTY",
@@ -118,9 +118,9 @@ func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T, globalVari
 			},
 			Steps: &[]datadog.SyntheticsAPIStep{
 				datadog.SyntheticsAPIStep{
-					Assertions: &[]datadog.SyntheticsAssertion{},
-					Name:       datadog.PtrString("First step"),
-					Request: &datadog.SyntheticsTestRequest{
+					Assertions: []datadog.SyntheticsAssertion{},
+					Name:       "First step",
+					Request: datadog.SyntheticsTestRequest{
 						Headers:         &map[string]string{"testingGoClient": "true"},
 						Method:          datadog.HTTPMETHOD_GET.Ptr(),
 						Timeout:         datadog.PtrFloat64(10),
@@ -128,7 +128,7 @@ func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T, globalVari
 						AllowInsecure:   datadog.PtrBool(true),
 						FollowRedirects: datadog.PtrBool(true),
 					},
-					Subtype: datadog.SYNTHETICSAPISTEPSUBTYPE_HTTP.Ptr(),
+					Subtype: datadog.SYNTHETICSAPISTEPSUBTYPE_HTTP,
 					ExtractedValues: &[]datadog.SyntheticsParsingOptions{
 						datadog.SyntheticsParsingOptions{
 							Name: datadog.PtrString("EXTRACTED_VALUE"),
@@ -144,10 +144,10 @@ func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T, globalVari
 				},
 			},
 		},
-		Locations: &[]string{"aws:us-east-2"},
-		Message:   datadog.PtrString("Go client testing Synthetics API test - this is message"),
-		Name:      tests.UniqueEntityName(ctx, t),
-		Options: &datadog.SyntheticsTestOptions{
+		Locations: []string{"aws:us-east-2"},
+		Message:   "Go client testing Synthetics API test - this is message",
+		Name:      *tests.UniqueEntityName(ctx, t),
+		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
 			AllowInsecure:      datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
@@ -161,7 +161,7 @@ func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T, globalVari
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_MULTI.Ptr(),
 		Tags:    &[]string{"testing:api"},
-		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+		Type:    datadog.SYNTHETICSAPITESTTYPE_API,
 	}
 }
 
@@ -170,7 +170,7 @@ func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.S
 	assertion2000.SetTarget(target2000)
 
 	return datadog.SyntheticsAPITest{
-		Config: &datadog.SyntheticsAPITestConfig{
+		Config: datadog.SyntheticsAPITestConfig{
 			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(assertion2000),
 			},
@@ -179,15 +179,15 @@ func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.S
 				Port: datadog.PtrInt64(443),
 			},
 		},
-		Locations: &[]string{"aws:us-east-2"},
-		Message:   datadog.PtrString("Go client testing Synthetics API test Subtype TCP - this is message"),
-		Name:      tests.UniqueEntityName(ctx, t),
-		Options: &datadog.SyntheticsTestOptions{
+		Locations: []string{"aws:us-east-2"},
+		Message:   "Go client testing Synthetics API test Subtype TCP - this is message",
+		Name:      *tests.UniqueEntityName(ctx, t),
+		Options: datadog.SyntheticsTestOptions{
 			TickEvery: datadog.PtrInt64(60),
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_TCP.Ptr(),
 		Tags:    &[]string{"testing:api-tcp"},
-		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+		Type:    datadog.SYNTHETICSAPITESTTYPE_API,
 	}
 }
 
@@ -198,7 +198,7 @@ func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.S
 	recordAssertion.SetTarget(target)
 
 	return datadog.SyntheticsAPITest{
-		Config: &datadog.SyntheticsAPITestConfig{
+		Config: datadog.SyntheticsAPITestConfig{
 			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(recordAssertion),
 			},
@@ -208,15 +208,15 @@ func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.S
 				DnsServerPort: datadog.PtrInt32(53),
 			},
 		},
-		Locations: &[]string{"aws:us-east-2"},
-		Message:   datadog.PtrString("Go client testing Synthetics API test Subtype DNS - this is message"),
-		Name:      tests.UniqueEntityName(ctx, t),
-		Options: &datadog.SyntheticsTestOptions{
+		Locations: []string{"aws:us-east-2"},
+		Message:   "Go client testing Synthetics API test Subtype DNS - this is message",
+		Name:      *tests.UniqueEntityName(ctx, t),
+		Options: datadog.SyntheticsTestOptions{
 			TickEvery: datadog.PtrInt64(60),
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_DNS.Ptr(),
 		Tags:    &[]string{"testing:api-dns"},
-		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+		Type:    datadog.SYNTHETICSAPITESTTYPE_API,
 	}
 }
 
@@ -227,7 +227,7 @@ func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.
 	latencyAssertion.SetTarget(target)
 
 	return datadog.SyntheticsAPITest{
-		Config: &datadog.SyntheticsAPITestConfig{
+		Config: datadog.SyntheticsAPITestConfig{
 			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(latencyAssertion),
 			},
@@ -236,21 +236,21 @@ func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.
 				NumberOfPackets: datadog.PtrInt32(2),
 			},
 		},
-		Locations: &[]string{"aws:us-east-2"},
-		Message:   datadog.PtrString("Go client testing Synthetics API test Subtype ICMP - this is message"),
-		Name:      tests.UniqueEntityName(ctx, t),
-		Options: &datadog.SyntheticsTestOptions{
+		Locations: []string{"aws:us-east-2"},
+		Message:   "Go client testing Synthetics API test Subtype ICMP - this is message",
+		Name:      *tests.UniqueEntityName(ctx, t),
+		Options: datadog.SyntheticsTestOptions{
 			TickEvery: datadog.PtrInt64(60),
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_ICMP.Ptr(),
 		Tags:    &[]string{"testing:api-icmp"},
-		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+		Type:    datadog.SYNTHETICSAPITESTTYPE_API,
 	}
 }
 
 func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsBrowserTest {
 	return datadog.SyntheticsBrowserTest{
-		Config: &datadog.SyntheticsBrowserTestConfig{
+		Config: datadog.SyntheticsBrowserTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{},
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
 				datadog.SyntheticsConfigVariable{
@@ -266,10 +266,10 @@ func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.Synthet
 			},
 			SetCookie: datadog.PtrString("name:test"),
 		},
-		Locations: &[]string{"aws:us-east-2"},
+		Locations: []string{"aws:us-east-2"},
 		Message:   "Go client testing Synthetics Browser test - this is message",
-		Name:      tests.UniqueEntityName(ctx, t),
-		Options: &datadog.SyntheticsTestOptions{
+		Name:      *tests.UniqueEntityName(ctx, t),
+		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
 			AllowInsecure:      datadog.PtrBool(true),
 			DeviceIds:          &[]datadog.SyntheticsDeviceID{datadog.SYNTHETICSDEVICEID_TABLET},
@@ -285,7 +285,7 @@ func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.Synthet
 			DisableCors:  datadog.PtrBool(true),
 		},
 		Tags: &[]string{"testing:browser"},
-		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER.Ptr(),
+		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER,
 	}
 }
 
