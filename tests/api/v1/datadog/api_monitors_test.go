@@ -541,6 +541,9 @@ func TestMonitorCanDeleteErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).MonitorsApi.CheckCanDeleteMonitor(ctx, tc.IDs)
+			if _, ok := err.(datadog.GenericOpenAPIError); !ok {
+				t.Fatalf("unexpected error: %v (%t)", err, err)
+			}
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 409 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.CheckCanDeleteMonitorResponse)

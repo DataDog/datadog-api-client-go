@@ -1,0 +1,45 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"query":"query","type":"log alert"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Length:
+      - "37"
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - ValidateMonitor
+      User-Agent:
+      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v1/monitor/validate
+    method: POST
+  response:
+    body: '{"errors": ["The value provided for parameter ''query'' is invalid: invalid
+      operator specified: "]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "97"
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 04 Oct 2021 14:05:25 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 400 Bad Request
+    code: 400
+    duration: ""
