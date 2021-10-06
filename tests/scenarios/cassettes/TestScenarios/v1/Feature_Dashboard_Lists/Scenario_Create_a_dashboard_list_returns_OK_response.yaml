@@ -1,0 +1,80 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"name":"Test-Dashboard_Lists-1633349157"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Length:
+      - "43"
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateDashboardList
+      User-Agent:
+      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual
+    method: POST
+  response:
+    body: '{"is_favorite":false,"name":"Test-Dashboard_Lists-1633349157","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2021-10-04T12:05:57.865028+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2021-10-04T12:05:57.865052+00:00","id":240771}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 04 Oct 2021 12:05:57 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - DeleteDashboardList
+      User-Agent:
+      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/240771
+    method: DELETE
+  response:
+    body: '{"deleted_dashboard_list_id":240771}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 04 Oct 2021 12:05:58 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
