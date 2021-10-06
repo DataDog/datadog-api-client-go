@@ -6,10 +6,10 @@ Both are using cassettes to record HTTP interactions, allowing to run the tests 
 talking to the API. We also store the test time to be able to freeze.
 
 You can control the behavior with the `RECORD` environment variable:
- - `RECORD=false`, the default value, means replaying HTTP requests from recording.
+ - `RECORD=false`, the default value, means replaying HTTP requests from recordings.
  - `RECORD=true` creates or updates recordings. This will need valid credentials in `DD_TEST_CLIENT_API_KEY`
     and `DD_TEST_CLIENT_APP_KEY`.
- - `RECORD=none` ignores recordings. This will also runs tests that we call `integration-only`, ie
+ - `RECORD=none` ignores recordings. This will also runs tests that we call `integration-only`, i.e.
     tests that we don't record for security reasons. It also needs valid credentials.
 
 Cassettes and freeze files are stored in `tests/api/$VERSION/datadog/cassettes/`, with one file per tests.
