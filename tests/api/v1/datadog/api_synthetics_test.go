@@ -14,6 +14,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/tests"
 
@@ -688,6 +689,9 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(testSyntheticsBrowser.GetName(), synt.GetName())
+
+	// temporary fix to prevent getting a 404 because of replica lag
+	time.Sleep(500 * time.Millisecond)
 
 	// Update Browser test
 	updatedName := fmt.Sprintf("%s-updated", testSyntheticsBrowser.GetName())
@@ -1398,6 +1402,9 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(result.GetName(), variable.GetName())
+
+	// temporary fix to prevent getting a 404 because of replica lag
+	time.Sleep(500 * time.Millisecond)
 
 	// Get variable
 	result, httpresp, err = Client(ctx).SyntheticsApi.GetGlobalVariable(ctx, result.GetId())

@@ -3,28 +3,30 @@ version: 1
 interactions:
 - request:
     body: |
-      {"description":"variable description","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1622028556","tags":["synthetics"],"value":{"secure":false,"value":"VARIABLE_VALUE"}}
+      {"description":"variable description","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1633513493","tags":["synthetics"],"value":{"secure":false,"value":"VARIABLE_VALUE"}}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "168"
       Content-Type:
       - application/json
       Dd-Operation-Id:
       - CreateGlobalVariable
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.15.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4949911701073667068"
+      - "7083494932296464216"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8096447875523529814"
+      - "1762915418863078084"
     url: https://api.datadoghq.com/api/v1/synthetics/variables
     method: POST
   response:
     body: '{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"is_totp":null,"value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"type":"variable","id":"c42b9916-89c8-4ae2-b4d3-a8f79f4b6bbb","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1622028556"}'
+      description","tags":["synthetics"],"last_error":null,"is_totp":null,"value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"type":"variable","id":"3ff484ce-e2af-4fd5-946e-a6f561e53d06","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1633513493"}'
     headers:
       Cache-Control:
       - no-cache
@@ -33,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 26 May 2021 11:29:17 GMT
+      - Wed, 06 Oct 2021 09:44:54 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -42,20 +44,16 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
-      X-Dd-Version:
-      - "35.4609923"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "120"
+      - "12000"
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "119"
+      - "11998"
       X-Ratelimit-Reset:
-      - "43"
+      - "6"
     status: 200 OK
     code: 200
     duration: ""
@@ -68,18 +66,17 @@ interactions:
       Dd-Operation-Id:
       - GetGlobalVariable
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.15.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5422553989719145866"
+      - "6526676946143516961"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8096447875523529814"
-    url: https://api.datadoghq.com/api/v1/synthetics/variables/c42b9916-89c8-4ae2-b4d3-a8f79f4b6bbb
+      - "1762915418863078084"
+    url: https://api.datadoghq.com/api/v1/synthetics/variables/3ff484ce-e2af-4fd5-946e-a6f561e53d06
     method: GET
   response:
-    body: '{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-05-26T11:29:17.306699+00:00","is_totp":null,"modified_at":"2021-05-26T11:29:17.306699+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":1445416,"type":"variable","id":"c42b9916-89c8-4ae2-b4d3-a8f79f4b6bbb","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1622028556"}'
+    body: '{"parse_test_extracted_at":null,"description":"variable description","tags":["synthetics"],"last_error":null,"parse_test_public_id":null,"is_totp":null,"id":"3ff484ce-e2af-4fd5-946e-a6f561e53d06","parse_test_options":null,"name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1633513493","created_at":"2021-10-06T09:44:54.179944+00:00","creator":{"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"modified_at":"2021-10-06T09:44:54.179944+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_name":null,"type":"variable"}'
     headers:
       Cache-Control:
       - no-cache
@@ -88,7 +85,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 26 May 2021 11:29:17 GMT
+      - Wed, 06 Oct 2021 09:44:54 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -97,20 +94,16 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
-      X-Dd-Version:
-      - "35.4609923"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "120"
+      - "12000"
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "119"
+      - "11998"
       X-Ratelimit-Reset:
-      - "43"
+      - "6"
     status: 200 OK
     code: 200
     duration: ""
@@ -123,266 +116,23 @@ interactions:
       Dd-Operation-Id:
       - ListGlobalVariables
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.15.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4656806385762042679"
+      - "2801859648886284799"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8096447875523529814"
+      - "1762915418863078084"
     url: https://api.datadoghq.com/api/v1/synthetics/variables
     method: GET
   response:
-    body: '{"variables":[{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-04-12T06:06:39.963149+00:00","is_totp":null,"modified_at":"2021-04-12T06:06:39.963149+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"0b761752-1980-40b2-827c-2b9c85697a3a","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_57560_1618207599"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-02-05T14:22:45.806396+00:00","is_totp":null,"modified_at":"2021-02-05T14:22:45.806396+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"0c1e96e9-c508-4702-a8b3-072b5d0c2442","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_45070_1612534964"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-03-25T18:05:14.277973+00:00","is_totp":null,"modified_at":"2021-03-25T18:05:14.277973+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"0c8ceebe-fcd8-40e3-9444-036fbb9c57ff","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_54162_1616695514"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-02-25T21:39:04.007021+00:00","is_totp":null,"modified_at":"2021-02-25T21:39:04.007021+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"0e18f56d-cf89-408a-96d6-74284c714d95","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_48575_1614289143"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-01-21T09:08:55.585048+00:00","is_totp":null,"modified_at":"2021-01-21T09:08:55.585048+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"0e6dd968-046c-4d91-9a21-330e7e910250","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_41858_1611220135"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-04-15T17:25:25.594079+00:00","is_totp":null,"modified_at":"2021-04-15T17:25:25.594079+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"0e703620-ed33-44ee-8bb0-e805e92e6029","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_58830_1618507525"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-04-28T12:10:35.540567+00:00","is_totp":null,"modified_at":"2021-04-28T12:10:35.540567+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"0f7754a3-a487-4a1a-8c9f-2420661b466c","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_60905_1619611835"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-04-17T18:06:26.153588+00:00","is_totp":null,"modified_at":"2021-04-17T18:06:26.153588+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"15b4dbf5-39e6-498b-9ada-90dbff505fe5","name":"TEST_GO_TESTSYNTHETICSVARIABLELIFECYCLE_1618682786"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-03T15:53:18.310036+00:00","is_totp":null,"modified_at":"2021-02-03T15:53:18.310036+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"15e123a6-42e1-4a53-b3c6-8f0f376ab7dd","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_LOCAL_1612367575"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-01-12T15:10:01.383787+00:00","is_totp":null,"modified_at":"2021-01-12T15:10:01.383787+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"1a37949e-cba4-4e6a-9a3c-3b85474ba4d2","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_40131_1610464201"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-01-21T09:08:56.219715+00:00","is_totp":null,"modified_at":"2021-01-21T09:08:56.219715+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"1b16e3f5-9e10-490d-8d2f-b35558c429b7","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_41858_1611220135"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2020-09-17T18:12:02.852484+00:00","is_totp":null,"modified_at":"2020-09-17T18:12:02.852484+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Nicholas
-      Muesch","type":"variable","id":"1bd454cb-b870-43d5-85fc-de99ab8acdcf","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_24441_1600366322"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-04-28T12:10:34.611046+00:00","is_totp":null,"modified_at":"2021-04-28T12:10:34.611046+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"1d7c03c1-857b-43ad-af28-9f94964996ea","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_60905_1619611834"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-01-21T08:55:57.273824+00:00","is_totp":null,"modified_at":"2021-01-21T08:55:57.273824+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"1f2beefa-ccb7-4407-9440-83bc8482bf36","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_41857_1611219314"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-04-12T11:25:15.445821+00:00","is_totp":null,"modified_at":"2021-04-12T11:25:15.445821+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"224602a4-4281-4506-a726-0cc187f5baf3","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_57601_1618226715"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-04-24T12:06:34.865148+00:00","is_totp":null,"modified_at":"2021-04-24T12:06:34.865148+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"237bb9bf-4478-47b7-9002-d8e3283e73ed","name":"TEST_GO_TESTSYNTHETICSVARIABLELIFECYCLE_1619265994"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-20T18:20:39.804062+00:00","is_totp":null,"modified_at":"2021-01-20T18:20:39.804062+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"2569db95-230f-4a3b-a6a0-be479ae046a9","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_41782_1611165982"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-05-19T15:06:47.387473+00:00","is_totp":null,"modified_at":"2021-05-19T15:06:47.387473+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"27a75c87-0938-4577-b8ac-a151cdfea052","name":"TEST_GO_TESTSYNTHETICSVARIABLELIFECYCLE_1621436807"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-21T08:55:58.338979+00:00","is_totp":null,"modified_at":"2021-01-21T08:55:58.338979+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"2adba26b-c2e0-4bde-902d-89bf583005fd","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_41857_1611219314"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2020-10-06T18:35:07.242791+00:00","is_totp":null,"modified_at":"2020-10-06T18:35:07.242791+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"2bbc74d9-1880-48da-a136-d70eca22f5f7","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_26402_1602009166"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-05-19T15:11:33.555530+00:00","is_totp":null,"modified_at":"2021-05-19T15:11:33.555530+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"2be62766-84d6-4843-b7c9-38d7d114d5a5","name":"TEST_GO_TESTSYNTHETICSVARIABLELIFECYCLE_1621437093"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-05-14T07:00:06.280292+00:00","is_totp":null,"modified_at":"2021-05-14T07:00:06.280292+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"2d2b88c3-cb87-42fa-8f76-888fde9c50c5","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_LOCAL_1620975605"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-11T18:22:12.211292+00:00","is_totp":null,"modified_at":"2021-02-11T18:22:12.211292+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"2e90d42a-d267-48d8-9fdd-a2d3a4f0ff9e","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_46088_1613067518"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2020-09-16T21:12:01.776681+00:00","is_totp":null,"modified_at":"2020-09-16T21:12:03.383558+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Nicholas
-      Muesch","type":"variable","id":"2fc12e6b-7159-4a95-b142-eb73273a7333","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_24296_1600290721_UPDATED"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-01-10T21:14:39.127052+00:00","is_totp":null,"modified_at":"2021-01-10T21:14:39.127052+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"315bb07c-e489-4d23-8942-a8e9cb7c81fb","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_39829_1610313277"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-02-11T17:55:11.624458+00:00","is_totp":null,"modified_at":"2021-02-11T17:55:11.624458+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"3409a8eb-d705-4f4d-b973-42d60596fa35","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_46088_1613065872"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-02-05T15:23:54.299053+00:00","is_totp":null,"modified_at":"2021-02-05T15:23:54.299053+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"3623abc4-b880-404c-8974-1dd83e9d9b40","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_45100_1612538593"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable from http test","tags":["foo:bar","baz"],"created_at":"2021-05-10T12:10:35.651794+00:00","is_totp":null,"modified_at":"2021-05-10T12:10:35.651794+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"39b871ab-b344-484c-adda-61444316b0c3","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLEFROMTEST_BASIC_62837_1620648634"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-01-24T15:09:56.484329+00:00","is_totp":null,"modified_at":"2021-01-24T15:09:56.484329+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"3a3c6e93-79cb-44cc-921c-3bbd22d2d381","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_42424_1611500996"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-26T13:27:58.722860+00:00","is_totp":null,"modified_at":"2021-01-26T13:27:58.722860+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"3be78fc0-9151-4a8f-829f-f531a9a0f5e7","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_LOCAL_1611667676"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-04-12T11:25:16.247214+00:00","is_totp":null,"modified_at":"2021-04-12T11:25:16.247214+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"3d0f0e52-d7d5-4e6b-864f-589700c30508","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_57601_1618226715"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-01-25T21:09:09.246424+00:00","is_totp":null,"modified_at":"2021-01-25T21:09:09.246424+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"3f0fb7a5-7203-441b-8aa1-0948eb66813b","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_42609_1611608948"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-01-23T00:11:26.369909+00:00","is_totp":null,"modified_at":"2021-01-23T00:11:26.369909+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"41914893-e4f1-49b2-85ab-c2916471bb75","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_42325_1611360685"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-11T17:08:03.794582+00:00","is_totp":null,"modified_at":"2021-01-11T17:08:03.794582+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"4291406e-409b-4fa2-9f02-e3610a4584d7","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_39983_1610384815"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-03-22T12:07:08.210122+00:00","is_totp":null,"modified_at":"2021-03-22T12:07:08.210122+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"43a19fc6-e480-4e35-bd0b-3697b34f4c2c","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_52957_1616414827"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-03-31T18:06:13.125537+00:00","is_totp":null,"modified_at":"2021-03-31T18:06:13.125537+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"45410728-9908-4aed-8d3a-7cd4278e2091","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_55379_1617213973"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-01-23T00:08:56.402195+00:00","is_totp":null,"modified_at":"2021-01-23T00:08:56.402195+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"45f6c853-9be2-41b3-9fb5-42d3bb4b6809","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_42325_1611360535"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-11T17:55:12.753871+00:00","is_totp":null,"modified_at":"2021-02-11T17:55:12.753871+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"4749ee31-f4f5-4a09-ae4f-b2782ac61484","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_46088_1613065872"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"an
-      updated secure global variable","tags":["foo:bar","baz","env:test"],"created_at":"2021-02-11T17:55:11.628103+00:00","is_totp":null,"modified_at":"2021-02-11T17:55:11.628103+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"48051a39-c64b-452d-98b7-6de773b4b906","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_46088_1613065872_UPDATED"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2020-12-04T16:39:42.847169+00:00","is_totp":null,"modified_at":"2020-12-04T16:39:42.847169+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"4847b47b-7417-4d95-8706-a404ab25fdaa","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_35133_1607099125"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-03-22T12:07:09.056089+00:00","is_totp":null,"modified_at":"2021-03-22T12:07:09.056089+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"4a0db12c-151b-4899-b2bc-d50f82328233","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_52957_1616414828"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-05-11T21:30:19.584505+00:00","is_totp":null,"modified_at":"2021-05-11T21:30:19.584505+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"4c92ebc2-d5b1-4406-b38b-8aeba45f3ed3","name":"TEST_GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_1620768618"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-03-14T15:06:07.406190+00:00","is_totp":null,"modified_at":"2021-03-14T15:06:07.406190+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"4eed8059-6a50-4d3d-b876-cca84497f3c7","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_51690_1615734367"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2020-10-14T18:26:25.821269+00:00","is_totp":null,"modified_at":"2020-10-14T18:26:25.821269+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Nicholas
-      Muesch","type":"variable","id":"5301831b-941b-455f-907e-e3169682a274","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_27429_1602699985"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-26T13:27:57.871636+00:00","is_totp":null,"modified_at":"2021-01-26T13:27:57.871636+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"53c23f6d-c6e7-4a5a-b771-f44337fd208f","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_LOCAL_1611667676"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-04-08T14:07:04.065614+00:00","is_totp":null,"modified_at":"2021-04-08T14:07:04.065614+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"54c8dc87-7e31-44be-bf12-d23ba3bbf144","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_57104_1617890823"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"an
-      updated global variable","tags":["foo:bar","baz","env:test"],"created_at":"2021-02-01T10:31:58.391184+00:00","is_totp":null,"modified_at":"2021-02-01T10:32:06.966496+00:00","value":{"secure":false,"value":"variable-value-updated"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"56a30250-3720-428f-bf7d-8cb8d763f98f","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_LOCAL_1612175499_UPDATED"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-04-28T12:10:34.058697+00:00","is_totp":null,"modified_at":"2021-04-28T12:10:34.058697+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"5963162e-7ae6-4fe8-ba1b-acbfb803f203","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_60905_1619611833"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-02-05T14:27:43.673996+00:00","is_totp":null,"modified_at":"2021-02-05T14:27:43.673996+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"5a9169e9-cd53-4690-b6f9-4c8597012775","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_45070_1612535263"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-02-11T17:55:10.171446+00:00","is_totp":null,"modified_at":"2021-02-11T17:55:10.171446+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"5b3f1453-35bb-4330-912f-55b4512c5a9c","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_46088_1613065872"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-04-15T17:25:24.533083+00:00","is_totp":null,"modified_at":"2021-04-15T17:25:24.533083+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"5d1e9186-95a1-4eeb-8794-6581952ba564","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_58830_1618507523"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-04-25T03:06:31.833291+00:00","is_totp":null,"modified_at":"2021-04-25T03:06:31.833291+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"5f124ca9-8ad0-4444-a35b-46b4e0b4d35e","name":"TEST_GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_1619319991"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-01-23T21:09:56.920563+00:00","is_totp":null,"modified_at":"2021-01-23T21:09:56.920563+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"61325ae8-6671-4e88-9796-3826139f68f9","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_42381_1611436196"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2020-11-20T15:09:16.077743+00:00","is_totp":null,"modified_at":"2020-11-20T15:09:16.077743+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Nicholas
-      Muesch","type":"variable","id":"62671569-d9c5-448b-b9a3-eb74b2e79815","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_33114_1605884955"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2020-12-30T00:09:58.149886+00:00","is_totp":null,"modified_at":"2020-12-30T00:09:58.149886+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Nicholas
-      Muesch","type":"variable","id":"63a5c537-3c03-43b7-b2b9-ae70fbe30036","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_38600_1609286998"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-04-10T06:06:05.264685+00:00","is_totp":null,"modified_at":"2021-04-10T06:06:05.264685+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"679da95c-ce1e-41f0-af09-53c7edd4253f","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_57459_1618034765"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-03-19T18:05:04.602614+00:00","is_totp":null,"modified_at":"2021-03-19T18:05:04.602614+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"68be39d1-e133-41f9-96cc-212688745cd7","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_52740_1616177103"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"an
-      updated secure global variable","tags":["foo:bar","baz","env:test"],"created_at":"2021-02-01T10:31:57.860559+00:00","is_totp":null,"modified_at":"2021-02-01T10:32:05.694445+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"6af5527e-957a-431b-b6f5-42b0bb1f8fd5","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_LOCAL_1612175499_UPDATED"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-05-01T18:05:38.908532+00:00","is_totp":null,"modified_at":"2021-05-01T18:05:39.021956+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"6d6d3294-507b-4d67-b80a-adb7a19e95ac","name":"TEST_GO_TESTSYNTHETICSVARIABLELIFECYCLE_1619892338_UPDATED"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-25T08:07:56.112811+00:00","is_totp":null,"modified_at":"2021-01-25T08:07:56.112811+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"6db46709-f856-4f3d-ada4-9b4a9aaeb6f4","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_LOCAL_1611562068"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-05-19T15:06:48.505414+00:00","is_totp":null,"modified_at":"2021-05-19T15:06:48.505414+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"6e2d3d40-4271-4e53-b589-6f48f1952e7b","name":"TEST_GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_1621436807"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"an
-      updated secure global variable","tags":["foo:bar","baz","env:test"],"created_at":"2021-01-05T08:27:30.334512+00:00","is_totp":null,"modified_at":"2021-01-05T08:27:31.291982+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"6f046536-6e0f-4939-931f-1c94bdd32886","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_39196_1609834380_UPDATED"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-01-28T06:08:31.064634+00:00","is_totp":null,"modified_at":"2021-01-28T06:08:31.064634+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"70290818-00c0-4040-9c52-a8ea345afff5","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_43101_1611814110"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-03-22T12:07:07.304228+00:00","is_totp":null,"modified_at":"2021-03-22T12:07:07.304228+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"720fda73-8690-4c8c-a845-290e5e0d3bb7","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_52957_1616414826"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-04-15T17:25:26.095342+00:00","is_totp":null,"modified_at":"2021-04-15T17:25:26.095342+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"73083d4d-504b-412e-b56d-cb4505121d9c","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_58830_1618507525"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-01T12:36:55.144045+00:00","is_totp":null,"modified_at":"2021-02-01T12:36:55.144045+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"73f1fc7f-f82f-4e2f-ae3a-5a642f69a0f2","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_43953_1612182986"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-05-26T09:41:32.104563+00:00","is_totp":null,"modified_at":"2021-05-26T09:41:32.104563+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"741025cb-1fe9-4638-8a70-c7f870a99560","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1622022089"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-01-21T03:10:56.011368+00:00","is_totp":null,"modified_at":"2021-01-21T03:10:56.011368+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"77e0ea13-b534-40d7-b5d6-e940db50ef1f","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_41836_1611198655"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-01T10:32:04.358378+00:00","is_totp":null,"modified_at":"2021-02-01T10:32:04.358378+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"7850ab5c-df9b-4e3a-91e2-fa33edb9bbd3","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_LOCAL_1612175499"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-24T00:06:09.479067+00:00","is_totp":null,"modified_at":"2021-02-24T00:06:09.479067+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"7988b9b5-fe7f-4f33-bd8e-3953e11a8bb6","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_48140_1614125169"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-03-31T18:06:13.846365+00:00","is_totp":null,"modified_at":"2021-03-31T18:06:13.846365+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"79d1f8f2-76cd-4956-94c4-31b04593743c","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_55379_1617213973"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-26T11:45:39.068434+00:00","is_totp":null,"modified_at":"2021-01-26T11:45:39.068434+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"7c116e32-96e2-438f-9da2-afd859942eee","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_42750_1611661489"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-03-25T18:05:16.025146+00:00","is_totp":null,"modified_at":"2021-03-25T18:05:16.025146+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"7ce39872-68d7-4115-adef-aec52837156f","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_54162_1616695515"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable from http test","tags":["foo:bar","baz"],"created_at":"2021-01-30T16:07:23.226307+00:00","is_totp":null,"modified_at":"2021-01-30T16:07:23.226307+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"7e45f52f-f8b1-4de9-adbe-94c1ff9b3ea6","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLEFROMTEST_BASIC_43815_1612022834"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-04-16T14:31:21.228499+00:00","is_totp":null,"modified_at":"2021-04-16T14:31:21.228499+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"7e5e1010-d0ce-42bc-b3e3-bfa2f677bb86","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_59020_1618583480"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-01T12:36:54.222173+00:00","is_totp":null,"modified_at":"2021-02-01T12:36:54.222173+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"7e8b4e72-24e4-43f2-8054-8dca77d9eaca","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_43953_1612182986"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-04-16T14:31:20.824149+00:00","is_totp":null,"modified_at":"2021-04-16T14:31:20.824149+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"807ad3f4-2bb4-49d3-ac35-c5bce9e81d0e","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_59020_1618583480"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-21T08:55:57.433070+00:00","is_totp":null,"modified_at":"2021-01-21T08:55:57.433070+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"819ad806-e900-40c2-8cbb-b5db3225fa3d","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_41857_1611219314"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-03-22T12:07:08.139130+00:00","is_totp":null,"modified_at":"2021-03-22T12:07:08.139130+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"83336c1f-5374-42cf-a6d2-384d39a0ab6b","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_52957_1616414827"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-11T17:55:12.737732+00:00","is_totp":null,"modified_at":"2021-02-11T17:55:12.737732+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"856ab5c8-a7ba-4c5e-8077-11e32eb2ee07","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_46088_1613065872"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-06T09:51:45.889471+00:00","is_totp":null,"modified_at":"2021-01-06T09:51:45.889471+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"85d4400e-7fb1-4cfc-929e-d61a86e24816","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_LOCAL_1609926705"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-20T16:51:26.404158+00:00","is_totp":null,"modified_at":"2021-01-20T16:51:26.404158+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"896b353b-9f9d-4267-8de2-6c122fd38213","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_41753_1611160603"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2020-07-31T08:42:33.123418+00:00","is_totp":null,"modified_at":"2020-07-31T08:42:33.123418+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"8e380856-59cb-4575-83ba-45d32d668678","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_LOCAL_1596184952"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-05T15:23:54.765763+00:00","is_totp":null,"modified_at":"2021-02-05T15:23:54.765763+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"8eea2012-d9d6-4a57-abdf-228f8a17b2c7","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_45100_1612538593"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2020-12-04T16:39:44.143916+00:00","is_totp":null,"modified_at":"2020-12-04T16:39:44.143916+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"92d03f44-6214-48ee-bdb2-20041cd33cae","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_35133_1607099125"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2020-10-07T21:11:58.988499+00:00","is_totp":null,"modified_at":"2020-10-07T21:11:58.988499+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Nicholas
-      Muesch","type":"variable","id":"942e1342-b66d-4669-9cd8-4e79011c70a2","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_26591_1602105118"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2020-11-25T14:11:27.633255+00:00","is_totp":null,"modified_at":"2020-11-25T14:11:27.633255+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"9596ce75-e206-4379-99f8-78ce3239574e","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_33781_1606312706"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-01-26T09:54:25.861716+00:00","is_totp":null,"modified_at":"2021-01-26T09:54:25.861716+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"962874ea-da56-43f5-91c2-500601fc5964","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_42674_1611654016"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-01-06T09:51:49.986094+00:00","is_totp":null,"modified_at":"2021-01-06T09:51:49.986094+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"990bf276-0a5b-4fcf-8f8d-3ed6c213c111","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_LOCAL_1609926709"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-01-21T08:55:57.795703+00:00","is_totp":null,"modified_at":"2021-01-21T08:55:57.795703+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"9a8c86f9-d36f-4da2-9971-d830bb9bb2dc","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_41857_1611219314"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-24T00:06:08.946687+00:00","is_totp":null,"modified_at":"2021-02-24T00:06:08.946687+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"9cafc9af-995c-497d-8185-764e1f9ce4d8","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_48140_1614125168"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-02-03T15:53:18.311941+00:00","is_totp":null,"modified_at":"2021-02-03T15:53:18.311941+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"9e060671-7123-4a11-9d24-2e2a97e7303e","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_LOCAL_1612367575"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-02-24T00:06:07.428478+00:00","is_totp":null,"modified_at":"2021-02-24T00:06:07.428478+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"9f65af60-8320-4b86-b100-efc3cddd4dd8","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_48140_1614125167"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-01-25T13:16:09.707204+00:00","is_totp":null,"modified_at":"2021-01-25T13:16:09.707204+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"9fd32725-ad04-4daf-b673-704bb874b7be","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_42513_1611580569"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-05-03T09:07:39.078187+00:00","is_totp":null,"modified_at":"2021-05-03T09:07:39.078187+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"a1e4671e-e843-4925-a454-ec8bfc9ef32b","name":"TEST_GO_TESTSYNTHETICSVARIABLELIFECYCLE_1620032859"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-04-12T06:06:38.975678+00:00","is_totp":null,"modified_at":"2021-04-12T06:06:38.975678+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"a371fa43-e7a7-4d43-883a-61107c1d2ccc","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_57560_1618207598"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-04-15T17:25:25.459654+00:00","is_totp":null,"modified_at":"2021-04-15T17:25:25.459654+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"a6dc1b4d-0bed-469a-a463-8ba9e521baff","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_58830_1618507524"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-04-15T17:25:24.879022+00:00","is_totp":null,"modified_at":"2021-04-15T17:25:24.879022+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"a8d61913-d4bf-4ac9-bec0-d4e464803257","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_58830_1618507524"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-05-14T07:24:26.807506+00:00","is_totp":null,"modified_at":"2021-05-14T07:24:26.807506+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"a9655824-a022-47ed-8732-a957bb932ed8","name":"LOCAL_TEST_TH"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-05T15:23:54.206888+00:00","is_totp":null,"modified_at":"2021-02-05T15:23:54.206888+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"aa4d72cd-2b4f-4d27-82b5-c43a8bec3cfe","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_45100_1612538593"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-01T10:32:06.768759+00:00","is_totp":null,"modified_at":"2021-02-01T10:32:06.768759+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"b1123ba7-c8b7-4310-aaf9-fe8fe1dd2e2b","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_LOCAL_1612175499"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-04-07T06:05:44.724831+00:00","is_totp":null,"modified_at":"2021-04-07T06:05:44.724831+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"b514a715-6c61-4908-9420-654be229c700","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_56748_1617775544"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-01-25T09:09:56.780988+00:00","is_totp":null,"modified_at":"2021-01-25T09:09:56.780988+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"b7ad9cb9-51a7-47ca-979a-d299e55ce8a0","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_42467_1611565796"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-05-10T12:10:35.875852+00:00","is_totp":null,"modified_at":"2021-05-10T12:10:35.875852+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"bc0aa76e-c10d-490b-8006-63ee38e5037e","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_62837_1620648635"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-03-19T18:05:02.822653+00:00","is_totp":null,"modified_at":"2021-03-19T18:05:02.822653+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"be125748-52c7-4de4-95b6-76acfa9d1cc2","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_52740_1616177102"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-27T00:09:23.915299+00:00","is_totp":null,"modified_at":"2021-02-27T00:09:23.915299+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"becab10d-4768-4a09-9207-791ac1937d12","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_48821_1614384563"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-02-19T16:50:06.135109+00:00","is_totp":null,"modified_at":"2021-02-19T16:50:06.135109+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"c04885b7-1824-4308-a9a3-f31189bfde3f","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_LOCAL_1613753404"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-21T08:55:58.176494+00:00","is_totp":null,"modified_at":"2021-01-21T08:55:58.176494+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"c3126aca-c990-4e72-8584-37dad183d5d8","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_BASIC_41857_1611219314"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-01-26T09:54:25.502410+00:00","is_totp":null,"modified_at":"2021-01-26T09:54:25.502410+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"c41f7886-66ba-4b9a-b320-981554f3395b","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_42674_1611654016"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-05-26T11:29:17.306699+00:00","is_totp":null,"modified_at":"2021-05-26T11:29:17.306699+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"c42b9916-89c8-4ae2-b4d3-a8f79f4b6bbb","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1622028556"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-01-21T03:11:24.608763+00:00","is_totp":null,"modified_at":"2021-01-21T03:11:24.608763+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"c5fbc602-d1f8-432b-aa1f-62f091fa9ecc","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_41836_1611198684"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-03-31T09:40:08.583968+00:00","is_totp":null,"modified_at":"2021-03-31T09:40:08.583968+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"cc0c1c1d-d68a-4f88-a54a-56e4fab3f500","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_LOCAL_1617183607"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-04-10T06:06:05.989755+00:00","is_totp":null,"modified_at":"2021-04-10T06:06:05.989755+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"cce9c98f-7c44-4780-a437-64ba18de616e","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_57459_1618034765"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-01T12:36:53.039114+00:00","is_totp":null,"modified_at":"2021-02-01T12:36:53.039114+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"cd97ff93-c2ce-498f-87ff-50bcce947252","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_43953_1612182986"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-24T00:06:07.687295+00:00","is_totp":null,"modified_at":"2021-02-24T00:06:07.687295+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"cea4443b-280c-4472-a106-5124bcaeb7a3","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_48140_1614125167"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-03-14T15:06:08.990869+00:00","is_totp":null,"modified_at":"2021-03-14T15:06:08.990869+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"d15e6e93-d615-4366-af33-d41356ea01ea","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_51690_1615734368"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-05-26T11:25:41.816692+00:00","is_totp":null,"modified_at":"2021-05-26T11:25:41.816692+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":null,"type":"variable","id":"d182e422-00c8-4464-af9a-1521dee4caea","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1622028341"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-02-24T00:06:08.467205+00:00","is_totp":null,"modified_at":"2021-02-24T00:06:08.467205+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"d2859e9a-1158-4d03-bd65-97092dcee97b","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_48140_1614125168"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-02-05T15:23:53.614340+00:00","is_totp":null,"modified_at":"2021-02-05T15:23:53.614340+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"d57cbed1-4328-4f9a-b6ff-e8a94e075a1d","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_45100_1612538593"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-01-29T09:08:01.462335+00:00","is_totp":null,"modified_at":"2021-01-29T09:08:01.462335+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"daafc616-d335-4fcc-b830-d462327d613f","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_UPDATED_43379_1611911246"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-01-01T12:10:11.488797+00:00","is_totp":null,"modified_at":"2021-01-01T12:10:11.488797+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"dc4ad9d7-77c1-4286-9fbb-9a123ecbc45f","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_38898_1609502996"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-02-24T15:05:42.060794+00:00","is_totp":null,"modified_at":"2021-02-24T15:05:42.060794+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"e0cc8987-0266-4263-95a6-d486e8cd5afa","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_48270_1614179141"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-04-16T14:31:21.778851+00:00","is_totp":null,"modified_at":"2021-04-16T14:31:21.778851+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"eaaed3ed-177b-4dca-a18f-8c33ba59e93b","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_59020_1618583481"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-01-21T09:10:25.992606+00:00","is_totp":null,"modified_at":"2021-01-21T09:10:25.992606+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"eab46b47-d6d5-404d-a6f7-12df82cbc6b1","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_41858_1611220225"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      secure global variable","tags":["foo:bar","baz"],"created_at":"2021-02-01T12:36:53.501617+00:00","is_totp":null,"modified_at":"2021-02-01T12:36:53.501617+00:00","value":{"secure":true},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"ed0242f8-ce6e-47f7-af98-9b5bdf328777","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLESECURE_BASIC_43953_1612182986"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-05-11T21:30:18.812096+00:00","is_totp":null,"modified_at":"2021-05-11T21:30:18.812096+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"ef35d960-9b32-4bc7-8701-457f817d7bab","name":"TEST_GO_TESTSYNTHETICSVARIABLELIFECYCLE_1620768618"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-26T11:45:39.093041+00:00","is_totp":null,"modified_at":"2021-01-26T11:45:39.093041+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"f2eb3213-2ca7-4562-8089-c26bf88d7f3c","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_42750_1611661489"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"created_at":"2021-03-29T18:05:34.182640+00:00","is_totp":null,"modified_at":"2021-03-29T18:05:34.182640+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"f2ee4616-61f8-40df-a899-2cde7851f344","name":"GO_TESTSYNTHETICSVARIABLELIFECYCLE_54914_1617041134"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-01-23T00:10:30.102431+00:00","is_totp":null,"modified_at":"2021-01-23T00:10:30.102431+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"f3870fa2-487f-438a-b2e4-ca5df32da0fb","name":"GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_42325_1611360629"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-01-25T09:07:10.233150+00:00","is_totp":null,"modified_at":"2021-01-25T09:07:10.233150+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"f4feda29-76e3-4fd5-97f9-81aa205c4762","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_IMPORTBASIC_42468_1611565582"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2020-12-04T16:39:43.794441+00:00","is_totp":null,"modified_at":"2020-12-04T16:39:43.794441+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"f6cc4da5-af63-4dcc-8099-69d796ac08cb","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_35133_1607099125"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-02-11T17:55:10.653738+00:00","is_totp":null,"modified_at":"2021-02-11T17:55:10.653738+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"fcbf2b8b-b62f-4244-a70f-6ec3dfe78fdb","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_46088_1613065872"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      from test description","tags":["synthetics"],"created_at":"2021-04-17T18:06:26.874942+00:00","is_totp":null,"modified_at":"2021-04-17T18:06:26.874942+00:00","value":{"secure":false,"value":""},"parse_test_public_id":null,"parse_test_name":null,"created_by":"CI
-      Account","type":"variable","id":"fe9f8759-bcc1-4e7f-89f1-2bb8cc2cdbf6","name":"TEST_GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_1618682786"},{"parse_test_options":null,"parse_test_extracted_at":null,"description":"a
-      global variable","tags":["foo:bar","baz"],"created_at":"2021-03-22T12:07:07.458579+00:00","is_totp":null,"modified_at":"2021-03-22T12:07:07.458579+00:00","value":{"secure":false,"value":"variable-value"},"parse_test_public_id":null,"parse_test_name":null,"created_by":"Slavek
-      Kabrda","type":"variable","id":"feea9345-6fb8-4f43-9236-b427e98663c0","name":"TF_TESTACCDATADOGSYNTHETICSGLOBALVARIABLE_UPDATED_52957_1616414827"}]}'
+    body: '{"variables":[{"parse_test_extracted_at":null,"description":"variable description","tags":["synthetics"],"last_error":null,"parse_test_public_id":null,"is_totp":null,"id":"31c52921-0ab4-4b02-b798-4e2f571608d0","parse_test_options":null,"name":"TEST_GO_TESTSYNTHETICSAPIMULTISTEPTESTENDPOINTLIFECYCLE_1633510542","created_at":"2021-10-06T08:55:42.973858+00:00","creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","email":"team-intg-tools-libs-spam@datadoghq.com","name":"CI
+      Account"},"modified_at":"2021-10-06T08:55:42.973858+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_name":null,"type":"variable"},{"parse_test_extracted_at":null,"description":"variable
+      description","tags":["synthetics"],"last_error":null,"parse_test_public_id":null,"is_totp":null,"id":"3ff484ce-e2af-4fd5-946e-a6f561e53d06","parse_test_options":null,"name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1633513493","created_at":"2021-10-06T09:44:54.179944+00:00","creator":{"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","name":null},"modified_at":"2021-10-06T09:44:54.179944+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_name":null,"type":"variable"},{"parse_test_extracted_at":null,"description":"","tags":[],"last_error":null,"parse_test_public_id":null,"is_totp":null,"id":"51bf6b85-5651-4a9d-a65d-539bf631f8b2","parse_test_options":null,"name":"DATADOG_URL","created_at":"2021-05-26T11:52:25.629224+00:00","creator":{"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","name":null},"modified_at":"2021-05-26T11:52:25.629224+00:00","value":{"secure":false,"value":"https://datadoghq.com"},"parse_test_name":null,"type":"variable"},{"parse_test_extracted_at":null,"description":"variable
+      description","tags":["synthetics"],"last_error":null,"parse_test_public_id":null,"is_totp":null,"id":"7e6c70d6-3b65-475d-8dd6-634d141a63f1","parse_test_options":null,"name":"TEST_GO_TESTSYNTHETICSAPIMULTISTEPTESTENDPOINTLIFECYCLE_1633510155","created_at":"2021-10-06T08:49:15.296083+00:00","creator":{"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","name":null},"modified_at":"2021-10-06T08:49:15.296083+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_name":null,"type":"variable"},{"parse_test_extracted_at":null,"description":"variable
+      description","tags":["synthetics"],"last_error":null,"parse_test_public_id":null,"is_totp":null,"id":"9dc42919-6a9e-4464-a1d3-a49ce08444cf","parse_test_options":null,"name":"TEST_TESTSYNTHETICSAPIMULTISTEPTESTENDPOINTLIFECYCLE_1633512999","created_at":"2021-10-06T09:36:39.801617+00:00","creator":{"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","name":null},"modified_at":"2021-10-06T09:36:39.801617+00:00","value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_name":null,"type":"variable"},{"parse_test_extracted_at":null,"description":"variable
+      from test description","tags":["synthetics"],"last_error":null,"parse_test_public_id":null,"is_totp":null,"id":"cf076067-877c-47da-9a65-d2c4dc2e877d","parse_test_options":null,"name":"TEST_GO_TESTSYNTHETICSVARIABLEFROMTESTLIFECYCLE_1633510539","created_at":"2021-10-06T08:55:39.714059+00:00","creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","email":"team-intg-tools-libs-spam@datadoghq.com","name":"CI
+      Account"},"modified_at":"2021-10-06T08:55:39.714059+00:00","value":{"secure":false,"value":""},"parse_test_name":null,"type":"variable"}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -391,7 +141,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 26 May 2021 11:29:17 GMT
+      - Wed, 06 Oct 2021 09:44:55 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -400,47 +150,45 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - fIO2C4qGDheGHy4YbS+r3a3CXbh4cbRo7roILOimQyiHGjQdOat0cIpWCkupM1uX
-      X-Dd-Version:
-      - "35.4609923"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "120"
+      - "12000"
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "119"
+      - "11998"
       X-Ratelimit-Reset:
-      - "43"
+      - "6"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"description":"variable description","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1622028556_UPDATED","tags":["synthetics"],"value":{"secure":false,"value":"VARIABLE_VALUE"}}
+      {"description":"variable description","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1633513493_UPDATED","tags":["synthetics"],"value":{"secure":false,"value":"VARIABLE_VALUE"}}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "176"
       Content-Type:
       - application/json
       Dd-Operation-Id:
       - EditGlobalVariable
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.15.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8442907249585176985"
+      - "5645459828494421413"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8096447875523529814"
-    url: https://api.datadoghq.com/api/v1/synthetics/variables/c42b9916-89c8-4ae2-b4d3-a8f79f4b6bbb
+      - "1762915418863078084"
+    url: https://api.datadoghq.com/api/v1/synthetics/variables/3ff484ce-e2af-4fd5-946e-a6f561e53d06
     method: PUT
   response:
     body: '{"parse_test_options":null,"parse_test_extracted_at":null,"description":"variable
-      description","tags":["synthetics"],"is_totp":null,"value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"type":"variable","id":"c42b9916-89c8-4ae2-b4d3-a8f79f4b6bbb","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1622028556_UPDATED"}'
+      description","tags":["synthetics"],"last_error":null,"is_totp":null,"value":{"secure":false,"value":"VARIABLE_VALUE"},"parse_test_public_id":null,"parse_test_name":null,"type":"variable","id":"3ff484ce-e2af-4fd5-946e-a6f561e53d06","name":"TEST_TESTSYNTHETICSVARIABLELIFECYCLE_1633513493_UPDATED"}'
     headers:
       Cache-Control:
       - no-cache
@@ -449,7 +197,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 26 May 2021 11:29:17 GMT
+      - Wed, 06 Oct 2021 09:44:55 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -458,20 +206,16 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
-      X-Dd-Version:
-      - "35.4609923"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "120"
+      - "12000"
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "119"
+      - "11998"
       X-Ratelimit-Reset:
-      - "43"
+      - "5"
     status: 200 OK
     code: 200
     duration: ""
@@ -484,48 +228,44 @@ interactions:
       Dd-Operation-Id:
       - DeleteGlobalVariable
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.15.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5725006570504186413"
+      - "384213863088858079"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8096447875523529814"
-    url: https://api.datadoghq.com/api/v1/synthetics/variables/c42b9916-89c8-4ae2-b4d3-a8f79f4b6bbb
+      - "1762915418863078084"
+    url: https://api.datadoghq.com/api/v1/synthetics/variables/3ff484ce-e2af-4fd5-946e-a6f561e53d06
     method: DELETE
   response:
-    body: "null"
+    body: '{}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "4"
+      - "2"
       Content-Type:
       - application/json
       Date:
-      - Wed, 26 May 2021 11:29:18 GMT
+      - Wed, 06 Oct 2021 09:44:55 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
-      X-Dd-Version:
-      - "35.4609923"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "120"
+      - "12000"
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "119"
+      - "11998"
       X-Ratelimit-Reset:
-      - "43"
+      - "5"
     status: 200 OK
     code: 200
     duration: ""
