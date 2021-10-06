@@ -1,0 +1,78 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"message":"Test-Downtimes-1633349164","recurrence":{"period":1,"type":"weeks","until_date":1635163564,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["test:testdowntimes1633349164"],"start":1633349164,"timezone":"Etc/UTC"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Length:
+      - "230"
+      Content-Type:
+      - application/json
+      Dd-Operation-Id:
+      - CreateDowntime
+      User-Agent:
+      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v1/downtime
+    method: POST
+  response:
+    body: '{"recurrence":{"until_date":1635163564,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"child_id":null,"canceled":null,"monitor_id":null,"created":1633349164,"org_id":321813,"modified":1633349164,"disabled":false,"start":1633349164,"creator_id":1445416,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["test:testdowntimes1633349164"],"message":"Test-Downtimes-1633349164","downtime_type":2,"id":1482705507,"updater_id":null}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 04 Oct 2021 12:06:04 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Dd-Operation-Id:
+      - CancelDowntime
+      User-Agent:
+      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
+    url: https://api.datadoghq.com/api/v1/downtime/1482705507
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "0"
+      Date:
+      - Mon, 04 Oct 2021 12:06:04 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+    code: 204
+    duration: ""
