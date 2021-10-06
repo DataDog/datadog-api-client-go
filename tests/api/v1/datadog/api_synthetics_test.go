@@ -78,7 +78,7 @@ func getTestSyntheticsAPI(ctx context.Context, t *testing.T) datadog.SyntheticsA
 			},
 		},
 		Locations: []string{"aws:us-east-2"},
-		Message:   "Go client testing Synthetics API test - this is message",
+		Message:   datadog.PtrString("Go client testing Synthetics API test - this is message"),
 		Name:      *tests.UniqueEntityName(ctx, t),
 		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
@@ -145,7 +145,7 @@ func getTestSyntheticsAPIMultistep(ctx context.Context, t *testing.T, globalVari
 			},
 		},
 		Locations: []string{"aws:us-east-2"},
-		Message:   "Go client testing Synthetics API test - this is message",
+		Message:   datadog.PtrString("Go client testing Synthetics API test - this is message"),
 		Name:      *tests.UniqueEntityName(ctx, t),
 		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
@@ -180,7 +180,7 @@ func getTestSyntheticsSubtypeTCPAPI(ctx context.Context, t *testing.T) datadog.S
 			},
 		},
 		Locations: []string{"aws:us-east-2"},
-		Message:   "Go client testing Synthetics API test Subtype TCP - this is message",
+		Message:   datadog.PtrString("Go client testing Synthetics API test Subtype TCP - this is message"),
 		Name:      *tests.UniqueEntityName(ctx, t),
 		Options: datadog.SyntheticsTestOptions{
 			TickEvery: datadog.PtrInt64(60),
@@ -209,7 +209,7 @@ func getTestSyntheticsSubtypeDNSAPI(ctx context.Context, t *testing.T) datadog.S
 			},
 		},
 		Locations: []string{"aws:us-east-2"},
-		Message:   "Go client testing Synthetics API test Subtype DNS - this is message",
+		Message:   datadog.PtrString("Go client testing Synthetics API test Subtype DNS - this is message"),
 		Name:      *tests.UniqueEntityName(ctx, t),
 		Options: datadog.SyntheticsTestOptions{
 			TickEvery: datadog.PtrInt64(60),
@@ -237,7 +237,7 @@ func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.
 			},
 		},
 		Locations: []string{"aws:us-east-2"},
-		Message:   "Go client testing Synthetics API test Subtype ICMP - this is message",
+		Message:   datadog.PtrString("Go client testing Synthetics API test Subtype ICMP - this is message"),
 		Name:      *tests.UniqueEntityName(ctx, t),
 		Options: datadog.SyntheticsTestOptions{
 			TickEvery: datadog.PtrInt64(60),
@@ -267,7 +267,7 @@ func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.Synthet
 			SetCookie: datadog.PtrString("name:test"),
 		},
 		Locations: []string{"aws:us-east-2"},
-		Message:   "Go client testing Synthetics Browser test - this is message",
+		Message:   datadog.PtrString("Go client testing Synthetics Browser test - this is message"),
 		Name:      *tests.UniqueEntityName(ctx, t),
 		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
