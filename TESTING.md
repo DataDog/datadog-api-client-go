@@ -30,4 +30,4 @@ we don't need to pass the full test name as it's a regular expression, but we do
 full prefix.
 
 To get a better output you can use `gotestsum` in place of `go test`, with the `--format` option to customize
-the output. For example `gotestsum --format testname $(go list ./...)  -run TestScenarios/Feature_Users/Scenario_Send_invitation_emails`.
+the output. For example `gotestsum --format testname ./scenarios -run TestScenarios/Feature_Users/Scenario_Send_invitation_emails`.
