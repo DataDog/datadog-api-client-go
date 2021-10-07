@@ -35,7 +35,7 @@ function slug(value) {
         }
         system("mkdir -p " output "/" tag);
         out_file=output "/" tag "/" operation_id ".go";
-        if (system("[ ! -f " out_file " ]") != 0) {
+        if (system("[ -f " out_file " ]") == 0) {
             printf "skipped: "
             in_code_block = 0;
         }
