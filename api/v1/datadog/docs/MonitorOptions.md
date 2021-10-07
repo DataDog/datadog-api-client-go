@@ -20,6 +20,8 @@ Name | Type | Description | Notes
 **NotifyAudit** | Pointer to **bool** | A Boolean indicating whether tagged users is notified on changes to this monitor. | [optional] [default to false]
 **NotifyNoData** | Pointer to **bool** | A Boolean indicating whether this monitor notifies when data stops reporting. | [optional] [default to false]
 **RenotifyInterval** | Pointer to **NullableInt64** | The number of minutes after the last notification before a monitor re-notifies on the current status. It only re-notifies if it’s not resolved. | [optional] 
+**RenotifyOccurrences** | Pointer to **NullableInt64** | The number of times re-notification messages should be sent on the current status at the provided re-notification interval. | [optional] 
+**RenotifyStatuses** | Pointer to [**[]MonitorRenotifyStatusType**](MonitorRenotifyStatusType.md) | The types of monitor statuses for which re-notification messages are sent. | [optional] 
 **RequireFullWindow** | Pointer to **bool** | A Boolean indicating whether this monitor needs a full window of data before it’s evaluated. We highly recommend you set this to &#x60;false&#x60; for sparse metrics, otherwise some evaluations are skipped. Default is false. | [optional] 
 **Silenced** | Pointer to **map[string]int64** | Information about the downtime applied to the monitor. | [optional] 
 **SyntheticsCheckId** | Pointer to **NullableString** | ID of the corresponding Synthetic check. | [optional] 
@@ -516,6 +518,76 @@ HasRenotifyInterval returns a boolean if a field has been set.
 `func (o *MonitorOptions) UnsetRenotifyInterval()`
 
 UnsetRenotifyInterval ensures that no value is present for RenotifyInterval, not even an explicit nil
+### GetRenotifyOccurrences
+
+`func (o *MonitorOptions) GetRenotifyOccurrences() int64`
+
+GetRenotifyOccurrences returns the RenotifyOccurrences field if non-nil, zero value otherwise.
+
+### GetRenotifyOccurrencesOk
+
+`func (o *MonitorOptions) GetRenotifyOccurrencesOk() (*int64, bool)`
+
+GetRenotifyOccurrencesOk returns a tuple with the RenotifyOccurrences field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRenotifyOccurrences
+
+`func (o *MonitorOptions) SetRenotifyOccurrences(v int64)`
+
+SetRenotifyOccurrences sets RenotifyOccurrences field to given value.
+
+### HasRenotifyOccurrences
+
+`func (o *MonitorOptions) HasRenotifyOccurrences() bool`
+
+HasRenotifyOccurrences returns a boolean if a field has been set.
+
+### SetRenotifyOccurrencesNil
+
+`func (o *MonitorOptions) SetRenotifyOccurrencesNil(b bool)`
+
+ SetRenotifyOccurrencesNil sets the value for RenotifyOccurrences to be an explicit nil
+
+### UnsetRenotifyOccurrences
+`func (o *MonitorOptions) UnsetRenotifyOccurrences()`
+
+UnsetRenotifyOccurrences ensures that no value is present for RenotifyOccurrences, not even an explicit nil
+### GetRenotifyStatuses
+
+`func (o *MonitorOptions) GetRenotifyStatuses() []MonitorRenotifyStatusType`
+
+GetRenotifyStatuses returns the RenotifyStatuses field if non-nil, zero value otherwise.
+
+### GetRenotifyStatusesOk
+
+`func (o *MonitorOptions) GetRenotifyStatusesOk() (*[]MonitorRenotifyStatusType, bool)`
+
+GetRenotifyStatusesOk returns a tuple with the RenotifyStatuses field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRenotifyStatuses
+
+`func (o *MonitorOptions) SetRenotifyStatuses(v []MonitorRenotifyStatusType)`
+
+SetRenotifyStatuses sets RenotifyStatuses field to given value.
+
+### HasRenotifyStatuses
+
+`func (o *MonitorOptions) HasRenotifyStatuses() bool`
+
+HasRenotifyStatuses returns a boolean if a field has been set.
+
+### SetRenotifyStatusesNil
+
+`func (o *MonitorOptions) SetRenotifyStatusesNil(b bool)`
+
+ SetRenotifyStatusesNil sets the value for RenotifyStatuses to be an explicit nil
+
+### UnsetRenotifyStatuses
+`func (o *MonitorOptions) UnsetRenotifyStatuses()`
+
+UnsetRenotifyStatuses ensures that no value is present for RenotifyStatuses, not even an explicit nil
 ### GetRequireFullWindow
 
 `func (o *MonitorOptions) GetRequireFullWindow() bool`

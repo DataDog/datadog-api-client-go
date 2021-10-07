@@ -293,6 +293,7 @@ docs/MonitorGroupSearchResult.md
 docs/MonitorOptions.md
 docs/MonitorOptionsAggregation.md
 docs/MonitorOverallStates.md
+docs/MonitorRenotifyStatusType.md
 docs/MonitorSearchResponse.md
 docs/MonitorSearchResponseCounts.md
 docs/MonitorSearchResponseMetadata.md
@@ -935,6 +936,7 @@ model_monitor_group_search_result.go
 model_monitor_options.go
 model_monitor_options_aggregation.go
 model_monitor_overall_states.go
+model_monitor_renotify_status_type.go
 model_monitor_search_response.go
 model_monitor_search_response_counts.go
 model_monitor_search_response_metadata.go
