@@ -12,7 +12,8 @@ You can control the behavior with the `RECORD` environment variable:
  - `RECORD=none` ignores recordings. This will also runs tests that we call `integration-only`, i.e.
     tests that we don't record for security reasons. It also needs valid credentials.
 
-Cassettes and freeze files are stored in `tests/api/$VERSION/datadog/cassettes/`, with one file per tests.
+Cassettes and freeze files are stored in `cassettes` directory in each test package with one file per tests
+(e.g. `tests/api/v1/datadog/cassettes/`).
 
 To run the tests, navigate to the `tests` directory and run `go test $(go list ./...)`. You can get more
 verbose information with the `-v` flag, and run a specific tests with the `-run` argument. For example,
