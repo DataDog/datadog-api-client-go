@@ -246,10 +246,12 @@ func main() {
     excludeAuthorHandle := "test@datadoghq.com" // string | Return notebooks not created by the given `author_handle`. (optional)
     start := int64(0) // int64 | The index of the first notebook you want returned. (optional)
     count := int64(5) // int64 | The number of notebooks to be returned. (optional)
-    sortField := "modified" // string | Sort by field `modified` or `name`. (optional) (default to "modified")
+    sortField := "modified" // string | Sort by field `modified`, `name`, or `created`. (optional) (default to "modified")
     sortDir := "desc" // string | Sort by direction `asc` or `desc`. (optional) (default to "desc")
     query := "postmortem" // string | Return only notebooks with `query` string in notebook name or author handle. (optional)
     includeCells := false // bool | Value of `false` excludes the `cells` and global `time` for each notebook. (optional) (default to true)
+    isTemplate := false // bool | True value returns only template notebooks. Default is false (returns only non-template notebooks). (optional) (default to false)
+    type_ := "investigation" // string | If type is provided, returns only notebooks with that metadata type. Default does not have type filtering. (optional)
     optionalParams := datadog.ListNotebooksOptionalParameters{
         AuthorHandle: &authorHandle,
         ExcludeAuthorHandle: &excludeAuthorHandle,
@@ -259,6 +261,8 @@ func main() {
         SortDir: &sortDir,
         Query: &query,
         IncludeCells: &includeCells,
+        IsTemplate: &isTemplate,
+        Type_: &type_,
     }
 
     configuration := datadog.NewConfiguration()
@@ -292,10 +296,12 @@ Name | Type | Description  | Notes
 **excludeAuthorHandle** | **string** | Return notebooks not created by the given &#x60;author_handle&#x60;. | 
 **start** | **int64** | The index of the first notebook you want returned. | 
 **count** | **int64** | The number of notebooks to be returned. | 
-**sortField** | **string** | Sort by field &#x60;modified&#x60; or &#x60;name&#x60;. | [default to &quot;modified&quot;]
+**sortField** | **string** | Sort by field &#x60;modified&#x60;, &#x60;name&#x60;, or &#x60;created&#x60;. | [default to &quot;modified&quot;]
 **sortDir** | **string** | Sort by direction &#x60;asc&#x60; or &#x60;desc&#x60;. | [default to &quot;desc&quot;]
 **query** | **string** | Return only notebooks with &#x60;query&#x60; string in notebook name or author handle. | 
 **includeCells** | **bool** | Value of &#x60;false&#x60; excludes the &#x60;cells&#x60; and global &#x60;time&#x60; for each notebook. | [default to true]
+**isTemplate** | **bool** | True value returns only template notebooks. Default is false (returns only non-template notebooks). | [default to false]
+**type_** | **string** | If type is provided, returns only notebooks with that metadata type. Default does not have type filtering. | 
 
 ### Return type
 
