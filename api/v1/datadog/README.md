@@ -527,6 +527,7 @@ Class | Method | HTTP request | Description
  - [MonitorOptions](docs/MonitorOptions.md)
  - [MonitorOptionsAggregation](docs/MonitorOptionsAggregation.md)
  - [MonitorOverallStates](docs/MonitorOverallStates.md)
+ - [MonitorRenotifyStatusType](docs/MonitorRenotifyStatusType.md)
  - [MonitorSearchResponse](docs/MonitorSearchResponse.md)
  - [MonitorSearchResponseCounts](docs/MonitorSearchResponseCounts.md)
  - [MonitorSearchResponseMetadata](docs/MonitorSearchResponseMetadata.md)
