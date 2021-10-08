@@ -22,7 +22,7 @@ go test $(go list ./...)
 ```
 
 You can get more verbose information with the `-v` flag, and run a specific
-tests with the `-run` argument. For example:
+test with the `-run` argument. For example:
 
 ```shell
 go test $(go list ./...)  -run TestSLOEventLifecycle -v
