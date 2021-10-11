@@ -331,6 +331,8 @@ docs/NotebookLogStreamCellAttributes.md
 docs/NotebookMarkdownCellAttributes.md
 docs/NotebookMarkdownCellDefinition.md
 docs/NotebookMarkdownCellDefinitionType.md
+docs/NotebookMetadata.md
+docs/NotebookMetadataType.md
 docs/NotebookRelativeTime.md
 docs/NotebookResourceType.md
 docs/NotebookResponse.md
@@ -973,6 +975,8 @@ model_notebook_log_stream_cell_attributes.go
 model_notebook_markdown_cell_attributes.go
 model_notebook_markdown_cell_definition.go
 model_notebook_markdown_cell_definition_type.go
+model_notebook_metadata.go
+model_notebook_metadata_type.go
 model_notebook_relative_time.go
 model_notebook_resource_type.go
 model_notebook_response.go

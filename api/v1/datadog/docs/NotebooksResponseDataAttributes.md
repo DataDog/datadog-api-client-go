@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Author** | Pointer to [**NotebookAuthor**](NotebookAuthor.md) |  | [optional] 
 **Cells** | Pointer to [**[]NotebookCellResponse**](NotebookCellResponse.md) | List of cells to display in the notebook. | [optional] 
 **Created** | Pointer to **time.Time** | UTC time stamp for when the notebook was created. | [optional] [readonly] 
+**Metadata** | Pointer to [**NotebookMetadata**](NotebookMetadata.md) |  | [optional] 
 **Modified** | Pointer to **time.Time** | UTC time stamp for when the notebook was last modified. | [optional] [readonly] 
 **Name** | **string** | The name of the notebook. | 
 **Status** | Pointer to [**NotebookStatus**](NotebookStatus.md) |  | [optional] [default to NOTEBOOKSTATUS_PUBLISHED]
@@ -105,6 +106,31 @@ SetCreated sets Created field to given value.
 `func (o *NotebooksResponseDataAttributes) HasCreated() bool`
 
 HasCreated returns a boolean if a field has been set.
+
+### GetMetadata
+
+`func (o *NotebooksResponseDataAttributes) GetMetadata() NotebookMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *NotebooksResponseDataAttributes) GetMetadataOk() (*NotebookMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *NotebooksResponseDataAttributes) SetMetadata(v NotebookMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *NotebooksResponseDataAttributes) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetModified
 
