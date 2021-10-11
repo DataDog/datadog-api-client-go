@@ -108,7 +108,14 @@ If you want to disable GZIP compressed responses, set the `compress` flag
 on your configuration object:
 
 ```go
-    configuration.Compress = false
+configuration.Compress = false
+```
+
+### Enable requests tracing
+If you want to enable requests tracing, set the `debug` flag on your configuration object:
+
+```go
+configuration.Debug = true
 ```
 
 ## Documentation
