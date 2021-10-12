@@ -34,7 +34,7 @@ type Event struct {
 	Tags *[]string `json:"tags,omitempty"`
 	// The body of the event. Limited to 4000 characters. The text supports markdown. To use markdown in the event text, start the text block with `%%% \\n` and end the text block with `\\n %%%`. Use `msg_text` with the Datadog Ruby library.
 	Text *string `json:"text,omitempty"`
-	// The event title. Limited to 100 characters. Use `msg_title` with the Datadog Ruby library.
+	// The event title.
 	Title *string `json:"title,omitempty"`
 	// URL of the event.
 	Url *string `json:"url,omitempty"`
