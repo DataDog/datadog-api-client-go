@@ -466,7 +466,7 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 	}
 {{#vars}}
 {{#allowableValues}}
-	if v := all.{{name}}; {{^required}}{{^isNullable}}v != nil && {{/isNullable}}{{/required}}!v{{#isNullable}}.Get(){{/isNullable}}.IsValid() {
+	if v := all.{{name}}; {{^required}}{{^isNullable}}v != nil && {{/isNullable}}{{/required}}{{#isNullable}}v.Get() != nil && !v.Get(){{/isNullable}}{{^isNullable}}!v{{/isNullable}}.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
