@@ -192,7 +192,7 @@ func (o *NotebookMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; !v.Get().IsValid() {
+	if v := all.Type; v.Get() != nil && !v.Get().IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
