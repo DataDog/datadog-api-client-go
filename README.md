@@ -102,6 +102,15 @@ When talking to a different server, like the `eu` instance, change the `ContextS
     })
 ```
 
+### Disable compressed payloads
+
+If you want to disable GZIP compressed responses, set the `compress` flag
+on your configuration object:
+
+```go
+    configuration.Compress = false
+```
+
 ## Documentation
 
 Documentation for API endpoints and models can be found under the docs subdirectories, in [v1](/api/v1/datadog#documentation-for-api-endpoints)

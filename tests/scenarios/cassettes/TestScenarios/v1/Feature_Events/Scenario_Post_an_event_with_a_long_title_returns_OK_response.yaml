@@ -1,0 +1,49 @@
+interactions:
+- request:
+    body: |
+      {"tags":["test:TestPostaneventwithalongtitlereturnsOKresponse1632816790"],"text":"A text message.","title":"Test-Post_an_event_with_a_long_title_returns_OK_response-1632816790 very very very looooooooong looooooooooooong loooooooooooooooooooooong looooooooooooooooooooooooooong title with 100+ characters"}
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '306'
+      Content-Type:
+      - application/json
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.17.6; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '4925178679312190133'
+      X-Datadog-Trace-Id:
+      - '734946206016071848'
+    method: POST
+    url: https://api.datadoghq.com/api/v1/events
+  response:
+    body: '{"status":"ok","event":{"id":6183308802141975575,"id_str":"6183308802141975575","title":"Test-Post_an_event_with_a_long_title_returns_OK_response-1632816790
+      very very very looooooooong looooooooooooong loooooooooooooooooooooong looooooooooooooooooooooooooong
+      title with 100+ characters","text":"A text message.","date_happened":1632816790,"handle":null,"priority":null,"related_event_id":null,"tags":["test:TestPostaneventwithalongtitlereturnsOKresponse1632816790"],"url":"https://app.datadoghq.com/event/event?id=6183308802141975575"}}'
+    code: 202
+    duration: ''
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '536'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 28 Sep 2021 08:13:10 GMT
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 202 Accepted
+version: 1
