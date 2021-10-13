@@ -418,6 +418,11 @@ func (c *APIClient) PrepareRequest(
 	for header, value := range c.cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)
 	}
+
+	if !c.cfg.Compress {
+		// gzip is on by default, so disable it by setting encoding to identity
+		localVarRequest.Header.Add("Accept-Encoding", "identity")
+	}
 	return localVarRequest, nil
 }
 
