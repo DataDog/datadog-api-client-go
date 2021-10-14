@@ -115,7 +115,7 @@ func Templated(t gobdd.StepTest, data map[string]interface{}, source string) str
 		}
 		switch v.Kind() {
 		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-			return strconv.FormatInt(v.Int(), 64)
+			return strconv.FormatInt(v.Int(), 10)
 		case reflect.Float64, reflect.Float32:
 			return strconv.FormatFloat(v.Float(), 'f', -1, 64)
 		case reflect.Bool:
