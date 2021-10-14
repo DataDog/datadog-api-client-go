@@ -47,6 +47,10 @@ type MonitorOptions struct {
 	NotifyNoData *bool `json:"notify_no_data,omitempty"`
 	// The number of minutes after the last notification before a monitor re-notifies on the current status. It only re-notifies if it’s not resolved.
 	RenotifyInterval NullableInt64 `json:"renotify_interval,omitempty"`
+	// The number of times re-notification messages should be sent on the current status at the provided re-notification interval.
+	RenotifyOccurrences NullableInt64 `json:"renotify_occurrences,omitempty"`
+	// The types of monitor statuses for which re-notification messages are sent.
+	RenotifyStatuses []MonitorRenotifyStatusType `json:"renotify_statuses,omitempty"`
 	// A Boolean indicating whether this monitor needs a full window of data before it’s evaluated. We highly recommend you set this to `false` for sparse metrics, otherwise some evaluations are skipped. Default is false.
 	RequireFullWindow *bool `json:"require_full_window,omitempty"`
 	// Information about the downtime applied to the monitor.
@@ -703,6 +707,82 @@ func (o *MonitorOptions) UnsetRenotifyInterval() {
 	o.RenotifyInterval.Unset()
 }
 
+// GetRenotifyOccurrences returns the RenotifyOccurrences field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorOptions) GetRenotifyOccurrences() int64 {
+	if o == nil || o.RenotifyOccurrences.Get() == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RenotifyOccurrences.Get()
+}
+
+// GetRenotifyOccurrencesOk returns a tuple with the RenotifyOccurrences field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorOptions) GetRenotifyOccurrencesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RenotifyOccurrences.Get(), o.RenotifyOccurrences.IsSet()
+}
+
+// HasRenotifyOccurrences returns a boolean if a field has been set.
+func (o *MonitorOptions) HasRenotifyOccurrences() bool {
+	if o != nil && o.RenotifyOccurrences.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRenotifyOccurrences gets a reference to the given NullableInt64 and assigns it to the RenotifyOccurrences field.
+func (o *MonitorOptions) SetRenotifyOccurrences(v int64) {
+	o.RenotifyOccurrences.Set(&v)
+}
+
+// SetRenotifyOccurrencesNil sets the value for RenotifyOccurrences to be an explicit nil
+func (o *MonitorOptions) SetRenotifyOccurrencesNil() {
+	o.RenotifyOccurrences.Set(nil)
+}
+
+// UnsetRenotifyOccurrences ensures that no value is present for RenotifyOccurrences, not even an explicit nil
+func (o *MonitorOptions) UnsetRenotifyOccurrences() {
+	o.RenotifyOccurrences.Unset()
+}
+
+// GetRenotifyStatuses returns the RenotifyStatuses field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitorOptions) GetRenotifyStatuses() []MonitorRenotifyStatusType {
+	if o == nil {
+		var ret []MonitorRenotifyStatusType
+		return ret
+	}
+	return o.RenotifyStatuses
+}
+
+// GetRenotifyStatusesOk returns a tuple with the RenotifyStatuses field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitorOptions) GetRenotifyStatusesOk() (*[]MonitorRenotifyStatusType, bool) {
+	if o == nil || o.RenotifyStatuses == nil {
+		return nil, false
+	}
+	return &o.RenotifyStatuses, true
+}
+
+// HasRenotifyStatuses returns a boolean if a field has been set.
+func (o *MonitorOptions) HasRenotifyStatuses() bool {
+	if o != nil && o.RenotifyStatuses != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRenotifyStatuses gets a reference to the given []MonitorRenotifyStatusType and assigns it to the RenotifyStatuses field.
+func (o *MonitorOptions) SetRenotifyStatuses(v []MonitorRenotifyStatusType) {
+	o.RenotifyStatuses = v
+}
+
 // GetRequireFullWindow returns the RequireFullWindow field value if set, zero value otherwise.
 func (o *MonitorOptions) GetRequireFullWindow() bool {
 	if o == nil || o.RequireFullWindow == nil {
@@ -976,6 +1056,12 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	if o.RenotifyInterval.IsSet() {
 		toSerialize["renotify_interval"] = o.RenotifyInterval.Get()
 	}
+	if o.RenotifyOccurrences.IsSet() {
+		toSerialize["renotify_occurrences"] = o.RenotifyOccurrences.Get()
+	}
+	if o.RenotifyStatuses != nil {
+		toSerialize["renotify_statuses"] = o.RenotifyStatuses
+	}
 	if o.RequireFullWindow != nil {
 		toSerialize["require_full_window"] = o.RequireFullWindow
 	}
@@ -1016,6 +1102,8 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		NotifyAudit          *bool                          `json:"notify_audit,omitempty"`
 		NotifyNoData         *bool                          `json:"notify_no_data,omitempty"`
 		RenotifyInterval     NullableInt64                  `json:"renotify_interval,omitempty"`
+		RenotifyOccurrences  NullableInt64                  `json:"renotify_occurrences,omitempty"`
+		RenotifyStatuses     []MonitorRenotifyStatusType    `json:"renotify_statuses,omitempty"`
 		RequireFullWindow    *bool                          `json:"require_full_window,omitempty"`
 		Silenced             *map[string]int64              `json:"silenced,omitempty"`
 		SyntheticsCheckId    NullableString                 `json:"synthetics_check_id,omitempty"`
@@ -1048,6 +1136,8 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.NotifyAudit = all.NotifyAudit
 	o.NotifyNoData = all.NotifyNoData
 	o.RenotifyInterval = all.RenotifyInterval
+	o.RenotifyOccurrences = all.RenotifyOccurrences
+	o.RenotifyStatuses = all.RenotifyStatuses
 	o.RequireFullWindow = all.RequireFullWindow
 	o.Silenced = all.Silenced
 	o.SyntheticsCheckId = all.SyntheticsCheckId
