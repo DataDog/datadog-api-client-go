@@ -14,7 +14,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
 	"strings"
 )
 
@@ -74,17 +73,7 @@ func (a *MonitorsApiService) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMon
 		return localVarReturnValue, nil, reportError("monitorIds is required and must be specified")
 	}
 
-	{
-		t := *r.monitorIds
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("monitor_ids", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("monitor_ids", parameterToString(t, "multi"))
-		}
-	}
+	localVarQueryParams.Add("monitor_ids", parameterToString(*r.monitorIds, "csv"))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
