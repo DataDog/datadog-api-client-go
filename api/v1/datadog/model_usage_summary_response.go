@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// UsageSummaryResponse Response with hourly report of all data billed by Datadog all organizations.
+// UsageSummaryResponse Response summarizing all usage aggregated across the months in the request for all organizations, and broken down by month and by organization.
 type UsageSummaryResponse struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current months for all organizations.
 	AgentHostTop99pSum *int64 `json:"agent_host_top99p_sum,omitempty"`
