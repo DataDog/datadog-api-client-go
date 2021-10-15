@@ -458,6 +458,9 @@ docs/SyntheticsAssertionOperator.md
 docs/SyntheticsAssertionTarget.md
 docs/SyntheticsAssertionType.md
 docs/SyntheticsBasicAuth.md
+docs/SyntheticsBatchDetails.md
+docs/SyntheticsBatchDetailsData.md
+docs/SyntheticsBatchResult.md
 docs/SyntheticsBrowserError.md
 docs/SyntheticsBrowserErrorType.md
 docs/SyntheticsBrowserTest.md
@@ -470,11 +473,11 @@ docs/SyntheticsBrowserTestResultShortResult.md
 docs/SyntheticsBrowserTestType.md
 docs/SyntheticsBrowserVariable.md
 docs/SyntheticsBrowserVariableType.md
+docs/SyntheticsCIBatchMetadata.md
+docs/SyntheticsCIBatchMetadataCI.md
+docs/SyntheticsCIBatchMetadataGit.md
 docs/SyntheticsCITest.md
 docs/SyntheticsCITestBody.md
-docs/SyntheticsCITestMetadata.md
-docs/SyntheticsCITestMetadataCi.md
-docs/SyntheticsCITestMetadataGit.md
 docs/SyntheticsCheckType.md
 docs/SyntheticsConfigVariable.md
 docs/SyntheticsConfigVariableType.md
@@ -508,6 +511,7 @@ docs/SyntheticsPrivateLocationSecretsConfigDecryption.md
 docs/SyntheticsSSLCertificate.md
 docs/SyntheticsSSLCertificateIssuer.md
 docs/SyntheticsSSLCertificateSubject.md
+docs/SyntheticsStatus.md
 docs/SyntheticsStep.md
 docs/SyntheticsStepDetail.md
 docs/SyntheticsStepDetailWarning.md
@@ -516,6 +520,7 @@ docs/SyntheticsTestConfig.md
 docs/SyntheticsTestDetails.md
 docs/SyntheticsTestDetailsSubType.md
 docs/SyntheticsTestDetailsType.md
+docs/SyntheticsTestExecutionRule.md
 docs/SyntheticsTestMonitorStatus.md
 docs/SyntheticsTestOptions.md
 docs/SyntheticsTestOptionsMonitorOptions.md
@@ -1093,6 +1098,9 @@ model_synthetics_assertion_operator.go
 model_synthetics_assertion_target.go
 model_synthetics_assertion_type.go
 model_synthetics_basic_auth.go
+model_synthetics_batch_details.go
+model_synthetics_batch_details_data.go
+model_synthetics_batch_result.go
 model_synthetics_browser_error.go
 model_synthetics_browser_error_type.go
 model_synthetics_browser_test_.go
@@ -1106,11 +1114,11 @@ model_synthetics_browser_test_type.go
 model_synthetics_browser_variable.go
 model_synthetics_browser_variable_type.go
 model_synthetics_check_type.go
+model_synthetics_ci_batch_metadata.go
+model_synthetics_ci_batch_metadata_ci.go
+model_synthetics_ci_batch_metadata_git.go
 model_synthetics_ci_test_.go
 model_synthetics_ci_test_body.go
-model_synthetics_ci_test_metadata.go
-model_synthetics_ci_test_metadata_ci.go
-model_synthetics_ci_test_metadata_git.go
 model_synthetics_config_variable.go
 model_synthetics_config_variable_type.go
 model_synthetics_core_web_vitals.go
@@ -1143,6 +1151,7 @@ model_synthetics_private_location_secrets_config_decryption.go
 model_synthetics_ssl_certificate.go
 model_synthetics_ssl_certificate_issuer.go
 model_synthetics_ssl_certificate_subject.go
+model_synthetics_status.go
 model_synthetics_step.go
 model_synthetics_step_detail.go
 model_synthetics_step_detail_warning.go
@@ -1151,6 +1160,7 @@ model_synthetics_test_config.go
 model_synthetics_test_details.go
 model_synthetics_test_details_sub_type.go
 model_synthetics_test_details_type.go
+model_synthetics_test_execution_rule.go
 model_synthetics_test_monitor_status.go
 model_synthetics_test_options.go
 model_synthetics_test_options_monitor_options.go

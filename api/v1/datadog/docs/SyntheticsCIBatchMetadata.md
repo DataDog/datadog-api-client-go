@@ -1,78 +1,78 @@
-# SyntheticsCITestMetadata
+# SyntheticsCIBatchMetadata
 
 ## Properties
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Ci** | Pointer to [**SyntheticsCITestMetadataCi**](SyntheticsCITestMetadataCi.md) |  | [optional] 
-**Git** | Pointer to [**SyntheticsCITestMetadataGit**](SyntheticsCITestMetadataGit.md) |  | [optional] 
+**Ci** | Pointer to [**SyntheticsCIBatchMetadataCI**](SyntheticsCIBatchMetadataCI.md) |  | [optional] 
+**Git** | Pointer to [**SyntheticsCIBatchMetadataGit**](SyntheticsCIBatchMetadataGit.md) |  | [optional] 
 
 ## Methods
 
-### NewSyntheticsCITestMetadata
+### NewSyntheticsCIBatchMetadata
 
-`func NewSyntheticsCITestMetadata() *SyntheticsCITestMetadata`
+`func NewSyntheticsCIBatchMetadata() *SyntheticsCIBatchMetadata`
 
-NewSyntheticsCITestMetadata instantiates a new SyntheticsCITestMetadata object.
+NewSyntheticsCIBatchMetadata instantiates a new SyntheticsCIBatchMetadata object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### NewSyntheticsCITestMetadataWithDefaults
+### NewSyntheticsCIBatchMetadataWithDefaults
 
-`func NewSyntheticsCITestMetadataWithDefaults() *SyntheticsCITestMetadata`
+`func NewSyntheticsCIBatchMetadataWithDefaults() *SyntheticsCIBatchMetadata`
 
-NewSyntheticsCITestMetadataWithDefaults instantiates a new SyntheticsCITestMetadata object.
+NewSyntheticsCIBatchMetadataWithDefaults instantiates a new SyntheticsCIBatchMetadata object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
 ### GetCi
 
-`func (o *SyntheticsCITestMetadata) GetCi() SyntheticsCITestMetadataCi`
+`func (o *SyntheticsCIBatchMetadata) GetCi() SyntheticsCIBatchMetadataCI`
 
 GetCi returns the Ci field if non-nil, zero value otherwise.
 
 ### GetCiOk
 
-`func (o *SyntheticsCITestMetadata) GetCiOk() (*SyntheticsCITestMetadataCi, bool)`
+`func (o *SyntheticsCIBatchMetadata) GetCiOk() (*SyntheticsCIBatchMetadataCI, bool)`
 
 GetCiOk returns a tuple with the Ci field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCi
 
-`func (o *SyntheticsCITestMetadata) SetCi(v SyntheticsCITestMetadataCi)`
+`func (o *SyntheticsCIBatchMetadata) SetCi(v SyntheticsCIBatchMetadataCI)`
 
 SetCi sets Ci field to given value.
 
 ### HasCi
 
-`func (o *SyntheticsCITestMetadata) HasCi() bool`
+`func (o *SyntheticsCIBatchMetadata) HasCi() bool`
 
 HasCi returns a boolean if a field has been set.
 
 ### GetGit
 
-`func (o *SyntheticsCITestMetadata) GetGit() SyntheticsCITestMetadataGit`
+`func (o *SyntheticsCIBatchMetadata) GetGit() SyntheticsCIBatchMetadataGit`
 
 GetGit returns the Git field if non-nil, zero value otherwise.
 
 ### GetGitOk
 
-`func (o *SyntheticsCITestMetadata) GetGitOk() (*SyntheticsCITestMetadataGit, bool)`
+`func (o *SyntheticsCIBatchMetadata) GetGitOk() (*SyntheticsCIBatchMetadataGit, bool)`
 
 GetGitOk returns a tuple with the Git field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGit
 
-`func (o *SyntheticsCITestMetadata) SetGit(v SyntheticsCITestMetadataGit)`
+`func (o *SyntheticsCIBatchMetadata) SetGit(v SyntheticsCIBatchMetadataGit)`
 
 SetGit sets Git field to given value.
 
 ### HasGit
 
-`func (o *SyntheticsCITestMetadata) HasGit() bool`
+`func (o *SyntheticsCIBatchMetadata) HasGit() bool`
 
 HasGit returns a boolean if a field has been set.
 

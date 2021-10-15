@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **FollowRedirects** | Pointer to **bool** | For API HTTP test, whether or not the test should follow redirects. | [optional] 
 **Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
 **Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
-**Metadata** | Pointer to [**SyntheticsCITestMetadata**](SyntheticsCITestMetadata.md) |  | [optional] 
+**Metadata** | Pointer to [**SyntheticsCIBatchMetadata**](SyntheticsCIBatchMetadata.md) |  | [optional] 
 **PublicId** | **string** | The public ID of the Synthetics test to trigger. | 
 **Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |  | [optional] 
 **StartUrl** | Pointer to **string** | Starting URL for the browser test. | [optional] 
@@ -265,20 +265,20 @@ HasLocations returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *SyntheticsCITest) GetMetadata() SyntheticsCITestMetadata`
+`func (o *SyntheticsCITest) GetMetadata() SyntheticsCIBatchMetadata`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *SyntheticsCITest) GetMetadataOk() (*SyntheticsCITestMetadata, bool)`
+`func (o *SyntheticsCITest) GetMetadataOk() (*SyntheticsCIBatchMetadata, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *SyntheticsCITest) SetMetadata(v SyntheticsCITestMetadata)`
+`func (o *SyntheticsCITest) SetMetadata(v SyntheticsCIBatchMetadata)`
 
 SetMetadata sets Metadata field to given value.
 
