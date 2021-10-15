@@ -3,29 +3,31 @@ version: 1
 interactions:
 - request:
     body: |
-      {"config":{"assertions":[{"operator":"is","property":"{{ PROPERTY }}","target":"text/html","type":"header"},{"operator":"lessThan","target":2000,"type":"responseTime"},{"operator":"validatesJSONPath","target":{"jsonPath":"topKey","operator":"isNot","targetValue":"0"},"type":"body"}],"configVariables":[{"example":"content-type","name":"PROPERTY","pattern":"content-type","type":"text"}],"request":{"certificate":{"cert":{"content":"cert-content","filename":"cert-filename","updatedAt":"2020-10-16T09:23:24.857Z"},"key":{"content":"key-content","filename":"key-filename","updatedAt":"2020-10-16T09:23:24.857Z"}},"headers":{"testingGoClient":"true"},"method":"GET","timeout":10,"url":"https://datadoghq.com"}},"locations":["aws:us-east-2"],"message":"Go client testing Synthetics API test - this is message","name":"Test-TestSyntheticsTriggerCITests-1630053202","options":{"accept_self_signed":false,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"min_location_failed":1,"monitor_name":"Test-TestSyntheticsTriggerCITests-1630053202","monitor_priority":5,"retry":{"count":3,"interval":10},"tick_every":60},"subtype":"http","tags":["testing:api"],"type":"api"}
+      {"config":{"assertions":[{"operator":"is","property":"{{ PROPERTY }}","target":"text/html","type":"header"},{"operator":"lessThan","target":2000,"type":"responseTime"},{"operator":"validatesJSONPath","target":{"jsonPath":"topKey","operator":"isNot","targetValue":"0"},"type":"body"}],"configVariables":[{"example":"content-type","name":"PROPERTY","pattern":"content-type","type":"text"}],"request":{"certificate":{"cert":{"content":"cert-content","filename":"cert-filename","updatedAt":"2020-10-16T09:23:24.857Z"},"key":{"content":"key-content","filename":"key-filename","updatedAt":"2020-10-16T09:23:24.857Z"}},"headers":{"testingGoClient":"true"},"method":"GET","timeout":10,"url":"https://datadoghq.com"}},"locations":["aws:us-east-2"],"message":"Go client testing Synthetics API test - this is message","name":"Test-TestSyntheticsTriggerCITests-1634304935","options":{"accept_self_signed":false,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"min_location_failed":1,"monitor_name":"Test-TestSyntheticsTriggerCITests-1634304935","monitor_priority":5,"retry":{"count":3,"interval":10},"tick_every":60},"subtype":"http","tags":["testing:api"],"type":"api"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "1183"
       Content-Type:
       - application/json
       Dd-Operation-Id:
       - CreateSyntheticsAPITest
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7655386002643018259"
+      - "3416484901556116995"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5927662857405034590"
+      - "8076922241004817440"
     url: https://api.datadoghq.com/api/v1/synthetics/tests/api
     method: POST
   response:
-    body: '{"status":"live","public_id":"rck-92z-tdv","tags":["testing:api"],"org_id":321813,"locations":["aws:us-east-2"],"message":"Go
-      client testing Synthetics API test - this is message","deleted_at":null,"name":"Test-TestSyntheticsTriggerCITests-1630053202","monitor_id":44804548,"type":"api","created_at":"2021-08-27T08:33:23.946151+00:00","modified_at":"2021-08-27T08:33:23.946151+00:00","subtype":"http","config":{"request":{"url":"https://datadoghq.com","headers":{"testingGoClient":"true"},"certificate":{"cert":{"filename":"cert-filename","updatedAt":"2020-10-16T09:23:24.857Z"},"key":{"filename":"key-filename","updatedAt":"2020-10-16T09:23:24.857Z"}},"method":"GET","timeout":10},"assertions":[{"operator":"is","property":"{{
-      PROPERTY }}","type":"header","target":"text/html"},{"operator":"lessThan","type":"responseTime","target":2000},{"operator":"validatesJSONPath","type":"body","target":{"operator":"isNot","targetValue":"0","jsonPath":"topKey"}}],"configVariables":[{"pattern":"content-type","type":"text","example":"content-type","name":"PROPERTY"}]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":1,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"monitor_priority":5,"monitor_name":"Test-TestSyntheticsTriggerCITests-1630053202","tick_every":60}}'
+    body: '{"status":"live","public_id":"jqw-irx-esa","tags":["testing:api"],"org_id":321813,"locations":["aws:us-east-2"],"message":"Go
+      client testing Synthetics API test - this is message","deleted_at":null,"name":"Test-TestSyntheticsTriggerCITests-1634304935","monitor_id":49867370,"type":"api","created_at":"2021-10-15T13:35:36.310625+00:00","modified_at":"2021-10-15T13:35:36.310625+00:00","subtype":"http","config":{"request":{"url":"https://datadoghq.com","headers":{"testingGoClient":"true"},"certificate":{"cert":{"filename":"cert-filename","updatedAt":"2020-10-16T09:23:24.857Z"},"key":{"filename":"key-filename","updatedAt":"2020-10-16T09:23:24.857Z"}},"method":"GET","timeout":10},"assertions":[{"operator":"is","property":"{{
+      PROPERTY }}","type":"header","target":"text/html"},{"operator":"lessThan","type":"responseTime","target":2000},{"operator":"validatesJSONPath","type":"body","target":{"operator":"isNot","targetValue":"0","jsonPath":"topKey"}}],"configVariables":[{"pattern":"content-type","type":"text","example":"content-type","name":"PROPERTY"}]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":1,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"monitor_priority":5,"monitor_name":"Test-TestSyntheticsTriggerCITests-1634304935","tick_every":60}}'
     headers:
       Cache-Control:
       - no-cache
@@ -34,9 +36,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Aug 2021 08:33:23 GMT
+      - Fri, 15 Oct 2021 13:35:36 GMT
       Pragma:
       - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
@@ -48,35 +52,37 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "11999"
+      - "11995"
       X-Ratelimit-Reset:
-      - "37"
+      - "24"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"tests":[{"locations":["aws:us-east-2"],"public_id":"rck-92z-tdv"}]}
+      {"tests":[{"locations":["aws:us-east-2"],"public_id":"jqw-irx-esa"}]}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "70"
       Content-Type:
       - application/json
       Dd-Operation-Id:
       - TriggerCITests
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3146909521957840079"
+      - "868738358347828938"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5927662857405034590"
+      - "8076922241004817440"
     url: https://api.datadoghq.com/api/v1/synthetics/tests/trigger/ci
     method: POST
   response:
-    body: '{"batch_id":"4ae3b654-d5d6-42c1-baf2-181b6552d455","results":[{"result_id":"7141440330562273201","public_id":"rck-92z-tdv","location":30005}],"triggered_check_ids":["rck-92z-tdv"],"locations":[{"display_name":"Ohio
+    body: '{"batch_id":"b411dd12-5b6d-435d-8082-cc9ff72915d6","results":[{"result_id":"1005327023871462168","public_id":"jqw-irx-esa","location":30005}],"triggered_check_ids":["jqw-irx-esa"],"locations":[{"display_name":"Ohio
       (AWS)","name":"aws:us-east-2","region":"Americas","is_active":true,"is_public":true,"id":30005}]}'
     headers:
       Cache-Control:
@@ -86,9 +92,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Aug 2021 08:33:24 GMT
+      - Fri, 15 Oct 2021 13:35:36 GMT
       Pragma:
       - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
@@ -102,7 +110,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "14"
       X-Ratelimit-Reset:
-      - "96"
+      - "264"
     status: 200 OK
     code: 200
     duration: ""
@@ -113,19 +121,19 @@ interactions:
       Accept:
       - application/json
       Dd-Operation-Id:
-      - GetBatch
+      - GetSyntheticsCIBatch
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4821137910633544228"
+      - "8933726562940548192"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5927662857405034590"
-    url: https://api.datadoghq.com/api/v1/synthetics/ci/batch/4ae3b654-d5d6-42c1-baf2-181b6552d455
+      - "8076922241004817440"
+    url: https://api.datadoghq.com/api/v1/synthetics/ci/batch/b411dd12-5b6d-435d-8082-cc9ff72915d6
     method: GET
   response:
-    body: '{"data":{"status":"in_progress","results":[{"status":"in_progress","retries":null,"final_result_id":null,"test_public_id":"rck-92z-tdv","timed_out":null,"duration":null,"steps":null,"location":"aws:us-east-2","test_name":"Test-TestSyntheticsTriggerCITests-1630053202","device":null,"execution_rule":"blocking","polling_timeout":120000,"result_id":"7141440330562273201","test_type":"api"}],"metadata":{}},"created_at":"2021-08-27T08:33:24.178162+00:00","modified_at":null}'
+    body: '{"data":{"status":"in_progress","results":[{"status":"in_progress","retries":null,"final_result_id":null,"test_public_id":"jqw-irx-esa","timed_out":null,"duration":null,"steps":null,"location":"aws:us-east-2","test_name":"Test-TestSyntheticsTriggerCITests-1634304935","device":null,"execution_rule":"blocking","polling_timeout":120000,"result_id":"1005327023871462168","test_type":"api"}],"metadata":{}},"created_at":"2021-10-15T13:35:36.854584+00:00","modified_at":null}'
     headers:
       Cache-Control:
       - no-cache
@@ -134,9 +142,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Aug 2021 08:33:24 GMT
+      - Fri, 15 Oct 2021 13:35:37 GMT
       Pragma:
       - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
@@ -148,27 +158,29 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"public_ids":["rck-92z-tdv"]}
+      {"public_ids":["jqw-irx-esa"]}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "31"
       Content-Type:
       - application/json
       Dd-Operation-Id:
       - DeleteTests
       User-Agent:
-      - datadog-api-client-go/1.2.1+dev (go go1.16.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5510764075688138836"
+      - "5537172380346381423"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5927662857405034590"
+      - "8076922241004817440"
     url: https://api.datadoghq.com/api/v1/synthetics/tests/delete
     method: POST
   response:
-    body: '{"deleted_tests":[{"deleted_at":"2021-08-27T08:33:24.688497+00:00","public_id":"rck-92z-tdv"}]}'
+    body: '{"deleted_tests":[{"deleted_at":"2021-10-15T13:35:37.491149+00:00","public_id":"jqw-irx-esa"}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -177,9 +189,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Aug 2021 08:33:24 GMT
+      - Fri, 15 Oct 2021 13:35:37 GMT
       Pragma:
       - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
@@ -191,9 +205,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "11999"
+      - "11995"
       X-Ratelimit-Reset:
-      - "36"
+      - "23"
     status: 200 OK
     code: 200
     duration: ""
