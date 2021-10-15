@@ -117,9 +117,42 @@ func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path str
 	if err != nil {
 		t.Errorf("key %s in %+v: %v", path, GetData(ctx), err)
 	}
+	request, _, err := getRequestBuilder(ctx)
+	if err != nil {
+		t.Error(err)
+	}
+	numArgs := request.Type().NumIn()
+	in := make([]reflect.Value, numArgs)
+	in[0] = reflect.ValueOf(GetCtx(ctx))
+	// The order of the path arguments in the scenario definition
+	// must match the order of the arguments in the function signature
+	// Here we keep track of which numbered path argument we're setting
+	pathCount, _ := ctx.Get(pathParamCountKey{})
+	ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
+	var varType reflect.Value
 
-	GetRequestParameters(ctx)[name] = value
-	ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
+	if request.Type().IsVariadic() && pathCount.(int) > numArgs-2 {
+		optionalParams := reflect.New(request.Type().In(numArgs - 1).Elem())
+		field := reflect.Indirect(optionalParams.Elem()).FieldByName(ToVarName(name))
+		if field.IsValid() {
+			varType = reflect.New(field.Type().Elem())
+		}
+	} else {
+		varType = reflect.New(request.Type().In(pathCount.(int)))
+	}
+
+	if varType.IsValid() {
+		data, err := json.Marshal(value.Interface())
+		if err != nil {
+			t.Error(err)
+		}
+		json.Unmarshal(data, varType.Interface())
+		GetRequestParameters(ctx)[name] = varType.Elem()
+		ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), varType.Elem()))
+	} else {
+		GetRequestParameters(ctx)[name] = value
+		ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
+	}
 }
 
 // This function adds path arguments to the requestArgs key. This shouldn't be used as a step method, but just a helper util

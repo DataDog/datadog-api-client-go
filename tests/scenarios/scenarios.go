@@ -66,7 +66,6 @@ func relativeTime(iso bool) func(map[string]interface{}, string) string {
 	}
 }
 
-
 type versionKey struct{}
 type ctxKey struct{}
 type clientKey struct{}
@@ -118,7 +117,7 @@ func Templated(t gobdd.StepTest, data map[string]interface{}, source string) str
 		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 			return strconv.FormatInt(v.Int(), 10)
 		case reflect.Float64, reflect.Float32:
-			return strconv.FormatFloat(v.Float(), 'f', -1, 10)
+			return strconv.FormatFloat(v.Float(), 'f', -1, 64)
 		case reflect.Bool:
 			return strconv.FormatBool(v.Bool())
 		case reflect.Interface:
@@ -134,9 +133,9 @@ var matchAllUpper = regexp.MustCompile("([a-z0-9])([A-Z])")
 
 // CamelToSnakeCase converts CamelCase to snake_case.
 func CamelToSnakeCase(camel string) string {
-    snake := matchFirstUpper.ReplaceAllString(camel, "${1}_${2}")
-    snake = matchAllUpper.ReplaceAllString(snake, "${1}_${2}")
-    return strings.ToLower(snake)
+	snake := matchFirstUpper.ReplaceAllString(camel, "${1}_${2}")
+	snake = matchAllUpper.ReplaceAllString(snake, "${1}_${2}")
+	return strings.ToLower(snake)
 }
 
 // ToVarName converts a string to a valid Go variable name.
@@ -185,8 +184,6 @@ func SnakeToCamelCase(snake string) (camel string) {
 	}
 	return
 }
-
-
 
 // GetT returns stored reference to the testing object.
 func GetT(ctx gobdd.Context) *testing.T {
@@ -357,7 +354,6 @@ func RunCleanup(ctx gobdd.Context) {
 	}
 }
 
-
 // getRequestBuilder returns the reflect value of the current request in ctx
 func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error) {
 	c, err := ctx.Get(requestKey{})
@@ -428,7 +424,6 @@ func toJSON(o reflect.Value) (interface{}, error) {
 	}
 	return jsonResult, nil
 }
-
 
 func stringToType(s string, t interface{}) (interface{}, error) {
 	switch t.(type) {

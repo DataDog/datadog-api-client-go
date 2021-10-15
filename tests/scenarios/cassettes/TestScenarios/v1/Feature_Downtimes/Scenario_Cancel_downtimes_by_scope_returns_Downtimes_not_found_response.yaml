@@ -1,34 +1,44 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"scope":"test:testdowntimes1633349164_invalid"}
+      {"scope":"test:testcanceldowntimesbyscopereturnsdowntimesnotfoundresponse1633076912_invalid"}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
       Content-Length:
-      - "49"
+      - '93'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CancelDowntimesByScope
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
-    url: https://api.datadoghq.com/api/v1/downtime/cancel/by_scope
+      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '3703768329805907252'
+      X-Datadog-Trace-Id:
+      - '1612844427823424916'
     method: POST
+    url: https://api.datadoghq.com/api/v1/downtime/cancel/by_scope
   response:
     body: '{"errors": ["No downtimes found"]}'
+    code: 404
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '34'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 04 Oct 2021 12:06:04 GMT
+      - Fri, 01 Oct 2021 08:28:32 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -40,5 +50,4 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
-    code: 404
-    duration: ""
+version: 1
