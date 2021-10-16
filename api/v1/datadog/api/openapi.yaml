@@ -10791,12 +10791,15 @@ components:
         - us-west-2
         filter_tags:
         - <KEY>:<VALUE>
+        cspm_resource_collection_enabled: true
         secret_access_key: secret_access_key
+        resource_collection_enabled: true
         account_specific_namespace_rules:
           auto_scaling: false
           opswork: false
         host_tags:
         - <KEY>:<VALUE>
+        metrics_collection_enabled: false
       properties:
         access_key_id:
           description: Your AWS access key ID. Only required if your AWS account is
@@ -10818,6 +10821,13 @@ components:
             auto_scaling: false
             opswork: false
           type: object
+        cspm_resource_collection_enabled:
+          default: false
+          description: Whether Datadog collects cloud security posture management
+            resources from your AWS account. This includes additional resources not
+            covered under the general `resource_collection`.
+          example: true
+          type: boolean
         excluded_regions:
           description: An array of AWS regions to exclude from metrics collection.
           example:
@@ -10851,6 +10861,17 @@ components:
             description: The list of the the host_tags.
             type: string
           type: array
+        metrics_collection_enabled:
+          default: true
+          description: Whether Datadog collects metrics for this AWS account.
+          example: false
+          type: boolean
+        resource_collection_enabled:
+          default: false
+          description: Whether Datadog collects a standard set of resources from your
+            AWS account.
+          example: true
+          type: boolean
         role_name:
           description: Your Datadog role delegation name.
           example: DatadogAWSIntegrationRole
@@ -10920,12 +10941,15 @@ components:
           - us-west-2
           filter_tags:
           - <KEY>:<VALUE>
+          cspm_resource_collection_enabled: true
           secret_access_key: secret_access_key
+          resource_collection_enabled: true
           account_specific_namespace_rules:
             auto_scaling: false
             opswork: false
           host_tags:
           - <KEY>:<VALUE>
+          metrics_collection_enabled: false
         - access_key_id: access_key_id
           role_name: DatadogAWSIntegrationRole
           account_id: "1234567"
@@ -10934,12 +10958,15 @@ components:
           - us-west-2
           filter_tags:
           - <KEY>:<VALUE>
+          cspm_resource_collection_enabled: true
           secret_access_key: secret_access_key
+          resource_collection_enabled: true
           account_specific_namespace_rules:
             auto_scaling: false
             opswork: false
           host_tags:
           - <KEY>:<VALUE>
+          metrics_collection_enabled: false
       properties:
         accounts:
           description: List of enabled AWS accounts.

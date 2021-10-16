@@ -7,9 +7,12 @@ Name | Type | Description | Notes
 **AccessKeyId** | Pointer to **string** | Your AWS access key ID. Only required if your AWS account is a GovCloud or China account. | [optional] 
 **AccountId** | Pointer to **string** | Your AWS Account ID without dashes. | [optional] 
 **AccountSpecificNamespaceRules** | Pointer to **map[string]bool** | An object, (in the form &#x60;{\&quot;namespace1\&quot;:true/false, \&quot;namespace2\&quot;:true/false}&#x60;), that enables or disables metric collection for specific AWS namespaces for this AWS account only. | [optional] 
+**CspmResourceCollectionEnabled** | Pointer to **bool** | Whether Datadog collects cloud security posture management resources from your AWS account. This includes additional resources not covered under the general &#x60;resource_collection&#x60;. | [optional] [default to false]
 **ExcludedRegions** | Pointer to **[]string** | An array of AWS regions to exclude from metrics collection. | [optional] 
 **FilterTags** | Pointer to **[]string** | The array of EC2 tags (in the form &#x60;key:value&#x60;) defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as &#x60;?&#x60; (for single characters) and &#x60;*&#x60; (for multiple characters) can also be used. Only hosts that match one of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given tag can also be excluded by adding &#x60;!&#x60; before the tag. For example, &#x60;env:production,instance-type:c1.*,!region:us-east-1&#x60; | [optional] 
 **HostTags** | Pointer to **[]string** | Array of tags (in the form &#x60;key:value&#x60;) to add to all hosts and metrics reporting through this integration. | [optional] 
+**MetricsCollectionEnabled** | Pointer to **bool** | Whether Datadog collects metrics for this AWS account. | [optional] [default to true]
+**ResourceCollectionEnabled** | Pointer to **bool** | Whether Datadog collects a standard set of resources from your AWS account. | [optional] [default to false]
 **RoleName** | Pointer to **string** | Your Datadog role delegation name. | [optional] 
 **SecretAccessKey** | Pointer to **string** | Your AWS secret access key. Only required if your AWS account is a GovCloud or China account. | [optional] 
 
@@ -107,6 +110,31 @@ SetAccountSpecificNamespaceRules sets AccountSpecificNamespaceRules field to giv
 
 HasAccountSpecificNamespaceRules returns a boolean if a field has been set.
 
+### GetCspmResourceCollectionEnabled
+
+`func (o *AWSAccount) GetCspmResourceCollectionEnabled() bool`
+
+GetCspmResourceCollectionEnabled returns the CspmResourceCollectionEnabled field if non-nil, zero value otherwise.
+
+### GetCspmResourceCollectionEnabledOk
+
+`func (o *AWSAccount) GetCspmResourceCollectionEnabledOk() (*bool, bool)`
+
+GetCspmResourceCollectionEnabledOk returns a tuple with the CspmResourceCollectionEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCspmResourceCollectionEnabled
+
+`func (o *AWSAccount) SetCspmResourceCollectionEnabled(v bool)`
+
+SetCspmResourceCollectionEnabled sets CspmResourceCollectionEnabled field to given value.
+
+### HasCspmResourceCollectionEnabled
+
+`func (o *AWSAccount) HasCspmResourceCollectionEnabled() bool`
+
+HasCspmResourceCollectionEnabled returns a boolean if a field has been set.
+
 ### GetExcludedRegions
 
 `func (o *AWSAccount) GetExcludedRegions() []string`
@@ -181,6 +209,56 @@ SetHostTags sets HostTags field to given value.
 `func (o *AWSAccount) HasHostTags() bool`
 
 HasHostTags returns a boolean if a field has been set.
+
+### GetMetricsCollectionEnabled
+
+`func (o *AWSAccount) GetMetricsCollectionEnabled() bool`
+
+GetMetricsCollectionEnabled returns the MetricsCollectionEnabled field if non-nil, zero value otherwise.
+
+### GetMetricsCollectionEnabledOk
+
+`func (o *AWSAccount) GetMetricsCollectionEnabledOk() (*bool, bool)`
+
+GetMetricsCollectionEnabledOk returns a tuple with the MetricsCollectionEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetricsCollectionEnabled
+
+`func (o *AWSAccount) SetMetricsCollectionEnabled(v bool)`
+
+SetMetricsCollectionEnabled sets MetricsCollectionEnabled field to given value.
+
+### HasMetricsCollectionEnabled
+
+`func (o *AWSAccount) HasMetricsCollectionEnabled() bool`
+
+HasMetricsCollectionEnabled returns a boolean if a field has been set.
+
+### GetResourceCollectionEnabled
+
+`func (o *AWSAccount) GetResourceCollectionEnabled() bool`
+
+GetResourceCollectionEnabled returns the ResourceCollectionEnabled field if non-nil, zero value otherwise.
+
+### GetResourceCollectionEnabledOk
+
+`func (o *AWSAccount) GetResourceCollectionEnabledOk() (*bool, bool)`
+
+GetResourceCollectionEnabledOk returns a tuple with the ResourceCollectionEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResourceCollectionEnabled
+
+`func (o *AWSAccount) SetResourceCollectionEnabled(v bool)`
+
+SetResourceCollectionEnabled sets ResourceCollectionEnabled field to given value.
+
+### HasResourceCollectionEnabled
+
+`func (o *AWSAccount) HasResourceCollectionEnabled() bool`
+
+HasResourceCollectionEnabled returns a boolean if a field has been set.
 
 ### GetRoleName
 
