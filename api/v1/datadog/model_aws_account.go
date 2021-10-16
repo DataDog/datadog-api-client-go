@@ -20,12 +20,18 @@ type AWSAccount struct {
 	AccountId *string `json:"account_id,omitempty"`
 	// An object, (in the form `{\"namespace1\":true/false, \"namespace2\":true/false}`), that enables or disables metric collection for specific AWS namespaces for this AWS account only.
 	AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
+	// Whether Datadog collects cloud security posture management resources from your AWS account. This includes additional resources not covered under the general `resource_collection`.
+	CspmResourceCollectionEnabled *bool `json:"cspm_resource_collection_enabled,omitempty"`
 	// An array of AWS regions to exclude from metrics collection.
 	ExcludedRegions *[]string `json:"excluded_regions,omitempty"`
 	// The array of EC2 tags (in the form `key:value`) defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as `?` (for single characters) and `*` (for multiple characters) can also be used. Only hosts that match one of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given tag can also be excluded by adding `!` before the tag. For example, `env:production,instance-type:c1.*,!region:us-east-1`
 	FilterTags *[]string `json:"filter_tags,omitempty"`
 	// Array of tags (in the form `key:value`) to add to all hosts and metrics reporting through this integration.
 	HostTags *[]string `json:"host_tags,omitempty"`
+	// Whether Datadog collects metrics for this AWS account.
+	MetricsCollectionEnabled *bool `json:"metrics_collection_enabled,omitempty"`
+	// Whether Datadog collects a standard set of resources from your AWS account.
+	ResourceCollectionEnabled *bool `json:"resource_collection_enabled,omitempty"`
 	// Your Datadog role delegation name.
 	RoleName *string `json:"role_name,omitempty"`
 	// Your AWS secret access key. Only required if your AWS account is a GovCloud or China account.
@@ -40,6 +46,12 @@ type AWSAccount struct {
 // will change when the set of required properties is changed
 func NewAWSAccount() *AWSAccount {
 	this := AWSAccount{}
+	var cspmResourceCollectionEnabled bool = false
+	this.CspmResourceCollectionEnabled = &cspmResourceCollectionEnabled
+	var metricsCollectionEnabled bool = true
+	this.MetricsCollectionEnabled = &metricsCollectionEnabled
+	var resourceCollectionEnabled bool = false
+	this.ResourceCollectionEnabled = &resourceCollectionEnabled
 	return &this
 }
 
@@ -48,6 +60,12 @@ func NewAWSAccount() *AWSAccount {
 // but it doesn't guarantee that properties required by API are set
 func NewAWSAccountWithDefaults() *AWSAccount {
 	this := AWSAccount{}
+	var cspmResourceCollectionEnabled bool = false
+	this.CspmResourceCollectionEnabled = &cspmResourceCollectionEnabled
+	var metricsCollectionEnabled bool = true
+	this.MetricsCollectionEnabled = &metricsCollectionEnabled
+	var resourceCollectionEnabled bool = false
+	this.ResourceCollectionEnabled = &resourceCollectionEnabled
 	return &this
 }
 
@@ -147,6 +165,38 @@ func (o *AWSAccount) SetAccountSpecificNamespaceRules(v map[string]bool) {
 	o.AccountSpecificNamespaceRules = &v
 }
 
+// GetCspmResourceCollectionEnabled returns the CspmResourceCollectionEnabled field value if set, zero value otherwise.
+func (o *AWSAccount) GetCspmResourceCollectionEnabled() bool {
+	if o == nil || o.CspmResourceCollectionEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CspmResourceCollectionEnabled
+}
+
+// GetCspmResourceCollectionEnabledOk returns a tuple with the CspmResourceCollectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AWSAccount) GetCspmResourceCollectionEnabledOk() (*bool, bool) {
+	if o == nil || o.CspmResourceCollectionEnabled == nil {
+		return nil, false
+	}
+	return o.CspmResourceCollectionEnabled, true
+}
+
+// HasCspmResourceCollectionEnabled returns a boolean if a field has been set.
+func (o *AWSAccount) HasCspmResourceCollectionEnabled() bool {
+	if o != nil && o.CspmResourceCollectionEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCspmResourceCollectionEnabled gets a reference to the given bool and assigns it to the CspmResourceCollectionEnabled field.
+func (o *AWSAccount) SetCspmResourceCollectionEnabled(v bool) {
+	o.CspmResourceCollectionEnabled = &v
+}
+
 // GetExcludedRegions returns the ExcludedRegions field value if set, zero value otherwise.
 func (o *AWSAccount) GetExcludedRegions() []string {
 	if o == nil || o.ExcludedRegions == nil {
@@ -243,6 +293,70 @@ func (o *AWSAccount) SetHostTags(v []string) {
 	o.HostTags = &v
 }
 
+// GetMetricsCollectionEnabled returns the MetricsCollectionEnabled field value if set, zero value otherwise.
+func (o *AWSAccount) GetMetricsCollectionEnabled() bool {
+	if o == nil || o.MetricsCollectionEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.MetricsCollectionEnabled
+}
+
+// GetMetricsCollectionEnabledOk returns a tuple with the MetricsCollectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AWSAccount) GetMetricsCollectionEnabledOk() (*bool, bool) {
+	if o == nil || o.MetricsCollectionEnabled == nil {
+		return nil, false
+	}
+	return o.MetricsCollectionEnabled, true
+}
+
+// HasMetricsCollectionEnabled returns a boolean if a field has been set.
+func (o *AWSAccount) HasMetricsCollectionEnabled() bool {
+	if o != nil && o.MetricsCollectionEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetricsCollectionEnabled gets a reference to the given bool and assigns it to the MetricsCollectionEnabled field.
+func (o *AWSAccount) SetMetricsCollectionEnabled(v bool) {
+	o.MetricsCollectionEnabled = &v
+}
+
+// GetResourceCollectionEnabled returns the ResourceCollectionEnabled field value if set, zero value otherwise.
+func (o *AWSAccount) GetResourceCollectionEnabled() bool {
+	if o == nil || o.ResourceCollectionEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ResourceCollectionEnabled
+}
+
+// GetResourceCollectionEnabledOk returns a tuple with the ResourceCollectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AWSAccount) GetResourceCollectionEnabledOk() (*bool, bool) {
+	if o == nil || o.ResourceCollectionEnabled == nil {
+		return nil, false
+	}
+	return o.ResourceCollectionEnabled, true
+}
+
+// HasResourceCollectionEnabled returns a boolean if a field has been set.
+func (o *AWSAccount) HasResourceCollectionEnabled() bool {
+	if o != nil && o.ResourceCollectionEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceCollectionEnabled gets a reference to the given bool and assigns it to the ResourceCollectionEnabled field.
+func (o *AWSAccount) SetResourceCollectionEnabled(v bool) {
+	o.ResourceCollectionEnabled = &v
+}
+
 // GetRoleName returns the RoleName field value if set, zero value otherwise.
 func (o *AWSAccount) GetRoleName() string {
 	if o == nil || o.RoleName == nil {
@@ -321,6 +435,9 @@ func (o AWSAccount) MarshalJSON() ([]byte, error) {
 	if o.AccountSpecificNamespaceRules != nil {
 		toSerialize["account_specific_namespace_rules"] = o.AccountSpecificNamespaceRules
 	}
+	if o.CspmResourceCollectionEnabled != nil {
+		toSerialize["cspm_resource_collection_enabled"] = o.CspmResourceCollectionEnabled
+	}
 	if o.ExcludedRegions != nil {
 		toSerialize["excluded_regions"] = o.ExcludedRegions
 	}
@@ -329,6 +446,12 @@ func (o AWSAccount) MarshalJSON() ([]byte, error) {
 	}
 	if o.HostTags != nil {
 		toSerialize["host_tags"] = o.HostTags
+	}
+	if o.MetricsCollectionEnabled != nil {
+		toSerialize["metrics_collection_enabled"] = o.MetricsCollectionEnabled
+	}
+	if o.ResourceCollectionEnabled != nil {
+		toSerialize["resource_collection_enabled"] = o.ResourceCollectionEnabled
 	}
 	if o.RoleName != nil {
 		toSerialize["role_name"] = o.RoleName
@@ -345,9 +468,12 @@ func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 		AccessKeyId                   *string          `json:"access_key_id,omitempty"`
 		AccountId                     *string          `json:"account_id,omitempty"`
 		AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
+		CspmResourceCollectionEnabled *bool            `json:"cspm_resource_collection_enabled,omitempty"`
 		ExcludedRegions               *[]string        `json:"excluded_regions,omitempty"`
 		FilterTags                    *[]string        `json:"filter_tags,omitempty"`
 		HostTags                      *[]string        `json:"host_tags,omitempty"`
+		MetricsCollectionEnabled      *bool            `json:"metrics_collection_enabled,omitempty"`
+		ResourceCollectionEnabled     *bool            `json:"resource_collection_enabled,omitempty"`
 		RoleName                      *string          `json:"role_name,omitempty"`
 		SecretAccessKey               *string          `json:"secret_access_key,omitempty"`
 	}{}
@@ -363,9 +489,12 @@ func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.AccessKeyId = all.AccessKeyId
 	o.AccountId = all.AccountId
 	o.AccountSpecificNamespaceRules = all.AccountSpecificNamespaceRules
+	o.CspmResourceCollectionEnabled = all.CspmResourceCollectionEnabled
 	o.ExcludedRegions = all.ExcludedRegions
 	o.FilterTags = all.FilterTags
 	o.HostTags = all.HostTags
+	o.MetricsCollectionEnabled = all.MetricsCollectionEnabled
+	o.ResourceCollectionEnabled = all.ResourceCollectionEnabled
 	o.RoleName = all.RoleName
 	o.SecretAccessKey = all.SecretAccessKey
 	return nil
