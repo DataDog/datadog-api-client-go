@@ -287,7 +287,7 @@ Example: `events(query).rollup(rollup_method[, measure]).last(time_window) opera
 - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 - **`#`** an integer or decimal number used to set the threshold.
 
-**NOTE** Only available on US1-FED, US3, and in closed beta on EU and US1.
+**NOTE** Only available on US1-FED, US3, US5 and in closed beta on EU and US1.
 
 **Process Alert Query**
 
@@ -342,7 +342,7 @@ Example: `audits(query).rollup(rollup_method[, measure]).last(time_window) opera
 - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 - **`#`** an integer or decimal number used to set the threshold.
 
-**NOTE** Only available on US1-FED and in closed beta on EU, US3, and US1.
+**NOTE** Only available on US1-FED and in closed beta on US1, EU, US3, and US5.
 */
 func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, body Monitor) (Monitor, *_nethttp.Response, error) {
 	req := apiCreateMonitorRequest{
