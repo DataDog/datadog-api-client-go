@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The monitor name. | [optional] 
 **Options** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 
 **OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
-**Priority** | Pointer to **int64** | Integer from 1 (high) to 5 (low) indicating alert severity. | [optional] 
+**Priority** | Pointer to **NullableInt64** | Integer from 1 (high) to 5 (low) indicating alert severity. | [optional] 
 **Query** | **string** | The monitor query. | 
 **RestrictedRoles** | Pointer to **[]string** | A list of role identifiers that can be pulled from the Roles API. Cannot be used with &#x60;locked&#x60; option. | [optional] 
 **State** | Pointer to [**MonitorState**](MonitorState.md) |  | [optional] 
@@ -325,6 +325,16 @@ SetPriority sets Priority field to given value.
 
 HasPriority returns a boolean if a field has been set.
 
+### SetPriorityNil
+
+`func (o *Monitor) SetPriorityNil(b bool)`
+
+ SetPriorityNil sets the value for Priority to be an explicit nil
+
+### UnsetPriority
+`func (o *Monitor) UnsetPriority()`
+
+UnsetPriority ensures that no value is present for Priority, not even an explicit nil
 ### GetQuery
 
 `func (o *Monitor) GetQuery() string`
@@ -370,6 +380,16 @@ SetRestrictedRoles sets RestrictedRoles field to given value.
 
 HasRestrictedRoles returns a boolean if a field has been set.
 
+### SetRestrictedRolesNil
+
+`func (o *Monitor) SetRestrictedRolesNil(b bool)`
+
+ SetRestrictedRolesNil sets the value for RestrictedRoles to be an explicit nil
+
+### UnsetRestrictedRoles
+`func (o *Monitor) UnsetRestrictedRoles()`
+
+UnsetRestrictedRoles ensures that no value is present for RestrictedRoles, not even an explicit nil
 ### GetState
 
 `func (o *Monitor) GetState() MonitorState`
