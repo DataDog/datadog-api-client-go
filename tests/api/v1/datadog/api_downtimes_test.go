@@ -26,6 +26,7 @@ func TestDowntimeLifecycle(t *testing.T) {
 	testDowntime := datadog.Downtime{
 		Message:  tests.UniqueEntityName(ctx, t),
 		Start:    datadog.PtrInt64(start.Unix()),
+		End:      *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() + 60*60)),
 		Timezone: datadog.PtrString("Etc/UTC"),
 		Scope:    &[]string{"*"},
 		Recurrence: *datadog.NewNullableDowntimeRecurrence(
@@ -266,6 +267,7 @@ func TestDowntimeRecurrence(t *testing.T) {
 			testDowntime := datadog.Downtime{
 				Message:    datadog.PtrString(fmt.Sprintf("%s; %s", *tests.UniqueEntityName(ctx, t), name)),
 				Start:      datadog.PtrInt64(start.Unix()),
+				End:        *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() + 60*60)),
 				Timezone:   datadog.PtrString("Etc/UTC"),
 				Scope:      &[]string{"*"},
 				Recurrence: *datadog.NewNullableDowntimeRecurrence(&tc.DowntimeRecurence),
