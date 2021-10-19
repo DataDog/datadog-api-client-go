@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+**ApmStatsQuery** | Pointer to [**ApmStatsQueryDefinition**](ApmStatsQueryDefinition.md) |  | [optional] 
 **EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
 **NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
@@ -58,6 +59,31 @@ SetApmQuery sets ApmQuery field to given value.
 `func (o *DistributionWidgetRequest) HasApmQuery() bool`
 
 HasApmQuery returns a boolean if a field has been set.
+
+### GetApmStatsQuery
+
+`func (o *DistributionWidgetRequest) GetApmStatsQuery() ApmStatsQueryDefinition`
+
+GetApmStatsQuery returns the ApmStatsQuery field if non-nil, zero value otherwise.
+
+### GetApmStatsQueryOk
+
+`func (o *DistributionWidgetRequest) GetApmStatsQueryOk() (*ApmStatsQueryDefinition, bool)`
+
+GetApmStatsQueryOk returns a tuple with the ApmStatsQuery field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApmStatsQuery
+
+`func (o *DistributionWidgetRequest) SetApmStatsQuery(v ApmStatsQueryDefinition)`
+
+SetApmStatsQuery sets ApmStatsQuery field to given value.
+
+### HasApmStatsQuery
+
+`func (o *DistributionWidgetRequest) HasApmStatsQuery() bool`
+
+HasApmStatsQuery returns a boolean if a field has been set.
 
 ### GetEventQuery
 
