@@ -3,23 +3,25 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"Test-TestDowntimeRecurrence_invalid_weekdays-1618220935; invalid weekdays","recurrence":{"period":1,"type":"weeks","week_days":["mon","tue"]},"scope":["*"],"start":1618220935,"timezone":"Etc/UTC"}
+      {"end":1634661411,"message":"Test-TestDowntimeRecurrence_invalid_weekdays-1634657811; invalid weekdays","recurrence":{"period":1,"type":"weeks","week_days":["mon","tue"]},"scope":["*"],"start":1634657811,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "226"
       Content-Type:
       - application/json
       Dd-Operation-Id:
       - CreateDowntime
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "9155592187329649408"
+      - "3043789005232653664"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3219329466033950106"
+      - "789956138211573732"
     url: https://api.datadoghq.com/api/v1/downtime
     method: POST
   response:
@@ -35,15 +37,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:55 GMT
+      - Tue, 19 Oct 2021 15:36:52 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

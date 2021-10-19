@@ -10,6 +10,7 @@ import (
 	"context"
 	"fmt"
 	"testing"
+	"url"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
@@ -274,11 +275,14 @@ func TestDowntimeRecurrence(t *testing.T) {
 			}
 
 			downtime, httpresp, err := Client(ctx).DowntimesApi.CreateDowntime(ctx, testDowntime)
-			if tc.ExpectedStatusCode < 300 {
-				defer cancelDowntime(ctx, t, downtime.GetId())
+			if _, ok := err.(*url.Error); ok {
+				assert.NoError(err)
+			} else {
+				if tc.ExpectedStatusCode < 300 {
+					defer cancelDowntime(ctx, t, downtime.GetId())
+				}
+				assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode, "error: %v", err)
 			}
-
-			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode, "error: %v", err)
 		})
 	}
 }
