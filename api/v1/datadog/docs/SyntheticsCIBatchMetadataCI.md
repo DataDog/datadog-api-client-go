@@ -1,4 +1,4 @@
-# SyntheticsCITestMetadataCi
+# SyntheticsCIBatchMetadataCI
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSyntheticsCITestMetadataCi
+### NewSyntheticsCIBatchMetadataCI
 
-`func NewSyntheticsCITestMetadataCi() *SyntheticsCITestMetadataCi`
+`func NewSyntheticsCIBatchMetadataCI() *SyntheticsCIBatchMetadataCI`
 
-NewSyntheticsCITestMetadataCi instantiates a new SyntheticsCITestMetadataCi object.
+NewSyntheticsCIBatchMetadataCI instantiates a new SyntheticsCIBatchMetadataCI object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### NewSyntheticsCITestMetadataCiWithDefaults
+### NewSyntheticsCIBatchMetadataCIWithDefaults
 
-`func NewSyntheticsCITestMetadataCiWithDefaults() *SyntheticsCITestMetadataCi`
+`func NewSyntheticsCIBatchMetadataCIWithDefaults() *SyntheticsCIBatchMetadataCI`
 
-NewSyntheticsCITestMetadataCiWithDefaults instantiates a new SyntheticsCITestMetadataCi object.
+NewSyntheticsCIBatchMetadataCIWithDefaults instantiates a new SyntheticsCIBatchMetadataCI object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
 ### GetPipeline
 
-`func (o *SyntheticsCITestMetadataCi) GetPipeline() string`
+`func (o *SyntheticsCIBatchMetadataCI) GetPipeline() string`
 
 GetPipeline returns the Pipeline field if non-nil, zero value otherwise.
 
 ### GetPipelineOk
 
-`func (o *SyntheticsCITestMetadataCi) GetPipelineOk() (*string, bool)`
+`func (o *SyntheticsCIBatchMetadataCI) GetPipelineOk() (*string, bool)`
 
 GetPipelineOk returns a tuple with the Pipeline field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPipeline
 
-`func (o *SyntheticsCITestMetadataCi) SetPipeline(v string)`
+`func (o *SyntheticsCIBatchMetadataCI) SetPipeline(v string)`
 
 SetPipeline sets Pipeline field to given value.
 
 ### HasPipeline
 
-`func (o *SyntheticsCITestMetadataCi) HasPipeline() bool`
+`func (o *SyntheticsCIBatchMetadataCI) HasPipeline() bool`
 
 HasPipeline returns a boolean if a field has been set.
 
 ### GetProvider
 
-`func (o *SyntheticsCITestMetadataCi) GetProvider() string`
+`func (o *SyntheticsCIBatchMetadataCI) GetProvider() string`
 
 GetProvider returns the Provider field if non-nil, zero value otherwise.
 
 ### GetProviderOk
 
-`func (o *SyntheticsCITestMetadataCi) GetProviderOk() (*string, bool)`
+`func (o *SyntheticsCIBatchMetadataCI) GetProviderOk() (*string, bool)`
 
 GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvider
 
-`func (o *SyntheticsCITestMetadataCi) SetProvider(v string)`
+`func (o *SyntheticsCIBatchMetadataCI) SetProvider(v string)`
 
 SetProvider sets Provider field to given value.
 
 ### HasProvider
 
-`func (o *SyntheticsCITestMetadataCi) HasProvider() bool`
+`func (o *SyntheticsCIBatchMetadataCI) HasProvider() bool`
 
 HasProvider returns a boolean if a field has been set.
 

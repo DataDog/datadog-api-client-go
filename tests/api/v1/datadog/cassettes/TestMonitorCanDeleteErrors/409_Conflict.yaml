@@ -12,17 +12,17 @@ interactions:
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2939813525820916060"
+      - "7148075687396184827"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8692518276294885279"
-    url: https://api.datadoghq.com/api/v1/monitor/can_delete?monitor_ids=48379481
+      - "8338263538961228440"
+    url: https://api.datadoghq.com/api/v1/monitor/can_delete?monitor_ids=49714524
     method: GET
   response:
-    body: '{"errors":{"48379481":["monitor [48379481,**system.net.bytes_rcvd** over
+    body: '{"errors":{"49714524":["monitor [49714524,**system.net.bytes_rcvd** over
       **host:host0** was **> 100.0** on average during the **last 5m**.] is referenced
-      in composite monitors: [48379482,48379481]"]},"data":{"ok":[]}}'
+      in composite monitors: [49714528,49714524]"]},"data":{"ok":[]}}'
     headers:
       Cache-Control:
       - no-cache
@@ -33,7 +33,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 04 Oct 2021 16:32:35 GMT
+      - Thu, 14 Oct 2021 14:10:26 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -47,9 +47,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "11998"
+      - "11999"
       X-Ratelimit-Reset:
-      - "25"
+      - "34"
     status: 409 Conflict
     code: 409
     duration: ""

@@ -12,35 +12,35 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsCITestMetadataGit Git information.
-type SyntheticsCITestMetadataGit struct {
-	// Branch name.
+// SyntheticsCIBatchMetadataGit Git information.
+type SyntheticsCIBatchMetadataGit struct {
+	// The branch name.
 	Branch *string `json:"branch,omitempty"`
-	// Commit SHA.
+	// The commit SHA.
 	CommitSha *string `json:"commit_sha,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
 
-// NewSyntheticsCITestMetadataGit instantiates a new SyntheticsCITestMetadataGit object
+// NewSyntheticsCIBatchMetadataGit instantiates a new SyntheticsCIBatchMetadataGit object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsCITestMetadataGit() *SyntheticsCITestMetadataGit {
-	this := SyntheticsCITestMetadataGit{}
+func NewSyntheticsCIBatchMetadataGit() *SyntheticsCIBatchMetadataGit {
+	this := SyntheticsCIBatchMetadataGit{}
 	return &this
 }
 
-// NewSyntheticsCITestMetadataGitWithDefaults instantiates a new SyntheticsCITestMetadataGit object
+// NewSyntheticsCIBatchMetadataGitWithDefaults instantiates a new SyntheticsCIBatchMetadataGit object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSyntheticsCITestMetadataGitWithDefaults() *SyntheticsCITestMetadataGit {
-	this := SyntheticsCITestMetadataGit{}
+func NewSyntheticsCIBatchMetadataGitWithDefaults() *SyntheticsCIBatchMetadataGit {
+	this := SyntheticsCIBatchMetadataGit{}
 	return &this
 }
 
 // GetBranch returns the Branch field value if set, zero value otherwise.
-func (o *SyntheticsCITestMetadataGit) GetBranch() string {
+func (o *SyntheticsCIBatchMetadataGit) GetBranch() string {
 	if o == nil || o.Branch == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *SyntheticsCITestMetadataGit) GetBranch() string {
 
 // GetBranchOk returns a tuple with the Branch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsCITestMetadataGit) GetBranchOk() (*string, bool) {
+func (o *SyntheticsCIBatchMetadataGit) GetBranchOk() (*string, bool) {
 	if o == nil || o.Branch == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *SyntheticsCITestMetadataGit) GetBranchOk() (*string, bool) {
 }
 
 // HasBranch returns a boolean if a field has been set.
-func (o *SyntheticsCITestMetadataGit) HasBranch() bool {
+func (o *SyntheticsCIBatchMetadataGit) HasBranch() bool {
 	if o != nil && o.Branch != nil {
 		return true
 	}
@@ -67,12 +67,12 @@ func (o *SyntheticsCITestMetadataGit) HasBranch() bool {
 }
 
 // SetBranch gets a reference to the given string and assigns it to the Branch field.
-func (o *SyntheticsCITestMetadataGit) SetBranch(v string) {
+func (o *SyntheticsCIBatchMetadataGit) SetBranch(v string) {
 	o.Branch = &v
 }
 
 // GetCommitSha returns the CommitSha field value if set, zero value otherwise.
-func (o *SyntheticsCITestMetadataGit) GetCommitSha() string {
+func (o *SyntheticsCIBatchMetadataGit) GetCommitSha() string {
 	if o == nil || o.CommitSha == nil {
 		var ret string
 		return ret
@@ -82,7 +82,7 @@ func (o *SyntheticsCITestMetadataGit) GetCommitSha() string {
 
 // GetCommitShaOk returns a tuple with the CommitSha field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsCITestMetadataGit) GetCommitShaOk() (*string, bool) {
+func (o *SyntheticsCIBatchMetadataGit) GetCommitShaOk() (*string, bool) {
 	if o == nil || o.CommitSha == nil {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *SyntheticsCITestMetadataGit) GetCommitShaOk() (*string, bool) {
 }
 
 // HasCommitSha returns a boolean if a field has been set.
-func (o *SyntheticsCITestMetadataGit) HasCommitSha() bool {
+func (o *SyntheticsCIBatchMetadataGit) HasCommitSha() bool {
 	if o != nil && o.CommitSha != nil {
 		return true
 	}
@@ -99,11 +99,11 @@ func (o *SyntheticsCITestMetadataGit) HasCommitSha() bool {
 }
 
 // SetCommitSha gets a reference to the given string and assigns it to the CommitSha field.
-func (o *SyntheticsCITestMetadataGit) SetCommitSha(v string) {
+func (o *SyntheticsCIBatchMetadataGit) SetCommitSha(v string) {
 	o.CommitSha = &v
 }
 
-func (o SyntheticsCITestMetadataGit) MarshalJSON() ([]byte, error) {
+func (o SyntheticsCIBatchMetadataGit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -117,7 +117,7 @@ func (o SyntheticsCITestMetadataGit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *SyntheticsCITestMetadataGit) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SyntheticsCIBatchMetadataGit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Branch    *string `json:"branch,omitempty"`
@@ -137,38 +137,38 @@ func (o *SyntheticsCITestMetadataGit) UnmarshalJSON(bytes []byte) (err error) {
 	return nil
 }
 
-type NullableSyntheticsCITestMetadataGit struct {
-	value *SyntheticsCITestMetadataGit
+type NullableSyntheticsCIBatchMetadataGit struct {
+	value *SyntheticsCIBatchMetadataGit
 	isSet bool
 }
 
-func (v NullableSyntheticsCITestMetadataGit) Get() *SyntheticsCITestMetadataGit {
+func (v NullableSyntheticsCIBatchMetadataGit) Get() *SyntheticsCIBatchMetadataGit {
 	return v.value
 }
 
-func (v *NullableSyntheticsCITestMetadataGit) Set(val *SyntheticsCITestMetadataGit) {
+func (v *NullableSyntheticsCIBatchMetadataGit) Set(val *SyntheticsCIBatchMetadataGit) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSyntheticsCITestMetadataGit) IsSet() bool {
+func (v NullableSyntheticsCIBatchMetadataGit) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSyntheticsCITestMetadataGit) Unset() {
+func (v *NullableSyntheticsCIBatchMetadataGit) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSyntheticsCITestMetadataGit(val *SyntheticsCITestMetadataGit) *NullableSyntheticsCITestMetadataGit {
-	return &NullableSyntheticsCITestMetadataGit{value: val, isSet: true}
+func NewNullableSyntheticsCIBatchMetadataGit(val *SyntheticsCIBatchMetadataGit) *NullableSyntheticsCIBatchMetadataGit {
+	return &NullableSyntheticsCIBatchMetadataGit{value: val, isSet: true}
 }
 
-func (v NullableSyntheticsCITestMetadataGit) MarshalJSON() ([]byte, error) {
+func (v NullableSyntheticsCIBatchMetadataGit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSyntheticsCITestMetadataGit) UnmarshalJSON(src []byte) error {
+func (v *NullableSyntheticsCIBatchMetadataGit) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -1,29 +1,39 @@
----
-version: 1
 interactions:
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - GetDashboardList
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/0
+      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '5163501545711999192'
+      X-Datadog-Trace-Id:
+      - '8075534070805440615'
     method: GET
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/0
   response:
     body: '{"errors": ["Manual Dashboard List with id 0 not found"]}'
+    code: 404
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '57'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 04 Oct 2021 12:05:58 GMT
+      - Fri, 01 Oct 2021 08:28:31 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -35,5 +45,4 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
-    code: 404
-    duration: ""
+version: 1

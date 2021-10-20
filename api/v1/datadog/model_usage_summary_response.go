@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// UsageSummaryResponse Response with hourly report of all data billed by Datadog all organizations.
+// UsageSummaryResponse Response summarizing all usage aggregated across the months in the request for all organizations, and broken down by month and by organization.
 type UsageSummaryResponse struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current months for all organizations.
 	AgentHostTop99pSum *int64 `json:"agent_host_top99p_sum,omitempty"`
@@ -108,6 +108,10 @@ type UsageSummaryResponse struct {
 	RumSessionCountAggSum *int64 `json:"rum_session_count_agg_sum,omitempty"`
 	// Shows the sum of RUM Sessions (browser and mobile) over all hours in the current months for all organizations.
 	RumTotalSessionCountAggSum *int64 `json:"rum_total_session_count_agg_sum,omitempty"`
+	// Shows the sum of all bytes scanned of logs usage by the Sensitive Data Scanner over all hours in the current month for all organizations.
+	SdsLogsScannedBytesSum *int64 `json:"sds_logs_scanned_bytes_sum,omitempty"`
+	// Shows the sum of all bytes scanned across all usage types by the Sensitive Data Scanner over all hours in the current month for all organizations.
+	SdsTotalScannedBytesSum *int64 `json:"sds_total_scanned_bytes_sum,omitempty"`
 	// Shows the first date of usage in the current months for all organizations.
 	StartDate *time.Time `json:"start_date,omitempty"`
 	// Shows the sum of all Synthetic browser tests over all hours in the current months for all organizations.
@@ -1647,6 +1651,70 @@ func (o *UsageSummaryResponse) SetRumTotalSessionCountAggSum(v int64) {
 	o.RumTotalSessionCountAggSum = &v
 }
 
+// GetSdsLogsScannedBytesSum returns the SdsLogsScannedBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetSdsLogsScannedBytesSum() int64 {
+	if o == nil || o.SdsLogsScannedBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SdsLogsScannedBytesSum
+}
+
+// GetSdsLogsScannedBytesSumOk returns a tuple with the SdsLogsScannedBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetSdsLogsScannedBytesSumOk() (*int64, bool) {
+	if o == nil || o.SdsLogsScannedBytesSum == nil {
+		return nil, false
+	}
+	return o.SdsLogsScannedBytesSum, true
+}
+
+// HasSdsLogsScannedBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasSdsLogsScannedBytesSum() bool {
+	if o != nil && o.SdsLogsScannedBytesSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSdsLogsScannedBytesSum gets a reference to the given int64 and assigns it to the SdsLogsScannedBytesSum field.
+func (o *UsageSummaryResponse) SetSdsLogsScannedBytesSum(v int64) {
+	o.SdsLogsScannedBytesSum = &v
+}
+
+// GetSdsTotalScannedBytesSum returns the SdsTotalScannedBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetSdsTotalScannedBytesSum() int64 {
+	if o == nil || o.SdsTotalScannedBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SdsTotalScannedBytesSum
+}
+
+// GetSdsTotalScannedBytesSumOk returns a tuple with the SdsTotalScannedBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetSdsTotalScannedBytesSumOk() (*int64, bool) {
+	if o == nil || o.SdsTotalScannedBytesSum == nil {
+		return nil, false
+	}
+	return o.SdsTotalScannedBytesSum, true
+}
+
+// HasSdsTotalScannedBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasSdsTotalScannedBytesSum() bool {
+	if o != nil && o.SdsTotalScannedBytesSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSdsTotalScannedBytesSum gets a reference to the given int64 and assigns it to the SdsTotalScannedBytesSum field.
+func (o *UsageSummaryResponse) SetSdsTotalScannedBytesSum(v int64) {
+	o.SdsTotalScannedBytesSum = &v
+}
+
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetStartDate() time.Time {
 	if o == nil || o.StartDate == nil {
@@ -2017,6 +2085,12 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.RumTotalSessionCountAggSum != nil {
 		toSerialize["rum_total_session_count_agg_sum"] = o.RumTotalSessionCountAggSum
 	}
+	if o.SdsLogsScannedBytesSum != nil {
+		toSerialize["sds_logs_scanned_bytes_sum"] = o.SdsLogsScannedBytesSum
+	}
+	if o.SdsTotalScannedBytesSum != nil {
+		toSerialize["sds_total_scanned_bytes_sum"] = o.SdsTotalScannedBytesSum
+	}
 	if o.StartDate != nil {
 		toSerialize["start_date"] = o.StartDate
 	}
@@ -2091,6 +2165,8 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		RehydratedIngestedBytesAggSum              *int64              `json:"rehydrated_ingested_bytes_agg_sum,omitempty"`
 		RumSessionCountAggSum                      *int64              `json:"rum_session_count_agg_sum,omitempty"`
 		RumTotalSessionCountAggSum                 *int64              `json:"rum_total_session_count_agg_sum,omitempty"`
+		SdsLogsScannedBytesSum                     *int64              `json:"sds_logs_scanned_bytes_sum,omitempty"`
+		SdsTotalScannedBytesSum                    *int64              `json:"sds_total_scanned_bytes_sum,omitempty"`
 		StartDate                                  *time.Time          `json:"start_date,omitempty"`
 		SyntheticsBrowserCheckCallsCountAggSum     *int64              `json:"synthetics_browser_check_calls_count_agg_sum,omitempty"`
 		SyntheticsCheckCallsCountAggSum            *int64              `json:"synthetics_check_calls_count_agg_sum,omitempty"`
@@ -2155,6 +2231,8 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.RehydratedIngestedBytesAggSum = all.RehydratedIngestedBytesAggSum
 	o.RumSessionCountAggSum = all.RumSessionCountAggSum
 	o.RumTotalSessionCountAggSum = all.RumTotalSessionCountAggSum
+	o.SdsLogsScannedBytesSum = all.SdsLogsScannedBytesSum
+	o.SdsTotalScannedBytesSum = all.SdsTotalScannedBytesSum
 	o.StartDate = all.StartDate
 	o.SyntheticsBrowserCheckCallsCountAggSum = all.SyntheticsBrowserCheckCallsCountAggSum
 	o.SyntheticsCheckCallsCountAggSum = all.SyntheticsCheckCallsCountAggSum
