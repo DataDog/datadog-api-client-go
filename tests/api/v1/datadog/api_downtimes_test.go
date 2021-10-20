@@ -10,7 +10,6 @@ import (
 	"context"
 	"fmt"
 	"testing"
-	"url"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
@@ -275,14 +274,10 @@ func TestDowntimeRecurrence(t *testing.T) {
 			}
 
 			downtime, httpresp, err := Client(ctx).DowntimesApi.CreateDowntime(ctx, testDowntime)
-			if _, ok := err.(*url.Error); ok {
-				assert.NoError(err)
-			} else {
-				if tc.ExpectedStatusCode < 300 {
-					defer cancelDowntime(ctx, t, downtime.GetId())
-				}
-				assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode, "error: %v", err)
+			if tc.ExpectedStatusCode < 300 {
+				defer cancelDowntime(ctx, t, downtime.GetId())
 			}
+			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode, "error: %v", err)
 		})
 	}
 }
@@ -462,8 +457,8 @@ func TestDowntimeUpdateErrors(t *testing.T) {
 }
 
 func cancelDowntime(ctx context.Context, t *testing.T, downtimeID int64) {
-	httpresp, err := Client(ctx).DowntimesApi.CancelDowntime(ctx, downtimeID)
+	_, err := Client(ctx).DowntimesApi.CancelDowntime(ctx, downtimeID)
 	if err != nil {
-		t.Logf("Canceling Downtime: %v failed with %v, Another test may have already canceled this downtime: %v", downtimeID, httpresp.StatusCode, err)
+		t.Logf("Canceling Downtime: %v failed, Another test may have already canceled this downtime: %v", downtimeID, err)
 	}
 }
