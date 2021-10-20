@@ -46,8 +46,8 @@ const (
 	USAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_HOST_PERCENTAGE      UsageAttributionSupportedMetrics = "profiled_host_percentage"
 	USAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_CONTAINER_USAGE      UsageAttributionSupportedMetrics = "profiled_container_usage"
 	USAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_CONTAINER_PERCENTAGE UsageAttributionSupportedMetrics = "profiled_container_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_HOST_USAGE                UsageAttributionSupportedMetrics = "dbm_host_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_HOST_PERCENTAGE           UsageAttributionSupportedMetrics = "dbm_host_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_HOSTS_USAGE               UsageAttributionSupportedMetrics = "dbm_hosts_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_HOSTS_PERCENTAGE          UsageAttributionSupportedMetrics = "dbm_hosts_percentage"
 	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_QUERIES_USAGE             UsageAttributionSupportedMetrics = "dbm_queries_usage"
 	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_QUERIES_PERCENTAGE        UsageAttributionSupportedMetrics = "dbm_queries_percentage"
 	USAGEATTRIBUTIONSUPPORTEDMETRICS_ALL                           UsageAttributionSupportedMetrics = "*"
@@ -82,8 +82,8 @@ var allowedUsageAttributionSupportedMetricsEnumValues = []UsageAttributionSuppor
 	"profiled_host_percentage",
 	"profiled_container_usage",
 	"profiled_container_percentage",
-	"dbm_host_usage",
-	"dbm_host_percentage",
+	"dbm_hosts_usage",
+	"dbm_hosts_percentage",
 	"dbm_queries_usage",
 	"dbm_queries_percentage",
 	"*",

@@ -25557,9 +25557,9 @@ components:
           browser_percentage: 9.301444243932576
           profiled_container_percentage: 3.0937452626664474
           profiled_hosts_percentage: 0.8851374739011653
-          dbm_host_usage: 6.683562403749608
           infra_host_percentage: 6.438423552598547
           cspm_host_usage: 1.4894159098541704
+          dbm_hosts_usage: 6.683562403749608
           apm_host_usage: 7.061401241503109
           cspm_container_usage: 1.2315135367772556
           lambda_invocations_usage: 6.778324963048013
@@ -25576,10 +25576,10 @@ components:
           lambda_functions_usage: 1.284659006116532
           custom_timeseries_percentage: 6.84685269835264
           cws_host_percentage: 5.025004791520295
+          dbm_hosts_percentage: 9.369310271410669
           lambda_usage: 5.944895607614016
           npm_host_percentage: 6.704019297950036
           snmp_percentage: 6.519180951018382
-          dbm_host_percentage: 9.369310271410669
           lambda_functions_percentage: 6.965117697638846
           lambda_invocations_percentage: 2.8841621266687802
           api_percentage: 5.962133916683182
@@ -25697,9 +25697,9 @@ components:
             browser_percentage: 9.301444243932576
             profiled_container_percentage: 3.0937452626664474
             profiled_hosts_percentage: 0.8851374739011653
-            dbm_host_usage: 6.683562403749608
             infra_host_percentage: 6.438423552598547
             cspm_host_usage: 1.4894159098541704
+            dbm_hosts_usage: 6.683562403749608
             apm_host_usage: 7.061401241503109
             cspm_container_usage: 1.2315135367772556
             lambda_invocations_usage: 6.778324963048013
@@ -25716,10 +25716,10 @@ components:
             lambda_functions_usage: 1.284659006116532
             custom_timeseries_percentage: 6.84685269835264
             cws_host_percentage: 5.025004791520295
+            dbm_hosts_percentage: 9.369310271410669
             lambda_usage: 5.944895607614016
             npm_host_percentage: 6.704019297950036
             snmp_percentage: 6.519180951018382
-            dbm_host_percentage: 9.369310271410669
             lambda_functions_percentage: 6.965117697638846
             lambda_invocations_percentage: 2.8841621266687802
             api_percentage: 5.962133916683182
@@ -25745,9 +25745,9 @@ components:
             browser_percentage: 9.301444243932576
             profiled_container_percentage: 3.0937452626664474
             profiled_hosts_percentage: 0.8851374739011653
-            dbm_host_usage: 6.683562403749608
             infra_host_percentage: 6.438423552598547
             cspm_host_usage: 1.4894159098541704
+            dbm_hosts_usage: 6.683562403749608
             apm_host_usage: 7.061401241503109
             cspm_container_usage: 1.2315135367772556
             lambda_invocations_usage: 6.778324963048013
@@ -25764,10 +25764,10 @@ components:
             lambda_functions_usage: 1.284659006116532
             custom_timeseries_percentage: 6.84685269835264
             cws_host_percentage: 5.025004791520295
+            dbm_hosts_percentage: 9.369310271410669
             lambda_usage: 5.944895607614016
             npm_host_percentage: 6.704019297950036
             snmp_percentage: 6.519180951018382
-            dbm_host_percentage: 9.369310271410669
             lambda_functions_percentage: 6.965117697638846
             lambda_invocations_percentage: 2.8841621266687802
             api_percentage: 5.962133916683182
@@ -25875,8 +25875,8 @@ components:
       - profiled_host_percentage
       - profiled_container_usage
       - profiled_container_percentage
-      - dbm_host_usage
-      - dbm_host_percentage
+      - dbm_hosts_usage
+      - dbm_hosts_percentage
       - dbm_queries_usage
       - dbm_queries_percentage
       - '*'
@@ -25910,8 +25910,8 @@ components:
       - PROFILED_HOST_PERCENTAGE
       - PROFILED_CONTAINER_USAGE
       - PROFILED_CONTAINER_PERCENTAGE
-      - DBM_HOST_USAGE
-      - DBM_HOST_PERCENTAGE
+      - DBM_HOSTS_USAGE
+      - DBM_HOSTS_PERCENTAGE
       - DBM_QUERIES_USAGE
       - DBM_QUERIES_PERCENTAGE
       - ALL
@@ -25934,9 +25934,9 @@ components:
         browser_percentage: 9.301444243932576
         profiled_container_percentage: 3.0937452626664474
         profiled_hosts_percentage: 0.8851374739011653
-        dbm_host_usage: 6.683562403749608
         infra_host_percentage: 6.438423552598547
         cspm_host_usage: 1.4894159098541704
+        dbm_hosts_usage: 6.683562403749608
         apm_host_usage: 7.061401241503109
         cspm_container_usage: 1.2315135367772556
         lambda_invocations_usage: 6.778324963048013
@@ -25953,10 +25953,10 @@ components:
         lambda_functions_usage: 1.284659006116532
         custom_timeseries_percentage: 6.84685269835264
         cws_host_percentage: 5.025004791520295
+        dbm_hosts_percentage: 9.369310271410669
         lambda_usage: 5.944895607614016
         npm_host_percentage: 6.704019297950036
         snmp_percentage: 6.519180951018382
-        dbm_host_percentage: 9.369310271410669
         lambda_functions_percentage: 6.965117697638846
         lambda_invocations_percentage: 2.8841621266687802
         api_percentage: 5.962133916683182
@@ -26042,11 +26042,11 @@ components:
           description: The Cloud Workload Security host usage by tag(s)
           format: double
           type: number
-        dbm_host_percentage:
+        dbm_hosts_percentage:
           description: The percentage of Database Monitoring host usage by tag(s).
           format: double
           type: number
-        dbm_host_usage:
+        dbm_hosts_usage:
           description: The Database Monitoring host usage by tag(s).
           format: double
           type: number
