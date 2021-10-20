@@ -16,7 +16,6 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	"github.com/go-bdd/gobdd"
-	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
@@ -60,14 +59,10 @@ func TestScenarios(t *testing.T) {
 					SetVersion(ctx, version)
 					ct, _ := ctx.Get(gobdd.TestingTKey{})
 					tt := ct.(*testing.T)
-					testParts := strings.Split(tt.Name(), "/")
 					cctx, closeSpan := ddtesting.StartTestWithContext(
 						datadog.NewDefaultContext(context.Background()),
 						tt,
 						ddtesting.WithSpanOptions(
-							tracer.Tag(ext.TestName, testParts[3]),
-							tracer.Tag(ext.TestSuite, fmt.Sprintf("%s/%s", version, testParts[2])),
-							tracer.Tag(ext.TestFramework, "github.com/go-bdd/gobdd"),
 							// Set resource name to TestName
 							tracer.ResourceName(tt.Name()),
 						),
