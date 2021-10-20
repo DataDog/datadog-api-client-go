@@ -63,3 +63,20 @@ go.sum,golang.org/x/term,BSD-3-Clause,2009 The Go Authors
 go.sum,github.com/yuin/goldmark,MIT,2019 Yusuke Inuzuka
 go.sum,golang.org/x/crypto,BSD-3-Clause,2009 The Go Authors
 go.sum,golang.org/x/mod,BSD-3-Clause,2009 The Go Authors
+go.sum,github.com/BurntSushi/toml,MIT,2013 TOML authors
+go.sum,github.com/DataDog/dd-sdk-go-testing,Apache-2.0 OR BSD-3-Clause,"2016-Present Datadog, Inc."
+go.sum,github.com/DataDog/sketches-go,Apache-2.0,2021 DataDog Inc
+go.sum,github.com/census-instrumentation/opencensus-proto,Apache-2.0,"2019, OpenCensus Authors"
+go.sum,github.com/client9/misspell,MIT,2015-2017 Nick Galbreath
+go.sum,github.com/envoyproxy/go-control-plane,Apache-2.0,2018 Envoyproxy Authors
+go.sum,github.com/envoyproxy/protoc-gen-validate,Apache-2.0,2019 Envoy Project Authors
+go.sum,github.com/golang/glog,Apache-2.0,2013 Google Inc.
+go.sum,github.com/golang/mock,Apache-2.0,2020 Google Inc.
+go.sum,github.com/google/gofuzz,Apache-2.0,
+go.sum,github.com/prometheus/client_model,Apache-2.0,2012-2015 The Prometheus Authors
+go.sum,golang.org/x/exp,BSD-3-Clause,2009 The Go Authors
+go.sum,golang.org/x/lint,BSD-3-Clause,2013 The Go Authors
+go.sum,google.golang.org/genproto,Apache-2.0,2018 Google Inc.
+go.sum,google.golang.org/grpc,Apache-2.0,2016 gRPC authors.
+go.sum,google.golang.org/protobuf,BSD-3-Clause,2018 The Go Authors.
+go.sum,honnef.co/go/tools,MIT,2016 Dominik Honnef
