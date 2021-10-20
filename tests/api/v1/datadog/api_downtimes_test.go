@@ -26,6 +26,7 @@ func TestDowntimeLifecycle(t *testing.T) {
 	testDowntime := datadog.Downtime{
 		Message:  tests.UniqueEntityName(ctx, t),
 		Start:    datadog.PtrInt64(start.Unix()),
+		End:      *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() + 60*60)),
 		Timezone: datadog.PtrString("Etc/UTC"),
 		Scope:    &[]string{"*"},
 		Recurrence: *datadog.NewNullableDowntimeRecurrence(
@@ -266,6 +267,7 @@ func TestDowntimeRecurrence(t *testing.T) {
 			testDowntime := datadog.Downtime{
 				Message:    datadog.PtrString(fmt.Sprintf("%s; %s", *tests.UniqueEntityName(ctx, t), name)),
 				Start:      datadog.PtrInt64(start.Unix()),
+				End:        *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() + 60*60)),
 				Timezone:   datadog.PtrString("Etc/UTC"),
 				Scope:      &[]string{"*"},
 				Recurrence: *datadog.NewNullableDowntimeRecurrence(&tc.DowntimeRecurence),
@@ -275,7 +277,6 @@ func TestDowntimeRecurrence(t *testing.T) {
 			if tc.ExpectedStatusCode < 300 {
 				defer cancelDowntime(ctx, t, downtime.GetId())
 			}
-
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode, "error: %v", err)
 		})
 	}
@@ -456,8 +457,8 @@ func TestDowntimeUpdateErrors(t *testing.T) {
 }
 
 func cancelDowntime(ctx context.Context, t *testing.T, downtimeID int64) {
-	httpresp, err := Client(ctx).DowntimesApi.CancelDowntime(ctx, downtimeID)
+	_, err := Client(ctx).DowntimesApi.CancelDowntime(ctx, downtimeID)
 	if err != nil {
-		t.Logf("Canceling Downtime: %v failed with %v, Another test may have already canceled this downtime: %v", downtimeID, httpresp.StatusCode, err)
+		t.Logf("Canceling Downtime: %v failed, Another test may have already canceled this downtime: %v", downtimeID, err)
 	}
 }
