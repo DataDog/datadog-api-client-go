@@ -10,7 +10,6 @@ require (
 	github.com/dnaeon/go-vcr v1.0.1
 	github.com/go-bdd/gobdd v1.1.3
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/google/go-cmp v0.4.0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/jonboulle/clockwork v0.1.0
 	github.com/mcuadros/go-lookup v0.0.0-20200831155250-80f87a4fa5ee
@@ -25,8 +24,6 @@ require (
 	gopkg.in/h2non/gock.v1 v1.0.15
 	gotest.tools v2.2.0+incompatible
 )
-
-replace gopkg.in/DataDog/dd-trace-go.v1 => github.com/DataDog/dd-trace-go v1.30.0-rc.1.0.20210420124628-f63633f38e8f
 
 replace github.com/mcuadros/go-lookup => github.com/therve/go-lookup v0.0.0-20210911125823-5508a75dec6f
 
