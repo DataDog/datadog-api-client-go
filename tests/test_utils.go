@@ -155,9 +155,7 @@ func ConfigureTracer(m *testing.M) {
 	if socketPath, ok := os.LookupEnv("DD_APM_RECEIVER_SOCKET"); ok {
 		tracerOptions = append(tracerOptions, tracer.WithUDS(socketPath))
 	}
-	tracer.Start(tracerOptions...)
-	code := m.Run()
-	tracer.Stop()
+	code := ddtesting.Run(m, tracerOptions...)
 	os.Exit(code)
 }
 

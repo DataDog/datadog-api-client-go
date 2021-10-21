@@ -59,10 +59,15 @@ func TestScenarios(t *testing.T) {
 					SetVersion(ctx, version)
 					ct, _ := ctx.Get(gobdd.TestingTKey{})
 					tt := ct.(*testing.T)
+					testParts := strings.Split(tt.Name(), "/")
 					cctx, closeSpan := ddtesting.StartTestWithContext(
 						datadog.NewDefaultContext(context.Background()),
 						tt,
 						ddtesting.WithSpanOptions(
+							// Override the default tags set by ddtesting package for bdd
+							tracer.Tag("test.name", testParts[3]),
+							tracer.Tag("test.suite", fmt.Sprintf("%s/%s", version, testParts[2])),
+							tracer.Tag("test.framework", "github.com/go-bdd/gobdd"),
 							// Set resource name to TestName
 							tracer.ResourceName(tt.Name()),
 						),
