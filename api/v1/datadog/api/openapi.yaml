@@ -18049,6 +18049,24 @@ components:
     NotebookCellResponse:
       description: The description of a notebook cell response.
       example:
+        attributes:
+          definition:
+            requests:
+            - display_type: line
+              q: avg:system.load.1{*}
+              style:
+                line_type: solid
+                line_width: normal
+                palette: dog_classic
+            show_legend: true
+            type: timeseries
+            yaxis:
+              scale: linear
+          graph_size: m
+          split_by:
+            keys: []
+            tags: []
+          time: null
         id: abcd1234
         type: notebook_cells
       properties:
@@ -18069,6 +18087,24 @@ components:
       description: |-
         The attributes of a notebook cell response. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`,
         `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
+      example:
+        definition:
+          requests:
+          - display_type: line
+            q: avg:system.load.1{*}
+            style:
+              line_type: solid
+              line_width: normal
+              palette: dog_classic
+          show_legend: true
+          type: timeseries
+          yaxis:
+            scale: linear
+        graph_size: m
+        split_by:
+          keys: []
+          tags: []
+        time: null
       oneOf:
       - $ref: '#/components/schemas/NotebookMarkdownCellAttributes'
       - $ref: '#/components/schemas/NotebookTimeseriesCellAttributes'
@@ -19031,9 +19067,45 @@ components:
               take_snapshots: false
               type: investigation
             cells:
-            - id: abcd1234
+            - attributes:
+                definition:
+                  requests:
+                  - display_type: line
+                    q: avg:system.load.1{*}
+                    style:
+                      line_type: solid
+                      line_width: normal
+                      palette: dog_classic
+                  show_legend: true
+                  type: timeseries
+                  yaxis:
+                    scale: linear
+                graph_size: m
+                split_by:
+                  keys: []
+                  tags: []
+                time: null
+              id: abcd1234
               type: notebook_cells
-            - id: abcd1234
+            - attributes:
+                definition:
+                  requests:
+                  - display_type: line
+                    q: avg:system.load.1{*}
+                    style:
+                      line_type: solid
+                      line_width: normal
+                      palette: dog_classic
+                  show_legend: true
+                  type: timeseries
+                  yaxis:
+                    scale: linear
+                graph_size: m
+                split_by:
+                  keys: []
+                  tags: []
+                time: null
+              id: abcd1234
               type: notebook_cells
             author:
               icon: icon
@@ -19057,9 +19129,45 @@ components:
               take_snapshots: false
               type: investigation
             cells:
-            - id: abcd1234
+            - attributes:
+                definition:
+                  requests:
+                  - display_type: line
+                    q: avg:system.load.1{*}
+                    style:
+                      line_type: solid
+                      line_width: normal
+                      palette: dog_classic
+                  show_legend: true
+                  type: timeseries
+                  yaxis:
+                    scale: linear
+                graph_size: m
+                split_by:
+                  keys: []
+                  tags: []
+                time: null
+              id: abcd1234
               type: notebook_cells
-            - id: abcd1234
+            - attributes:
+                definition:
+                  requests:
+                  - display_type: line
+                    q: avg:system.load.1{*}
+                    style:
+                      line_type: solid
+                      line_width: normal
+                      palette: dog_classic
+                  show_legend: true
+                  type: timeseries
+                  yaxis:
+                    scale: linear
+                graph_size: m
+                split_by:
+                  keys: []
+                  tags: []
+                time: null
+              id: abcd1234
               type: notebook_cells
             author:
               icon: icon
@@ -19099,9 +19207,45 @@ components:
             take_snapshots: false
             type: investigation
           cells:
-          - id: abcd1234
+          - attributes:
+              definition:
+                requests:
+                - display_type: line
+                  q: avg:system.load.1{*}
+                  style:
+                    line_type: solid
+                    line_width: normal
+                    palette: dog_classic
+                show_legend: true
+                type: timeseries
+                yaxis:
+                  scale: linear
+              graph_size: m
+              split_by:
+                keys: []
+                tags: []
+              time: null
+            id: abcd1234
             type: notebook_cells
-          - id: abcd1234
+          - attributes:
+              definition:
+                requests:
+                - display_type: line
+                  q: avg:system.load.1{*}
+                  style:
+                    line_type: solid
+                    line_width: normal
+                    palette: dog_classic
+                show_legend: true
+                type: timeseries
+                yaxis:
+                  scale: linear
+              graph_size: m
+              split_by:
+                keys: []
+                tags: []
+              time: null
+            id: abcd1234
             type: notebook_cells
           author:
             icon: icon
@@ -19143,9 +19287,45 @@ components:
           take_snapshots: false
           type: investigation
         cells:
-        - id: abcd1234
+        - attributes:
+            definition:
+              requests:
+              - display_type: line
+                q: avg:system.load.1{*}
+                style:
+                  line_type: solid
+                  line_width: normal
+                  palette: dog_classic
+              show_legend: true
+              type: timeseries
+              yaxis:
+                scale: linear
+            graph_size: m
+            split_by:
+              keys: []
+              tags: []
+            time: null
+          id: abcd1234
           type: notebook_cells
-        - id: abcd1234
+        - attributes:
+            definition:
+              requests:
+              - display_type: line
+                q: avg:system.load.1{*}
+                style:
+                  line_type: solid
+                  line_width: normal
+                  palette: dog_classic
+              show_legend: true
+              type: timeseries
+              yaxis:
+                scale: linear
+            graph_size: m
+            split_by:
+              keys: []
+              tags: []
+            time: null
+          id: abcd1234
           type: notebook_cells
         author:
           icon: icon
