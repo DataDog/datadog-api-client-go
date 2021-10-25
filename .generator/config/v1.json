@@ -1,0 +1,11 @@
+{
+  "gitUserId": "DataDog",
+  "gitRepoId": "datadog-api-client-go",
+  "isGoSubmodule": true,
+  "packageName": "datadog",
+  "packageVersion": "0.1.0",
+  "goImportAlias": "datadog",
+  "goImport": "github.com/DataDog/datadog-api-client-go/api/v1/datadog",
+  "withGoCodegenComment": true,
+  "enumClassPrefix": true
+}

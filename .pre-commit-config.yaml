@@ -7,3 +7,21 @@ repos:
     entry: Unstage generated files with 'git reset --' command
     files: '^api/.*(?<!\_test.go)$'
     verbose: true
+  - id: generated-features
+    name: Do not commit generated feature files
+    language: fail
+    entry: Unstage generated files with 'git reset --' command
+    files: "^tests/scenarios/features/v[1-9][0-9]*/.*.feature$"
+    verbose: true
+  - id: generate
+    name: Generate
+    language: node
+    entry: make
+    files: "^.generator/.*"
+    pass_filenames: false
+  - id: lint
+    name: Lint
+    language: docker_image
+    entry: cytopia/goimports@sha256:35c66e33c9c8bc986d0b3fdf49ee343ee0f277a76fa05f966590ea1edf191f28 goimports -w
+    stages: [manual]
+    pass_filenames: false
