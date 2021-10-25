@@ -202,6 +202,9 @@ docs/Metric.md
 docs/MetricAllTags.md
 docs/MetricAllTagsAttributes.md
 docs/MetricAllTagsResponse.md
+docs/MetricCustomAggregation.md
+docs/MetricCustomSpaceAggregation.md
+docs/MetricCustomTimeAggregation.md
 docs/MetricDistinctVolume.md
 docs/MetricDistinctVolumeAttributes.md
 docs/MetricDistinctVolumeType.md
@@ -537,6 +540,9 @@ model_metric.go
 model_metric_all_tags.go
 model_metric_all_tags_attributes.go
 model_metric_all_tags_response.go
+model_metric_custom_aggregation.go
+model_metric_custom_space_aggregation.go
+model_metric_custom_time_aggregation.go
 model_metric_distinct_volume.go
 model_metric_distinct_volume_attributes.go
 model_metric_distinct_volume_type.go
