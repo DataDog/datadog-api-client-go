@@ -17,8 +17,6 @@ services:
       - ".generator/schemas/v1/openapi.yaml"
       - -o
       - "api/v1/datadog"
-      - --additional-properties
-      - apigentoolsStamp='{{stamp}}'
       - --global-property
       - skipFormModel=false
       - -t
@@ -41,9 +39,7 @@ services:
       - -i
       - ".generator/schemas/v2/openapi.yaml"
       - -o
-      - "api/v1/datadog"
-      - --additional-properties
-      - apigentoolsStamp='{{stamp}}'
+      - "api/v2/datadog"
       - --global-property
       - skipFormModel=false
       - -t

@@ -22,6 +22,6 @@ repos:
   - id: lint
     name: Lint
     language: docker_image
-    entry: cytopia/goimports@sha256:35c66e33c9c8bc986d0b3fdf49ee343ee0f277a76fa05f966590ea1edf191f28 goimports -w
+    entry: cytopia/goimports@sha256:35c66e33c9c8bc986d0b3fdf49ee343ee0f277a76fa05f966590ea1edf191f28 -w .
     stages: [manual]
     pass_filenames: false
