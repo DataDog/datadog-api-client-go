@@ -12,35 +12,35 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsCITestMetadata Metadata for the Synthetics tests run
-type SyntheticsCITestMetadata struct {
-	Ci  *SyntheticsCITestMetadataCi  `json:"ci,omitempty"`
-	Git *SyntheticsCITestMetadataGit `json:"git,omitempty"`
+// SyntheticsCIBatchMetadata Metadata for the Synthetics tests run.
+type SyntheticsCIBatchMetadata struct {
+	Ci  *SyntheticsCIBatchMetadataCI  `json:"ci,omitempty"`
+	Git *SyntheticsCIBatchMetadataGit `json:"git,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
 
-// NewSyntheticsCITestMetadata instantiates a new SyntheticsCITestMetadata object
+// NewSyntheticsCIBatchMetadata instantiates a new SyntheticsCIBatchMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsCITestMetadata() *SyntheticsCITestMetadata {
-	this := SyntheticsCITestMetadata{}
+func NewSyntheticsCIBatchMetadata() *SyntheticsCIBatchMetadata {
+	this := SyntheticsCIBatchMetadata{}
 	return &this
 }
 
-// NewSyntheticsCITestMetadataWithDefaults instantiates a new SyntheticsCITestMetadata object
+// NewSyntheticsCIBatchMetadataWithDefaults instantiates a new SyntheticsCIBatchMetadata object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSyntheticsCITestMetadataWithDefaults() *SyntheticsCITestMetadata {
-	this := SyntheticsCITestMetadata{}
+func NewSyntheticsCIBatchMetadataWithDefaults() *SyntheticsCIBatchMetadata {
+	this := SyntheticsCIBatchMetadata{}
 	return &this
 }
 
 // GetCi returns the Ci field value if set, zero value otherwise.
-func (o *SyntheticsCITestMetadata) GetCi() SyntheticsCITestMetadataCi {
+func (o *SyntheticsCIBatchMetadata) GetCi() SyntheticsCIBatchMetadataCI {
 	if o == nil || o.Ci == nil {
-		var ret SyntheticsCITestMetadataCi
+		var ret SyntheticsCIBatchMetadataCI
 		return ret
 	}
 	return *o.Ci
@@ -48,7 +48,7 @@ func (o *SyntheticsCITestMetadata) GetCi() SyntheticsCITestMetadataCi {
 
 // GetCiOk returns a tuple with the Ci field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsCITestMetadata) GetCiOk() (*SyntheticsCITestMetadataCi, bool) {
+func (o *SyntheticsCIBatchMetadata) GetCiOk() (*SyntheticsCIBatchMetadataCI, bool) {
 	if o == nil || o.Ci == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *SyntheticsCITestMetadata) GetCiOk() (*SyntheticsCITestMetadataCi, bool)
 }
 
 // HasCi returns a boolean if a field has been set.
-func (o *SyntheticsCITestMetadata) HasCi() bool {
+func (o *SyntheticsCIBatchMetadata) HasCi() bool {
 	if o != nil && o.Ci != nil {
 		return true
 	}
@@ -64,15 +64,15 @@ func (o *SyntheticsCITestMetadata) HasCi() bool {
 	return false
 }
 
-// SetCi gets a reference to the given SyntheticsCITestMetadataCi and assigns it to the Ci field.
-func (o *SyntheticsCITestMetadata) SetCi(v SyntheticsCITestMetadataCi) {
+// SetCi gets a reference to the given SyntheticsCIBatchMetadataCI and assigns it to the Ci field.
+func (o *SyntheticsCIBatchMetadata) SetCi(v SyntheticsCIBatchMetadataCI) {
 	o.Ci = &v
 }
 
 // GetGit returns the Git field value if set, zero value otherwise.
-func (o *SyntheticsCITestMetadata) GetGit() SyntheticsCITestMetadataGit {
+func (o *SyntheticsCIBatchMetadata) GetGit() SyntheticsCIBatchMetadataGit {
 	if o == nil || o.Git == nil {
-		var ret SyntheticsCITestMetadataGit
+		var ret SyntheticsCIBatchMetadataGit
 		return ret
 	}
 	return *o.Git
@@ -80,7 +80,7 @@ func (o *SyntheticsCITestMetadata) GetGit() SyntheticsCITestMetadataGit {
 
 // GetGitOk returns a tuple with the Git field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsCITestMetadata) GetGitOk() (*SyntheticsCITestMetadataGit, bool) {
+func (o *SyntheticsCIBatchMetadata) GetGitOk() (*SyntheticsCIBatchMetadataGit, bool) {
 	if o == nil || o.Git == nil {
 		return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *SyntheticsCITestMetadata) GetGitOk() (*SyntheticsCITestMetadataGit, boo
 }
 
 // HasGit returns a boolean if a field has been set.
-func (o *SyntheticsCITestMetadata) HasGit() bool {
+func (o *SyntheticsCIBatchMetadata) HasGit() bool {
 	if o != nil && o.Git != nil {
 		return true
 	}
@@ -96,12 +96,12 @@ func (o *SyntheticsCITestMetadata) HasGit() bool {
 	return false
 }
 
-// SetGit gets a reference to the given SyntheticsCITestMetadataGit and assigns it to the Git field.
-func (o *SyntheticsCITestMetadata) SetGit(v SyntheticsCITestMetadataGit) {
+// SetGit gets a reference to the given SyntheticsCIBatchMetadataGit and assigns it to the Git field.
+func (o *SyntheticsCIBatchMetadata) SetGit(v SyntheticsCIBatchMetadataGit) {
 	o.Git = &v
 }
 
-func (o SyntheticsCITestMetadata) MarshalJSON() ([]byte, error) {
+func (o SyntheticsCIBatchMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -115,11 +115,11 @@ func (o SyntheticsCITestMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *SyntheticsCITestMetadata) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SyntheticsCIBatchMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Ci  *SyntheticsCITestMetadataCi  `json:"ci,omitempty"`
-		Git *SyntheticsCITestMetadataGit `json:"git,omitempty"`
+		Ci  *SyntheticsCIBatchMetadataCI  `json:"ci,omitempty"`
+		Git *SyntheticsCIBatchMetadataGit `json:"git,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -135,38 +135,38 @@ func (o *SyntheticsCITestMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	return nil
 }
 
-type NullableSyntheticsCITestMetadata struct {
-	value *SyntheticsCITestMetadata
+type NullableSyntheticsCIBatchMetadata struct {
+	value *SyntheticsCIBatchMetadata
 	isSet bool
 }
 
-func (v NullableSyntheticsCITestMetadata) Get() *SyntheticsCITestMetadata {
+func (v NullableSyntheticsCIBatchMetadata) Get() *SyntheticsCIBatchMetadata {
 	return v.value
 }
 
-func (v *NullableSyntheticsCITestMetadata) Set(val *SyntheticsCITestMetadata) {
+func (v *NullableSyntheticsCIBatchMetadata) Set(val *SyntheticsCIBatchMetadata) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSyntheticsCITestMetadata) IsSet() bool {
+func (v NullableSyntheticsCIBatchMetadata) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSyntheticsCITestMetadata) Unset() {
+func (v *NullableSyntheticsCIBatchMetadata) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSyntheticsCITestMetadata(val *SyntheticsCITestMetadata) *NullableSyntheticsCITestMetadata {
-	return &NullableSyntheticsCITestMetadata{value: val, isSet: true}
+func NewNullableSyntheticsCIBatchMetadata(val *SyntheticsCIBatchMetadata) *NullableSyntheticsCIBatchMetadata {
+	return &NullableSyntheticsCIBatchMetadata{value: val, isSet: true}
 }
 
-func (v NullableSyntheticsCITestMetadata) MarshalJSON() ([]byte, error) {
+func (v NullableSyntheticsCIBatchMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSyntheticsCITestMetadata) UnmarshalJSON(src []byte) error {
+func (v *NullableSyntheticsCIBatchMetadata) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

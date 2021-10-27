@@ -1,38 +1,48 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"message":"some message Notify: @hipchat-channel","name":"Test-Monitors-1633350129","options":{"enable_logs_sample":true,"escalation_message":"the situation has escalated","evaluation_delay":700,"groupby_simple_monitor":true,"include_tags":true,"locked":false,"new_host_delay":600,"no_data_timeframe":null,"notify_audit":false,"notify_no_data":false,"renotify_interval":60,"require_full_window":true,"thresholds":{"critical":2,"warning":1},"timeout_h":60},"priority":3,"query":"logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") \u003e 2","tags":["test:testmonitors1633350129","env:ci"],"type":"log alert"}
+      {"message":"some message Notify: @hipchat-channel","name":"Test-Get_a_monitor_s_details_returns_OK_response-1633076916","options":{"enable_logs_sample":true,"escalation_message":"the situation has escalated","evaluation_delay":700,"groupby_simple_monitor":true,"include_tags":true,"locked":false,"new_host_delay":600,"no_data_timeframe":null,"notify_audit":false,"notify_no_data":false,"renotify_interval":60,"require_full_window":true,"thresholds":{"critical":2,"warning":1},"timeout_h":60},"priority":3,"query":"logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") \u003e 2","tags":["test:testgetamonitorsdetailsreturnsokresponse1633076916","env:ci"],"type":"log alert"}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
       Content-Length:
-      - "656"
+      - '713'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateMonitor
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
-    url: https://api.datadoghq.com/api/v1/monitor
+      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '63312736928356333'
+      X-Datadog-Trace-Id:
+      - '1420381005831529841'
     method: POST
+    url: https://api.datadoghq.com/api/v1/monitor
   response:
-    body: '{"restricted_roles":null,"tags":["test:testmonitors1633350129","env:ci"],"deleted":null,"query":"logs(\"service:foo
+    body: '{"restricted_roles":null,"tags":["test:testgetamonitorsdetailsreturnsokresponse1633076916","env:ci"],"deleted":null,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\")
-      > 2","message":"some message Notify: @hipchat-channel","id":48359620,"multi":true,"name":"Test-Monitors-1633350129","created":"2021-10-04T12:22:10.193329+00:00","created_at":1633350130000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-04T12:22:10.193329+00:00","priority":3,"overall_state_modified":null,"overall_state":"No
+      > 2","message":"some message Notify: @hipchat-channel","id":48053797,"multi":true,"name":"Test-Get_a_monitor_s_details_returns_OK_response-1633076916","created":"2021-10-01T08:28:36.257147+00:00","created_at":1633076916000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-01T08:28:36.257147+00:00","priority":3,"overall_state_modified":null,"overall_state":"No
       Data","type":"log alert","options":{"notify_audit":false,"locked":false,"timeout_h":60,"renotify_interval":60,"include_tags":true,"no_data_timeframe":null,"silenced":{},"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"enable_logs_sample":true,"groupby_simple_monitor":true,"escalation_message":"the
       situation has escalated","evaluation_delay":700,"thresholds":{"critical":2.0,"warning":1.0}}}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '1083'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 04 Oct 2021 12:22:10 GMT
+      - Fri, 01 Oct 2021 08:28:36 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -44,39 +54,53 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
-      - "500"
+      - '500'
       X-Ratelimit-Period:
-      - "10"
+      - '10'
       X-Ratelimit-Remaining:
-      - "499"
+      - '494'
       X-Ratelimit-Reset:
-      - "10"
+      - '4'
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - DeleteMonitor
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
-    url: https://api.datadoghq.com/api/v1/monitor/48359620
-    method: DELETE
+      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '8253442116508040747'
+      X-Datadog-Trace-Id:
+      - '1420381005831529841'
+    method: GET
+    url: https://api.datadoghq.com/api/v1/monitor/48053797
   response:
-    body: '{"deleted_monitor_id":48359620}'
+    body: '{"restricted_roles":null,"tags":["test:testgetamonitorsdetailsreturnsokresponse1633076916","env:ci"],"deleted":null,"query":"logs(\"service:foo
+      AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\")
+      > 2","message":"some message Notify: @hipchat-channel","id":48053797,"multi":true,"name":"Test-Get_a_monitor_s_details_returns_OK_response-1633076916","created":"2021-10-01T08:28:36.257147+00:00","created_at":1633076916000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-01T08:28:36.257147+00:00","priority":3,"overall_state_modified":null,"overall_state":"No
+      Data","type":"log alert","options":{"notify_audit":false,"locked":false,"timeout_h":60,"renotify_interval":60,"include_tags":true,"no_data_timeframe":null,"silenced":{},"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"enable_logs_sample":true,"groupby_simple_monitor":true,"escalation_message":"the
+      situation has escalated","evaluation_delay":700,"thresholds":{"critical":2.0,"warning":1.0}}}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '1083'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 04 Oct 2021 12:22:15 GMT
+      - Fri, 01 Oct 2021 08:28:36 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -85,10 +109,61 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Envoy-Upstream-Service-Time:
-      - "131"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '3000'
+      X-Ratelimit-Period:
+      - '10'
+      X-Ratelimit-Remaining:
+      - '2999'
+      X-Ratelimit-Reset:
+      - '4'
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '409036591108243268'
+      X-Datadog-Trace-Id:
+      - '1420381005831529841'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/monitor/48053797
+  response:
+    body: '{"deleted_monitor_id":48053797}'
+    code: 200
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Length:
+      - '31'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 01 Oct 2021 08:28:36 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1

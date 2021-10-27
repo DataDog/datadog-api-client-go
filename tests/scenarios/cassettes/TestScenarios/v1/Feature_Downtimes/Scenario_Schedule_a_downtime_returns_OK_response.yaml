@@ -1,34 +1,44 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"message":"Test-Downtimes-1633349164","recurrence":{"period":1,"type":"weeks","until_date":1635163564,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["test:testdowntimes1633349164"],"start":1633349164,"timezone":"Etc/UTC"}
+      {"message":"Test-Schedule_a_downtime_returns_OK_response-1633076913","recurrence":{"period":1,"type":"weeks","until_date":1634891313,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["test:testscheduleadowntimereturnsokresponse1633076913"],"start":1633076913,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
-      - application/json
+      - application/json, */*;q=0.8
+      Connection:
+      - close
       Content-Length:
-      - "230"
+      - '284'
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateDowntime
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
-    url: https://api.datadoghq.com/api/v1/downtime
+      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '3556115444988067069'
+      X-Datadog-Trace-Id:
+      - '4476630005053798638'
     method: POST
+    url: https://api.datadoghq.com/api/v1/downtime
   response:
-    body: '{"recurrence":{"until_date":1635163564,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"child_id":null,"canceled":null,"monitor_id":null,"created":1633349164,"org_id":321813,"modified":1633349164,"disabled":false,"start":1633349164,"creator_id":1445416,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["test:testdowntimes1633349164"],"message":"Test-Downtimes-1633349164","downtime_type":2,"id":1482705507,"updater_id":null}'
+    body: '{"recurrence":{"until_date":1634891313,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"child_id":null,"canceled":null,"monitor_id":null,"created":1633076913,"org_id":321813,"modified":1633076913,"disabled":false,"start":1633076913,"creator_id":1445416,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["test:testscheduleadowntimereturnsokresponse1633076913"],"message":"Test-Schedule_a_downtime_returns_OK_response-1633076913","downtime_type":2,"id":1477730824,"updater_id":null}'
+    code: 200
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
+      Content-Length:
+      - '571'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Mon, 04 Oct 2021 12:06:04 GMT
+      - Fri, 01 Oct 2021 08:28:33 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -40,31 +50,39 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
-    body: ""
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Dd-Operation-Id:
-      - CancelDowntime
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
-    url: https://api.datadoghq.com/api/v1/downtime/1482705507
+      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '4205665695559866977'
+      X-Datadog-Trace-Id:
+      - '4476630005053798638'
     method: DELETE
+    url: https://api.datadoghq.com/api/v1/downtime/1477730824
   response:
-    body: ""
+    body: ''
+    code: 204
+    duration: ''
     headers:
       Cache-Control:
       - no-cache
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - "0"
+      - '0'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Date:
-      - Mon, 04 Oct 2021 12:06:04 GMT
+      - Fri, 01 Oct 2021 08:28:33 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -74,5 +92,4 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
     status: 204 No Content
-    code: 204
-    duration: ""
+version: 1

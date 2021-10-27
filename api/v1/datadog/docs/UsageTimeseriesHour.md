@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **NumCustomInputTimeseries** | Pointer to **int64** | Contains the number of custom metrics that are inputs for aggregations (metric configured is custom). | [optional] 
 **NumCustomOutputTimeseries** | Pointer to **int64** | Contains the number of custom metrics that are outputs for aggregations (metric configured is custom). | [optional] 
-**NumCustomTimeseries** | Pointer to **int64** | Contains the number of non-aggregation custom metrics. | [optional] 
+**NumCustomTimeseries** | Pointer to **int64** | Contains sum of non-aggregation custom metrics and custom metrics that are outputs for aggregations. | [optional] 
 
 ## Methods
 

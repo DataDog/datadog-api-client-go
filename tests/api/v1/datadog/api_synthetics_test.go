@@ -1578,6 +1578,14 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 	assert.Equal(publicID, results[0].GetPublicId())
 	assert.Equal(publicID, triggeredCheckIds[0])
 
+	// get batch details
+	_, httpresp, err = Client(ctx).SyntheticsApi.GetSyntheticsCIBatch(ctx, fullResult.GetBatchId())
+
+	if err != nil {
+		t.Fatalf("Error triggering ci tests: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+
 	// delete the test
 	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}})
 	if err != nil {

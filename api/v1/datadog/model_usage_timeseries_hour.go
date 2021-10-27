@@ -21,7 +21,7 @@ type UsageTimeseriesHour struct {
 	NumCustomInputTimeseries *int64 `json:"num_custom_input_timeseries,omitempty"`
 	// Contains the number of custom metrics that are outputs for aggregations (metric configured is custom).
 	NumCustomOutputTimeseries *int64 `json:"num_custom_output_timeseries,omitempty"`
-	// Contains the number of non-aggregation custom metrics.
+	// Contains sum of non-aggregation custom metrics and custom metrics that are outputs for aggregations.
 	NumCustomTimeseries *int64 `json:"num_custom_timeseries,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
