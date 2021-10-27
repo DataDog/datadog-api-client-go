@@ -24,7 +24,8 @@ type Dashboard struct {
 	Description NullableString `json:"description,omitempty"`
 	// ID of the dashboard.
 	Id *string `json:"id,omitempty"`
-	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it.
+	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it. Prefer using `restricted_roles` to manage write authorization.
+	// Deprecated
 	IsReadOnly *bool               `json:"is_read_only,omitempty"`
 	LayoutType DashboardLayoutType `json:"layout_type"`
 	// Modification date of the dashboard.
@@ -32,7 +33,7 @@ type Dashboard struct {
 	// List of handles of users to notify when changes are made to this dashboard.
 	NotifyList []string             `json:"notify_list,omitempty"`
 	ReflowType *DashboardReflowType `json:"reflow_type,omitempty"`
-	// A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard. Overrides the `is_read_only` property if both are present. **This feature is currently in beta.**
+	// A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard.
 	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
 	// Array of template variables saved views.
 	TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
@@ -212,6 +213,7 @@ func (o *Dashboard) SetId(v string) {
 }
 
 // GetIsReadOnly returns the IsReadOnly field value if set, zero value otherwise.
+// Deprecated
 func (o *Dashboard) GetIsReadOnly() bool {
 	if o == nil || o.IsReadOnly == nil {
 		var ret bool
@@ -222,6 +224,7 @@ func (o *Dashboard) GetIsReadOnly() bool {
 
 // GetIsReadOnlyOk returns a tuple with the IsReadOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *Dashboard) GetIsReadOnlyOk() (*bool, bool) {
 	if o == nil || o.IsReadOnly == nil {
 		return nil, false
@@ -239,6 +242,7 @@ func (o *Dashboard) HasIsReadOnly() bool {
 }
 
 // SetIsReadOnly gets a reference to the given bool and assigns it to the IsReadOnly field.
+// Deprecated
 func (o *Dashboard) SetIsReadOnly(v bool) {
 	o.IsReadOnly = &v
 }
