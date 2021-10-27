@@ -23,12 +23,12 @@ import (
 	"testing"
 	"time"
 
+	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/jonboulle/clockwork"
 	"github.com/stretchr/testify/require"
 	ddhttp "gopkg.in/DataDog/dd-trace-go.v1/contrib/net/http"
-	ddtesting "gopkg.in/DataDog/dd-trace-go.v1/contrib/testing"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
@@ -155,9 +155,7 @@ func ConfigureTracer(m *testing.M) {
 	if socketPath, ok := os.LookupEnv("DD_APM_RECEIVER_SOCKET"); ok {
 		tracerOptions = append(tracerOptions, tracer.WithUDS(socketPath))
 	}
-	tracer.Start(tracerOptions...)
-	code := m.Run()
-	tracer.Stop()
+	code := ddtesting.Run(m, tracerOptions...)
 	os.Exit(code)
 }
 
@@ -207,7 +205,10 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		t.Log(err.Error())
 		tag = "features"
 	}
-	ctx, finish := ddtesting.StartSpanWithFinish(ctx, t, ddtesting.WithSkipFrames(2), ddtesting.WithSpanOptions(
+	ctx, finish := ddtesting.StartTestWithContext(ctx, t, ddtesting.WithSkipFrames(2), ddtesting.WithSpanOptions(
+		// Set resource name to TestName
+		tracer.ResourceName(t.Name()),
+
 		// We need to make the tag be something that is then searchable in monitors
 		// https://docs.datadoghq.com/tracing/guide/metrics_namespace/#errors
 		// "version" is really the only one we can use here

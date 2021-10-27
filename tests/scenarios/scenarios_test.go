@@ -14,9 +14,8 @@ import (
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	"github.com/go-bdd/gobdd"
-	ddtesting "gopkg.in/DataDog/dd-trace-go.v1/contrib/testing"
-	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
@@ -61,13 +60,16 @@ func TestScenarios(t *testing.T) {
 					ct, _ := ctx.Get(gobdd.TestingTKey{})
 					tt := ct.(*testing.T)
 					testParts := strings.Split(tt.Name(), "/")
-					cctx, closeSpan := ddtesting.StartSpanWithFinish(
+					cctx, closeSpan := ddtesting.StartTestWithContext(
 						datadog.NewDefaultContext(context.Background()),
 						tt,
 						ddtesting.WithSpanOptions(
-							tracer.Tag(ext.TestName, testParts[3]),
-							tracer.Tag(ext.TestSuite, fmt.Sprintf("%s/%s", version, testParts[2])),
-							tracer.Tag(ext.TestFramework, "github.com/go-bdd/gobdd"),
+							// Override the default tags set by ddtesting package for bdd
+							tracer.Tag("test.name", testParts[3]),
+							tracer.Tag("test.suite", fmt.Sprintf("%s/%s", version, testParts[2])),
+							tracer.Tag("test.framework", "github.com/go-bdd/gobdd"),
+							// Set resource name to TestName
+							tracer.ResourceName(tt.Name()),
 						),
 					)
 					cctx, closeRecorder := ConfigureClients(ctx, cctx)
