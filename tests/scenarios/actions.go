@@ -112,7 +112,7 @@ func ConfigureClients(ctx gobdd.Context, cctx context.Context) (context.Context,
 	t := GetT(ctx)
 	c1 := v1.NewAPIClient(v1.NewConfiguration())
 	c2 := v2.NewAPIClient(v2.NewConfiguration())
-	
+
 	cctx = context.WithValue(
 		cctx,
 		v1.ContextAPIKeys,
@@ -123,7 +123,7 @@ func ConfigureClients(ctx gobdd.Context, cctx context.Context) (context.Context,
 		v2.ContextAPIKeys,
 		map[string]v2.APIKey{},
 	)
-	
+
 	cctx, err := tests.WithClock(cctx, tests.SecurePath(t.Name()))
 	if err != nil {
 		t.Fatalf("could not setup clock: %v", err)
