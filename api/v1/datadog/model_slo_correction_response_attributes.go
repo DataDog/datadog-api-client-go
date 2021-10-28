@@ -18,8 +18,12 @@ type SLOCorrectionResponseAttributes struct {
 	Creator  *Creator               `json:"creator,omitempty"`
 	// Description of the correction being made.
 	Description *string `json:"description,omitempty"`
+	// Length of time (in seconds) for a specified `rrule` recurring SLO correction.
+	Duration *int64 `json:"duration,omitempty"`
 	// Ending time of the correction in epoch seconds.
 	End *int64 `json:"end,omitempty"`
+	// Recurrence rules as defined in the iCalendar RFC 5545.
+	Rrule *string `json:"rrule,omitempty"`
 	// ID of the SLO that this correction will be applied to.
 	SloId *string `json:"slo_id,omitempty"`
 	// Starting time of the correction in epoch seconds.
@@ -143,6 +147,38 @@ func (o *SLOCorrectionResponseAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetDuration returns the Duration field value if set, zero value otherwise.
+func (o *SLOCorrectionResponseAttributes) GetDuration() int64 {
+	if o == nil || o.Duration == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Duration
+}
+
+// GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOCorrectionResponseAttributes) GetDurationOk() (*int64, bool) {
+	if o == nil || o.Duration == nil {
+		return nil, false
+	}
+	return o.Duration, true
+}
+
+// HasDuration returns a boolean if a field has been set.
+func (o *SLOCorrectionResponseAttributes) HasDuration() bool {
+	if o != nil && o.Duration != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDuration gets a reference to the given int64 and assigns it to the Duration field.
+func (o *SLOCorrectionResponseAttributes) SetDuration(v int64) {
+	o.Duration = &v
+}
+
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetEnd() int64 {
 	if o == nil || o.End == nil {
@@ -173,6 +209,38 @@ func (o *SLOCorrectionResponseAttributes) HasEnd() bool {
 // SetEnd gets a reference to the given int64 and assigns it to the End field.
 func (o *SLOCorrectionResponseAttributes) SetEnd(v int64) {
 	o.End = &v
+}
+
+// GetRrule returns the Rrule field value if set, zero value otherwise.
+func (o *SLOCorrectionResponseAttributes) GetRrule() string {
+	if o == nil || o.Rrule == nil {
+		var ret string
+		return ret
+	}
+	return *o.Rrule
+}
+
+// GetRruleOk returns a tuple with the Rrule field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOCorrectionResponseAttributes) GetRruleOk() (*string, bool) {
+	if o == nil || o.Rrule == nil {
+		return nil, false
+	}
+	return o.Rrule, true
+}
+
+// HasRrule returns a boolean if a field has been set.
+func (o *SLOCorrectionResponseAttributes) HasRrule() bool {
+	if o != nil && o.Rrule != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRrule gets a reference to the given string and assigns it to the Rrule field.
+func (o *SLOCorrectionResponseAttributes) SetRrule(v string) {
+	o.Rrule = &v
 }
 
 // GetSloId returns the SloId field value if set, zero value otherwise.
@@ -285,8 +353,14 @@ func (o SLOCorrectionResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	if o.Duration != nil {
+		toSerialize["duration"] = o.Duration
+	}
 	if o.End != nil {
 		toSerialize["end"] = o.End
+	}
+	if o.Rrule != nil {
+		toSerialize["rrule"] = o.Rrule
 	}
 	if o.SloId != nil {
 		toSerialize["slo_id"] = o.SloId
@@ -306,7 +380,9 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 		Category    *SLOCorrectionCategory `json:"category,omitempty"`
 		Creator     *Creator               `json:"creator,omitempty"`
 		Description *string                `json:"description,omitempty"`
+		Duration    *int64                 `json:"duration,omitempty"`
 		End         *int64                 `json:"end,omitempty"`
+		Rrule       *string                `json:"rrule,omitempty"`
 		SloId       *string                `json:"slo_id,omitempty"`
 		Start       *int64                 `json:"start,omitempty"`
 		Timezone    *string                `json:"timezone,omitempty"`
@@ -331,7 +407,9 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Category = all.Category
 	o.Creator = all.Creator
 	o.Description = all.Description
+	o.Duration = all.Duration
 	o.End = all.End
+	o.Rrule = all.Rrule
 	o.SloId = all.SloId
 	o.Start = all.Start
 	o.Timezone = all.Timezone
