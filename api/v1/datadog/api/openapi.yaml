@@ -19941,10 +19941,12 @@ components:
       description: The response object of a list of SLO corrections.
       example:
         attributes:
+          duration: 3600
           creator:
             name: name
             handle: handle
             email: email
+          rrule: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
           timezone: timezone
           slo_id: slo_id
           start: 6
@@ -19980,6 +19982,8 @@ components:
       description: The data object associated with the SLO correction to be created.
       example:
         attributes:
+          duration: 1600000000
+          rrule: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
           timezone: UTC
           slo_id: sloId
           start: 1600000000
@@ -20000,6 +20004,8 @@ components:
       example:
         data:
           attributes:
+            duration: 1600000000
+            rrule: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
             timezone: UTC
             slo_id: sloId
             start: 1600000000
@@ -20014,6 +20020,8 @@ components:
     SLOCorrectionCreateRequestAttributes:
       description: The attribute object associated with the SLO correction to be created.
       example:
+        duration: 1600000000
+        rrule: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
         timezone: UTC
         slo_id: sloId
         start: 1600000000
@@ -20026,11 +20034,21 @@ components:
         description:
           description: Description of the correction being made.
           type: string
+        duration:
+          description: Length of time (in seconds) for a specified `rrule` recurring
+            SLO correction.
+          example: 1600000000
+          format: int64
+          type: integer
         end:
           description: Ending time of the correction in epoch seconds.
           example: 1600000000
           format: int64
           type: integer
+        rrule:
+          description: Recurrence rules as defined in the iCalendar RFC 5545.
+          example: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
+          type: string
         slo_id:
           description: ID of the SLO that this correction will be applied to.
           example: sloId
@@ -20047,7 +20065,6 @@ components:
           type: string
       required:
       - category
-      - end
       - slo_id
       - start
       type: object
@@ -20056,10 +20073,12 @@ components:
       example:
         data:
         - attributes:
+            duration: 3600
             creator:
               name: name
               handle: handle
               email: email
+            rrule: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
             timezone: timezone
             slo_id: slo_id
             start: 6
@@ -20069,10 +20088,12 @@ components:
           id: id
           type: correction
         - attributes:
+            duration: 3600
             creator:
               name: name
               handle: handle
               email: email
+            rrule: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
             timezone: timezone
             slo_id: slo_id
             start: 6
@@ -20099,10 +20120,12 @@ components:
       example:
         data:
           attributes:
+            duration: 3600
             creator:
               name: name
               handle: handle
               email: email
+            rrule: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
             timezone: timezone
             slo_id: slo_id
             start: 6
@@ -20118,10 +20141,12 @@ components:
     SLOCorrectionResponseAttributes:
       description: The attribute object associated with the SLO correction.
       example:
+        duration: 3600
         creator:
           name: name
           handle: handle
           email: email
+        rrule: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
         timezone: timezone
         slo_id: slo_id
         start: 6
@@ -20136,10 +20161,20 @@ components:
         description:
           description: Description of the correction being made.
           type: string
+        duration:
+          description: Length of time (in seconds) for a specified `rrule` recurring
+            SLO correction.
+          example: 3600
+          format: int64
+          type: integer
         end:
           description: Ending time of the correction in epoch seconds.
           format: int64
           type: integer
+        rrule:
+          description: Recurrence rules as defined in the iCalendar RFC 5545.
+          example: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
+          type: string
         slo_id:
           description: ID of the SLO that this correction will be applied to.
           type: string
@@ -20165,6 +20200,8 @@ components:
       description: The data object associated with the SLO correction to be updated.
       example:
         attributes:
+          duration: 3600
+          rrule: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
           timezone: UTC
           start: 1600000000
           description: description
@@ -20182,6 +20219,8 @@ components:
       example:
         data:
           attributes:
+            duration: 3600
+            rrule: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
             timezone: UTC
             start: 1600000000
             description: description
@@ -20195,6 +20234,8 @@ components:
     SLOCorrectionUpdateRequestAttributes:
       description: The attribute object associated with the SLO correction to be updated.
       example:
+        duration: 3600
+        rrule: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
         timezone: UTC
         start: 1600000000
         description: description
@@ -20206,11 +20247,21 @@ components:
         description:
           description: Description of the correction being made.
           type: string
+        duration:
+          description: Length of time (in seconds) for a specified `rrule` recurring
+            SLO correction.
+          example: 3600
+          format: int64
+          type: integer
         end:
           description: Ending time of the correction in epoch seconds.
           example: 1600000000
           format: int64
           type: integer
+        rrule:
+          description: Recurrence rules as defined in the iCalendar RFC 5545.
+          example: RRULE:FREQ=DAILY;INTERVAL=10;COUNT=5
+          type: string
         start:
           description: Starting time of the correction in epoch seconds.
           example: 1600000000
