@@ -34,7 +34,9 @@ type apiSubmitServiceCheckRequest struct {
  * SubmitServiceCheck Submit a Service Check
  * Submit a list of Service Checks.
 
-**Note**: A valid API key is required.
+**Notes**:
+- A valid API key is required.
+- Service checks can be submitted up to 10 minutes in the past.
 */
 func (a *ServiceChecksApiService) SubmitServiceCheck(ctx _context.Context, body []ServiceCheck) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req := apiSubmitServiceCheckRequest{
