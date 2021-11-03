@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**Pipeline** | Pointer to **string** | Name of the pipeline. | [optional] 
-**Provider** | Pointer to **string** | Name of the CI provider. | [optional] 
+**Pipeline** | Pointer to [**SyntheticsCIBatchMetadataPipeline**](SyntheticsCIBatchMetadataPipeline.md) |  | [optional] 
+**Provider** | Pointer to [**SyntheticsCIBatchMetadataProvider**](SyntheticsCIBatchMetadataProvider.md) |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set.
 
 ### GetPipeline
 
-`func (o *SyntheticsCIBatchMetadataCI) GetPipeline() string`
+`func (o *SyntheticsCIBatchMetadataCI) GetPipeline() SyntheticsCIBatchMetadataPipeline`
 
 GetPipeline returns the Pipeline field if non-nil, zero value otherwise.
 
 ### GetPipelineOk
 
-`func (o *SyntheticsCIBatchMetadataCI) GetPipelineOk() (*string, bool)`
+`func (o *SyntheticsCIBatchMetadataCI) GetPipelineOk() (*SyntheticsCIBatchMetadataPipeline, bool)`
 
 GetPipelineOk returns a tuple with the Pipeline field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPipeline
 
-`func (o *SyntheticsCIBatchMetadataCI) SetPipeline(v string)`
+`func (o *SyntheticsCIBatchMetadataCI) SetPipeline(v SyntheticsCIBatchMetadataPipeline)`
 
 SetPipeline sets Pipeline field to given value.
 
@@ -53,20 +53,20 @@ HasPipeline returns a boolean if a field has been set.
 
 ### GetProvider
 
-`func (o *SyntheticsCIBatchMetadataCI) GetProvider() string`
+`func (o *SyntheticsCIBatchMetadataCI) GetProvider() SyntheticsCIBatchMetadataProvider`
 
 GetProvider returns the Provider field if non-nil, zero value otherwise.
 
 ### GetProviderOk
 
-`func (o *SyntheticsCIBatchMetadataCI) GetProviderOk() (*string, bool)`
+`func (o *SyntheticsCIBatchMetadataCI) GetProviderOk() (*SyntheticsCIBatchMetadataProvider, bool)`
 
 GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvider
 
-`func (o *SyntheticsCIBatchMetadataCI) SetProvider(v string)`
+`func (o *SyntheticsCIBatchMetadataCI) SetProvider(v SyntheticsCIBatchMetadataProvider)`
 
 SetProvider sets Provider field to given value.
 
