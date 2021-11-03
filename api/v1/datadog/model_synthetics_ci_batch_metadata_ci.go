@@ -14,10 +14,8 @@ import (
 
 // SyntheticsCIBatchMetadataCI Description of the CI provider.
 type SyntheticsCIBatchMetadataCI struct {
-	// Name of the pipeline.
-	Pipeline *string `json:"pipeline,omitempty"`
-	// Name of the CI provider.
-	Provider *string `json:"provider,omitempty"`
+	Pipeline *SyntheticsCIBatchMetadataPipeline `json:"pipeline,omitempty"`
+	Provider *SyntheticsCIBatchMetadataProvider `json:"provider,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -40,9 +38,9 @@ func NewSyntheticsCIBatchMetadataCIWithDefaults() *SyntheticsCIBatchMetadataCI {
 }
 
 // GetPipeline returns the Pipeline field value if set, zero value otherwise.
-func (o *SyntheticsCIBatchMetadataCI) GetPipeline() string {
+func (o *SyntheticsCIBatchMetadataCI) GetPipeline() SyntheticsCIBatchMetadataPipeline {
 	if o == nil || o.Pipeline == nil {
-		var ret string
+		var ret SyntheticsCIBatchMetadataPipeline
 		return ret
 	}
 	return *o.Pipeline
@@ -50,7 +48,7 @@ func (o *SyntheticsCIBatchMetadataCI) GetPipeline() string {
 
 // GetPipelineOk returns a tuple with the Pipeline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsCIBatchMetadataCI) GetPipelineOk() (*string, bool) {
+func (o *SyntheticsCIBatchMetadataCI) GetPipelineOk() (*SyntheticsCIBatchMetadataPipeline, bool) {
 	if o == nil || o.Pipeline == nil {
 		return nil, false
 	}
@@ -66,15 +64,15 @@ func (o *SyntheticsCIBatchMetadataCI) HasPipeline() bool {
 	return false
 }
 
-// SetPipeline gets a reference to the given string and assigns it to the Pipeline field.
-func (o *SyntheticsCIBatchMetadataCI) SetPipeline(v string) {
+// SetPipeline gets a reference to the given SyntheticsCIBatchMetadataPipeline and assigns it to the Pipeline field.
+func (o *SyntheticsCIBatchMetadataCI) SetPipeline(v SyntheticsCIBatchMetadataPipeline) {
 	o.Pipeline = &v
 }
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
-func (o *SyntheticsCIBatchMetadataCI) GetProvider() string {
+func (o *SyntheticsCIBatchMetadataCI) GetProvider() SyntheticsCIBatchMetadataProvider {
 	if o == nil || o.Provider == nil {
-		var ret string
+		var ret SyntheticsCIBatchMetadataProvider
 		return ret
 	}
 	return *o.Provider
@@ -82,7 +80,7 @@ func (o *SyntheticsCIBatchMetadataCI) GetProvider() string {
 
 // GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsCIBatchMetadataCI) GetProviderOk() (*string, bool) {
+func (o *SyntheticsCIBatchMetadataCI) GetProviderOk() (*SyntheticsCIBatchMetadataProvider, bool) {
 	if o == nil || o.Provider == nil {
 		return nil, false
 	}
@@ -98,8 +96,8 @@ func (o *SyntheticsCIBatchMetadataCI) HasProvider() bool {
 	return false
 }
 
-// SetProvider gets a reference to the given string and assigns it to the Provider field.
-func (o *SyntheticsCIBatchMetadataCI) SetProvider(v string) {
+// SetProvider gets a reference to the given SyntheticsCIBatchMetadataProvider and assigns it to the Provider field.
+func (o *SyntheticsCIBatchMetadataCI) SetProvider(v SyntheticsCIBatchMetadataProvider) {
 	o.Provider = &v
 }
 
@@ -120,8 +118,8 @@ func (o SyntheticsCIBatchMetadataCI) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsCIBatchMetadataCI) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Pipeline *string `json:"pipeline,omitempty"`
-		Provider *string `json:"provider,omitempty"`
+		Pipeline *SyntheticsCIBatchMetadataPipeline `json:"pipeline,omitempty"`
+		Provider *SyntheticsCIBatchMetadataProvider `json:"provider,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

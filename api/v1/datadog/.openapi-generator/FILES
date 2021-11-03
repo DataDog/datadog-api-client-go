@@ -475,6 +475,8 @@ docs/SyntheticsBrowserVariableType.md
 docs/SyntheticsCIBatchMetadata.md
 docs/SyntheticsCIBatchMetadataCI.md
 docs/SyntheticsCIBatchMetadataGit.md
+docs/SyntheticsCIBatchMetadataPipeline.md
+docs/SyntheticsCIBatchMetadataProvider.md
 docs/SyntheticsCITest.md
 docs/SyntheticsCITestBody.md
 docs/SyntheticsCheckType.md
@@ -1118,6 +1120,8 @@ model_synthetics_check_type.go
 model_synthetics_ci_batch_metadata.go
 model_synthetics_ci_batch_metadata_ci.go
 model_synthetics_ci_batch_metadata_git.go
+model_synthetics_ci_batch_metadata_pipeline.go
+model_synthetics_ci_batch_metadata_provider.go
 model_synthetics_ci_test_.go
 model_synthetics_ci_test_body.go
 model_synthetics_config_variable.go

@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"config":{"assertions":[{"operator":"is","property":"{{ PROPERTY }}","target":"text/html","type":"header"},{"operator":"lessThan","target":2000,"type":"responseTime"},{"operator":"validatesJSONPath","target":{"jsonPath":"topKey","operator":"isNot","targetValue":"0"},"type":"body"}],"configVariables":[{"example":"content-type","name":"PROPERTY","pattern":"content-type","type":"text"}],"request":{"certificate":{"cert":{"content":"cert-content","filename":"cert-filename","updatedAt":"2020-10-16T09:23:24.857Z"},"key":{"content":"key-content","filename":"key-filename","updatedAt":"2020-10-16T09:23:24.857Z"}},"headers":{"testingGoClient":"true"},"method":"GET","timeout":10,"url":"https://datadoghq.com"}},"locations":["aws:us-east-2"],"message":"Go client testing Synthetics API test - this is message","name":"Test-TestSyntheticsTriggerCITests-1634304935","options":{"accept_self_signed":false,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"min_location_failed":1,"monitor_name":"Test-TestSyntheticsTriggerCITests-1634304935","monitor_priority":5,"retry":{"count":3,"interval":10},"tick_every":60},"subtype":"http","tags":["testing:api"],"type":"api"}
+      {"config":{"assertions":[{"operator":"is","property":"{{ PROPERTY }}","target":"text/html","type":"header"},{"operator":"lessThan","target":2000,"type":"responseTime"},{"operator":"validatesJSONPath","target":{"jsonPath":"topKey","operator":"isNot","targetValue":"0"},"type":"body"}],"configVariables":[{"example":"content-type","name":"PROPERTY","pattern":"content-type","type":"text"}],"request":{"certificate":{"cert":{"content":"cert-content","filename":"cert-filename","updatedAt":"2020-10-16T09:23:24.857Z"},"key":{"content":"key-content","filename":"key-filename","updatedAt":"2020-10-16T09:23:24.857Z"}},"headers":{"testingGoClient":"true"},"method":"GET","timeout":10,"url":"https://datadoghq.com"}},"locations":["aws:us-east-2"],"message":"Go client testing Synthetics API test - this is message","name":"Test-TestSyntheticsTriggerCITests-1634810487","options":{"accept_self_signed":false,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"min_location_failed":1,"monitor_name":"Test-TestSyntheticsTriggerCITests-1634810487","monitor_priority":5,"retry":{"count":3,"interval":10},"tick_every":60},"subtype":"http","tags":["testing:api"],"type":"api"}
     form: {}
     headers:
       Accept:
@@ -15,19 +15,19 @@ interactions:
       Dd-Operation-Id:
       - CreateSyntheticsAPITest
       User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3416484901556116995"
+      - "4519364792812463757"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8076922241004817440"
+      - "7343753347834044311"
     url: https://api.datadoghq.com/api/v1/synthetics/tests/api
     method: POST
   response:
-    body: '{"status":"live","public_id":"jqw-irx-esa","tags":["testing:api"],"org_id":321813,"locations":["aws:us-east-2"],"message":"Go
-      client testing Synthetics API test - this is message","deleted_at":null,"name":"Test-TestSyntheticsTriggerCITests-1634304935","monitor_id":49867370,"type":"api","created_at":"2021-10-15T13:35:36.310625+00:00","modified_at":"2021-10-15T13:35:36.310625+00:00","subtype":"http","config":{"request":{"url":"https://datadoghq.com","headers":{"testingGoClient":"true"},"certificate":{"cert":{"filename":"cert-filename","updatedAt":"2020-10-16T09:23:24.857Z"},"key":{"filename":"key-filename","updatedAt":"2020-10-16T09:23:24.857Z"}},"method":"GET","timeout":10},"assertions":[{"operator":"is","property":"{{
-      PROPERTY }}","type":"header","target":"text/html"},{"operator":"lessThan","type":"responseTime","target":2000},{"operator":"validatesJSONPath","type":"body","target":{"operator":"isNot","targetValue":"0","jsonPath":"topKey"}}],"configVariables":[{"pattern":"content-type","type":"text","example":"content-type","name":"PROPERTY"}]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":1,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"monitor_priority":5,"monitor_name":"Test-TestSyntheticsTriggerCITests-1634304935","tick_every":60}}'
+    body: '{"status":"live","public_id":"38i-req-twp","tags":["testing:api"],"org_id":321813,"locations":["aws:us-east-2"],"message":"Go
+      client testing Synthetics API test - this is message","deleted_at":null,"name":"Test-TestSyntheticsTriggerCITests-1634810487","monitor_id":51140082,"type":"api","created_at":"2021-10-21T10:01:28.146668+00:00","modified_at":"2021-10-21T10:01:28.146668+00:00","subtype":"http","config":{"request":{"url":"https://datadoghq.com","headers":{"testingGoClient":"true"},"certificate":{"cert":{"filename":"cert-filename","updatedAt":"2020-10-16T09:23:24.857Z"},"key":{"filename":"key-filename","updatedAt":"2020-10-16T09:23:24.857Z"}},"method":"GET","timeout":10},"assertions":[{"operator":"is","property":"{{
+      PROPERTY }}","type":"header","target":"text/html"},{"operator":"lessThan","type":"responseTime","target":2000},{"operator":"validatesJSONPath","type":"body","target":{"operator":"isNot","targetValue":"0","jsonPath":"topKey"}}],"configVariables":[{"pattern":"content-type","type":"text","example":"content-type","name":"PROPERTY"}]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":1,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"monitor_priority":5,"monitor_name":"Test-TestSyntheticsTriggerCITests-1634810487","tick_every":60}}'
     headers:
       Cache-Control:
       - no-cache
@@ -36,7 +36,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 15 Oct 2021 13:35:36 GMT
+      - Thu, 21 Oct 2021 10:01:28 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -52,37 +52,37 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "11995"
+      - "11999"
       X-Ratelimit-Reset:
-      - "24"
+      - "33"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"tests":[{"locations":["aws:us-east-2"],"public_id":"jqw-irx-esa"}]}
+      {"tests":[{"locations":["aws:us-east-2"],"metadata":{"ci":{"pipeline":{"url":"pipeline-url"},"provider":{"name":"provider name"}},"git":{"branch":"branch-name"}},"public_id":"38i-req-twp"}]}
     form: {}
     headers:
       Accept:
       - application/json
       Content-Length:
-      - "70"
+      - "191"
       Content-Type:
       - application/json
       Dd-Operation-Id:
       - TriggerCITests
       User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "868738358347828938"
+      - "8784494153512867665"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8076922241004817440"
+      - "7343753347834044311"
     url: https://api.datadoghq.com/api/v1/synthetics/tests/trigger/ci
     method: POST
   response:
-    body: '{"batch_id":"b411dd12-5b6d-435d-8082-cc9ff72915d6","results":[{"result_id":"1005327023871462168","public_id":"jqw-irx-esa","location":30005}],"triggered_check_ids":["jqw-irx-esa"],"locations":[{"display_name":"Ohio
+    body: '{"batch_id":"714a664b-4428-49c2-bc1d-24fd6e8711c4","results":[{"result_id":"5286840368036468911","public_id":"38i-req-twp","location":30005}],"triggered_check_ids":["38i-req-twp"],"locations":[{"display_name":"Ohio
       (AWS)","name":"aws:us-east-2","region":"Americas","is_active":true,"is_public":true,"id":30005}]}'
     headers:
       Cache-Control:
@@ -92,7 +92,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 15 Oct 2021 13:35:36 GMT
+      - Thu, 21 Oct 2021 10:01:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -110,7 +110,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "14"
       X-Ratelimit-Reset:
-      - "264"
+      - "212"
     status: 200 OK
     code: 200
     duration: ""
@@ -123,17 +123,18 @@ interactions:
       Dd-Operation-Id:
       - GetSyntheticsCIBatch
       User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8933726562940548192"
+      - "4289106179992559945"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8076922241004817440"
-    url: https://api.datadoghq.com/api/v1/synthetics/ci/batch/b411dd12-5b6d-435d-8082-cc9ff72915d6
+      - "7343753347834044311"
+    url: https://api.datadoghq.com/api/v1/synthetics/ci/batch/714a664b-4428-49c2-bc1d-24fd6e8711c4
     method: GET
   response:
-    body: '{"data":{"status":"in_progress","results":[{"status":"in_progress","retries":null,"final_result_id":null,"test_public_id":"jqw-irx-esa","timed_out":null,"duration":null,"steps":null,"location":"aws:us-east-2","test_name":"Test-TestSyntheticsTriggerCITests-1634304935","device":null,"execution_rule":"blocking","polling_timeout":120000,"result_id":"1005327023871462168","test_type":"api"}],"metadata":{}},"created_at":"2021-10-15T13:35:36.854584+00:00","modified_at":null}'
+    body: '{"data":{"status":"in_progress","results":[{"status":"in_progress","retries":null,"final_result_id":null,"test_public_id":"38i-req-twp","timed_out":null,"duration":null,"steps":null,"location":"aws:us-east-2","test_name":"Test-TestSyntheticsTriggerCITests-1634810487","device":null,"execution_rule":"blocking","polling_timeout":120000,"result_id":"5286840368036468911","test_type":"api"}],"metadata":{"ci":{"pipeline":{},"provider":{"name":"provider
+      name"},"job":{"url":"pipeline-url"},"stage":{}},"git":{"commit":{"committer":{},"author":{}},"branch":"branch-name"}}},"created_at":"2021-10-21T10:01:29.016036+00:00","modified_at":null}'
     headers:
       Cache-Control:
       - no-cache
@@ -142,7 +143,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 15 Oct 2021 13:35:37 GMT
+      - Thu, 21 Oct 2021 10:01:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -158,7 +159,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"public_ids":["jqw-irx-esa"]}
+      {"public_ids":["38i-req-twp"]}
     form: {}
     headers:
       Accept:
@@ -170,17 +171,17 @@ interactions:
       Dd-Operation-Id:
       - DeleteTests
       User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.6; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.6; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5537172380346381423"
+      - "140281552461230116"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "8076922241004817440"
+      - "7343753347834044311"
     url: https://api.datadoghq.com/api/v1/synthetics/tests/delete
     method: POST
   response:
-    body: '{"deleted_tests":[{"deleted_at":"2021-10-15T13:35:37.491149+00:00","public_id":"jqw-irx-esa"}]}'
+    body: '{"deleted_tests":[{"deleted_at":"2021-10-21T10:01:29.657425+00:00","public_id":"38i-req-twp"}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -189,7 +190,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 15 Oct 2021 13:35:37 GMT
+      - Thu, 21 Oct 2021 10:01:29 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -198,6 +199,8 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Envoy-Upstream-Service-Time:
+      - "160"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -205,9 +208,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "11995"
+      - "11999"
       X-Ratelimit-Reset:
-      - "23"
+      - "31"
     status: 200 OK
     code: 200
     duration: ""
