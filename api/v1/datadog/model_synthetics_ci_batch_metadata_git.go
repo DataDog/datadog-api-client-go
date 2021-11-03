@@ -17,7 +17,7 @@ type SyntheticsCIBatchMetadataGit struct {
 	// The branch name.
 	Branch *string `json:"branch,omitempty"`
 	// The commit SHA.
-	CommitSha *string `json:"commit_sha,omitempty"`
+	CommitSha *string `json:"commitSha,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -112,7 +112,7 @@ func (o SyntheticsCIBatchMetadataGit) MarshalJSON() ([]byte, error) {
 		toSerialize["branch"] = o.Branch
 	}
 	if o.CommitSha != nil {
-		toSerialize["commit_sha"] = o.CommitSha
+		toSerialize["commitSha"] = o.CommitSha
 	}
 	return json.Marshal(toSerialize)
 }
@@ -121,7 +121,7 @@ func (o *SyntheticsCIBatchMetadataGit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Branch    *string `json:"branch,omitempty"`
-		CommitSha *string `json:"commit_sha,omitempty"`
+		CommitSha *string `json:"commitSha,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

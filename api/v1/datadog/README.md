@@ -702,6 +702,8 @@ Class | Method | HTTP request | Description
  - [SyntheticsCIBatchMetadata](docs/SyntheticsCIBatchMetadata.md)
  - [SyntheticsCIBatchMetadataCI](docs/SyntheticsCIBatchMetadataCI.md)
  - [SyntheticsCIBatchMetadataGit](docs/SyntheticsCIBatchMetadataGit.md)
+ - [SyntheticsCIBatchMetadataPipeline](docs/SyntheticsCIBatchMetadataPipeline.md)
+ - [SyntheticsCIBatchMetadataProvider](docs/SyntheticsCIBatchMetadataProvider.md)
  - [SyntheticsCITest](docs/SyntheticsCITest.md)
  - [SyntheticsCITestBody](docs/SyntheticsCITestBody.md)
  - [SyntheticsCheckType](docs/SyntheticsCheckType.md)

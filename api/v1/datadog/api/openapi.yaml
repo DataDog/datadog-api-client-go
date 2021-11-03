@@ -22233,11 +22233,13 @@ components:
         data:
           metadata:
             git:
-              commit_sha: commit_sha
+              commitSha: commitSha
               branch: branch
             ci:
-              pipeline: pipeline
-              provider: provider
+              pipeline:
+                url: url
+              provider:
+                name: name
           results:
           - duration: 0.8008281904610115
             retries: 6.027456183070403
@@ -22262,11 +22264,13 @@ components:
       example:
         metadata:
           git:
-            commit_sha: commit_sha
+            commitSha: commitSha
             branch: branch
           ci:
-            pipeline: pipeline
-            provider: provider
+            pipeline:
+              url: url
+            provider:
+              name: name
         results:
         - duration: 0.8008281904610115
           retries: 6.027456183070403
@@ -22998,11 +23002,13 @@ components:
       description: Metadata for the Synthetics tests run.
       example:
         git:
-          commit_sha: commit_sha
+          commitSha: commitSha
           branch: branch
         ci:
-          pipeline: pipeline
-          provider: provider
+          pipeline:
+            url: url
+          provider:
+            name: name
       properties:
         ci:
           $ref: '#/components/schemas/SyntheticsCIBatchMetadataCI'
@@ -23012,27 +23018,45 @@ components:
     SyntheticsCIBatchMetadataCI:
       description: Description of the CI provider.
       example:
-        pipeline: pipeline
-        provider: provider
+        pipeline:
+          url: url
+        provider:
+          name: name
       properties:
         pipeline:
-          description: Name of the pipeline.
-          type: string
+          $ref: '#/components/schemas/SyntheticsCIBatchMetadataPipeline'
         provider:
-          description: Name of the CI provider.
-          type: string
+          $ref: '#/components/schemas/SyntheticsCIBatchMetadataProvider'
       type: object
     SyntheticsCIBatchMetadataGit:
       description: Git information.
       example:
-        commit_sha: commit_sha
+        commitSha: commitSha
         branch: branch
       properties:
         branch:
           description: The branch name.
           type: string
-        commit_sha:
+        commitSha:
           description: The commit SHA.
+          type: string
+      type: object
+    SyntheticsCIBatchMetadataPipeline:
+      description: Description of the CI pipeline.
+      example:
+        url: url
+      properties:
+        url:
+          description: URL of the pipeline.
+          type: string
+      type: object
+    SyntheticsCIBatchMetadataProvider:
+      description: Description of the CI provider.
+      example:
+        name: name
+      properties:
+        name:
+          description: Name of the CI provider.
           type: string
       type: object
     SyntheticsCITest:
@@ -23046,11 +23070,13 @@ components:
         - laptop_large
         metadata:
           git:
-            commit_sha: commit_sha
+            commitSha: commitSha
             branch: branch
           ci:
-            pipeline: pipeline
-            provider: provider
+            pipeline:
+              url: url
+            provider:
+              name: name
         variables:
           key: variables
         basicAuth:
@@ -23136,11 +23162,13 @@ components:
           - laptop_large
           metadata:
             git:
-              commit_sha: commit_sha
+              commitSha: commitSha
               branch: branch
             ci:
-              pipeline: pipeline
-              provider: provider
+              pipeline:
+                url: url
+              provider:
+                name: name
           variables:
             key: variables
           basicAuth:
@@ -23166,11 +23194,13 @@ components:
           - laptop_large
           metadata:
             git:
-              commit_sha: commit_sha
+              commitSha: commitSha
               branch: branch
             ci:
-              pipeline: pipeline
-              provider: provider
+              pipeline:
+                url: url
+              provider:
+                name: name
           variables:
             key: variables
           basicAuth:
@@ -24350,7 +24380,8 @@ components:
       properties:
         assertions:
           default: []
-          description: Array of assertions used for the test.
+          description: Array of assertions used for the test. Required for single
+            API tests.
           example: []
           items:
             $ref: '#/components/schemas/SyntheticsAssertion'
