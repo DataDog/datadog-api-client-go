@@ -105,7 +105,6 @@ func SetRequestsUndo(ctx gobdd.Context, value map[string]map[string]UndoAction) 
 }
 
 type clientKeys struct{}
-type authenticatedContext struct{}
 type ctxRequestsUndoKey struct{}
 
 func ConfigureClients(ctx gobdd.Context, cctx context.Context) (context.Context, func()) {
@@ -137,16 +136,6 @@ func ConfigureClients(ctx gobdd.Context, cctx context.Context) (context.Context,
 	c1.GetConfig().HTTPClient = &httpClient
 	c2.GetConfig().HTTPClient = &httpClient
 
-	ctx.Set(
-		authenticatedContext{},
-		testsV1.WithTestAuth(
-			testsV2.WithTestAuth(
-				testsV1.NewDefaultContext(
-					testsV2.NewDefaultContext(cctx),
-				),
-			),
-		),
-	)
 	clients := map[string]reflect.Value{
 		"v1": reflect.ValueOf(c1),
 		"v2": reflect.ValueOf(c2),
@@ -158,11 +147,13 @@ func ConfigureClients(ctx gobdd.Context, cctx context.Context) (context.Context,
 }
 
 func getAuthenticatedContext(ctx gobdd.Context) context.Context {
-	authenticatedContext, err := ctx.Get(authenticatedContext{})
-	if err != nil {
-		GetT(ctx).Fatalf("can't get authenticated context: %v", err)
-	}
-	return authenticatedContext.(context.Context)
+	return testsV1.WithTestAuth(
+		testsV2.WithTestAuth(
+			testsV1.NewDefaultContext(
+				testsV2.NewDefaultContext(GetCtx(ctx)),
+			),
+		),
+	)
 }
 
 func GetClientVersion(ctx gobdd.Context, version string) (reflect.Value, error) {
