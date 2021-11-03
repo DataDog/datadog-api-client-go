@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** | Creation date of the dashboard. | [optional] [readonly] 
 **Description** | Pointer to **NullableString** | Description of the dashboard. | [optional] 
 **Id** | Pointer to **string** | ID of the dashboard. | [optional] [readonly] 
-**IsReadOnly** | Pointer to **bool** | Whether this dashboard is read-only. If True, only the author and admins can make changes to it. | [optional] [default to false]
+**IsReadOnly** | Pointer to **bool** | Whether this dashboard is read-only. If True, only the author and admins can make changes to it. Prefer using &#x60;restricted_roles&#x60; to manage write authorization. | [optional] [default to false]
 **LayoutType** | [**DashboardLayoutType**](DashboardLayoutType.md) |  | 
 **ModifiedAt** | Pointer to **time.Time** | Modification date of the dashboard. | [optional] [readonly] 
 **NotifyList** | Pointer to **[]string** | List of handles of users to notify when changes are made to this dashboard. | [optional] 
 **ReflowType** | Pointer to [**DashboardReflowType**](DashboardReflowType.md) |  | [optional] 
-**RestrictedRoles** | Pointer to **[]string** | A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard. Overrides the &#x60;is_read_only&#x60; property if both are present. **This feature is currently in beta.** | [optional] 
+**RestrictedRoles** | Pointer to **[]string** | A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard. | [optional] 
 **TemplateVariablePresets** | Pointer to [**[]DashboardTemplateVariablePreset**](DashboardTemplateVariablePreset.md) | Array of template variables saved views. | [optional] 
 **TemplateVariables** | Pointer to [**[]DashboardTemplateVariable**](DashboardTemplateVariable.md) | List of template variables for this dashboard. | [optional] 
 **Title** | **string** | Title of the dashboard. | 

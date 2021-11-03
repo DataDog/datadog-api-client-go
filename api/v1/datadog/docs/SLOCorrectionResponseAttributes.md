@@ -7,7 +7,9 @@ Name | Type | Description | Notes
 **Category** | Pointer to [**SLOCorrectionCategory**](SLOCorrectionCategory.md) |  | [optional] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
 **Description** | Pointer to **string** | Description of the correction being made. | [optional] 
+**Duration** | Pointer to **int64** | Length of time (in seconds) for a specified &#x60;rrule&#x60; recurring SLO correction. | [optional] 
 **End** | Pointer to **int64** | Ending time of the correction in epoch seconds. | [optional] 
+**Rrule** | Pointer to **string** | Recurrence rules as defined in the iCalendar RFC 5545. | [optional] 
 **SloId** | Pointer to **string** | ID of the SLO that this correction will be applied to. | [optional] 
 **Start** | Pointer to **int64** | Starting time of the correction in epoch seconds. | [optional] 
 **Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;). | [optional] 
@@ -106,6 +108,31 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### GetDuration
+
+`func (o *SLOCorrectionResponseAttributes) GetDuration() int64`
+
+GetDuration returns the Duration field if non-nil, zero value otherwise.
+
+### GetDurationOk
+
+`func (o *SLOCorrectionResponseAttributes) GetDurationOk() (*int64, bool)`
+
+GetDurationOk returns a tuple with the Duration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDuration
+
+`func (o *SLOCorrectionResponseAttributes) SetDuration(v int64)`
+
+SetDuration sets Duration field to given value.
+
+### HasDuration
+
+`func (o *SLOCorrectionResponseAttributes) HasDuration() bool`
+
+HasDuration returns a boolean if a field has been set.
+
 ### GetEnd
 
 `func (o *SLOCorrectionResponseAttributes) GetEnd() int64`
@@ -130,6 +157,31 @@ SetEnd sets End field to given value.
 `func (o *SLOCorrectionResponseAttributes) HasEnd() bool`
 
 HasEnd returns a boolean if a field has been set.
+
+### GetRrule
+
+`func (o *SLOCorrectionResponseAttributes) GetRrule() string`
+
+GetRrule returns the Rrule field if non-nil, zero value otherwise.
+
+### GetRruleOk
+
+`func (o *SLOCorrectionResponseAttributes) GetRruleOk() (*string, bool)`
+
+GetRruleOk returns a tuple with the Rrule field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRrule
+
+`func (o *SLOCorrectionResponseAttributes) SetRrule(v string)`
+
+SetRrule sets Rrule field to given value.
+
+### HasRrule
+
+`func (o *SLOCorrectionResponseAttributes) HasRrule() bool`
+
+HasRrule returns a boolean if a field has been set.
 
 ### GetSloId
 
