@@ -5706,10 +5706,10 @@ components:
           description: 'The number of minutes before a monitor notifies after data
             stops reporting.
 
-            Datadog recommends at least 2x the monitor timeframe for metric alerts
+            Datadog recommends at least 2x the monitor timeframe for query alerts
             or 2 minutes for service checks.
 
-            If omitted, 2x the evaluation timeframe is used for metric alerts, and
+            If omitted, 2x the evaluation timeframe is used for query alerts, and
             24 hours is used for service checks.'
           format: int64
           nullable: true
@@ -5868,7 +5868,7 @@ components:
           status: No Data
           tags:
           - service:cassandra
-          type: metric alert
+          type: query alert
       properties:
         counts:
           description: The counts of monitors per different criteria.
@@ -6152,7 +6152,6 @@ components:
       - composite
       - event alert
       - log alert
-      - metric alert
       - process alert
       - query alert
       - rum alert
@@ -6162,7 +6161,7 @@ components:
       - slo alert
       - event-v2 alert
       - audit alert
-      example: metric alert
+      example: query alert
       type: string
       x-enum-varnames:
       - COMPOSITE
@@ -19336,7 +19335,7 @@ paths:
 
         - logs: `log alert`
 
-        - metric: `metric alert`
+        - metric: `query alert`
 
         - network: `service check`
 
@@ -19621,7 +19620,7 @@ paths:
                   tags:
                   - app:webserver
                   - frontend
-                  type: metric alert
+                  type: query alert
             schema:
               $ref: '#/components/schemas/Monitor'
         description: Create a monitor request body.
@@ -21915,6 +21914,125 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              multistep-api-test:
+                description: 'Example of a multistep API test running on a fake furniture
+                  store.
+
+                  It creates a card, select a product and then add the product to
+                  the card.'
+                summary: Create a Multistep API test
+                value:
+                  config:
+                    steps:
+                    - assertions:
+                      - operator: lessThan
+                        target: 30000
+                        type: responseTime
+                      extractedValues:
+                      - field: location
+                        name: CART_ID
+                        parser:
+                          type: regex
+                          value: (?:[^\\/](?!(\\|/)))+$
+                        type: http_header
+                      name: Get a cart
+                      request:
+                        method: POST
+                        timeout: 30
+                        url: https://api.shopist.io/carts
+                      subtype: http
+                    - assertions:
+                      - operator: is
+                        target: 200
+                        type: statusCode
+                      extractedValues:
+                      - name: PRODUCT_ID
+                        parser:
+                          type: json_path
+                          value: $[0].id['$oid']
+                        type: http_body
+                      name: Get a product
+                      request:
+                        method: GET
+                        timeout: 30
+                        url: https://api.shopist.io/products.json
+                      subtype: http
+                    - assertions:
+                      - operator: is
+                        target: 201
+                        type: statusCode
+                      name: Add product to cart
+                      request:
+                        body: "{\n  \"cart_item\": {\n    \"product_id\": \"{{ PRODUCT_ID
+                          }}\",\n    \"amount_paid\": 500,\n    \"quantity\": 1\n
+                          \ },\n  \"cart_id\": \"{{ CART_ID }}\"\n}"
+                        headers:
+                          content-type: application/json
+                        method: POST
+                        timeout: 30
+                        url: https://api.shopist.io/add_item.json
+                      subtype: http
+                  locations:
+                  - aws:us-west-2
+                  message: <NOTIFICATION MESSAGE>
+                  name: Multistep API test
+                  options:
+                    ci:
+                      executionRule: blocking
+                    min_failure_duration: 5400
+                    min_location_failed: 1
+                    monitor_options:
+                      renotify_interval: 0
+                    retry:
+                      count: 3
+                      interval: 300
+                    tick_every: 900
+                  status: live
+                  subtype: multi
+                  tags:
+                  - env:prod
+                  type: api
+              simple-api-test:
+                description: Example of an API test.
+                summary: Create an API test.
+                value:
+                  config:
+                    assertions:
+                    - operator: lessThan
+                      target: 1000
+                      type: responseTime
+                    - operator: is
+                      target: 200
+                      type: statusCode
+                    - operator: is
+                      property: content-type
+                      target: text/html; charset=UTF-8
+                      type: header
+                    request:
+                      method: GET
+                      url: https://example.com
+                  locations:
+                  - azure:eastus
+                  - aws:eu-west-3
+                  message: <NOTIFICATION MESSAGE>
+                  name: <TEST NAME>
+                  options:
+                    min_failure_duration: 0
+                    min_location_failed: 1
+                    monitor_options:
+                      include_tags: true
+                      locked: false
+                      new_host_delay: 300
+                      notify_audit: false
+                      notify_no_data: false
+                      renotify_interval: 0
+                    tick_every: 60
+                  status: live
+                  subtype: http
+                  tags:
+                  - env:production
+                  type: api
             schema:
               $ref: '#/components/schemas/SyntheticsAPITest'
         description: Details of the test to create.
@@ -24884,6 +25002,7 @@ paths:
         type: safe
   /v1/input:
     post:
+      deprecated: true
       description: 'Send your logs to your Datadog platform over HTTP. Limits per
         HTTP request are:
 
