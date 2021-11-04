@@ -106,7 +106,7 @@ The type of monitor chosen from:
 - integration: `query alert` or `service check`
 - live process: `process alert`
 - logs: `log alert`
-- metric: `metric alert`
+- metric: `query alert`
 - network: `service check`
 - outlier: `query alert`
 - process: `service check`
