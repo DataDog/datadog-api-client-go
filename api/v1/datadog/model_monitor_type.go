@@ -21,23 +21,21 @@ const (
 	MONITORTYPE_COMPOSITE             MonitorType = "composite"
 	MONITORTYPE_EVENT_ALERT           MonitorType = "event alert"
 	MONITORTYPE_LOG_ALERT             MonitorType = "log alert"
-	MONITORTYPE_METRIC_ALERT          MonitorType = "metric alert"
-	MONITORTYPE_PROCESS_ALERT         MonitorType = "process alert"
-	MONITORTYPE_QUERY_ALERT           MonitorType = "query alert"
-	MONITORTYPE_RUM_ALERT             MonitorType = "rum alert"
-	MONITORTYPE_SERVICE_CHECK         MonitorType = "service check"
-	MONITORTYPE_SYNTHETICS_ALERT      MonitorType = "synthetics alert"
-	MONITORTYPE_TRACE_ANALYTICS_ALERT MonitorType = "trace-analytics alert"
-	MONITORTYPE_SLO_ALERT             MonitorType = "slo alert"
-	MONITORTYPE_EVENT_V2_ALERT        MonitorType = "event-v2 alert"
-	MONITORTYPE_AUDIT_ALERT           MonitorType = "audit alert"
+	MONITORTYPE_METRIC_ALERT          MonitorType = "process alert"
+	MONITORTYPE_PROCESS_ALERT         MonitorType = "query alert"
+	MONITORTYPE_QUERY_ALERT           MonitorType = "rum alert"
+	MONITORTYPE_RUM_ALERT             MonitorType = "service check"
+	MONITORTYPE_SERVICE_CHECK         MonitorType = "synthetics alert"
+	MONITORTYPE_SYNTHETICS_ALERT      MonitorType = "trace-analytics alert"
+	MONITORTYPE_TRACE_ANALYTICS_ALERT MonitorType = "slo alert"
+	MONITORTYPE_SLO_ALERT             MonitorType = "event-v2 alert"
+	MONITORTYPE_EVENT_V2_ALERT        MonitorType = "audit alert"
 )
 
 var allowedMonitorTypeEnumValues = []MonitorType{
 	"composite",
 	"event alert",
 	"log alert",
-	"metric alert",
 	"process alert",
 	"query alert",
 	"rum alert",
