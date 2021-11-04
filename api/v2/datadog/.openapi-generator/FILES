@@ -42,6 +42,7 @@ docs/ApplicationKeyUpdateData.md
 docs/ApplicationKeyUpdateRequest.md
 docs/ApplicationKeysSort.md
 docs/ApplicationKeysType.md
+docs/ContentEncoding.md
 docs/Creator.md
 docs/DashboardListAddItemsRequest.md
 docs/DashboardListAddItemsResponse.md
@@ -59,6 +60,9 @@ docs/FullAPIKey.md
 docs/FullAPIKeyAttributes.md
 docs/FullApplicationKey.md
 docs/FullApplicationKeyAttributes.md
+docs/HTTPLogError.md
+docs/HTTPLogErrors.md
+docs/HTTPLogItem.md
 docs/IncidentCreateAttributes.md
 docs/IncidentCreateData.md
 docs/IncidentCreateRelationships.md
@@ -388,6 +392,7 @@ model_application_key_update_data.go
 model_application_key_update_request.go
 model_application_keys_sort.go
 model_application_keys_type.go
+model_content_encoding.go
 model_creator.go
 model_dashboard_list_add_items_request.go
 model_dashboard_list_add_items_response.go
@@ -404,6 +409,9 @@ model_full_api_key.go
 model_full_api_key_attributes.go
 model_full_application_key.go
 model_full_application_key_attributes.go
+model_http_log_error.go
+model_http_log_errors.go
+model_http_log_item.go
 model_incident_create_attributes.go
 model_incident_create_data.go
 model_incident_create_relationships.go
