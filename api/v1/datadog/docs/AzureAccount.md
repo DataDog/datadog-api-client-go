@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
+**Automute** | Pointer to **bool** | Silence monitors for expected Azure VM shutdowns. | [optional] 
 **ClientId** | Pointer to **string** | Your Azure web application ID. | [optional] 
 **ClientSecret** | Pointer to **string** | Your Azure web application secret key. | [optional] 
 **Errors** | Pointer to **[]string** | Errors in your configuration. | [optional] 
@@ -30,6 +31,31 @@ will change when the set of required properties is changed.
 NewAzureAccountWithDefaults instantiates a new AzureAccount object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetAutomute
+
+`func (o *AzureAccount) GetAutomute() bool`
+
+GetAutomute returns the Automute field if non-nil, zero value otherwise.
+
+### GetAutomuteOk
+
+`func (o *AzureAccount) GetAutomuteOk() (*bool, bool)`
+
+GetAutomuteOk returns a tuple with the Automute field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutomute
+
+`func (o *AzureAccount) SetAutomute(v bool)`
+
+SetAutomute sets Automute field to given value.
+
+### HasAutomute
+
+`func (o *AzureAccount) HasAutomute() bool`
+
+HasAutomute returns a boolean if a field has been set.
 
 ### GetClientId
 
