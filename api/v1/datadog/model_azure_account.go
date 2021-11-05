@@ -14,6 +14,8 @@ import (
 
 // AzureAccount Datadog-Azure integrations configured for your organization.
 type AzureAccount struct {
+	// Silence monitors for expected Azure VM shutdowns.
+	Automute *bool `json:"automute,omitempty"`
 	// Your Azure web application ID.
 	ClientId *string `json:"client_id,omitempty"`
 	// Your Azure web application secret key.
@@ -47,6 +49,38 @@ func NewAzureAccount() *AzureAccount {
 func NewAzureAccountWithDefaults() *AzureAccount {
 	this := AzureAccount{}
 	return &this
+}
+
+// GetAutomute returns the Automute field value if set, zero value otherwise.
+func (o *AzureAccount) GetAutomute() bool {
+	if o == nil || o.Automute == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Automute
+}
+
+// GetAutomuteOk returns a tuple with the Automute field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AzureAccount) GetAutomuteOk() (*bool, bool) {
+	if o == nil || o.Automute == nil {
+		return nil, false
+	}
+	return o.Automute, true
+}
+
+// HasAutomute returns a boolean if a field has been set.
+func (o *AzureAccount) HasAutomute() bool {
+	if o != nil && o.Automute != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAutomute gets a reference to the given bool and assigns it to the Automute field.
+func (o *AzureAccount) SetAutomute(v bool) {
+	o.Automute = &v
 }
 
 // GetClientId returns the ClientId field value if set, zero value otherwise.
@@ -278,6 +312,9 @@ func (o AzureAccount) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.Automute != nil {
+		toSerialize["automute"] = o.Automute
+	}
 	if o.ClientId != nil {
 		toSerialize["client_id"] = o.ClientId
 	}
@@ -305,6 +342,7 @@ func (o AzureAccount) MarshalJSON() ([]byte, error) {
 func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
+		Automute      *bool     `json:"automute,omitempty"`
 		ClientId      *string   `json:"client_id,omitempty"`
 		ClientSecret  *string   `json:"client_secret,omitempty"`
 		Errors        *[]string `json:"errors,omitempty"`
@@ -322,6 +360,7 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	o.Automute = all.Automute
 	o.ClientId = all.ClientId
 	o.ClientSecret = all.ClientSecret
 	o.Errors = all.Errors

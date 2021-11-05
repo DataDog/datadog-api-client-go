@@ -11577,6 +11577,7 @@ components:
       example:
         host_filters: key:value,filter:example
         tenant_name: testc44-1234-5678-9101-cc00736ftest
+        automute: true
         new_client_id: new1c7f6-1234-5678-9101-3fcbf464test
         client_secret: testingx./Sw*g/Y33t..R1cH+hScMDt
         client_id: testc7f6-1234-5678-9101-3fcbf464test
@@ -11584,6 +11585,10 @@ components:
         - '*'
         new_tenant_name: new1c44-1234-5678-9101-cc00736ftest
       properties:
+        automute:
+          description: Silence monitors for expected Azure VM shutdowns.
+          example: true
+          type: boolean
         client_id:
           description: Your Azure web application ID.
           example: testc7f6-1234-5678-9101-3fcbf464test
