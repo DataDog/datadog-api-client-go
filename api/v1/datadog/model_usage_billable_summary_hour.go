@@ -26,7 +26,7 @@ type UsageBillableSummaryHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// Shows usage aggregation for a billing period.
-	RatioInMonth *float64 `json:"ratio_in_month,omitempty"`
+	RatioInMonth *int64 `json:"ratio_in_month,omitempty"`
 	// Shows the first date of usage.
 	StartDate *time.Time                `json:"start_date,omitempty"`
 	Usage     *UsageBillableSummaryKeys `json:"usage,omitempty"`
@@ -212,9 +212,9 @@ func (o *UsageBillableSummaryHour) SetPublicId(v string) {
 }
 
 // GetRatioInMonth returns the RatioInMonth field value if set, zero value otherwise.
-func (o *UsageBillableSummaryHour) GetRatioInMonth() float64 {
+func (o *UsageBillableSummaryHour) GetRatioInMonth() int64 {
 	if o == nil || o.RatioInMonth == nil {
-		var ret float64
+		var ret int64
 		return ret
 	}
 	return *o.RatioInMonth
@@ -222,7 +222,7 @@ func (o *UsageBillableSummaryHour) GetRatioInMonth() float64 {
 
 // GetRatioInMonthOk returns a tuple with the RatioInMonth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageBillableSummaryHour) GetRatioInMonthOk() (*float64, bool) {
+func (o *UsageBillableSummaryHour) GetRatioInMonthOk() (*int64, bool) {
 	if o == nil || o.RatioInMonth == nil {
 		return nil, false
 	}
@@ -238,8 +238,8 @@ func (o *UsageBillableSummaryHour) HasRatioInMonth() bool {
 	return false
 }
 
-// SetRatioInMonth gets a reference to the given float64 and assigns it to the RatioInMonth field.
-func (o *UsageBillableSummaryHour) SetRatioInMonth(v float64) {
+// SetRatioInMonth gets a reference to the given int64 and assigns it to the RatioInMonth field.
+func (o *UsageBillableSummaryHour) SetRatioInMonth(v int64) {
 	o.RatioInMonth = &v
 }
 
@@ -347,7 +347,7 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 		NumOrgs      *int64                    `json:"num_orgs,omitempty"`
 		OrgName      *string                   `json:"org_name,omitempty"`
 		PublicId     *string                   `json:"public_id,omitempty"`
-		RatioInMonth *float64                  `json:"ratio_in_month,omitempty"`
+		RatioInMonth *int64                    `json:"ratio_in_month,omitempty"`
 		StartDate    *time.Time                `json:"start_date,omitempty"`
 		Usage        *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	}{}
