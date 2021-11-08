@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v1.6.0 / 2021-11-08
+
+* [Added] Add support for Azure `automute` option. See [#1179](https://github.com/DataDog/datadog-api-client-go/pull/1179).
+* [Added] Add v2 intake endpoint. See [#1172](https://github.com/DataDog/datadog-api-client-go/pull/1172).
+* [Added] Add support for RRULE fields in SLO corrections. See [#1126](https://github.com/DataDog/datadog-api-client-go/pull/1126).
+* [Added] Add aggregations attribute to v2 metric tag configuration. See [#1101](https://github.com/DataDog/datadog-api-client-go/pull/1101).
+* [Added] Add `apm_stats_query` property to `DistributionWidgetRequest`. See [#1161](https://github.com/DataDog/datadog-api-client-go/pull/1161).
+* [Fixed] Use plural form for dbm hosts usage properties. See [#1141](https://github.com/DataDog/datadog-api-client-go/pull/1141).
+* [Changed] Update Synthetics CI test metadata. See [#1140](https://github.com/DataDog/datadog-api-client-go/pull/1140).
+* [Deprecated] Update property descriptions for Dashboard RBAC release. See [#1171](https://github.com/DataDog/datadog-api-client-go/pull/1171).
+
 ## 1.5.0 / 2021-10-18
 
 * [Added] Add support for funnel widget in dashboards. See [#1115](https://github.com/DataDog/datadog-api-client-go/pull/1115).
