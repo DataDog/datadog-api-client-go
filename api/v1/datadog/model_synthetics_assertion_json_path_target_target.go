@@ -117,7 +117,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValue() interface{} {
 // GetTargetValueOk returns a tuple with the TargetValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValueOk() (*interface{}, bool) {
+func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValueOk() (interface{}, bool) {
 	if o == nil || o.TargetValue == nil {
 		return nil, false
 	}
