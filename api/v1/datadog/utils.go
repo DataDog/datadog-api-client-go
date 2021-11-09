@@ -364,9 +364,11 @@ func ContainsUnparsedObject(i interface{}) (bool, interface{}) {
 			return ContainsUnparsedObject(v.Elem().Interface())
 		}
 	default:
-		if m := v.MethodByName("IsValid"); m.IsValid() {
-			if !m.Call([]reflect.Value{})[0].Bool() {
-				return true, v.Interface()
+		if v.IsValid() {
+			if m := v.MethodByName("IsValid"); m.IsValid() {
+				if !m.Call([]reflect.Value{})[0].Bool() {
+					return true, v.Interface()
+				}
 			}
 		}
 	}
