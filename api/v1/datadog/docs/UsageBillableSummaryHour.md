@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **NumOrgs** | Pointer to **int64** | The number of organizations. | [optional] 
 **OrgName** | Pointer to **string** | The organization name. | [optional] 
 **PublicId** | Pointer to **string** | The organization public ID. | [optional] 
-**RatioInMonth** | Pointer to **int64** | Shows usage aggregation for a billing period. | [optional] 
+**RatioInMonth** | Pointer to **float64** | Shows usage aggregation for a billing period. | [optional] 
 **StartDate** | Pointer to **time.Time** | Shows the first date of usage. | [optional] 
 **Usage** | Pointer to [**UsageBillableSummaryKeys**](UsageBillableSummaryKeys.md) |  | [optional] 
 
@@ -159,20 +159,20 @@ HasPublicId returns a boolean if a field has been set.
 
 ### GetRatioInMonth
 
-`func (o *UsageBillableSummaryHour) GetRatioInMonth() int64`
+`func (o *UsageBillableSummaryHour) GetRatioInMonth() float64`
 
 GetRatioInMonth returns the RatioInMonth field if non-nil, zero value otherwise.
 
 ### GetRatioInMonthOk
 
-`func (o *UsageBillableSummaryHour) GetRatioInMonthOk() (*int64, bool)`
+`func (o *UsageBillableSummaryHour) GetRatioInMonthOk() (*float64, bool)`
 
 GetRatioInMonthOk returns a tuple with the RatioInMonth field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRatioInMonth
 
-`func (o *UsageBillableSummaryHour) SetRatioInMonth(v int64)`
+`func (o *UsageBillableSummaryHour) SetRatioInMonth(v float64)`
 
 SetRatioInMonth sets RatioInMonth field to given value.
 

@@ -26370,7 +26370,7 @@ components:
       example:
         end_date: 2000-01-23T04:56:07.000+00:00
         num_orgs: 0
-        ratio_in_month: 6
+        ratio_in_month: 6.027456183070403
         usage:
           npm_host_top99p:
             account_billable_usage: 1
@@ -26652,8 +26652,8 @@ components:
           type: string
         ratio_in_month:
           description: Shows usage aggregation for a billing period.
-          format: int64
-          type: integer
+          format: double
+          type: number
         start_date:
           description: Shows the first date of usage.
           format: date-time
@@ -26992,7 +26992,7 @@ components:
         usage:
         - end_date: 2000-01-23T04:56:07.000+00:00
           num_orgs: 0
-          ratio_in_month: 6
+          ratio_in_month: 6.027456183070403
           usage:
             npm_host_top99p:
               account_billable_usage: 1
@@ -27256,7 +27256,7 @@ components:
           start_date: 2000-01-23T04:56:07.000+00:00
         - end_date: 2000-01-23T04:56:07.000+00:00
           num_orgs: 0
-          ratio_in_month: 6
+          ratio_in_month: 6.027456183070403
           usage:
             npm_host_top99p:
               account_billable_usage: 1
