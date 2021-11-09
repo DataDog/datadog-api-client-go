@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 
 > []Downtime ListMonitorDowntimes(ctx, monitorId)
 
-Get all downtimes for the specified monitor
+Get all active downtimes for the specified monitor.
 
 ### Example
 
