@@ -418,7 +418,7 @@ func TestUsageBillableSummary(t *testing.T) {
 	assert.Equal("123abcxyz", usageItem.GetPublicId())
 	assert.Equal(time.Date(2020, 06, 01, 00, 0, 0, 0, time.UTC), usageItem.GetStartDate().UTC())
 	assert.Equal(time.Date(2020, 06, 28, 23, 0, 0, 0, time.UTC), usageItem.GetEndDate().UTC())
-	assert.Equal(int64(1), usageItem.GetRatioInMonth())
+	assert.Equal(float64(1), usageItem.GetRatioInMonth())
 	assert.Equal(int64(235), usageItem.GetNumOrgs())
 
 	var usageUsageItem = usageItem.GetUsage()
