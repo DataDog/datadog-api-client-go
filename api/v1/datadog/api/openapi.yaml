@@ -17040,7 +17040,7 @@ components:
         - tags
         - tags
         deleted: 2000-01-23T04:56:07.000+00:00
-        name: name
+        name: My monitor
         options:
           no_data_timeframe: 7
           silenced:
@@ -17125,6 +17125,7 @@ components:
           type: boolean
         name:
           description: The monitor name.
+          example: My monitor
           type: string
         options:
           $ref: '#/components/schemas/MonitorOptions'
