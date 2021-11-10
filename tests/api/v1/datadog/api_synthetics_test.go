@@ -248,6 +248,34 @@ func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.
 	}
 }
 
+func getTestSyntheticsSubtypeUDPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
+    receivedMessageAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE)
+    var target interface{} = "message"
+    receivedMessageAssertion.SetTarget(target)
+
+    return datadog.SyntheticsAPITest{
+        Config: &datadog.SyntheticsAPITestConfig{
+            Assertions: &[]datadog.SyntheticsAssertion{
+                datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(receivedMessageAssertion),
+            },
+            Request: &datadog.SyntheticsTestRequest{
+                Host:    datadog.PtrString("www.datadoghq.com"),
+                Message: datadog.PtrString("message"),
+                Port:    datadog.PtrInt64(443),
+            },
+        },
+        Locations: &[]string{"aws:us-east-2"},
+        Message:   datadog.PtrString("Go client testing Synthetics API test Subtype UDP - this is message"),
+        Name:      tests.UniqueEntityName(ctx, t),
+        Options: &datadog.SyntheticsTestOptions{
+            TickEvery: datadog.PtrInt64(60),
+        },
+        Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_UDP.Ptr(),
+        Tags:    &[]string{"testing:api-udp"},
+        Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+    }
+}
+
 func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsBrowserTest {
 	return datadog.SyntheticsBrowserTest{
 		Config: &datadog.SyntheticsBrowserTestConfig{
@@ -674,6 +702,58 @@ func TestSyntheticsSubtypeIcmpAPITestLifecycle(t *testing.T) {
 			assert.Fail("Unexpected type")
 		}
 	}
+
+	// Delete API test
+	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}})
+	if err != nil {
+		t.Fatalf("Error deleting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+}
+
+func TestSyntheticsSubtypeUdpAPITestLifecycle(t *testing.T) {
+	ctx, finish := tests.WithTestSpan(context.Background(), t)
+	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
+	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
+	defer finish()
+	assert := tests.Assert(ctx, t)
+
+	// Create API test
+	testSyntheticsAPI := getTestSyntheticsSubtypeUDPAPI(ctx, t)
+	synt, httpresp, err := Client(ctx).SyntheticsApi.CreateSyntheticsAPITest(ctx, testSyntheticsAPI)
+	if err != nil {
+		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", testSyntheticsAPI, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	publicID := synt.GetPublicId()
+	defer deleteSyntheticsTestIfExists(ctx, t, publicID)
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(testSyntheticsAPI.GetName(), synt.GetName())
+
+	// Update API test
+	updatedName := fmt.Sprintf("%s-updated", testSyntheticsAPI.GetName())
+	synt.SetName(updatedName)
+	// if we want to reuse the entity returned by the API, we must set these field to nil, as they can't be sent back
+	synt.MonitorId = nil
+	synt.PublicId = nil
+	synt, httpresp, err = Client(ctx).SyntheticsApi.UpdateAPITest(ctx, publicID, synt)
+	if err != nil {
+		t.Fatalf("Error updating Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(updatedName, synt.GetName())
+
+	// Get API test
+	synt, httpresp, err = Client(ctx).SyntheticsApi.GetAPITest(ctx, publicID)
+	if err != nil {
+		t.Fatalf("Error getting Synthetics test %s: Response %s: %v", publicID, err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(updatedName, synt.GetName())
+	config := synt.GetConfig()
+	assert.Equal(1, len(config.GetAssertions()))
 
 	// Delete API test
 	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}})
