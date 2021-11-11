@@ -21944,7 +21944,8 @@ components:
       properties:
         assertions:
           default: []
-          description: Array of assertions used for the test.
+          description: Array of assertions used for the test. Required for single
+            API tests.
           example:
           - operator: lessThan
             target: 1000
@@ -22298,11 +22299,13 @@ components:
           type: string
         target:
           description: Value used by the operator.
+          example: 123456
           nullable: false
         type:
           $ref: '#/components/schemas/SyntheticsAssertionType'
       required:
       - operator
+      - target
       - type
       type: object
     SyntheticsAssertionType:
@@ -22788,7 +22791,7 @@ components:
           subTestStepDetails:
           - null
           - null
-          value: '{}'
+          value: ""
         - screenshotBucketKey: true
           snapshotBucketKey: true
           warnings:
@@ -22823,7 +22826,7 @@ components:
           subTestStepDetails:
           - null
           - null
-          value: '{}'
+          value: ""
         browserType: browserType
       properties:
         browserType:
@@ -22919,7 +22922,7 @@ components:
             subTestStepDetails:
             - null
             - null
-            value: '{}'
+            value: ""
           - screenshotBucketKey: true
             snapshotBucketKey: true
             warnings:
@@ -22954,7 +22957,7 @@ components:
             subTestStepDetails:
             - null
             - null
-            value: '{}'
+            value: ""
           browserType: browserType
         check_version: 6
         probe_dc: probe_dc
@@ -23165,7 +23168,7 @@ components:
         branch: branch
       properties:
         branch:
-          description: The branch name.
+          description: Branch name.
           type: string
         commitSha:
           description: The commit SHA.
@@ -24315,7 +24318,7 @@ components:
         subTestStepDetails:
         - null
         - null
-        value: '{}'
+        value: ""
       properties:
         browserErrors:
           description: Array of errors collected for a browser test.
@@ -24367,7 +24370,6 @@ components:
           type: string
         value:
           description: Value for the step.
-          type: object
         vitalsMetrics:
           description: Array of Core Web Vitals metrics for the step.
           items:
