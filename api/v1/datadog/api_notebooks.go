@@ -502,6 +502,8 @@ type apiListNotebooksRequest struct {
 	sortDir             *string
 	query               *string
 	includeCells        *bool
+	isTemplate          *bool
+	type_               *string
 }
 
 type ListNotebooksOptionalParameters struct {
@@ -513,6 +515,8 @@ type ListNotebooksOptionalParameters struct {
 	SortDir             *string
 	Query               *string
 	IncludeCells        *bool
+	IsTemplate          *bool
+	Type_               *string
 }
 
 func NewListNotebooksOptionalParameters() *ListNotebooksOptionalParameters {
@@ -551,6 +555,14 @@ func (r *ListNotebooksOptionalParameters) WithIncludeCells(includeCells bool) *L
 	r.IncludeCells = &includeCells
 	return r
 }
+func (r *ListNotebooksOptionalParameters) WithIsTemplate(isTemplate bool) *ListNotebooksOptionalParameters {
+	r.IsTemplate = &isTemplate
+	return r
+}
+func (r *ListNotebooksOptionalParameters) WithType_(type_ string) *ListNotebooksOptionalParameters {
+	r.Type_ = &type_
+	return r
+}
 
 /*
  * ListNotebooks Get all notebooks
@@ -577,6 +589,8 @@ func (a *NotebooksApiService) ListNotebooks(ctx _context.Context, o ...ListNoteb
 		req.sortDir = o[0].SortDir
 		req.query = o[0].Query
 		req.includeCells = o[0].IncludeCells
+		req.isTemplate = o[0].IsTemplate
+		req.type_ = o[0].Type_
 	}
 
 	return req.ApiService.listNotebooksExecute(req)
@@ -630,6 +644,12 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 	}
 	if r.includeCells != nil {
 		localVarQueryParams.Add("include_cells", parameterToString(*r.includeCells, ""))
+	}
+	if r.isTemplate != nil {
+		localVarQueryParams.Add("is_template", parameterToString(*r.isTemplate, ""))
+	}
+	if r.type_ != nil {
+		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

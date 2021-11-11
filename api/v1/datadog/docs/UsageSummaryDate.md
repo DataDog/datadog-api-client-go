@@ -44,6 +44,8 @@ Name | Type | Description | Notes
 **ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations. | [optional] 
 **RumSessionCountSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current date for all organizations | [optional] 
 **RumTotalSessionCountSum** | Pointer to **int64** | Shows the sum of RUM Sessions (browser and mobile) over all hours in the current date for all organizations. | [optional] 
+**SdsLogsScannedBytesSum** | Pointer to **int64** | Shows the sum of all bytes scanned of logs usage by the Sensitive Data Scanner over all hours in the current month for all organizations. | [optional] 
+**SdsTotalScannedBytesSum** | Pointer to **int64** | Shows the sum of all bytes scanned across all usage types by the Sensitive Data Scanner over all hours in the current month for all organizations. | [optional] 
 **SyntheticsBrowserCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current date for all organizations. | [optional] 
 **SyntheticsCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current date for all organizations. | [optional] 
 **TraceSearchIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Indexed Spans indexed over all hours in the current date for all organizations. | [optional] 
@@ -1068,6 +1070,56 @@ SetRumTotalSessionCountSum sets RumTotalSessionCountSum field to given value.
 `func (o *UsageSummaryDate) HasRumTotalSessionCountSum() bool`
 
 HasRumTotalSessionCountSum returns a boolean if a field has been set.
+
+### GetSdsLogsScannedBytesSum
+
+`func (o *UsageSummaryDate) GetSdsLogsScannedBytesSum() int64`
+
+GetSdsLogsScannedBytesSum returns the SdsLogsScannedBytesSum field if non-nil, zero value otherwise.
+
+### GetSdsLogsScannedBytesSumOk
+
+`func (o *UsageSummaryDate) GetSdsLogsScannedBytesSumOk() (*int64, bool)`
+
+GetSdsLogsScannedBytesSumOk returns a tuple with the SdsLogsScannedBytesSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSdsLogsScannedBytesSum
+
+`func (o *UsageSummaryDate) SetSdsLogsScannedBytesSum(v int64)`
+
+SetSdsLogsScannedBytesSum sets SdsLogsScannedBytesSum field to given value.
+
+### HasSdsLogsScannedBytesSum
+
+`func (o *UsageSummaryDate) HasSdsLogsScannedBytesSum() bool`
+
+HasSdsLogsScannedBytesSum returns a boolean if a field has been set.
+
+### GetSdsTotalScannedBytesSum
+
+`func (o *UsageSummaryDate) GetSdsTotalScannedBytesSum() int64`
+
+GetSdsTotalScannedBytesSum returns the SdsTotalScannedBytesSum field if non-nil, zero value otherwise.
+
+### GetSdsTotalScannedBytesSumOk
+
+`func (o *UsageSummaryDate) GetSdsTotalScannedBytesSumOk() (*int64, bool)`
+
+GetSdsTotalScannedBytesSumOk returns a tuple with the SdsTotalScannedBytesSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSdsTotalScannedBytesSum
+
+`func (o *UsageSummaryDate) SetSdsTotalScannedBytesSum(v int64)`
+
+SetSdsTotalScannedBytesSum sets SdsTotalScannedBytesSum field to given value.
+
+### HasSdsTotalScannedBytesSum
+
+`func (o *UsageSummaryDate) HasSdsTotalScannedBytesSum() bool`
+
+HasSdsTotalScannedBytesSum returns a boolean if a field has been set.
 
 ### GetSyntheticsBrowserCheckCallsCountSum
 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Cells** | [**[]NotebookCellCreateRequest**](NotebookCellCreateRequest.md) | List of cells to display in the notebook. | 
+**Metadata** | Pointer to [**NotebookMetadata**](NotebookMetadata.md) |  | [optional] 
 **Name** | **string** | The name of the notebook. | 
 **Status** | Pointer to [**NotebookStatus**](NotebookStatus.md) |  | [optional] [default to NOTEBOOKSTATUS_PUBLISHED]
 **Time** | [**NotebookGlobalTime**](NotebookGlobalTime.md) |  | 
@@ -47,6 +48,31 @@ and a boolean to check if the value has been set.
 
 SetCells sets Cells field to given value.
 
+
+### GetMetadata
+
+`func (o *NotebookCreateDataAttributes) GetMetadata() NotebookMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *NotebookCreateDataAttributes) GetMetadataOk() (*NotebookMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *NotebookCreateDataAttributes) SetMetadata(v NotebookMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *NotebookCreateDataAttributes) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetName
 

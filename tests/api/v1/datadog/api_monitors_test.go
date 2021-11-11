@@ -27,7 +27,7 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 			"test",
 			"client:go",
 		},
-		Priority: datadog.PtrInt64(3),
+		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
 		Options: &datadog.MonitorOptions{
 			NotifyAudit:          datadog.PtrBool(false),
 			Locked:               datadog.PtrBool(false),
@@ -47,7 +47,7 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
 			},
 		},
-		RestrictedRoles: &[]string{
+		RestrictedRoles: []string{
 			"94172442-be03-11e9-a77a-3b7612558ac1",
 		},
 	}
@@ -541,6 +541,9 @@ func TestMonitorCanDeleteErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).MonitorsApi.CheckCanDeleteMonitor(ctx, tc.IDs)
+			if _, ok := err.(datadog.GenericOpenAPIError); !ok {
+				t.Fatalf("unexpected error: %v (%t)", err, err)
+			}
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 409 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.CheckCanDeleteMonitorResponse)

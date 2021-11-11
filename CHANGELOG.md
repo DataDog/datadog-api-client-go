@@ -1,5 +1,40 @@
 # CHANGELOG
 
+## 1.6.0 / 2021-11-09
+
+* [Added] Add support for Azure `automute` option. See [#1179](https://github.com/DataDog/datadog-api-client-go/pull/1179).
+* [Added] Add v2 intake endpoint. See [#1172](https://github.com/DataDog/datadog-api-client-go/pull/1172).
+* [Added] Add support for RRULE fields in SLO corrections. See [#1126](https://github.com/DataDog/datadog-api-client-go/pull/1126).
+* [Added] Add aggregations attribute to v2 metric tag configuration. See [#1101](https://github.com/DataDog/datadog-api-client-go/pull/1101).
+* [Added] Add `apm_stats_query` property to `DistributionWidgetRequest`. See [#1161](https://github.com/DataDog/datadog-api-client-go/pull/1161).
+* [Fixed] Use plural form for dbm hosts usage properties. See [#1141](https://github.com/DataDog/datadog-api-client-go/pull/1141).
+* [Changed] Update Synthetics CI test metadata. See [#1140](https://github.com/DataDog/datadog-api-client-go/pull/1140).
+* [Deprecated] Update property descriptions for Dashboard RBAC release. See [#1171](https://github.com/DataDog/datadog-api-client-go/pull/1171).
+
+## 1.5.0 / 2021-10-18
+
+* [Added] Add support for funnel widget in dashboards. See [#1115](https://github.com/DataDog/datadog-api-client-go/pull/1115).
+* [Added] Add information about creator to Synthetics tests details. See [#1122](https://github.com/DataDog/datadog-api-client-go/pull/1122).
+* [Added] Add support for gzip and deflate encoding. See [#1119](https://github.com/DataDog/datadog-api-client-go/pull/1119).
+* [Added] Add support for formulas and functions in the Scatterplot Widget for dashboards. See [#1113](https://github.com/DataDog/datadog-api-client-go/pull/1113).
+* [Added] Document encoding in metrics intake. See [#1131](https://github.com/DataDog/datadog-api-client-go/pull/1131).
+* [Added] Add `servername` property to SSL Synthetics tests request. See [#1130](https://github.com/DataDog/datadog-api-client-go/pull/1130).
+* [Added] Add `renotify_occurrences` and `renotify_statuses` monitor options. See [#1143](https://github.com/DataDog/datadog-api-client-go/pull/1143).
+* [Added] Add `type` and `is_template` properties to notebooks. See [#1146](https://github.com/DataDog/datadog-api-client-go/pull/1146).
+* [Added] [Synthetics] Add endpoint to get details of a batch. See [#1090](https://github.com/DataDog/datadog-api-client-go/pull/1090).
+* [Added] Add SDS to usage metering endpoint. See [#1153](https://github.com/DataDog/datadog-api-client-go/pull/1153).
+* [Added] Add `metrics_collection_enabled`, `cspm_resource_collection_enabled ` and `resource_collection_enabled` to AWS integration request. See [#1150](https://github.com/DataDog/datadog-api-client-go/pull/1150).
+* [Fixed] Fix typo in usage attribution field names for profiled containers. See [#1123](https://github.com/DataDog/datadog-api-client-go/pull/1123).
+* [Fixed] Make sure that OpenAPI definition are valid with real server responses. See [#1121](https://github.com/DataDog/datadog-api-client-go/pull/1121).
+* [Fixed] Fix incidents schemas. See [#1128](https://github.com/DataDog/datadog-api-client-go/pull/1128).
+* [Fixed] `IncidentFieldAttributesMultipleValue` can be nullable. See [#1129](https://github.com/DataDog/datadog-api-client-go/pull/1129).
+* [Fixed] Allow nullable date in notebook cells. See [#1134](https://github.com/DataDog/datadog-api-client-go/pull/1134).
+* [Fixed] Fix go handling of nullable enums. See [#1152](https://github.com/DataDog/datadog-api-client-go/pull/1152).
+* [Fixed] Remove event title length constraint. See [#1124](https://github.com/DataDog/datadog-api-client-go/pull/1124).
+* [Fixed] Make monitor properties `priority` and `restricted_roles` nullable. See [#1158](https://github.com/DataDog/datadog-api-client-go/pull/1158).
+* [Changed] Use AVG aggregation function for DBM queries. See [#1118](https://github.com/DataDog/datadog-api-client-go/pull/1118).
+* [Changed] Enable compression in responses. See [#1142](https://github.com/DataDog/datadog-api-client-go/pull/1142).
+
 ## 1.4.0 / 2021-09-15
 
 * [Added] Added `available_values` property to template variables schema. See [#1089](https://github.com/DataDog/datadog-api-client-go/pull/1089).

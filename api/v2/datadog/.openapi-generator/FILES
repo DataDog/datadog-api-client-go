@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -43,6 +42,7 @@ docs/ApplicationKeyUpdateData.md
 docs/ApplicationKeyUpdateRequest.md
 docs/ApplicationKeysSort.md
 docs/ApplicationKeysType.md
+docs/ContentEncoding.md
 docs/Creator.md
 docs/DashboardListAddItemsRequest.md
 docs/DashboardListAddItemsResponse.md
@@ -60,6 +60,9 @@ docs/FullAPIKey.md
 docs/FullAPIKeyAttributes.md
 docs/FullApplicationKey.md
 docs/FullApplicationKeyAttributes.md
+docs/HTTPLogError.md
+docs/HTTPLogErrors.md
+docs/HTTPLogItem.md
 docs/IncidentCreateAttributes.md
 docs/IncidentCreateData.md
 docs/IncidentCreateRelationships.md
@@ -202,6 +205,9 @@ docs/Metric.md
 docs/MetricAllTags.md
 docs/MetricAllTagsAttributes.md
 docs/MetricAllTagsResponse.md
+docs/MetricCustomAggregation.md
+docs/MetricCustomSpaceAggregation.md
+docs/MetricCustomTimeAggregation.md
 docs/MetricDistinctVolume.md
 docs/MetricDistinctVolumeAttributes.md
 docs/MetricDistinctVolumeType.md
@@ -386,6 +392,7 @@ model_application_key_update_data.go
 model_application_key_update_request.go
 model_application_keys_sort.go
 model_application_keys_type.go
+model_content_encoding.go
 model_creator.go
 model_dashboard_list_add_items_request.go
 model_dashboard_list_add_items_response.go
@@ -402,6 +409,9 @@ model_full_api_key.go
 model_full_api_key_attributes.go
 model_full_application_key.go
 model_full_application_key_attributes.go
+model_http_log_error.go
+model_http_log_errors.go
+model_http_log_item.go
 model_incident_create_attributes.go
 model_incident_create_data.go
 model_incident_create_relationships.go
@@ -537,6 +547,9 @@ model_metric.go
 model_metric_all_tags.go
 model_metric_all_tags_attributes.go
 model_metric_all_tags_response.go
+model_metric_custom_aggregation.go
+model_metric_custom_space_aggregation.go
+model_metric_custom_time_aggregation.go
 model_metric_distinct_volume.go
 model_metric_distinct_volume_attributes.go
 model_metric_distinct_volume_type.go

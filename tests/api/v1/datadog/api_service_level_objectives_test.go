@@ -662,7 +662,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 		SloId:    slo.GetId(),
 		Category: testCategory,
 		Start:    testStart,
-		End:      testEnd,
+		End:      &testEnd,
 	}
 	testSLOCorrectionCreateData.SetAttributes(testSLOCorrectionCreateAttributes)
 	testSLOCorrectionCreate := datadog.SLOCorrectionCreateRequest{

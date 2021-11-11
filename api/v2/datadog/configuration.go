@@ -95,6 +95,7 @@ type Configuration struct {
 	DefaultHeader      map[string]string `json:"defaultHeader,omitempty"`
 	UserAgent          string            `json:"userAgent,omitempty"`
 	Debug              bool              `json:"debug,omitempty"`
+	Compress           bool              `json:"compress,omitempty"`
 	Servers            ServerConfigurations
 	OperationServers   map[string]ServerConfigurations
 	HTTPClient         *http.Client
@@ -107,6 +108,7 @@ func NewConfiguration() *Configuration {
 		DefaultHeader: make(map[string]string),
 		UserAgent:     getUserAgent(),
 		Debug:         false,
+		Compress:      true,
 		Servers: ServerConfigurations{
 			{
 				URL:         "https://{subdomain}.{site}",
@@ -118,6 +120,7 @@ func NewConfiguration() *Configuration {
 						EnumValues: []string{
 							"datadoghq.com",
 							"us3.datadoghq.com",
+							"us5.datadoghq.com",
 							"datadoghq.eu",
 							"ddog-gov.com",
 						},
@@ -157,7 +160,59 @@ func NewConfiguration() *Configuration {
 				},
 			},
 		},
-		OperationServers: map[string]ServerConfigurations{},
+		OperationServers: map[string]ServerConfigurations{
+			"LogsApiService.SubmitLog": {
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": ServerVariable{
+							Description:  "The regional site for customers.",
+							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"us3.datadoghq.com",
+								"us5.datadoghq.com",
+								"datadoghq.eu",
+								"ddog-gov.com",
+							},
+						},
+						"subdomain": ServerVariable{
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "http-intake.logs",
+						},
+					},
+				},
+				{
+					URL:         "{protocol}://{name}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"name": ServerVariable{
+							Description:  "Full site DNS name.",
+							DefaultValue: "http-intake.logs.datadoghq.com",
+						},
+						"protocol": ServerVariable{
+							Description:  "The protocol for accessing the API.",
+							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": ServerVariable{
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": ServerVariable{
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "http-intake.logs",
+						},
+					},
+				},
+			},
+		},
 		unstableOperations: map[string]bool{
 			"CreateIncidentService":           false,
 			"DeleteIncidentService":           false,

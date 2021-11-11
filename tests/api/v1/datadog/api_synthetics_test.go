@@ -292,6 +292,9 @@ func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.Synthet
 func TestSyntheticsAPITestLifecycle(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -409,6 +412,9 @@ func TestSyntheticsAPITestLifecycle(t *testing.T) {
 func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -511,6 +517,9 @@ func TestSyntheticsSubtypeTcpAPITestLifecycle(t *testing.T) {
 func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -613,6 +622,9 @@ func TestSyntheticsSubtypeDnsAPITestLifecycle(t *testing.T) {
 func TestSyntheticsSubtypeIcmpAPITestLifecycle(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -674,6 +686,9 @@ func TestSyntheticsSubtypeIcmpAPITestLifecycle(t *testing.T) {
 func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -763,6 +778,9 @@ func TestSyntheticsBrowserTestLifecycle(t *testing.T) {
 func TestSyntheticsGetBrowserTestResult(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
@@ -798,6 +816,9 @@ func TestSyntheticsGetBrowserTestResult(t *testing.T) {
 func TestSyntheticsGetApiTestResult(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
@@ -835,6 +856,9 @@ func TestSyntheticsGetApiTestResult(t *testing.T) {
 func TestSyntheticsGetSubtypeTcpApiTestResult(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
@@ -872,6 +896,9 @@ func TestSyntheticsGetSubtypeTcpApiTestResult(t *testing.T) {
 func TestSyntheticsGetSubtypeDnsApiTestResult(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 
@@ -909,6 +936,9 @@ func TestSyntheticsGetSubtypeDnsApiTestResult(t *testing.T) {
 func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -952,6 +982,9 @@ func TestSyntheticsMultipleTestsOperations(t *testing.T) {
 func TestSyntheticsDeleteTestErrors(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
@@ -1003,6 +1036,9 @@ func TestSyntheticsDeleteTest404Error(t *testing.T) {
 func TestSyntheticsUpdateStatusTestErrors(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -1191,6 +1227,9 @@ func TestSyntheticsGetTestErrors(t *testing.T) {
 func TestSyntheticsUpdateTestErrors(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	// Setup the Client we'll use to interact with the Test account
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
@@ -1376,6 +1415,9 @@ func TestSyntheticsListLocations(t *testing.T) {
 func TestSyntheticsVariableLifecycle(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -1441,6 +1483,9 @@ func TestSyntheticsVariableLifecycle(t *testing.T) {
 func TestSyntheticsVariableFromTestLifecycle(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -1517,6 +1562,19 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 	test := datadog.SyntheticsCITest{
 		Locations: &[]string{"aws:us-east-2"},
 		PublicId:  publicID,
+		Metadata: &datadog.SyntheticsCIBatchMetadata{
+			Ci: &datadog.SyntheticsCIBatchMetadataCI{
+				Pipeline: &datadog.SyntheticsCIBatchMetadataPipeline{
+					Url: datadog.PtrString("pipeline-url"),
+				},
+				Provider: &datadog.SyntheticsCIBatchMetadataProvider{
+					Name: datadog.PtrString("provider name"),
+				},
+			},
+			Git: &datadog.SyntheticsCIBatchMetadataGit{
+				Branch: datadog.PtrString("branch-name"),
+			},
+		},
 	}
 	tests := []datadog.SyntheticsCITest{test}
 
@@ -1533,6 +1591,14 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 	assert.Equal(publicID, results[0].GetPublicId())
 	assert.Equal(publicID, triggeredCheckIds[0])
 
+	// get batch details
+	_, httpresp, err = Client(ctx).SyntheticsApi.GetSyntheticsCIBatch(ctx, fullResult.GetBatchId())
+
+	if err != nil {
+		t.Fatalf("Error triggering ci tests: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+	}
+	assert.Equal(200, httpresp.StatusCode)
+
 	// delete the test
 	_, httpresp, err = Client(ctx).SyntheticsApi.DeleteTests(ctx, datadog.SyntheticsDeleteTestsPayload{PublicIds: &[]string{publicID}})
 	if err != nil {
@@ -1543,6 +1609,9 @@ func TestSyntheticsTriggerCITests(t *testing.T) {
 func TestSyntheticsPrivateLocationLifecycle(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
@@ -1597,6 +1666,9 @@ func TestSyntheticsPrivateLocationLifecycle(t *testing.T) {
 func TestSyntheticsBrowserTestEndpointLifecycle(t *testing.T) {
 	ctx, finish := WithRecorder(WithTestAuth(context.Background()), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Unreliable test")
+	}
 	assert := tests.Assert(ctx, t)
 
 	// Create Browser test

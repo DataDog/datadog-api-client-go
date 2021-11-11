@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// NotebooksResponseMeta Metadata returned by the API.
+// NotebooksResponseMeta Searches metadata returned by the API.
 type NotebooksResponseMeta struct {
 	Page *NotebooksResponsePage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
