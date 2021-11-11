@@ -14,7 +14,7 @@ import (
 
 // SyntheticsAPITestConfig Configuration object for a Synthetic API test.
 type SyntheticsAPITestConfig struct {
-	// Array of assertions used for the test.
+	// Array of assertions used for the test. Required for single API tests.
 	Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
 	// Array of variables used for the test.
 	ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`

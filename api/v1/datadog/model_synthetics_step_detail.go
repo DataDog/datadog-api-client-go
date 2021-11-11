@@ -40,7 +40,7 @@ type SyntheticsStepDetail struct {
 	// URL to perform the step against.
 	Url *string `json:"url,omitempty"`
 	// Value for the step.
-	Value *interface{} `json:"value,omitempty"`
+	Value interface{} `json:"value,omitempty"`
 	// Array of Core Web Vitals metrics for the step.
 	VitalsMetrics *[]SyntheticsCoreWebVitals `json:"vitalsMetrics,omitempty"`
 	// Warning collected that didn't failed the step.
@@ -514,22 +514,23 @@ func (o *SyntheticsStepDetail) SetUrl(v string) {
 	o.Url = &v
 }
 
-// GetValue returns the Value field value if set, zero value otherwise.
+// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SyntheticsStepDetail) GetValue() interface{} {
-	if o == nil || o.Value == nil {
+	if o == nil {
 		var ret interface{}
 		return ret
 	}
-	return *o.Value
+	return o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsStepDetail) GetValueOk() (*interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SyntheticsStepDetail) GetValueOk() (interface{}, bool) {
 	if o == nil || o.Value == nil {
 		return nil, false
 	}
-	return o.Value, true
+	return &o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -543,7 +544,7 @@ func (o *SyntheticsStepDetail) HasValue() bool {
 
 // SetValue gets a reference to the given interface{} and assigns it to the Value field.
 func (o *SyntheticsStepDetail) SetValue(v interface{}) {
-	o.Value = &v
+	o.Value = v
 }
 
 // GetVitalsMetrics returns the VitalsMetrics field value if set, zero value otherwise.
@@ -686,7 +687,7 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 		TimeToInteractive   *float64                       `json:"timeToInteractive,omitempty"`
 		Type                *SyntheticsStepType            `json:"type,omitempty"`
 		Url                 *string                        `json:"url,omitempty"`
-		Value               *interface{}                   `json:"value,omitempty"`
+		Value               interface{}                    `json:"value,omitempty"`
 		VitalsMetrics       *[]SyntheticsCoreWebVitals     `json:"vitalsMetrics,omitempty"`
 		Warnings            *[]SyntheticsStepDetailWarning `json:"warnings,omitempty"`
 	}{}

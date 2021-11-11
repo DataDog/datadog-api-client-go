@@ -416,6 +416,16 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
+### SetValueNil
+
+`func (o *SyntheticsStepDetail) SetValueNil(b bool)`
+
+ SetValueNil sets the value for Value to be an explicit nil
+
+### UnsetValue
+`func (o *SyntheticsStepDetail) UnsetValue()`
+
+UnsetValue ensures that no value is present for Value, not even an explicit nil
 ### GetVitalsMetrics
 
 `func (o *SyntheticsStepDetail) GetVitalsMetrics() []SyntheticsCoreWebVitals`
