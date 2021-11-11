@@ -14,7 +14,7 @@ import (
 
 // SyntheticsCIBatchMetadataGit Git information.
 type SyntheticsCIBatchMetadataGit struct {
-	// The branch name.
+	// Branch name.
 	Branch *string `json:"branch,omitempty"`
 	// The commit SHA.
 	CommitSha *string `json:"commitSha,omitempty"`
