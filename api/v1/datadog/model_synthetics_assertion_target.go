@@ -19,7 +19,7 @@ type SyntheticsAssertionTarget struct {
 	// The associated assertion property.
 	Property *string `json:"property,omitempty"`
 	// Value used by the operator.
-	Target *interface{}            `json:"target,omitempty"`
+	Target interface{}             `json:"target"`
 	Type   SyntheticsAssertionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -29,9 +29,10 @@ type SyntheticsAssertionTarget struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsAssertionTarget(operator SyntheticsAssertionOperator, type_ SyntheticsAssertionType) *SyntheticsAssertionTarget {
+func NewSyntheticsAssertionTarget(operator SyntheticsAssertionOperator, target interface{}, type_ SyntheticsAssertionType) *SyntheticsAssertionTarget {
 	this := SyntheticsAssertionTarget{}
 	this.Operator = operator
+	this.Target = target
 	this.Type = type_
 	return &this
 }
@@ -100,36 +101,28 @@ func (o *SyntheticsAssertionTarget) SetProperty(v string) {
 	o.Property = &v
 }
 
-// GetTarget returns the Target field value if set, zero value otherwise.
+// GetTarget returns the Target field value
 func (o *SyntheticsAssertionTarget) GetTarget() interface{} {
-	if o == nil || o.Target == nil {
+	if o == nil {
 		var ret interface{}
 		return ret
 	}
-	return *o.Target
+
+	return o.Target
 }
 
-// GetTargetOk returns a tuple with the Target field value if set, nil otherwise
+// GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAssertionTarget) GetTargetOk() (*interface{}, bool) {
-	if o == nil || o.Target == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Target, true
+	return &o.Target, true
 }
 
-// HasTarget returns a boolean if a field has been set.
-func (o *SyntheticsAssertionTarget) HasTarget() bool {
-	if o != nil && o.Target != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTarget gets a reference to the given interface{} and assigns it to the Target field.
+// SetTarget sets field value
 func (o *SyntheticsAssertionTarget) SetTarget(v interface{}) {
-	o.Target = &v
+	o.Target = v
 }
 
 // GetType returns the Type field value
@@ -167,7 +160,7 @@ func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
 	if o.Property != nil {
 		toSerialize["property"] = o.Property
 	}
-	if o.Target != nil {
+	if true {
 		toSerialize["target"] = o.Target
 	}
 	if true {
@@ -180,12 +173,13 @@ func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Operator *SyntheticsAssertionOperator `json:"operator"`
+		Target   *interface{}                 `json:"target"`
 		Type     *SyntheticsAssertionType     `json:"type"`
 	}{}
 	all := struct {
 		Operator SyntheticsAssertionOperator `json:"operator"`
 		Property *string                     `json:"property,omitempty"`
-		Target   *interface{}                `json:"target,omitempty"`
+		Target   interface{}                 `json:"target"`
 		Type     SyntheticsAssertionType     `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
@@ -194,6 +188,9 @@ func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if required.Operator == nil {
 		return fmt.Errorf("Required field operator missing")
+	}
+	if required.Target == nil {
+		return fmt.Errorf("Required field target missing")
 	}
 	if required.Type == nil {
 		return fmt.Errorf("Required field type missing")

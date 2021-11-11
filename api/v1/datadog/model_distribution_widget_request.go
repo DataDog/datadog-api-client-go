@@ -14,12 +14,13 @@ import (
 
 // DistributionWidgetRequest Updated distribution widget.
 type DistributionWidgetRequest struct {
-	ApmQuery            *LogQueryDefinition     `json:"apm_query,omitempty"`
-	EventQuery          *LogQueryDefinition     `json:"event_query,omitempty"`
-	LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
-	NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
-	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
-	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
+	ApmQuery            *LogQueryDefinition      `json:"apm_query,omitempty"`
+	ApmStatsQuery       *ApmStatsQueryDefinition `json:"apm_stats_query,omitempty"`
+	EventQuery          *LogQueryDefinition      `json:"event_query,omitempty"`
+	LogQuery            *LogQueryDefinition      `json:"log_query,omitempty"`
+	NetworkQuery        *LogQueryDefinition      `json:"network_query,omitempty"`
+	ProcessQuery        *ProcessQueryDefinition  `json:"process_query,omitempty"`
+	ProfileMetricsQuery *LogQueryDefinition      `json:"profile_metrics_query,omitempty"`
 	// Widget query.
 	Q             *string             `json:"q,omitempty"`
 	RumQuery      *LogQueryDefinition `json:"rum_query,omitempty"`
@@ -76,6 +77,38 @@ func (o *DistributionWidgetRequest) HasApmQuery() bool {
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
 func (o *DistributionWidgetRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
+}
+
+// GetApmStatsQuery returns the ApmStatsQuery field value if set, zero value otherwise.
+func (o *DistributionWidgetRequest) GetApmStatsQuery() ApmStatsQueryDefinition {
+	if o == nil || o.ApmStatsQuery == nil {
+		var ret ApmStatsQueryDefinition
+		return ret
+	}
+	return *o.ApmStatsQuery
+}
+
+// GetApmStatsQueryOk returns a tuple with the ApmStatsQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DistributionWidgetRequest) GetApmStatsQueryOk() (*ApmStatsQueryDefinition, bool) {
+	if o == nil || o.ApmStatsQuery == nil {
+		return nil, false
+	}
+	return o.ApmStatsQuery, true
+}
+
+// HasApmStatsQuery returns a boolean if a field has been set.
+func (o *DistributionWidgetRequest) HasApmStatsQuery() bool {
+	if o != nil && o.ApmStatsQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApmStatsQuery gets a reference to the given ApmStatsQueryDefinition and assigns it to the ApmStatsQuery field.
+func (o *DistributionWidgetRequest) SetApmStatsQuery(v ApmStatsQueryDefinition) {
+	o.ApmStatsQuery = &v
 }
 
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
@@ -374,6 +407,9 @@ func (o DistributionWidgetRequest) MarshalJSON() ([]byte, error) {
 	if o.ApmQuery != nil {
 		toSerialize["apm_query"] = o.ApmQuery
 	}
+	if o.ApmStatsQuery != nil {
+		toSerialize["apm_stats_query"] = o.ApmStatsQuery
+	}
 	if o.EventQuery != nil {
 		toSerialize["event_query"] = o.EventQuery
 	}
@@ -407,16 +443,17 @@ func (o DistributionWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *DistributionWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition     `json:"apm_query,omitempty"`
-		EventQuery          *LogQueryDefinition     `json:"event_query,omitempty"`
-		LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
-		Q                   *string                 `json:"q,omitempty"`
-		RumQuery            *LogQueryDefinition     `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition     `json:"security_query,omitempty"`
-		Style               *WidgetStyle            `json:"style,omitempty"`
+		ApmQuery            *LogQueryDefinition      `json:"apm_query,omitempty"`
+		ApmStatsQuery       *ApmStatsQueryDefinition `json:"apm_stats_query,omitempty"`
+		EventQuery          *LogQueryDefinition      `json:"event_query,omitempty"`
+		LogQuery            *LogQueryDefinition      `json:"log_query,omitempty"`
+		NetworkQuery        *LogQueryDefinition      `json:"network_query,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition  `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition      `json:"profile_metrics_query,omitempty"`
+		Q                   *string                  `json:"q,omitempty"`
+		RumQuery            *LogQueryDefinition      `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition      `json:"security_query,omitempty"`
+		Style               *WidgetStyle             `json:"style,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -428,6 +465,7 @@ func (o *DistributionWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.ApmQuery = all.ApmQuery
+	o.ApmStatsQuery = all.ApmStatsQuery
 	o.EventQuery = all.EventQuery
 	o.LogQuery = all.LogQuery
 	o.NetworkQuery = all.NetworkQuery

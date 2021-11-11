@@ -1,0 +1,46 @@
+// Update an existing incident returns "OK" response
+
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"os"
+
+	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+	// there is a valid "incident" in the system
+	INCIDENT_DATA_ID := os.Getenv("INCIDENT_DATA_ID")
+
+	body := datadog.IncidentUpdateRequest{
+		Data: datadog.IncidentUpdateData{
+			Id:   INCIDENT_DATA_ID,
+			Type: datadog.IncidentType("incidents"),
+			Attributes: &datadog.IncidentUpdateAttributes{
+				Fields: &map[string]datadog.IncidentFieldAttributes{
+					"state": datadog.IncidentFieldAttributes{
+						IncidentFieldAttributesSingleValue: &datadog.IncidentFieldAttributesSingleValue{
+							Type:  datadog.IncidentFieldAttributesSingleValueType("dropdown").Ptr(),
+							Value: *datadog.NewNullableString(datadog.PtrString("resolved")),
+						}},
+				},
+				Title: datadog.PtrString("A test incident title-updated"),
+			},
+		},
+	}
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentsApi.UpdateIncident(ctx, INCIDENT_DATA_ID, body)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.UpdateIncident`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+
+	responseContent, _ := json.MarshalIndent(resp, "", "  ")
+	fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.UpdateIncident`:\n%s\n", responseContent)
+}

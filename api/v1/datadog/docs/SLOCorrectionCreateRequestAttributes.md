@@ -6,7 +6,9 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Category** | [**SLOCorrectionCategory**](SLOCorrectionCategory.md) |  | 
 **Description** | Pointer to **string** | Description of the correction being made. | [optional] 
-**End** | **int64** | Ending time of the correction in epoch seconds. | 
+**Duration** | Pointer to **int64** | Length of time (in seconds) for a specified &#x60;rrule&#x60; recurring SLO correction. | [optional] 
+**End** | Pointer to **int64** | Ending time of the correction in epoch seconds. | [optional] 
+**Rrule** | Pointer to **string** | Recurrence rules as defined in the iCalendar RFC 5545. | [optional] 
 **SloId** | **string** | ID of the SLO that this correction will be applied to. | 
 **Start** | **int64** | Starting time of the correction in epoch seconds. | 
 **Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;). | [optional] 
@@ -15,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewSLOCorrectionCreateRequestAttributes
 
-`func NewSLOCorrectionCreateRequestAttributes(category SLOCorrectionCategory, end int64, sloId string, start int64) *SLOCorrectionCreateRequestAttributes`
+`func NewSLOCorrectionCreateRequestAttributes(category SLOCorrectionCategory, sloId string, start int64) *SLOCorrectionCreateRequestAttributes`
 
 NewSLOCorrectionCreateRequestAttributes instantiates a new SLOCorrectionCreateRequestAttributes object.
 This constructor will assign default values to properties that have it defined,
@@ -75,6 +77,31 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### GetDuration
+
+`func (o *SLOCorrectionCreateRequestAttributes) GetDuration() int64`
+
+GetDuration returns the Duration field if non-nil, zero value otherwise.
+
+### GetDurationOk
+
+`func (o *SLOCorrectionCreateRequestAttributes) GetDurationOk() (*int64, bool)`
+
+GetDurationOk returns a tuple with the Duration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDuration
+
+`func (o *SLOCorrectionCreateRequestAttributes) SetDuration(v int64)`
+
+SetDuration sets Duration field to given value.
+
+### HasDuration
+
+`func (o *SLOCorrectionCreateRequestAttributes) HasDuration() bool`
+
+HasDuration returns a boolean if a field has been set.
+
 ### GetEnd
 
 `func (o *SLOCorrectionCreateRequestAttributes) GetEnd() int64`
@@ -94,6 +121,36 @@ and a boolean to check if the value has been set.
 
 SetEnd sets End field to given value.
 
+### HasEnd
+
+`func (o *SLOCorrectionCreateRequestAttributes) HasEnd() bool`
+
+HasEnd returns a boolean if a field has been set.
+
+### GetRrule
+
+`func (o *SLOCorrectionCreateRequestAttributes) GetRrule() string`
+
+GetRrule returns the Rrule field if non-nil, zero value otherwise.
+
+### GetRruleOk
+
+`func (o *SLOCorrectionCreateRequestAttributes) GetRruleOk() (*string, bool)`
+
+GetRruleOk returns a tuple with the Rrule field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRrule
+
+`func (o *SLOCorrectionCreateRequestAttributes) SetRrule(v string)`
+
+SetRrule sets Rrule field to given value.
+
+### HasRrule
+
+`func (o *SLOCorrectionCreateRequestAttributes) HasRrule() bool`
+
+HasRrule returns a boolean if a field has been set.
 
 ### GetSloId
 

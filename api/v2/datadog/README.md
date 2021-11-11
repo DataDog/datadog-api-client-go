@@ -115,6 +115,7 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**AggregateLogs**](docs/LogsApi.md#aggregatelogs) | **Post** /api/v2/logs/analytics/aggregate | Aggregate events
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **Post** /api/v2/logs/events/search | Search logs
 *LogsApi* | [**ListLogsGet**](docs/LogsApi.md#listlogsget) | **Get** /api/v2/logs/events | Get a list of logs
+*LogsApi* | [**SubmitLog**](docs/LogsApi.md#submitlog) | **Post** /api/v2/logs | Send logs
 *LogsArchivesApi* | [**AddReadRoleToArchive**](docs/LogsArchivesApi.md#addreadroletoarchive) | **Post** /api/v2/logs/config/archives/{archive_id}/readers | Grant role to an archive
 *LogsArchivesApi* | [**CreateLogsArchive**](docs/LogsArchivesApi.md#createlogsarchive) | **Post** /api/v2/logs/config/archives | Create an archive
 *LogsArchivesApi* | [**DeleteLogsArchive**](docs/LogsArchivesApi.md#deletelogsarchive) | **Delete** /api/v2/logs/config/archives/{archive_id} | Delete an archive
@@ -205,6 +206,7 @@ Class | Method | HTTP request | Description
  - [ApplicationKeyUpdateRequest](docs/ApplicationKeyUpdateRequest.md)
  - [ApplicationKeysSort](docs/ApplicationKeysSort.md)
  - [ApplicationKeysType](docs/ApplicationKeysType.md)
+ - [ContentEncoding](docs/ContentEncoding.md)
  - [Creator](docs/Creator.md)
  - [DashboardListAddItemsRequest](docs/DashboardListAddItemsRequest.md)
  - [DashboardListAddItemsResponse](docs/DashboardListAddItemsResponse.md)
@@ -221,6 +223,9 @@ Class | Method | HTTP request | Description
  - [FullAPIKeyAttributes](docs/FullAPIKeyAttributes.md)
  - [FullApplicationKey](docs/FullApplicationKey.md)
  - [FullApplicationKeyAttributes](docs/FullApplicationKeyAttributes.md)
+ - [HTTPLogError](docs/HTTPLogError.md)
+ - [HTTPLogErrors](docs/HTTPLogErrors.md)
+ - [HTTPLogItem](docs/HTTPLogItem.md)
  - [IncidentCreateAttributes](docs/IncidentCreateAttributes.md)
  - [IncidentCreateData](docs/IncidentCreateData.md)
  - [IncidentCreateRelationships](docs/IncidentCreateRelationships.md)
@@ -356,6 +361,9 @@ Class | Method | HTTP request | Description
  - [MetricAllTags](docs/MetricAllTags.md)
  - [MetricAllTagsAttributes](docs/MetricAllTagsAttributes.md)
  - [MetricAllTagsResponse](docs/MetricAllTagsResponse.md)
+ - [MetricCustomAggregation](docs/MetricCustomAggregation.md)
+ - [MetricCustomSpaceAggregation](docs/MetricCustomSpaceAggregation.md)
+ - [MetricCustomTimeAggregation](docs/MetricCustomTimeAggregation.md)
  - [MetricDistinctVolume](docs/MetricDistinctVolume.md)
  - [MetricDistinctVolumeAttributes](docs/MetricDistinctVolumeAttributes.md)
  - [MetricDistinctVolumeType](docs/MetricDistinctVolumeType.md)

@@ -4,7 +4,7 @@ set -e
 # Match test scenarios
 RE_TEST='\^TestScenarios\$.*'
 # Only match scenarios and not individual features or steps
-RE_SCENARIO='\^TestScenarios\$/\^Feature_[^/]+/Scenario_[^/]+\$'
+RE_SCENARIO='\^TestScenarios\$/v[0-9]+/\^Feature_[^/]+/Scenario_[^/]+\$'
 COVERAGE_OPTIONS="-coverpkg=$(go list ./... | grep -v examples | grep -v /test | paste -sd ',' -) -coverprofile=coverage.txt -covermode=atomic"
 
 cd tests

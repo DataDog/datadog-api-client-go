@@ -3,23 +3,25 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"Test-TestDowntimeRecurrence_until_occurences_and_until_date_are_mutually_exclusive-1618220936; until occurences and until date are mutually exclusive","recurrence":{"period":1,"type":"weeks","until_date":1620035335,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1618220935,"timezone":"Etc/UTC"}
+      {"end":1634720427,"message":"Test-TestDowntimeRecurrence_until_occurences_and_until_date_are_mutually_exclusive-1634716827; until occurences and until date are mutually exclusive","recurrence":{"period":1,"type":"weeks","until_date":1636531227,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1634716827,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "366"
       Content-Type:
       - application/json
       Dd-Operation-Id:
       - CreateDowntime
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1735010436368343589"
+      - "6601657881484935859"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "3219329466033950106"
+      - "4390740353989189401"
     url: https://api.datadoghq.com/api/v1/downtime
     method: POST
   response:
@@ -34,15 +36,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:56 GMT
+      - Wed, 20 Oct 2021 08:00:28 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

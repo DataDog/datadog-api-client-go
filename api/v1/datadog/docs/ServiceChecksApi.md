@@ -14,7 +14,9 @@ Method | HTTP request | Description
 
 Submit a list of Service Checks.
 
-**Note**: A valid API key is required.
+**Notes**:
+- A valid API key is required.
+- Service checks can be submitted up to 10 minutes in the past.
 
 ### Example
 

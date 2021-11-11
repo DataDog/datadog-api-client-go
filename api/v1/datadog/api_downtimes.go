@@ -808,7 +808,7 @@ type apiListMonitorDowntimesRequest struct {
 
 /*
  * ListMonitorDowntimes Get all downtimes for a monitor
- * Get all downtimes for the specified monitor
+ * Get all active downtimes for the specified monitor.
  */
 func (a *DowntimesApiService) ListMonitorDowntimes(ctx _context.Context, monitorId int64) ([]Downtime, *_nethttp.Response, error) {
 	req := apiListMonitorDowntimesRequest{

@@ -95,6 +95,7 @@ type Configuration struct {
 	DefaultHeader      map[string]string `json:"defaultHeader,omitempty"`
 	UserAgent          string            `json:"userAgent,omitempty"`
 	Debug              bool              `json:"debug,omitempty"`
+	Compress           bool              `json:"compress,omitempty"`
 	Servers            ServerConfigurations
 	OperationServers   map[string]ServerConfigurations
 	HTTPClient         *http.Client
@@ -107,6 +108,7 @@ func NewConfiguration() *Configuration {
 		DefaultHeader: make(map[string]string),
 		UserAgent:     getUserAgent(),
 		Debug:         false,
+		Compress:      true,
 		Servers: ServerConfigurations{
 			{
 				URL:         "https://{subdomain}.{site}",
@@ -118,6 +120,7 @@ func NewConfiguration() *Configuration {
 						EnumValues: []string{
 							"datadoghq.com",
 							"us3.datadoghq.com",
+							"us5.datadoghq.com",
 							"datadoghq.eu",
 							"ddog-gov.com",
 						},
@@ -169,6 +172,7 @@ func NewConfiguration() *Configuration {
 							EnumValues: []string{
 								"datadoghq.com",
 								"us3.datadoghq.com",
+								"us5.datadoghq.com",
 								"datadoghq.eu",
 								"ddog-gov.com",
 							},
@@ -215,6 +219,7 @@ func NewConfiguration() *Configuration {
 							EnumValues: []string{
 								"datadoghq.com",
 								"us3.datadoghq.com",
+								"us5.datadoghq.com",
 								"datadoghq.eu",
 								"ddog-gov.com",
 							},

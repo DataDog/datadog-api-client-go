@@ -14,7 +14,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
 	"strings"
 )
 
@@ -74,17 +73,7 @@ func (a *MonitorsApiService) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMon
 		return localVarReturnValue, nil, reportError("monitorIds is required and must be specified")
 	}
 
-	{
-		t := *r.monitorIds
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("monitor_ids", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("monitor_ids", parameterToString(t, "multi"))
-		}
-	}
+	localVarQueryParams.Add("monitor_ids", parameterToString(*r.monitorIds, "csv"))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -224,7 +213,7 @@ The type of monitor chosen from:
 - integration: `query alert` or `service check`
 - live process: `process alert`
 - logs: `log alert`
-- metric: `metric alert`
+- metric: `query alert`
 - network: `service check`
 - outlier: `query alert`
 - process: `service check`
@@ -298,7 +287,7 @@ Example: `events(query).rollup(rollup_method[, measure]).last(time_window) opera
 - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 - **`#`** an integer or decimal number used to set the threshold.
 
-**NOTE** Only available on US1-FED, US3, and in closed beta on EU and US1.
+**NOTE** Only available on US1-FED, US3, US5 and in closed beta on EU and US1.
 
 **Process Alert Query**
 
@@ -353,7 +342,7 @@ Example: `audits(query).rollup(rollup_method[, measure]).last(time_window) opera
 - **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 - **`#`** an integer or decimal number used to set the threshold.
 
-**NOTE** Only available on US1-FED and in closed beta on EU, US3, and US1.
+**NOTE** Only available on US1-FED and in closed beta on US1, EU, US3, and US5.
 */
 func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, body Monitor) (Monitor, *_nethttp.Response, error) {
 	req := apiCreateMonitorRequest{

@@ -1,0 +1,95 @@
+interactions:
+- request:
+    body: |
+      {"end":1634659063,"message":"Test-Schedule_a_downtime_with_until_occurrences-1634655463","recurrence":{"period":1,"type":"weeks","until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1634655463,"timezone":"Etc/UTC"}
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '250'
+      Content-Type:
+      - application/json
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '8918612869974622668'
+      X-Datadog-Trace-Id:
+      - '1952176856150222201'
+    method: POST
+    url: https://api.datadoghq.com/api/v1/downtime
+  response:
+    body: '{"recurrence":{"until_date":null,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":1634659063,"monitor_tags":["*"],"child_id":null,"canceled":null,"monitor_id":null,"created":1634655463,"org_id":321813,"modified":1634655463,"disabled":false,"start":1634655463,"creator_id":1445416,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["*"],"message":"Test-Schedule_a_downtime_with_until_occurrences-1634655463","downtime_type":0,"id":1511004136,"updater_id":null}'
+    code: 200
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Length:
+      - '519'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 19 Oct 2021 14:57:43 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '7483041667030077795'
+      X-Datadog-Trace-Id:
+      - '1952176856150222201'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/downtime/1511004136
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Length:
+      - '0'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Date:
+      - Tue, 19 Oct 2021 14:57:43 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+version: 1

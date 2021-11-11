@@ -23,12 +23,12 @@ import (
 	"testing"
 	"time"
 
+	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/jonboulle/clockwork"
 	"github.com/stretchr/testify/require"
 	ddhttp "gopkg.in/DataDog/dd-trace-go.v1/contrib/net/http"
-	ddtesting "gopkg.in/DataDog/dd-trace-go.v1/contrib/testing"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
@@ -120,52 +120,6 @@ func SecurePath(path string) string {
 	return filepath.Clean(path)
 }
 
-// SnakeToCamelCase converts snake_case to SnakeCase.
-func SnakeToCamelCase(snake string) (camel string) {
-	isToUpper := false
-
-	for k, v := range snake {
-		if k == 0 {
-			camel = strings.ToUpper(string(v))
-		} else {
-			if isToUpper {
-				camel += strings.ToUpper(string(v))
-				isToUpper = false
-			} else {
-				if v == '_' {
-					isToUpper = true
-				} else if v == '.' { // support for lookup paths
-					isToUpper = true
-					camel += string(v)
-				} else {
-					camel += string(v)
-				}
-			}
-		}
-	}
-	return
-}
-
-func toVarName(param string) (varName string) {
-	isToUpper := true
-
-	for _, v := range param {
-		if isToUpper {
-			varName += strings.ToUpper(string(v))
-			isToUpper = false
-		} else {
-			if v == '_' {
-				isToUpper = true
-			} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
-				isToUpper = true
-			} else {
-				varName += string(v)
-			}
-		}
-	}
-	return
-}
-
 // Retry calls the call function for count times every interval while it returns false
 func Retry(interval time.Duration, count int, call func() bool) error {
 	for i := 0; i < count; i++ {
@@ -201,9 +155,7 @@ func ConfigureTracer(m *testing.M) {
 	if socketPath, ok := os.LookupEnv("DD_APM_RECEIVER_SOCKET"); ok {
 		tracerOptions = append(tracerOptions, tracer.WithUDS(socketPath))
 	}
-	tracer.Start(tracerOptions...)
-	code := m.Run()
-	tracer.Stop()
+	code := ddtesting.Run(m, tracerOptions...)
 	os.Exit(code)
 }
 
@@ -253,7 +205,10 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		t.Log(err.Error())
 		tag = "features"
 	}
-	ctx, finish := ddtesting.StartSpanWithFinish(ctx, t, ddtesting.WithSkipFrames(2), ddtesting.WithSpanOptions(
+	ctx, finish := ddtesting.StartTestWithContext(ctx, t, ddtesting.WithSkipFrames(2), ddtesting.WithSpanOptions(
+		// Set resource name to TestName
+		tracer.ResourceName(t.Name()),
+
 		// We need to make the tag be something that is then searchable in monitors
 		// https://docs.datadoghq.com/tracing/guide/metrics_namespace/#errors
 		// "version" is really the only one we can use here

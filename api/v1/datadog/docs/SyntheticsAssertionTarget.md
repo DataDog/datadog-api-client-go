@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Operator** | [**SyntheticsAssertionOperator**](SyntheticsAssertionOperator.md) |  | 
 **Property** | Pointer to **string** | The associated assertion property. | [optional] 
-**Target** | Pointer to **interface{}** | Value used by the operator. | [optional] 
+**Target** | **interface{}** | Value used by the operator. | 
 **Type** | [**SyntheticsAssertionType**](SyntheticsAssertionType.md) |  | 
 
 ## Methods
 
 ### NewSyntheticsAssertionTarget
 
-`func NewSyntheticsAssertionTarget(operator SyntheticsAssertionOperator, type_ SyntheticsAssertionType) *SyntheticsAssertionTarget`
+`func NewSyntheticsAssertionTarget(operator SyntheticsAssertionOperator, target interface{}, type_ SyntheticsAssertionType) *SyntheticsAssertionTarget`
 
 NewSyntheticsAssertionTarget instantiates a new SyntheticsAssertionTarget object.
 This constructor will assign default values to properties that have it defined,
@@ -92,11 +92,6 @@ and a boolean to check if the value has been set.
 
 SetTarget sets Target field to given value.
 
-### HasTarget
-
-`func (o *SyntheticsAssertionTarget) HasTarget() bool`
-
-HasTarget returns a boolean if a field has been set.
 
 ### GetType
 

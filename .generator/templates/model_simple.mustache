@@ -22,7 +22,7 @@ type {{classname}} struct {
 {{#deprecated}}
 	// Deprecated
 {{/deprecated}}
-	{{name}} {{^required}}{{^isNullable}}*{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
+	{{name}} {{^required}}{{^isNullable}}{{^isAnyType}}*{{/isAnyType}}{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 {{/vars}}
 {{^isArray}}
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -183,7 +183,7 @@ func (o *{{classname}}) Get{{name}}() {{vendorExtensions.x-go-base-type}} {
 {{/vendorExtensions.x-golang-is-container}}
 {{/isNullable}}
 {{^isNullable}}
-	return *o.{{name}}
+	return {{^isAnyType}}*{{/isAnyType}}o.{{name}}
 {{/isNullable}}
 }
 
@@ -195,7 +195,7 @@ func (o *{{classname}}) Get{{name}}() {{vendorExtensions.x-go-base-type}} {
 {{#deprecated}}
 // Deprecated
 {{/deprecated}}
-func (o *{{classname}}) Get{{name}}Ok() (*{{vendorExtensions.x-go-base-type}}, bool) {
+func (o *{{classname}}) Get{{name}}Ok() ({{^isAnyType}}*{{/isAnyType}}{{vendorExtensions.x-go-base-type}}, bool) {
 	if o == nil {{^isNullable}}|| o.{{name}} == nil{{/isNullable}}{{#isNullable}}{{#vendorExtensions.x-golang-is-container}}|| o.{{name}} == nil{{/vendorExtensions.x-golang-is-container}}{{/isNullable}} {
 		return nil, false
 	}
@@ -327,7 +327,7 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 	{{#deprecated}}
 		// Deprecated
 	{{/deprecated}}
-		{{name}} {{^required}}{{^isNullable}}*{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
+		{{name}} {{^required}}{{^isNullable}}{{^isAnyType}}*{{/isAnyType}}{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 	{{/vars}}
 	}
 
@@ -441,7 +441,7 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 {{/hasRequired}}
 	all := struct {
 {{#vars}}
-			{{name}} {{^required}}{{^isNullable}}*{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"`
+			{{name}} {{^required}}{{^isNullable}}{{^isAnyType}}*{{/isAnyType}}{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"`
 {{/vars}}
 		}{}
 {{#hasRequired}}
@@ -466,7 +466,7 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 	}
 {{#vars}}
 {{#allowableValues}}
-	if v := all.{{name}}; {{^required}}{{^isNullable}}v != nil && {{/isNullable}}{{/required}}!v.IsValid() {
+	if v := all.{{name}}; {{^required}}{{^isNullable}}v != nil && {{/isNullable}}{{/required}}{{#isNullable}}v.Get() != nil && !v.Get(){{/isNullable}}{{^isNullable}}!v{{/isNullable}}.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

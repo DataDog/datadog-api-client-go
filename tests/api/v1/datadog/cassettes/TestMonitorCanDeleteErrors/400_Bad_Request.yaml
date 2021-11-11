@@ -10,14 +10,14 @@ interactions:
       Dd-Operation-Id:
       - CheckCanDeleteMonitor
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3285894338836934307"
+      - "7257870223013245471"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5759900399816091977"
-    url: https://api.datadoghq.com/api/v1/monitor/can_delete
+      - "8338263538961228440"
+    url: https://api.datadoghq.com/api/v1/monitor/can_delete?monitor_ids=
     method: GET
   response:
     body: '{"errors": ["monitor_ids are required"]}'
@@ -31,15 +31,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:44 GMT
+      - Thu, 14 Oct 2021 14:10:26 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -49,7 +47,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "11998"
       X-Ratelimit-Reset:
-      - "16"
+      - "34"
     status: 400 Bad Request
     code: 400
     duration: ""
