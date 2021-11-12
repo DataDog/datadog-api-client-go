@@ -28284,14 +28284,14 @@ components:
     UsageNetworkFlowsHour:
       description: Number of netflow events indexed for each hour for a given organization.
       example:
+        indexed_events_count: 0
         hour: 2000-01-23T04:56:07.000+00:00
-        indexed_event_count: 0
       properties:
         hour:
           description: The hour for the usage.
           format: date-time
           type: string
-        indexed_event_count:
+        indexed_events_count:
           description: Contains the number of netflow events indexed.
           format: int64
           type: integer
@@ -28301,10 +28301,10 @@ components:
         hour for a given organization.
       example:
         usage:
-        - hour: 2000-01-23T04:56:07.000+00:00
-          indexed_event_count: 0
-        - hour: 2000-01-23T04:56:07.000+00:00
-          indexed_event_count: 0
+        - indexed_events_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
+        - indexed_events_count: 0
+          hour: 2000-01-23T04:56:07.000+00:00
       properties:
         usage:
           description: Get hourly usage for Network Flows.
