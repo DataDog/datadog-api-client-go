@@ -619,6 +619,8 @@ docs/UsageProfilingResponse.md
 docs/UsageReportsType.md
 docs/UsageRumSessionsHour.md
 docs/UsageRumSessionsResponse.md
+docs/UsageRumUnitsHour.md
+docs/UsageRumUnitsResponse.md
 docs/UsageSDSHour.md
 docs/UsageSDSResponse.md
 docs/UsageSNMPHour.md
@@ -1261,6 +1263,8 @@ model_usage_profiling_response.go
 model_usage_reports_type.go
 model_usage_rum_sessions_hour.go
 model_usage_rum_sessions_response.go
+model_usage_rum_units_hour.go
+model_usage_rum_units_response.go
 model_usage_sds_hour.go
 model_usage_sds_response.go
 model_usage_snmp_hour.go
