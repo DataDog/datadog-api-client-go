@@ -19,11 +19,11 @@ type SLOCorrectionResponseAttributes struct {
 	// Description of the correction being made.
 	Description *string `json:"description,omitempty"`
 	// Length of time (in seconds) for a specified `rrule` recurring SLO correction.
-	Duration *int64 `json:"duration,omitempty"`
+	Duration NullableInt64 `json:"duration,omitempty"`
 	// Ending time of the correction in epoch seconds.
 	End *int64 `json:"end,omitempty"`
 	// Recurrence rules as defined in the iCalendar RFC 5545.
-	Rrule *string `json:"rrule,omitempty"`
+	Rrule NullableString `json:"rrule,omitempty"`
 	// ID of the SLO that this correction will be applied to.
 	SloId *string `json:"slo_id,omitempty"`
 	// Starting time of the correction in epoch seconds.
@@ -147,36 +147,47 @@ func (o *SLOCorrectionResponseAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetDuration returns the Duration field value if set, zero value otherwise.
+// GetDuration returns the Duration field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOCorrectionResponseAttributes) GetDuration() int64 {
-	if o == nil || o.Duration == nil {
+	if o == nil || o.Duration.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Duration
+	return *o.Duration.Get()
 }
 
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOCorrectionResponseAttributes) GetDurationOk() (*int64, bool) {
-	if o == nil || o.Duration == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Duration, true
+	return o.Duration.Get(), o.Duration.IsSet()
 }
 
 // HasDuration returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasDuration() bool {
-	if o != nil && o.Duration != nil {
+	if o != nil && o.Duration.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDuration gets a reference to the given int64 and assigns it to the Duration field.
+// SetDuration gets a reference to the given NullableInt64 and assigns it to the Duration field.
 func (o *SLOCorrectionResponseAttributes) SetDuration(v int64) {
-	o.Duration = &v
+	o.Duration.Set(&v)
+}
+
+// SetDurationNil sets the value for Duration to be an explicit nil
+func (o *SLOCorrectionResponseAttributes) SetDurationNil() {
+	o.Duration.Set(nil)
+}
+
+// UnsetDuration ensures that no value is present for Duration, not even an explicit nil
+func (o *SLOCorrectionResponseAttributes) UnsetDuration() {
+	o.Duration.Unset()
 }
 
 // GetEnd returns the End field value if set, zero value otherwise.
@@ -211,36 +222,47 @@ func (o *SLOCorrectionResponseAttributes) SetEnd(v int64) {
 	o.End = &v
 }
 
-// GetRrule returns the Rrule field value if set, zero value otherwise.
+// GetRrule returns the Rrule field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOCorrectionResponseAttributes) GetRrule() string {
-	if o == nil || o.Rrule == nil {
+	if o == nil || o.Rrule.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Rrule
+	return *o.Rrule.Get()
 }
 
 // GetRruleOk returns a tuple with the Rrule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOCorrectionResponseAttributes) GetRruleOk() (*string, bool) {
-	if o == nil || o.Rrule == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Rrule, true
+	return o.Rrule.Get(), o.Rrule.IsSet()
 }
 
 // HasRrule returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasRrule() bool {
-	if o != nil && o.Rrule != nil {
+	if o != nil && o.Rrule.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRrule gets a reference to the given string and assigns it to the Rrule field.
+// SetRrule gets a reference to the given NullableString and assigns it to the Rrule field.
 func (o *SLOCorrectionResponseAttributes) SetRrule(v string) {
-	o.Rrule = &v
+	o.Rrule.Set(&v)
+}
+
+// SetRruleNil sets the value for Rrule to be an explicit nil
+func (o *SLOCorrectionResponseAttributes) SetRruleNil() {
+	o.Rrule.Set(nil)
+}
+
+// UnsetRrule ensures that no value is present for Rrule, not even an explicit nil
+func (o *SLOCorrectionResponseAttributes) UnsetRrule() {
+	o.Rrule.Unset()
 }
 
 // GetSloId returns the SloId field value if set, zero value otherwise.
@@ -353,14 +375,14 @@ func (o SLOCorrectionResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.Duration != nil {
-		toSerialize["duration"] = o.Duration
+	if o.Duration.IsSet() {
+		toSerialize["duration"] = o.Duration.Get()
 	}
 	if o.End != nil {
 		toSerialize["end"] = o.End
 	}
-	if o.Rrule != nil {
-		toSerialize["rrule"] = o.Rrule
+	if o.Rrule.IsSet() {
+		toSerialize["rrule"] = o.Rrule.Get()
 	}
 	if o.SloId != nil {
 		toSerialize["slo_id"] = o.SloId
@@ -380,9 +402,9 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 		Category    *SLOCorrectionCategory `json:"category,omitempty"`
 		Creator     *Creator               `json:"creator,omitempty"`
 		Description *string                `json:"description,omitempty"`
-		Duration    *int64                 `json:"duration,omitempty"`
+		Duration    NullableInt64          `json:"duration,omitempty"`
 		End         *int64                 `json:"end,omitempty"`
-		Rrule       *string                `json:"rrule,omitempty"`
+		Rrule       NullableString         `json:"rrule,omitempty"`
 		SloId       *string                `json:"slo_id,omitempty"`
 		Start       *int64                 `json:"start,omitempty"`
 		Timezone    *string                `json:"timezone,omitempty"`
