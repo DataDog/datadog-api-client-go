@@ -31,6 +31,8 @@
 
 * `NETWORK_HOP` (value: `"networkHop"`)
 
+* `RECEIVED_MESSAGE` (value: `"receivedMessage"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

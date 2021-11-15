@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **FollowRedirects** | Pointer to **bool** | Specifies whether or not the request follows redirects. | [optional] 
 **Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
 **Host** | Pointer to **string** | Host name to perform the test with. | [optional] 
+**Message** | Pointer to **string** | Message to send for UDP tests. | [optional] 
 **Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | [optional] 
 **NoSavingResponseBody** | Pointer to **bool** | Determines whether or not to save the response body. | [optional] 
 **NumberOfPackets** | Pointer to **int32** | Number of pings to use per test. | [optional] 
@@ -266,6 +267,31 @@ SetHost sets Host field to given value.
 `func (o *SyntheticsTestRequest) HasHost() bool`
 
 HasHost returns a boolean if a field has been set.
+
+### GetMessage
+
+`func (o *SyntheticsTestRequest) GetMessage() string`
+
+GetMessage returns the Message field if non-nil, zero value otherwise.
+
+### GetMessageOk
+
+`func (o *SyntheticsTestRequest) GetMessageOk() (*string, bool)`
+
+GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMessage
+
+`func (o *SyntheticsTestRequest) SetMessage(v string)`
+
+SetMessage sets Message field to given value.
+
+### HasMessage
+
+`func (o *SyntheticsTestRequest) HasMessage() bool`
+
+HasMessage returns a boolean if a field has been set.
 
 ### GetMethod
 
