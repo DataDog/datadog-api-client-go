@@ -26,6 +26,7 @@ Method | HTTP request | Description
 [**ListLocations**](SyntheticsApi.md#ListLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 [**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
 [**TriggerCITests**](SyntheticsApi.md#TriggerCITests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger tests from CI/CD pipelines
+[**TriggerTests**](SyntheticsApi.md#TriggerTests) | **Post** /api/v1/synthetics/tests/trigger | Trigger some Synthetics tests
 [**UpdateAPITest**](SyntheticsApi.md#UpdateAPITest) | **Put** /api/v1/synthetics/tests/api/{public_id} | Edit an API test
 [**UpdateBrowserTest**](SyntheticsApi.md#UpdateBrowserTest) | **Put** /api/v1/synthetics/tests/browser/{public_id} | Edit a browser test
 [**UpdatePrivateLocation**](SyntheticsApi.md#UpdatePrivateLocation) | **Put** /api/v1/synthetics/private-locations/{location_id} | Edit a private location
@@ -1564,6 +1565,76 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
 **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
 **body** | [**SyntheticsCITestBody**](SyntheticsCITestBody.md) | Details of the test to trigger. | 
+
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
+
+### Return type
+
+[**SyntheticsTriggerCITestsResponse**](SyntheticsTriggerCITestsResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TriggerTests
+
+> SyntheticsTriggerCITestsResponse TriggerTests(ctx, body)
+
+Trigger a set of Synthetics tests.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    body := *datadog.NewSyntheticsTriggerBody([]datadog.SyntheticsTriggerTest{*datadog.NewSyntheticsTriggerTest("aaa-aaa-aaa")}) // SyntheticsTriggerBody | The identifiers of the tests to trigger.
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.SyntheticsApi.TriggerTests(ctx, body)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.TriggerTests`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TriggerTests`: SyntheticsTriggerCITestsResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from SyntheticsApi.TriggerTests:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**body** | [**SyntheticsTriggerBody**](SyntheticsTriggerBody.md) | The identifiers of the tests to trigger. | 
 
 
 ### Optional Parameters
