@@ -249,31 +249,31 @@ func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.
 }
 
 func getTestSyntheticsSubtypeUDPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
-    receivedMessageAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE)
-    var target interface{} = "message"
-    receivedMessageAssertion.SetTarget(target)
+	receivedMessageAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE)
+	var target interface{} = "message"
+	receivedMessageAssertion.SetTarget(target)
 
-    return datadog.SyntheticsAPITest{
-        Config: &datadog.SyntheticsAPITestConfig{
-            Assertions: &[]datadog.SyntheticsAssertion{
-                datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(receivedMessageAssertion),
-            },
-            Request: &datadog.SyntheticsTestRequest{
-                Host:    datadog.PtrString("www.datadoghq.com"),
-                Message: datadog.PtrString("message"),
-                Port:    datadog.PtrInt64(443),
-            },
-        },
-        Locations: &[]string{"aws:us-east-2"},
-        Message:   datadog.PtrString("Go client testing Synthetics API test Subtype UDP - this is message"),
-        Name:      tests.UniqueEntityName(ctx, t),
-        Options: &datadog.SyntheticsTestOptions{
-            TickEvery: datadog.PtrInt64(60),
-        },
-        Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_UDP.Ptr(),
-        Tags:    &[]string{"testing:api-udp"},
-        Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
-    }
+	return datadog.SyntheticsAPITest{
+		Config: &datadog.SyntheticsAPITestConfig{
+			Assertions: &[]datadog.SyntheticsAssertion{
+				datadog.SyntheticsAssertionTargetAsSyntheticsAssertion(receivedMessageAssertion),
+			},
+			Request: &datadog.SyntheticsTestRequest{
+				Host:    datadog.PtrString("www.datadoghq.com"),
+				Message: datadog.PtrString("message"),
+				Port:    datadog.PtrInt64(443),
+			},
+		},
+		Locations: &[]string{"aws:us-east-2"},
+		Message:   datadog.PtrString("Go client testing Synthetics API test Subtype UDP - this is message"),
+		Name:      tests.UniqueEntityName(ctx, t),
+		Options: &datadog.SyntheticsTestOptions{
+			TickEvery: datadog.PtrInt64(60),
+		},
+		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_UDP.Ptr(),
+		Tags:    &[]string{"testing:api-udp"},
+		Type:    datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+	}
 }
 
 func getTestSyntheticsBrowser(ctx context.Context, t *testing.T) datadog.SyntheticsBrowserTest {

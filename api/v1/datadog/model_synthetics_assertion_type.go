@@ -32,6 +32,7 @@ const (
 	SYNTHETICSASSERTIONTYPE_PACKET_LOSS_PERCENTAGE SyntheticsAssertionType = "packetLossPercentage"
 	SYNTHETICSASSERTIONTYPE_PACKETS_RECEIVED       SyntheticsAssertionType = "packetsReceived"
 	SYNTHETICSASSERTIONTYPE_NETWORK_HOP            SyntheticsAssertionType = "networkHop"
+	SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE       SyntheticsAssertionType = "receivedMessage"
 )
 
 var allowedSyntheticsAssertionTypeEnumValues = []SyntheticsAssertionType{
@@ -49,6 +50,7 @@ var allowedSyntheticsAssertionTypeEnumValues = []SyntheticsAssertionType{
 	"packetLossPercentage",
 	"packetsReceived",
 	"networkHop",
+	"receivedMessage",
 }
 
 func (w *SyntheticsAssertionType) GetAllowedValues() []SyntheticsAssertionType {

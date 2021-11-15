@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// SyntheticsTestDetailsSubType The subtype of the Synthetic API test, `http`, `ssl`, `tcp`, `dns`, `icmp` or `multi`.
+// SyntheticsTestDetailsSubType The subtype of the Synthetic API test, `http`, `ssl`, `tcp`, `dns`, `icmp`, `udp` or `multi`.
 type SyntheticsTestDetailsSubType string
 
 // List of SyntheticsTestDetailsSubType
@@ -24,6 +24,7 @@ const (
 	SYNTHETICSTESTDETAILSSUBTYPE_DNS   SyntheticsTestDetailsSubType = "dns"
 	SYNTHETICSTESTDETAILSSUBTYPE_MULTI SyntheticsTestDetailsSubType = "multi"
 	SYNTHETICSTESTDETAILSSUBTYPE_ICMP  SyntheticsTestDetailsSubType = "icmp"
+	SYNTHETICSTESTDETAILSSUBTYPE_UDP   SyntheticsTestDetailsSubType = "udp"
 )
 
 var allowedSyntheticsTestDetailsSubTypeEnumValues = []SyntheticsTestDetailsSubType{
@@ -33,6 +34,7 @@ var allowedSyntheticsTestDetailsSubTypeEnumValues = []SyntheticsTestDetailsSubTy
 	"dns",
 	"multi",
 	"icmp",
+	"udp",
 }
 
 func (w *SyntheticsTestDetailsSubType) GetAllowedValues() []SyntheticsTestDetailsSubType {
