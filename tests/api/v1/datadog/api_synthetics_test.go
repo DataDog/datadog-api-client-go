@@ -249,9 +249,7 @@ func getTestSyntheticsSubtypeICMPAPI(ctx context.Context, t *testing.T) datadog.
 }
 
 func getTestSyntheticsSubtypeUDPAPI(ctx context.Context, t *testing.T) datadog.SyntheticsAPITest {
-	receivedMessageAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, datadog.SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE)
-	var target interface{} = "message"
-	receivedMessageAssertion.SetTarget(target)
+	receivedMessageAssertion := datadog.NewSyntheticsAssertionTarget(datadog.SYNTHETICSASSERTIONOPERATOR_IS, "message", datadog.SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE)
 
 	return datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
