@@ -23,6 +23,8 @@ type UsageSummaryDate struct {
 	ApmHostTop99p *int64 `json:"apm_host_top99p,omitempty"`
 	// Shows the sum of audit logs lines indexed over all hours in the current date for all organizations.
 	AuditLogsLinesIndexedSum *int64 `json:"audit_logs_lines_indexed_sum,omitempty"`
+	// The average profiled task count for Fargate Profiling.
+	AvgProfiledFargateTasks *int64 `json:"avg_profiled_fargate_tasks,omitempty"`
 	// Shows the 99th percentile of all AWS hosts over all hours in the current date for all organizations.
 	AwsHostTop99p *int64 `json:"aws_host_top99p,omitempty"`
 	// Shows the average of the number of functions that executed 1 or more times each hour in the current date for all organizations.
@@ -268,6 +270,38 @@ func (o *UsageSummaryDate) HasAuditLogsLinesIndexedSum() bool {
 // SetAuditLogsLinesIndexedSum gets a reference to the given int64 and assigns it to the AuditLogsLinesIndexedSum field.
 func (o *UsageSummaryDate) SetAuditLogsLinesIndexedSum(v int64) {
 	o.AuditLogsLinesIndexedSum = &v
+}
+
+// GetAvgProfiledFargateTasks returns the AvgProfiledFargateTasks field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetAvgProfiledFargateTasks() int64 {
+	if o == nil || o.AvgProfiledFargateTasks == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AvgProfiledFargateTasks
+}
+
+// GetAvgProfiledFargateTasksOk returns a tuple with the AvgProfiledFargateTasks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetAvgProfiledFargateTasksOk() (*int64, bool) {
+	if o == nil || o.AvgProfiledFargateTasks == nil {
+		return nil, false
+	}
+	return o.AvgProfiledFargateTasks, true
+}
+
+// HasAvgProfiledFargateTasks returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasAvgProfiledFargateTasks() bool {
+	if o != nil && o.AvgProfiledFargateTasks != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAvgProfiledFargateTasks gets a reference to the given int64 and assigns it to the AvgProfiledFargateTasks field.
+func (o *UsageSummaryDate) SetAvgProfiledFargateTasks(v int64) {
+	o.AvgProfiledFargateTasks = &v
 }
 
 // GetAwsHostTop99p returns the AwsHostTop99p field value if set, zero value otherwise.
@@ -1855,6 +1889,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.AuditLogsLinesIndexedSum != nil {
 		toSerialize["audit_logs_lines_indexed_sum"] = o.AuditLogsLinesIndexedSum
 	}
+	if o.AvgProfiledFargateTasks != nil {
+		toSerialize["avg_profiled_fargate_tasks"] = o.AvgProfiledFargateTasks
+	}
 	if o.AwsHostTop99p != nil {
 		toSerialize["aws_host_top99p"] = o.AwsHostTop99p
 	}
@@ -2012,6 +2049,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 		ApmAzureAppServiceHostTop99p            *int64                 `json:"apm_azure_app_service_host_top99p,omitempty"`
 		ApmHostTop99p                           *int64                 `json:"apm_host_top99p,omitempty"`
 		AuditLogsLinesIndexedSum                *int64                 `json:"audit_logs_lines_indexed_sum,omitempty"`
+		AvgProfiledFargateTasks                 *int64                 `json:"avg_profiled_fargate_tasks,omitempty"`
 		AwsHostTop99p                           *int64                 `json:"aws_host_top99p,omitempty"`
 		AwsLambdaFuncCount                      *int64                 `json:"aws_lambda_func_count,omitempty"`
 		AwsLambdaInvocationsSum                 *int64                 `json:"aws_lambda_invocations_sum,omitempty"`
@@ -2075,6 +2113,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	o.ApmAzureAppServiceHostTop99p = all.ApmAzureAppServiceHostTop99p
 	o.ApmHostTop99p = all.ApmHostTop99p
 	o.AuditLogsLinesIndexedSum = all.AuditLogsLinesIndexedSum
+	o.AvgProfiledFargateTasks = all.AvgProfiledFargateTasks
 	o.AwsHostTop99p = all.AwsHostTop99p
 	o.AwsLambdaFuncCount = all.AwsLambdaFuncCount
 	o.AwsLambdaInvocationsSum = all.AwsLambdaInvocationsSum

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
+**AvgProfiledFargateTasks** | Pointer to **int64** | The average profiled task count for Fargate Profiling. | [optional] 
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **TasksCount** | Pointer to **int64** | The number of Fargate tasks run. | [optional] 
 
@@ -25,6 +26,31 @@ will change when the set of required properties is changed.
 NewUsageFargateHourWithDefaults instantiates a new UsageFargateHour object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetAvgProfiledFargateTasks
+
+`func (o *UsageFargateHour) GetAvgProfiledFargateTasks() int64`
+
+GetAvgProfiledFargateTasks returns the AvgProfiledFargateTasks field if non-nil, zero value otherwise.
+
+### GetAvgProfiledFargateTasksOk
+
+`func (o *UsageFargateHour) GetAvgProfiledFargateTasksOk() (*int64, bool)`
+
+GetAvgProfiledFargateTasksOk returns a tuple with the AvgProfiledFargateTasks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvgProfiledFargateTasks
+
+`func (o *UsageFargateHour) SetAvgProfiledFargateTasks(v int64)`
+
+SetAvgProfiledFargateTasks sets AvgProfiledFargateTasks field to given value.
+
+### HasAvgProfiledFargateTasks
+
+`func (o *UsageFargateHour) HasAvgProfiledFargateTasks() bool`
+
+HasAvgProfiledFargateTasks returns a boolean if a field has been set.
 
 ### GetHour
 
