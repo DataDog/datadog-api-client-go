@@ -23,6 +23,8 @@ type UsageSummaryResponse struct {
 	ApmHostTop99pSum *int64 `json:"apm_host_top99p_sum,omitempty"`
 	// Shows the sum of all audit logs lines indexed over all hours in the current months for all organizations.
 	AuditLogsLinesIndexedAggSum *int64 `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
+	// Shows the average of all profiled Fargate tasks over all hours in the current months for all organizations.
+	AvgProfiledFargateTasksSum *int64 `json:"avg_profiled_fargate_tasks_sum,omitempty"`
 	// Shows the 99th percentile of all AWS hosts over all hours in the current months for all organizations.
 	AwsHostTop99pSum *int64 `json:"aws_host_top99p_sum,omitempty"`
 	// Shows the average of the number of functions that executed 1 or more times each hour in the current months for all organizations.
@@ -285,6 +287,38 @@ func (o *UsageSummaryResponse) HasAuditLogsLinesIndexedAggSum() bool {
 // SetAuditLogsLinesIndexedAggSum gets a reference to the given int64 and assigns it to the AuditLogsLinesIndexedAggSum field.
 func (o *UsageSummaryResponse) SetAuditLogsLinesIndexedAggSum(v int64) {
 	o.AuditLogsLinesIndexedAggSum = &v
+}
+
+// GetAvgProfiledFargateTasksSum returns the AvgProfiledFargateTasksSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetAvgProfiledFargateTasksSum() int64 {
+	if o == nil || o.AvgProfiledFargateTasksSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AvgProfiledFargateTasksSum
+}
+
+// GetAvgProfiledFargateTasksSumOk returns a tuple with the AvgProfiledFargateTasksSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetAvgProfiledFargateTasksSumOk() (*int64, bool) {
+	if o == nil || o.AvgProfiledFargateTasksSum == nil {
+		return nil, false
+	}
+	return o.AvgProfiledFargateTasksSum, true
+}
+
+// HasAvgProfiledFargateTasksSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasAvgProfiledFargateTasksSum() bool {
+	if o != nil && o.AvgProfiledFargateTasksSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAvgProfiledFargateTasksSum gets a reference to the given int64 and assigns it to the AvgProfiledFargateTasksSum field.
+func (o *UsageSummaryResponse) SetAvgProfiledFargateTasksSum(v int64) {
+	o.AvgProfiledFargateTasksSum = &v
 }
 
 // GetAwsHostTop99pSum returns the AwsHostTop99pSum field value if set, zero value otherwise.
@@ -2160,6 +2194,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.AuditLogsLinesIndexedAggSum != nil {
 		toSerialize["audit_logs_lines_indexed_agg_sum"] = o.AuditLogsLinesIndexedAggSum
 	}
+	if o.AvgProfiledFargateTasksSum != nil {
+		toSerialize["avg_profiled_fargate_tasks_sum"] = o.AvgProfiledFargateTasksSum
+	}
 	if o.AwsHostTop99pSum != nil {
 		toSerialize["aws_host_top99p_sum"] = o.AwsHostTop99pSum
 	}
@@ -2344,6 +2381,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		ApmAzureAppServiceHostTop99pSum            *int64              `json:"apm_azure_app_service_host_top99p_sum,omitempty"`
 		ApmHostTop99pSum                           *int64              `json:"apm_host_top99p_sum,omitempty"`
 		AuditLogsLinesIndexedAggSum                *int64              `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
+		AvgProfiledFargateTasksSum                 *int64              `json:"avg_profiled_fargate_tasks_sum,omitempty"`
 		AwsHostTop99pSum                           *int64              `json:"aws_host_top99p_sum,omitempty"`
 		AwsLambdaFuncCount                         *int64              `json:"aws_lambda_func_count,omitempty"`
 		AwsLambdaInvocationsSum                    *int64              `json:"aws_lambda_invocations_sum,omitempty"`
@@ -2416,6 +2454,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.ApmAzureAppServiceHostTop99pSum = all.ApmAzureAppServiceHostTop99pSum
 	o.ApmHostTop99pSum = all.ApmHostTop99pSum
 	o.AuditLogsLinesIndexedAggSum = all.AuditLogsLinesIndexedAggSum
+	o.AvgProfiledFargateTasksSum = all.AvgProfiledFargateTasksSum
 	o.AwsHostTop99pSum = all.AwsHostTop99pSum
 	o.AwsLambdaFuncCount = all.AwsLambdaFuncCount
 	o.AwsLambdaInvocationsSum = all.AwsLambdaInvocationsSum

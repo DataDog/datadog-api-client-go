@@ -15,6 +15,8 @@ import (
 
 // UsageFargateHour Number of Fargate tasks run and hourly usage.
 type UsageFargateHour struct {
+	// The average profiled task count for Fargate Profiling.
+	AvgProfiledFargateTasks *int64 `json:"avg_profiled_fargate_tasks,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The number of Fargate tasks run.
@@ -38,6 +40,38 @@ func NewUsageFargateHour() *UsageFargateHour {
 func NewUsageFargateHourWithDefaults() *UsageFargateHour {
 	this := UsageFargateHour{}
 	return &this
+}
+
+// GetAvgProfiledFargateTasks returns the AvgProfiledFargateTasks field value if set, zero value otherwise.
+func (o *UsageFargateHour) GetAvgProfiledFargateTasks() int64 {
+	if o == nil || o.AvgProfiledFargateTasks == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AvgProfiledFargateTasks
+}
+
+// GetAvgProfiledFargateTasksOk returns a tuple with the AvgProfiledFargateTasks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageFargateHour) GetAvgProfiledFargateTasksOk() (*int64, bool) {
+	if o == nil || o.AvgProfiledFargateTasks == nil {
+		return nil, false
+	}
+	return o.AvgProfiledFargateTasks, true
+}
+
+// HasAvgProfiledFargateTasks returns a boolean if a field has been set.
+func (o *UsageFargateHour) HasAvgProfiledFargateTasks() bool {
+	if o != nil && o.AvgProfiledFargateTasks != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAvgProfiledFargateTasks gets a reference to the given int64 and assigns it to the AvgProfiledFargateTasks field.
+func (o *UsageFargateHour) SetAvgProfiledFargateTasks(v int64) {
+	o.AvgProfiledFargateTasks = &v
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -109,6 +143,9 @@ func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.AvgProfiledFargateTasks != nil {
+		toSerialize["avg_profiled_fargate_tasks"] = o.AvgProfiledFargateTasks
+	}
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
@@ -121,8 +158,9 @@ func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
 func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour       *time.Time `json:"hour,omitempty"`
-		TasksCount *int64     `json:"tasks_count,omitempty"`
+		AvgProfiledFargateTasks *int64     `json:"avg_profiled_fargate_tasks,omitempty"`
+		Hour                    *time.Time `json:"hour,omitempty"`
+		TasksCount              *int64     `json:"tasks_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -133,6 +171,7 @@ func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	o.AvgProfiledFargateTasks = all.AvgProfiledFargateTasks
 	o.Hour = all.Hour
 	o.TasksCount = all.TasksCount
 	return nil
