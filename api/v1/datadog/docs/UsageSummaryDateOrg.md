@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ApmAzureAppServiceHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Azure app services using APM over all hours in the current date for the given org. | [optional] 
 **ApmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct APM hosts over all hours in the current date for the given org. | [optional] 
 **AuditLogsLinesIndexedSum** | Pointer to **int64** | Shows the sum of all audit logs lines indexed over all hours in the current date for the given org. | [optional] 
+**AvgProfiledFargateTasks** | Pointer to **int64** | The average profiled task count for Fargate Profiling. | [optional] 
 **AwsHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current date for the given org. | [optional] 
 **AwsLambdaFuncCount** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current date for the given org. | [optional] 
 **AwsLambdaInvocationsSum** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current date for the given org. | [optional] 
@@ -177,6 +178,31 @@ SetAuditLogsLinesIndexedSum sets AuditLogsLinesIndexedSum field to given value.
 `func (o *UsageSummaryDateOrg) HasAuditLogsLinesIndexedSum() bool`
 
 HasAuditLogsLinesIndexedSum returns a boolean if a field has been set.
+
+### GetAvgProfiledFargateTasks
+
+`func (o *UsageSummaryDateOrg) GetAvgProfiledFargateTasks() int64`
+
+GetAvgProfiledFargateTasks returns the AvgProfiledFargateTasks field if non-nil, zero value otherwise.
+
+### GetAvgProfiledFargateTasksOk
+
+`func (o *UsageSummaryDateOrg) GetAvgProfiledFargateTasksOk() (*int64, bool)`
+
+GetAvgProfiledFargateTasksOk returns a tuple with the AvgProfiledFargateTasks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvgProfiledFargateTasks
+
+`func (o *UsageSummaryDateOrg) SetAvgProfiledFargateTasks(v int64)`
+
+SetAvgProfiledFargateTasks sets AvgProfiledFargateTasks field to given value.
+
+### HasAvgProfiledFargateTasks
+
+`func (o *UsageSummaryDateOrg) HasAvgProfiledFargateTasks() bool`
+
+HasAvgProfiledFargateTasks returns a boolean if a field has been set.
 
 ### GetAwsHostTop99p
 

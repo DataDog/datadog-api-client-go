@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ApmAzureAppServiceHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all Azure app services using APM over all hours in the current months all organizations. | [optional] 
 **ApmHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all distinct APM hosts over all hours in the current months for all organizations. | [optional] 
 **AuditLogsLinesIndexedAggSum** | Pointer to **int64** | Shows the sum of all audit logs lines indexed over all hours in the current months for all organizations. | [optional] 
+**AvgProfiledFargateTasksSum** | Pointer to **int64** | Shows the average of all profiled Fargate tasks over all hours in the current months for all organizations. | [optional] 
 **AwsHostTop99pSum** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current months for all organizations. | [optional] 
 **AwsLambdaFuncCount** | Pointer to **int64** | Shows the average of the number of functions that executed 1 or more times each hour in the current months for all organizations. | [optional] 
 **AwsLambdaInvocationsSum** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current months for all organizations. | [optional] 
@@ -185,6 +186,31 @@ SetAuditLogsLinesIndexedAggSum sets AuditLogsLinesIndexedAggSum field to given v
 `func (o *UsageSummaryResponse) HasAuditLogsLinesIndexedAggSum() bool`
 
 HasAuditLogsLinesIndexedAggSum returns a boolean if a field has been set.
+
+### GetAvgProfiledFargateTasksSum
+
+`func (o *UsageSummaryResponse) GetAvgProfiledFargateTasksSum() int64`
+
+GetAvgProfiledFargateTasksSum returns the AvgProfiledFargateTasksSum field if non-nil, zero value otherwise.
+
+### GetAvgProfiledFargateTasksSumOk
+
+`func (o *UsageSummaryResponse) GetAvgProfiledFargateTasksSumOk() (*int64, bool)`
+
+GetAvgProfiledFargateTasksSumOk returns a tuple with the AvgProfiledFargateTasksSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvgProfiledFargateTasksSum
+
+`func (o *UsageSummaryResponse) SetAvgProfiledFargateTasksSum(v int64)`
+
+SetAvgProfiledFargateTasksSum sets AvgProfiledFargateTasksSum field to given value.
+
+### HasAvgProfiledFargateTasksSum
+
+`func (o *UsageSummaryResponse) HasAvgProfiledFargateTasksSum() bool`
+
+HasAvgProfiledFargateTasksSum returns a boolean if a field has been set.
 
 ### GetAwsHostTop99pSum
 
