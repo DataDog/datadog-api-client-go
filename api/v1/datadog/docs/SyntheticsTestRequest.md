@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **FollowRedirects** | Pointer to **bool** | Specifies whether or not the request follows redirects. | [optional] 
 **Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
 **Host** | Pointer to **string** | Host name to perform the test with. | [optional] 
-**Message** | Pointer to **string** | Message to send for UDP tests. | [optional] 
+**Message** | Pointer to **string** | Message to send for UDP or WebSocket tests. | [optional] 
 **Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | [optional] 
 **NoSavingResponseBody** | Pointer to **bool** | Determines whether or not to save the response body. | [optional] 
 **NumberOfPackets** | Pointer to **int32** | Number of pings to use per test. | [optional] 
