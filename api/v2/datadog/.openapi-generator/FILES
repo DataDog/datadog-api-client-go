@@ -1,7 +1,6 @@
 .gitignore
 .travis.yml
 README.md
-api/openapi.yaml
 api_dashboard_lists.go
 api_incident_services.go
 api_incident_teams.go
@@ -366,8 +365,6 @@ docs/UsersApi.md
 docs/UsersResponse.md
 docs/UsersType.md
 git_push.sh
-go.mod
-go.sum
 model_api_error_response.go
 model_api_key_create_attributes.go
 model_api_key_create_data.go
