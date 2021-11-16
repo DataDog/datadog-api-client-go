@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**IndexedEventCount** | Pointer to **int64** | Contains the number of netflow events indexed. | [optional] 
+**IndexedEventsCount** | Pointer to **int64** | Contains the number of netflow events indexed. | [optional] 
 
 ## Methods
 
@@ -51,30 +51,30 @@ SetHour sets Hour field to given value.
 
 HasHour returns a boolean if a field has been set.
 
-### GetIndexedEventCount
+### GetIndexedEventsCount
 
-`func (o *UsageNetworkFlowsHour) GetIndexedEventCount() int64`
+`func (o *UsageNetworkFlowsHour) GetIndexedEventsCount() int64`
 
-GetIndexedEventCount returns the IndexedEventCount field if non-nil, zero value otherwise.
+GetIndexedEventsCount returns the IndexedEventsCount field if non-nil, zero value otherwise.
 
-### GetIndexedEventCountOk
+### GetIndexedEventsCountOk
 
-`func (o *UsageNetworkFlowsHour) GetIndexedEventCountOk() (*int64, bool)`
+`func (o *UsageNetworkFlowsHour) GetIndexedEventsCountOk() (*int64, bool)`
 
-GetIndexedEventCountOk returns a tuple with the IndexedEventCount field if it's non-nil, zero value otherwise
+GetIndexedEventsCountOk returns a tuple with the IndexedEventsCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIndexedEventCount
+### SetIndexedEventsCount
 
-`func (o *UsageNetworkFlowsHour) SetIndexedEventCount(v int64)`
+`func (o *UsageNetworkFlowsHour) SetIndexedEventsCount(v int64)`
 
-SetIndexedEventCount sets IndexedEventCount field to given value.
+SetIndexedEventsCount sets IndexedEventsCount field to given value.
 
-### HasIndexedEventCount
+### HasIndexedEventsCount
 
-`func (o *UsageNetworkFlowsHour) HasIndexedEventCount() bool`
+`func (o *UsageNetworkFlowsHour) HasIndexedEventsCount() bool`
 
-HasIndexedEventCount returns a boolean if a field has been set.
+HasIndexedEventsCount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

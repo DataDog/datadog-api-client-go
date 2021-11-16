@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **Category** | Pointer to [**SLOCorrectionCategory**](SLOCorrectionCategory.md) |  | [optional] 
 **Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
 **Description** | Pointer to **string** | Description of the correction being made. | [optional] 
-**Duration** | Pointer to **int64** | Length of time (in seconds) for a specified &#x60;rrule&#x60; recurring SLO correction. | [optional] 
+**Duration** | Pointer to **NullableInt64** | Length of time (in seconds) for a specified &#x60;rrule&#x60; recurring SLO correction. | [optional] 
 **End** | Pointer to **int64** | Ending time of the correction in epoch seconds. | [optional] 
-**Rrule** | Pointer to **string** | Recurrence rules as defined in the iCalendar RFC 5545. | [optional] 
+**Rrule** | Pointer to **NullableString** | Recurrence rules as defined in the iCalendar RFC 5545. | [optional] 
 **SloId** | Pointer to **string** | ID of the SLO that this correction will be applied to. | [optional] 
 **Start** | Pointer to **int64** | Starting time of the correction in epoch seconds. | [optional] 
 **Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;). | [optional] 
@@ -133,6 +133,16 @@ SetDuration sets Duration field to given value.
 
 HasDuration returns a boolean if a field has been set.
 
+### SetDurationNil
+
+`func (o *SLOCorrectionResponseAttributes) SetDurationNil(b bool)`
+
+ SetDurationNil sets the value for Duration to be an explicit nil
+
+### UnsetDuration
+`func (o *SLOCorrectionResponseAttributes) UnsetDuration()`
+
+UnsetDuration ensures that no value is present for Duration, not even an explicit nil
 ### GetEnd
 
 `func (o *SLOCorrectionResponseAttributes) GetEnd() int64`
@@ -183,6 +193,16 @@ SetRrule sets Rrule field to given value.
 
 HasRrule returns a boolean if a field has been set.
 
+### SetRruleNil
+
+`func (o *SLOCorrectionResponseAttributes) SetRruleNil(b bool)`
+
+ SetRruleNil sets the value for Rrule to be an explicit nil
+
+### UnsetRrule
+`func (o *SLOCorrectionResponseAttributes) UnsetRrule()`
+
+UnsetRrule ensures that no value is present for Rrule, not even an explicit nil
 ### GetSloId
 
 `func (o *SLOCorrectionResponseAttributes) GetSloId() string`

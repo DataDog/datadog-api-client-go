@@ -29,8 +29,10 @@ type SyntheticsTestRequest struct {
 	// Headers to include when performing the test.
 	Headers *map[string]string `json:"headers,omitempty"`
 	// Host name to perform the test with.
-	Host   *string     `json:"host,omitempty"`
-	Method *HTTPMethod `json:"method,omitempty"`
+	Host *string `json:"host,omitempty"`
+	// Message to send for UDP or WebSocket tests.
+	Message *string     `json:"message,omitempty"`
+	Method  *HTTPMethod `json:"method,omitempty"`
 	// Determines whether or not to save the response body.
 	NoSavingResponseBody *bool `json:"noSavingResponseBody,omitempty"`
 	// Number of pings to use per test.
@@ -356,6 +358,38 @@ func (o *SyntheticsTestRequest) SetHost(v string) {
 	o.Host = &v
 }
 
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetMessage() string {
+	if o == nil || o.Message == nil {
+		var ret string
+		return ret
+	}
+	return *o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetMessageOk() (*string, bool) {
+	if o == nil || o.Message == nil {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasMessage() bool {
+	if o != nil && o.Message != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
+func (o *SyntheticsTestRequest) SetMessage(v string) {
+	o.Message = &v
+}
+
 // GetMethod returns the Method field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetMethod() HTTPMethod {
 	if o == nil || o.Method == nil {
@@ -676,6 +710,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.Host != nil {
 		toSerialize["host"] = o.Host
 	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
 	if o.Method != nil {
 		toSerialize["method"] = o.Method
 	}
@@ -718,6 +755,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		FollowRedirects      *bool                             `json:"follow_redirects,omitempty"`
 		Headers              *map[string]string                `json:"headers,omitempty"`
 		Host                 *string                           `json:"host,omitempty"`
+		Message              *string                           `json:"message,omitempty"`
 		Method               *HTTPMethod                       `json:"method,omitempty"`
 		NoSavingResponseBody *bool                             `json:"noSavingResponseBody,omitempty"`
 		NumberOfPackets      *int32                            `json:"numberOfPackets,omitempty"`
@@ -754,6 +792,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.FollowRedirects = all.FollowRedirects
 	o.Headers = all.Headers
 	o.Host = all.Host
+	o.Message = all.Message
 	o.Method = all.Method
 	o.NoSavingResponseBody = all.NoSavingResponseBody
 	o.NumberOfPackets = all.NumberOfPackets

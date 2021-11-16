@@ -532,9 +532,11 @@ docs/SyntheticsTestRequest.md
 docs/SyntheticsTestRequestCertificate.md
 docs/SyntheticsTestRequestCertificateItem.md
 docs/SyntheticsTiming.md
+docs/SyntheticsTriggerBody.md
 docs/SyntheticsTriggerCITestLocation.md
 docs/SyntheticsTriggerCITestRunResult.md
 docs/SyntheticsTriggerCITestsResponse.md
+docs/SyntheticsTriggerTest.md
 docs/SyntheticsUpdateTestPauseStatusPayload.md
 docs/SyntheticsVariableParser.md
 docs/SyntheticsWarningType.md
@@ -619,6 +621,8 @@ docs/UsageProfilingResponse.md
 docs/UsageReportsType.md
 docs/UsageRumSessionsHour.md
 docs/UsageRumSessionsResponse.md
+docs/UsageRumUnitsHour.md
+docs/UsageRumUnitsResponse.md
 docs/UsageSDSHour.md
 docs/UsageSDSResponse.md
 docs/UsageSNMPHour.md
@@ -1176,9 +1180,11 @@ model_synthetics_test_request.go
 model_synthetics_test_request_certificate.go
 model_synthetics_test_request_certificate_item.go
 model_synthetics_timing.go
+model_synthetics_trigger_body.go
 model_synthetics_trigger_ci_test_location.go
 model_synthetics_trigger_ci_test_run_result.go
 model_synthetics_trigger_ci_tests_response.go
+model_synthetics_trigger_test_.go
 model_synthetics_update_test_pause_status_payload.go
 model_synthetics_variable_parser.go
 model_synthetics_warning_type.go
@@ -1261,6 +1267,8 @@ model_usage_profiling_response.go
 model_usage_reports_type.go
 model_usage_rum_sessions_hour.go
 model_usage_rum_sessions_response.go
+model_usage_rum_units_hour.go
+model_usage_rum_units_response.go
 model_usage_sds_hour.go
 model_usage_sds_response.go
 model_usage_snmp_hour.go

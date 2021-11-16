@@ -18,7 +18,7 @@ type UsageNetworkFlowsHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the number of netflow events indexed.
-	IndexedEventCount *int64 `json:"indexed_event_count,omitempty"`
+	IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -72,36 +72,36 @@ func (o *UsageNetworkFlowsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-// GetIndexedEventCount returns the IndexedEventCount field value if set, zero value otherwise.
-func (o *UsageNetworkFlowsHour) GetIndexedEventCount() int64 {
-	if o == nil || o.IndexedEventCount == nil {
+// GetIndexedEventsCount returns the IndexedEventsCount field value if set, zero value otherwise.
+func (o *UsageNetworkFlowsHour) GetIndexedEventsCount() int64 {
+	if o == nil || o.IndexedEventsCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.IndexedEventCount
+	return *o.IndexedEventsCount
 }
 
-// GetIndexedEventCountOk returns a tuple with the IndexedEventCount field value if set, nil otherwise
+// GetIndexedEventsCountOk returns a tuple with the IndexedEventsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageNetworkFlowsHour) GetIndexedEventCountOk() (*int64, bool) {
-	if o == nil || o.IndexedEventCount == nil {
+func (o *UsageNetworkFlowsHour) GetIndexedEventsCountOk() (*int64, bool) {
+	if o == nil || o.IndexedEventsCount == nil {
 		return nil, false
 	}
-	return o.IndexedEventCount, true
+	return o.IndexedEventsCount, true
 }
 
-// HasIndexedEventCount returns a boolean if a field has been set.
-func (o *UsageNetworkFlowsHour) HasIndexedEventCount() bool {
-	if o != nil && o.IndexedEventCount != nil {
+// HasIndexedEventsCount returns a boolean if a field has been set.
+func (o *UsageNetworkFlowsHour) HasIndexedEventsCount() bool {
+	if o != nil && o.IndexedEventsCount != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetIndexedEventCount gets a reference to the given int64 and assigns it to the IndexedEventCount field.
-func (o *UsageNetworkFlowsHour) SetIndexedEventCount(v int64) {
-	o.IndexedEventCount = &v
+// SetIndexedEventsCount gets a reference to the given int64 and assigns it to the IndexedEventsCount field.
+func (o *UsageNetworkFlowsHour) SetIndexedEventsCount(v int64) {
+	o.IndexedEventsCount = &v
 }
 
 func (o UsageNetworkFlowsHour) MarshalJSON() ([]byte, error) {
@@ -112,8 +112,8 @@ func (o UsageNetworkFlowsHour) MarshalJSON() ([]byte, error) {
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
-	if o.IndexedEventCount != nil {
-		toSerialize["indexed_event_count"] = o.IndexedEventCount
+	if o.IndexedEventsCount != nil {
+		toSerialize["indexed_events_count"] = o.IndexedEventsCount
 	}
 	return json.Marshal(toSerialize)
 }
@@ -121,8 +121,8 @@ func (o UsageNetworkFlowsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageNetworkFlowsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour              *time.Time `json:"hour,omitempty"`
-		IndexedEventCount *int64     `json:"indexed_event_count,omitempty"`
+		Hour               *time.Time `json:"hour,omitempty"`
+		IndexedEventsCount *int64     `json:"indexed_events_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -134,7 +134,7 @@ func (o *UsageNetworkFlowsHour) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Hour = all.Hour
-	o.IndexedEventCount = all.IndexedEventCount
+	o.IndexedEventsCount = all.IndexedEventsCount
 	return nil
 }
 
