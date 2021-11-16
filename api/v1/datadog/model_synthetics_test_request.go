@@ -30,7 +30,7 @@ type SyntheticsTestRequest struct {
 	Headers *map[string]string `json:"headers,omitempty"`
 	// Host name to perform the test with.
 	Host *string `json:"host,omitempty"`
-	// Message to send for UDP tests.
+	// Message to send for UDP or WebSocket tests.
 	Message *string     `json:"message,omitempty"`
 	Method  *HTTPMethod `json:"method,omitempty"`
 	// Determines whether or not to save the response body.
