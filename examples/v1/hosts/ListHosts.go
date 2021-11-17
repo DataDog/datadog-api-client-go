@@ -15,7 +15,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.HostsApi.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().WithFilter("env:ci"))
+	resp, r, err := apiClient.HostsApi.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().WithFilter("env:ci").WithIncludeHostsMetadata(true))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.ListHosts`: %v\n", err)
