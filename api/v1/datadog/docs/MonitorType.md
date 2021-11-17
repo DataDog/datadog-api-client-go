@@ -29,6 +29,10 @@
 
 * `AUDIT_ALERT` (value: `"audit alert"`)
 
+* `METRIC_SLO_ALERT` (value: `"metric-slo alert"`)
+
+* `MONITOR_SLO_ALERT` (value: `"monitor-slo alert"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

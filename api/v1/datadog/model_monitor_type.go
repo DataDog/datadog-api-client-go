@@ -31,6 +31,8 @@ const (
 	MONITORTYPE_SLO_ALERT             MonitorType = "slo alert"
 	MONITORTYPE_EVENT_V2_ALERT        MonitorType = "event-v2 alert"
 	MONITORTYPE_AUDIT_ALERT           MonitorType = "audit alert"
+	MONITORTYPE_METRIC_SLO_ALERT      MonitorType = "metric-slo alert"
+	MONITORTYPE_MONITOR_SLO_ALERT     MonitorType = "monitor-slo alert"
 )
 
 var allowedMonitorTypeEnumValues = []MonitorType{
@@ -47,6 +49,8 @@ var allowedMonitorTypeEnumValues = []MonitorType{
 	"slo alert",
 	"event-v2 alert",
 	"audit alert",
+	"metric-slo alert",
+	"monitor-slo alert",
 }
 
 func (w *MonitorType) GetAllowedValues() []MonitorType {
