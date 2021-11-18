@@ -15,7 +15,7 @@ import (
 // SyntheticsTriggerCITestsResponse Object containing information about the tests triggered.
 type SyntheticsTriggerCITestsResponse struct {
 	// The public ID of the batch triggered.
-	BatchId *string `json:"batch_id,omitempty"`
+	BatchId NullableString `json:"batch_id,omitempty"`
 	// List of Synthetics locations.
 	Locations *[]SyntheticsTriggerCITestLocation `json:"locations,omitempty"`
 	// Information about the tests runs.
@@ -43,36 +43,47 @@ func NewSyntheticsTriggerCITestsResponseWithDefaults() *SyntheticsTriggerCITests
 	return &this
 }
 
-// GetBatchId returns the BatchId field value if set, zero value otherwise.
+// GetBatchId returns the BatchId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SyntheticsTriggerCITestsResponse) GetBatchId() string {
-	if o == nil || o.BatchId == nil {
+	if o == nil || o.BatchId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.BatchId
+	return *o.BatchId.Get()
 }
 
 // GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SyntheticsTriggerCITestsResponse) GetBatchIdOk() (*string, bool) {
-	if o == nil || o.BatchId == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.BatchId, true
+	return o.BatchId.Get(), o.BatchId.IsSet()
 }
 
 // HasBatchId returns a boolean if a field has been set.
 func (o *SyntheticsTriggerCITestsResponse) HasBatchId() bool {
-	if o != nil && o.BatchId != nil {
+	if o != nil && o.BatchId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetBatchId gets a reference to the given string and assigns it to the BatchId field.
+// SetBatchId gets a reference to the given NullableString and assigns it to the BatchId field.
 func (o *SyntheticsTriggerCITestsResponse) SetBatchId(v string) {
-	o.BatchId = &v
+	o.BatchId.Set(&v)
+}
+
+// SetBatchIdNil sets the value for BatchId to be an explicit nil
+func (o *SyntheticsTriggerCITestsResponse) SetBatchIdNil() {
+	o.BatchId.Set(nil)
+}
+
+// UnsetBatchId ensures that no value is present for BatchId, not even an explicit nil
+func (o *SyntheticsTriggerCITestsResponse) UnsetBatchId() {
+	o.BatchId.Unset()
 }
 
 // GetLocations returns the Locations field value if set, zero value otherwise.
@@ -176,8 +187,8 @@ func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.BatchId != nil {
-		toSerialize["batch_id"] = o.BatchId
+	if o.BatchId.IsSet() {
+		toSerialize["batch_id"] = o.BatchId.Get()
 	}
 	if o.Locations != nil {
 		toSerialize["locations"] = o.Locations
@@ -194,7 +205,7 @@ func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BatchId           *string                             `json:"batch_id,omitempty"`
+		BatchId           NullableString                      `json:"batch_id,omitempty"`
 		Locations         *[]SyntheticsTriggerCITestLocation  `json:"locations,omitempty"`
 		Results           *[]SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
 		TriggeredCheckIds *[]string                           `json:"triggered_check_ids,omitempty"`
