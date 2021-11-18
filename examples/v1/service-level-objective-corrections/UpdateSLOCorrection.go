@@ -30,6 +30,7 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("UpdateSLOCorrection", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, CORRECTION_DATA_ID, body)
 

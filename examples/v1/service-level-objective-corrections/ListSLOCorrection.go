@@ -14,6 +14,7 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("ListSLOCorrection", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection(ctx)
 

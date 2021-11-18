@@ -16,6 +16,7 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("DeleteIncidentService", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	r, err := apiClient.IncidentServicesApi.DeleteIncidentService(ctx, SERVICE_DATA_ID)
 

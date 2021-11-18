@@ -16,6 +16,7 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("DeleteIncidentTeam", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	r, err := apiClient.IncidentTeamsApi.DeleteIncidentTeam(ctx, TEAM_DATA_ID)
 
