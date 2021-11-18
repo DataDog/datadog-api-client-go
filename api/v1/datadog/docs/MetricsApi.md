@@ -391,7 +391,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: text/json
-- **Accept**: text/json
+- **Accept**: text/json, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
