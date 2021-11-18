@@ -17,6 +17,7 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("GetIncidentTeam", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	resp, r, err := apiClient.IncidentTeamsApi.GetIncidentTeam(ctx, TEAM_DATA_ID, *datadog.NewGetIncidentTeamOptionalParameters())
 
