@@ -24,7 +24,6 @@ func generateUniqueUser(ctx context.Context, t *testing.T) datadog.User {
 		Name:       datadog.PtrString(prefix),
 		Email:      datadog.PtrString(email),
 		Handle:     datadog.PtrString(email),
-		AccessRole: datadog.ACCESSROLE_READ_ONLY.Ptr(),
 	}
 }
 
@@ -34,7 +33,6 @@ func getUpdateUser(ctx context.Context, t *testing.T) datadog.User {
 	return datadog.User{
 		Name:       tests.UniqueEntityName(ctx, t),
 		Disabled:   datadog.PtrBool(true),
-		AccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
 	}
 }
 
