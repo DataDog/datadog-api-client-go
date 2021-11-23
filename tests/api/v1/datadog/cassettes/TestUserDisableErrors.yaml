@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"access_role":"ro","email":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","handle":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserDisableErrors-1618221313"}
+      {"email":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","handle":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserDisableErrors-1618221313"}
     form: {}
     headers:
       Accept:
@@ -23,7 +23,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/user
     method: POST
   response:
-    body: '{"user":{"disabled":false,"handle":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserDisableErrors-1618221313","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/5db615d297eb25a64bed518eb2774b7c?s=48&d=retro"}}'
+    body: '{"user":{"disabled":false,"handle":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserDisableErrors-1618221313","title":null,"is_admin":false,"role":null,"verified":false,"email":"test-testuserdisableerrors-1618221313@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/5db615d297eb25a64bed518eb2774b7c?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache

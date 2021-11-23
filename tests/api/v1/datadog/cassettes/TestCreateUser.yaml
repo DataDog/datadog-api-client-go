@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"access_role":"ro","email":"test-testcreateuser-1618221306@integration-tests-accnt-for-sdk-ci.com","handle":"test-testcreateuser-1618221306@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestCreateUser-1618221306"}
+      {"email":"test-testcreateuser-1618221306@integration-tests-accnt-for-sdk-ci.com","handle":"test-testcreateuser-1618221306@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestCreateUser-1618221306"}
     form: {}
     headers:
       Accept:
@@ -23,7 +23,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/user
     method: POST
   response:
-    body: '{"user":{"disabled":false,"handle":"test-testcreateuser-1618221306@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestCreateUser-1618221306","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"test-testcreateuser-1618221306@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/dcadc52c10ee69577fa48b4e553e1d90?s=48&d=retro"}}'
+    body: '{"user":{"disabled":false,"handle":"test-testcreateuser-1618221306@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestCreateUser-1618221306","title":null,"is_admin":false,"role":null,"verified":false,"email":"test-testcreateuser-1618221306@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/dcadc52c10ee69577fa48b4e553e1d90?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -69,7 +69,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/user/test-testcreateuser-1618221306@integration-tests-accnt-for-sdk-ci.com
     method: GET
   response:
-    body: '{"user":{"handle":"test-testcreateuser-1618221306@integration-tests-accnt-for-sdk-ci.com","access_role":"ro","disabled":false,"is_admin":false,"icon":"https://secure.gravatar.com/avatar/dcadc52c10ee69577fa48b4e553e1d90?s=48&d=retro","verified":false,"name":"Test-TestCreateUser-1618221306","roles":[{"uuid":"94172444-be03-11e9-a77a-db1879185210","created_at":"2019-08-13T19:50:19.111007","name":"Datadog
+    body: '{"user":{"handle":"test-testcreateuser-1618221306@integration-tests-accnt-for-sdk-ci.com","disabled":false,"is_admin":false,"icon":"https://secure.gravatar.com/avatar/dcadc52c10ee69577fa48b4e553e1d90?s=48&d=retro","verified":false,"name":"Test-TestCreateUser-1618221306","roles":[{"uuid":"94172444-be03-11e9-a77a-db1879185210","created_at":"2019-08-13T19:50:19.111007","name":"Datadog
       Read Only Role","last_modified":"2019-08-13T19:50:19.111007","id":904117,"permissions":[{"display_name":"Logs
       Archives","description":"The ability to read logs archives location and use
       it for rehydration.","restricted":false,"created_at":"2020-04-23T07:40:27.966133","name":"logs_read_archives","uuid":"b382b982-8535-11ea-93de-2bf1bdf20798"},{"display_name":"Logs

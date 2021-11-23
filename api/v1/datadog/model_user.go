@@ -14,7 +14,6 @@ import (
 
 // User Create, edit, and disable users.
 type User struct {
-	AccessRole *AccessRole `json:"access_role,omitempty"`
 	// The new disabled status of the user.
 	Disabled *bool `json:"disabled,omitempty"`
 	// The new email of the user.
@@ -254,9 +253,6 @@ func (o User) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.AccessRole != nil {
-		toSerialize["access_role"] = o.AccessRole
-	}
 	if o.Disabled != nil {
 		toSerialize["disabled"] = o.Disabled
 	}
@@ -281,7 +277,6 @@ func (o User) MarshalJSON() ([]byte, error) {
 func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccessRole *AccessRole `json:"access_role,omitempty"`
 		Disabled   *bool       `json:"disabled,omitempty"`
 		Email      *string     `json:"email,omitempty"`
 		Handle     *string     `json:"handle,omitempty"`
