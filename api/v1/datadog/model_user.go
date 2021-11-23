@@ -52,33 +52,6 @@ func NewUserWithDefaults() *User {
 	return &this
 }
 
-// GetAccessRole returns the AccessRole field value if set, zero value otherwise.
-func (o *User) GetAccessRole() AccessRole {
-	if o == nil || o.AccessRole == nil {
-		var ret AccessRole
-		return ret
-	}
-	return *o.AccessRole
-}
-
-// GetAccessRoleOk returns a tuple with the AccessRole field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetAccessRoleOk() (*AccessRole, bool) {
-	if o == nil || o.AccessRole == nil {
-		return nil, false
-	}
-	return o.AccessRole, true
-}
-
-// HasAccessRole returns a boolean if a field has been set.
-func (o *User) HasAccessRole() bool {
-	if o != nil && o.AccessRole != nil {
-		return true
-	}
-
-	return false
-}
-
 // SetAccessRole gets a reference to the given AccessRole and assigns it to the AccessRole field.
 func (o *User) SetAccessRole(v AccessRole) {
 	o.AccessRole = &v

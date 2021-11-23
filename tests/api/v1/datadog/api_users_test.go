@@ -59,7 +59,6 @@ func TestCreateUser(t *testing.T) {
 	user := userCreateResponse.GetUser()
 	assert.Equal(testUser.GetName(), user.GetName())
 	assert.Equal(testUser.GetHandle(), user.GetHandle())
-	assert.Equal(testUser.GetAccessRole(), user.GetAccessRole())
 	assert.Equal(testUser.GetEmail(), user.GetEmail())
 
 	// Assert User Get with proper fields
@@ -72,7 +71,6 @@ func TestCreateUser(t *testing.T) {
 	user = userGetResponse.GetUser()
 	assert.Equal(testUser.GetName(), user.GetName())
 	assert.Equal(testUser.GetHandle(), user.GetHandle())
-	assert.Equal(testUser.GetAccessRole(), user.GetAccessRole())
 	assert.Equal(testUser.GetEmail(), user.GetEmail())
 }
 
@@ -107,7 +105,6 @@ func TestUpdateUser(t *testing.T) {
 	// Test fields were updated
 	assert.Equal(updateUser.GetName(), user.GetName())
 	assert.Equal(updateUser.GetDisabled(), user.GetDisabled())
-	assert.Equal(updateUser.GetAccessRole(), user.GetAccessRole())
 	// Test unchanged field remains unchanged
 	assert.Equal(testUser.GetHandle(), user.GetHandle())
 }

@@ -31,30 +31,11 @@ NewUserWithDefaults instantiates a new User object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
-### GetAccessRole
-
-`func (o *User) GetAccessRole() AccessRole`
-
-GetAccessRole returns the AccessRole field if non-nil, zero value otherwise.
-
-### GetAccessRoleOk
-
-`func (o *User) GetAccessRoleOk() (*AccessRole, bool)`
-
-GetAccessRoleOk returns a tuple with the AccessRole field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
 ### SetAccessRole
 
 `func (o *User) SetAccessRole(v AccessRole)`
 
 SetAccessRole sets AccessRole field to given value.
-
-### HasAccessRole
-
-`func (o *User) HasAccessRole() bool`
-
-HasAccessRole returns a boolean if a field has been set.
 
 ### GetDisabled
 
