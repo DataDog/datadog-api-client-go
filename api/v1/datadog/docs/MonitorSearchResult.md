@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The monitor name. | [optional] [readonly] 
 **Notifications** | Pointer to [**[]MonitorSearchResultNotification**](MonitorSearchResultNotification.md) | The notification triggered by the monitor. | [optional] [readonly] 
 **OrgId** | Pointer to **int64** | The ID of the organization. | [optional] [readonly] 
+**Query** | Pointer to **string** | The monitor query. | [optional] 
 **Scopes** | Pointer to **[]string** | The scope(s) to which the downtime applies, e.g. &#x60;host:app2&#x60;. Provide multiple scopes as a comma-separated list, e.g. &#x60;env:dev,env:prod&#x60;. The resulting downtime applies to sources that matches ALL provided scopes (i.e. &#x60;env:dev AND env:prod&#x60;), NOT any of them. | [optional] 
 **Status** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | Tags associated with the monitor. | [optional] [readonly] 
@@ -245,6 +246,31 @@ SetOrgId sets OrgId field to given value.
 `func (o *MonitorSearchResult) HasOrgId() bool`
 
 HasOrgId returns a boolean if a field has been set.
+
+### GetQuery
+
+`func (o *MonitorSearchResult) GetQuery() string`
+
+GetQuery returns the Query field if non-nil, zero value otherwise.
+
+### GetQueryOk
+
+`func (o *MonitorSearchResult) GetQueryOk() (*string, bool)`
+
+GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuery
+
+`func (o *MonitorSearchResult) SetQuery(v string)`
+
+SetQuery sets Query field to given value.
+
+### HasQuery
+
+`func (o *MonitorSearchResult) HasQuery() bool`
+
+HasQuery returns a boolean if a field has been set.
 
 ### GetScopes
 
