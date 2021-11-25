@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**DeleteSLO**](ServiceLevelObjectivesApi.md#DeleteSLO) | **Delete** /api/v1/slo/{slo_id} | Delete an SLO
 [**DeleteSLOTimeframeInBulk**](ServiceLevelObjectivesApi.md#DeleteSLOTimeframeInBulk) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
 [**GetSLO**](ServiceLevelObjectivesApi.md#GetSLO) | **Get** /api/v1/slo/{slo_id} | Get an SLO&#39;s details
+[**GetSLOCorrections**](ServiceLevelObjectivesApi.md#GetSLOCorrections) | **Get** /api/v1/slo/{slo_id}/corrections | Get Corrections For an SLO
 [**GetSLOHistory**](ServiceLevelObjectivesApi.md#GetSLOHistory) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
 [**ListSLOs**](ServiceLevelObjectivesApi.md#ListSLOs) | **Get** /api/v1/slo | Get all SLOs
 [**UpdateSLO**](ServiceLevelObjectivesApi.md#UpdateSLO) | **Put** /api/v1/slo/{slo_id} | Update an SLO
@@ -391,6 +392,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetSLOCorrections
+
+> SLOCorrectionListResponse GetSLOCorrections(ctx, sloId)
+
+Get corrections applied to an SLO
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    sloId := "sloId_example" // string | The ID of the service level objective object.
+
+    configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetSLOCorrections", true)
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServiceLevelObjectivesApi.GetSLOCorrections(ctx, sloId)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLOCorrections`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSLOCorrections`: SLOCorrectionListResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.GetSLOCorrections:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**sloId** | **string** | The ID of the service level objective object. | 
+
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
+
+### Return type
+
+[**SLOCorrectionListResponse**](SLOCorrectionListResponse.md)
+
+### Authorization
+
+[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetSLOHistory
 
 > SLOHistoryResponse GetSLOHistory(ctx, sloId, fromTs, toTs, datadog.GetSLOHistoryOptionalParameters{})
@@ -424,8 +496,10 @@ func main() {
     fromTs := int64(789) // int64 | The `from` timestamp for the query window in epoch seconds.
     toTs := int64(789) // int64 | The `to` timestamp for the query window in epoch seconds.
     target := float64(1.2) // float64 | The SLO target. If `target` is passed in, the response will include the remaining error budget and a timeframe value of `custom`. (optional)
+    applyCorrection := true // bool | Defaults to `true`. If any SLO corrections are applied and this parameter is set to `false`, then the corrections will not be applied and the SLI values will not be affected. (optional)
     optionalParams := datadog.GetSLOHistoryOptionalParameters{
         Target: &target,
+        ApplyCorrection: &applyCorrection,
     }
 
     configuration := datadog.NewConfiguration()
@@ -463,6 +537,7 @@ Other parameters are passed through a pointer to a GetSLOHistoryOptionalParamete
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
 **target** | **float64** | The SLO target. If &#x60;target&#x60; is passed in, the response will include the remaining error budget and a timeframe value of &#x60;custom&#x60;. | 
+**applyCorrection** | **bool** | Defaults to &#x60;true&#x60;. If any SLO corrections are applied and this parameter is set to &#x60;false&#x60;, then the corrections will not be applied and the SLI values will not be affected. | 
 
 ### Return type
 

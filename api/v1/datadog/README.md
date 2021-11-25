@@ -197,6 +197,7 @@ Class | Method | HTTP request | Description
 *ServiceLevelObjectivesApi* | [**DeleteSLO**](docs/ServiceLevelObjectivesApi.md#deleteslo) | **Delete** /api/v1/slo/{slo_id} | Delete an SLO
 *ServiceLevelObjectivesApi* | [**DeleteSLOTimeframeInBulk**](docs/ServiceLevelObjectivesApi.md#deleteslotimeframeinbulk) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
 *ServiceLevelObjectivesApi* | [**GetSLO**](docs/ServiceLevelObjectivesApi.md#getslo) | **Get** /api/v1/slo/{slo_id} | Get an SLO&#39;s details
+*ServiceLevelObjectivesApi* | [**GetSLOCorrections**](docs/ServiceLevelObjectivesApi.md#getslocorrections) | **Get** /api/v1/slo/{slo_id}/corrections | Get Corrections For an SLO
 *ServiceLevelObjectivesApi* | [**GetSLOHistory**](docs/ServiceLevelObjectivesApi.md#getslohistory) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
 *ServiceLevelObjectivesApi* | [**ListSLOs**](docs/ServiceLevelObjectivesApi.md#listslos) | **Get** /api/v1/slo | Get all SLOs
 *ServiceLevelObjectivesApi* | [**UpdateSLO**](docs/ServiceLevelObjectivesApi.md#updateslo) | **Put** /api/v1/slo/{slo_id} | Update an SLO
@@ -621,6 +622,7 @@ Class | Method | HTTP request | Description
  - [SLOCorrectionListResponse](docs/SLOCorrectionListResponse.md)
  - [SLOCorrectionResponse](docs/SLOCorrectionResponse.md)
  - [SLOCorrectionResponseAttributes](docs/SLOCorrectionResponseAttributes.md)
+ - [SLOCorrectionResponseAttributesModifier](docs/SLOCorrectionResponseAttributesModifier.md)
  - [SLOCorrectionType](docs/SLOCorrectionType.md)
  - [SLOCorrectionUpdateData](docs/SLOCorrectionUpdateData.md)
  - [SLOCorrectionUpdateRequest](docs/SLOCorrectionUpdateRequest.md)
