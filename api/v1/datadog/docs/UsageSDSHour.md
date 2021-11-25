@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **LogsScannedBytes** | Pointer to **int64** | The total number of bytes scanned of logs usage by the Sensitive Data Scanner from the start of the given hour’s month until the given hour. | [optional] 
+**OrgName** | Pointer to **string** | The organization name. | [optional] 
+**PublicId** | Pointer to **string** | The organization public ID. | [optional] 
 **TotalScannedBytes** | Pointer to **int64** | The total number of bytes scanned across all usage types by the Sensitive Data Scanner from the start of the given hour’s month until the given hour. | [optional] 
 
 ## Methods
@@ -76,6 +78,56 @@ SetLogsScannedBytes sets LogsScannedBytes field to given value.
 `func (o *UsageSDSHour) HasLogsScannedBytes() bool`
 
 HasLogsScannedBytes returns a boolean if a field has been set.
+
+### GetOrgName
+
+`func (o *UsageSDSHour) GetOrgName() string`
+
+GetOrgName returns the OrgName field if non-nil, zero value otherwise.
+
+### GetOrgNameOk
+
+`func (o *UsageSDSHour) GetOrgNameOk() (*string, bool)`
+
+GetOrgNameOk returns a tuple with the OrgName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrgName
+
+`func (o *UsageSDSHour) SetOrgName(v string)`
+
+SetOrgName sets OrgName field to given value.
+
+### HasOrgName
+
+`func (o *UsageSDSHour) HasOrgName() bool`
+
+HasOrgName returns a boolean if a field has been set.
+
+### GetPublicId
+
+`func (o *UsageSDSHour) GetPublicId() string`
+
+GetPublicId returns the PublicId field if non-nil, zero value otherwise.
+
+### GetPublicIdOk
+
+`func (o *UsageSDSHour) GetPublicIdOk() (*string, bool)`
+
+GetPublicIdOk returns a tuple with the PublicId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublicId
+
+`func (o *UsageSDSHour) SetPublicId(v string)`
+
+SetPublicId sets PublicId field to given value.
+
+### HasPublicId
+
+`func (o *UsageSDSHour) HasPublicId() bool`
+
+HasPublicId returns a boolean if a field has been set.
 
 ### GetTotalScannedBytes
 

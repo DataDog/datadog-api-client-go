@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"message":"some message Notify: @hipchat-channel","name":"Test-Delete_a_monitor_returns_OK_response-1633076914","options":{"enable_logs_sample":true,"escalation_message":"the situation has escalated","evaluation_delay":700,"groupby_simple_monitor":true,"include_tags":true,"locked":false,"new_host_delay":600,"no_data_timeframe":null,"notify_audit":false,"notify_no_data":false,"renotify_interval":60,"require_full_window":true,"thresholds":{"critical":2,"warning":1},"timeout_h":60},"priority":3,"query":"logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") \u003e 2","tags":["test:testdeleteamonitorreturnsokresponse1633076914","env:ci"],"type":"log alert"}
+      {"message":"some message Notify: @hipchat-channel","name":"Test-Delete_a_monitor_returns_OK_response-1633076914","options":{"enable_logs_sample":true,"escalation_message":"the situation has escalated","evaluation_delay":700,"groupby_simple_monitor":true,"include_tags":true,"locked":false,"new_host_delay":600,"no_data_timeframe":null,"notify_audit":false,"notify_no_data":false,"renotify_interval":60,"require_full_window":true,"thresholds":{"critical":2,"warning":1},"timeout_h":24},"priority":3,"query":"logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") \u003e 2","tags":["test:testdeleteamonitorreturnsokresponse1633076914","env:ci"],"type":"log alert"}
     form: {}
     headers:
       Accept:
@@ -15,18 +15,18 @@ interactions:
       Host:
       - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      - datadog-api-client-typescript/1.0.0-beta.6 (node 14.18.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - '91397574441333570'
+      - '559453468207284925'
       X-Datadog-Trace-Id:
-      - '4096898657866391981'
+      - '790997785572900711'
     method: POST
     url: https://api.datadoghq.com/api/v1/monitor
   response:
     body: '{"restricted_roles":null,"tags":["test:testdeleteamonitorreturnsokresponse1633076914","env:ci"],"deleted":null,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\")
-      > 2","message":"some message Notify: @hipchat-channel","id":48053794,"multi":true,"name":"Test-Delete_a_monitor_returns_OK_response-1633076914","created":"2021-10-01T08:28:35.017622+00:00","created_at":1633076915000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-01T08:28:35.017622+00:00","priority":3,"overall_state_modified":null,"overall_state":"No
-      Data","type":"log alert","options":{"notify_audit":false,"locked":false,"timeout_h":60,"renotify_interval":60,"include_tags":true,"no_data_timeframe":null,"silenced":{},"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"enable_logs_sample":true,"groupby_simple_monitor":true,"escalation_message":"the
+      > 2","message":"some message Notify: @hipchat-channel","id":55498407,"multi":true,"name":"Test-Delete_a_monitor_returns_OK_response-1633076914","created":"2021-11-23T19:51:32.532158+00:00","created_at":1637697092000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-11-23T19:51:32.532158+00:00","priority":3,"overall_state_modified":null,"overall_state":"No
+      Data","type":"log alert","options":{"notify_audit":false,"locked":false,"timeout_h":24,"renotify_interval":60,"include_tags":true,"no_data_timeframe":null,"silenced":{},"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"enable_logs_sample":true,"groupby_simple_monitor":true,"escalation_message":"the
       situation has escalated","evaluation_delay":700,"thresholds":{"critical":2.0,"warning":1.0}}}'
     code: 200
     duration: ''
@@ -42,7 +42,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Oct 2021 08:28:35 GMT
+      - Tue, 23 Nov 2021 19:51:32 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -51,6 +51,8 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Envoy-Upstream-Service-Time:
+      - '153'
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
@@ -60,7 +62,7 @@ interactions:
       X-Ratelimit-Remaining:
       - '497'
       X-Ratelimit-Reset:
-      - '6'
+      - '8'
     status: 200 OK
 - request:
     body: ''
@@ -73,15 +75,15 @@ interactions:
       Host:
       - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      - datadog-api-client-typescript/1.0.0-beta.6 (node 14.18.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - '8739053549022546330'
+      - '6241078642619605902'
       X-Datadog-Trace-Id:
-      - '4096898657866391981'
+      - '790997785572900711'
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/monitor/48053794
+    url: https://api.datadoghq.com/api/v1/monitor/55498407
   response:
-    body: '{"deleted_monitor_id":48053794}'
+    body: '{"deleted_monitor_id":55498407}'
     code: 200
     duration: ''
     headers:
@@ -96,7 +98,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Oct 2021 08:28:35 GMT
+      - Tue, 23 Nov 2021 19:51:32 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -105,6 +107,8 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Envoy-Upstream-Service-Time:
+      - '176'
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -119,13 +123,13 @@ interactions:
       Host:
       - api.datadoghq.com
       User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
+      - datadog-api-client-typescript/1.0.0-beta.6 (node 14.18.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - '648015560570813042'
+      - '6253099519852775099'
       X-Datadog-Trace-Id:
-      - '4096898657866391981'
+      - '790997785572900711'
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/monitor/48053794
+    url: https://api.datadoghq.com/api/v1/monitor/55498407
   response:
     body: '{"errors": ["Monitor not found"]}'
     code: 404
@@ -142,7 +146,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Oct 2021 08:28:35 GMT
+      - Tue, 23 Nov 2021 19:51:32 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -151,6 +155,8 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
+      X-Envoy-Upstream-Service-Time:
+      - '102'
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found

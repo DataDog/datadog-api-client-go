@@ -29,6 +29,8 @@ type MonitorSearchResult struct {
 	Notifications *[]MonitorSearchResultNotification `json:"notifications,omitempty"`
 	// The ID of the organization.
 	OrgId *int64 `json:"org_id,omitempty"`
+	// The monitor query.
+	Query *string `json:"query,omitempty"`
 	// The scope(s) to which the downtime applies, e.g. `host:app2`. Provide multiple scopes as a comma-separated list, e.g. `env:dev,env:prod`. The resulting downtime applies to sources that matches ALL provided scopes (i.e. `env:dev AND env:prod`), NOT any of them.
 	Scopes *[]string             `json:"scopes,omitempty"`
 	Status *MonitorOverallStates `json:"status,omitempty"`
@@ -323,6 +325,38 @@ func (o *MonitorSearchResult) SetOrgId(v int64) {
 	o.OrgId = &v
 }
 
+// GetQuery returns the Query field value if set, zero value otherwise.
+func (o *MonitorSearchResult) GetQuery() string {
+	if o == nil || o.Query == nil {
+		var ret string
+		return ret
+	}
+	return *o.Query
+}
+
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorSearchResult) GetQueryOk() (*string, bool) {
+	if o == nil || o.Query == nil {
+		return nil, false
+	}
+	return o.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (o *MonitorSearchResult) HasQuery() bool {
+	if o != nil && o.Query != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery gets a reference to the given string and assigns it to the Query field.
+func (o *MonitorSearchResult) SetQuery(v string) {
+	o.Query = &v
+}
+
 // GetScopes returns the Scopes field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetScopes() []string {
 	if o == nil || o.Scopes == nil {
@@ -480,6 +514,9 @@ func (o MonitorSearchResult) MarshalJSON() ([]byte, error) {
 	if o.OrgId != nil {
 		toSerialize["org_id"] = o.OrgId
 	}
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
+	}
 	if o.Scopes != nil {
 		toSerialize["scopes"] = o.Scopes
 	}
@@ -506,6 +543,7 @@ func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 		Name            *string                            `json:"name,omitempty"`
 		Notifications   *[]MonitorSearchResultNotification `json:"notifications,omitempty"`
 		OrgId           *int64                             `json:"org_id,omitempty"`
+		Query           *string                            `json:"query,omitempty"`
 		Scopes          *[]string                          `json:"scopes,omitempty"`
 		Status          *MonitorOverallStates              `json:"status,omitempty"`
 		Tags            *[]string                          `json:"tags,omitempty"`
@@ -544,6 +582,7 @@ func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	o.Notifications = all.Notifications
 	o.OrgId = all.OrgId
+	o.Query = all.Query
 	o.Scopes = all.Scopes
 	o.Status = all.Status
 	o.Tags = all.Tags

@@ -19,6 +19,10 @@ type UsageSDSHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 	// The total number of bytes scanned of logs usage by the Sensitive Data Scanner from the start of the given hour’s month until the given hour.
 	LogsScannedBytes *int64 `json:"logs_scanned_bytes,omitempty"`
+	// The organization name.
+	OrgName *string `json:"org_name,omitempty"`
+	// The organization public ID.
+	PublicId *string `json:"public_id,omitempty"`
 	// The total number of bytes scanned across all usage types by the Sensitive Data Scanner from the start of the given hour’s month until the given hour.
 	TotalScannedBytes *int64 `json:"total_scanned_bytes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -106,6 +110,70 @@ func (o *UsageSDSHour) SetLogsScannedBytes(v int64) {
 	o.LogsScannedBytes = &v
 }
 
+// GetOrgName returns the OrgName field value if set, zero value otherwise.
+func (o *UsageSDSHour) GetOrgName() string {
+	if o == nil || o.OrgName == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrgName
+}
+
+// GetOrgNameOk returns a tuple with the OrgName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSDSHour) GetOrgNameOk() (*string, bool) {
+	if o == nil || o.OrgName == nil {
+		return nil, false
+	}
+	return o.OrgName, true
+}
+
+// HasOrgName returns a boolean if a field has been set.
+func (o *UsageSDSHour) HasOrgName() bool {
+	if o != nil && o.OrgName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrgName gets a reference to the given string and assigns it to the OrgName field.
+func (o *UsageSDSHour) SetOrgName(v string) {
+	o.OrgName = &v
+}
+
+// GetPublicId returns the PublicId field value if set, zero value otherwise.
+func (o *UsageSDSHour) GetPublicId() string {
+	if o == nil || o.PublicId == nil {
+		var ret string
+		return ret
+	}
+	return *o.PublicId
+}
+
+// GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSDSHour) GetPublicIdOk() (*string, bool) {
+	if o == nil || o.PublicId == nil {
+		return nil, false
+	}
+	return o.PublicId, true
+}
+
+// HasPublicId returns a boolean if a field has been set.
+func (o *UsageSDSHour) HasPublicId() bool {
+	if o != nil && o.PublicId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicId gets a reference to the given string and assigns it to the PublicId field.
+func (o *UsageSDSHour) SetPublicId(v string) {
+	o.PublicId = &v
+}
+
 // GetTotalScannedBytes returns the TotalScannedBytes field value if set, zero value otherwise.
 func (o *UsageSDSHour) GetTotalScannedBytes() int64 {
 	if o == nil || o.TotalScannedBytes == nil {
@@ -149,6 +217,12 @@ func (o UsageSDSHour) MarshalJSON() ([]byte, error) {
 	if o.LogsScannedBytes != nil {
 		toSerialize["logs_scanned_bytes"] = o.LogsScannedBytes
 	}
+	if o.OrgName != nil {
+		toSerialize["org_name"] = o.OrgName
+	}
+	if o.PublicId != nil {
+		toSerialize["public_id"] = o.PublicId
+	}
 	if o.TotalScannedBytes != nil {
 		toSerialize["total_scanned_bytes"] = o.TotalScannedBytes
 	}
@@ -160,6 +234,8 @@ func (o *UsageSDSHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Hour              *time.Time `json:"hour,omitempty"`
 		LogsScannedBytes  *int64     `json:"logs_scanned_bytes,omitempty"`
+		OrgName           *string    `json:"org_name,omitempty"`
+		PublicId          *string    `json:"public_id,omitempty"`
 		TotalScannedBytes *int64     `json:"total_scanned_bytes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -173,6 +249,8 @@ func (o *UsageSDSHour) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Hour = all.Hour
 	o.LogsScannedBytes = all.LogsScannedBytes
+	o.OrgName = all.OrgName
+	o.PublicId = all.PublicId
 	o.TotalScannedBytes = all.TotalScannedBytes
 	return nil
 }

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Example** | Pointer to **string** | Example for the variable. | [optional] 
-**Id** | Pointer to **string** | ID for the variable. | [optional] 
+**Id** | Pointer to **string** | ID for the variable. Global variables require an ID. | [optional] 
 **Name** | **string** | Name of the variable. | 
 **Pattern** | Pointer to **string** | Pattern of the variable. | [optional] 
 **Type** | [**SyntheticsBrowserVariableType**](SyntheticsBrowserVariableType.md) |  | 

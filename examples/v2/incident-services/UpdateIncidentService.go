@@ -25,6 +25,7 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("UpdateIncidentService", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	resp, r, err := apiClient.IncidentServicesApi.UpdateIncidentService(ctx, SERVICE_DATA_ID, body)
 

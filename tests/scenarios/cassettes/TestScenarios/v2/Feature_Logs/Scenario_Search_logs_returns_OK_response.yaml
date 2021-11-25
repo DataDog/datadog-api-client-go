@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"message":"some message Notify: @hipchat-channel","name":"Test-Validate_a_monitor_returns_OK_response-1633076916","options":{"enable_logs_sample":true,"escalation_message":"the situation has escalated","evaluation_delay":700,"groupby_simple_monitor":true,"include_tags":true,"locked":false,"new_host_delay":600,"no_data_timeframe":null,"notify_audit":false,"notify_no_data":false,"renotify_interval":60,"require_full_window":true,"thresholds":{"critical":2,"warning":1},"timeout_h":24},"priority":3,"query":"logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") \u003e 2","tags":["test:testvalidateamonitorreturnsokresponse1633076916","env:ci"],"type":"log alert"}
+      {"filter":{"from":"2020-09-17T11:48:36+01:00","indexes":["main"],"query":"datadog-agent","to":"2020-09-17T12:48:36+01:00"},"page":{"limit":5},"sort":"timestamp"}
     form: {}
     headers:
       Accept:
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '705'
+      - '161'
       Content-Type:
       - application/json
       Host:
@@ -17,13 +17,13 @@ interactions:
       User-Agent:
       - datadog-api-client-typescript/1.0.0-beta.6 (node 14.18.1; os Linux; arch x64)
       X-Datadog-Parent-Id:
-      - '3842702030734030874'
+      - '1029241237632597083'
       X-Datadog-Trace-Id:
-      - '453425212175196308'
+      - '7754844521331040482'
     method: POST
-    url: https://api.datadoghq.com/api/v1/monitor/validate
+    url: https://api.datadoghq.com/api/v2/logs/events/search
   response:
-    body: '{}'
+    body: '{"data":[]}'
     code: 200
     duration: ''
     headers:
@@ -32,13 +32,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '2'
+      - '11'
       Content-Security-Policy:
       - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 23 Nov 2021 16:30:01 GMT
+      - Tue, 23 Nov 2021 09:37:55 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -46,8 +46,16 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Envoy-Upstream-Service-Time:
-      - '156'
+      - '101'
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '10'
+      X-Ratelimit-Period:
+      - '10'
+      X-Ratelimit-Remaining:
+      - '9'
+      X-Ratelimit-Reset:
+      - '5'
     status: 200 OK
 version: 1
