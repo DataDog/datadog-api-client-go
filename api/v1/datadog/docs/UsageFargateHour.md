@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **AvgProfiledFargateTasks** | Pointer to **int64** | The average profiled task count for Fargate Profiling. | [optional] 
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
+**OrgName** | Pointer to **string** | The organization name. | [optional] 
+**PublicId** | Pointer to **string** | The organization public ID. | [optional] 
 **TasksCount** | Pointer to **int64** | The number of Fargate tasks run. | [optional] 
 
 ## Methods
@@ -76,6 +78,56 @@ SetHour sets Hour field to given value.
 `func (o *UsageFargateHour) HasHour() bool`
 
 HasHour returns a boolean if a field has been set.
+
+### GetOrgName
+
+`func (o *UsageFargateHour) GetOrgName() string`
+
+GetOrgName returns the OrgName field if non-nil, zero value otherwise.
+
+### GetOrgNameOk
+
+`func (o *UsageFargateHour) GetOrgNameOk() (*string, bool)`
+
+GetOrgNameOk returns a tuple with the OrgName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrgName
+
+`func (o *UsageFargateHour) SetOrgName(v string)`
+
+SetOrgName sets OrgName field to given value.
+
+### HasOrgName
+
+`func (o *UsageFargateHour) HasOrgName() bool`
+
+HasOrgName returns a boolean if a field has been set.
+
+### GetPublicId
+
+`func (o *UsageFargateHour) GetPublicId() string`
+
+GetPublicId returns the PublicId field if non-nil, zero value otherwise.
+
+### GetPublicIdOk
+
+`func (o *UsageFargateHour) GetPublicIdOk() (*string, bool)`
+
+GetPublicIdOk returns a tuple with the PublicId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublicId
+
+`func (o *UsageFargateHour) SetPublicId(v string)`
+
+SetPublicId sets PublicId field to given value.
+
+### HasPublicId
+
+`func (o *UsageFargateHour) HasPublicId() bool`
+
+HasPublicId returns a boolean if a field has been set.
 
 ### GetTasksCount
 
