@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **SyntheticsCheckId** | Pointer to **NullableString** | ID of the corresponding Synthetic check. | [optional] 
 **ThresholdWindows** | Pointer to [**MonitorThresholdWindowOptions**](MonitorThresholdWindowOptions.md) |  | [optional] 
 **Thresholds** | Pointer to [**MonitorThresholds**](MonitorThresholds.md) |  | [optional] 
-**TimeoutH** | Pointer to **NullableInt64** | The number of hours of the monitor not reporting data before it automatically resolves from a triggered state. | [optional] 
+**TimeoutH** | Pointer to **NullableInt64** | The number of hours of the monitor not reporting data before it automatically resolves from a triggered state. The minimum allowed value is 0 hours. The maximum allowed value is 24 hours. | [optional] 
 
 ## Methods
 
