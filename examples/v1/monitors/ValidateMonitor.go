@@ -35,11 +35,11 @@ func main() {
 			NotifyNoData:         datadog.PtrBool(false),
 			RenotifyInterval:     *datadog.NewNullableInt64(datadog.PtrInt64(60)),
 			RequireFullWindow:    datadog.PtrBool(true),
+			TimeoutH:             *datadog.NewNullableInt64(datadog.PtrInt64(24)),
 			Thresholds: &datadog.MonitorThresholds{
 				Critical: datadog.PtrFloat64(2),
 				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
 			},
-			TimeoutH: *datadog.NewNullableInt64(datadog.PtrInt64(60)),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
