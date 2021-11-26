@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.UserCreateRequest{
 		Data: datadog.UserCreateData{
-			Type: datadog.UsersType("users"),
+			Type: datadog.USERSTYPE_USERS,
 			Attributes: datadog.UserCreateAttributes{
 				Name:  datadog.PtrString("Datadog API Client Python"),
 				Email: "Example-Create_a_user_returns_OK_response@datadoghq.com",

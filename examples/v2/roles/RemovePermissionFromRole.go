@@ -21,7 +21,7 @@ func main() {
 	body := datadog.RelationshipToPermission{
 		Data: &datadog.RelationshipToPermissionData{
 			Id:   datadog.PtrString(PERMISSION_ID),
-			Type: datadog.PermissionsType("permissions").Ptr(),
+			Type: datadog.PERMISSIONSTYPE_PERMISSIONS.Ptr(),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

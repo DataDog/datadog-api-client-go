@@ -18,7 +18,7 @@ func main() {
 	body := datadog.ApplicationKeyUpdateRequest{
 		Data: datadog.ApplicationKeyUpdateData{
 			Id:   APPLICATION_KEY_DATA_ID,
-			Type: datadog.ApplicationKeysType("application_keys"),
+			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 			Attributes: datadog.ApplicationKeyUpdateAttributes{
 				Name: "Application Key for submitting metrics-updated",
 			},

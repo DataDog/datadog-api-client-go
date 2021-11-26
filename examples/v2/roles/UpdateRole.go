@@ -18,7 +18,7 @@ func main() {
 	body := datadog.RoleUpdateRequest{
 		Data: datadog.RoleUpdateData{
 			Id:   ROLE_DATA_ID,
-			Type: datadog.RolesType("roles"),
+			Type: datadog.ROLESTYPE_ROLES,
 			Attributes: datadog.RoleUpdateAttributes{
 				Name: datadog.PtrString("developers-updated"),
 			},

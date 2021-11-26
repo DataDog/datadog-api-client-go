@@ -1,0 +1,125 @@
+interactions:
+- request:
+    body: |
+      {"config":{"assertions":[],"configVariables":[{"example":"content-type","name":"PROPERTY","pattern":"content-type","type":"text"}],"request":{"method":"GET","url":"https://datadoghq.com"},"setCookie":"name:test"},"locations":["aws:us-east-2"],"message":"Test message","name":"Test-Create_a_browser_test_returns_OK_Returns_the_created_test_details_response-1637917237","options":{"accept_self_signed":false,"allow_insecure":true,"device_ids":["tablet"],"disableCors":true,"follow_redirects":true,"min_failure_duration":10,"min_location_failed":1,"noScreenshot":true,"retry":{"count":3,"interval":10},"tick_every":300},"tags":["testing:browser"],"type":"browser"}
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '661'
+      Content-Type:
+      - application/json
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/1.0.0-beta.6 (node 14.18.1; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '3053850612712301882'
+      X-Datadog-Trace-Id:
+      - '1424017102856750399'
+    method: POST
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/browser
+  response:
+    body: '{"status":"paused","public_id":"b5z-q4p-q56","tags":["testing:browser"],"org_id":321813,"locations":["aws:us-east-2"],"message":"Test
+      message","deleted_at":null,"name":"Test-Create_a_browser_test_returns_OK_Returns_the_created_test_details_response-1637917237","monitor_id":55708825,"type":"browser","created_at":"2021-11-26T09:00:37.572914+00:00","modified_at":"2021-11-26T09:00:37.572914+00:00","config":{"setCookie":"name:test","request":{"url":"https://datadoghq.com","method":"GET"},"assertions":[],"configVariables":[{"pattern":"content-type","type":"text","example":"content-type","name":"PROPERTY"}]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":1,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"noScreenshot":true,"disableCors":true,"device_ids":["tablet"],"tick_every":300}}'
+    code: 200
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Length:
+      - '858'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 26 Nov 2021 09:00:37 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Envoy-Upstream-Service-Time:
+      - '272'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '12000'
+      X-Ratelimit-Period:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '11999'
+      X-Ratelimit-Reset:
+      - '23'
+    status: 200 OK
+- request:
+    body: |
+      {"public_ids":["b5z-q4p-q56"]}
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*;q=0.8
+      Connection:
+      - close
+      Content-Length:
+      - '30'
+      Content-Type:
+      - application/json
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-client-typescript/1.0.0-beta.6 (node 14.18.1; os Linux; arch x64)
+      X-Datadog-Parent-Id:
+      - '4088431309415276718'
+      X-Datadog-Trace-Id:
+      - '1424017102856750399'
+    method: POST
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/delete
+  response:
+    body: '{"deleted_tests":[{"deleted_at":"2021-11-26T09:00:37.991398+00:00","public_id":"b5z-q4p-q56"}]}'
+    code: 200
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Length:
+      - '95'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 26 Nov 2021 09:00:38 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Envoy-Upstream-Service-Time:
+      - '201'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - '12000'
+      X-Ratelimit-Period:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '11999'
+      X-Ratelimit-Reset:
+      - '23'
+    status: 200 OK
+version: 1

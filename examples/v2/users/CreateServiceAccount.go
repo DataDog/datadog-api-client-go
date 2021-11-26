@@ -17,7 +17,7 @@ func main() {
 
 	body := datadog.ServiceAccountCreateRequest{
 		Data: datadog.ServiceAccountCreateData{
-			Type: datadog.UsersType("users"),
+			Type: datadog.USERSTYPE_USERS,
 			Attributes: datadog.ServiceAccountCreateAttributes{
 				Name:           datadog.PtrString("Test API Client"),
 				Email:          "Example-Create_a_service_account_returns_OK_response@datadoghq.com",
@@ -28,7 +28,7 @@ func main() {
 					Data: &[]datadog.RelationshipToRoleData{
 						datadog.RelationshipToRoleData{
 							Id:   datadog.PtrString(ROLE_DATA_ID),
-							Type: datadog.RolesType("roles").Ptr(),
+							Type: datadog.ROLESTYPE_ROLES.Ptr(),
 						},
 					},
 				},

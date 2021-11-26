@@ -17,14 +17,14 @@ func main() {
 
 	body := datadog.IncidentCreateRequest{
 		Data: datadog.IncidentCreateData{
-			Type: datadog.IncidentType("incidents"),
+			Type: datadog.INCIDENTTYPE_INCIDENTS,
 			Attributes: datadog.IncidentCreateAttributes{
 				Title:            "Example-Create_an_incident_returns_CREATED_response",
 				CustomerImpacted: false,
 				Fields: &map[string]datadog.IncidentFieldAttributes{
 					"state": datadog.IncidentFieldAttributes{
 						IncidentFieldAttributesSingleValue: &datadog.IncidentFieldAttributesSingleValue{
-							Type:  datadog.IncidentFieldAttributesSingleValueType("dropdown").Ptr(),
+							Type:  datadog.INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN.Ptr(),
 							Value: *datadog.NewNullableString(datadog.PtrString("resolved")),
 						}},
 				},
@@ -32,7 +32,7 @@ func main() {
 			Relationships: &datadog.IncidentCreateRelationships{
 				Commander: datadog.RelationshipToUser{
 					Data: datadog.RelationshipToUserData{
-						Type: datadog.UsersType("users"),
+						Type: datadog.USERSTYPE_USERS,
 						Id:   USER_DATA_ID,
 					},
 				},

@@ -17,7 +17,7 @@ func main() {
 
 	body := datadog.APIKeyUpdateRequest{
 		Data: datadog.APIKeyUpdateData{
-			Type: datadog.APIKeysType("api_keys"),
+			Type: datadog.APIKEYSTYPE_API_KEYS,
 			Id:   API_KEY_DATA_ID,
 			Attributes: datadog.APIKeyUpdateAttributes{
 				Name: "Example-Edit_an_API_key_returns_OK_response",

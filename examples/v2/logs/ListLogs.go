@@ -21,7 +21,7 @@ func main() {
 			From: datadog.PtrString("2020-09-17T11:48:36+01:00"),
 			To:   datadog.PtrString("2020-09-17T12:48:36+01:00"),
 		},
-		Sort: datadog.LogsSort("timestamp").Ptr(),
+		Sort: datadog.LOGSSORT_TIMESTAMP_ASCENDING.Ptr(),
 		Page: &datadog.LogsListRequestPage{
 			Limit: datadog.PtrInt32(5),
 		},
