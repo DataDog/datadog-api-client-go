@@ -21,7 +21,7 @@ func main() {
 	body := datadog.RelationshipToUser{
 		Data: datadog.RelationshipToUserData{
 			Id:   USER_DATA_ID,
-			Type: datadog.UsersType("users"),
+			Type: datadog.USERSTYPE_USERS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

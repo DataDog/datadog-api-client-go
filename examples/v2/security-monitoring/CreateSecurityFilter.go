@@ -21,12 +21,12 @@ func main() {
 						Query: "source:staging",
 					},
 				},
-				FilteredDataType: datadog.SecurityFilterFilteredDataType("logs"),
+				FilteredDataType: datadog.SECURITYFILTERFILTEREDDATATYPE_LOGS,
 				IsEnabled:        true,
 				Name:             "Example-Create_a_security_filter_returns_OK_response",
 				Query:            "service:ExampleCreateasecurityfilterreturnsOKresponse",
 			},
-			Type: datadog.SecurityFilterType("security_filters"),
+			Type: datadog.SECURITYFILTERTYPE_SECURITY_FILTERS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

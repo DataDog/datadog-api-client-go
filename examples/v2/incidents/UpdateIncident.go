@@ -18,12 +18,12 @@ func main() {
 	body := datadog.IncidentUpdateRequest{
 		Data: datadog.IncidentUpdateData{
 			Id:   INCIDENT_DATA_ID,
-			Type: datadog.IncidentType("incidents"),
+			Type: datadog.INCIDENTTYPE_INCIDENTS,
 			Attributes: &datadog.IncidentUpdateAttributes{
 				Fields: &map[string]datadog.IncidentFieldAttributes{
 					"state": datadog.IncidentFieldAttributes{
 						IncidentFieldAttributesSingleValue: &datadog.IncidentFieldAttributesSingleValue{
-							Type:  datadog.IncidentFieldAttributesSingleValueType("dropdown").Ptr(),
+							Type:  datadog.INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN.Ptr(),
 							Value: *datadog.NewNullableString(datadog.PtrString("resolved")),
 						}},
 				},
