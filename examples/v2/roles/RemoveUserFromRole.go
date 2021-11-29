@@ -16,11 +16,10 @@ func main() {
 	ROLE_DATA_ID := os.Getenv("ROLE_DATA_ID")
 
 	// there is a valid "user" in the system
-	USER_DATA_ID := os.Getenv("USER_DATA_ID")
 
 	body := datadog.RelationshipToUser{
 		Data: datadog.RelationshipToUserData{
-			Id:   USER_DATA_ID,
+			Id:   "a3b035bc-8978-d113-1b9c-27d99bfe4b97",
 			Type: datadog.USERSTYPE_USERS,
 		},
 	}

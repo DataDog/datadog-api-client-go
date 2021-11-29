@@ -16,11 +16,10 @@ func main() {
 	ROLE_DATA_ID := os.Getenv("ROLE_DATA_ID")
 
 	// there is a valid "permission" in the system
-	PERMISSION_ID := os.Getenv("PERMISSION_ID")
 
 	body := datadog.RelationshipToPermission{
 		Data: &datadog.RelationshipToPermissionData{
-			Id:   datadog.PtrString(PERMISSION_ID),
+			Id:   datadog.PtrString("09166391-4377-3bf6-3ecc-817c2ef1b68e"),
 			Type: datadog.PERMISSIONSTYPE_PERMISSIONS.Ptr(),
 		},
 	}
