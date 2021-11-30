@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.Monitor{
 		Name:    datadog.PtrString("Example-Validate_a_monitor_returns_OK_response"),
-		Type:    datadog.MonitorType("log alert"),
+		Type:    datadog.MONITORTYPE_LOG_ALERT,
 		Query:   `logs("service:foo AND type:error").index("main").rollup("count").by("source").last("5m") > 2`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: &[]string{
@@ -35,11 +35,11 @@ func main() {
 			NotifyNoData:         datadog.PtrBool(false),
 			RenotifyInterval:     *datadog.NewNullableInt64(datadog.PtrInt64(60)),
 			RequireFullWindow:    datadog.PtrBool(true),
+			TimeoutH:             *datadog.NewNullableInt64(datadog.PtrInt64(24)),
 			Thresholds: &datadog.MonitorThresholds{
 				Critical: datadog.PtrFloat64(2),
 				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
 			},
-			TimeoutH: *datadog.NewNullableInt64(datadog.PtrInt64(60)),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

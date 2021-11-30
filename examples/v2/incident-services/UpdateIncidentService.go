@@ -17,7 +17,7 @@ func main() {
 
 	body := datadog.IncidentServiceUpdateRequest{
 		Data: datadog.IncidentServiceUpdateData{
-			Type: datadog.IncidentServiceType("services"),
+			Type: datadog.INCIDENTSERVICETYPE_SERVICES,
 			Attributes: &datadog.IncidentServiceUpdateAttributes{
 				Name: "service name-updated",
 			},

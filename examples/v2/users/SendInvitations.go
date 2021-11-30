@@ -18,11 +18,11 @@ func main() {
 	body := datadog.UserInvitationsRequest{
 		Data: []datadog.UserInvitationData{
 			datadog.UserInvitationData{
-				Type: datadog.UserInvitationsType("user_invitations"),
+				Type: datadog.USERINVITATIONSTYPE_USER_INVITATIONS,
 				Relationships: datadog.UserInvitationRelationships{
 					User: datadog.RelationshipToUser{
 						Data: datadog.RelationshipToUserData{
-							Type: datadog.UsersType("users"),
+							Type: datadog.USERSTYPE_USERS,
 							Id:   USER_DATA_ID,
 						},
 					},

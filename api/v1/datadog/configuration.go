@@ -266,6 +266,7 @@ func NewConfiguration() *Configuration {
 			"GetSLOCorrection":                 false,
 			"ListSLOCorrection":                false,
 			"UpdateSLOCorrection":              false,
+			"GetSLOCorrections":                false,
 			"GetSLOHistory":                    false,
 			"GetDailyCustomReports":            false,
 			"GetMonthlyCustomReports":          false,

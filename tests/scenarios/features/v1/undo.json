@@ -921,6 +921,12 @@
       "type": "idempotent"
     }
   },
+  "GetSLOCorrections": {
+    "tag": "Service Level Objectives",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "GetSLOHistory": {
     "tag": "Service Level Objectives",
     "undo": {
@@ -1004,8 +1010,13 @@
   "CreateSyntheticsBrowserTest": {
     "tag": "Synthetics",
     "undo": {
-      "operationId": "TODO",
-      "parameters": [],
+      "operationId": "DeleteTests",
+      "parameters": [
+        {
+          "name": "body",
+          "template": "{\"public_ids\": [\"{{ public_id }}\"]}"
+        }
+      ],
       "type": "unsafe"
     }
   },

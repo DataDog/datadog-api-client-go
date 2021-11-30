@@ -17,7 +17,7 @@ import (
 type SyntheticsBrowserVariable struct {
 	// Example for the variable.
 	Example *string `json:"example,omitempty"`
-	// ID for the variable.
+	// ID for the variable. Global variables require an ID.
 	Id *string `json:"id,omitempty"`
 	// Name of the variable.
 	Name string `json:"name"`

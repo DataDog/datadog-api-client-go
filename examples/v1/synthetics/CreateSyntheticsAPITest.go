@@ -17,26 +17,26 @@ func main() {
 			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
-						Operator: datadog.SyntheticsAssertionOperator("is"),
+						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_IS,
 						Property: datadog.PtrString("{{ PROPERTY }}"),
 						Target:   "text/html",
-						Type:     datadog.SyntheticsAssertionType("header"),
+						Type:     datadog.SYNTHETICSASSERTIONTYPE_HEADER,
 					}},
 				datadog.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
-						Operator: datadog.SyntheticsAssertionOperator("lessThan"),
+						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
 						Target:   2000,
-						Type:     datadog.SyntheticsAssertionType("responseTime"),
+						Type:     datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
 					}},
 				datadog.SyntheticsAssertion{
 					SyntheticsAssertionJSONPathTarget: &datadog.SyntheticsAssertionJSONPathTarget{
-						Operator: datadog.SyntheticsAssertionJSONPathOperator("validatesJSONPath"),
+						Operator: datadog.SYNTHETICSASSERTIONJSONPATHOPERATOR_VALIDATES_JSON_PATH,
 						Target: &datadog.SyntheticsAssertionJSONPathTargetTarget{
 							JsonPath:    datadog.PtrString("topKey"),
 							Operator:    datadog.PtrString("isNot"),
 							TargetValue: "0",
 						},
-						Type: datadog.SyntheticsAssertionType("body"),
+						Type: datadog.SYNTHETICSASSERTIONTYPE_BODY,
 					}},
 			},
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
@@ -44,7 +44,7 @@ func main() {
 					Example: datadog.PtrString("content-type"),
 					Name:    "PROPERTY",
 					Pattern: datadog.PtrString("content-type"),
-					Type:    datadog.SyntheticsConfigVariableType("text"),
+					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
 			Request: &datadog.SyntheticsTestRequest{
@@ -63,7 +63,7 @@ func main() {
 				Headers: &map[string]string{
 					"unique": "examplecreateanapitestreturnsokreturnsthecreatedtestdetailsresponse",
 				},
-				Method:  datadog.HTTPMethod("GET").Ptr(),
+				Method:  datadog.HTTPMETHOD_GET.Ptr(),
 				Timeout: datadog.PtrFloat64(10),
 				Url:     datadog.PtrString("https://datadoghq.com"),
 			},
@@ -87,11 +87,11 @@ func main() {
 			},
 			TickEvery: datadog.PtrInt64(60),
 		},
-		Subtype: datadog.SyntheticsTestDetailsSubType("http").Ptr(),
+		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
 		Tags: &[]string{
 			"testing:api",
 		},
-		Type: datadog.SyntheticsAPITestType("api").Ptr(),
+		Type: datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

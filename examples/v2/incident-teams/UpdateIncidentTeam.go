@@ -17,7 +17,7 @@ func main() {
 
 	body := datadog.IncidentTeamUpdateRequest{
 		Data: datadog.IncidentTeamUpdateData{
-			Type: datadog.IncidentTeamType("teams"),
+			Type: datadog.INCIDENTTEAMTYPE_TEAMS,
 			Attributes: &datadog.IncidentTeamUpdateAttributes{
 				Name: "team name-updated",
 			},

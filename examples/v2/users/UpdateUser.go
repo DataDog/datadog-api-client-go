@@ -18,7 +18,7 @@ func main() {
 	body := datadog.UserUpdateRequest{
 		Data: datadog.UserUpdateData{
 			Id:   USER_DATA_ID,
-			Type: datadog.UsersType("users"),
+			Type: datadog.USERSTYPE_USERS,
 			Attributes: datadog.UserUpdateAttributes{
 				Name:     datadog.PtrString("updated"),
 				Disabled: datadog.PtrBool(true),

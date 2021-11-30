@@ -385,6 +385,7 @@ docs/SLOCorrectionCreateRequestAttributes.md
 docs/SLOCorrectionListResponse.md
 docs/SLOCorrectionResponse.md
 docs/SLOCorrectionResponseAttributes.md
+docs/SLOCorrectionResponseAttributesModifier.md
 docs/SLOCorrectionType.md
 docs/SLOCorrectionUpdateData.md
 docs/SLOCorrectionUpdateRequest.md
@@ -1056,6 +1057,7 @@ model_slo_correction_create_request_attributes.go
 model_slo_correction_list_response.go
 model_slo_correction_response.go
 model_slo_correction_response_attributes.go
+model_slo_correction_response_attributes_modifier.go
 model_slo_correction_type.go
 model_slo_correction_update_data.go
 model_slo_correction_update_request.go

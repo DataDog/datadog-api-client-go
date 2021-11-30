@@ -18,7 +18,7 @@ func main() {
 		Data: []datadog.DashboardBulkActionData{
 			datadog.DashboardBulkActionData{
 				Id:   DASHBOARD_ID,
-				Type: datadog.DashboardResourceType("dashboard"),
+				Type: datadog.DASHBOARDRESOURCETYPE_DASHBOARD,
 			},
 		},
 	}

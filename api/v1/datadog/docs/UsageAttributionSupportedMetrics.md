@@ -67,6 +67,10 @@
 
 * `DBM_QUERIES_PERCENTAGE` (value: `"dbm_queries_percentage"`)
 
+* `ESTIMATED_INDEXED_LOGS_USAGE` (value: `"estimated_indexed_logs_usage"`)
+
+* `ESTIMATED_INDEXED_LOGS_PERCENTAGE` (value: `"estimated_indexed_logs_percentage"`)
+
 * `ALL` (value: `"*"`)
 
 
