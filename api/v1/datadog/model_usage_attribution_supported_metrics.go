@@ -18,39 +18,41 @@ type UsageAttributionSupportedMetrics string
 
 // List of UsageAttributionSupportedMetrics
 const (
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_CUSTOM_TIMESERIES_USAGE       UsageAttributionSupportedMetrics = "custom_timeseries_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_CONTAINER_USAGE               UsageAttributionSupportedMetrics = "container_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_SNMP_PERCENTAGE               UsageAttributionSupportedMetrics = "snmp_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_APM_HOST_USAGE                UsageAttributionSupportedMetrics = "apm_host_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_BROWSER_USAGE                 UsageAttributionSupportedMetrics = "browser_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_NPM_HOST_PERCENTAGE           UsageAttributionSupportedMetrics = "npm_host_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_INFRA_HOST_USAGE              UsageAttributionSupportedMetrics = "infra_host_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_CUSTOM_TIMESERIES_PERCENTAGE  UsageAttributionSupportedMetrics = "custom_timeseries_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_CONTAINER_PERCENTAGE          UsageAttributionSupportedMetrics = "container_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_USAGE                  UsageAttributionSupportedMetrics = "lambda_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_API_USAGE                     UsageAttributionSupportedMetrics = "api_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_APM_HOST_PERCENTAGE           UsageAttributionSupportedMetrics = "apm_host_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_INFRA_HOST_PERCENTAGE         UsageAttributionSupportedMetrics = "infra_host_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_SNMP_USAGE                    UsageAttributionSupportedMetrics = "snmp_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_BROWSER_PERCENTAGE            UsageAttributionSupportedMetrics = "browser_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_API_PERCENTAGE                UsageAttributionSupportedMetrics = "api_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_PERCENTAGE             UsageAttributionSupportedMetrics = "lambda_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_NPM_HOST_USAGE                UsageAttributionSupportedMetrics = "npm_host_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_FUNCTIONS_USAGE        UsageAttributionSupportedMetrics = "lambda_functions_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_FUNCTIONS_PERCENTAGE   UsageAttributionSupportedMetrics = "lambda_functions_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_INVOCATIONS_USAGE      UsageAttributionSupportedMetrics = "lambda_invocations_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_INVOCATIONS_PERCENTAGE UsageAttributionSupportedMetrics = "lambda_invocations_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_FARGATE_USAGE                 UsageAttributionSupportedMetrics = "fargate_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_FARGATE_PERCENTAGE            UsageAttributionSupportedMetrics = "fargate_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_HOST_USAGE           UsageAttributionSupportedMetrics = "profiled_host_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_HOST_PERCENTAGE      UsageAttributionSupportedMetrics = "profiled_host_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_CONTAINER_USAGE      UsageAttributionSupportedMetrics = "profiled_container_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_CONTAINER_PERCENTAGE UsageAttributionSupportedMetrics = "profiled_container_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_HOSTS_USAGE               UsageAttributionSupportedMetrics = "dbm_hosts_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_HOSTS_PERCENTAGE          UsageAttributionSupportedMetrics = "dbm_hosts_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_QUERIES_USAGE             UsageAttributionSupportedMetrics = "dbm_queries_usage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_QUERIES_PERCENTAGE        UsageAttributionSupportedMetrics = "dbm_queries_percentage"
-	USAGEATTRIBUTIONSUPPORTEDMETRICS_ALL                           UsageAttributionSupportedMetrics = "*"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_CUSTOM_TIMESERIES_USAGE           UsageAttributionSupportedMetrics = "custom_timeseries_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_CONTAINER_USAGE                   UsageAttributionSupportedMetrics = "container_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_SNMP_PERCENTAGE                   UsageAttributionSupportedMetrics = "snmp_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_APM_HOST_USAGE                    UsageAttributionSupportedMetrics = "apm_host_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_BROWSER_USAGE                     UsageAttributionSupportedMetrics = "browser_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_NPM_HOST_PERCENTAGE               UsageAttributionSupportedMetrics = "npm_host_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_INFRA_HOST_USAGE                  UsageAttributionSupportedMetrics = "infra_host_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_CUSTOM_TIMESERIES_PERCENTAGE      UsageAttributionSupportedMetrics = "custom_timeseries_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_CONTAINER_PERCENTAGE              UsageAttributionSupportedMetrics = "container_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_USAGE                      UsageAttributionSupportedMetrics = "lambda_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_API_USAGE                         UsageAttributionSupportedMetrics = "api_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_APM_HOST_PERCENTAGE               UsageAttributionSupportedMetrics = "apm_host_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_INFRA_HOST_PERCENTAGE             UsageAttributionSupportedMetrics = "infra_host_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_SNMP_USAGE                        UsageAttributionSupportedMetrics = "snmp_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_BROWSER_PERCENTAGE                UsageAttributionSupportedMetrics = "browser_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_API_PERCENTAGE                    UsageAttributionSupportedMetrics = "api_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_PERCENTAGE                 UsageAttributionSupportedMetrics = "lambda_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_NPM_HOST_USAGE                    UsageAttributionSupportedMetrics = "npm_host_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_FUNCTIONS_USAGE            UsageAttributionSupportedMetrics = "lambda_functions_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_FUNCTIONS_PERCENTAGE       UsageAttributionSupportedMetrics = "lambda_functions_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_INVOCATIONS_USAGE          UsageAttributionSupportedMetrics = "lambda_invocations_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_LAMBDA_INVOCATIONS_PERCENTAGE     UsageAttributionSupportedMetrics = "lambda_invocations_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_FARGATE_USAGE                     UsageAttributionSupportedMetrics = "fargate_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_FARGATE_PERCENTAGE                UsageAttributionSupportedMetrics = "fargate_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_HOST_USAGE               UsageAttributionSupportedMetrics = "profiled_host_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_HOST_PERCENTAGE          UsageAttributionSupportedMetrics = "profiled_host_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_CONTAINER_USAGE          UsageAttributionSupportedMetrics = "profiled_container_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_CONTAINER_PERCENTAGE     UsageAttributionSupportedMetrics = "profiled_container_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_HOSTS_USAGE                   UsageAttributionSupportedMetrics = "dbm_hosts_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_HOSTS_PERCENTAGE              UsageAttributionSupportedMetrics = "dbm_hosts_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_QUERIES_USAGE                 UsageAttributionSupportedMetrics = "dbm_queries_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_DBM_QUERIES_PERCENTAGE            UsageAttributionSupportedMetrics = "dbm_queries_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_ESTIMATED_INDEXED_LOGS_USAGE      UsageAttributionSupportedMetrics = "estimated_indexed_logs_usage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_ESTIMATED_INDEXED_LOGS_PERCENTAGE UsageAttributionSupportedMetrics = "estimated_indexed_logs_percentage"
+	USAGEATTRIBUTIONSUPPORTEDMETRICS_ALL                               UsageAttributionSupportedMetrics = "*"
 )
 
 var allowedUsageAttributionSupportedMetricsEnumValues = []UsageAttributionSupportedMetrics{
@@ -86,6 +88,8 @@ var allowedUsageAttributionSupportedMetricsEnumValues = []UsageAttributionSuppor
 	"dbm_hosts_percentage",
 	"dbm_queries_usage",
 	"dbm_queries_percentage",
+	"estimated_indexed_logs_usage",
+	"estimated_indexed_logs_percentage",
 	"*",
 }
 

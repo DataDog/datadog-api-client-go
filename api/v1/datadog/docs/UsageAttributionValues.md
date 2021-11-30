@@ -26,6 +26,8 @@ Name | Type | Description | Notes
 **DbmHostsUsage** | Pointer to **float64** | The Database Monitoring host usage by tag(s). | [optional] 
 **DbmQueriesPercentage** | Pointer to **float64** | The percentage of Database Monitoring normalized queries usage by tag(s). | [optional] 
 **DbmQueriesUsage** | Pointer to **float64** | The Database Monitoring normalized queries usage by tag(s). | [optional] 
+**EstimatedIndexedLogsPercentage** | Pointer to **float64** | The percentage of estimated live indexed logs usage by tag(s). Note this field is in private beta. | [optional] 
+**EstimatedIndexedLogsUsage** | Pointer to **float64** | The estimated live indexed logs usage by tag(s). Note this field is in private beta. | [optional] 
 **InfraHostPercentage** | Pointer to **float64** | The percentage of infrastructure host usage by tag(s). | [optional] 
 **InfraHostUsage** | Pointer to **float64** | The infrastructure host usage by tag(s). | [optional] 
 **LambdaFunctionsPercentage** | Pointer to **float64** | The percentage of Lambda function usage by tag(s). | [optional] 
@@ -611,6 +613,56 @@ SetDbmQueriesUsage sets DbmQueriesUsage field to given value.
 `func (o *UsageAttributionValues) HasDbmQueriesUsage() bool`
 
 HasDbmQueriesUsage returns a boolean if a field has been set.
+
+### GetEstimatedIndexedLogsPercentage
+
+`func (o *UsageAttributionValues) GetEstimatedIndexedLogsPercentage() float64`
+
+GetEstimatedIndexedLogsPercentage returns the EstimatedIndexedLogsPercentage field if non-nil, zero value otherwise.
+
+### GetEstimatedIndexedLogsPercentageOk
+
+`func (o *UsageAttributionValues) GetEstimatedIndexedLogsPercentageOk() (*float64, bool)`
+
+GetEstimatedIndexedLogsPercentageOk returns a tuple with the EstimatedIndexedLogsPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEstimatedIndexedLogsPercentage
+
+`func (o *UsageAttributionValues) SetEstimatedIndexedLogsPercentage(v float64)`
+
+SetEstimatedIndexedLogsPercentage sets EstimatedIndexedLogsPercentage field to given value.
+
+### HasEstimatedIndexedLogsPercentage
+
+`func (o *UsageAttributionValues) HasEstimatedIndexedLogsPercentage() bool`
+
+HasEstimatedIndexedLogsPercentage returns a boolean if a field has been set.
+
+### GetEstimatedIndexedLogsUsage
+
+`func (o *UsageAttributionValues) GetEstimatedIndexedLogsUsage() float64`
+
+GetEstimatedIndexedLogsUsage returns the EstimatedIndexedLogsUsage field if non-nil, zero value otherwise.
+
+### GetEstimatedIndexedLogsUsageOk
+
+`func (o *UsageAttributionValues) GetEstimatedIndexedLogsUsageOk() (*float64, bool)`
+
+GetEstimatedIndexedLogsUsageOk returns a tuple with the EstimatedIndexedLogsUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEstimatedIndexedLogsUsage
+
+`func (o *UsageAttributionValues) SetEstimatedIndexedLogsUsage(v float64)`
+
+SetEstimatedIndexedLogsUsage sets EstimatedIndexedLogsUsage field to given value.
+
+### HasEstimatedIndexedLogsUsage
+
+`func (o *UsageAttributionValues) HasEstimatedIndexedLogsUsage() bool`
+
+HasEstimatedIndexedLogsUsage returns a boolean if a field has been set.
 
 ### GetInfraHostPercentage
 
