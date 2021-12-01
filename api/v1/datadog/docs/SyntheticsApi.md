@@ -26,7 +26,7 @@ Method | HTTP request | Description
 [**ListLocations**](SyntheticsApi.md#ListLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 [**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
 [**TriggerCITests**](SyntheticsApi.md#TriggerCITests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger tests from CI/CD pipelines
-[**TriggerTests**](SyntheticsApi.md#TriggerTests) | **Post** /api/v1/synthetics/tests/trigger | Trigger some Synthetics tests
+[**TriggerTests**](SyntheticsApi.md#TriggerTests) | **Post** /api/v1/synthetics/tests/trigger | Trigger Synthetics tests
 [**UpdateAPITest**](SyntheticsApi.md#UpdateAPITest) | **Put** /api/v1/synthetics/tests/api/{public_id} | Edit an API test
 [**UpdateBrowserTest**](SyntheticsApi.md#UpdateBrowserTest) | **Put** /api/v1/synthetics/tests/browser/{public_id} | Edit a browser test
 [**UpdatePrivateLocation**](SyntheticsApi.md#UpdatePrivateLocation) | **Put** /api/v1/synthetics/private-locations/{location_id} | Edit a private location
