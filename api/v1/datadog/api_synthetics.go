@@ -3662,7 +3662,7 @@ type apiTriggerTestsRequest struct {
 }
 
 /*
- * TriggerTests Trigger some Synthetics tests
+ * TriggerTests Trigger Synthetics tests
  * Trigger a set of Synthetics tests.
  */
 func (a *SyntheticsApiService) TriggerTests(ctx _context.Context, body SyntheticsTriggerBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {

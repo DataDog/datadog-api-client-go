@@ -229,7 +229,7 @@ Class | Method | HTTP request | Description
 *SyntheticsApi* | [**ListLocations**](docs/SyntheticsApi.md#listlocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
 *SyntheticsApi* | [**ListTests**](docs/SyntheticsApi.md#listtests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
 *SyntheticsApi* | [**TriggerCITests**](docs/SyntheticsApi.md#triggercitests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger tests from CI/CD pipelines
-*SyntheticsApi* | [**TriggerTests**](docs/SyntheticsApi.md#triggertests) | **Post** /api/v1/synthetics/tests/trigger | Trigger some Synthetics tests
+*SyntheticsApi* | [**TriggerTests**](docs/SyntheticsApi.md#triggertests) | **Post** /api/v1/synthetics/tests/trigger | Trigger Synthetics tests
 *SyntheticsApi* | [**UpdateAPITest**](docs/SyntheticsApi.md#updateapitest) | **Put** /api/v1/synthetics/tests/api/{public_id} | Edit an API test
 *SyntheticsApi* | [**UpdateBrowserTest**](docs/SyntheticsApi.md#updatebrowsertest) | **Put** /api/v1/synthetics/tests/browser/{public_id} | Edit a browser test
 *SyntheticsApi* | [**UpdatePrivateLocation**](docs/SyntheticsApi.md#updateprivatelocation) | **Put** /api/v1/synthetics/private-locations/{location_id} | Edit a private location
