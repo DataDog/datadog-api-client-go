@@ -21,10 +21,9 @@ func generateUniqueUser(ctx context.Context, t *testing.T) datadog.User {
 	prefix := *tests.UniqueEntityName(ctx, t)
 	email := strings.ToLower(prefix) + "@integration-tests-accnt-for-sdk-ci.com"
 	return datadog.User{
-		Name:       datadog.PtrString(prefix),
-		Email:      datadog.PtrString(email),
-		Handle:     datadog.PtrString(email),
-		AccessRole: datadog.ACCESSROLE_READ_ONLY.Ptr(),
+		Name:   datadog.PtrString(prefix),
+		Email:  datadog.PtrString(email),
+		Handle: datadog.PtrString(email),
 	}
 }
 
@@ -32,9 +31,8 @@ func getUpdateUser(ctx context.Context, t *testing.T) datadog.User {
 	// [TODO] You can't update another user's email
 	// This is based on who owns the APP key that is making the changes
 	return datadog.User{
-		Name:       tests.UniqueEntityName(ctx, t),
-		Disabled:   datadog.PtrBool(true),
-		AccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
+		Name:     tests.UniqueEntityName(ctx, t),
+		Disabled: datadog.PtrBool(true),
 	}
 }
 
@@ -59,7 +57,6 @@ func TestCreateUser(t *testing.T) {
 	user := userCreateResponse.GetUser()
 	assert.Equal(testUser.GetName(), user.GetName())
 	assert.Equal(testUser.GetHandle(), user.GetHandle())
-	assert.Equal(testUser.GetAccessRole(), user.GetAccessRole())
 	assert.Equal(testUser.GetEmail(), user.GetEmail())
 
 	// Assert User Get with proper fields
@@ -72,7 +69,6 @@ func TestCreateUser(t *testing.T) {
 	user = userGetResponse.GetUser()
 	assert.Equal(testUser.GetName(), user.GetName())
 	assert.Equal(testUser.GetHandle(), user.GetHandle())
-	assert.Equal(testUser.GetAccessRole(), user.GetAccessRole())
 	assert.Equal(testUser.GetEmail(), user.GetEmail())
 }
 
@@ -107,7 +103,6 @@ func TestUpdateUser(t *testing.T) {
 	// Test fields were updated
 	assert.Equal(updateUser.GetName(), user.GetName())
 	assert.Equal(updateUser.GetDisabled(), user.GetDisabled())
-	assert.Equal(updateUser.GetAccessRole(), user.GetAccessRole())
 	// Test unchanged field remains unchanged
 	assert.Equal(testUser.GetHandle(), user.GetHandle())
 }
