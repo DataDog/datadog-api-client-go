@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
+**AccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] [default to ACCESSROLE_STANDARD]
 **Disabled** | Pointer to **bool** | The new disabled status of the user. | [optional] 
 **Email** | Pointer to **string** | The new email of the user. | [optional] 
 **Handle** | Pointer to **string** | The user handle, must be a valid email. | [optional] 
@@ -29,6 +30,31 @@ will change when the set of required properties is changed.
 NewUserWithDefaults instantiates a new User object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetAccessRole
+
+`func (o *User) GetAccessRole() AccessRole`
+
+GetAccessRole returns the AccessRole field if non-nil, zero value otherwise.
+
+### GetAccessRoleOk
+
+`func (o *User) GetAccessRoleOk() (*AccessRole, bool)`
+
+GetAccessRoleOk returns a tuple with the AccessRole field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccessRole
+
+`func (o *User) SetAccessRole(v AccessRole)`
+
+SetAccessRole sets AccessRole field to given value.
+
+### HasAccessRole
+
+`func (o *User) HasAccessRole() bool`
+
+HasAccessRole returns a boolean if a field has been set.
 
 ### GetDisabled
 
