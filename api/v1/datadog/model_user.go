@@ -36,8 +36,6 @@ type User struct {
 // will change when the set of required properties is changed
 func NewUser() *User {
 	this := User{}
-	var accessRole AccessRole = ACCESSROLE_STANDARD
-	this.AccessRole = &accessRole
 	return &this
 }
 
@@ -46,14 +44,7 @@ func NewUser() *User {
 // but it doesn't guarantee that properties required by API are set
 func NewUserWithDefaults() *User {
 	this := User{}
-	var accessRole AccessRole = ACCESSROLE_STANDARD
-	this.AccessRole = &accessRole
 	return &this
-}
-
-// SetAccessRole gets a reference to the given AccessRole and assigns it to the AccessRole field.
-func (o *User) SetAccessRole(v AccessRole) {
-	o.AccessRole = &v
 }
 
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
@@ -277,12 +268,12 @@ func (o User) MarshalJSON() ([]byte, error) {
 func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Disabled   *bool       `json:"disabled,omitempty"`
-		Email      *string     `json:"email,omitempty"`
-		Handle     *string     `json:"handle,omitempty"`
-		Icon       *string     `json:"icon,omitempty"`
-		Name       *string     `json:"name,omitempty"`
-		Verified   *bool       `json:"verified,omitempty"`
+		Disabled *bool   `json:"disabled,omitempty"`
+		Email    *string `json:"email,omitempty"`
+		Handle   *string `json:"handle,omitempty"`
+		Icon     *string `json:"icon,omitempty"`
+		Name     *string `json:"name,omitempty"`
+		Verified *bool   `json:"verified,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -293,15 +284,6 @@ func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.AccessRole; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.AccessRole = all.AccessRole
 	o.Disabled = all.Disabled
 	o.Email = all.Email
 	o.Handle = all.Handle

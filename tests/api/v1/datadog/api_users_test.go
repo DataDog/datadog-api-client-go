@@ -21,9 +21,9 @@ func generateUniqueUser(ctx context.Context, t *testing.T) datadog.User {
 	prefix := *tests.UniqueEntityName(ctx, t)
 	email := strings.ToLower(prefix) + "@integration-tests-accnt-for-sdk-ci.com"
 	return datadog.User{
-		Name:       datadog.PtrString(prefix),
-		Email:      datadog.PtrString(email),
-		Handle:     datadog.PtrString(email),
+		Name:   datadog.PtrString(prefix),
+		Email:  datadog.PtrString(email),
+		Handle: datadog.PtrString(email),
 	}
 }
 
@@ -31,8 +31,8 @@ func getUpdateUser(ctx context.Context, t *testing.T) datadog.User {
 	// [TODO] You can't update another user's email
 	// This is based on who owns the APP key that is making the changes
 	return datadog.User{
-		Name:       tests.UniqueEntityName(ctx, t),
-		Disabled:   datadog.PtrBool(true),
+		Name:     tests.UniqueEntityName(ctx, t),
+		Disabled: datadog.PtrBool(true),
 	}
 }
 

@@ -706,6 +706,7 @@ docs/WidgetVerticalAlign.md
 docs/WidgetViewMode.md
 docs/WidgetVizType.md
 git_push.sh
+model_access_role.go
 model_alert_graph_widget_definition.go
 model_alert_graph_widget_definition_type.go
 model_alert_value_widget_definition.go
