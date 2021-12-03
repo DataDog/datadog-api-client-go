@@ -7,6 +7,7 @@ require (
 	github.com/DataDog/datadog-go v4.8.2+incompatible // indirect
 	github.com/DataDog/dd-sdk-go-testing v0.0.0-20210929140144-5d69f0a9bd49
 	github.com/Microsoft/go-winio v0.5.1 // indirect
+	github.com/cucumber/messages-go/v12 v12.0.0
 	github.com/dnaeon/go-vcr v1.0.1
 	github.com/go-bdd/gobdd v1.1.3
 	github.com/gogo/protobuf v1.3.2 // indirect
@@ -26,5 +27,7 @@ require (
 )
 
 replace github.com/mcuadros/go-lookup => github.com/therve/go-lookup v0.0.0-20210911125823-5508a75dec6f
+
+replace github.com/go-bdd/gobdd => github.com/jirikuncar/gobdd v1.1.2-0.20211203172820-748b1707e8f7
 
 replace github.com/DataDog/datadog-api-client-go => ../
