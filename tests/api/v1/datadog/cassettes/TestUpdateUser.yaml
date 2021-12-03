@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"email":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","handle":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUpdateUser-1618221308"}
+      {"access_role":"ro","email":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","handle":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUpdateUser-1618221308"}
     form: {}
     headers:
       Accept:
@@ -23,7 +23,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/user
     method: POST
   response:
-    body: '{"user":{"disabled":false,"handle":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUpdateUser-1618221308","title":null,"is_admin":false,"role":null,"verified":false,"email":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/b1eb0d52dd414e5205f364ce922ff95a?s=48&d=retro"}}'
+    body: '{"user":{"disabled":false,"handle":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUpdateUser-1618221308","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/b1eb0d52dd414e5205f364ce922ff95a?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache
@@ -52,7 +52,7 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"disabled":true,"name":"Test-TestUpdateUser-1618221308"}
+      {"access_role":"st","disabled":true,"name":"Test-TestUpdateUser-1618221308"}
     form: {}
     headers:
       Accept:
@@ -72,7 +72,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/user/test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com
     method: PUT
   response:
-    body: '{"user":{"disabled":true,"handle":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUpdateUser-1618221308","title":null,"is_admin":false,"role":null,"verified":false,"email":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/b1eb0d52dd414e5205f364ce922ff95a?s=48&d=retro"}}'
+    body: '{"user":{"disabled":true,"handle":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUpdateUser-1618221308","title":null,"is_admin":false,"role":null,"access_role":"st","verified":false,"email":"test-testupdateuser-1618221308@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/b1eb0d52dd414e5205f364ce922ff95a?s=48&d=retro"}}'
     headers:
       Cache-Control:
       - no-cache

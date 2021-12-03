@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"email":"notanemail"}
+      {"access_role":"st","email":"notanemail"}
     form: {}
     headers:
       Accept:
