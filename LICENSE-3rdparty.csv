@@ -9,7 +9,6 @@ go.sum,github.com/davecgh/go-spew,ISC,2012-2016 Dave Collins <dave@davec.name>
 go.sum,github.com/dnaeon/go-vcr,BSD-2-Clause,2015-2016 Marin Atanasov Nikolov <dnaeon@gmail.com>
 go.sum,github.com/go-bdd/assert,MIT, 2020 GoBDD
 go.sum,github.com/go-bdd/gobdd,MIT,2019 Bartłomiej Klimczak
-go.sum,github.com/jirikuncar/gobdd,MIT,2019 Bartłomiej Klimczak
 go.sum,github.com/gofrs/uuid,MIT,2013-2018 Maxim Bublis
 go.sum,github.com/gogo/protobuf,BSD-3-Clause,2013 The GoGo Authors + 2010 The Go Authors
 go.sum,github.com/golang/protobuf,BSD-3-Clause,2017 The Go Authors
