@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 1.7.0 / 2021-12-09
+
+* [Added] Add Limit Note for Hourly Requests. See [#1230](https://github.com/DataDog/datadog-api-client-go/pull/1230).
+* [Added] Expose estimated logs usage in Usage Attribution API. See [#1231](https://github.com/DataDog/datadog-api-client-go/pull/1231).
+* [Added] Add endpoint to get corrections applied to an SLO. See [#1221](https://github.com/DataDog/datadog-api-client-go/pull/1221).
+* [Added] Expose `public_id` and `org_name` in Usage API response. See [#1224](https://github.com/DataDog/datadog-api-client-go/pull/1224).
+* [Added] Document query in `MonitorSearchResult`. See [#1222](https://github.com/DataDog/datadog-api-client-go/pull/1222).
+* [Added] Add 429 error responses. See [#1208](https://github.com/DataDog/datadog-api-client-go/pull/1208).
+* [Added] Add support for profiled Fargate tasks in Usage API. See [#1205](https://github.com/DataDog/datadog-api-client-go/pull/1205).
+* [Added] Add support for `websocket` synthetics tests. See [#1206](https://github.com/DataDog/datadog-api-client-go/pull/1206).
+* [Added] [Synthetics] Add support for UDP API tests. See [#1197](https://github.com/DataDog/datadog-api-client-go/pull/1197).
+* [Added] Add trigger synthetics tests endpoint. See [#1173](https://github.com/DataDog/datadog-api-client-go/pull/1173).
+* [Added] Add RUM Units to usage metering API. See [#1188](https://github.com/DataDog/datadog-api-client-go/pull/1188).
+* [Added] [dashboards formulas and functions] Add formulas and functions support to change widget. See [#1204](https://github.com/DataDog/datadog-api-client-go/pull/1204).
+* [Fixed] Be more resilient to plain text errors. See [#1227](https://github.com/DataDog/datadog-api-client-go/pull/1227).
+* [Fixed] Fix monitor `timeout_h` example and limits. See [#1219](https://github.com/DataDog/datadog-api-client-go/pull/1219).
+* [Fixed] Remove event title length constraint. See [#1215](https://github.com/DataDog/datadog-api-client-go/pull/1215).
+* [Fixed] Mark `batch_id` in Synthetics Trigger CI response as nullable. See [#1210](https://github.com/DataDog/datadog-api-client-go/pull/1210).
+* [Fixed] SLO Correction attributes `rrule` and `duration` can be nullable. See [#1200](https://github.com/DataDog/datadog-api-client-go/pull/1200).
+* [Fixed] Change `UsageNetworkFlowsHour.indexed_event_count` to match actual API. See [#1196](https://github.com/DataDog/datadog-api-client-go/pull/1196).
+* [Fixed] Fix type for `ratio_in_month` in usage metering. See [#1183](https://github.com/DataDog/datadog-api-client-go/pull/1183).
+* [Changed] [Synthetics] Fix required target in assertions and type in step results. See [#1201](https://github.com/DataDog/datadog-api-client-go/pull/1201).
+
 ## 1.6.0 / 2021-11-09
 
 * [Added] Add support for Azure `automute` option. See [#1179](https://github.com/DataDog/datadog-api-client-go/pull/1179).
