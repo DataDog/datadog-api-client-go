@@ -28,6 +28,7 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("ListLogs", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	resp, r, err := apiClient.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(body))
 

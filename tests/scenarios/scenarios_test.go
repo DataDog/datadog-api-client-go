@@ -16,9 +16,9 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
+	msgs "github.com/cucumber/messages-go/v12"
 	"github.com/go-bdd/gobdd"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
-	msgs "github.com/cucumber/messages-go/v12"
 )
 
 func TestScenarios(t *testing.T) {
@@ -76,7 +76,7 @@ func TestScenarios(t *testing.T) {
 						}
 					}
 					testCodeowners, _ := json.Marshal(codeowners)
-					
+
 					cctx, closeSpan := ddtesting.StartTestWithContext(
 						datadog.NewDefaultContext(context.Background()),
 						tt,
