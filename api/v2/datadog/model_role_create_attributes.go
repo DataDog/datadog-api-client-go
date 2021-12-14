@@ -16,6 +16,8 @@ import (
 
 // RoleCreateAttributes Attributes of the created role.
 type RoleCreateAttributes struct {
+	// UUID of the role to clone from.
+	CloneFromUuid *string `json:"clone_from_uuid,omitempty"`
 	// Creation time of the role.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Time of last role modification.
@@ -42,6 +44,38 @@ func NewRoleCreateAttributes(name string) *RoleCreateAttributes {
 func NewRoleCreateAttributesWithDefaults() *RoleCreateAttributes {
 	this := RoleCreateAttributes{}
 	return &this
+}
+
+// GetCloneFromUuid returns the CloneFromUuid field value if set, zero value otherwise.
+func (o *RoleCreateAttributes) GetCloneFromUuid() string {
+	if o == nil || o.CloneFromUuid == nil {
+		var ret string
+		return ret
+	}
+	return *o.CloneFromUuid
+}
+
+// GetCloneFromUuidOk returns a tuple with the CloneFromUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RoleCreateAttributes) GetCloneFromUuidOk() (*string, bool) {
+	if o == nil || o.CloneFromUuid == nil {
+		return nil, false
+	}
+	return o.CloneFromUuid, true
+}
+
+// HasCloneFromUuid returns a boolean if a field has been set.
+func (o *RoleCreateAttributes) HasCloneFromUuid() bool {
+	if o != nil && o.CloneFromUuid != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCloneFromUuid gets a reference to the given string and assigns it to the CloneFromUuid field.
+func (o *RoleCreateAttributes) SetCloneFromUuid(v string) {
+	o.CloneFromUuid = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -137,6 +171,9 @@ func (o RoleCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.CloneFromUuid != nil {
+		toSerialize["clone_from_uuid"] = o.CloneFromUuid
+	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -155,9 +192,10 @@ func (o *RoleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		CreatedAt  *time.Time `json:"created_at,omitempty"`
-		ModifiedAt *time.Time `json:"modified_at,omitempty"`
-		Name       string     `json:"name"`
+		CloneFromUuid *string    `json:"clone_from_uuid,omitempty"`
+		CreatedAt     *time.Time `json:"created_at,omitempty"`
+		ModifiedAt    *time.Time `json:"modified_at,omitempty"`
+		Name          string     `json:"name"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -175,6 +213,7 @@ func (o *RoleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	o.CloneFromUuid = all.CloneFromUuid
 	o.CreatedAt = all.CreatedAt
 	o.ModifiedAt = all.ModifiedAt
 	o.Name = all.Name
