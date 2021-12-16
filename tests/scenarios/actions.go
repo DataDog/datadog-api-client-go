@@ -234,7 +234,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite, version string) {
 		}
 
 		GetData(ctx)[s.Key] = responseJSON
-		
+
 		sleepAfterRequest()
 	}
 	suite.AddStep(s.Step, given)
@@ -345,7 +345,6 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 	}, nil
 }
 
-
 func sleepAfterRequest() {
 	record, ok := os.LookupEnv("RECORD")
 	if !ok {
@@ -356,7 +355,7 @@ func sleepAfterRequest() {
 	if sleepAfterRequestDuration, ok := os.LookupEnv("SLEEP_AFTER_REQUEST"); ok {
 		sleep, _ = strconv.Atoi(sleepAfterRequestDuration)
 	}
-	
+
 	if record != "false" && sleep > 0 {
 		time.Sleep(time.Duration(sleep) * time.Second)
 	}
