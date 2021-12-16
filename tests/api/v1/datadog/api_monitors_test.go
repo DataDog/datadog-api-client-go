@@ -220,7 +220,6 @@ func TestMonitorPagination(t *testing.T) {
 	assert.Equal(monitor.GetId(), monitors[0].GetId())
 }
 
-
 func TestMonitorsCreateErrors(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
