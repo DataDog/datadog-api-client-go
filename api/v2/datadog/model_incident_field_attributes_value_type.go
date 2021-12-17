@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// IncidentFieldAttributesValueType Type of the single value field definitions.
+// IncidentFieldAttributesValueType Type of the multiple value field definitions.
 type IncidentFieldAttributesValueType string
 
 // List of IncidentFieldAttributesValueType
