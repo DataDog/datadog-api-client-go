@@ -20,7 +20,7 @@ type SecurityMonitoringSignalAttributes struct {
 	// The message in the security signal defined by the rule that generated the signal.
 	Message *string `json:"message,omitempty"`
 	// An array of tags associated with the security signal.
-	Tags *[]interface{} `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
 	// The timestamp of the security signal.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -109,9 +109,9 @@ func (o *SecurityMonitoringSignalAttributes) SetMessage(v string) {
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *SecurityMonitoringSignalAttributes) GetTags() []interface{} {
+func (o *SecurityMonitoringSignalAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
-		var ret []interface{}
+		var ret []string
 		return ret
 	}
 	return *o.Tags
@@ -119,7 +119,7 @@ func (o *SecurityMonitoringSignalAttributes) GetTags() []interface{} {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringSignalAttributes) GetTagsOk() (*[]interface{}, bool) {
+func (o *SecurityMonitoringSignalAttributes) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *SecurityMonitoringSignalAttributes) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given []interface{} and assigns it to the Tags field.
-func (o *SecurityMonitoringSignalAttributes) SetTags(v []interface{}) {
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *SecurityMonitoringSignalAttributes) SetTags(v []string) {
 	o.Tags = &v
 }
 
@@ -197,7 +197,7 @@ func (o *SecurityMonitoringSignalAttributes) UnmarshalJSON(bytes []byte) (err er
 	all := struct {
 		Attributes *map[string]interface{} `json:"attributes,omitempty"`
 		Message    *string                 `json:"message,omitempty"`
-		Tags       *[]interface{}          `json:"tags,omitempty"`
+		Tags       *[]string               `json:"tags,omitempty"`
 		Timestamp  *time.Time              `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Attributes** | Pointer to **map[string]interface{}** | A JSON object of attributes in the security signal. | [optional] 
 **Message** | Pointer to **string** | The message in the security signal defined by the rule that generated the signal. | [optional] 
-**Tags** | Pointer to **[]interface{}** | An array of tags associated with the security signal. | [optional] 
+**Tags** | Pointer to **[]string** | An array of tags associated with the security signal. | [optional] 
 **Timestamp** | Pointer to **time.Time** | The timestamp of the security signal. | [optional] 
 
 ## Methods
@@ -80,20 +80,20 @@ HasMessage returns a boolean if a field has been set.
 
 ### GetTags
 
-`func (o *SecurityMonitoringSignalAttributes) GetTags() []interface{}`
+`func (o *SecurityMonitoringSignalAttributes) GetTags() []string`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *SecurityMonitoringSignalAttributes) GetTagsOk() (*[]interface{}, bool)`
+`func (o *SecurityMonitoringSignalAttributes) GetTagsOk() (*[]string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *SecurityMonitoringSignalAttributes) SetTags(v []interface{})`
+`func (o *SecurityMonitoringSignalAttributes) SetTags(v []string)`
 
 SetTags sets Tags field to given value.
 
