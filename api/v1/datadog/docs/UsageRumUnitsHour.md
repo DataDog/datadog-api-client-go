@@ -4,10 +4,7 @@
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
-**BrowserRumLiteSessionCount** | Pointer to **int64** | Number of browser RUM lite sessions. | [optional] 
-**BrowserRumReplaySessionCount** | Pointer to **int64** | Number of browser RUM replay sessions. | [optional] 
 **BrowserRumUnits** | Pointer to **int64** | The number of browser RUM units. | [optional] 
-**MobileRumLiteSessionCount** | Pointer to **int64** | Number of mobile RUM lite sessions. | [optional] 
 **MobileRumUnits** | Pointer to **int64** | The number of mobile RUM units. | [optional] 
 **OrgName** | Pointer to **string** | The organization name. | [optional] 
 **PublicId** | Pointer to **string** | The organization public ID. | [optional] 
@@ -31,56 +28,6 @@ will change when the set of required properties is changed.
 NewUsageRumUnitsHourWithDefaults instantiates a new UsageRumUnitsHour object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
-
-### GetBrowserRumLiteSessionCount
-
-`func (o *UsageRumUnitsHour) GetBrowserRumLiteSessionCount() int64`
-
-GetBrowserRumLiteSessionCount returns the BrowserRumLiteSessionCount field if non-nil, zero value otherwise.
-
-### GetBrowserRumLiteSessionCountOk
-
-`func (o *UsageRumUnitsHour) GetBrowserRumLiteSessionCountOk() (*int64, bool)`
-
-GetBrowserRumLiteSessionCountOk returns a tuple with the BrowserRumLiteSessionCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBrowserRumLiteSessionCount
-
-`func (o *UsageRumUnitsHour) SetBrowserRumLiteSessionCount(v int64)`
-
-SetBrowserRumLiteSessionCount sets BrowserRumLiteSessionCount field to given value.
-
-### HasBrowserRumLiteSessionCount
-
-`func (o *UsageRumUnitsHour) HasBrowserRumLiteSessionCount() bool`
-
-HasBrowserRumLiteSessionCount returns a boolean if a field has been set.
-
-### GetBrowserRumReplaySessionCount
-
-`func (o *UsageRumUnitsHour) GetBrowserRumReplaySessionCount() int64`
-
-GetBrowserRumReplaySessionCount returns the BrowserRumReplaySessionCount field if non-nil, zero value otherwise.
-
-### GetBrowserRumReplaySessionCountOk
-
-`func (o *UsageRumUnitsHour) GetBrowserRumReplaySessionCountOk() (*int64, bool)`
-
-GetBrowserRumReplaySessionCountOk returns a tuple with the BrowserRumReplaySessionCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBrowserRumReplaySessionCount
-
-`func (o *UsageRumUnitsHour) SetBrowserRumReplaySessionCount(v int64)`
-
-SetBrowserRumReplaySessionCount sets BrowserRumReplaySessionCount field to given value.
-
-### HasBrowserRumReplaySessionCount
-
-`func (o *UsageRumUnitsHour) HasBrowserRumReplaySessionCount() bool`
-
-HasBrowserRumReplaySessionCount returns a boolean if a field has been set.
 
 ### GetBrowserRumUnits
 
@@ -106,31 +53,6 @@ SetBrowserRumUnits sets BrowserRumUnits field to given value.
 `func (o *UsageRumUnitsHour) HasBrowserRumUnits() bool`
 
 HasBrowserRumUnits returns a boolean if a field has been set.
-
-### GetMobileRumLiteSessionCount
-
-`func (o *UsageRumUnitsHour) GetMobileRumLiteSessionCount() int64`
-
-GetMobileRumLiteSessionCount returns the MobileRumLiteSessionCount field if non-nil, zero value otherwise.
-
-### GetMobileRumLiteSessionCountOk
-
-`func (o *UsageRumUnitsHour) GetMobileRumLiteSessionCountOk() (*int64, bool)`
-
-GetMobileRumLiteSessionCountOk returns a tuple with the MobileRumLiteSessionCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMobileRumLiteSessionCount
-
-`func (o *UsageRumUnitsHour) SetMobileRumLiteSessionCount(v int64)`
-
-SetMobileRumLiteSessionCount sets MobileRumLiteSessionCount field to given value.
-
-### HasMobileRumLiteSessionCount
-
-`func (o *UsageRumUnitsHour) HasMobileRumLiteSessionCount() bool`
-
-HasMobileRumLiteSessionCount returns a boolean if a field has been set.
 
 ### GetMobileRumUnits
 

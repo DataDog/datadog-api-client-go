@@ -14,14 +14,8 @@ import (
 
 // UsageRumUnitsHour Number of RUM Units used for each hour for a given organization (data available as of November 1, 2021).
 type UsageRumUnitsHour struct {
-	// Number of browser RUM lite sessions.
-	BrowserRumLiteSessionCount *int64 `json:"browser_rum_lite_session_count,omitempty"`
-	// Number of browser RUM replay sessions.
-	BrowserRumReplaySessionCount *int64 `json:"browser_rum_replay_session_count,omitempty"`
 	// The number of browser RUM units.
 	BrowserRumUnits *int64 `json:"browser_rum_units,omitempty"`
-	// Number of mobile RUM lite sessions.
-	MobileRumLiteSessionCount *int64 `json:"mobile_rum_lite_session_count,omitempty"`
 	// The number of mobile RUM units.
 	MobileRumUnits *int64 `json:"mobile_rum_units,omitempty"`
 	// The organization name.
@@ -49,70 +43,6 @@ func NewUsageRumUnitsHour() *UsageRumUnitsHour {
 func NewUsageRumUnitsHourWithDefaults() *UsageRumUnitsHour {
 	this := UsageRumUnitsHour{}
 	return &this
-}
-
-// GetBrowserRumLiteSessionCount returns the BrowserRumLiteSessionCount field value if set, zero value otherwise.
-func (o *UsageRumUnitsHour) GetBrowserRumLiteSessionCount() int64 {
-	if o == nil || o.BrowserRumLiteSessionCount == nil {
-		var ret int64
-		return ret
-	}
-	return *o.BrowserRumLiteSessionCount
-}
-
-// GetBrowserRumLiteSessionCountOk returns a tuple with the BrowserRumLiteSessionCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UsageRumUnitsHour) GetBrowserRumLiteSessionCountOk() (*int64, bool) {
-	if o == nil || o.BrowserRumLiteSessionCount == nil {
-		return nil, false
-	}
-	return o.BrowserRumLiteSessionCount, true
-}
-
-// HasBrowserRumLiteSessionCount returns a boolean if a field has been set.
-func (o *UsageRumUnitsHour) HasBrowserRumLiteSessionCount() bool {
-	if o != nil && o.BrowserRumLiteSessionCount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBrowserRumLiteSessionCount gets a reference to the given int64 and assigns it to the BrowserRumLiteSessionCount field.
-func (o *UsageRumUnitsHour) SetBrowserRumLiteSessionCount(v int64) {
-	o.BrowserRumLiteSessionCount = &v
-}
-
-// GetBrowserRumReplaySessionCount returns the BrowserRumReplaySessionCount field value if set, zero value otherwise.
-func (o *UsageRumUnitsHour) GetBrowserRumReplaySessionCount() int64 {
-	if o == nil || o.BrowserRumReplaySessionCount == nil {
-		var ret int64
-		return ret
-	}
-	return *o.BrowserRumReplaySessionCount
-}
-
-// GetBrowserRumReplaySessionCountOk returns a tuple with the BrowserRumReplaySessionCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UsageRumUnitsHour) GetBrowserRumReplaySessionCountOk() (*int64, bool) {
-	if o == nil || o.BrowserRumReplaySessionCount == nil {
-		return nil, false
-	}
-	return o.BrowserRumReplaySessionCount, true
-}
-
-// HasBrowserRumReplaySessionCount returns a boolean if a field has been set.
-func (o *UsageRumUnitsHour) HasBrowserRumReplaySessionCount() bool {
-	if o != nil && o.BrowserRumReplaySessionCount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBrowserRumReplaySessionCount gets a reference to the given int64 and assigns it to the BrowserRumReplaySessionCount field.
-func (o *UsageRumUnitsHour) SetBrowserRumReplaySessionCount(v int64) {
-	o.BrowserRumReplaySessionCount = &v
 }
 
 // GetBrowserRumUnits returns the BrowserRumUnits field value if set, zero value otherwise.
@@ -145,38 +75,6 @@ func (o *UsageRumUnitsHour) HasBrowserRumUnits() bool {
 // SetBrowserRumUnits gets a reference to the given int64 and assigns it to the BrowserRumUnits field.
 func (o *UsageRumUnitsHour) SetBrowserRumUnits(v int64) {
 	o.BrowserRumUnits = &v
-}
-
-// GetMobileRumLiteSessionCount returns the MobileRumLiteSessionCount field value if set, zero value otherwise.
-func (o *UsageRumUnitsHour) GetMobileRumLiteSessionCount() int64 {
-	if o == nil || o.MobileRumLiteSessionCount == nil {
-		var ret int64
-		return ret
-	}
-	return *o.MobileRumLiteSessionCount
-}
-
-// GetMobileRumLiteSessionCountOk returns a tuple with the MobileRumLiteSessionCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UsageRumUnitsHour) GetMobileRumLiteSessionCountOk() (*int64, bool) {
-	if o == nil || o.MobileRumLiteSessionCount == nil {
-		return nil, false
-	}
-	return o.MobileRumLiteSessionCount, true
-}
-
-// HasMobileRumLiteSessionCount returns a boolean if a field has been set.
-func (o *UsageRumUnitsHour) HasMobileRumLiteSessionCount() bool {
-	if o != nil && o.MobileRumLiteSessionCount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMobileRumLiteSessionCount gets a reference to the given int64 and assigns it to the MobileRumLiteSessionCount field.
-func (o *UsageRumUnitsHour) SetMobileRumLiteSessionCount(v int64) {
-	o.MobileRumLiteSessionCount = &v
 }
 
 // GetMobileRumUnits returns the MobileRumUnits field value if set, zero value otherwise.
@@ -323,17 +221,8 @@ func (o UsageRumUnitsHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.BrowserRumLiteSessionCount != nil {
-		toSerialize["browser_rum_lite_session_count"] = o.BrowserRumLiteSessionCount
-	}
-	if o.BrowserRumReplaySessionCount != nil {
-		toSerialize["browser_rum_replay_session_count"] = o.BrowserRumReplaySessionCount
-	}
 	if o.BrowserRumUnits != nil {
 		toSerialize["browser_rum_units"] = o.BrowserRumUnits
-	}
-	if o.MobileRumLiteSessionCount != nil {
-		toSerialize["mobile_rum_lite_session_count"] = o.MobileRumLiteSessionCount
 	}
 	if o.MobileRumUnits != nil {
 		toSerialize["mobile_rum_units"] = o.MobileRumUnits
@@ -353,14 +242,11 @@ func (o UsageRumUnitsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageRumUnitsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserRumLiteSessionCount   *int64        `json:"browser_rum_lite_session_count,omitempty"`
-		BrowserRumReplaySessionCount *int64        `json:"browser_rum_replay_session_count,omitempty"`
-		BrowserRumUnits              *int64        `json:"browser_rum_units,omitempty"`
-		MobileRumLiteSessionCount    *int64        `json:"mobile_rum_lite_session_count,omitempty"`
-		MobileRumUnits               *int64        `json:"mobile_rum_units,omitempty"`
-		OrgName                      *string       `json:"org_name,omitempty"`
-		PublicId                     *string       `json:"public_id,omitempty"`
-		RumUnits                     NullableInt64 `json:"rum_units,omitempty"`
+		BrowserRumUnits *int64        `json:"browser_rum_units,omitempty"`
+		MobileRumUnits  *int64        `json:"mobile_rum_units,omitempty"`
+		OrgName         *string       `json:"org_name,omitempty"`
+		PublicId        *string       `json:"public_id,omitempty"`
+		RumUnits        NullableInt64 `json:"rum_units,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -371,10 +257,7 @@ func (o *UsageRumUnitsHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.BrowserRumLiteSessionCount = all.BrowserRumLiteSessionCount
-	o.BrowserRumReplaySessionCount = all.BrowserRumReplaySessionCount
 	o.BrowserRumUnits = all.BrowserRumUnits
-	o.MobileRumLiteSessionCount = all.MobileRumLiteSessionCount
 	o.MobileRumUnits = all.MobileRumUnits
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
