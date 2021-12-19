@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **End** | Pointer to **int64** | Ending time of the correction in epoch seconds. | [optional] 
 **ModifiedAt** | Pointer to **int64** | The epoch timestamp of when the correction was modified at | [optional] 
 **Modifier** | Pointer to [**NullableSLOCorrectionResponseAttributesModifier**](SLOCorrectionResponseAttributesModifier.md) |  | [optional] 
-**Rrule** | Pointer to **NullableString** | Recurrence rules as defined in the iCalendar RFC 5545. | [optional] 
+**Rrule** | Pointer to **NullableString** | The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections are &#x60;FREQ&#x60;, &#x60;INTERVAL&#x60;, &#x60;COUNT&#x60; and &#x60;UNTIL&#x60;. | [optional] 
 **SloId** | Pointer to **string** | ID of the SLO that this correction will be applied to. | [optional] 
 **Start** | Pointer to **int64** | Starting time of the correction in epoch seconds. | [optional] 
 **Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;). | [optional] 

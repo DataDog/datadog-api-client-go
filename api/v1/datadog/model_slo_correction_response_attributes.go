@@ -27,7 +27,7 @@ type SLOCorrectionResponseAttributes struct {
 	// The epoch timestamp of when the correction was modified at
 	ModifiedAt *int64                                          `json:"modified_at,omitempty"`
 	Modifier   NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
-	// Recurrence rules as defined in the iCalendar RFC 5545.
+	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
 	Rrule NullableString `json:"rrule,omitempty"`
 	// ID of the SLO that this correction will be applied to.
 	SloId *string `json:"slo_id,omitempty"`
