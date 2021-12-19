@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Example** | Pointer to **string** | Example for the variable. | [optional] 
-**Id** | Pointer to **string** | ID of the variable for global variables. | [optional] 
+**Id** | **string** | ID of the variable for global variables. | 
 **Name** | **string** | Name of the variable. | 
 **Pattern** | Pointer to **string** | Pattern of the variable. | [optional] 
 **Type** | [**SyntheticsConfigVariableType**](SyntheticsConfigVariableType.md) |  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewSyntheticsConfigVariable
 
-`func NewSyntheticsConfigVariable(name string, type_ SyntheticsConfigVariableType) *SyntheticsConfigVariable`
+`func NewSyntheticsConfigVariable(id string, name string, type_ SyntheticsConfigVariableType) *SyntheticsConfigVariable`
 
 NewSyntheticsConfigVariable instantiates a new SyntheticsConfigVariable object.
 This constructor will assign default values to properties that have it defined,
@@ -73,11 +73,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *SyntheticsConfigVariable) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
