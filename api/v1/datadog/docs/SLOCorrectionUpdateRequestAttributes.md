@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Description of the correction being made. | [optional] 
 **Duration** | Pointer to **int64** | Length of time (in seconds) for a specified &#x60;rrule&#x60; recurring SLO correction. | [optional] 
 **End** | Pointer to **int64** | Ending time of the correction in epoch seconds. | [optional] 
-**Rrule** | Pointer to **string** | Recurrence rules as defined in the iCalendar RFC 5545. | [optional] 
+**Rrule** | Pointer to **string** | The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections are &#x60;FREQ&#x60;, &#x60;INTERVAL&#x60;, &#x60;COUNT&#x60; and &#x60;UNTIL&#x60;. | [optional] 
 **Start** | Pointer to **int64** | Starting time of the correction in epoch seconds. | [optional] 
 **Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;). | [optional] 
 

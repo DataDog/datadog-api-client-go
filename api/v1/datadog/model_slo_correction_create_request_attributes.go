@@ -22,7 +22,7 @@ type SLOCorrectionCreateRequestAttributes struct {
 	Duration *int64 `json:"duration,omitempty"`
 	// Ending time of the correction in epoch seconds.
 	End *int64 `json:"end,omitempty"`
-	// Recurrence rules as defined in the iCalendar RFC 5545.
+	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
 	Rrule *string `json:"rrule,omitempty"`
 	// ID of the SLO that this correction will be applied to.
 	SloId string `json:"slo_id"`
