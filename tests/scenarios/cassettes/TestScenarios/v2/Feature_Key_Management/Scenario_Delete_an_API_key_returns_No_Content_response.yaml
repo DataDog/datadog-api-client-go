@@ -1,0 +1,141 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Test-Delete_an_API_key_returns_No_Content_response-1639757112"},"type":"api_keys"}}
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Connection:
+      - close
+      Content-Length:
+      - '114'
+      Content-Type:
+      - application/json
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-spec/scripts/bdd-runner
+      X-Datadog-Parent-Id:
+      - '307687841352567763'
+      X-Datadog-Trace-Id:
+      - '307687841352567763'
+    method: POST
+    url: https://api.datadoghq.com/api/v2/api_keys
+  response:
+    body: '{"data":{"type":"api_keys","attributes":{"created_at":"2021-12-17T16:05:13.148121+00:00","key":"dead4087c6b3d1ae4b5e22e77a98beef","last4":"beef","modified_at":"2021-12-17T16:05:13.148121+00:00","name":"Test-Delete_an_API_key_returns_No_Content_response-1639757112"},"relationships":{"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}},"id":"bfcf6fe3-50b7-5110-bb8c-e8d018318214"}}'
+    code: 201
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Length:
+      - '496'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 17 Dec 2021 16:05:13 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-spec/scripts/bdd-runner
+      X-Datadog-Parent-Id:
+      - '307687841352567763'
+      X-Datadog-Trace-Id:
+      - '307687841352567763'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/api_keys/bfcf6fe3-50b7-5110-bb8c-e8d018318214
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Date:
+      - Fri, 17 Dec 2021 16:05:14 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Connection:
+      - close
+      Host:
+      - api.datadoghq.com
+      User-Agent:
+      - datadog-api-spec/scripts/bdd-runner
+      X-Datadog-Parent-Id:
+      - '307687841352567763'
+      X-Datadog-Trace-Id:
+      - '307687841352567763'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/api_keys/bfcf6fe3-50b7-5110-bb8c-e8d018318214
+  response:
+    body: '{"errors": ["API key not found"]}'
+    code: 404
+    duration: ''
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Length:
+      - '33'
+      Content-Security-Policy:
+      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 17 Dec 2021 16:05:14 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status: 404 Not Found
+version: 1
