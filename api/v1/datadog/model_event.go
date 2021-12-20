@@ -15,7 +15,7 @@ import (
 // Event Object representing an event.
 type Event struct {
 	AlertType *EventAlertType `json:"alert_type,omitempty"`
-	// POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 7 days.
+	// POSIX timestamp of the event. Must be sent as an integer (that is no quotes). Limited to events no older than 7 days.
 	DateHappened *int64 `json:"date_happened,omitempty"`
 	// A device name.
 	DeviceName *string `json:"device_name,omitempty"`

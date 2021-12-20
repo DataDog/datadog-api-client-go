@@ -145,8 +145,8 @@ Use this to create an outlier monitor using the following query:
 
 Example: `"check".over(tags).last(count).by(group).count_by_status()`
 
-- **`check`** name of the check, e.g. `datadog.agent.up`
-- **`tags`** one or more quoted tags (comma-separated), or "*". e.g.: `.over("env:prod", "role:db")`; **`over`** cannot be blank.
+- **`check`** name of the check, for example `datadog.agent.up`
+- **`tags`** one or more quoted tags (comma-separated), or "*". for example: `.over("env:prod", "role:db")`; **`over`** cannot be blank.
 - **`count`** must be at greater than or equal to your max threshold (defined in the `options`). It is limited to 100.
 For example, if you've specified to notify on 1 critical, 3 ok, and 2 warn statuses, `count` should be at least 3.
 - **`group`** must be specified for check monitors. Per-check grouping is already explicitly known for some service checks.
@@ -324,7 +324,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     monitorId := int64(789) // int64 | The ID of the monitor.
-    force := "false" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
+    force := "false" // string | Delete the monitor even if it's referenced by other resources (for example SLO, composite monitor). (optional)
     optionalParams := datadog.DeleteMonitorOptionalParameters{
         Force: &force,
     }
@@ -360,7 +360,7 @@ Other parameters are passed through a pointer to a DeleteMonitorOptionalParamete
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
-**force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (e.g. SLO, composite monitor). | 
+**force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (for example SLO, composite monitor). | 
 
 ### Return type
 
@@ -579,7 +579,7 @@ func main() {
     query := "query_example" // string | After entering a search query in your [Manage Monitor page][1] use the query parameter value in the URL of the page as value for this parameter. Consult the dedicated [manage monitor documentation][2] page to learn more.  The query can contain any number of space-separated monitor attributes, for instance `query=\"type:metric status:alert\"`.  [1]: https://app.datadoghq.com/monitors/manage [2]: /monitors/manage/#find-the-monitors (optional)
     page := int64(789) // int64 | Page to start paginating from. (optional) (default to 0)
     perPage := int64(789) // int64 | Number of monitors to return per page. (optional) (default to 30)
-    sort := "sort_example" // string | String for sort order, composed of field and sort order separate by a comma, e.g. `name,asc`. Supported sort directions: `asc`, `desc`. Supported fields:  * `name` * `status` * `tags` (optional)
+    sort := "sort_example" // string | String for sort order, composed of field and sort order separate by a comma, for example `name,asc`. Supported sort directions: `asc`, `desc`. Supported fields:  * `name` * `status` * `tags` (optional)
     optionalParams := datadog.SearchMonitorGroupsOptionalParameters{
         Query: &query,
         Page: &page,
@@ -617,7 +617,7 @@ Name | Type | Description  | Notes
 **query** | **string** | After entering a search query in your [Manage Monitor page][1] use the query parameter value in the URL of the page as value for this parameter. Consult the dedicated [manage monitor documentation][2] page to learn more.  The query can contain any number of space-separated monitor attributes, for instance &#x60;query&#x3D;\&quot;type:metric status:alert\&quot;&#x60;.  [1]: https://app.datadoghq.com/monitors/manage [2]: /monitors/manage/#find-the-monitors | 
 **page** | **int64** | Page to start paginating from. | [default to 0]
 **perPage** | **int64** | Number of monitors to return per page. | [default to 30]
-**sort** | **string** | String for sort order, composed of field and sort order separate by a comma, e.g. &#x60;name,asc&#x60;. Supported sort directions: &#x60;asc&#x60;, &#x60;desc&#x60;. Supported fields:  * &#x60;name&#x60; * &#x60;status&#x60; * &#x60;tags&#x60; | 
+**sort** | **string** | String for sort order, composed of field and sort order separate by a comma, for example &#x60;name,asc&#x60;. Supported sort directions: &#x60;asc&#x60;, &#x60;desc&#x60;. Supported fields:  * &#x60;name&#x60; * &#x60;status&#x60; * &#x60;tags&#x60; | 
 
 ### Return type
 
@@ -662,7 +662,7 @@ func main() {
     query := "query_example" // string | After entering a search query in your [Manage Monitor page][1] use the query parameter value in the URL of the page as value for this parameter. Consult the dedicated [manage monitor documentation][2] page to learn more.  The query can contain any number of space-separated monitor attributes, for instance `query=\"type:metric status:alert\"`.  [1]: https://app.datadoghq.com/monitors/manage [2]: /monitors/manage/#find-the-monitors (optional)
     page := int64(789) // int64 | Page to start paginating from. (optional) (default to 0)
     perPage := int64(789) // int64 | Number of monitors to return per page. (optional) (default to 30)
-    sort := "sort_example" // string | String for sort order, composed of field and sort order separate by a comma, e.g. `name,asc`. Supported sort directions: `asc`, `desc`. Supported fields:  * `name` * `status` * `tags` (optional)
+    sort := "sort_example" // string | String for sort order, composed of field and sort order separate by a comma, for example `name,asc`. Supported sort directions: `asc`, `desc`. Supported fields:  * `name` * `status` * `tags` (optional)
     optionalParams := datadog.SearchMonitorsOptionalParameters{
         Query: &query,
         Page: &page,
@@ -700,7 +700,7 @@ Name | Type | Description  | Notes
 **query** | **string** | After entering a search query in your [Manage Monitor page][1] use the query parameter value in the URL of the page as value for this parameter. Consult the dedicated [manage monitor documentation][2] page to learn more.  The query can contain any number of space-separated monitor attributes, for instance &#x60;query&#x3D;\&quot;type:metric status:alert\&quot;&#x60;.  [1]: https://app.datadoghq.com/monitors/manage [2]: /monitors/manage/#find-the-monitors | 
 **page** | **int64** | Page to start paginating from. | [default to 0]
 **perPage** | **int64** | Number of monitors to return per page. | [default to 30]
-**sort** | **string** | String for sort order, composed of field and sort order separate by a comma, e.g. &#x60;name,asc&#x60;. Supported sort directions: &#x60;asc&#x60;, &#x60;desc&#x60;. Supported fields:  * &#x60;name&#x60; * &#x60;status&#x60; * &#x60;tags&#x60; | 
+**sort** | **string** | String for sort order, composed of field and sort order separate by a comma, for example &#x60;name,asc&#x60;. Supported sort directions: &#x60;asc&#x60;, &#x60;desc&#x60;. Supported fields:  * &#x60;name&#x60; * &#x60;status&#x60; * &#x60;tags&#x60; | 
 
 ### Return type
 

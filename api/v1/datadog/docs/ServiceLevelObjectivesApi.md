@@ -183,7 +183,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     sloId := "sloId_example" // string | The ID of the service level objective.
-    force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
+    force := "force_example" // string | Delete the monitor even if it's referenced by other resources (for example SLO, composite monitor). (optional)
     optionalParams := datadog.DeleteSLOOptionalParameters{
         Force: &force,
     }
@@ -219,7 +219,7 @@ Other parameters are passed through a pointer to a DeleteSLOOptionalParameters s
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
-**force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (e.g. SLO, composite monitor). | 
+**force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (for example SLO, composite monitor). | 
 
 ### Return type
 

@@ -117,7 +117,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     hostName := "hostName_example" // string | This endpoint allows you to remove all user-assigned tags for a single host.
-    source := "source_example" // string | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). (optional)
+    source := "source_example" // string | The source of the tags (for example chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). (optional)
     optionalParams := datadog.DeleteHostTagsOptionalParameters{
         Source: &source,
     }
@@ -150,7 +150,7 @@ Other parameters are passed through a pointer to a DeleteHostTagsOptionalParamet
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
-**source** | **string** | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | 
+**source** | **string** | The source of the tags (for example chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | 
 
 ### Return type
 
@@ -348,7 +348,7 @@ func main() {
 
     hostName := "hostName_example" // string | This endpoint allows you to update/replace all in an integration source with those supplied in the request.
     body := *datadog.NewHostTags() // HostTags | Add tags to host
-    source := "source_example" // string | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) (optional)
+    source := "source_example" // string | The source of the tags (for example chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) (optional)
     optionalParams := datadog.UpdateHostTagsOptionalParameters{
         Source: &source,
     }
@@ -385,7 +385,7 @@ Other parameters are passed through a pointer to a UpdateHostTagsOptionalParamet
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | ------
-**source** | **string** | The source of the tags (e.g. chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) | 
+**source** | **string** | The source of the tags (for example chef, puppet). [Complete list of source attribute values](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value) | 
 
 ### Return type
 
