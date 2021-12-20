@@ -343,21 +343,19 @@ func removeURLSecrets(u *url.URL) string {
 	return u.String()
 }
 
-
 // CompareAsJSON returns true if JSON strings serialize into same values.
 func CompareAsJSON(first, second io.Reader) (bool, error) {
-    var f, s interface{}
-    d := json.NewDecoder(first)
-    if err := d.Decode(&f); err != nil {
-        return false, err
-    }
-    d = json.NewDecoder(second)
-    if err := d.Decode(&s); err != nil {
-        return false, err
-    }
-    return reflect.DeepEqual(f, s), nil
+	var f, s interface{}
+	d := json.NewDecoder(first)
+	if err := d.Decode(&f); err != nil {
+		return false, err
+	}
+	d = json.NewDecoder(second)
+	if err := d.Decode(&s); err != nil {
+		return false, err
+	}
+	return reflect.DeepEqual(f, s), nil
 }
-
 
 // MatchInteraction checks if the request matches a store request in the given cassette.
 func MatchInteraction(r *http.Request, i cassette.Request) bool {
