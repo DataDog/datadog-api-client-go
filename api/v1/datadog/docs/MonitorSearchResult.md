@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Notifications** | Pointer to [**[]MonitorSearchResultNotification**](MonitorSearchResultNotification.md) | The notification triggered by the monitor. | [optional] [readonly] 
 **OrgId** | Pointer to **int64** | The ID of the organization. | [optional] [readonly] 
 **Query** | Pointer to **string** | The monitor query. | [optional] 
-**Scopes** | Pointer to **[]string** | The scope(s) to which the downtime applies, e.g. &#x60;host:app2&#x60;. Provide multiple scopes as a comma-separated list, e.g. &#x60;env:dev,env:prod&#x60;. The resulting downtime applies to sources that matches ALL provided scopes (i.e. &#x60;env:dev AND env:prod&#x60;), NOT any of them. | [optional] 
+**Scopes** | Pointer to **[]string** | The scope(s) to which the downtime applies, for example &#x60;host:app2&#x60;. Provide multiple scopes as a comma-separated list, for example &#x60;env:dev,env:prod&#x60;. The resulting downtime applies to sources that matches ALL provided scopes (that is &#x60;env:dev AND env:prod&#x60;), NOT any of them. | [optional] 
 **Status** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | Tags associated with the monitor. | [optional] [readonly] 
 **Type** | Pointer to [**MonitorType**](MonitorType.md) |  | [optional] 

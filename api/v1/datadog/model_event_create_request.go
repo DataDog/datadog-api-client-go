@@ -18,7 +18,7 @@ type EventCreateRequest struct {
 	// An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream.
 	AggregationKey *string         `json:"aggregation_key,omitempty"`
 	AlertType      *EventAlertType `json:"alert_type,omitempty"`
-	// POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 7 days.
+	// POSIX timestamp of the event. Must be sent as an integer (that is no quotes). Limited to events no older than 7 days.
 	DateHappened *int64 `json:"date_happened,omitempty"`
 	// A device name.
 	DeviceName *string `json:"device_name,omitempty"`
@@ -29,7 +29,7 @@ type EventCreateRequest struct {
 	// Payload of the event.
 	Payload  *string        `json:"payload,omitempty"`
 	Priority *EventPriority `json:"priority,omitempty"`
-	// ID of the parent event. Must be sent as an integer (i.e. no quotes).
+	// ID of the parent event. Must be sent as an integer (that is no quotes).
 	RelatedEventId *int64 `json:"related_event_id,omitempty"`
 	// The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value).
 	SourceTypeName *string `json:"source_type_name,omitempty"`

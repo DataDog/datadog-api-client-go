@@ -18,7 +18,7 @@ import (
 type LogsListRequestTime struct {
 	// Minimum timestamp for requested logs.
 	From time.Time `json:"from"`
-	// Timezone can be specified both as an offset (e.g. \"UTC+03:00\") or a regional zone (e.g. \"Europe/Paris\").
+	// Timezone can be specified both as an offset (for example \"UTC+03:00\") or a regional zone (for example \"Europe/Paris\").
 	Timezone *string `json:"timezone,omitempty"`
 	// Maximum timestamp for requested logs.
 	To time.Time `json:"to"`

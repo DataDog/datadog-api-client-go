@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **AlertType** | Pointer to [**EventAlertType**](EventAlertType.md) |  | [optional] 
-**DateHappened** | Pointer to **int64** | POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 7 days. | [optional] 
+**DateHappened** | Pointer to **int64** | POSIX timestamp of the event. Must be sent as an integer (that is no quotes). Limited to events no older than 7 days. | [optional] 
 **DeviceName** | Pointer to **string** | A device name. | [optional] 
 **Host** | Pointer to **string** | Host name to associate with the event. Any tags associated with the host are also applied to this event. | [optional] 
 **Id** | Pointer to **int64** | Integer ID of the event. | [optional] [readonly] 
 **Payload** | Pointer to **string** | Payload of the event. | [optional] [readonly] 
 **Priority** | Pointer to [**EventPriority**](EventPriority.md) |  | [optional] 
-**RelatedEventId** | Pointer to **int64** | ID of the parent event. Must be sent as an integer (i.e. no quotes). | [optional] 
+**RelatedEventId** | Pointer to **int64** | ID of the parent event. Must be sent as an integer (that is no quotes). | [optional] 
 **SourceTypeName** | Pointer to **string** | The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | [optional] 
 **Status** | Pointer to **string** | A status. | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags to apply to the event. | [optional] 
