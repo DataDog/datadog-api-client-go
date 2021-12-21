@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **ContainerCount** | Pointer to **int64** | The total number of Cloud Security Posture Management containers during a given hour. | [optional] 
 **HostCount** | Pointer to **int64** | The total number of Cloud Security Posture Management hosts during a given hour. | [optional] 
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
+**OrgName** | Pointer to **string** | The organization name. | [optional] 
+**PublicId** | Pointer to **string** | The organization public ID. | [optional] 
 
 ## Methods
 
@@ -101,6 +103,56 @@ SetHour sets Hour field to given value.
 `func (o *UsageCloudSecurityPostureManagementHour) HasHour() bool`
 
 HasHour returns a boolean if a field has been set.
+
+### GetOrgName
+
+`func (o *UsageCloudSecurityPostureManagementHour) GetOrgName() string`
+
+GetOrgName returns the OrgName field if non-nil, zero value otherwise.
+
+### GetOrgNameOk
+
+`func (o *UsageCloudSecurityPostureManagementHour) GetOrgNameOk() (*string, bool)`
+
+GetOrgNameOk returns a tuple with the OrgName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrgName
+
+`func (o *UsageCloudSecurityPostureManagementHour) SetOrgName(v string)`
+
+SetOrgName sets OrgName field to given value.
+
+### HasOrgName
+
+`func (o *UsageCloudSecurityPostureManagementHour) HasOrgName() bool`
+
+HasOrgName returns a boolean if a field has been set.
+
+### GetPublicId
+
+`func (o *UsageCloudSecurityPostureManagementHour) GetPublicId() string`
+
+GetPublicId returns the PublicId field if non-nil, zero value otherwise.
+
+### GetPublicIdOk
+
+`func (o *UsageCloudSecurityPostureManagementHour) GetPublicIdOk() (*string, bool)`
+
+GetPublicIdOk returns a tuple with the PublicId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublicId
+
+`func (o *UsageCloudSecurityPostureManagementHour) SetPublicId(v string)`
+
+SetPublicId sets PublicId field to given value.
+
+### HasPublicId
+
+`func (o *UsageCloudSecurityPostureManagementHour) HasPublicId() bool`
+
+HasPublicId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
