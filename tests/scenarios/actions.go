@@ -25,7 +25,6 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/go-bdd/gobdd"
-	"github.com/mcuadros/go-lookup"
 )
 
 // UndoAction describes undo action.
@@ -65,7 +64,7 @@ func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp refl
 		}
 		return v.Elem()
 	}
-	v, _ := Lookup(GetData(ctx), *p.Source)
+	v, _ := tests.LookupStringI(GetData(ctx), *p.Source)
 	return v
 }
 
@@ -235,7 +234,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite, version string) {
 		}
 
 		if s.Source != nil {
-			responseJSON, err = Lookup(responseJSON, *s.Source)
+			responseJSON, err = tests.LookupStringI(responseJSON, *s.Source)
 			if err != nil {
 				t.Error(err)
 			}
@@ -337,7 +336,7 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 					}
 					in[i] = object.Elem()
 				} else if undo.Undo.Parameters[i-1].Source != nil {
-					source, err := Lookup(responseJSON, *undo.Undo.Parameters[i-1].Source)
+					source, err := tests.LookupStringI(responseJSON, *undo.Undo.Parameters[i-1].Source)
 					if err != nil {
 						t.Fatalf("%v", err)
 					}
