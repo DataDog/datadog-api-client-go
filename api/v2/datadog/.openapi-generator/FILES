@@ -270,6 +270,9 @@ docs/RelationshipToUsers.md
 docs/ResponseMetaAttributes.md
 docs/Role.md
 docs/RoleAttributes.md
+docs/RoleClone.md
+docs/RoleCloneAttributes.md
+docs/RoleCloneRequest.md
 docs/RoleCreateAttributes.md
 docs/RoleCreateData.md
 docs/RoleCreateRequest.md
@@ -608,6 +611,9 @@ model_relationship_to_users.go
 model_response_meta_attributes.go
 model_role.go
 model_role_attributes.go
+model_role_clone.go
+model_role_clone_attributes.go
+model_role_clone_request.go
 model_role_create_attributes.go
 model_role_create_data.go
 model_role_create_request.go

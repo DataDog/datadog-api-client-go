@@ -141,6 +141,7 @@ Class | Method | HTTP request | Description
 *ProcessesApi* | [**ListProcesses**](docs/ProcessesApi.md#listprocesses) | **Get** /api/v2/processes | Get all processes
 *RolesApi* | [**AddPermissionToRole**](docs/RolesApi.md#addpermissiontorole) | **Post** /api/v2/roles/{role_id}/permissions | Grant permission to a role
 *RolesApi* | [**AddUserToRole**](docs/RolesApi.md#addusertorole) | **Post** /api/v2/roles/{role_id}/users | Add a user to a role
+*RolesApi* | [**CloneRole**](docs/RolesApi.md#clonerole) | **Post** /api/v2/roles/{role_id}/clone | Create a new role by cloning an existing role
 *RolesApi* | [**CreateRole**](docs/RolesApi.md#createrole) | **Post** /api/v2/roles | Create role
 *RolesApi* | [**DeleteRole**](docs/RolesApi.md#deleterole) | **Delete** /api/v2/roles/{role_id} | Delete role
 *RolesApi* | [**GetRole**](docs/RolesApi.md#getrole) | **Get** /api/v2/roles/{role_id} | Get a role
@@ -425,6 +426,9 @@ Class | Method | HTTP request | Description
  - [ResponseMetaAttributes](docs/ResponseMetaAttributes.md)
  - [Role](docs/Role.md)
  - [RoleAttributes](docs/RoleAttributes.md)
+ - [RoleClone](docs/RoleClone.md)
+ - [RoleCloneAttributes](docs/RoleCloneAttributes.md)
+ - [RoleCloneRequest](docs/RoleCloneRequest.md)
  - [RoleCreateAttributes](docs/RoleCreateAttributes.md)
  - [RoleCreateData](docs/RoleCreateData.md)
  - [RoleCreateRequest](docs/RoleCreateRequest.md)
