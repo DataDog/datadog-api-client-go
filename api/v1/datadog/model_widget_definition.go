@@ -38,6 +38,7 @@ type WidgetDefinition struct {
 	ScatterPlotWidgetDefinition    *ScatterPlotWidgetDefinition
 	ServiceMapWidgetDefinition     *ServiceMapWidgetDefinition
 	ServiceSummaryWidgetDefinition *ServiceSummaryWidgetDefinition
+	SunburstWidgetDefinition       *SunburstWidgetDefinition
 	TableWidgetDefinition          *TableWidgetDefinition
 	TimeseriesWidgetDefinition     *TimeseriesWidgetDefinition
 	ToplistWidgetDefinition        *ToplistWidgetDefinition
@@ -165,6 +166,11 @@ func ServiceMapWidgetDefinitionAsWidgetDefinition(v *ServiceMapWidgetDefinition)
 // ServiceSummaryWidgetDefinitionAsWidgetDefinition is a convenience function that returns ServiceSummaryWidgetDefinition wrapped in WidgetDefinition
 func ServiceSummaryWidgetDefinitionAsWidgetDefinition(v *ServiceSummaryWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{ServiceSummaryWidgetDefinition: v}
+}
+
+// SunburstWidgetDefinitionAsWidgetDefinition is a convenience function that returns SunburstWidgetDefinition wrapped in WidgetDefinition
+func SunburstWidgetDefinitionAsWidgetDefinition(v *SunburstWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{SunburstWidgetDefinition: v}
 }
 
 // TableWidgetDefinitionAsWidgetDefinition is a convenience function that returns TableWidgetDefinition wrapped in WidgetDefinition
@@ -565,6 +571,23 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.ServiceSummaryWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into SunburstWidgetDefinition
+	err = json.Unmarshal(data, &dst.SunburstWidgetDefinition)
+	if err == nil {
+		if dst.SunburstWidgetDefinition != nil && dst.SunburstWidgetDefinition.UnparsedObject == nil {
+			jsonSunburstWidgetDefinition, _ := json.Marshal(dst.SunburstWidgetDefinition)
+			if string(jsonSunburstWidgetDefinition) == "{}" { // empty struct
+				dst.SunburstWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.SunburstWidgetDefinition = nil
+		}
+	} else {
+		dst.SunburstWidgetDefinition = nil
+	}
+
 	// try to unmarshal data into TableWidgetDefinition
 	err = json.Unmarshal(data, &dst.TableWidgetDefinition)
 	if err == nil {
@@ -693,6 +716,7 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.ScatterPlotWidgetDefinition = nil
 		dst.ServiceMapWidgetDefinition = nil
 		dst.ServiceSummaryWidgetDefinition = nil
+		dst.SunburstWidgetDefinition = nil
 		dst.TableWidgetDefinition = nil
 		dst.TimeseriesWidgetDefinition = nil
 		dst.ToplistWidgetDefinition = nil
@@ -799,6 +823,10 @@ func (src WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if src.ServiceSummaryWidgetDefinition != nil {
 		return json.Marshal(&src.ServiceSummaryWidgetDefinition)
+	}
+
+	if src.SunburstWidgetDefinition != nil {
+		return json.Marshal(&src.SunburstWidgetDefinition)
 	}
 
 	if src.TableWidgetDefinition != nil {
@@ -919,6 +947,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.ServiceSummaryWidgetDefinition != nil {
 		return obj.ServiceSummaryWidgetDefinition
+	}
+
+	if obj.SunburstWidgetDefinition != nil {
+		return obj.SunburstWidgetDefinition
 	}
 
 	if obj.TableWidgetDefinition != nil {

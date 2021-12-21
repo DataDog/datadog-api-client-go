@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **ScatterPlotWidgetDefinition** | Pointer to [**ScatterPlotWidgetDefinition**](ScatterPlotWidgetDefinition.md) | A pointer to the appropriate element. |
 **ServiceMapWidgetDefinition** | Pointer to [**ServiceMapWidgetDefinition**](ServiceMapWidgetDefinition.md) | A pointer to the appropriate element. |
 **ServiceSummaryWidgetDefinition** | Pointer to [**ServiceSummaryWidgetDefinition**](ServiceSummaryWidgetDefinition.md) | A pointer to the appropriate element. |
+**SunburstWidgetDefinition** | Pointer to [**SunburstWidgetDefinition**](SunburstWidgetDefinition.md) | A pointer to the appropriate element. |
 **TableWidgetDefinition** | Pointer to [**TableWidgetDefinition**](TableWidgetDefinition.md) | A pointer to the appropriate element. |
 **TimeseriesWidgetDefinition** | Pointer to [**TimeseriesWidgetDefinition**](TimeseriesWidgetDefinition.md) | A pointer to the appropriate element. |
 **ToplistWidgetDefinition** | Pointer to [**ToplistWidgetDefinition**](ToplistWidgetDefinition.md) | A pointer to the appropriate element. |
