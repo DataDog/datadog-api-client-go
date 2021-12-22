@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------ | ------------ | ------------
 [**AddPermissionToRole**](RolesApi.md#AddPermissionToRole) | **Post** /api/v2/roles/{role_id}/permissions | Grant permission to a role
 [**AddUserToRole**](RolesApi.md#AddUserToRole) | **Post** /api/v2/roles/{role_id}/users | Add a user to a role
+[**CloneRole**](RolesApi.md#CloneRole) | **Post** /api/v2/roles/{role_id}/clone | Create a new role by cloning an existing role
 [**CreateRole**](RolesApi.md#CreateRole) | **Post** /api/v2/roles | Create role
 [**DeleteRole**](RolesApi.md#DeleteRole) | **Delete** /api/v2/roles/{role_id} | Delete role
 [**GetRole**](RolesApi.md#GetRole) | **Get** /api/v2/roles/{role_id} | Get a role
@@ -148,6 +149,78 @@ This endpoint does not have optional parameters.
 ### Return type
 
 [**UsersResponse**](UsersResponse.md)
+
+### Authorization
+
+[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CloneRole
+
+> RoleResponse CloneRole(ctx, roleId, body)
+
+Clone an existing role
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    roleId := "roleId_example" // string | The ID of the role.
+    body := *datadog.NewRoleCloneRequest(*datadog.NewRoleClone(*datadog.NewRoleCloneAttributes("cloned-role"), datadog.RolesType("roles"))) // RoleCloneRequest | 
+
+    configuration := datadog.NewConfiguration()
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.RolesApi.CloneRole(ctx, roleId, body)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.CloneRole`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CloneRole`: RoleResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from RolesApi.CloneRole:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**roleId** | **string** | The ID of the role. |  |
+**body** | [**RoleCloneRequest**](RoleCloneRequest.md) |  | 
+
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
+
+### Return type
+
+[**RoleResponse**](RoleResponse.md)
 
 ### Authorization
 
