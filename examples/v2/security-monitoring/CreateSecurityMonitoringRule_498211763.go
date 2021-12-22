@@ -21,10 +21,6 @@ func main() {
 				GroupByFields:  &[]string{},
 				DistinctFields: &[]string{},
 				Metric:         datadog.PtrString(""),
-				AgentRule: &datadog.SecurityMonitoringRuntimeAgentRule{
-					AgentRuleId: datadog.PtrString("kernel_module_unlink_2"),
-					Expression:  datadog.PtrString("(open.flags & ((O_CREAT|O_RDWR|O_WRONLY|O_TRUNC)) > 0)"),
-				},
 			},
 		},
 		Filters: &[]datadog.SecurityMonitoringFilter{},
