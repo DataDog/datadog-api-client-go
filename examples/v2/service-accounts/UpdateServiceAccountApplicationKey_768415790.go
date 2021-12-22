@@ -23,7 +23,7 @@ func main() {
 			Id:   SERVICE_ACCOUNT_APPLICATION_KEY_DATA_ID,
 			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 			Attributes: datadog.ApplicationKeyUpdateAttributes{
-				Name: "Application Key for submitting metrics-updated",
+				Name: datadog.PtrString("Application Key for managing dashboards-updated"),
 			},
 		},
 	}

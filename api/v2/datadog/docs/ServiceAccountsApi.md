@@ -35,7 +35,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     serviceAccountId := "00000000-0000-0000-0000-000000000000" // string | The ID of the service account.
-    body := *datadog.NewApplicationKeyCreateRequest(*datadog.NewApplicationKeyCreateData(*datadog.NewApplicationKeyCreateAttributes("Application Key for submitting metrics"), datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyCreateRequest | 
+    body := *datadog.NewApplicationKeyCreateRequest(*datadog.NewApplicationKeyCreateData(*datadog.NewApplicationKeyCreateAttributes("Application Key for managing dashboards"), datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyCreateRequest | 
 
     configuration := datadog.NewConfiguration()
 
@@ -342,7 +342,7 @@ func main() {
 
     serviceAccountId := "00000000-0000-0000-0000-000000000000" // string | The ID of the service account.
     appKeyId := "appKeyId_example" // string | The ID of the application key.
-    body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes("Application Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest | 
+    body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes(), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest | 
 
     configuration := datadog.NewConfiguration()
 
