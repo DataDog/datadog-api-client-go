@@ -5,6 +5,7 @@ All URIs are relative to *https://api.datadoghq.com*
 Method | HTTP request | Description
 ------ | ------------ | ------------
 [**GetDailyCustomReports**](UsageMeteringApi.md#GetDailyCustomReports) | **Get** /api/v1/daily_custom_reports | Get the list of available daily custom reports
+[**GetHourlyUsageAttribution**](UsageMeteringApi.md#GetHourlyUsageAttribution) | **Get** /api/v1/usage/hourly-attribution | Get Hourly Usage Attribution
 [**GetIncidentManagement**](UsageMeteringApi.md#GetIncidentManagement) | **Get** /api/v1/usage/incident-management | Get hourly usage for incident management
 [**GetIngestedSpans**](UsageMeteringApi.md#GetIngestedSpans) | **Get** /api/v1/usage/ingested-spans | Get hourly usage for ingested spans
 [**GetMonthlyCustomReports**](UsageMeteringApi.md#GetMonthlyCustomReports) | **Get** /api/v1/monthly_custom_reports | Get the list of available monthly custom reports
@@ -114,6 +115,95 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json;datetime-format=rfc3339, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetHourlyUsageAttribution
+
+> HourlyUsageAttributionResponse GetHourlyUsageAttribution(ctx, startHr, usageType, datadog.GetHourlyUsageAttributionOptionalParameters{})
+
+Get Hourly Usage Attribution.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    "time"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    startHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage beginning at this hour.
+    usageType := datadog.HourlyUsageAttributionUsageType("api_usage") // HourlyUsageAttributionUsageType | Usage type to retrieve.
+    endHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending **before** this hour. (optional)
+    nextRecordId := "nextRecordId_example" // string | List following results with a next_record_id provided in the previous query. (optional)
+    tagBreakdownKeys := "tagBreakdownKeys_example" // string | Comma separated list of tags used to group usage. If no value is provided the usage will not be broken down by tags. (optional)
+    optionalParams := datadog.GetHourlyUsageAttributionOptionalParameters{
+        EndHr: &endHr,
+        NextRecordId: &nextRecordId,
+        TagBreakdownKeys: &tagBreakdownKeys,
+    }
+
+    configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetHourlyUsageAttribution", true)
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsageMeteringApi.GetHourlyUsageAttribution(ctx, startHr, usageType, optionalParams)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetHourlyUsageAttribution`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetHourlyUsageAttribution`: HourlyUsageAttributionResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetHourlyUsageAttribution:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |  |
+**usageType** | [**HourlyUsageAttributionUsageType**](HourlyUsageAttributionUsageType.md) | Usage type to retrieve. | 
+
+
+### Optional Parameters
+
+
+Other parameters are passed through a pointer to a GetHourlyUsageAttributionOptionalParameters struct.
+
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | ------
+**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+**nextRecordId** | **string** | List following results with a next_record_id provided in the previous query. | 
+**tagBreakdownKeys** | **string** | Comma separated list of tags used to group usage. If no value is provided the usage will not be broken down by tags. | 
+
+### Return type
+
+[**HourlyUsageAttributionResponse**](HourlyUsageAttributionResponse.md)
+
+### Authorization
+
+[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
 
 ### HTTP request headers
 
