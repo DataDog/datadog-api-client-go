@@ -240,6 +240,7 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**ListHostTags**](docs/TagsApi.md#listhosttags) | **Get** /api/v1/tags/hosts | Get Tags
 *TagsApi* | [**UpdateHostTags**](docs/TagsApi.md#updatehosttags) | **Put** /api/v1/tags/hosts/{host_name} | Update host tags
 *UsageMeteringApi* | [**GetDailyCustomReports**](docs/UsageMeteringApi.md#getdailycustomreports) | **Get** /api/v1/daily_custom_reports | Get the list of available daily custom reports
+*UsageMeteringApi* | [**GetHourlyUsageAttribution**](docs/UsageMeteringApi.md#gethourlyusageattribution) | **Get** /api/v1/usage/hourly-attribution | Get Hourly Usage Attribution
 *UsageMeteringApi* | [**GetIncidentManagement**](docs/UsageMeteringApi.md#getincidentmanagement) | **Get** /api/v1/usage/incident-management | Get hourly usage for incident management
 *UsageMeteringApi* | [**GetIngestedSpans**](docs/UsageMeteringApi.md#getingestedspans) | **Get** /api/v1/usage/ingested-spans | Get hourly usage for ingested spans
 *UsageMeteringApi* | [**GetMonthlyCustomReports**](docs/UsageMeteringApi.md#getmonthlycustomreports) | **Get** /api/v1/monthly_custom_reports | Get the list of available monthly custom reports
@@ -429,6 +430,11 @@ Class | Method | HTTP request | Description
  - [HostMuteSettings](docs/HostMuteSettings.md)
  - [HostTags](docs/HostTags.md)
  - [HostTotals](docs/HostTotals.md)
+ - [HourlyUsageAttributionBody](docs/HourlyUsageAttributionBody.md)
+ - [HourlyUsageAttributionMetadata](docs/HourlyUsageAttributionMetadata.md)
+ - [HourlyUsageAttributionPagination](docs/HourlyUsageAttributionPagination.md)
+ - [HourlyUsageAttributionResponse](docs/HourlyUsageAttributionResponse.md)
+ - [HourlyUsageAttributionUsageType](docs/HourlyUsageAttributionUsageType.md)
  - [IFrameWidgetDefinition](docs/IFrameWidgetDefinition.md)
  - [IFrameWidgetDefinitionType](docs/IFrameWidgetDefinitionType.md)
  - [IPPrefixesAPI](docs/IPPrefixesAPI.md)

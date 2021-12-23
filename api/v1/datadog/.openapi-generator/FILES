@@ -182,6 +182,11 @@ docs/HostMuteSettings.md
 docs/HostTags.md
 docs/HostTotals.md
 docs/HostsApi.md
+docs/HourlyUsageAttributionBody.md
+docs/HourlyUsageAttributionMetadata.md
+docs/HourlyUsageAttributionPagination.md
+docs/HourlyUsageAttributionResponse.md
+docs/HourlyUsageAttributionUsageType.md
 docs/IFrameWidgetDefinition.md
 docs/IFrameWidgetDefinitionType.md
 docs/IPPrefixesAPI.md
@@ -850,6 +855,11 @@ model_host_mute_response.go
 model_host_mute_settings.go
 model_host_tags.go
 model_host_totals.go
+model_hourly_usage_attribution_body.go
+model_hourly_usage_attribution_metadata.go
+model_hourly_usage_attribution_pagination.go
+model_hourly_usage_attribution_response.go
+model_hourly_usage_attribution_usage_type.go
 model_http_log_error.go
 model_http_log_item.go
 model_http_method.go

@@ -20,7 +20,7 @@ else
 	RUN=$(echo $1 | sed 's/-test.run=//')
 	if [[ ${RUN} =~ ${RE_TEST} ]] && [[ ! ${RUN} =~ ${RE_SCENARIO} ]]; then
 		TEST=$(echo $RUN | tr -d '$^')
-		echo "{\"Time\":\"$(date --rfc-3339=ns | tr ' ' 'T')\",\"Action\":\"skip\",\"Package\":\"$2\",\"Test\":\"${TEST//\"/\\\"}\",\"Elapsed\":0}"
+		echo "{\"Time\":\"$(date -u +'%Y-%m-%dT%H:%M:%SZ')\",\"Action\":\"skip\",\"Package\":\"$2\",\"Test\":\"${TEST//\"/\\\"}\",\"Elapsed\":0}"
 	else
 		if [[ ${RERECORD_FAILED_TESTS} == "true" ]]; then
 			RECORD=true "${CMD[@]}" -run "$RUN" "$2"
