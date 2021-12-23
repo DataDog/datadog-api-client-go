@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadog.MetricsPayload{
 		Series: []datadog.Series{
-			datadog.Series{
+			{
 				Metric: "system.load.1",
 				Type:   datadog.PtrString("gauge"),
 				Points: [][]*float64{

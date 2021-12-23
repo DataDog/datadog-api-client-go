@@ -12,12 +12,12 @@ import (
 
 func main() {
 	// there is a valid "role" in the system
-	ROLE_DATA_ID := os.Getenv("ROLE_DATA_ID")
+	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.RolesApi.DeleteRole(ctx, ROLE_DATA_ID)
+	r, err := apiClient.RolesApi.DeleteRole(ctx, RoleDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.DeleteRole`: %v\n", err)

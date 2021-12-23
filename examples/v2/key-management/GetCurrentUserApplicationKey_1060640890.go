@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// there is a valid "application_key" in the system
-	APPLICATION_KEY_DATA_ID := os.Getenv("APPLICATION_KEY_DATA_ID")
+	ApplicationKeyDataID := os.Getenv("APPLICATION_KEY_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.KeyManagementApi.GetCurrentUserApplicationKey(ctx, APPLICATION_KEY_DATA_ID)
+	resp, r, err := apiClient.KeyManagementApi.GetCurrentUserApplicationKey(ctx, ApplicationKeyDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetCurrentUserApplicationKey`: %v\n", err)

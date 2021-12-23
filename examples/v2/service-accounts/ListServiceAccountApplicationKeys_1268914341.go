@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// there is a valid "service_account_user" in the system
-	SERVICE_ACCOUNT_USER_DATA_ID := os.Getenv("SERVICE_ACCOUNT_USER_DATA_ID")
+	ServiceAccountUserDataID := os.Getenv("SERVICE_ACCOUNT_USER_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceAccountsApi.ListServiceAccountApplicationKeys(ctx, SERVICE_ACCOUNT_USER_DATA_ID, *datadog.NewListServiceAccountApplicationKeysOptionalParameters())
+	resp, r, err := apiClient.ServiceAccountsApi.ListServiceAccountApplicationKeys(ctx, ServiceAccountUserDataID, *datadog.NewListServiceAccountApplicationKeysOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.ListServiceAccountApplicationKeys`: %v\n", err)

@@ -30,7 +30,7 @@ func main() {
 			"app:core",
 		},
 		Thresholds: []datadog.SLOThreshold{
-			datadog.SLOThreshold{
+			{
 				Target:         95.0,
 				TargetDisplay:  datadog.PtrString("95.0"),
 				Timeframe:      datadog.SLOTIMEFRAME_SEVEN_DAYS,

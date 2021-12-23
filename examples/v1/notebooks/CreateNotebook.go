@@ -16,7 +16,7 @@ func main() {
 		Data: datadog.NotebookCreateData{
 			Attributes: datadog.NotebookCreateDataAttributes{
 				Cells: []datadog.NotebookCellCreateRequest{
-					datadog.NotebookCellCreateRequest{
+					{
 						Attributes: datadog.NotebookCellCreateRequestAttributes{
 							NotebookMarkdownCellAttributes: &datadog.NotebookMarkdownCellAttributes{
 								Definition: datadog.NotebookMarkdownCellDefinition{
@@ -32,12 +32,12 @@ y = 6;
 							}},
 						Type: datadog.NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS,
 					},
-					datadog.NotebookCellCreateRequest{
+					{
 						Attributes: datadog.NotebookCellCreateRequestAttributes{
 							NotebookTimeseriesCellAttributes: &datadog.NotebookTimeseriesCellAttributes{
 								Definition: datadog.TimeseriesWidgetDefinition{
 									Requests: []datadog.TimeseriesWidgetRequest{
-										datadog.TimeseriesWidgetRequest{
+										{
 											DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
 											Q:           datadog.PtrString("avg:system.load.1{*}"),
 											Style: &datadog.WidgetRequestStyle{

@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// there is a valid "user" in the system
-	USER_DATA_ATTRIBUTES_EMAIL := os.Getenv("USER_DATA_ATTRIBUTES_EMAIL")
+	UserDataAttributesEmail := os.Getenv("USER_DATA_ATTRIBUTES_EMAIL")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersApi.ListUsers(ctx, *datadog.NewListUsersOptionalParameters().WithFilter(USER_DATA_ATTRIBUTES_EMAIL))
+	resp, r, err := apiClient.UsersApi.ListUsers(ctx, *datadog.NewListUsersOptionalParameters().WithFilter(UserDataAttributesEmail))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUsers`: %v\n", err)

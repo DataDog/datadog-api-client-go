@@ -16,7 +16,7 @@ func main() {
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_with_a_query_value_widget_using_the_percentile_aggregator with QVW Percentile Aggregator",
 		Widgets: []datadog.Widget{
-			datadog.Widget{
+			{
 				Definition: datadog.WidgetDefinition{
 					QueryValueWidgetDefinition: &datadog.QueryValueWidgetDefinition{
 						TitleSize:  datadog.PtrString("16"),
@@ -26,9 +26,9 @@ func main() {
 						Time:       &datadog.WidgetTime{},
 						Autoscale:  datadog.PtrBool(true),
 						Requests: []datadog.QueryValueWidgetRequest{
-							datadog.QueryValueWidgetRequest{
+							{
 								Formulas: &[]datadog.WidgetFormula{
-									datadog.WidgetFormula{
+									{
 										Formula: "query1",
 									},
 								},

@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// there is a valid "api_key" in the system
-	API_KEY_DATA_ID := os.Getenv("API_KEY_DATA_ID")
+	APIKeyDataID := os.Getenv("API_KEY_DATA_ID")
 
 	body := datadog.APIKeyUpdateRequest{
 		Data: datadog.APIKeyUpdateData{
 			Type: datadog.APIKEYSTYPE_API_KEYS,
-			Id:   API_KEY_DATA_ID,
+			Id:   APIKeyDataID,
 			Attributes: datadog.APIKeyUpdateAttributes{
 				Name: "Example-Edit_an_API_key_returns_OK_response",
 			},
@@ -27,7 +27,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.KeyManagementApi.UpdateAPIKey(ctx, API_KEY_DATA_ID, body)
+	resp, r, err := apiClient.KeyManagementApi.UpdateAPIKey(ctx, APIKeyDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateAPIKey`: %v\n", err)

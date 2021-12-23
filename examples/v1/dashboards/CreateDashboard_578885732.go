@@ -15,7 +15,7 @@ func main() {
 	body := datadog.Dashboard{
 		Title: "Example-Create_a_new_dashboard_with_a_formulas_and_functions_change_widget",
 		Widgets: []datadog.Widget{
-			datadog.Widget{
+			{
 				Definition: datadog.WidgetDefinition{
 					ChangeWidgetDefinition: &datadog.ChangeWidgetDefinition{
 						Title:      datadog.PtrString(""),
@@ -24,12 +24,12 @@ func main() {
 						Time:       &datadog.WidgetTime{},
 						Type:       datadog.CHANGEWIDGETDEFINITIONTYPE_CHANGE,
 						Requests: []datadog.ChangeWidgetRequest{
-							datadog.ChangeWidgetRequest{
+							{
 								Formulas: &[]datadog.WidgetFormula{
-									datadog.WidgetFormula{
+									{
 										Formula: "hour_before(query1)",
 									},
-									datadog.WidgetFormula{
+									{
 										Formula: "query1",
 									},
 								},

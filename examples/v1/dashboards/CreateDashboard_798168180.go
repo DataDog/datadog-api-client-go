@@ -15,7 +15,7 @@ func main() {
 	body := datadog.Dashboard{
 		Title: "Example-Create_a_new_dashboard_with_apm_dependency_stats_widget",
 		Widgets: []datadog.Widget{
-			datadog.Widget{
+			{
 				Definition: datadog.WidgetDefinition{
 					TableWidgetDefinition: &datadog.TableWidgetDefinition{
 						Title:      datadog.PtrString(""),
@@ -23,7 +23,7 @@ func main() {
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE,
 						Requests: []datadog.TableWidgetRequest{
-							datadog.TableWidgetRequest{
+							{
 								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
 								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{

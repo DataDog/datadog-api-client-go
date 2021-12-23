@@ -13,14 +13,14 @@ import (
 
 func main() {
 	// there is a valid "service_account_user" in the system
-	SERVICE_ACCOUNT_USER_DATA_ID := os.Getenv("SERVICE_ACCOUNT_USER_DATA_ID")
+	ServiceAccountUserDataID := os.Getenv("SERVICE_ACCOUNT_USER_DATA_ID")
 
 	// there is a valid "service_account_application_key" for "service_account_user"
-	SERVICE_ACCOUNT_APPLICATION_KEY_DATA_ID := os.Getenv("SERVICE_ACCOUNT_APPLICATION_KEY_DATA_ID")
+	ServiceAccountApplicationKeyDataID := os.Getenv("SERVICE_ACCOUNT_APPLICATION_KEY_DATA_ID")
 
 	body := datadog.ApplicationKeyUpdateRequest{
 		Data: datadog.ApplicationKeyUpdateData{
-			Id:   SERVICE_ACCOUNT_APPLICATION_KEY_DATA_ID,
+			Id:   ServiceAccountApplicationKeyDataID,
 			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 			Attributes: datadog.ApplicationKeyUpdateAttributes{
 				Name: datadog.PtrString("Application Key for managing dashboards-updated"),
@@ -30,7 +30,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceAccountsApi.UpdateServiceAccountApplicationKey(ctx, SERVICE_ACCOUNT_USER_DATA_ID, SERVICE_ACCOUNT_APPLICATION_KEY_DATA_ID, body)
+	resp, r, err := apiClient.ServiceAccountsApi.UpdateServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, ServiceAccountApplicationKeyDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.UpdateServiceAccountApplicationKey`: %v\n", err)

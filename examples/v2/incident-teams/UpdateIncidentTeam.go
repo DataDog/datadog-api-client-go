@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// there is a valid "team" in the system
-	TEAM_DATA_ID := os.Getenv("TEAM_DATA_ID")
+	TeamDataID := os.Getenv("TEAM_DATA_ID")
 
 	body := datadog.IncidentTeamUpdateRequest{
 		Data: datadog.IncidentTeamUpdateData{
@@ -27,7 +27,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("UpdateIncidentTeam", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentTeamsApi.UpdateIncidentTeam(ctx, TEAM_DATA_ID, body)
+	resp, r, err := apiClient.IncidentTeamsApi.UpdateIncidentTeam(ctx, TeamDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.UpdateIncidentTeam`: %v\n", err)

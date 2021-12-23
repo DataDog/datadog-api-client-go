@@ -40,7 +40,7 @@ func main() {
 					}},
 			},
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
-				datadog.SyntheticsConfigVariable{
+				{
 					Example: datadog.PtrString("content-type"),
 					Name:    "PROPERTY",
 					Pattern: datadog.PtrString("content-type"),

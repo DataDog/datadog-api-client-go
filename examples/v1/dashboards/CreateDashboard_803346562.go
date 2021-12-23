@@ -15,7 +15,7 @@ func main() {
 	body := datadog.Dashboard{
 		Title: "Example-Create_a_new_dashboard_with_distribution_widget_and_apm_stats_data",
 		Widgets: []datadog.Widget{
-			datadog.Widget{
+			{
 				Definition: datadog.WidgetDefinition{
 					DistributionWidgetDefinition: &datadog.DistributionWidgetDefinition{
 						Title:      datadog.PtrString(""),
@@ -23,7 +23,7 @@ func main() {
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION,
 						Requests: []datadog.DistributionWidgetRequest{
-							datadog.DistributionWidgetRequest{
+							{
 								ApmStatsQuery: &datadog.ApmStatsQueryDefinition{
 									Env:        "prod",
 									Service:    "cassandra",

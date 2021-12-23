@@ -12,12 +12,12 @@ import (
 
 func main() {
 	// there is a valid "dashboard" in the system
-	DASHBOARD_ID := os.Getenv("DASHBOARD_ID")
+	DashboardID := os.Getenv("DASHBOARD_ID")
 
 	body := datadog.DashboardBulkDeleteRequest{
 		Data: []datadog.DashboardBulkActionData{
-			datadog.DashboardBulkActionData{
-				Id:   DASHBOARD_ID,
+			{
+				Id:   DashboardID,
 				Type: datadog.DASHBOARDRESOURCETYPE_DASHBOARD,
 			},
 		},

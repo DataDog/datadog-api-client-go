@@ -15,7 +15,7 @@ func main() {
 	body := datadog.Dashboard{
 		Title: "Example-Create_a_new_dashboard_with_formulas_and_functions_scatterplot_widget",
 		Widgets: []datadog.Widget{
-			datadog.Widget{
+			{
 				Id: datadog.PtrInt64(5346764334358972),
 				Definition: datadog.WidgetDefinition{
 					ScatterPlotWidgetDefinition: &datadog.ScatterPlotWidgetDefinition{
@@ -26,12 +26,12 @@ func main() {
 						Requests: datadog.ScatterPlotWidgetDefinitionRequests{
 							Table: &datadog.ScatterplotTableRequest{
 								Formulas: &[]datadog.ScatterplotWidgetFormula{
-									datadog.ScatterplotWidgetFormula{
+									{
 										Formula:   "query1",
 										Dimension: datadog.SCATTERPLOTDIMENSION_X,
 										Alias:     datadog.PtrString("my-query1"),
 									},
-									datadog.ScatterplotWidgetFormula{
+									{
 										Formula:   "query2",
 										Dimension: datadog.SCATTERPLOTDIMENSION_Y,
 										Alias:     datadog.PtrString("my-query2"),

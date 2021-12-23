@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// there is a valid "webhook_custom_variable" in the system
-	WEBHOOK_CUSTOM_VARIABLE_NAME := os.Getenv("WEBHOOK_CUSTOM_VARIABLE_NAME")
+	WebhookCustomVariableName := os.Getenv("WEBHOOK_CUSTOM_VARIABLE_NAME")
 
 	body := datadog.WebhooksIntegrationCustomVariableUpdateRequest{
 		Value: datadog.PtrString("variable-updated"),
@@ -21,7 +21,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksIntegrationApi.UpdateWebhooksIntegrationCustomVariable(ctx, WEBHOOK_CUSTOM_VARIABLE_NAME, body)
+	resp, r, err := apiClient.WebhooksIntegrationApi.UpdateWebhooksIntegrationCustomVariable(ctx, WebhookCustomVariableName, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksIntegrationApi.UpdateWebhooksIntegrationCustomVariable`: %v\n", err)
