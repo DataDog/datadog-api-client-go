@@ -13,21 +13,21 @@ import (
 
 func main() {
 	// there is a valid "role" in the system
-	ROLE_DATA_ID := os.Getenv("ROLE_DATA_ID")
+	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
 	// there is a valid "permission" in the system
-	PERMISSION_ID := os.Getenv("PERMISSION_ID")
+	PermissionID := os.Getenv("PERMISSION_ID")
 
 	body := datadog.RelationshipToPermission{
 		Data: &datadog.RelationshipToPermissionData{
-			Id:   datadog.PtrString(PERMISSION_ID),
+			Id:   datadog.PtrString(PermissionID),
 			Type: datadog.PERMISSIONSTYPE_PERMISSIONS.Ptr(),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesApi.AddPermissionToRole(ctx, ROLE_DATA_ID, body)
+	resp, r, err := apiClient.RolesApi.AddPermissionToRole(ctx, RoleDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddPermissionToRole`: %v\n", err)

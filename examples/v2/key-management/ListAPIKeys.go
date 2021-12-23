@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// there is a valid "api_key" in the system
-	API_KEY_DATA_ATTRIBUTES_NAME := os.Getenv("API_KEY_DATA_ATTRIBUTES_NAME")
+	APIKeyDataAttributesName := os.Getenv("API_KEY_DATA_ATTRIBUTES_NAME")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.KeyManagementApi.ListAPIKeys(ctx, *datadog.NewListAPIKeysOptionalParameters().WithFilter(API_KEY_DATA_ATTRIBUTES_NAME))
+	resp, r, err := apiClient.KeyManagementApi.ListAPIKeys(ctx, *datadog.NewListAPIKeysOptionalParameters().WithFilter(APIKeyDataAttributesName))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.ListAPIKeys`: %v\n", err)

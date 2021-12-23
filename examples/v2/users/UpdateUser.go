@@ -13,11 +13,11 @@ import (
 
 func main() {
 	// there is a valid "user" in the system
-	USER_DATA_ID := os.Getenv("USER_DATA_ID")
+	UserDataID := os.Getenv("USER_DATA_ID")
 
 	body := datadog.UserUpdateRequest{
 		Data: datadog.UserUpdateData{
-			Id:   USER_DATA_ID,
+			Id:   UserDataID,
 			Type: datadog.USERSTYPE_USERS,
 			Attributes: datadog.UserUpdateAttributes{
 				Name:     datadog.PtrString("updated"),
@@ -28,7 +28,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersApi.UpdateUser(ctx, USER_DATA_ID, body)
+	resp, r, err := apiClient.UsersApi.UpdateUser(ctx, UserDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser`: %v\n", err)

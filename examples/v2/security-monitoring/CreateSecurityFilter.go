@@ -16,7 +16,7 @@ func main() {
 		Data: datadog.SecurityFilterCreateData{
 			Attributes: datadog.SecurityFilterCreateAttributes{
 				ExclusionFilters: []datadog.SecurityFilterExclusionFilter{
-					datadog.SecurityFilterExclusionFilter{
+					{
 						Name:  "Exclude staging",
 						Query: "source:staging",
 					},

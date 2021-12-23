@@ -13,13 +13,13 @@ import (
 
 func main() {
 	// there is a valid "slo" in the system
-	SLO_DATA_0_ID := os.Getenv("SLO_DATA_0_ID")
+	SloData0ID := os.Getenv("SLO_DATA_0_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("GetSLOCorrections", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceLevelObjectivesApi.GetSLOCorrections(ctx, SLO_DATA_0_ID)
+	resp, r, err := apiClient.ServiceLevelObjectivesApi.GetSLOCorrections(ctx, SloData0ID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLOCorrections`: %v\n", err)

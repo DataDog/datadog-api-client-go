@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// there is a valid "user" in the system
-	USER_DATA_ID := os.Getenv("USER_DATA_ID")
+	UserDataID := os.Getenv("USER_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersApi.ListUserPermissions(ctx, USER_DATA_ID)
+	resp, r, err := apiClient.UsersApi.ListUserPermissions(ctx, UserDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUserPermissions`: %v\n", err)

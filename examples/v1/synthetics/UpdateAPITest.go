@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// there is a valid "synthetics_api_test" in the system
-	SYNTHETICS_API_TEST_PUBLIC_ID := os.Getenv("SYNTHETICS_API_TEST_PUBLIC_ID")
+	SyntheticsAPITestPublicID := os.Getenv("SYNTHETICS_API_TEST_PUBLIC_ID")
 
 	body := datadog.SyntheticsAPITest{
 		Config: &datadog.SyntheticsAPITestConfig{
@@ -43,7 +43,7 @@ func main() {
 					}},
 			},
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
-				datadog.SyntheticsConfigVariable{
+				{
 					Example: datadog.PtrString("content-type"),
 					Name:    "PROPERTY",
 					Pattern: datadog.PtrString("content-type"),
@@ -98,7 +98,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.UpdateAPITest(ctx, SYNTHETICS_API_TEST_PUBLIC_ID, body)
+	resp, r, err := apiClient.SyntheticsApi.UpdateAPITest(ctx, SyntheticsAPITestPublicID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateAPITest`: %v\n", err)

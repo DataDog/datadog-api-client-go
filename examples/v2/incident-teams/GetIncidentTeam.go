@@ -13,13 +13,13 @@ import (
 
 func main() {
 	// there is a valid "team" in the system
-	TEAM_DATA_ID := os.Getenv("TEAM_DATA_ID")
+	TeamDataID := os.Getenv("TEAM_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("GetIncidentTeam", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentTeamsApi.GetIncidentTeam(ctx, TEAM_DATA_ID, *datadog.NewGetIncidentTeamOptionalParameters())
+	resp, r, err := apiClient.IncidentTeamsApi.GetIncidentTeam(ctx, TeamDataID, *datadog.NewGetIncidentTeamOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.GetIncidentTeam`: %v\n", err)

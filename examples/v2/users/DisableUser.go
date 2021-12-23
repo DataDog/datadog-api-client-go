@@ -12,12 +12,12 @@ import (
 
 func main() {
 	// there is a valid "user" in the system
-	USER_DATA_ID := os.Getenv("USER_DATA_ID")
+	UserDataID := os.Getenv("USER_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.UsersApi.DisableUser(ctx, USER_DATA_ID)
+	r, err := apiClient.UsersApi.DisableUser(ctx, UserDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.DisableUser`: %v\n", err)

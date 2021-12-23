@@ -16,12 +16,12 @@ func main() {
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_with_funnel_widget with funnel widget",
 		Widgets: []datadog.Widget{
-			datadog.Widget{
+			{
 				Definition: datadog.WidgetDefinition{
 					FunnelWidgetDefinition: &datadog.FunnelWidgetDefinition{
 						Type: datadog.FUNNELWIDGETDEFINITIONTYPE_FUNNEL,
 						Requests: []datadog.FunnelWidgetRequest{
-							datadog.FunnelWidgetRequest{
+							{
 								Query: datadog.FunnelQuery{
 									DataSource:  datadog.FUNNELSOURCE_RUM,
 									QueryString: "",

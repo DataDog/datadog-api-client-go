@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// there is a valid "synthetics_api_test" in the system
-	SYNTHETICS_API_TEST_PUBLIC_ID := os.Getenv("SYNTHETICS_API_TEST_PUBLIC_ID")
+	SyntheticsAPITestPublicID := os.Getenv("SYNTHETICS_API_TEST_PUBLIC_ID")
 
 	body := datadog.SyntheticsTriggerBody{
 		Tests: []datadog.SyntheticsTriggerTest{
-			datadog.SyntheticsTriggerTest{
-				PublicId: SYNTHETICS_API_TEST_PUBLIC_ID,
+			{
+				PublicId: SyntheticsAPITestPublicID,
 			},
 		},
 	}

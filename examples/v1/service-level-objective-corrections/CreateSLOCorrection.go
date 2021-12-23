@@ -14,7 +14,7 @@ import (
 
 func main() {
 	// there is a valid "slo" in the system
-	SLO_DATA_0_ID := os.Getenv("SLO_DATA_0_ID")
+	SloData0ID := os.Getenv("SLO_DATA_0_ID")
 
 	body := datadog.SLOCorrectionCreateRequest{
 		Data: &datadog.SLOCorrectionCreateData{
@@ -22,7 +22,7 @@ func main() {
 				Category:    datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
 				Description: datadog.PtrString("Example-Create_an_SLO_correction_returns_OK_response"),
 				End:         datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
-				SloId:       SLO_DATA_0_ID,
+				SloId:       SloData0ID,
 				Start:       time.Now().Unix(),
 				Timezone:    datadog.PtrString("UTC"),
 			},

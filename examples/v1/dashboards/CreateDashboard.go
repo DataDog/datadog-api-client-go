@@ -16,12 +16,12 @@ func main() {
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_returns_OK_response with Profile Metrics Query",
 		Widgets: []datadog.Widget{
-			datadog.Widget{
+			{
 				Definition: datadog.WidgetDefinition{
 					TimeseriesWidgetDefinition: &datadog.TimeseriesWidgetDefinition{
 						Type: datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 						Requests: []datadog.TimeseriesWidgetRequest{
-							datadog.TimeseriesWidgetRequest{
+							{
 								ProfileMetricsQuery: &datadog.LogQueryDefinition{
 									Compute: &datadog.LogsQueryCompute{
 										Aggregation: "sum",
@@ -31,7 +31,7 @@ func main() {
 										Query: "runtime:jvm",
 									},
 									GroupBy: &[]datadog.LogQueryDefinitionGroupBy{
-										datadog.LogQueryDefinitionGroupBy{
+										{
 											Facet: "service",
 											Limit: datadog.PtrInt64(10),
 											Sort: &datadog.LogQueryDefinitionGroupBySort{

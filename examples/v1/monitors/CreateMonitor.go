@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// there is a valid "role" in the system
-	ROLE_DATA_ID := os.Getenv("ROLE_DATA_ID")
+	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
 	body := datadog.Monitor{
 		Name:    datadog.PtrString("Example-Create_a_monitor_returns_OK_response"),
@@ -26,7 +26,7 @@ func main() {
 		},
 		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
 		RestrictedRoles: []string{
-			ROLE_DATA_ID,
+			RoleDataID,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

@@ -14,12 +14,12 @@ import (
 
 func main() {
 	// there is a valid "monitor" in the system
-	MONITOR_ID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
+	MonitorID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.DeleteMonitor(ctx, MONITOR_ID, *datadog.NewDeleteMonitorOptionalParameters())
+	resp, r, err := apiClient.MonitorsApi.DeleteMonitor(ctx, MonitorID, *datadog.NewDeleteMonitorOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.DeleteMonitor`: %v\n", err)

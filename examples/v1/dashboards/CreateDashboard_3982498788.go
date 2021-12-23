@@ -16,12 +16,12 @@ func main() {
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes with timeseries widget",
 		Widgets: []datadog.Widget{
-			datadog.Widget{
+			{
 				Definition: datadog.WidgetDefinition{
 					TimeseriesWidgetDefinition: &datadog.TimeseriesWidgetDefinition{
 						Type: datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 						Requests: []datadog.TimeseriesWidgetRequest{
-							datadog.TimeseriesWidgetRequest{
+							{
 								Q:            datadog.PtrString("sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()"),
 								OnRightYaxis: datadog.PtrBool(false),
 								Style: &datadog.WidgetRequestStyle{

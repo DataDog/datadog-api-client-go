@@ -15,7 +15,7 @@ func main() {
 	body := datadog.Dashboard{
 		Title: "Example-Create_a_new_dashboard_with_sunburst_widget_and_metrics_data",
 		Widgets: []datadog.Widget{
-			datadog.Widget{
+			{
 				Definition: datadog.WidgetDefinition{
 					SunburstWidgetDefinition: &datadog.SunburstWidgetDefinition{
 						Title:      datadog.PtrString(""),
@@ -23,10 +23,10 @@ func main() {
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.SUNBURSTWIDGETDEFINITIONTYPE_SUNBURST,
 						Requests: []datadog.SunburstWidgetRequest{
-							datadog.SunburstWidgetRequest{
+							{
 								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
 								Formulas: &[]datadog.WidgetFormula{
-									datadog.WidgetFormula{
+									{
 										Formula: "query1",
 									},
 								},

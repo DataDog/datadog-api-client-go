@@ -14,12 +14,12 @@ import (
 
 func main() {
 	// there is a valid "synthetics_api_test" in the system
-	SYNTHETICS_API_TEST_MONITOR_ID, _ := strconv.ParseInt(os.Getenv("SYNTHETICS_API_TEST_MONITOR_ID"), 10, 64)
+	SyntheticsAPITestMonitorID, _ := strconv.ParseInt(os.Getenv("SYNTHETICS_API_TEST_MONITOR_ID"), 10, 64)
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.GetMonitor(ctx, SYNTHETICS_API_TEST_MONITOR_ID, *datadog.NewGetMonitorOptionalParameters())
+	resp, r, err := apiClient.MonitorsApi.GetMonitor(ctx, SyntheticsAPITestMonitorID, *datadog.NewGetMonitorOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.GetMonitor`: %v\n", err)

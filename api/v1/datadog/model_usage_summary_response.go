@@ -116,6 +116,8 @@ type UsageSummaryResponse struct {
 	RehydratedIndexedEventsAggSum *int64 `json:"rehydrated_indexed_events_agg_sum,omitempty"`
 	// Shows the sum of all rehydrated logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020).
 	RehydratedIngestedBytesAggSum *int64 `json:"rehydrated_ingested_bytes_agg_sum,omitempty"`
+	// Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current month for all organizations.
+	RumBrowserAndMobileSessionCount *int64 `json:"rum_browser_and_mobile_session_count,omitempty"`
 	// Shows the sum of all browser RUM Sessions over all hours in the current months for all organizations.
 	RumSessionCountAggSum *int64 `json:"rum_session_count_agg_sum,omitempty"`
 	// Shows the sum of RUM Sessions (browser and mobile) over all hours in the current months for all organizations.
@@ -1793,6 +1795,38 @@ func (o *UsageSummaryResponse) SetRehydratedIngestedBytesAggSum(v int64) {
 	o.RehydratedIngestedBytesAggSum = &v
 }
 
+// GetRumBrowserAndMobileSessionCount returns the RumBrowserAndMobileSessionCount field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumBrowserAndMobileSessionCount() int64 {
+	if o == nil || o.RumBrowserAndMobileSessionCount == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumBrowserAndMobileSessionCount
+}
+
+// GetRumBrowserAndMobileSessionCountOk returns a tuple with the RumBrowserAndMobileSessionCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumBrowserAndMobileSessionCountOk() (*int64, bool) {
+	if o == nil || o.RumBrowserAndMobileSessionCount == nil {
+		return nil, false
+	}
+	return o.RumBrowserAndMobileSessionCount, true
+}
+
+// HasRumBrowserAndMobileSessionCount returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumBrowserAndMobileSessionCount() bool {
+	if o != nil && o.RumBrowserAndMobileSessionCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRumBrowserAndMobileSessionCount gets a reference to the given int64 and assigns it to the RumBrowserAndMobileSessionCount field.
+func (o *UsageSummaryResponse) SetRumBrowserAndMobileSessionCount(v int64) {
+	o.RumBrowserAndMobileSessionCount = &v
+}
+
 // GetRumSessionCountAggSum returns the RumSessionCountAggSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetRumSessionCountAggSum() int64 {
 	if o == nil || o.RumSessionCountAggSum == nil {
@@ -2335,6 +2369,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.RehydratedIngestedBytesAggSum != nil {
 		toSerialize["rehydrated_ingested_bytes_agg_sum"] = o.RehydratedIngestedBytesAggSum
 	}
+	if o.RumBrowserAndMobileSessionCount != nil {
+		toSerialize["rum_browser_and_mobile_session_count"] = o.RumBrowserAndMobileSessionCount
+	}
 	if o.RumSessionCountAggSum != nil {
 		toSerialize["rum_session_count_agg_sum"] = o.RumSessionCountAggSum
 	}
@@ -2428,6 +2465,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		ProfilingHostCountTop99pSum                *int64              `json:"profiling_host_count_top99p_sum,omitempty"`
 		RehydratedIndexedEventsAggSum              *int64              `json:"rehydrated_indexed_events_agg_sum,omitempty"`
 		RehydratedIngestedBytesAggSum              *int64              `json:"rehydrated_ingested_bytes_agg_sum,omitempty"`
+		RumBrowserAndMobileSessionCount            *int64              `json:"rum_browser_and_mobile_session_count,omitempty"`
 		RumSessionCountAggSum                      *int64              `json:"rum_session_count_agg_sum,omitempty"`
 		RumTotalSessionCountAggSum                 *int64              `json:"rum_total_session_count_agg_sum,omitempty"`
 		RumUnitsAggSum                             *int64              `json:"rum_units_agg_sum,omitempty"`
@@ -2501,6 +2539,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.ProfilingHostCountTop99pSum = all.ProfilingHostCountTop99pSum
 	o.RehydratedIndexedEventsAggSum = all.RehydratedIndexedEventsAggSum
 	o.RehydratedIngestedBytesAggSum = all.RehydratedIngestedBytesAggSum
+	o.RumBrowserAndMobileSessionCount = all.RumBrowserAndMobileSessionCount
 	o.RumSessionCountAggSum = all.RumSessionCountAggSum
 	o.RumTotalSessionCountAggSum = all.RumTotalSessionCountAggSum
 	o.RumUnitsAggSum = all.RumUnitsAggSum
