@@ -16,12 +16,12 @@ func main() {
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_with_an_audit_logs_query with Audit Logs Query",
 		Widgets: []datadog.Widget{
-			datadog.Widget{
+			{
 				Definition: datadog.WidgetDefinition{
 					TimeseriesWidgetDefinition: &datadog.TimeseriesWidgetDefinition{
 						Type: datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 						Requests: []datadog.TimeseriesWidgetRequest{
-							datadog.TimeseriesWidgetRequest{
+							{
 								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
 								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{

@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// there is a valid "security_filter" in the system
-	SECURITY_FILTER_DATA_ID := os.Getenv("SECURITY_FILTER_DATA_ID")
+	SecurityFilterDataID := os.Getenv("SECURITY_FILTER_DATA_ID")
 
 	body := datadog.SecurityFilterUpdateRequest{
 		Data: datadog.SecurityFilterUpdateData{
@@ -31,7 +31,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityFilter(ctx, SECURITY_FILTER_DATA_ID, body)
+	resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityFilter(ctx, SecurityFilterDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityFilter`: %v\n", err)

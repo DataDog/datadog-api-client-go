@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.LogsAggregateRequest{
 		Compute: &[]datadog.LogsCompute{
-			datadog.LogsCompute{
+			{
 				Aggregation: datadog.LOGSAGGREGATIONFUNCTION_COUNT,
 				Interval:    datadog.PtrString("5m"),
 				Type:        datadog.LOGSCOMPUTETYPE_TIMESERIES.Ptr(),

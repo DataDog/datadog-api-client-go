@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// there is a valid "slo" in the system
-	SLO_DATA_0_ID := os.Getenv("SLO_DATA_0_ID")
+	SloData0ID := os.Getenv("SLO_DATA_0_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceLevelObjectivesApi.DeleteSLO(ctx, SLO_DATA_0_ID, *datadog.NewDeleteSLOOptionalParameters())
+	resp, r, err := apiClient.ServiceLevelObjectivesApi.DeleteSLO(ctx, SloData0ID, *datadog.NewDeleteSLOOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.DeleteSLO`: %v\n", err)

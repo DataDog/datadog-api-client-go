@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// the "user" has a "user_invitation"
-	USER_INVITATION_ID := os.Getenv("USER_INVITATION_ID")
+	UserInvitationID := os.Getenv("USER_INVITATION_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersApi.GetInvitation(ctx, USER_INVITATION_ID)
+	resp, r, err := apiClient.UsersApi.GetInvitation(ctx, UserInvitationID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetInvitation`: %v\n", err)

@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := []datadog.HTTPLogItem{
-		datadog.HTTPLogItem{
+		{
 			Ddsource: datadog.PtrString("nginx"),
 			Ddtags:   datadog.PtrString("env:staging,version:5.1"),
 			Hostname: datadog.PtrString("i-012345678"),

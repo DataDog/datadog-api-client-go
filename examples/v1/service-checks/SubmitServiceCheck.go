@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := []datadog.ServiceCheck{
-		datadog.ServiceCheck{
+		{
 			Check:    "app.ok",
 			HostName: "host",
 			Status:   datadog.SERVICECHECKSTATUS_OK,

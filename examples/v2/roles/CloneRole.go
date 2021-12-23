@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// there is a valid "role" in the system
-	ROLE_DATA_ID := os.Getenv("ROLE_DATA_ID")
+	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
 	body := datadog.RoleCloneRequest{
 		Data: datadog.RoleClone{
@@ -26,7 +26,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesApi.CloneRole(ctx, ROLE_DATA_ID, body)
+	resp, r, err := apiClient.RolesApi.CloneRole(ctx, RoleDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.CloneRole`: %v\n", err)

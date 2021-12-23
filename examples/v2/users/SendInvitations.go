@@ -13,17 +13,17 @@ import (
 
 func main() {
 	// there is a valid "user" in the system
-	USER_DATA_ID := os.Getenv("USER_DATA_ID")
+	UserDataID := os.Getenv("USER_DATA_ID")
 
 	body := datadog.UserInvitationsRequest{
 		Data: []datadog.UserInvitationData{
-			datadog.UserInvitationData{
+			{
 				Type: datadog.USERINVITATIONSTYPE_USER_INVITATIONS,
 				Relationships: datadog.UserInvitationRelationships{
 					User: datadog.RelationshipToUser{
 						Data: datadog.RelationshipToUserData{
 							Type: datadog.USERSTYPE_USERS,
-							Id:   USER_DATA_ID,
+							Id:   UserDataID,
 						},
 					},
 				},

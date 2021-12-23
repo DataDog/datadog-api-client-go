@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// there is a valid "service" in the system
-	SERVICE_DATA_ID := os.Getenv("SERVICE_DATA_ID")
+	ServiceDataID := os.Getenv("SERVICE_DATA_ID")
 
 	body := datadog.IncidentServiceUpdateRequest{
 		Data: datadog.IncidentServiceUpdateData{
@@ -27,7 +27,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("UpdateIncidentService", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentServicesApi.UpdateIncidentService(ctx, SERVICE_DATA_ID, body)
+	resp, r, err := apiClient.IncidentServicesApi.UpdateIncidentService(ctx, ServiceDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.UpdateIncidentService`: %v\n", err)

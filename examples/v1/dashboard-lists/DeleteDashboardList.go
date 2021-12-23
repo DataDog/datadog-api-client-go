@@ -14,12 +14,12 @@ import (
 
 func main() {
 	// there is a valid "dashboard_list" in the system
-	DASHBOARD_LIST_ID, _ := strconv.ParseInt(os.Getenv("DASHBOARD_LIST_ID"), 10, 64)
+	DashboardListID, _ := strconv.ParseInt(os.Getenv("DASHBOARD_LIST_ID"), 10, 64)
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardListsApi.DeleteDashboardList(ctx, DASHBOARD_LIST_ID)
+	resp, r, err := apiClient.DashboardListsApi.DeleteDashboardList(ctx, DashboardListID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.DeleteDashboardList`: %v\n", err)

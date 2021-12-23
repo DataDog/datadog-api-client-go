@@ -16,14 +16,14 @@ func main() {
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_with_list_stream_widget with list_stream widget",
 		Widgets: []datadog.Widget{
-			datadog.Widget{
+			{
 				Definition: datadog.WidgetDefinition{
 					ListStreamWidgetDefinition: &datadog.ListStreamWidgetDefinition{
 						Type: datadog.LISTSTREAMWIDGETDEFINITIONTYPE_LIST_STREAM,
 						Requests: []datadog.ListStreamWidgetRequest{
-							datadog.ListStreamWidgetRequest{
+							{
 								Columns: []datadog.ListStreamColumn{
-									datadog.ListStreamColumn{
+									{
 										Width: datadog.LISTSTREAMCOLUMNWIDTH_AUTO,
 										Field: "timestamp",
 									},

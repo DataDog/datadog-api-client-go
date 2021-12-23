@@ -14,12 +14,12 @@ import (
 
 func main() {
 	// there is a valid "notebook" in the system
-	NOTEBOOK_DATA_ID, _ := strconv.ParseInt(os.Getenv("NOTEBOOK_DATA_ID"), 10, 64)
+	NotebookDataID, _ := strconv.ParseInt(os.Getenv("NOTEBOOK_DATA_ID"), 10, 64)
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.NotebooksApi.GetNotebook(ctx, NOTEBOOK_DATA_ID)
+	resp, r, err := apiClient.NotebooksApi.GetNotebook(ctx, NotebookDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NotebooksApi.GetNotebook`: %v\n", err)

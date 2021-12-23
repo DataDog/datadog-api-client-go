@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// there is a valid "service_account_user" in the system
-	SERVICE_ACCOUNT_USER_DATA_ID := os.Getenv("SERVICE_ACCOUNT_USER_DATA_ID")
+	ServiceAccountUserDataID := os.Getenv("SERVICE_ACCOUNT_USER_DATA_ID")
 
 	body := datadog.ApplicationKeyCreateRequest{
 		Data: datadog.ApplicationKeyCreateData{
@@ -31,7 +31,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceAccountsApi.CreateServiceAccountApplicationKey(ctx, SERVICE_ACCOUNT_USER_DATA_ID, body)
+	resp, r, err := apiClient.ServiceAccountsApi.CreateServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.CreateServiceAccountApplicationKey`: %v\n", err)

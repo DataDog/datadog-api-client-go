@@ -14,7 +14,7 @@ import (
 
 func main() {
 	// there is a valid "notebook" in the system
-	NOTEBOOK_DATA_ID, _ := strconv.ParseInt(os.Getenv("NOTEBOOK_DATA_ID"), 10, 64)
+	NotebookDataID, _ := strconv.ParseInt(os.Getenv("NOTEBOOK_DATA_ID"), 10, 64)
 
 	body := datadog.NotebookUpdateRequest{
 		Data: datadog.NotebookUpdateData{
@@ -43,7 +43,7 @@ y = 6;
 								NotebookTimeseriesCellAttributes: &datadog.NotebookTimeseriesCellAttributes{
 									Definition: datadog.TimeseriesWidgetDefinition{
 										Requests: []datadog.TimeseriesWidgetRequest{
-											datadog.TimeseriesWidgetRequest{
+											{
 												DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
 												Q:           datadog.PtrString("avg:system.load.1{*}"),
 												Style: &datadog.WidgetRequestStyle{
@@ -82,7 +82,7 @@ y = 6;
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.NotebooksApi.UpdateNotebook(ctx, NOTEBOOK_DATA_ID, body)
+	resp, r, err := apiClient.NotebooksApi.UpdateNotebook(ctx, NotebookDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NotebooksApi.UpdateNotebook`: %v\n", err)

@@ -13,21 +13,21 @@ import (
 
 func main() {
 	// there is a valid "role" in the system
-	ROLE_DATA_ID := os.Getenv("ROLE_DATA_ID")
+	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
 	// there is a valid "user" in the system
-	USER_DATA_ID := os.Getenv("USER_DATA_ID")
+	UserDataID := os.Getenv("USER_DATA_ID")
 
 	body := datadog.RelationshipToUser{
 		Data: datadog.RelationshipToUserData{
-			Id:   USER_DATA_ID,
+			Id:   UserDataID,
 			Type: datadog.USERSTYPE_USERS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesApi.AddUserToRole(ctx, ROLE_DATA_ID, body)
+	resp, r, err := apiClient.RolesApi.AddUserToRole(ctx, RoleDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddUserToRole`: %v\n", err)

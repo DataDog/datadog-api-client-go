@@ -15,7 +15,7 @@ func main() {
 	body := datadog.SecurityMonitoringRuleCreatePayload{
 		Name: "Example-Create_a_detection_rule_with_type_workload_security_returns_OK_response",
 		Queries: []datadog.SecurityMonitoringRuleQueryCreate{
-			datadog.SecurityMonitoringRuleQueryCreate{
+			{
 				Query:          "@test:true",
 				Aggregation:    datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
 				GroupByFields:  &[]string{},
@@ -25,7 +25,7 @@ func main() {
 		},
 		Filters: &[]datadog.SecurityMonitoringFilter{},
 		Cases: []datadog.SecurityMonitoringRuleCaseCreate{
-			datadog.SecurityMonitoringRuleCaseCreate{
+			{
 				Name:          datadog.PtrString(""),
 				Status:        datadog.SECURITYMONITORINGRULESEVERITY_INFO,
 				Condition:     datadog.PtrString("a > 0"),

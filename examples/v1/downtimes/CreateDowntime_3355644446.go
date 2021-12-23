@@ -15,7 +15,7 @@ import (
 
 func main() {
 	// there is a valid "monitor" in the system
-	MONITOR_ID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
+	MonitorID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
 
 	body := datadog.Downtime{
 		Message:  datadog.PtrString("Example-Schedule_a_monitor_downtime_returns_OK_response"),
@@ -24,7 +24,7 @@ func main() {
 		Scope: &[]string{
 			"test:examplescheduleamonitordowntimereturnsokresponse",
 		},
-		MonitorId: *datadog.NewNullableInt64(datadog.PtrInt64(MONITOR_ID)),
+		MonitorId: *datadog.NewNullableInt64(datadog.PtrInt64(MonitorID)),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
