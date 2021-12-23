@@ -328,7 +328,6 @@ docs/SecurityMonitoringRuleSeverity.md
 docs/SecurityMonitoringRuleTypeCreate.md
 docs/SecurityMonitoringRuleTypeRead.md
 docs/SecurityMonitoringRuleUpdatePayload.md
-docs/SecurityMonitoringRuntimeAgentRule.md
 docs/SecurityMonitoringSignal.md
 docs/SecurityMonitoringSignalAttributes.md
 docs/SecurityMonitoringSignalListRequest.md
@@ -667,7 +666,6 @@ model_security_monitoring_rule_severity.go
 model_security_monitoring_rule_type_create.go
 model_security_monitoring_rule_type_read.go
 model_security_monitoring_rule_update_payload.go
-model_security_monitoring_runtime_agent_rule.go
 model_security_monitoring_signal.go
 model_security_monitoring_signal_attributes.go
 model_security_monitoring_signal_list_request.go

@@ -482,7 +482,6 @@ Class | Method | HTTP request | Description
  - [SecurityMonitoringRuleTypeCreate](docs/SecurityMonitoringRuleTypeCreate.md)
  - [SecurityMonitoringRuleTypeRead](docs/SecurityMonitoringRuleTypeRead.md)
  - [SecurityMonitoringRuleUpdatePayload](docs/SecurityMonitoringRuleUpdatePayload.md)
- - [SecurityMonitoringRuntimeAgentRule](docs/SecurityMonitoringRuntimeAgentRule.md)
  - [SecurityMonitoringSignal](docs/SecurityMonitoringSignal.md)
  - [SecurityMonitoringSignalAttributes](docs/SecurityMonitoringSignalAttributes.md)
  - [SecurityMonitoringSignalListRequest](docs/SecurityMonitoringSignalListRequest.md)
