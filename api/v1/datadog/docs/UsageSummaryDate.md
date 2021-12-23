@@ -48,6 +48,7 @@ Name | Type | Description | Notes
 **OpentelemetryHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for all organizations. | [optional] 
 **Orgs** | Pointer to [**[]UsageSummaryDateOrg**](UsageSummaryDateOrg.md) | Organizations associated with a user. | [optional] 
 **ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations. | [optional] 
+**RumBrowserAndMobileSessionCount** | Pointer to **int64** | Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current month for all organizations. | [optional] 
 **RumSessionCountSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current date for all organizations | [optional] 
 **RumTotalSessionCountSum** | Pointer to **int64** | Shows the sum of RUM Sessions (browser and mobile) over all hours in the current date for all organizations. | [optional] 
 **RumUnitsSum** | Pointer to **int64** | Shows the sum of all browser and mobile RUM units over all hours in the current date for all organizations. | [optional] 
@@ -1177,6 +1178,31 @@ SetProfilingHostTop99p sets ProfilingHostTop99p field to given value.
 `func (o *UsageSummaryDate) HasProfilingHostTop99p() bool`
 
 HasProfilingHostTop99p returns a boolean if a field has been set.
+
+### GetRumBrowserAndMobileSessionCount
+
+`func (o *UsageSummaryDate) GetRumBrowserAndMobileSessionCount() int64`
+
+GetRumBrowserAndMobileSessionCount returns the RumBrowserAndMobileSessionCount field if non-nil, zero value otherwise.
+
+### GetRumBrowserAndMobileSessionCountOk
+
+`func (o *UsageSummaryDate) GetRumBrowserAndMobileSessionCountOk() (*int64, bool)`
+
+GetRumBrowserAndMobileSessionCountOk returns a tuple with the RumBrowserAndMobileSessionCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRumBrowserAndMobileSessionCount
+
+`func (o *UsageSummaryDate) SetRumBrowserAndMobileSessionCount(v int64)`
+
+SetRumBrowserAndMobileSessionCount sets RumBrowserAndMobileSessionCount field to given value.
+
+### HasRumBrowserAndMobileSessionCount
+
+`func (o *UsageSummaryDate) HasRumBrowserAndMobileSessionCount() bool`
+
+HasRumBrowserAndMobileSessionCount returns a boolean if a field has been set.
 
 ### GetRumSessionCountSum
 
