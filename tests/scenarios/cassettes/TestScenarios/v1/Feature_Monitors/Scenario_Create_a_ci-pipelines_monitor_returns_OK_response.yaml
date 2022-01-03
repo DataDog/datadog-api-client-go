@@ -6,20 +6,8 @@ interactions:
     headers:
       Accept:
       - '*/*'
-      Connection:
-      - close
-      Content-Length:
-      - '447'
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-spec/scripts/bdd-runner
-      X-Datadog-Parent-Id:
-      - '8167805434709641945'
-      X-Datadog-Trace-Id:
-      - '3445354388052141751'
     method: POST
     url: https://api.datadoghq.com/api/v1/monitor
   response:
@@ -30,36 +18,8 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '946'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Tue, 21 Dec 2021 21:17:36 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '500'
-      X-Ratelimit-Period:
-      - '10'
-      X-Ratelimit-Remaining:
-      - '499'
-      X-Ratelimit-Reset:
-      - '4'
     status: 200 OK
 - request:
     body: ''
@@ -67,16 +27,6 @@ interactions:
     headers:
       Accept:
       - '*/*'
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-spec/scripts/bdd-runner
-      X-Datadog-Parent-Id:
-      - '6388444710619614063'
-      X-Datadog-Trace-Id:
-      - '3445354388052141751'
     method: DELETE
     url: https://api.datadoghq.com/api/v1/monitor/58636377
   response:
@@ -84,27 +34,7 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '31'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Tue, 21 Dec 2021 21:17:36 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 version: 1
