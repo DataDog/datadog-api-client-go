@@ -6,20 +6,8 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '419'
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '6513831381695070861'
-      X-Datadog-Trace-Id:
-      - '6520343188750172941'
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
@@ -29,32 +17,8 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '836'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Fri, 16 Apr 2021 11:32:11 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
-      X-Dd-Version:
-      - '35.4327367'
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 - request:
     body: ''
@@ -62,16 +26,6 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 14.16.1; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '7704306972974471993'
-      X-Datadog-Trace-Id:
-      - '6520343188750172941'
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/edw-vay-96u
   response:
@@ -79,31 +33,7 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '38'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Fri, 16 Apr 2021 11:32:11 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
-      X-Dd-Version:
-      - '35.4327367'
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 version: 1

@@ -6,20 +6,8 @@ interactions:
     headers:
       Accept:
       - '*/*'
-      Connection:
-      - close
-      Content-Length:
-      - '282'
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-spec/scripts/bdd-runner
-      X-Datadog-Parent-Id:
-      - '3729009635577237746'
-      X-Datadog-Trace-Id:
-      - '8219685026969935586'
     method: POST
     url: https://api.datadoghq.com/api/v1/slo
   response:
@@ -27,36 +15,8 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '586'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Fri, 17 Dec 2021 12:16:25 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '500'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '491'
-      X-Ratelimit-Reset:
-      - '35'
     status: 200 OK
 - request:
     body: |
@@ -65,20 +25,8 @@ interactions:
     headers:
       Accept:
       - '*/*'
-      Connection:
-      - close
-      Content-Length:
-      - '305'
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-spec/scripts/bdd-runner
-      X-Datadog-Parent-Id:
-      - '3632968826683753223'
-      X-Datadog-Trace-Id:
-      - '8219685026969935586'
     method: POST
     url: https://api.datadoghq.com/api/v1/slo/correction
   response:
@@ -87,36 +35,8 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '715'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Fri, 17 Dec 2021 12:16:25 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '12000'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '11995'
-      X-Ratelimit-Reset:
-      - '35'
     status: 200 OK
 - request:
     body: ''
@@ -124,49 +44,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-spec/scripts/bdd-runner
-      X-Datadog-Parent-Id:
-      - '4668718253924653912'
-      X-Datadog-Trace-Id:
-      - '8219685026969935586'
     method: DELETE
     url: https://api.datadoghq.com/api/v1/slo/correction/27b98c58-5f33-11ec-ae1f-da7ad0900002
   response:
     body: ''
     code: 204
     duration: ''
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
-      Date:
-      - Fri, 17 Dec 2021 12:16:25 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '12000'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '11993'
-      X-Ratelimit-Reset:
-      - '35'
+    headers: {}
     status: 204 No Content
 - request:
     body: ''
@@ -174,16 +58,6 @@ interactions:
     headers:
       Accept:
       - '*/*'
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-spec/scripts/bdd-runner
-      X-Datadog-Parent-Id:
-      - '5544895614048064428'
-      X-Datadog-Trace-Id:
-      - '8219685026969935586'
     method: DELETE
     url: https://api.datadoghq.com/api/v1/slo/46be908d1c20577181e3813c64b21f8b
   response:
@@ -191,35 +65,7 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '58'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Fri, 17 Dec 2021 12:16:25 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '3000'
-      X-Ratelimit-Period:
-      - '10'
-      X-Ratelimit-Remaining:
-      - '2999'
-      X-Ratelimit-Reset:
-      - '5'
     status: 200 OK
 version: 1

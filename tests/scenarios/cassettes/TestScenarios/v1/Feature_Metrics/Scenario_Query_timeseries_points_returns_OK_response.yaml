@@ -5,16 +5,6 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 16.2.0; os Darwin; arch x64)
-      X-Datadog-Parent-Id:
-      - '2525539895392963703'
-      X-Datadog-Trace-Id:
-      - '2525539895392963703'
     method: GET
     url: https://api.datadoghq.com/api/v1/query?from=1623846101&to=1623932501&query=system.cpu.idle%7B%2A%7D
   response:
@@ -22,39 +12,7 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '10887'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Thu, 17 Jun 2021 12:21:41 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - uYzWahuTRL250zStRgWMYfio8yO7+K3bWuaNFAFhDkc+wdfyEW25FjGa6GAmApoB
-      X-Dd-Version:
-      - '35.4771804'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '1600'
-      X-Ratelimit-Period:
-      - '3600'
-      X-Ratelimit-Remaining:
-      - '1597'
-      X-Ratelimit-Reset:
-      - '2299'
     status: 200 OK
 version: 1

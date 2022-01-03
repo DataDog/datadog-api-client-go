@@ -6,20 +6,8 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '201'
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 15.12.0; os Darwin; arch x64)
-      X-Datadog-Parent-Id:
-      - '184200789673602245'
-      X-Datadog-Trace-Id:
-      - '184200789673602245'
     method: POST
     url: https://api.datadoghq.com/api/v1/slo
   response:
@@ -27,35 +15,7 @@ interactions:
     code: 400
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '75'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Wed, 14 Apr 2021 15:12:34 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Version:
-      - '35.4310591'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '500'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '498'
-      X-Ratelimit-Reset:
-      - '26'
     status: 400 Bad Request
 version: 1

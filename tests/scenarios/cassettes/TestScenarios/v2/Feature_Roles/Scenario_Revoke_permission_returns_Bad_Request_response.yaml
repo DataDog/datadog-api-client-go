@@ -6,20 +6,8 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '112'
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '5516379887009913692'
-      X-Datadog-Trace-Id:
-      - '6193664588531543271'
     method: POST
     url: https://api.datadoghq.com/api/v2/roles
   response:
@@ -27,36 +15,8 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '698'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Tue, 19 Oct 2021 14:57:46 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '500'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '499'
-      X-Ratelimit-Reset:
-      - '14'
     status: 200 OK
 - request:
     body: ''
@@ -64,16 +24,6 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '6004021629576790914'
-      X-Datadog-Trace-Id:
-      - '6193664588531543271'
     method: GET
     url: https://api.datadoghq.com/api/v2/permissions
   response:
@@ -248,28 +198,8 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '26324'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Tue, 19 Oct 2021 14:57:47 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 - request:
     body: |
@@ -278,20 +208,8 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '75'
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '8444372277675782606'
-      X-Datadog-Trace-Id:
-      - '6193664588531543271'
     method: DELETE
     url: https://api.datadoghq.com/api/v2/roles/ebaa4190-30ec-11ec-925a-da7ad0900002/permissions
   response:
@@ -299,34 +217,8 @@ interactions:
     code: 400
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '75'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Tue, 19 Oct 2021 14:57:47 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '500'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '498'
-      X-Ratelimit-Reset:
-      - '13'
     status: 400 Bad Request
 - request:
     body: ''
@@ -334,48 +226,12 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '6447215497182486088'
-      X-Datadog-Trace-Id:
-      - '6193664588531543271'
     method: DELETE
     url: https://api.datadoghq.com/api/v2/roles/ebaa4190-30ec-11ec-925a-da7ad0900002
   response:
     body: ''
     code: 204
     duration: ''
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '0'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
-      Date:
-      - Tue, 19 Oct 2021 14:57:47 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '500'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '497'
-      X-Ratelimit-Reset:
-      - '13'
+    headers: {}
     status: 204 No Content
 version: 1
