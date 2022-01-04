@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **IsCritical** | Pointer to **bool** | Determines whether or not to consider the entire test as failed if this step fails. Can be used only if &#x60;allowFailure&#x60; is &#x60;true&#x60;. | [optional] 
 **Name** | Pointer to **string** | The name of the step. | [optional] 
 **Request** | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | [optional] 
+**Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |  | [optional] 
 **Subtype** | Pointer to [**SyntheticsAPIStepSubtype**](SyntheticsAPIStepSubtype.md) |  | [optional] 
 
 ## Methods
@@ -180,6 +181,31 @@ SetRequest sets Request field to given value.
 `func (o *SyntheticsAPIStep) HasRequest() bool`
 
 HasRequest returns a boolean if a field has been set.
+
+### GetRetry
+
+`func (o *SyntheticsAPIStep) GetRetry() SyntheticsTestOptionsRetry`
+
+GetRetry returns the Retry field if non-nil, zero value otherwise.
+
+### GetRetryOk
+
+`func (o *SyntheticsAPIStep) GetRetryOk() (*SyntheticsTestOptionsRetry, bool)`
+
+GetRetryOk returns a tuple with the Retry field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetry
+
+`func (o *SyntheticsAPIStep) SetRetry(v SyntheticsTestOptionsRetry)`
+
+SetRetry sets Retry field to given value.
+
+### HasRetry
+
+`func (o *SyntheticsAPIStep) HasRetry() bool`
+
+HasRetry returns a boolean if a field has been set.
 
 ### GetSubtype
 
