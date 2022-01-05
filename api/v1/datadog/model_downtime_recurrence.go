@@ -25,7 +25,7 @@ type DowntimeRecurrence struct {
 	// How many times the downtime is rescheduled. `until_occurences` and `until_date` are mutually exclusive.
 	UntilOccurrences NullableInt32 `json:"until_occurrences,omitempty"`
 	// A list of week days to repeat on. Choose from `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`. Only applicable when type is weeks. First letter must be capitalized.
-	WeekDays *[]string `json:"week_days,omitempty"`
+	WeekDays []string `json:"week_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -229,22 +229,23 @@ func (o *DowntimeRecurrence) UnsetUntilOccurrences() {
 	o.UntilOccurrences.Unset()
 }
 
-// GetWeekDays returns the WeekDays field value if set, zero value otherwise.
+// GetWeekDays returns the WeekDays field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeRecurrence) GetWeekDays() []string {
-	if o == nil || o.WeekDays == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.WeekDays
+	return o.WeekDays
 }
 
 // GetWeekDaysOk returns a tuple with the WeekDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DowntimeRecurrence) GetWeekDaysOk() (*[]string, bool) {
 	if o == nil || o.WeekDays == nil {
 		return nil, false
 	}
-	return o.WeekDays, true
+	return &o.WeekDays, true
 }
 
 // HasWeekDays returns a boolean if a field has been set.
@@ -258,7 +259,7 @@ func (o *DowntimeRecurrence) HasWeekDays() bool {
 
 // SetWeekDays gets a reference to the given []string and assigns it to the WeekDays field.
 func (o *DowntimeRecurrence) SetWeekDays(v []string) {
-	o.WeekDays = &v
+	o.WeekDays = v
 }
 
 func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
@@ -295,7 +296,7 @@ func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 		Type             *string       `json:"type,omitempty"`
 		UntilDate        NullableInt64 `json:"until_date,omitempty"`
 		UntilOccurrences NullableInt32 `json:"until_occurrences,omitempty"`
-		WeekDays         *[]string     `json:"week_days,omitempty"`
+		WeekDays         []string      `json:"week_days,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

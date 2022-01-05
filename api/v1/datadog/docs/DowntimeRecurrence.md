@@ -200,6 +200,16 @@ SetWeekDays sets WeekDays field to given value.
 
 HasWeekDays returns a boolean if a field has been set.
 
+### SetWeekDaysNil
+
+`func (o *DowntimeRecurrence) SetWeekDaysNil(b bool)`
+
+ SetWeekDaysNil sets the value for WeekDays to be an explicit nil
+
+### UnsetWeekDays
+`func (o *DowntimeRecurrence) UnsetWeekDays()`
+
+UnsetWeekDays ensures that no value is present for WeekDays, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
