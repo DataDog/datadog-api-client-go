@@ -23,7 +23,7 @@ func main() {
 		Recurrence: *datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
 			Type:   datadog.PtrString("weeks"),
 			Period: datadog.PtrInt32(1),
-			WeekDays: &[]string{
+			WeekDays: []string{
 				"Mon",
 				"Tue",
 				"Wed",
