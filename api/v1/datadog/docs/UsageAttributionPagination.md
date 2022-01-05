@@ -5,8 +5,10 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **Limit** | Pointer to **int64** | Maximum amount of records to be returned. | [optional] 
-**NextRecordId** | Pointer to **string** | The cursor to use to get the next results, if any. To make the next request, use the same parameters with the addition of this next_record_id. | [optional] 
-**TotalNumberOfRecords** | Pointer to **int64** | Total number of records. (deprecated after May 1st, 2021) | [optional] 
+**Offset** | Pointer to **int64** | Records to be skipped before beginning to return. | [optional] 
+**SortDirection** | Pointer to **string** | Direction to sort by. | [optional] 
+**SortName** | Pointer to **string** | Field to sort by. | [optional] 
+**TotalNumberOfRecords** | Pointer to **int64** | Total number of records. | [optional] 
 
 ## Methods
 
@@ -52,30 +54,80 @@ SetLimit sets Limit field to given value.
 
 HasLimit returns a boolean if a field has been set.
 
-### GetNextRecordId
+### GetOffset
 
-`func (o *UsageAttributionPagination) GetNextRecordId() string`
+`func (o *UsageAttributionPagination) GetOffset() int64`
 
-GetNextRecordId returns the NextRecordId field if non-nil, zero value otherwise.
+GetOffset returns the Offset field if non-nil, zero value otherwise.
 
-### GetNextRecordIdOk
+### GetOffsetOk
 
-`func (o *UsageAttributionPagination) GetNextRecordIdOk() (*string, bool)`
+`func (o *UsageAttributionPagination) GetOffsetOk() (*int64, bool)`
 
-GetNextRecordIdOk returns a tuple with the NextRecordId field if it's non-nil, zero value otherwise
+GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNextRecordId
+### SetOffset
 
-`func (o *UsageAttributionPagination) SetNextRecordId(v string)`
+`func (o *UsageAttributionPagination) SetOffset(v int64)`
 
-SetNextRecordId sets NextRecordId field to given value.
+SetOffset sets Offset field to given value.
 
-### HasNextRecordId
+### HasOffset
 
-`func (o *UsageAttributionPagination) HasNextRecordId() bool`
+`func (o *UsageAttributionPagination) HasOffset() bool`
 
-HasNextRecordId returns a boolean if a field has been set.
+HasOffset returns a boolean if a field has been set.
+
+### GetSortDirection
+
+`func (o *UsageAttributionPagination) GetSortDirection() string`
+
+GetSortDirection returns the SortDirection field if non-nil, zero value otherwise.
+
+### GetSortDirectionOk
+
+`func (o *UsageAttributionPagination) GetSortDirectionOk() (*string, bool)`
+
+GetSortDirectionOk returns a tuple with the SortDirection field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSortDirection
+
+`func (o *UsageAttributionPagination) SetSortDirection(v string)`
+
+SetSortDirection sets SortDirection field to given value.
+
+### HasSortDirection
+
+`func (o *UsageAttributionPagination) HasSortDirection() bool`
+
+HasSortDirection returns a boolean if a field has been set.
+
+### GetSortName
+
+`func (o *UsageAttributionPagination) GetSortName() string`
+
+GetSortName returns the SortName field if non-nil, zero value otherwise.
+
+### GetSortNameOk
+
+`func (o *UsageAttributionPagination) GetSortNameOk() (*string, bool)`
+
+GetSortNameOk returns a tuple with the SortName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSortName
+
+`func (o *UsageAttributionPagination) SetSortName(v string)`
+
+SetSortName sets SortName field to given value.
+
+### HasSortName
+
+`func (o *UsageAttributionPagination) HasSortName() bool`
+
+HasSortName returns a boolean if a field has been set.
 
 ### GetTotalNumberOfRecords
 
