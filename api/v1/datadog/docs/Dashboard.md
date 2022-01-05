@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ---- | ---- | ----------- | ------
 **AuthorHandle** | Pointer to **string** | Identifier of the dashboard author. | [optional] [readonly] 
+**AuthorName** | Pointer to **NullableString** | Name of the dashboard author. | [optional] [readonly] 
 **CreatedAt** | Pointer to **time.Time** | Creation date of the dashboard. | [optional] [readonly] 
 **Description** | Pointer to **NullableString** | Description of the dashboard. | [optional] 
 **Id** | Pointer to **string** | ID of the dashboard. | [optional] [readonly] 
@@ -64,6 +65,41 @@ SetAuthorHandle sets AuthorHandle field to given value.
 
 HasAuthorHandle returns a boolean if a field has been set.
 
+### GetAuthorName
+
+`func (o *Dashboard) GetAuthorName() string`
+
+GetAuthorName returns the AuthorName field if non-nil, zero value otherwise.
+
+### GetAuthorNameOk
+
+`func (o *Dashboard) GetAuthorNameOk() (*string, bool)`
+
+GetAuthorNameOk returns a tuple with the AuthorName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthorName
+
+`func (o *Dashboard) SetAuthorName(v string)`
+
+SetAuthorName sets AuthorName field to given value.
+
+### HasAuthorName
+
+`func (o *Dashboard) HasAuthorName() bool`
+
+HasAuthorName returns a boolean if a field has been set.
+
+### SetAuthorNameNil
+
+`func (o *Dashboard) SetAuthorNameNil(b bool)`
+
+ SetAuthorNameNil sets the value for AuthorName to be an explicit nil
+
+### UnsetAuthorName
+`func (o *Dashboard) UnsetAuthorName()`
+
+UnsetAuthorName ensures that no value is present for AuthorName, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *Dashboard) GetCreatedAt() time.Time`

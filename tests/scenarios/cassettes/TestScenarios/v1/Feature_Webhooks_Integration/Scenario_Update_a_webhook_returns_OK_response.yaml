@@ -6,21 +6,8 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '98'
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.3.0; os Darwin; arch
-        x64)
-      X-Datadog-Parent-Id:
-      - '3089514925855613338'
-      X-Datadog-Trace-Id:
-      - '3089514925855613338'
     method: POST
     url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks
   response:
@@ -31,28 +18,8 @@ interactions:
     code: 201
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '372'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Thu, 12 Aug 2021 16:28:40 GMT
-      Location:
-      - https://app.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Update_a_webhook_returns_OK_response-1628785719
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 201 Created
 - request:
     body: |
@@ -61,21 +28,8 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '45'
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.3.0; os Darwin; arch
-        x64)
-      X-Datadog-Parent-Id:
-      - '3089514925855613338'
-      X-Datadog-Trace-Id:
-      - '3089514925855613338'
     method: PUT
     url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Update_a_webhook_returns_OK_response-1628785719
   response:
@@ -86,28 +40,8 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '381'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Thu, 12 Aug 2021 16:28:40 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 - request:
     body: ''
@@ -115,17 +49,6 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.4+dev (node 16.3.0; os Darwin; arch
-        x64)
-      X-Datadog-Parent-Id:
-      - '3089514925855613338'
-      X-Datadog-Trace-Id:
-      - '3089514925855613338'
     method: DELETE
     url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Update_a_webhook_returns_OK_response-1628785719
   response:
@@ -133,25 +56,7 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '2'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Thu, 12 Aug 2021 16:28:41 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 version: 1

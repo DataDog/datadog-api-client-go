@@ -19,7 +19,7 @@ func main() {
 			Period:    datadog.PtrInt32(1),
 			Type:      datadog.PtrString("weeks"),
 			UntilDate: *datadog.NewNullableInt64(datadog.PtrInt64(time.Now().AddDate(0, 0, 21).Unix())),
-			WeekDays: &[]string{
+			WeekDays: []string{
 				"Mon",
 				"Tue",
 				"Wed",

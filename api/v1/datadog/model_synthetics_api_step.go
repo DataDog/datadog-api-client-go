@@ -23,9 +23,10 @@ type SyntheticsAPIStep struct {
 	// Determines whether or not to consider the entire test as failed if this step fails. Can be used only if `allowFailure` is `true`.
 	IsCritical *bool `json:"isCritical,omitempty"`
 	// The name of the step.
-	Name    *string                   `json:"name,omitempty"`
-	Request *SyntheticsTestRequest    `json:"request,omitempty"`
-	Subtype *SyntheticsAPIStepSubtype `json:"subtype,omitempty"`
+	Name    *string                     `json:"name,omitempty"`
+	Request *SyntheticsTestRequest      `json:"request,omitempty"`
+	Retry   *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+	Subtype *SyntheticsAPIStepSubtype   `json:"subtype,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -239,6 +240,38 @@ func (o *SyntheticsAPIStep) SetRequest(v SyntheticsTestRequest) {
 	o.Request = &v
 }
 
+// GetRetry returns the Retry field value if set, zero value otherwise.
+func (o *SyntheticsAPIStep) GetRetry() SyntheticsTestOptionsRetry {
+	if o == nil || o.Retry == nil {
+		var ret SyntheticsTestOptionsRetry
+		return ret
+	}
+	return *o.Retry
+}
+
+// GetRetryOk returns a tuple with the Retry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsAPIStep) GetRetryOk() (*SyntheticsTestOptionsRetry, bool) {
+	if o == nil || o.Retry == nil {
+		return nil, false
+	}
+	return o.Retry, true
+}
+
+// HasRetry returns a boolean if a field has been set.
+func (o *SyntheticsAPIStep) HasRetry() bool {
+	if o != nil && o.Retry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRetry gets a reference to the given SyntheticsTestOptionsRetry and assigns it to the Retry field.
+func (o *SyntheticsAPIStep) SetRetry(v SyntheticsTestOptionsRetry) {
+	o.Retry = &v
+}
+
 // GetSubtype returns the Subtype field value if set, zero value otherwise.
 func (o *SyntheticsAPIStep) GetSubtype() SyntheticsAPIStepSubtype {
 	if o == nil || o.Subtype == nil {
@@ -294,6 +327,9 @@ func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 	if o.Request != nil {
 		toSerialize["request"] = o.Request
 	}
+	if o.Retry != nil {
+		toSerialize["retry"] = o.Retry
+	}
 	if o.Subtype != nil {
 		toSerialize["subtype"] = o.Subtype
 	}
@@ -309,6 +345,7 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 		IsCritical      *bool                       `json:"isCritical,omitempty"`
 		Name            *string                     `json:"name,omitempty"`
 		Request         *SyntheticsTestRequest      `json:"request,omitempty"`
+		Retry           *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
 		Subtype         *SyntheticsAPIStepSubtype   `json:"subtype,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -334,6 +371,7 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	o.IsCritical = all.IsCritical
 	o.Name = all.Name
 	o.Request = all.Request
+	o.Retry = all.Retry
 	o.Subtype = all.Subtype
 	return nil
 }

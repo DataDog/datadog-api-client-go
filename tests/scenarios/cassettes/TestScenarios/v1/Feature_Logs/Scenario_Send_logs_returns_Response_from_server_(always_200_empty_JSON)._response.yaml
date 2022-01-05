@@ -6,20 +6,8 @@ interactions:
     headers:
       Accept:
       - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '191'
       Content-Type:
       - application/json
-      Host:
-      - http-intake.logs.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 15.12.0; os Darwin; arch x64)
-      X-Datadog-Parent-Id:
-      - '184200789673602245'
-      X-Datadog-Trace-Id:
-      - '184200789673602245'
     method: POST
     url: https://http-intake.logs.datadoghq.com/v1/input
   response:
@@ -27,13 +15,7 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Connection:
-      - close
-      Content-Length:
-      - '2'
       Content-Type:
       - application/json
-      Date:
-      - Wed, 14 Apr 2021 15:12:29 GMT
     status: 200 OK
 version: 1

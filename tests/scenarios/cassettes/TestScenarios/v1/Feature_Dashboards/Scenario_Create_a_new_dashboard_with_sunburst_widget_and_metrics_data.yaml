@@ -6,20 +6,8 @@ interactions:
     headers:
       Accept:
       - '*/*'
-      Connection:
-      - close
-      Content-Length:
-      - '448'
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-spec/scripts/bdd-runner
-      X-Datadog-Parent-Id:
-      - '3731688405622988910'
-      X-Datadog-Trace-Id:
-      - '4634661191740705811'
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
@@ -28,28 +16,8 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '848'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Mon, 20 Dec 2021 08:04:27 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 - request:
     body: ''
@@ -57,16 +25,6 @@ interactions:
     headers:
       Accept:
       - '*/*'
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-spec/scripts/bdd-runner
-      X-Datadog-Parent-Id:
-      - '1474094457446758029'
-      X-Datadog-Trace-Id:
-      - '4634661191740705811'
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/mf6-iqg-ndj
   response:
@@ -74,27 +32,7 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '38'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Mon, 20 Dec 2021 08:04:27 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 version: 1
