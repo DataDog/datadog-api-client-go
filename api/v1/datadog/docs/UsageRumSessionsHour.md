@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 **Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
 **OrgName** | Pointer to **string** | The organization name. | [optional] 
 **PublicId** | Pointer to **string** | The organization public ID. | [optional] 
-**SessionCount** | Pointer to **int64** | Contains the number of RUM Sessions. | [optional] 
+**ReplaySessionCount** | Pointer to **int64** | Contains the number of RUM Replay Sessions (data available beginning November 1, 2021). | [optional] 
+**SessionCount** | Pointer to **int64** | Contains the number of browser RUM Lite Sessions. | [optional] 
 **SessionCountAndroid** | Pointer to **int64** | Contains the number of mobile RUM Sessions on Android (data available beginning December 1, 2020). | [optional] 
 **SessionCountIos** | Pointer to **int64** | Contains the number of mobile RUM Sessions on iOS (data available beginning December 1, 2020). | [optional] 
 
@@ -104,6 +105,31 @@ SetPublicId sets PublicId field to given value.
 `func (o *UsageRumSessionsHour) HasPublicId() bool`
 
 HasPublicId returns a boolean if a field has been set.
+
+### GetReplaySessionCount
+
+`func (o *UsageRumSessionsHour) GetReplaySessionCount() int64`
+
+GetReplaySessionCount returns the ReplaySessionCount field if non-nil, zero value otherwise.
+
+### GetReplaySessionCountOk
+
+`func (o *UsageRumSessionsHour) GetReplaySessionCountOk() (*int64, bool)`
+
+GetReplaySessionCountOk returns a tuple with the ReplaySessionCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReplaySessionCount
+
+`func (o *UsageRumSessionsHour) SetReplaySessionCount(v int64)`
+
+SetReplaySessionCount sets ReplaySessionCount field to given value.
+
+### HasReplaySessionCount
+
+`func (o *UsageRumSessionsHour) HasReplaySessionCount() bool`
+
+HasReplaySessionCount returns a boolean if a field has been set.
 
 ### GetSessionCount
 
