@@ -176,6 +176,7 @@ docs/HostMapWidgetDefinitionRequests.md
 docs/HostMapWidgetDefinitionStyle.md
 docs/HostMapWidgetDefinitionType.md
 docs/HostMeta.md
+docs/HostMetaInstallMethod.md
 docs/HostMetrics.md
 docs/HostMuteResponse.md
 docs/HostMuteSettings.md
@@ -850,6 +851,7 @@ model_host_map_widget_definition_requests.go
 model_host_map_widget_definition_style.go
 model_host_map_widget_definition_type.go
 model_host_meta.go
+model_host_meta_install_method.go
 model_host_metrics.go
 model_host_mute_response.go
 model_host_mute_settings.go
