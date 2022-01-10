@@ -49,7 +49,7 @@ Name | Type | Description | Notes
 **Orgs** | Pointer to [**[]UsageSummaryDateOrg**](UsageSummaryDateOrg.md) | Organizations associated with a user. | [optional] 
 **ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations. | [optional] 
 **RumBrowserAndMobileSessionCount** | Pointer to **int64** | Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current month for all organizations. | [optional] 
-**RumSessionCountSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current date for all organizations | [optional] 
+**RumSessionCountSum** | Pointer to **int64** | Shows the sum of all browser RUM Lite Sessions over all hours in the current date for all organizations | [optional] 
 **RumTotalSessionCountSum** | Pointer to **int64** | Shows the sum of RUM Sessions (browser and mobile) over all hours in the current date for all organizations. | [optional] 
 **RumUnitsSum** | Pointer to **int64** | Shows the sum of all browser and mobile RUM units over all hours in the current date for all organizations. | [optional] 
 **SdsLogsScannedBytesSum** | Pointer to **int64** | Shows the sum of all bytes scanned of logs usage by the Sensitive Data Scanner over all hours in the current month for all organizations. | [optional] 

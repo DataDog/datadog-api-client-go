@@ -106,7 +106,7 @@ type UsageSummaryDateOrg struct {
 	PublicId *string `json:"public_id,omitempty"`
 	// Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current date for the given org.
 	RumBrowserAndMobileSessionCount *int64 `json:"rum_browser_and_mobile_session_count,omitempty"`
-	// Shows the sum of all browser RUM Sessions over all hours in the current date for the given org.
+	// Shows the sum of all browser RUM Lite Sessions over all hours in the current date for the given org.
 	RumSessionCountSum *int64 `json:"rum_session_count_sum,omitempty"`
 	// Shows the sum of RUM Sessions (browser and mobile) over all hours in the current date for the given org.
 	RumTotalSessionCountSum *int64 `json:"rum_total_session_count_sum,omitempty"`
