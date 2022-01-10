@@ -56,7 +56,7 @@ Name | Type | Description | Notes
 **RehydratedIndexedEventsAggSum** | Pointer to **int64** | Shows the sum of all rehydrated logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020). | [optional] 
 **RehydratedIngestedBytesAggSum** | Pointer to **int64** | Shows the sum of all rehydrated logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020). | [optional] 
 **RumBrowserAndMobileSessionCount** | Pointer to **int64** | Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current month for all organizations. | [optional] 
-**RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current months for all organizations. | [optional] 
+**RumSessionCountAggSum** | Pointer to **int64** | Shows the sum of all browser RUM Lite Sessions over all hours in the current months for all organizations. | [optional] 
 **RumTotalSessionCountAggSum** | Pointer to **int64** | Shows the sum of RUM Sessions (browser and mobile) over all hours in the current months for all organizations. | [optional] 
 **RumUnitsAggSum** | Pointer to **int64** | Shows the sum of all browser and mobile RUM units over all hours in the current months for all organizations. | [optional] 
 **SdsLogsScannedBytesSum** | Pointer to **int64** | Shows the sum of all bytes scanned of logs usage by the Sensitive Data Scanner over all hours in the current month for all organizations. | [optional] 
