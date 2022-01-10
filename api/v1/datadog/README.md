@@ -425,6 +425,7 @@ Class | Method | HTTP request | Description
  - [HostMapWidgetDefinitionStyle](docs/HostMapWidgetDefinitionStyle.md)
  - [HostMapWidgetDefinitionType](docs/HostMapWidgetDefinitionType.md)
  - [HostMeta](docs/HostMeta.md)
+ - [HostMetaInstallMethod](docs/HostMetaInstallMethod.md)
  - [HostMetrics](docs/HostMetrics.md)
  - [HostMuteResponse](docs/HostMuteResponse.md)
  - [HostMuteSettings](docs/HostMuteSettings.md)
