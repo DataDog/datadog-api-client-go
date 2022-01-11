@@ -759,11 +759,15 @@ func main() {
     sortDirection := datadog.UsageSortDirection("desc") // UsageSortDirection | The direction to sort by: `[desc, asc]`. (optional) (default to "desc")
     sortName := datadog.UsageAttributionSort("api_percentage") // UsageAttributionSort | The field to sort by. (optional) (default to "custom_timeseries_usage")
     includeDescendants := true // bool | Include child org usage in the response. Defaults to false. (optional) (default to false)
+    offset := int64(789) // int64 | Number of records to skip before beginning to return. (optional) (default to 0)
+    limit := int64(789) // int64 | Maximum number of records to be returned. (optional) (default to 5000)
     optionalParams := datadog.GetUsageAttributionOptionalParameters{
         EndMonth: &endMonth,
         SortDirection: &sortDirection,
         SortName: &sortName,
         IncludeDescendants: &includeDescendants,
+        Offset: &offset,
+        Limit: &limit,
     }
 
     configuration := datadog.NewConfiguration()
@@ -799,6 +803,8 @@ Other parameters are passed through a pointer to a GetUsageAttributionOptionalPa
 | **sortDirection**      | [**UsageSortDirection**](UsageSortDirection.md)     | The direction to sort by: &#x60;[desc, asc]&#x60;.                                                     | [default to &quot;desc&quot;]                    |
 | **sortName**           | [**UsageAttributionSort**](UsageAttributionSort.md) | The field to sort by.                                                                                  | [default to &quot;custom_timeseries_usage&quot;] |
 | **includeDescendants** | **bool**                                            | Include child org usage in the response. Defaults to false.                                            | [default to false]                               |
+| **offset**             | **int64**                                           | Number of records to skip before beginning to return.                                                  | [default to 0]                                   |
+| **limit**              | **int64**                                           | Maximum number of records to be returned.                                                              | [default to 5000]                                |
 
 ### Return type
 

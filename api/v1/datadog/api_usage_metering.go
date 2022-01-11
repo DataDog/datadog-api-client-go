@@ -1822,6 +1822,8 @@ type apiGetUsageAttributionRequest struct {
 	sortDirection      *UsageSortDirection
 	sortName           *UsageAttributionSort
 	includeDescendants *bool
+	offset             *int64
+	limit              *int64
 }
 
 type GetUsageAttributionOptionalParameters struct {
@@ -1829,6 +1831,8 @@ type GetUsageAttributionOptionalParameters struct {
 	SortDirection      *UsageSortDirection
 	SortName           *UsageAttributionSort
 	IncludeDescendants *bool
+	Offset             *int64
+	Limit              *int64
 }
 
 func NewGetUsageAttributionOptionalParameters() *GetUsageAttributionOptionalParameters {
@@ -1849,6 +1853,14 @@ func (r *GetUsageAttributionOptionalParameters) WithSortName(sortName UsageAttri
 }
 func (r *GetUsageAttributionOptionalParameters) WithIncludeDescendants(includeDescendants bool) *GetUsageAttributionOptionalParameters {
 	r.IncludeDescendants = &includeDescendants
+	return r
+}
+func (r *GetUsageAttributionOptionalParameters) WithOffset(offset int64) *GetUsageAttributionOptionalParameters {
+	r.Offset = &offset
+	return r
+}
+func (r *GetUsageAttributionOptionalParameters) WithLimit(limit int64) *GetUsageAttributionOptionalParameters {
+	r.Limit = &limit
 	return r
 }
 
@@ -1874,6 +1886,8 @@ func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, star
 		req.sortDirection = o[0].SortDirection
 		req.sortName = o[0].SortName
 		req.includeDescendants = o[0].IncludeDescendants
+		req.offset = o[0].Offset
+		req.limit = o[0].Limit
 	}
 
 	return req.ApiService.getUsageAttributionExecute(req)
@@ -1930,6 +1944,12 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 	}
 	if r.includeDescendants != nil {
 		localVarQueryParams.Add("include_descendants", parameterToString(*r.includeDescendants, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
