@@ -4,7 +4,7 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: GET
     url: https://api.datadoghq.com/api/v1/monitor?group_states=notagroupstate
   response:

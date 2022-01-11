@@ -4,11 +4,11 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: GET
     url: https://api.datadoghq.com/api/v1/downtime/0
   response:
-    body: '{"errors": ["Downtime not found"]}'
+    body: '{"errors":["Downtime not found"]}'
     code: 404
     duration: ''
     headers:

@@ -1,17 +1,17 @@
 interactions:
 - request:
     body: |
-      {"name":"Test-Delete_a_webhook_returns_OK_response-1628785715","url":"http://example.com/webhook"}
+      {"name":"Test-Delete_a_webhook_returns_OK_response-1641833864","url":"http://example.com/webhook"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: POST
     url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks
   response:
-    body: '{"encode_as":"json","url":"http://example.com/webhook","custom_headers":null,"name":"Test-Delete_a_webhook_returns_OK_response-1628785715","payload":"{\"body\":
+    body: '{"encode_as":"json","url":"http://example.com/webhook","custom_headers":null,"name":"Test-Delete_a_webhook_returns_OK_response-1641833864","payload":"{\"body\":
       \"$EVENT_MSG\", \"last_updated\": \"$LAST_UPDATED\", \"event_type\": \"$EVENT_TYPE\",
       \"title\": \"$EVENT_TITLE\", \"date\": \"$DATE\", \"org\": {\"id\": \"$ORG_ID\",
       \"name\": \"$ORG_NAME\"}, \"id\": \"$ID\"}"}'
@@ -26,9 +26,9 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Delete_a_webhook_returns_OK_response-1628785715
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Delete_a_webhook_returns_OK_response-1641833864
   response:
     body: '{}'
     code: 200
@@ -42,15 +42,15 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Delete_a_webhook_returns_OK_response-1628785715
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Delete_a_webhook_returns_OK_response-1641833864
   response:
     body: '{"errors": ["Webhook does not exist"]}'
-    code: 400
+    code: 404
     duration: ''
     headers:
       Content-Type:
       - application/json
-    status: 400 Bad Request
+    status: 404 Not Found
 version: 1

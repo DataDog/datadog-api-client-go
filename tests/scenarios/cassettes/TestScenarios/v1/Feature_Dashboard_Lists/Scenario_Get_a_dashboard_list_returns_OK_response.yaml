@@ -1,17 +1,17 @@
 interactions:
 - request:
     body: |
-      {"name":"Test-Get_a_dashboard_list_returns_OK_response-1633076911"}
+      {"name":"Test-Get_a_dashboard_list_returns_OK_response-1641430222"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual
   response:
-    body: '{"is_favorite":false,"name":"Test-Get_a_dashboard_list_returns_OK_response-1633076911","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2021-10-01T08:28:31.263184+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2021-10-01T08:28:31.263207+00:00","id":240516}'
+    body: '{"is_favorite":false,"name":"Test-Get_a_dashboard_list_returns_OK_response-1641430222","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2022-01-06T00:50:22.806263+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2022-01-06T00:50:22.806287+00:00","id":269881}'
     code: 200
     duration: ''
     headers:
@@ -23,11 +23,11 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: GET
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/240516
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/269881
   response:
-    body: '{"is_favorite":false,"name":"Test-Get_a_dashboard_list_returns_OK_response-1633076911","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2021-10-01T08:28:31.263184+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2021-10-01T08:28:31.263207+00:00","id":240516}'
+    body: '{"is_favorite":false,"name":"Test-Get_a_dashboard_list_returns_OK_response-1641430222","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2022-01-06T00:50:22.806263+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2022-01-06T00:50:22.806287+00:00","id":269881}'
     code: 200
     duration: ''
     headers:
@@ -39,11 +39,11 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/240516
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/269881
   response:
-    body: '{"deleted_dashboard_list_id":240516}'
+    body: '{"deleted_dashboard_list_id":269881}'
     code: 200
     duration: ''
     headers:

@@ -1,17 +1,17 @@
 interactions:
 - request:
     body: |
-      [{"check":"app.ok","host_name":"host","status":0,"tags":["test:TestSubmitaServiceCheckreturnsPayloadacceptedresponse1632824739"]}]
+      [{"check":"app.ok","host_name":"host","status":0,"tags":["test:TestSubmitaServiceCheckreturnsPayloadacceptedresponse1641430265"]}]
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - text/json
       Content-Type:
       - application/json
     method: POST
     url: https://api.datadoghq.com/api/v1/check_run
   response:
-    body: '{"status": "ok"}'
+    body: '{"status":"ok"}'
     code: 202
     duration: ''
     headers:

@@ -5,13 +5,13 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: POST
     url: https://api.datadoghq.com/api/v1/monitor
   response:
-    body: '{"errors": ["The value provided for parameter ''query'' is invalid: invalid
+    body: '{"errors":["The value provided for parameter ''query'' is invalid: invalid
       operator specified: "]}'
     code: 400
     duration: ''

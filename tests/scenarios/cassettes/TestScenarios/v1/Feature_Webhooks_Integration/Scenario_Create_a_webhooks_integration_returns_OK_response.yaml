@@ -1,17 +1,17 @@
 interactions:
 - request:
     body: |
-      {"name":"Test-Create_a_webhooks_integration_returns_OK_response-1628785713","url":"https://example.com/webhook"}
+      {"name":"Test-Create_a_webhooks_integration_returns_OK_response-1641430281","url":"https://example.com/webhook"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: POST
     url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks
   response:
-    body: '{"encode_as":"json","url":"https://example.com/webhook","custom_headers":null,"name":"Test-Create_a_webhooks_integration_returns_OK_response-1628785713","payload":"{\"body\":
+    body: '{"encode_as":"json","url":"https://example.com/webhook","custom_headers":null,"name":"Test-Create_a_webhooks_integration_returns_OK_response-1641430281","payload":"{\"body\":
       \"$EVENT_MSG\", \"last_updated\": \"$LAST_UPDATED\", \"event_type\": \"$EVENT_TYPE\",
       \"title\": \"$EVENT_TITLE\", \"date\": \"$DATE\", \"org\": {\"id\": \"$ORG_ID\",
       \"name\": \"$ORG_NAME\"}, \"id\": \"$ID\"}"}'
@@ -26,9 +26,9 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Create_a_webhooks_integration_returns_OK_response-1628785713
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Create_a_webhooks_integration_returns_OK_response-1641430281
   response:
     body: '{}'
     code: 200

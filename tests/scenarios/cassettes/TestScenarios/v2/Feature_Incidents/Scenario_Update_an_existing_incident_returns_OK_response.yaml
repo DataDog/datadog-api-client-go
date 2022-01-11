@@ -5,7 +5,7 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: POST
@@ -24,7 +24,7 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: PATCH
@@ -42,7 +42,7 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: DELETE
     url: https://api.datadoghq.com/api/v2/incidents/f40f7641-0aa4-57d3-b20d-3d42e9dbacae
   response:

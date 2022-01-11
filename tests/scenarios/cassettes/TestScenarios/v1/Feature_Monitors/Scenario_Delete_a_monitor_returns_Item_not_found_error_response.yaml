@@ -4,11 +4,11 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: DELETE
     url: https://api.datadoghq.com/api/v1/monitor/0
   response:
-    body: '{"errors": ["Monitor not found"]}'
+    body: '{"errors":["Monitor not found"]}'
     code: 404
     duration: ''
     headers:

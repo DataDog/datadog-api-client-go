@@ -1,17 +1,17 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"email":"Test-Get_a_user_permissions_returns_OK_response-1618491776@datadoghq.com","title":"user title"},"type":"users"}}
+      {"data":{"attributes":{"email":"Test-Get_a_user_permissions_returns_OK_response-1641829908@datadoghq.com","title":"user title"},"type":"users"}}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: POST
     url: https://api.datadoghq.com/api/v2/users
   response:
-    body: '{"data":{"type":"users","id":"e5c00714-9dea-11eb-9df5-da7ad0900002","attributes":{"name":null,"handle":"test-get_a_user_permissions_returns_ok_response-1618491776@datadoghq.com","created_at":"2021-04-15T13:02:56.739813+00:00","modified_at":"2021-04-15T13:02:56.773921+00:00","email":"test-get_a_user_permissions_returns_ok_response-1618491776@datadoghq.com","icon":"https://secure.gravatar.com/avatar/e8aff636f5c3a34b628f77b2bd82e1d7?s=48&d=retro","title":"user
+    body: '{"data":{"type":"users","id":"38a54e96-722d-11ec-b5d7-da7ad0900002","attributes":{"name":null,"handle":"test-get_a_user_permissions_returns_ok_response-1641829908@datadoghq.com","created_at":"2022-01-10T15:51:49.107919+00:00","modified_at":"2022-01-10T15:51:49.155647+00:00","email":"test-get_a_user_permissions_returns_ok_response-1641829908@datadoghq.com","icon":"https://secure.gravatar.com/avatar/54773e3ddfe911748dd3ff9cfe21dc23?s=48&d=retro","title":"user
       title","verified":false,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
     code: 201
     duration: ''
@@ -24,9 +24,9 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: GET
-    url: https://api.datadoghq.com/api/v2/users/e5c00714-9dea-11eb-9df5-da7ad0900002/permissions
+    url: https://api.datadoghq.com/api/v2/users/38a54e96-722d-11ec-b5d7-da7ad0900002/permissions
   response:
     body: '{"data":[]}'
     code: 200
@@ -40,15 +40,13 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/users/e5c00714-9dea-11eb-9df5-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/users/38a54e96-722d-11ec-b5d7-da7ad0900002
   response:
     body: ''
     code: 204
     duration: ''
-    headers:
-      Content-Type:
-      - application/json
+    headers: {}
     status: 204 No Content
 version: 1

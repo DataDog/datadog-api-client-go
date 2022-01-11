@@ -4,7 +4,7 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: GET
     url: https://api.datadoghq.com/api/v2/processes?search=process-agent&tags=testing%3Atrue&page%5Blimit%5D=2
   response:

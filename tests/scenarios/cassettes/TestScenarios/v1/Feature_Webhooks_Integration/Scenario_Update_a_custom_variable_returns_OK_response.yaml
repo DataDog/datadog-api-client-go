@@ -1,17 +1,17 @@
 interactions:
 - request:
     body: |
-      {"is_secret":false,"name":"TESTUPDATEACUSTOMVARIABLERETURNSOKRESPONSE1628785718","value":"variable-value"}
+      {"is_secret":false,"name":"TESTUPDATEACUSTOMVARIABLERETURNSOKRESPONSE1641430286","value":"variable-value"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: POST
     url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables
   response:
-    body: '{"is_secret":false,"name":"TESTUPDATEACUSTOMVARIABLERETURNSOKRESPONSE1628785718","value":"variable-value"}'
+    body: '{"is_secret":false,"name":"TESTUPDATEACUSTOMVARIABLERETURNSOKRESPONSE1641430286","value":"variable-value"}'
     code: 201
     duration: ''
     headers:
@@ -24,13 +24,13 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: PUT
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTUPDATEACUSTOMVARIABLERETURNSOKRESPONSE1628785718
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTUPDATEACUSTOMVARIABLERETURNSOKRESPONSE1641430286
   response:
-    body: '{"is_secret":false,"name":"TESTUPDATEACUSTOMVARIABLERETURNSOKRESPONSE1628785718","value":"variable-updated"}'
+    body: '{"is_secret":false,"name":"TESTUPDATEACUSTOMVARIABLERETURNSOKRESPONSE1641430286","value":"variable-updated"}'
     code: 200
     duration: ''
     headers:
@@ -42,9 +42,9 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTUPDATEACUSTOMVARIABLERETURNSOKRESPONSE1628785718
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTUPDATEACUSTOMVARIABLERETURNSOKRESPONSE1641430286
   response:
     body: '{}'
     code: 200
