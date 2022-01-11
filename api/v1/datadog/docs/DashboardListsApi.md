@@ -2,15 +2,13 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateDashboardList**](DashboardListsApi.md#CreateDashboardList) | **Post** /api/v1/dashboard/lists/manual | Create a dashboard list
-[**DeleteDashboardList**](DashboardListsApi.md#DeleteDashboardList) | **Delete** /api/v1/dashboard/lists/manual/{list_id} | Delete a dashboard list
-[**GetDashboardList**](DashboardListsApi.md#GetDashboardList) | **Get** /api/v1/dashboard/lists/manual/{list_id} | Get a dashboard list
-[**ListDashboardLists**](DashboardListsApi.md#ListDashboardLists) | **Get** /api/v1/dashboard/lists/manual | Get all dashboard lists
-[**UpdateDashboardList**](DashboardListsApi.md#UpdateDashboardList) | **Put** /api/v1/dashboard/lists/manual/{list_id} | Update a dashboard list
-
-
+| Method                                                              | HTTP request                                        | Description             |
+| ------------------------------------------------------------------- | --------------------------------------------------- | ----------------------- |
+| [**CreateDashboardList**](DashboardListsApi.md#CreateDashboardList) | **Post** /api/v1/dashboard/lists/manual             | Create a dashboard list |
+| [**DeleteDashboardList**](DashboardListsApi.md#DeleteDashboardList) | **Delete** /api/v1/dashboard/lists/manual/{list_id} | Delete a dashboard list |
+| [**GetDashboardList**](DashboardListsApi.md#GetDashboardList)       | **Get** /api/v1/dashboard/lists/manual/{list_id}    | Get a dashboard list    |
+| [**ListDashboardLists**](DashboardListsApi.md#ListDashboardLists)   | **Get** /api/v1/dashboard/lists/manual              | Get all dashboard lists |
+| [**UpdateDashboardList**](DashboardListsApi.md#UpdateDashboardList) | **Put** /api/v1/dashboard/lists/manual/{list_id}    | Update a dashboard list |
 
 ## CreateDashboardList
 
@@ -52,17 +50,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**DashboardList**](DashboardList.md) | Create a dashboard list request body. | 
-
+| Name     | Type                                  | Description                                                                 | Notes |
+| -------- | ------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**DashboardList**](DashboardList.md) | Create a dashboard list request body.                                       |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -80,7 +75,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteDashboardList
 
@@ -122,17 +116,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**listId** | **int64** | ID of the dashboard list to delete. | 
-
+| Name       | Type                | Description                                                                 | Notes |
+| ---------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **listId** | **int64**           | ID of the dashboard list to delete.                                         |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -150,7 +141,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetDashboardList
 
@@ -192,17 +182,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**listId** | **int64** | ID of the dashboard list to fetch. | 
-
+| Name       | Type                | Description                                                                 | Notes |
+| ---------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **listId** | **int64**           | ID of the dashboard list to fetch.                                          |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -220,7 +207,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListDashboardLists
 
@@ -263,11 +249,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -285,7 +269,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateDashboardList
 
@@ -328,18 +311,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**listId** | **int64** | ID of the dashboard list to update. |  |
-**body** | [**DashboardList**](DashboardList.md) | Update a dashboard list request body. | 
-
+| Name       | Type                                  | Description                                                                 | Notes |
+| ---------- | ------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context**                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **listId** | **int64**                             | ID of the dashboard list to update.                                         |       |
+| **body**   | [**DashboardList**](DashboardList.md) | Update a dashboard list request body.                                       |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -357,4 +337,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

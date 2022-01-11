@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Org** | Pointer to [**Organization**](Organization.md) |  | [optional] 
+| Name    | Type                                           | Description | Notes      |
+| ------- | ---------------------------------------------- | ----------- | ---------- |
+| **Org** | Pointer to [**Organization**](Organization.md) |             | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetOrg sets Org field to given value.
 
 HasOrg returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

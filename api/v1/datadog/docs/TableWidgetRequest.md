@@ -2,27 +2,27 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregator** | Pointer to [**WidgetAggregator**](WidgetAggregator.md) |  | [optional] 
-**Alias** | Pointer to **string** | The column name (defaults to the metric name). | [optional] 
-**ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**ApmStatsQuery** | Pointer to [**ApmStatsQueryDefinition**](ApmStatsQueryDefinition.md) |  | [optional] 
-**CellDisplayMode** | Pointer to [**[]TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) | A list of display modes for each table cell. | [optional] 
-**ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
-**EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Formulas** | Pointer to [**[]WidgetFormula**](WidgetFormula.md) | List of formulas that operate on queries. **This feature is currently in beta.** | [optional] 
-**Limit** | Pointer to **int64** | For metric queries, the number of lines to show in the table. Only one request should have this property. | [optional] 
-**LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Order** | Pointer to [**WidgetSort**](WidgetSort.md) |  | [optional] 
-**ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
-**ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Q** | Pointer to **string** | Query definition. | [optional] 
-**Queries** | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. **This feature is currently in beta.** | [optional] 
-**ResponseFormat** | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md) |  | [optional] 
-**RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**SecurityQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+| Name                    | Type                                                                                       | Description                                                                                               | Notes      |
+| ----------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- | ---------- |
+| **Aggregator**          | Pointer to [**WidgetAggregator**](WidgetAggregator.md)                                     |                                                                                                           | [optional] |
+| **Alias**               | Pointer to **string**                                                                      | The column name (defaults to the metric name).                                                            | [optional] |
+| **ApmQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **ApmStatsQuery**       | Pointer to [**ApmStatsQueryDefinition**](ApmStatsQueryDefinition.md)                       |                                                                                                           | [optional] |
+| **CellDisplayMode**     | Pointer to [**[]TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md)               | A list of display modes for each table cell.                                                              | [optional] |
+| **ConditionalFormats**  | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md)                     | List of conditional formats.                                                                              | [optional] |
+| **EventQuery**          | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **Formulas**            | Pointer to [**[]WidgetFormula**](WidgetFormula.md)                                         | List of formulas that operate on queries. **This feature is currently in beta.**                          | [optional] |
+| **Limit**               | Pointer to **int64**                                                                       | For metric queries, the number of lines to show in the table. Only one request should have this property. | [optional] |
+| **LogQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **NetworkQuery**        | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **Order**               | Pointer to [**WidgetSort**](WidgetSort.md)                                                 |                                                                                                           | [optional] |
+| **ProcessQuery**        | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md)                         |                                                                                                           | [optional] |
+| **ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **Q**                   | Pointer to **string**                                                                      | Query definition.                                                                                         | [optional] |
+| **Queries**             | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. **This feature is currently in beta.** | [optional] |
+| **ResponseFormat**      | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md)     |                                                                                                           | [optional] |
+| **RumQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **SecurityQuery**       | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
 
 ## Methods
 
@@ -518,7 +518,4 @@ SetSecurityQuery sets SecurityQuery field to given value.
 
 HasSecurityQuery returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

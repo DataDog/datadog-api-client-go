@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Usage** | Pointer to [**[]UsageNetworkHostsHour**](UsageNetworkHostsHour.md) | Get hourly usage for NPM hosts. | [optional] 
+| Name      | Type                                                               | Description                     | Notes      |
+| --------- | ------------------------------------------------------------------ | ------------------------------- | ---------- |
+| **Usage** | Pointer to [**[]UsageNetworkHostsHour**](UsageNetworkHostsHour.md) | Get hourly usage for NPM hosts. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetUsage sets Usage field to given value.
 
 HasUsage returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

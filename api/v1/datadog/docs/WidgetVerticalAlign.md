@@ -2,14 +2,10 @@
 
 ## Enum
 
+- `CENTER` (value: `"center"`)
 
-* `CENTER` (value: `"center"`)
+- `TOP` (value: `"top"`)
 
-* `TOP` (value: `"top"`)
-
-* `BOTTOM` (value: `"bottom"`)
-
+- `BOTTOM` (value: `"bottom"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

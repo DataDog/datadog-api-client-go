@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AccountId** | Pointer to **string** | Your AWS Account ID without dashes. | [optional] 
-**Lambdas** | Pointer to [**[]AWSLogsLambda**](AWSLogsLambda.md) | List of ARNs configured in your Datadog account. | [optional] 
-**Services** | Pointer to **[]string** | Array of services IDs. | [optional] 
+| Name          | Type                                               | Description                                      | Notes      |
+| ------------- | -------------------------------------------------- | ------------------------------------------------ | ---------- |
+| **AccountId** | Pointer to **string**                              | Your AWS Account ID without dashes.              | [optional] |
+| **Lambdas**   | Pointer to [**[]AWSLogsLambda**](AWSLogsLambda.md) | List of ARNs configured in your Datadog account. | [optional] |
+| **Services**  | Pointer to **[]string**                            | Array of services IDs.                           | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetServices sets Services field to given value.
 
 HasServices returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,16 +2,12 @@
 
 ## Enum
 
+- `BOTTOM` (value: `"bottom"`)
 
-* `BOTTOM` (value: `"bottom"`)
+- `LEFT` (value: `"left"`)
 
-* `LEFT` (value: `"left"`)
+- `RIGHT` (value: `"right"`)
 
-* `RIGHT` (value: `"right"`)
-
-* `TOP` (value: `"top"`)
-
+- `TOP` (value: `"top"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

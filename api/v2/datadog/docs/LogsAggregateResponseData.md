@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Buckets** | Pointer to [**[]LogsAggregateBucket**](LogsAggregateBucket.md) | The list of matching buckets, one item per bucket | [optional] 
+| Name        | Type                                                           | Description                                       | Notes      |
+| ----------- | -------------------------------------------------------------- | ------------------------------------------------- | ---------- |
+| **Buckets** | Pointer to [**[]LogsAggregateBucket**](LogsAggregateBucket.md) | The list of matching buckets, one item per bucket | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetBuckets sets Buckets field to given value.
 
 HasBuckets returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

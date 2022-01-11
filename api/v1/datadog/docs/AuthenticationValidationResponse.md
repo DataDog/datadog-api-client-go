@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Valid** | Pointer to **bool** | Return &#x60;true&#x60; if the authentication response is valid. | [optional] [readonly] 
+| Name      | Type                | Description                                                      | Notes                 |
+| --------- | ------------------- | ---------------------------------------------------------------- | --------------------- |
+| **Valid** | Pointer to **bool** | Return &#x60;true&#x60; if the authentication response is valid. | [optional] [readonly] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetValid sets Valid field to given value.
 
 HasValid returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

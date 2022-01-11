@@ -2,15 +2,13 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateLogsMetric**](LogsMetricsApi.md#CreateLogsMetric) | **Post** /api/v2/logs/config/metrics | Create a log-based metric
-[**DeleteLogsMetric**](LogsMetricsApi.md#DeleteLogsMetric) | **Delete** /api/v2/logs/config/metrics/{metric_id} | Delete a log-based metric
-[**GetLogsMetric**](LogsMetricsApi.md#GetLogsMetric) | **Get** /api/v2/logs/config/metrics/{metric_id} | Get a log-based metric
-[**ListLogsMetrics**](LogsMetricsApi.md#ListLogsMetrics) | **Get** /api/v2/logs/config/metrics | Get all log-based metrics
-[**UpdateLogsMetric**](LogsMetricsApi.md#UpdateLogsMetric) | **Patch** /api/v2/logs/config/metrics/{metric_id} | Update a log-based metric
-
-
+| Method                                                     | HTTP request                                       | Description               |
+| ---------------------------------------------------------- | -------------------------------------------------- | ------------------------- |
+| [**CreateLogsMetric**](LogsMetricsApi.md#CreateLogsMetric) | **Post** /api/v2/logs/config/metrics               | Create a log-based metric |
+| [**DeleteLogsMetric**](LogsMetricsApi.md#DeleteLogsMetric) | **Delete** /api/v2/logs/config/metrics/{metric_id} | Delete a log-based metric |
+| [**GetLogsMetric**](LogsMetricsApi.md#GetLogsMetric)       | **Get** /api/v2/logs/config/metrics/{metric_id}    | Get a log-based metric    |
+| [**ListLogsMetrics**](LogsMetricsApi.md#ListLogsMetrics)   | **Get** /api/v2/logs/config/metrics                | Get all log-based metrics |
+| [**UpdateLogsMetric**](LogsMetricsApi.md#UpdateLogsMetric) | **Patch** /api/v2/logs/config/metrics/{metric_id}  | Update a log-based metric |
 
 ## CreateLogsMetric
 
@@ -53,17 +51,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**LogsMetricCreateRequest**](LogsMetricCreateRequest.md) | The definition of the new log-based metric. | 
-
+| Name     | Type                                                      | Description                                                                 | Notes |
+| -------- | --------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                       | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**LogsMetricCreateRequest**](LogsMetricCreateRequest.md) | The definition of the new log-based metric.                                 |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -81,7 +76,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteLogsMetric
 
@@ -119,21 +113,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**metricId** | **string** | The name of the log-based metric. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **metricId** | **string**          | The name of the log-based metric.                                           |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -147,7 +138,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetLogsMetric
 
@@ -189,17 +179,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**metricId** | **string** | The name of the log-based metric. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **metricId** | **string**          | The name of the log-based metric.                                           |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -217,7 +204,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListLogsMetrics
 
@@ -260,11 +246,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -282,7 +266,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateLogsMetric
 
@@ -326,18 +309,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**metricId** | **string** | The name of the log-based metric. |  |
-**body** | [**LogsMetricUpdateRequest**](LogsMetricUpdateRequest.md) | New definition of the log-based metric. | 
-
+| Name         | Type                                                      | Description                                                                 | Notes |
+| ------------ | --------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context**                                       | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **metricId** | **string**                                                | The name of the log-based metric.                                           |       |
+| **body**     | [**LogsMetricUpdateRequest**](LogsMetricUpdateRequest.md) | New definition of the log-based metric.                                     |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -355,4 +335,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

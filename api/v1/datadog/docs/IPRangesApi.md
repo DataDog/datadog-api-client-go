@@ -2,11 +2,9 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**GetIPRanges**](IPRangesApi.md#GetIPRanges) | **Get** / | List IP Ranges
-
-
+| Method                                        | HTTP request | Description    |
+| --------------------------------------------- | ------------ | -------------- |
+| [**GetIPRanges**](IPRangesApi.md#GetIPRanges) | **Get** /    | List IP Ranges |
 
 ## GetIPRanges
 
@@ -49,11 +47,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -71,4 +67,3 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

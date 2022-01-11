@@ -2,17 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**HasBackground** | Pointer to **bool** | Whether to display a background or not. | [optional] [default to true]
-**HasBorder** | Pointer to **bool** | Whether to display a border or not. | [optional] [default to true]
-**HorizontalAlign** | Pointer to [**WidgetHorizontalAlign**](WidgetHorizontalAlign.md) |  | [optional] 
-**Margin** | Pointer to [**WidgetMargin**](WidgetMargin.md) |  | [optional] 
-**Sizing** | Pointer to [**WidgetImageSizing**](WidgetImageSizing.md) |  | [optional] 
-**Type** | [**ImageWidgetDefinitionType**](ImageWidgetDefinitionType.md) |  | [default to IMAGEWIDGETDEFINITIONTYPE_IMAGE]
-**Url** | **string** | URL of the image. | 
-**UrlDarkTheme** | Pointer to **string** | URL of the image in dark mode. | [optional] 
-**VerticalAlign** | Pointer to [**WidgetVerticalAlign**](WidgetVerticalAlign.md) |  | [optional] 
+| Name                | Type                                                             | Description                             | Notes                                        |
+| ------------------- | ---------------------------------------------------------------- | --------------------------------------- | -------------------------------------------- |
+| **HasBackground**   | Pointer to **bool**                                              | Whether to display a background or not. | [optional] [default to true]                 |
+| **HasBorder**       | Pointer to **bool**                                              | Whether to display a border or not.     | [optional] [default to true]                 |
+| **HorizontalAlign** | Pointer to [**WidgetHorizontalAlign**](WidgetHorizontalAlign.md) |                                         | [optional]                                   |
+| **Margin**          | Pointer to [**WidgetMargin**](WidgetMargin.md)                   |                                         | [optional]                                   |
+| **Sizing**          | Pointer to [**WidgetImageSizing**](WidgetImageSizing.md)         |                                         | [optional]                                   |
+| **Type**            | [**ImageWidgetDefinitionType**](ImageWidgetDefinitionType.md)    |                                         | [default to IMAGEWIDGETDEFINITIONTYPE_IMAGE] |
+| **Url**             | **string**                                                       | URL of the image.                       |
+| **UrlDarkTheme**    | Pointer to **string**                                            | URL of the image in dark mode.          | [optional]                                   |
+| **VerticalAlign**   | Pointer to [**WidgetVerticalAlign**](WidgetVerticalAlign.md)     |                                         | [optional]                                   |
 
 ## Methods
 
@@ -177,7 +177,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetUrl
 
 `func (o *ImageWidgetDefinition) GetUrl() string`
@@ -196,7 +195,6 @@ and a boolean to check if the value has been set.
 `func (o *ImageWidgetDefinition) SetUrl(v string)`
 
 SetUrl sets Url field to given value.
-
 
 ### GetUrlDarkTheme
 
@@ -248,7 +246,4 @@ SetVerticalAlign sets VerticalAlign field to given value.
 
 HasVerticalAlign returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

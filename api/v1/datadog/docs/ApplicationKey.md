@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Hash** | Pointer to **string** | Hash of an application key. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of an application key. | [optional] 
-**Owner** | Pointer to **string** | Owner of an application key. | [optional] [readonly] 
+| Name      | Type                  | Description                  | Notes                 |
+| --------- | --------------------- | ---------------------------- | --------------------- |
+| **Hash**  | Pointer to **string** | Hash of an application key.  | [optional] [readonly] |
+| **Name**  | Pointer to **string** | Name of an application key.  | [optional]            |
+| **Owner** | Pointer to **string** | Owner of an application key. | [optional] [readonly] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetOwner sets Owner field to given value.
 
 HasOwner returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

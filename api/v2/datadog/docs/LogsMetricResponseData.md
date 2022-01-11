@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**LogsMetricResponseAttributes**](LogsMetricResponseAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | The name of the log-based metric. | [optional] 
-**Type** | Pointer to [**LogsMetricType**](LogsMetricType.md) |  | [optional] [default to LOGSMETRICTYPE_LOGS_METRICS]
+| Name           | Type                                                                           | Description                       | Notes                                               |
+| -------------- | ------------------------------------------------------------------------------ | --------------------------------- | --------------------------------------------------- |
+| **Attributes** | Pointer to [**LogsMetricResponseAttributes**](LogsMetricResponseAttributes.md) |                                   | [optional]                                          |
+| **Id**         | Pointer to **string**                                                          | The name of the log-based metric. | [optional]                                          |
+| **Type**       | Pointer to [**LogsMetricType**](LogsMetricType.md)                             |                                   | [optional] [default to LOGSMETRICTYPE_LOGS_METRICS] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

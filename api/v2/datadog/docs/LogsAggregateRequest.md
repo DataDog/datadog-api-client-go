@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Compute** | Pointer to [**[]LogsCompute**](LogsCompute.md) | The list of metrics or timeseries to compute for the retrieved buckets. | [optional] 
-**Filter** | Pointer to [**LogsQueryFilter**](LogsQueryFilter.md) |  | [optional] 
-**GroupBy** | Pointer to [**[]LogsGroupBy**](LogsGroupBy.md) | The rules for the group by | [optional] 
-**Options** | Pointer to [**LogsQueryOptions**](LogsQueryOptions.md) |  | [optional] 
-**Page** | Pointer to [**LogsAggregateRequestPage**](LogsAggregateRequestPage.md) |  | [optional] 
+| Name        | Type                                                                   | Description                                                             | Notes      |
+| ----------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------- |
+| **Compute** | Pointer to [**[]LogsCompute**](LogsCompute.md)                         | The list of metrics or timeseries to compute for the retrieved buckets. | [optional] |
+| **Filter**  | Pointer to [**LogsQueryFilter**](LogsQueryFilter.md)                   |                                                                         | [optional] |
+| **GroupBy** | Pointer to [**[]LogsGroupBy**](LogsGroupBy.md)                         | The rules for the group by                                              | [optional] |
+| **Options** | Pointer to [**LogsQueryOptions**](LogsQueryOptions.md)                 |                                                                         | [optional] |
+| **Page**    | Pointer to [**LogsAggregateRequestPage**](LogsAggregateRequestPage.md) |                                                                         | [optional] |
 
 ## Methods
 
@@ -154,7 +154,4 @@ SetPage sets Page field to given value.
 
 HasPage returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Height** | **int64** | Screen height of the device. | 
-**Id** | [**SyntheticsDeviceID**](SyntheticsDeviceID.md) |  | 
-**IsMobile** | Pointer to **bool** | Whether or not the device is a mobile. | [optional] 
-**Name** | **string** | The device name. | 
-**Width** | **int64** | Screen width of the device. | 
+| Name         | Type                                            | Description                            | Notes      |
+| ------------ | ----------------------------------------------- | -------------------------------------- | ---------- |
+| **Height**   | **int64**                                       | Screen height of the device.           |
+| **Id**       | [**SyntheticsDeviceID**](SyntheticsDeviceID.md) |                                        |
+| **IsMobile** | Pointer to **bool**                             | Whether or not the device is a mobile. | [optional] |
+| **Name**     | **string**                                      | The device name.                       |
+| **Width**    | **int64**                                       | Screen width of the device.            |
 
 ## Methods
 
@@ -48,7 +48,6 @@ and a boolean to check if the value has been set.
 
 SetHeight sets Height field to given value.
 
-
 ### GetId
 
 `func (o *SyntheticsDevice) GetId() SyntheticsDeviceID`
@@ -67,7 +66,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsDevice) SetId(v SyntheticsDeviceID)`
 
 SetId sets Id field to given value.
-
 
 ### GetIsMobile
 
@@ -113,7 +111,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetWidth
 
 `func (o *SyntheticsDevice) GetWidth() int64`
@@ -133,8 +130,4 @@ and a boolean to check if the value has been set.
 
 SetWidth sets Width field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

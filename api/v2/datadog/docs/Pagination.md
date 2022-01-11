@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**TotalCount** | Pointer to **int64** | Total count. | [optional] 
-**TotalFilteredCount** | Pointer to **int64** | Total count of elements matched by the filter. | [optional] 
+| Name                   | Type                 | Description                                    | Notes      |
+| ---------------------- | -------------------- | ---------------------------------------------- | ---------- |
+| **TotalCount**         | Pointer to **int64** | Total count.                                   | [optional] |
+| **TotalFilteredCount** | Pointer to **int64** | Total count of elements matched by the filter. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetTotalFilteredCount sets TotalFilteredCount field to given value.
 
 HasTotalFilteredCount returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

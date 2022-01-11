@@ -2,10 +2,6 @@
 
 ## Enum
 
-
-* `PIPELINE` (value: `"pipeline"`)
-
+- `PIPELINE` (value: `"pipeline"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

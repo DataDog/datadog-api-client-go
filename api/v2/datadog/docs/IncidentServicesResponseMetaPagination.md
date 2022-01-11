@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**NextOffset** | Pointer to **int64** | The index of the first element in the next page of results. Equal to page size added to the current offset. | [optional] 
-**Offset** | Pointer to **int64** | The index of the first element in the results. | [optional] 
-**Size** | Pointer to **int64** | Maximum size of pages to return. | [optional] 
+| Name           | Type                 | Description                                                                                                 | Notes      |
+| -------------- | -------------------- | ----------------------------------------------------------------------------------------------------------- | ---------- |
+| **NextOffset** | Pointer to **int64** | The index of the first element in the next page of results. Equal to page size added to the current offset. | [optional] |
+| **Offset**     | Pointer to **int64** | The index of the first element in the results.                                                              | [optional] |
+| **Size**       | Pointer to **int64** | Maximum size of pages to return.                                                                            | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetSize sets Size field to given value.
 
 HasSize returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

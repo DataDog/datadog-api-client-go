@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregates** | Pointer to [**[]UsageAttributionAggregatesBody**](UsageAttributionAggregatesBody.md) | An array of available aggregates. | [optional] 
-**Pagination** | Pointer to [**UsageAttributionPagination**](UsageAttributionPagination.md) |  | [optional] 
+| Name           | Type                                                                                 | Description                       | Notes      |
+| -------------- | ------------------------------------------------------------------------------------ | --------------------------------- | ---------- |
+| **Aggregates** | Pointer to [**[]UsageAttributionAggregatesBody**](UsageAttributionAggregatesBody.md) | An array of available aggregates. | [optional] |
+| **Pagination** | Pointer to [**UsageAttributionPagination**](UsageAttributionPagination.md)           |                                   | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetPagination sets Pagination field to given value.
 
 HasPagination returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

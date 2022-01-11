@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**RenotifyInterval** | Pointer to **int64** | Time interval before renotifying if the test is still failing (in minutes). | [optional] 
+| Name                 | Type                 | Description                                                                 | Notes      |
+| -------------------- | -------------------- | --------------------------------------------------------------------------- | ---------- |
+| **RenotifyInterval** | Pointer to **int64** | Time interval before renotifying if the test is still failing (in minutes). | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetRenotifyInterval sets RenotifyInterval field to given value.
 
 HasRenotifyInterval returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**MetricTagConfigurationUpdateAttributes**](MetricTagConfigurationUpdateAttributes.md) |  | [optional] 
-**Id** | **string** | The metric name for this resource. | 
-**Type** | [**MetricTagConfigurationType**](MetricTagConfigurationType.md) |  | [default to METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS]
+| Name           | Type                                                                                               | Description                        | Notes                                               |
+| -------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------- | --------------------------------------------------- |
+| **Attributes** | Pointer to [**MetricTagConfigurationUpdateAttributes**](MetricTagConfigurationUpdateAttributes.md) |                                    | [optional]                                          |
+| **Id**         | **string**                                                                                         | The metric name for this resource. |
+| **Type**       | [**MetricTagConfigurationType**](MetricTagConfigurationType.md)                                    |                                    | [default to METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS] |
 
 ## Methods
 
@@ -71,7 +71,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-
 ### GetType
 
 `func (o *MetricTagConfigurationUpdateData) GetType() MetricTagConfigurationType`
@@ -91,8 +90,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

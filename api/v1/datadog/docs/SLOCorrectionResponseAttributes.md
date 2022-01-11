@@ -2,20 +2,20 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Category** | Pointer to [**SLOCorrectionCategory**](SLOCorrectionCategory.md) |  | [optional] 
-**CreatedAt** | Pointer to **int64** | The epoch timestamp of when the correction was created at | [optional] 
-**Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Description** | Pointer to **string** | Description of the correction being made. | [optional] 
-**Duration** | Pointer to **NullableInt64** | Length of time (in seconds) for a specified &#x60;rrule&#x60; recurring SLO correction. | [optional] 
-**End** | Pointer to **int64** | Ending time of the correction in epoch seconds. | [optional] 
-**ModifiedAt** | Pointer to **int64** | The epoch timestamp of when the correction was modified at | [optional] 
-**Modifier** | Pointer to [**NullableSLOCorrectionResponseAttributesModifier**](SLOCorrectionResponseAttributesModifier.md) |  | [optional] 
-**Rrule** | Pointer to **NullableString** | The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections are &#x60;FREQ&#x60;, &#x60;INTERVAL&#x60;, &#x60;COUNT&#x60; and &#x60;UNTIL&#x60;. | [optional] 
-**SloId** | Pointer to **string** | ID of the SLO that this correction will be applied to. | [optional] 
-**Start** | Pointer to **int64** | Starting time of the correction in epoch seconds. | [optional] 
-**Timezone** | Pointer to **string** | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;). | [optional] 
+| Name            | Type                                                                                                         | Description                                                                                                                                                                             | Notes      |
+| --------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Category**    | Pointer to [**SLOCorrectionCategory**](SLOCorrectionCategory.md)                                             |                                                                                                                                                                                         | [optional] |
+| **CreatedAt**   | Pointer to **int64**                                                                                         | The epoch timestamp of when the correction was created at                                                                                                                               | [optional] |
+| **Creator**     | Pointer to [**Creator**](Creator.md)                                                                         |                                                                                                                                                                                         | [optional] |
+| **Description** | Pointer to **string**                                                                                        | Description of the correction being made.                                                                                                                                               | [optional] |
+| **Duration**    | Pointer to **NullableInt64**                                                                                 | Length of time (in seconds) for a specified &#x60;rrule&#x60; recurring SLO correction.                                                                                                 | [optional] |
+| **End**         | Pointer to **int64**                                                                                         | Ending time of the correction in epoch seconds.                                                                                                                                         | [optional] |
+| **ModifiedAt**  | Pointer to **int64**                                                                                         | The epoch timestamp of when the correction was modified at                                                                                                                              | [optional] |
+| **Modifier**    | Pointer to [**NullableSLOCorrectionResponseAttributesModifier**](SLOCorrectionResponseAttributesModifier.md) |                                                                                                                                                                                         | [optional] |
+| **Rrule**       | Pointer to **NullableString**                                                                                | The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections are &#x60;FREQ&#x60;, &#x60;INTERVAL&#x60;, &#x60;COUNT&#x60; and &#x60;UNTIL&#x60;. | [optional] |
+| **SloId**       | Pointer to **string**                                                                                        | ID of the SLO that this correction will be applied to.                                                                                                                                  | [optional] |
+| **Start**       | Pointer to **int64**                                                                                         | Starting time of the correction in epoch seconds.                                                                                                                                       | [optional] |
+| **Timezone**    | Pointer to **string**                                                                                        | The timezone to display in the UI for the correction times (defaults to \&quot;UTC\&quot;).                                                                                             | [optional] |
 
 ## Methods
 
@@ -165,12 +165,14 @@ HasDuration returns a boolean if a field has been set.
 
 `func (o *SLOCorrectionResponseAttributes) SetDurationNil(b bool)`
 
- SetDurationNil sets the value for Duration to be an explicit nil
+SetDurationNil sets the value for Duration to be an explicit nil
 
 ### UnsetDuration
+
 `func (o *SLOCorrectionResponseAttributes) UnsetDuration()`
 
 UnsetDuration ensures that no value is present for Duration, not even an explicit nil
+
 ### GetEnd
 
 `func (o *SLOCorrectionResponseAttributes) GetEnd() int64`
@@ -250,12 +252,14 @@ HasModifier returns a boolean if a field has been set.
 
 `func (o *SLOCorrectionResponseAttributes) SetModifierNil(b bool)`
 
- SetModifierNil sets the value for Modifier to be an explicit nil
+SetModifierNil sets the value for Modifier to be an explicit nil
 
 ### UnsetModifier
+
 `func (o *SLOCorrectionResponseAttributes) UnsetModifier()`
 
 UnsetModifier ensures that no value is present for Modifier, not even an explicit nil
+
 ### GetRrule
 
 `func (o *SLOCorrectionResponseAttributes) GetRrule() string`
@@ -285,12 +289,14 @@ HasRrule returns a boolean if a field has been set.
 
 `func (o *SLOCorrectionResponseAttributes) SetRruleNil(b bool)`
 
- SetRruleNil sets the value for Rrule to be an explicit nil
+SetRruleNil sets the value for Rrule to be an explicit nil
 
 ### UnsetRrule
+
 `func (o *SLOCorrectionResponseAttributes) UnsetRrule()`
 
 UnsetRrule ensures that no value is present for Rrule, not even an explicit nil
+
 ### GetSloId
 
 `func (o *SLOCorrectionResponseAttributes) GetSloId() string`
@@ -366,7 +372,4 @@ SetTimezone sets Timezone field to given value.
 
 HasTimezone returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,24 +2,24 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AuthorHandle** | Pointer to **string** | Identifier of the dashboard author. | [optional] [readonly] 
-**AuthorName** | Pointer to **NullableString** | Name of the dashboard author. | [optional] [readonly] 
-**CreatedAt** | Pointer to **time.Time** | Creation date of the dashboard. | [optional] [readonly] 
-**Description** | Pointer to **NullableString** | Description of the dashboard. | [optional] 
-**Id** | Pointer to **string** | ID of the dashboard. | [optional] [readonly] 
-**IsReadOnly** | Pointer to **bool** | Whether this dashboard is read-only. If True, only the author and admins can make changes to it. Prefer using &#x60;restricted_roles&#x60; to manage write authorization. | [optional] [default to false]
-**LayoutType** | [**DashboardLayoutType**](DashboardLayoutType.md) |  | 
-**ModifiedAt** | Pointer to **time.Time** | Modification date of the dashboard. | [optional] [readonly] 
-**NotifyList** | Pointer to **[]string** | List of handles of users to notify when changes are made to this dashboard. | [optional] 
-**ReflowType** | Pointer to [**DashboardReflowType**](DashboardReflowType.md) |  | [optional] 
-**RestrictedRoles** | Pointer to **[]string** | A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard. | [optional] 
-**TemplateVariablePresets** | Pointer to [**[]DashboardTemplateVariablePreset**](DashboardTemplateVariablePreset.md) | Array of template variables saved views. | [optional] 
-**TemplateVariables** | Pointer to [**[]DashboardTemplateVariable**](DashboardTemplateVariable.md) | List of template variables for this dashboard. | [optional] 
-**Title** | **string** | Title of the dashboard. | 
-**Url** | Pointer to **string** | The URL of the dashboard. | [optional] [readonly] 
-**Widgets** | [**[]Widget**](Widget.md) | List of widgets to display on the dashboard. | 
+| Name                        | Type                                                                                   | Description                                                                                                                                                               | Notes                         |
+| --------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| **AuthorHandle**            | Pointer to **string**                                                                  | Identifier of the dashboard author.                                                                                                                                       | [optional] [readonly]         |
+| **AuthorName**              | Pointer to **NullableString**                                                          | Name of the dashboard author.                                                                                                                                             | [optional] [readonly]         |
+| **CreatedAt**               | Pointer to **time.Time**                                                               | Creation date of the dashboard.                                                                                                                                           | [optional] [readonly]         |
+| **Description**             | Pointer to **NullableString**                                                          | Description of the dashboard.                                                                                                                                             | [optional]                    |
+| **Id**                      | Pointer to **string**                                                                  | ID of the dashboard.                                                                                                                                                      | [optional] [readonly]         |
+| **IsReadOnly**              | Pointer to **bool**                                                                    | Whether this dashboard is read-only. If True, only the author and admins can make changes to it. Prefer using &#x60;restricted_roles&#x60; to manage write authorization. | [optional] [default to false] |
+| **LayoutType**              | [**DashboardLayoutType**](DashboardLayoutType.md)                                      |                                                                                                                                                                           |
+| **ModifiedAt**              | Pointer to **time.Time**                                                               | Modification date of the dashboard.                                                                                                                                       | [optional] [readonly]         |
+| **NotifyList**              | Pointer to **[]string**                                                                | List of handles of users to notify when changes are made to this dashboard.                                                                                               | [optional]                    |
+| **ReflowType**              | Pointer to [**DashboardReflowType**](DashboardReflowType.md)                           |                                                                                                                                                                           | [optional]                    |
+| **RestrictedRoles**         | Pointer to **[]string**                                                                | A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard.                                                | [optional]                    |
+| **TemplateVariablePresets** | Pointer to [**[]DashboardTemplateVariablePreset**](DashboardTemplateVariablePreset.md) | Array of template variables saved views.                                                                                                                                  | [optional]                    |
+| **TemplateVariables**       | Pointer to [**[]DashboardTemplateVariable**](DashboardTemplateVariable.md)             | List of template variables for this dashboard.                                                                                                                            | [optional]                    |
+| **Title**                   | **string**                                                                             | Title of the dashboard.                                                                                                                                                   |
+| **Url**                     | Pointer to **string**                                                                  | The URL of the dashboard.                                                                                                                                                 | [optional] [readonly]         |
+| **Widgets**                 | [**[]Widget**](Widget.md)                                                              | List of widgets to display on the dashboard.                                                                                                                              |
 
 ## Methods
 
@@ -94,12 +94,14 @@ HasAuthorName returns a boolean if a field has been set.
 
 `func (o *Dashboard) SetAuthorNameNil(b bool)`
 
- SetAuthorNameNil sets the value for AuthorName to be an explicit nil
+SetAuthorNameNil sets the value for AuthorName to be an explicit nil
 
 ### UnsetAuthorName
+
 `func (o *Dashboard) UnsetAuthorName()`
 
 UnsetAuthorName ensures that no value is present for AuthorName, not even an explicit nil
+
 ### GetCreatedAt
 
 `func (o *Dashboard) GetCreatedAt() time.Time`
@@ -154,12 +156,14 @@ HasDescription returns a boolean if a field has been set.
 
 `func (o *Dashboard) SetDescriptionNil(b bool)`
 
- SetDescriptionNil sets the value for Description to be an explicit nil
+SetDescriptionNil sets the value for Description to be an explicit nil
 
 ### UnsetDescription
+
 `func (o *Dashboard) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+
 ### GetId
 
 `func (o *Dashboard) GetId() string`
@@ -229,7 +233,6 @@ and a boolean to check if the value has been set.
 
 SetLayoutType sets LayoutType field to given value.
 
-
 ### GetModifiedAt
 
 `func (o *Dashboard) GetModifiedAt() time.Time`
@@ -284,12 +287,14 @@ HasNotifyList returns a boolean if a field has been set.
 
 `func (o *Dashboard) SetNotifyListNil(b bool)`
 
- SetNotifyListNil sets the value for NotifyList to be an explicit nil
+SetNotifyListNil sets the value for NotifyList to be an explicit nil
 
 ### UnsetNotifyList
+
 `func (o *Dashboard) UnsetNotifyList()`
 
 UnsetNotifyList ensures that no value is present for NotifyList, not even an explicit nil
+
 ### GetReflowType
 
 `func (o *Dashboard) GetReflowType() DashboardReflowType`
@@ -369,12 +374,14 @@ HasTemplateVariablePresets returns a boolean if a field has been set.
 
 `func (o *Dashboard) SetTemplateVariablePresetsNil(b bool)`
 
- SetTemplateVariablePresetsNil sets the value for TemplateVariablePresets to be an explicit nil
+SetTemplateVariablePresetsNil sets the value for TemplateVariablePresets to be an explicit nil
 
 ### UnsetTemplateVariablePresets
+
 `func (o *Dashboard) UnsetTemplateVariablePresets()`
 
 UnsetTemplateVariablePresets ensures that no value is present for TemplateVariablePresets, not even an explicit nil
+
 ### GetTemplateVariables
 
 `func (o *Dashboard) GetTemplateVariables() []DashboardTemplateVariable`
@@ -404,12 +411,14 @@ HasTemplateVariables returns a boolean if a field has been set.
 
 `func (o *Dashboard) SetTemplateVariablesNil(b bool)`
 
- SetTemplateVariablesNil sets the value for TemplateVariables to be an explicit nil
+SetTemplateVariablesNil sets the value for TemplateVariables to be an explicit nil
 
 ### UnsetTemplateVariables
+
 `func (o *Dashboard) UnsetTemplateVariables()`
 
 UnsetTemplateVariables ensures that no value is present for TemplateVariables, not even an explicit nil
+
 ### GetTitle
 
 `func (o *Dashboard) GetTitle() string`
@@ -428,7 +437,6 @@ and a boolean to check if the value has been set.
 `func (o *Dashboard) SetTitle(v string)`
 
 SetTitle sets Title field to given value.
-
 
 ### GetUrl
 
@@ -474,8 +482,4 @@ and a boolean to check if the value has been set.
 
 SetWidgets sets Widgets field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

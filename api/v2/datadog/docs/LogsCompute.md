@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregation** | [**LogsAggregationFunction**](LogsAggregationFunction.md) |  | 
-**Interval** | Pointer to **string** | The time buckets&#39; size (only used for type&#x3D;timeseries) Defaults to a resolution of 150 points | [optional] 
-**Metric** | Pointer to **string** | The metric to use | [optional] 
-**Type** | Pointer to [**LogsComputeType**](LogsComputeType.md) |  | [optional] [default to LOGSCOMPUTETYPE_TOTAL]
+| Name            | Type                                                      | Description                                                                                            | Notes                                         |
+| --------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------- |
+| **Aggregation** | [**LogsAggregationFunction**](LogsAggregationFunction.md) |                                                                                                        |
+| **Interval**    | Pointer to **string**                                     | The time buckets&#39; size (only used for type&#x3D;timeseries) Defaults to a resolution of 150 points | [optional]                                    |
+| **Metric**      | Pointer to **string**                                     | The metric to use                                                                                      | [optional]                                    |
+| **Type**        | Pointer to [**LogsComputeType**](LogsComputeType.md)      |                                                                                                        | [optional] [default to LOGSCOMPUTETYPE_TOTAL] |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsCompute) SetAggregation(v LogsAggregationFunction)`
 
 SetAggregation sets Aggregation field to given value.
-
 
 ### GetInterval
 
@@ -123,7 +122,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

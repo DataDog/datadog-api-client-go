@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Host** | Pointer to **string** | The name of the host that produced the metric. | [optional] 
-**Interval** | Pointer to **NullableInt64** | If the type of the metric is rate or count, define the corresponding interval. | [optional] 
-**Metric** | **string** | The name of the timeseries. | 
-**Points** | **[][]*float64** | Points relating to a metric. All points must be tuples with timestamp and a scalar value (cannot be a string). Timestamps should be in POSIX time in seconds, and cannot be more than ten minutes in the future or more than one hour in the past. | 
-**Tags** | Pointer to **[]string** | A list of tags associated with the metric. | [optional] 
-**Type** | Pointer to **string** | The type of the metric either &#x60;count&#x60;, &#x60;gauge&#x60;, or &#x60;rate&#x60;. | [optional] [default to "gauge"]
+| Name         | Type                         | Description                                                                                                                                                                                                                                        | Notes                           |
+| ------------ | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| **Host**     | Pointer to **string**        | The name of the host that produced the metric.                                                                                                                                                                                                     | [optional]                      |
+| **Interval** | Pointer to **NullableInt64** | If the type of the metric is rate or count, define the corresponding interval.                                                                                                                                                                     | [optional]                      |
+| **Metric**   | **string**                   | The name of the timeseries.                                                                                                                                                                                                                        |
+| **Points**   | **[][]\*float64**            | Points relating to a metric. All points must be tuples with timestamp and a scalar value (cannot be a string). Timestamps should be in POSIX time in seconds, and cannot be more than ten minutes in the future or more than one hour in the past. |
+| **Tags**     | Pointer to **[]string**      | A list of tags associated with the metric.                                                                                                                                                                                                         | [optional]                      |
+| **Type**     | Pointer to **string**        | The type of the metric either &#x60;count&#x60;, &#x60;gauge&#x60;, or &#x60;rate&#x60;.                                                                                                                                                           | [optional] [default to "gauge"] |
 
 ## Methods
 
@@ -84,12 +84,14 @@ HasInterval returns a boolean if a field has been set.
 
 `func (o *Series) SetIntervalNil(b bool)`
 
- SetIntervalNil sets the value for Interval to be an explicit nil
+SetIntervalNil sets the value for Interval to be an explicit nil
 
 ### UnsetInterval
+
 `func (o *Series) UnsetInterval()`
 
 UnsetInterval ensures that no value is present for Interval, not even an explicit nil
+
 ### GetMetric
 
 `func (o *Series) GetMetric() string`
@@ -109,7 +111,6 @@ and a boolean to check if the value has been set.
 
 SetMetric sets Metric field to given value.
 
-
 ### GetPoints
 
 `func (o *Series) GetPoints() [][]*float64`
@@ -128,7 +129,6 @@ and a boolean to check if the value has been set.
 `func (o *Series) SetPoints(v [][]*float64)`
 
 SetPoints sets Points field to given value.
-
 
 ### GetTags
 
@@ -180,7 +180,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
-**Filters** | **[]string** | Your environment and primary tag (or * if enabled for your account). | 
-**Service** | **string** | The ID of the service you want to map. | 
-**Title** | Pointer to **string** | The title of your widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**ServiceMapWidgetDefinitionType**](ServiceMapWidgetDefinitionType.md) |  | [default to SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP]
+| Name            | Type                                                                    | Description                                                           | Notes                                                  |
+| --------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------ |
+| **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md)                | List of custom links.                                                 | [optional]                                             |
+| **Filters**     | **[]string**                                                            | Your environment and primary tag (or \* if enabled for your account). |
+| **Service**     | **string**                                                              | The ID of the service you want to map.                                |
+| **Title**       | Pointer to **string**                                                   | The title of your widget.                                             | [optional]                                             |
+| **TitleAlign**  | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                    |                                                                       | [optional]                                             |
+| **TitleSize**   | Pointer to **string**                                                   | Size of the title.                                                    | [optional]                                             |
+| **Type**        | [**ServiceMapWidgetDefinitionType**](ServiceMapWidgetDefinitionType.md) |                                                                       | [default to SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP] |
 
 ## Methods
 
@@ -75,7 +75,6 @@ and a boolean to check if the value has been set.
 
 SetFilters sets Filters field to given value.
 
-
 ### GetService
 
 `func (o *ServiceMapWidgetDefinition) GetService() string`
@@ -94,7 +93,6 @@ and a boolean to check if the value has been set.
 `func (o *ServiceMapWidgetDefinition) SetService(v string)`
 
 SetService sets Service field to given value.
-
 
 ### GetTitle
 
@@ -190,8 +188,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

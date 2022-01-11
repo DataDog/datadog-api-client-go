@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DeletedMonitorId** | Pointer to **int64** | ID of the deleted monitor. | [optional] 
+| Name                 | Type                 | Description                | Notes      |
+| -------------------- | -------------------- | -------------------------- | ---------- |
+| **DeletedMonitorId** | Pointer to **int64** | ID of the deleted monitor. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetDeletedMonitorId sets DeletedMonitorId field to given value.
 
 HasDeletedMonitorId returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

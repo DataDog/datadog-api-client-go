@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Device** | Pointer to [**SyntheticsDeviceID**](SyntheticsDeviceID.md) |  | [optional] 
-**Duration** | Pointer to **float64** | Total duration in millisecond of the test. | [optional] 
-**ExecutionRule** | Pointer to [**SyntheticsTestExecutionRule**](SyntheticsTestExecutionRule.md) |  | [optional] 
-**Location** | Pointer to **string** | Name of the location. | [optional] 
-**ResultId** | Pointer to **string** | The ID of the result to get. | [optional] 
-**Retries** | Pointer to **float64** | Total duration in millisecond of the test. | [optional] 
-**Status** | Pointer to [**SyntheticsStatus**](SyntheticsStatus.md) |  | [optional] 
-**TestName** | Pointer to **string** | Name of the test. | [optional] 
-**TestPublicId** | Pointer to **string** | The public ID of the Synthetic test. | [optional] 
-**TestType** | Pointer to [**SyntheticsTestDetailsType**](SyntheticsTestDetailsType.md) |  | [optional] 
+| Name              | Type                                                                         | Description                                | Notes      |
+| ----------------- | ---------------------------------------------------------------------------- | ------------------------------------------ | ---------- |
+| **Device**        | Pointer to [**SyntheticsDeviceID**](SyntheticsDeviceID.md)                   |                                            | [optional] |
+| **Duration**      | Pointer to **float64**                                                       | Total duration in millisecond of the test. | [optional] |
+| **ExecutionRule** | Pointer to [**SyntheticsTestExecutionRule**](SyntheticsTestExecutionRule.md) |                                            | [optional] |
+| **Location**      | Pointer to **string**                                                        | Name of the location.                      | [optional] |
+| **ResultId**      | Pointer to **string**                                                        | The ID of the result to get.               | [optional] |
+| **Retries**       | Pointer to **float64**                                                       | Total duration in millisecond of the test. | [optional] |
+| **Status**        | Pointer to [**SyntheticsStatus**](SyntheticsStatus.md)                       |                                            | [optional] |
+| **TestName**      | Pointer to **string**                                                        | Name of the test.                          | [optional] |
+| **TestPublicId**  | Pointer to **string**                                                        | The public ID of the Synthetic test.       | [optional] |
+| **TestType**      | Pointer to [**SyntheticsTestDetailsType**](SyntheticsTestDetailsType.md)     |                                            | [optional] |
 
 ## Methods
 
@@ -284,7 +284,4 @@ SetTestType sets TestType field to given value.
 
 HasTestType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

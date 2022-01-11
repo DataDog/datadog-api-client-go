@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AccessKeyId** | Pointer to **string** | Your AWS access key ID. Only required if your AWS account is a GovCloud or China account. | [optional] 
-**AccountId** | Pointer to **string** | Your AWS Account ID without dashes. | [optional] 
-**RoleName** | Pointer to **string** | Your Datadog role delegation name. | [optional] 
+| Name            | Type                  | Description                                                                               | Notes      |
+| --------------- | --------------------- | ----------------------------------------------------------------------------------------- | ---------- |
+| **AccessKeyId** | Pointer to **string** | Your AWS access key ID. Only required if your AWS account is a GovCloud or China account. | [optional] |
+| **AccountId**   | Pointer to **string** | Your AWS Account ID without dashes.                                                       | [optional] |
+| **RoleName**    | Pointer to **string** | Your Datadog role delegation name.                                                        | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetRoleName sets RoleName field to given value.
 
 HasRoleName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

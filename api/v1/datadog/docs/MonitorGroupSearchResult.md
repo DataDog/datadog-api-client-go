@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Group** | Pointer to **string** | The name of the group. | [optional] [readonly] 
-**GroupTags** | Pointer to **[]string** | The list of tags of the monitor group. | [optional] [readonly] 
-**LastNodataTs** | Pointer to **int64** | Latest timestamp the monitor group was in NO_DATA state. | [optional] [readonly] 
-**LastTriggeredTs** | Pointer to **NullableInt64** | Latest timestamp the monitor group triggered. | [optional] [readonly] 
-**MonitorId** | Pointer to **int64** | The ID of the monitor. | [optional] [readonly] 
-**MonitorName** | Pointer to **string** | The name of the monitor. | [optional] [readonly] 
-**Status** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
+| Name                | Type                                                           | Description                                              | Notes                 |
+| ------------------- | -------------------------------------------------------------- | -------------------------------------------------------- | --------------------- |
+| **Group**           | Pointer to **string**                                          | The name of the group.                                   | [optional] [readonly] |
+| **GroupTags**       | Pointer to **[]string**                                        | The list of tags of the monitor group.                   | [optional] [readonly] |
+| **LastNodataTs**    | Pointer to **int64**                                           | Latest timestamp the monitor group was in NO_DATA state. | [optional] [readonly] |
+| **LastTriggeredTs** | Pointer to **NullableInt64**                                   | Latest timestamp the monitor group triggered.            | [optional] [readonly] |
+| **MonitorId**       | Pointer to **int64**                                           | The ID of the monitor.                                   | [optional] [readonly] |
+| **MonitorName**     | Pointer to **string**                                          | The name of the monitor.                                 | [optional] [readonly] |
+| **Status**          | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |                                                          | [optional]            |
 
 ## Methods
 
@@ -135,12 +135,14 @@ HasLastTriggeredTs returns a boolean if a field has been set.
 
 `func (o *MonitorGroupSearchResult) SetLastTriggeredTsNil(b bool)`
 
- SetLastTriggeredTsNil sets the value for LastTriggeredTs to be an explicit nil
+SetLastTriggeredTsNil sets the value for LastTriggeredTs to be an explicit nil
 
 ### UnsetLastTriggeredTs
+
 `func (o *MonitorGroupSearchResult) UnsetLastTriggeredTs()`
 
 UnsetLastTriggeredTs ensures that no value is present for LastTriggeredTs, not even an explicit nil
+
 ### GetMonitorId
 
 `func (o *MonitorGroupSearchResult) GetMonitorId() int64`
@@ -216,7 +218,4 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

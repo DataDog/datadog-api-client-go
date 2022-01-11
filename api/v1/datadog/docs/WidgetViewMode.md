@@ -2,14 +2,10 @@
 
 ## Enum
 
+- `OVERALL` (value: `"overall"`)
 
-* `OVERALL` (value: `"overall"`)
+- `COMPONENT` (value: `"component"`)
 
-* `COMPONENT` (value: `"component"`)
-
-* `BOTH` (value: `"both"`)
-
+- `BOTH` (value: `"both"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

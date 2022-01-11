@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Variables** | Pointer to [**[]SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Array of Synthetic global variables. | [optional] 
+| Name          | Type                                                                     | Description                          | Notes      |
+| ------------- | ------------------------------------------------------------------------ | ------------------------------------ | ---------- |
+| **Variables** | Pointer to [**[]SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Array of Synthetic global variables. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetVariables sets Variables field to given value.
 
 HasVariables returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

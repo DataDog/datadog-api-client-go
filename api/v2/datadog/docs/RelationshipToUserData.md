@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Id** | **string** | A unique identifier that represents the user. | 
-**Type** | [**UsersType**](UsersType.md) |  | [default to USERSTYPE_USERS]
+| Name     | Type                          | Description                                   | Notes                        |
+| -------- | ----------------------------- | --------------------------------------------- | ---------------------------- |
+| **Id**   | **string**                    | A unique identifier that represents the user. |
+| **Type** | [**UsersType**](UsersType.md) |                                               | [default to USERSTYPE_USERS] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-
 ### GetType
 
 `func (o *RelationshipToUserData) GetType() UsersType`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

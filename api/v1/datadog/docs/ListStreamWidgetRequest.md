@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Columns** | [**[]ListStreamColumn**](ListStreamColumn.md) | Widget columns. | 
-**Query** | [**ListStreamQuery**](ListStreamQuery.md) |  | 
-**ResponseFormat** | [**ListStreamResponseFormat**](ListStreamResponseFormat.md) |  | 
+| Name               | Type                                                        | Description     | Notes |
+| ------------------ | ----------------------------------------------------------- | --------------- | ----- |
+| **Columns**        | [**[]ListStreamColumn**](ListStreamColumn.md)               | Widget columns. |
+| **Query**          | [**ListStreamQuery**](ListStreamQuery.md)                   |                 |
+| **ResponseFormat** | [**ListStreamResponseFormat**](ListStreamResponseFormat.md) |                 |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 
 SetColumns sets Columns field to given value.
 
-
 ### GetQuery
 
 `func (o *ListStreamWidgetRequest) GetQuery() ListStreamQuery`
@@ -65,7 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *ListStreamWidgetRequest) SetQuery(v ListStreamQuery)`
 
 SetQuery sets Query field to given value.
-
 
 ### GetResponseFormat
 
@@ -86,8 +84,4 @@ and a boolean to check if the value has been set.
 
 SetResponseFormat sets ResponseFormat field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

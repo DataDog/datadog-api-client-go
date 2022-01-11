@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Secure** | Pointer to **bool** | Determines if the value of the variable is hidden. | [optional] 
-**Value** | Pointer to **string** | Value of the global variable. When reading a global variable, the value will not be present if the variable is hidden with the &#x60;secure&#x60; property. | [optional] 
+| Name       | Type                  | Description                                                                                                                                                 | Notes      |
+| ---------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Secure** | Pointer to **bool**   | Determines if the value of the variable is hidden.                                                                                                          | [optional] |
+| **Value**  | Pointer to **string** | Value of the global variable. When reading a global variable, the value will not be present if the variable is hidden with the &#x60;secure&#x60; property. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

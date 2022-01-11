@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DetectionMethod** | Pointer to [**SecurityMonitoringRuleDetectionMethod**](SecurityMonitoringRuleDetectionMethod.md) |  | [optional] 
-**EvaluationWindow** | Pointer to [**SecurityMonitoringRuleEvaluationWindow**](SecurityMonitoringRuleEvaluationWindow.md) |  | [optional] 
-**KeepAlive** | Pointer to [**SecurityMonitoringRuleKeepAlive**](SecurityMonitoringRuleKeepAlive.md) |  | [optional] 
-**MaxSignalDuration** | Pointer to [**SecurityMonitoringRuleMaxSignalDuration**](SecurityMonitoringRuleMaxSignalDuration.md) |  | [optional] 
-**NewValueOptions** | Pointer to [**SecurityMonitoringRuleNewValueOptions**](SecurityMonitoringRuleNewValueOptions.md) |  | [optional] 
+| Name                  | Type                                                                                                 | Description | Notes      |
+| --------------------- | ---------------------------------------------------------------------------------------------------- | ----------- | ---------- |
+| **DetectionMethod**   | Pointer to [**SecurityMonitoringRuleDetectionMethod**](SecurityMonitoringRuleDetectionMethod.md)     |             | [optional] |
+| **EvaluationWindow**  | Pointer to [**SecurityMonitoringRuleEvaluationWindow**](SecurityMonitoringRuleEvaluationWindow.md)   |             | [optional] |
+| **KeepAlive**         | Pointer to [**SecurityMonitoringRuleKeepAlive**](SecurityMonitoringRuleKeepAlive.md)                 |             | [optional] |
+| **MaxSignalDuration** | Pointer to [**SecurityMonitoringRuleMaxSignalDuration**](SecurityMonitoringRuleMaxSignalDuration.md) |             | [optional] |
+| **NewValueOptions**   | Pointer to [**SecurityMonitoringRuleNewValueOptions**](SecurityMonitoringRuleNewValueOptions.md)     |             | [optional] |
 
 ## Methods
 
@@ -154,7 +154,4 @@ SetNewValueOptions sets NewValueOptions field to given value.
 
 HasNewValueOptions returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

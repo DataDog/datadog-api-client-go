@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ClientId** | **string** | A client ID. | 
-**TenantId** | **string** | A tenant ID. | 
+| Name         | Type       | Description  | Notes |
+| ------------ | ---------- | ------------ | ----- |
+| **ClientId** | **string** | A client ID. |
+| **TenantId** | **string** | A tenant ID. |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetClientId sets ClientId field to given value.
 
-
 ### GetTenantId
 
 `func (o *LogsArchiveIntegrationAzure) GetTenantId() string`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetTenantId sets TenantId field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

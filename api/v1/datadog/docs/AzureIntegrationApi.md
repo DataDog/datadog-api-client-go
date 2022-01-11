@@ -2,15 +2,13 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateAzureIntegration**](AzureIntegrationApi.md#CreateAzureIntegration) | **Post** /api/v1/integration/azure | Create an Azure integration
-[**DeleteAzureIntegration**](AzureIntegrationApi.md#DeleteAzureIntegration) | **Delete** /api/v1/integration/azure | Delete an Azure integration
-[**ListAzureIntegration**](AzureIntegrationApi.md#ListAzureIntegration) | **Get** /api/v1/integration/azure | List all Azure integrations
-[**UpdateAzureHostFilters**](AzureIntegrationApi.md#UpdateAzureHostFilters) | **Post** /api/v1/integration/azure/host_filters | Update Azure integration host filters
-[**UpdateAzureIntegration**](AzureIntegrationApi.md#UpdateAzureIntegration) | **Put** /api/v1/integration/azure | Update an Azure integration
-
-
+| Method                                                                      | HTTP request                                    | Description                           |
+| --------------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------- |
+| [**CreateAzureIntegration**](AzureIntegrationApi.md#CreateAzureIntegration) | **Post** /api/v1/integration/azure              | Create an Azure integration           |
+| [**DeleteAzureIntegration**](AzureIntegrationApi.md#DeleteAzureIntegration) | **Delete** /api/v1/integration/azure            | Delete an Azure integration           |
+| [**ListAzureIntegration**](AzureIntegrationApi.md#ListAzureIntegration)     | **Get** /api/v1/integration/azure               | List all Azure integrations           |
+| [**UpdateAzureHostFilters**](AzureIntegrationApi.md#UpdateAzureHostFilters) | **Post** /api/v1/integration/azure/host_filters | Update Azure integration host filters |
+| [**UpdateAzureIntegration**](AzureIntegrationApi.md#UpdateAzureIntegration) | **Put** /api/v1/integration/azure               | Update an Azure integration           |
 
 ## CreateAzureIntegration
 
@@ -58,17 +56,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration for your Datadog account request body. | 
-
+| Name     | Type                                | Description                                                                 | Notes |
+| -------- | ----------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**AzureAccount**](AzureAccount.md) | Create a Datadog-Azure integration for your Datadog account request body.   |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -86,7 +81,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteAzureIntegration
 
@@ -128,17 +122,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**AzureAccount**](AzureAccount.md) | Delete a given Datadog-Azure integration request body. | 
-
+| Name     | Type                                | Description                                                                 | Notes |
+| -------- | ----------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**AzureAccount**](AzureAccount.md) | Delete a given Datadog-Azure integration request body.                      |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -156,7 +147,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListAzureIntegration
 
@@ -199,11 +189,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -221,7 +209,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateAzureHostFilters
 
@@ -263,17 +250,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration&#39;s host filters request body. | 
-
+| Name     | Type                                | Description                                                                 | Notes |
+| -------- | ----------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration&#39;s host filters request body.         |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -291,7 +275,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateAzureIntegration
 
@@ -335,17 +318,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration request body. | 
-
+| Name     | Type                                | Description                                                                 | Notes |
+| -------- | ----------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**AzureAccount**](AzureAccount.md) | Update a Datadog-Azure integration request body.                            |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -363,4 +343,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**FuncCount** | Pointer to **int64** | Contains the number of different functions for each region and AWS account. | [optional] 
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**InvocationsSum** | Pointer to **int64** | Contains the sum of invocations of all functions. | [optional] 
+| Name               | Type                     | Description                                                                 | Notes      |
+| ------------------ | ------------------------ | --------------------------------------------------------------------------- | ---------- |
+| **FuncCount**      | Pointer to **int64**     | Contains the number of different functions for each region and AWS account. | [optional] |
+| **Hour**           | Pointer to **time.Time** | The hour for the usage.                                                     | [optional] |
+| **InvocationsSum** | Pointer to **int64**     | Contains the sum of invocations of all functions.                           | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetInvocationsSum sets InvocationsSum field to given value.
 
 HasInvocationsSum returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

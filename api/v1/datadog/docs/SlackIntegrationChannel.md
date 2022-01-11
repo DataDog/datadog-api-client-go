@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Display** | Pointer to [**SlackIntegrationChannelDisplay**](SlackIntegrationChannelDisplay.md) |  | [optional] 
-**Name** | Pointer to **string** | Your channel name. | [optional] 
+| Name        | Type                                                                               | Description        | Notes      |
+| ----------- | ---------------------------------------------------------------------------------- | ------------------ | ---------- |
+| **Display** | Pointer to [**SlackIntegrationChannelDisplay**](SlackIntegrationChannelDisplay.md) |                    | [optional] |
+| **Name**    | Pointer to **string**                                                              | Your channel name. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

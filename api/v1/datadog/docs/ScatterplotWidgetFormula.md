@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Alias** | Pointer to **string** | Expression alias. | [optional] 
-**Dimension** | [**ScatterplotDimension**](ScatterplotDimension.md) |  | 
-**Formula** | **string** | String expression built from queries, formulas, and functions. | 
+| Name          | Type                                                | Description                                                    | Notes      |
+| ------------- | --------------------------------------------------- | -------------------------------------------------------------- | ---------- |
+| **Alias**     | Pointer to **string**                               | Expression alias.                                              | [optional] |
+| **Dimension** | [**ScatterplotDimension**](ScatterplotDimension.md) |                                                                |
+| **Formula**   | **string**                                          | String expression built from queries, formulas, and functions. |
 
 ## Methods
 
@@ -71,7 +71,6 @@ and a boolean to check if the value has been set.
 
 SetDimension sets Dimension field to given value.
 
-
 ### GetFormula
 
 `func (o *ScatterplotWidgetFormula) GetFormula() string`
@@ -91,8 +90,4 @@ and a boolean to check if the value has been set.
 
 SetFormula sets Formula field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

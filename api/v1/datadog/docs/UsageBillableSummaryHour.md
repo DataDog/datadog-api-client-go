@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**BillingPlan** | Pointer to **string** | The billing plan. | [optional] 
-**EndDate** | Pointer to **time.Time** | Shows the last date of usage. | [optional] 
-**NumOrgs** | Pointer to **int64** | The number of organizations. | [optional] 
-**OrgName** | Pointer to **string** | The organization name. | [optional] 
-**PublicId** | Pointer to **string** | The organization public ID. | [optional] 
-**RatioInMonth** | Pointer to **float64** | Shows usage aggregation for a billing period. | [optional] 
-**StartDate** | Pointer to **time.Time** | Shows the first date of usage. | [optional] 
-**Usage** | Pointer to [**UsageBillableSummaryKeys**](UsageBillableSummaryKeys.md) |  | [optional] 
+| Name             | Type                                                                   | Description                                   | Notes      |
+| ---------------- | ---------------------------------------------------------------------- | --------------------------------------------- | ---------- |
+| **BillingPlan**  | Pointer to **string**                                                  | The billing plan.                             | [optional] |
+| **EndDate**      | Pointer to **time.Time**                                               | Shows the last date of usage.                 | [optional] |
+| **NumOrgs**      | Pointer to **int64**                                                   | The number of organizations.                  | [optional] |
+| **OrgName**      | Pointer to **string**                                                  | The organization name.                        | [optional] |
+| **PublicId**     | Pointer to **string**                                                  | The organization public ID.                   | [optional] |
+| **RatioInMonth** | Pointer to **float64**                                                 | Shows usage aggregation for a billing period. | [optional] |
+| **StartDate**    | Pointer to **time.Time**                                               | Shows the first date of usage.                | [optional] |
+| **Usage**        | Pointer to [**UsageBillableSummaryKeys**](UsageBillableSummaryKeys.md) |                                               | [optional] |
 
 ## Methods
 
@@ -232,7 +232,4 @@ SetUsage sets Usage field to given value.
 
 HasUsage returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

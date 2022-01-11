@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**NextRecordId** | Pointer to **string** | The cursor to get the next results (if any). To make the next request, use the same parameters and add &#x60;next_record_id&#x60;. | [optional] 
+| Name             | Type                  | Description                                                                                                                        | Notes      |
+| ---------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **NextRecordId** | Pointer to **string** | The cursor to get the next results (if any). To make the next request, use the same parameters and add &#x60;next_record_id&#x60;. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetNextRecordId sets NextRecordId field to given value.
 
 HasNextRecordId returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

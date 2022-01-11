@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ErrorMessage** | **string** | A message with more details about the error. | 
-**ErrorType** | **string** | Type of the error. | 
+| Name             | Type       | Description                                  | Notes |
+| ---------------- | ---------- | -------------------------------------------- | ----- |
+| **ErrorMessage** | **string** | A message with more details about the error. |
+| **ErrorType**    | **string** | Type of the error.                           |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetErrorMessage sets ErrorMessage field to given value.
 
-
 ### GetErrorType
 
 `func (o *SLOHistoryResponseErrorWithType) GetErrorType() string`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetErrorType sets ErrorType field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

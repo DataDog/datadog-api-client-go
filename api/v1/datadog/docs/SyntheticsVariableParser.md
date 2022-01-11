@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Type** | [**SyntheticsGlobalVariableParserType**](SyntheticsGlobalVariableParserType.md) |  | 
-**Value** | Pointer to **string** | Regex or JSON path used for the parser. Not used with type &#x60;raw&#x60;. | [optional] 
+| Name      | Type                                                                            | Description                                                                 | Notes      |
+| --------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------- |
+| **Type**  | [**SyntheticsGlobalVariableParserType**](SyntheticsGlobalVariableParserType.md) |                                                                             |
+| **Value** | Pointer to **string**                                                           | Regex or JSON path used for the parser. Not used with type &#x60;raw&#x60;. | [optional] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetValue
 
 `func (o *SyntheticsVariableParser) GetValue() string`
@@ -71,7 +70,4 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

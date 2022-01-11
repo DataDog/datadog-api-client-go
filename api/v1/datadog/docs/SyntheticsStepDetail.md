@@ -2,25 +2,25 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**BrowserErrors** | Pointer to [**[]SyntheticsBrowserError**](SyntheticsBrowserError.md) | Array of errors collected for a browser test. | [optional] 
-**CheckType** | Pointer to [**SyntheticsCheckType**](SyntheticsCheckType.md) |  | [optional] 
-**Description** | Pointer to **string** | Description of the test. | [optional] 
-**Duration** | Pointer to **float64** | Total duration in millisecond of the test. | [optional] 
-**Error** | Pointer to **string** | Error returned by the test. | [optional] 
-**PlayingTab** | Pointer to [**SyntheticsPlayingTab**](SyntheticsPlayingTab.md) |  | [optional] 
-**ScreenshotBucketKey** | Pointer to **bool** | Whether or not screenshots where collected by the test. | [optional] 
-**Skipped** | Pointer to **bool** | Whether or not to skip this step. | [optional] 
-**SnapshotBucketKey** | Pointer to **bool** | Whether or not snapshots where collected by the test. | [optional] 
-**StepId** | Pointer to **int64** | The step ID. | [optional] 
-**SubTestStepDetails** | Pointer to [**[]SyntheticsStepDetail**](SyntheticsStepDetail.md) | If this steps include a sub-test. [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests). | [optional] 
-**TimeToInteractive** | Pointer to **float64** | Time before starting the step. | [optional] 
-**Type** | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md) |  | [optional] 
-**Url** | Pointer to **string** | URL to perform the step against. | [optional] 
-**Value** | Pointer to **interface{}** | Value for the step. | [optional] 
-**VitalsMetrics** | Pointer to [**[]SyntheticsCoreWebVitals**](SyntheticsCoreWebVitals.md) | Array of Core Web Vitals metrics for the step. | [optional] 
-**Warnings** | Pointer to [**[]SyntheticsStepDetailWarning**](SyntheticsStepDetailWarning.md) | Warning collected that didn&#39;t failed the step. | [optional] 
+| Name                    | Type                                                                           | Description                                                                                                                                 | Notes      |
+| ----------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **BrowserErrors**       | Pointer to [**[]SyntheticsBrowserError**](SyntheticsBrowserError.md)           | Array of errors collected for a browser test.                                                                                               | [optional] |
+| **CheckType**           | Pointer to [**SyntheticsCheckType**](SyntheticsCheckType.md)                   |                                                                                                                                             | [optional] |
+| **Description**         | Pointer to **string**                                                          | Description of the test.                                                                                                                    | [optional] |
+| **Duration**            | Pointer to **float64**                                                         | Total duration in millisecond of the test.                                                                                                  | [optional] |
+| **Error**               | Pointer to **string**                                                          | Error returned by the test.                                                                                                                 | [optional] |
+| **PlayingTab**          | Pointer to [**SyntheticsPlayingTab**](SyntheticsPlayingTab.md)                 |                                                                                                                                             | [optional] |
+| **ScreenshotBucketKey** | Pointer to **bool**                                                            | Whether or not screenshots where collected by the test.                                                                                     | [optional] |
+| **Skipped**             | Pointer to **bool**                                                            | Whether or not to skip this step.                                                                                                           | [optional] |
+| **SnapshotBucketKey**   | Pointer to **bool**                                                            | Whether or not snapshots where collected by the test.                                                                                       | [optional] |
+| **StepId**              | Pointer to **int64**                                                           | The step ID.                                                                                                                                | [optional] |
+| **SubTestStepDetails**  | Pointer to [**[]SyntheticsStepDetail**](SyntheticsStepDetail.md)               | If this steps include a sub-test. [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests). | [optional] |
+| **TimeToInteractive**   | Pointer to **float64**                                                         | Time before starting the step.                                                                                                              | [optional] |
+| **Type**                | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md)                     |                                                                                                                                             | [optional] |
+| **Url**                 | Pointer to **string**                                                          | URL to perform the step against.                                                                                                            | [optional] |
+| **Value**               | Pointer to **interface{}**                                                     | Value for the step.                                                                                                                         | [optional] |
+| **VitalsMetrics**       | Pointer to [**[]SyntheticsCoreWebVitals**](SyntheticsCoreWebVitals.md)         | Array of Core Web Vitals metrics for the step.                                                                                              | [optional] |
+| **Warnings**            | Pointer to [**[]SyntheticsStepDetailWarning**](SyntheticsStepDetailWarning.md) | Warning collected that didn&#39;t failed the step.                                                                                          | [optional] |
 
 ## Methods
 
@@ -420,12 +420,14 @@ HasValue returns a boolean if a field has been set.
 
 `func (o *SyntheticsStepDetail) SetValueNil(b bool)`
 
- SetValueNil sets the value for Value to be an explicit nil
+SetValueNil sets the value for Value to be an explicit nil
 
 ### UnsetValue
+
 `func (o *SyntheticsStepDetail) UnsetValue()`
 
 UnsetValue ensures that no value is present for Value, not even an explicit nil
+
 ### GetVitalsMetrics
 
 `func (o *SyntheticsStepDetail) GetVitalsMetrics() []SyntheticsCoreWebVitals`
@@ -476,7 +478,4 @@ SetWarnings sets Warnings field to given value.
 
 HasWarnings returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

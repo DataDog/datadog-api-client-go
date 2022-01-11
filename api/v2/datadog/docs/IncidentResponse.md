@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Data** | [**IncidentResponseData**](IncidentResponseData.md) |  | 
-**Included** | Pointer to [**[]IncidentResponseIncludedItem**](IncidentResponseIncludedItem.md) | Included related resources that the user requested. | [optional] [readonly] 
+| Name         | Type                                                                             | Description                                         | Notes                 |
+| ------------ | -------------------------------------------------------------------------------- | --------------------------------------------------- | --------------------- |
+| **Data**     | [**IncidentResponseData**](IncidentResponseData.md)                              |                                                     |
+| **Included** | Pointer to [**[]IncidentResponseIncludedItem**](IncidentResponseIncludedItem.md) | Included related resources that the user requested. | [optional] [readonly] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetData sets Data field to given value.
 
-
 ### GetIncluded
 
 `func (o *IncidentResponse) GetIncluded() []IncidentResponseIncludedItem`
@@ -71,7 +70,4 @@ SetIncluded sets Included field to given value.
 
 HasIncluded returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

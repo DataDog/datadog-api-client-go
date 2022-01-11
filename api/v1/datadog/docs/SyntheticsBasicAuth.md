@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Password** | **string** | Password to use for the basic authentication. | 
-**Username** | **string** | Username to use for the basic authentication. | 
+| Name         | Type       | Description                                   | Notes |
+| ------------ | ---------- | --------------------------------------------- | ----- |
+| **Password** | **string** | Password to use for the basic authentication. |
+| **Username** | **string** | Username to use for the basic authentication. |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetPassword sets Password field to given value.
 
-
 ### GetUsername
 
 `func (o *SyntheticsBasicAuth) GetUsername() string`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

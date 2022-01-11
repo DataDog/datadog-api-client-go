@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Space** | [**MetricCustomSpaceAggregation**](MetricCustomSpaceAggregation.md) |  | 
-**Time** | [**MetricCustomTimeAggregation**](MetricCustomTimeAggregation.md) |  | 
+| Name      | Type                                                                | Description | Notes |
+| --------- | ------------------------------------------------------------------- | ----------- | ----- |
+| **Space** | [**MetricCustomSpaceAggregation**](MetricCustomSpaceAggregation.md) |             |
+| **Time**  | [**MetricCustomTimeAggregation**](MetricCustomTimeAggregation.md)   |             |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetSpace sets Space field to given value.
 
-
 ### GetTime
 
 `func (o *MetricCustomAggregation) GetTime() MetricCustomTimeAggregation`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetTime sets Time field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

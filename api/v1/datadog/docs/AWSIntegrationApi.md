@@ -2,19 +2,17 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount) | **Post** /api/v1/integration/aws | Create an AWS integration
-[**CreateAWSTagFilter**](AWSIntegrationApi.md#CreateAWSTagFilter) | **Post** /api/v1/integration/aws/filtering | Set an AWS tag filter
-[**CreateNewAWSExternalID**](AWSIntegrationApi.md#CreateNewAWSExternalID) | **Put** /api/v1/integration/aws/generate_new_external_id | Generate a new external ID
-[**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount) | **Delete** /api/v1/integration/aws | Delete an AWS integration
-[**DeleteAWSTagFilter**](AWSIntegrationApi.md#DeleteAWSTagFilter) | **Delete** /api/v1/integration/aws/filtering | Delete a tag filtering entry
-[**ListAWSAccounts**](AWSIntegrationApi.md#ListAWSAccounts) | **Get** /api/v1/integration/aws | List all AWS integrations
-[**ListAWSTagFilters**](AWSIntegrationApi.md#ListAWSTagFilters) | **Get** /api/v1/integration/aws/filtering | Get all AWS tag filters
-[**ListAvailableAWSNamespaces**](AWSIntegrationApi.md#ListAvailableAWSNamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List namespace rules
-[**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount) | **Put** /api/v1/integration/aws | Update an AWS integration
-
-
+| Method                                                                            | HTTP request                                              | Description                  |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------- | ---------------------------- |
+| [**CreateAWSAccount**](AWSIntegrationApi.md#CreateAWSAccount)                     | **Post** /api/v1/integration/aws                          | Create an AWS integration    |
+| [**CreateAWSTagFilter**](AWSIntegrationApi.md#CreateAWSTagFilter)                 | **Post** /api/v1/integration/aws/filtering                | Set an AWS tag filter        |
+| [**CreateNewAWSExternalID**](AWSIntegrationApi.md#CreateNewAWSExternalID)         | **Put** /api/v1/integration/aws/generate_new_external_id  | Generate a new external ID   |
+| [**DeleteAWSAccount**](AWSIntegrationApi.md#DeleteAWSAccount)                     | **Delete** /api/v1/integration/aws                        | Delete an AWS integration    |
+| [**DeleteAWSTagFilter**](AWSIntegrationApi.md#DeleteAWSTagFilter)                 | **Delete** /api/v1/integration/aws/filtering              | Delete a tag filtering entry |
+| [**ListAWSAccounts**](AWSIntegrationApi.md#ListAWSAccounts)                       | **Get** /api/v1/integration/aws                           | List all AWS integrations    |
+| [**ListAWSTagFilters**](AWSIntegrationApi.md#ListAWSTagFilters)                   | **Get** /api/v1/integration/aws/filtering                 | Get all AWS tag filters      |
+| [**ListAvailableAWSNamespaces**](AWSIntegrationApi.md#ListAvailableAWSNamespaces) | **Get** /api/v1/integration/aws/available_namespace_rules | List namespace rules         |
+| [**UpdateAWSAccount**](AWSIntegrationApi.md#UpdateAWSAccount)                     | **Put** /api/v1/integration/aws                           | Update an AWS integration    |
 
 ## CreateAWSAccount
 
@@ -59,17 +57,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**AWSAccount**](AWSAccount.md) | AWS Request Object | 
-
+| Name     | Type                            | Description                                                                 | Notes |
+| -------- | ------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**             | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**AWSAccount**](AWSAccount.md) | AWS Request Object                                                          |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -87,7 +82,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateAWSTagFilter
 
@@ -129,17 +123,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**AWSTagFilterCreateRequest**](AWSTagFilterCreateRequest.md) | Set an AWS tag filter using an &#x60;aws_account_identifier&#x60;, &#x60;namespace&#x60;, and filtering string. Namespace options are &#x60;application_elb&#x60;, &#x60;elb&#x60;, &#x60;lambda&#x60;, &#x60;network_elb&#x60;, &#x60;rds&#x60;, &#x60;sqs&#x60;, and &#x60;custom&#x60;. | 
-
+| Name     | Type                                                          | Description                                                                                                                                                                                                                                                                                | Notes |
+| -------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----- |
+| **ctx**  | **context.Context**                                           | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                                                                                                                                                                                                |
+| **body** | [**AWSTagFilterCreateRequest**](AWSTagFilterCreateRequest.md) | Set an AWS tag filter using an &#x60;aws_account_identifier&#x60;, &#x60;namespace&#x60;, and filtering string. Namespace options are &#x60;application_elb&#x60;, &#x60;elb&#x60;, &#x60;lambda&#x60;, &#x60;network_elb&#x60;, &#x60;rds&#x60;, &#x60;sqs&#x60;, and &#x60;custom&#x60;. |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -157,7 +148,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateNewAWSExternalID
 
@@ -199,17 +189,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**AWSAccount**](AWSAccount.md) | Your Datadog role delegation name. For more information about your AWS account Role name, see the [Datadog AWS integration configuration info](https://docs.datadoghq.com/integrations/amazon_web_services/#setup). | 
-
+| Name     | Type                            | Description                                                                                                                                                                                                         | Notes |
+| -------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**             | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                                                                                                                         |
+| **body** | [**AWSAccount**](AWSAccount.md) | Your Datadog role delegation name. For more information about your AWS account Role name, see the [Datadog AWS integration configuration info](https://docs.datadoghq.com/integrations/amazon_web_services/#setup). |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -227,7 +214,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteAWSAccount
 
@@ -269,17 +255,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**AWSAccountDeleteRequest**](AWSAccountDeleteRequest.md) | AWS request object | 
-
+| Name     | Type                                                      | Description                                                                 | Notes |
+| -------- | --------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                       | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**AWSAccountDeleteRequest**](AWSAccountDeleteRequest.md) | AWS request object                                                          |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -297,7 +280,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteAWSTagFilter
 
@@ -339,17 +321,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**AWSTagFilterDeleteRequest**](AWSTagFilterDeleteRequest.md) | Delete a tag filtering entry for a given AWS account and &#x60;dd-aws&#x60; namespace. | 
-
+| Name     | Type                                                          | Description                                                                            | Notes |
+| -------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                           | Context for authentication, logging, cancellation, deadlines, tracing, etc.            |
+| **body** | [**AWSTagFilterDeleteRequest**](AWSTagFilterDeleteRequest.md) | Delete a tag filtering entry for a given AWS account and &#x60;dd-aws&#x60; namespace. |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -367,7 +346,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListAWSAccounts
 
@@ -416,20 +394,15 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListAWSAccountsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**accountId** | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;. | 
-**roleName** | **string** | Only return AWS accounts that matches this role_name. | 
-**accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. | 
+| Name            | Type       | Description                                                           | Notes |
+| --------------- | ---------- | --------------------------------------------------------------------- | ----- |
+| **accountId**   | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;.    |
+| **roleName**    | **string** | Only return AWS accounts that matches this role_name.                 |
+| **accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. |
 
 ### Return type
 
@@ -447,7 +420,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListAWSTagFilters
 
@@ -489,17 +461,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**accountId** | **string** | Only return AWS filters that matches this &#x60;account_id&#x60;. | 
-
+| Name          | Type                | Description                                                                 | Notes |
+| ------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **accountId** | **string**          | Only return AWS filters that matches this &#x60;account_id&#x60;.           |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -517,7 +486,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListAvailableAWSNamespaces
 
@@ -560,11 +528,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -582,7 +548,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateAWSAccount
 
@@ -632,24 +597,20 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**AWSAccount**](AWSAccount.md) | AWS request object | 
-
+| Name     | Type                            | Description                                                                 | Notes |
+| -------- | ------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**             | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**AWSAccount**](AWSAccount.md) | AWS request object                                                          |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a UpdateAWSAccountOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**accountId** | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;. | 
-**roleName** | **string** | Only return AWS accounts that match this &#x60;role_name&#x60;. Required if &#x60;account_id&#x60; is specified. | 
-**accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. Required if none of the other two options are specified. | 
+| Name            | Type       | Description                                                                                                                    | Notes |
+| --------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------ | ----- |
+| **accountId**   | **string** | Only return AWS accounts that matches this &#x60;account_id&#x60;.                                                             |
+| **roleName**    | **string** | Only return AWS accounts that match this &#x60;role_name&#x60;. Required if &#x60;account_id&#x60; is specified.               |
+| **accessKeyId** | **string** | Only return AWS accounts that matches this &#x60;access_key_id&#x60;. Required if none of the other two options are specified. |
 
 ### Return type
 
@@ -667,4 +628,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

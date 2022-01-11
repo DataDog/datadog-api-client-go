@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**PartialAPIKeyAttributes**](PartialAPIKeyAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | ID of the API key. | [optional] 
-**Relationships** | Pointer to [**APIKeyRelationships**](APIKeyRelationships.md) |  | [optional] 
-**Type** | Pointer to [**APIKeysType**](APIKeysType.md) |  | [optional] [default to APIKEYSTYPE_API_KEYS]
+| Name              | Type                                                                 | Description        | Notes                                        |
+| ----------------- | -------------------------------------------------------------------- | ------------------ | -------------------------------------------- |
+| **Attributes**    | Pointer to [**PartialAPIKeyAttributes**](PartialAPIKeyAttributes.md) |                    | [optional]                                   |
+| **Id**            | Pointer to **string**                                                | ID of the API key. | [optional]                                   |
+| **Relationships** | Pointer to [**APIKeyRelationships**](APIKeyRelationships.md)         |                    | [optional]                                   |
+| **Type**          | Pointer to [**APIKeysType**](APIKeysType.md)                         |                    | [optional] [default to APIKEYSTYPE_API_KEYS] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**BatchId** | Pointer to **NullableString** | The public ID of the batch triggered. | [optional] 
-**Locations** | Pointer to [**[]SyntheticsTriggerCITestLocation**](SyntheticsTriggerCITestLocation.md) | List of Synthetics locations. | [optional] 
-**Results** | Pointer to [**[]SyntheticsTriggerCITestRunResult**](SyntheticsTriggerCITestRunResult.md) | Information about the tests runs. | [optional] 
-**TriggeredCheckIds** | Pointer to **[]string** | The public IDs of the Synthetics test triggered. | [optional] 
+| Name                  | Type                                                                                     | Description                                      | Notes      |
+| --------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------ | ---------- |
+| **BatchId**           | Pointer to **NullableString**                                                            | The public ID of the batch triggered.            | [optional] |
+| **Locations**         | Pointer to [**[]SyntheticsTriggerCITestLocation**](SyntheticsTriggerCITestLocation.md)   | List of Synthetics locations.                    | [optional] |
+| **Results**           | Pointer to [**[]SyntheticsTriggerCITestRunResult**](SyntheticsTriggerCITestRunResult.md) | Information about the tests runs.                | [optional] |
+| **TriggeredCheckIds** | Pointer to **[]string**                                                                  | The public IDs of the Synthetics test triggered. | [optional] |
 
 ## Methods
 
@@ -57,12 +57,14 @@ HasBatchId returns a boolean if a field has been set.
 
 `func (o *SyntheticsTriggerCITestsResponse) SetBatchIdNil(b bool)`
 
- SetBatchIdNil sets the value for BatchId to be an explicit nil
+SetBatchIdNil sets the value for BatchId to be an explicit nil
 
 ### UnsetBatchId
+
 `func (o *SyntheticsTriggerCITestsResponse) UnsetBatchId()`
 
 UnsetBatchId ensures that no value is present for BatchId, not even an explicit nil
+
 ### GetLocations
 
 `func (o *SyntheticsTriggerCITestsResponse) GetLocations() []SyntheticsTriggerCITestLocation`
@@ -138,7 +140,4 @@ SetTriggeredCheckIds sets TriggeredCheckIds field to given value.
 
 HasTriggeredCheckIds returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

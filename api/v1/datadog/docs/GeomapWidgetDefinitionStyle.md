@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Palette** | **string** | The color palette to apply to the widget. | 
-**PaletteFlip** | **bool** | Whether to flip the palette tones. | 
+| Name            | Type       | Description                               | Notes |
+| --------------- | ---------- | ----------------------------------------- | ----- |
+| **Palette**     | **string** | The color palette to apply to the widget. |
+| **PaletteFlip** | **bool**   | Whether to flip the palette tones.        |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetPalette sets Palette field to given value.
 
-
 ### GetPaletteFlip
 
 `func (o *GeomapWidgetDefinitionStyle) GetPaletteFlip() bool`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetPaletteFlip sets PaletteFlip field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,19 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**LegendSize** | Pointer to **string** | (Deprecated) The widget legend was replaced by a tooltip and sidebar. | [optional] 
-**Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
-**Requests** | [**[]DistributionWidgetRequest**](DistributionWidgetRequest.md) | Array of one request object to display in the widget.  See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)  to learn how to build the &#x60;REQUEST_SCHEMA&#x60;. | 
-**ShowLegend** | Pointer to **bool** | (Deprecated) The widget legend was replaced by a tooltip and sidebar. | [optional] 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**DistributionWidgetDefinitionType**](DistributionWidgetDefinitionType.md) |  | [default to DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION]
-**Xaxis** | Pointer to [**DistributionWidgetXAxis**](DistributionWidgetXAxis.md) |  | [optional] 
-**Yaxis** | Pointer to [**DistributionWidgetYAxis**](DistributionWidgetYAxis.md) |  | [optional] 
+| Name           | Type                                                                        | Description                                                                                                                                                                                                                         | Notes                                                      |
+| -------------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **LegendSize** | Pointer to **string**                                                       | (Deprecated) The widget legend was replaced by a tooltip and sidebar.                                                                                                                                                               | [optional]                                                 |
+| **Markers**    | Pointer to [**[]WidgetMarker**](WidgetMarker.md)                            | List of markers.                                                                                                                                                                                                                    | [optional]                                                 |
+| **Requests**   | [**[]DistributionWidgetRequest**](DistributionWidgetRequest.md)             | Array of one request object to display in the widget. See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json) to learn how to build the &#x60;REQUEST_SCHEMA&#x60;. |
+| **ShowLegend** | Pointer to **bool**                                                         | (Deprecated) The widget legend was replaced by a tooltip and sidebar.                                                                                                                                                               | [optional]                                                 |
+| **Time**       | Pointer to [**WidgetTime**](WidgetTime.md)                                  |                                                                                                                                                                                                                                     | [optional]                                                 |
+| **Title**      | Pointer to **string**                                                       | Title of the widget.                                                                                                                                                                                                                | [optional]                                                 |
+| **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                        |                                                                                                                                                                                                                                     | [optional]                                                 |
+| **TitleSize**  | Pointer to **string**                                                       | Size of the title.                                                                                                                                                                                                                  | [optional]                                                 |
+| **Type**       | [**DistributionWidgetDefinitionType**](DistributionWidgetDefinitionType.md) |                                                                                                                                                                                                                                     | [default to DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION] |
+| **Xaxis**      | Pointer to [**DistributionWidgetXAxis**](DistributionWidgetXAxis.md)        |                                                                                                                                                                                                                                     | [optional]                                                 |
+| **Yaxis**      | Pointer to [**DistributionWidgetYAxis**](DistributionWidgetYAxis.md)        |                                                                                                                                                                                                                                     | [optional]                                                 |
 
 ## Methods
 
@@ -103,7 +103,6 @@ and a boolean to check if the value has been set.
 `func (o *DistributionWidgetDefinition) SetRequests(v []DistributionWidgetRequest)`
 
 SetRequests sets Requests field to given value.
-
 
 ### GetShowLegend
 
@@ -249,7 +248,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetXaxis
 
 `func (o *DistributionWidgetDefinition) GetXaxis() DistributionWidgetXAxis`
@@ -300,7 +298,4 @@ SetYaxis sets Yaxis field to given value.
 
 HasYaxis returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

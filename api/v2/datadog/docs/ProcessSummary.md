@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**ProcessSummaryAttributes**](ProcessSummaryAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | Process ID. | [optional] 
-**Type** | Pointer to [**ProcessSummaryType**](ProcessSummaryType.md) |  | [optional] [default to PROCESSSUMMARYTYPE_PROCESS]
+| Name           | Type                                                                   | Description | Notes                                              |
+| -------------- | ---------------------------------------------------------------------- | ----------- | -------------------------------------------------- |
+| **Attributes** | Pointer to [**ProcessSummaryAttributes**](ProcessSummaryAttributes.md) |             | [optional]                                         |
+| **Id**         | Pointer to **string**                                                  | Process ID. | [optional]                                         |
+| **Type**       | Pointer to [**ProcessSummaryType**](ProcessSummaryType.md)             |             | [optional] [default to PROCESSSUMMARYTYPE_PROCESS] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

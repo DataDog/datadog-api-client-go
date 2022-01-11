@@ -2,19 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
-**Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
-**LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
-**Requests** | [**[]HeatMapWidgetRequest**](HeatMapWidgetRequest.md) | List of widget types. | 
-**ShowLegend** | Pointer to **bool** | Whether or not to display the legend on this widget. | [optional] 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**HeatMapWidgetDefinitionType**](HeatMapWidgetDefinitionType.md) |  | [default to HEATMAPWIDGETDEFINITIONTYPE_HEATMAP]
-**Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
+| Name            | Type                                                              | Description                                                                                                                                                        | Notes                                            |
+| --------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
+| **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md)          | List of custom links.                                                                                                                                              | [optional]                                       |
+| **Events**      | Pointer to [**[]WidgetEvent**](WidgetEvent.md)                    | List of widget events.                                                                                                                                             | [optional]                                       |
+| **LegendSize**  | Pointer to **string**                                             | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional]                                       |
+| **Requests**    | [**[]HeatMapWidgetRequest**](HeatMapWidgetRequest.md)             | List of widget types.                                                                                                                                              |
+| **ShowLegend**  | Pointer to **bool**                                               | Whether or not to display the legend on this widget.                                                                                                               | [optional]                                       |
+| **Time**        | Pointer to [**WidgetTime**](WidgetTime.md)                        |                                                                                                                                                                    | [optional]                                       |
+| **Title**       | Pointer to **string**                                             | Title of the widget.                                                                                                                                               | [optional]                                       |
+| **TitleAlign**  | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)              |                                                                                                                                                                    | [optional]                                       |
+| **TitleSize**   | Pointer to **string**                                             | Size of the title.                                                                                                                                                 | [optional]                                       |
+| **Type**        | [**HeatMapWidgetDefinitionType**](HeatMapWidgetDefinitionType.md) |                                                                                                                                                                    | [default to HEATMAPWIDGETDEFINITIONTYPE_HEATMAP] |
+| **Yaxis**       | Pointer to [**WidgetAxis**](WidgetAxis.md)                        |                                                                                                                                                                    | [optional]                                       |
 
 ## Methods
 
@@ -128,7 +128,6 @@ and a boolean to check if the value has been set.
 `func (o *HeatMapWidgetDefinition) SetRequests(v []HeatMapWidgetRequest)`
 
 SetRequests sets Requests field to given value.
-
 
 ### GetShowLegend
 
@@ -274,7 +273,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetYaxis
 
 `func (o *HeatMapWidgetDefinition) GetYaxis() WidgetAxis`
@@ -300,7 +298,4 @@ SetYaxis sets Yaxis field to given value.
 
 HasYaxis returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

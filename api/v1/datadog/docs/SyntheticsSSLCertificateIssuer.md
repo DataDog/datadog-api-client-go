@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**C** | Pointer to **string** | Country Name that issued the certificate. | [optional] 
-**CN** | Pointer to **string** | Common Name that issued certificate. | [optional] 
-**L** | Pointer to **string** | Locality that issued the certificate. | [optional] 
-**O** | Pointer to **string** | Organization that issued the certificate. | [optional] 
-**OU** | Pointer to **string** | Organizational Unit that issued the certificate. | [optional] 
-**ST** | Pointer to **string** | State Or Province Name that issued the certificate. | [optional] 
+| Name   | Type                  | Description                                         | Notes      |
+| ------ | --------------------- | --------------------------------------------------- | ---------- |
+| **C**  | Pointer to **string** | Country Name that issued the certificate.           | [optional] |
+| **CN** | Pointer to **string** | Common Name that issued certificate.                | [optional] |
+| **L**  | Pointer to **string** | Locality that issued the certificate.               | [optional] |
+| **O**  | Pointer to **string** | Organization that issued the certificate.           | [optional] |
+| **OU** | Pointer to **string** | Organizational Unit that issued the certificate.    | [optional] |
+| **ST** | Pointer to **string** | State Or Province Name that issued the certificate. | [optional] |
 
 ## Methods
 
@@ -180,7 +180,4 @@ SetST sets ST field to given value.
 
 HasST returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

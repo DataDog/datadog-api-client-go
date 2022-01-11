@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Container** | **string** | The container where the archive will be stored. | 
-**Integration** | [**LogsArchiveIntegrationAzure**](LogsArchiveIntegrationAzure.md) |  | 
-**Path** | Pointer to **string** | The archive path. | [optional] 
-**Region** | Pointer to **string** | The region where the archive will be stored. | [optional] 
-**StorageAccount** | **string** | The associated storage account. | 
-**Type** | [**LogsArchiveDestinationAzureType**](LogsArchiveDestinationAzureType.md) |  | [default to LOGSARCHIVEDESTINATIONAZURETYPE_AZURE]
+| Name               | Type                                                                      | Description                                     | Notes                                              |
+| ------------------ | ------------------------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------- |
+| **Container**      | **string**                                                                | The container where the archive will be stored. |
+| **Integration**    | [**LogsArchiveIntegrationAzure**](LogsArchiveIntegrationAzure.md)         |                                                 |
+| **Path**           | Pointer to **string**                                                     | The archive path.                               | [optional]                                         |
+| **Region**         | Pointer to **string**                                                     | The region where the archive will be stored.    | [optional]                                         |
+| **StorageAccount** | **string**                                                                | The associated storage account.                 |
+| **Type**           | [**LogsArchiveDestinationAzureType**](LogsArchiveDestinationAzureType.md) |                                                 | [default to LOGSARCHIVEDESTINATIONAZURETYPE_AZURE] |
 
 ## Methods
 
@@ -49,7 +49,6 @@ and a boolean to check if the value has been set.
 
 SetContainer sets Container field to given value.
 
-
 ### GetIntegration
 
 `func (o *LogsArchiveDestinationAzure) GetIntegration() LogsArchiveIntegrationAzure`
@@ -68,7 +67,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsArchiveDestinationAzure) SetIntegration(v LogsArchiveIntegrationAzure)`
 
 SetIntegration sets Integration field to given value.
-
 
 ### GetPath
 
@@ -139,7 +137,6 @@ and a boolean to check if the value has been set.
 
 SetStorageAccount sets StorageAccount field to given value.
 
-
 ### GetType
 
 `func (o *LogsArchiveDestinationAzure) GetType() LogsArchiveDestinationAzureType`
@@ -159,8 +156,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

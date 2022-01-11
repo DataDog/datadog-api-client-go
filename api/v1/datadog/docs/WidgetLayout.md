@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Height** | **int64** | The height of the widget. Should be a non-negative integer. | 
-**IsColumnBreak** | Pointer to **bool** | Whether the widget should be the first one on the second column in high density or not. **Note**: Only for the **new dashboard layout** and only one widget in the dashboard should have this property set to &#x60;true&#x60;. | [optional] 
-**Width** | **int64** | The width of the widget. Should be a non-negative integer. | 
-**X** | **int64** | The position of the widget on the x (horizontal) axis. Should be a non-negative integer. | 
-**Y** | **int64** | The position of the widget on the y (vertical) axis. Should be a non-negative integer. | 
+| Name              | Type                | Description                                                                                                                                                                                                                     | Notes      |
+| ----------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Height**        | **int64**           | The height of the widget. Should be a non-negative integer.                                                                                                                                                                     |
+| **IsColumnBreak** | Pointer to **bool** | Whether the widget should be the first one on the second column in high density or not. **Note**: Only for the **new dashboard layout** and only one widget in the dashboard should have this property set to &#x60;true&#x60;. | [optional] |
+| **Width**         | **int64**           | The width of the widget. Should be a non-negative integer.                                                                                                                                                                      |
+| **X**             | **int64**           | The position of the widget on the x (horizontal) axis. Should be a non-negative integer.                                                                                                                                        |
+| **Y**             | **int64**           | The position of the widget on the y (vertical) axis. Should be a non-negative integer.                                                                                                                                          |
 
 ## Methods
 
@@ -47,7 +47,6 @@ and a boolean to check if the value has been set.
 `func (o *WidgetLayout) SetHeight(v int64)`
 
 SetHeight sets Height field to given value.
-
 
 ### GetIsColumnBreak
 
@@ -93,7 +92,6 @@ and a boolean to check if the value has been set.
 
 SetWidth sets Width field to given value.
 
-
 ### GetX
 
 `func (o *WidgetLayout) GetX() int64`
@@ -112,7 +110,6 @@ and a boolean to check if the value has been set.
 `func (o *WidgetLayout) SetX(v int64)`
 
 SetX sets X field to given value.
-
 
 ### GetY
 
@@ -133,8 +130,4 @@ and a boolean to check if the value has been set.
 
 SetY sets Y field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

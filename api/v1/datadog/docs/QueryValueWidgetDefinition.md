@@ -2,19 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Autoscale** | Pointer to **bool** | Whether to use auto-scaling or not. | [optional] 
-**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
-**CustomUnit** | Pointer to **string** | Display a unit of your choice on the widget. | [optional] 
-**Precision** | Pointer to **int64** | Number of decimals to show. If not defined, the widget uses the raw value. | [optional] 
-**Requests** | [**[]QueryValueWidgetRequest**](QueryValueWidgetRequest.md) | Widget definition. | 
-**TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of your widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**QueryValueWidgetDefinitionType**](QueryValueWidgetDefinitionType.md) |  | [default to QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE]
+| Name            | Type                                                                    | Description                                                                | Notes                                                   |
+| --------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------- |
+| **Autoscale**   | Pointer to **bool**                                                     | Whether to use auto-scaling or not.                                        | [optional]                                              |
+| **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md)                | List of custom links.                                                      | [optional]                                              |
+| **CustomUnit**  | Pointer to **string**                                                   | Display a unit of your choice on the widget.                               | [optional]                                              |
+| **Precision**   | Pointer to **int64**                                                    | Number of decimals to show. If not defined, the widget uses the raw value. | [optional]                                              |
+| **Requests**    | [**[]QueryValueWidgetRequest**](QueryValueWidgetRequest.md)             | Widget definition.                                                         |
+| **TextAlign**   | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                    |                                                                            | [optional]                                              |
+| **Time**        | Pointer to [**WidgetTime**](WidgetTime.md)                              |                                                                            | [optional]                                              |
+| **Title**       | Pointer to **string**                                                   | Title of your widget.                                                      | [optional]                                              |
+| **TitleAlign**  | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                    |                                                                            | [optional]                                              |
+| **TitleSize**   | Pointer to **string**                                                   | Size of the title.                                                         | [optional]                                              |
+| **Type**        | [**QueryValueWidgetDefinitionType**](QueryValueWidgetDefinitionType.md) |                                                                            | [default to QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE] |
 
 ## Methods
 
@@ -153,7 +153,6 @@ and a boolean to check if the value has been set.
 `func (o *QueryValueWidgetDefinition) SetRequests(v []QueryValueWidgetRequest)`
 
 SetRequests sets Requests field to given value.
-
 
 ### GetTextAlign
 
@@ -299,8 +298,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

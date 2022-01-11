@@ -2,17 +2,15 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateTagConfiguration**](MetricsApi.md#CreateTagConfiguration) | **Post** /api/v2/metrics/{metric_name}/tags | Create a tag configuration
-[**DeleteTagConfiguration**](MetricsApi.md#DeleteTagConfiguration) | **Delete** /api/v2/metrics/{metric_name}/tags | Delete a tag configuration
-[**ListTagConfigurationByName**](MetricsApi.md#ListTagConfigurationByName) | **Get** /api/v2/metrics/{metric_name}/tags | List tag configuration by name
-[**ListTagConfigurations**](MetricsApi.md#ListTagConfigurations) | **Get** /api/v2/metrics | List tag configurations
-[**ListTagsByMetricName**](MetricsApi.md#ListTagsByMetricName) | **Get** /api/v2/metrics/{metric_name}/all-tags | List tags by metric name
-[**ListVolumesByMetricName**](MetricsApi.md#ListVolumesByMetricName) | **Get** /api/v2/metrics/{metric_name}/volumes | List distinct metric volumes by metric name
-[**UpdateTagConfiguration**](MetricsApi.md#UpdateTagConfiguration) | **Patch** /api/v2/metrics/{metric_name}/tags | Update a tag configuration
-
-
+| Method                                                                     | HTTP request                                   | Description                                 |
+| -------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------- |
+| [**CreateTagConfiguration**](MetricsApi.md#CreateTagConfiguration)         | **Post** /api/v2/metrics/{metric_name}/tags    | Create a tag configuration                  |
+| [**DeleteTagConfiguration**](MetricsApi.md#DeleteTagConfiguration)         | **Delete** /api/v2/metrics/{metric_name}/tags  | Delete a tag configuration                  |
+| [**ListTagConfigurationByName**](MetricsApi.md#ListTagConfigurationByName) | **Get** /api/v2/metrics/{metric_name}/tags     | List tag configuration by name              |
+| [**ListTagConfigurations**](MetricsApi.md#ListTagConfigurations)           | **Get** /api/v2/metrics                        | List tag configurations                     |
+| [**ListTagsByMetricName**](MetricsApi.md#ListTagsByMetricName)             | **Get** /api/v2/metrics/{metric_name}/all-tags | List tags by metric name                    |
+| [**ListVolumesByMetricName**](MetricsApi.md#ListVolumesByMetricName)       | **Get** /api/v2/metrics/{metric_name}/volumes  | List distinct metric volumes by metric name |
+| [**UpdateTagConfiguration**](MetricsApi.md#UpdateTagConfiguration)         | **Patch** /api/v2/metrics/{metric_name}/tags   | Update a tag configuration                  |
 
 ## CreateTagConfiguration
 
@@ -40,7 +38,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     metricName := "dist.http.endpoint.request" // string | The name of the metric.
-    body := *datadog.NewMetricTagConfigurationCreateRequest(*datadog.NewMetricTagConfigurationCreateData("test.metric.latency", datadog.MetricTagConfigurationType("manage_tags"))) // MetricTagConfigurationCreateRequest | 
+    body := *datadog.NewMetricTagConfigurationCreateRequest(*datadog.NewMetricTagConfigurationCreateData("test.metric.latency", datadog.MetricTagConfigurationType("manage_tags"))) // MetricTagConfigurationCreateRequest |
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("CreateTagConfiguration", true)
@@ -59,18 +57,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**metricName** | **string** | The name of the metric. |  |
-**body** | [**MetricTagConfigurationCreateRequest**](MetricTagConfigurationCreateRequest.md) |  | 
-
+| Name           | Type                                                                              | Description                                                                 | Notes |
+| -------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**                                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **metricName** | **string**                                                                        | The name of the metric.                                                     |       |
+| **body**       | [**MetricTagConfigurationCreateRequest**](MetricTagConfigurationCreateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -88,7 +83,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteTagConfiguration
 
@@ -128,21 +122,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**metricName** | **string** | The name of the metric. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **metricName** | **string**          | The name of the metric.                                                     |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -156,7 +147,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListTagConfigurationByName
 
@@ -199,17 +189,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**metricName** | **string** | The name of the metric. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **metricName** | **string**          | The name of the metric.                                                     |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -227,7 +214,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListTagConfigurations
 
@@ -284,23 +270,18 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListTagConfigurationsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**filterConfigured** | **bool** | Filter metrics that have configured tags. | 
-**filterTagsConfigured** | **string** | Filter tag configurations by configured tags. | 
-**filterMetricType** | [**MetricTagConfigurationMetricTypes**](MetricTagConfigurationMetricTypes.md) | Filter tag configurations by metric type. | [default to &quot;gauge&quot;]
-**filterIncludePercentiles** | **bool** | Filter distributions with additional percentile aggregations enabled or disabled. | 
-**filterTags** | **string** | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. | 
-**windowSeconds** | **int64** | The number of seconds of look back (from now) to apply to a filter[tag] query. Defaults value is 3600 (1 hour), maximum value is 172,800 (2 days). | 
+| Name                         | Type                                                                          | Description                                                                                                                                        | Notes                          |
+| ---------------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| **filterConfigured**         | **bool**                                                                      | Filter metrics that have configured tags.                                                                                                          |
+| **filterTagsConfigured**     | **string**                                                                    | Filter tag configurations by configured tags.                                                                                                      |
+| **filterMetricType**         | [**MetricTagConfigurationMetricTypes**](MetricTagConfigurationMetricTypes.md) | Filter tag configurations by metric type.                                                                                                          | [default to &quot;gauge&quot;] |
+| **filterIncludePercentiles** | **bool**                                                                      | Filter distributions with additional percentile aggregations enabled or disabled.                                                                  |
+| **filterTags**               | **string**                                                                    | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters.     |
+| **windowSeconds**            | **int64**                                                                     | The number of seconds of look back (from now) to apply to a filter[tag] query. Defaults value is 3600 (1 hour), maximum value is 172,800 (2 days). |
 
 ### Return type
 
@@ -318,7 +299,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListTagsByMetricName
 
@@ -360,17 +340,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**metricName** | **string** | The name of the metric. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **metricName** | **string**          | The name of the metric.                                                     |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -388,7 +365,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListVolumesByMetricName
 
@@ -434,17 +410,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**metricName** | **string** | The name of the metric. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **metricName** | **string**          | The name of the metric.                                                     |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -462,7 +435,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateTagConfiguration
 
@@ -489,7 +461,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     metricName := "dist.http.endpoint.request" // string | The name of the metric.
-    body := *datadog.NewMetricTagConfigurationUpdateRequest(*datadog.NewMetricTagConfigurationUpdateData("test.metric.latency", datadog.MetricTagConfigurationType("manage_tags"))) // MetricTagConfigurationUpdateRequest | 
+    body := *datadog.NewMetricTagConfigurationUpdateRequest(*datadog.NewMetricTagConfigurationUpdateData("test.metric.latency", datadog.MetricTagConfigurationType("manage_tags"))) // MetricTagConfigurationUpdateRequest |
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("UpdateTagConfiguration", true)
@@ -508,18 +480,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**metricName** | **string** | The name of the metric. |  |
-**body** | [**MetricTagConfigurationUpdateRequest**](MetricTagConfigurationUpdateRequest.md) |  | 
-
+| Name           | Type                                                                              | Description                                                                 | Notes |
+| -------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**                                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **metricName** | **string**                                                                        | The name of the metric.                                                     |       |
+| **body**       | [**MetricTagConfigurationUpdateRequest**](MetricTagConfigurationUpdateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -537,4 +506,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

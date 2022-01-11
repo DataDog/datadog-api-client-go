@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | [**LogsMetricCreateAttributes**](LogsMetricCreateAttributes.md) |  | 
-**Id** | **string** | The name of the log-based metric. | 
-**Type** | [**LogsMetricType**](LogsMetricType.md) |  | [default to LOGSMETRICTYPE_LOGS_METRICS]
+| Name           | Type                                                            | Description                       | Notes                                    |
+| -------------- | --------------------------------------------------------------- | --------------------------------- | ---------------------------------------- |
+| **Attributes** | [**LogsMetricCreateAttributes**](LogsMetricCreateAttributes.md) |                                   |
+| **Id**         | **string**                                                      | The name of the log-based metric. |
+| **Type**       | [**LogsMetricType**](LogsMetricType.md)                         |                                   | [default to LOGSMETRICTYPE_LOGS_METRICS] |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
-
 ### GetId
 
 `func (o *LogsMetricCreateData) GetId() string`
@@ -65,7 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsMetricCreateData) SetId(v string)`
 
 SetId sets Id field to given value.
-
 
 ### GetType
 
@@ -86,8 +84,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

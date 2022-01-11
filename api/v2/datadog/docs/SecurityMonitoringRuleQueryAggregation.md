@@ -2,18 +2,14 @@
 
 ## Enum
 
+- `COUNT` (value: `"count"`)
 
-* `COUNT` (value: `"count"`)
+- `CARDINALITY` (value: `"cardinality"`)
 
-* `CARDINALITY` (value: `"cardinality"`)
+- `SUM` (value: `"sum"`)
 
-* `SUM` (value: `"sum"`)
+- `MAX` (value: `"max"`)
 
-* `MAX` (value: `"max"`)
-
-* `NEW_VALUE` (value: `"new_value"`)
-
+- `NEW_VALUE` (value: `"new_value"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

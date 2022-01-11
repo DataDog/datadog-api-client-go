@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DataSource** | [**FormulaAndFunctionApmDependencyStatsDataSource**](FormulaAndFunctionApmDependencyStatsDataSource.md) |  | 
-**Env** | **string** | APM environment. | 
-**IsUpstream** | Pointer to **bool** | Determines whether stats for upstream or downstream dependencies should be queried. | [optional] 
-**Name** | **string** | Name of query to use in formulas. | 
-**OperationName** | **string** | Name of operation on service. | 
-**PrimaryTagName** | Pointer to **string** | The name of the second primary tag used within APM; required when &#x60;primary_tag_value&#x60; is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadog. | [optional] 
-**PrimaryTagValue** | Pointer to **string** | Filter APM data by the second primary tag. &#x60;primary_tag_name&#x60; must also be specified. | [optional] 
-**ResourceName** | **string** | APM resource. | 
-**Service** | **string** | APM service. | 
-**Stat** | [**FormulaAndFunctionApmDependencyStatName**](FormulaAndFunctionApmDependencyStatName.md) |  | 
+| Name                | Type                                                                                                    | Description                                                                                                                                                                                                                    | Notes      |
+| ------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| **DataSource**      | [**FormulaAndFunctionApmDependencyStatsDataSource**](FormulaAndFunctionApmDependencyStatsDataSource.md) |                                                                                                                                                                                                                                |
+| **Env**             | **string**                                                                                              | APM environment.                                                                                                                                                                                                               |
+| **IsUpstream**      | Pointer to **bool**                                                                                     | Determines whether stats for upstream or downstream dependencies should be queried.                                                                                                                                            | [optional] |
+| **Name**            | **string**                                                                                              | Name of query to use in formulas.                                                                                                                                                                                              |
+| **OperationName**   | **string**                                                                                              | Name of operation on service.                                                                                                                                                                                                  |
+| **PrimaryTagName**  | Pointer to **string**                                                                                   | The name of the second primary tag used within APM; required when &#x60;primary_tag_value&#x60; is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadog. | [optional] |
+| **PrimaryTagValue** | Pointer to **string**                                                                                   | Filter APM data by the second primary tag. &#x60;primary_tag_name&#x60; must also be specified.                                                                                                                                | [optional] |
+| **ResourceName**    | **string**                                                                                              | APM resource.                                                                                                                                                                                                                  |
+| **Service**         | **string**                                                                                              | APM service.                                                                                                                                                                                                                   |
+| **Stat**            | [**FormulaAndFunctionApmDependencyStatName**](FormulaAndFunctionApmDependencyStatName.md)               |                                                                                                                                                                                                                                |
 
 ## Methods
 
@@ -53,7 +53,6 @@ and a boolean to check if the value has been set.
 
 SetDataSource sets DataSource field to given value.
 
-
 ### GetEnv
 
 `func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetEnv() string`
@@ -72,7 +71,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetEnv(v string)`
 
 SetEnv sets Env field to given value.
-
 
 ### GetIsUpstream
 
@@ -118,7 +116,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetOperationName
 
 `func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetOperationName() string`
@@ -137,7 +134,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetOperationName(v string)`
 
 SetOperationName sets OperationName field to given value.
-
 
 ### GetPrimaryTagName
 
@@ -208,7 +204,6 @@ and a boolean to check if the value has been set.
 
 SetResourceName sets ResourceName field to given value.
 
-
 ### GetService
 
 `func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetService() string`
@@ -227,7 +222,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetService(v string)`
 
 SetService sets Service field to given value.
-
 
 ### GetStat
 
@@ -248,8 +242,4 @@ and a boolean to check if the value has been set.
 
 SetStat sets Stat field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

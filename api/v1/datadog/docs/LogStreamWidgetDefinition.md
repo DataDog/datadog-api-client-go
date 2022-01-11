@@ -2,21 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Columns** | Pointer to **[]string** | Which columns to display on the widget. | [optional] 
-**Indexes** | Pointer to **[]string** | An array of index names to query in the stream. Use [] to query all indexes at once. | [optional] 
-**Logset** | Pointer to **string** | ID of the log set to use. | [optional] 
-**MessageDisplay** | Pointer to [**WidgetMessageDisplay**](WidgetMessageDisplay.md) |  | [optional] 
-**Query** | Pointer to **string** | Query to filter the log stream with. | [optional] 
-**ShowDateColumn** | Pointer to **bool** | Whether to show the date column or not | [optional] 
-**ShowMessageColumn** | Pointer to **bool** | Whether to show the message column or not | [optional] 
-**Sort** | Pointer to [**WidgetFieldSort**](WidgetFieldSort.md) |  | [optional] 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**LogStreamWidgetDefinitionType**](LogStreamWidgetDefinitionType.md) |  | [default to LOGSTREAMWIDGETDEFINITIONTYPE_LOG_STREAM]
+| Name                  | Type                                                                  | Description                                                                          | Notes                                                 |
+| --------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------- |
+| **Columns**           | Pointer to **[]string**                                               | Which columns to display on the widget.                                              | [optional]                                            |
+| **Indexes**           | Pointer to **[]string**                                               | An array of index names to query in the stream. Use [] to query all indexes at once. | [optional]                                            |
+| **Logset**            | Pointer to **string**                                                 | ID of the log set to use.                                                            | [optional]                                            |
+| **MessageDisplay**    | Pointer to [**WidgetMessageDisplay**](WidgetMessageDisplay.md)        |                                                                                      | [optional]                                            |
+| **Query**             | Pointer to **string**                                                 | Query to filter the log stream with.                                                 | [optional]                                            |
+| **ShowDateColumn**    | Pointer to **bool**                                                   | Whether to show the date column or not                                               | [optional]                                            |
+| **ShowMessageColumn** | Pointer to **bool**                                                   | Whether to show the message column or not                                            | [optional]                                            |
+| **Sort**              | Pointer to [**WidgetFieldSort**](WidgetFieldSort.md)                  |                                                                                      | [optional]                                            |
+| **Time**              | Pointer to [**WidgetTime**](WidgetTime.md)                            |                                                                                      | [optional]                                            |
+| **Title**             | Pointer to **string**                                                 | Title of the widget.                                                                 | [optional]                                            |
+| **TitleAlign**        | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                  |                                                                                      | [optional]                                            |
+| **TitleSize**         | Pointer to **string**                                                 | Size of the title.                                                                   | [optional]                                            |
+| **Type**              | [**LogStreamWidgetDefinitionType**](LogStreamWidgetDefinitionType.md) |                                                                                      | [default to LOGSTREAMWIDGETDEFINITIONTYPE_LOG_STREAM] |
 
 ## Methods
 
@@ -356,8 +356,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

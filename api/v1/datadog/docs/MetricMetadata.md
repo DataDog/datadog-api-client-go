@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Description** | Pointer to **string** | Metric description. | [optional] 
-**Integration** | Pointer to **string** | Name of the integration that sent the metric if applicable. | [optional] [readonly] 
-**PerUnit** | Pointer to **string** | Per unit of the metric such as &#x60;second&#x60; in &#x60;bytes per second&#x60;. | [optional] 
-**ShortName** | Pointer to **string** | A more human-readable and abbreviated version of the metric name. | [optional] 
-**StatsdInterval** | Pointer to **int64** | StatsD flush interval of the metric in seconds if applicable. | [optional] 
-**Type** | Pointer to **string** | Metric type such as &#x60;gauge&#x60; or &#x60;rate&#x60;. | [optional] 
-**Unit** | Pointer to **string** | Primary unit of the metric such as &#x60;byte&#x60; or &#x60;operation&#x60;. | [optional] 
+| Name               | Type                  | Description                                                                        | Notes                 |
+| ------------------ | --------------------- | ---------------------------------------------------------------------------------- | --------------------- |
+| **Description**    | Pointer to **string** | Metric description.                                                                | [optional]            |
+| **Integration**    | Pointer to **string** | Name of the integration that sent the metric if applicable.                        | [optional] [readonly] |
+| **PerUnit**        | Pointer to **string** | Per unit of the metric such as &#x60;second&#x60; in &#x60;bytes per second&#x60;. | [optional]            |
+| **ShortName**      | Pointer to **string** | A more human-readable and abbreviated version of the metric name.                  | [optional]            |
+| **StatsdInterval** | Pointer to **int64**  | StatsD flush interval of the metric in seconds if applicable.                      | [optional]            |
+| **Type**           | Pointer to **string** | Metric type such as &#x60;gauge&#x60; or &#x60;rate&#x60;.                         | [optional]            |
+| **Unit**           | Pointer to **string** | Primary unit of the metric such as &#x60;byte&#x60; or &#x60;operation&#x60;.      | [optional]            |
 
 ## Methods
 
@@ -206,7 +206,4 @@ SetUnit sets Unit field to given value.
 
 HasUnit returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

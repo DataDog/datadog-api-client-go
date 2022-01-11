@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | [**IncidentCreateAttributes**](IncidentCreateAttributes.md) |  | 
-**Relationships** | Pointer to [**IncidentCreateRelationships**](IncidentCreateRelationships.md) |  | [optional] 
-**Type** | [**IncidentType**](IncidentType.md) |  | [default to INCIDENTTYPE_INCIDENTS]
+| Name              | Type                                                                         | Description | Notes                               |
+| ----------------- | ---------------------------------------------------------------------------- | ----------- | ----------------------------------- |
+| **Attributes**    | [**IncidentCreateAttributes**](IncidentCreateAttributes.md)                  |             |
+| **Relationships** | Pointer to [**IncidentCreateRelationships**](IncidentCreateRelationships.md) |             | [optional]                          |
+| **Type**          | [**IncidentType**](IncidentType.md)                                          |             | [default to INCIDENTTYPE_INCIDENTS] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *IncidentCreateData) SetAttributes(v IncidentCreateAttributes)`
 
 SetAttributes sets Attributes field to given value.
-
 
 ### GetRelationships
 
@@ -91,8 +90,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

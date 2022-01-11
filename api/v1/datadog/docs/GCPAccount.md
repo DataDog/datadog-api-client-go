@@ -2,21 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AuthProviderX509CertUrl** | Pointer to **string** | Should be &#x60;https://www.googleapis.com/oauth2/v1/certs&#x60;. | [optional] 
-**AuthUri** | Pointer to **string** | Should be &#x60;https://accounts.google.com/o/oauth2/auth&#x60;. | [optional] 
-**Automute** | Pointer to **bool** | Silence monitors for expected GCE instance shutdowns. | [optional] 
-**ClientEmail** | Pointer to **string** | Your email found in your JSON service account key. | [optional] 
-**ClientId** | Pointer to **string** | Your ID found in your JSON service account key. | [optional] 
-**ClientX509CertUrl** | Pointer to **string** | Should be &#x60;https://www.googleapis.com/robot/v1/metadata/x509/&lt;CLIENT_EMAIL&gt;&#x60; where &#x60;&lt;CLIENT_EMAIL&gt;&#x60; is the email found in your JSON service account key. | [optional] 
-**Errors** | Pointer to **[]string** | An array of errors. | [optional] 
-**HostFilters** | Pointer to **string** | Limit the GCE instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog. | [optional] 
-**PrivateKey** | Pointer to **string** | Your private key name found in your JSON service account key. | [optional] 
-**PrivateKeyId** | Pointer to **string** | Your private key ID found in your JSON service account key. | [optional] 
-**ProjectId** | Pointer to **string** | Your Google Cloud project ID found in your JSON service account key. | [optional] 
-**TokenUri** | Pointer to **string** | Should be &#x60;https://accounts.google.com/o/oauth2/token&#x60;. | [optional] 
-**Type** | Pointer to **string** | The value for service_account found in your JSON service account key. | [optional] 
+| Name                        | Type                    | Description                                                                                                                                                                              | Notes      |
+| --------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **AuthProviderX509CertUrl** | Pointer to **string**   | Should be &#x60;https://www.googleapis.com/oauth2/v1/certs&#x60;.                                                                                                                        | [optional] |
+| **AuthUri**                 | Pointer to **string**   | Should be &#x60;https://accounts.google.com/o/oauth2/auth&#x60;.                                                                                                                         | [optional] |
+| **Automute**                | Pointer to **bool**     | Silence monitors for expected GCE instance shutdowns.                                                                                                                                    | [optional] |
+| **ClientEmail**             | Pointer to **string**   | Your email found in your JSON service account key.                                                                                                                                       | [optional] |
+| **ClientId**                | Pointer to **string**   | Your ID found in your JSON service account key.                                                                                                                                          | [optional] |
+| **ClientX509CertUrl**       | Pointer to **string**   | Should be &#x60;https://www.googleapis.com/robot/v1/metadata/x509/&lt;CLIENT_EMAIL&gt;&#x60; where &#x60;&lt;CLIENT_EMAIL&gt;&#x60; is the email found in your JSON service account key. | [optional] |
+| **Errors**                  | Pointer to **[]string** | An array of errors.                                                                                                                                                                      | [optional] |
+| **HostFilters**             | Pointer to **string**   | Limit the GCE instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog.                                             | [optional] |
+| **PrivateKey**              | Pointer to **string**   | Your private key name found in your JSON service account key.                                                                                                                            | [optional] |
+| **PrivateKeyId**            | Pointer to **string**   | Your private key ID found in your JSON service account key.                                                                                                                              | [optional] |
+| **ProjectId**               | Pointer to **string**   | Your Google Cloud project ID found in your JSON service account key.                                                                                                                     | [optional] |
+| **TokenUri**                | Pointer to **string**   | Should be &#x60;https://accounts.google.com/o/oauth2/token&#x60;.                                                                                                                        | [optional] |
+| **Type**                    | Pointer to **string**   | The value for service_account found in your JSON service account key.                                                                                                                    | [optional] |
 
 ## Methods
 
@@ -362,7 +362,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

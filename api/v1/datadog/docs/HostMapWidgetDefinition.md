@@ -2,21 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
-**Group** | Pointer to **[]string** | List of tag prefixes to group by. | [optional] 
-**NoGroupHosts** | Pointer to **bool** | Whether to show the hosts that don’t fit in a group. | [optional] 
-**NoMetricHosts** | Pointer to **bool** | Whether to show the hosts with no metrics. | [optional] 
-**NodeType** | Pointer to [**WidgetNodeType**](WidgetNodeType.md) |  | [optional] 
-**Notes** | Pointer to **string** | Notes on the title. | [optional] 
-**Requests** | [**HostMapWidgetDefinitionRequests**](HostMapWidgetDefinitionRequests.md) |  | 
-**Scope** | Pointer to **[]string** | List of tags used to filter the map. | [optional] 
-**Style** | Pointer to [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinitionStyle.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**HostMapWidgetDefinitionType**](HostMapWidgetDefinitionType.md) |  | [default to HOSTMAPWIDGETDEFINITIONTYPE_HOSTMAP]
+| Name              | Type                                                                           | Description                                          | Notes                                            |
+| ----------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------- | ------------------------------------------------ |
+| **CustomLinks**   | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md)                       | List of custom links.                                | [optional]                                       |
+| **Group**         | Pointer to **[]string**                                                        | List of tag prefixes to group by.                    | [optional]                                       |
+| **NoGroupHosts**  | Pointer to **bool**                                                            | Whether to show the hosts that don’t fit in a group. | [optional]                                       |
+| **NoMetricHosts** | Pointer to **bool**                                                            | Whether to show the hosts with no metrics.           | [optional]                                       |
+| **NodeType**      | Pointer to [**WidgetNodeType**](WidgetNodeType.md)                             |                                                      | [optional]                                       |
+| **Notes**         | Pointer to **string**                                                          | Notes on the title.                                  | [optional]                                       |
+| **Requests**      | [**HostMapWidgetDefinitionRequests**](HostMapWidgetDefinitionRequests.md)      |                                                      |
+| **Scope**         | Pointer to **[]string**                                                        | List of tags used to filter the map.                 | [optional]                                       |
+| **Style**         | Pointer to [**HostMapWidgetDefinitionStyle**](HostMapWidgetDefinitionStyle.md) |                                                      | [optional]                                       |
+| **Title**         | Pointer to **string**                                                          | Title of the widget.                                 | [optional]                                       |
+| **TitleAlign**    | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                           |                                                      | [optional]                                       |
+| **TitleSize**     | Pointer to **string**                                                          | Size of the title.                                   | [optional]                                       |
+| **Type**          | [**HostMapWidgetDefinitionType**](HostMapWidgetDefinitionType.md)              |                                                      | [default to HOSTMAPWIDGETDEFINITIONTYPE_HOSTMAP] |
 
 ## Methods
 
@@ -206,7 +206,6 @@ and a boolean to check if the value has been set.
 
 SetRequests sets Requests field to given value.
 
-
 ### GetScope
 
 `func (o *HostMapWidgetDefinition) GetScope() []string`
@@ -351,8 +350,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

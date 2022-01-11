@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Message** | Pointer to **string** | Information pertaining to a user disabled for a given organization. | [optional] 
+| Name        | Type                  | Description                                                         | Notes      |
+| ----------- | --------------------- | ------------------------------------------------------------------- | ---------- |
+| **Message** | Pointer to **string** | Information pertaining to a user disabled for a given organization. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetMessage sets Message field to given value.
 
 HasMessage returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

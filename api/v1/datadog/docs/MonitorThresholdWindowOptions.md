@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**RecoveryWindow** | Pointer to **NullableString** | Describes how long an anomalous metric must be normal before the alert recovers. | [optional] 
-**TriggerWindow** | Pointer to **NullableString** | Describes how long a metric must be anomalous before an alert triggers. | [optional] 
+| Name               | Type                          | Description                                                                      | Notes      |
+| ------------------ | ----------------------------- | -------------------------------------------------------------------------------- | ---------- |
+| **RecoveryWindow** | Pointer to **NullableString** | Describes how long an anomalous metric must be normal before the alert recovers. | [optional] |
+| **TriggerWindow**  | Pointer to **NullableString** | Describes how long a metric must be anomalous before an alert triggers.          | [optional] |
 
 ## Methods
 
@@ -55,12 +55,14 @@ HasRecoveryWindow returns a boolean if a field has been set.
 
 `func (o *MonitorThresholdWindowOptions) SetRecoveryWindowNil(b bool)`
 
- SetRecoveryWindowNil sets the value for RecoveryWindow to be an explicit nil
+SetRecoveryWindowNil sets the value for RecoveryWindow to be an explicit nil
 
 ### UnsetRecoveryWindow
+
 `func (o *MonitorThresholdWindowOptions) UnsetRecoveryWindow()`
 
 UnsetRecoveryWindow ensures that no value is present for RecoveryWindow, not even an explicit nil
+
 ### GetTriggerWindow
 
 `func (o *MonitorThresholdWindowOptions) GetTriggerWindow() string`
@@ -90,13 +92,12 @@ HasTriggerWindow returns a boolean if a field has been set.
 
 `func (o *MonitorThresholdWindowOptions) SetTriggerWindowNil(b bool)`
 
- SetTriggerWindowNil sets the value for TriggerWindow to be an explicit nil
+SetTriggerWindowNil sets the value for TriggerWindow to be an explicit nil
 
 ### UnsetTriggerWindow
+
 `func (o *MonitorThresholdWindowOptions) UnsetTriggerWindow()`
 
 UnsetTriggerWindow ensures that no value is present for TriggerWindow, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

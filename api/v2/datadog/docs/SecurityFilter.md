@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**SecurityFilterAttributes**](SecurityFilterAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | The ID of the security filter. | [optional] 
-**Type** | Pointer to [**SecurityFilterType**](SecurityFilterType.md) |  | [optional] [default to SECURITYFILTERTYPE_SECURITY_FILTERS]
+| Name           | Type                                                                   | Description                    | Notes                                                       |
+| -------------- | ---------------------------------------------------------------------- | ------------------------------ | ----------------------------------------------------------- |
+| **Attributes** | Pointer to [**SecurityFilterAttributes**](SecurityFilterAttributes.md) |                                | [optional]                                                  |
+| **Id**         | Pointer to **string**                                                  | The ID of the security filter. | [optional]                                                  |
+| **Type**       | Pointer to [**SecurityFilterType**](SecurityFilterType.md)             |                                | [optional] [default to SECURITYFILTERTYPE_SECURITY_FILTERS] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

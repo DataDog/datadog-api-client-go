@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Automute** | Pointer to **bool** | Silence monitors for expected Azure VM shutdowns. | [optional] 
-**ClientId** | Pointer to **string** | Your Azure web application ID. | [optional] 
-**ClientSecret** | Pointer to **string** | Your Azure web application secret key. | [optional] 
-**Errors** | Pointer to **[]string** | Errors in your configuration. | [optional] 
-**HostFilters** | Pointer to **string** | Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog. | [optional] 
-**NewClientId** | Pointer to **string** | Your New Azure web application ID. | [optional] 
-**NewTenantName** | Pointer to **string** | Your New Azure Active Directory ID. | [optional] 
-**TenantName** | Pointer to **string** | Your Azure Active Directory ID. | [optional] 
+| Name              | Type                    | Description                                                                                                                                    | Notes      |
+| ----------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Automute**      | Pointer to **bool**     | Silence monitors for expected Azure VM shutdowns.                                                                                              | [optional] |
+| **ClientId**      | Pointer to **string**   | Your Azure web application ID.                                                                                                                 | [optional] |
+| **ClientSecret**  | Pointer to **string**   | Your Azure web application secret key.                                                                                                         | [optional] |
+| **Errors**        | Pointer to **[]string** | Errors in your configuration.                                                                                                                  | [optional] |
+| **HostFilters**   | Pointer to **string**   | Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog. | [optional] |
+| **NewClientId**   | Pointer to **string**   | Your New Azure web application ID.                                                                                                             | [optional] |
+| **NewTenantName** | Pointer to **string**   | Your New Azure Active Directory ID.                                                                                                            | [optional] |
+| **TenantName**    | Pointer to **string**   | Your Azure Active Directory ID.                                                                                                                | [optional] |
 
 ## Methods
 
@@ -232,7 +232,4 @@ SetTenantName sets TenantName field to given value.
 
 HasTenantName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

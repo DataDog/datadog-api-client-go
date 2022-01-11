@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**After** | Pointer to **string** | The cursor used to get the next results, if any. To make the next request, use the same parameters with the addition of the &#x60;page[cursor]&#x60;. | [optional] 
+| Name      | Type                  | Description                                                                                                                                           | Notes      |
+| --------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **After** | Pointer to **string** | The cursor used to get the next results, if any. To make the next request, use the same parameters with the addition of the &#x60;page[cursor]&#x60;. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetAfter sets After field to given value.
 
 HasAfter returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

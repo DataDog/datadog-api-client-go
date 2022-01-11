@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**By** | Pointer to **map[string]string** | The key, value pairs for each group by | [optional] 
-**Computes** | Pointer to [**map[string]LogsAggregateBucketValue**](LogsAggregateBucketValue.md) | A map of the metric name -&gt; value for regular compute or list of values for a timeseries | [optional] 
+| Name         | Type                                                                              | Description                                                                                 | Notes      |
+| ------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ---------- |
+| **By**       | Pointer to **map[string]string**                                                  | The key, value pairs for each group by                                                      | [optional] |
+| **Computes** | Pointer to [**map[string]LogsAggregateBucketValue**](LogsAggregateBucketValue.md) | A map of the metric name -&gt; value for regular compute or list of values for a timeseries | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetComputes sets Computes field to given value.
 
 HasComputes returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

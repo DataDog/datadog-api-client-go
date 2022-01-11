@@ -2,20 +2,20 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Cipher** | Pointer to **string** | Cipher used for the connection. | [optional] 
-**Exponent** | Pointer to **float64** | Exponent associated to the certificate. | [optional] 
-**ExtKeyUsage** | Pointer to **[]string** | Array of extensions and details used for the certificate. | [optional] 
-**Fingerprint** | Pointer to **string** | MD5 digest of the DER-encoded Certificate information. | [optional] 
-**Fingerprint256** | Pointer to **string** | SHA-1 digest of the DER-encoded Certificate information. | [optional] 
-**Issuer** | Pointer to [**SyntheticsSSLCertificateIssuer**](SyntheticsSSLCertificateIssuer.md) |  | [optional] 
-**Modulus** | Pointer to **string** | Modulus associated to the SSL certificate private key. | [optional] 
-**Protocol** | Pointer to **string** | TLS protocol used for the test. | [optional] 
-**SerialNumber** | Pointer to **string** | Serial Number assigned by Symantec to the SSL certificate. | [optional] 
-**Subject** | Pointer to [**SyntheticsSSLCertificateSubject**](SyntheticsSSLCertificateSubject.md) |  | [optional] 
-**ValidFrom** | Pointer to **time.Time** | Date from which the SSL certificate is valid. | [optional] 
-**ValidTo** | Pointer to **time.Time** | Date until which the SSL certificate is valid. | [optional] 
+| Name               | Type                                                                                 | Description                                                | Notes      |
+| ------------------ | ------------------------------------------------------------------------------------ | ---------------------------------------------------------- | ---------- |
+| **Cipher**         | Pointer to **string**                                                                | Cipher used for the connection.                            | [optional] |
+| **Exponent**       | Pointer to **float64**                                                               | Exponent associated to the certificate.                    | [optional] |
+| **ExtKeyUsage**    | Pointer to **[]string**                                                              | Array of extensions and details used for the certificate.  | [optional] |
+| **Fingerprint**    | Pointer to **string**                                                                | MD5 digest of the DER-encoded Certificate information.     | [optional] |
+| **Fingerprint256** | Pointer to **string**                                                                | SHA-1 digest of the DER-encoded Certificate information.   | [optional] |
+| **Issuer**         | Pointer to [**SyntheticsSSLCertificateIssuer**](SyntheticsSSLCertificateIssuer.md)   |                                                            | [optional] |
+| **Modulus**        | Pointer to **string**                                                                | Modulus associated to the SSL certificate private key.     | [optional] |
+| **Protocol**       | Pointer to **string**                                                                | TLS protocol used for the test.                            | [optional] |
+| **SerialNumber**   | Pointer to **string**                                                                | Serial Number assigned by Symantec to the SSL certificate. | [optional] |
+| **Subject**        | Pointer to [**SyntheticsSSLCertificateSubject**](SyntheticsSSLCertificateSubject.md) |                                                            | [optional] |
+| **ValidFrom**      | Pointer to **time.Time**                                                             | Date from which the SSL certificate is valid.              | [optional] |
+| **ValidTo**        | Pointer to **time.Time**                                                             | Date until which the SSL certificate is valid.             | [optional] |
 
 ## Methods
 
@@ -336,7 +336,4 @@ SetValidTo sets ValidTo field to given value.
 
 HasValidTo returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

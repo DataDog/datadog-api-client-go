@@ -2,15 +2,13 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateChildOrg**](OrganizationsApi.md#CreateChildOrg) | **Post** /api/v1/org | Create a child organization
-[**GetOrg**](OrganizationsApi.md#GetOrg) | **Get** /api/v1/org/{public_id} | Get organization information
-[**ListOrgs**](OrganizationsApi.md#ListOrgs) | **Get** /api/v1/org | List your managed organizations
-[**UpdateOrg**](OrganizationsApi.md#UpdateOrg) | **Put** /api/v1/org/{public_id} | Update your organization
-[**UploadIdPForOrg**](OrganizationsApi.md#UploadIdPForOrg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata
-
-
+| Method                                                     | HTTP request                                  | Description                     |
+| ---------------------------------------------------------- | --------------------------------------------- | ------------------------------- |
+| [**CreateChildOrg**](OrganizationsApi.md#CreateChildOrg)   | **Post** /api/v1/org                          | Create a child organization     |
+| [**GetOrg**](OrganizationsApi.md#GetOrg)                   | **Get** /api/v1/org/{public_id}               | Get organization information    |
+| [**ListOrgs**](OrganizationsApi.md#ListOrgs)               | **Get** /api/v1/org                           | List your managed organizations |
+| [**UpdateOrg**](OrganizationsApi.md#UpdateOrg)             | **Put** /api/v1/org/{public_id}               | Update your organization        |
+| [**UploadIdPForOrg**](OrganizationsApi.md#UploadIdPForOrg) | **Post** /api/v1/org/{public_id}/idp_metadata | Upload IdP metadata             |
 
 ## CreateChildOrg
 
@@ -61,17 +59,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organization object that needs to be created | 
-
+| Name     | Type                                                    | Description                                                                 | Notes |
+| -------- | ------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                     | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**OrganizationCreateBody**](OrganizationCreateBody.md) | Organization object that needs to be created                                |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -89,7 +84,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetOrg
 
@@ -131,17 +125,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**          | The &#x60;public_id&#x60; of the organization you are operating within.     |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -159,7 +150,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListOrgs
 
@@ -202,11 +192,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -224,7 +212,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateOrg
 
@@ -249,7 +236,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     publicId := "abc123" // string | The `public_id` of the organization you are operating within.
-    body := *datadog.NewOrganization() // Organization | 
+    body := *datadog.NewOrganization() // Organization |
 
     configuration := datadog.NewConfiguration()
 
@@ -267,18 +254,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating within. |  |
-**body** | [**Organization**](Organization.md) |  | 
-
+| Name         | Type                                | Description                                                                 | Notes |
+| ------------ | ----------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context**                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**                          | The &#x60;public_id&#x60; of the organization you are operating within.     |       |
+| **body**     | [**Organization**](Organization.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -297,7 +281,6 @@ This endpoint does not have optional parameters.
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
-
 ## UploadIdPForOrg
 
 > IdpResponse UploadIdPForOrg(ctx, publicId, idpFile)
@@ -305,9 +288,9 @@ This endpoint does not have optional parameters.
 There are a couple of options for updating the Identity Provider (IdP)
 metadata from your SAML IdP.
 
-* **Multipart Form-Data**: Post the IdP metadata file using a form post.
+- **Multipart Form-Data**: Post the IdP metadata file using a form post.
 
-* **XML Body:** Post the IdP metadata file as the body of the request.
+- **XML Body:** Post the IdP metadata file as the body of the request.
 
 ### Example
 
@@ -344,18 +327,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The &#x60;public_id&#x60; of the organization you are operating with |  |
-**idpFile** | ***os.File** | The path to the XML metadata file you wish to upload. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**          | The &#x60;public_id&#x60; of the organization you are operating with        |       |
+| **idpFile**  | **\*os.File**       | The path to the XML metadata file you wish to upload.                       |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -373,4 +353,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

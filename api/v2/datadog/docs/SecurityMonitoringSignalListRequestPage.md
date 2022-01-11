@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Cursor** | Pointer to **string** | A list of results using the cursor provided in the previous query. | [optional] 
-**Limit** | Pointer to **int32** | The maximum number of security signals in the response. | [optional] [default to 10]
+| Name       | Type                  | Description                                                        | Notes                      |
+| ---------- | --------------------- | ------------------------------------------------------------------ | -------------------------- |
+| **Cursor** | Pointer to **string** | A list of results using the cursor provided in the previous query. | [optional]                 |
+| **Limit**  | Pointer to **int32**  | The maximum number of security signals in the response.            | [optional] [default to 10] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetLimit sets Limit field to given value.
 
 HasLimit returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

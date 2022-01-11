@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Type** | Pointer to [**IncidentFieldAttributesValueType**](IncidentFieldAttributesValueType.md) |  | [optional] [default to INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT]
-**Value** | Pointer to **[]string** | The multiple values selected for this field. | [optional] 
+| Name      | Type                                                                                   | Description                                  | Notes                                                                |
+| --------- | -------------------------------------------------------------------------------------- | -------------------------------------------- | -------------------------------------------------------------------- |
+| **Type**  | Pointer to [**IncidentFieldAttributesValueType**](IncidentFieldAttributesValueType.md) |                                              | [optional] [default to INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT] |
+| **Value** | Pointer to **[]string**                                                                | The multiple values selected for this field. | [optional]                                                           |
 
 ## Methods
 
@@ -80,13 +80,12 @@ HasValue returns a boolean if a field has been set.
 
 `func (o *IncidentFieldAttributesMultipleValue) SetValueNil(b bool)`
 
- SetValueNil sets the value for Value to be an explicit nil
+SetValueNil sets the value for Value to be an explicit nil
 
 ### UnsetValue
+
 `func (o *IncidentFieldAttributesMultipleValue) UnsetValue()`
 
 UnsetValue ensures that no value is present for Value, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**LogsIndexedLogsUsageSum** | Pointer to **int64** | Total indexed logs for this retention period. | [optional] 
-**LogsLiveIndexedLogsUsageSum** | Pointer to **int64** | Live indexed logs for this retention period. | [optional] 
-**LogsRehydratedIndexedLogsUsageSum** | Pointer to **int64** | Rehydrated indexed logs for this retention period. | [optional] 
-**Retention** | Pointer to **string** | The retention period in days or \&quot;custom\&quot; for all custom retention periods. | [optional] 
+| Name                                  | Type                  | Description                                                                            | Notes      |
+| ------------------------------------- | --------------------- | -------------------------------------------------------------------------------------- | ---------- |
+| **LogsIndexedLogsUsageSum**           | Pointer to **int64**  | Total indexed logs for this retention period.                                          | [optional] |
+| **LogsLiveIndexedLogsUsageSum**       | Pointer to **int64**  | Live indexed logs for this retention period.                                           | [optional] |
+| **LogsRehydratedIndexedLogsUsageSum** | Pointer to **int64**  | Rehydrated indexed logs for this retention period.                                     | [optional] |
+| **Retention**                         | Pointer to **string** | The retention period in days or \&quot;custom\&quot; for all custom retention periods. | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetRetention sets Retention field to given value.
 
 HasRetention returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

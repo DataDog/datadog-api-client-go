@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DeletedDashboardListId** | Pointer to **int64** | ID of the deleted dashboard list. | [optional] 
+| Name                       | Type                 | Description                       | Notes      |
+| -------------------------- | -------------------- | --------------------------------- | ---------- |
+| **DeletedDashboardListId** | Pointer to **int64** | ID of the deleted dashboard list. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetDeletedDashboardListId sets DeletedDashboardListId field to given value.
 
 HasDeletedDashboardListId returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

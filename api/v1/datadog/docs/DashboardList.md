@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Author** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Created** | Pointer to **time.Time** | Date of creation of the dashboard list. | [optional] [readonly] 
-**DashboardCount** | Pointer to **int64** | The number of dashboards in the list. | [optional] [readonly] 
-**Id** | Pointer to **int64** | The ID of the dashboard list. | [optional] [readonly] 
-**IsFavorite** | Pointer to **bool** | Whether or not the list is in the favorites. | [optional] [readonly] 
-**Modified** | Pointer to **time.Time** | Date of last edition of the dashboard list. | [optional] [readonly] 
-**Name** | **string** | The name of the dashboard list. | 
-**Type** | Pointer to **string** | The type of dashboard list. | [optional] [readonly] 
+| Name               | Type                                 | Description                                  | Notes                 |
+| ------------------ | ------------------------------------ | -------------------------------------------- | --------------------- |
+| **Author**         | Pointer to [**Creator**](Creator.md) |                                              | [optional]            |
+| **Created**        | Pointer to **time.Time**             | Date of creation of the dashboard list.      | [optional] [readonly] |
+| **DashboardCount** | Pointer to **int64**                 | The number of dashboards in the list.        | [optional] [readonly] |
+| **Id**             | Pointer to **int64**                 | The ID of the dashboard list.                | [optional] [readonly] |
+| **IsFavorite**     | Pointer to **bool**                  | Whether or not the list is in the favorites. | [optional] [readonly] |
+| **Modified**       | Pointer to **time.Time**             | Date of last edition of the dashboard list.  | [optional] [readonly] |
+| **Name**           | **string**                           | The name of the dashboard list.              |
+| **Type**           | Pointer to **string**                | The type of dashboard list.                  | [optional] [readonly] |
 
 ## Methods
 
@@ -201,7 +201,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetType
 
 `func (o *DashboardList) GetType() string`
@@ -227,7 +226,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Counts** | Pointer to [**MonitorGroupSearchResponseCounts**](MonitorGroupSearchResponseCounts.md) |  | [optional] 
-**Groups** | Pointer to [**[]MonitorGroupSearchResult**](MonitorGroupSearchResult.md) | The list of found monitor groups. | [optional] [readonly] 
-**Metadata** | Pointer to [**MonitorSearchResponseMetadata**](MonitorSearchResponseMetadata.md) |  | [optional] 
+| Name         | Type                                                                                   | Description                       | Notes                 |
+| ------------ | -------------------------------------------------------------------------------------- | --------------------------------- | --------------------- |
+| **Counts**   | Pointer to [**MonitorGroupSearchResponseCounts**](MonitorGroupSearchResponseCounts.md) |                                   | [optional]            |
+| **Groups**   | Pointer to [**[]MonitorGroupSearchResult**](MonitorGroupSearchResult.md)               | The list of found monitor groups. | [optional] [readonly] |
+| **Metadata** | Pointer to [**MonitorSearchResponseMetadata**](MonitorSearchResponseMetadata.md)       |                                   | [optional]            |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

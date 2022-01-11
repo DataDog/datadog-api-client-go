@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregator** | Pointer to [**ScatterplotWidgetAggregator**](ScatterplotWidgetAggregator.md) |  | [optional] 
-**ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
-**ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Q** | Pointer to **string** | Query definition. | [optional] 
-**RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**SecurityQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+| Name                    | Type                                                                         | Description       | Notes      |
+| ----------------------- | ---------------------------------------------------------------------------- | ----------------- | ---------- |
+| **Aggregator**          | Pointer to [**ScatterplotWidgetAggregator**](ScatterplotWidgetAggregator.md) |                   | [optional] |
+| **ApmQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                   |                   | [optional] |
+| **EventQuery**          | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                   |                   | [optional] |
+| **LogQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                   |                   | [optional] |
+| **NetworkQuery**        | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                   |                   | [optional] |
+| **ProcessQuery**        | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md)           |                   | [optional] |
+| **ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                   |                   | [optional] |
+| **Q**                   | Pointer to **string**                                                        | Query definition. | [optional] |
+| **RumQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                   |                   | [optional] |
+| **SecurityQuery**       | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                   |                   | [optional] |
 
 ## Methods
 
@@ -284,7 +284,4 @@ SetSecurityQuery sets SecurityQuery field to given value.
 
 HasSecurityQuery returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

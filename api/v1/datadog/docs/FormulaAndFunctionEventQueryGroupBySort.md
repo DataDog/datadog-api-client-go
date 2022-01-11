@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregation** | [**FormulaAndFunctionEventAggregation**](FormulaAndFunctionEventAggregation.md) |  | 
-**Metric** | Pointer to **string** | Metric used for sorting group by results. | [optional] 
-**Order** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to QUERYSORTORDER_DESC]
+| Name            | Type                                                                            | Description                               | Notes                                       |
+| --------------- | ------------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------- |
+| **Aggregation** | [**FormulaAndFunctionEventAggregation**](FormulaAndFunctionEventAggregation.md) |                                           |
+| **Metric**      | Pointer to **string**                                                           | Metric used for sorting group by results. | [optional]                                  |
+| **Order**       | Pointer to [**QuerySortOrder**](QuerySortOrder.md)                              |                                           | [optional] [default to QUERYSORTORDER_DESC] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionEventQueryGroupBySort) SetAggregation(v FormulaAndFunctionEventAggregation)`
 
 SetAggregation sets Aggregation field to given value.
-
 
 ### GetMetric
 
@@ -97,7 +96,4 @@ SetOrder sets Order field to given value.
 
 HasOrder returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

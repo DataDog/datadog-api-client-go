@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Field** | Pointer to **string** | When type is &#x60;http_header&#x60;, name of the header to use to extract the value. | [optional] 
-**Parser** | [**SyntheticsVariableParser**](SyntheticsVariableParser.md) |  | 
-**Type** | [**SyntheticsGlobalVariableParseTestOptionsType**](SyntheticsGlobalVariableParseTestOptionsType.md) |  | 
+| Name       | Type                                                                                                | Description                                                                           | Notes      |
+| ---------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------- |
+| **Field**  | Pointer to **string**                                                                               | When type is &#x60;http_header&#x60;, name of the header to use to extract the value. | [optional] |
+| **Parser** | [**SyntheticsVariableParser**](SyntheticsVariableParser.md)                                         |                                                                                       |
+| **Type**   | [**SyntheticsGlobalVariableParseTestOptionsType**](SyntheticsGlobalVariableParseTestOptionsType.md) |                                                                                       |
 
 ## Methods
 
@@ -71,7 +71,6 @@ and a boolean to check if the value has been set.
 
 SetParser sets Parser field to given value.
 
-
 ### GetType
 
 `func (o *SyntheticsGlobalVariableParseTestOptions) GetType() SyntheticsGlobalVariableParseTestOptionsType`
@@ -91,8 +90,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**GlobalTimeTarget** | Pointer to **string** | Defined global time target. | [optional] 
-**ShowErrorBudget** | Pointer to **bool** | Defined error budget. | [optional] 
-**SloId** | Pointer to **string** | ID of the SLO displayed. | [optional] 
-**TimeWindows** | Pointer to [**[]WidgetTimeWindows**](WidgetTimeWindows.md) | Times being monitored. | [optional] 
-**Title** | Pointer to **string** | Title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**SLOWidgetDefinitionType**](SLOWidgetDefinitionType.md) |  | [default to SLOWIDGETDEFINITIONTYPE_SLO]
-**ViewMode** | Pointer to [**WidgetViewMode**](WidgetViewMode.md) |  | [optional] 
-**ViewType** | **string** | Type of view displayed by the widget. | [default to "detail"]
+| Name                 | Type                                                       | Description                           | Notes                                    |
+| -------------------- | ---------------------------------------------------------- | ------------------------------------- | ---------------------------------------- |
+| **GlobalTimeTarget** | Pointer to **string**                                      | Defined global time target.           | [optional]                               |
+| **ShowErrorBudget**  | Pointer to **bool**                                        | Defined error budget.                 | [optional]                               |
+| **SloId**            | Pointer to **string**                                      | ID of the SLO displayed.              | [optional]                               |
+| **TimeWindows**      | Pointer to [**[]WidgetTimeWindows**](WidgetTimeWindows.md) | Times being monitored.                | [optional]                               |
+| **Title**            | Pointer to **string**                                      | Title of the widget.                  | [optional]                               |
+| **TitleAlign**       | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)       |                                       | [optional]                               |
+| **TitleSize**        | Pointer to **string**                                      | Size of the title.                    | [optional]                               |
+| **Type**             | [**SLOWidgetDefinitionType**](SLOWidgetDefinitionType.md)  |                                       | [default to SLOWIDGETDEFINITIONTYPE_SLO] |
+| **ViewMode**         | Pointer to [**WidgetViewMode**](WidgetViewMode.md)         |                                       | [optional]                               |
+| **ViewType**         | **string**                                                 | Type of view displayed by the widget. | [default to "detail"]                    |
 
 ## Methods
 
@@ -228,7 +228,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetViewMode
 
 `func (o *SLOWidgetDefinition) GetViewMode() WidgetViewMode`
@@ -273,8 +272,4 @@ and a boolean to check if the value has been set.
 
 SetViewType sets ViewType field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Branch** | Pointer to **string** | Branch name. | [optional] 
-**CommitSha** | Pointer to **string** | The commit SHA. | [optional] 
+| Name          | Type                  | Description     | Notes      |
+| ------------- | --------------------- | --------------- | ---------- |
+| **Branch**    | Pointer to **string** | Branch name.    | [optional] |
+| **CommitSha** | Pointer to **string** | The commit SHA. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetCommitSha sets CommitSha field to given value.
 
 HasCommitSha returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

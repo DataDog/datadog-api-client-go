@@ -2,15 +2,13 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateIncident**](IncidentsApi.md#CreateIncident) | **Post** /api/v2/incidents | Create an incident
-[**DeleteIncident**](IncidentsApi.md#DeleteIncident) | **Delete** /api/v2/incidents/{incident_id} | Delete an existing incident
-[**GetIncident**](IncidentsApi.md#GetIncident) | **Get** /api/v2/incidents/{incident_id} | Get the details of an incident
-[**ListIncidents**](IncidentsApi.md#ListIncidents) | **Get** /api/v2/incidents | Get a list of incidents
-[**UpdateIncident**](IncidentsApi.md#UpdateIncident) | **Patch** /api/v2/incidents/{incident_id} | Update an existing incident
-
-
+| Method                                               | HTTP request                               | Description                    |
+| ---------------------------------------------------- | ------------------------------------------ | ------------------------------ |
+| [**CreateIncident**](IncidentsApi.md#CreateIncident) | **Post** /api/v2/incidents                 | Create an incident             |
+| [**DeleteIncident**](IncidentsApi.md#DeleteIncident) | **Delete** /api/v2/incidents/{incident_id} | Delete an existing incident    |
+| [**GetIncident**](IncidentsApi.md#GetIncident)       | **Get** /api/v2/incidents/{incident_id}    | Get the details of an incident |
+| [**ListIncidents**](IncidentsApi.md#ListIncidents)   | **Get** /api/v2/incidents                  | Get a list of incidents        |
+| [**UpdateIncident**](IncidentsApi.md#UpdateIncident) | **Patch** /api/v2/incidents/{incident_id}  | Update an existing incident    |
 
 ## CreateIncident
 
@@ -53,17 +51,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**IncidentCreateRequest**](IncidentCreateRequest.md) | Incident payload. | 
-
+| Name     | Type                                                  | Description                                                                 | Notes |
+| -------- | ----------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**IncidentCreateRequest**](IncidentCreateRequest.md) | Incident payload.                                                           |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -81,7 +76,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteIncident
 
@@ -120,21 +114,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**incidentId** | **string** | The UUID the incident. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **incidentId** | **string**          | The UUID the incident.                                                      |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -148,7 +139,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetIncident
 
@@ -195,22 +185,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**incidentId** | **string** | The UUID the incident. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **incidentId** | **string**          | The UUID the incident.                                                      |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetIncidentOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**include** | [**[]IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
+| Name        | Type                                                    | Description                                                                  | Notes |
+| ----------- | ------------------------------------------------------- | ---------------------------------------------------------------------------- | ----- |
+| **include** | [**[]IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. |
 
 ### Return type
 
@@ -228,7 +214,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListIncidents
 
@@ -278,20 +263,15 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListIncidentsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**include** | [**[]IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
-**pageSize** | **int64** | Size for a given page. | [default to 10]
-**pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
+| Name           | Type                                                    | Description                                                                  | Notes           |
+| -------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------- | --------------- |
+| **include**    | [**[]IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. |
+| **pageSize**   | **int64**                                               | Size for a given page.                                                       | [default to 10] |
+| **pageOffset** | **int64**                                               | Specific offset to use as the beginning of the returned page.                | [default to 0]  |
 
 ### Return type
 
@@ -309,7 +289,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateIncident
 
@@ -353,18 +332,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**incidentId** | **string** | The UUID the incident. |  |
-**body** | [**IncidentUpdateRequest**](IncidentUpdateRequest.md) | Incident Payload. | 
-
+| Name           | Type                                                  | Description                                                                 | Notes |
+| -------------- | ----------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**                                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **incidentId** | **string**                                            | The UUID the incident.                                                      |       |
+| **body**       | [**IncidentUpdateRequest**](IncidentUpdateRequest.md) | Incident Payload.                                                           |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -382,4 +358,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

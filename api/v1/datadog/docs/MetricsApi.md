@@ -2,16 +2,14 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**GetMetricMetadata**](MetricsApi.md#GetMetricMetadata) | **Get** /api/v1/metrics/{metric_name} | Get metric metadata
-[**ListActiveMetrics**](MetricsApi.md#ListActiveMetrics) | **Get** /api/v1/metrics | Get active metrics list
-[**ListMetrics**](MetricsApi.md#ListMetrics) | **Get** /api/v1/search | Search metrics
-[**QueryMetrics**](MetricsApi.md#QueryMetrics) | **Get** /api/v1/query | Query timeseries points
-[**SubmitMetrics**](MetricsApi.md#SubmitMetrics) | **Post** /api/v1/series | Submit metrics
-[**UpdateMetricMetadata**](MetricsApi.md#UpdateMetricMetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata
-
-
+| Method                                                         | HTTP request                          | Description             |
+| -------------------------------------------------------------- | ------------------------------------- | ----------------------- |
+| [**GetMetricMetadata**](MetricsApi.md#GetMetricMetadata)       | **Get** /api/v1/metrics/{metric_name} | Get metric metadata     |
+| [**ListActiveMetrics**](MetricsApi.md#ListActiveMetrics)       | **Get** /api/v1/metrics               | Get active metrics list |
+| [**ListMetrics**](MetricsApi.md#ListMetrics)                   | **Get** /api/v1/search                | Search metrics          |
+| [**QueryMetrics**](MetricsApi.md#QueryMetrics)                 | **Get** /api/v1/query                 | Query timeseries points |
+| [**SubmitMetrics**](MetricsApi.md#SubmitMetrics)               | **Post** /api/v1/series               | Submit metrics          |
+| [**UpdateMetricMetadata**](MetricsApi.md#UpdateMetricMetadata) | **Put** /api/v1/metrics/{metric_name} | Edit metric metadata    |
 
 ## GetMetricMetadata
 
@@ -53,17 +51,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**metricName** | **string** | Name of the metric for which to get metadata. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **metricName** | **string**          | Name of the metric for which to get metadata.                               |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -81,7 +76,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListActiveMetrics
 
@@ -129,23 +123,19 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**from** | **int64** | Seconds since the Unix epoch. | 
-
+| Name     | Type                | Description                                                                 | Notes |
+| -------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **from** | **int64**           | Seconds since the Unix epoch.                                               |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a ListActiveMetricsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**host** | **string** | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag. | 
-**tagFilter** | **string** | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. | 
+| Name          | Type       | Description                                                                                                                                    | Notes |
+| ------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **host**      | **string** | Hostname for filtering the list of metrics returned. If set, metrics retrieved are those with the corresponding hostname tag.                  |
+| **tagFilter** | **string** | Filter metrics that have been submitted with the given tags. Supports boolean and wildcard expressions. Cannot be combined with other filters. |
 
 ### Return type
 
@@ -163,7 +153,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListMetrics
 
@@ -205,17 +194,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**q** | **string** | Query string to search metrics upon. Must be prefixed with &#x60;metrics:&#x60;. | 
-
+| Name    | Type                | Description                                                                      | Notes |
+| ------- | ------------------- | -------------------------------------------------------------------------------- | ----- |
+| **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.      |
+| **q**   | **string**          | Query string to search metrics upon. Must be prefixed with &#x60;metrics:&#x60;. |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -233,7 +219,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## QueryMetrics
 
@@ -277,19 +262,16 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**from** | **int64** | Start of the queried time period, seconds since the Unix epoch. |  |
-**to** | **int64** | End of the queried time period, seconds since the Unix epoch. |  |
-**query** | **string** | Query string. | 
-
+| Name      | Type                | Description                                                                 | Notes |
+| --------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**   | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **from**  | **int64**           | Start of the queried time period, seconds since the Unix epoch.             |       |
+| **to**    | **int64**           | End of the queried time period, seconds since the Unix epoch.               |       |
+| **query** | **string**          | Query string.                                                               |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -308,7 +290,6 @@ This endpoint does not have optional parameters.
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
-
 ## SubmitMetrics
 
 > IntakePayloadAccepted SubmitMetrics(ctx, body, datadog.SubmitMetricsOptionalParameters{})
@@ -323,7 +304,7 @@ If you’re submitting metrics directly to the Datadog API without using DogStat
 - 20 bytes for the metric names
 - 50 bytes for the timeseries
 - The full payload is approximately 100 bytes. However, with the DogStatsD API,
-compression is applied, which reduces the payload size.
+  compression is applied, which reduces the payload size.
 
 ### Example
 
@@ -341,7 +322,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewMetricsPayload([]datadog.Series{*datadog.NewSeries("system.load.1", [][]*float64{[]*float64{nil}})}) // MetricsPayload | 
+    body := *datadog.NewMetricsPayload([]datadog.Series{*datadog.NewSeries("system.load.1", [][]*float64{[]*float64{nil}})}) // MetricsPayload |
     contentEncoding := datadog.MetricContentEncoding("deflate") // MetricContentEncoding | HTTP header used to compress the media-type. (optional)
     optionalParams := datadog.SubmitMetricsOptionalParameters{
         ContentEncoding: &contentEncoding,
@@ -363,22 +344,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**MetricsPayload**](MetricsPayload.md) |  | 
-
+| Name     | Type                                    | Description                                                                 | Notes |
+| -------- | --------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                     | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**MetricsPayload**](MetricsPayload.md) |                                                                             |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a SubmitMetricsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**contentEncoding** | [**MetricContentEncoding**](MetricContentEncoding.md) | HTTP header used to compress the media-type. | 
+| Name                | Type                                                  | Description                                  | Notes |
+| ------------------- | ----------------------------------------------------- | -------------------------------------------- | ----- |
+| **contentEncoding** | [**MetricContentEncoding**](MetricContentEncoding.md) | HTTP header used to compress the media-type. |
 
 ### Return type
 
@@ -396,7 +373,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateMetricMetadata
 
@@ -439,18 +415,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**metricName** | **string** | Name of the metric for which to edit metadata. |  |
-**body** | [**MetricMetadata**](MetricMetadata.md) | New metadata. | 
-
+| Name           | Type                                    | Description                                                                 | Notes |
+| -------------- | --------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**                     | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **metricName** | **string**                              | Name of the metric for which to edit metadata.                              |       |
+| **body**       | [**MetricMetadata**](MetricMetadata.md) | New metadata.                                                               |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -468,4 +441,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

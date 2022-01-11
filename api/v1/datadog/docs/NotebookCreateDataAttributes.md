@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Cells** | [**[]NotebookCellCreateRequest**](NotebookCellCreateRequest.md) | List of cells to display in the notebook. | 
-**Metadata** | Pointer to [**NotebookMetadata**](NotebookMetadata.md) |  | [optional] 
-**Name** | **string** | The name of the notebook. | 
-**Status** | Pointer to [**NotebookStatus**](NotebookStatus.md) |  | [optional] [default to NOTEBOOKSTATUS_PUBLISHED]
-**Time** | [**NotebookGlobalTime**](NotebookGlobalTime.md) |  | 
+| Name         | Type                                                            | Description                               | Notes                                            |
+| ------------ | --------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------ |
+| **Cells**    | [**[]NotebookCellCreateRequest**](NotebookCellCreateRequest.md) | List of cells to display in the notebook. |
+| **Metadata** | Pointer to [**NotebookMetadata**](NotebookMetadata.md)          |                                           | [optional]                                       |
+| **Name**     | **string**                                                      | The name of the notebook.                 |
+| **Status**   | Pointer to [**NotebookStatus**](NotebookStatus.md)              |                                           | [optional] [default to NOTEBOOKSTATUS_PUBLISHED] |
+| **Time**     | [**NotebookGlobalTime**](NotebookGlobalTime.md)                 |                                           |
 
 ## Methods
 
@@ -47,7 +47,6 @@ and a boolean to check if the value has been set.
 `func (o *NotebookCreateDataAttributes) SetCells(v []NotebookCellCreateRequest)`
 
 SetCells sets Cells field to given value.
-
 
 ### GetMetadata
 
@@ -93,7 +92,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetStatus
 
 `func (o *NotebookCreateDataAttributes) GetStatus() NotebookStatus`
@@ -138,8 +136,4 @@ and a boolean to check if the value has been set.
 
 SetTime sets Time field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

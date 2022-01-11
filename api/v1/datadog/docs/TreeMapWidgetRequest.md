@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Q** | Pointer to **string** | The widget metrics query. | [optional] 
+| Name  | Type                  | Description               | Notes      |
+| ----- | --------------------- | ------------------------- | ---------- |
+| **Q** | Pointer to **string** | The widget metrics query. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetQ sets Q field to given value.
 
 HasQ returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

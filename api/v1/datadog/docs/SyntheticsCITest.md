@@ -2,22 +2,22 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AllowInsecureCertificates** | Pointer to **bool** | Disable certificate checks in API tests. | [optional] 
-**BasicAuth** | Pointer to [**SyntheticsBasicAuth**](SyntheticsBasicAuth.md) |  | [optional] 
-**Body** | Pointer to **string** | Body to include in the test. | [optional] 
-**BodyType** | Pointer to **string** | Type of the data sent in a synthetics API test. | [optional] 
-**Cookies** | Pointer to **string** | Cookies for the request. | [optional] 
-**DeviceIds** | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md) | For browser test, array with the different device IDs used to run the test. | [optional] 
-**FollowRedirects** | Pointer to **bool** | For API HTTP test, whether or not the test should follow redirects. | [optional] 
-**Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
-**Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
-**Metadata** | Pointer to [**SyntheticsCIBatchMetadata**](SyntheticsCIBatchMetadata.md) |  | [optional] 
-**PublicId** | **string** | The public ID of the Synthetics test to trigger. | 
-**Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |  | [optional] 
-**StartUrl** | Pointer to **string** | Starting URL for the browser test. | [optional] 
-**Variables** | Pointer to **map[string]string** | Variables to replace in the test. | [optional] 
+| Name                          | Type                                                                       | Description                                                                 | Notes      |
+| ----------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------- |
+| **AllowInsecureCertificates** | Pointer to **bool**                                                        | Disable certificate checks in API tests.                                    | [optional] |
+| **BasicAuth**                 | Pointer to [**SyntheticsBasicAuth**](SyntheticsBasicAuth.md)               |                                                                             | [optional] |
+| **Body**                      | Pointer to **string**                                                      | Body to include in the test.                                                | [optional] |
+| **BodyType**                  | Pointer to **string**                                                      | Type of the data sent in a synthetics API test.                             | [optional] |
+| **Cookies**                   | Pointer to **string**                                                      | Cookies for the request.                                                    | [optional] |
+| **DeviceIds**                 | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md)               | For browser test, array with the different device IDs used to run the test. | [optional] |
+| **FollowRedirects**           | Pointer to **bool**                                                        | For API HTTP test, whether or not the test should follow redirects.         | [optional] |
+| **Headers**                   | Pointer to **map[string]string**                                           | Headers to include when performing the test.                                | [optional] |
+| **Locations**                 | Pointer to **[]string**                                                    | Array of locations used to run the test.                                    | [optional] |
+| **Metadata**                  | Pointer to [**SyntheticsCIBatchMetadata**](SyntheticsCIBatchMetadata.md)   |                                                                             | [optional] |
+| **PublicId**                  | **string**                                                                 | The public ID of the Synthetics test to trigger.                            |
+| **Retry**                     | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |                                                                             | [optional] |
+| **StartUrl**                  | Pointer to **string**                                                      | Starting URL for the browser test.                                          | [optional] |
+| **Variables**                 | Pointer to **map[string]string**                                           | Variables to replace in the test.                                           | [optional] |
 
 ## Methods
 
@@ -307,7 +307,6 @@ and a boolean to check if the value has been set.
 
 SetPublicId sets PublicId field to given value.
 
-
 ### GetRetry
 
 `func (o *SyntheticsCITest) GetRetry() SyntheticsTestOptionsRetry`
@@ -383,7 +382,4 @@ SetVariables sets Variables field to given value.
 
 HasVariables returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

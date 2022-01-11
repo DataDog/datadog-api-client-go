@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**End** | **time.Time** | The end time. | 
-**Live** | Pointer to **bool** | Indicates whether the timeframe should be shifted to end at the current time. | [optional] 
-**Start** | **time.Time** | The start time. | 
+| Name      | Type                | Description                                                                   | Notes      |
+| --------- | ------------------- | ----------------------------------------------------------------------------- | ---------- |
+| **End**   | **time.Time**       | The end time.                                                                 |
+| **Live**  | Pointer to **bool** | Indicates whether the timeframe should be shifted to end at the current time. | [optional] |
+| **Start** | **time.Time**       | The start time.                                                               |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *NotebookAbsoluteTime) SetEnd(v time.Time)`
 
 SetEnd sets End field to given value.
-
 
 ### GetLive
 
@@ -91,8 +90,4 @@ and a boolean to check if the value has been set.
 
 SetStart sets Start field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

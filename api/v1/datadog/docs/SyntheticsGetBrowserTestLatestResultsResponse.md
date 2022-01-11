@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**LastTimestampFetched** | Pointer to **int64** | Timestamp of the latest browser test run. | [optional] 
-**Results** | Pointer to [**[]SyntheticsBrowserTestResultShort**](SyntheticsBrowserTestResultShort.md) | Result of the latest browser test run. | [optional] 
+| Name                     | Type                                                                                     | Description                               | Notes      |
+| ------------------------ | ---------------------------------------------------------------------------------------- | ----------------------------------------- | ---------- |
+| **LastTimestampFetched** | Pointer to **int64**                                                                     | Timestamp of the latest browser test run. | [optional] |
+| **Results**              | Pointer to [**[]SyntheticsBrowserTestResultShort**](SyntheticsBrowserTestResultShort.md) | Result of the latest browser test run.    | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetResults sets Results field to given value.
 
 HasResults returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

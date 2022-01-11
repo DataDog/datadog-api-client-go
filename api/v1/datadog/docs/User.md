@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AccessRole** | Pointer to [**AccessRole**](AccessRole.md) |  | [optional] [default to ACCESSROLE_STANDARD]
-**Disabled** | Pointer to **bool** | The new disabled status of the user. | [optional] 
-**Email** | Pointer to **string** | The new email of the user. | [optional] 
-**Handle** | Pointer to **string** | The user handle, must be a valid email. | [optional] 
-**Icon** | Pointer to **string** | Gravatar icon associated to the user. | [optional] [readonly] 
-**Name** | Pointer to **string** | The name of the user. | [optional] 
-**Verified** | Pointer to **bool** | Whether or not the user logged in Datadog at least once. | [optional] [readonly] 
+| Name           | Type                                       | Description                                              | Notes                                       |
+| -------------- | ------------------------------------------ | -------------------------------------------------------- | ------------------------------------------- |
+| **AccessRole** | Pointer to [**AccessRole**](AccessRole.md) |                                                          | [optional] [default to ACCESSROLE_STANDARD] |
+| **Disabled**   | Pointer to **bool**                        | The new disabled status of the user.                     | [optional]                                  |
+| **Email**      | Pointer to **string**                      | The new email of the user.                               | [optional]                                  |
+| **Handle**     | Pointer to **string**                      | The user handle, must be a valid email.                  | [optional]                                  |
+| **Icon**       | Pointer to **string**                      | Gravatar icon associated to the user.                    | [optional] [readonly]                       |
+| **Name**       | Pointer to **string**                      | The name of the user.                                    | [optional]                                  |
+| **Verified**   | Pointer to **bool**                        | Whether or not the user logged in Datadog at least once. | [optional] [readonly]                       |
 
 ## Methods
 
@@ -206,7 +206,4 @@ SetVerified sets Verified field to given value.
 
 HasVerified returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

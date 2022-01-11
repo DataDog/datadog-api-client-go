@@ -2,17 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregator** | Pointer to [**FormulaAndFunctionMetricAggregation**](FormulaAndFunctionMetricAggregation.md) |  | [optional] 
-**DataSource** | [**FormulaAndFunctionProcessQueryDataSource**](FormulaAndFunctionProcessQueryDataSource.md) |  | 
-**IsNormalizedCpu** | Pointer to **bool** | Whether to normalize the CPU percentages. | [optional] 
-**Limit** | Pointer to **int64** | Number of hits to return. | [optional] 
-**Metric** | **string** | Process metric name. | 
-**Name** | **string** | Name of query for use in formulas. | 
-**Sort** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to QUERYSORTORDER_DESC]
-**TagFilters** | Pointer to **[]string** | An array of tags to filter by. | [optional] 
-**TextFilter** | Pointer to **string** | Text to use as filter. | [optional] 
+| Name                | Type                                                                                         | Description                               | Notes                                       |
+| ------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------- |
+| **Aggregator**      | Pointer to [**FormulaAndFunctionMetricAggregation**](FormulaAndFunctionMetricAggregation.md) |                                           | [optional]                                  |
+| **DataSource**      | [**FormulaAndFunctionProcessQueryDataSource**](FormulaAndFunctionProcessQueryDataSource.md)  |                                           |
+| **IsNormalizedCpu** | Pointer to **bool**                                                                          | Whether to normalize the CPU percentages. | [optional]                                  |
+| **Limit**           | Pointer to **int64**                                                                         | Number of hits to return.                 | [optional]                                  |
+| **Metric**          | **string**                                                                                   | Process metric name.                      |
+| **Name**            | **string**                                                                                   | Name of query for use in formulas.        |
+| **Sort**            | Pointer to [**QuerySortOrder**](QuerySortOrder.md)                                           |                                           | [optional] [default to QUERYSORTORDER_DESC] |
+| **TagFilters**      | Pointer to **[]string**                                                                      | An array of tags to filter by.            | [optional]                                  |
+| **TextFilter**      | Pointer to **string**                                                                        | Text to use as filter.                    | [optional]                                  |
 
 ## Methods
 
@@ -76,7 +76,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionProcessQueryDefinition) SetDataSource(v FormulaAndFunctionProcessQueryDataSource)`
 
 SetDataSource sets DataSource field to given value.
-
 
 ### GetIsNormalizedCpu
 
@@ -147,7 +146,6 @@ and a boolean to check if the value has been set.
 
 SetMetric sets Metric field to given value.
 
-
 ### GetName
 
 `func (o *FormulaAndFunctionProcessQueryDefinition) GetName() string`
@@ -166,7 +164,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionProcessQueryDefinition) SetName(v string)`
 
 SetName sets Name field to given value.
-
 
 ### GetSort
 
@@ -243,7 +240,4 @@ SetTextFilter sets TextFilter field to given value.
 
 HasTextFilter returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

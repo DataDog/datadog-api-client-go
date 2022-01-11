@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | [**NotebooksResponseDataAttributes**](NotebooksResponseDataAttributes.md) |  | 
-**Id** | **int64** | Unique notebook ID, assigned when you create the notebook. | [readonly] 
-**Type** | [**NotebookResourceType**](NotebookResourceType.md) |  | [default to NOTEBOOKRESOURCETYPE_NOTEBOOKS]
+| Name           | Type                                                                      | Description                                                | Notes                                       |
+| -------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------- |
+| **Attributes** | [**NotebooksResponseDataAttributes**](NotebooksResponseDataAttributes.md) |                                                            |
+| **Id**         | **int64**                                                                 | Unique notebook ID, assigned when you create the notebook. | [readonly]                                  |
+| **Type**       | [**NotebookResourceType**](NotebookResourceType.md)                       |                                                            | [default to NOTEBOOKRESOURCETYPE_NOTEBOOKS] |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
-
 ### GetId
 
 `func (o *NotebooksResponseData) GetId() int64`
@@ -65,7 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *NotebooksResponseData) SetId(v int64)`
 
 SetId sets Id field to given value.
-
 
 ### GetType
 
@@ -86,8 +84,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

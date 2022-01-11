@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Assertions** | [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [default to []]
-**ConfigVariables** | Pointer to [**[]SyntheticsConfigVariable**](SyntheticsConfigVariable.md) | Array of variables used for the test. | [optional] 
-**Request** | [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | 
-**SetCookie** | Pointer to **string** | Cookies to be used for the request, using the [Set-Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie) syntax. | [optional] 
-**Variables** | Pointer to [**[]SyntheticsBrowserVariable**](SyntheticsBrowserVariable.md) | Array of variables used for the test steps. | [optional] 
+| Name                | Type                                                                       | Description                                                                                                                              | Notes           |
+| ------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| **Assertions**      | [**[]SyntheticsAssertion**](SyntheticsAssertion.md)                        | Array of assertions used for the test.                                                                                                   | [default to []] |
+| **ConfigVariables** | Pointer to [**[]SyntheticsConfigVariable**](SyntheticsConfigVariable.md)   | Array of variables used for the test.                                                                                                    | [optional]      |
+| **Request**         | [**SyntheticsTestRequest**](SyntheticsTestRequest.md)                      |                                                                                                                                          |
+| **SetCookie**       | Pointer to **string**                                                      | Cookies to be used for the request, using the [Set-Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie) syntax. | [optional]      |
+| **Variables**       | Pointer to [**[]SyntheticsBrowserVariable**](SyntheticsBrowserVariable.md) | Array of variables used for the test steps.                                                                                              | [optional]      |
 
 ## Methods
 
@@ -47,7 +47,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsBrowserTestConfig) SetAssertions(v []SyntheticsAssertion)`
 
 SetAssertions sets Assertions field to given value.
-
 
 ### GetConfigVariables
 
@@ -92,7 +91,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsBrowserTestConfig) SetRequest(v SyntheticsTestRequest)`
 
 SetRequest sets Request field to given value.
-
 
 ### GetSetCookie
 
@@ -144,7 +142,4 @@ SetVariables sets Variables field to given value.
 
 HasVariables returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

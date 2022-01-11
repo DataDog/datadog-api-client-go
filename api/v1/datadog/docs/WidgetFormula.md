@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Alias** | Pointer to **string** | Expression alias. | [optional] 
-**CellDisplayMode** | Pointer to [**TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) |  | [optional] 
-**ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
-**Formula** | **string** | String expression built from queries, formulas, and functions. | 
-**Limit** | Pointer to [**WidgetFormulaLimit**](WidgetFormulaLimit.md) |  | [optional] 
+| Name                   | Type                                                                       | Description                                                    | Notes      |
+| ---------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------- |
+| **Alias**              | Pointer to **string**                                                      | Expression alias.                                              | [optional] |
+| **CellDisplayMode**    | Pointer to [**TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) |                                                                | [optional] |
+| **ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md)     | List of conditional formats.                                   | [optional] |
+| **Formula**            | **string**                                                                 | String expression built from queries, formulas, and functions. |
+| **Limit**              | Pointer to [**WidgetFormulaLimit**](WidgetFormulaLimit.md)                 |                                                                | [optional] |
 
 ## Methods
 
@@ -123,7 +123,6 @@ and a boolean to check if the value has been set.
 
 SetFormula sets Formula field to given value.
 
-
 ### GetLimit
 
 `func (o *WidgetFormula) GetLimit() WidgetFormulaLimit`
@@ -149,7 +148,4 @@ SetLimit sets Limit field to given value.
 
 HasLimit returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

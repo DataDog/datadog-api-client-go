@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**TotalCount** | Pointer to **int64** | The total number of notebooks that would be returned if the request was not filtered by &#x60;start&#x60; and &#x60;count&#x60; parameters. | [optional] 
-**TotalFilteredCount** | Pointer to **int64** | The total number of notebooks returned. | [optional] 
+| Name                   | Type                 | Description                                                                                                                                 | Notes      |
+| ---------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **TotalCount**         | Pointer to **int64** | The total number of notebooks that would be returned if the request was not filtered by &#x60;start&#x60; and &#x60;count&#x60; parameters. | [optional] |
+| **TotalFilteredCount** | Pointer to **int64** | The total number of notebooks returned.                                                                                                     | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetTotalFilteredCount sets TotalFilteredCount field to given value.
 
 HasTotalFilteredCount returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

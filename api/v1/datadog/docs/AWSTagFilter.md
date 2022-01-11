@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Namespace** | Pointer to [**AWSNamespace**](AWSNamespace.md) |  | [optional] 
-**TagFilterStr** | Pointer to **string** | The tag filter string. | [optional] 
+| Name             | Type                                           | Description            | Notes      |
+| ---------------- | ---------------------------------------------- | ---------------------- | ---------- |
+| **Namespace**    | Pointer to [**AWSNamespace**](AWSNamespace.md) |                        | [optional] |
+| **TagFilterStr** | Pointer to **string**                          | The tag filter string. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetTagFilterStr sets TagFilterStr field to given value.
 
 HasTagFilterStr returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

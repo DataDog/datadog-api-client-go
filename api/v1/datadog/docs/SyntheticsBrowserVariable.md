@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Example** | Pointer to **string** | Example for the variable. | [optional] 
-**Id** | Pointer to **string** | ID for the variable. Global variables require an ID. | [optional] 
-**Name** | **string** | Name of the variable. | 
-**Pattern** | Pointer to **string** | Pattern of the variable. | [optional] 
-**Type** | [**SyntheticsBrowserVariableType**](SyntheticsBrowserVariableType.md) |  | 
+| Name        | Type                                                                  | Description                                          | Notes      |
+| ----------- | --------------------------------------------------------------------- | ---------------------------------------------------- | ---------- |
+| **Example** | Pointer to **string**                                                 | Example for the variable.                            | [optional] |
+| **Id**      | Pointer to **string**                                                 | ID for the variable. Global variables require an ID. | [optional] |
+| **Name**    | **string**                                                            | Name of the variable.                                |
+| **Pattern** | Pointer to **string**                                                 | Pattern of the variable.                             | [optional] |
+| **Type**    | [**SyntheticsBrowserVariableType**](SyntheticsBrowserVariableType.md) |                                                      |
 
 ## Methods
 
@@ -98,7 +98,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetPattern
 
 `func (o *SyntheticsBrowserVariable) GetPattern() string`
@@ -143,8 +142,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CreatedBy** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
-**ModifiedBy** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
+| Name           | Type                                                       | Description | Notes      |
+| -------------- | ---------------------------------------------------------- | ----------- | ---------- |
+| **CreatedBy**  | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |             | [optional] |
+| **ModifiedBy** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |             | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetModifiedBy sets ModifiedBy field to given value.
 
 HasModifiedBy returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

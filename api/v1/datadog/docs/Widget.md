@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Definition** | [**WidgetDefinition**](WidgetDefinition.md) |  | 
-**Id** | Pointer to **int64** | ID of the widget. | [optional] 
-**Layout** | Pointer to [**WidgetLayout**](WidgetLayout.md) |  | [optional] 
+| Name           | Type                                           | Description       | Notes      |
+| -------------- | ---------------------------------------------- | ----------------- | ---------- |
+| **Definition** | [**WidgetDefinition**](WidgetDefinition.md)    |                   |
+| **Id**         | Pointer to **int64**                           | ID of the widget. | [optional] |
+| **Layout**     | Pointer to [**WidgetLayout**](WidgetLayout.md) |                   | [optional] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *Widget) SetDefinition(v WidgetDefinition)`
 
 SetDefinition sets Definition field to given value.
-
 
 ### GetId
 
@@ -97,7 +96,4 @@ SetLayout sets Layout field to given value.
 
 HasLayout returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,17 +2,15 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateDashboard**](DashboardsApi.md#CreateDashboard) | **Post** /api/v1/dashboard | Create a new dashboard
-[**DeleteDashboard**](DashboardsApi.md#DeleteDashboard) | **Delete** /api/v1/dashboard/{dashboard_id} | Delete a dashboard
-[**DeleteDashboards**](DashboardsApi.md#DeleteDashboards) | **Delete** /api/v1/dashboard | Delete dashboards
-[**GetDashboard**](DashboardsApi.md#GetDashboard) | **Get** /api/v1/dashboard/{dashboard_id} | Get a dashboard
-[**ListDashboards**](DashboardsApi.md#ListDashboards) | **Get** /api/v1/dashboard | Get all dashboards
-[**RestoreDashboards**](DashboardsApi.md#RestoreDashboards) | **Patch** /api/v1/dashboard | Restore deleted dashboards
-[**UpdateDashboard**](DashboardsApi.md#UpdateDashboard) | **Put** /api/v1/dashboard/{dashboard_id} | Update a dashboard
-
-
+| Method                                                      | HTTP request                                | Description                |
+| ----------------------------------------------------------- | ------------------------------------------- | -------------------------- |
+| [**CreateDashboard**](DashboardsApi.md#CreateDashboard)     | **Post** /api/v1/dashboard                  | Create a new dashboard     |
+| [**DeleteDashboard**](DashboardsApi.md#DeleteDashboard)     | **Delete** /api/v1/dashboard/{dashboard_id} | Delete a dashboard         |
+| [**DeleteDashboards**](DashboardsApi.md#DeleteDashboards)   | **Delete** /api/v1/dashboard                | Delete dashboards          |
+| [**GetDashboard**](DashboardsApi.md#GetDashboard)           | **Get** /api/v1/dashboard/{dashboard_id}    | Get a dashboard            |
+| [**ListDashboards**](DashboardsApi.md#ListDashboards)       | **Get** /api/v1/dashboard                   | Get all dashboards         |
+| [**RestoreDashboards**](DashboardsApi.md#RestoreDashboards) | **Patch** /api/v1/dashboard                 | Restore deleted dashboards |
+| [**UpdateDashboard**](DashboardsApi.md#UpdateDashboard)     | **Put** /api/v1/dashboard/{dashboard_id}    | Update a dashboard         |
 
 ## CreateDashboard
 
@@ -55,17 +53,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**Dashboard**](Dashboard.md) | Create a dashboard request body. | 
-
+| Name     | Type                          | Description                                                                 | Notes |
+| -------- | ----------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**Dashboard**](Dashboard.md) | Create a dashboard request body.                                            |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -83,7 +78,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteDashboard
 
@@ -125,17 +119,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**dashboardId** | **string** | The ID of the dashboard. | 
-
+| Name            | Type                | Description                                                                 | Notes |
+| --------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**         | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **dashboardId** | **string**          | The ID of the dashboard.                                                    |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -153,7 +144,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteDashboards
 
@@ -191,21 +181,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**DashboardBulkDeleteRequest**](DashboardBulkDeleteRequest.md) | Delete dashboards request body. | 
-
+| Name     | Type                                                            | Description                                                                 | Notes |
+| -------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                             | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**DashboardBulkDeleteRequest**](DashboardBulkDeleteRequest.md) | Delete dashboards request body.                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -219,7 +206,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetDashboard
 
@@ -261,17 +247,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**dashboardId** | **string** | The ID of the dashboard. | 
-
+| Name            | Type                | Description                                                                 | Notes |
+| --------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**         | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **dashboardId** | **string**          | The ID of the dashboard.                                                    |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -289,7 +272,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListDashboards
 
@@ -337,18 +319,13 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListDashboardsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**filterShared** | **bool** | When &#x60;true&#x60;, this query only returns shared custom created or cloned dashboards. | 
+| Name             | Type     | Description                                                                                | Notes |
+| ---------------- | -------- | ------------------------------------------------------------------------------------------ | ----- |
+| **filterShared** | **bool** | When &#x60;true&#x60;, this query only returns shared custom created or cloned dashboards. |
 
 ### Return type
 
@@ -366,7 +343,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## RestoreDashboards
 
@@ -404,21 +380,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**DashboardRestoreRequest**](DashboardRestoreRequest.md) | Restore dashboards request body. | 
-
+| Name     | Type                                                      | Description                                                                 | Notes |
+| -------- | --------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                       | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**DashboardRestoreRequest**](DashboardRestoreRequest.md) | Restore dashboards request body.                                            |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -432,7 +405,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateDashboard
 
@@ -475,18 +447,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**dashboardId** | **string** | The ID of the dashboard. |  |
-**body** | [**Dashboard**](Dashboard.md) | Update Dashboard request body. | 
-
+| Name            | Type                          | Description                                                                 | Notes |
+| --------------- | ----------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**         | **context.Context**           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **dashboardId** | **string**                    | The ID of the dashboard.                                                    |       |
+| **body**        | [**Dashboard**](Dashboard.md) | Update Dashboard request body.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -504,4 +473,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

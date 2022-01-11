@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Created** | Pointer to **time.Time** | Creation time of the permission. | [optional] 
-**Description** | Pointer to **string** | Description of the permission. | [optional] 
-**DisplayName** | Pointer to **string** | Displayed name for the permission. | [optional] 
-**DisplayType** | Pointer to **string** | Display type. | [optional] 
-**GroupName** | Pointer to **string** | Name of the permission group. | [optional] 
-**Name** | Pointer to **string** | Name of the permission. | [optional] 
-**Restricted** | Pointer to **bool** | Whether or not the permission is restricted. | [optional] 
+| Name            | Type                     | Description                                  | Notes      |
+| --------------- | ------------------------ | -------------------------------------------- | ---------- |
+| **Created**     | Pointer to **time.Time** | Creation time of the permission.             | [optional] |
+| **Description** | Pointer to **string**    | Description of the permission.               | [optional] |
+| **DisplayName** | Pointer to **string**    | Displayed name for the permission.           | [optional] |
+| **DisplayType** | Pointer to **string**    | Display type.                                | [optional] |
+| **GroupName**   | Pointer to **string**    | Name of the permission group.                | [optional] |
+| **Name**        | Pointer to **string**    | Name of the permission.                      | [optional] |
+| **Restricted**  | Pointer to **bool**      | Whether or not the permission is restricted. | [optional] |
 
 ## Methods
 
@@ -206,7 +206,4 @@ SetRestricted sets Restricted field to given value.
 
 HasRestricted returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

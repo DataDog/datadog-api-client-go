@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Id** | Pointer to **string** | Access key for the private location. | [optional] [readonly] 
-**Key** | Pointer to **string** | Secret access key for the private location. | [optional] [readonly] 
+| Name    | Type                  | Description                                 | Notes                 |
+| ------- | --------------------- | ------------------------------------------- | --------------------- |
+| **Id**  | Pointer to **string** | Access key for the private location.        | [optional] [readonly] |
+| **Key** | Pointer to **string** | Secret access key for the private location. | [optional] [readonly] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetKey sets Key field to given value.
 
 HasKey returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

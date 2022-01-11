@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Q** | **string** | Query definition. | 
-**TagsExecution** | Pointer to **string** | The execution method for multi-value filters. | [optional] 
+| Name              | Type                  | Description                                   | Notes      |
+| ----------------- | --------------------- | --------------------------------------------- | ---------- |
+| **Q**             | **string**            | Query definition.                             |
+| **TagsExecution** | Pointer to **string** | The execution method for multi-value filters. | [optional] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetQ sets Q field to given value.
 
-
 ### GetTagsExecution
 
 `func (o *WidgetEvent) GetTagsExecution() string`
@@ -71,7 +70,4 @@ SetTagsExecution sets TagsExecution field to given value.
 
 HasTagsExecution returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Tests** | Pointer to [**[]SyntheticsCITest**](SyntheticsCITest.md) | Individual synthetics test. | [optional] 
+| Name      | Type                                                     | Description                 | Notes      |
+| --------- | -------------------------------------------------------- | --------------------------- | ---------- |
+| **Tests** | Pointer to [**[]SyntheticsCITest**](SyntheticsCITest.md) | Individual synthetics test. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetTests sets Tests field to given value.
 
 HasTests returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

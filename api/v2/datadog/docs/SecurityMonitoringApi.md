@@ -2,22 +2,20 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateSecurityFilter**](SecurityMonitoringApi.md#CreateSecurityFilter) | **Post** /api/v2/security_monitoring/configuration/security_filters | Create a security filter
-[**CreateSecurityMonitoringRule**](SecurityMonitoringApi.md#CreateSecurityMonitoringRule) | **Post** /api/v2/security_monitoring/rules | Create a detection rule
-[**DeleteSecurityFilter**](SecurityMonitoringApi.md#DeleteSecurityFilter) | **Delete** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id} | Delete a security filter
-[**DeleteSecurityMonitoringRule**](SecurityMonitoringApi.md#DeleteSecurityMonitoringRule) | **Delete** /api/v2/security_monitoring/rules/{rule_id} | Delete an existing rule
-[**GetSecurityFilter**](SecurityMonitoringApi.md#GetSecurityFilter) | **Get** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id} | Get a security filter
-[**GetSecurityMonitoringRule**](SecurityMonitoringApi.md#GetSecurityMonitoringRule) | **Get** /api/v2/security_monitoring/rules/{rule_id} | Get a rule&#39;s details
-[**ListSecurityFilters**](SecurityMonitoringApi.md#ListSecurityFilters) | **Get** /api/v2/security_monitoring/configuration/security_filters | Get all security filters
-[**ListSecurityMonitoringRules**](SecurityMonitoringApi.md#ListSecurityMonitoringRules) | **Get** /api/v2/security_monitoring/rules | List rules
-[**ListSecurityMonitoringSignals**](SecurityMonitoringApi.md#ListSecurityMonitoringSignals) | **Get** /api/v2/security_monitoring/signals | Get a quick list of security signals
-[**SearchSecurityMonitoringSignals**](SecurityMonitoringApi.md#SearchSecurityMonitoringSignals) | **Post** /api/v2/security_monitoring/signals/search | Get a list of security signals
-[**UpdateSecurityFilter**](SecurityMonitoringApi.md#UpdateSecurityFilter) | **Patch** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id} | Update a security filter
-[**UpdateSecurityMonitoringRule**](SecurityMonitoringApi.md#UpdateSecurityMonitoringRule) | **Put** /api/v2/security_monitoring/rules/{rule_id} | Update an existing rule
-
-
+| Method                                                                                          | HTTP request                                                                               | Description                          |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------ |
+| [**CreateSecurityFilter**](SecurityMonitoringApi.md#CreateSecurityFilter)                       | **Post** /api/v2/security_monitoring/configuration/security_filters                        | Create a security filter             |
+| [**CreateSecurityMonitoringRule**](SecurityMonitoringApi.md#CreateSecurityMonitoringRule)       | **Post** /api/v2/security_monitoring/rules                                                 | Create a detection rule              |
+| [**DeleteSecurityFilter**](SecurityMonitoringApi.md#DeleteSecurityFilter)                       | **Delete** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id} | Delete a security filter             |
+| [**DeleteSecurityMonitoringRule**](SecurityMonitoringApi.md#DeleteSecurityMonitoringRule)       | **Delete** /api/v2/security_monitoring/rules/{rule_id}                                     | Delete an existing rule              |
+| [**GetSecurityFilter**](SecurityMonitoringApi.md#GetSecurityFilter)                             | **Get** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id}    | Get a security filter                |
+| [**GetSecurityMonitoringRule**](SecurityMonitoringApi.md#GetSecurityMonitoringRule)             | **Get** /api/v2/security_monitoring/rules/{rule_id}                                        | Get a rule&#39;s details             |
+| [**ListSecurityFilters**](SecurityMonitoringApi.md#ListSecurityFilters)                         | **Get** /api/v2/security_monitoring/configuration/security_filters                         | Get all security filters             |
+| [**ListSecurityMonitoringRules**](SecurityMonitoringApi.md#ListSecurityMonitoringRules)         | **Get** /api/v2/security_monitoring/rules                                                  | List rules                           |
+| [**ListSecurityMonitoringSignals**](SecurityMonitoringApi.md#ListSecurityMonitoringSignals)     | **Get** /api/v2/security_monitoring/signals                                                | Get a quick list of security signals |
+| [**SearchSecurityMonitoringSignals**](SecurityMonitoringApi.md#SearchSecurityMonitoringSignals) | **Post** /api/v2/security_monitoring/signals/search                                        | Get a list of security signals       |
+| [**UpdateSecurityFilter**](SecurityMonitoringApi.md#UpdateSecurityFilter)                       | **Patch** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id}  | Update a security filter             |
+| [**UpdateSecurityMonitoringRule**](SecurityMonitoringApi.md#UpdateSecurityMonitoringRule)       | **Put** /api/v2/security_monitoring/rules/{rule_id}                                        | Update an existing rule              |
 
 ## CreateSecurityFilter
 
@@ -62,17 +60,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**SecurityFilterCreateRequest**](SecurityFilterCreateRequest.md) | The definition of the new security filter. | 
-
+| Name     | Type                                                              | Description                                                                 | Notes |
+| -------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**SecurityFilterCreateRequest**](SecurityFilterCreateRequest.md) | The definition of the new security filter.                                  |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -90,7 +85,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateSecurityMonitoringRule
 
@@ -114,7 +108,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewSecurityMonitoringRuleCreatePayload([]datadog.SecurityMonitoringRuleCaseCreate{*datadog.NewSecurityMonitoringRuleCaseCreate(datadog.SecurityMonitoringRuleSeverity("info"))}, true, "Message_example", "My security monitoring rule.", *datadog.NewSecurityMonitoringRuleOptions(), []datadog.SecurityMonitoringRuleQueryCreate{*datadog.NewSecurityMonitoringRuleQueryCreate("a > 3")}) // SecurityMonitoringRuleCreatePayload | 
+    body := *datadog.NewSecurityMonitoringRuleCreatePayload([]datadog.SecurityMonitoringRuleCaseCreate{*datadog.NewSecurityMonitoringRuleCaseCreate(datadog.SecurityMonitoringRuleSeverity("info"))}, true, "Message_example", "My security monitoring rule.", *datadog.NewSecurityMonitoringRuleOptions(), []datadog.SecurityMonitoringRuleQueryCreate{*datadog.NewSecurityMonitoringRuleQueryCreate("a > 3")}) // SecurityMonitoringRuleCreatePayload |
 
     configuration := datadog.NewConfiguration()
 
@@ -132,17 +126,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**SecurityMonitoringRuleCreatePayload**](SecurityMonitoringRuleCreatePayload.md) |  | 
-
+| Name     | Type                                                                              | Description                                                                 | Notes |
+| -------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**SecurityMonitoringRuleCreatePayload**](SecurityMonitoringRuleCreatePayload.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -160,7 +151,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteSecurityFilter
 
@@ -198,21 +188,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**securityFilterId** | **string** | The ID of the security filter. | 
-
+| Name                 | Type                | Description                                                                 | Notes |
+| -------------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**              | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **securityFilterId** | **string**          | The ID of the security filter.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -226,7 +213,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteSecurityMonitoringRule
 
@@ -264,21 +250,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**ruleId** | **string** | The ID of the rule. | 
-
+| Name       | Type                | Description                                                                 | Notes |
+| ---------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **ruleId** | **string**          | The ID of the rule.                                                         |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -292,7 +275,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetSecurityFilter
 
@@ -337,17 +319,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**securityFilterId** | **string** | The ID of the security filter. | 
-
+| Name                 | Type                | Description                                                                 | Notes |
+| -------------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**              | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **securityFilterId** | **string**          | The ID of the security filter.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -365,7 +344,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetSecurityMonitoringRule
 
@@ -407,17 +385,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**ruleId** | **string** | The ID of the rule. | 
-
+| Name       | Type                | Description                                                                 | Notes |
+| ---------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **ruleId** | **string**          | The ID of the rule.                                                         |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -435,7 +410,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListSecurityFilters
 
@@ -478,11 +452,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -500,7 +472,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListSecurityMonitoringRules
 
@@ -547,19 +518,14 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListSecurityMonitoringRulesOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**pageSize** | **int64** | Size for a given page. | [default to 10]
-**pageNumber** | **int64** | Specific page number to return. | [default to 0]
+| Name           | Type      | Description                     | Notes           |
+| -------------- | --------- | ------------------------------- | --------------- |
+| **pageSize**   | **int64** | Size for a given page.          | [default to 10] |
+| **pageNumber** | **int64** | Specific page number to return. | [default to 0]  |
 
 ### Return type
 
@@ -577,7 +543,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListSecurityMonitoringSignals
 
@@ -636,23 +601,18 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListSecurityMonitoringSignalsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**filterQuery** | **string** | The search query for security signals. | 
-**filterFrom** | **time.Time** | The minimum timestamp for requested security signals. | 
-**filterTo** | **time.Time** | The maximum timestamp for requested security signals. | 
-**sort** | [**SecurityMonitoringSignalsSort**](SecurityMonitoringSignalsSort.md) | The order of the security signals in results. | 
-**pageCursor** | **string** | A list of results using the cursor provided in the previous query. | 
-**pageLimit** | **int32** | The maximum number of security signals in the response. | [default to 10]
+| Name            | Type                                                                  | Description                                                        | Notes           |
+| --------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------ | --------------- |
+| **filterQuery** | **string**                                                            | The search query for security signals.                             |
+| **filterFrom**  | **time.Time**                                                         | The minimum timestamp for requested security signals.              |
+| **filterTo**    | **time.Time**                                                         | The maximum timestamp for requested security signals.              |
+| **sort**        | [**SecurityMonitoringSignalsSort**](SecurityMonitoringSignalsSort.md) | The order of the security signals in results.                      |
+| **pageCursor**  | **string**                                                            | A list of results using the cursor provided in the previous query. |
+| **pageLimit**   | **int32**                                                             | The maximum number of security signals in the response.            | [default to 10] |
 
 ### Return type
 
@@ -670,7 +630,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## SearchSecurityMonitoringSignals
 
@@ -718,18 +677,13 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a SearchSecurityMonitoringSignalsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**body** | [**SecurityMonitoringSignalListRequest**](SecurityMonitoringSignalListRequest.md) |  | 
+| Name     | Type                                                                              | Description | Notes |
+| -------- | --------------------------------------------------------------------------------- | ----------- | ----- |
+| **body** | [**SecurityMonitoringSignalListRequest**](SecurityMonitoringSignalListRequest.md) |             |
 
 ### Return type
 
@@ -747,7 +701,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateSecurityFilter
 
@@ -791,18 +744,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**securityFilterId** | **string** | The ID of the security filter. |  |
-**body** | [**SecurityFilterUpdateRequest**](SecurityFilterUpdateRequest.md) | New definition of the security filter. | 
-
+| Name                 | Type                                                              | Description                                                                 | Notes |
+| -------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**              | **context.Context**                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **securityFilterId** | **string**                                                        | The ID of the security filter.                                              |       |
+| **body**             | [**SecurityFilterUpdateRequest**](SecurityFilterUpdateRequest.md) | New definition of the security filter.                                      |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -820,7 +770,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateSecurityMonitoringRule
 
@@ -847,7 +796,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     ruleId := "ruleId_example" // string | The ID of the rule.
-    body := *datadog.NewSecurityMonitoringRuleUpdatePayload() // SecurityMonitoringRuleUpdatePayload | 
+    body := *datadog.NewSecurityMonitoringRuleUpdatePayload() // SecurityMonitoringRuleUpdatePayload |
 
     configuration := datadog.NewConfiguration()
 
@@ -865,18 +814,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**ruleId** | **string** | The ID of the rule. |  |
-**body** | [**SecurityMonitoringRuleUpdatePayload**](SecurityMonitoringRuleUpdatePayload.md) |  | 
-
+| Name       | Type                                                                              | Description                                                                 | Notes |
+| ---------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context**                                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **ruleId** | **string**                                                                        | The ID of the rule.                                                         |       |
+| **body**   | [**SecurityMonitoringRuleUpdatePayload**](SecurityMonitoringRuleUpdatePayload.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -894,4 +840,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

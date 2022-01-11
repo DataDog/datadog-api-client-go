@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
-**Sources** | Pointer to **[]string** | Array of source attributes. | [optional] [default to ["dd.trace_id"]]
-**Type** | [**LogsTraceRemapperType**](LogsTraceRemapperType.md) |  | [default to LOGSTRACEREMAPPERTYPE_TRACE_ID_REMAPPER]
+| Name          | Type                                                  | Description                              | Notes                                                |
+| ------------- | ----------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------- |
+| **IsEnabled** | Pointer to **bool**                                   | Whether or not the processor is enabled. | [optional] [default to false]                        |
+| **Name**      | Pointer to **string**                                 | Name of the processor.                   | [optional]                                           |
+| **Sources**   | Pointer to **[]string**                               | Array of source attributes.              | [optional] [default to ["dd.trace_id"]]              |
+| **Type**      | [**LogsTraceRemapperType**](LogsTraceRemapperType.md) |                                          | [default to LOGSTRACEREMAPPERTYPE_TRACE_ID_REMAPPER] |
 
 ## Methods
 
@@ -122,8 +122,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

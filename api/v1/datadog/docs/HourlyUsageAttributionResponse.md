@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Metadata** | Pointer to [**HourlyUsageAttributionMetadata**](HourlyUsageAttributionMetadata.md) |  | [optional] 
-**Usage** | Pointer to [**[]HourlyUsageAttributionBody**](HourlyUsageAttributionBody.md) | Get the hourly usage attribution by tag(s). | [optional] 
+| Name         | Type                                                                               | Description                                 | Notes      |
+| ------------ | ---------------------------------------------------------------------------------- | ------------------------------------------- | ---------- |
+| **Metadata** | Pointer to [**HourlyUsageAttributionMetadata**](HourlyUsageAttributionMetadata.md) |                                             | [optional] |
+| **Usage**    | Pointer to [**[]HourlyUsageAttributionBody**](HourlyUsageAttributionBody.md)       | Get the hourly usage attribution by tag(s). | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetUsage sets Usage field to given value.
 
 HasUsage returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

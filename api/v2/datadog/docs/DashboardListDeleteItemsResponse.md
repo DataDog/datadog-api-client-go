@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DeletedDashboardsFromList** | Pointer to [**[]DashboardListItemResponse**](DashboardListItemResponse.md) | List of dashboards deleted from the dashboard list. | [optional] 
+| Name                          | Type                                                                       | Description                                         | Notes      |
+| ----------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------- | ---------- |
+| **DeletedDashboardsFromList** | Pointer to [**[]DashboardListItemResponse**](DashboardListItemResponse.md) | List of dashboards deleted from the dashboard list. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetDeletedDashboardsFromList sets DeletedDashboardsFromList field to given value
 
 HasDeletedDashboardsFromList returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

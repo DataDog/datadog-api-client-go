@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Config** | Pointer to **interface{}** | Configuration skeleton for the private location. See installation instructions of the private location on how to use this configuration. | [optional] 
-**PrivateLocation** | Pointer to [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) |  | [optional] 
-**ResultEncryption** | Pointer to [**SyntheticsPrivateLocationCreationResponseResultEncryption**](SyntheticsPrivateLocationCreationResponseResultEncryption.md) |  | [optional] 
+| Name                 | Type                                                                                                                                     | Description                                                                                                                              | Notes      |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Config**           | Pointer to **interface{}**                                                                                                               | Configuration skeleton for the private location. See installation instructions of the private location on how to use this configuration. | [optional] |
+| **PrivateLocation**  | Pointer to [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md)                                                                 |                                                                                                                                          | [optional] |
+| **ResultEncryption** | Pointer to [**SyntheticsPrivateLocationCreationResponseResultEncryption**](SyntheticsPrivateLocationCreationResponseResultEncryption.md) |                                                                                                                                          | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetResultEncryption sets ResultEncryption field to given value.
 
 HasResultEncryption returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Data** | [**[]IncidentServiceResponseData**](IncidentServiceResponseData.md) | An array of incident services. | 
-**Included** | Pointer to [**[]IncidentServiceIncludedItems**](IncidentServiceIncludedItems.md) | Included related resources which the user requested. | [optional] [readonly] 
-**Meta** | Pointer to [**IncidentServicesResponseMeta**](IncidentServicesResponseMeta.md) |  | [optional] 
+| Name         | Type                                                                             | Description                                          | Notes                 |
+| ------------ | -------------------------------------------------------------------------------- | ---------------------------------------------------- | --------------------- |
+| **Data**     | [**[]IncidentServiceResponseData**](IncidentServiceResponseData.md)              | An array of incident services.                       |
+| **Included** | Pointer to [**[]IncidentServiceIncludedItems**](IncidentServiceIncludedItems.md) | Included related resources which the user requested. | [optional] [readonly] |
+| **Meta**     | Pointer to [**IncidentServicesResponseMeta**](IncidentServicesResponseMeta.md)   |                                                      | [optional]            |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *IncidentServicesResponse) SetData(v []IncidentServiceResponseData)`
 
 SetData sets Data field to given value.
-
 
 ### GetIncluded
 
@@ -97,7 +96,4 @@ SetMeta sets Meta field to given value.
 
 HasMeta returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

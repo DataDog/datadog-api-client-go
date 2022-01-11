@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Limit** | Pointer to **int64** | Maximum amount of records to be returned. | [optional] 
-**Offset** | Pointer to **int64** | Records to be skipped before beginning to return. | [optional] 
-**SortDirection** | Pointer to **string** | Direction to sort by. | [optional] 
-**SortName** | Pointer to **string** | Field to sort by. | [optional] 
-**TotalNumberOfRecords** | Pointer to **int64** | Total number of records. | [optional] 
+| Name                     | Type                  | Description                                       | Notes      |
+| ------------------------ | --------------------- | ------------------------------------------------- | ---------- |
+| **Limit**                | Pointer to **int64**  | Maximum amount of records to be returned.         | [optional] |
+| **Offset**               | Pointer to **int64**  | Records to be skipped before beginning to return. | [optional] |
+| **SortDirection**        | Pointer to **string** | Direction to sort by.                             | [optional] |
+| **SortName**             | Pointer to **string** | Field to sort by.                                 | [optional] |
+| **TotalNumberOfRecords** | Pointer to **int64**  | Total number of records.                          | [optional] |
 
 ## Methods
 
@@ -154,7 +154,4 @@ SetTotalNumberOfRecords sets TotalNumberOfRecords field to given value.
 
 HasTotalNumberOfRecords returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

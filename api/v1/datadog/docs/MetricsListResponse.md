@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**From** | Pointer to **string** | Time when the metrics were active, seconds since the Unix epoch. | [optional] 
-**Metrics** | Pointer to **[]string** | List of metric names. | [optional] 
+| Name        | Type                    | Description                                                      | Notes      |
+| ----------- | ----------------------- | ---------------------------------------------------------------- | ---------- |
+| **From**    | Pointer to **string**   | Time when the metrics were active, seconds since the Unix epoch. | [optional] |
+| **Metrics** | Pointer to **[]string** | List of metric names.                                            | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetMetrics sets Metrics field to given value.
 
 HasMetrics returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

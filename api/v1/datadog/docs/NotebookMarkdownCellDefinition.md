@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Text** | **string** | The markdown content. | 
-**Type** | [**NotebookMarkdownCellDefinitionType**](NotebookMarkdownCellDefinitionType.md) |  | [default to NOTEBOOKMARKDOWNCELLDEFINITIONTYPE_MARKDOWN]
+| Name     | Type                                                                            | Description           | Notes                                                    |
+| -------- | ------------------------------------------------------------------------------- | --------------------- | -------------------------------------------------------- |
+| **Text** | **string**                                                                      | The markdown content. |
+| **Type** | [**NotebookMarkdownCellDefinitionType**](NotebookMarkdownCellDefinitionType.md) |                       | [default to NOTEBOOKMARKDOWNCELLDEFINITIONTYPE_MARKDOWN] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetText sets Text field to given value.
 
-
 ### GetType
 
 `func (o *NotebookMarkdownCellDefinition) GetType() NotebookMarkdownCellDefinitionType`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

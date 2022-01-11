@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Code** | Pointer to **string** | A unique code for this type of warning | [optional] 
-**Detail** | Pointer to **string** | A detailed explanation of this specific warning | [optional] 
-**Title** | Pointer to **string** | A short human-readable summary of the warning | [optional] 
+| Name       | Type                  | Description                                     | Notes      |
+| ---------- | --------------------- | ----------------------------------------------- | ---------- |
+| **Code**   | Pointer to **string** | A unique code for this type of warning          | [optional] |
+| **Detail** | Pointer to **string** | A detailed explanation of this specific warning | [optional] |
+| **Title**  | Pointer to **string** | A short human-readable summary of the warning   | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

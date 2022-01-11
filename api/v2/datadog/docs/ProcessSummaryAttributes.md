@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Cmdline** | Pointer to **string** | Process command line. | [optional] 
-**Host** | Pointer to **string** | Host running the process. | [optional] 
-**Pid** | Pointer to **int64** | Process ID. | [optional] 
-**Ppid** | Pointer to **int64** | Parent process ID. | [optional] 
-**Start** | Pointer to **string** | Time the process was started. | [optional] 
-**Tags** | Pointer to **[]string** | List of tags associated with the process. | [optional] 
-**Timestamp** | Pointer to **string** | Time the process was seen. | [optional] 
-**User** | Pointer to **string** | Process owner. | [optional] 
+| Name          | Type                    | Description                               | Notes      |
+| ------------- | ----------------------- | ----------------------------------------- | ---------- |
+| **Cmdline**   | Pointer to **string**   | Process command line.                     | [optional] |
+| **Host**      | Pointer to **string**   | Host running the process.                 | [optional] |
+| **Pid**       | Pointer to **int64**    | Process ID.                               | [optional] |
+| **Ppid**      | Pointer to **int64**    | Parent process ID.                        | [optional] |
+| **Start**     | Pointer to **string**   | Time the process was started.             | [optional] |
+| **Tags**      | Pointer to **[]string** | List of tags associated with the process. | [optional] |
+| **Timestamp** | Pointer to **string**   | Time the process was seen.                | [optional] |
+| **User**      | Pointer to **string**   | Process owner.                            | [optional] |
 
 ## Methods
 
@@ -232,7 +232,4 @@ SetUser sets User field to given value.
 
 HasUser returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

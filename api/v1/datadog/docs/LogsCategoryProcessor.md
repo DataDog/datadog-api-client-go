@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Categories** | [**[]LogsCategoryProcessorCategory**](LogsCategoryProcessorCategory.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. | 
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
-**Target** | **string** | Name of the target attribute which value is defined by the matching category. | 
-**Type** | [**LogsCategoryProcessorType**](LogsCategoryProcessorType.md) |  | [default to LOGSCATEGORYPROCESSORTYPE_CATEGORY_PROCESSOR]
+| Name           | Type                                                                    | Description                                                                                                         | Notes                                                     |
+| -------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| **Categories** | [**[]LogsCategoryProcessorCategory**](LogsCategoryProcessorCategory.md) | Array of filters to match or not a log and their corresponding &#x60;name&#x60;to assign a custom value to the log. |
+| **IsEnabled**  | Pointer to **bool**                                                     | Whether or not the processor is enabled.                                                                            | [optional] [default to false]                             |
+| **Name**       | Pointer to **string**                                                   | Name of the processor.                                                                                              | [optional]                                                |
+| **Target**     | **string**                                                              | Name of the target attribute which value is defined by the matching category.                                       |
+| **Type**       | [**LogsCategoryProcessorType**](LogsCategoryProcessorType.md)           |                                                                                                                     | [default to LOGSCATEGORYPROCESSORTYPE_CATEGORY_PROCESSOR] |
 
 ## Methods
 
@@ -47,7 +47,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsCategoryProcessor) SetCategories(v []LogsCategoryProcessorCategory)`
 
 SetCategories sets Categories field to given value.
-
 
 ### GetIsEnabled
 
@@ -118,7 +117,6 @@ and a boolean to check if the value has been set.
 
 SetTarget sets Target field to given value.
 
-
 ### GetType
 
 `func (o *LogsCategoryProcessor) GetType() LogsCategoryProcessorType`
@@ -138,8 +136,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

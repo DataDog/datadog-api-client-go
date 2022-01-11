@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**FromTs** | Pointer to **int64** | The &#x60;from&#x60; timestamp in epoch seconds. | [optional] 
-**GroupBy** | Pointer to **[]string** | For &#x60;metric&#x60; based SLOs where the query includes a group-by clause, this represents the list of grouping parameters.  This is not included in responses for &#x60;monitor&#x60; based SLOs. | [optional] 
-**Groups** | Pointer to [**[]SLOHistoryMonitor**](SLOHistoryMonitor.md) | For grouped SLOs, this represents SLI data for specific groups.  This is not included in the responses for &#x60;metric&#x60; based SLOs. | [optional] 
-**Monitors** | Pointer to [**[]SLOHistoryMonitor**](SLOHistoryMonitor.md) | For multi-monitor SLOs, this represents SLI data for specific monitors.  This is not included in the responses for &#x60;metric&#x60; based SLOs. | [optional] 
-**Overall** | Pointer to [**SLOHistorySLIData**](SLOHistorySLIData.md) |  | [optional] 
-**Series** | Pointer to [**SLOHistoryMetrics**](SLOHistoryMetrics.md) |  | [optional] 
-**Thresholds** | Pointer to [**map[string]SLOThreshold**](SLOThreshold.md) | mapping of string timeframe to the SLO threshold. | [optional] 
-**ToTs** | Pointer to **int64** | The &#x60;to&#x60; timestamp in epoch seconds. | [optional] 
-**Type** | Pointer to [**SLOType**](SLOType.md) |  | [optional] 
-**TypeId** | Pointer to [**SLOTypeNumeric**](SLOTypeNumeric.md) |  | [optional] 
+| Name           | Type                                                       | Description                                                                                                                                                                                          | Notes      |
+| -------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **FromTs**     | Pointer to **int64**                                       | The &#x60;from&#x60; timestamp in epoch seconds.                                                                                                                                                     | [optional] |
+| **GroupBy**    | Pointer to **[]string**                                    | For &#x60;metric&#x60; based SLOs where the query includes a group-by clause, this represents the list of grouping parameters. This is not included in responses for &#x60;monitor&#x60; based SLOs. | [optional] |
+| **Groups**     | Pointer to [**[]SLOHistoryMonitor**](SLOHistoryMonitor.md) | For grouped SLOs, this represents SLI data for specific groups. This is not included in the responses for &#x60;metric&#x60; based SLOs.                                                             | [optional] |
+| **Monitors**   | Pointer to [**[]SLOHistoryMonitor**](SLOHistoryMonitor.md) | For multi-monitor SLOs, this represents SLI data for specific monitors. This is not included in the responses for &#x60;metric&#x60; based SLOs.                                                     | [optional] |
+| **Overall**    | Pointer to [**SLOHistorySLIData**](SLOHistorySLIData.md)   |                                                                                                                                                                                                      | [optional] |
+| **Series**     | Pointer to [**SLOHistoryMetrics**](SLOHistoryMetrics.md)   |                                                                                                                                                                                                      | [optional] |
+| **Thresholds** | Pointer to [**map[string]SLOThreshold**](SLOThreshold.md)  | mapping of string timeframe to the SLO threshold.                                                                                                                                                    | [optional] |
+| **ToTs**       | Pointer to **int64**                                       | The &#x60;to&#x60; timestamp in epoch seconds.                                                                                                                                                       | [optional] |
+| **Type**       | Pointer to [**SLOType**](SLOType.md)                       |                                                                                                                                                                                                      | [optional] |
+| **TypeId**     | Pointer to [**SLOTypeNumeric**](SLOTypeNumeric.md)         |                                                                                                                                                                                                      | [optional] |
 
 ## Methods
 
@@ -284,7 +284,4 @@ SetTypeId sets TypeId field to given value.
 
 HasTypeId returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

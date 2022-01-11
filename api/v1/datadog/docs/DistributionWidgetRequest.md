@@ -2,19 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**ApmStatsQuery** | Pointer to [**ApmStatsQueryDefinition**](ApmStatsQueryDefinition.md) |  | [optional] 
-**EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
-**ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Q** | Pointer to **string** | Widget query. | [optional] 
-**RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**SecurityQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Style** | Pointer to [**WidgetStyle**](WidgetStyle.md) |  | [optional] 
+| Name                    | Type                                                                 | Description   | Notes      |
+| ----------------------- | -------------------------------------------------------------------- | ------------- | ---------- |
+| **ApmQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)           |               | [optional] |
+| **ApmStatsQuery**       | Pointer to [**ApmStatsQueryDefinition**](ApmStatsQueryDefinition.md) |               | [optional] |
+| **EventQuery**          | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)           |               | [optional] |
+| **LogQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)           |               | [optional] |
+| **NetworkQuery**        | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)           |               | [optional] |
+| **ProcessQuery**        | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md)   |               | [optional] |
+| **ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)           |               | [optional] |
+| **Q**                   | Pointer to **string**                                                | Widget query. | [optional] |
+| **RumQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)           |               | [optional] |
+| **SecurityQuery**       | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)           |               | [optional] |
+| **Style**               | Pointer to [**WidgetStyle**](WidgetStyle.md)                         |               | [optional] |
 
 ## Methods
 
@@ -310,7 +310,4 @@ SetStyle sets Style field to given value.
 
 HasStyle returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

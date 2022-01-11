@@ -2,25 +2,25 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Cases** | Pointer to [**[]SecurityMonitoringRuleCase**](SecurityMonitoringRuleCase.md) | Cases for generating signals. | [optional] 
-**CreatedAt** | Pointer to **int64** | When the rule was created, timestamp in milliseconds. | [optional] 
-**CreationAuthorId** | Pointer to **int64** | User ID of the user who created the rule. | [optional] 
-**Filters** | Pointer to [**[]SecurityMonitoringFilter**](SecurityMonitoringFilter.md) | Additional queries to filter matched events before they are processed. | [optional] 
-**HasExtendedTitle** | Pointer to **bool** | Whether the notifications include the triggering group-by values in their title. | [optional] 
-**Id** | Pointer to **string** | The ID of the rule. | [optional] 
-**IsDefault** | Pointer to **bool** | Whether the rule is included by default. | [optional] 
-**IsDeleted** | Pointer to **bool** | Whether the rule has been deleted. | [optional] 
-**IsEnabled** | Pointer to **bool** | Whether the rule is enabled. | [optional] 
-**Message** | Pointer to **string** | Message for generated signals. | [optional] 
-**Name** | Pointer to **string** | The name of the rule. | [optional] 
-**Options** | Pointer to [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md) |  | [optional] 
-**Queries** | Pointer to [**[]SecurityMonitoringRuleQuery**](SecurityMonitoringRuleQuery.md) | Queries for selecting logs which are part of the rule. | [optional] 
-**Tags** | Pointer to **[]string** | Tags for generated signals. | [optional] 
-**Type** | Pointer to [**SecurityMonitoringRuleTypeRead**](SecurityMonitoringRuleTypeRead.md) |  | [optional] 
-**UpdateAuthorId** | Pointer to **int64** | User ID of the user who updated the rule. | [optional] 
-**Version** | Pointer to **int64** | The version of the rule. | [optional] 
+| Name                 | Type                                                                               | Description                                                                      | Notes      |
+| -------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ---------- |
+| **Cases**            | Pointer to [**[]SecurityMonitoringRuleCase**](SecurityMonitoringRuleCase.md)       | Cases for generating signals.                                                    | [optional] |
+| **CreatedAt**        | Pointer to **int64**                                                               | When the rule was created, timestamp in milliseconds.                            | [optional] |
+| **CreationAuthorId** | Pointer to **int64**                                                               | User ID of the user who created the rule.                                        | [optional] |
+| **Filters**          | Pointer to [**[]SecurityMonitoringFilter**](SecurityMonitoringFilter.md)           | Additional queries to filter matched events before they are processed.           | [optional] |
+| **HasExtendedTitle** | Pointer to **bool**                                                                | Whether the notifications include the triggering group-by values in their title. | [optional] |
+| **Id**               | Pointer to **string**                                                              | The ID of the rule.                                                              | [optional] |
+| **IsDefault**        | Pointer to **bool**                                                                | Whether the rule is included by default.                                         | [optional] |
+| **IsDeleted**        | Pointer to **bool**                                                                | Whether the rule has been deleted.                                               | [optional] |
+| **IsEnabled**        | Pointer to **bool**                                                                | Whether the rule is enabled.                                                     | [optional] |
+| **Message**          | Pointer to **string**                                                              | Message for generated signals.                                                   | [optional] |
+| **Name**             | Pointer to **string**                                                              | The name of the rule.                                                            | [optional] |
+| **Options**          | Pointer to [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md)   |                                                                                  | [optional] |
+| **Queries**          | Pointer to [**[]SecurityMonitoringRuleQuery**](SecurityMonitoringRuleQuery.md)     | Queries for selecting logs which are part of the rule.                           | [optional] |
+| **Tags**             | Pointer to **[]string**                                                            | Tags for generated signals.                                                      | [optional] |
+| **Type**             | Pointer to [**SecurityMonitoringRuleTypeRead**](SecurityMonitoringRuleTypeRead.md) |                                                                                  | [optional] |
+| **UpdateAuthorId**   | Pointer to **int64**                                                               | User ID of the user who updated the rule.                                        | [optional] |
+| **Version**          | Pointer to **int64**                                                               | The version of the rule.                                                         | [optional] |
 
 ## Methods
 
@@ -466,7 +466,4 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CreatedAt** | Pointer to **time.Time** | Creation time of the organization. | [optional] 
-**Description** | Pointer to **string** | Description of the organization. | [optional] 
-**Disabled** | Pointer to **bool** | Whether or not the organization is disabled. | [optional] 
-**ModifiedAt** | Pointer to **time.Time** | Time of last organization modification. | [optional] 
-**Name** | Pointer to **string** | Name of the organization. | [optional] 
-**PublicId** | Pointer to **string** | Public ID of the organization. | [optional] 
-**Sharing** | Pointer to **string** | Sharing type of the organization. | [optional] 
-**Url** | Pointer to **string** | URL of the site that this organization exists at. | [optional] 
+| Name            | Type                     | Description                                       | Notes      |
+| --------------- | ------------------------ | ------------------------------------------------- | ---------- |
+| **CreatedAt**   | Pointer to **time.Time** | Creation time of the organization.                | [optional] |
+| **Description** | Pointer to **string**    | Description of the organization.                  | [optional] |
+| **Disabled**    | Pointer to **bool**      | Whether or not the organization is disabled.      | [optional] |
+| **ModifiedAt**  | Pointer to **time.Time** | Time of last organization modification.           | [optional] |
+| **Name**        | Pointer to **string**    | Name of the organization.                         | [optional] |
+| **PublicId**    | Pointer to **string**    | Public ID of the organization.                    | [optional] |
+| **Sharing**     | Pointer to **string**    | Sharing type of the organization.                 | [optional] |
+| **Url**         | Pointer to **string**    | URL of the site that this organization exists at. | [optional] |
 
 ## Methods
 
@@ -232,7 +232,4 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

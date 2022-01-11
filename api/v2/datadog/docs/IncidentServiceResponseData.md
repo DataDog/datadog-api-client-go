@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**IncidentServiceResponseAttributes**](IncidentServiceResponseAttributes.md) |  | [optional] 
-**Id** | **string** | The incident service&#39;s ID. | 
-**Relationships** | Pointer to [**IncidentServiceRelationships**](IncidentServiceRelationships.md) |  | [optional] 
-**Type** | [**IncidentServiceType**](IncidentServiceType.md) |  | [default to INCIDENTSERVICETYPE_SERVICES]
+| Name              | Type                                                                                     | Description                    | Notes                                     |
+| ----------------- | ---------------------------------------------------------------------------------------- | ------------------------------ | ----------------------------------------- |
+| **Attributes**    | Pointer to [**IncidentServiceResponseAttributes**](IncidentServiceResponseAttributes.md) |                                | [optional]                                |
+| **Id**            | **string**                                                                               | The incident service&#39;s ID. |
+| **Relationships** | Pointer to [**IncidentServiceRelationships**](IncidentServiceRelationships.md)           |                                | [optional]                                |
+| **Type**          | [**IncidentServiceType**](IncidentServiceType.md)                                        |                                | [default to INCIDENTSERVICETYPE_SERVICES] |
 
 ## Methods
 
@@ -72,7 +72,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-
 ### GetRelationships
 
 `func (o *IncidentServiceResponseData) GetRelationships() IncidentServiceRelationships`
@@ -117,8 +116,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

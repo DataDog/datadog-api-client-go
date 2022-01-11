@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DashboardLists** | Pointer to [**[]DashboardList**](DashboardList.md) | List of all your dashboard lists. | [optional] 
+| Name               | Type                                               | Description                       | Notes      |
+| ------------------ | -------------------------------------------------- | --------------------------------- | ---------- |
+| **DashboardLists** | Pointer to [**[]DashboardList**](DashboardList.md) | List of all your dashboard lists. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetDashboardLists sets DashboardLists field to given value.
 
 HasDashboardLists returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

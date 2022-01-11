@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Filter** | Pointer to [**SecurityMonitoringSignalListRequestFilter**](SecurityMonitoringSignalListRequestFilter.md) |  | [optional] 
-**Page** | Pointer to [**SecurityMonitoringSignalListRequestPage**](SecurityMonitoringSignalListRequestPage.md) |  | [optional] 
-**Sort** | Pointer to [**SecurityMonitoringSignalsSort**](SecurityMonitoringSignalsSort.md) |  | [optional] 
+| Name       | Type                                                                                                     | Description | Notes      |
+| ---------- | -------------------------------------------------------------------------------------------------------- | ----------- | ---------- |
+| **Filter** | Pointer to [**SecurityMonitoringSignalListRequestFilter**](SecurityMonitoringSignalListRequestFilter.md) |             | [optional] |
+| **Page**   | Pointer to [**SecurityMonitoringSignalListRequestPage**](SecurityMonitoringSignalListRequestPage.md)     |             | [optional] |
+| **Sort**   | Pointer to [**SecurityMonitoringSignalsSort**](SecurityMonitoringSignalsSort.md)                         |             | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetSort sets Sort field to given value.
 
 HasSort returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,23 +2,23 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AgentChecks** | Pointer to **[][]interface{}** | A list of Agent checks running on the host. | [optional] 
-**AgentVersion** | Pointer to **string** | The Datadog Agent version. | [optional] 
-**CpuCores** | Pointer to **int64** | The number of cores. | [optional] 
-**FbsdV** | Pointer to **[]string** | An array of Mac versions. | [optional] 
-**Gohai** | Pointer to **string** | JSON string containing system information. | [optional] 
-**InstallMethod** | Pointer to [**HostMetaInstallMethod**](HostMetaInstallMethod.md) |  | [optional] 
-**MacV** | Pointer to **[]string** | An array of Mac versions. | [optional] 
-**Machine** | Pointer to **string** | The machine architecture. | [optional] 
-**NixV** | Pointer to **[]string** | Array of Unix versions. | [optional] 
-**Platform** | Pointer to **string** | The OS platform. | [optional] 
-**Processor** | Pointer to **string** | The processor. | [optional] 
-**PythonV** | Pointer to **string** | The Python version. | [optional] 
-**SocketFqdn** | Pointer to **string** | The socket fqdn. | [optional] 
-**SocketHostname** | Pointer to **string** | The socket hostname. | [optional] 
-**WinV** | Pointer to **[]string** | An array of Windows versions. | [optional] 
+| Name               | Type                                                             | Description                                 | Notes      |
+| ------------------ | ---------------------------------------------------------------- | ------------------------------------------- | ---------- |
+| **AgentChecks**    | Pointer to **[][]interface{}**                                   | A list of Agent checks running on the host. | [optional] |
+| **AgentVersion**   | Pointer to **string**                                            | The Datadog Agent version.                  | [optional] |
+| **CpuCores**       | Pointer to **int64**                                             | The number of cores.                        | [optional] |
+| **FbsdV**          | Pointer to **[]string**                                          | An array of Mac versions.                   | [optional] |
+| **Gohai**          | Pointer to **string**                                            | JSON string containing system information.  | [optional] |
+| **InstallMethod**  | Pointer to [**HostMetaInstallMethod**](HostMetaInstallMethod.md) |                                             | [optional] |
+| **MacV**           | Pointer to **[]string**                                          | An array of Mac versions.                   | [optional] |
+| **Machine**        | Pointer to **string**                                            | The machine architecture.                   | [optional] |
+| **NixV**           | Pointer to **[]string**                                          | Array of Unix versions.                     | [optional] |
+| **Platform**       | Pointer to **string**                                            | The OS platform.                            | [optional] |
+| **Processor**      | Pointer to **string**                                            | The processor.                              | [optional] |
+| **PythonV**        | Pointer to **string**                                            | The Python version.                         | [optional] |
+| **SocketFqdn**     | Pointer to **string**                                            | The socket fqdn.                            | [optional] |
+| **SocketHostname** | Pointer to **string**                                            | The socket hostname.                        | [optional] |
+| **WinV**           | Pointer to **[]string**                                          | An array of Windows versions.               | [optional] |
 
 ## Methods
 
@@ -414,7 +414,4 @@ SetWinV sets WinV field to given value.
 
 HasWinV returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

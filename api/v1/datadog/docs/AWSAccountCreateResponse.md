@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ExternalId** | Pointer to **string** | AWS external_id. | [optional] 
+| Name           | Type                  | Description      | Notes      |
+| -------------- | --------------------- | ---------------- | ---------- |
+| **ExternalId** | Pointer to **string** | AWS external_id. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetExternalId sets ExternalId field to given value.
 
 HasExternalId returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

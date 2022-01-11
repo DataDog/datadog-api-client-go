@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Color** | Pointer to **string** | Color of the text. | [optional] 
-**FontSize** | Pointer to **string** | Size of the text. | [optional] 
-**Text** | **string** | Text to display. | 
-**TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**Type** | [**FreeTextWidgetDefinitionType**](FreeTextWidgetDefinitionType.md) |  | [default to FREETEXTWIDGETDEFINITIONTYPE_FREE_TEXT]
+| Name          | Type                                                                | Description        | Notes                                               |
+| ------------- | ------------------------------------------------------------------- | ------------------ | --------------------------------------------------- |
+| **Color**     | Pointer to **string**                                               | Color of the text. | [optional]                                          |
+| **FontSize**  | Pointer to **string**                                               | Size of the text.  | [optional]                                          |
+| **Text**      | **string**                                                          | Text to display.   |
+| **TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                |                    | [optional]                                          |
+| **Type**      | [**FreeTextWidgetDefinitionType**](FreeTextWidgetDefinitionType.md) |                    | [default to FREETEXTWIDGETDEFINITIONTYPE_FREE_TEXT] |
 
 ## Methods
 
@@ -98,7 +98,6 @@ and a boolean to check if the value has been set.
 
 SetText sets Text field to given value.
 
-
 ### GetTextAlign
 
 `func (o *FreeTextWidgetDefinition) GetTextAlign() WidgetTextAlign`
@@ -143,8 +142,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

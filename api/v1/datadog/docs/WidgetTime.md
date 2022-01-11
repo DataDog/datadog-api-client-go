@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**LiveSpan** | Pointer to [**WidgetLiveSpan**](WidgetLiveSpan.md) |  | [optional] 
+| Name         | Type                                               | Description | Notes      |
+| ------------ | -------------------------------------------------- | ----------- | ---------- |
+| **LiveSpan** | Pointer to [**WidgetLiveSpan**](WidgetLiveSpan.md) |             | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetLiveSpan sets LiveSpan field to given value.
 
 HasLiveSpan returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

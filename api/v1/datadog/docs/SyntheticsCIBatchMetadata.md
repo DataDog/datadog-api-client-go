@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Ci** | Pointer to [**SyntheticsCIBatchMetadataCI**](SyntheticsCIBatchMetadataCI.md) |  | [optional] 
-**Git** | Pointer to [**SyntheticsCIBatchMetadataGit**](SyntheticsCIBatchMetadataGit.md) |  | [optional] 
+| Name    | Type                                                                           | Description | Notes      |
+| ------- | ------------------------------------------------------------------------------ | ----------- | ---------- |
+| **Ci**  | Pointer to [**SyntheticsCIBatchMetadataCI**](SyntheticsCIBatchMetadataCI.md)   |             | [optional] |
+| **Git** | Pointer to [**SyntheticsCIBatchMetadataGit**](SyntheticsCIBatchMetadataGit.md) |             | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetGit sets Git field to given value.
 
 HasGit returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

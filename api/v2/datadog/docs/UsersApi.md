@@ -2,20 +2,18 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateServiceAccount**](UsersApi.md#CreateServiceAccount) | **Post** /api/v2/service_accounts | Create a service account
-[**CreateUser**](UsersApi.md#CreateUser) | **Post** /api/v2/users | Create a user
-[**DisableUser**](UsersApi.md#DisableUser) | **Delete** /api/v2/users/{user_id} | Disable a user
-[**GetInvitation**](UsersApi.md#GetInvitation) | **Get** /api/v2/user_invitations/{user_invitation_uuid} | Get a user invitation
-[**GetUser**](UsersApi.md#GetUser) | **Get** /api/v2/users/{user_id} | Get user details
-[**ListUserOrganizations**](UsersApi.md#ListUserOrganizations) | **Get** /api/v2/users/{user_id}/orgs | Get a user organization
-[**ListUserPermissions**](UsersApi.md#ListUserPermissions) | **Get** /api/v2/users/{user_id}/permissions | Get a user permissions
-[**ListUsers**](UsersApi.md#ListUsers) | **Get** /api/v2/users | List all users
-[**SendInvitations**](UsersApi.md#SendInvitations) | **Post** /api/v2/user_invitations | Send invitation emails
-[**UpdateUser**](UsersApi.md#UpdateUser) | **Patch** /api/v2/users/{user_id} | Update a user
-
-
+| Method                                                         | HTTP request                                            | Description              |
+| -------------------------------------------------------------- | ------------------------------------------------------- | ------------------------ |
+| [**CreateServiceAccount**](UsersApi.md#CreateServiceAccount)   | **Post** /api/v2/service_accounts                       | Create a service account |
+| [**CreateUser**](UsersApi.md#CreateUser)                       | **Post** /api/v2/users                                  | Create a user            |
+| [**DisableUser**](UsersApi.md#DisableUser)                     | **Delete** /api/v2/users/{user_id}                      | Disable a user           |
+| [**GetInvitation**](UsersApi.md#GetInvitation)                 | **Get** /api/v2/user_invitations/{user_invitation_uuid} | Get a user invitation    |
+| [**GetUser**](UsersApi.md#GetUser)                             | **Get** /api/v2/users/{user_id}                         | Get user details         |
+| [**ListUserOrganizations**](UsersApi.md#ListUserOrganizations) | **Get** /api/v2/users/{user_id}/orgs                    | Get a user organization  |
+| [**ListUserPermissions**](UsersApi.md#ListUserPermissions)     | **Get** /api/v2/users/{user_id}/permissions             | Get a user permissions   |
+| [**ListUsers**](UsersApi.md#ListUsers)                         | **Get** /api/v2/users                                   | List all users           |
+| [**SendInvitations**](UsersApi.md#SendInvitations)             | **Post** /api/v2/user_invitations                       | Send invitation emails   |
+| [**UpdateUser**](UsersApi.md#UpdateUser)                       | **Patch** /api/v2/users/{user_id}                       | Update a user            |
 
 ## CreateServiceAccount
 
@@ -39,7 +37,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewServiceAccountCreateRequest(*datadog.NewServiceAccountCreateData(*datadog.NewServiceAccountCreateAttributes("jane.doe@example.com", true), datadog.UsersType("users"))) // ServiceAccountCreateRequest | 
+    body := *datadog.NewServiceAccountCreateRequest(*datadog.NewServiceAccountCreateData(*datadog.NewServiceAccountCreateAttributes("jane.doe@example.com", true), datadog.UsersType("users"))) // ServiceAccountCreateRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -57,17 +55,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**ServiceAccountCreateRequest**](ServiceAccountCreateRequest.md) |  | 
-
+| Name     | Type                                                              | Description                                                                 | Notes |
+| -------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**ServiceAccountCreateRequest**](ServiceAccountCreateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -85,7 +80,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateUser
 
@@ -109,7 +103,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("jane.doe@example.com"), datadog.UsersType("users"))) // UserCreateRequest | 
+    body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("jane.doe@example.com"), datadog.UsersType("users"))) // UserCreateRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -127,17 +121,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**UserCreateRequest**](UserCreateRequest.md) |  | 
-
+| Name     | Type                                          | Description                                                                 | Notes |
+| -------- | --------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**UserCreateRequest**](UserCreateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -155,7 +146,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DisableUser
 
@@ -194,21 +184,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**userId** | **string** | The ID of the user. | 
-
+| Name       | Type                | Description                                                                 | Notes |
+| ---------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **userId** | **string**          | The ID of the user.                                                         |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -222,7 +209,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetInvitation
 
@@ -264,17 +250,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**userInvitationUuid** | **string** | The UUID of the user invitation. | 
-
+| Name                   | Type                | Description                                                                 | Notes |
+| ---------------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**                | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **userInvitationUuid** | **string**          | The UUID of the user invitation.                                            |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -292,7 +275,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUser
 
@@ -334,17 +316,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**userId** | **string** | The ID of the user. | 
-
+| Name       | Type                | Description                                                                 | Notes |
+| ---------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **userId** | **string**          | The ID of the user.                                                         |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -362,7 +341,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListUserOrganizations
 
@@ -405,17 +383,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**userId** | **string** | The ID of the user. | 
-
+| Name       | Type                | Description                                                                 | Notes |
+| ---------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **userId** | **string**          | The ID of the user.                                                         |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -433,7 +408,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListUserPermissions
 
@@ -476,17 +450,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**userId** | **string** | The ID of the user. | 
-
+| Name       | Type                | Description                                                                 | Notes |
+| ---------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **userId** | **string**          | The ID of the user.                                                         |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -504,7 +475,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListUsers
 
@@ -560,23 +530,18 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListUsersOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**pageSize** | **int64** | Size for a given page. | [default to 10]
-**pageNumber** | **int64** | Specific page number to return. | [default to 0]
-**sort** | **string** | User attribute to order results by. Sort order is ascending by default. Sort order is descending if the field is prefixed by a negative sign, for example &#x60;sort&#x3D;-name&#x60;. Options: &#x60;name&#x60;, &#x60;modified_at&#x60;, &#x60;user_count&#x60;. | [default to &quot;name&quot;]
-**sortDir** | [**QuerySortOrder**](QuerySortOrder.md) | Direction of sort. Options: &#x60;asc&#x60;, &#x60;desc&#x60;. | [default to &quot;desc&quot;]
-**filter** | **string** | Filter all users by the given string. Defaults to no filtering. | 
-**filterStatus** | **string** | Filter on status attribute. Comma separated list, with possible values &#x60;Active&#x60;, &#x60;Pending&#x60;, and &#x60;Disabled&#x60;. Defaults to no filtering. | 
+| Name             | Type                                    | Description                                                                                                                                                                                                                                                        | Notes                         |
+| ---------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| **pageSize**     | **int64**                               | Size for a given page.                                                                                                                                                                                                                                             | [default to 10]               |
+| **pageNumber**   | **int64**                               | Specific page number to return.                                                                                                                                                                                                                                    | [default to 0]                |
+| **sort**         | **string**                              | User attribute to order results by. Sort order is ascending by default. Sort order is descending if the field is prefixed by a negative sign, for example &#x60;sort&#x3D;-name&#x60;. Options: &#x60;name&#x60;, &#x60;modified_at&#x60;, &#x60;user_count&#x60;. | [default to &quot;name&quot;] |
+| **sortDir**      | [**QuerySortOrder**](QuerySortOrder.md) | Direction of sort. Options: &#x60;asc&#x60;, &#x60;desc&#x60;.                                                                                                                                                                                                     | [default to &quot;desc&quot;] |
+| **filter**       | **string**                              | Filter all users by the given string. Defaults to no filtering.                                                                                                                                                                                                    |
+| **filterStatus** | **string**                              | Filter on status attribute. Comma separated list, with possible values &#x60;Active&#x60;, &#x60;Pending&#x60;, and &#x60;Disabled&#x60;. Defaults to no filtering.                                                                                                |
 
 ### Return type
 
@@ -594,7 +559,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## SendInvitations
 
@@ -618,7 +582,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewUserInvitationsRequest([]datadog.UserInvitationData{*datadog.NewUserInvitationData(*datadog.NewUserInvitationRelationships(*datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users")))), datadog.UserInvitationsType("user_invitations"))}) // UserInvitationsRequest | 
+    body := *datadog.NewUserInvitationsRequest([]datadog.UserInvitationData{*datadog.NewUserInvitationData(*datadog.NewUserInvitationRelationships(*datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users")))), datadog.UserInvitationsType("user_invitations"))}) // UserInvitationsRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -636,17 +600,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**UserInvitationsRequest**](UserInvitationsRequest.md) |  | 
-
+| Name     | Type                                                    | Description                                                                 | Notes |
+| -------- | ------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                     | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**UserInvitationsRequest**](UserInvitationsRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -664,7 +625,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateUser
 
@@ -690,7 +650,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     userId := "00000000-0000-0000-0000-000000000000" // string | The ID of the user.
-    body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // UserUpdateRequest | 
+    body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // UserUpdateRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -708,18 +668,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**userId** | **string** | The ID of the user. |  |
-**body** | [**UserUpdateRequest**](UserUpdateRequest.md) |  | 
-
+| Name       | Type                                          | Description                                                                 | Notes |
+| ---------- | --------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context**                           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **userId** | **string**                                    | The ID of the user.                                                         |       |
+| **body**   | [**UserUpdateRequest**](UserUpdateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -737,4 +694,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

@@ -2,23 +2,23 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
-**Events** | Pointer to [**[]WidgetEvent**](WidgetEvent.md) | List of widget events. | [optional] 
-**LegendColumns** | Pointer to [**[]TimeseriesWidgetLegendColumn**](TimeseriesWidgetLegendColumn.md) | Columns displayed in the legend. | [optional] 
-**LegendLayout** | Pointer to [**TimeseriesWidgetLegendLayout**](TimeseriesWidgetLegendLayout.md) |  | [optional] 
-**LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
-**Markers** | Pointer to [**[]WidgetMarker**](WidgetMarker.md) | List of markers. | [optional] 
-**Requests** | [**[]TimeseriesWidgetRequest**](TimeseriesWidgetRequest.md) | List of timeseries widget requests. | 
-**RightYaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
-**ShowLegend** | Pointer to **bool** | (screenboard only) Show the legend for this widget. | [optional] 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of your widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**TimeseriesWidgetDefinitionType**](TimeseriesWidgetDefinitionType.md) |  | [default to TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES]
-**Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
+| Name              | Type                                                                             | Description                                                                                                                                                        | Notes                                                  |
+| ----------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
+| **CustomLinks**   | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md)                         | List of custom links.                                                                                                                                              | [optional]                                             |
+| **Events**        | Pointer to [**[]WidgetEvent**](WidgetEvent.md)                                   | List of widget events.                                                                                                                                             | [optional]                                             |
+| **LegendColumns** | Pointer to [**[]TimeseriesWidgetLegendColumn**](TimeseriesWidgetLegendColumn.md) | Columns displayed in the legend.                                                                                                                                   | [optional]                                             |
+| **LegendLayout**  | Pointer to [**TimeseriesWidgetLegendLayout**](TimeseriesWidgetLegendLayout.md)   |                                                                                                                                                                    | [optional]                                             |
+| **LegendSize**    | Pointer to **string**                                                            | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional]                                             |
+| **Markers**       | Pointer to [**[]WidgetMarker**](WidgetMarker.md)                                 | List of markers.                                                                                                                                                   | [optional]                                             |
+| **Requests**      | [**[]TimeseriesWidgetRequest**](TimeseriesWidgetRequest.md)                      | List of timeseries widget requests.                                                                                                                                |
+| **RightYaxis**    | Pointer to [**WidgetAxis**](WidgetAxis.md)                                       |                                                                                                                                                                    | [optional]                                             |
+| **ShowLegend**    | Pointer to **bool**                                                              | (screenboard only) Show the legend for this widget.                                                                                                                | [optional]                                             |
+| **Time**          | Pointer to [**WidgetTime**](WidgetTime.md)                                       |                                                                                                                                                                    | [optional]                                             |
+| **Title**         | Pointer to **string**                                                            | Title of your widget.                                                                                                                                              | [optional]                                             |
+| **TitleAlign**    | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                             |                                                                                                                                                                    | [optional]                                             |
+| **TitleSize**     | Pointer to **string**                                                            | Size of the title.                                                                                                                                                 | [optional]                                             |
+| **Type**          | [**TimeseriesWidgetDefinitionType**](TimeseriesWidgetDefinitionType.md)          |                                                                                                                                                                    | [default to TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES] |
+| **Yaxis**         | Pointer to [**WidgetAxis**](WidgetAxis.md)                                       |                                                                                                                                                                    | [optional]                                             |
 
 ## Methods
 
@@ -208,7 +208,6 @@ and a boolean to check if the value has been set.
 
 SetRequests sets Requests field to given value.
 
-
 ### GetRightYaxis
 
 `func (o *TimeseriesWidgetDefinition) GetRightYaxis() WidgetAxis`
@@ -378,7 +377,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetYaxis
 
 `func (o *TimeseriesWidgetDefinition) GetYaxis() WidgetAxis`
@@ -404,7 +402,4 @@ SetYaxis sets Yaxis field to given value.
 
 HasYaxis returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

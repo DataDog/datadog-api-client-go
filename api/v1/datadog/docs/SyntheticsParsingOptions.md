@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Field** | Pointer to **string** | When type is &#x60;http_header&#x60;, name of the header to use to extract the value. | [optional] 
-**Name** | Pointer to **string** | Name of the variable to extract. | [optional] 
-**Parser** | Pointer to [**SyntheticsVariableParser**](SyntheticsVariableParser.md) |  | [optional] 
-**Type** | Pointer to [**SyntheticsGlobalVariableParseTestOptionsType**](SyntheticsGlobalVariableParseTestOptionsType.md) |  | [optional] 
+| Name       | Type                                                                                                           | Description                                                                           | Notes      |
+| ---------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------- |
+| **Field**  | Pointer to **string**                                                                                          | When type is &#x60;http_header&#x60;, name of the header to use to extract the value. | [optional] |
+| **Name**   | Pointer to **string**                                                                                          | Name of the variable to extract.                                                      | [optional] |
+| **Parser** | Pointer to [**SyntheticsVariableParser**](SyntheticsVariableParser.md)                                         |                                                                                       | [optional] |
+| **Type**   | Pointer to [**SyntheticsGlobalVariableParseTestOptionsType**](SyntheticsGlobalVariableParseTestOptionsType.md) |                                                                                       | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

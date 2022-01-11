@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Check** | **string** | Name of the check to use in the widget. | 
-**Group** | Pointer to **string** | Group reporting a single check. | [optional] 
-**GroupBy** | Pointer to **[]string** | List of tag prefixes to group by in the case of a cluster check. | [optional] 
-**Grouping** | [**WidgetGrouping**](WidgetGrouping.md) |  | 
-**Tags** | Pointer to **[]string** | List of tags used to filter the groups reporting a cluster check. | [optional] 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**CheckStatusWidgetDefinitionType**](CheckStatusWidgetDefinitionType.md) |  | [default to CHECKSTATUSWIDGETDEFINITIONTYPE_CHECK_STATUS]
+| Name           | Type                                                                      | Description                                                       | Notes                                                     |
+| -------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------- |
+| **Check**      | **string**                                                                | Name of the check to use in the widget.                           |
+| **Group**      | Pointer to **string**                                                     | Group reporting a single check.                                   | [optional]                                                |
+| **GroupBy**    | Pointer to **[]string**                                                   | List of tag prefixes to group by in the case of a cluster check.  | [optional]                                                |
+| **Grouping**   | [**WidgetGrouping**](WidgetGrouping.md)                                   |                                                                   |
+| **Tags**       | Pointer to **[]string**                                                   | List of tags used to filter the groups reporting a cluster check. | [optional]                                                |
+| **Time**       | Pointer to [**WidgetTime**](WidgetTime.md)                                |                                                                   | [optional]                                                |
+| **Title**      | Pointer to **string**                                                     | Title of the widget.                                              | [optional]                                                |
+| **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                      |                                                                   | [optional]                                                |
+| **TitleSize**  | Pointer to **string**                                                     | Size of the title.                                                | [optional]                                                |
+| **Type**       | [**CheckStatusWidgetDefinitionType**](CheckStatusWidgetDefinitionType.md) |                                                                   | [default to CHECKSTATUSWIDGETDEFINITIONTYPE_CHECK_STATUS] |
 
 ## Methods
 
@@ -52,7 +52,6 @@ and a boolean to check if the value has been set.
 `func (o *CheckStatusWidgetDefinition) SetCheck(v string)`
 
 SetCheck sets Check field to given value.
-
 
 ### GetGroup
 
@@ -122,7 +121,6 @@ and a boolean to check if the value has been set.
 `func (o *CheckStatusWidgetDefinition) SetGrouping(v WidgetGrouping)`
 
 SetGrouping sets Grouping field to given value.
-
 
 ### GetTags
 
@@ -268,8 +266,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

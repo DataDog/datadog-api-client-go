@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DeletedAt** | Pointer to **time.Time** | Deletion timestamp of the Synthetic test ID. | [optional] 
-**PublicId** | Pointer to **string** | The Synthetic test ID deleted. | [optional] 
+| Name          | Type                     | Description                                  | Notes      |
+| ------------- | ------------------------ | -------------------------------------------- | ---------- |
+| **DeletedAt** | Pointer to **time.Time** | Deletion timestamp of the Synthetic test ID. | [optional] |
+| **PublicId**  | Pointer to **string**    | The Synthetic test ID deleted.               | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetPublicId sets PublicId field to given value.
 
 HasPublicId returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

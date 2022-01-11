@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**HostList** | Pointer to [**[]Host**](Host.md) | Array of hosts. | [optional] 
-**TotalMatching** | Pointer to **int64** | Number of host matching the query. | [optional] 
-**TotalReturned** | Pointer to **int64** | Number of host returned. | [optional] 
+| Name              | Type                             | Description                        | Notes      |
+| ----------------- | -------------------------------- | ---------------------------------- | ---------- |
+| **HostList**      | Pointer to [**[]Host**](Host.md) | Array of hosts.                    | [optional] |
+| **TotalMatching** | Pointer to **int64**             | Number of host matching the query. | [optional] |
+| **TotalReturned** | Pointer to **int64**             | Number of host returned.           | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetTotalReturned sets TotalReturned field to given value.
 
 HasTotalReturned returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

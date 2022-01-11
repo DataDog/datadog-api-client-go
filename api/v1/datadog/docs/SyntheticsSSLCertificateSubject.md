@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**C** | Pointer to **string** | Country Name associated with the certificate. | [optional] 
-**CN** | Pointer to **string** | Common Name that associated with the certificate. | [optional] 
-**L** | Pointer to **string** | Locality associated with the certificate. | [optional] 
-**O** | Pointer to **string** | Organization associated with the certificate. | [optional] 
-**OU** | Pointer to **string** | Organizational Unit associated with the certificate. | [optional] 
-**ST** | Pointer to **string** | State Or Province Name associated with the certificate. | [optional] 
-**AltName** | Pointer to **string** | Subject Alternative Name associated with the certificate. | [optional] 
+| Name        | Type                  | Description                                               | Notes      |
+| ----------- | --------------------- | --------------------------------------------------------- | ---------- |
+| **C**       | Pointer to **string** | Country Name associated with the certificate.             | [optional] |
+| **CN**      | Pointer to **string** | Common Name that associated with the certificate.         | [optional] |
+| **L**       | Pointer to **string** | Locality associated with the certificate.                 | [optional] |
+| **O**       | Pointer to **string** | Organization associated with the certificate.             | [optional] |
+| **OU**      | Pointer to **string** | Organizational Unit associated with the certificate.      | [optional] |
+| **ST**      | Pointer to **string** | State Or Province Name associated with the certificate.   | [optional] |
+| **AltName** | Pointer to **string** | Subject Alternative Name associated with the certificate. | [optional] |
 
 ## Methods
 
@@ -206,7 +206,4 @@ SetAltName sets AltName field to given value.
 
 HasAltName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

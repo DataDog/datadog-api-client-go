@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Id** | **string** | The ID of the service level objective object associated with this error. | 
-**Message** | **string** | The error message. | 
-**Timeframe** | [**SLOErrorTimeframe**](SLOErrorTimeframe.md) |  | 
+| Name          | Type                                          | Description                                                              | Notes |
+| ------------- | --------------------------------------------- | ------------------------------------------------------------------------ | ----- |
+| **Id**        | **string**                                    | The ID of the service level objective object associated with this error. |
+| **Message**   | **string**                                    | The error message.                                                       |
+| **Timeframe** | [**SLOErrorTimeframe**](SLOErrorTimeframe.md) |                                                                          |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-
 ### GetMessage
 
 `func (o *SLOBulkDeleteError) GetMessage() string`
@@ -65,7 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *SLOBulkDeleteError) SetMessage(v string)`
 
 SetMessage sets Message field to given value.
-
 
 ### GetTimeframe
 
@@ -86,8 +84,4 @@ and a boolean to check if the value has been set.
 
 SetTimeframe sets Timeframe field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
